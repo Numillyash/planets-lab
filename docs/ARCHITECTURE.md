@@ -4,7 +4,39 @@
 
 `planets-lab` is a headless, deterministic simulation and ML/RL research environment for Planets.nu-style games.
 
-It is intentionally separate from `planets-intel`, which owns the web application, API, persistence, observations, historical statistics and user-facing intelligence features.
+It is intentionally separate from `planets-intel`, which owns the main user-facing dashboard, persistence, observations, historical statistics and intelligence features.
+
+## Deployment decision
+
+The two projects remain physically and operationally separate on the server:
+
+```text
+/opt/
+├── planets-intel/
+└── planets-lab/
+```
+
+They share the existing public domain through URL prefixes rather than through a new DNS subdomain:
+
+```text
+https://planets.georgul.ru/
+    -> planets-intel frontend
+
+https://planets.georgul.ru/api/
+    -> planets-intel backend
+
+https://planets.georgul.ru/lab/
+    -> planets-lab web UI (future)
+
+https://planets.georgul.ru/lab-api/
+    -> planets-lab backend/API (future)
+```
+
+`/lab/` and `/lab-api/` are URL routing prefixes only; the repositories and containers are not merged into one filesystem tree or application.
+
+Future `planets-lab` frontend assets/router configuration must therefore be compatible with the `/lab/` base path from the beginning.
+
+The existing reverse proxy for `planets.georgul.ru` will eventually route these prefixes to independent local/Docker services. No additional public hostname is required.
 
 ## Core boundary
 
