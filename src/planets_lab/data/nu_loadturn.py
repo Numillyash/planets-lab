@@ -129,17 +129,19 @@ def _ship(raw: Mapping[str, Any]) -> Ship:
     if owner_id is None:
         raise NuLoadTurnError(f"ship {_first(raw, 'id', default='?')} has no owner")
 
+    x = _required_int(raw, "x")
+    y = _required_int(raw, "y")
     return Ship(
         id=_required_int(raw, "id"),
         owner_id=owner_id,
         hull_id=_required_int(raw, "hullid", "hull_id"),
-        x=_required_int(raw, "x"),
-        y=_required_int(raw, "y"),
+        x=x,
+        y=y,
         engine_id=_int(raw, "engineid", "engine_id") or None,
         beam_id=_int(raw, "beamid", "beam_id") or None,
         torpedo_id=_int(raw, "torpedoid", "torpedo_id") or None,
-        waypoint_x=_int(raw, "targetx", "waypointx", "waypoint_x", default=_required_int(raw, "x")),
-        waypoint_y=_int(raw, "targety", "waypointy", "waypoint_y", default=_required_int(raw, "y")),
+        waypoint_x=_int(raw, "targetx", "waypointx", "waypoint_x", default=x),
+        waypoint_y=_int(raw, "targety", "waypointy", "waypoint_y", default=y),
         warp=_int(raw, "warp"),
         mission=str(_first(raw, "mission", default="")) or None,
         primary_enemy_id=_int(raw, "enemy", "primaryenemy", "primary_enemy_id") or None,
@@ -149,12 +151,16 @@ def _ship(raw: Mapping[str, Any]) -> Ship:
     )
 
 
-def _starbase(raw: Mapping[str, Any]) -> Starbase:
+def _starbase(raw: Mapping[str, Any], planets: Mapping[int, Planet]) -> Starbase:
+    planet_id = _required_int(raw, "planetid", "planet_id")
     owner_id = _owner_id(raw)
+    if owner_id is None and planet_id in planets:
+        owner_id = planets[planet_id].owner_id
     if owner_id is None:
-        raise NuLoadTurnError(f"starbase on planet {_first(raw, 'planetid', default='?')} has no owner")
+        raise NuLoadTurnError(f"starbase on planet {planet_id} has no resolvable owner")
+
     return Starbase(
-        planet_id=_required_int(raw, "planetid", "planet_id"),
+        planet_id=planet_id,
         owner_id=owner_id,
         defense=_int(raw, "defense"),
         fighters=_int(raw, "fighters"),
@@ -171,47 +177,70 @@ def import_loadturn(
     game_id: int | str | None = None,
     turn: int | None = None,
 ) -> GameState:
-    """Convert a Planets.nu loadturn-style payload into canonical GameState.
+    """Convert a Planets.nu `/game/loadturn` payload into canonical GameState.
 
-    Only fields with unambiguous canonical meaning are mapped. Unknown fields
-    are intentionally ignored until their semantics are specified and tested.
+    The working Planets Intel client persists `rst.game`, `rst.player`,
+    `rst.planets`, `rst.ships` and `rst.starbases`; this importer follows that
+    observed contract while keeping explicit overrides for fixtures/tools.
+    Only fields with unambiguous canonical meaning are mapped.
     """
 
     payload = _mapping(payload, "payload")
     rst = _mapping(payload.get("rst"), "payload.rst")
 
-    game = payload.get("game")
-    game_mapping = game if isinstance(game, Mapping) else {}
+    rst_game_raw = rst.get("game")
+    rst_game = rst_game_raw if isinstance(rst_game_raw, Mapping) else {}
+    payload_game_raw = payload.get("game")
+    payload_game = payload_game_raw if isinstance(payload_game_raw, Mapping) else {}
 
     resolved_game_id = game_id
     if resolved_game_id is None:
-        resolved_game_id = _first(game_mapping, "id", "gameid", default=None)
+        resolved_game_id = _first(rst_game, "id", "gameid", default=None)
     if resolved_game_id is None:
-        resolved_game_id = _first(rst, "gameid", "game_id", default=None)
+        resolved_game_id = _first(payload_game, "id", "gameid", default=None)
     if resolved_game_id is None:
-        raise NuLoadTurnError("game_id must be supplied when payload does not identify the game")
+        raise NuLoadTurnError("game_id must be supplied when rst.game does not identify the game")
 
     resolved_turn = turn
     if resolved_turn is None:
-        candidate = _first(game_mapping, "turn", "turnnumber", default=None)
+        candidate = _first(rst_game, "turn", "turnnumber", default=None)
         if candidate is None:
-            candidate = _first(rst, "turn", "turnnumber", default=None)
+            candidate = _first(payload_game, "turn", "turnnumber", default=None)
         if candidate is not None:
             try:
                 resolved_turn = int(candidate)
             except (TypeError, ValueError) as exc:
                 raise NuLoadTurnError(f"invalid turn value {candidate!r}") from exc
     if resolved_turn is None:
-        raise NuLoadTurnError("turn must be supplied when payload does not identify the turn")
+        raise NuLoadTurnError("turn must be supplied when rst.game does not identify the turn")
 
-    planets = {planet.id: planet for planet in (_planet(raw) for raw in _records(rst.get("planets"), "rst.planets"))}
-    ships = {ship.id: ship for ship in (_ship(raw) for raw in _records(rst.get("ships"), "rst.ships"))}
+    planets = {
+        planet.id: planet
+        for planet in (_planet(raw) for raw in _records(rst.get("planets"), "rst.planets"))
+    }
+    ships = {
+        ship.id: ship
+        for ship in (_ship(raw) for raw in _records(rst.get("ships"), "rst.ships"))
+    }
     starbases = {
         starbase.planet_id: starbase
-        for starbase in (_starbase(raw) for raw in _records(rst.get("starbases"), "rst.starbases"))
+        for starbase in (
+            _starbase(raw, planets)
+            for raw in _records(rst.get("starbases"), "rst.starbases")
+        )
     }
 
     players: dict[int, Player] = {}
+
+    raw_player = rst.get("player")
+    if isinstance(raw_player, Mapping):
+        player_id = _required_int(raw_player, "id", "playerid", "player_id")
+        players[player_id] = Player(
+            id=player_id,
+            name=str(_first(raw_player, "username", "name", default="")),
+            race_id=_int(raw_player, "raceid", "race_id") or None,
+        )
+
     raw_players = rst.get("players")
     if raw_players is None:
         raw_players = payload.get("players")
