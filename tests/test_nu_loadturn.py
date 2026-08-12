@@ -94,6 +94,20 @@ def test_import_loadturn_creates_owner_stub_if_player_records_are_absent() -> No
     assert state.players[4].id == 4
 
 
+def test_import_loadturn_rejects_starbase_without_owner_or_owned_planet() -> None:
+    with pytest.raises(NuLoadTurnError, match="no resolvable owner"):
+        import_loadturn(
+            {
+                "rst": {
+                    "game": {"id": 9, "turn": 3},
+                    "planets": [{"id": 10, "x": 1, "y": 1, "ownerid": 0}],
+                    "ships": [],
+                    "starbases": [{"id": 20, "planetid": 10}],
+                }
+            }
+        )
+
+
 def test_import_loadturn_requires_rst_object() -> None:
     with pytest.raises(NuLoadTurnError, match="payload.rst"):
         import_loadturn({}, game_id=1, turn=1)
