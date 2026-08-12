@@ -29,7 +29,24 @@ validation/     differential/golden scenarios
 
 ## Development setup
 
-Python 3.11+ is required.
+Docker is the recommended development/runtime environment on the server. The host Python version is not used.
+
+Build and run the test suite:
+
+```bash
+docker compose build lab
+docker compose run --rm lab
+```
+
+Run an interactive shell in the same environment:
+
+```bash
+docker compose run --rm lab bash
+```
+
+The repository is bind-mounted at `/workspace`, so source and test edits on the host are visible immediately inside development containers.
+
+For local development without Docker, Python 3.11+ is supported:
 
 ```bash
 python3 -m venv .venv
@@ -47,7 +64,8 @@ The repository now contains:
 - immutable turn-order contracts;
 - a deterministic, seeded `HostEngine.step()` pipeline;
 - order ownership/duplicate validation;
-- baseline tests for deterministic execution and input-state immutability.
+- baseline tests for deterministic execution and input-state immutability;
+- a Python 3.12 Docker development/test environment.
 
 Actual NuHost mechanics are intentionally not guessed at this stage. They will be introduced as explicit host phases backed by documented/tested scenarios.
 
