@@ -27,6 +27,28 @@ docs/           architecture and rule notes
 validation/     differential/golden scenarios
 ```
 
-## Status
+## Development setup
 
-Bootstrap stage. The first milestone is a stable canonical `GameState` plus a minimal deterministic `HostEngine.step()` contract.
+Python 3.11+ is required.
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -e '.[dev]'
+pytest
+```
+
+## Current bootstrap
+
+The repository now contains:
+
+- canonical full-information `GameState`, `Player`, `Planet`, `Ship`, `Starbase` and resource models;
+- immutable turn-order contracts;
+- a deterministic, seeded `HostEngine.step()` pipeline;
+- order ownership/duplicate validation;
+- baseline tests for deterministic execution and input-state immutability.
+
+Actual NuHost mechanics are intentionally not guessed at this stage. They will be introduced as explicit host phases backed by documented/tested scenarios.
+
+See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for boundaries and milestones.
