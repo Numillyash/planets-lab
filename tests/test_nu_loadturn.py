@@ -5,12 +5,9 @@ from planets_lab.data import NuLoadTurnError, import_loadturn
 
 def test_import_loadturn_maps_unambiguous_core_fields() -> None:
     payload = {
-        "game": {"id": 42, "turn": 17},
         "rst": {
-            "players": [
-                {"id": 1, "username": "Alpha", "raceid": 3},
-                {"id": 2, "username": "Beta", "raceid": 7},
-            ],
+            "game": {"id": 42, "turn": 17},
+            "player": {"id": 1, "username": "Alpha", "raceid": 3},
             "planets": [
                 {
                     "id": 10,
@@ -52,8 +49,8 @@ def test_import_loadturn_maps_unambiguous_core_fields() -> None:
             ],
             "starbases": [
                 {
+                    "id": 501,
                     "planetid": 10,
-                    "ownerid": 1,
                     "defense": 50,
                     "fighters": 20,
                     "hulltechlevel": 10,
@@ -77,6 +74,7 @@ def test_import_loadturn_maps_unambiguous_core_fields() -> None:
     assert state.ships[101].cargo.neutronium == 120
     assert state.ships[101].fighters == 0
     assert state.ships[101].torpedoes == 0
+    assert state.starbases[10].owner_id == 1
     assert state.starbases[10].tech_torpedo == 7
 
 
