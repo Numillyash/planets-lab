@@ -1,0 +1,31 @@
+{
+  "name": "normal_warp9_long_waypoint",
+  "rule": "normal movement distance is warp squared",
+  "evidence": ["DOCUMENTED"],
+  "sources": [
+    "https://help.planets.nu/navigation",
+    "https://help.planets.nu/fuel-details"
+  ],
+  "preconditions": [
+    "normal non-gravitonic movement",
+    "sufficient fuel",
+    "no tow",
+    "no intercept",
+    "no warp-well interaction",
+    "no mine/web/ion/wormhole/special-movement interaction"
+  ],
+  "input": {
+    "ship": {
+      "x": 1000,
+      "y": 1000,
+      "waypoint_x": 1200,
+      "waypoint_y": 1000,
+      "warp": 9
+    }
+  },
+  "expected": {
+    "max_distance": 81,
+    "x": 1081,
+    "y": 1000
+  }
+}
