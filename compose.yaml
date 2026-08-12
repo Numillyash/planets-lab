@@ -1,0 +1,12 @@
+services:
+  lab:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    working_dir: /workspace
+
+    volumes:
+      - .:/workspace
+
+    command: pytest
