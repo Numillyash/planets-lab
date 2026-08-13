@@ -197,6 +197,8 @@ def _ship(raw: Mapping[str, Any]) -> Ship:
         waypoint_y=_int(raw, "targety", "waypointy", "waypoint_y", default=y),
         warp=_int(raw, "warp"),
         mission=str(_first(raw, "mission", default="")) or None,
+        mission1_target_id=_int(raw, "mission1target", "mission1_target_id") or None,
+        mission2_target_id=_int(raw, "mission2target", "mission2_target_id") or None,
         primary_enemy_id=_int(raw, "enemy", "primaryenemy", "primary_enemy_id") or None,
         friendly_code=str(_first(raw, "friendlycode", "friendly_code", default="")),
         cargo=_cargo(raw),
