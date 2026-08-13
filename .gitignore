@@ -20,6 +20,7 @@ dist/
 data/raw/
 data/cache/
 validation/data/
+validation/corpus/cache/
 runs/
 artifacts/
 logs/
