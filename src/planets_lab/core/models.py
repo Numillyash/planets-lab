@@ -77,6 +77,12 @@ class Ship:
     beam_id: int | None = None
     torpedo_id: int | None = None
 
+    # Installed armament counts. These are the actual fitted values from the
+    # turn state, not the maximum slots from the hull specification.
+    beam_count: int = 0
+    torpedo_launcher_count: int = 0
+    fighter_bay_count: int = 0
+
     waypoint_x: int | None = None
     waypoint_y: int | None = None
     warp: int = 0
@@ -87,6 +93,7 @@ class Ship:
     cargo: Cargo = field(default_factory=Cargo)
     fighters: int = 0
     torpedoes: int = 0
+    unresolved_ammo: int = 0
     damage: int = 0
 
 
@@ -140,6 +147,16 @@ class GameState:
                 raise ValueError(f"ship key {ship_id} does not match ship.id {ship.id}")
             if ship.owner_id not in self.players:
                 raise ValueError(f"ship {ship_id} has unknown owner {ship.owner_id}")
+            for label, value in (
+                ("beam_count", ship.beam_count),
+                ("torpedo_launcher_count", ship.torpedo_launcher_count),
+                ("fighter_bay_count", ship.fighter_bay_count),
+                ("fighters", ship.fighters),
+                ("torpedoes", ship.torpedoes),
+                ("unresolved_ammo", ship.unresolved_ammo),
+            ):
+                if value < 0:
+                    raise ValueError(f"ship {ship_id} has negative {label}")
 
         for planet_id, starbase in self.starbases.items():
             if starbase.planet_id != planet_id:

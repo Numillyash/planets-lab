@@ -130,6 +130,41 @@ def _planet(raw: Mapping[str, Any]) -> Planet:
     )
 
 
+def _ship_ammo(raw: Mapping[str, Any]) -> tuple[int, int, int, int, int, int]:
+    """Return fitted counts plus decoded and unresolved Nu `ammo`.
+
+    Live private-turn data observed on 2026-08-13 shows `beams`, `torps` and
+    `bays` as actual fitted counts. For ordinary ships with only one finite
+    munition family fitted, `ammo` correlates with torpedoes or fighters.
+    Hybrid/otherwise ambiguous cases preserve the value as unresolved ammo.
+    """
+
+    beam_count = _int(raw, "beams")
+    launcher_count = _int(raw, "torps")
+    bay_count = _int(raw, "bays")
+    ammo = _int(raw, "ammo")
+
+    fighters = 0
+    torpedoes = 0
+    unresolved = 0
+
+    if bay_count > 0 and launcher_count == 0:
+        fighters = ammo
+    elif launcher_count > 0 and bay_count == 0:
+        torpedoes = ammo
+    elif ammo > 0:
+        unresolved = ammo
+
+    return (
+        beam_count,
+        launcher_count,
+        bay_count,
+        fighters,
+        torpedoes,
+        unresolved,
+    )
+
+
 def _ship(raw: Mapping[str, Any]) -> Ship:
     owner_id = _owner_id(raw)
     if owner_id is None:
@@ -137,6 +172,15 @@ def _ship(raw: Mapping[str, Any]) -> Ship:
 
     x = _required_int(raw, "x")
     y = _required_int(raw, "y")
+    (
+        beam_count,
+        launcher_count,
+        bay_count,
+        fighters,
+        torpedoes,
+        unresolved_ammo,
+    ) = _ship_ammo(raw)
+
     return Ship(
         id=_required_int(raw, "id"),
         owner_id=owner_id,
@@ -146,6 +190,9 @@ def _ship(raw: Mapping[str, Any]) -> Ship:
         engine_id=_int(raw, "engineid", "engine_id") or None,
         beam_id=_int(raw, "beamid", "beam_id") or None,
         torpedo_id=_int(raw, "torpedoid", "torpedo_id") or None,
+        beam_count=beam_count,
+        torpedo_launcher_count=launcher_count,
+        fighter_bay_count=bay_count,
         waypoint_x=_int(raw, "targetx", "waypointx", "waypoint_x", default=x),
         waypoint_y=_int(raw, "targety", "waypointy", "waypoint_y", default=y),
         warp=_int(raw, "warp"),
@@ -153,6 +200,9 @@ def _ship(raw: Mapping[str, Any]) -> Ship:
         primary_enemy_id=_int(raw, "enemy", "primaryenemy", "primary_enemy_id") or None,
         friendly_code=str(_first(raw, "friendlycode", "friendly_code", default="")),
         cargo=_cargo(raw),
+        fighters=fighters,
+        torpedoes=torpedoes,
+        unresolved_ammo=unresolved_ammo,
         damage=_int(raw, "damage"),
     )
 
