@@ -7,6 +7,7 @@ from planets_lab.core import GameState, Ship
 from planets_lab.data import NuStaticSpecs
 from planets_lab.rules.movement import warp_well_planet_id
 from planets_lab.sim.engine import HostEvent
+from planets_lab.sim.movement_classifier import classify_movement_intents
 from planets_lab.sim.normal_movement import NormalMovePlan, execute_full_normal_move, plan_full_normal_move
 from planets_lab.sim.orders import ShipOrder, TurnOrders
 
@@ -20,7 +21,7 @@ class UnsupportedNormalMovement(RuntimeError):
 @dataclass(slots=True)
 class NormalMovementPhase:
     specs: NuStaticSpecs
-    eligible_ship_ids: frozenset[int]
+    eligible_ship_ids: frozenset[int] | None = None
     gravitonic_hull_ids: frozenset[int] = field(default_factory=frozenset)
     allow_deferred: bool = False
     enable_expanded_movement: bool = False
@@ -31,10 +32,7 @@ class NormalMovementPhase:
     def run(self, state: GameState, orders: TurnOrders, rng: Random) -> list[HostEvent]:
         del rng
 
-        unknown_ids = self.eligible_ship_ids.difference(state.ships)
-        if unknown_ids:
-            unknown = ", ".join(str(ship_id) for ship_id in sorted(unknown_ids))
-            raise ValueError(f"normal movement eligibility references unknown ships: {unknown}")
+        eligible_ship_ids = self._resolved_eligible_ship_ids(state)
 
         unknown_planet_ids = self.non_warp_well_planet_ids.difference(state.planets)
         if unknown_planet_ids:
@@ -49,7 +47,7 @@ class NormalMovementPhase:
             for planet in state.planets.values()
         )
 
-        for ship_id in sorted(self.eligible_ship_ids):
+        for ship_id in sorted(eligible_ship_ids):
             ship = state.ships[ship_id]
             target_x, target_y, warp = self._apply_navigation_order(ship, ship_orders.get(ship_id))
             plan = plan_full_normal_move(
@@ -143,6 +141,45 @@ class NormalMovementPhase:
             ))
 
         return events
+
+    def _resolved_eligible_ship_ids(self, state: GameState) -> frozenset[int]:
+        if self.eligible_ship_ids is not None:
+            unknown_ids = self.eligible_ship_ids.difference(state.ships)
+            if unknown_ids:
+                unknown = ", ".join(str(ship_id) for ship_id in sorted(unknown_ids))
+                raise ValueError(f"normal movement eligibility references unknown ships: {unknown}")
+            return self.eligible_ship_ids
+
+        classification = classify_movement_intents(state)
+        eligible = set(classification.move_most_candidate_ship_ids)
+
+        bumped = self._metadata_ship_ids(
+            state,
+            "movement.bumped_to_move_most_ship_ids",
+        )
+        reserved = self._metadata_ship_ids(
+            state,
+            "movement.reserved_ship_ids",
+        )
+
+        eligible.update(bumped)
+        eligible.difference_update(reserved)
+        return frozenset(eligible)
+
+    @staticmethod
+    def _metadata_ship_ids(state: GameState, key: str) -> frozenset[int]:
+        raw = state.metadata.get(key, ())
+        if raw is None:
+            return frozenset()
+        try:
+            ship_ids = frozenset(int(value) for value in raw)
+        except (TypeError, ValueError) as exc:
+            raise ValueError(f"{key} must contain ship ids") from exc
+
+        unknown = ship_ids.difference(state.ships)
+        if unknown:
+            raise ValueError(f"{key} references unknown ships: {sorted(unknown)}")
+        return ship_ids
 
     @staticmethod
     def _ship_orders(orders: TurnOrders) -> dict[int, ShipOrder]:
