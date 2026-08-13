@@ -11,6 +11,14 @@ from .normal_movement import (
 )
 from .normal_movement_phase import NormalMovementPhase, UnsupportedNormalMovement
 from .orders import PlayerOrders, ShipOrder, TurnOrders
+from .tow import (
+    TowAttemptResult,
+    TowResolution,
+    UnsupportedTowTopology,
+    resolve_tow_locks,
+    target_breaks_tow,
+)
+from .tow_movement_phase import TowMovementPhase, UnsupportedTowMovement
 
 __all__ = [
     "HostEngine",
@@ -22,9 +30,16 @@ __all__ = [
     "NormalMovementPhase",
     "PlayerOrders",
     "ShipOrder",
+    "TowAttemptResult",
+    "TowMovementPhase",
+    "TowResolution",
     "TurnOrders",
     "UnsupportedNormalMovement",
+    "UnsupportedTowMovement",
+    "UnsupportedTowTopology",
     "classify_movement_intents",
     "execute_full_normal_move",
     "plan_full_normal_move",
+    "resolve_tow_locks",
+    "target_breaks_tow",
 ]

@@ -36,31 +36,18 @@ def _round_nearest(value: float) -> int:
     return ceil(value - 0.5)
 
 
-def project_toward_waypoint(
-    *,
-    x: int,
-    y: int,
-    target_x: int,
-    target_y: int,
-    distance: int | float,
-) -> tuple[int, int]:
+def project_toward_waypoint(*, x: int, y: int, target_x: int, target_y: int, distance: int | float) -> tuple[int, int]:
     if distance < 0:
         raise ValueError("distance must be non-negative")
-
     dx = target_x - x
     dy = target_y - y
     waypoint_distance = hypot(dx, dy)
-
     if waypoint_distance == 0 or distance == 0:
         return x, y
     if distance >= waypoint_distance:
         return target_x, target_y
-
     scale = float(distance) / waypoint_distance
-    return (
-        _round_nearest(x + dx * scale),
-        _round_nearest(y + dy * scale),
-    )
+    return (_round_nearest(x + dx * scale), _round_nearest(y + dy * scale))
 
 
 def plan_full_normal_move(
@@ -73,183 +60,50 @@ def plan_full_normal_move(
     gravitonic: bool = False,
     allow_partial: bool = False,
     allow_fuel_proration: bool = False,
+    movement_mass_override: int | None = None,
 ) -> NormalMovePlan:
-    """Plan normal movement, with expanded mechanics enabled explicitly.
-
-    The default preserves the earlier verified full-waypoint behavior. The
-    normal movement Host phase enables ordinary partial projection and the
-    documented reachable-waypoint fuel proration explicitly.
-    """
+    if movement_mass_override is not None and movement_mass_override < 0:
+        raise ValueError("movement_mass_override must be non-negative")
 
     max_distance = max_nominal_distance(warp, gravitonic=gravitonic)
     waypoint_distance = hypot(target_x - ship.x, target_y - ship.y)
 
     if waypoint_distance == 0 or warp == 0:
-        return NormalMovePlan(
-            ship_id=ship.id,
-            target_x=target_x,
-            target_y=target_y,
-            destination_x=ship.x,
-            destination_y=ship.y,
-            warp=warp,
-            waypoint_distance=waypoint_distance,
-            distance=0.0,
-            max_distance=max_distance,
-            total_mass=0,
-            fuel_factor=0,
-            fuel_required=0,
-            fuel_used=0,
-            partial=False,
-            fuel_limited=False,
-            executable=waypoint_distance == 0,
-            reason=None if waypoint_distance == 0 else "warp_zero",
-        )
+        return NormalMovePlan(ship.id, target_x, target_y, ship.x, ship.y, warp, waypoint_distance, 0.0, max_distance, 0, 0, 0, 0, False, False, waypoint_distance == 0, None if waypoint_distance == 0 else "warp_zero")
 
     partial = waypoint_distance > max_distance
     if partial and not allow_partial:
-        return NormalMovePlan(
-            ship_id=ship.id,
-            target_x=target_x,
-            target_y=target_y,
-            destination_x=ship.x,
-            destination_y=ship.y,
-            warp=warp,
-            waypoint_distance=waypoint_distance,
-            distance=waypoint_distance,
-            max_distance=max_distance,
-            total_mass=0,
-            fuel_factor=0,
-            fuel_required=0,
-            fuel_used=0,
-            partial=True,
-            fuel_limited=False,
-            executable=False,
-            reason="partial_waypoint_required",
-        )
+        return NormalMovePlan(ship.id, target_x, target_y, ship.x, ship.y, warp, waypoint_distance, waypoint_distance, max_distance, 0, 0, 0, 0, True, False, False, "partial_waypoint_required")
 
     if ship.engine_id is None:
         raise ValueError(f"ship {ship.id} cannot move without an engine id")
-
     engine = specs.engines.get(ship.engine_id)
     if engine is None:
         raise ValueError(f"missing engine spec {ship.engine_id} for ship {ship.id}")
 
     if partial:
-        destination_x, destination_y = project_toward_waypoint(
-            x=ship.x,
-            y=ship.y,
-            target_x=target_x,
-            target_y=target_y,
-            distance=max_distance,
-        )
+        destination_x, destination_y = project_toward_waypoint(x=ship.x, y=ship.y, target_x=target_x, target_y=target_y, distance=max_distance)
     else:
         destination_x, destination_y = target_x, target_y
 
     distance = hypot(destination_x - ship.x, destination_y - ship.y)
-    total_mass = ship_movement_mass(ship, specs)
+    total_mass = movement_mass_override if movement_mass_override is not None else ship_movement_mass(ship, specs)
     fuel_factor = engine.fuel_factor(warp)
-    fuel_required = movement_fuel_use(
-        fuel_factor=fuel_factor,
-        total_mass=total_mass,
-        distance_traveled=distance,
-        max_distance_per_turn=max_distance,
-    )
+    fuel_required = movement_fuel_use(fuel_factor=fuel_factor, total_mass=total_mass, distance_traveled=distance, max_distance_per_turn=max_distance)
     fuel_available = ship.cargo.neutronium
 
     if fuel_available < fuel_required:
         if not allow_fuel_proration:
-            return NormalMovePlan(
-                ship_id=ship.id,
-                target_x=target_x,
-                target_y=target_y,
-                destination_x=ship.x,
-                destination_y=ship.y,
-                warp=warp,
-                waypoint_distance=waypoint_distance,
-                distance=distance,
-                max_distance=max_distance,
-                total_mass=total_mass,
-                fuel_factor=fuel_factor,
-                fuel_required=fuel_required,
-                fuel_used=0,
-                partial=partial,
-                fuel_limited=True,
-                executable=False,
-                reason="insufficient_fuel",
-            )
-
+            return NormalMovePlan(ship.id, target_x, target_y, ship.x, ship.y, warp, waypoint_distance, distance, max_distance, total_mass, fuel_factor, fuel_required, 0, partial, True, False, "insufficient_fuel")
         if partial:
-            return NormalMovePlan(
-                ship_id=ship.id,
-                target_x=target_x,
-                target_y=target_y,
-                destination_x=ship.x,
-                destination_y=ship.y,
-                warp=warp,
-                waypoint_distance=waypoint_distance,
-                distance=distance,
-                max_distance=max_distance,
-                total_mass=total_mass,
-                fuel_factor=fuel_factor,
-                fuel_required=fuel_required,
-                fuel_used=0,
-                partial=True,
-                fuel_limited=True,
-                executable=False,
-                reason="insufficient_fuel_partial_waypoint",
-            )
+            return NormalMovePlan(ship.id, target_x, target_y, ship.x, ship.y, warp, waypoint_distance, distance, max_distance, total_mass, fuel_factor, fuel_required, 0, True, True, False, "insufficient_fuel_partial_waypoint")
 
-        proration = prorate_waypoint_distance(
-            requested_distance=waypoint_distance,
-            fuel_available=fuel_available,
-            fuel_required=fuel_required,
-        )
-        destination_x, destination_y = project_toward_waypoint(
-            x=ship.x,
-            y=ship.y,
-            target_x=target_x,
-            target_y=target_y,
-            distance=proration.distance,
-        )
+        proration = prorate_waypoint_distance(requested_distance=waypoint_distance, fuel_available=fuel_available, fuel_required=fuel_required)
+        destination_x, destination_y = project_toward_waypoint(x=ship.x, y=ship.y, target_x=target_x, target_y=target_y, distance=proration.distance)
         actual_distance = hypot(destination_x - ship.x, destination_y - ship.y)
+        return NormalMovePlan(ship.id, target_x, target_y, destination_x, destination_y, warp, waypoint_distance, actual_distance, max_distance, total_mass, fuel_factor, fuel_required, fuel_available, destination_x != target_x or destination_y != target_y, True, True)
 
-        return NormalMovePlan(
-            ship_id=ship.id,
-            target_x=target_x,
-            target_y=target_y,
-            destination_x=destination_x,
-            destination_y=destination_y,
-            warp=warp,
-            waypoint_distance=waypoint_distance,
-            distance=actual_distance,
-            max_distance=max_distance,
-            total_mass=total_mass,
-            fuel_factor=fuel_factor,
-            fuel_required=fuel_required,
-            fuel_used=fuel_available,
-            partial=destination_x != target_x or destination_y != target_y,
-            fuel_limited=True,
-            executable=True,
-        )
-
-    return NormalMovePlan(
-        ship_id=ship.id,
-        target_x=target_x,
-        target_y=target_y,
-        destination_x=destination_x,
-        destination_y=destination_y,
-        warp=warp,
-        waypoint_distance=waypoint_distance,
-        distance=distance,
-        max_distance=max_distance,
-        total_mass=total_mass,
-        fuel_factor=fuel_factor,
-        fuel_required=fuel_required,
-        fuel_used=fuel_required,
-        partial=partial,
-        fuel_limited=False,
-        executable=True,
-    )
+    return NormalMovePlan(ship.id, target_x, target_y, destination_x, destination_y, warp, waypoint_distance, distance, max_distance, total_mass, fuel_factor, fuel_required, fuel_required, partial, False, True)
 
 
 def execute_full_normal_move(ship: Ship, plan: NormalMovePlan) -> None:
@@ -259,11 +113,9 @@ def execute_full_normal_move(ship: Ship, plan: NormalMovePlan) -> None:
         raise ValueError(f"movement plan is not executable: {plan.reason}")
     if ship.cargo.neutronium < plan.fuel_used:
         raise ValueError("ship no longer has the fuel required by the movement plan")
-
     ship.cargo.neutronium -= plan.fuel_used
     ship.x = plan.destination_x
     ship.y = plan.destination_y
-
     if plan.fuel_limited and ship.cargo.neutronium == 0:
         ship.waypoint_x = ship.x
         ship.waypoint_y = ship.y
