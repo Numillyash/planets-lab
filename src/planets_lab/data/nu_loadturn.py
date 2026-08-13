@@ -82,7 +82,13 @@ def _cargo(raw: Mapping[str, Any]) -> Cargo:
 
 def _planet(raw: Mapping[str, Any]) -> Planet:
     native_clans = _int(raw, "nativeclans", "native_clans")
-    native_race_id = _int(raw, "nativerace", "nativeraceid", "native_race_id")
+    native_race_id = _int(
+        raw,
+        "nativetype",
+        "nativerace",
+        "nativeraceid",
+        "native_race_id",
+    )
     natives = None
     if native_clans > 0 or native_race_id > 0:
         natives = NativePopulation(
