@@ -15,8 +15,6 @@ from planets_lab.sim.orders import ShipOrder, TurnOrders
 
 
 class UnsupportedNormalMovement(RuntimeError):
-    """Raised when the phase reaches a NuHost case not implemented yet."""
-
     def __init__(self, plan: NormalMovePlan) -> None:
         self.plan = plan
         super().__init__(
@@ -27,28 +25,18 @@ class UnsupportedNormalMovement(RuntimeError):
 
 @dataclass(slots=True)
 class NormalMovementPhase:
-    """Execute the verified full-waypoint subset of NuHost `Move Most`.
+    """Execute the supported ordinary NuHost Move Most subset.
 
-    Ships are processed in ascending Ship ID order, matching the documented
-    movement ordering. The caller must explicitly provide the ship IDs already
-    classified for normal `Move Most` processing; this prevents tow/intercept
-    ships from being moved through the wrong subphase before a full movement
-    classifier exists.
-
-    Partial movement and insufficient-fuel proration are fail-closed by
-    default. Research/replay tooling can set ``allow_deferred=True`` to keep
-    the turn running while emitting an explicit deferred event, but production
-    simulation should leave that disabled until those mechanics are verified.
-
-    Mines, warp wells, hyperjump, race-specific movement effects and other
-    special movement remain outside this phase.
+    Only explicitly eligible ships enter this phase. Full and ordinary partial
+    waypoints are executable. Fuel-shortage proration is supported for a
+    waypoint that was otherwise reachable this turn. The combination of a
+    distant waypoint and insufficient fuel remains fail-closed.
     """
 
     specs: NuStaticSpecs
     eligible_ship_ids: frozenset[int]
     gravitonic_hull_ids: frozenset[int] = field(default_factory=frozenset)
     allow_deferred: bool = False
-
     name: str = field(init=False, default="normal_movement")
 
     def run(
@@ -57,7 +45,7 @@ class NormalMovementPhase:
         orders: TurnOrders,
         rng: Random,
     ) -> list[HostEvent]:
-        del rng  # Normal movement in the supported subset is deterministic.
+        del rng
 
         unknown_ids = self.eligible_ship_ids.difference(state.ships)
         if unknown_ids:
@@ -70,7 +58,6 @@ class NormalMovementPhase:
         for ship_id in sorted(self.eligible_ship_ids):
             ship = state.ships[ship_id]
             order = ship_orders.get(ship_id)
-
             target_x, target_y, warp = self._apply_navigation_order(ship, order)
 
             plan = plan_full_normal_move(
@@ -117,15 +104,19 @@ class NormalMovementPhase:
                                 ("from_y", str(origin[1])),
                                 ("to_x", str(ship.x)),
                                 ("to_y", str(ship.y)),
+                                ("target_x", str(plan.target_x)),
+                                ("target_y", str(plan.target_y)),
                                 ("warp", str(warp)),
                                 ("distance", repr(plan.distance)),
-                                ("fuel_used", str(plan.fuel_required)),
+                                ("fuel_used", str(plan.fuel_used)),
                                 ("movement_mass", str(plan.total_mass)),
+                                ("partial", str(plan.partial).lower()),
+                                ("fuel_limited", str(plan.fuel_limited).lower()),
                             ),
                             message=(
                                 f"ship={ship.id} from=({origin[0]},{origin[1]}) "
                                 f"to=({ship.x},{ship.y}) warp={warp} "
-                                f"fuel={plan.fuel_required}"
+                                f"fuel={plan.fuel_used}"
                             ),
                         )
                     )
