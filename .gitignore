@@ -19,6 +19,7 @@ dist/
 # Local data / experiments
 data/raw/
 data/cache/
+validation/data/
 runs/
 artifacts/
 logs/
