@@ -1,4 +1,5 @@
 from .engine import HostEngine, HostEvent, HostPhase
+from .intercept_movement_phase import InterceptMovementPhase, UnsupportedInterceptMovement
 from .movement_classifier import (
     MovementIntentClassification,
     MovementMissionConvention,
@@ -24,6 +25,7 @@ __all__ = [
     "HostEngine",
     "HostEvent",
     "HostPhase",
+    "InterceptMovementPhase",
     "MovementIntentClassification",
     "MovementMissionConvention",
     "NormalMovePlan",
@@ -34,6 +36,7 @@ __all__ = [
     "TowMovementPhase",
     "TowResolution",
     "TurnOrders",
+    "UnsupportedInterceptMovement",
     "UnsupportedNormalMovement",
     "UnsupportedTowMovement",
     "UnsupportedTowTopology",
