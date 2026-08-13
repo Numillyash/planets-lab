@@ -27,29 +27,29 @@ class UnsupportedNormalMovement(RuntimeError):
 
 @dataclass(slots=True)
 class NormalMovementPhase:
-    """Execute the currently supported `Move Most` subset.
+    """Execute the verified full-waypoint subset of NuHost `Move Most`.
 
     Ships are processed in ascending Ship ID order, matching the documented
-    movement ordering. This phase currently supports only complete waypoint
-    moves that the full-waypoint planner can validate exactly.
+    movement ordering. The caller must explicitly provide the ship IDs already
+    classified for normal `Move Most` processing; this prevents tow/intercept
+    ships from being moved through the wrong subphase before a full movement
+    classifier exists.
 
     Partial movement and insufficient-fuel proration are fail-closed by
     default. Research/replay tooling can set ``allow_deferred=True`` to keep
     the turn running while emitting an explicit deferred event, but production
     simulation should leave that disabled until those mechanics are verified.
 
-    Tow, intercept, mines, warp wells, hyperjump and other special movement are
-    intentionally outside this phase. Until movement classification is modeled
-    explicitly, callers may provide ``eligible_ship_ids`` to restrict this
-    phase to ships already classified for normal `Move Most` processing.
+    Mines, warp wells, hyperjump, race-specific movement effects and other
+    special movement remain outside this phase.
     """
 
     specs: NuStaticSpecs
+    eligible_ship_ids: frozenset[int]
     gravitonic_hull_ids: frozenset[int] = field(default_factory=frozenset)
-    eligible_ship_ids: frozenset[int] | None = None
     allow_deferred: bool = False
 
-    name: str = "normal_movement"
+    name: str = field(init=False, default="normal_movement")
 
     def run(
         self,
@@ -59,13 +59,15 @@ class NormalMovementPhase:
     ) -> list[HostEvent]:
         del rng  # Normal movement in the supported subset is deterministic.
 
+        unknown_ids = self.eligible_ship_ids.difference(state.ships)
+        if unknown_ids:
+            unknown = ", ".join(str(ship_id) for ship_id in sorted(unknown_ids))
+            raise ValueError(f"normal movement eligibility references unknown ships: {unknown}")
+
         ship_orders = self._ship_orders(orders)
         events: list[HostEvent] = []
 
-        for ship_id in sorted(state.ships):
-            if self.eligible_ship_ids is not None and ship_id not in self.eligible_ship_ids:
-                continue
-
+        for ship_id in sorted(self.eligible_ship_ids):
             ship = state.ships[ship_id]
             order = ship_orders.get(ship_id)
 
@@ -89,6 +91,14 @@ class NormalMovementPhase:
                         HostEvent(
                             phase=self.name,
                             kind="ship_noop",
+                            entity_type="ship",
+                            entity_id=ship.id,
+                            details=(
+                                ("x", str(ship.x)),
+                                ("y", str(ship.y)),
+                                ("warp", str(warp)),
+                                ("fuel_used", "0"),
+                            ),
                             message=(
                                 f"ship={ship.id} position=({ship.x},{ship.y}) "
                                 f"warp={warp} fuel=0"
@@ -100,6 +110,18 @@ class NormalMovementPhase:
                         HostEvent(
                             phase=self.name,
                             kind="ship_moved",
+                            entity_type="ship",
+                            entity_id=ship.id,
+                            details=(
+                                ("from_x", str(origin[0])),
+                                ("from_y", str(origin[1])),
+                                ("to_x", str(ship.x)),
+                                ("to_y", str(ship.y)),
+                                ("warp", str(warp)),
+                                ("distance", repr(plan.distance)),
+                                ("fuel_used", str(plan.fuel_required)),
+                                ("movement_mass", str(plan.total_mass)),
+                            ),
                             message=(
                                 f"ship={ship.id} from=({origin[0]},{origin[1]}) "
                                 f"to=({ship.x},{ship.y}) warp={warp} "
@@ -114,6 +136,14 @@ class NormalMovementPhase:
                     HostEvent(
                         phase=self.name,
                         kind="ship_noop",
+                        entity_type="ship",
+                        entity_id=ship.id,
+                        details=(
+                            ("x", str(ship.x)),
+                            ("y", str(ship.y)),
+                            ("warp", "0"),
+                            ("reason", "warp_zero"),
+                        ),
                         message=(
                             f"ship={ship.id} position=({ship.x},{ship.y}) "
                             f"warp=0 reason=warp_zero"
@@ -129,6 +159,16 @@ class NormalMovementPhase:
                 HostEvent(
                     phase=self.name,
                     kind="ship_deferred",
+                    entity_type="ship",
+                    entity_id=ship.id,
+                    details=(
+                        ("x", str(ship.x)),
+                        ("y", str(ship.y)),
+                        ("target_x", str(target_x)),
+                        ("target_y", str(target_y)),
+                        ("warp", str(warp)),
+                        ("reason", str(plan.reason)),
+                    ),
                     message=(
                         f"ship={ship.id} position=({ship.x},{ship.y}) "
                         f"target=({target_x},{target_y}) warp={warp} "
