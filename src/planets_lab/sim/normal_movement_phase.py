@@ -6,58 +6,27 @@ from random import Random
 from planets_lab.core import GameState, Ship
 from planets_lab.data import NuStaticSpecs
 from planets_lab.sim.engine import HostEvent
-from planets_lab.sim.normal_movement import (
-    NormalMovePlan,
-    execute_full_normal_move,
-    plan_full_normal_move,
-)
+from planets_lab.sim.normal_movement import NormalMovePlan, execute_full_normal_move, plan_full_normal_move
 from planets_lab.sim.orders import ShipOrder, TurnOrders
 
 
 class UnsupportedNormalMovement(RuntimeError):
-    """Raised when the phase reaches a NuHost case not implemented yet."""
-
     def __init__(self, plan: NormalMovePlan) -> None:
         self.plan = plan
-        super().__init__(
-            f"ship {plan.ship_id} normal movement is not implemented for "
-            f"reason={plan.reason!r}"
-        )
+        super().__init__(f"ship {plan.ship_id} normal movement is not implemented for reason={plan.reason!r}")
 
 
 @dataclass(slots=True)
 class NormalMovementPhase:
-    """Execute the verified full-waypoint subset of NuHost `Move Most`.
-
-    Ships are processed in ascending Ship ID order, matching the documented
-    movement ordering. The caller must explicitly provide the ship IDs already
-    classified for normal `Move Most` processing; this prevents tow/intercept
-    ships from being moved through the wrong subphase before a full movement
-    classifier exists.
-
-    Partial movement and insufficient-fuel proration are fail-closed by
-    default. Research/replay tooling can set ``allow_deferred=True`` to keep
-    the turn running while emitting an explicit deferred event, but production
-    simulation should leave that disabled until those mechanics are verified.
-
-    Mines, warp wells, hyperjump, race-specific movement effects and other
-    special movement remain outside this phase.
-    """
-
     specs: NuStaticSpecs
     eligible_ship_ids: frozenset[int]
     gravitonic_hull_ids: frozenset[int] = field(default_factory=frozenset)
     allow_deferred: bool = False
-
+    enable_expanded_movement: bool = False
     name: str = field(init=False, default="normal_movement")
 
-    def run(
-        self,
-        state: GameState,
-        orders: TurnOrders,
-        rng: Random,
-    ) -> list[HostEvent]:
-        del rng  # Normal movement in the supported subset is deterministic.
+    def run(self, state: GameState, orders: TurnOrders, rng: Random) -> list[HostEvent]:
+        del rng
 
         unknown_ids = self.eligible_ship_ids.difference(state.ships)
         if unknown_ids:
@@ -69,10 +38,7 @@ class NormalMovementPhase:
 
         for ship_id in sorted(self.eligible_ship_ids):
             ship = state.ships[ship_id]
-            order = ship_orders.get(ship_id)
-
-            target_x, target_y, warp = self._apply_navigation_order(ship, order)
-
+            target_x, target_y, warp = self._apply_navigation_order(ship, ship_orders.get(ship_id))
             plan = plan_full_normal_move(
                 ship,
                 self.specs,
@@ -80,102 +46,67 @@ class NormalMovementPhase:
                 target_y=target_y,
                 warp=warp,
                 gravitonic=ship.hull_id in self.gravitonic_hull_ids,
+                allow_partial=self.enable_expanded_movement,
+                allow_fuel_proration=self.enable_expanded_movement,
             )
 
             if plan.executable:
                 origin = (ship.x, ship.y)
                 execute_full_normal_move(ship, plan)
-
                 if origin == (ship.x, ship.y):
-                    events.append(
-                        HostEvent(
-                            phase=self.name,
-                            kind="ship_noop",
-                            entity_type="ship",
-                            entity_id=ship.id,
-                            details=(
-                                ("x", str(ship.x)),
-                                ("y", str(ship.y)),
-                                ("warp", str(warp)),
-                                ("fuel_used", "0"),
-                            ),
-                            message=(
-                                f"ship={ship.id} position=({ship.x},{ship.y}) "
-                                f"warp={warp} fuel=0"
-                            ),
-                        )
-                    )
-                else:
-                    events.append(
-                        HostEvent(
-                            phase=self.name,
-                            kind="ship_moved",
-                            entity_type="ship",
-                            entity_id=ship.id,
-                            details=(
-                                ("from_x", str(origin[0])),
-                                ("from_y", str(origin[1])),
-                                ("to_x", str(ship.x)),
-                                ("to_y", str(ship.y)),
-                                ("warp", str(warp)),
-                                ("distance", repr(plan.distance)),
-                                ("fuel_used", str(plan.fuel_required)),
-                                ("movement_mass", str(plan.total_mass)),
-                            ),
-                            message=(
-                                f"ship={ship.id} from=({origin[0]},{origin[1]}) "
-                                f"to=({ship.x},{ship.y}) warp={warp} "
-                                f"fuel={plan.fuel_required}"
-                            ),
-                        )
-                    )
-                continue
-
-            if plan.reason == "warp_zero":
-                events.append(
-                    HostEvent(
+                    events.append(HostEvent(
                         phase=self.name,
                         kind="ship_noop",
                         entity_type="ship",
                         entity_id=ship.id,
+                        details=(("x", str(ship.x)), ("y", str(ship.y)), ("warp", str(warp)), ("fuel_used", "0")),
+                        message=f"ship={ship.id} position=({ship.x},{ship.y}) warp={warp} fuel=0",
+                    ))
+                else:
+                    events.append(HostEvent(
+                        phase=self.name,
+                        kind="ship_moved",
+                        entity_type="ship",
+                        entity_id=ship.id,
                         details=(
-                            ("x", str(ship.x)),
-                            ("y", str(ship.y)),
-                            ("warp", "0"),
-                            ("reason", "warp_zero"),
+                            ("from_x", str(origin[0])), ("from_y", str(origin[1])),
+                            ("to_x", str(ship.x)), ("to_y", str(ship.y)),
+                            ("target_x", str(plan.target_x)), ("target_y", str(plan.target_y)),
+                            ("warp", str(warp)), ("distance", repr(plan.distance)),
+                            ("fuel_used", str(plan.fuel_used)), ("movement_mass", str(plan.total_mass)),
+                            ("partial", str(plan.partial).lower()),
+                            ("fuel_limited", str(plan.fuel_limited).lower()),
                         ),
-                        message=(
-                            f"ship={ship.id} position=({ship.x},{ship.y}) "
-                            f"warp=0 reason=warp_zero"
-                        ),
-                    )
-                )
+                        message=f"ship={ship.id} from=({origin[0]},{origin[1]}) to=({ship.x},{ship.y}) warp={warp} fuel={plan.fuel_used}",
+                    ))
+                continue
+
+            if plan.reason == "warp_zero":
+                events.append(HostEvent(
+                    phase=self.name,
+                    kind="ship_noop",
+                    entity_type="ship",
+                    entity_id=ship.id,
+                    details=(("x", str(ship.x)), ("y", str(ship.y)), ("warp", "0"), ("reason", "warp_zero")),
+                    message=f"ship={ship.id} position=({ship.x},{ship.y}) warp=0 reason=warp_zero",
+                ))
                 continue
 
             if not self.allow_deferred:
                 raise UnsupportedNormalMovement(plan)
 
-            events.append(
-                HostEvent(
-                    phase=self.name,
-                    kind="ship_deferred",
-                    entity_type="ship",
-                    entity_id=ship.id,
-                    details=(
-                        ("x", str(ship.x)),
-                        ("y", str(ship.y)),
-                        ("target_x", str(target_x)),
-                        ("target_y", str(target_y)),
-                        ("warp", str(warp)),
-                        ("reason", str(plan.reason)),
-                    ),
-                    message=(
-                        f"ship={ship.id} position=({ship.x},{ship.y}) "
-                        f"target=({target_x},{target_y}) warp={warp} "
-                        f"reason={plan.reason}"
-                    ),
-                )
-            )
+            events.append(HostEvent(
+                phase=self.name,
+                kind="ship_deferred",
+                entity_type="ship",
+                entity_id=ship.id,
+                details=(
+                    ("x", str(ship.x)), ("y", str(ship.y)),
+                    ("target_x", str(target_x)), ("target_y", str(target_y)),
+                    ("warp", str(warp)), ("reason", str(plan.reason)),
+                ),
+                message=f"ship={ship.id} position=({ship.x},{ship.y}) target=({target_x},{target_y}) warp={warp} reason={plan.reason}",
+            ))
 
         return events
 
@@ -188,10 +119,7 @@ class NormalMovementPhase:
         return result
 
     @staticmethod
-    def _apply_navigation_order(
-        ship: Ship,
-        order: ShipOrder | None,
-    ) -> tuple[int, int, int]:
+    def _apply_navigation_order(ship: Ship, order: ShipOrder | None) -> tuple[int, int, int]:
         target_x = ship.waypoint_x if ship.waypoint_x is not None else ship.x
         target_y = ship.waypoint_y if ship.waypoint_y is not None else ship.y
         warp = ship.warp
