@@ -91,7 +91,7 @@ def test_growth_stops_below_70_happiness() -> None:
         state, TurnOrders.empty()
     )
     assert next_state.planets[1].cargo.clans == 1_000
-    assert events == []
+    assert events == ()
 
 
 def test_overpopulation_kills_only_unsupported_excess() -> None:
