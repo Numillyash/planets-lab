@@ -4,6 +4,7 @@ from .normal_movement import (
     execute_full_normal_move,
     plan_full_normal_move,
 )
+from .normal_movement_phase import NormalMovementPhase, UnsupportedNormalMovement
 from .orders import PlayerOrders, ShipOrder, TurnOrders
 
 __all__ = [
@@ -11,9 +12,11 @@ __all__ = [
     "HostEvent",
     "HostPhase",
     "NormalMovePlan",
+    "NormalMovementPhase",
     "PlayerOrders",
     "ShipOrder",
     "TurnOrders",
+    "UnsupportedNormalMovement",
     "execute_full_normal_move",
     "plan_full_normal_move",
 ]
