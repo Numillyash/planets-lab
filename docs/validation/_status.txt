@@ -1,0 +1,1 @@
+Partial movement coordinate rounding is pending differential verification against observed NuHost turn transitions.
