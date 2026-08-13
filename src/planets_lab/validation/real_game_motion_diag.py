@@ -9,6 +9,19 @@ from planets_lab.validation.real_game import RealGameTransition
 from planets_lab.validation.real_game_motion import SPECIAL_MISSION_IDS, _mission_id
 
 
+EXPLAINED_CATEGORIES = frozenset(
+    {
+        "reachable_exact",
+        "reachable_warp_well",
+        "partial_nearest",
+        "partial_nearest_warp_well",
+        "reachable_stayed_no_fuel",
+        "partial_stayed_no_fuel",
+        "warp_zero",
+    }
+)
+
+
 def _make_sample(before, ship, next_ship, mission_id: int | None) -> MovementSample:
     target_x = ship.waypoint_x if ship.waypoint_x is not None else ship.x
     target_y = ship.waypoint_y if ship.waypoint_y is not None else ship.y
@@ -31,7 +44,11 @@ def _make_sample(before, ship, next_ship, mission_id: int | None) -> MovementSam
     )
 
 
-def _well_destination(before, sample: MovementSample, endpoint: tuple[int, int]) -> tuple[int, int] | None:
+def _well_destination(
+    before,
+    sample: MovementSample,
+    endpoint: tuple[int, int],
+) -> tuple[int, int] | None:
     planets = tuple((planet.id, planet.x, planet.y) for planet in before.planets.values())
     try:
         planet_id = warp_well_planet_id(
@@ -50,7 +67,27 @@ def _well_destination(before, sample: MovementSample, endpoint: tuple[int, int])
     return planet.x, planet.y
 
 
-def diagnose(transitions: tuple[RealGameTransition, ...], row_limit: int = 30) -> dict[str, object]:
+def _unresolved_category(
+    *,
+    reachable: bool,
+    origin: tuple[int, int],
+    observed: tuple[int, int],
+    observed_distance: float,
+    nominal: int,
+    fuel: int,
+) -> str:
+    prefix = "reachable" if reachable else "partial"
+    if observed == origin:
+        return f"{prefix}_stayed_no_fuel" if fuel <= 0 else f"{prefix}_stayed_with_fuel"
+    if observed_distance < nominal - 1.5:
+        return f"{prefix}_shorter_than_nominal"
+    return f"{prefix}_other"
+
+
+def diagnose(
+    transitions: tuple[RealGameTransition, ...],
+    row_limit: int = 50,
+) -> dict[str, object]:
     categories: Counter[str] = Counter()
     rows: list[dict[str, object]] = []
 
@@ -79,12 +116,15 @@ def diagnose(transitions: tuple[RealGameTransition, ...], row_limit: int = 30) -
             nominal = sample.warp * sample.warp
             target_distance = hypot(target[0] - origin[0], target[1] - origin[1])
             observed_distance = hypot(observed[0] - origin[0], observed[1] - origin[1])
+            fuel = ship.cargo.neutronium
+
+            category: str | None = None
+            expected: tuple[int, int] | None = None
 
             if observed_distance > nominal + 1.5:
-                categories["above_nominal"] += 1
-                continue
-
-            if target_distance <= nominal:
+                category = "above_nominal"
+            elif target_distance <= nominal:
+                expected = target
                 if observed == target:
                     categories["reachable_exact"] += 1
                     continue
@@ -92,9 +132,17 @@ def diagnose(transitions: tuple[RealGameTransition, ...], row_limit: int = 30) -
                 if well is not None and observed == well:
                     categories["reachable_warp_well"] += 1
                     continue
-                category = "reachable_stayed" if observed == origin else "reachable_other"
+                category = _unresolved_category(
+                    reachable=True,
+                    origin=origin,
+                    observed=observed,
+                    observed_distance=observed_distance,
+                    nominal=nominal,
+                    fuel=fuel,
+                )
             else:
                 nearest = projection_candidates(sample)["nearest"]
+                expected = nearest
                 if observed == nearest:
                     categories["partial_nearest"] += 1
                     continue
@@ -102,10 +150,17 @@ def diagnose(transitions: tuple[RealGameTransition, ...], row_limit: int = 30) -
                 if well is not None and observed == well:
                     categories["partial_nearest_warp_well"] += 1
                     continue
-                category = "partial_stayed" if observed == origin else "partial_other"
+                category = _unresolved_category(
+                    reachable=False,
+                    origin=origin,
+                    observed=observed,
+                    observed_distance=observed_distance,
+                    nominal=nominal,
+                    fuel=fuel,
+                )
 
             categories[category] += 1
-            if len(rows) < row_limit:
+            if len(rows) < row_limit and category not in EXPLAINED_CATEGORIES:
                 rows.append(
                     {
                         "category": category,
@@ -113,15 +168,27 @@ def diagnose(transitions: tuple[RealGameTransition, ...], row_limit: int = 30) -
                         "player": player_id,
                         "ship": ship.id,
                         "hull": ship.hull_id,
+                        "mission": mission_id,
+                        "friendly_code": ship.friendly_code,
                         "warp": ship.warp,
                         "damage": ship.damage,
-                        "fuel": ship.cargo.neutronium,
+                        "fuel": fuel,
                         "origin": origin,
                         "target": target,
+                        "expected": expected,
                         "observed": observed,
                         "target_distance": round(target_distance, 3),
                         "observed_distance": round(observed_distance, 3),
                     }
                 )
 
-    return {"categories": dict(sorted(categories.items())), "rows": tuple(rows)}
+    explained = sum(value for key, value in categories.items() if key in EXPLAINED_CATEGORIES)
+    total = sum(categories.values())
+    unresolved = total - explained
+    return {
+        "categories": dict(sorted(categories.items())),
+        "rows": tuple(rows),
+        "total": total,
+        "explained": explained,
+        "unresolved": unresolved,
+    }
