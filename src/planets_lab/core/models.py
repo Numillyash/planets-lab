@@ -49,6 +49,7 @@ class Planet:
     x: int
     y: int
     owner_id: int | None = None
+    temperature: int = 50
 
     cargo: Cargo = field(default_factory=Cargo)
 
