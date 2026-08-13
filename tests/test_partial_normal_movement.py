@@ -62,6 +62,18 @@ def test_projection_matches_observed_diagonal_sample() -> None:
     ) == (1847, 2267)
 
 
+def test_projection_matches_real_game_680933_turn6_ship32() -> None:
+    # NuHost observation: independent nearest-coordinate projection predicts
+    # (1551, 2121), while the actual next turn is (1550, 2121).
+    assert project_toward_waypoint(
+        x=1577,
+        y=2044,
+        target_x=1532,
+        target_y=2174,
+        distance=81,
+    ) == (1550, 2121)
+
+
 def test_expanded_planner_executes_partial_waypoint() -> None:
     plan = plan_full_normal_move(
         _ship(),
