@@ -1,8 +1,8 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
-from math import cos, hypot, radians, sin
 from collections.abc import Iterable
+from dataclasses import dataclass
+from math import ceil, cos, floor, hypot, radians, sin
 
 
 CLASS_4_MIN_VOLTAGE = 150.0
@@ -24,12 +24,20 @@ class IonStormCircle:
 def compass_vector(distance: float, heading_degrees: float) -> tuple[float, float]:
     """Return `(dx, dy)` for Planets compass headings.
 
-    Headings are measured clockwise from north: 0° is +Y and 90° is +X.
+    Headings are measured clockwise from +Y: 0° is +Y and 90° is +X.
     Values outside 0..359 are normalized modulo 360.
     """
 
     angle = radians(heading_degrees % 360.0)
     return distance * sin(angle), distance * cos(angle)
+
+
+def _nearest_integer(value: float) -> int:
+    """Round to the nearest integer with halves away from zero."""
+
+    if value >= 0:
+        return floor(value + 0.5)
+    return ceil(value - 0.5)
 
 
 def storm_nominal_distance(warp: int) -> float:
@@ -54,6 +62,21 @@ def drag_vector(warp: int, heading_degrees: float) -> tuple[float, float]:
     return compass_vector(documented_drag_distance(warp), heading_degrees)
 
 
+def integer_drag_delta(warp: int, heading_degrees: float) -> tuple[int, int]:
+    """Return the integer coordinate delta produced by a resolved storm drag.
+
+    Real NuHost transitions from game 680933 validate independent nearest
+    rounding of the documented 75% vector after the storm's heading has been
+    recalculated for the current Host run:
+
+    * turn 33 -> 34, Warp 6, heading 102: (+26, -6)
+    * turn 40 -> 41, Warp 7, heading 102: (+36, -8)
+    """
+
+    dx, dy = drag_vector(warp, heading_degrees)
+    return _nearest_integer(dx), _nearest_integer(dy)
+
+
 def translated_circle(circle: IonStormCircle) -> IonStormCircle:
     """Continuous pre-interaction position after the storm movement substep.
 
@@ -76,11 +99,7 @@ def translated_circle(circle: IonStormCircle) -> IonStormCircle:
 
 
 def circle_voltage_at(circle: IonStormCircle, x: float, y: float) -> float:
-    """Return the cloudy-circle contribution at a point.
-
-    Planets.nu documents voltage as linear with radius: full voltage at the
-    center and zero at the edge. Outside the circle the contribution is zero.
-    """
+    """Return the cloudy-circle contribution at a point."""
 
     if circle.radius <= 0:
         return 0.0
