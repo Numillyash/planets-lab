@@ -1,4 +1,9 @@
 from .engine import HostEngine, HostEvent, HostPhase
+from .movement_classifier import (
+    MovementIntentClassification,
+    MovementMissionConvention,
+    classify_movement_intents,
+)
 from .normal_movement import (
     NormalMovePlan,
     execute_full_normal_move,
@@ -11,12 +16,15 @@ __all__ = [
     "HostEngine",
     "HostEvent",
     "HostPhase",
+    "MovementIntentClassification",
+    "MovementMissionConvention",
     "NormalMovePlan",
     "NormalMovementPhase",
     "PlayerOrders",
     "ShipOrder",
     "TurnOrders",
     "UnsupportedNormalMovement",
+    "classify_movement_intents",
     "execute_full_normal_move",
     "plan_full_normal_move",
 ]
