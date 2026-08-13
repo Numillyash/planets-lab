@@ -6,6 +6,7 @@ from typing import Any
 from planets_lab.core.models import (
     Cargo,
     GameState,
+    IonStorm,
     MineralDeposit,
     NativePopulation,
     Planet,
@@ -131,14 +132,22 @@ def _planet(raw: Mapping[str, Any]) -> Planet:
     )
 
 
-def _ship_ammo(raw: Mapping[str, Any]) -> tuple[int, int, int, int, int, int]:
-    """Return fitted counts plus decoded and unresolved Nu `ammo`.
+def _ion_storm(raw: Mapping[str, Any]) -> IonStorm:
+    return IonStorm(
+        id=_required_int(raw, "id"),
+        x=_required_int(raw, "x"),
+        y=_required_int(raw, "y"),
+        radius=_int(raw, "radius"),
+        voltage=_int(raw, "voltage"),
+        warp=_int(raw, "warp"),
+        heading=_int(raw, "heading"),
+        parent_id=_int(raw, "parentid", "parent_id"),
+        is_growing=bool(_first(raw, "isgrowing", "is_growing", default=False)),
+    )
 
-    Live private-turn data observed on 2026-08-13 shows `beams`, `torps` and
-    `bays` as actual fitted counts. For ordinary ships with only one finite
-    munition family fitted, `ammo` correlates with torpedoes or fighters.
-    Hybrid/otherwise ambiguous cases preserve the value as unresolved ammo.
-    """
+
+def _ship_ammo(raw: Mapping[str, Any]) -> tuple[int, int, int, int, int, int]:
+    """Return fitted counts plus decoded and unresolved Nu `ammo`."""
 
     beam_count = _int(raw, "beams")
     launcher_count = _int(raw, "torps")
@@ -236,13 +245,7 @@ def import_loadturn(
     game_id: int | str | None = None,
     turn: int | None = None,
 ) -> GameState:
-    """Convert a Planets.nu `/game/loadturn` payload into canonical GameState.
-
-    The working Planets Intel client persists `rst.game`, `rst.player`,
-    `rst.planets`, `rst.ships` and `rst.starbases`; this importer follows that
-    observed contract while keeping explicit overrides for fixtures/tools.
-    Only fields with unambiguous canonical meaning are mapped.
-    """
+    """Convert a Planets.nu `/game/loadturn` payload into canonical GameState."""
 
     payload = _mapping(payload, "payload")
     rst = _mapping(payload.get("rst"), "payload.rst")
@@ -288,6 +291,13 @@ def import_loadturn(
             for raw in _records(rst.get("starbases"), "rst.starbases")
         )
     }
+    ion_storms = {
+        storm.id: storm
+        for storm in (
+            _ion_storm(raw)
+            for raw in _records(rst.get("ionstorms"), "rst.ionstorms")
+        )
+    }
 
     players: dict[int, Player] = {}
 
@@ -330,6 +340,7 @@ def import_loadturn(
         planets=planets,
         ships=ships,
         starbases=starbases,
+        ion_storms=ion_storms,
         metadata={"source": "planets.nu/loadturn"},
     )
     state.validate()
