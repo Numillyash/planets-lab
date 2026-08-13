@@ -23,9 +23,31 @@ class MovementSample:
     next_y: int
     gravitonic: bool = False
 
+    # Optional provenance / rule-classification metadata. These fields are not
+    # used by the projection candidates themselves; they let the differential
+    # CLI split real observations by context instead of silently mixing normal
+    # movement with tow/intercept/damage/special cases.
+    game_id: int | str | None = None
+    player_slot_id: int | None = None
+    hull_id: int | None = None
+    mission: int | None = None
+    damage: int | None = None
+    friendly_code: str = ""
+
     @property
     def observed_destination(self) -> tuple[int, int]:
         return self.next_x, self.next_y
+
+    @property
+    def observed_distance(self) -> float:
+        return hypot(self.next_x - self.x, self.next_y - self.y)
+
+    @property
+    def nominal_max_distance(self) -> int:
+        return max_nominal_distance(
+            self.warp,
+            gravitonic=self.gravitonic,
+        )
 
 
 def _round_coordinate(value: float, mode: str) -> int:
@@ -36,6 +58,9 @@ def _round_coordinate(value: float, mode: str) -> int:
     if mode == "ceil":
         return ceil(value)
     if mode == "nearest":
+        # Coordinates in the standard map are positive. Keep the original
+        # half-up diagnostic candidate explicit rather than relying on Python's
+        # bankers-rounding semantics.
         return floor(value + 0.5)
     raise ValueError(f"unknown rounding mode {mode!r}")
 
@@ -48,10 +73,7 @@ def continuous_partial_destination(sample: MovementSample) -> tuple[float, float
     if distance == 0:
         return float(sample.x), float(sample.y)
 
-    max_distance = max_nominal_distance(
-        sample.warp,
-        gravitonic=sample.gravitonic,
-    )
+    max_distance = sample.nominal_max_distance
 
     if distance <= max_distance:
         return float(sample.target_x), float(sample.target_y)
@@ -86,4 +108,23 @@ def candidate_scores(samples: Iterable[MovementSample]) -> dict[str, tuple[int, 
     return {
         mode: (values[0], values[1])
         for mode, values in scores.items()
+    }
+
+
+def group_candidate_scores(
+    samples: Iterable[MovementSample],
+    *,
+    attribute: str,
+) -> dict[object, dict[str, tuple[int, int]]]:
+    """Score rounding candidates independently for one metadata attribute."""
+
+    groups: dict[object, list[MovementSample]] = {}
+
+    for sample in samples:
+        key = getattr(sample, attribute)
+        groups.setdefault(key, []).append(sample)
+
+    return {
+        key: candidate_scores(group)
+        for key, group in groups.items()
     }
