@@ -11,7 +11,10 @@ from planets_lab.core import GameState
 from planets_lab.data.nu_loadturn import import_loadturn
 
 
-SCHEMA = "planets-intel.validation-observation.v1"
+SCHEMA_V1 = "planets-intel.validation-observation.v1"
+SCHEMA_V2 = "planets-intel.validation-observation.v2"
+SCHEMA = SCHEMA_V2
+SUPPORTED_SCHEMAS = frozenset({SCHEMA_V1, SCHEMA_V2})
 
 
 class RealGameDatasetError(ValueError):
@@ -36,6 +39,7 @@ class ObservationBatch:
     planets: tuple[Mapping[str, Any], ...]
     ships: tuple[Mapping[str, Any], ...]
     starbases: tuple[Mapping[str, Any], ...]
+    ionstorms: tuple[Mapping[str, Any], ...] = ()
 
     def as_loadturn_payload(self) -> dict[str, Any]:
         source_player = next(
@@ -54,6 +58,7 @@ class ObservationBatch:
                 "planets": [dict(planet) for planet in self.planets],
                 "ships": [dict(ship) for ship in self.ships],
                 "starbases": [dict(starbase) for starbase in self.starbases],
+                "ionstorms": [dict(storm) for storm in self.ionstorms],
             }
         }
 
@@ -111,10 +116,19 @@ def _object_list(raw: Mapping[str, Any], key: str) -> tuple[Mapping[str, Any], .
     return tuple(result)
 
 
+def _optional_object_list(
+    raw: Mapping[str, Any], key: str
+) -> tuple[Mapping[str, Any], ...]:
+    if key not in raw:
+        return ()
+    return _object_list(raw, key)
+
+
 def parse_record(raw: Mapping[str, Any]) -> ObservationBatch:
-    if raw.get("schema") != SCHEMA:
+    schema = raw.get("schema")
+    if schema not in SUPPORTED_SCHEMAS:
         raise RealGameDatasetError(
-            f"unsupported schema {raw.get('schema')!r}; expected {SCHEMA!r}"
+            f"unsupported schema {schema!r}; expected one of {sorted(SUPPORTED_SCHEMAS)!r}"
         )
     return ObservationBatch(
         game_id=_required_int(raw, "game_id"),
@@ -132,6 +146,7 @@ def parse_record(raw: Mapping[str, Any]) -> ObservationBatch:
         planets=_object_list(raw, "planets"),
         ships=_object_list(raw, "ships"),
         starbases=_object_list(raw, "starbases"),
+        ionstorms=_optional_object_list(raw, "ionstorms"),
     )
 
 
