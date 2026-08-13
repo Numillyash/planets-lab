@@ -26,6 +26,7 @@ from .normal_movement import (
 )
 from .normal_movement_phase import NormalMovementPhase, UnsupportedNormalMovement
 from .orders import PlayerOrders, ShipOrder, TurnOrders
+from .planetary_host_pipeline import PLANETARY_HOST_PHASE_ORDER, PlanetaryHostPipeline
 from .tow import (
     TowAttemptResult,
     TowResolution,
@@ -51,6 +52,8 @@ __all__ = [
     "MovementMissionConvention",
     "NormalMovePlan",
     "NormalMovementPhase",
+    "PLANETARY_HOST_PHASE_ORDER",
+    "PlanetaryHostPipeline",
     "PlayerOrders",
     "ShipOrder",
     "TowAttemptResult",
