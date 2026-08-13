@@ -13,6 +13,9 @@ class HostEvent:
     phase: str
     kind: str
     message: str = ""
+    entity_type: str | None = None
+    entity_id: int | str | None = None
+    details: tuple[tuple[str, str], ...] = ()
 
 
 class HostPhase(Protocol):
