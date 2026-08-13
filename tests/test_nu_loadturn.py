@@ -107,6 +107,50 @@ def test_import_loadturn_maps_unambiguous_core_fields() -> None:
     assert state.starbases[10].tech_torpedo == 7
 
 
+def test_import_loadturn_maps_cloudy_ion_storm_circles() -> None:
+    state = import_loadturn(
+        {
+            "rst": {
+                "game": {"id": 680933, "turn": 34},
+                "planets": [],
+                "ships": [],
+                "starbases": [],
+                "ionstorms": [
+                    {
+                        "id": 25,
+                        "x": 1837,
+                        "y": 1828,
+                        "radius": 33,
+                        "voltage": 119,
+                        "warp": 6,
+                        "heading": 102,
+                        "parentid": 0,
+                        "isgrowing": False,
+                    },
+                    {
+                        "id": 32,
+                        "x": 1829,
+                        "y": 1835,
+                        "radius": 88,
+                        "voltage": 95,
+                        "warp": 6,
+                        "heading": 102,
+                        "parentid": 25,
+                        "isgrowing": False,
+                    },
+                ],
+            }
+        }
+    )
+
+    root = state.ion_storms[25]
+    child = state.ion_storms[32]
+    assert (root.x, root.y, root.radius, root.voltage) == (1837, 1828, 33, 119)
+    assert (root.warp, root.heading, root.parent_id) == (6, 102, 0)
+    assert child.parent_id == 25
+    assert child.radius == 88
+
+
 def test_import_loadturn_decodes_carrier_ammo_as_fighters() -> None:
     state = import_loadturn(
         {
