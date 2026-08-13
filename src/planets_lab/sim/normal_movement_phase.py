@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections.abc import Mapping
 from dataclasses import dataclass, field
 from random import Random
 
@@ -10,6 +11,9 @@ from planets_lab.sim.engine import HostEvent
 from planets_lab.sim.movement_classifier import classify_movement_intents
 from planets_lab.sim.normal_movement import NormalMovePlan, execute_full_normal_move, plan_full_normal_move
 from planets_lab.sim.orders import ShipOrder, TurnOrders
+
+
+PRE_MOVE_OFFSETS_METADATA_KEY = "movement.pre_move_offsets"
 
 
 class UnsupportedNormalMovement(RuntimeError):
@@ -33,15 +37,22 @@ class NormalMovementPhase:
         del rng
 
         eligible_ship_ids = self._resolved_eligible_ship_ids(state)
+        pre_move_offsets = self._consume_pre_move_offsets(state)
 
         unknown_planet_ids = self.non_warp_well_planet_ids.difference(state.planets)
         if unknown_planet_ids:
             unknown = ", ".join(str(planet_id) for planet_id in sorted(unknown_planet_ids))
             raise ValueError(f"warp-well exclusions reference unknown planets: {unknown}")
 
+        invalid_offset_ids = frozenset(pre_move_offsets).difference(eligible_ship_ids)
+        if invalid_offset_ids:
+            raise ValueError(
+                "pre-move offsets reference ships outside normal movement: "
+                f"{sorted(invalid_offset_ids)}"
+            )
+
         ship_orders = self._ship_orders(orders)
         events: list[HostEvent] = []
-
         planet_tuples = tuple(
             (planet.id, planet.x, planet.y)
             for planet in state.planets.values()
@@ -49,6 +60,7 @@ class NormalMovementPhase:
 
         for ship_id in sorted(eligible_ship_ids):
             ship = state.ships[ship_id]
+            offset_x, offset_y = pre_move_offsets.get(ship_id, (0, 0))
             target_x, target_y, warp = self._apply_navigation_order(ship, ship_orders.get(ship_id))
             plan = plan_full_normal_move(
                 ship,
@@ -64,6 +76,8 @@ class NormalMovementPhase:
             if plan.executable:
                 origin = (ship.x, ship.y)
                 execute_full_normal_move(ship, plan)
+                ship.x += offset_x
+                ship.y += offset_y
 
                 warp_well_planet = None
                 if self.enable_warp_wells:
@@ -100,6 +114,8 @@ class NormalMovementPhase:
                         ("partial", str(plan.partial).lower()),
                         ("fuel_limited", str(plan.fuel_limited).lower()),
                     ]
+                    if offset_x or offset_y:
+                        details.extend((("pre_move_dx", str(offset_x)), ("pre_move_dy", str(offset_y))))
                     if warp_well_planet is not None:
                         details.append(("warp_well_planet_id", str(warp_well_planet)))
 
@@ -114,15 +130,36 @@ class NormalMovementPhase:
                 continue
 
             if plan.reason == "warp_zero":
-                events.append(HostEvent(
-                    phase=self.name,
-                    kind="ship_noop",
-                    entity_type="ship",
-                    entity_id=ship.id,
-                    details=(("x", str(ship.x)), ("y", str(ship.y)), ("warp", "0"), ("reason", "warp_zero")),
-                    message=f"ship={ship.id} position=({ship.x},{ship.y}) warp=0 reason=warp_zero",
-                ))
+                if offset_x or offset_y:
+                    origin = (ship.x, ship.y)
+                    ship.x += offset_x
+                    ship.y += offset_y
+                    events.append(HostEvent(
+                        phase=self.name,
+                        kind="ship_moved",
+                        entity_type="ship",
+                        entity_id=ship.id,
+                        details=(
+                            ("from_x", str(origin[0])), ("from_y", str(origin[1])),
+                            ("to_x", str(ship.x)), ("to_y", str(ship.y)),
+                            ("warp", "0"), ("fuel_used", "0"),
+                            ("pre_move_dx", str(offset_x)), ("pre_move_dy", str(offset_y)),
+                        ),
+                        message=f"ship={ship.id} externally moved from=({origin[0]},{origin[1]}) to=({ship.x},{ship.y}) fuel=0",
+                    ))
+                else:
+                    events.append(HostEvent(
+                        phase=self.name,
+                        kind="ship_noop",
+                        entity_type="ship",
+                        entity_id=ship.id,
+                        details=(("x", str(ship.x)), ("y", str(ship.y)), ("warp", "0"), ("reason", "warp_zero")),
+                        message=f"ship={ship.id} position=({ship.x},{ship.y}) warp=0 reason=warp_zero",
+                    ))
                 continue
+
+            if offset_x or offset_y:
+                raise UnsupportedNormalMovement(plan)
 
             if not self.allow_deferred:
                 raise UnsupportedNormalMovement(plan)
@@ -152,16 +189,8 @@ class NormalMovementPhase:
 
         classification = classify_movement_intents(state)
         eligible = set(classification.move_most_candidate_ship_ids)
-
-        bumped = self._metadata_ship_ids(
-            state,
-            "movement.bumped_to_move_most_ship_ids",
-        )
-        reserved = self._metadata_ship_ids(
-            state,
-            "movement.reserved_ship_ids",
-        )
-
+        bumped = self._metadata_ship_ids(state, "movement.bumped_to_move_most_ship_ids")
+        reserved = self._metadata_ship_ids(state, "movement.reserved_ship_ids")
         eligible.update(bumped)
         eligible.difference_update(reserved)
         return frozenset(eligible)
@@ -175,11 +204,36 @@ class NormalMovementPhase:
             ship_ids = frozenset(int(value) for value in raw)
         except (TypeError, ValueError) as exc:
             raise ValueError(f"{key} must contain ship ids") from exc
-
         unknown = ship_ids.difference(state.ships)
         if unknown:
             raise ValueError(f"{key} references unknown ships: {sorted(unknown)}")
         return ship_ids
+
+    @staticmethod
+    def _consume_pre_move_offsets(state: GameState) -> dict[int, tuple[int, int]]:
+        raw = state.metadata.pop(PRE_MOVE_OFFSETS_METADATA_KEY, {})
+        if raw is None:
+            return {}
+        if not isinstance(raw, Mapping):
+            raise ValueError(f"{PRE_MOVE_OFFSETS_METADATA_KEY} must be a mapping")
+
+        result: dict[int, tuple[int, int]] = {}
+        for raw_ship_id, raw_delta in raw.items():
+            try:
+                ship_id = int(raw_ship_id)
+            except (TypeError, ValueError) as exc:
+                raise ValueError("pre-move offset ship ids must be integers") from exc
+            if ship_id not in state.ships:
+                raise ValueError(f"pre-move offset references unknown ship {ship_id}")
+            if not isinstance(raw_delta, (tuple, list)) or len(raw_delta) != 2:
+                raise ValueError(f"pre-move offset for ship {ship_id} must be a 2-vector")
+            try:
+                dx = int(raw_delta[0])
+                dy = int(raw_delta[1])
+            except (TypeError, ValueError) as exc:
+                raise ValueError(f"pre-move offset for ship {ship_id} must contain integers") from exc
+            result[ship_id] = (dx, dy)
+        return result
 
     @staticmethod
     def _ship_orders(orders: TurnOrders) -> dict[int, ShipOrder]:
@@ -194,7 +248,6 @@ class NormalMovementPhase:
         target_x = ship.waypoint_x if ship.waypoint_x is not None else ship.x
         target_y = ship.waypoint_y if ship.waypoint_y is not None else ship.y
         warp = ship.warp
-
         if order is not None:
             if order.waypoint_x is not None:
                 target_x = order.waypoint_x
@@ -202,7 +255,6 @@ class NormalMovementPhase:
                 target_y = order.waypoint_y
             if order.warp is not None:
                 warp = order.warp
-
         ship.waypoint_x = target_x
         ship.waypoint_y = target_y
         ship.warp = warp
