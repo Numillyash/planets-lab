@@ -1,9 +1,0 @@
-from dataclasses import dataclass
-from math import hypot
-from typing import Iterable
-
-from planets_lab.validation.movement_geometry import MovementSample, candidate_scores
-from planets_lab.validation.real_game import RealGameTransition
-
-TOW_MISSION_ID = 6
-INTERCEPT_MISSION_ID = 7
