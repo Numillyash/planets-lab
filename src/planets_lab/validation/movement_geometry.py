@@ -7,7 +7,7 @@ from typing import Iterable
 from planets_lab.rules.movement import max_nominal_distance
 
 
-ROUNDING_MODES = ("trunc", "floor", "ceil", "nearest")
+ROUNDING_MODES = ("trunc", "floor", "ceil", "nearest", "host_major_minor")
 
 
 @dataclass(frozen=True, slots=True)
@@ -82,15 +82,56 @@ def continuous_partial_destination(sample: MovementSample) -> tuple[float, float
     return sample.x + dx * scale, sample.y + dy * scale
 
 
+def host_major_minor_destination(sample: MovementSample) -> tuple[int, int]:
+    """Return the Host-style integer partial-movement destination.
+
+    Differential samples from NuHost show the classic HOST behavior: round the
+    movement on the major axis first, then derive the minor-axis movement from
+    that integer major-axis result.
+    """
+
+    dx = sample.target_x - sample.x
+    dy = sample.target_y - sample.y
+    waypoint_distance = hypot(dx, dy)
+    max_distance = sample.nominal_max_distance
+
+    if waypoint_distance == 0:
+        return sample.x, sample.y
+    if waypoint_distance <= max_distance:
+        return sample.target_x, sample.target_y
+
+    abs_dx = abs(dx)
+    abs_dy = abs(dy)
+
+    if abs_dx >= abs_dy:
+        major = abs_dx
+        minor = abs_dy
+        major_move = floor(max_distance * major / waypoint_distance + 0.5)
+        minor_move = floor(major_move * minor / major + 0.5) if major else 0
+        move_x = major_move if dx >= 0 else -major_move
+        move_y = minor_move if dy >= 0 else -minor_move
+    else:
+        major = abs_dy
+        minor = abs_dx
+        major_move = floor(max_distance * major / waypoint_distance + 0.5)
+        minor_move = floor(major_move * minor / major + 0.5) if major else 0
+        move_y = major_move if dy >= 0 else -major_move
+        move_x = minor_move if dx >= 0 else -minor_move
+
+    return sample.x + move_x, sample.y + move_y
+
+
 def projection_candidates(sample: MovementSample) -> dict[str, tuple[int, int]]:
     raw_x, raw_y = continuous_partial_destination(sample)
-    return {
+    candidates = {
         mode: (
             _round_coordinate(raw_x, mode),
             _round_coordinate(raw_y, mode),
         )
-        for mode in ROUNDING_MODES
+        for mode in ("trunc", "floor", "ceil", "nearest")
     }
+    candidates["host_major_minor"] = host_major_minor_destination(sample)
+    return candidates
 
 
 def candidate_scores(samples: Iterable[MovementSample]) -> dict[str, tuple[int, int]]:
