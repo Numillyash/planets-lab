@@ -3,7 +3,9 @@ import pytest
 from planets_lab.core import Cargo, GameState, Planet, Player
 from planets_lab.data import import_loadturn
 from planets_lab.rules.population import (
+    colonist_growth_for_race,
     colonist_happiness_after_turn,
+    colonist_max_population_for_race,
     ordinary_colonist_growth,
     ordinary_colonist_max_population,
     overpopulation_loss,
@@ -74,7 +76,6 @@ def test_happiness_then_growth_uses_updated_happiness() -> None:
     state = _state()
     engine = HostEngine((ColonistHappinessPhase(), ColonistGrowthPhase()))
     next_state, events = engine.step(state, TurnOrders.empty())
-
     planet = next_state.planets[1]
     assert planet.happiness == 89
     assert planet.cargo.clans == 1_050
@@ -87,9 +88,7 @@ def test_happiness_then_growth_uses_updated_happiness() -> None:
 def test_growth_stops_below_70_happiness() -> None:
     state = _state()
     state.planets[1].happiness = 69
-    next_state, events = HostEngine((ColonistGrowthPhase(),)).step(
-        state, TurnOrders.empty()
-    )
+    next_state, events = HostEngine((ColonistGrowthPhase(),)).step(state, TurnOrders.empty())
     assert next_state.planets[1].cargo.clans == 1_000
     assert events == ()
 
@@ -102,16 +101,37 @@ def test_overpopulation_kills_only_unsupported_excess() -> None:
         maximum_population=maximum,
         supplies=0,
     ) == (30, 0)
-
     state = _state(temperature=90, clans=500)
-    next_state, events = HostEngine((ColonistOverpopulationPhase(),)).step(
-        state, TurnOrders.empty()
-    )
+    next_state, events = HostEngine((ColonistOverpopulationPhase(),)).step(state, TurnOrders.empty())
     assert next_state.planets[1].cargo.clans == 470
     assert events[0].kind == "colonists_lost_to_overpopulation"
 
 
-def test_special_climate_races_fail_closed() -> None:
-    state = _state(race_id=7)
+def test_crystals_use_hot_base_temperature_and_desert_capacity() -> None:
+    state = _state(race_id=7, temperature=100, clans=1_000)
+    next_state, _ = HostEngine((ColonistHappinessPhase(),)).step(state, TurnOrders.empty())
+    assert next_state.planets[1].happiness == 89
+    assert colonist_max_population_for_race(7, 100) == 100_000
+    assert colonist_growth_for_race(
+        race_id=7,
+        colonist_clans=1_000,
+        tax_rate=0,
+        happiness=100,
+        temperature=100,
+    ) == 50
+
+
+def test_fury_robots_and_colonies_keep_hot_outpost_capacity() -> None:
+    for race_id in (4, 9, 11):
+        assert colonist_max_population_for_race(race_id, 100) == 60
+
+
+def test_rebels_keep_arctic_colony_capacity() -> None:
+    assert colonist_max_population_for_race(10, 19) == 90_000
+    assert colonist_max_population_for_race(10, 100) == 60
+
+
+def test_unknown_race_still_fails_closed() -> None:
+    state = _state(race_id=12)
     with pytest.raises(UnsupportedPopulationRule):
         HostEngine((ColonistGrowthPhase(),)).step(state, TurnOrders.empty())
