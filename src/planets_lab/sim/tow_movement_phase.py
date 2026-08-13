@@ -5,7 +5,8 @@ from random import Random
 
 from planets_lab.core import GameState
 from planets_lab.data import NuStaticSpecs
-from planets_lab.rules import ship_movement_mass, warp_well_planet_id
+from planets_lab.rules import ship_movement_mass
+from planets_lab.rules.movement import warp_well_planet_id
 from planets_lab.sim.engine import HostEvent
 from planets_lab.sim.normal_movement import NormalMovePlan, execute_full_normal_move, plan_full_normal_move
 from planets_lab.sim.orders import TurnOrders
