@@ -1,6 +1,7 @@
 from .models import (
     Cargo,
     GameState,
+    IonStorm,
     MineralDeposit,
     NativePopulation,
     Planet,
@@ -12,6 +13,7 @@ from .models import (
 __all__ = [
     "Cargo",
     "GameState",
+    "IonStorm",
     "MineralDeposit",
     "NativePopulation",
     "Planet",
