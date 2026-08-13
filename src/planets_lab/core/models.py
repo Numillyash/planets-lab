@@ -8,7 +8,6 @@ from typing import Any
 @dataclass(slots=True)
 class Cargo:
     """Cargo/resources carried by a ship or stored on a planet."""
-
     neutronium: int = 0
     duranium: int = 0
     tritanium: int = 0
@@ -21,7 +20,6 @@ class Cargo:
 @dataclass(slots=True)
 class MineralDeposit:
     """Ground mineral reserve and extraction density for a planet."""
-
     amount: int = 0
     density: int = 0
 
@@ -64,6 +62,26 @@ class Planet:
     happiness: int = 100
     tax_rate: int = 0
     natives: NativePopulation | None = None
+
+
+@dataclass(slots=True)
+class IonStorm:
+    """One Planets.nu cloudy ion-storm circle.
+
+    `parent_id == 0` identifies a root disturbance. Child circles with the same
+    non-zero parent belong to the same cloudy disturbance and their voltage
+    contributions overlap additively.
+    """
+
+    id: int
+    x: int
+    y: int
+    radius: int
+    voltage: int
+    warp: int
+    heading: int
+    parent_id: int = 0
+    is_growing: bool = False
 
 
 @dataclass(slots=True)
@@ -126,6 +144,7 @@ class GameState:
     planets: dict[int, Planet] = field(default_factory=dict)
     ships: dict[int, Ship] = field(default_factory=dict)
     starbases: dict[int, Starbase] = field(default_factory=dict)
+    ion_storms: dict[int, IonStorm] = field(default_factory=dict)
     metadata: dict[str, Any] = field(default_factory=dict)
 
     def clone(self) -> GameState:
@@ -144,6 +163,16 @@ class GameState:
                 raise ValueError(f"planet key {planet_id} does not match planet.id {planet.id}")
             if planet.owner_id is not None and planet.owner_id not in self.players:
                 raise ValueError(f"planet {planet_id} has unknown owner {planet.owner_id}")
+
+        for storm_id, storm in self.ion_storms.items():
+            if storm.id != storm_id:
+                raise ValueError(f"ion storm key {storm_id} does not match storm.id {storm.id}")
+            if storm.radius < 0:
+                raise ValueError(f"ion storm {storm_id} has negative radius")
+            if storm.voltage < 0:
+                raise ValueError(f"ion storm {storm_id} has negative voltage")
+            if not 0 <= storm.warp <= 9:
+                raise ValueError(f"ion storm {storm_id} has invalid warp {storm.warp}")
 
         for ship_id, ship in self.ships.items():
             if ship.id != ship_id:
