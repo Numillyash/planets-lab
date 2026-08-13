@@ -23,9 +23,20 @@ def test_import_loadturn_maps_unambiguous_core_fields() -> None:
                     "megacredits": 900,
                     "groundneutronium": 1000,
                     "densityneutronium": 50,
+                    "groundduranium": 800,
+                    "densityduranium": 40,
+                    "groundtritanium": 700,
+                    "densitytritanium": 35,
+                    "groundmolybdenum": 600,
+                    "densitymolybdenum": 30,
                     "factories": 20,
                     "mines": 30,
                     "defense": 5,
+                    "nativeclans": 1234,
+                    "nativetype": 4,
+                    "nativegovernment": 6,
+                    "nativehappypoints": 88,
+                    "nativetaxrate": 7,
                 }
             ],
             "ships": [
@@ -35,7 +46,10 @@ def test_import_loadturn_maps_unambiguous_core_fields() -> None:
                     "hullid": 12,
                     "engineid": 9,
                     "beamid": 4,
+                    "beams": 6,
                     "torpedoid": 5,
+                    "torps": 4,
+                    "bays": 0,
                     "x": 1000,
                     "y": 1000,
                     "targetx": 1081,
@@ -69,9 +83,20 @@ def test_import_loadturn_maps_unambiguous_core_fields() -> None:
     assert state.players[1].name == "Alpha"
     assert state.planets[10].cargo.megacredits == 900
     assert state.planets[10].ground_neutronium.amount == 1000
+    assert state.planets[10].ground_duranium.density == 40
+    assert state.planets[10].ground_tritanium.amount == 700
+    assert state.planets[10].ground_molybdenum.density == 30
+    assert state.planets[10].natives is not None
+    assert state.planets[10].natives.race_id == 4
+    assert state.planets[10].natives.government_id == 6
+    assert state.planets[10].natives.happiness == 88
+    assert state.planets[10].natives.tax_rate == 7
     assert state.ships[101].waypoint_x == 1081
     assert state.ships[101].warp == 9
     assert state.ships[101].cargo.neutronium == 120
+    # Nu exposes `ammo`, `torps`, `bays` and `beams`, but this importer does
+    # not guess how `ammo` should be split into fighters vs torpedoes before
+    # hull/static-data context is available.
     assert state.ships[101].fighters == 0
     assert state.ships[101].torpedoes == 0
     assert state.starbases[10].owner_id == 1
