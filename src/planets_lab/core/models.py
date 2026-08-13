@@ -87,6 +87,8 @@ class Ship:
     waypoint_y: int | None = None
     warp: int = 0
     mission: str | None = None
+    mission1_target_id: int | None = None
+    mission2_target_id: int | None = None
     primary_enemy_id: int | None = None
     friendly_code: str = ""
 
