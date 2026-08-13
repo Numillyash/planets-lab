@@ -104,6 +104,7 @@ def _planet(raw: Mapping[str, Any]) -> Planet:
         x=_required_int(raw, "x"),
         y=_required_int(raw, "y"),
         owner_id=_owner_id(raw),
+        temperature=_int(raw, "temp", "temperature", default=50),
         cargo=_cargo(raw),
         ground_neutronium=MineralDeposit(
             amount=_int(raw, "groundneutronium"),
