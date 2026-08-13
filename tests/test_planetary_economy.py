@@ -44,8 +44,8 @@ def test_native_taxes_are_limited_by_colonist_collectors() -> None:
 
 
 def test_native_tax_can_be_disabled_or_rate_capped() -> None:
-    assert native_tax_income(native_clans=10_000, tax_rate=50, happiness=100, government_id=4, colonist_clans=5_000, taxable=False) == 0
-    assert native_tax_income(native_clans=10_000, tax_rate=50, happiness=100, government_id=4, colonist_clans=5_000, effective_tax_rate_cap=20) == 2_000
+    assert native_tax_income(native_clans=1_000, tax_rate=50, happiness=100, government_id=4, colonist_clans=5_000, taxable=False) == 0
+    assert native_tax_income(native_clans=1_000, tax_rate=50, happiness=100, government_id=4, colonist_clans=5_000, effective_tax_rate_cap=20) == 2_000
 
 
 def test_combined_tax_income_has_planet_cap() -> None:
