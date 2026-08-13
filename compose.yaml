@@ -9,4 +9,8 @@ services:
     volumes:
       - .:/workspace
 
+    environment:
+      PLANETSNU_API_BASE_URL: ${PLANETSNU_API_BASE_URL:-http://api.planets.nu}
+      PLANETSNU_PROXY_URL: ${PLANETSNU_PROXY_URL:-}
+
     command: pytest
