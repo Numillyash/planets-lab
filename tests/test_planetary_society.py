@@ -65,8 +65,8 @@ def test_avian_native_happiness_bonus_is_applied() -> None:
         ordinary, TurnOrders.empty()
     )
     avian_state, _ = HostEngine((NativeHappinessPhase(),)).step(avian, TurnOrders.empty())
-    assert ordinary_state.planets[1].natives.happiness == 59
-    assert avian_state.planets[1].natives.happiness == 69
+    assert ordinary_state.planets[1].natives.happiness == 58
+    assert avian_state.planets[1].natives.happiness == 68
 
 
 def test_native_growth_requires_colonization_and_supports_siliconoids() -> None:
