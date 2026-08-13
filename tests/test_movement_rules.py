@@ -4,6 +4,7 @@ from pathlib import Path
 import pytest
 
 from planets_lab.rules import max_nominal_distance
+from planets_lab.rules.ion_storm import integer_drag_delta
 
 
 def test_standard_nominal_distance_is_warp_squared() -> None:
@@ -25,3 +26,8 @@ def test_golden_warp9_scenario_agrees_with_rule() -> None:
     scenario = json.loads(path.read_text(encoding="utf-8"))
 
     assert max_nominal_distance(scenario["input"]["ship"]["warp"]) == scenario["expected"]["max_distance"]
+
+
+def test_real_game_resolved_storm_vectors_are_exact_integer_offsets() -> None:
+    assert integer_drag_delta(6, 102) == (26, -6)
+    assert integer_drag_delta(7, 102) == (36, -8)
