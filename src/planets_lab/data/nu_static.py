@@ -14,9 +14,9 @@ class NuStaticDataError(ValueError):
 class NuStaticCatalog:
     """Lossless, id-indexed subset of a Planets.nu `/static/all` response.
 
-    Records remain raw dictionaries on purpose. The public API documents which
-    collections exist but not every record field, so typed component/hull
-    projections are added only after their observed schema is validated.
+    The default component collections are indexed by their normal `id` values
+    because those ids are referenced by turn data. Optional "all" collections
+    are preserved separately without assuming their identifier semantics.
     """
 
     hulls: dict[int, dict[str, Any]] = field(default_factory=dict)
@@ -25,6 +25,8 @@ class NuStaticCatalog:
     torpedoes: dict[int, dict[str, Any]] = field(default_factory=dict)
     races: dict[int, dict[str, Any]] = field(default_factory=dict)
     advantages: dict[int, dict[str, Any]] = field(default_factory=dict)
+    hulls_all: tuple[dict[str, Any], ...] = ()
+    torpedoes_all: tuple[dict[str, Any], ...] = ()
     extra_collections: dict[str, Any] = field(default_factory=dict)
 
     def hull(self, hull_id: int) -> Mapping[str, Any] | None:
@@ -59,23 +61,25 @@ def _index_records(value: Any, label: str) -> dict[int, dict[str, Any]]:
     return result
 
 
+def _copy_records(value: Any, label: str) -> tuple[dict[str, Any], ...]:
+    if value is None:
+        return ()
+    if not isinstance(value, list):
+        raise NuStaticDataError(f"{label} must be a list")
+
+    result: list[dict[str, Any]] = []
+    for index, item in enumerate(value):
+        if not isinstance(item, Mapping):
+            raise NuStaticDataError(f"{label}[{index}] must be an object")
+        result.append(deepcopy(dict(item)))
+    return tuple(result)
+
+
 def import_static_all(payload: Mapping[str, Any]) -> NuStaticCatalog:
     """Import the documented core collections from `/static/all` losslessly."""
 
     if not isinstance(payload, Mapping):
         raise NuStaticDataError("payload must be an object")
-
-    # The API documentation names `torpedos` and `torpedosall`; prefer the
-    # all-components collection when present, while accepting the default set.
-    torpedo_records = payload.get("torpedosall")
-    if torpedo_records is None:
-        torpedo_records = payload.get("torpedos")
-
-    # Some documentation revisions describe both default and all-hull sets.
-    # Keep support for `hullsall` if the live endpoint exposes it.
-    hull_records = payload.get("hullsall")
-    if hull_records is None:
-        hull_records = payload.get("hulls")
 
     known = {
         "hulls",
@@ -89,12 +93,14 @@ def import_static_all(payload: Mapping[str, Any]) -> NuStaticCatalog:
     }
 
     return NuStaticCatalog(
-        hulls=_index_records(hull_records, "hulls"),
+        hulls=_index_records(payload.get("hulls"), "hulls"),
         beams=_index_records(payload.get("beams"), "beams"),
         engines=_index_records(payload.get("engines"), "engines"),
-        torpedoes=_index_records(torpedo_records, "torpedos"),
+        torpedoes=_index_records(payload.get("torpedos"), "torpedos"),
         races=_index_records(payload.get("races"), "races"),
         advantages=_index_records(payload.get("advantages"), "advantages"),
+        hulls_all=_copy_records(payload.get("hullsall"), "hullsall"),
+        torpedoes_all=_copy_records(payload.get("torpedosall"), "torpedosall"),
         extra_collections={
             str(key): deepcopy(value)
             for key, value in payload.items()
