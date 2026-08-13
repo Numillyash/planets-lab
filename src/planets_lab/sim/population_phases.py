@@ -5,16 +5,17 @@ from random import Random
 
 from planets_lab.core import GameState, Planet
 from planets_lab.rules.population import (
+    colonist_base_temperature,
+    colonist_growth_for_race,
     colonist_happiness_after_turn,
-    ordinary_colonist_growth,
-    ordinary_colonist_max_population,
+    colonist_max_population_for_race,
     overpopulation_loss,
 )
 from planets_lab.sim.engine import HostEvent
 from planets_lab.sim.orders import TurnOrders
 
 
-ORDINARY_CLIMATE_RACE_IDS = frozenset({1, 2, 3, 5, 6, 8})
+STANDARD_POPULATION_RACE_IDS = frozenset(range(1, 12))
 
 
 class UnsupportedPopulationRule(RuntimeError):
@@ -35,7 +36,7 @@ def _require_supported_owner(
         )
     if player.race_id not in supported_race_ids:
         raise UnsupportedPopulationRule(
-            f"planet {planet.id} owner race {player.race_id} requires special population rules"
+            f"planet {planet.id} owner race {player.race_id} requires unsupported population rules"
         )
     return player.race_id
 
@@ -43,7 +44,7 @@ def _require_supported_owner(
 @dataclass(slots=True)
 class ColonistHappinessPhase:
     supported_race_ids: frozenset[int] = field(
-        default_factory=lambda: ORDINARY_CLIMATE_RACE_IDS
+        default_factory=lambda: STANDARD_POPULATION_RACE_IDS
     )
     name: str = field(init=False, default="colonist_happiness")
 
@@ -54,7 +55,7 @@ class ColonistHappinessPhase:
             planet = state.planets[planet_id]
             if planet.cargo.clans <= 0:
                 continue
-            _require_supported_owner(state, planet, self.supported_race_ids)
+            race_id = _require_supported_owner(state, planet, self.supported_race_ids)
             old = planet.happiness
             planet.happiness = colonist_happiness_after_turn(
                 old_happiness=old,
@@ -63,6 +64,7 @@ class ColonistHappinessPhase:
                 temperature=planet.temperature,
                 factories=planet.factories,
                 mines=planet.mines,
+                base_temperature=colonist_base_temperature(race_id),
             )
             events.append(
                 HostEvent(
@@ -80,8 +82,10 @@ class ColonistHappinessPhase:
 @dataclass(slots=True)
 class ColonistGrowthPhase:
     supported_race_ids: frozenset[int] = field(
-        default_factory=lambda: ORDINARY_CLIMATE_RACE_IDS
+        default_factory=lambda: STANDARD_POPULATION_RACE_IDS
     )
+    crystal_desert_advantage: bool = True
+    improved_desert_habitation_player_ids: frozenset[int] = field(default_factory=frozenset)
     name: str = field(init=False, default="colonist_growth")
 
     def run(self, state: GameState, orders: TurnOrders, rng: Random) -> list[HostEvent]:
@@ -91,12 +95,17 @@ class ColonistGrowthPhase:
             planet = state.planets[planet_id]
             if planet.cargo.clans <= 0:
                 continue
-            _require_supported_owner(state, planet, self.supported_race_ids)
-            growth = ordinary_colonist_growth(
+            race_id = _require_supported_owner(state, planet, self.supported_race_ids)
+            growth = colonist_growth_for_race(
+                race_id=race_id,
                 colonist_clans=planet.cargo.clans,
                 tax_rate=planet.tax_rate,
                 happiness=planet.happiness,
                 temperature=planet.temperature,
+                crystal_desert_advantage=self.crystal_desert_advantage,
+                improved_desert_habitation=(
+                    planet.owner_id in self.improved_desert_habitation_player_ids
+                ),
             )
             if growth <= 0:
                 continue
@@ -117,9 +126,10 @@ class ColonistGrowthPhase:
 @dataclass(slots=True)
 class ColonistOverpopulationPhase:
     supported_race_ids: frozenset[int] = field(
-        default_factory=lambda: ORDINARY_CLIMATE_RACE_IDS
+        default_factory=lambda: STANDARD_POPULATION_RACE_IDS
     )
     climate_death_rate_percent: int = 10
+    crystal_desert_advantage: bool = True
     name: str = field(init=False, default="colonist_overpopulation")
 
     def run(self, state: GameState, orders: TurnOrders, rng: Random) -> list[HostEvent]:
@@ -129,8 +139,12 @@ class ColonistOverpopulationPhase:
             planet = state.planets[planet_id]
             if planet.cargo.clans <= 0:
                 continue
-            _require_supported_owner(state, planet, self.supported_race_ids)
-            maximum = ordinary_colonist_max_population(planet.temperature)
+            race_id = _require_supported_owner(state, planet, self.supported_race_ids)
+            maximum = colonist_max_population_for_race(
+                race_id,
+                planet.temperature,
+                crystal_desert_advantage=self.crystal_desert_advantage,
+            )
             killed, supplies_used = overpopulation_loss(
                 colonist_clans=planet.cargo.clans,
                 maximum_population=maximum,
