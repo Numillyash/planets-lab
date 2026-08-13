@@ -37,8 +37,18 @@ def _round_nearest(value: float) -> int:
 
 
 def project_toward_waypoint(*, x: int, y: int, target_x: int, target_y: int, distance: int | float) -> tuple[int, int]:
+    """Project movement using the Host major/minor-axis integer geometry.
+
+    NuHost real-game differential samples show that partial movement is not
+    produced by rounding two continuous endpoint coordinates independently.
+    Instead, Host rounds travel on the major axis first and derives the minor
+    axis from that integer movement. This reproduces the classic HOST stepping
+    algorithm and the observed NuHost +/-1 coordinate cases.
+    """
+
     if distance < 0:
         raise ValueError("distance must be non-negative")
+
     dx = target_x - x
     dy = target_y - y
     waypoint_distance = hypot(dx, dy)
@@ -46,8 +56,26 @@ def project_toward_waypoint(*, x: int, y: int, target_x: int, target_y: int, dis
         return x, y
     if distance >= waypoint_distance:
         return target_x, target_y
-    scale = float(distance) / waypoint_distance
-    return (_round_nearest(x + dx * scale), _round_nearest(y + dy * scale))
+
+    abs_dx = abs(dx)
+    abs_dy = abs(dy)
+
+    if abs_dx >= abs_dy:
+        major = abs_dx
+        minor = abs_dy
+        major_move = _round_nearest(float(distance) * major / waypoint_distance)
+        minor_move = _round_nearest(major_move * minor / major) if major else 0
+        move_x = major_move if dx >= 0 else -major_move
+        move_y = minor_move if dy >= 0 else -minor_move
+    else:
+        major = abs_dy
+        minor = abs_dx
+        major_move = _round_nearest(float(distance) * major / waypoint_distance)
+        minor_move = _round_nearest(major_move * minor / major) if major else 0
+        move_y = major_move if dy >= 0 else -major_move
+        move_x = minor_move if dx >= 0 else -minor_move
+
+    return x + move_x, y + move_y
 
 
 def plan_full_normal_move(
