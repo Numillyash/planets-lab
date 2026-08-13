@@ -22,6 +22,7 @@ class NormalMovementPhase:
     eligible_ship_ids: frozenset[int]
     gravitonic_hull_ids: frozenset[int] = field(default_factory=frozenset)
     allow_deferred: bool = False
+    enable_expanded_movement: bool = False
     name: str = field(init=False, default="normal_movement")
 
     def run(self, state: GameState, orders: TurnOrders, rng: Random) -> list[HostEvent]:
@@ -45,8 +46,8 @@ class NormalMovementPhase:
                 target_y=target_y,
                 warp=warp,
                 gravitonic=ship.hull_id in self.gravitonic_hull_ids,
-                allow_partial=True,
-                allow_fuel_proration=True,
+                allow_partial=self.enable_expanded_movement,
+                allow_fuel_proration=self.enable_expanded_movement,
             )
 
             if plan.executable:
