@@ -15,7 +15,7 @@ from planets_lab.sim.movement_classifier import classify_movement_intents
 from planets_lab.sim.orders import TurnOrders
 
 
-DRAG_OFFSETS_METADATA_KEY = "movement.ion_storm_drag_offsets"
+DRAG_OFFSETS_METADATA_KEY = "movement.pre_move_offsets"
 
 
 class UnsupportedResolvedIonStormEffect(RuntimeError):
