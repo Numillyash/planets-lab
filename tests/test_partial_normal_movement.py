@@ -2,7 +2,10 @@ from planets_lab.core import Cargo, GameState, Player, Ship
 from planets_lab.data import EngineSpec, HullSpec, NuStaticSpecs, ResourceCost
 from planets_lab.sim import HostEngine, PlayerOrders, ShipOrder, TurnOrders
 from planets_lab.sim.normal_movement import plan_full_normal_move, project_toward_waypoint
-from planets_lab.sim.normal_movement_phase import NormalMovementPhase
+from planets_lab.sim.normal_movement_phase import (
+    PRE_MOVE_OFFSETS_METADATA_KEY,
+    NormalMovementPhase,
+)
 
 
 def _specs(*, fuel_factor: int = 10_000) -> NuStaticSpecs:
@@ -63,8 +66,6 @@ def test_projection_matches_observed_diagonal_sample() -> None:
 
 
 def test_projection_matches_real_game_680933_turn6_ship32() -> None:
-    # NuHost observation: independent nearest-coordinate projection predicts
-    # (1551, 2121), while the actual next turn is (1550, 2121).
     assert project_toward_waypoint(
         x=1577,
         y=2044,
@@ -118,6 +119,32 @@ def test_expanded_phase_moves_one_partial_turn_and_preserves_waypoint() -> None:
     assert events[0].kind == "ship_moved"
     assert ("partial", "true") in events[0].details
     assert ("fuel_limited", "false") in events[0].details
+
+
+def test_pre_move_offset_is_added_after_navigation_vector() -> None:
+    ship = _ship()
+    ship.x = 1821
+    ship.y = 1850
+    ship.waypoint_x = 1721
+    ship.waypoint_y = 1810
+    ship.warp = 9
+    state = _state(ship)
+    state.metadata[PRE_MOVE_OFFSETS_METADATA_KEY] = {1: (26, -6)}
+
+    next_state, events = HostEngine(
+        (
+            NormalMovementPhase(
+                specs=_specs(fuel_factor=0),
+                eligible_ship_ids=frozenset({1}),
+                enable_expanded_movement=True,
+            ),
+        )
+    ).step(state, TurnOrders.empty())
+
+    moved = next_state.ships[1]
+    assert (moved.x, moved.y) == (1772, 1814)
+    assert ("pre_move_dx", "26") in events[0].details
+    assert ("pre_move_dy", "-6") in events[0].details
 
 
 def test_expanded_phase_prorates_reachable_waypoint_when_fuel_is_short() -> None:
