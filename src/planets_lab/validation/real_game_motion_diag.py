@@ -4,11 +4,34 @@ from collections import Counter
 from math import hypot
 
 from planets_lab.rules.movement import WarpWellAmbiguityError, warp_well_planet_id
-from planets_lab.validation.movement_geometry import projection_candidates
+from planets_lab.validation.movement_geometry import MovementSample, projection_candidates
 from planets_lab.validation.real_game import RealGameTransition
-from planets_lab.validation.real_game_motion import SPECIAL_MISSION_IDS, _mission_id, _sample
+from planets_lab.validation.real_game_motion import SPECIAL_MISSION_IDS, _mission_id
 
-def _well_destination(before, sample, endpoint: tuple[int, int]) -> tuple[int, int] | None:
+
+def _make_sample(before, ship, next_ship, mission_id: int | None) -> MovementSample:
+    target_x = ship.waypoint_x if ship.waypoint_x is not None else ship.x
+    target_y = ship.waypoint_y if ship.waypoint_y is not None else ship.y
+    return MovementSample(
+        game_id=before.game_id,
+        player_slot_id=ship.owner_id,
+        turn=before.turn,
+        ship_id=ship.id,
+        hull_id=ship.hull_id,
+        mission=mission_id,
+        damage=ship.damage,
+        friendly_code=ship.friendly_code,
+        x=ship.x,
+        y=ship.y,
+        target_x=target_x,
+        target_y=target_y,
+        warp=ship.warp,
+        next_x=next_ship.x,
+        next_y=next_ship.y,
+    )
+
+
+def _well_destination(before, sample: MovementSample, endpoint: tuple[int, int]) -> tuple[int, int] | None:
     planets = tuple((planet.id, planet.x, planet.y) for planet in before.planets.values())
     try:
         planet_id = warp_well_planet_id(
@@ -26,34 +49,41 @@ def _well_destination(before, sample, endpoint: tuple[int, int]) -> tuple[int, i
     planet = before.planets[planet_id]
     return planet.x, planet.y
 
+
 def diagnose(transitions: tuple[RealGameTransition, ...], row_limit: int = 30) -> dict[str, object]:
     categories: Counter[str] = Counter()
     rows: list[dict[str, object]] = []
+
     for transition in transitions:
         before = transition.before.import_state()
         after = transition.after.import_state()
         player_id = transition.before.stream.source_player_slot_id
+
         for ship_id in sorted(set(before.ships).intersection(after.ships)):
             ship = before.ships[ship_id]
             next_ship = after.ships[ship_id]
             if ship.owner_id != player_id or next_ship.owner_id != player_id:
                 continue
+
             mission_id = _mission_id(ship.mission)
             if mission_id in SPECIAL_MISSION_IDS or ship.friendly_code.strip().lower() == "hyp":
                 continue
             if ship.warp <= 0:
                 categories["warp_zero"] += 1
                 continue
-            sample = _sample(before, ship, next_ship, mission_id)
+
+            sample = _make_sample(before, ship, next_ship, mission_id)
             origin = (sample.x, sample.y)
             target = (sample.target_x, sample.target_y)
             observed = (sample.next_x, sample.next_y)
             nominal = sample.warp * sample.warp
             target_distance = hypot(target[0] - origin[0], target[1] - origin[1])
             observed_distance = hypot(observed[0] - origin[0], observed[1] - origin[1])
+
             if observed_distance > nominal + 1.5:
                 categories["above_nominal"] += 1
                 continue
+
             if target_distance <= nominal:
                 if observed == target:
                     categories["reachable_exact"] += 1
@@ -73,14 +103,25 @@ def diagnose(transitions: tuple[RealGameTransition, ...], row_limit: int = 30) -
                     categories["partial_nearest_warp_well"] += 1
                     continue
                 category = "partial_stayed" if observed == origin else "partial_other"
+
             categories[category] += 1
             if len(rows) < row_limit:
-                rows.append({
-                    "category": category, "turn": before.turn, "player": player_id,
-                    "ship": ship.id, "hull": ship.hull_id, "warp": ship.warp,
-                    "damage": ship.damage, "fuel": ship.cargo.neutronium,
-                    "origin": origin, "target": target, "observed": observed,
-                    "target_distance": round(target_distance, 3),
-                    "observed_distance": round(observed_distance, 3),
-                })
+                rows.append(
+                    {
+                        "category": category,
+                        "turn": before.turn,
+                        "player": player_id,
+                        "ship": ship.id,
+                        "hull": ship.hull_id,
+                        "warp": ship.warp,
+                        "damage": ship.damage,
+                        "fuel": ship.cargo.neutronium,
+                        "origin": origin,
+                        "target": target,
+                        "observed": observed,
+                        "target_distance": round(target_distance, 3),
+                        "observed_distance": round(observed_distance, 3),
+                    }
+                )
+
     return {"categories": dict(sorted(categories.items())), "rows": tuple(rows)}
