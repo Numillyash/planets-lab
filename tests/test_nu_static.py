@@ -32,18 +32,24 @@ def test_import_static_all_indexes_documented_collections_losslessly() -> None:
     assert catalog.hulls[1]["custom"]["x"] == 1
 
 
-def test_import_static_all_prefers_all_component_collections() -> None:
+def test_import_static_all_keeps_default_ids_separate_from_all_sets() -> None:
     catalog = import_static_all(
         {
             "hulls": [{"id": 1, "name": "default"}],
             "hullsall": [{"id": 1001, "name": "campaign"}],
             "torpedos": [{"id": 1, "name": "default"}],
-            "torpedosall": [{"id": 10, "name": "all"}],
+            "torpedosall": [
+                {"id": 1, "fullid": 1001, "name": "campaign-a"},
+                {"id": 1, "fullid": 2001, "name": "campaign-b"},
+            ],
         }
     )
 
-    assert set(catalog.hulls) == {1001}
-    assert set(catalog.torpedoes) == {10}
+    assert set(catalog.hulls) == {1}
+    assert catalog.hulls_all[0]["id"] == 1001
+    assert set(catalog.torpedoes) == {1}
+    assert len(catalog.torpedoes_all) == 2
+    assert catalog.torpedoes_all[0]["fullid"] == 1001
 
 
 def test_import_static_all_rejects_duplicate_ids() -> None:
