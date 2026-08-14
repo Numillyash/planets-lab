@@ -63,3 +63,9 @@ def test_archive_members_validates_zip() -> None:
 def test_archive_members_rejects_non_zip() -> None:
     with pytest.raises(ValueError, match="not a ZIP"):
         archive_members(b"not a zip")
+
+
+def test_loadall_probe_cli_imports() -> None:
+    from planets_lab.corpus.probe_loadall_cli import main
+
+    assert callable(main)
