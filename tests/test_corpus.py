@@ -6,6 +6,7 @@ import pytest
 
 from planets_lab.corpus.api import CorpusApiError, PlanetsNuPublicApi
 from planets_lab.corpus.archive import (
+    TurnMember,
     archive_members,
     inspect_turn_member,
     turn_members,
@@ -13,8 +14,10 @@ from planets_lab.corpus.archive import (
 from planets_lab.corpus.discovery import finished_games
 from planets_lab.corpus.manifest import build_game_manifest, settings_hash
 from planets_lab.corpus.normalizer import (
+    ArchiveTurnSnapshot,
     consecutive_archive_transitions,
     load_archive_snapshots,
+    ownerless_ship_diagnostics,
     summarize_archive_snapshots,
 )
 
@@ -208,6 +211,49 @@ def test_loadall_normalizer_builds_streams_and_drops_player_identity() -> None:
         (1, 0, 1),
         (2, 0, 1),
     ]
+
+
+def test_ownerless_ship_diagnostics_are_mechanical_and_privacy_safe() -> None:
+    snapshot = ArchiveTurnSnapshot(
+        member=TurnMember(player=8, turn=23, name="player8-turn23.trn"),
+        game_id=680910,
+        player_id=8,
+        embedded_turn=23,
+        snapshot_hash="fixture",
+        mechanics_payload={
+            "ships": [
+                {
+                    "id": 17,
+                    "ownerid": 0,
+                    "hullid": 12,
+                    "x": 1000,
+                    "y": 1200,
+                    "warp": 0,
+                    "name": "must-not-print",
+                    "friendlycode": "xxx",
+                },
+                {
+                    "id": 18,
+                    "ownerid": 2,
+                    "hullid": 13,
+                    "x": 1100,
+                    "y": 1300,
+                },
+            ]
+        },
+    )
+
+    diagnostics = ownerless_ship_diagnostics(snapshot)
+    assert len(diagnostics) == 1
+    diagnostic = diagnostics[0]
+    assert diagnostic["id"] == 17
+    assert diagnostic["ownerid"] == 0
+    assert diagnostic["hullid"] == 12
+    assert diagnostic["player"] == 8
+    assert "name" in diagnostic["present_keys"]
+    assert "friendlycode" in diagnostic["present_keys"]
+    assert "must-not-print" not in repr(diagnostic)
+    assert "xxx" not in repr(diagnostic)
 
 
 def test_loadall_probe_cli_imports() -> None:
