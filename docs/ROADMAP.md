@@ -150,11 +150,14 @@ Ambiguous user-order effects must be classified or excluded rather than counted 
 - `/game/loadall` has been verified on finished game `680910` (`Flatland Sector`): the response was a valid 10,545,628-byte ZIP with SHA-256 `ee170abc24a8099ef7079e6fd675998d26e952c15dae8fd2ad9eaf7ee831b1d0`;
 - that archive contains a complete 320-member grid: players 1..8 by archive turns 0..39, with no missing cells;
 - `.trn` members are verified as plain UTF-8 JSON objects with direct top-level Planets.nu turn payloads rather than an additional binary or compressed format;
-- turn payloads include account-identity / secret-like fields such as username, email and savekey, so derived corpus normalization must not propagate raw player records or messages;
-- `planets_lab.corpus.normalizer` now reduces player records to slot/race identity, retains Host-relevant entity state, imports snapshots into canonical `GameState`, and builds consecutive transitions strictly within each player stream;
-- `normalize_loadall_cli` reports archive/embedded turn alignment, canonical-import success, transition counts and aggregate entity coverage without dumping raw turn contents;
-- tests cover proxy enforcement, account-history finished filtering/deduplication, manifest identity minimization, settings hashing, ZIP validation, player/turn member parsing, JSON/gzip payload inspection, identity stripping, canonical import and stream transition construction;
-- acceptance targets 1, 2 and 3 are complete; target 4 is implemented and pending the first real-game normalizer run on cached game `680910`.
+- turn payloads include account-identity / secret-like fields such as username, email and savekey, so derived corpus normalization does not propagate raw player records or messages;
+- `planets_lab.corpus.normalizer` reduces player records to slot/race identity, retains Host-relevant entity state, imports snapshots into canonical `GameState`, and builds consecutive transitions strictly within each player stream;
+- the first real normalizer run on game `680910` produced 320 snapshots across 8 player streams and 312 archive-consecutive transitions with no missing grid cells; 296/312 transitions were also consecutive according to the embedded turn number;
+- embedded/archive turn alignment for game `680910` was `{0: 312, -1: 8}` (embedded minus archive), indicating one complete player×turn boundary with an offset rather than random per-player corruption;
+- canonical import succeeded for 318/320 snapshots; the two failures are isolated to player 8 at archive turns 23 and 26, where ship records 17 and 45 respectively have no resolvable owner;
+- privacy-safe anomaly diagnostics now report exact turn-alignment anomalies and only mechanical fields/key presence for ownerless ship records, without exposing names, friendly-code values, account data or messages;
+- tests cover proxy enforcement, account-history finished filtering/deduplication, manifest identity minimization, settings hashing, ZIP validation, player/turn member parsing, JSON/gzip payload inspection, identity stripping, canonical import, stream transition construction and privacy-safe anomaly reporting;
+- acceptance targets 1 through 4 are complete at the acquisition/stream-normalization level; before target 5, classify the one embedded-turn offset boundary and the two ownerless observed-ship records so corpus statistics can distinguish valid partial observations from canonical-state failures.
 
 ## M5B — Nu compatibility matrix
 
