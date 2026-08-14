@@ -67,6 +67,41 @@ class ArchiveCorpusSummary:
     embedded_consecutive_transitions: int
 
 
+SAFE_SHIP_DIAGNOSTIC_KEYS = (
+    "id",
+    "ownerid",
+    "owner_id",
+    "hullid",
+    "hull_id",
+    "x",
+    "y",
+    "warp",
+    "targetx",
+    "targety",
+    "waypointx",
+    "waypointy",
+    "mission",
+    "mission1target",
+    "mission2target",
+    "enemy",
+    "engineid",
+    "beamid",
+    "torpedoid",
+    "beams",
+    "torps",
+    "bays",
+    "ammo",
+    "damage",
+    "neutronium",
+    "duranium",
+    "tritanium",
+    "molybdenum",
+    "supplies",
+    "clans",
+    "megacredits",
+)
+
+
 def _required_int(raw: Mapping[str, Any], key: str, *, label: str) -> int:
     value = raw.get(key)
     if isinstance(value, bool) or not isinstance(value, int):
@@ -165,6 +200,50 @@ def mechanics_projection(parsed: Mapping[str, Any], *, member: str) -> dict[str,
         "starbases": _object_list(parsed, "starbases", member=member),
         "ionstorms": _object_list(parsed, "ionstorms", member=member),
     }
+
+
+def _ship_owner_value(raw: Mapping[str, Any]) -> Any:
+    if "ownerid" in raw:
+        return raw.get("ownerid")
+    return raw.get("owner_id")
+
+
+def ownerless_ship_diagnostics(
+    snapshot: ArchiveTurnSnapshot,
+) -> tuple[dict[str, Any], ...]:
+    """Return privacy-safe excerpts for ship records that cannot resolve an owner.
+
+    Only explicitly mechanical values are copied. The full key-name set is also
+    retained because key presence is useful for identifying partial-contact record
+    shapes, while values of names, friendly codes and identity-like fields are not
+    exposed by diagnostics.
+    """
+
+    raw_ships = snapshot.mechanics_payload.get("ships", [])
+    if not isinstance(raw_ships, list):
+        return ()
+
+    result: list[dict[str, Any]] = []
+    for raw in raw_ships:
+        if not isinstance(raw, Mapping):
+            continue
+        owner = _ship_owner_value(raw)
+        if isinstance(owner, int) and not isinstance(owner, bool) and owner > 0:
+            continue
+
+        excerpt: dict[str, Any] = {
+            "player": snapshot.player_id,
+            "archive_turn": snapshot.archive_turn,
+            "embedded_turn": snapshot.embedded_turn,
+            "present_keys": sorted(str(key) for key in raw.keys()),
+        }
+        for key in SAFE_SHIP_DIAGNOSTIC_KEYS:
+            if key in raw:
+                value = raw[key]
+                if isinstance(value, (str, int, float, bool)) or value is None:
+                    excerpt[key] = value
+        result.append(excerpt)
+    return tuple(result)
 
 
 def load_archive_snapshots(data: bytes) -> tuple[ArchiveTurnSnapshot, ...]:
