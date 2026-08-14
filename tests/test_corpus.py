@@ -10,10 +10,49 @@ from planets_lab.corpus.manifest import build_game_manifest, settings_hash
 
 
 class FakeClient:
-    def games_for_username(self, name: str):
-        if name == "one":
-            return [{"id": 20, "status": 3}, {"id": 21, "status": 2}]
-        return [{"id": 20, "status": 3}, {"id": 22, "status": 3}]
+    def account_history(self, account_id: int):
+        if account_id == 10:
+            return [
+                {
+                    "gameid": 20,
+                    "game": {
+                        "id": 20,
+                        "status": 3,
+                        "statusname": "Finished",
+                        "dateended": "2026-07-01T00:00:00",
+                    },
+                    "player": {"id": 4, "raceid": 7},
+                },
+                {
+                    "gameid": 21,
+                    "game": {
+                        "id": 21,
+                        "status": 2,
+                        "statusname": "Running",
+                        "dateended": "0001-01-01T00:00:00",
+                    },
+                },
+            ]
+        return [
+            {
+                "gameid": 20,
+                "game": {
+                    "id": 20,
+                    "status": 3,
+                    "statusname": "Finished",
+                    "dateended": "2026-07-01T00:00:00",
+                },
+            },
+            {
+                "gameid": 22,
+                "game": {
+                    "id": 22,
+                    "status": 3,
+                    "statusname": "Finished",
+                    "dateended": "2026-08-01T00:00:00",
+                },
+            },
+        ]
 
 
 def test_network_client_requires_proxy(monkeypatch) -> None:
@@ -22,9 +61,10 @@ def test_network_client_requires_proxy(monkeypatch) -> None:
         PlanetsNuPublicApi()
 
 
-def test_finished_game_discovery_filters_and_deduplicates() -> None:
-    games = finished_games(FakeClient(), ["one", "two"])
+def test_finished_game_discovery_uses_history_filters_and_deduplicates() -> None:
+    games = finished_games(FakeClient(), [10, 11])
     assert [game["id"] for game in games] == [22, 20]
+    assert all(game["status"] == 3 for game in games)
 
 
 def test_manifest_keeps_race_slots_but_not_identity() -> None:
