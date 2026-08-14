@@ -61,6 +61,27 @@ def read_archive_member(data: bytes, name: str) -> bytes:
             raise ValueError(f"archive member not found: {name}") from exc
 
 
+def read_archive_members(
+    data: bytes,
+    names: tuple[str, ...] | list[str],
+) -> dict[str, bytes]:
+    """Read many ZIP members after one archive validation/open cycle.
+
+    Historical /game/loadall archives can contain thousands of .trn members.
+    Re-opening and CRC-testing the whole ZIP for every member makes normalization
+    effectively quadratic in archive size. Bulk reading keeps validation linear.
+    """
+
+    result: dict[str, bytes] = {}
+    with _open_archive(data) as archive:
+        for name in names:
+            try:
+                result[name] = archive.read(name)
+            except KeyError as exc:
+                raise ValueError(f"archive member not found: {name}") from exc
+    return result
+
+
 def inspect_turn_member(data: bytes, member: TurnMember | str) -> dict[str, Any]:
     name = member.name if isinstance(member, TurnMember) else member
     raw = read_archive_member(data, name)
