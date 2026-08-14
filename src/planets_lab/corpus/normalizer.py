@@ -11,7 +11,7 @@ from typing import Any
 from planets_lab.core import GameState
 from planets_lab.data.nu_loadturn import import_loadturn
 
-from .archive import TurnMember, read_archive_member, turn_members
+from .archive import TurnMember, read_archive_members, turn_members
 
 
 class CorpusNormalizationError(ValueError):
@@ -110,8 +110,7 @@ def _required_int(raw: Mapping[str, Any], key: str, *, label: str) -> int:
     return value
 
 
-def _decode_member_json(data: bytes, member: TurnMember) -> tuple[dict[str, Any], bytes]:
-    raw = read_archive_member(data, member.name)
+def _decode_member_json(raw: bytes, member: TurnMember) -> tuple[dict[str, Any], bytes]:
     decoded = raw
     if decoded[:2] == b"\x1f\x8b":
         try:
@@ -250,9 +249,12 @@ def ownerless_ship_diagnostics(
 
 
 def load_archive_snapshots(data: bytes) -> tuple[ArchiveTurnSnapshot, ...]:
+    members = turn_members(data)
+    raw_members = read_archive_members(data, [member.name for member in members])
+
     snapshots: list[ArchiveTurnSnapshot] = []
-    for member in turn_members(data):
-        parsed, decoded = _decode_member_json(data, member)
+    for member in members:
+        parsed, decoded = _decode_member_json(raw_members[member.name], member)
         projection = mechanics_projection(parsed, member=member.name)
         game = projection["game"]
         player = projection["player"]
