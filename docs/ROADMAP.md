@@ -148,10 +148,13 @@ Ambiguous user-order effects must be classified or excluded rather than counted 
 - `planets_lab.corpus.discover_cli` has discovered 12 recent unique finished games across the four configured accounts and written deterministic manifests;
 - `planets_lab.corpus.manifest` produces deterministic settings hashes and compact game manifests;
 - `/game/loadall` has been verified on finished game `680910` (`Flatland Sector`): the response was a valid 10,545,628-byte ZIP with SHA-256 `ee170abc24a8099ef7079e6fd675998d26e952c15dae8fd2ad9eaf7ee831b1d0`;
-- that archive contains 320 `playerN-turnM.trn` members and is cached under the gitignored corpus cache;
-- `planets_lab.corpus.archive` and `inspect_loadall_cli` now validate the player/turn grid and inspect turn-member transport/format without dumping turn contents;
-- tests cover proxy enforcement, account-history finished filtering/deduplication, manifest identity minimization, settings hashing, ZIP validation, player/turn member parsing and JSON/gzip payload inspection;
-- acceptance targets 1 and 2 are complete; target 3 is complete at the archive/member level and pending payload-format inspection; next operational checkpoint is to inspect cached game `680910` and implement the normalizer over the observed `.trn` payload schema.
+- that archive contains a complete 320-member grid: players 1..8 by archive turns 0..39, with no missing cells;
+- `.trn` members are verified as plain UTF-8 JSON objects with direct top-level Planets.nu turn payloads rather than an additional binary or compressed format;
+- turn payloads include account-identity / secret-like fields such as username, email and savekey, so derived corpus normalization must not propagate raw player records or messages;
+- `planets_lab.corpus.normalizer` now reduces player records to slot/race identity, retains Host-relevant entity state, imports snapshots into canonical `GameState`, and builds consecutive transitions strictly within each player stream;
+- `normalize_loadall_cli` reports archive/embedded turn alignment, canonical-import success, transition counts and aggregate entity coverage without dumping raw turn contents;
+- tests cover proxy enforcement, account-history finished filtering/deduplication, manifest identity minimization, settings hashing, ZIP validation, player/turn member parsing, JSON/gzip payload inspection, identity stripping, canonical import and stream transition construction;
+- acceptance targets 1, 2 and 3 are complete; target 4 is implemented and pending the first real-game normalizer run on cached game `680910`.
 
 ## M5B — Nu compatibility matrix
 
