@@ -165,7 +165,8 @@ def mechanics_projection(parsed: Mapping[str, Any], *, member: str) -> dict[str,
     Finished-game .trn payloads contain fields such as player email, username and
     savekey. The historical corpus must not propagate those fields into derived
     datasets. Player records are therefore reduced to slot/race identity; entity
-    records retain their mechanical fields.
+    records retain their mechanical fields. Minefields are retained for corpus
+    indexing even though canonical GameState does not model them yet.
     """
 
     game_raw = parsed.get("game")
@@ -200,6 +201,7 @@ def mechanics_projection(parsed: Mapping[str, Any], *, member: str) -> dict[str,
         "ships": _object_list(parsed, "ships", member=member),
         "starbases": _object_list(parsed, "starbases", member=member),
         "ionstorms": _object_list(parsed, "ionstorms", member=member),
+        "minefields": _object_list(parsed, "minefields", member=member),
     }
 
 
