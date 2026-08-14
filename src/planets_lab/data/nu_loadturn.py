@@ -54,6 +54,16 @@ def _int(raw: Mapping[str, Any], *keys: str, default: int = 0) -> int:
         raise NuLoadTurnError(f"expected integer for one of {keys}, got {value!r}") from exc
 
 
+def _optional_int(raw: Mapping[str, Any], *keys: str) -> int | None:
+    value = _first(raw, *keys, default=None)
+    if value is None:
+        return None
+    try:
+        return int(value)
+    except (TypeError, ValueError) as exc:
+        raise NuLoadTurnError(f"expected integer for one of {keys}, got {value!r}") from exc
+
+
 def _required_int(raw: Mapping[str, Any], *keys: str) -> int:
     value = _first(raw, *keys, default=None)
     if value is None:
@@ -177,8 +187,6 @@ def _ship_ammo(raw: Mapping[str, Any]) -> tuple[int, int, int, int, int, int]:
 
 def _ship(raw: Mapping[str, Any]) -> Ship:
     owner_id = _owner_id(raw)
-    if owner_id is None:
-        raise NuLoadTurnError(f"ship {_first(raw, 'id', default='?')} has no owner")
 
     x = _required_int(raw, "x")
     y = _required_int(raw, "y")
@@ -216,6 +224,7 @@ def _ship(raw: Mapping[str, Any]) -> Ship:
         torpedoes=torpedoes,
         unresolved_ammo=unresolved_ammo,
         damage=_int(raw, "damage"),
+        crew=_optional_int(raw, "crew"),
     )
 
 
