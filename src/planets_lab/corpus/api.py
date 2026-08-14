@@ -125,6 +125,7 @@ class PlanetsNuPublicApi:
         return payload
 
     def games_for_username(self, username: str) -> list[dict[str, Any]]:
+        """Return the active/current game list exposed by /games/list."""
         payload = self.get_json(
             "games/list",
             params={"username": username.strip()},
@@ -136,6 +137,27 @@ class PlanetsNuPublicApi:
                 "Planets.nu games/list response is not a list of objects"
             )
         return payload
+
+    def account_history(self, account_id: int) -> list[dict[str, Any]]:
+        """Return the account history entries used to discover completed games."""
+        if account_id <= 0:
+            raise ValueError("account id must be positive")
+        payload = self.get_json(
+            "account/history",
+            params={"accountid": account_id},
+        )
+        if not isinstance(payload, dict):
+            raise CorpusApiError(
+                "Planets.nu account/history response is not an object"
+            )
+        history = payload.get("history")
+        if not isinstance(history, list) or not all(
+            isinstance(record, dict) for record in history
+        ):
+            raise CorpusApiError(
+                "Planets.nu account/history response has no history object list"
+            )
+        return history
 
     def load_info(self, game_id: int) -> dict[str, Any]:
         payload = self.get_json(
