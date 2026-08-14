@@ -145,11 +145,13 @@ Ambiguous user-order effects must be classified or excluded rather than counted 
 - `/account/history` response shape has been verified against a real account: the response contains `history[]` entries with nested `game` and `player` objects plus game/race/finish metadata;
 - `PlanetsNuPublicApi.account_history()` now validates and exposes those history entries;
 - `planets_lab.corpus.discovery` now filters nested finished games and deduplicates them across multiple account ids, ordered by end date;
-- `planets_lab.corpus.discover_cli` now accepts account ids and writes deterministic finished-game manifests;
+- `planets_lab.corpus.discover_cli` has discovered 12 recent unique finished games across the four configured accounts and written deterministic manifests;
 - `planets_lab.corpus.manifest` produces deterministic settings hashes and compact game manifests;
-- `planets_lab.corpus.probe_loadall_cli` probes and validates one finished-game `/game/loadall` archive and caches it under the gitignored corpus cache;
-- tests cover proxy enforcement, account-history finished filtering/deduplication, manifest identity minimization, settings hashing, archive validation and loadall-probe imports;
-- next operational checkpoint: discover the four configured accounts' finished games, then validate `/game/loadall` on one recent sufficiently long finished game and build the normalizer over the observed archive layout.
+- `/game/loadall` has been verified on finished game `680910` (`Flatland Sector`): the response was a valid 10,545,628-byte ZIP with SHA-256 `ee170abc24a8099ef7079e6fd675998d26e952c15dae8fd2ad9eaf7ee831b1d0`;
+- that archive contains 320 `playerN-turnM.trn` members and is cached under the gitignored corpus cache;
+- `planets_lab.corpus.archive` and `inspect_loadall_cli` now validate the player/turn grid and inspect turn-member transport/format without dumping turn contents;
+- tests cover proxy enforcement, account-history finished filtering/deduplication, manifest identity minimization, settings hashing, ZIP validation, player/turn member parsing and JSON/gzip payload inspection;
+- acceptance targets 1 and 2 are complete; target 3 is complete at the archive/member level and pending payload-format inspection; next operational checkpoint is to inspect cached game `680910` and implement the normalizer over the observed `.trn` payload schema.
 
 ## M5B — Nu compatibility matrix
 
