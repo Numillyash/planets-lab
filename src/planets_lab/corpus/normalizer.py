@@ -92,6 +92,7 @@ SAFE_SHIP_DIAGNOSTIC_KEYS = (
     "bays",
     "ammo",
     "damage",
+    "crew",
     "neutronium",
     "duranium",
     "tritanium",
