@@ -21,6 +21,7 @@ data/raw/
 data/cache/
 validation/data/
 validation/corpus/cache/
+validation/corpus/index/
 runs/
 artifacts/
 logs/
