@@ -1,10 +1,16 @@
+import gzip
 import io
+import json
 import zipfile
 
 import pytest
 
 from planets_lab.corpus.api import CorpusApiError, PlanetsNuPublicApi
-from planets_lab.corpus.archive import archive_members
+from planets_lab.corpus.archive import (
+    archive_members,
+    inspect_turn_member,
+    turn_members,
+)
 from planets_lab.corpus.discovery import finished_games
 from planets_lab.corpus.manifest import build_game_manifest, settings_hash
 
@@ -55,6 +61,14 @@ class FakeClient:
         ]
 
 
+def _zip_bytes(files: dict[str, bytes | str]) -> bytes:
+    buffer = io.BytesIO()
+    with zipfile.ZipFile(buffer, "w") as archive:
+        for name, value in files.items():
+            archive.writestr(name, value)
+    return buffer.getvalue()
+
+
 def test_network_client_requires_proxy(monkeypatch) -> None:
     monkeypatch.delenv("PLANETSNU_PROXY_URL", raising=False)
     with pytest.raises(CorpusApiError, match="PLANETSNU_PROXY_URL"):
@@ -94,10 +108,8 @@ def test_settings_hash_is_key_order_independent() -> None:
 
 
 def test_archive_members_validates_zip() -> None:
-    buffer = io.BytesIO()
-    with zipfile.ZipFile(buffer, "w") as archive:
-        archive.writestr("turns/example.json", "{}")
-    assert archive_members(buffer.getvalue()) == ("turns/example.json",)
+    data = _zip_bytes({"turns/example.json": "{}"})
+    assert archive_members(data) == ("turns/example.json",)
 
 
 def test_archive_members_rejects_non_zip() -> None:
@@ -105,7 +117,47 @@ def test_archive_members_rejects_non_zip() -> None:
         archive_members(b"not a zip")
 
 
+def test_turn_members_parse_player_turn_grid() -> None:
+    data = _zip_bytes(
+        {
+            "player2-turn1.trn": "{}",
+            "player1-turn0.trn": "{}",
+            "notes.txt": "ignored",
+        }
+    )
+    members = turn_members(data)
+    assert [(m.player, m.turn, m.name) for m in members] == [
+        (1, 0, "player1-turn0.trn"),
+        (2, 1, "player2-turn1.trn"),
+    ]
+
+
+def test_inspect_turn_member_detects_plain_json() -> None:
+    payload = {"game": {"id": 20}, "ships": [{"id": 1}], "planets": []}
+    data = _zip_bytes({"player1-turn0.trn": json.dumps(payload)})
+    report = inspect_turn_member(data, "player1-turn0.trn")
+    assert report["format"] == "json"
+    assert report["transport"] == "plain"
+    assert report["top_level_keys"] == ["game", "planets", "ships"]
+    assert report["top_level_shapes"]["ships"] == {"type": "list", "len": 1}
+
+
+def test_inspect_turn_member_detects_gzip_json() -> None:
+    payload = json.dumps({"game": {"id": 20}}).encode()
+    data = _zip_bytes({"player1-turn0.trn": gzip.compress(payload)})
+    report = inspect_turn_member(data, "player1-turn0.trn")
+    assert report["format"] == "json"
+    assert report["transport"] == "gzip"
+    assert report["top_level_keys"] == ["game"]
+
+
 def test_loadall_probe_cli_imports() -> None:
     from planets_lab.corpus.probe_loadall_cli import main
+
+    assert callable(main)
+
+
+def test_loadall_inspector_cli_imports() -> None:
+    from planets_lab.corpus.inspect_loadall_cli import main
 
     assert callable(main)
