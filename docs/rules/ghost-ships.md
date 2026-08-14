@@ -1,6 +1,6 @@
 # Ghost ships
 
-Status: `DOCUMENTED` for the canonical state represented here. Tow-capture execution is not yet implemented by this document.
+Status: `DOCUMENTED` for the ghost-ship Host state and `CORPUS_OBSERVED` for the historical `/loadall` wire encoding described below. Tow-capture execution is not yet implemented by this document.
 
 ## Canonical state
 
@@ -9,11 +9,14 @@ Planets.nu explicitly defines a ghost ship as a starship whose crew has been com
 For `planets-lab`, this maps to:
 
 - `Ship.owner_id = None`;
-- `Ship.crew = 0` when the source exposes crew;
+- `Ship.crew = 0` when the source exposes the physical crew count;
+- `Ship.crew = None` when a player-perspective source hides or omits crew;
 - `Ship.warp = 0`;
 - the ship remains present in `GameState.ships` and still counts as a ship rather than being discarded as an invalid observation.
 
 `owner_id = None` is therefore different from an unknown owner. In Planets.nu `/game/loadall` data, the corresponding observed wire representation is `ownerid = 0`.
+
+Canonical `crew` is never negative. Real historical player-perspective `/loadall` records use negative `crew` values on otherwise ordinary owned ships, so those wire values are treated as an unknown/hidden sentinel and decoded to `Ship.crew = None`. This sentinel interpretation is corpus-derived rather than asserted by the public rules documentation.
 
 ## Behavior boundary
 
@@ -29,4 +32,4 @@ Primary Planets.nu documentation:
 - `Scoreboard`: ghost ships are not counted as ships owned by a player but still count toward the ship limit;
 - `Annotated Host Order`: ghost tow capture is a special case resolved around towing/radiation host-order steps.
 
-Real corpus observation (`game 680910`, `Flatland Sector`) independently exposed two ship records with `ownerid = 0`, `warp = 0`, which motivated adding the documented state to the canonical model.
+Real corpus observation (`game 680910`, `Flatland Sector`) independently exposed two ship records with `ownerid = 0`, `warp = 0`, which motivated adding the documented state to the canonical model. The same archive also contains many negative `crew` values on owned ship contacts; because negative physical crew is impossible, the importer treats that wire value as unknown rather than as a Host state.
