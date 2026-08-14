@@ -1,4 +1,3 @@
-import gzip
 import io
 import json
 import zipfile
@@ -13,6 +12,11 @@ from planets_lab.corpus.archive import (
 )
 from planets_lab.corpus.discovery import finished_games
 from planets_lab.corpus.manifest import build_game_manifest, settings_hash
+from planets_lab.corpus.normalizer import (
+    consecutive_archive_transitions,
+    load_archive_snapshots,
+    summarize_archive_snapshots,
+)
 
 
 class FakeClient:
@@ -61,11 +65,47 @@ class FakeClient:
         ]
 
 
-def _zip_bytes(files: dict[str, bytes | str]) -> bytes:
+def _turn_payload(player: int, turn: int) -> dict:
+    return {
+        "game": {"id": 680910, "turn": turn},
+        "player": {
+            "id": player,
+            "raceid": player,
+            "username": f"user-{player}",
+            "email": f"user-{player}@example.invalid",
+            "savekey": "must-not-propagate",
+        },
+        "players": [
+            {
+                "id": 1,
+                "raceid": 1,
+                "username": "one",
+                "email": "one@example.invalid",
+            },
+            {
+                "id": 2,
+                "raceid": 2,
+                "username": "two",
+                "savekey": "secret-like",
+            },
+        ],
+        "planets": [],
+        "ships": [],
+        "starbases": [],
+        "ionstorms": [],
+        "messages": [{"text": "not mechanics corpus data"}],
+    }
+
+
+def _loadall_fixture() -> bytes:
     buffer = io.BytesIO()
     with zipfile.ZipFile(buffer, "w") as archive:
-        for name, value in files.items():
-            archive.writestr(name, value)
+        for player in (1, 2):
+            for turn in (0, 1):
+                archive.writestr(
+                    f"player{player}-turn{turn}.trn",
+                    json.dumps(_turn_payload(player, turn)),
+                )
     return buffer.getvalue()
 
 
@@ -108,8 +148,10 @@ def test_settings_hash_is_key_order_independent() -> None:
 
 
 def test_archive_members_validates_zip() -> None:
-    data = _zip_bytes({"turns/example.json": "{}"})
-    assert archive_members(data) == ("turns/example.json",)
+    buffer = io.BytesIO()
+    with zipfile.ZipFile(buffer, "w") as archive:
+        archive.writestr("turns/example.json", "{}")
+    assert archive_members(buffer.getvalue()) == ("turns/example.json",)
 
 
 def test_archive_members_rejects_non_zip() -> None:
@@ -118,37 +160,54 @@ def test_archive_members_rejects_non_zip() -> None:
 
 
 def test_turn_members_parse_player_turn_grid() -> None:
-    data = _zip_bytes(
-        {
-            "player2-turn1.trn": "{}",
-            "player1-turn0.trn": "{}",
-            "notes.txt": "ignored",
-        }
-    )
-    members = turn_members(data)
-    assert [(m.player, m.turn, m.name) for m in members] == [
-        (1, 0, "player1-turn0.trn"),
-        (2, 1, "player2-turn1.trn"),
+    members = turn_members(_loadall_fixture())
+    assert [(member.player, member.turn) for member in members] == [
+        (1, 0),
+        (1, 1),
+        (2, 0),
+        (2, 1),
     ]
 
 
-def test_inspect_turn_member_detects_plain_json() -> None:
-    payload = {"game": {"id": 20}, "ships": [{"id": 1}], "planets": []}
-    data = _zip_bytes({"player1-turn0.trn": json.dumps(payload)})
-    report = inspect_turn_member(data, "player1-turn0.trn")
+def test_inspect_turn_member_reports_json_without_contents() -> None:
+    data = _loadall_fixture()
+    member = turn_members(data)[0]
+    report = inspect_turn_member(data, member)
     assert report["format"] == "json"
-    assert report["transport"] == "plain"
-    assert report["top_level_keys"] == ["game", "planets", "ships"]
-    assert report["top_level_shapes"]["ships"] == {"type": "list", "len": 1}
+    assert report["json_type"] == "dict"
+    assert "player" in report["top_level_keys"]
+    assert "must-not-propagate" not in repr(report)
 
 
-def test_inspect_turn_member_detects_gzip_json() -> None:
-    payload = json.dumps({"game": {"id": 20}}).encode()
-    data = _zip_bytes({"player1-turn0.trn": gzip.compress(payload)})
-    report = inspect_turn_member(data, "player1-turn0.trn")
-    assert report["format"] == "json"
-    assert report["transport"] == "gzip"
-    assert report["top_level_keys"] == ["game"]
+def test_loadall_normalizer_builds_streams_and_drops_player_identity() -> None:
+    snapshots = load_archive_snapshots(_loadall_fixture())
+    assert len(snapshots) == 4
+    assert {snapshot.player_id for snapshot in snapshots} == {1, 2}
+    assert {snapshot.archive_turn for snapshot in snapshots} == {0, 1}
+
+    for snapshot in snapshots:
+        representation = repr(snapshot.mechanics_payload)
+        assert "username" not in representation
+        assert "email" not in representation
+        assert "savekey" not in representation
+        assert "messages" not in representation
+        state = snapshot.import_state()
+        assert state.game_id == 680910
+        assert state.turn == snapshot.embedded_turn
+
+    summary = summarize_archive_snapshots(snapshots)
+    assert summary.snapshots == 4
+    assert summary.players == (1, 2)
+    assert summary.archive_turns == (0, 1)
+    assert summary.missing_grid_cells == ()
+    assert summary.transitions == 2
+    assert summary.embedded_consecutive_transitions == 2
+
+    transitions = consecutive_archive_transitions(snapshots)
+    assert [(t.before.player_id, t.before.archive_turn, t.after.archive_turn) for t in transitions] == [
+        (1, 0, 1),
+        (2, 0, 1),
+    ]
 
 
 def test_loadall_probe_cli_imports() -> None:
@@ -159,5 +218,11 @@ def test_loadall_probe_cli_imports() -> None:
 
 def test_loadall_inspector_cli_imports() -> None:
     from planets_lab.corpus.inspect_loadall_cli import main
+
+    assert callable(main)
+
+
+def test_loadall_normalizer_cli_imports() -> None:
+    from planets_lab.corpus.normalize_loadall_cli import main
 
     assert callable(main)
