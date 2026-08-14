@@ -87,7 +87,9 @@ class IonStorm:
 @dataclass(slots=True)
 class Ship:
     id: int
-    owner_id: int
+    # `None` is a real NuHost state: a radiation-killed, crewless ghost ship is
+    # unowned until captured. It is not an unknown/missing owner.
+    owner_id: int | None
     hull_id: int
     x: int
     y: int
@@ -116,6 +118,13 @@ class Ship:
     torpedoes: int = 0
     unresolved_ammo: int = 0
     damage: int = 0
+    # Historical /loadall data exposes crew. None means the source did not
+    # provide the field; zero is significant and is expected for ghost ships.
+    crew: int | None = None
+
+    @property
+    def is_ghost(self) -> bool:
+        return self.owner_id is None
 
 
 @dataclass(slots=True)
@@ -177,8 +186,19 @@ class GameState:
         for ship_id, ship in self.ships.items():
             if ship.id != ship_id:
                 raise ValueError(f"ship key {ship_id} does not match ship.id {ship.id}")
-            if ship.owner_id not in self.players:
+            if ship.owner_id is not None and ship.owner_id not in self.players:
                 raise ValueError(f"ship {ship_id} has unknown owner {ship.owner_id}")
+            if ship.crew is not None and ship.crew < 0:
+                raise ValueError(f"ship {ship_id} has negative crew")
+            if ship.owner_id is None:
+                if ship.crew not in (None, 0):
+                    raise ValueError(
+                        f"unowned ship {ship_id} has non-zero crew {ship.crew}"
+                    )
+                if ship.warp != 0:
+                    raise ValueError(
+                        f"unowned ghost ship {ship_id} has non-zero warp {ship.warp}"
+                    )
             for label, value in (
                 ("beam_count", ship.beam_count),
                 ("torpedo_launcher_count", ship.torpedo_launcher_count),
