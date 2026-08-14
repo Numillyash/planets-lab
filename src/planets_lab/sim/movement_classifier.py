@@ -64,6 +64,11 @@ def classify_movement_intents(
     which tow targets are actually locked or moved. Ships with HYP friendly
     code are isolated from ordinary Move Most so they cannot accidentally use
     the normal movement planner.
+
+    Unowned ghost ships cannot execute missions or self-movement. They stay in
+    the ordinary Move Most bucket solely so downstream movement can preserve the
+    normal warp-zero/external-movement path (for example, a resolved external
+    displacement) without honoring stale mission/friendly-code fields.
     """
 
     tow_attempts: set[int] = set()
@@ -72,6 +77,10 @@ def classify_movement_intents(
     special_move_most: set[int] = set()
 
     for ship_id, ship in state.ships.items():
+        if ship.owner_id is None:
+            move_most.add(ship_id)
+            continue
+
         mission_id = _mission_id(ship)
 
         if mission_id in convention.tow_mission_ids:
