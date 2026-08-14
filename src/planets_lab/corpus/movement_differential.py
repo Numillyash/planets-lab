@@ -79,20 +79,28 @@ def _entity_map(
     }
 
 
-def _planet_tuples(
+def _planet_tuples_by_turn(
     entities: Mapping[tuple[str, int, int], PartialEntityResolution],
-    archive_turn: int,
-) -> tuple[tuple[int, int, int], ...]:
-    result: list[tuple[int, int, int]] = []
+) -> Mapping[int, tuple[tuple[int, int, int], ...]]:
+    """Build one O(entities) planet geometry index for all archive turns.
+
+    This must not be expressed as ``dict.setdefault(turn, _planet_tuples(...))``
+    inside the per-ship loop: Python evaluates the default argument eagerly,
+    which caused a full entity-map scan for every movement transition.
+    """
+    grouped: dict[int, list[tuple[int, int, int]]] = defaultdict(list)
     for (kind, turn, entity_id), entity in entities.items():
-        if kind != "planet" or turn != archive_turn:
+        if kind != "planet":
             continue
         x = _intish(_resolved_value(entity, "x"))
         y = _intish(_resolved_value(entity, "y"))
         if x is None or y is None:
             continue
-        result.append((entity_id, x, y))
-    return tuple(sorted(result))
+        grouped[turn].append((entity_id, x, y))
+    return {
+        turn: tuple(sorted(planets))
+        for turn, planets in grouped.items()
+    }
 
 
 def _warp_well_destination(
@@ -192,7 +200,9 @@ def evaluate_movement_differential(
     classified_context = 0
     move_most_candidates = 0
 
-    planet_cache: dict[int, tuple[tuple[int, int, int], ...]] = {}
+    # Build planet geometry once per game. The old per-transition setdefault
+    # expression evaluated its expensive default eagerly even on cache hits.
+    planets_by_turn = _planet_tuples_by_turn(entities)
 
     for transition in readiness.results:
         if transition.status != READY:
@@ -257,10 +267,7 @@ def evaluate_movement_differential(
             game_id=before.embedded_turn,
             hull_id=hull_id,
         )
-        planets = planet_cache.setdefault(
-            transition.before_archive_turn,
-            _planet_tuples(entities, transition.before_archive_turn),
-        )
+        planets = planets_by_turn.get(transition.before_archive_turn, ())
         category = _movement_category(sample, planets=planets)
         categories[category] += 1
         if category not in GEOMETRY_EXPLAINED_CATEGORIES and hull_id is not None:
