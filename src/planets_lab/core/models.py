@@ -118,8 +118,9 @@ class Ship:
     torpedoes: int = 0
     unresolved_ammo: int = 0
     damage: int = 0
-    # Historical /loadall data exposes crew. None means the source did not
-    # provide the field; zero is significant and is expected for ghost ships.
+    # Canonical crew is a physical non-negative count when known. None means
+    # the source omitted or hid the count; historical Nu `/loadall` uses a
+    # negative wire sentinel for this case, which the importer decodes to None.
     crew: int | None = None
 
     @property
