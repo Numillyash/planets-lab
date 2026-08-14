@@ -40,6 +40,8 @@ def main() -> int:
     entity_totals = Counter()
     nonempty = Counter()
     turn_offsets = Counter()
+    ghost_ship_records = 0
+    snapshots_with_ghost_ships = 0
 
     for snapshot in snapshots:
         turn_offsets[snapshot.embedded_turn - snapshot.archive_turn] += 1
@@ -50,6 +52,11 @@ def main() -> int:
             continue
 
         canonical_ok += 1
+        ghost_count = sum(ship.owner_id is None for ship in state.ships.values())
+        ghost_ship_records += ghost_count
+        if ghost_count:
+            snapshots_with_ghost_ships += 1
+
         counts = {
             "planets": len(state.planets),
             "ships": len(state.ships),
@@ -94,6 +101,8 @@ def main() -> int:
     )
     print(f"turn_offset_counts:             {dict(sorted(turn_offsets.items()))}")
     print(f"canonical_import:               {canonical_ok} ok / {len(canonical_failures)} failed")
+    print(f"ghost_ship_records:             {ghost_ship_records}")
+    print(f"snapshots_with_ghost_ships:     {snapshots_with_ghost_ships}")
     print(f"nonempty_snapshots_by_entity:   {dict(sorted(nonempty.items()))}")
     print(f"entity_records_across_snapshots:{dict(sorted(entity_totals.items()))}")
 
