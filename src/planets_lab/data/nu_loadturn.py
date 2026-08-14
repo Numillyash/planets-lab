@@ -79,6 +79,21 @@ def _owner_id(raw: Mapping[str, Any]) -> int | None:
     return owner_id or None
 
 
+def _crew(raw: Mapping[str, Any]) -> int | None:
+    """Decode Nu crew while preserving hidden/unknown values explicitly.
+
+    Historical `/game/loadall` player-perspective payloads use negative crew
+    values on otherwise ordinary owned ship contacts. Those values cannot be
+    physical crew counts, so the canonical model represents them as unknown
+    (`None`). Zero remains significant for an exposed crewless/ghost ship.
+    """
+
+    value = _optional_int(raw, "crew")
+    if value is None or value < 0:
+        return None
+    return value
+
+
 def _cargo(raw: Mapping[str, Any]) -> Cargo:
     return Cargo(
         neutronium=_int(raw, "neutronium"),
@@ -224,7 +239,7 @@ def _ship(raw: Mapping[str, Any]) -> Ship:
         torpedoes=torpedoes,
         unresolved_ammo=unresolved_ammo,
         damage=_int(raw, "damage"),
-        crew=_optional_int(raw, "crew"),
+        crew=_crew(raw),
     )
 
 
