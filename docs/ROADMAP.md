@@ -136,6 +136,16 @@ Ambiguous user-order effects must be classified or excluded rather than counted 
 6. Scale discovery to the user's two accounts and two collaborator accounts, then selectively ingest public finished games for missing mechanics.
 7. Preserve known real-game mismatches as permanent regression cases.
 
+### Current implementation status
+
+- `planets_lab.corpus.api` provides a stdlib, proxy-only public API client with no direct-network fallback;
+- `planets_lab.corpus.discovery` discovers and deduplicates finished games across multiple usernames;
+- `planets_lab.corpus.manifest` produces deterministic settings hashes and compact game manifests;
+- `planets_lab.corpus.discover_cli` writes finished-game manifests under `validation/corpus/manifests/`;
+- `planets_lab.corpus.probe_loadall_cli` probes and validates one finished-game `/game/loadall` archive and caches it under the gitignored corpus cache;
+- tests cover proxy enforcement, discovery filtering/deduplication, manifest identity minimization, settings hashing, archive validation and loadall-probe imports;
+- next operational checkpoint: run discovery for one known account, select one finished game, validate `/game/loadall`, inventory the archive, then build the normalizer over the observed archive layout.
+
 ## M5B — Nu compatibility matrix
 
 Status: started with movement differential validation.
