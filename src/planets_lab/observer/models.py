@@ -7,15 +7,16 @@ from planets_lab.core.models import Planet, Ship, Starbase
 
 @dataclass(slots=True, frozen=True)
 class ShipContact:
-    """A confirmed enemy ship contact visible to the player.
+    """A confirmed visible ship contact.
 
-    The observer layer deliberately does not infer visibility. Callers must
-    provide confirmed visible enemy ship ids; later intel/memory layers can
-    represent stale or inferred contacts separately.
+    `owner_id is None` is meaningful for an unowned ghost ship. The observer
+    layer deliberately does not infer visibility. Callers must provide confirmed
+    visible ship ids; later intel/memory layers can represent stale or inferred
+    contacts separately.
     """
 
     id: int
-    owner_id: int
+    owner_id: int | None
     hull_id: int
     x: int
     y: int
