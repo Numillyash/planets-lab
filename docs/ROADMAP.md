@@ -88,7 +88,8 @@ Start with the user's and collaborators' finished-game histories, then expand to
 
 ### Acquisition
 
-- discover games with public `/games/list`, including username-based history discovery;
+- use `/games/list?username=...` only for active/current-game discovery;
+- discover a player's completed-game history through the dedicated public `/account/history` endpoint, keyed by the player's account identity;
 - retain only finished games for the historical corpus unless a command explicitly asks otherwise;
 - fetch `/game/loadinfo` for players and the complete game settings object;
 - prefer `/game/loadall` for finished games when it reliably returns the documented ZIP containing all turns of all players;
@@ -128,7 +129,7 @@ Ambiguous user-order effects must be classified or excluded rather than counted 
 
 ### Initial acceptance targets
 
-1. Discover finished games for one or more usernames and write deterministic manifests.
+1. Discover finished games for one or more account histories and write deterministic manifests.
 2. Probe `/game/loadall` on one finished game through `PLANETSNU_PROXY_URL` and validate that the response is a ZIP before treating it as a corpus artifact.
 3. Cache one full finished game and inventory its archive structure.
 4. Normalize at least one game into player-turn streams and count consecutive transitions.
@@ -139,12 +140,12 @@ Ambiguous user-order effects must be classified or excluded rather than counted 
 ### Current implementation status
 
 - `planets_lab.corpus.api` provides a stdlib, proxy-only public API client with no direct-network fallback;
-- `planets_lab.corpus.discovery` discovers and deduplicates finished games across multiple usernames;
+- active-game discovery via `/games/list?username=...` is working and verified against the four configured accounts;
+- the first finished-game discovery implementation incorrectly reused `/games/list?username=...`; this has been identified and is being replaced by `/account/history`;
 - `planets_lab.corpus.manifest` produces deterministic settings hashes and compact game manifests;
-- `planets_lab.corpus.discover_cli` writes finished-game manifests under `validation/corpus/manifests/`;
 - `planets_lab.corpus.probe_loadall_cli` probes and validates one finished-game `/game/loadall` archive and caches it under the gitignored corpus cache;
-- tests cover proxy enforcement, discovery filtering/deduplication, manifest identity minimization, settings hashing, archive validation and loadall-probe imports;
-- next operational checkpoint: run discovery for one known account, select one finished game, validate `/game/loadall`, inventory the archive, then build the normalizer over the observed archive layout.
+- tests cover proxy enforcement, manifest identity minimization, settings hashing, archive validation and loadall-probe imports;
+- next operational checkpoint: inspect one real `/account/history` response, normalize its schema, discover the four configured accounts' finished games, then validate `/game/loadall` on one recent finished game.
 
 ## M5B — Nu compatibility matrix
 
