@@ -3,7 +3,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-from concurrent.futures import ProcessPoolExecutor
+from concurrent.futures import ProcessPoolExecutor, as_completed
 from pathlib import Path
 from time import perf_counter
 from typing import Any
@@ -193,6 +193,32 @@ def _archive_size(task: tuple[int, int, dict[str, Any], str, str, str, bool]) ->
         return -1
 
 
+def _print_game_result(row: dict[str, Any]) -> None:
+    if row.get("status") != "ok":
+        print(json.dumps(row, sort_keys=True), flush=True)
+        return
+    print(
+        json.dumps(
+            {
+                "status": "ok",
+                "position": row["position"],
+                "total": row["total"],
+                "game_id": row["game_id"],
+                "compiled_cache_hit": row["compiled_cache_hit"],
+                "prepared_cache_hit": row["prepared_cache_hit"],
+                "sphere": row["sphere"],
+                "transition_rows": row["transition_rows"],
+                "move_most_candidates": row["move_most_candidates"],
+                "post_external_residual": row["post_external_residual"],
+                "parquet_bytes": row["parquet_bytes"],
+                "elapsed_seconds": row["elapsed_seconds"],
+            },
+            sort_keys=True,
+        ),
+        flush=True,
+    )
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
         description=(
@@ -244,38 +270,36 @@ def main() -> int:
     scheduled = sorted(tasks, key=_archive_size, reverse=True)
     jobs = max(1, int(args.jobs))
     started = perf_counter()
+    print(
+        json.dumps(
+            {
+                "event": "compile_start",
+                "games": total,
+                "jobs": jobs,
+                "scheduled_game_ids": [int(task[2]["game_id"]) for task in scheduled],
+            },
+            sort_keys=True,
+        ),
+        flush=True,
+    )
+
+    results: list[dict[str, Any]] = []
     if jobs == 1:
-        results = [_process_game(task) for task in scheduled]
+        for task in scheduled:
+            row = _process_game(task)
+            results.append(row)
+            _print_game_result(row)
     else:
         with ProcessPoolExecutor(max_workers=jobs) as executor:
-            results = list(executor.map(_process_game, scheduled, chunksize=1))
+            futures = [executor.submit(_process_game, task) for task in scheduled]
+            for future in as_completed(futures):
+                row = future.result()
+                results.append(row)
+                _print_game_result(row)
     results.sort(key=lambda row: int(row.get("position", 0)))
 
     failures = [row for row in results if row.get("status") != "ok"]
     successes = [row for row in results if row.get("status") == "ok"]
-    for row in results:
-        if row.get("status") != "ok":
-            print(json.dumps(row, sort_keys=True))
-            continue
-        print(
-            json.dumps(
-                {
-                    "status": "ok",
-                    "position": row["position"],
-                    "total": row["total"],
-                    "game_id": row["game_id"],
-                    "compiled_cache_hit": row["compiled_cache_hit"],
-                    "prepared_cache_hit": row["prepared_cache_hit"],
-                    "sphere": row["sphere"],
-                    "transition_rows": row["transition_rows"],
-                    "move_most_candidates": row["move_most_candidates"],
-                    "post_external_residual": row["post_external_residual"],
-                    "parquet_bytes": row["parquet_bytes"],
-                    "elapsed_seconds": row["elapsed_seconds"],
-                },
-                sort_keys=True,
-            )
-        )
 
     if successes:
         metadata_dir = args.output_dir / "metadata"
@@ -359,7 +383,7 @@ def main() -> int:
     }
     _write_json_atomic(args.output_dir / "metadata" / "build.json", summary)
 
-    print("===== COMPILED MOVEMENT CORPUS SUMMARY =====")
+    print("===== COMPILED MOVEMENT CORPUS SUMMARY =====", flush=True)
     for key in (
         "jobs",
         "games_compiled",
@@ -378,8 +402,8 @@ def main() -> int:
         "parquet_bytes",
         "wall_seconds",
     ):
-        print(f"{key}: {summary[key]}")
-    print(f"database: {database_path}")
+        print(f"{key}: {summary[key]}", flush=True)
+    print(f"database: {database_path}", flush=True)
 
     return 1 if failures else 0
 
