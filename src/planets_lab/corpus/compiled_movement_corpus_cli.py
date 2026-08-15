@@ -8,14 +8,15 @@ from pathlib import Path
 from time import perf_counter
 from typing import Any
 
+from .columnar_io import write_rows_parquet_arrow
 from .compiled_movement import (
     COMPILED_MOVEMENT_SCHEMA,
+    GAME_METADATA_COLUMNS,
+    MOVEMENT_COLUMNS,
     compile_movement_rows,
     create_compiled_catalog,
     movement_row_stats,
     query_compiled_stats,
-    write_games_parquet,
-    write_movement_parquet,
 )
 from .indexer import CorpusIndexError, load_manifest_jsonl
 from .movement_topology_diagnostics import extract_map_topology
@@ -55,8 +56,6 @@ def _read_meta(
         return None
     if value.get("archive_sha256") != archive_sha256:
         return None
-    # Topology became part of v1 before the first real-corpus build. Reject any
-    # locally generated pre-topology partition instead of silently mixing shapes.
     required_topology_keys = {
         "sphere",
         "map_width",
@@ -85,6 +84,10 @@ def _write_json_atomic(path: Path, value: dict[str, Any]) -> None:
             pass
 
 
+def _stage_seconds(start: float, end: float) -> float:
+    return round(end - start, 3)
+
+
 def _process_game(task: tuple[int, int, dict[str, Any], str, str, str, bool]) -> dict[str, Any]:
     (
         position,
@@ -108,6 +111,7 @@ def _process_game(task: tuple[int, int, dict[str, Any], str, str, str, bool]) ->
     started = perf_counter()
     try:
         archive_data = archive_path.read_bytes()
+        after_read = perf_counter()
         archive_sha256 = _sha256(archive_data)
 
         if not rebuild and parquet_path.is_file() and meta_path.is_file():
@@ -118,6 +122,7 @@ def _process_game(task: tuple[int, int, dict[str, Any], str, str, str, bool]) ->
                 archive_sha256=archive_sha256,
             )
             if cached_meta is not None:
+                finished = perf_counter()
                 result = dict(cached_meta)
                 result.update(
                     {
@@ -126,26 +131,38 @@ def _process_game(task: tuple[int, int, dict[str, Any], str, str, str, bool]) ->
                         "total": total,
                         "compiled_cache_hit": True,
                         "prepared_cache_hit": None,
-                        "elapsed_seconds": round(perf_counter() - started, 3),
+                        "elapsed_seconds": _stage_seconds(started, finished),
+                        "timing_seconds": {
+                            "archive_read": _stage_seconds(started, after_read),
+                            "cache_validation": _stage_seconds(after_read, finished),
+                        },
                     }
                 )
                 return result
 
         topology = extract_map_topology(archive_data)
+        after_topology = perf_counter()
         prepared_path = prepared_dir / f"game-{game_id}.pickle"
         prepared, prepared_hit = load_or_build_prepared_game_cache(
             archive_data,
             game_id=game_id,
             cache_path=prepared_path,
         )
+        after_prepared = perf_counter()
         rows = compile_movement_rows(
             game_id=game_id,
             settings_hash=settings_hash,
             prepared=prepared,
             topology=topology,
         )
+        after_compile = perf_counter()
         stats = movement_row_stats(rows)
-        write_movement_parquet(rows, parquet_path)
+        write_rows_parquet_arrow(
+            rows=rows,
+            columns=MOVEMENT_COLUMNS,
+            path=parquet_path,
+        )
+        after_parquet = perf_counter()
 
         meta = {
             "compiled_schema": COMPILED_MOVEMENT_SCHEMA,
@@ -163,23 +180,32 @@ def _process_game(task: tuple[int, int, dict[str, Any], str, str, str, bool]) ->
             "parquet_bytes": parquet_path.stat().st_size,
         }
         _write_json_atomic(meta_path, meta)
+        finished = perf_counter()
         return {
             "status": "ok",
             "position": position,
             "total": total,
             "compiled_cache_hit": False,
             "prepared_cache_hit": prepared_hit,
-            "elapsed_seconds": round(perf_counter() - started, 3),
+            "elapsed_seconds": _stage_seconds(started, finished),
+            "timing_seconds": {
+                "archive_read": _stage_seconds(started, after_read),
+                "topology": _stage_seconds(after_read, after_topology),
+                "prepared": _stage_seconds(after_topology, after_prepared),
+                "compile": _stage_seconds(after_prepared, after_compile),
+                "parquet": _stage_seconds(after_compile, after_parquet),
+                "metadata": _stage_seconds(after_parquet, finished),
+            },
             **meta,
         }
-    except Exception as exc:  # keep one bad archive from losing all other partitions
+    except Exception as exc:
         return {
             "status": "failed",
             "position": position,
             "total": total,
             "game_id": game_id,
             "error": f"{type(exc).__name__}: {exc}",
-            "elapsed_seconds": round(perf_counter() - started, 3),
+            "elapsed_seconds": _stage_seconds(started, perf_counter()),
         }
 
 
@@ -212,6 +238,7 @@ def _print_game_result(row: dict[str, Any]) -> None:
                 "post_external_residual": row["post_external_residual"],
                 "parquet_bytes": row["parquet_bytes"],
                 "elapsed_seconds": row["elapsed_seconds"],
+                "timing_seconds": row.get("timing_seconds", {}),
             },
             sort_keys=True,
         ),
@@ -239,6 +266,13 @@ def main() -> int:
         default=Path("validation/corpus/compiled/v1"),
     )
     parser.add_argument("--limit", type=int, default=None)
+    parser.add_argument(
+        "--game-id",
+        type=int,
+        action="append",
+        default=None,
+        help="Compile only the selected game ID; may be repeated.",
+    )
     parser.add_argument("--jobs", type=int, default=1)
     parser.add_argument("--rebuild", action="store_true")
     args = parser.parse_args()
@@ -248,6 +282,15 @@ def main() -> int:
     except (OSError, CorpusIndexError) as exc:
         print(str(exc))
         return 2
+
+    if args.game_id:
+        requested_ids = set(args.game_id)
+        manifests = [row for row in manifests if int(row["game_id"]) in requested_ids]
+        found_ids = {int(row["game_id"]) for row in manifests}
+        missing_ids = sorted(requested_ids - found_ids)
+        if missing_ids:
+            print(f"game IDs not found in manifest: {missing_ids}")
+            return 2
     if args.limit is not None:
         manifests = manifests[: max(0, args.limit)]
 
@@ -265,10 +308,8 @@ def main() -> int:
         for position, manifest in enumerate(manifests, start=1)
     ]
 
-    # Largest-processing-time-first scheduling avoids a long tail where the last
-    # worker is stuck on one of the multi-hundred-MB games after others go idle.
     scheduled = sorted(tasks, key=_archive_size, reverse=True)
-    jobs = max(1, int(args.jobs))
+    jobs = max(1, min(int(args.jobs), max(1, total)))
     started = perf_counter()
     print(
         json.dumps(
@@ -331,7 +372,11 @@ def main() -> int:
             }
             for row in successes
         ]
-        write_games_parquet(games_rows, games_parquet)
+        write_rows_parquet_arrow(
+            rows=games_rows,
+            columns=GAME_METADATA_COLUMNS,
+            path=games_parquet,
+        )
         database_path = args.output_dir / "corpus.duckdb"
         movement_glob = (
             args.output_dir
