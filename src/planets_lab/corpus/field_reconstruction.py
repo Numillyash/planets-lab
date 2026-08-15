@@ -155,6 +155,22 @@ class FieldReconstructionSummary:
     entities_with_unresolved_dynamic: int
 
 
+# A corpus evaluator commonly asks for the same reconstruction several times:
+# readiness, baseline movement and later context layers historically each built
+# it independently. Keep exactly one in-process result by object identity. The
+# strong reference to the snapshot tuple prevents Python id reuse and bounds
+# memory to one game's reconstruction. This is deliberately not a persistent
+# cache: code/schema changes cannot make a stale result survive a process.
+_LAST_RECONSTRUCTION_RECORDS: tuple[ArchiveTurnSnapshot, ...] | None = None
+_LAST_RECONSTRUCTION_SUMMARY: FieldReconstructionSummary | None = None
+
+
+def clear_reconstruction_cache() -> None:
+    global _LAST_RECONSTRUCTION_RECORDS, _LAST_RECONSTRUCTION_SUMMARY
+    _LAST_RECONSTRUCTION_RECORDS = None
+    _LAST_RECONSTRUCTION_SUMMARY = None
+
+
 def _intish(value: Any) -> int | None:
     if isinstance(value, bool):
         return None
@@ -347,7 +363,12 @@ def _resolve_entity(
 def reconstruct_fields(
     snapshots: Sequence[ArchiveTurnSnapshot],
 ) -> FieldReconstructionSummary:
-    records = tuple(snapshots)
+    global _LAST_RECONSTRUCTION_RECORDS, _LAST_RECONSTRUCTION_SUMMARY
+
+    records = snapshots if isinstance(snapshots, tuple) else tuple(snapshots)
+    if records is _LAST_RECONSTRUCTION_RECORDS and _LAST_RECONSTRUCTION_SUMMARY is not None:
+        return _LAST_RECONSTRUCTION_SUMMARY
+
     groups = {
         kind: group_perspective_records(records, kind)
         for kind in ("planet", "ship", "starbase")
@@ -402,7 +423,7 @@ def reconstruct_fields(
             field_counts[resolution.status] += 1
             kind_field_counts[entity.kind][resolution.status] += 1
 
-    return FieldReconstructionSummary(
+    summary = FieldReconstructionSummary(
         entities=tuple(entities),
         field_status_counts=dict(sorted(field_counts.items())),
         kind_field_status_counts={
@@ -412,3 +433,6 @@ def reconstruct_fields(
         entities_with_conflicts=entities_with_conflicts,
         entities_with_unresolved_dynamic=entities_with_unresolved_dynamic,
     )
+    _LAST_RECONSTRUCTION_RECORDS = records
+    _LAST_RECONSTRUCTION_SUMMARY = summary
+    return summary
