@@ -51,6 +51,19 @@ class MovementDifferentialSummary:
     skipped_turn_pairs: int
 
 
+class _MovementEntityMap(dict):
+    """Entity map carrying fail-closed warp-well eligibility by archive turn."""
+
+    def __init__(
+        self,
+        *args: Any,
+        warp_well_planet_ids_by_turn: Mapping[int, frozenset[int]],
+        **kwargs: Any,
+    ) -> None:
+        super().__init__(*args, **kwargs)
+        self.warp_well_planet_ids_by_turn = dict(warp_well_planet_ids_by_turn)
+
+
 def _intish(value: Any) -> int | None:
     if isinstance(value, bool):
         return None
@@ -69,29 +82,146 @@ def _resolved_value(entity: PartialEntityResolution, field: str) -> Any:
     return resolution.value
 
 
+def _settings_warp_well_state_by_turn(
+    snapshots: Sequence[ArchiveTurnSnapshot],
+) -> tuple[Mapping[int, bool | None], frozenset[int]]:
+    """Return whether ordinary warp wells are enabled for each archive turn.
+
+    Normalized archive snapshots contain an explicit privacy-safe
+    ``settings.nowarpwells`` value. Missing/malformed/conflicting normalized
+    settings fail closed to ``None``. Manually constructed legacy test snapshots
+    that contain no ``settings`` key at all keep the historical test default of
+    enabled wells; those turns are returned in the legacy set.
+    """
+
+    grouped: dict[int, list[Mapping[str, Any] | None]] = defaultdict(list)
+    missing_settings_key: dict[int, list[bool]] = defaultdict(list)
+
+    for snapshot in snapshots:
+        payload = snapshot.mechanics_payload
+        has_settings = "settings" in payload
+        missing_settings_key[snapshot.archive_turn].append(not has_settings)
+        raw_settings = payload.get("settings")
+        grouped[snapshot.archive_turn].append(
+            raw_settings if isinstance(raw_settings, Mapping) else None
+        )
+
+    result: dict[int, bool | None] = {}
+    legacy_turns: set[int] = set()
+    for turn, settings_rows in grouped.items():
+        if all(missing_settings_key.get(turn, ())):
+            result[turn] = True
+            legacy_turns.add(turn)
+            continue
+
+        values: set[bool] = set()
+        invalid = False
+        for settings in settings_rows:
+            if not isinstance(settings, Mapping) or "nowarpwells" not in settings:
+                invalid = True
+                continue
+            raw = settings.get("nowarpwells")
+            if isinstance(raw, bool):
+                values.add(raw)
+            elif isinstance(raw, int) and not isinstance(raw, bool) and raw in (0, 1):
+                values.add(bool(raw))
+            else:
+                invalid = True
+
+        if invalid or len(values) != 1:
+            result[turn] = None
+        else:
+            result[turn] = not next(iter(values))
+
+    return result, frozenset(legacy_turns)
+
+
+def _warp_well_planet_ids_by_turn(
+    snapshots: Sequence[ArchiveTurnSnapshot],
+) -> Mapping[int, frozenset[int]]:
+    """Resolve planet IDs that can legitimately supply an ordinary warp well.
+
+    A warp well exists only when the historical game setting enables wells and
+    the planet record has a stable ``debrisdisk == 0`` value. Nonzero debris
+    membership denotes a planetoid/debris object and is excluded. Missing or
+    conflicting mechanical context is fail-closed for normalized corpus data.
+    """
+
+    records = tuple(snapshots)
+    enabled_by_turn, legacy_turns = _settings_warp_well_state_by_turn(records)
+    planet_groups = group_perspective_records(records, "planet")
+    eligible: dict[int, set[int]] = defaultdict(set)
+
+    for (turn, planet_id), grouped in planet_groups.items():
+        if enabled_by_turn.get(turn) is not True:
+            continue
+
+        values: set[int] = set()
+        malformed = False
+        saw_debris = False
+        for record in grouped:
+            if "debrisdisk" not in record.raw:
+                if turn not in legacy_turns:
+                    malformed = True
+                continue
+            saw_debris = True
+            value = _intish(record.raw.get("debrisdisk"))
+            if value is None or value < 0:
+                malformed = True
+                continue
+            values.add(value)
+
+        if turn in legacy_turns and not saw_debris:
+            debris = 0
+        elif not malformed and len(values) == 1:
+            debris = next(iter(values))
+        else:
+            debris = None
+
+        if debris == 0:
+            eligible[turn].add(planet_id)
+
+    return {turn: frozenset(ids) for turn, ids in eligible.items()}
+
+
 def _entity_map(
     snapshots: Sequence[ArchiveTurnSnapshot],
 ) -> Mapping[tuple[str, int, int], PartialEntityResolution]:
     reconstructed = reconstruct_fields(snapshots)
-    return {
-        (entity.kind, entity.archive_turn, entity.entity_id): entity
-        for entity in reconstructed.entities
-    }
+    return _MovementEntityMap(
+        {
+            (entity.kind, entity.archive_turn, entity.entity_id): entity
+            for entity in reconstructed.entities
+        },
+        warp_well_planet_ids_by_turn=_warp_well_planet_ids_by_turn(snapshots),
+    )
 
 
 def _planet_tuples_by_turn(
     entities: Mapping[tuple[str, int, int], PartialEntityResolution],
+    *,
+    include_ineligible: bool = False,
 ) -> Mapping[int, tuple[tuple[int, int, int], ...]]:
     """Build one O(entities) planet geometry index for all archive turns.
+
+    By default, when the entity map carries historical warp-well context, only
+    ordinary planets eligible to supply a warp well are returned. The
+    ``include_ineligible`` escape hatch exists for retrospective audits that must
+    intentionally reproduce the pre-fix behavior.
 
     This must not be expressed as ``dict.setdefault(turn, _planet_tuples(...))``
     inside the per-ship loop: Python evaluates the default argument eagerly,
     which caused a full entity-map scan for every movement transition.
     """
+
+    eligible_by_turn = getattr(entities, "warp_well_planet_ids_by_turn", None)
     grouped: dict[int, list[tuple[int, int, int]]] = defaultdict(list)
     for (kind, turn, entity_id), entity in entities.items():
         if kind != "planet":
             continue
+        if not include_ineligible and eligible_by_turn is not None:
+            if entity_id not in eligible_by_turn.get(turn, frozenset()):
+                continue
         x = _intish(_resolved_value(entity, "x"))
         y = _intish(_resolved_value(entity, "y"))
         if x is None or y is None:
@@ -200,8 +330,9 @@ def evaluate_movement_differential(
     classified_context = 0
     move_most_candidates = 0
 
-    # Build planet geometry once per game. The old per-transition setdefault
-    # expression evaluated its expensive default eagerly even on cache hits.
+    # Build warp-well-eligible planet geometry once per game. The old
+    # per-transition setdefault expression evaluated its expensive default
+    # eagerly even on cache hits.
     planets_by_turn = _planet_tuples_by_turn(entities)
 
     for transition in readiness.results:
