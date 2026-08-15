@@ -49,6 +49,7 @@ The Parquet dataset is flat and SQL/ML friendly. One row corresponds to one move
 Important columns include:
 
 - game/turn/ship identity;
+- stable map-topology facts (`sphere`, dimensions, map shape);
 - readiness status and privacy-safe issue codes;
 - reconstructed owner/hull/geometry fields;
 - derived owner intent class;
@@ -57,6 +58,8 @@ Important columns include:
 - gravitonic/tow/storm context;
 - baseline category and residual flag;
 - external-context category and residual flag.
+
+Topology is factual context in v1. It does not silently change the existing baseline labels; sphere-aware explanatory labels remain a separate mechanics/validation layer.
 
 Private text orders are not exported. For example, raw `friendlycode` may be used to derive `intent_class = 'hyp'`, but the text itself is not a compiled column.
 
@@ -87,6 +90,10 @@ SELECT baseline_category, count(*) AS n
 FROM move_most
 GROUP BY baseline_category
 ORDER BY n DESC;
+
+SELECT game_id, sphere, map_width, map_height, map_shape
+FROM games
+ORDER BY game_id;
 ```
 
 The catalog contains views over Parquet rather than a second copy of the transition table. Rebuild the catalog if the repository is moved and its generated absolute paths become stale.
@@ -100,6 +107,7 @@ Each game partition has `_meta.json` containing:
 - game ID;
 - settings hash;
 - source archive SHA-256;
+- map-topology facts;
 - row/accounting counts;
 - Parquet size.
 
@@ -113,7 +121,7 @@ For the current 12-game validation manifest, the compiled SQL accounting should 
 move_most_candidates       227468
 baseline_explained         207896
 baseline_unresolved         19572
-external_context_explained  11699
+external_context_explained 11699
 post_external_residual        7873
 ```
 
