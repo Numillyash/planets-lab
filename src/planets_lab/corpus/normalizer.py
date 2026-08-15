@@ -158,6 +158,31 @@ def _object_list(raw: Mapping[str, Any], key: str, *, member: str) -> list[dict[
     return result
 
 
+def _mechanics_settings(parsed: Mapping[str, Any], *, member: str) -> dict[str, Any]:
+    """Project only privacy-safe settings needed by mechanical reconstruction.
+
+    The raw settings object also contains descriptive and secret-like fields such
+    as game names/passwords. Keep only the warp-well switch here. ``None`` is
+    retained for a missing or malformed value so downstream validation can fail
+    closed instead of silently assuming the default ruleset.
+    """
+
+    settings = parsed.get("settings")
+    if settings is None:
+        return {"nowarpwells": None}
+    if not isinstance(settings, Mapping):
+        raise CorpusNormalizationError(f"{member}: settings must be an object")
+
+    raw = settings.get("nowarpwells")
+    if isinstance(raw, bool):
+        value: bool | None = raw
+    elif isinstance(raw, int) and not isinstance(raw, bool) and raw in (0, 1):
+        value = bool(raw)
+    else:
+        value = None
+    return {"nowarpwells": value}
+
+
 def mechanics_projection(parsed: Mapping[str, Any], *, member: str) -> dict[str, Any]:
     """Keep Host-relevant state while dropping account identity/secrets/messages.
 
@@ -165,7 +190,8 @@ def mechanics_projection(parsed: Mapping[str, Any], *, member: str) -> dict[str,
     savekey. The historical corpus must not propagate those fields into derived
     datasets. Player records are therefore reduced to slot/race identity; entity
     records retain their mechanical fields. Minefields are retained for corpus
-    indexing even though canonical GameState does not model them yet.
+    indexing even though canonical GameState does not model them yet. Only an
+    explicit privacy-safe subset of game settings is propagated.
     """
 
     game_raw = parsed.get("game")
@@ -196,6 +222,7 @@ def mechanics_projection(parsed: Mapping[str, Any], *, member: str) -> dict[str,
         "game": {"id": game_id, "turn": turn},
         "player": player,
         "players": players,
+        "settings": _mechanics_settings(parsed, member=member),
         "planets": _object_list(parsed, "planets", member=member),
         "ships": _object_list(parsed, "ships", member=member),
         "starbases": _object_list(parsed, "starbases", member=member),
