@@ -22,6 +22,7 @@ data/cache/
 validation/data/
 validation/corpus/cache/
 validation/corpus/index/
+validation/corpus/compiled/
 runs/
 artifacts/
 logs/
