@@ -14,6 +14,7 @@ from planets_lab.corpus.compiled_movement import (
     write_games_parquet,
     write_movement_parquet,
 )
+from planets_lab.corpus.movement_topology_diagnostics import extract_map_topology
 from planets_lab.corpus.prepared_cache import (
     PREPARED_GAME_CACHE_SCHEMA,
     build_prepared_game_cache,
@@ -32,7 +33,13 @@ def _turn_payload(
         "game": {"id": 7, "turn": turn},
         "player": {"id": 1, "raceid": 1},
         "players": [{"id": 1, "raceid": 1}],
-        "settings": {"nowarpwells": False},
+        "settings": {
+            "nowarpwells": False,
+            "sphere": True,
+            "mapwidth": 2150,
+            "mapheight": 2150,
+            "mapshape": 1,
+        },
         "planets": [],
         "ships": [
             {
@@ -69,18 +76,30 @@ def _archive(*, hull_id: int = 3, target_x: int = 125, final_x: int = 125) -> by
     return buffer.getvalue()
 
 
-def test_compiled_move_most_exact_row_omits_private_friendly_code() -> None:
-    prepared = build_prepared_game_cache(_archive(), game_id=7)
-    rows = compile_movement_rows(
+def _compiled_rows(data: bytes, *, hull_id: int | None = None):
+    prepared = build_prepared_game_cache(data, game_id=7)
+    topology = extract_map_topology(data)
+    return prepared, compile_movement_rows(
         game_id=7,
         settings_hash="settings-7",
         prepared=prepared,
+        topology=topology,
     )
+
+
+def test_compiled_move_most_exact_row_omits_private_friendly_code() -> None:
+    data = _archive()
+    _, rows = _compiled_rows(data)
 
     assert len(rows) == 1
     row = rows[0]
     assert row["readiness_status"] == "ready"
     assert row["intent_class"] == "move_most_candidate"
+    assert row["sphere"] is True
+    assert row["map_width"] == 2150
+    assert row["map_height"] == 2150
+    assert row["map_shape"] == "1"
+    assert row["topology_stable"] is True
     assert row["baseline_category"] == "reachable_exact"
     assert row["baseline_explained"] is True
     assert row["post_baseline_residual"] is False
@@ -100,15 +119,8 @@ def test_compiled_move_most_exact_row_omits_private_friendly_code() -> None:
 
 
 def test_compiled_gravitonic_transition_moves_from_baseline_to_external_context() -> None:
-    prepared = build_prepared_game_cache(
-        _archive(hull_id=46, target_x=150, final_x=150),
-        game_id=7,
-    )
-    rows = compile_movement_rows(
-        game_id=7,
-        settings_hash="settings-7",
-        prepared=prepared,
-    )
+    data = _archive(hull_id=46, target_x=150, final_x=150)
+    _, rows = _compiled_rows(data)
 
     row = rows[0]
     assert row["is_gravitonic_hull"] is True
@@ -120,12 +132,8 @@ def test_compiled_gravitonic_transition_moves_from_baseline_to_external_context(
 
 
 def test_parquet_and_duckdb_catalog_reproduce_compiled_accounting(tmp_path) -> None:
-    prepared = build_prepared_game_cache(_archive(), game_id=7)
-    rows = compile_movement_rows(
-        game_id=7,
-        settings_hash="settings-7",
-        prepared=prepared,
-    )
+    data = _archive()
+    prepared, rows = _compiled_rows(data)
     stats = movement_row_stats(rows)
 
     transition_path = (
@@ -145,6 +153,11 @@ def test_parquet_and_duckdb_catalog_reproduce_compiled_accounting(tmp_path) -> N
                 "archive_sha256": prepared.archive_sha256,
                 "prepared_schema": PREPARED_GAME_CACHE_SCHEMA,
                 "compiled_schema": COMPILED_MOVEMENT_SCHEMA,
+                "sphere": True,
+                "map_width": 2150,
+                "map_height": 2150,
+                "map_shape": "1",
+                "topology_stable": True,
                 "snapshots": len(prepared.snapshots),
                 **stats,
                 "parquet_bytes": transition_path.stat().st_size,
@@ -171,10 +184,14 @@ def test_parquet_and_duckdb_catalog_reproduce_compiled_accounting(tmp_path) -> N
     try:
         assert connection.execute("SELECT count(*) FROM move_most").fetchone() == (1,)
         assert connection.execute("SELECT count(*) FROM movement_residual").fetchone() == (0,)
+        assert connection.execute(
+            "SELECT sphere, map_width, map_height, map_shape FROM games WHERE game_id = 7"
+        ).fetchone() == (True, 2150, 2150, "1")
         columns = {
             row[1]
             for row in connection.execute("PRAGMA table_info('movement_transitions')").fetchall()
         }
         assert "friendlycode" not in columns
+        assert {"sphere", "map_width", "map_height", "map_shape", "topology_stable"} <= columns
     finally:
         connection.close()
