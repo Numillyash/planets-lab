@@ -18,6 +18,7 @@ from .compiled_movement import (
     write_movement_parquet,
 )
 from .indexer import CorpusIndexError, load_manifest_jsonl
+from .movement_topology_diagnostics import extract_map_topology
 from .prepared_cache import (
     PREPARED_GAME_CACHE_SCHEMA,
     load_or_build_prepared_game_cache,
@@ -53,6 +54,17 @@ def _read_meta(
     if value.get("settings_hash") != settings_hash:
         return None
     if value.get("archive_sha256") != archive_sha256:
+        return None
+    # Topology became part of v1 before the first real-corpus build. Reject any
+    # locally generated pre-topology partition instead of silently mixing shapes.
+    required_topology_keys = {
+        "sphere",
+        "map_width",
+        "map_height",
+        "map_shape",
+        "topology_stable",
+    }
+    if not required_topology_keys.issubset(value):
         return None
     return value
 
@@ -119,6 +131,7 @@ def _process_game(task: tuple[int, int, dict[str, Any], str, str, str, bool]) ->
                 )
                 return result
 
+        topology = extract_map_topology(archive_data)
         prepared_path = prepared_dir / f"game-{game_id}.pickle"
         prepared, prepared_hit = load_or_build_prepared_game_cache(
             archive_data,
@@ -129,6 +142,7 @@ def _process_game(task: tuple[int, int, dict[str, Any], str, str, str, bool]) ->
             game_id=game_id,
             settings_hash=settings_hash,
             prepared=prepared,
+            topology=topology,
         )
         stats = movement_row_stats(rows)
         write_movement_parquet(rows, parquet_path)
@@ -139,6 +153,11 @@ def _process_game(task: tuple[int, int, dict[str, Any], str, str, str, bool]) ->
             "game_id": game_id,
             "settings_hash": settings_hash,
             "archive_sha256": archive_sha256,
+            "sphere": topology.sphere,
+            "map_width": topology.mapwidth,
+            "map_height": topology.mapheight,
+            "map_shape": str(topology.mapshape) if topology.mapshape is not None else None,
+            "topology_stable": topology.stable,
             "snapshots": len(prepared.snapshots),
             **stats,
             "parquet_bytes": parquet_path.stat().st_size,
@@ -247,6 +266,7 @@ def main() -> int:
                     "game_id": row["game_id"],
                     "compiled_cache_hit": row["compiled_cache_hit"],
                     "prepared_cache_hit": row["prepared_cache_hit"],
+                    "sphere": row["sphere"],
                     "transition_rows": row["transition_rows"],
                     "move_most_candidates": row["move_most_candidates"],
                     "post_external_residual": row["post_external_residual"],
@@ -269,6 +289,11 @@ def main() -> int:
                     "archive_sha256",
                     "prepared_schema",
                     "compiled_schema",
+                    "sphere",
+                    "map_width",
+                    "map_height",
+                    "map_shape",
+                    "topology_stable",
                     "snapshots",
                     "transition_rows",
                     "geometry_ready",
