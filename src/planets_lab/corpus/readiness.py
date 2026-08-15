@@ -99,6 +99,20 @@ class ReadinessSummary:
     results: tuple[TransitionReadiness, ...]
 
 
+# All movement context evaluators use the same snapshot tuple and readiness
+# profile repeatedly. Cache summaries for exactly one snapshot tuple. This is
+# intentionally process-local and identity-based, so it cannot survive source
+# changes or accidentally reuse a synthetic test fixture with the same hashes.
+_LAST_READINESS_RECORDS: tuple[ArchiveTurnSnapshot, ...] | None = None
+_LAST_READINESS_BY_PROFILE: dict[str, ReadinessSummary] = {}
+
+
+def clear_readiness_cache() -> None:
+    global _LAST_READINESS_RECORDS, _LAST_READINESS_BY_PROFILE
+    _LAST_READINESS_RECORDS = None
+    _LAST_READINESS_BY_PROFILE = {}
+
+
 def _intish(value: Any) -> int | None:
     if isinstance(value, bool):
         return None
@@ -229,7 +243,17 @@ def evaluate_readiness(
     snapshots: Sequence[ArchiveTurnSnapshot],
     profile: ReadinessProfile,
 ) -> ReadinessSummary:
-    records = tuple(snapshots)
+    global _LAST_READINESS_RECORDS, _LAST_READINESS_BY_PROFILE
+
+    records = snapshots if isinstance(snapshots, tuple) else tuple(snapshots)
+    if records is _LAST_READINESS_RECORDS:
+        cached = _LAST_READINESS_BY_PROFILE.get(profile.name)
+        if cached is not None:
+            return cached
+    else:
+        _LAST_READINESS_RECORDS = records
+        _LAST_READINESS_BY_PROFILE = {}
+
     entities = _entity_map(records)
     turn_pairs, skipped_turn_pairs = _turn_pairs(records)
     results: list[TransitionReadiness] = []
@@ -313,7 +337,7 @@ def evaluate_readiness(
                 )
             )
 
-    return ReadinessSummary(
+    summary = ReadinessSummary(
         profile=profile.name,
         valid_turn_pairs=len(turn_pairs),
         skipped_turn_pairs=skipped_turn_pairs,
@@ -322,12 +346,14 @@ def evaluate_readiness(
         issue_counts=dict(sorted(issues.items())),
         results=tuple(results),
     )
+    _LAST_READINESS_BY_PROFILE[profile.name] = summary
+    return summary
 
 
 def evaluate_default_profiles(
     snapshots: Sequence[ArchiveTurnSnapshot],
 ) -> Mapping[str, ReadinessSummary]:
-    records = tuple(snapshots)
+    records = snapshots if isinstance(snapshots, tuple) else tuple(snapshots)
     return {
         name: evaluate_readiness(records, profile)
         for name, profile in READINESS_PROFILES.items()
