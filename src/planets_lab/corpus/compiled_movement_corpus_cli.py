@@ -26,7 +26,37 @@ from .prepared_cache import (
 )
 
 
-BUILD_SUMMARY_SCHEMA = "planets-lab.compiled-movement-build.v1"
+BUILD_SUMMARY_SCHEMA = "planets-lab.compiled-movement-build.v2"
+_STAT_KEYS = (
+    "transition_rows",
+    "geometry_ready",
+    "move_most_candidates",
+    "baseline_explained",
+    "baseline_unresolved",
+    "external_context_explained",
+    "post_external_residual",
+)
+_GAME_METADATA_KEYS = (
+    "game_id",
+    "settings_hash",
+    "archive_sha256",
+    "prepared_schema",
+    "compiled_schema",
+    "sphere",
+    "map_width",
+    "map_height",
+    "map_shape",
+    "topology_stable",
+    "snapshots",
+    "transition_rows",
+    "geometry_ready",
+    "move_most_candidates",
+    "baseline_explained",
+    "baseline_unresolved",
+    "external_context_explained",
+    "post_external_residual",
+    "parquet_bytes",
+)
 
 
 def _sha256(data: bytes) -> str:
@@ -66,6 +96,59 @@ def _read_meta(
     if not required_topology_keys.issubset(value):
         return None
     return value
+
+
+def _read_existing_partition_meta(meta_path: Path) -> dict[str, Any] | None:
+    """Read one already-built partition's identity/accounting metadata.
+
+    This is used only to reconstruct the catalog after a partial rebuild. Source
+    archive SHA validation still happens in _process_game for every selected game.
+    Unselected partitions are treated as the previously validated compiled state.
+    """
+
+    try:
+        value = json.loads(meta_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    if not isinstance(value, dict):
+        return None
+    if value.get("compiled_schema") != COMPILED_MOVEMENT_SCHEMA:
+        return None
+    if value.get("prepared_schema") != PREPARED_GAME_CACHE_SCHEMA:
+        return None
+    if not all(key in value for key in _GAME_METADATA_KEYS):
+        return None
+    parquet_path = meta_path.parent / "part-000.parquet"
+    if not parquet_path.is_file():
+        return None
+    return value
+
+
+def _collect_catalog_metadata(output_dir: Path) -> list[dict[str, Any]]:
+    root = output_dir / "mechanics" / "movement_transitions"
+    rows: list[dict[str, Any]] = []
+    if not root.is_dir():
+        return rows
+    for meta_path in sorted(root.glob("game_id=*/_meta.json")):
+        meta = _read_existing_partition_meta(meta_path)
+        if meta is not None:
+            rows.append(meta)
+    rows.sort(key=lambda row: int(row["game_id"]))
+    return rows
+
+
+def _stats_from_results(rows: list[dict[str, Any]]) -> dict[str, int]:
+    return {
+        key: sum(int(row.get(key, 0) or 0) for row in rows)
+        for key in _STAT_KEYS
+    }
+
+
+def _assert_accounting(stats: dict[str, int], *, scope: str) -> None:
+    if stats["baseline_explained"] + stats["baseline_unresolved"] != stats["move_most_candidates"]:
+        raise AssertionError(f"{scope} baseline accounting is not closed")
+    if stats["external_context_explained"] + stats["post_external_residual"] != stats["baseline_unresolved"]:
+        raise AssertionError(f"{scope} external-context accounting is not closed")
 
 
 def _write_json_atomic(path: Path, value: dict[str, Any]) -> None:
@@ -341,43 +424,23 @@ def main() -> int:
 
     failures = [row for row in results if row.get("status") != "ok"]
     successes = [row for row in results if row.get("status") == "ok"]
+    run_stats = _stats_from_results(successes)
+    _assert_accounting(run_stats, scope="run")
 
-    if successes:
+    database_path = args.output_dir / "corpus.duckdb"
+    catalog_rows = _collect_catalog_metadata(args.output_dir)
+    if catalog_rows:
         metadata_dir = args.output_dir / "metadata"
         games_parquet = metadata_dir / "games.parquet"
         games_rows = [
-            {
-                key: row.get(key)
-                for key in (
-                    "game_id",
-                    "settings_hash",
-                    "archive_sha256",
-                    "prepared_schema",
-                    "compiled_schema",
-                    "sphere",
-                    "map_width",
-                    "map_height",
-                    "map_shape",
-                    "topology_stable",
-                    "snapshots",
-                    "transition_rows",
-                    "geometry_ready",
-                    "move_most_candidates",
-                    "baseline_explained",
-                    "baseline_unresolved",
-                    "external_context_explained",
-                    "post_external_residual",
-                    "parquet_bytes",
-                )
-            }
-            for row in successes
+            {key: row.get(key) for key in _GAME_METADATA_KEYS}
+            for row in catalog_rows
         ]
         write_rows_parquet_arrow(
             rows=games_rows,
             columns=GAME_METADATA_COLUMNS,
             path=games_parquet,
         )
-        database_path = args.output_dir / "corpus.duckdb"
         movement_glob = (
             args.output_dir
             / "mechanics"
@@ -390,23 +453,10 @@ def main() -> int:
             games_parquet=games_parquet,
             movement_glob=movement_glob,
         )
-        stats = query_compiled_stats(database_path)
+        catalog_stats = query_compiled_stats(database_path)
+        _assert_accounting(catalog_stats, scope="catalog")
     else:
-        database_path = args.output_dir / "corpus.duckdb"
-        stats = {
-            "transition_rows": 0,
-            "geometry_ready": 0,
-            "move_most_candidates": 0,
-            "baseline_explained": 0,
-            "baseline_unresolved": 0,
-            "external_context_explained": 0,
-            "post_external_residual": 0,
-        }
-
-    if stats["baseline_explained"] + stats["baseline_unresolved"] != stats["move_most_candidates"]:
-        raise AssertionError("compiled baseline accounting is not closed")
-    if stats["external_context_explained"] + stats["post_external_residual"] != stats["baseline_unresolved"]:
-        raise AssertionError("compiled external-context accounting is not closed")
+        catalog_stats = {key: 0 for key in _STAT_KEYS}
 
     summary = {
         "schema": BUILD_SUMMARY_SCHEMA,
@@ -423,12 +473,15 @@ def main() -> int:
         "prepared_cache_misses_on_compile": sum(row.get("prepared_cache_hit") is False for row in successes),
         "parquet_bytes": sum(int(row.get("parquet_bytes", 0)) for row in successes),
         "wall_seconds": round(perf_counter() - started, 3),
-        **stats,
+        **run_stats,
+        "catalog_games": len(catalog_rows),
+        "catalog_parquet_bytes": sum(int(row.get("parquet_bytes", 0) or 0) for row in catalog_rows),
+        **{f"catalog_{key}": value for key, value in catalog_stats.items()},
         "database": str(database_path),
     }
     _write_json_atomic(args.output_dir / "metadata" / "build.json", summary)
 
-    print("===== COMPILED MOVEMENT CORPUS SUMMARY =====", flush=True)
+    print("===== COMPILED MOVEMENT RUN SUMMARY =====", flush=True)
     for key in (
         "jobs",
         "games_compiled",
@@ -448,6 +501,12 @@ def main() -> int:
         "wall_seconds",
     ):
         print(f"{key}: {summary[key]}", flush=True)
+
+    print("===== COMPILED MOVEMENT CATALOG SUMMARY =====", flush=True)
+    print(f"catalog_games: {summary['catalog_games']}", flush=True)
+    for key in _STAT_KEYS:
+        print(f"catalog_{key}: {summary[f'catalog_{key}']}", flush=True)
+    print(f"catalog_parquet_bytes: {summary['catalog_parquet_bytes']}", flush=True)
     print(f"database: {database_path}", flush=True)
 
     return 1 if failures else 0
