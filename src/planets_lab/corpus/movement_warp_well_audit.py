@@ -113,7 +113,10 @@ def audit_movement_warp_wells(
     readiness = evaluate_readiness(records, MOVEMENT_GEOMETRY)
     entities = _entity_map(records)
     ship_groups = group_perspective_records(records, "ship")
-    planets_by_turn = _planet_tuples_by_turn(entities)
+    # The audit intentionally reproduces the pre-fix candidate universe so it
+    # can continue reporting historical false-positive well matches after the
+    # production differential starts filtering debris objects.
+    planets_by_turn = _planet_tuples_by_turn(entities, include_ineligible=True)
     debris_by_turn = _planet_debris_by_turn(records)
 
     categories: Counter[str] = Counter()
