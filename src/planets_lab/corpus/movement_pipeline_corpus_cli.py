@@ -23,10 +23,11 @@ from .movement_residual_context import (
     aggregate_movement_residual_context_games,
     summarize_movement_residual_context_game,
 )
-from .normalizer import CorpusNormalizationError, load_archive_snapshots
+from .normalizer import CorpusNormalizationError
+from .prepared_cache import load_or_build_prepared_game_cache
 from .readiness import clear_readiness_cache
 
-PIPELINE_SCHEMA = "planets-lab.movement-pipeline-corpus.v1"
+PIPELINE_SCHEMA = "planets-lab.movement-pipeline-corpus.v2"
 
 
 def _horwasp_stats(rows: list[dict[str, Any]], failed_game_ids: list[int]) -> dict[str, Any]:
@@ -75,11 +76,21 @@ def _horwasp_stats(rows: list[dict[str, Any]], failed_game_ids: list[int]) -> di
     }
 
 
-def _process_game(task: tuple[int, int, dict[str, Any], str]) -> dict[str, Any]:
-    position, total, manifest, cache_dir_text = task
+def _process_game(
+    task: tuple[int, int, dict[str, Any], str, str, bool]
+) -> dict[str, Any]:
+    (
+        position,
+        total,
+        manifest,
+        cache_dir_text,
+        prepared_cache_dir_text,
+        rebuild_prepared_cache,
+    ) = task
     game_id = int(manifest["game_id"])
     settings_hash = str(manifest["settings_hash"])
     archive_path = Path(cache_dir_text) / f"game-{game_id}.zip"
+    prepared_cache_path = Path(prepared_cache_dir_text) / f"game-{game_id}.pickle"
 
     # Release the previous game's large object graph before loading the next one
     # in a long-lived worker. Within this game all stages intentionally reuse it.
@@ -90,8 +101,18 @@ def _process_game(task: tuple[int, int, dict[str, Any], str]) -> dict[str, Any]:
     try:
         t0 = perf_counter()
         archive_data = archive_path.read_bytes()
-        snapshots = load_archive_snapshots(archive_data)
+        prepared, prepared_cache_hit = load_or_build_prepared_game_cache(
+            archive_data,
+            game_id=game_id,
+            cache_path=prepared_cache_path,
+            rebuild=rebuild_prepared_cache,
+        )
+        snapshots = prepared.snapshots
         load_seconds = perf_counter() - t0
+        try:
+            prepared_cache_bytes = prepared_cache_path.stat().st_size
+        except OSError:
+            prepared_cache_bytes = 0
 
         t0 = perf_counter()
         baseline = summarize_movement_differential_game(
@@ -140,6 +161,8 @@ def _process_game(task: tuple[int, int, dict[str, Any], str]) -> dict[str, Any]:
         "game_id": game_id,
         "settings_hash": settings_hash,
         "snapshots": len(snapshots),
+        "prepared_cache_hit": prepared_cache_hit,
+        "prepared_cache_bytes": prepared_cache_bytes,
         "baseline": baseline,
         "residual": residual,
         "chunnel": chunnel,
@@ -158,12 +181,22 @@ def _process_game(task: tuple[int, int, dict[str, Any], str]) -> dict[str, Any]:
 def main() -> int:
     parser = argparse.ArgumentParser(
         description=(
-            "Run the movement validation stack while loading and reconstructing each game only once. "
+            "Run the movement validation stack with a persistent prepared-game cache. "
             "Games can be processed in parallel with --jobs."
         )
     )
     parser.add_argument("manifest", type=Path)
     parser.add_argument("--cache-dir", type=Path, default=Path("validation/corpus/cache/loadall"))
+    parser.add_argument(
+        "--prepared-cache-dir",
+        type=Path,
+        default=Path("validation/corpus/cache/prepared-v1"),
+    )
+    parser.add_argument(
+        "--rebuild-prepared-cache",
+        action="store_true",
+        help="Ignore persistent prepared-game cache files and rebuild them.",
+    )
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--jobs", type=int, default=1)
     parser.add_argument(
@@ -183,7 +216,14 @@ def main() -> int:
 
     total = len(manifests)
     tasks = [
-        (position, total, dict(manifest), str(args.cache_dir))
+        (
+            position,
+            total,
+            dict(manifest),
+            str(args.cache_dir),
+            str(args.prepared_cache_dir),
+            bool(args.rebuild_prepared_cache),
+        )
         for position, manifest in enumerate(manifests, start=1)
     ]
     jobs = max(1, int(args.jobs))
@@ -200,6 +240,9 @@ def main() -> int:
     horwasp_rows: list[dict[str, Any]] = []
     failed: list[int] = []
     timings: Counter[str] = Counter()
+    prepared_cache_hits = 0
+    prepared_cache_misses = 0
+    prepared_cache_bytes = 0
 
     for result in results:
         if result["status"] != "ok":
@@ -210,6 +253,11 @@ def main() -> int:
         residual_rows.append(result["residual"])
         chunnel_rows.append(result["chunnel"])
         horwasp_rows.append(result["horwasp"])
+        if result.get("prepared_cache_hit"):
+            prepared_cache_hits += 1
+        else:
+            prepared_cache_misses += 1
+        prepared_cache_bytes += int(result.get("prepared_cache_bytes", 0))
         for key, value in result["timing_seconds"].items():
             timings[key] += float(value)
         print(
@@ -219,6 +267,8 @@ def main() -> int:
                     "position": result["position"],
                     "total": result["total"],
                     "game_id": result["game_id"],
+                    "prepared_cache_hit": bool(result.get("prepared_cache_hit")),
+                    "prepared_cache_bytes": int(result.get("prepared_cache_bytes", 0)),
                     "baseline_unresolved": result["baseline"]["unresolved"],
                     "external_residual": result["residual"]["residual_unresolved"],
                     "chunnel_residual": result["chunnel"]["residual_after_chunnel"],
@@ -247,6 +297,12 @@ def main() -> int:
         "games_indexed": len(baseline_rows),
         "games_failed": len(set(failed)),
         "failed_game_ids": sorted(set(failed)),
+        "prepared_cache": {
+            "directory": str(args.prepared_cache_dir),
+            "hits": prepared_cache_hits,
+            "misses": prepared_cache_misses,
+            "bytes": prepared_cache_bytes,
+        },
         "timing_seconds_sum": {
             key: round(float(value), 3) for key, value in sorted(timings.items())
         },
@@ -266,6 +322,9 @@ def main() -> int:
     print(f"jobs:                         {jobs}")
     print(f"games_indexed:                {len(baseline_rows)}")
     print(f"games_failed:                 {len(set(failed))}")
+    print(f"prepared_cache_hits:          {prepared_cache_hits}")
+    print(f"prepared_cache_misses:        {prepared_cache_misses}")
+    print(f"prepared_cache_bytes:         {prepared_cache_bytes}")
     print(f"move_most_candidates:         {bt.get('move_most_candidates', 0)}")
     print(f"baseline_explained:           {bt.get('geometrically_explained', 0)}")
     print(f"baseline_unresolved:          {bt.get('unresolved', 0)}")
