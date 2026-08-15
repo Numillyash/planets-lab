@@ -33,6 +33,7 @@ from .movement_residual_context import (
     _storm_consensus_by_turn,
     _storm_expected_category,
 )
+from .movement_topology_diagnostics import MapTopologyEvidence
 from .prepared_cache import PREPARED_GAME_CACHE_SCHEMA, PreparedGameCache
 from .readiness import READY
 from .reconstruction import PerspectiveRecord, group_perspective_records
@@ -45,6 +46,11 @@ COMPILED_MOVEMENT_SCHEMA = "planets-lab.compiled-movement.v1"
 MOVEMENT_COLUMNS: tuple[tuple[str, str], ...] = (
     ("game_id", "BIGINT"),
     ("settings_hash", "VARCHAR"),
+    ("sphere", "BOOLEAN"),
+    ("map_width", "INTEGER"),
+    ("map_height", "INTEGER"),
+    ("map_shape", "VARCHAR"),
+    ("topology_stable", "BOOLEAN"),
     ("before_archive_turn", "INTEGER"),
     ("after_archive_turn", "INTEGER"),
     ("before_embedded_turn", "INTEGER"),
@@ -88,6 +94,11 @@ GAME_METADATA_COLUMNS: tuple[tuple[str, str], ...] = (
     ("archive_sha256", "VARCHAR"),
     ("prepared_schema", "VARCHAR"),
     ("compiled_schema", "VARCHAR"),
+    ("sphere", "BOOLEAN"),
+    ("map_width", "INTEGER"),
+    ("map_height", "INTEGER"),
+    ("map_shape", "VARCHAR"),
+    ("topology_stable", "BOOLEAN"),
     ("snapshots", "INTEGER"),
     ("transition_rows", "BIGINT"),
     ("geometry_ready", "BIGINT"),
@@ -166,6 +177,7 @@ def compile_movement_rows(
     game_id: int,
     settings_hash: str,
     prepared: PreparedGameCache,
+    topology: MapTopologyEvidence | None = None,
     convention: MovementMissionConvention = MovementMissionConvention(),
 ) -> list[dict[str, Any]]:
     """Compile one game's movement transition table from prepared corpus state.
@@ -174,6 +186,11 @@ def compile_movement_rows(
     labels are populated only when their prerequisites are satisfied. This keeps
     readiness/facts separate from downstream explanatory labels and makes SQL
     filters reproduce the existing fail-closed validation accounting.
+
+    Topology is preserved as factual context but deliberately does not alter the
+    baseline labels in v1. Sphere-aware explanatory labels remain a separate
+    validation/mechanics layer so this table continues to reproduce the current
+    baseline and external-context stack exactly.
     """
 
     records = prepared.snapshots
@@ -195,6 +212,16 @@ def compile_movement_rows(
         valid_pairs=valid_pairs,
         convention=convention,
     )
+
+    sphere = topology.sphere if topology is not None else None
+    map_width = topology.mapwidth if topology is not None else None
+    map_height = topology.mapheight if topology is not None else None
+    map_shape = (
+        str(topology.mapshape)
+        if topology is not None and topology.mapshape is not None
+        else None
+    )
+    topology_stable = topology.stable if topology is not None else None
 
     rows: list[dict[str, Any]] = []
     for transition in readiness.results:
@@ -317,6 +344,11 @@ def compile_movement_rows(
             {
                 "game_id": game_id,
                 "settings_hash": settings_hash,
+                "sphere": sphere,
+                "map_width": map_width,
+                "map_height": map_height,
+                "map_shape": map_shape,
+                "topology_stable": topology_stable,
                 "before_archive_turn": transition.before_archive_turn,
                 "after_archive_turn": transition.after_archive_turn,
                 "before_embedded_turn": transition.before_embedded_turn,
