@@ -185,15 +185,14 @@ for archive_path in sorted(RAW_DIR.glob("game-*.zip")):
                 mover_next_cloak = mover_next["cloak"]
                 target_next_cloak = target_next["cloak"]
                 wp_next = waypoint(mite_next)
-                prov = (
-                    "exact_target_after"
-                    if wp_next == xy(target_next)
-                    else "exact_mover_previous_waypoint"
-                    if wp_next == waypoint(mover)
-                    else "exact_both"
-                    if wp_next == xy(target_next) and wp_next == waypoint(mover)
-                    else "other"
-                )
+                if wp_next == xy(target_next) and wp_next == waypoint(mover):
+                    prov = "exact_both"
+                elif wp_next == xy(target_next):
+                    prov = "exact_target_after"
+                elif wp_next == waypoint(mover):
+                    prov = "exact_mover_previous_waypoint"
+                else:
+                    prov = "other"
 
                 next2_state = None
                 next_outcome = None
