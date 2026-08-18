@@ -113,10 +113,10 @@ def discover_scoped_mite_fallback_runs(
     """Recover clean Red Mite fallback origins for evidence-scoped games.
 
     A run is admitted only when the observed target identity is continuous from
-    S-1 through S and across the last active tracking snapshot -> clear snapshot,
-    while the Mite itself remains the same exact identity and clears to
-    mission=0/mission1target=0. This mirrors the clean corpus population used by
-    docs/rules/red-mite-tracking.md rather than generalizing from numeric ship ids.
+    S-1 through the clear snapshot, while the Mite itself remains the same exact
+    identity and clears to mission=0/mission1target=0. This mirrors the clean
+    corpus population used by docs/rules/red-mite-tracking.md rather than
+    generalizing from numeric ship ids.
     """
 
     if game_id not in _SCOPED_WRAP_PERIODS:
@@ -135,7 +135,18 @@ def discover_scoped_mite_fallback_runs(
         tracking_turns[(ship_id, ident, target_id)].append(turn)
 
     by_ship: dict[int, list[MiteFallbackRun]] = defaultdict(list)
-    for (ship_id, ident, target_id), turns in sorted(tracking_turns.items()):
+    ordered_tracking = sorted(
+        tracking_turns.items(),
+        key=lambda item: (
+            item[0][0],
+            item[0][2],
+            item[0][1][0],
+            item[0][1][1],
+            str(item[0][1][2]),
+            item[0][1][3],
+        ),
+    )
+    for (ship_id, ident, target_id), turns in ordered_tracking:
         chunks: list[list[int]] = []
         current = [turns[0]]
         for turn in turns[1:]:
@@ -152,17 +163,7 @@ def discover_scoped_mite_fallback_runs(
             mite_end_entry = owner_records.get((end, ship_id))
             mite_clear_entry = owner_records.get((end + 1, ship_id))
             target_anchor_entry = owner_records.get((start - 1, target_id))
-            target_start_entry = owner_records.get((start, target_id))
-            target_end_entry = owner_records.get((end, target_id))
-            target_after_entry = owner_records.get((end + 1, target_id))
-            if None in (
-                mite_end_entry,
-                mite_clear_entry,
-                target_anchor_entry,
-                target_start_entry,
-                target_end_entry,
-                target_after_entry,
-            ):
+            if mite_end_entry is None or mite_clear_entry is None or target_anchor_entry is None:
                 continue
 
             mite_end_owner, mite_end_raw = mite_end_entry
@@ -177,13 +178,21 @@ def discover_scoped_mite_fallback_runs(
                 continue
 
             anchor_owner, anchor_raw = target_anchor_entry
-            start_owner, start_raw = target_start_entry
-            end_owner, end_raw = target_end_entry
-            after_owner, after_raw = target_after_entry
             target_identity = _identity(anchor_owner, anchor_raw)
-            if target_identity is None or _identity(start_owner, start_raw) != target_identity:
+            if target_identity is None:
                 continue
-            if _identity(end_owner, end_raw) != _identity(after_owner, after_raw):
+
+            target_continuous = True
+            for turn in range(start, end + 2):
+                entry = owner_records.get((turn, target_id))
+                if entry is None:
+                    target_continuous = False
+                    break
+                target_owner, target_raw = entry
+                if _identity(target_owner, target_raw) != target_identity:
+                    target_continuous = False
+                    break
+            if not target_continuous:
                 continue
 
             anchor = _xy(anchor_raw)
