@@ -47,12 +47,38 @@ Do not spend more research time on these unless a future simulator implementatio
 
 These are non-blocking unknowns.
 
+## Post-research corpus integration
+
+The first product integration of this result is now in the compiled movement-label layer:
+
+```text
+src/planets_lab/corpus/movement_horwasp_mite_context.py
+tests/test_movement_horwasp_mite_context.py
+```
+
+`compiled-movement-context-labels` was bumped to schema `v2` and now promotes a residual Red Mite transition to the strong category:
+
+```text
+mite_fallback_navigation_g591478
+```
+
+only when all of the following are reconstructed from owner-authoritative historical state:
+
+- game id is exactly `591478`;
+- the Red Mite exact identity is continuous through the tracking run and clear snapshot;
+- the target exact identity is continuous from `S-1` through the clear snapshot;
+- the fallback row is the same Mite identity in `mission=0`, `mission1target=0`;
+- waypoint equals the reconstructed `target.xy(S-1)` fallback coordinate under the evidence-scoped `2170` wrap period;
+- the observed movement is straight toward that coordinate and matches `min(warp^2, remaining distance)` within the same `1.5 ly` rounding tolerance used by the final audit.
+
+All other Mite residuals, all `380` self-waypoint stop variants, and every Mite transition from other games remain fail-closed residuals. This integration deliberately does not generalize the game-591478 reconstruction across the historical corpus.
+
 ## Next work
 
-Stop adding one-off Mite diagnostics. The next useful work should be one of:
+Stop adding one-off Mite diagnostics. After the scoped corpus label integration is regression-tested and rebuilt locally, the next useful work should be one of:
 
-1. integrate the now-stable observed behavior into an explicit Horwasp/race-mechanics model when that simulator milestone is selected;
-2. continue M5 corpus/classifier work on another mechanic with higher product value;
+1. integrate broader Red Mite behavior into an explicit Horwasp/race-mechanics simulator module only when that simulator milestone is selected;
+2. continue M5 residual classification on the next high-volume non-Mite hull/mechanic;
 3. return to the Planets intelligence/dashboard integration that consumes the lab's evidence.
 
-If Red Mite implementation starts later, use `docs/rules/red-mite-tracking.md` and the compact regression fixture as the starting contract rather than reconstructing the investigation from diagnostic scripts.
+Use `docs/rules/red-mite-tracking.md`, the compact golden fixture and the scoped compiled-label classifier as the starting contract rather than reconstructing the investigation from diagnostic scripts.
