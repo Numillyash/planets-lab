@@ -21,6 +21,10 @@ from .movement_horwasp_ballistic_context import (
     _historical_ballistic_hulls,
     _historical_mite_hulls,
 )
+from .movement_horwasp_mite_context import (
+    classify_scoped_mite_fallback_transition,
+    discover_scoped_mite_fallback_runs,
+)
 from .movement_residual_context import _owner_record, _storm_consensus_by_turn
 from .movement_residual_profile import extract_hull_catalog
 from .movement_topology_diagnostics import extract_map_topology
@@ -28,7 +32,7 @@ from .prepared_cache import PreparedGameCache
 from .reconstruction import group_perspective_records
 
 
-COMPILED_MOVEMENT_CONTEXT_LABEL_SCHEMA = "planets-lab.compiled-movement-context-labels.v1"
+COMPILED_MOVEMENT_CONTEXT_LABEL_SCHEMA = "planets-lab.compiled-movement-context-labels.v2"
 
 # One row for every post-external-context residual movement transition. Raw
 # private orders/state used to derive these classifications are intentionally
@@ -110,6 +114,11 @@ def compile_movement_context_label_rows(
     hull_catalog = extract_hull_catalog(archive_data)
     ballistic_hulls = _historical_ballistic_hulls(hull_catalog.hulls)
     mite_hulls = _historical_mite_hulls(hull_catalog.hulls)
+    mite_fallback_runs = discover_scoped_mite_fallback_runs(
+        game_id=game_id,
+        ship_groups=ship_groups,
+        mite_hulls=mite_hulls,
+    )
 
     rows: list[dict[str, Any]] = []
     for before_turn, after_turn, ship_id in residual_keys:
@@ -196,7 +205,26 @@ def compile_movement_context_label_rows(
 
         if hull_id in mite_hulls:
             row["horwasp_candidate_kind"] = "mite"
-            row["horwasp_category"] = "mite_residual"
+            category, strong = classify_scoped_mite_fallback_transition(
+                game_id=game_id,
+                before_turn=before_turn,
+                ship_id=ship_id,
+                owner_id=owner_id,
+                raw=owner.raw,
+                origin=(sample.x, sample.y),
+                observed=sample.observed_destination,
+                warp=sample.warp,
+                runs_by_ship=mite_fallback_runs,
+            )
+            if category is None:
+                row["horwasp_category"] = "mite_residual"
+            else:
+                row["horwasp_category"] = category
+                if strong:
+                    row["horwasp_strong_explained"] = True
+                    row["post_horwasp_strong_residual"] = False
+                else:
+                    row["horwasp_observed_context_explained"] = True
             rows.append(row)
             continue
 
@@ -238,8 +266,18 @@ def movement_context_label_stats(rows: Sequence[Mapping[str, Any]]) -> dict[str,
         "horwasp_ballistic_candidates": sum(
             row.get("horwasp_candidate_kind") == "ballistic" for row in rows
         ),
-        "horwasp_mite_residual": sum(
+        "horwasp_mite_candidates": sum(
             row.get("horwasp_candidate_kind") == "mite" for row in rows
+        ),
+        "horwasp_mite_strong_explained": sum(
+            row.get("horwasp_candidate_kind") == "mite"
+            and row.get("horwasp_strong_explained") is True
+            for row in rows
+        ),
+        "horwasp_mite_residual": sum(
+            row.get("horwasp_candidate_kind") == "mite"
+            and row.get("post_horwasp_strong_residual") is True
+            for row in rows
         ),
         "horwasp_strong_explained": sum(
             row.get("horwasp_strong_explained") is True for row in rows
@@ -255,6 +293,8 @@ def movement_context_label_stats(rows: Sequence[Mapping[str, Any]]) -> dict[str,
         raise AssertionError("compiled Chunnel label accounting is not closed")
     if stats["horwasp_strong_explained"] + stats["post_horwasp_strong_residual"] != stats["post_chunnel_residual"]:
         raise AssertionError("compiled Horwasp strong label accounting is not closed")
+    if stats["horwasp_mite_strong_explained"] + stats["horwasp_mite_residual"] != stats["horwasp_mite_candidates"]:
+        raise AssertionError("compiled Horwasp Mite label accounting is not closed")
     return stats
 
 
@@ -346,7 +386,9 @@ def query_movement_context_label_catalog_stats(database_path: Path) -> dict[str,
                 sum(CASE WHEN l.chunnel_explained = true THEN 1 ELSE 0 END) AS chunnel_explained,
                 sum(CASE WHEN l.post_chunnel_residual = true THEN 1 ELSE 0 END) AS post_chunnel_residual,
                 sum(CASE WHEN l.horwasp_candidate_kind = 'ballistic' THEN 1 ELSE 0 END) AS horwasp_ballistic_candidates,
-                sum(CASE WHEN l.horwasp_candidate_kind = 'mite' THEN 1 ELSE 0 END) AS horwasp_mite_residual,
+                sum(CASE WHEN l.horwasp_candidate_kind = 'mite' THEN 1 ELSE 0 END) AS horwasp_mite_candidates,
+                sum(CASE WHEN l.horwasp_candidate_kind = 'mite' AND l.horwasp_strong_explained = true THEN 1 ELSE 0 END) AS horwasp_mite_strong_explained,
+                sum(CASE WHEN l.horwasp_candidate_kind = 'mite' AND l.post_horwasp_strong_residual = true THEN 1 ELSE 0 END) AS horwasp_mite_residual,
                 sum(CASE WHEN l.horwasp_strong_explained = true THEN 1 ELSE 0 END) AS horwasp_strong_explained,
                 sum(CASE WHEN l.horwasp_observed_context_explained = true THEN 1 ELSE 0 END) AS horwasp_observed_context_explained,
                 sum(CASE WHEN l.post_horwasp_strong_residual = true THEN 1 ELSE 0 END) AS post_horwasp_strong_residual
@@ -365,6 +407,8 @@ def query_movement_context_label_catalog_stats(database_path: Path) -> dict[str,
         "chunnel_explained",
         "post_chunnel_residual",
         "horwasp_ballistic_candidates",
+        "horwasp_mite_candidates",
+        "horwasp_mite_strong_explained",
         "horwasp_mite_residual",
         "horwasp_strong_explained",
         "horwasp_observed_context_explained",
