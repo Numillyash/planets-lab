@@ -1,10 +1,16 @@
 from __future__ import annotations
 
+import argparse
+import gzip
+import json
 from collections import Counter, defaultdict
 from collections.abc import Mapping, Sequence
 from math import hypot
 from pathlib import Path
 from typing import Any
+from urllib.error import HTTPError, URLError
+from urllib.parse import urlencode
+from urllib.request import Request, urlopen
 
 import duckdb
 
@@ -28,6 +34,7 @@ from planets_lab.validation.movement_geometry import MovementSample
 DB = Path("validation/corpus/compiled/v1/corpus.duckdb")
 ARCHIVE_DIR = Path("validation/corpus/cache/loadall")
 PREPARED_DIR = Path("validation/corpus/cache/prepared")
+DIRECT_API_BASE_URL = "http://api.planets.nu"
 
 
 def _boolish(value: Any) -> bool | None:
@@ -75,7 +82,16 @@ def _nuionstorms_consensus(snapshots: Sequence[Any]) -> tuple[bool | None, tuple
     return consensus, unique_raw
 
 
-def _official_settings(
+def _settings_from_payload(payload: Any) -> tuple[bool | None, dict[str, Any], str | None]:
+    if not isinstance(payload, dict):
+        return None, {}, "loadinfo response is not an object"
+    settings = payload.get("settings")
+    if not isinstance(settings, dict):
+        return None, {}, "loadinfo response has no settings object"
+    return _boolish(settings.get("nuionstorms")), settings, None
+
+
+def _official_settings_proxy(
     api: PlanetsNuPublicApi,
     game_id: int,
 ) -> tuple[bool | None, dict[str, Any], str | None]:
@@ -83,14 +99,56 @@ def _official_settings(
         payload = api.load_info(game_id)
     except CorpusApiError as exc:
         return None, {}, str(exc)
-    settings = payload.get("settings")
-    if not isinstance(settings, dict):
-        return None, {}, "loadinfo response has no settings object"
-    return _boolish(settings.get("nuionstorms")), settings, None
+    return _settings_from_payload(payload)
+
+
+def _official_settings_direct(
+    game_id: int,
+) -> tuple[bool | None, dict[str, Any], str | None]:
+    """Fetch public loadinfo directly for an explicitly local diagnostic run.
+
+    This helper is intentionally scoped to this diagnostic. The corpus API itself
+    remains proxy-only so server-side acquisition cannot silently bypass the proxy.
+    """
+
+    url = f"{DIRECT_API_BASE_URL}/game/loadinfo?{urlencode({'gameid': game_id})}"
+    request = Request(
+        url,
+        headers={
+            "Accept-Encoding": "gzip",
+            "User-Agent": "planets-lab-local-diagnostic/0.1",
+        },
+        method="GET",
+    )
+    try:
+        with urlopen(request, timeout=30.0) as response:
+            data = response.read()
+            encoding = response.headers.get("Content-Encoding", "")
+    except HTTPError as exc:
+        return None, {}, f"Planets.nu returned HTTP {exc.code} for game/loadinfo"
+    except URLError as exc:
+        return None, {}, f"Planets.nu direct loadinfo failed: {exc.reason}"
+
+    if encoding.lower() == "gzip" or data[:2] == b"\x1f\x8b":
+        try:
+            data = gzip.decompress(data)
+        except OSError as exc:
+            return None, {}, f"Planets.nu returned invalid gzip data: {exc}"
+
+    try:
+        payload = json.loads(data.decode("utf-8-sig"))
+    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+        return None, {}, f"Planets.nu returned invalid JSON: {exc}"
+
+    if isinstance(payload, dict) and payload.get("success") is False:
+        return None, {}, str(payload.get("error", "Planets.nu loadinfo failed"))
+    return _settings_from_payload(payload)
 
 
 def _classic_root_storms(storms: Sequence[StormRecord]) -> tuple[StormRecord, ...]:
-    return tuple(sorted((storm for storm in storms if storm.parent_id == 0), key=lambda item: item.id))
+    return tuple(
+        sorted((storm for storm in storms if storm.parent_id == 0), key=lambda item: item.id)
+    )
 
 
 def _classic_constant_offset(
@@ -151,7 +209,11 @@ def _alternative_category(
     if sample.observed_destination == shifted:
         return "classic_constant_ion_storm_drag", status, storm_ids, offset
 
-    well, ambiguous = _warp_well_destination(sample=sample, endpoint=shifted, planets=planets)
+    well, ambiguous = _warp_well_destination(
+        sample=sample,
+        endpoint=shifted,
+        planets=planets,
+    )
     if ambiguous:
         return None, "warp_well_ambiguous", storm_ids, offset
     if well is not None and sample.observed_destination == well:
@@ -174,7 +236,24 @@ def _sample(row: Mapping[str, Any]) -> MovementSample:
     )
 
 
+def _args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="Audit classic constant-voltage ion-storm explanations in final movement residuals."
+    )
+    parser.add_argument(
+        "--direct-loadinfo",
+        action="store_true",
+        help=(
+            "Fetch public game/loadinfo directly. Intended for an explicitly local "
+            "workstation run; server-side corpus acquisition remains proxy-only."
+        ),
+    )
+    return parser.parse_args()
+
+
 def main() -> int:
+    args = _args()
+
     con = duckdb.connect(str(DB), read_only=True)
     try:
         columns = [
@@ -193,12 +272,13 @@ def main() -> int:
 
     print("===== CLASSIC ION STORM FINAL RESIDUAL AUDIT =====")
     print("rows=", len(rows))
+    print("loadinfo_transport=", "direct-explicit" if args.direct_loadinfo else "proxy-required")
 
     by_game_rows: dict[int, list[dict[str, Any]]] = defaultdict(list)
     for row in rows:
         by_game_rows[int(row["game_id"])].append(row)
 
-    api = PlanetsNuPublicApi()
+    api = None if args.direct_loadinfo else PlanetsNuPublicApi()
     totals = Counter()
     by_hull: dict[int, Counter[str]] = defaultdict(Counter)
     by_game: dict[int, Counter[str]] = defaultdict(Counter)
@@ -216,10 +296,15 @@ def main() -> int:
         )
         snapshots = prepared.snapshots
         archive_mode, raw_setting_values = _nuionstorms_consensus(snapshots)
-        official_mode, settings, loadinfo_error = _official_settings(api, game_id)
+        if args.direct_loadinfo:
+            official_mode, settings, loadinfo_error = _official_settings_direct(game_id)
+        else:
+            assert api is not None
+            official_mode, settings, loadinfo_error = _official_settings_proxy(api, game_id)
+
         if official_mode is not None:
             nuionstorms = official_mode
-            mode_source = "loadinfo"
+            mode_source = "loadinfo-direct" if args.direct_loadinfo else "loadinfo-proxy"
         elif archive_mode is not None:
             nuionstorms = archive_mode
             mode_source = "archive"
