@@ -7,6 +7,7 @@ from planets_lab.corpus.compiled_movement_corpus_cli import (
     _collect_catalog_metadata,
     _stats_from_results,
 )
+from planets_lab.corpus.movement_storm_context import MOVEMENT_STORM_CONTEXT_SCHEMA
 from planets_lab.corpus.prepared_cache import PREPARED_GAME_CACHE_SCHEMA
 
 
@@ -21,6 +22,7 @@ def _meta(game_id: int, *, transition_rows: int, move_most: int) -> dict[str, ob
         "archive_sha256": f"sha-{game_id}",
         "prepared_schema": PREPARED_GAME_CACHE_SCHEMA,
         "compiled_schema": COMPILED_MOVEMENT_SCHEMA,
+        "storm_context_schema": MOVEMENT_STORM_CONTEXT_SCHEMA,
         "sphere": game_id == 591478,
         "map_width": 2150 if game_id == 591478 else None,
         "map_height": 2150 if game_id == 591478 else None,
