@@ -22,8 +22,8 @@ from .normalizer import ArchiveTurnSnapshot
 from .readiness import MOVEMENT_GEOMETRY, READY, RESOLVED_FIELD_STATUSES, evaluate_readiness
 from .reconstruction import group_perspective_records
 
-MOVEMENT_DIFFERENTIAL_GAME_SCHEMA = "planets-lab.movement-differential-game.v1"
-MOVEMENT_DIFFERENTIAL_STATS_SCHEMA = "planets-lab.movement-differential-stats.v1"
+MOVEMENT_DIFFERENTIAL_GAME_SCHEMA = "planets-lab.movement-differential-game.v2"
+MOVEMENT_DIFFERENTIAL_STATS_SCHEMA = "planets-lab.movement-differential-stats.v2"
 
 GEOMETRY_EXPLAINED_CATEGORIES = frozenset(
     {
@@ -272,12 +272,6 @@ def _movement_category(
     if sample.warp <= 0:
         return "warp_zero_stationary" if observed == origin else "warp_zero_external_move"
 
-    # Do not silently reinterpret super-nominal travel as ordinary movement.
-    # Gravitonic movement, towing, ion storms and other external contexts are
-    # intentionally left for later mechanic-specific classifiers.
-    if observed_distance > nominal + 1.5:
-        return "above_nominal"
-
     target_distance = hypot(target[0] - origin[0], target[1] - origin[1])
     if target_distance <= nominal:
         expected = target
@@ -292,6 +286,11 @@ def _movement_category(
             return "reachable_warp_well_ambiguous"
         if well is not None and observed == well:
             return "reachable_warp_well_match"
+        # Warp-well landing can legitimately put the final stored coordinate
+        # up to three light-years beyond the ordinary movement endpoint. Only
+        # reject super-nominal displacement after that mechanic has been tested.
+        if observed_distance > nominal + 1.5:
+            return "above_nominal"
         if observed == origin:
             return "reachable_stayed"
         return "reachable_other"
@@ -308,6 +307,8 @@ def _movement_category(
         return "partial_warp_well_ambiguous"
     if well is not None and observed == well:
         return "partial_host_major_minor_warp_well_match"
+    if observed_distance > nominal + 1.5:
+        return "above_nominal"
     if observed == origin:
         return "partial_stayed"
     return "partial_other"
