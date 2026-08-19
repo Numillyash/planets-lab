@@ -1,17 +1,23 @@
 from __future__ import annotations
 
-from collections.abc import Sequence
+from collections.abc import Mapping, Sequence
 from math import hypot
+from typing import Any
 
 from planets_lab.rules.ion_storm import integer_drag_delta
 from planets_lab.validation.movement_geometry import MovementSample
 
-from .movement_differential import _warp_well_destination
+from .movement_differential import _entity_map, _planet_tuples_by_turn, _warp_well_destination
 from .movement_residual_context import (
     StormRecord,
     _navigation_endpoint,
+    _storm_consensus_by_turn,
     _storm_expected_category,
 )
+from .prepared_cache import PreparedGameCache
+
+
+MOVEMENT_STORM_CONTEXT_SCHEMA = "planets-lab.compiled-movement-storm-context.v1"
 
 
 def _classic_constant_storm_offset(
@@ -100,3 +106,91 @@ def storm_expected_category_for_mode(
     if well is not None and sample.observed_destination == well:
         return "ion_storm_drag_warp_well_match", status
     return None, status
+
+
+def _row_sample(row: Mapping[str, Any]) -> MovementSample | None:
+    required = (
+        "ship_id",
+        "before_embedded_turn",
+        "x_before",
+        "y_before",
+        "target_x",
+        "target_y",
+        "warp",
+        "x_after",
+        "y_after",
+    )
+    if any(row.get(key) is None for key in required):
+        return None
+    return MovementSample(
+        turn=int(row["before_embedded_turn"]),
+        ship_id=int(row["ship_id"]),
+        x=int(row["x_before"]),
+        y=int(row["y_before"]),
+        target_x=int(row["target_x"]),
+        target_y=int(row["target_y"]),
+        warp=int(row["warp"]),
+        next_x=int(row["x_after"]),
+        next_y=int(row["y_after"]),
+        hull_id=int(row["hull_id"]) if row.get("hull_id") is not None else None,
+        gravitonic=row.get("is_gravitonic_hull") is True,
+    )
+
+
+def apply_mode_aware_storm_context_rows(
+    rows: Sequence[Mapping[str, Any]],
+    *,
+    prepared: PreparedGameCache,
+    nuionstorms: bool | None,
+) -> list[dict[str, Any]]:
+    """Reclassify only unresolved compiled rows with authoritative storm mode.
+
+    The existing compiled movement pass remains authoritative for baseline,
+    observed tow, gravitonic movement, and already-explained storm rows. This
+    function revisits only post-external residual rows, replacing the old
+    implicit-cloudy storm assumption with the manifest's ``nuionstorms`` value.
+    """
+
+    records = prepared.snapshots
+    entities = _entity_map(records)
+    planets_by_turn = _planet_tuples_by_turn(entities)
+    storms_by_turn, conflict_turns, invalid_turns = _storm_consensus_by_turn(records)
+
+    result: list[dict[str, Any]] = []
+    for source in rows:
+        row = dict(source)
+        if row.get("post_external_residual") is not True:
+            result.append(row)
+            continue
+
+        sample = _row_sample(row)
+        if sample is None:
+            result.append(row)
+            continue
+
+        after_turn = int(row["after_archive_turn"])
+        if after_turn in conflict_turns:
+            row["storm_context_status"] = "storm_context_conflict"
+            result.append(row)
+            continue
+        if after_turn in invalid_turns:
+            row["storm_context_status"] = "storm_context_invalid"
+            result.append(row)
+            continue
+
+        planets = planets_by_turn.get(int(row["before_archive_turn"]), ())
+        category, status = storm_expected_category_for_mode(
+            sample,
+            storms=storms_by_turn.get(after_turn, ()),
+            planets=planets,
+            nuionstorms=nuionstorms,
+        )
+        row["storm_context_status"] = status
+        if category is not None:
+            prefix = "gravitonic_" if row.get("is_gravitonic_hull") is True else ""
+            row["external_context_category"] = f"{prefix}{category}"
+            row["external_context_explained"] = True
+            row["post_external_residual"] = False
+        result.append(row)
+
+    return result
