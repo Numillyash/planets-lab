@@ -19,6 +19,10 @@ from .compiled_movement import (
     query_compiled_stats,
 )
 from .indexer import CorpusIndexError, load_manifest_jsonl
+from .movement_storm_context import (
+    MOVEMENT_STORM_CONTEXT_SCHEMA,
+    apply_mode_aware_storm_context_rows,
+)
 from .movement_topology_diagnostics import extract_map_topology
 from .prepared_cache import (
     PREPARED_GAME_CACHE_SCHEMA,
@@ -26,7 +30,7 @@ from .prepared_cache import (
 )
 
 
-BUILD_SUMMARY_SCHEMA = "planets-lab.compiled-movement-build.v2"
+BUILD_SUMMARY_SCHEMA = "planets-lab.compiled-movement-build.v3"
 _STAT_KEYS = (
     "transition_rows",
     "geometry_ready",
@@ -63,6 +67,16 @@ def _sha256(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
+def _manifest_nuionstorms(manifest: dict[str, Any]) -> bool:
+    settings = manifest.get("settings")
+    if not isinstance(settings, dict):
+        raise ValueError("manifest settings must be an object")
+    value = settings.get("nuionstorms")
+    if not isinstance(value, bool):
+        raise ValueError("manifest settings.nuionstorms must be a boolean")
+    return value
+
+
 def _read_meta(
     path: Path,
     *,
@@ -77,6 +91,8 @@ def _read_meta(
     if not isinstance(value, dict):
         return None
     if value.get("compiled_schema") != COMPILED_MOVEMENT_SCHEMA:
+        return None
+    if value.get("storm_context_schema") != MOVEMENT_STORM_CONTEXT_SCHEMA:
         return None
     if value.get("prepared_schema") != PREPARED_GAME_CACHE_SCHEMA:
         return None
@@ -113,6 +129,8 @@ def _read_existing_partition_meta(meta_path: Path) -> dict[str, Any] | None:
     if not isinstance(value, dict):
         return None
     if value.get("compiled_schema") != COMPILED_MOVEMENT_SCHEMA:
+        return None
+    if value.get("storm_context_schema") != MOVEMENT_STORM_CONTEXT_SCHEMA:
         return None
     if value.get("prepared_schema") != PREPARED_GAME_CACHE_SCHEMA:
         return None
@@ -183,6 +201,7 @@ def _process_game(task: tuple[int, int, dict[str, Any], str, str, str, bool]) ->
     ) = task
     game_id = int(manifest["game_id"])
     settings_hash = str(manifest["settings_hash"])
+    nuionstorms = _manifest_nuionstorms(manifest)
     cache_dir = Path(cache_dir_text)
     prepared_dir = Path(prepared_dir_text)
     output_dir = Path(output_dir_text)
@@ -238,6 +257,11 @@ def _process_game(task: tuple[int, int, dict[str, Any], str, str, str, bool]) ->
             prepared=prepared,
             topology=topology,
         )
+        rows = apply_mode_aware_storm_context_rows(
+            rows,
+            prepared=prepared,
+            nuionstorms=nuionstorms,
+        )
         after_compile = perf_counter()
         stats = movement_row_stats(rows)
         write_rows_parquet_arrow(
@@ -249,9 +273,11 @@ def _process_game(task: tuple[int, int, dict[str, Any], str, str, str, bool]) ->
 
         meta = {
             "compiled_schema": COMPILED_MOVEMENT_SCHEMA,
+            "storm_context_schema": MOVEMENT_STORM_CONTEXT_SCHEMA,
             "prepared_schema": PREPARED_GAME_CACHE_SCHEMA,
             "game_id": game_id,
             "settings_hash": settings_hash,
+            "nuionstorms": nuionstorms,
             "archive_sha256": archive_sha256,
             "sphere": topology.sphere,
             "map_width": topology.mapwidth,
@@ -316,6 +342,7 @@ def _print_game_result(row: dict[str, Any]) -> None:
                 "compiled_cache_hit": row["compiled_cache_hit"],
                 "prepared_cache_hit": row["prepared_cache_hit"],
                 "sphere": row["sphere"],
+                "nuionstorms": row.get("nuionstorms"),
                 "transition_rows": row["transition_rows"],
                 "move_most_candidates": row["move_most_candidates"],
                 "post_external_residual": row["post_external_residual"],
@@ -461,6 +488,7 @@ def main() -> int:
     summary = {
         "schema": BUILD_SUMMARY_SCHEMA,
         "compiled_schema": COMPILED_MOVEMENT_SCHEMA,
+        "storm_context_schema": MOVEMENT_STORM_CONTEXT_SCHEMA,
         "prepared_schema": PREPARED_GAME_CACHE_SCHEMA,
         "jobs": jobs,
         "games_requested": total,
