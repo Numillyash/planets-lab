@@ -51,7 +51,11 @@ def main() -> int:
         try:
             archive_data = archive_path.read_bytes()
             snapshots = load_archive_snapshots(archive_data)
-            row = evaluate_horwasp_ballistic_context(archive_data, snapshots)
+            row = evaluate_horwasp_ballistic_context(
+                archive_data,
+                snapshots,
+                game_id=game_id,
+            )
         except (OSError, ValueError, AssertionError, CorpusNormalizationError) as exc:
             failures.append(game_id)
             print(json.dumps({
