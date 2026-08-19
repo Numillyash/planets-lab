@@ -1,5 +1,6 @@
 from planets_lab.corpus.movement_horwasp_ballistic_context import (
     _classify_ballistic_formula,
+    _effective_ballistic_topology,
     _historical_ballistic_hulls,
     _historical_mite_hulls,
     _previous_mode,
@@ -17,6 +18,20 @@ def _flat_topology() -> MapTopologyEvidence:
         first_member="first.trn",
         last_member="last.trn",
         stable=True,
+        first_candidates={},
+        last_candidates={},
+    )
+
+
+def _sphere_topology(*, width: int = 2150, height: int = 2150, stable: bool = True) -> MapTopologyEvidence:
+    return MapTopologyEvidence(
+        sphere=True,
+        mapwidth=width,
+        mapheight=height,
+        mapshape=1,
+        first_member="first.trn",
+        last_member="last.trn",
+        stable=stable,
         first_candidates={},
         last_candidates={},
     )
@@ -41,6 +56,25 @@ def test_historical_ballistic_authority_excludes_textual_false_positives_and_mit
     mites = _historical_mite_hulls(catalog)
     assert set(ballistic) == {202, 205, 212}
     assert mites == frozenset({213})
+
+
+def test_effective_ballistic_topology_is_scoped_to_audited_game_and_raw_shape() -> None:
+    raw = _sphere_topology()
+    effective = _effective_ballistic_topology(game_id=591478, topology=raw)
+    assert (raw.mapwidth, raw.mapheight) == (2150, 2150)
+    assert (effective.mapwidth, effective.mapheight) == (2170, 2170)
+
+    other_game = _effective_ballistic_topology(game_id=591479, topology=raw)
+    assert other_game is raw
+
+    unexpected_raw = _sphere_topology(width=2170, height=2170)
+    assert _effective_ballistic_topology(
+        game_id=591478,
+        topology=unexpected_raw,
+    ) is unexpected_raw
+
+    unstable = _sphere_topology(stable=False)
+    assert _effective_ballistic_topology(game_id=591478, topology=unstable) is unstable
 
 
 def test_previous_mode_comes_from_latest_history_position() -> None:
