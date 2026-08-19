@@ -88,6 +88,54 @@ def test_reachable_warp_well_match_is_explained() -> None:
     assert summary.geometrically_explained == 1
 
 
+def test_reachable_warp_well_can_land_beyond_nominal_displacement() -> None:
+    planet10 = {"id": 5, "ownerid": 0, "x": 184, "y": 100, "infoturn": 10}
+    planet11 = {"id": 5, "ownerid": 0, "x": 184, "y": 100, "infoturn": 11}
+    summary = evaluate_movement_differential(
+        (
+            _snapshot(
+                1,
+                10,
+                ships=[_ship(10, targetx=181, targety=100, warp=9)],
+                planets=[planet10],
+            ),
+            _snapshot(
+                1,
+                11,
+                ships=[_ship(11, x=184, y=100, targetx=181, targety=100, warp=9)],
+                planets=[planet11],
+            ),
+        )
+    )
+    assert summary.category_counts == {"reachable_warp_well_match": 1}
+    assert summary.geometrically_explained == 1
+    assert summary.unresolved == 0
+
+
+def test_partial_warp_well_can_land_beyond_nominal_displacement() -> None:
+    planet10 = {"id": 5, "ownerid": 0, "x": 184, "y": 100, "infoturn": 10}
+    planet11 = {"id": 5, "ownerid": 0, "x": 184, "y": 100, "infoturn": 11}
+    summary = evaluate_movement_differential(
+        (
+            _snapshot(
+                1,
+                10,
+                ships=[_ship(10, targetx=200, targety=100, warp=9)],
+                planets=[planet10],
+            ),
+            _snapshot(
+                1,
+                11,
+                ships=[_ship(11, x=184, y=100, targetx=200, targety=100, warp=9)],
+                planets=[planet11],
+            ),
+        )
+    )
+    assert summary.category_counts == {"partial_host_major_minor_warp_well_match": 1}
+    assert summary.geometrically_explained == 1
+    assert summary.unresolved == 0
+
+
 def test_hyp_is_excluded_from_move_most_geometry() -> None:
     summary = evaluate_movement_differential(
         (
