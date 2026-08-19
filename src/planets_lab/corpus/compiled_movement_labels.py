@@ -18,6 +18,7 @@ from .movement_chunnel_context import (
 from .movement_differential import _entity_map, _planet_tuples_by_turn
 from .movement_horwasp_ballistic_context import (
     _classify_ballistic_formula,
+    _effective_ballistic_topology,
     _historical_ballistic_hulls,
     _historical_mite_hulls,
 )
@@ -32,7 +33,7 @@ from .prepared_cache import PreparedGameCache
 from .reconstruction import group_perspective_records
 
 
-COMPILED_MOVEMENT_CONTEXT_LABEL_SCHEMA = "planets-lab.compiled-movement-context-labels.v2"
+COMPILED_MOVEMENT_CONTEXT_LABEL_SCHEMA = "planets-lab.compiled-movement-context-labels.v3"
 
 # One row for every post-external-context residual movement transition. Raw
 # private orders/state used to derive these classifications are intentionally
@@ -111,6 +112,10 @@ def compile_movement_context_label_rows(
         events_by_turn[event.before_archive_turn].append(event)
 
     topology = extract_map_topology(archive_data)
+    ballistic_topology = _effective_ballistic_topology(
+        game_id=game_id,
+        topology=topology,
+    )
     hull_catalog = extract_hull_catalog(archive_data)
     ballistic_hulls = _historical_ballistic_hulls(hull_catalog.hulls)
     mite_hulls = _historical_mite_hulls(hull_catalog.hulls)
@@ -239,7 +244,7 @@ def compile_movement_context_label_rows(
             observed=sample.observed_destination,
             target=(sample.target_x, sample.target_y),
             warp=sample.warp,
-            topology=topology,
+            topology=ballistic_topology,
         )
         if category is None:
             row["horwasp_category"] = "ballistic_unresolved"
