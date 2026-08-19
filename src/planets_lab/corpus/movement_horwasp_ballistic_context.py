@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from collections import Counter, defaultdict
 from collections.abc import Mapping, Sequence
+from dataclasses import replace
 from math import cos, floor, hypot, radians, sin
 from typing import Any
 
@@ -24,13 +25,53 @@ from .readiness import MOVEMENT_GEOMETRY, READY, evaluate_readiness
 from .reconstruction import group_perspective_records
 
 
-MOVEMENT_HORWASP_BALLISTIC_GAME_SCHEMA = "planets-lab.movement-horwasp-ballistic-game.v1"
-MOVEMENT_HORWASP_BALLISTIC_STATS_SCHEMA = "planets-lab.movement-horwasp-ballistic-stats.v1"
+MOVEMENT_HORWASP_BALLISTIC_GAME_SCHEMA = "planets-lab.movement-horwasp-ballistic-game.v2"
+MOVEMENT_HORWASP_BALLISTIC_STATS_SCHEMA = "planets-lab.movement-horwasp-ballistic-stats.v2"
+
+# Empirical movement/target-linkage evidence for historical game 591478 shows
+# a 2170-ly toroidal wrap period even though its raw settings advertise
+# mapwidth=mapheight=2150. Keep the override exact and fail closed: it is not a
+# general mapwidth+20 rule and must never alter the raw topology facts.
+_SCOPED_EFFECTIVE_WRAP_PERIODS: Mapping[int, tuple[int, int]] = {
+    591478: (2170, 2170),
+}
+_SCOPED_RAW_WRAP_PERIODS: Mapping[int, tuple[int, int]] = {
+    591478: (2150, 2150),
+}
 
 # Accelerator and Sentry are ballistic Horwasp hulls but their historical
 # catalog entries may advertise another primary ability instead of the literal
 # word "Pod". Keep these exact names as an explicit documented exception.
 _BALLISTIC_NAME_EXCEPTIONS = frozenset({"Accelerator", "Sentry"})
+
+
+def _effective_ballistic_topology(
+    *,
+    game_id: int | None,
+    topology: MapTopologyEvidence,
+) -> MapTopologyEvidence:
+    """Return the evidence-scoped topology used only for ballistic vectors.
+
+    Raw map settings remain authoritative facts elsewhere. The sole historical
+    override is guarded by exact game ID, sphere/stability state and the raw
+    dimensions that were independently audited before promotion.
+    """
+
+    if game_id is None:
+        return topology
+    effective = _SCOPED_EFFECTIVE_WRAP_PERIODS.get(int(game_id))
+    expected_raw = _SCOPED_RAW_WRAP_PERIODS.get(int(game_id))
+    if effective is None or expected_raw is None:
+        return topology
+    if topology.sphere is not True or topology.stable is not True:
+        return topology
+    if (topology.mapwidth, topology.mapheight) != expected_raw:
+        return topology
+    return replace(
+        topology,
+        mapwidth=effective[0],
+        mapheight=effective[1],
+    )
 
 
 def _historical_ballistic_hulls(catalog: Mapping[int, Mapping[str, Any]]) -> dict[int, Mapping[str, Any]]:
@@ -183,10 +224,12 @@ def evaluate_horwasp_ballistic_context(
     archive_data: bytes,
     snapshots: Sequence[ArchiveTurnSnapshot],
     *,
+    game_id: int | None = None,
     convention: MovementMissionConvention = MovementMissionConvention(),
 ) -> dict[str, Any]:
     records = tuple(snapshots)
-    topology = extract_map_topology(archive_data)
+    raw_topology = extract_map_topology(archive_data)
+    topology = _effective_ballistic_topology(game_id=game_id, topology=raw_topology)
     hull_catalog = extract_hull_catalog(archive_data)
     ballistic_hulls = _historical_ballistic_hulls(hull_catalog.hulls)
     mite_hulls = _historical_mite_hulls(hull_catalog.hulls)
@@ -303,6 +346,13 @@ def evaluate_horwasp_ballistic_context(
     return {
         "schema": MOVEMENT_HORWASP_BALLISTIC_GAME_SCHEMA,
         "topology": {
+            "sphere": raw_topology.sphere,
+            "mapwidth": raw_topology.mapwidth,
+            "mapheight": raw_topology.mapheight,
+            "mapshape": raw_topology.mapshape,
+            "stable": raw_topology.stable,
+        },
+        "effective_topology": {
             "sphere": topology.sphere,
             "mapwidth": topology.mapwidth,
             "mapheight": topology.mapheight,
