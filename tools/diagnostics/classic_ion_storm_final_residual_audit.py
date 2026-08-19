@@ -8,13 +8,10 @@ from typing import Any
 
 import duckdb
 
-from planets_lab.rules.ion_storm import integer_drag_delta
-from planets_lab.validation.movement_geometry import MovementSample
+from planets_lab.corpus.api import CorpusApiError, PlanetsNuPublicApi
 from planets_lab.corpus.movement_chunnel_context import _effective_sample
 from planets_lab.corpus.movement_differential import (
-    GEOMETRY_EXPLAINED_CATEGORIES,
     _entity_map,
-    _movement_category,
     _planet_tuples_by_turn,
     _warp_well_destination,
 )
@@ -24,6 +21,8 @@ from planets_lab.corpus.movement_residual_context import (
     _storm_consensus_by_turn,
 )
 from planets_lab.corpus.prepared_cache import load_or_build_prepared_game_cache
+from planets_lab.rules.ion_storm import integer_drag_delta
+from planets_lab.validation.movement_geometry import MovementSample
 
 
 DB = Path("validation/corpus/compiled/v1/corpus.duckdb")
@@ -74,6 +73,20 @@ def _nuionstorms_consensus(snapshots: Sequence[Any]) -> tuple[bool | None, tuple
     consensus = next(iter(parsed)) if len(parsed) == 1 else None
     unique_raw = tuple(sorted({repr(value) for value in raw_values}))
     return consensus, unique_raw
+
+
+def _official_settings(
+    api: PlanetsNuPublicApi,
+    game_id: int,
+) -> tuple[bool | None, dict[str, Any], str | None]:
+    try:
+        payload = api.load_info(game_id)
+    except CorpusApiError as exc:
+        return None, {}, str(exc)
+    settings = payload.get("settings")
+    if not isinstance(settings, dict):
+        return None, {}, "loadinfo response has no settings object"
+    return _boolish(settings.get("nuionstorms")), settings, None
 
 
 def _classic_root_storms(storms: Sequence[StormRecord]) -> tuple[StormRecord, ...]:
@@ -164,9 +177,15 @@ def _sample(row: Mapping[str, Any]) -> MovementSample:
 def main() -> int:
     con = duckdb.connect(str(DB), read_only=True)
     try:
-        columns = [item[1] for item in con.execute("PRAGMA table_info('movement_post_horwasp_strong_residual')").fetchall()]
+        columns = [
+            item[1]
+            for item in con.execute(
+                "PRAGMA table_info('movement_post_horwasp_strong_residual')"
+            ).fetchall()
+        ]
         rows_raw = con.execute(
-            "SELECT * FROM movement_post_horwasp_strong_residual ORDER BY game_id, before_archive_turn, ship_id"
+            "SELECT * FROM movement_post_horwasp_strong_residual "
+            "ORDER BY game_id, before_archive_turn, ship_id"
         ).fetchall()
     finally:
         con.close()
@@ -179,6 +198,7 @@ def main() -> int:
     for row in rows:
         by_game_rows[int(row["game_id"])].append(row)
 
+    api = PlanetsNuPublicApi()
     totals = Counter()
     by_hull: dict[int, Counter[str]] = defaultdict(Counter)
     by_game: dict[int, Counter[str]] = defaultdict(Counter)
@@ -195,14 +215,31 @@ def main() -> int:
             cache_path=PREPARED_DIR / f"game-{game_id}.pkl",
         )
         snapshots = prepared.snapshots
-        nuionstorms, raw_setting_values = _nuionstorms_consensus(snapshots)
+        archive_mode, raw_setting_values = _nuionstorms_consensus(snapshots)
+        official_mode, settings, loadinfo_error = _official_settings(api, game_id)
+        if official_mode is not None:
+            nuionstorms = official_mode
+            mode_source = "loadinfo"
+        elif archive_mode is not None:
+            nuionstorms = archive_mode
+            mode_source = "archive"
+        else:
+            nuionstorms = None
+            mode_source = "unknown"
+
         storms_by_turn, conflict_turns, invalid_turns = _storm_consensus_by_turn(snapshots)
         entities = _entity_map(snapshots)
         planets_by_turn = _planet_tuples_by_turn(entities)
 
         print(
             f"prepared game={game_id} cache_hit={cache_hit} rows={len(game_rows)} "
-            f"nuionstorms={nuionstorms!r} raw_values={raw_setting_values}"
+            f"nuionstorms={nuionstorms!r} source={mode_source} "
+            f"loadinfo_nuionstorms={official_mode!r} "
+            f"maxions={settings.get('maxions')!r} "
+            f"maxioncloudsperstorm={settings.get('maxioncloudsperstorm')!r} "
+            f"nebulas={settings.get('nebulas')!r} stars={settings.get('stars')!r} "
+            f"archive_raw_values={raw_setting_values} "
+            f"loadinfo_error={loadinfo_error!r}"
         )
 
         for row in game_rows:
@@ -216,9 +253,11 @@ def main() -> int:
                 by_game[game_id]["classic_game_rows"] += 1
             elif nuionstorms is True:
                 totals["cloudy_game_rows"] += 1
+                by_hull[hull_id]["cloudy_game_rows"] += 1
                 by_game[game_id]["cloudy_game_rows"] += 1
             else:
                 totals["unknown_mode_rows"] += 1
+                by_hull[hull_id]["unknown_mode_rows"] += 1
                 by_game[game_id]["unknown_mode_rows"] += 1
 
             after_turn = int(row["after_archive_turn"])
@@ -263,7 +302,13 @@ def main() -> int:
                 totals["classic_constant_explains_scoped"] += 1
                 by_hull[hull_id]["classic_constant_explains_scoped"] += 1
                 by_game[game_id]["classic_constant_explains_scoped"] += 1
-            if hull_id == 79:
+            elif nuionstorms is True:
+                totals["constant_explains_cloudy_mode"] += 1
+                by_hull[hull_id]["constant_explains_cloudy_mode"] += 1
+                by_game[game_id]["constant_explains_cloudy_mode"] += 1
+            else:
+                totals["constant_explains_unknown_mode"] += 1
+            if hull_id == 79 and nuionstorms is False:
                 totals["hull79_classic_constant_explains"] += 1
             if len(examples) < 50:
                 examples.append(
@@ -278,6 +323,7 @@ def main() -> int:
                         "waypoint": (int(row["target_x"]), int(row["target_y"])),
                         "baseline": row.get("baseline_category"),
                         "nuionstorms": nuionstorms,
+                        "mode_source": mode_source,
                         "storm_ids": storm_ids,
                         "offset": offset,
                         "category": category,
@@ -297,6 +343,8 @@ def main() -> int:
         "classic_extreme_voltage",
         "classic_constant_explains_all_modes",
         "classic_constant_explains_scoped",
+        "constant_explains_cloudy_mode",
+        "constant_explains_unknown_mode",
         "hull79_classic_constant_explains",
     ):
         print(f"{key}=", totals[key])
@@ -309,18 +357,27 @@ def main() -> int:
         print(offset, count, "distance=", round(hypot(*offset), 3))
 
     print("\n===== BY GAME =====")
-    for game_id, counts in sorted(by_game.items(), key=lambda item: (-item[1]["rows"], item[0])):
+    for game_id, counts in sorted(
+        by_game.items(), key=lambda item: (-item[1]["rows"], item[0])
+    ):
         print(game_id, dict(counts))
 
     print("\n===== TOP HULLS =====")
-    print("hull | rows | classic_rows | inside_class4 | scoped_explains | all_mode_explains | extreme")
-    for hull_id, counts in sorted(by_hull.items(), key=lambda item: (-item[1]["rows"], item[0]))[:60]:
+    print(
+        "hull | rows | classic_rows | cloudy_rows | inside_class4 | "
+        "scoped_explains | cloudy_constant_matches | all_mode_explains | extreme"
+    )
+    for hull_id, counts in sorted(
+        by_hull.items(), key=lambda item: (-item[1]["rows"], item[0])
+    )[:60]:
         print(
             hull_id,
             counts["rows"],
             counts["classic_game_rows"],
+            counts["cloudy_game_rows"],
             counts["inside_class4_constant_voltage"],
             counts["classic_constant_explains_scoped"],
+            counts["constant_explains_cloudy_mode"],
             counts["classic_constant_explains_all_modes"],
             counts["classic_extreme_voltage"],
             sep=" | ",
