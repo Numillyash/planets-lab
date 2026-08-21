@@ -1,21 +1,42 @@
 # Roadmap
 
-This file is the operational roadmap for `planets-lab`. Architecture boundaries and evidence policy remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md).
+This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). The latest movement/corpus handoff is [`handoff/2026-08-21-movement-corpus-current-state.md`](handoff/2026-08-21-movement-corpus-current-state.md).
 
 ## Evidence policy
 
 Mechanics are promoted only with explicit evidence status:
 
 - `DOCUMENTED` — primary Planets.nu documentation;
-- `INFERRED` — reconstructed from observations or secondary material;
-- `TESTED` — covered by a local deterministic scenario;
-- `DIFF_VERIFIED` — matched against real NuHost transitions.
+- `CORPUS_OBSERVED` — directly observed in historical/current Nu data;
+- `INFERRED` — reconstructed from observations or secondary evidence;
+- `TESTED` — covered by deterministic local regression/scenario tests;
+- `DIFF_VERIFIED` — matched against clean real NuHost transitions.
 
-Unknown mechanics fail closed rather than being silently guessed.
+Unknown mechanics fail closed rather than being silently guessed. Raw game/settings/topology facts and evidence-scoped effective overrides remain separate.
+
+## Current focus
+
+The active milestone is **M5: historical NuHost corpus + compatibility mining**, with movement as the most mature mechanic family.
+
+Current 12-game movement baseline after the classic-ion-storm integration:
+
+```text
+move_most_candidates              227468
+baseline_explained                209574
+baseline_unresolved                17894
+external_context_explained         13444
+post_external_residual              4450
+chunnel_explained                   1387
+post_chunnel_residual               3063
+horwasp_strong_explained             310
+post_horwasp_strong_residual        2753
+```
+
+The next active generic gap is **sphere-aware ordinary movement geometry** in game `591478`. The diagnostic-only effective 2170×2170 topology closes 442 current final residual rows, including 394 non-Horwasp rows and 213/235 hull-46 sphere rows. Raw 2150×2150 closes zero of those rows. Production integration is still pending.
 
 ## M0 — deterministic skeleton
 
-Status: substantially complete.
+Status: **substantially complete**.
 
 - canonical full-information `GameState`;
 - immutable turn-order contracts;
@@ -24,21 +45,27 @@ Status: substantially complete.
 
 ## M1 — minimal sandbox
 
-Status: in progress / largely implemented for the movement subset.
+Status: **largely implemented for the movement subset**.
+
+Implemented or partially implemented:
 
 - Planets.nu JSON -> canonical state adapter;
 - cargo transfer and colonization primitives;
-- ordinary movement, fuel, movement mass and fuel proration;
+- ordinary movement, movement mass, fuel use and fuel proration;
 - warp wells;
 - tow / intercept / HYP movement phases;
 - pre-movement repair and damage-limited speed;
-- resolved ion-storm displacement;
+- ion-storm displacement;
 - minimal planet economy;
-- golden scenarios for implemented mechanics.
+- deterministic golden scenarios.
+
+Movement rules should continue to be promoted from M5 differential evidence rather than guessed directly in the simulator.
 
 ## M2 — economy and planetary host
 
-Status: in progress.
+Status: **in progress / not current priority**.
+
+Target coverage:
 
 - factories and supplies;
 - taxes and happiness;
@@ -46,138 +73,159 @@ Status: in progress.
 - Cyborg assimilation;
 - mining and Trans-Uranium Mutation;
 - riots / civil war / Amorphous / Bovinoid behavior;
-- starbases;
-- ship construction;
-- differential validation for each clean planetary transition class.
+- starbases and ship construction;
+- differential validation for clean planetary transition classes.
 
 ## M3 — warfare
 
-Status: partial.
+Status: **partial**.
 
-- towing;
+Target coverage:
+
+- towing interactions;
 - minefields and web mines;
 - combat;
 - missions;
 - fighters / torpedoes;
 - ground combat;
-- combat aftermath and repair interactions.
+- post-combat repair/aftermath.
 
 ## M4 — race mechanics
 
-Status: partial.
+Status: **partial**.
 
-Race-specific behavior must be implemented through explicit ruleset modules/hooks rather than scattered `if race == ...` conditionals.
+Race-specific behavior belongs in explicit ruleset modules/hooks rather than scattered `if race == ...` conditionals.
 
-Target coverage includes at least Privateer gravitonic / rob behavior, Crystal webs, Cyborg chunnel, Fascist pillage/glory, Bird cloak/super-spy, Rebel RGA and Colonial fighter-sweep behavior.
+Priority families include Privateer gravitonic/rob, Crystal webs, Cyborg chunnel, Fascist pillage/glory, Bird cloak/super-spy, Rebel RGA, Colonial fighter sweep and Horwasp mechanics.
 
 ## M5A — historical NuHost corpus
 
-Status: active.
+Status: **active; acquisition and movement compilation operational**.
 
-Build a large empirical corpus from current and completed Planets.nu games. This stage expands differential validation from a few manually inspected games to thousands of real player-turn transitions.
+### Corpus foundation
 
-### Sources
+Current corpus:
 
-Use three trust tiers:
+- 12 recent unique finished games across four configured account histories;
+- immutable `/game/loadall` archives cached locally and gitignored;
+- deterministic manifests with full `loadinfo.settings`, settings hashes, game/player provenance and corpus tier;
+- prepared cache for normalized historical snapshots;
+- compiled movement Parquet + DuckDB catalog;
+- separate context-label layer for Chunnel/Horwasp evidence.
 
-- **Tier A — CURRENT / GOLDEN**: current games and private observations whose contemporary Host behavior is known;
-- **Tier B — RECENT FINISHED**: recently completed games, used as the primary large validation sample;
-- **Tier C — HISTORICAL**: older completed games, used for rare mechanics and for detecting Host/ruleset changes over time.
+Network policy:
 
-Start with the user's and collaborators' finished-game histories, then expand to selected public finished games when additional race/mechanic coverage is useful.
+- server corpus network access remains proxy-first via `PLANETSNU_PROXY_URL`;
+- production compilation is offline from cached archives/manifests;
+- diagnostic direct HTTP is allowed only through an explicit diagnostic CLI option where implemented, never as a silent fallback in the corpus API.
 
-### Acquisition
+Privacy boundary:
 
-- use `/games/list?username=...` only for active/current-game discovery;
-- discover a player's completed-game history through the dedicated public `/account/history` endpoint, keyed by account id;
-- retain only entries whose nested `game.status == 3` for the historical corpus unless a command explicitly asks otherwise;
-- deduplicate the same finished game when it appears in multiple configured account histories;
-- fetch `/game/loadinfo` for players and the complete game settings object;
-- prefer `/game/loadall` for finished games when it reliably returns the documented ZIP containing all turns of all players;
-- use historical `/game/loadturn` as a fallback when `loadall` is unavailable or incomplete;
-- all Planets.nu network access from the server is proxy-first and must use `PLANETSNU_PROXY_URL`; there is no silent direct-network fallback;
-- cache immutable finished-game downloads locally and never download the same artifact repeatedly without an explicit refresh;
-- raw corpus/cache data is gitignored; only compact manifests, schemas, tests and validation summaries belong in Git.
+- raw private text/account fields remain only in local raw/prepared evidence;
+- compiled datasets export derived mechanical categories, not friendly codes, messages, savekeys, email, etc.
 
-### Manifest / provenance
+### Current schemas
 
-Every game must retain enough provenance to prevent mixing incompatible rulesets:
+```text
+prepared cache:
+  planets-lab.prepared-game-cache.v1
 
-- game id, name and status;
-- creation/end dates and final turn;
-- public/private/custom flags, game/scenario/map type and win condition;
-- full `loadinfo.settings` payload;
-- deterministic settings hash;
-- player slots, account ids, usernames, race ids and join/finish information;
-- acquisition source and timestamp;
-- corpus tier.
+compiled movement:
+  planets-lab.compiled-movement.v2
 
-Differential reports must carry at least game id, turn, player perspective, entity id, settings hash and reason/classification.
+movement storm-context semantics:
+  planets-lab.compiled-movement-storm-context.v1
 
-### Indexing and mechanic mining
+compiled context labels:
+  planets-lab.compiled-movement-context-labels.v3
+```
 
-Normalize downloaded turns into player-perspective streams and consecutive `N -> N+1` transitions. Build classifiers that can retrieve clean samples by mechanic rather than by game, for example:
+Semantic changes must invalidate affected caches even when the physical Parquet column schema does not change.
 
-- ordinary / gravitonic / fuel-limited movement;
-- tow, intercept and HYP;
-- warp-well and ion-storm contacts;
-- normal mines and Crystal web interactions;
-- Privateer, Crystal, Cyborg and other race-specific mechanics;
-- taxes, mining, native growth, assimilation and other planetary transitions;
-- combat and post-combat state changes.
+### Verified movement progress
 
-Ambiguous user-order effects must be classified or excluded rather than counted as simulator mismatches.
+The following are closed or production-integrated:
 
-### Initial acceptance targets
+1. ordinary movement baseline / partial Host major-minor geometry;
+2. gravitonic movement classification;
+3. warp-well capture and corrected warp-well-before-`above_nominal` ordering — `TESTED + DIFF_VERIFIED`;
+4. observed tow-target context;
+5. Chunnel context layer;
+6. Horwasp ballistic strong labels with scoped 2170 topology for game `591478`;
+7. scoped Red Mite fallback reconstruction; Red Mite research is closed unless new evidence appears;
+8. classic ion storms selected by authoritative `settings.nuionstorms` — `DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`.
 
-1. Discover finished games for one or more account histories and write deterministic manifests.
-2. Probe `/game/loadall` on one finished game through `PLANETSNU_PROXY_URL` and validate that the response is a ZIP before treating it as a corpus artifact.
-3. Cache one full finished game and inventory its archive structure.
-4. Normalize at least one game into player-turn streams and count consecutive transitions.
-5. Produce corpus statistics by game, era, ruleset hash, race and candidate mechanic.
-6. Scale discovery to the user's two accounts and two collaborator accounts, then selectively ingest public finished games for missing mechanics.
-7. Preserve known real-game mismatches as permanent regression cases.
+Classic ion-storm integration produced the verified change:
 
-### Current implementation status
+```text
+post_external_residual       6174 -> 4450
+final strong residual        4477 -> 2753
+hull 79 final residual        495 ->   20
+```
 
-- `planets_lab.corpus.api` provides a stdlib, proxy-only public API client with no direct-network fallback;
-- active-game discovery via `/games/list?username=...` is working and verified against the four configured accounts;
-- `/account/history` response shape has been verified against a real account: the response contains `history[]` entries with nested `game` and `player` objects plus game/race/finish metadata;
-- `PlanetsNuPublicApi.account_history()` now validates and exposes those history entries;
-- `planets_lab.corpus.discovery` now filters nested finished games and deduplicates them across multiple account ids, ordered by end date;
-- `planets_lab.corpus.discover_cli` has discovered 12 recent unique finished games across the four configured accounts and written deterministic manifests;
-- `planets_lab.corpus.manifest` produces deterministic settings hashes and compact game manifests;
-- `/game/loadall` has been verified on finished game `680910` (`Flatland Sector`): the response was a valid 10,545,628-byte ZIP with SHA-256 `ee170abc24a8099ef7079e6fd675998d26e952c15dae8fd2ad9eaf7ee831b1d0`;
-- that archive contains a complete 320-member grid: players 1..8 by archive turns 0..39, with no missing cells;
-- `.trn` members are verified as plain UTF-8 JSON objects with direct top-level Planets.nu turn payloads rather than an additional binary or compressed format;
-- turn payloads include account-identity / secret-like fields such as username, email and savekey, so derived corpus normalization does not propagate raw player records or messages;
-- `planets_lab.corpus.normalizer` reduces player records to slot/race identity, retains Host-relevant entity state, imports snapshots into canonical `GameState`, and builds consecutive transitions strictly within each player stream;
-- the first real normalizer run on game `680910` produced 320 snapshots across 8 player streams and 312 archive-consecutive transitions with no missing grid cells; 296/312 transitions were also consecutive according to the embedded turn number;
-- embedded/archive turn alignment for game `680910` was `{0: 312, -1: 8}` (embedded minus archive), indicating one complete player×turn boundary with an offset rather than random per-player corruption;
-- canonical import succeeded for 318/320 snapshots; the two failures are isolated to player 8 at archive turns 23 and 26, where ship records 17 and 45 respectively have no resolvable owner;
-- privacy-safe anomaly diagnostics now report exact turn-alignment anomalies and only mechanical fields/key presence for ownerless ship records, without exposing names, friendly-code values, account data or messages;
-- tests cover proxy enforcement, account-history finished filtering/deduplication, manifest identity minimization, settings hashing, ZIP validation, player/turn member parsing, JSON/gzip payload inspection, identity stripping, canonical import, stream transition construction and privacy-safe anomaly reporting;
-- acceptance targets 1 through 4 are complete at the acquisition/stream-normalization level; before target 5, classify the one embedded-turn offset boundary and the two ownerless observed-ship records so corpus statistics can distinguish valid partial observations from canonical-state failures.
+### Active movement priority — sphere topology
+
+Evidence-scoped game `591478` effective topology is 2170×2170 despite raw metadata 2150×2150. The current sensitivity audit over `movement_post_horwasp_strong_residual` reports:
+
+```text
+sphere final residual rows                 2059
+raw 2150 closures                             0
+effective 2170 closures                     442
+effective 2170 non-Horwasp closures         394
+hull 46 sphere rows                          235
+hull 46 effective closures                  213
+```
+
+This strongly favors a generic ordinary sphere-movement gap over a hull-46-specific mechanic.
+
+Immediate work:
+
+1. integrate the evidence-scoped effective topology into ordinary movement/external-context classification for game `591478`;
+2. reuse existing wrapped sample/planet helpers and the existing movement classifier;
+3. add regressions for 2170-vs-2150 seam cases;
+4. invalidate affected compiled movement semantics without modifying raw topology facts;
+5. rebuild movement + labels and measure the exact residual delta;
+6. re-rank the remaining final residual after integration;
+7. continue with the next high-volume generic mechanic, excluding already-closed Mite research.
+
+### Deprioritized/rejected movement leads
+
+- multi-waypoint queue did not explain the hull-79 cluster in the current corpus;
+- fuel-proration signatures exist but are low-volume relative to current generic gaps;
+- do not generalize game `591478`'s 2170 period to other games without independent evidence.
 
 ## M5B — Nu compatibility matrix
 
-Status: started with movement differential validation.
+Status: **active through movement differential validation**.
 
-- maintain mechanic-level `MATCH`, `MISMATCH`, `SKIPPED_AMBIGUOUS` and `UNSUPPORTED` outcomes;
-- calculate compatibility by mechanic and ruleset/settings hash, not only globally;
-- promote rules to `DIFF_VERIFIED` only from clean, causally attributable samples;
-- detect version/ruleset splits instead of forcing historical games to match modern behavior;
-- keep a compact golden regression subset in Git while the full corpus remains local.
+Required outputs:
 
-Movement ordinary partial geometry is already validated against real NuHost observations; resolved repair/damage cap, warp-well capture and Class-4 ion-storm displacement are retained as regression evidence.
+- mechanic-level `MATCH`, `MISMATCH`, `SKIPPED_AMBIGUOUS`, `UNSUPPORTED` outcomes;
+- compatibility grouped by mechanic and settings/ruleset hash;
+- explicit ruleset/version splits instead of forcing old games into modern behavior;
+- compact permanent regressions for known real-game transitions;
+- promotion to `DIFF_VERIFIED` only from clean causally attributable samples.
+
+Movement is the first compatibility family; economy, mines, combat and race mechanics should follow as their corpus classifiers mature.
 
 ## M6 — training and AI
 
-Status: future.
+Status: **future**.
 
 - scripted baseline agents;
 - player-limited observation environment;
 - historical imitation/value models;
 - parallel self-play;
 - policy/value training;
-- use the historical corpus for offline evaluation and representation/value pretraining without leaking hidden information into player observations.
+- historical-corpus offline evaluation and pretraining without hidden-information leakage.
+
+## Working order
+
+Unless new evidence changes priorities:
+
+1. finish sphere-aware movement integration and rebaseline the corpus;
+2. keep reducing high-volume movement residuals with generic mechanics;
+3. promote the stabilized movement subset into simulator/ruleset behavior;
+4. expand M5 differential mining into economy/mines/combat/race mechanics;
+5. build the broader compatibility matrix;
+6. only then treat M6 AI training as a primary workstream.
