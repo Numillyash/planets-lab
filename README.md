@@ -1,50 +1,75 @@
 # planets-lab
 
-Deterministic Planets.nu simulation and AI research environment.
+Deterministic Planets.nu simulation, reverse-engineering and AI research environment.
 
 ## Goals
 
 - represent game state in one canonical schema;
-- implement a deterministic, testable host simulator;
+- implement a deterministic, testable Host simulator;
 - build rule/specification and differential-validation tooling;
-- import historical Planets.nu game data for datasets;
+- import historical Planets.nu game data into privacy-safe derived datasets;
 - expose player-limited observations for AI agents;
 - support scripted bots, self-play and ML/RL experiments.
 
-## Initial layout
+## Current state
+
+The active workstream is historical NuHost corpus mining and movement compatibility validation across 12 recent finished games.
+
+Current runtime-verified movement accounting:
+
+```text
+move_most_candidates              227468
+post_external_residual              4450
+post_chunnel_residual               3063
+post_horwasp_strong_residual        2753
+```
+
+Recently closed/integrated movement work includes warp-well ordering, scoped Red Mite fallback evidence, Horwasp ballistic topology and classic-vs-cloudy ion-storm handling.
+
+The next active item is evidence-scoped sphere-aware ordinary movement for game `591478`; the current diagnostic shows 442 potential closures under the independently observed 2170×2170 effective wrap period, including 394 non-Horwasp rows.
+
+Read these first:
+
+- [`docs/ROADMAP.md`](docs/ROADMAP.md) — operational roadmap and current priorities;
+- [`docs/handoff/2026-08-21-movement-corpus-current-state.md`](docs/handoff/2026-08-21-movement-corpus-current-state.md) — exact current movement/corpus handoff;
+- [`docs/COMPILED_CORPUS.md`](docs/COMPILED_CORPUS.md) — compiled corpus schemas, cache semantics and current invariants;
+- [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — architecture and evidence boundaries.
+
+GitHub `main` is the source of truth. Do not reconstruct current project state from old chat history when these documents are available.
+
+## Layout
 
 ```text
 src/planets_lab/
   core/         canonical game state and shared domain types
-  sim/          deterministic host engine
-  rules/        ruleset definitions
+  sim/          deterministic Host engine
+  rules/        mechanics/ruleset definitions
   observer/     player observations / fog of war
-  data/         importers and datasets
+  data/         static specs/importers/datasets
+  corpus/       historical acquisition, reconstruction and differential layers
   ai/           agent/environment interfaces
 
-tests/          unit and scenario tests
-docs/           architecture and rule notes
-validation/     differential/golden scenarios
+tests/          unit, regression and scenario tests
+docs/           architecture, roadmap, rule notes and handoffs
+tools/          diagnostics and reproducible audit scripts
+validation/     manifests, golden evidence and local compiled corpus tree
 ```
 
 ## Development setup
 
-Docker is the recommended development/runtime environment on the server. The host Python version is not used.
+Docker is the recommended environment.
 
-Build and run the test suite:
+Run the full test suite:
 
 ```bash
-docker compose build lab
-docker compose run --rm lab
+docker compose run --rm -T lab pytest -q
 ```
 
-Run an interactive shell in the same environment:
+Open a shell:
 
 ```bash
 docker compose run --rm lab bash
 ```
-
-The repository is bind-mounted at `/workspace`, so source and test edits on the host are visible immediately inside development containers.
 
 For local development without Docker, Python 3.11+ is supported:
 
@@ -56,17 +81,4 @@ python -m pip install -e '.[dev]'
 pytest
 ```
 
-## Current bootstrap
-
-The repository now contains:
-
-- canonical full-information `GameState`, `Player`, `Planet`, `Ship`, `Starbase` and resource models;
-- immutable turn-order contracts;
-- a deterministic, seeded `HostEngine.step()` pipeline;
-- order ownership/duplicate validation;
-- baseline tests for deterministic execution and input-state immutability;
-- a Python 3.12 Docker development/test environment.
-
-Actual NuHost mechanics are intentionally not guessed at this stage. They will be introduced as explicit host phases backed by documented/tested scenarios.
-
-See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for boundaries and milestones.
+Raw historical archives, prepared caches and compiled datasets remain local/gitignored. Git contains code, schemas, compact evidence and reproducible summaries rather than private raw game data.
