@@ -2,7 +2,7 @@
 
 `validation/corpus/cache/loadall/game-<id>.zip` remains the immutable evidence/source layer. Compiled data is a deterministic local derivative and must be rebuildable from cached archives plus manifests.
 
-Current movement/corpus state is summarized in [`handoff/2026-08-21-movement-corpus-current-state.md`](handoff/2026-08-21-movement-corpus-current-state.md).
+Current movement/corpus state is summarized in [`handoff/2026-08-23-sphere-movement-runtime-verification.md`](handoff/2026-08-23-sphere-movement-runtime-verification.md).
 
 ## Build
 
@@ -76,13 +76,13 @@ Current physical/row schema:
 planets-lab.compiled-movement.v2
 ```
 
-Current mode-aware storm semantic schema:
+Current post-compile external-context semantic schema:
 
 ```text
-planets-lab.compiled-movement-storm-context.v1
+planets-lab.compiled-movement-storm-context.v2
 ```
 
-The separate storm semantic marker exists because external-context behavior can change without changing Parquet columns. Cache validity must therefore include both physical-row and semantic dependencies.
+The historical symbol name is retained because partition metadata already uses `storm_context_schema`. Version 2 represents the ordered post-compile L1 context stack: authoritative classic/cloudy storm handling followed by evidence-scoped effective sphere geometry on rows that are still unresolved. The separate semantic marker exists because classification behavior can change without changing Parquet columns.
 
 Important L1 data includes:
 
@@ -93,11 +93,13 @@ Important L1 data includes:
 - derived movement intent;
 - observed and target geometry;
 - warp-well availability;
-- gravitonic/tow/storm context;
+- gravitonic/tow/storm/effective-sphere context;
 - baseline category and residual flag;
 - external-context category and residual flag.
 
-Raw topology columns are factual context. Evidence-scoped effective topology must not overwrite them.
+Raw topology columns are factual context. Evidence-scoped effective topology never overwrites them.
+
+For historical game `591478`, the production sphere context requires exact game id, `sphere=true`, stable raw topology and raw dimensions exactly `2150x2150` before using the independently validated effective `2170x2170` toroidal period. This is not a global `mapwidth+20` rule.
 
 Classic/cloudy ion-storm selection is driven offline from manifest `settings.nuionstorms`. The compiler fails closed if that setting is missing or not boolean; it does not perform a network lookup during normal compilation.
 
@@ -171,7 +173,7 @@ Movement partition `_meta.json` records identity/provenance including:
 
 - compiled movement schema;
 - prepared-cache schema;
-- movement semantic dependencies such as storm-context schema;
+- post-compile movement semantic dependencies such as `storm_context_schema`;
 - game ID and settings hash;
 - source archive SHA-256;
 - raw map-topology facts;
@@ -184,7 +186,7 @@ Bump or add a semantic cache marker whenever classification behavior changes eve
 
 ## Current 12-game invariants
 
-Latest runtime-verified movement build after classic ion-storm mode integration:
+Latest runtime-verified movement build after scoped sphere-topology integration:
 
 ```text
 transition_rows              254046
@@ -192,38 +194,96 @@ geometry_ready               247816
 move_most_candidates         227468
 baseline_explained           209574
 baseline_unresolved           17894
-external_context_explained    13444
-post_external_residual         4450
+external_context_explained    13956
+post_external_residual         3938
 ```
 
 Latest runtime-verified context-label accounting:
 
 ```text
-external_residual_rows             4450
+external_residual_rows             3938
 chunnel_explained                  1387
-post_chunnel_residual              3063
-horwasp_ballistic_candidates       1029
+post_chunnel_residual              2551
+horwasp_ballistic_candidates        911
 horwasp_mite_residual               786
-horwasp_strong_explained            310
+horwasp_strong_explained            240
 horwasp_observed_context_explained    0
-post_horwasp_strong_residual       2753
+post_horwasp_strong_residual       2311
 label_issues                          0
 ```
 
-The classic-storm semantic change was verified through normal cache behavior:
+Scoped sphere categories in L1:
 
 ```text
-compiled_cache_hits:    0
-compiled_cache_misses: 12
-prepared_cache_hits:   12
+effective_sphere_partial_host_major_minor                    212
+effective_sphere_gravitonic_reachable_warp_well_match        105
+effective_sphere_gravitonic_reachable_exact                   61
+effective_sphere_gravitonic_partial_host_major_minor          58
+effective_sphere_reachable_warp_well_match                    40
+effective_sphere_reachable_exact                              34
+effective_sphere_partial_host_major_minor_warp_well_match      2
+-----------------------------------------------------------------
+effective_sphere_total                                       512
 ```
 
-The following label build produced five cache hits and seven misses because only changed source movement partitions were invalidated.
+Raw topology facts for game `591478` remain:
 
-## Pending topology rebaseline
+```text
+sphere=true
+map_width=2150
+map_height=2150
+map_shape='1'
+topology_stable=true
+```
 
-The current `2753` final residual is the pre-sphere-integration baseline. Diagnostic evidence for game `591478` shows that using the independently validated effective 2170×2170 wrap period instead of raw 2150×2150 explains 442 of those rows, including 394 non-Horwasp rows and 213/235 hull-46 sphere rows.
+## Verified cache behavior for sphere integration
 
-That result is **diagnostic only** until integrated into L1 ordinary movement/external-context classification, regression-tested and rebuilt. Do not pre-edit the invariant counts to the expected post-integration values; record the measured runtime result after the production change lands.
+The semantic marker bump invalidated all 12 old movement partitions automatically during a normal build without `--rebuild`:
+
+```text
+compiled_cache_hits:             0
+compiled_cache_misses:          12
+prepared_cache_hits_on_compile: 12
+prepared_cache_misses_on_compile: 0
+```
+
+The following label build produced:
+
+```text
+compiled_label_cache_hits:       11
+compiled_label_cache_misses:      1
+prepared_cache_hits_on_compile:   1
+```
+
+This is consistent with only game `591478` producing a changed source movement partition while rebuilt non-sphere partitions remained hash-compatible with their prior deterministic output.
+
+## Sphere differential closure
+
+Pre-production final-residual diagnostic predicted 442 effective-only closures under the scoped `2170x2170` period. Production L1 closes 512 rows:
+
+```text
+post_external_residual    4450 -> 3938  (-512)
+post_chunnel_residual     3063 -> 2551  (-512)
+```
+
+Seventy of those rows were previously already explained by Horwasp strong labels, visible as:
+
+```text
+horwasp_strong_explained   310 -> 240  (-70)
+```
+
+Therefore the final strong residual changes by exactly the independently predicted amount:
+
+```text
+post_horwasp_strong_residual 2753 -> 2311  (-442)
+```
+
+Sphere-aware ordinary movement is therefore **CORPUS_OBSERVED + TESTED + DIFF_VERIFIED** for its exact evidence scope.
+
+## Next residual work
+
+The current final residual is `2311`. Do not restart Red Mite research solely because hull 213 remains the largest count (`786`); that cluster is already closed/fail-closed. Known Horwasp hulls also dominate several high counts.
+
+The next diagnostic should cluster generic multi-game rows across hulls instead of selecting one hull by rank. Current useful non-closed populations include hull 23 (`78` rows / 3 games), 52 (`59` / 4), 56 (`55` / 4), 17 (`51` / 9), 46 (`50` / 4), 94 (`43` / 3), and 29 (`36` / 5).
 
 These counts are evidence/context closure metrics, not global simulator-accuracy percentages.

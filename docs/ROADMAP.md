@@ -1,6 +1,6 @@
 # Roadmap
 
-This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). The latest movement/corpus handoff is [`handoff/2026-08-21-movement-corpus-current-state.md`](handoff/2026-08-21-movement-corpus-current-state.md).
+This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). The latest movement/corpus handoff is [`handoff/2026-08-23-sphere-movement-runtime-verification.md`](handoff/2026-08-23-sphere-movement-runtime-verification.md).
 
 ## Evidence policy
 
@@ -18,23 +18,25 @@ Unknown mechanics fail closed rather than being silently guessed. Raw game/setti
 
 The active milestone is **M5: historical NuHost corpus + compatibility mining**, with movement as the most mature mechanic family.
 
-Current 12-game movement baseline after the classic-ion-storm integration:
+Current 12-game movement baseline after scoped sphere-topology integration:
 
 ```text
 move_most_candidates              227468
 baseline_explained                209574
 baseline_unresolved                17894
-external_context_explained         13444
-post_external_residual              4450
+external_context_explained         13956
+post_external_residual              3938
 chunnel_explained                   1387
-post_chunnel_residual               3063
-horwasp_strong_explained             310
-post_horwasp_strong_residual        2753
+post_chunnel_residual               2551
+horwasp_strong_explained             240
+post_horwasp_strong_residual        2311
 ```
 
-The privacy-safe 12-game manifest is now tracked at `validation/corpus/manifests/accounts-recent-finished.jsonl` under schema `planets-lab.corpus-game.v2`; manifest privacy cleanup is closed.
+The privacy-safe 12-game manifest is tracked at `validation/corpus/manifests/accounts-recent-finished.jsonl` under schema `planets-lab.corpus-game.v2`; manifest privacy cleanup is closed.
 
-The next active generic gap is **sphere-aware ordinary movement geometry** in game `591478`. The diagnostic-only effective 2170×2170 topology closes 442 current final residual rows, including 394 non-Horwasp rows and 213/235 hull-46 sphere rows. Raw 2150×2150 closes zero of those rows. Production integration is still pending.
+The scoped sphere-topology integration for game `591478` is now **TESTED + DIFF_VERIFIED**. Raw topology remains `2150x2150`; effective `2170x2170` closes 512 L1 rows. Seventy of those rows were already strong Horwasp closures in the old L2 stack, so the final residual falls by exactly the pre-production diagnostic prediction of 442 rows: `2753 -> 2311`.
+
+The next active task is **generic post-sphere residual triage**. Prioritize cross-game/cross-hull signatures rather than introducing another hull-specific rule. Current leading non-closed multi-game hull counts include hull 23 (`78` rows / 3 games), 52 (`59` / 4), 56 (`55` / 4), 17 (`51` / 9) and 46 (`50` / 4). Hull 213 remains a closed Red Mite research cluster; Horwasp ballistic hull residuals remain known race-specific work unless a generic signature emerges.
 
 ## M0 — deterministic skeleton
 
@@ -140,8 +142,8 @@ prepared cache:
 compiled movement:
   planets-lab.compiled-movement.v2
 
-movement storm-context semantics:
-  planets-lab.compiled-movement-storm-context.v1
+post-compile external-context semantics:
+  planets-lab.compiled-movement-storm-context.v2
 
 compiled context labels:
   planets-lab.compiled-movement-context-labels.v3
@@ -162,7 +164,8 @@ The following are closed or production-integrated:
 5. Chunnel context layer;
 6. Horwasp ballistic strong labels with scoped 2170 topology for game `591478`;
 7. scoped Red Mite fallback reconstruction; Red Mite research is closed unless new evidence appears;
-8. classic ion storms selected by authoritative `settings.nuionstorms` — `DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`.
+8. classic ion storms selected by authoritative `settings.nuionstorms` — `DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`;
+9. evidence-scoped ordinary sphere movement for game `591478` — `CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`.
 
 Classic ion-storm integration produced the verified change:
 
@@ -172,36 +175,48 @@ final strong residual        4477 -> 2753
 hull 79 final residual        495 ->   20
 ```
 
-### Active movement priority — sphere topology
-
-Evidence-scoped game `591478` effective topology is 2170×2170 despite raw metadata 2150×2150. The current sensitivity audit over `movement_post_horwasp_strong_residual` reports:
+Scoped sphere integration then produced:
 
 ```text
-sphere final residual rows                 2059
-raw 2150 closures                             0
-effective 2170 closures                     442
-effective 2170 non-Horwasp closures         394
-hull 46 sphere rows                          235
-hull 46 effective closures                  213
+post_external_residual       4450 -> 3938  (-512)
+post_chunnel_residual        3063 -> 2551  (-512)
+horwasp_strong_explained      310 ->  240  (-70 overlap)
+final strong residual        2753 -> 2311  (-442)
 ```
 
-This strongly favors a generic ordinary sphere-movement gap over a hull-46-specific mechanic.
+Runtime preserved raw game `591478` topology facts as `(sphere=True, map_width=2150, map_height=2150, map_shape='1', topology_stable=True)`.
+
+### Next movement priority — generic residual triage
+
+Do not choose the next mechanic from hull count alone. Build a diagnostic over `movement_post_horwasp_strong_residual` that groups unexplained rows by cross-game displacement/mission/warp/target relationship and identifies signatures shared by multiple hulls and games.
+
+Initial candidate population after excluding closed Mite and known Horwasp-heavy clusters:
+
+```text
+hull 23   78 rows / 3 games
+hull 52   59 rows / 4 games
+hull 56   55 rows / 4 games
+hull 17   51 rows / 9 games
+hull 46   50 rows / 4 games
+hull 94   43 rows / 3 games
+hull 29   36 rows / 5 games
+```
 
 Immediate work:
 
-1. integrate the evidence-scoped effective topology into ordinary movement/external-context classification for game `591478`;
-2. reuse existing wrapped sample/planet helpers and the existing movement classifier;
-3. add regressions for 2170-vs-2150 seam cases;
-4. invalidate affected compiled movement semantics without modifying raw topology facts;
-5. rebuild movement + labels and measure the exact residual delta;
-6. re-rank the remaining final residual after integration;
-7. continue with the next high-volume generic mechanic, excluding already-closed Mite research.
+1. add a generic post-sphere residual clustering audit rather than a hull-specific probe;
+2. split by warp zero/nonzero, observed-vs-target vector, displacement magnitude and repeated vectors across games;
+3. separately flag known Horwasp hulls `201-213` and closed Mite `213` so they do not dominate generic ranking;
+4. inspect whether one common context explains several of hulls 23/52/56/17/46/94/29;
+5. only promote a production rule when evidence is cross-sample and fail-closed;
+6. keep current runtime invariants synchronized after every material commit.
 
 ### Deprioritized/rejected movement leads
 
 - multi-waypoint queue did not explain the hull-79 cluster in the current corpus;
 - fuel-proration signatures exist but are low-volume relative to current generic gaps;
-- do not generalize game `591478`'s 2170 period to other games without independent evidence.
+- do not generalize game `591478`'s 2170 period to other games without independent evidence;
+- do not reopen Red Mite research without new evidence.
 
 ## M5B — Nu compatibility matrix
 
@@ -232,8 +247,8 @@ Status: **future**.
 
 Unless new evidence changes priorities:
 
-1. finish sphere-aware movement integration and rebaseline the corpus;
-2. keep reducing high-volume movement residuals with generic mechanics;
+1. cluster and explain the next high-volume generic post-sphere movement residual;
+2. keep reducing movement residuals with cross-game mechanics rather than hull-specific overfit;
 3. promote the stabilized movement subset into simulator/ruleset behavior;
 4. expand M5 differential mining into economy/mines/combat/race mechanics;
 5. build the broader compatibility matrix;

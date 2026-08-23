@@ -15,23 +15,25 @@ Deterministic Planets.nu simulation, reverse-engineering and AI research environ
 
 The active workstream is historical NuHost corpus mining and movement compatibility validation across 12 recent finished games.
 
-Current runtime-verified movement accounting:
+Current runtime-verified movement accounting after scoped sphere-topology integration:
 
 ```text
 move_most_candidates              227468
-post_external_residual              4450
-post_chunnel_residual               3063
-post_horwasp_strong_residual        2753
+post_external_residual              3938
+post_chunnel_residual               2551
+post_horwasp_strong_residual        2311
 ```
 
-Recently closed/integrated movement work includes warp-well ordering, scoped Red Mite fallback evidence, Horwasp ballistic topology and classic-vs-cloudy ion-storm handling.
+Recently closed/integrated movement work includes warp-well ordering, scoped Red Mite fallback evidence, Horwasp ballistic topology, classic-vs-cloudy ion-storm handling, and evidence-scoped sphere-aware ordinary movement for game `591478`.
 
-The next active item is evidence-scoped sphere-aware ordinary movement for game `591478`; the current diagnostic shows 442 potential closures under the independently observed 2170×2170 effective wrap period, including 394 non-Horwasp rows.
+The sphere integration preserves raw `2150x2150` topology facts while applying the independently validated effective `2170x2170` period only inside the exact audited game/sphere/stability scope. It closes 512 L1 residual rows; after overlap with previously strong Horwasp explanations, the final residual falls by the diagnostic-predicted 442 rows, from 2753 to 2311.
+
+The next active item is generic post-sphere residual triage across multiple games/hulls rather than another one-off hull rule. Closed Red Mite and already-modeled Horwasp ballistic clusters stay excluded from prioritization unless new evidence appears.
 
 Read these first:
 
 - [`docs/ROADMAP.md`](docs/ROADMAP.md) — operational roadmap and current priorities;
-- [`docs/handoff/2026-08-21-movement-corpus-current-state.md`](docs/handoff/2026-08-21-movement-corpus-current-state.md) — exact current movement/corpus handoff;
+- [`docs/handoff/2026-08-23-sphere-movement-runtime-verification.md`](docs/handoff/2026-08-23-sphere-movement-runtime-verification.md) — latest runtime-verified movement/corpus handoff;
 - [`docs/COMPILED_CORPUS.md`](docs/COMPILED_CORPUS.md) — compiled corpus schemas, cache semantics and current invariants;
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — architecture and evidence boundaries.
 
@@ -81,4 +83,4 @@ python -m pip install -e '.[dev]'
 pytest
 ```
 
-Raw historical archives, prepared caches and compiled datasets remain local/gitignored. Git contains code, schemas, compact evidence and reproducible summaries rather than private raw game data.
+Raw historical archives, prepared caches and compiled datasets remain local/gitignored. Git contains privacy-safe manifests, code, schemas, compact evidence and reproducible summaries rather than private raw game data.
