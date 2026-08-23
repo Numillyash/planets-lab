@@ -13,6 +13,7 @@ This handoff is the source-of-truth snapshot for the current movement/corpus wor
 Current validation manifest:
 
 - 12 recent unique finished games across four configured accounts;
+- manifest schema: `planets-lab.corpus-game.v2`;
 - compiled database: `validation/corpus/compiled/v1/corpus.duckdb`;
 - movement schema: `planets-lab.compiled-movement.v2`;
 - storm-context semantic schema: `planets-lab.compiled-movement-storm-context.v1`;
@@ -52,6 +53,23 @@ label_issues:                0
 ```
 
 Targeted movement tests and the full pytest suite both pass after the classic-storm integration.
+
+## Manifest privacy hardening
+
+The first attempt to promote `validation/corpus/manifests/accounts-recent-finished.jsonl` into Git exposed `game.password` on all 12 rows. The file was **not committed**.
+
+Root cause: manifest v1 copied the complete public `loadinfo.game` object into the durable manifest. Even if the current password values are empty, wholesale copying is an unsafe persistence contract because future API fields could silently enter Git.
+
+Production fix:
+
+- manifest schema bumped from `planets-lab.corpus-game.v1` to `planets-lab.corpus-game.v2`;
+- `game` metadata is now explicit-allowlist only;
+- `player_slots` remains explicit-allowlist only;
+- full `settings` remains preserved because exact Host settings and `settings_hash` are part of the ruleset/provenance contract;
+- `sanitize_manifest_record()` migrates an existing v1/v2 record offline into the current privacy-safe schema and recomputes its settings hash;
+- regression coverage lives in `tests/test_manifest_privacy.py`.
+
+The local 12-game v1 manifest must be migrated before it is added to Git. Normal corpus loaders intentionally reject v1 after this schema bump instead of silently accepting the unsafe format.
 
 ## Closed / verified movement mechanics
 
@@ -155,12 +173,13 @@ Interpretation: this is strong evidence for a **generic sphere-aware ordinary mo
 
 ## Immediate priorities
 
-1. Integrate evidence-scoped effective sphere topology into ordinary movement/external-context classification for game `591478`, reusing `sphere_adjusted_sample()` and wrapped-planet geometry rather than adding a parallel classifier.
-2. Add regressions proving that the same seam-crossing samples are explained under 2170 and remain unexplained under raw 2150.
-3. Invalidate the relevant compiled movement semantic cache without changing raw topology columns.
-4. Rebuild movement and context labels without `--rebuild` and verify the expected residual delta. A first-order expectation is up to 442 additional final closures, including 394 non-Horwasp rows, but the exact production delta must be measured rather than assumed.
-5. Re-rank `movement_post_horwasp_strong_residual` after sphere integration. Ignore hull 213 as a closed Mite research cluster and do not re-prioritize hull 79 unless new evidence appears.
-6. Continue generic/high-volume movement mechanics before small one-off hull signatures.
+1. Migrate and validate the local 12-game manifest to privacy-safe schema v2, then track the compact manifest in Git; do not commit the old v1 file containing `game.password`.
+2. Integrate evidence-scoped effective sphere topology into ordinary movement/external-context classification for game `591478`, reusing `sphere_adjusted_sample()` and wrapped-planet geometry rather than adding a parallel classifier.
+3. Add regressions proving that the same seam-crossing samples are explained under 2170 and remain unexplained under raw 2150.
+4. Invalidate the relevant compiled movement semantic cache without changing raw topology columns.
+5. Rebuild movement and context labels without `--rebuild` and verify the expected residual delta. A first-order expectation is up to 442 additional final closures, including 394 non-Horwasp rows, but the exact production delta must be measured rather than assumed.
+6. Re-rank `movement_post_horwasp_strong_residual` after sphere integration. Ignore hull 213 as a closed Mite research cluster and do not re-prioritize hull 79 unless new evidence appears.
+7. Continue generic/high-volume movement mechanics before small one-off hull signatures.
 
 ## Working rules
 
@@ -169,4 +188,4 @@ Interpretation: this is strong evidence for a **generic sphere-aware ordinary mo
 - Do not infer global settings from one historical game.
 - Promote mechanics only with explicit evidence labels.
 - Prefer generic fixes that close many hulls/games over per-hull overfitting.
-- Raw corpus/cache artifacts remain local and gitignored; only code, compact evidence, schemas and summaries belong in Git.
+- Raw corpus/cache artifacts remain local and gitignored; only privacy-safe compact manifests, code, compact evidence, schemas and summaries belong in Git.
