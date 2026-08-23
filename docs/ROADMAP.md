@@ -32,6 +32,8 @@ horwasp_strong_explained             310
 post_horwasp_strong_residual        2753
 ```
 
+The privacy-safe 12-game manifest is now tracked at `validation/corpus/manifests/accounts-recent-finished.jsonl` under schema `planets-lab.corpus-game.v2`; manifest privacy cleanup is closed.
+
 The next active generic gap is **sphere-aware ordinary movement geometry** in game `591478`. The diagnostic-only effective 2170×2170 topology closes 442 current final residual rows, including 394 non-Horwasp rows and 213/235 hull-46 sphere rows. Raw 2150×2150 closes zero of those rows. Production integration is still pending.
 
 ## M0 — deterministic skeleton
@@ -107,8 +109,9 @@ Status: **active; acquisition and movement compilation operational**.
 Current corpus:
 
 - 12 recent unique finished games across four configured account histories;
+- privacy-safe v2 manifest tracked in Git at `validation/corpus/manifests/accounts-recent-finished.jsonl`;
 - immutable `/game/loadall` archives cached locally and gitignored;
-- deterministic privacy-safe manifests with full `loadinfo.settings`, settings hashes, allowlisted game metadata, minimized player-slot provenance and corpus tier;
+- deterministic manifests with full `loadinfo.settings`, settings hashes, allowlisted game metadata, minimized player-slot provenance and corpus tier;
 - prepared cache for normalized historical snapshots;
 - compiled movement Parquet + DuckDB catalog;
 - separate context-label layer for Chunnel/Horwasp evidence.
@@ -144,7 +147,7 @@ compiled context labels:
   planets-lab.compiled-movement-context-labels.v3
 ```
 
-Manifest v2 replaces the old v1 behavior that copied `loadinfo.game` wholesale. Existing v1 manifests must be migrated/regenerated before normal corpus loaders accept them. `sanitize_manifest_record()` provides an offline migration path that preserves settings and settings hashes while reapplying the privacy allowlists.
+Manifest v2 replaces the old v1 behavior that copied `loadinfo.game` wholesale. Existing v1 manifests must be migrated/regenerated before normal corpus loaders accept them. `sanitize_manifest_record()` provides an offline migration path that preserves settings and settings hashes while reapplying the privacy allowlists. The current 12-game v2 manifest passed targeted privacy/corpus tests and a recursive forbidden-field check before being committed.
 
 Semantic changes must invalidate affected caches even when the physical Parquet column schema does not change.
 
