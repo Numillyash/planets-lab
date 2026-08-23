@@ -4,7 +4,7 @@ Date: 2026-08-23
 
 Repository: `Numillyash/planets-lab`
 
-Status: **sphere-aware ordinary movement is runtime verified; next task is generic post-sphere residual triage.**
+Status: **sphere-aware ordinary movement is runtime verified; generic post-sphere residual clustering audit is implemented and awaiting runtime output.**
 
 This is the current movement/corpus handoff. It supersedes the sphere-integration status in `2026-08-21-movement-corpus-current-state.md`.
 
@@ -229,20 +229,42 @@ hull 31     22 / 6 games
 
 Do not interpret hull ranking as mechanic identity. The next investigation must look for shared cross-hull/cross-game signatures.
 
+## Generic clustering audit implemented
+
+New diagnostic:
+
+```text
+tools/diagnostics/post_sphere_generic_residual_clustering_audit.py
+```
+
+Design:
+
+- DB-only: reads the compiled DuckDB and does not inspect private raw/prepared state;
+- default generic population excludes hull IDs `201-213` so known Horwasp/Mite residuals cannot dominate ranking;
+- reports generic hull/game counts, baseline categories, warp buckets, distance buckets and observed/nominal ratios;
+- classifies observed position relative to origin/waypoint and observed-vector direction relative to target;
+- reports exact displacement vectors shared by at least two hulls and two games;
+- reports canonical displacement shapes after collapsing sign, mirror and axis-swap variants;
+- reports detailed/coarse mechanic signatures shared by multiple hulls/games;
+- prints per-hull signature breakdowns for the leading multi-game candidate hulls.
+
+The audit intentionally does not promote any rule. Its output is only the first-pass evidence used to choose a focused second-pass context reconstruction.
+
 ## Immediate priorities
 
-1. Add a generic post-sphere residual clustering diagnostic over `movement_post_horwasp_strong_residual`.
-2. Explicitly exclude/flag closed Red Mite hull 213 and known Horwasp hulls `201-213` from the generic ranking view.
-3. Group remaining rows by:
-   - game count and hull count;
-   - warp zero vs nonzero;
-   - observed displacement vector and repeated vectors;
-   - observed distance vs nominal movement distance;
-   - target distance / target-is-origin / target-direction relationship;
-   - repeated signatures shared by different hull IDs.
-4. Start from the multi-game populations around hulls `23, 52, 56, 17, 46, 94, 29`, but promote only a generic mechanic if the signature actually crosses hulls/games.
-5. Keep one-off race/hull explanations below generic high-volume mechanics unless evidence forces otherwise.
-6. After the next material commit, update current state/roadmap in the same development cycle.
+1. Pull current `main` and run:
+
+   ```bash
+   docker compose run --rm -T lab \
+     python -u tools/diagnostics/post_sphere_generic_residual_clustering_audit.py \
+     | tee /tmp/post_sphere_generic_residual_clustering_audit.log
+   ```
+
+2. Preserve the complete output and identify clusters with multiple hulls and multiple games.
+3. Only then build a focused second-pass diagnostic for the strongest shared signature, using raw/prepared context if needed.
+4. Keep closed Red Mite and known Horwasp hulls out of generic prioritization unless the generic audit produces independent cross-hull evidence involving them.
+5. Promote a production mechanic only if the evidence is cross-sample, causal enough to test, and fail-closed.
+6. After the next material result, rebaseline current state/roadmap in the same development cycle.
 
 ## Implementation commits for sphere integration
 
@@ -252,6 +274,7 @@ ab6c5ac  Cover scoped sphere movement context
 237f7f3  Wire sphere context from compiled row facts
 0ea9abc  Apply scoped sphere context after storm resolution
 6d8b390  Record sphere integration pending runtime verification
+792cdcd  Rebaseline movement corpus after sphere verification
 ```
 
 ## Working rules

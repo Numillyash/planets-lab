@@ -36,7 +36,7 @@ The privacy-safe 12-game manifest is tracked at `validation/corpus/manifests/acc
 
 The scoped sphere-topology integration for game `591478` is now **TESTED + DIFF_VERIFIED**. Raw topology remains `2150x2150`; effective `2170x2170` closes 512 L1 rows. Seventy of those rows were already strong Horwasp closures in the old L2 stack, so the final residual falls by exactly the pre-production diagnostic prediction of 442 rows: `2753 -> 2311`.
 
-The next active task is **generic post-sphere residual triage**. Prioritize cross-game/cross-hull signatures rather than introducing another hull-specific rule. Current leading non-closed multi-game hull counts include hull 23 (`78` rows / 3 games), 52 (`59` / 4), 56 (`55` / 4), 17 (`51` / 9) and 46 (`50` / 4). Hull 213 remains a closed Red Mite research cluster; Horwasp ballistic hull residuals remain known race-specific work unless a generic signature emerges.
+The next active task is **generic post-sphere residual triage**. A DB-only diagnostic is now implemented at `tools/diagnostics/post_sphere_generic_residual_clustering_audit.py`; its runtime output is the next required evidence. It prioritizes cross-game/cross-hull signatures rather than another hull-specific rule and excludes known Horwasp hull IDs `201-213` from the generic population by default.
 
 ## M0 — deterministic skeleton
 
@@ -188,7 +188,21 @@ Runtime preserved raw game `591478` topology facts as `(sphere=True, map_width=2
 
 ### Next movement priority — generic residual triage
 
-Do not choose the next mechanic from hull count alone. Build a diagnostic over `movement_post_horwasp_strong_residual` that groups unexplained rows by cross-game displacement/mission/warp/target relationship and identifies signatures shared by multiple hulls and games.
+Do not choose the next mechanic from hull count alone. The implemented diagnostic:
+
+```text
+tools/diagnostics/post_sphere_generic_residual_clustering_audit.py
+```
+
+reads only the compiled DuckDB and groups `movement_post_horwasp_strong_residual` by generic cross-game signatures. It reports:
+
+- generic hull/game counts after excluding hull IDs `201-213` by default;
+- baseline, warp, distance and observed/nominal-ratio distributions;
+- waypoint/target relationship and observed-vector direction relative to target;
+- exact displacement vectors shared across hulls/games;
+- sign/axis-normalized canonical displacement shapes;
+- detailed and coarse mechanic signatures shared by multiple hulls/games;
+- signature breakdowns for the leading multi-game hull populations.
 
 Initial candidate population after excluding closed Mite and known Horwasp-heavy clusters:
 
@@ -204,10 +218,10 @@ hull 29   36 rows / 5 games
 
 Immediate work:
 
-1. add a generic post-sphere residual clustering audit rather than a hull-specific probe;
-2. split by warp zero/nonzero, observed-vs-target vector, displacement magnitude and repeated vectors across games;
-3. separately flag known Horwasp hulls `201-213` and closed Mite `213` so they do not dominate generic ranking;
-4. inspect whether one common context explains several of hulls 23/52/56/17/46/94/29;
+1. run `post_sphere_generic_residual_clustering_audit.py` on the current `2311`-row final residual and preserve the complete output;
+2. identify clusters with multiple hulls and multiple games before inspecting raw/private context;
+3. only then add a focused second-pass diagnostic for the strongest shared signature;
+4. separately flag known Horwasp hulls `201-213` and closed Mite `213` so they do not dominate generic ranking;
 5. only promote a production rule when evidence is cross-sample and fail-closed;
 6. keep current runtime invariants synchronized after every material commit.
 
@@ -247,7 +261,7 @@ Status: **future**.
 
 Unless new evidence changes priorities:
 
-1. cluster and explain the next high-volume generic post-sphere movement residual;
+1. run the generic post-sphere clustering audit and choose the strongest cross-game/cross-hull signature;
 2. keep reducing movement residuals with cross-game mechanics rather than hull-specific overfit;
 3. promote the stabilized movement subset into simulator/ruleset behavior;
 4. expand M5 differential mining into economy/mines/combat/race mechanics;
