@@ -14,10 +14,15 @@ from .movement_residual_context import (
     _storm_consensus_by_turn,
     _storm_expected_category,
 )
+from .movement_sphere_context import apply_effective_sphere_context_rows
 from .prepared_cache import PreparedGameCache
 
 
-MOVEMENT_STORM_CONTEXT_SCHEMA = "planets-lab.compiled-movement-storm-context.v1"
+# Retain the historical symbol name because compiled cache metadata already uses
+# it. v2 covers the ordered post-compile L1 external-context pass implemented in
+# this module: authoritative storm mode first, then scoped effective sphere
+# geometry only for rows that remain unresolved.
+MOVEMENT_STORM_CONTEXT_SCHEMA = "planets-lab.compiled-movement-storm-context.v2"
 
 
 def _classic_constant_storm_offset(
@@ -143,12 +148,13 @@ def apply_mode_aware_storm_context_rows(
     prepared: PreparedGameCache,
     nuionstorms: bool | None,
 ) -> list[dict[str, Any]]:
-    """Reclassify only unresolved compiled rows with authoritative storm mode.
+    """Apply ordered L1 post-compile external context without stealing labels.
 
     The existing compiled movement pass remains authoritative for baseline,
     observed tow, gravitonic movement, and already-explained storm rows. This
-    function revisits only post-external residual rows, replacing the old
-    implicit-cloudy storm assumption with the manifest's ``nuionstorms`` value.
+    function first revisits only post-external residual rows with authoritative
+    ion-storm mode, then applies evidence-scoped effective sphere geometry to
+    whatever remains unresolved. Existing explanatory categories are preserved.
     """
 
     records = prepared.snapshots
@@ -193,4 +199,6 @@ def apply_mode_aware_storm_context_rows(
             row["post_external_residual"] = False
         result.append(row)
 
-    return result
+    if nuionstorms is None:
+        return result
+    return apply_effective_sphere_context_rows(result, prepared=prepared)
