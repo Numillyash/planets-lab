@@ -91,6 +91,55 @@ def _row_sample(row: Mapping[str, Any]) -> MovementSample | None:
     )
 
 
+def _compiled_topology_context(
+    rows: Sequence[Mapping[str, Any]],
+) -> tuple[int, MapTopologyEvidence] | None:
+    if not rows:
+        return None
+
+    first = rows[0]
+    game_id = first.get("game_id")
+    if isinstance(game_id, bool) or not isinstance(game_id, int):
+        return None
+
+    facts = (
+        first.get("sphere"),
+        first.get("map_width"),
+        first.get("map_height"),
+        first.get("map_shape"),
+        first.get("topology_stable"),
+    )
+    for row in rows[1:]:
+        if row.get("game_id") != game_id:
+            raise ValueError(
+                f"compiled movement rows mix game ids: expected {game_id}, "
+                f"got {row.get('game_id')!r}"
+            )
+        row_facts = (
+            row.get("sphere"),
+            row.get("map_width"),
+            row.get("map_height"),
+            row.get("map_shape"),
+            row.get("topology_stable"),
+        )
+        if row_facts != facts:
+            raise ValueError(f"compiled movement topology facts are inconsistent for game {game_id}")
+
+    sphere, width, height, shape, stable = facts
+    topology = MapTopologyEvidence(
+        sphere=sphere if isinstance(sphere, bool) else None,
+        mapwidth=int(width) if isinstance(width, int) and not isinstance(width, bool) else None,
+        mapheight=int(height) if isinstance(height, int) and not isinstance(height, bool) else None,
+        mapshape=shape if isinstance(shape, (int, str)) and not isinstance(shape, bool) else None,
+        first_member="compiled-row-facts",
+        last_member="compiled-row-facts",
+        stable=stable is True,
+        first_candidates={},
+        last_candidates={},
+    )
+    return game_id, topology
+
+
 def effective_sphere_category(
     sample: MovementSample,
     *,
@@ -129,15 +178,23 @@ def apply_effective_sphere_context_rows(
     rows: Sequence[Mapping[str, Any]],
     *,
     prepared: PreparedGameCache,
-    game_id: int,
-    topology: MapTopologyEvidence,
+    game_id: int | None = None,
+    topology: MapTopologyEvidence | None = None,
 ) -> list[dict[str, Any]]:
     """Close only rows still unresolved after existing L1 external contexts.
 
     Baseline, tow, gravitonic and ion-storm classifications remain authoritative.
     This pass is monotonic and revisits only ``post_external_residual`` rows, so
-    existing explanatory categories are never stolen or renamed.
+    existing explanatory categories are never stolen or renamed. When explicit
+    topology is omitted, the pass reconstructs only the already-exported raw
+    topology facts from this single-game compiled row set.
     """
+
+    if game_id is None or topology is None:
+        context = _compiled_topology_context(rows)
+        if context is None:
+            return [dict(row) for row in rows]
+        game_id, topology = context
 
     effective = effective_sphere_topology(game_id=game_id, topology=topology)
     if effective is topology:
