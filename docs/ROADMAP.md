@@ -108,7 +108,7 @@ Current corpus:
 
 - 12 recent unique finished games across four configured account histories;
 - immutable `/game/loadall` archives cached locally and gitignored;
-- deterministic manifests with full `loadinfo.settings`, settings hashes, game/player provenance and corpus tier;
+- deterministic privacy-safe manifests with full `loadinfo.settings`, settings hashes, allowlisted game metadata, minimized player-slot provenance and corpus tier;
 - prepared cache for normalized historical snapshots;
 - compiled movement Parquet + DuckDB catalog;
 - separate context-label layer for Chunnel/Horwasp evidence.
@@ -122,11 +122,15 @@ Network policy:
 Privacy boundary:
 
 - raw private text/account fields remain only in local raw/prepared evidence;
+- manifest game metadata is explicit-allowlist only; the full `loadinfo.game` object is never persisted wholesale;
 - compiled datasets export derived mechanical categories, not friendly codes, messages, savekeys, email, etc.
 
 ### Current schemas
 
 ```text
+corpus manifest:
+  planets-lab.corpus-game.v2
+
 prepared cache:
   planets-lab.prepared-game-cache.v1
 
@@ -139,6 +143,8 @@ movement storm-context semantics:
 compiled context labels:
   planets-lab.compiled-movement-context-labels.v3
 ```
+
+Manifest v2 replaces the old v1 behavior that copied `loadinfo.game` wholesale. Existing v1 manifests must be migrated/regenerated before normal corpus loaders accept them. `sanitize_manifest_record()` provides an offline migration path that preserves settings and settings hashes while reapplying the privacy allowlists.
 
 Semantic changes must invalidate affected caches even when the physical Parquet column schema does not change.
 
