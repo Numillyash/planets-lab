@@ -39,7 +39,7 @@ from .readiness import READY
 from .reconstruction import PerspectiveRecord, group_perspective_records
 
 
-COMPILED_MOVEMENT_SCHEMA = "planets-lab.compiled-movement.v2"
+COMPILED_MOVEMENT_SCHEMA = "planets-lab.compiled-movement.v3"
 
 # Keep this schema deliberately flat and SQL/ML friendly. Private text orders
 # such as friendly codes are never exported; only derived intent classes are.
@@ -188,9 +188,9 @@ def compile_movement_rows(
     filters reproduce the existing fail-closed validation accounting.
 
     Topology is preserved as factual context but deliberately does not alter the
-    baseline labels in v2. Sphere-aware explanatory labels remain a separate
-    validation/mechanics layer so this table continues to reproduce the current
-    baseline and external-context stack exactly.
+    baseline labels in this compiled layer. Sphere-aware explanatory labels remain
+    a separate validation/mechanics layer so this table continues to reproduce the
+    current baseline and external-context stack exactly.
     """
 
     records = prepared.snapshots
