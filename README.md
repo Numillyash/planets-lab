@@ -30,12 +30,14 @@ Recently closed/integrated movement work includes warp-well ordering, scoped Red
 
 Mine/web context v5 is **CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**. An independent rounding differential predicted exactly 37 strict field-backed rows (`18` web + `19` normal); the normal v5 build closed exactly those 37 rows and changed the final residual `2277 -> 2240` while all Chunnel/Horwasp accounting remained unchanged. Historical NuHost evidence strongly selects positive nearest-integer mine damage rather than the documentation's literal round-up wording; this is tracked as an explicit compatibility distinction.
 
-The v5 build also verified cache semantics: `0/12` compiled-label cache hits and `12/12` prepared-cache hits. A stale Chunnel regression still hard-coded shared label schema v4; that test-only assertion has been fixed on `main` and now needs one final targeted/full pytest rerun. The compiled corpus does not need rebuilding for that rerun.
+The v5 build verified cache semantics (`0/12` compiled-label hits, `12/12` prepared-cache hits). After correcting a stale Chunnel shared-schema sentinel, both the targeted v5 regression set and the full pytest suite are green on a clean tree.
+
+The active task is now a post-v5 generic residual rebaseline. `tools/diagnostics/post_sphere_generic_residual_clustering_audit.py` defaults to the current final `movement_post_mine_strong_residual` view; the old pre-mine Horwasp endpoint remains an explicit option for historical reproduction.
 
 Read these first:
 
 - [`docs/ROADMAP.md`](docs/ROADMAP.md) — operational roadmap and current priorities;
-- [`docs/handoff/2026-08-24-mine-context-v5-diff-verified.md`](docs/handoff/2026-08-24-mine-context-v5-diff-verified.md) — latest movement/corpus handoff;
+- [`docs/handoff/2026-08-24-post-v5-generic-rebaseline-pending.md`](docs/handoff/2026-08-24-post-v5-generic-rebaseline-pending.md) — latest movement/corpus handoff;
 - [`docs/COMPILED_CORPUS.md`](docs/COMPILED_CORPUS.md) — compiled corpus schemas, cache semantics and current invariants;
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — architecture and evidence boundaries.
 
