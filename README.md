@@ -15,31 +15,27 @@ Deterministic Planets.nu simulation, reverse-engineering and AI research environ
 
 The active workstream is historical NuHost corpus mining and movement compatibility validation across 12 recent finished games.
 
-Current runtime-verified pre-mine movement accounting remains:
+Current runtime-verified movement accounting:
 
 ```text
 move_most_candidates              227468
 post_external_residual              3938
 post_chunnel_residual               2517
 post_horwasp_strong_residual        2277
+mine_strong_explained                 37
+post_mine_strong_residual           2240
 ```
 
-Recently closed/integrated movement work includes warp-well ordering, scoped Red Mite fallback evidence, Horwasp ballistic topology, classic-vs-cloudy ion-storm handling, evidence-scoped sphere-aware ordinary movement for game `591478`, and route-equivalent Chunnel multi-event handling.
+Recently closed/integrated movement work includes warp-well ordering, scoped Red Mite fallback evidence, Horwasp ballistic topology, classic-vs-cloudy ion-storm handling, evidence-scoped sphere-aware ordinary movement for game `591478`, route-equivalent Chunnel multi-event handling, and strict mine/web interruption context.
 
-The current focused result is mine/web-mine interruption. Historical NuHost residuals strongly support positive nearest-integer mine damage rather than the documentation's literal round-up wording: the field-backed web subset matches nearest on 18/18 rows versus ceil on 3/18, while the strict normal-mine subset matches nearest damage multiples on 19/25 rows and has no comparable no-after-field controls. A fail-closed L2 mine classifier is implemented in `src/planets_lab/corpus/movement_mine_context.py` and compiled label schema v5, but the v5 corpus build is still pending runtime verification.
+Mine/web context v5 is **CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**. An independent rounding differential predicted exactly 37 strict field-backed rows (`18` web + `19` normal); the normal v5 build closed exactly those 37 rows and changed the final residual `2277 -> 2240` while all Chunnel/Horwasp accounting remained unchanged. Historical NuHost evidence strongly selects positive nearest-integer mine damage rather than the documentation's literal round-up wording; this is tracked as an explicit compatibility distinction.
 
-Expected strict v5 differential, to be verified rather than assumed:
-
-```text
-post_horwasp_strong_residual  2277  unchanged
-mine_strong_explained           37  expected
-post_mine_strong_residual     2240  expected
-```
+The v5 build also verified cache semantics: `0/12` compiled-label cache hits and `12/12` prepared-cache hits. A stale Chunnel regression still hard-coded shared label schema v4; that test-only assertion has been fixed on `main` and now needs one final targeted/full pytest rerun. The compiled corpus does not need rebuilding for that rerun.
 
 Read these first:
 
 - [`docs/ROADMAP.md`](docs/ROADMAP.md) — operational roadmap and current priorities;
-- [`docs/handoff/2026-08-24-mine-context-v5-pending.md`](docs/handoff/2026-08-24-mine-context-v5-pending.md) — latest movement/corpus handoff;
+- [`docs/handoff/2026-08-24-mine-context-v5-diff-verified.md`](docs/handoff/2026-08-24-mine-context-v5-diff-verified.md) — latest movement/corpus handoff;
 - [`docs/COMPILED_CORPUS.md`](docs/COMPILED_CORPUS.md) — compiled corpus schemas, cache semantics and current invariants;
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — architecture and evidence boundaries.
 
