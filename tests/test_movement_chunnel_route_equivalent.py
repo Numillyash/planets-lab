@@ -21,7 +21,10 @@ def _event(*, initiator: int, owner: int = 1) -> ObservedChunnelEvent:
 
 
 def test_route_equivalent_semantics_bump_cache_schemas() -> None:
-    assert COMPILED_MOVEMENT_CONTEXT_LABEL_SCHEMA == "planets-lab.compiled-movement-context-labels.v4"
+    # The compiled context-label schema can advance when later L2 mechanics are
+    # added. Chunnel's standalone cache schema remains v2 because its own
+    # route-equivalent semantics have not changed since that bump.
+    assert COMPILED_MOVEMENT_CONTEXT_LABEL_SCHEMA == "planets-lab.compiled-movement-context-labels.v5"
     assert MOVEMENT_CHUNNEL_CONTEXT_GAME_SCHEMA == "planets-lab.movement-chunnel-context-game.v2"
 
 
