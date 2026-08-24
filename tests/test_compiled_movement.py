@@ -76,6 +76,52 @@ def _archive(*, hull_id: int = 3, target_x: int = 125, final_x: int = 125) -> by
     return buffer.getvalue()
 
 
+def _tow_archive() -> bytes:
+    def ship(
+        *,
+        turn: int,
+        ship_id: int,
+        x: int,
+        warp: int,
+        target_x: int,
+        mission: int = 0,
+        mission1target: int = 0,
+    ) -> dict:
+        return {
+            "id": ship_id,
+            "ownerid": 1,
+            "hullid": 3,
+            "x": x,
+            "y": 100,
+            "warp": warp,
+            "targetx": target_x,
+            "targety": 100,
+            "mission": mission,
+            "mission1target": mission1target,
+            "friendlycode": "private-test-code",
+            "infoturn": turn,
+        }
+
+    before = _turn_payload(10, 100)
+    before["ships"] = [
+        ship(turn=10, ship_id=10, x=100, warp=5, target_x=125, mission=6, mission1target=20),
+        ship(turn=10, ship_id=11, x=100, warp=5, target_x=125, mission=6, mission1target=20),
+        ship(turn=10, ship_id=20, x=100, warp=0, target_x=100),
+    ]
+    after = _turn_payload(11, 125)
+    after["ships"] = [
+        ship(turn=11, ship_id=10, x=125, warp=5, target_x=125, mission=6, mission1target=20),
+        ship(turn=11, ship_id=11, x=125, warp=5, target_x=125, mission=6, mission1target=20),
+        ship(turn=11, ship_id=20, x=125, warp=0, target_x=100),
+    ]
+
+    buffer = io.BytesIO()
+    with zipfile.ZipFile(buffer, "w") as archive:
+        archive.writestr("player1-turn10.trn", json.dumps(before))
+        archive.writestr("player1-turn11.trn", json.dumps(after))
+    return buffer.getvalue()
+
+
 def _compiled_rows(data: bytes, *, hull_id: int | None = None):
     prepared = build_prepared_game_cache(data, game_id=7)
     topology = extract_map_topology(data)
@@ -129,6 +175,19 @@ def test_compiled_gravitonic_transition_moves_from_baseline_to_external_context(
     assert row["external_context_category"] == "gravitonic_reachable_exact"
     assert row["external_context_explained"] is True
     assert row["post_external_residual"] is False
+
+
+def test_compiled_route_equivalent_multiple_towers_explain_target_move() -> None:
+    _, rows = _compiled_rows(_tow_archive())
+    target = next(row for row in rows if row["ship_id"] == 20)
+
+    assert target["intent_class"] == "move_most_candidate"
+    assert target["baseline_category"] == "warp_zero_external_move"
+    assert target["post_baseline_residual"] is True
+    assert target["observed_tow_target_match"] is True
+    assert target["external_context_category"] == "observed_tow_target_match"
+    assert target["external_context_explained"] is True
+    assert target["post_external_residual"] is False
 
 
 def test_parquet_and_duckdb_catalog_reproduce_compiled_accounting(tmp_path) -> None:
