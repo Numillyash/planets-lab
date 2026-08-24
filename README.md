@@ -28,12 +28,14 @@ Recently closed/integrated movement work includes warp-well ordering, scoped Red
 
 The Chunnel v4 semantic fix is **TESTED + DIFF_VERIFIED**. A pre-fix DB audit found exactly 34 route-equivalent multi-event false residuals; the normal v4 L2 build closed exactly those 34 rows and changed the final residual `2311 -> 2277` while Horwasp strong accounting stayed unchanged.
 
-Post-v4 generic re-triage is now complete. The non-Horwasp generic population is `820` rows across all 12 games and 81 hulls; the Warp-0 external-move family is `97` rows after removal of the exact 22 Chunnel overlaps. The largest generic lead is short movement along the intended waypoint line. Intercept is already excluded by the corpus intent classifier, and prior fuel analysis explains only seven strict examples, so the active focused diagnostic is mine/web-mine interruption at `tools/diagnostics/mine_hit_residual_audit.py`.
+Post-v4 generic re-triage isolated short-forward movement as the strongest generic family. Two mine/web diagnostics now provide substantial **CORPUS_OBSERVED** evidence: 18/19 web stop-state signatures are backed by an after-turn enemy web field, and 25 normal-mine candidates combine low-tech ~10-ly slowdown, damage increase and an after-turn enemy normal-mine corridor crossing.
+
+The current focused task is a NuHost damage-rounding compatibility differential. Planets.nu documentation says mine-impact damage is rounded up, but historical field-backed examples systematically look like nearest-integer rounding for many hull masses. `tools/diagnostics/mine_hit_damage_rounding_audit.py` compares `ceil`, `floor` and positive nearest rounding with repair and no-field controls before any production mine/web label is promoted.
 
 Read these first:
 
 - [`docs/ROADMAP.md`](docs/ROADMAP.md) — operational roadmap and current priorities;
-- [`docs/handoff/2026-08-24-mine-hit-residual-followup.md`](docs/handoff/2026-08-24-mine-hit-residual-followup.md) — latest movement/corpus handoff;
+- [`docs/handoff/2026-08-24-mine-damage-rounding-followup.md`](docs/handoff/2026-08-24-mine-damage-rounding-followup.md) — latest movement/corpus handoff;
 - [`docs/COMPILED_CORPUS.md`](docs/COMPILED_CORPUS.md) — compiled corpus schemas, cache semantics and current invariants;
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — architecture and evidence boundaries.
 
