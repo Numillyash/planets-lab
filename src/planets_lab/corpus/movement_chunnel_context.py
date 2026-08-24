@@ -9,6 +9,7 @@ from typing import Any
 from planets_lab.validation.movement_geometry import MovementSample
 
 from .archive import read_archive_members, turn_members
+from .movement_chunnel_match import route_equivalent_chunnel_category
 from .movement_context import MOVE_MOST_CANDIDATE, MovementMissionConvention, _classify_owner_record
 from .movement_differential import (
     GEOMETRY_EXPLAINED_CATEGORIES,
@@ -33,8 +34,8 @@ from .readiness import MOVEMENT_GEOMETRY, READY, evaluate_readiness
 from .reconstruction import PerspectiveRecord, group_perspective_records
 
 
-MOVEMENT_CHUNNEL_CONTEXT_GAME_SCHEMA = "planets-lab.movement-chunnel-context-game.v1"
-MOVEMENT_CHUNNEL_CONTEXT_STATS_SCHEMA = "planets-lab.movement-chunnel-context-stats.v1"
+MOVEMENT_CHUNNEL_CONTEXT_GAME_SCHEMA = "planets-lab.movement-chunnel-context-game.v2"
+MOVEMENT_CHUNNEL_CONTEXT_STATS_SCHEMA = "planets-lab.movement-chunnel-context-stats.v2"
 
 
 @dataclass(frozen=True, slots=True)
@@ -391,21 +392,19 @@ def evaluate_chunnel_residual_context(
             and event.pre_chunnel_position is not None
             and pre_position == event.pre_chunnel_position
         ]
-        if len(matches) == 1:
-            event = matches[0]
+        chunnel_category = route_equivalent_chunnel_category(
+            matches,
+            ship_id=transition.entity_id,
+            owner_id=owner_id,
+        )
+        if chunnel_category is not None:
             chunnel_explained += 1
             explained_categories[baseline] += 1
             if sample.hull_id is not None:
                 explained_hulls[sample.hull_id] += 1
-            if transition.entity_id == event.initiator_ship_id:
-                chunnel_counts["initiator"] += 1
-            elif owner_id == event.owner_id:
-                chunnel_counts["passenger_same_owner"] += 1
-            else:
-                chunnel_counts["passenger_other_owner"] += 1
+            chunnel_counts[chunnel_category] += 1
             continue
-        if len(matches) > 1:
-            chunnel_counts["ambiguous_matching_events"] += 1
+
         residual_after += 1
         residual_categories[baseline] += 1
 
