@@ -1,6 +1,6 @@
 # Roadmap
 
-This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). The latest movement/corpus handoff is [`handoff/2026-08-24-mine-context-v5-diff-verified.md`](handoff/2026-08-24-mine-context-v5-diff-verified.md).
+This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). The latest movement/corpus handoff is [`handoff/2026-08-24-target-origin-tow-followup.md`](handoff/2026-08-24-target-origin-tow-followup.md).
 
 ## Evidence policy
 
@@ -67,24 +67,88 @@ web_mine_hit_nearest_damage     18
 
 All mine/Chunnel/Horwasp overlap guards were zero.
 
-## Post-v4 generic residual landscape
+## Post-v5 generic residual landscape
 
-The generic clustering audit after Chunnel v4 measured:
+The generic clustering audit now reads `movement_post_mine_strong_residual` by default and measured:
 
 ```text
-final_residual_rows       2277
+final_residual_rows       2240
 closed_mite_rows           786
 known_horwasp_hull_rows   1457
-generic_rows               820
+generic_rows               783
 generic_games               12
-generic_hulls               81
+generic_hulls               79
 ```
 
-Largest generic signatures included short same-line movement, Warp-0 external movement, stationary ships and above-nominal/oblique families. Warp-0 remained heterogeneous; ordinary visible tow and effective-topology storm displacement were sparse.
+The expected arithmetic `820 - 37 = 783` was confirmed exactly, so every strict mine/web closure left the generic non-Horwasp triage population as intended.
+
+Largest current coarse cross-game signatures:
+
+```text
+warp7-9  <0.5x    observed=other   same_line_forward   121
+warp0    nominal<=0 target=origin  target_is_origin     97
+warp7-9  <0.5x    observed=origin  stationary           64
+warp7-9  >3.0x    target=origin    target_is_origin     52
+warp7-9  0.5-1.0x observed=other   same_line_forward    48
+warp7-9  >3.0x    observed=other   oblique              46
+```
+
+Useful aggregate totals:
+
+```text
+baseline above_nominal          265
+baseline reachable_other        255
+baseline warp_zero_external     102
+baseline partial_other           84
+baseline reachable_stayed        52
+baseline partial_stayed          25
+
+target_relation target=origin   226
+direction same_line_forward     245
+direction stationary             77
+```
+
+Short-forward movement remains large after strict mine removal, but it is still heterogeneous. The next focused lead is target-at-origin external movement because it directly indicates movement not explained by the candidate ship's own waypoint.
 
 Intercept was checked against corpus intent classification and rejected as the broad Move Most explanation because owner mission `7` is already classified as `INTERCEPT` and excluded before this residual layer.
 
-The next generic clustering must use the new final `movement_post_mine_strong_residual` view and treat `2240` as the pre-clustering endpoint.
+## Target-origin tow follow-up
+
+Current observed-tow external context is deliberately fail-closed. `_observed_tow_targets()` collects owner-visible Tow attempts whose tower and target start together and finish together, but it only explains the target when exactly one matching tower exists. Multiple matching towers are counted as ambiguous and remain residual.
+
+That creates a possible route-equivalent semantic gap analogous to Chunnel v4: tower identity may be ambiguous while the movement route is already unambiguous because every matching tower shares the same observed start and destination.
+
+Focused diagnostic:
+
+```text
+tools/diagnostics/target_origin_tow_residual_audit.py
+```
+
+It reads the final v5 residual and audits all non-Horwasp rows that moved while retaining their waypoint at the origin. The broad clustering predicts:
+
+```text
+candidate_rows = 226
+```
+
+Priority outputs:
+
+```text
+post_warp0
+has_same_origin_destination_comover
+has_hidden_or_unresolved_comover
+has_visible_non_tow_comover
+has_visible_tow_targeter
+any_visible_matching_tower
+single_visible_matching_tower
+route_equivalent_multiple_visible_towers
+post_warp0_with_visible_matching_tower
+post_warp0_with_multiple_visible_towers
+post_warp0_with_comover
+post_warp0_hidden_comover_without_visible_tow
+post_warp0_without_comover
+```
+
+Do not promote hidden/unresolved co-movement to tow. A clean `route_equivalent_multiple_visible_towers` population with near-zero unexpected single matches would justify a narrow semantic differential first.
 
 ## Mine/web movement interruption — verified v5 mechanic
 
@@ -227,17 +291,16 @@ mine_strong_explained       37
 post_mine_strong_residual 2240
 ```
 
-## Test-suite follow-up
+## Test-suite state
 
-The v5 targeted/full pytest run had exactly one failure in an older Chunnel schema sentinel that still asserted the shared compiled label schema was v4. All new mine-context tests passed.
-
-The stale assertion was corrected in commit:
+After correcting the stale Chunnel shared-schema sentinel, both requested runs are green on a clean tree:
 
 ```text
-3661f038178bf7fae37496ad23be90e08480ea72
+targeted v5 regression: 17 passed
+full pytest suite:       all passed
 ```
 
-No production code or compiled data changed in that fix. One final targeted/full pytest rerun is required to record a fully green repository state; no corpus rebuild is needed.
+No corpus rebuild followed the test-only fix and none was required.
 
 ## M0 — deterministic skeleton
 
@@ -332,10 +395,10 @@ Verified/closed movement progress:
 
 ### Immediate work
 
-1. pull current `main` and rerun the corrected targeted/full pytest suite; no corpus rebuild is required;
-2. if green, record the final repository-wide green state for v5;
-3. re-run generic residual clustering against `movement_post_mine_strong_residual`;
-4. establish the post-v5 generic population and largest cross-game signatures from the new `2240` endpoint;
+1. run `tools/diagnostics/target_origin_tow_residual_audit.py` on the current `movement_post_mine_strong_residual` corpus;
+2. measure route-equivalent multiple visible tow matches, unexpected single visible matches and post-state `warp=0` overlap;
+3. if multiple visible matches form a clean attributable subset, build an independent exact differential before touching production tow labels;
+4. keep hidden/unresolved co-movement evidence-only until a stronger causal discriminator exists;
 5. continue with generic mechanics rather than hull-specific overfitting;
 6. keep repair-bracket-only mine rows out of production until repair reconstruction is independently validated.
 
@@ -343,7 +406,7 @@ Deprioritized/rejected leads:
 
 - multi-waypoint queue did not explain the old hull-79 cluster;
 - fuel proration is real but sparse in the generic short-forward population;
-- ordinary visible tow is not the broad Warp-0 cause;
+- ordinary visible tow is not the broad Warp-0 cause; the current target-origin audit is specifically about fail-closed ambiguous/route-equivalent tow evidence;
 - effective-topology storm displacement is not the broad Warp-0 cause;
 - hidden/private-FC Chunnel event discovery added no coverage;
 - route-equivalent Chunnel multiplicity is fixed/closed;
@@ -374,8 +437,8 @@ Status: **future**.
 
 Unless new evidence changes priorities:
 
-1. close the final green test-suite rerun after the stale schema-sentinel fix;
-2. rebaseline the generic residual on `movement_post_mine_strong_residual`;
+1. resolve the target-origin tow residual lead with a focused route-equivalent differential;
+2. return to the largest surviving post-v5 generic families using `movement_post_mine_strong_residual` as the authoritative endpoint;
 3. continue reducing movement residuals with generic mechanics rather than hull-specific rules;
 4. promote the stabilized movement subset into simulator/ruleset behavior;
 5. expand differential mining into economy/mines/combat/race mechanics;
