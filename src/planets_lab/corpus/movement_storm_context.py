@@ -7,6 +7,7 @@ from typing import Any
 from planets_lab.rules.ion_storm import integer_drag_delta
 from planets_lab.validation.movement_geometry import MovementSample
 
+from .movement_damage_context import apply_damage_limited_warp_context_rows
 from .movement_differential import _entity_map, _planet_tuples_by_turn, _warp_well_destination
 from .movement_residual_context import (
     StormRecord,
@@ -19,10 +20,10 @@ from .prepared_cache import PreparedGameCache
 
 
 # Retain the historical symbol name because compiled cache metadata already uses
-# it. v2 covers the ordered post-compile L1 external-context pass implemented in
-# this module: authoritative storm mode first, then scoped effective sphere
-# geometry only for rows that remain unresolved.
-MOVEMENT_STORM_CONTEXT_SCHEMA = "planets-lab.compiled-movement-storm-context.v2"
+# it. v3 covers the ordered post-compile L1 external-context stack implemented
+# here: authoritative storm mode, then scoped effective sphere geometry, then the
+# strict raw-damage exact maximum-warp compatibility pass on still-unresolved rows.
+MOVEMENT_STORM_CONTEXT_SCHEMA = "planets-lab.compiled-movement-storm-context.v3"
 
 
 def _classic_constant_storm_offset(
@@ -153,8 +154,9 @@ def apply_mode_aware_storm_context_rows(
     The existing compiled movement pass remains authoritative for baseline,
     observed tow, gravitonic movement, and already-explained storm rows. This
     function first revisits only post-external residual rows with authoritative
-    ion-storm mode, then applies evidence-scoped effective sphere geometry to
-    whatever remains unresolved. Existing explanatory categories are preserved.
+    ion-storm mode, then applies evidence-scoped effective sphere geometry and
+    finally strict raw-damage exact maximum-warp context to what remains. Existing
+    explanatory categories are preserved.
     """
 
     records = prepared.snapshots
@@ -201,4 +203,6 @@ def apply_mode_aware_storm_context_rows(
 
     if nuionstorms is None:
         return result
-    return apply_effective_sphere_context_rows(result, prepared=prepared)
+
+    result = apply_effective_sphere_context_rows(result, prepared=prepared)
+    return apply_damage_limited_warp_context_rows(result, prepared=prepared)
