@@ -32,12 +32,12 @@ Mine/web context v5 is **CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**. An independ
 
 The v5 build verified cache semantics (`0/12` compiled-label hits, `12/12` prepared-cache hits). After correcting a stale Chunnel shared-schema sentinel, both the targeted v5 regression set and the full pytest suite are green on a clean tree.
 
-The active task is now a post-v5 generic residual rebaseline. `tools/diagnostics/post_sphere_generic_residual_clustering_audit.py` defaults to the current final `movement_post_mine_strong_residual` view; the old pre-mine Horwasp endpoint remains an explicit option for historical reproduction.
+The post-v5 generic rebaseline is now complete on `movement_post_mine_strong_residual`: `2240` final rows, `783` generic non-Horwasp rows, `79` generic hulls and all `12` games. The next focused lead is target-at-origin external movement. `tools/diagnostics/target_origin_tow_residual_audit.py` tests whether the current fail-closed tow layer is leaving route-equivalent multiple visible tow matches unresolved, while keeping hidden/unresolved co-movement as evidence-only.
 
 Read these first:
 
 - [`docs/ROADMAP.md`](docs/ROADMAP.md) — operational roadmap and current priorities;
-- [`docs/handoff/2026-08-24-post-v5-generic-rebaseline-pending.md`](docs/handoff/2026-08-24-post-v5-generic-rebaseline-pending.md) — latest movement/corpus handoff;
+- [`docs/handoff/2026-08-24-target-origin-tow-followup.md`](docs/handoff/2026-08-24-target-origin-tow-followup.md) — latest movement/corpus handoff;
 - [`docs/COMPILED_CORPUS.md`](docs/COMPILED_CORPUS.md) — compiled corpus schemas, cache semantics and current invariants;
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — architecture and evidence boundaries.
 
