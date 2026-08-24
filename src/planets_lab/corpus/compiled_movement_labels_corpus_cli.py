@@ -38,6 +38,8 @@ _STAT_KEYS = (
     "horwasp_strong_explained",
     "horwasp_observed_context_explained",
     "post_horwasp_strong_residual",
+    "mine_strong_explained",
+    "post_mine_strong_residual",
 )
 
 
@@ -296,6 +298,8 @@ def _assert_label_accounting(stats: dict[str, int], *, scope: str) -> None:
         raise AssertionError(f"{scope} Chunnel accounting is not closed")
     if stats["horwasp_strong_explained"] + stats["post_horwasp_strong_residual"] != stats["post_chunnel_residual"]:
         raise AssertionError(f"{scope} Horwasp strong accounting is not closed")
+    if stats["mine_strong_explained"] + stats["post_mine_strong_residual"] != stats["post_horwasp_strong_residual"]:
+        raise AssertionError(f"{scope} mine strong accounting is not closed")
 
 
 def _print_game_result(row: dict[str, Any]) -> None:
@@ -316,6 +320,8 @@ def _print_game_result(row: dict[str, Any]) -> None:
                 "post_chunnel_residual": row["post_chunnel_residual"],
                 "horwasp_strong_explained": row["horwasp_strong_explained"],
                 "post_horwasp_strong_residual": row["post_horwasp_strong_residual"],
+                "mine_strong_explained": row["mine_strong_explained"],
+                "post_mine_strong_residual": row["post_mine_strong_residual"],
                 "label_issues": row["label_issues"],
                 "parquet_bytes": row["parquet_bytes"],
                 "elapsed_seconds": row["elapsed_seconds"],
@@ -330,8 +336,8 @@ def _print_game_result(row: dict[str, Any]) -> None:
 def main() -> int:
     parser = argparse.ArgumentParser(
         description=(
-            "Compile privacy-safe Chunnel and Horwasp labels over the existing "
-            "post-external movement residual Parquet dataset."
+            "Compile privacy-safe Chunnel, Horwasp and strict mine-hit labels over "
+            "the existing post-external movement residual Parquet dataset."
         )
     )
     parser.add_argument("manifest", type=Path)
@@ -431,6 +437,8 @@ def main() -> int:
             "post_chunnel_residual": catalog["post_chunnel_residual"],
             "horwasp_strong_explained": catalog["horwasp_strong_explained"],
             "post_horwasp_strong_residual": catalog["post_horwasp_strong_residual"],
+            "mine_strong_explained": catalog["mine_strong_explained"],
+            "post_mine_strong_residual": catalog["post_mine_strong_residual"],
         }
         _assert_label_accounting(catalog_accounting, scope="catalog labeled rows")
     else:
@@ -446,6 +454,8 @@ def main() -> int:
             "horwasp_strong_explained": 0,
             "horwasp_observed_context_explained": 0,
             "post_horwasp_strong_residual": 0,
+            "mine_strong_explained": 0,
+            "post_mine_strong_residual": 0,
         }
 
     summary = {
