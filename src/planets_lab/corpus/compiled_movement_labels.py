@@ -15,6 +15,7 @@ from .movement_chunnel_context import (
     discover_observed_chunnel_events,
     extract_stable_chunnel_abilities,
 )
+from .movement_chunnel_match import route_equivalent_chunnel_category
 from .movement_differential import _entity_map, _planet_tuples_by_turn
 from .movement_horwasp_ballistic_context import (
     _classify_ballistic_formula,
@@ -33,7 +34,7 @@ from .prepared_cache import PreparedGameCache
 from .reconstruction import group_perspective_records
 
 
-COMPILED_MOVEMENT_CONTEXT_LABEL_SCHEMA = "planets-lab.compiled-movement-context-labels.v3"
+COMPILED_MOVEMENT_CONTEXT_LABEL_SCHEMA = "planets-lab.compiled-movement-context-labels.v4"
 
 # One row for every post-external-context residual movement transition. Raw
 # private orders/state used to derive these classifications are intentionally
@@ -185,22 +186,18 @@ def compile_movement_context_label_rows(
         ]
         row["chunnel_match_count"] = len(matches)
 
-        if len(matches) == 1:
-            event = matches[0]
-            if ship_id == event.initiator_ship_id:
-                row["chunnel_category"] = "initiator"
-            elif owner_id == event.owner_id:
-                row["chunnel_category"] = "passenger_same_owner"
-            else:
-                row["chunnel_category"] = "passenger_other_owner"
+        chunnel_category = route_equivalent_chunnel_category(
+            matches,
+            ship_id=ship_id,
+            owner_id=owner_id,
+        )
+        if chunnel_category is not None:
+            row["chunnel_category"] = chunnel_category
             row["chunnel_explained"] = True
             row["post_chunnel_residual"] = False
             row["post_horwasp_strong_residual"] = False
             rows.append(row)
             continue
-
-        if len(matches) > 1:
-            row["chunnel_category"] = "ambiguous_matching_events"
 
         hull_id = int(sample.hull_id) if sample.hull_id is not None else None
         if hull_id is None:
