@@ -15,31 +15,37 @@ Deterministic Planets.nu simulation, reverse-engineering and AI research environ
 
 The active workstream is historical NuHost corpus mining and movement compatibility validation across 12 recent finished games.
 
-Last runtime-verified movement accounting:
+Current runtime-verified movement accounting:
 
 ```text
 move_most_candidates              227468
-post_external_residual              3938
-post_chunnel_residual               2517
-post_horwasp_strong_residual        2277
+baseline_explained                209574
+baseline_unresolved                17894
+external_context_explained         13960
+post_external_residual              3934
+chunnel_explained                   1421
+post_chunnel_residual               2513
+horwasp_strong_explained             240
+post_horwasp_strong_residual        2273
 mine_strong_explained                 37
-post_mine_strong_residual           2240
+post_mine_strong_residual           2236
+label_issues                           0
 ```
 
-Recently closed/integrated movement work includes warp-well ordering, scoped Red Mite fallback evidence, Horwasp ballistic topology, classic-vs-cloudy ion-storm handling, evidence-scoped sphere-aware ordinary movement for game `591478`, route-equivalent Chunnel multi-event handling, and strict mine/web interruption context.
+Recently closed/integrated movement work includes warp-well ordering, scoped Red Mite fallback evidence, Horwasp ballistic topology, classic-vs-cloudy ion-storm handling, evidence-scoped sphere-aware ordinary movement for game `591478`, route-equivalent Chunnel multi-event handling, strict mine/web interruption context, and route-equivalent visible Tow handling in the L1 external-context layer.
 
-Mine/web context v5 is **CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**. An independent rounding differential predicted exactly 37 strict field-backed rows (`18` web + `19` normal); the normal v5 build closed exactly those 37 rows and changed the final residual `2277 -> 2240` while all Chunnel/Horwasp accounting remained unchanged. Historical NuHost evidence strongly selects positive nearest-integer mine damage rather than the documentation's literal round-up wording; this is tracked as an explicit compatibility distinction.
+Route-equivalent visible Tow is now **TESTED + DIFF_VERIFIED**. A global pre-build differential over all `3938` old external residual rows found exactly four multiple-Tow matches and zero missed single-Tow matches. All four were old final-residual rows. The normal L1 v3 build reproduced the exact predicted `+4/-4` external-context delta, the normal L2 v5 build invalidated from the changed L1 source schema/hash, and every downstream count matched the prediction exactly. A post-fix global audit found zero remaining visible Tow matches in the residual.
 
-The v5 build verified cache semantics (`0/12` compiled-label hits, `12/12` prepared-cache hits). After correcting a stale Chunnel shared-schema sentinel, both the targeted v5 regression set and the full pytest suite are green on a clean tree.
+Mine/web context v5 remains **CORPUS_OBSERVED + TESTED + DIFF_VERIFIED** with `18` strict web + `19` strict normal-mine rows. Chunnel route-equivalent handling remains **TESTED + DIFF_VERIFIED**. Closed mechanics are not reopened without fresh evidence.
 
-The post-v5 generic rebaseline is complete on `movement_post_mine_strong_residual`: `2240` final rows, `783` generic non-Horwasp rows, `79` generic hulls and all `12` games.
+Both the targeted Tow/compiled/cache regression set and the full pytest suite are green. L1 v2 -> v3 cache migration produced `0/12` compiled hits and `12/12` prepared-cache hits; the following L2 v5 rebuild likewise produced `0/12` compiled-label hits and `12/12` prepared-cache hits.
 
-The active change is now a route-equivalent Tow semantic fix in the L1 external-context layer. A focused target-origin audit found four final-residual rows where exactly two owner-visible Tow towers start with one target and share its observed destination; single matching towers are already removed by the existing L1 detector. The fix preserves tower-identity ambiguity while treating any non-empty route-equivalent matching set as movement evidence. `compiled-movement.v3` is implemented to invalidate stale L1 partitions; runtime corpus verification is pending. A global pre-build Tow differential must run before the rebuild so the exact corpus delta is derived from all old external residual rows rather than assumed from the four focused examples.
+The previous post-v5 generic rebaseline (`2240` final / `783` generic / `79` generic hulls) is now historical. The immediate next step is to rerun broad generic clustering on the new `2236` final endpoint before selecting another mechanic family.
 
 Read these first:
 
 - [`docs/ROADMAP.md`](docs/ROADMAP.md) — operational roadmap and current priorities;
-- [`docs/handoff/2026-08-24-route-equivalent-tow-runtime-verification.md`](docs/handoff/2026-08-24-route-equivalent-tow-runtime-verification.md) — latest movement/corpus handoff;
+- [`docs/handoff/2026-08-24-route-equivalent-tow-verified.md`](docs/handoff/2026-08-24-route-equivalent-tow-verified.md) — latest movement/corpus handoff;
 - [`docs/COMPILED_CORPUS.md`](docs/COMPILED_CORPUS.md) — compiled corpus schemas, cache semantics and current invariants;
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — architecture and evidence boundaries.
 
