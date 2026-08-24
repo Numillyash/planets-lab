@@ -237,10 +237,18 @@ def main() -> int:
                 totals["missing_hull_mass"] += 1
                 continue
 
-            before_damage = before_raw.get("damage")
-            after_damage = after_raw.get("damage")
-            before_damage = int(before_damage) if isinstance(before_damage, int) and not isinstance(before_damage, bool) else None
-            after_damage = int(after_damage) if isinstance(after_damage, int) and not isinstance(after_damage, bool) else None
+            before_damage_raw = before_raw.get("damage")
+            after_damage_raw = after_raw.get("damage")
+            before_damage = (
+                int(before_damage_raw)
+                if isinstance(before_damage_raw, int) and not isinstance(before_damage_raw, bool)
+                else None
+            )
+            after_damage = (
+                int(after_damage_raw)
+                if isinstance(after_damage_raw, int) and not isinstance(after_damage_raw, bool)
+                else None
+            )
             damage_delta = (
                 after_damage - before_damage
                 if before_damage is not None and after_damage is not None
@@ -261,7 +269,11 @@ def main() -> int:
                 else None
             )
             no_repair_supply = before_supplies is not None and before_supplies < 5
-            max_repair_points = before_supplies // 5 if before_supplies is not None and before_supplies >= 0 else None
+            max_repair_points = (
+                before_supplies // 5
+                if before_supplies is not None and before_supplies >= 0
+                else None
+            )
 
             after_enemy = [
                 field
@@ -283,7 +295,6 @@ def main() -> int:
                 totals["web_after_field_strong"] += 1
 
             web_delta_matches: dict[str, bool] = {}
-            web_zero_matches: dict[str, bool] = {}
             for mode, quantum in web_q.items():
                 delta_match, _ = _positive_multiple(damage_delta, quantum)
                 zero_match, _ = _positive_multiple(
@@ -291,7 +302,6 @@ def main() -> int:
                     quantum,
                 )
                 web_delta_matches[mode] = delta_match
-                web_zero_matches[mode] = zero_match
                 if web_strong and delta_match:
                     totals[f"web_{mode}_delta_match_after_field"] += 1
                     web_mode_hulls[mode][hull_id] += 1
@@ -324,12 +334,12 @@ def main() -> int:
                 totals["web_nearest_control_no_after_field"] += 1
 
             lost_distance = regular_distance - observed_distance
-            inferred_hits = _nearest_positive_tenth_hits(lost_distance)
+            inferred_slow_hits = _nearest_positive_tenth_hits(lost_distance)
             ten_ly_match = (
                 hull_tech is not None
                 and hull_tech < 7
-                and inferred_hits >= 1
-                and abs(lost_distance - inferred_hits * 10.0) <= 1.5
+                and inferred_slow_hits >= 1
+                and abs(lost_distance - inferred_slow_hits * 10.0) <= 1.5
             )
             if ten_ly_match:
                 totals["normal_mine_10ly_geometry"] += 1
@@ -355,11 +365,33 @@ def main() -> int:
                 totals["normal_after_field_strong"] += 1
 
             normal_exact: dict[str, bool] = {}
+            normal_multiple: dict[str, bool] = {}
+            normal_damage_hits: dict[str, int | None] = {}
             for mode, quantum in normal_q.items():
-                expected = inferred_hits * quantum if ten_ly_match else None
+                expected = inferred_slow_hits * quantum if ten_ly_match else None
                 delta_exact = damage_delta is not None and expected is not None and damage_delta == expected
-                zero_exact = before_damage == 0 and after_damage is not None and expected is not None and after_damage == expected
+                zero_exact = (
+                    before_damage == 0
+                    and after_damage is not None
+                    and expected is not None
+                    and after_damage == expected
+                )
+                delta_multiple, delta_hits = _positive_multiple(damage_delta, quantum)
+                zero_multiple, zero_hits = _positive_multiple(
+                    after_damage if before_damage == 0 else None,
+                    quantum,
+                )
                 normal_exact[mode] = zero_exact
+                normal_multiple[mode] = delta_multiple
+                normal_damage_hits[mode] = delta_hits
+
+                if normal_strong and delta_multiple:
+                    totals[f"normal_{mode}_delta_multiple_after_field"] += 1
+                if normal_strong and zero_multiple:
+                    totals[f"normal_{mode}_from_zero_multiple_after_field"] += 1
+                if normal_strong and no_repair_supply and zero_multiple:
+                    totals[f"normal_{mode}_from_zero_multiple_no_repair_supply"] += 1
+
                 if normal_strong and delta_exact:
                     totals[f"normal_{mode}_delta_exact_after_field"] += 1
                 if normal_strong and zero_exact:
@@ -380,6 +412,35 @@ def main() -> int:
                 ):
                     totals["normal_nearest_repair_bracket_from_zero"] += 1
 
+            nearest_damage_hits = normal_damage_hits["nearest"]
+            if (
+                normal_strong
+                and normal_multiple["nearest"]
+                and nearest_damage_hits is not None
+                and nearest_damage_hits != inferred_slow_hits
+            ):
+                totals["normal_nearest_damage_hits_differ_from_slow_hits"] += 1
+                if len(examples["normal_damage_vs_slow_hits"]) < args.examples:
+                    examples["normal_damage_vs_slow_hits"].append(
+                        {
+                            "game": game_id,
+                            "turn": before_turn,
+                            "ship": ship_id,
+                            "hull": hull_id,
+                            "mass": hull_mass,
+                            "hull_tech": hull_tech,
+                            "damage_before": before_damage,
+                            "damage_after": after_damage,
+                            "damage_delta": damage_delta,
+                            "nearest_quantum": normal_q["nearest"],
+                            "damage_hits": nearest_damage_hits,
+                            "slow_hits": inferred_slow_hits,
+                            "lost_distance": round(lost_distance, 3),
+                            "supplies_before": before_supplies,
+                            "supplies_after": after_supplies,
+                        }
+                    )
+
             if normal_strong and normal_exact["nearest"] and not normal_exact["ceil"]:
                 totals["normal_nearest_not_ceil_from_zero"] += 1
                 if len(examples["normal_nearest_not_ceil"]) < args.examples:
@@ -395,7 +456,7 @@ def main() -> int:
                             "damage_after": after_damage,
                             "damage_delta": damage_delta,
                             "quantums": normal_q,
-                            "inferred_hits": inferred_hits,
+                            "inferred_slow_hits": inferred_slow_hits,
                             "lost_distance": round(lost_distance, 3),
                             "supplies_before": before_supplies,
                             "supplies_after": after_supplies,
@@ -429,6 +490,9 @@ def main() -> int:
 
     print("\n===== NORMAL MINE ROUNDING DIFFERENTIAL =====")
     for mode in ("ceil", "floor", "nearest"):
+        print(f"normal_{mode}_delta_multiple_after_field=", totals[f"normal_{mode}_delta_multiple_after_field"])
+        print(f"normal_{mode}_from_zero_multiple_after_field=", totals[f"normal_{mode}_from_zero_multiple_after_field"])
+        print(f"normal_{mode}_from_zero_multiple_no_repair_supply=", totals[f"normal_{mode}_from_zero_multiple_no_repair_supply"])
         print(f"normal_{mode}_delta_exact_after_field=", totals[f"normal_{mode}_delta_exact_after_field"])
         print(f"normal_{mode}_from_zero_exact_after_field=", totals[f"normal_{mode}_from_zero_exact_after_field"])
         print(f"normal_{mode}_from_zero_no_repair_supply=", totals[f"normal_{mode}_from_zero_no_repair_supply"])
@@ -436,11 +500,13 @@ def main() -> int:
         print(f"normal_{mode}_games=", sorted(normal_mode_games[mode]))
     print("normal_nearest_repair_bracket_from_zero=", totals["normal_nearest_repair_bracket_from_zero"])
     print("normal_nearest_not_ceil_from_zero=", totals["normal_nearest_not_ceil_from_zero"])
+    print("normal_nearest_damage_hits_differ_from_slow_hits=", totals["normal_nearest_damage_hits_differ_from_slow_hits"])
     print("normal_nearest_control_no_after_field=", totals["normal_nearest_control_no_after_field"])
 
     for bucket, title in (
         ("web_nearest_not_ceil", "WEB NEAREST-BUT-NOT-CEIL EXAMPLES"),
         ("normal_nearest_not_ceil", "NORMAL NEAREST-BUT-NOT-CEIL EXAMPLES"),
+        ("normal_damage_vs_slow_hits", "NORMAL DAMAGE-HITS VS SLOW-HITS EXAMPLES"),
     ):
         print(f"\n===== {title} =====")
         for item in examples[bucket]:
@@ -457,6 +523,12 @@ def main() -> int:
         "Five supplies repair one percentage point and repair phases occur after normal "
         "movement, so exact damage is strongest when the ship started undamaged and had "
         "fewer than five supplies. Repair-bracket counts are supportive, not exact proof."
+    )
+    print(
+        "Normal-mine damage-hit multiplicity is measured separately from 10-ly slowdown "
+        "count. Documentation allows multiple impacts and only applies a slowdown when "
+        "more than 10 ly remain at the relevant hit; therefore equal counts are a strong "
+        "subset, not a universal requirement."
     )
     print(
         "Field overlap alone remains insufficient. Promote a damage rounding rule only "
