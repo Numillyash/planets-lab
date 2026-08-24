@@ -26,12 +26,12 @@ post_horwasp_strong_residual        2311
 
 Recently closed/integrated movement work includes warp-well ordering, scoped Red Mite fallback evidence, Horwasp ballistic topology, classic-vs-cloudy ion-storm handling, and evidence-scoped sphere-aware ordinary movement for game `591478`.
 
-The broad post-sphere clustering audit identified two major generic residual families. A focused fuel audit confirmed fuel-limited/prorated movement as real but small: only 7 strict signatures among 216 short same-line candidates. The active target is therefore `warp0 + target=origin + external move` (`119` rows / `35` hulls / `8` games), with a focused tow/storm/shared-motion diagnostic at `tools/diagnostics/warp0_external_move_context_audit.py`.
+The broad generic residual audits now show that strict fuel-limited movement is real but small and that the 119-row Warp-0 external-move family is not broadly explained by ordinary tow or ion storms. Thirty-one rows move with visible same-origin/same-destination groups, including a strong Firecloud/hull-56 group signature. The active task is therefore a focused missed-Chunnel event-discovery audit at `tools/diagnostics/warp0_chunnel_gap_audit.py`.
 
 Read these first:
 
 - [`docs/ROADMAP.md`](docs/ROADMAP.md) — operational roadmap and current priorities;
-- [`docs/handoff/2026-08-24-warp0-external-movement-followup.md`](docs/handoff/2026-08-24-warp0-external-movement-followup.md) — latest movement/corpus handoff;
+- [`docs/handoff/2026-08-24-warp0-chunnel-gap-followup.md`](docs/handoff/2026-08-24-warp0-chunnel-gap-followup.md) — latest movement/corpus handoff;
 - [`docs/COMPILED_CORPUS.md`](docs/COMPILED_CORPUS.md) — compiled corpus schemas, cache semantics and current invariants;
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — architecture and evidence boundaries.
 
