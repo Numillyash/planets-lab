@@ -1,6 +1,6 @@
 # Roadmap
 
-This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). The latest movement/corpus handoff is [`handoff/2026-08-24-warp0-chunnel-gap-followup.md`](handoff/2026-08-24-warp0-chunnel-gap-followup.md).
+This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). The latest movement/corpus handoff is [`handoff/2026-08-24-chunnel-route-equivalent-ambiguity.md`](handoff/2026-08-24-chunnel-route-equivalent-ambiguity.md).
 
 ## Evidence policy
 
@@ -50,15 +50,29 @@ has_visible_non_tow_comover                    31
 effective_topology_storm_vector_match           0
 ```
 
-Therefore ordinary observed tow and ion-storm topology are rejected as broad explanations for the 119-row family. The 31 same-origin/same-destination group-movement rows are now the strongest causal lead. Several are multi-ship transport groups, including game `360690` turn `67`, where eight residual ships move together from `(1792,1235)` to `(1684,1085)` and the group contains Firecloud/hull-56 ships.
-
-The active focused diagnostic is:
+A follow-up structural Chunnel audit found:
 
 ```text
-tools/diagnostics/warp0_chunnel_gap_audit.py
+structural_chunnel_match                22
+numeric_fc_structural_match             22
+structural_without_numeric_fc_match      0
+existing_classifier_event_match         22
+missed_by_existing_event_discovery       0
 ```
 
-It tests whether current L2 Chunnel discovery misses structurally valid Chunnel events when explicit numeric friendly-code evidence is unavailable or event reconstruction is too narrow.
+So hidden/private friendly-code event discovery is **not** the missing Chunnel context in this population. All 22 structural Chunnel-shaped rows are already represented by current event discovery.
+
+The active production bug candidate is now **route-equivalent Chunnel event multiplicity**. Production matches are already restricted to identical candidate pre-Chunnel position and identical observed destination, but rows with more than one matching event are currently labeled `ambiguous_matching_events` and left residual. The DB-only pre-fix differential audit is:
+
+```text
+tools/diagnostics/chunnel_route_equivalent_ambiguity_audit.py
+```
+
+A shared pure helper defining the intended route-equivalent semantics is already present at:
+
+```text
+src/planets_lab/corpus/movement_chunnel_match.py
+```
 
 ## M0 — deterministic skeleton
 
@@ -139,7 +153,7 @@ Verified/closed movement progress:
 2. gravitonic movement classification;
 3. warp-well ordering — `TESTED + DIFF_VERIFIED`;
 4. observed tow-target context;
-5. Chunnel context layer — implemented, but current work is auditing event-discovery gaps rather than changing Chunnel mechanics;
+5. Chunnel context layer — implemented; current work is correcting route-equivalent multi-event residual handling rather than changing the Chunnel mechanic itself;
 6. Horwasp ballistic strong labels with scoped 2170 topology;
 7. Red Mite tracking/fallback — research closed unless new evidence appears;
 8. classic ion storms selected by authoritative `settings.nuionstorms` — `DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`;
@@ -184,23 +198,31 @@ tools/diagnostics/warp0_external_move_context_audit.py
 
 Result: only 4 visible explicit tow matches, zero hidden/unresolved co-movers, zero effective-topology storm-vector matches, but 31 visible non-tow same-route co-movements.
 
-Focused Chunnel-gap test:
+Focused structural Chunnel-gap test:
 
 ```text
 tools/diagnostics/warp0_chunnel_gap_audit.py
 ```
 
-This first pass searches same-origin group movement for a stable Chunnel Initiator ability ship moving with the candidates and a stationary Chunnel Target ability ship already at the destination, with same known owner, target Warp 0, visible fuel eligibility and >=100 ly effective-topology separation. Numeric FC matching is recorded only when actually visible.
+Result: `22` structural matches, all `22` with numeric-FC support and all `22` already represented by existing event discovery. Event-discovery visibility gap rejected.
+
+Pre-fix route-equivalent ambiguity differential:
+
+```text
+tools/diagnostics/chunnel_route_equivalent_ambiguity_audit.py
+```
 
 Immediate work:
 
-1. run the Chunnel-gap audit and preserve the complete output;
-2. compare `structural_chunnel_match`, `numeric_fc_structural_match`, `existing_classifier_event_match` and `missed_by_existing_event_discovery`;
-3. if structural coverage is material, replace the overly narrow event-discovery dependency with a fail-closed structural Chunnel reconstruction and then test exact differential closure;
-4. if structural coverage is sparse, return to the 88 Warp-0 external moves without same-route co-movers;
-5. when touching Chunnel production code, also revisit the known pre-Chunnel storm-mode/effective-topology caveat instead of duplicating old geometry logic;
-6. keep Horwasp hull IDs `201-213` and closed Mite research out of generic prioritization;
-7. update state docs in the same development cycle after every material result.
+1. run the all-corpus route-equivalent ambiguity audit and preserve complete output;
+2. measure `multiple_match_rows`, `multiple_match_post_chunnel`, `multiple_match_final_residual`, match-count distribution and baseline/game/hull coverage;
+3. if the population is material, change L2 semantics so any non-empty route-equivalent match set closes Chunnel movement while role ambiguity remains descriptive only;
+4. bump compiled context-label schema so old L2 caches invalidate automatically;
+5. add deterministic duplicate-initiator/same-route regressions and rebuild L2 normally without `--rebuild`;
+6. compare exact post-fix residual deltas against the pre-fix audit;
+7. keep the known Chunnel storm-mode/effective-topology caveat separate unless runtime evidence intersects it;
+8. keep Horwasp hull IDs `201-213` and closed Mite research out of generic prioritization;
+9. update state docs in the same development cycle after every material result.
 
 Deprioritized/rejected leads:
 
@@ -208,6 +230,7 @@ Deprioritized/rejected leads:
 - fuel proration is real but only 7 strict signatures in the current generic short-forward residual, so it is not the next production target;
 - ordinary visible tow explains only 4/119 Warp-0 external rows and is not the broad missing context;
 - effective-topology storm vector explains 0/119 Warp-0 external rows;
+- hidden/private-FC Chunnel event discovery explains 0 additional rows in the focused 119-row population;
 - do not generalize game `591478`'s 2170 period to other games;
 - do not reopen Red Mite research without new evidence;
 - hull count alone is not a mechanic identifier.
@@ -233,8 +256,8 @@ Status: **future**.
 
 Unless new evidence changes priorities:
 
-1. run and interpret the Warp-0 Chunnel-gap audit;
-2. fix Chunnel event reconstruction if structural missed-event coverage is material;
+1. run and interpret the all-corpus route-equivalent Chunnel ambiguity audit;
+2. if confirmed, fix compiled L2 multi-event handling and verify exact differential closure;
 3. otherwise resume generic triage on the non-group Warp-0 external moves;
 4. keep reducing movement residuals with cross-game mechanics rather than hull-specific overfit;
 5. promote the stabilized movement subset into simulator/ruleset behavior;
