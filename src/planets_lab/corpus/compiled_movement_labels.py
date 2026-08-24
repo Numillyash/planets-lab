@@ -27,6 +27,10 @@ from .movement_horwasp_mite_context import (
     classify_scoped_mite_fallback_transition,
     discover_scoped_mite_fallback_runs,
 )
+from .movement_mine_context import (
+    build_mine_evidence_context,
+    classify_strong_mine_hit_transition,
+)
 from .movement_residual_context import _owner_record, _storm_consensus_by_turn
 from .movement_residual_profile import extract_hull_catalog
 from .movement_topology_diagnostics import extract_map_topology
@@ -34,11 +38,12 @@ from .prepared_cache import PreparedGameCache
 from .reconstruction import group_perspective_records
 
 
-COMPILED_MOVEMENT_CONTEXT_LABEL_SCHEMA = "planets-lab.compiled-movement-context-labels.v4"
+COMPILED_MOVEMENT_CONTEXT_LABEL_SCHEMA = "planets-lab.compiled-movement-context-labels.v5"
 
 # One row for every post-external-context residual movement transition. Raw
 # private orders/state used to derive these classifications are intentionally
-# absent: no friendly code, heading or Horwasp history is exported.
+# absent: no friendly code, heading, minefield coordinates/owners or Horwasp
+# history is exported.
 MOVEMENT_CONTEXT_LABEL_COLUMNS: tuple[tuple[str, str], ...] = (
     ("game_id", "BIGINT"),
     ("before_archive_turn", "INTEGER"),
@@ -54,6 +59,11 @@ MOVEMENT_CONTEXT_LABEL_COLUMNS: tuple[tuple[str, str], ...] = (
     ("horwasp_strong_explained", "BOOLEAN"),
     ("horwasp_observed_context_explained", "BOOLEAN"),
     ("post_horwasp_strong_residual", "BOOLEAN"),
+    ("mine_category", "VARCHAR"),
+    ("mine_damage_hits", "INTEGER"),
+    ("mine_slowdown_hits", "INTEGER"),
+    ("mine_strong_explained", "BOOLEAN"),
+    ("post_mine_strong_residual", "BOOLEAN"),
 )
 
 
@@ -87,7 +97,7 @@ def compile_movement_context_label_rows(
     prepared: PreparedGameCache,
     movement_parquet: Path,
 ) -> list[dict[str, Any]]:
-    """Compile Chunnel and Horwasp labels for existing external residual rows.
+    """Compile Chunnel, Horwasp and strict mine-hit labels for external residual rows.
 
     The compiled movement partition is authoritative for which transitions enter
     this layer. Raw/private state is consulted only during this local build to
@@ -125,6 +135,11 @@ def compile_movement_context_label_rows(
         ship_groups=ship_groups,
         mite_hulls=mite_hulls,
     )
+    mine_context = build_mine_evidence_context(
+        game_id=game_id,
+        archive_data=archive_data,
+        snapshots=records,
+    )
 
     rows: list[dict[str, Any]] = []
     for before_turn, after_turn, ship_id in residual_keys:
@@ -143,6 +158,11 @@ def compile_movement_context_label_rows(
             "horwasp_strong_explained": False,
             "horwasp_observed_context_explained": False,
             "post_horwasp_strong_residual": True,
+            "mine_category": None,
+            "mine_damage_hits": None,
+            "mine_slowdown_hits": None,
+            "mine_strong_explained": False,
+            "post_mine_strong_residual": True,
         }
 
         transition = transition_by_key.get((before_turn, after_turn, ship_id))
@@ -196,6 +216,7 @@ def compile_movement_context_label_rows(
             row["chunnel_explained"] = True
             row["post_chunnel_residual"] = False
             row["post_horwasp_strong_residual"] = False
+            row["post_mine_strong_residual"] = False
             rows.append(row)
             continue
 
@@ -225,33 +246,50 @@ def compile_movement_context_label_rows(
                 if strong:
                     row["horwasp_strong_explained"] = True
                     row["post_horwasp_strong_residual"] = False
+                    row["post_mine_strong_residual"] = False
                 else:
                     row["horwasp_observed_context_explained"] = True
             rows.append(row)
             continue
 
-        if hull_id not in ballistic_hulls:
+        if hull_id in ballistic_hulls:
+            row["horwasp_candidate_kind"] = "ballistic"
+            category, strong = _classify_ballistic_formula(
+                raw=owner.raw,
+                origin=(sample.x, sample.y),
+                observed=sample.observed_destination,
+                target=(sample.target_x, sample.target_y),
+                warp=sample.warp,
+                topology=ballistic_topology,
+            )
+            if category is None:
+                row["horwasp_category"] = "ballistic_unresolved"
+            else:
+                row["horwasp_category"] = category
+                if strong:
+                    row["horwasp_strong_explained"] = True
+                    row["post_horwasp_strong_residual"] = False
+                    row["post_mine_strong_residual"] = False
+                else:
+                    row["horwasp_observed_context_explained"] = True
             rows.append(row)
             continue
 
-        row["horwasp_candidate_kind"] = "ballistic"
-        category, strong = _classify_ballistic_formula(
-            raw=owner.raw,
-            origin=(sample.x, sample.y),
-            observed=sample.observed_destination,
-            target=(sample.target_x, sample.target_y),
-            warp=sample.warp,
-            topology=ballistic_topology,
+        mine_evidence = classify_strong_mine_hit_transition(
+            context=mine_context,
+            before_turn=before_turn,
+            after_turn=after_turn,
+            ship_id=ship_id,
+            owner_id=owner_id,
+            before_raw=owner.raw,
+            sample=sample,
         )
-        if category is None:
-            row["horwasp_category"] = "ballistic_unresolved"
-        else:
-            row["horwasp_category"] = category
-            if strong:
-                row["horwasp_strong_explained"] = True
-                row["post_horwasp_strong_residual"] = False
-            else:
-                row["horwasp_observed_context_explained"] = True
+        if mine_evidence is not None:
+            row["mine_category"] = mine_evidence.category
+            row["mine_damage_hits"] = mine_evidence.damage_hits
+            row["mine_slowdown_hits"] = mine_evidence.slowdown_hits
+            row["mine_strong_explained"] = True
+            row["post_mine_strong_residual"] = False
         rows.append(row)
 
     if len(rows) != len(residual_keys):
@@ -290,6 +328,12 @@ def movement_context_label_stats(rows: Sequence[Mapping[str, Any]]) -> dict[str,
         "post_horwasp_strong_residual": sum(
             row.get("post_horwasp_strong_residual") is True for row in rows
         ),
+        "mine_strong_explained": sum(
+            row.get("mine_strong_explained") is True for row in rows
+        ),
+        "post_mine_strong_residual": sum(
+            row.get("post_mine_strong_residual") is True for row in rows
+        ),
     }
     if stats["chunnel_explained"] + stats["post_chunnel_residual"] != stats["external_residual_rows"]:
         raise AssertionError("compiled Chunnel label accounting is not closed")
@@ -297,6 +341,8 @@ def movement_context_label_stats(rows: Sequence[Mapping[str, Any]]) -> dict[str,
         raise AssertionError("compiled Horwasp strong label accounting is not closed")
     if stats["horwasp_mite_strong_explained"] + stats["horwasp_mite_residual"] != stats["horwasp_mite_candidates"]:
         raise AssertionError("compiled Horwasp Mite label accounting is not closed")
+    if stats["mine_strong_explained"] + stats["post_mine_strong_residual"] != stats["post_horwasp_strong_residual"]:
+        raise AssertionError("compiled mine strong label accounting is not closed")
     return stats
 
 
@@ -315,6 +361,7 @@ def refresh_movement_context_label_views(
     connection = duckdb.connect(str(database_path))
     try:
         for view in (
+            "movement_post_mine_strong_residual",
             "movement_post_horwasp_strong_residual",
             "movement_post_chunnel_residual",
             "movement_labeled_residual",
@@ -357,7 +404,12 @@ def refresh_movement_context_label_views(
                 l.horwasp_category,
                 l.horwasp_strong_explained,
                 l.horwasp_observed_context_explained,
-                l.post_horwasp_strong_residual
+                l.post_horwasp_strong_residual,
+                l.mine_category,
+                l.mine_damage_hits,
+                l.mine_slowdown_hits,
+                l.mine_strong_explained,
+                l.post_mine_strong_residual
             FROM movement_residual AS m
             LEFT JOIN movement_context_labels AS l
               USING (game_id, before_archive_turn, after_archive_turn, ship_id)
@@ -370,6 +422,10 @@ def refresh_movement_context_label_views(
         connection.execute(
             "CREATE VIEW movement_post_horwasp_strong_residual AS "
             "SELECT * FROM movement_labeled_residual WHERE post_horwasp_strong_residual = true"
+        )
+        connection.execute(
+            "CREATE VIEW movement_post_mine_strong_residual AS "
+            "SELECT * FROM movement_labeled_residual WHERE post_mine_strong_residual = true"
         )
     finally:
         connection.close()
@@ -393,7 +449,9 @@ def query_movement_context_label_catalog_stats(database_path: Path) -> dict[str,
                 sum(CASE WHEN l.horwasp_candidate_kind = 'mite' AND l.post_horwasp_strong_residual = true THEN 1 ELSE 0 END) AS horwasp_mite_residual,
                 sum(CASE WHEN l.horwasp_strong_explained = true THEN 1 ELSE 0 END) AS horwasp_strong_explained,
                 sum(CASE WHEN l.horwasp_observed_context_explained = true THEN 1 ELSE 0 END) AS horwasp_observed_context_explained,
-                sum(CASE WHEN l.post_horwasp_strong_residual = true THEN 1 ELSE 0 END) AS post_horwasp_strong_residual
+                sum(CASE WHEN l.post_horwasp_strong_residual = true THEN 1 ELSE 0 END) AS post_horwasp_strong_residual,
+                sum(CASE WHEN l.mine_strong_explained = true THEN 1 ELSE 0 END) AS mine_strong_explained,
+                sum(CASE WHEN l.post_mine_strong_residual = true THEN 1 ELSE 0 END) AS post_mine_strong_residual
             FROM movement_residual AS m
             LEFT JOIN movement_context_labels AS l
               USING (game_id, before_archive_turn, after_archive_turn, ship_id)
@@ -415,5 +473,7 @@ def query_movement_context_label_catalog_stats(database_path: Path) -> dict[str,
         "horwasp_strong_explained",
         "horwasp_observed_context_explained",
         "post_horwasp_strong_residual",
+        "mine_strong_explained",
+        "post_mine_strong_residual",
     )
     return {name: int(value or 0) for name, value in zip(names, row or ())}
