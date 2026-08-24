@@ -15,7 +15,7 @@ Deterministic Planets.nu simulation, reverse-engineering and AI research environ
 
 The active workstream is historical NuHost corpus mining and movement compatibility validation across 12 recent finished games.
 
-Current runtime-verified movement accounting:
+Last runtime-verified movement accounting:
 
 ```text
 move_most_candidates              227468
@@ -34,27 +34,33 @@ label_issues                           0
 
 Recently closed/integrated movement work includes warp-well ordering, scoped Red Mite fallback evidence, Horwasp ballistic topology, classic-vs-cloudy ion-storm handling, evidence-scoped sphere-aware ordinary movement for game `591478`, route-equivalent Chunnel multi-event handling, strict mine/web interruption context, and route-equivalent visible Tow handling in the L1 external-context layer.
 
-Route-equivalent visible Tow is **TESTED + DIFF_VERIFIED**. Its global pre-build differential found exactly four false residuals and zero missed single-Tow matches; the L1 v3/L2 v5 rebuild reproduced the exact predicted delta and the post-fix Tow controls are all zero.
+Route-equivalent visible Tow is **TESTED + DIFF_VERIFIED**. Mine/web v5 remains **CORPUS_OBSERVED + TESTED + DIFF_VERIFIED** with `18` strict web + `19` strict normal-mine rows. Chunnel route-equivalent handling remains **TESTED + DIFF_VERIFIED**. Closed mechanics are not reopened without fresh evidence.
 
-Mine/web context v5 remains **CORPUS_OBSERVED + TESTED + DIFF_VERIFIED** with `18` strict web + `19` strict normal-mine rows. Chunnel route-equivalent handling remains **TESTED + DIFF_VERIFIED**. Closed mechanics are not reopened without fresh evidence.
-
-The post-v3 generic residual rebaseline is now verified on the `2236` final endpoint:
+The verified post-v3 generic endpoint is:
 
 ```text
 final_residual_rows       2236
-closed_mite_rows           786
-known_horwasp_hull_rows   1457
 generic_rows               779
 generic_games               12
 generic_hulls               78
 ```
 
-The Tow fix removed only four Warp-0 target-at-origin rows (`97 -> 93`). The dominant short-forward family is unchanged at `121` rows across `26` hulls and `7` games. The active focused hypothesis is now documented **damage-limited maximum warp**. `tools/diagnostics/damage_limited_warp_residual_audit.py` tests raw-damage exact Host-major/minor destinations, a conservative current-supplies repair bracket, Lizard race handling, Gravitonic distance and negative controls before any production change.
+The dominant cross-hull/cross-game residual remains `121` Warp 7-9 short same-line-forward rows.
+
+The current production change is a narrow **damage-limited maximum-warp** L1 context pass. Independent runtime evidence found `10` exact raw-damage-limited Host-major/minor endpoints across `9` games, `8` hulls and `6` races, with both undamaged and not-damage-limited exact controls equal to zero. All `10` exact rows have `<5 KT` visible onboard supplies. Only `2` of the `121` dominant short-forward rows are explained, so damage-limited warp is a real sparse generic mechanic rather than the main cause of that family.
+
+Production category:
+
+```text
+damage_limited_warp_match
+```
+
+The pass runs only on still-unresolved L1 rows after authoritative storm mode and scoped sphere geometry. Repair-bracket-only cases are not promoted. Physical L1 remains `planets-lab.compiled-movement.v3`; the ordered post-compile semantic marker is bumped to `planets-lab.compiled-movement-storm-context.v3` for cache invalidation. Runtime L1/L2 rebuild verification is pending. If production reproduces the independent diagnostic exactly, the final residual will change `2236 -> 2226`.
 
 Read these first:
 
 - [`docs/ROADMAP.md`](docs/ROADMAP.md) — operational roadmap and current priorities;
-- [`docs/handoff/2026-08-25-damage-limited-warp-followup.md`](docs/handoff/2026-08-25-damage-limited-warp-followup.md) — latest movement/corpus handoff;
+- [`docs/handoff/2026-08-25-damage-limited-warp-runtime-verification.md`](docs/handoff/2026-08-25-damage-limited-warp-runtime-verification.md) — latest movement/corpus handoff;
 - [`docs/COMPILED_CORPUS.md`](docs/COMPILED_CORPUS.md) — compiled corpus schemas, cache semantics and current invariants;
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — architecture and evidence boundaries.
 
