@@ -1,0 +1,53 @@
+from __future__ import annotations
+
+from planets_lab.corpus.movement_chunnel_context import ObservedChunnelEvent
+from planets_lab.corpus.movement_chunnel_match import route_equivalent_chunnel_category
+
+
+def _event(*, initiator: int, owner: int = 1) -> ObservedChunnelEvent:
+    return ObservedChunnelEvent(
+        before_archive_turn=10,
+        after_archive_turn=11,
+        initiator_ship_id=initiator,
+        target_ship_id=456,
+        owner_id=owner,
+        pre_chunnel_position=(100, 100),
+        destination=(300, 300),
+    )
+
+
+def test_empty_route_equivalent_match_set_is_unexplained() -> None:
+    assert route_equivalent_chunnel_category([], ship_id=10, owner_id=1) is None
+
+
+def test_duplicate_same_route_events_still_explain_same_owner_passenger() -> None:
+    matches = [_event(initiator=123), _event(initiator=124)]
+
+    assert route_equivalent_chunnel_category(
+        matches,
+        ship_id=10,
+        owner_id=1,
+    ) == "passenger_same_owner"
+
+
+def test_duplicate_same_route_events_still_explain_other_owner_passenger() -> None:
+    matches = [_event(initiator=123), _event(initiator=124)]
+
+    assert route_equivalent_chunnel_category(
+        matches,
+        ship_id=10,
+        owner_id=2,
+    ) == "passenger_other_owner"
+
+
+def test_role_ambiguity_does_not_make_route_ambiguous() -> None:
+    matches = [_event(initiator=123), _event(initiator=124)]
+
+    # Ship 123 is the initiator of one valid event and a same-owner passenger
+    # of the other. Movement is still explained; only the descriptive role is
+    # ambiguous.
+    assert route_equivalent_chunnel_category(
+        matches,
+        ship_id=123,
+        owner_id=1,
+    ) == "route_equivalent_multiple_roles"
