@@ -11,6 +11,11 @@ import duckdb
 
 
 DEFAULT_DB = Path("validation/corpus/compiled/v1/corpus.duckdb")
+DEFAULT_RESIDUAL_VIEW = "movement_post_mine_strong_residual"
+RESIDUAL_VIEWS = (
+    "movement_post_mine_strong_residual",
+    "movement_post_horwasp_strong_residual",
+)
 HORWASP_HULL_IDS = frozenset(range(201, 214))
 CLOSED_MITE_HULL_ID = 213
 
@@ -163,11 +168,17 @@ def _canonical_vector(vector: tuple[int, int]) -> tuple[int, int]:
     return (a, b) if a >= b else (b, a)
 
 
-def _load_rows(db_path: Path) -> list[ResidualRow]:
+def _load_rows(
+    db_path: Path,
+    residual_view: str = DEFAULT_RESIDUAL_VIEW,
+) -> list[ResidualRow]:
+    if residual_view not in RESIDUAL_VIEWS:
+        raise ValueError(f"unsupported residual view: {residual_view}")
+
     con = duckdb.connect(str(db_path), read_only=True)
     try:
         raw_rows = con.execute(
-            """
+            f"""
             SELECT
                 game_id,
                 hull_id,
@@ -184,7 +195,7 @@ def _load_rows(db_path: Path) -> list[ResidualRow]:
                 target_y,
                 coalesce(observed_distance, 0.0),
                 coalesce(nominal_max_distance, 0.0)
-            FROM movement_post_horwasp_strong_residual
+            FROM {residual_view}
             ORDER BY game_id, before_archive_turn, ship_id
             """
         ).fetchall()
@@ -267,12 +278,20 @@ def _print_clusters(
 def main() -> None:
     parser = argparse.ArgumentParser(
         description=(
-            "Cluster final post-sphere movement residuals by generic geometry "
-            "signatures shared across hulls and games."
+            "Cluster the selected final movement residual layer by generic geometry "
+            "signatures shared across hulls and games. The default is the current "
+            "post-mine v5 endpoint; the pre-mine Horwasp endpoint remains available "
+            "for reproducing historical triage."
         )
     )
     parser.add_argument("--db", type=Path, default=DEFAULT_DB)
     parser.add_argument("--limit", type=int, default=30)
+    parser.add_argument(
+        "--residual-view",
+        choices=RESIDUAL_VIEWS,
+        default=DEFAULT_RESIDUAL_VIEW,
+        help="DuckDB residual view to cluster (default: current post-mine final layer).",
+    )
     parser.add_argument(
         "--include-horwasp",
         action="store_true",
@@ -285,7 +304,7 @@ def main() -> None:
     if not args.db.is_file():
         raise SystemExit(f"missing compiled corpus database: {args.db}")
 
-    all_rows = _load_rows(args.db)
+    all_rows = _load_rows(args.db, args.residual_view)
     mite_rows = [row for row in all_rows if row.hull_id == CLOSED_MITE_HULL_ID]
     horwasp_rows = [row for row in all_rows if row.hull_id in HORWASP_HULL_IDS]
     generic_rows = (
@@ -294,7 +313,8 @@ def main() -> None:
         else [row for row in all_rows if row.hull_id not in HORWASP_HULL_IDS]
     )
 
-    print("===== POST-SPHERE GENERIC RESIDUAL CLUSTERING AUDIT =====")
+    print("===== GENERIC RESIDUAL CLUSTERING AUDIT =====")
+    print("residual_view=", args.residual_view)
     print("final_residual_rows=", len(all_rows))
     print("closed_mite_rows=", len(mite_rows))
     print("known_horwasp_hull_rows=", len(horwasp_rows))
