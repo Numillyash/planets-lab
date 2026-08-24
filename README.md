@@ -15,7 +15,7 @@ Deterministic Planets.nu simulation, reverse-engineering and AI research environ
 
 The active workstream is historical NuHost corpus mining and movement compatibility validation across 12 recent finished games.
 
-Current runtime-verified movement accounting:
+Last runtime-verified movement accounting:
 
 ```text
 move_most_candidates              227468
@@ -32,12 +32,14 @@ Mine/web context v5 is **CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**. An independ
 
 The v5 build verified cache semantics (`0/12` compiled-label hits, `12/12` prepared-cache hits). After correcting a stale Chunnel shared-schema sentinel, both the targeted v5 regression set and the full pytest suite are green on a clean tree.
 
-The post-v5 generic rebaseline is now complete on `movement_post_mine_strong_residual`: `2240` final rows, `783` generic non-Horwasp rows, `79` generic hulls and all `12` games. The next focused lead is target-at-origin external movement. `tools/diagnostics/target_origin_tow_residual_audit.py` tests whether the current fail-closed tow layer is leaving route-equivalent multiple visible tow matches unresolved, while keeping hidden/unresolved co-movement as evidence-only.
+The post-v5 generic rebaseline is complete on `movement_post_mine_strong_residual`: `2240` final rows, `783` generic non-Horwasp rows, `79` generic hulls and all `12` games.
+
+The active change is now a route-equivalent Tow semantic fix in the L1 external-context layer. A focused target-origin audit found four final-residual rows where exactly two owner-visible Tow towers start with one target and share its observed destination; single matching towers are already removed by the existing L1 detector. The fix preserves tower-identity ambiguity while treating any non-empty route-equivalent matching set as movement evidence. `compiled-movement.v3` is implemented to invalidate stale L1 partitions; runtime corpus verification is pending. A global pre-build Tow differential must run before the rebuild so the exact corpus delta is derived from all old external residual rows rather than assumed from the four focused examples.
 
 Read these first:
 
 - [`docs/ROADMAP.md`](docs/ROADMAP.md) — operational roadmap and current priorities;
-- [`docs/handoff/2026-08-24-target-origin-tow-followup.md`](docs/handoff/2026-08-24-target-origin-tow-followup.md) — latest movement/corpus handoff;
+- [`docs/handoff/2026-08-24-route-equivalent-tow-runtime-verification.md`](docs/handoff/2026-08-24-route-equivalent-tow-runtime-verification.md) — latest movement/corpus handoff;
 - [`docs/COMPILED_CORPUS.md`](docs/COMPILED_CORPUS.md) — compiled corpus schemas, cache semantics and current invariants;
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — architecture and evidence boundaries.
 
