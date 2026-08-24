@@ -1,6 +1,6 @@
 # Roadmap
 
-This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). The latest movement/corpus handoff is [`handoff/2026-08-24-chunnel-route-equivalent-verified.md`](handoff/2026-08-24-chunnel-route-equivalent-verified.md).
+This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). The latest movement/corpus handoff is [`handoff/2026-08-24-mine-hit-residual-followup.md`](handoff/2026-08-24-mine-hit-residual-followup.md).
 
 ## Evidence policy
 
@@ -32,36 +32,87 @@ horwasp_strong_explained             240
 post_horwasp_strong_residual        2277
 ```
 
-The scoped sphere-topology integration for game `591478` remains **CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**. Raw topology remains `2150x2150`; the evidence-scoped effective `2170x2170` period closes 512 L1 rows and 442 final residual rows after overlap with prior Horwasp strong labels.
+Verified recent closures:
 
-The route-equivalent Chunnel v4 semantic fix is also **TESTED + DIFF_VERIFIED**. A pre-fix all-corpus audit measured exactly 34 false residuals with `chunnel_match_count=2`; the normal v4 label build closed exactly those 34 rows:
+- classic/cloudy ion storms — `DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`;
+- scoped effective sphere topology for game `591478` — `CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`;
+- route-equivalent Chunnel multi-event handling — `TESTED + DIFF_VERIFIED`.
+
+The Chunnel v4 differential closed exactly as predicted:
 
 ```text
 chunnel_explained             1387 -> 1421  (+34)
 post_chunnel_residual         2551 -> 2517  (-34)
-horwasp_strong_explained       240 ->  240  (unchanged)
+horwasp_strong_explained       240 ->  240
 post_horwasp_strong_residual  2311 -> 2277  (-34)
 ```
 
-Post-fix validation:
+## Post-v4 generic residual landscape
+
+The generic clustering audit has been rerun after Chunnel v4:
 
 ```text
-multiple_match_rows                 34
-multiple_match_unexplained           0
-multiple_match_post_chunnel           0
-multiple_match_final_residual          0
-old_ambiguous_category                0
+final_residual_rows       2277
+closed_mite_rows           786
+known_horwasp_hull_rows   1457
+generic_rows               820
+generic_games               12
+generic_hulls               81
 ```
 
-Generic post-sphere residual triage established:
+The exact old/new generic change `854 -> 820` matches removal of the 34 Chunnel false residuals.
 
-- fuel-limited/prorated movement is real but sparse: 7 strict signatures among 216 short same-line candidates;
-- ordinary visible tow explained only 4/119 pre-v4 Warp-0 external rows;
-- effective-topology storm displacement explained 0/119 pre-v4 Warp-0 external rows;
-- hidden/private-FC Chunnel event discovery added 0 rows;
-- 22 of the 119 pre-v4 Warp-0 rows were Chunnel route-equivalent false residuals and are now closed by v4.
+Largest current cross-hull/cross-game signatures:
 
-The active task is therefore **post-v4 generic residual re-triage**, not another immediate production rule.
+```text
+warp7-9  <0.5x    observed=other  same_line_forward   133 rows / 26 hulls / 7 games
+warp0    nominal<=0 target=origin target_is_origin     97 rows / 33 hulls / 8 games
+warp7-9  0.5-1.0x observed=other  same_line_forward    70 rows / 26 hulls / 8 games
+warp7-9  <0.5x    observed=origin observed_stationary   64 rows / 30 hulls / 5 games
+warp7-9  >3.0x    target=origin   target_is_origin      52 rows / 15 hulls / 4 games
+warp7-9  >3.0x    observed=other  oblique               46 rows / 21 hulls / 4 games
+```
+
+Post-v4 Warp-0 audit:
+
+```text
+candidate_rows                                97
+has_colocated_same_destination_comover        11
+single_colocated_same_destination_comover      3
+visible_explicit_tow_target_match              4
+has_hidden_or_unresolved_comover               0
+has_visible_non_tow_comover                   11
+effective_topology_storm_vector_match          0
+```
+
+The exact old/new Warp-0 change `119 -> 97` matches the 22 Chunnel overlaps removed by v4. Warp-0 remains heterogeneous, so it is not the next broad production target.
+
+## Active focused target — mine/web-mine movement interruption
+
+The strongest generic family is short movement along the intended waypoint line. Prior fuel analysis found only seven strict fuel-limit signatures among 216 short same-line candidates, so fuel shortage is a real minor contributor rather than the broad explanation.
+
+An Intercept interpretation was also checked against corpus code. Owner mission `7` is already classified as `INTERCEPT` and excluded from `MOVE_MOST_CANDIDATE` in `src/planets_lab/corpus/movement_context.py`. Do not reclassify the current generic Move Most residual as ordinary visible Intercept without new evidence that intent reconstruction is wrong.
+
+Official minefield mechanics give stronger causal signatures for short-forward movement:
+
+- normal mine hits can reduce travel by 10 ly per hit for low-tech hulls;
+- web-mine hits immediately stop movement and set Warp 0;
+- web-hit/out-of-fuel handling can reset waypoint to the current location.
+
+Focused diagnostic:
+
+```text
+tools/diagnostics/mine_hit_residual_audit.py
+```
+
+It reads local private prepared state but prints only derived mechanical evidence. It distinguishes:
+
+- `web_state_signature`: damage increase + post-state Warp 0 + waypoint reset to observed endpoint;
+- `web_strong`: the state signature plus an observed enemy web field containing the endpoint;
+- `normal_mine_10ly_geometry`: low-tech lost distance near an integer multiple of 10 ly;
+- `normal_mine_strong`: 10-ly geometry + damage increase + observed enemy normal-mine corridor intersection.
+
+Minefield schema/visibility coverage is reported separately. Field overlap alone is not enough for promotion because minefields can change between snapshots through laying, decay, destruction and pull/push.
 
 ## M0 — deterministic skeleton
 
@@ -146,7 +197,7 @@ Verified/closed movement progress:
 2. gravitonic movement classification;
 3. warp-well ordering — `TESTED + DIFF_VERIFIED`;
 4. observed tow-target context;
-5. Chunnel context layer, including route-equivalent multi-event handling — `TESTED + DIFF_VERIFIED`;
+5. Chunnel context including route-equivalent multi-event handling — `TESTED + DIFF_VERIFIED`;
 6. Horwasp ballistic strong labels with scoped 2170 topology;
 7. Red Mite tracking/fallback — research closed unless new evidence appears;
 8. classic ion storms selected by authoritative `settings.nuionstorms` — `DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`;
@@ -174,36 +225,43 @@ route-equivalent Chunnel v4:
 
 ### Current diagnostic sequence
 
-Existing broad generic clustering:
+Broad generic clustering:
 
 ```text
 tools/diagnostics/post_sphere_generic_residual_clustering_audit.py
 ```
 
-Existing Warp-0 external-context audit:
+Warp-0 external context:
 
 ```text
 tools/diagnostics/warp0_external_move_context_audit.py
 ```
 
+Focused mine/web-hit audit:
+
+```text
+tools/diagnostics/mine_hit_residual_audit.py
+```
+
 Immediate work:
 
-1. rerun the broad generic clustering audit against the v4 `2277` final residual;
-2. rerun the Warp-0 external-context audit after removal of the 22 Chunnel false residuals;
-3. compare the refreshed short-forward, Warp-0, displacement-vector, hull and game distributions;
-4. choose the next target only if it is cross-game/cross-hull and causally testable;
-5. keep Horwasp hull IDs `201-213` and closed Mite research out of generic prioritization;
-6. preserve the verified fuel-proration examples but do not promote a broad fuel classifier from 7 strict signatures;
-7. update durable state docs after each material runtime result.
+1. run the mine/web-hit diagnostic against the current `2277` final residual;
+2. inspect minefield raw keyset/radius-source coverage before trusting field geometry;
+3. measure `web_state_signature`, `web_strong`, `normal_mine_10ly_geometry`, and `normal_mine_strong` across hulls/games;
+4. if mine signatures are material, build a Host-order-aware narrow differential before touching production labels;
+5. if mine signatures are sparse, return to the remaining short-forward/stationary families;
+6. keep Horwasp hull IDs `201-213`, Red Mite and closed Chunnel work out of generic prioritization;
+7. update durable state docs after every material runtime result.
 
 Deprioritized/rejected leads:
 
 - multi-waypoint queue did not explain the old hull-79 cluster;
-- fuel proration is real but sparse in the current generic short-forward population;
-- ordinary visible tow was not the broad pre-v4 Warp-0 cause;
-- effective-topology storm displacement was not the broad pre-v4 Warp-0 cause;
-- hidden/private-FC Chunnel event discovery added no coverage in the focused population;
-- route-equivalent Chunnel multiplicity is now fixed/closed;
+- fuel proration is real but sparse in the generic short-forward population;
+- ordinary visible tow is not the broad Warp-0 cause;
+- effective-topology storm displacement is not the broad Warp-0 cause;
+- hidden/private-FC Chunnel event discovery added no coverage;
+- route-equivalent Chunnel multiplicity is fixed/closed;
+- ordinary owner-visible Intercept is already excluded from this Move Most corpus layer;
 - do not generalize game `591478`'s 2170 period to other games;
 - do not reopen Red Mite research without new evidence;
 - hull count alone is not a mechanic identifier.
@@ -229,10 +287,11 @@ Status: **future**.
 
 Unless new evidence changes priorities:
 
-1. refresh generic clustering on the post-v4 final residual;
-2. select the next cross-game mechanic/context from measured evidence;
-3. keep reducing movement residuals with generic mechanics rather than hull-specific overfit;
-4. promote the stabilized movement subset into simulator/ruleset behavior;
-5. expand differential mining into economy/mines/combat/race mechanics;
-6. build the broader compatibility matrix;
-7. only then make M6 AI training a primary workstream.
+1. run and interpret the mine/web-hit focused audit;
+2. promote only a cross-game causal signature that survives Host-order-aware checking;
+3. otherwise resume generic residual triage rather than overfit minefields;
+4. keep reducing movement residuals with generic mechanics rather than hull-specific rules;
+5. promote the stabilized movement subset into simulator/ruleset behavior;
+6. expand differential mining into economy/mines/combat/race mechanics;
+7. build the broader compatibility matrix;
+8. only then make M6 AI training a primary workstream.
