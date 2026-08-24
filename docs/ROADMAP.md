@@ -1,6 +1,6 @@
 # Roadmap
 
-This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). The latest movement/corpus handoff is [`handoff/2026-08-24-generic-fuel-followup.md`](handoff/2026-08-24-generic-fuel-followup.md).
+This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). The latest movement/corpus handoff is [`handoff/2026-08-24-warp0-external-movement-followup.md`](handoff/2026-08-24-warp0-external-movement-followup.md).
 
 ## Evidence policy
 
@@ -34,31 +34,23 @@ post_horwasp_strong_residual        2311
 
 The scoped sphere-topology integration for game `591478` is **CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**. Raw topology remains `2150x2150`; the evidence-scoped effective `2170x2170` period closes 512 L1 rows and 442 final residual rows after overlap with prior Horwasp strong labels.
 
-The broad generic post-sphere clustering audit has now been run. After excluding known Horwasp hull IDs `201-213`, the generic residual contains `854` rows across all 12 games and 82 hull IDs.
+The broad generic post-sphere clustering audit has been run. After excluding known Horwasp hull IDs `201-213`, the generic residual contains `854` rows across all 12 games and 82 hull IDs.
 
-The current active hypothesis is **generic fuel-limited / prorated movement**. The strongest cross-game geometry is short movement that stays aligned with the waypoint, especially:
+The focused generic fuel-limited audit is also complete. Among 216 short same-line candidates, only 16 have insufficient raw-snapshot fuel for the regular move, 12 bracket the observed move, and 7 satisfy the strict fuel-limit signature across six hulls and four games. Fuel-limited/prorated movement is therefore a real but **minor** current residual contributor, not the main generic closure opportunity.
 
-```text
-warp7-9, <0.5x, same_line_forward       133 rows / 26 hulls / 7 games
-warp7-9, 0.5-1.0x, same_line_forward     70 rows / 26 hulls / 8 games
-warp7-9, ~0.5x, same_line_forward         29 rows / 15 hulls / 7 games
-```
-
-Focused diagnostic:
-
-```text
-tools/diagnostics/generic_fuel_limited_residual_audit.py
-```
-
-It is implemented and awaiting runtime output. It tests fuel-before/after, engine fuel factor, raw mass, formula affordability, maximum affordable whole-ly distance and same-identity continuity across all non-Horwasp short-forward rows. Game `591478` uses the already-verified effective 2170 topology in this diagnostic so sphere geometry does not contaminate the fuel hypothesis.
-
-The main fallback generic cluster if fuel coverage is weak is:
+The current active target is now:
 
 ```text
 warp0, target=origin, external move      119 rows / 35 hulls / 8 games
 ```
 
-That family likely represents an external displacement/transport effect and should be split into hidden tow / storm / other pre-movement context only after the fuel hypothesis is resolved.
+Focused diagnostic:
+
+```text
+tools/diagnostics/warp0_external_move_context_audit.py
+```
+
+It separates visible explicit tow, hidden/unresolved co-moving ships, visible non-tow co-movement, effective-topology ion-storm vector matches, and genuinely unexplained external displacement.
 
 ## M0 — deterministic skeleton
 
@@ -143,7 +135,8 @@ Verified/closed movement progress:
 6. Horwasp ballistic strong labels with scoped 2170 topology;
 7. Red Mite tracking/fallback — research closed unless new evidence appears;
 8. classic ion storms selected by authoritative `settings.nuionstorms` — `DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`;
-9. scoped ordinary sphere movement for game `591478` — `CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`.
+9. scoped ordinary sphere movement for game `591478` — `CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`;
+10. generic fuel-limited/prorated movement — corpus-observed as a small residual contributor, not yet promoted as an L1 classifier.
 
 Recent verified residual changes:
 
@@ -175,18 +168,38 @@ Focused fuel test:
 tools/diagnostics/generic_fuel_limited_residual_audit.py
 ```
 
+Runtime result:
+
+```text
+short_same_line_forward          216
+insufficient_for_regular          16
+formula_brackets_observed         12
+affordable_frontier_match          8
+strong_fuel_limit_signature        7
+```
+
+Strong signatures cross six hulls and four games, confirming the mechanic as real but too sparse to explain the 216-row family broadly.
+
+Focused warp-zero external-context test:
+
+```text
+tools/diagnostics/warp0_external_move_context_audit.py
+```
+
 Immediate work:
 
-1. run the focused fuel diagnostic and preserve complete output;
-2. measure `short_same_line_forward`, `formula_brackets_observed`, `strong_fuel_limit_signature`, distinct hull/game coverage and sufficient-fuel false negatives;
-3. promote a production fuel-proration context only if the strong signature is broad, causal and fail-closed;
-4. if fuel coverage is sparse, move directly to the `warp0 + target=origin + external move` family;
-5. keep Horwasp hull IDs `201-213` and closed Mite research out of generic prioritization;
-6. update state docs in the same development cycle after every material result.
+1. run the warp-zero external-movement audit and preserve complete output;
+2. compare rates for colocated same-destination co-movers, visible explicit tow targeting, hidden/unresolved co-movers, and effective-topology storm vector matches;
+3. if tow/shared movement dominates, build a fail-closed hidden-tow/context diagnostic before touching production classification;
+4. if storm-vector matches dominate in sphere game `591478`, fix the topology handling in the storm layer rather than adding a new mechanic;
+5. if neither dominates, inspect the remaining examples for another pre-movement transport/context family;
+6. keep Horwasp hull IDs `201-213` and closed Mite research out of generic prioritization;
+7. update state docs in the same development cycle after every material result.
 
 Deprioritized/rejected leads:
 
 - multi-waypoint queue did not explain the old hull-79 cluster;
+- fuel proration is real but only 7 strict signatures in the current generic short-forward residual, so it is not the next production target;
 - do not generalize game `591478`'s 2170 period to other games;
 - do not reopen Red Mite research without new evidence;
 - hull count alone is not a mechanic identifier.
@@ -212,10 +225,11 @@ Status: **future**.
 
 Unless new evidence changes priorities:
 
-1. run and interpret the generic fuel-limited residual audit;
-2. either integrate fuel proration if strongly supported or pivot to warp-zero external displacement;
-3. keep reducing movement residuals with cross-game mechanics rather than hull-specific overfit;
-4. promote the stabilized movement subset into simulator/ruleset behavior;
-5. expand differential mining into economy/mines/combat/race mechanics;
-6. build the broader compatibility matrix;
-7. only then make M6 AI training a primary workstream.
+1. run and interpret the warp-zero external-movement context audit;
+2. resolve whether the 119-row family is primarily hidden tow/shared movement, storm-topology leakage, or another transport effect;
+3. promote only the causal, fail-closed generic context that survives focused testing;
+4. keep reducing movement residuals with cross-game mechanics rather than hull-specific overfit;
+5. promote the stabilized movement subset into simulator/ruleset behavior;
+6. expand differential mining into economy/mines/combat/race mechanics;
+7. build the broader compatibility matrix;
+8. only then make M6 AI training a primary workstream.
