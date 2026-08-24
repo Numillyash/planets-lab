@@ -2,7 +2,7 @@
 
 `validation/corpus/cache/loadall/game-<id>.zip` remains the immutable evidence/source layer. Compiled data is a deterministic local derivative and must be rebuildable from cached archives plus manifests.
 
-Current movement/corpus state is summarized in [`handoff/2026-08-24-mine-context-v5-pending.md`](handoff/2026-08-24-mine-context-v5-pending.md).
+Current movement/corpus state is summarized in [`handoff/2026-08-24-mine-context-v5-diff-verified.md`](handoff/2026-08-24-mine-context-v5-diff-verified.md).
 
 ## Build
 
@@ -109,13 +109,11 @@ Private text orders are not exported. Raw fields such as friendly code may be us
 
 Chunnel, Horwasp and strict mine/web classification is stored separately under `labels/movement_context/`. One label row corresponds to one L1 row where `post_external_residual = true`.
 
-Current code schema:
+Current verified schema:
 
 ```text
 planets-lab.compiled-movement-context-labels.v5
 ```
-
-**Runtime note:** v5 is implemented but its normal 12-game label build is still pending verification. The last runtime-verified label corpus is v4. Schema v5 must invalidate v4 label partitions automatically while reusing prepared caches.
 
 Version 4 changed Chunnel semantics without changing exported columns. After candidate events are filtered to the same pre-Chunnel position and the same observed destination, any non-empty match set closes the movement as Chunnel. Multiple route-equivalent events no longer become false residuals merely because event identity or descriptive role is ambiguous.
 
@@ -140,7 +138,7 @@ normal_mine_hit_nearest_damage
 NuHost corpus evidence selects positive nearest-integer damage quanta:
 
 ```text
-web:   round_half_up(1000 / (hull_mass + 1))
+web:    round_half_up(1000 / (hull_mass + 1))
 normal: round_half_up(10000 / (hull_mass + 1))
 ```
 
@@ -203,7 +201,7 @@ The pre-mine Horwasp residual remains materialized as a DuckDB view. This is int
 - `movement_labeled_residual`;
 - `movement_post_chunnel_residual`;
 - `movement_post_horwasp_strong_residual`;
-- `movement_post_mine_strong_residual` after a successful v5 build.
+- `movement_post_mine_strong_residual`.
 
 Useful queries:
 
@@ -253,7 +251,18 @@ Context-label metadata additionally records the exact source movement Parquet SH
 
 Bump or add a semantic cache marker whenever classification behavior changes even if columns do not. Do not require users to manually delete caches to make a semantic fix take effect.
 
-## Last runtime-verified 12-game invariants — v4
+V5 normal-build cache verification:
+
+```text
+compiled_label_cache_hits           0
+compiled_label_cache_misses        12
+prepared_cache_hits_on_compile     12
+prepared_cache_misses_on_compile    0
+```
+
+Thus the semantic schema bump invalidated only L2 label partitions and correctly reused all prepared state.
+
+## Current runtime-verified 12-game invariants — v5
 
 Movement L1:
 
@@ -267,7 +276,7 @@ external_context_explained    13956
 post_external_residual         3938
 ```
 
-Context labels under verified v4:
+Context labels under verified v5:
 
 ```text
 external_residual_rows             3938
@@ -278,21 +287,48 @@ horwasp_mite_residual               786
 horwasp_strong_explained            240
 horwasp_observed_context_explained    0
 post_horwasp_strong_residual       2277
+mine_strong_explained                37
+post_mine_strong_residual          2240
 label_issues                          0
 ```
 
-## Pending v5 differential target
-
-Independent mine rounding diagnostics over the verified v4 endpoint measured:
+Strict mine categories:
 
 ```text
-web_nearest_delta_match_after_field       18
-normal_nearest_delta_multiple_after_field 19
-web_nearest_control_no_after_field         0
-normal_nearest_control_no_after_field      0
+normal_mine_hit_nearest_damage  19
+web_mine_hit_nearest_damage     18
 ```
 
-The strict production predicates make these web and normal subsets disjoint. Expected, not yet runtime-verified:
+Damage/slowdown hit distribution:
+
+```text
+normal: damage_hits=1, slowdown_hits=1  -> 17
+normal: damage_hits=2, slowdown_hits=1  ->  1
+normal: damage_hits=2, slowdown_hits=2  ->  1
+web:    damage_hits=1                   -> 18
+```
+
+All mine overlap guards were zero:
+
+```text
+mine_and_chunnel              0
+mine_and_horwasp_strong       0
+mine_horwasp_hulls            0
+mine_not_post_horwasp_source  0
+```
+
+## Mine/web v5 differential closure
+
+Independent diagnostics over the verified v4 endpoint measured:
+
+```text
+web_nearest_delta_match_after_field        18
+normal_nearest_delta_multiple_after_field  19
+web_nearest_control_no_after_field          0
+normal_nearest_control_no_after_field       0
+```
+
+The strict production predicates made those web and normal subsets disjoint. The normal v5 build reproduced the prediction exactly:
 
 ```text
 post_horwasp_strong_residual  2277  unchanged
@@ -300,7 +336,9 @@ mine_strong_explained           37
 post_mine_strong_residual     2240
 ```
 
-Any deviation from this target must be investigated rather than normalized away.
+Therefore the strict mine/web context layer is `DIFF_VERIFIED`.
+
+Repair-bracket-only rows remain outside v5 until repair reconstruction is independently validated.
 
 ## Route-equivalent Chunnel differential closure
 
@@ -314,3 +352,9 @@ post_horwasp_strong_residual  2311 -> 2277  (-34)
 ```
 
 Chunnel v4 remains **TESTED + DIFF_VERIFIED** and is not reopened by v5.
+
+## Current test follow-up
+
+The first v5 targeted/full pytest runs had exactly one failure in `tests/test_movement_chunnel_route_equivalent.py`: a stale assertion still hard-coded the shared compiled label schema as v4. All new mine-context tests passed.
+
+That test-only sentinel was updated in commit `3661f038178bf7fae37496ad23be90e08480ea72` to expect v5 while retaining standalone Chunnel schema v2. A final targeted/full pytest rerun is required for a fully green repository record. No corpus rebuild is required because production code and compiled data are unchanged by the test fix.
