@@ -85,6 +85,32 @@ def test_observed_tow_target_match_explains_external_target_move() -> None:
     assert summary.baseline_unresolved == 1
     assert summary.context_counts == {"observed_tow_target_match": 1}
     assert summary.tow_context_counts["observed_tow_target_match"] == 1
+    assert summary.tow_context_counts["observed_tow_target_single"] == 1
+    assert summary.residual_unresolved == 0
+
+
+def test_route_equivalent_multiple_visible_towers_explain_target_move() -> None:
+    before = [
+        _ship(10, ship_id=10, mission=6, mission1target=20, targetx=125),
+        _ship(10, ship_id=11, mission=6, mission1target=20, targetx=125),
+        _ship(10, ship_id=20, warp=0, targetx=100),
+    ]
+    after = [
+        _ship(11, ship_id=10, x=125, targetx=125, mission=6, mission1target=20),
+        _ship(11, ship_id=11, x=125, targetx=125, mission=6, mission1target=20),
+        _ship(11, ship_id=20, x=125, warp=0, targetx=100),
+    ]
+    summary = evaluate_movement_residual_context(
+        (
+            _snapshot(1, 10, ships=before),
+            _snapshot(1, 11, ships=after),
+        )
+    )
+    assert summary.move_most_candidates == 1
+    assert summary.baseline_unresolved == 1
+    assert summary.context_counts == {"observed_tow_target_match": 1}
+    assert summary.tow_context_counts["observed_tow_target_match"] == 1
+    assert summary.tow_context_counts["observed_tow_target_route_equivalent_multiple"] == 1
     assert summary.residual_unresolved == 0
 
 
