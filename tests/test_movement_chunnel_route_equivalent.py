@@ -1,6 +1,10 @@
 from __future__ import annotations
 
-from planets_lab.corpus.movement_chunnel_context import ObservedChunnelEvent
+from planets_lab.corpus.compiled_movement_labels import COMPILED_MOVEMENT_CONTEXT_LABEL_SCHEMA
+from planets_lab.corpus.movement_chunnel_context import (
+    MOVEMENT_CHUNNEL_CONTEXT_GAME_SCHEMA,
+    ObservedChunnelEvent,
+)
 from planets_lab.corpus.movement_chunnel_match import route_equivalent_chunnel_category
 
 
@@ -14,6 +18,11 @@ def _event(*, initiator: int, owner: int = 1) -> ObservedChunnelEvent:
         pre_chunnel_position=(100, 100),
         destination=(300, 300),
     )
+
+
+def test_route_equivalent_semantics_bump_cache_schemas() -> None:
+    assert COMPILED_MOVEMENT_CONTEXT_LABEL_SCHEMA == "planets-lab.compiled-movement-context-labels.v4"
+    assert MOVEMENT_CHUNNEL_CONTEXT_GAME_SCHEMA == "planets-lab.movement-chunnel-context-game.v2"
 
 
 def test_empty_route_equivalent_match_set_is_unexplained() -> None:
