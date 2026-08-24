@@ -26,12 +26,12 @@ post_horwasp_strong_residual        2311
 
 Recently closed/integrated movement work includes warp-well ordering, scoped Red Mite fallback evidence, Horwasp ballistic topology, classic-vs-cloudy ion-storm handling, and evidence-scoped sphere-aware ordinary movement for game `591478`.
 
-The broad generic residual audits now show that strict fuel-limited movement is real but small and that the 119-row Warp-0 external-move family is not broadly explained by ordinary tow or ion storms. Thirty-one rows move with visible same-origin/same-destination groups, including a strong Firecloud/hull-56 group signature. The active task is therefore a focused missed-Chunnel event-discovery audit at `tools/diagnostics/warp0_chunnel_gap_audit.py`.
+Broad post-sphere clustering and focused follow-ups established that fuel-limited movement is real but sparse, ordinary visible tow explains only 4/119 Warp-0 external rows, and storm-vector leakage explains 0/119. A structural Chunnel audit then found 22 Chunnel-shaped Warp-0 rows, but all 22 already exist in current event discovery. The active bug candidate is therefore route-equivalent Chunnel multiplicity: production currently leaves `chunnel_match_count > 1` rows unresolved even though every match in that set already has the same pre-Chunnel position and observed destination. A DB-only pre-fix audit is implemented at `tools/diagnostics/chunnel_route_equivalent_ambiguity_audit.py`.
 
 Read these first:
 
 - [`docs/ROADMAP.md`](docs/ROADMAP.md) — operational roadmap and current priorities;
-- [`docs/handoff/2026-08-24-warp0-chunnel-gap-followup.md`](docs/handoff/2026-08-24-warp0-chunnel-gap-followup.md) — latest movement/corpus handoff;
+- [`docs/handoff/2026-08-24-chunnel-route-equivalent-ambiguity.md`](docs/handoff/2026-08-24-chunnel-route-equivalent-ambiguity.md) — latest movement/corpus handoff;
 - [`docs/COMPILED_CORPUS.md`](docs/COMPILED_CORPUS.md) — compiled corpus schemas, cache semantics and current invariants;
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — architecture and evidence boundaries.
 
