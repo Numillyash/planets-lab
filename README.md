@@ -15,23 +15,25 @@ Deterministic Planets.nu simulation, reverse-engineering and AI research environ
 
 The active workstream is historical NuHost corpus mining and movement compatibility validation across 12 recent finished games.
 
-Last runtime-verified movement accounting:
+Current runtime-verified movement accounting:
 
 ```text
 move_most_candidates              227468
 post_external_residual              3938
-post_chunnel_residual               2551
-post_horwasp_strong_residual        2311
+post_chunnel_residual               2517
+post_horwasp_strong_residual        2277
 ```
 
-Recently closed/integrated movement work includes warp-well ordering, scoped Red Mite fallback evidence, Horwasp ballistic topology, classic-vs-cloudy ion-storm handling, and evidence-scoped sphere-aware ordinary movement for game `591478`.
+Recently closed/integrated movement work includes warp-well ordering, scoped Red Mite fallback evidence, Horwasp ballistic topology, classic-vs-cloudy ion-storm handling, evidence-scoped sphere-aware ordinary movement for game `591478`, and route-equivalent Chunnel multi-event handling.
 
-The current pending-runtime fix is in L2 Chunnel labeling. An all-corpus pre-fix differential found 34 rows with `chunnel_match_count=2`; all 34 were already route-equivalent (same pre-Chunnel position and observed destination), but the old v3 label semantics left them as `ambiguous_matching_events` residuals. Production and standalone evaluation now share route-equivalent matching semantics, and compiled context labels are bumped to v4 so normal builds invalidate old L2 caches. The exact expected final residual is `2311 -> 2277`; this remains an expectation until the new runtime build is measured.
+The Chunnel v4 semantic fix is now **TESTED + DIFF_VERIFIED**. A pre-fix DB audit found exactly 34 rows with `chunnel_match_count=2` that were already route-equivalent but remained residual under v3. The normal v4 L2 build closed exactly those 34 rows: `chunnel_explained 1387 -> 1421` and final residual `2311 -> 2277`, while Horwasp strong accounting remained unchanged. Old v3 label caches invalidated automatically and all prepared caches were reused.
+
+The next task is generic post-v4 residual triage: rerun the existing cross-hull/cross-game clustering and Warp-0 external-context diagnostics against the new `2277` final residual before promoting another mechanic.
 
 Read these first:
 
 - [`docs/ROADMAP.md`](docs/ROADMAP.md) — operational roadmap and current priorities;
-- [`docs/handoff/2026-08-24-chunnel-route-equivalent-runtime-verification.md`](docs/handoff/2026-08-24-chunnel-route-equivalent-runtime-verification.md) — latest movement/corpus handoff;
+- [`docs/handoff/2026-08-24-chunnel-route-equivalent-verified.md`](docs/handoff/2026-08-24-chunnel-route-equivalent-verified.md) — latest movement/corpus handoff;
 - [`docs/COMPILED_CORPUS.md`](docs/COMPILED_CORPUS.md) — compiled corpus schemas, cache semantics and current invariants;
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — architecture and evidence boundaries.
 
