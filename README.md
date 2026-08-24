@@ -34,18 +34,27 @@ label_issues                           0
 
 Recently closed/integrated movement work includes warp-well ordering, scoped Red Mite fallback evidence, Horwasp ballistic topology, classic-vs-cloudy ion-storm handling, evidence-scoped sphere-aware ordinary movement for game `591478`, route-equivalent Chunnel multi-event handling, strict mine/web interruption context, and route-equivalent visible Tow handling in the L1 external-context layer.
 
-Route-equivalent visible Tow is now **TESTED + DIFF_VERIFIED**. A global pre-build differential over all `3938` old external residual rows found exactly four multiple-Tow matches and zero missed single-Tow matches. All four were old final-residual rows. The normal L1 v3 build reproduced the exact predicted `+4/-4` external-context delta, the normal L2 v5 build invalidated from the changed L1 source schema/hash, and every downstream count matched the prediction exactly. A post-fix global audit found zero remaining visible Tow matches in the residual.
+Route-equivalent visible Tow is **TESTED + DIFF_VERIFIED**. Its global pre-build differential found exactly four false residuals and zero missed single-Tow matches; the L1 v3/L2 v5 rebuild reproduced the exact predicted delta and the post-fix Tow controls are all zero.
 
 Mine/web context v5 remains **CORPUS_OBSERVED + TESTED + DIFF_VERIFIED** with `18` strict web + `19` strict normal-mine rows. Chunnel route-equivalent handling remains **TESTED + DIFF_VERIFIED**. Closed mechanics are not reopened without fresh evidence.
 
-Both the targeted Tow/compiled/cache regression set and the full pytest suite are green. L1 v2 -> v3 cache migration produced `0/12` compiled hits and `12/12` prepared-cache hits; the following L2 v5 rebuild likewise produced `0/12` compiled-label hits and `12/12` prepared-cache hits.
+The post-v3 generic residual rebaseline is now verified on the `2236` final endpoint:
 
-The previous post-v5 generic rebaseline (`2240` final / `783` generic / `79` generic hulls) is now historical. The immediate next step is to rerun broad generic clustering on the new `2236` final endpoint before selecting another mechanic family.
+```text
+final_residual_rows       2236
+closed_mite_rows           786
+known_horwasp_hull_rows   1457
+generic_rows               779
+generic_games               12
+generic_hulls               78
+```
+
+The Tow fix removed only four Warp-0 target-at-origin rows (`97 -> 93`). The dominant short-forward family is unchanged at `121` rows across `26` hulls and `7` games. The active focused hypothesis is now documented **damage-limited maximum warp**. `tools/diagnostics/damage_limited_warp_residual_audit.py` tests raw-damage exact Host-major/minor destinations, a conservative current-supplies repair bracket, Lizard race handling, Gravitonic distance and negative controls before any production change.
 
 Read these first:
 
 - [`docs/ROADMAP.md`](docs/ROADMAP.md) — operational roadmap and current priorities;
-- [`docs/handoff/2026-08-24-route-equivalent-tow-verified.md`](docs/handoff/2026-08-24-route-equivalent-tow-verified.md) — latest movement/corpus handoff;
+- [`docs/handoff/2026-08-25-damage-limited-warp-followup.md`](docs/handoff/2026-08-25-damage-limited-warp-followup.md) — latest movement/corpus handoff;
 - [`docs/COMPILED_CORPUS.md`](docs/COMPILED_CORPUS.md) — compiled corpus schemas, cache semantics and current invariants;
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — architecture and evidence boundaries.
 
