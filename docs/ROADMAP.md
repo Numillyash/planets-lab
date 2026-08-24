@@ -1,6 +1,6 @@
 # Roadmap
 
-This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). The latest movement/corpus handoff is [`handoff/2026-08-24-route-equivalent-tow-runtime-verification.md`](handoff/2026-08-24-route-equivalent-tow-runtime-verification.md).
+This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). The latest movement/corpus handoff is [`handoff/2026-08-24-route-equivalent-tow-verified.md`](handoff/2026-08-24-route-equivalent-tow-verified.md).
 
 ## Evidence policy
 
@@ -18,20 +18,21 @@ Unknown mechanics fail closed rather than being silently guessed. Raw game/setti
 
 The active milestone is **M5: historical NuHost corpus + compatibility mining**, with movement as the most mature mechanic family.
 
-Last runtime-verified 12-game movement accounting, before the pending Tow v3 rebuild:
+Current runtime-verified 12-game movement accounting:
 
 ```text
 move_most_candidates              227468
 baseline_explained                209574
 baseline_unresolved                17894
-external_context_explained         13956
-post_external_residual              3938
+external_context_explained         13960
+post_external_residual              3934
 chunnel_explained                   1421
-post_chunnel_residual               2517
+post_chunnel_residual               2513
 horwasp_strong_explained             240
-post_horwasp_strong_residual        2277
+post_horwasp_strong_residual        2273
 mine_strong_explained                 37
-post_mine_strong_residual           2240
+post_mine_strong_residual           2236
+label_issues                           0
 ```
 
 Verified recent closures:
@@ -39,13 +40,72 @@ Verified recent closures:
 - classic/cloudy ion storms — `DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`;
 - scoped effective sphere topology for game `591478` — `CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`;
 - route-equivalent Chunnel multi-event handling — `TESTED + DIFF_VERIFIED`;
-- strict mine/web interruption context v5 — `CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`.
+- strict mine/web interruption context v5 — `CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`;
+- route-equivalent visible Tow handling in L1 v3 — `TESTED + DIFF_VERIFIED`.
 
-The active pending change is **route-equivalent visible Tow handling in L1**.
+The active task is now **post-v3 generic residual rebaseline** against `movement_post_mine_strong_residual`.
 
-## Post-v5 generic residual landscape
+## Route-equivalent Tow v3 — verified closure
 
-The broad clustering against the verified final view `movement_post_mine_strong_residual` measured:
+Focused target-origin evidence first exposed four false residuals with exactly two owner-visible matching Tow towers and zero single-match misses.
+
+The global pre-build differential then scanned all old `3938` external residual rows and found exactly:
+
+```text
+any_visible_matching_tower                    4
+single_visible_matching_tower                 0
+route_equivalent_multiple_visible_towers      4
+```
+
+All four were in the old final residual and all had `warp_zero_external_move` baseline geometry. The predicted production delta was therefore:
+
+```text
+external_context_explained       +4
+post_external_residual           -4
+chunnel_explained                 0
+horwasp_strong_explained          0
+mine_strong_explained             0
+post_mine_strong_residual        -4
+```
+
+Normal L1 v3 build without `--rebuild` produced:
+
+```text
+compiled_cache_hits                0
+compiled_cache_misses             12
+prepared_cache_hits_on_compile    12
+prepared_cache_misses_on_compile   0
+```
+
+Normal L2 v5 build then produced:
+
+```text
+compiled_label_cache_hits           0
+compiled_label_cache_misses        12
+prepared_cache_hits_on_compile     12
+prepared_cache_misses_on_compile    0
+```
+
+Every resulting layer count matched the independently calculated expectation exactly, with runtime result:
+
+```text
+ACCOUNTING DIFFERENTIAL: EXACT MATCH
+```
+
+Post-fix global Tow audit:
+
+```text
+external_residual_rows= 3934
+any_visible_matching_tower= 0
+single_visible_matching_tower= 0
+route_equivalent_multiple_visible_towers= 0
+```
+
+Status: **TESTED + DIFF_VERIFIED**. Do not reopen without fresh contradictory evidence.
+
+## Generic residual landscape
+
+The previous broad clustering was measured before the Tow v3 fix:
 
 ```text
 final_residual_rows       2240
@@ -56,7 +116,7 @@ generic_games               12
 generic_hulls               79
 ```
 
-Largest surviving coarse signatures:
+Largest coarse families at that historical endpoint included:
 
 ```text
 121  warp7-9 <0.5x     observed=other same_line_forward
@@ -67,105 +127,19 @@ Largest surviving coarse signatures:
  46  warp7-9 >3.0x     observed=other oblique
 ```
 
-The mine/web fix materially reduced short-forward residuals but did not eliminate that family. The next investigation switched to target-at-origin external movement because it gives stronger structural evidence about movement by another actor.
-
-## Route-equivalent Tow finding — implemented, runtime pending
-
-Focused diagnostic:
+Those counts are no longer the active selection baseline because four final-residual Tow rows were removed. Rerun:
 
 ```text
-tools/diagnostics/target_origin_tow_residual_audit.py
+tools/diagnostics/post_sphere_generic_residual_clustering_audit.py
 ```
 
-Verified focused runtime result:
-
-```text
-candidate_rows                              226
-post_warp0                                  116
-has_same_origin_destination_comover          35
-has_hidden_or_unresolved_comover              0
-has_visible_tow_targeter                     92
-visible_tow_targeter_other_destination       88
-any_visible_matching_tower                    4
-single_visible_matching_tower                 0
-route_equivalent_multiple_visible_towers      4
-```
-
-The four matching rows span four games and four hulls. Each has exactly two owner-visible Tow towers that:
-
-- target the candidate ship;
-- start colocated with it;
-- finish at its same non-stationary observed destination.
-
-All four targets finish at Warp 0.
-
-The old `_observed_tow_targets()` treated multiple matches as unresolved because tower identity was ambiguous. That is a semantic error: the actual Tow winner may be ambiguous, but the target movement route is already fixed by every matching tower.
-
-Production source now preserves all matching tower IDs and treats any non-empty matching set as movement evidence. It does not choose an arbitrary winning tower.
-
-Implemented schema changes:
-
-```text
-movement residual context:
-  planets-lab.movement-residual-context-game.v2
-  planets-lab.movement-residual-context-stats.v2
-
-compiled L1 movement:
-  planets-lab.compiled-movement.v3
-```
-
-`compiled-movement.v3` has the same columns as v2; the bump is a semantic cache invalidation marker.
-
-L2 remains:
-
-```text
-planets-lab.compiled-movement-context-labels.v5
-```
-
-The label cache is still invalidated automatically after the L1 rebuild because label metadata binds to the current source movement schema and exact source movement Parquet hash.
-
-### Global differential required before rebuild
-
-The four focused rows are a lower bound, not yet assumed to be the full corpus delta. The existing Tow helper applies to all external residual geometry, not only target-at-origin rows.
-
-Run first:
-
-```text
-tools/diagnostics/tow_route_equivalent_global_differential_audit.py
-```
-
-It scans all old `movement_labeled_residual` rows and reports route-equivalent multiple visible Tow matches partitioned by current downstream stage.
-
-Critical negative control:
-
-```text
-single_visible_matching_tower = 0
-```
-
-If this is non-zero, stop and investigate because ordinary single Tow matches should already have been removed by the verified old L1 external layer.
-
-The global audit, not the four focused examples, defines the expected L1/L2 accounting delta.
-
-If the global population happens to be exactly those four final-residual rows, the conditional expected endpoint is:
-
-```text
-external_context_explained  13960
-post_external_residual       3934
-chunnel_explained            1421
-post_chunnel_residual        2513
-horwasp_strong_explained      240
-post_horwasp_strong_residual 2273
-mine_strong_explained          37
-post_mine_strong_residual     2236
-```
-
-These are **not runtime invariants yet**.
+against the current `2236` final endpoint before choosing the next mechanic family.
 
 ## Mine/web movement interruption — verified v5 mechanic
 
 Mine/web work is closed for the strict subset.
 
-Key independent evidence:
+Independent evidence predicted exactly:
 
 ```text
 web_nearest_delta_match_after_field        18
@@ -174,19 +148,12 @@ web_nearest_control_no_after_field          0
 normal_nearest_control_no_after_field       0
 ```
 
-Production reproduced exactly:
-
-```text
-post_horwasp_strong_residual  2277
-mine_strong_explained           37
-post_mine_strong_residual     2240
-```
-
-Strict categories:
+Production still classifies:
 
 ```text
 web_mine_hit_nearest_damage       18
 normal_mine_hit_nearest_damage    19
+mine_strong_explained             37
 ```
 
 Historical NuHost evidence selects positive nearest-integer mine damage rather than the documentation's literal round-up wording. Keep that distinction explicit.
@@ -195,28 +162,18 @@ Repair-bracket-only rows remain outside production until repair reconstruction i
 
 ## Chunnel v4 — verified closure
 
-The pre-fix route-equivalent Chunnel audit predicted 34 false residuals. Production reproduced exactly:
-
-```text
-chunnel_explained             1387 -> 1421
-post_chunnel_residual         2551 -> 2517
-horwasp_strong_explained       240 ->  240
-post_horwasp_strong_residual  2311 -> 2277
-```
-
-Status: **TESTED + DIFF_VERIFIED**. Do not reopen without fresh evidence.
+The pre-fix route-equivalent Chunnel audit predicted 34 false residuals and production reproduced exactly the predicted Chunnel delta. Status: **TESTED + DIFF_VERIFIED**. Do not reopen without fresh evidence.
 
 ## Test state
 
-Before the active Tow source changes, targeted v5 tests and the full pytest suite were green on a clean tree.
-
-The new Tow route-equivalence regression is implemented in:
+The route-equivalent Tow migration was verified with:
 
 ```text
-tests/test_movement_residual_context.py
+targeted regression set: 26 passed
+full pytest suite:        green
 ```
 
-The new v3 source state still requires targeted and full pytest runtime verification before it is marked `TESTED`.
+The repository source state and current compiled corpus are aligned on L1 v3 + L2 v5.
 
 ## M0 — deterministic skeleton
 
@@ -276,7 +233,7 @@ Current corpus foundation:
 - compiled movement Parquet + DuckDB catalog;
 - separate L2 context-label layer.
 
-Implemented schemas on `main`:
+Current schemas:
 
 ```text
 corpus manifest:
@@ -302,7 +259,7 @@ Verified/closed movement progress:
 1. ordinary movement baseline / Host major-minor geometry;
 2. gravitonic movement classification;
 3. warp-well ordering — `TESTED + DIFF_VERIFIED`;
-4. owner-visible Tow target context — current multiplicity fix pending runtime verification;
+4. owner-visible Tow target context including route-equivalent multiplicity — `TESTED + DIFF_VERIFIED`;
 5. Chunnel route-equivalent multi-event handling — `TESTED + DIFF_VERIFIED`;
 6. Horwasp ballistic strong labels with scoped 2170 topology;
 7. Red Mite tracking/fallback — research closed absent new evidence;
@@ -313,26 +270,22 @@ Verified/closed movement progress:
 
 ### Immediate work
 
-1. pull current `main` and confirm clean tree;
-2. run syntax check;
-3. run `tow_route_equivalent_global_differential_audit.py` against the still-old verified corpus **before** L1 rebuild;
-4. confirm `single_visible_matching_tower = 0` and record the global multiple-match stage distribution;
-5. run targeted tests and full pytest;
-6. run normal L1 v3 build without `--rebuild` and verify 0/12 compiled-cache reuse + 12/12 prepared-cache reuse;
-7. run normal L2 v5 build without `--rebuild` and verify source-schema/hash invalidation;
-8. compare layer accounting exactly with the global differential;
-9. rerun target-origin audit and broad generic clustering on the rebuilt final view;
-10. choose the next generic residual family only after that rebaseline.
+1. pull current `main` and confirm a clean tree;
+2. run `tools/diagnostics/post_sphere_generic_residual_clustering_audit.py` on `movement_post_mine_strong_residual`;
+3. record the new final/generic row counts and largest cross-hull/cross-game signatures;
+4. compare the new clustering against the historical `2240/783/79` baseline and identify exactly which family lost the four Tow rows;
+5. choose the next generic residual family only from the new endpoint;
+6. build a focused differential before changing production classification.
 
-Deprioritized/rejected leads:
+Deprioritized/rejected/closed leads:
 
 - multi-waypoint queue did not explain the old hull-79 cluster;
 - fuel proration is real but sparse in the generic short-forward population;
 - hidden/private-FC Chunnel event discovery added no coverage;
 - route-equivalent Chunnel multiplicity is fixed/closed;
+- route-equivalent visible Tow multiplicity is fixed/closed;
 - ordinary owner-visible Intercept is already excluded from the Move Most corpus layer;
 - target-origin visible non-Tow co-movement is evidence only, not a Tow classifier;
-- the focused Tow audit found no hidden/unresolved co-movers;
 - repair-bracket mine rows are not part of strict v5 until repair reconstruction is validated;
 - do not generalize game `591478`'s 2170 period to other games;
 - do not reopen Red Mite research without new evidence;
@@ -359,10 +312,9 @@ Status: **future**.
 
 Unless new evidence changes priorities:
 
-1. close route-equivalent Tow v3 with the global pre-build differential and normal L1/L2 runtime builds;
-2. rebaseline the final generic residual;
-3. continue reducing movement residuals with generic mechanics rather than hull-specific rules;
-4. promote the stabilized movement subset into simulator/ruleset behavior;
-5. expand differential mining into economy/mines/combat/race mechanics;
-6. build the broader compatibility matrix;
-7. only then make M6 AI training a primary workstream.
+1. rebaseline the final generic residual after Tow v3;
+2. continue reducing movement residuals with generic mechanics rather than hull-specific rules;
+3. promote the stabilized movement subset into simulator/ruleset behavior;
+4. expand differential mining into economy/mines/combat/race mechanics;
+5. build the broader compatibility matrix;
+6. only then make M6 AI training a primary workstream.
