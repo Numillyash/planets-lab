@@ -1,6 +1,6 @@
 # Roadmap
 
-This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). The latest movement/corpus handoff is [`handoff/2026-08-24-chunnel-route-equivalent-ambiguity.md`](handoff/2026-08-24-chunnel-route-equivalent-ambiguity.md).
+This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). The latest movement/corpus handoff is [`handoff/2026-08-24-chunnel-route-equivalent-runtime-verification.md`](handoff/2026-08-24-chunnel-route-equivalent-runtime-verification.md).
 
 ## Evidence policy
 
@@ -18,7 +18,7 @@ Unknown mechanics fail closed rather than being silently guessed. Raw game/setti
 
 The active milestone is **M5: historical NuHost corpus + compatibility mining**, with movement as the most mature mechanic family.
 
-Current runtime-verified 12-game movement accounting:
+Last runtime-verified 12-game movement accounting:
 
 ```text
 move_most_candidates              227468
@@ -32,47 +32,61 @@ horwasp_strong_explained             240
 post_horwasp_strong_residual        2311
 ```
 
-The scoped sphere-topology integration for game `591478` is **CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**. Raw topology remains `2150x2150`; the evidence-scoped effective `2170x2170` period closes 512 L1 rows and 442 final residual rows after overlap with prior Horwasp strong labels.
+The scoped sphere-topology integration for game `591478` remains **CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**. Raw topology remains `2150x2150`; the evidence-scoped effective `2170x2170` period closes 512 L1 rows and 442 final residual rows after overlap with prior Horwasp strong labels.
 
-The broad generic post-sphere clustering audit has been run. After excluding known Horwasp hull IDs `201-213`, the generic residual contains `854` rows across all 12 games and 82 hull IDs.
+Generic post-sphere residual triage established:
 
-The focused generic fuel-limited audit is complete. Among 216 short same-line candidates, only 16 have insufficient raw-snapshot fuel for the regular move, 12 bracket the observed move, and 7 satisfy the strict fuel-limit signature across six hulls and four games. Fuel-limited/prorated movement is therefore real but a **minor** current residual contributor.
+- fuel-limited/prorated movement is real but sparse: 7 strict signatures among 216 short same-line candidates;
+- ordinary visible tow explains only 4/119 Warp-0 external rows;
+- effective-topology storm displacement explains 0/119 Warp-0 external rows;
+- a structural Chunnel visibility-gap hypothesis was rejected: all 22 structural Warp-0 Chunnel matches already existed in current event discovery.
 
-The Warp-0 external-movement audit is also complete:
+The current production fix is **route-equivalent Chunnel multi-event handling**.
 
-```text
-candidate_rows                               119
-has_colocated_same_destination_comover        31
-single_colocated_same_destination_comover       7
-visible_explicit_tow_target_match               4
-has_hidden_or_unresolved_comover                0
-has_visible_non_tow_comover                    31
-effective_topology_storm_vector_match           0
-```
-
-A follow-up structural Chunnel audit found:
+Pre-fix all-corpus differential:
 
 ```text
-structural_chunnel_match                22
-numeric_fc_structural_match             22
-structural_without_numeric_fc_match      0
-existing_classifier_event_match         22
-missed_by_existing_event_discovery       0
+labeled_rows                         3938
+multiple_match_rows                    34
+multiple_match_unexplained             34
+multiple_match_post_chunnel             34
+multiple_match_final_residual            34
+multiple_match_warp0_self_waypoint       22
 ```
 
-So hidden/private friendly-code event discovery is **not** the missing Chunnel context in this population. All 22 structural Chunnel-shaped rows are already represented by current event discovery.
-
-The active production bug candidate is now **route-equivalent Chunnel event multiplicity**. Production matches are already restricted to identical candidate pre-Chunnel position and identical observed destination, but rows with more than one matching event are currently labeled `ambiguous_matching_events` and left residual. The DB-only pre-fix differential audit is:
+All 34 rows have `chunnel_match_count=2`. They occur only in games `360690` and `591478`, span six hull IDs, and split into:
 
 ```text
-tools/diagnostics/chunnel_route_equivalent_ambiguity_audit.py
+warp_zero_external_move  22
+above_nominal            12
 ```
 
-A shared pure helper defining the intended route-equivalent semantics is already present at:
+The old v3 semantics treated multiple matching events as ambiguous even though the production match predicate had already established the same candidate pre-Chunnel position and the same observed destination. Event identity/role may be ambiguous; the movement route is not.
+
+Production now uses shared route-equivalent semantics:
 
 ```text
 src/planets_lab/corpus/movement_chunnel_match.py
 ```
+
+Compiled label schema is bumped to:
+
+```text
+planets-lab.compiled-movement-context-labels.v4
+```
+
+The standalone Chunnel evaluator is aligned with the same helper and uses game/stats summary schemas v2.
+
+Expected post-fix counts, pending runtime verification:
+
+```text
+chunnel_explained             1387 -> 1421
+post_chunnel_residual         2551 -> 2517
+horwasp_strong_explained       240 ->  240  expected
+post_horwasp_strong_residual  2311 -> 2277
+```
+
+Do not promote these expected numbers to runtime invariants until the normal v4 label build is measured.
 
 ## M0 — deterministic skeleton
 
@@ -117,7 +131,7 @@ Target coverage includes towing interactions, minefields/webs, combat, missions,
 
 Status: **partial**.
 
-Race-specific behavior belongs in explicit ruleset modules/hooks. Important families include Privateer gravitonic/rob, Crystal webs, Cyborg chunnel, Fascist pillage/glory, Bird cloak/super-spy, Rebel RGA, Colonial fighter sweep and Horwasp mechanics.
+Race-specific behavior belongs in explicit ruleset modules/hooks. Important families include Privateer gravitonic/rob, Crystal webs, Cyborg Chunnel, Fascist pillage/glory, Bird cloak/super-spy, Rebel RGA, Colonial fighter sweep and Horwasp mechanics.
 
 ## M5A — historical NuHost corpus
 
@@ -144,7 +158,7 @@ compiled movement:
 post-compile external-context semantics:
   planets-lab.compiled-movement-storm-context.v2
 compiled context labels:
-  planets-lab.compiled-movement-context-labels.v3
+  planets-lab.compiled-movement-context-labels.v4
 ```
 
 Verified/closed movement progress:
@@ -153,7 +167,7 @@ Verified/closed movement progress:
 2. gravitonic movement classification;
 3. warp-well ordering — `TESTED + DIFF_VERIFIED`;
 4. observed tow-target context;
-5. Chunnel context layer — implemented; current work is correcting route-equivalent multi-event residual handling rather than changing the Chunnel mechanic itself;
+5. Chunnel context layer — route-equivalent multi-event semantic fix implemented, runtime differential pending;
 6. Horwasp ballistic strong labels with scoped 2170 topology;
 7. Red Mite tracking/fallback — research closed unless new evidence appears;
 8. classic ion storms selected by authoritative `settings.nuionstorms` — `DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`;
@@ -188,7 +202,7 @@ Focused fuel test:
 tools/diagnostics/generic_fuel_limited_residual_audit.py
 ```
 
-Result: `7` strict signatures among `216` short-forward candidates; real but minor.
+Result: 7 strict signatures among 216 short-forward candidates; real but minor.
 
 Focused Warp-0 external-context test:
 
@@ -204,33 +218,34 @@ Focused structural Chunnel-gap test:
 tools/diagnostics/warp0_chunnel_gap_audit.py
 ```
 
-Result: `22` structural matches, all `22` with numeric-FC support and all `22` already represented by existing event discovery. Event-discovery visibility gap rejected.
+Result: 22 structural matches, all 22 with numeric-FC support and all 22 already represented by existing event discovery. Event-discovery visibility gap rejected.
 
-Pre-fix route-equivalent ambiguity differential:
+All-corpus route-equivalent ambiguity differential:
 
 ```text
 tools/diagnostics/chunnel_route_equivalent_ambiguity_audit.py
 ```
 
+Pre-fix result: 34 multiple-match rows, all 34 current Chunnel residuals and all 34 final residuals.
+
 Immediate work:
 
-1. run the all-corpus route-equivalent ambiguity audit and preserve complete output;
-2. measure `multiple_match_rows`, `multiple_match_post_chunnel`, `multiple_match_final_residual`, match-count distribution and baseline/game/hull coverage;
-3. if the population is material, change L2 semantics so any non-empty route-equivalent match set closes Chunnel movement while role ambiguity remains descriptive only;
-4. bump compiled context-label schema so old L2 caches invalidate automatically;
-5. add deterministic duplicate-initiator/same-route regressions and rebuild L2 normally without `--rebuild`;
-6. compare exact post-fix residual deltas against the pre-fix audit;
-7. keep the known Chunnel storm-mode/effective-topology caveat separate unless runtime evidence intersects it;
-8. keep Horwasp hull IDs `201-213` and closed Mite research out of generic prioritization;
-9. update state docs in the same development cycle after every material result.
+1. pull the route-equivalent production fix;
+2. run targeted Chunnel/compiled-label tests and full pytest;
+3. run the L2 label compiler normally without `--rebuild`;
+4. verify v4 invalidates old label caches automatically and prepared caches remain reusable;
+5. verify exact differential against `+34 Chunnel / -34 final residual`;
+6. re-run the ambiguity audit and require zero multiple-match unexplained/final residual rows;
+7. rebaseline state docs from measured output;
+8. only then resume triage on the remaining generic movement residual.
 
 Deprioritized/rejected leads:
 
 - multi-waypoint queue did not explain the old hull-79 cluster;
-- fuel proration is real but only 7 strict signatures in the current generic short-forward residual, so it is not the next production target;
-- ordinary visible tow explains only 4/119 Warp-0 external rows and is not the broad missing context;
+- fuel proration is real but only 7 strict signatures in the current generic short-forward residual;
+- ordinary visible tow explains only 4/119 Warp-0 external rows;
 - effective-topology storm vector explains 0/119 Warp-0 external rows;
-- hidden/private-FC Chunnel event discovery explains 0 additional rows in the focused 119-row population;
+- hidden/private-FC Chunnel event discovery explains 0 additional rows in the focused Warp-0 population;
 - do not generalize game `591478`'s 2170 period to other games;
 - do not reopen Red Mite research without new evidence;
 - hull count alone is not a mechanic identifier.
@@ -256,9 +271,9 @@ Status: **future**.
 
 Unless new evidence changes priorities:
 
-1. run and interpret the all-corpus route-equivalent Chunnel ambiguity audit;
-2. if confirmed, fix compiled L2 multi-event handling and verify exact differential closure;
-3. otherwise resume generic triage on the non-group Warp-0 external moves;
+1. runtime-verify the route-equivalent Chunnel v4 label fix;
+2. close the exact `34`-row differential and update durable corpus counts;
+3. resume generic triage on the remaining non-Horwasp residual population;
 4. keep reducing movement residuals with cross-game mechanics rather than hull-specific overfit;
 5. promote the stabilized movement subset into simulator/ruleset behavior;
 6. expand differential mining into economy/mines/combat/race mechanics;
