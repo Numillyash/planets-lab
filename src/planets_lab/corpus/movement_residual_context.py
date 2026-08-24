@@ -33,8 +33,8 @@ from .reconstruction import PerspectiveRecord, group_perspective_records
 # Official Planets.nu Gravitonic Accelerator hulls: BR4, BR5 Kaye, Meteor.
 GRAVITONIC_HULL_IDS = frozenset({44, 45, 46})
 
-MOVEMENT_RESIDUAL_CONTEXT_GAME_SCHEMA = "planets-lab.movement-residual-context-game.v1"
-MOVEMENT_RESIDUAL_CONTEXT_STATS_SCHEMA = "planets-lab.movement-residual-context-stats.v1"
+MOVEMENT_RESIDUAL_CONTEXT_GAME_SCHEMA = "planets-lab.movement-residual-context-game.v2"
+MOVEMENT_RESIDUAL_CONTEXT_STATS_SCHEMA = "planets-lab.movement-residual-context-stats.v2"
 
 
 @dataclass(frozen=True, slots=True)
@@ -263,7 +263,17 @@ def _observed_tow_targets(
     ship_groups: Mapping[tuple[int, int], tuple[PerspectiveRecord, ...]],
     valid_pairs: Iterable[tuple[int, int]],
     convention: MovementMissionConvention,
-) -> tuple[Mapping[tuple[int, int], int], Mapping[str, int]]:
+) -> tuple[Mapping[tuple[int, int], tuple[int, ...]], Mapping[str, int]]:
+    """Return observed tow-target routes, preserving tower-identity ambiguity.
+
+    Every candidate tower counted for a target must be owner-visible as Tow,
+    colocated with the target before movement, and share the target's non-zero
+    observed destination. Multiple such towers are therefore route-equivalent:
+    the identity of the actual winning tower may be ambiguous, but the target's
+    movement route is not. The mapping stores all matching tower IDs so callers
+    never mistake an arbitrary representative for resolved tower identity.
+    """
+
     matches: dict[tuple[int, int], set[int]] = defaultdict(set)
     counts: Counter[str] = Counter()
 
@@ -306,13 +316,17 @@ def _observed_tow_targets(
                 continue
             matches[(before_turn, target_id)].add(tower_id)
 
-    resolved: dict[tuple[int, int], int] = {}
+    resolved: dict[tuple[int, int], tuple[int, ...]] = {}
     for key, towers in matches.items():
-        if len(towers) == 1:
-            resolved[key] = next(iter(towers))
-            counts["observed_tow_target_match"] += 1
+        ordered = tuple(sorted(towers))
+        if not ordered:
+            continue
+        resolved[key] = ordered
+        counts["observed_tow_target_match"] += 1
+        if len(ordered) == 1:
+            counts["observed_tow_target_single"] += 1
         else:
-            counts["observed_tow_target_ambiguous"] += 1
+            counts["observed_tow_target_route_equivalent_multiple"] += 1
     return resolved, dict(sorted(counts.items()))
 
 
