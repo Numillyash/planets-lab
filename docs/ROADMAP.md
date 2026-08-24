@@ -1,6 +1,6 @@
 # Roadmap
 
-This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). The latest movement/corpus handoff is [`handoff/2026-08-24-mine-damage-rounding-followup.md`](handoff/2026-08-24-mine-damage-rounding-followup.md).
+This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). The latest movement/corpus handoff is [`handoff/2026-08-24-mine-context-v5-pending.md`](handoff/2026-08-24-mine-context-v5-pending.md).
 
 ## Evidence policy
 
@@ -18,7 +18,7 @@ Unknown mechanics fail closed rather than being silently guessed. Raw game/setti
 
 The active milestone is **M5: historical NuHost corpus + compatibility mining**, with movement as the most mature mechanic family.
 
-Current runtime-verified 12-game movement accounting remains:
+Last runtime-verified 12-game movement accounting remains the v4 endpoint:
 
 ```text
 move_most_candidates              227468
@@ -49,7 +49,7 @@ post_horwasp_strong_residual  2311 -> 2277  (-34)
 
 ## Post-v4 generic residual landscape
 
-Measured after Chunnel v4:
+The generic clustering audit after Chunnel v4 measured:
 
 ```text
 final_residual_rows       2277
@@ -60,106 +60,148 @@ generic_games               12
 generic_hulls               81
 ```
 
-Largest generic signatures include:
+Largest generic signatures included short same-line movement, Warp-0 external movement, stationary ships and above-nominal/oblique families. Warp-0 remained heterogeneous; ordinary visible tow and effective-topology storm displacement were sparse.
 
-```text
-warp7-9  <0.5x    observed=other  same_line_forward   133 rows / 26 hulls / 7 games
-warp0    nominal<=0 target=origin target_is_origin     97 rows / 33 hulls / 8 games
-warp7-9  0.5-1.0x observed=other  same_line_forward    70 rows / 26 hulls / 8 games
-warp7-9  <0.5x    observed=origin observed_stationary   64 rows / 30 hulls / 5 games
-warp7-9  >3.0x    target=origin   target_is_origin      52 rows / 15 hulls / 4 games
-warp7-9  >3.0x    observed=other  oblique               46 rows / 21 hulls / 4 games
-```
+Intercept was checked against corpus intent classification and rejected as the broad Move Most explanation because owner mission `7` is already classified as `INTERCEPT` and excluded before this residual layer.
 
-Warp-0 remains heterogeneous after the exact Chunnel subtraction:
+## Mine/web movement interruption — current active mechanic
 
-```text
-candidate_rows                                97
-has_colocated_same_destination_comover        11
-single_colocated_same_destination_comover      3
-visible_explicit_tow_target_match              4
-has_hidden_or_unresolved_comover               0
-has_visible_non_tow_comover                   11
-effective_topology_storm_vector_match          0
-```
+The short same-line family produced strong minefield evidence across several successive diagnostics.
 
-## Active focused target — mine/web interruption and NuHost damage rounding
-
-The strongest generic family is short movement along the intended waypoint line. Prior fuel analysis explains only seven strict fuel-limit examples among 216 non-Gravitonic short same-line rows. Ordinary owner-visible Intercept is already excluded by the corpus intent classifier.
-
-Two mine/web diagnostics are now runtime-complete:
+First focused audit:
 
 ```text
 tools/diagnostics/mine_hit_residual_audit.py
+```
+
+Runtime result:
+
+```text
+short_same_line_forward               235
+web_state_signature                    19
+web_strong                             18
+normal_mine_10ly_geometry              55
+normal_mine_strong                     25
+```
+
+All 429532 observed minefield records in this corpus pass expose an explicit radius and are parseable; production does not need radius inference here.
+
+Host-order-aware second pass:
+
+```text
 tools/diagnostics/mine_hit_hostorder_differential_audit.py
 ```
 
-Host-order population reconciliation:
+Runtime result:
 
 ```text
-generic_non_horwasp_warp1_9_rows  718
-raw_short_same_line                235
-raw_short_non_gravitonic           216
-raw_short_gravitonic                19
 effective_short_same_line          238
-effective_short_non_gravitonic     216
-effective_short_gravitonic          22
-after_identity_break                 0
 same_identity_after                238
+after_identity_break                 0
+web_after_field_strong              18
+normal_after_field_strong           25
 ```
 
-### Web evidence
+The raw 235 vs effective 238 difference is fully attributable to Gravitonic effective-distance handling. The older fuel audit's 216 short candidates excluded Gravitonic hulls; no corpus regression is implied.
 
-```text
-web_state_signature                       19
-web_after_field_strong                    18
-owner_after_visible_web_at_observed      140
-persistent_web_at_observed                94
-```
+### NuHost mine damage rounding compatibility finding
 
-The 18 field-backed stop-state rows span all three corpus games with observed web records. This is material cross-hull/cross-game `CORPUS_OBSERVED` evidence for web interruption.
-
-### Normal-mine evidence
-
-```text
-normal_mine_10ly_geometry                 54
-normal_after_field_strong                 25
-normal_exact_distance_damage               7
-normal_exact_damage_after_field             7
-normal_exact_damage_no_after_field          0
-```
-
-The 25 field-backed rows combine low-tech ~10-ly slowdown, damage increase and after-turn enemy normal-mine corridor crossing across multiple hulls and games.
-
-### Documentation/implementation discrepancy under investigation
-
-Planets.nu documentation states mine-impact damage is rounded up:
-
-```text
-normal: 10000 / (Hull Mass + 1)
-web:     1000 / (Hull Mass + 1)
-```
-
-But historical field-backed examples repeatedly look like nearest-integer rounding instead of unconditional ceiling, for example:
-
-```text
-1000/121   = 8.264...  -> observed 8
-10000/181  = 55.249... -> observed 55
-10000/161  = 62.112... -> observed 62 / 124
-1000/251   = 3.984...  -> observed 4
-```
-
-This is currently `INFERRED`, not a production rule.
-
-Repair is an explicit confounder: five supplies repair one damage percentage point, and Host Order performs a repair phase after Most Ships Move. Therefore the strongest damage-rounding evidence is an undamaged-start row with fewer than five supplies.
-
-Focused rounding diagnostic:
+Rounding differential:
 
 ```text
 tools/diagnostics/mine_hit_damage_rounding_audit.py
 ```
 
-It compares `ceil`, `floor` and positive nearest rounding on field-backed rows and reports no-field controls before any label or simulator rule is promoted.
+Runtime results strongly reject literal `ceil` as NuHost compatibility behavior:
+
+```text
+web_ceil_delta_match_after_field        3
+web_floor_delta_match_after_field      15
+web_nearest_delta_match_after_field    18
+web_nearest_not_ceil_delta             15
+web_nearest_control_no_after_field      0
+
+normal_ceil_delta_multiple_after_field        7
+normal_floor_delta_multiple_after_field      13
+normal_nearest_delta_multiple_after_field    19
+normal_nearest_repair_bracket_from_zero      22
+normal_nearest_not_ceil_from_zero            10
+normal_nearest_damage_hits_differ_from_slow_hits 1
+normal_nearest_control_no_after_field         0
+```
+
+Planets.nu documentation says mine damage is rounded up. Historical NuHost corpus evidence instead selects positive nearest-integer rounding for both web and normal mine damage. Keep this as an explicit compatibility distinction; do not silently rewrite the documentation claim.
+
+Repair remains a real post-movement confounder: 5 supplies can repair 1 percentage point. Repair-bracket rows are supportive evidence but are deliberately excluded from the first production mine classifier.
+
+Damage-hit multiplicity is not forced to equal the 10-ly slowdown count. Multiple impacts can produce multiple damage quanta while only some impacts have enough remaining route distance to trigger a slowdown.
+
+## Mine context labels v5 — implemented, runtime pending
+
+Production module:
+
+```text
+src/planets_lab/corpus/movement_mine_context.py
+```
+
+Compiled label schema:
+
+```text
+planets-lab.compiled-movement-context-labels.v5
+```
+
+The v5 classifier is fail-closed and labels only strict field-backed nearest-damage evidence.
+
+Strict categories:
+
+```text
+web_mine_hit_nearest_damage
+normal_mine_hit_nearest_damage
+```
+
+New derived fields:
+
+```text
+mine_category
+mine_damage_hits
+mine_slowdown_hits
+mine_strong_explained
+post_mine_strong_residual
+```
+
+No minefield IDs, owners, coordinates or friendly codes are exported.
+
+Layer order:
+
+```text
+post_external_residual
+  -> Chunnel
+  -> post_chunnel_residual
+  -> Horwasp strong
+  -> post_horwasp_strong_residual
+  -> strict mine/web strong
+  -> post_mine_strong_residual
+```
+
+The pre-mine `movement_post_horwasp_strong_residual` view remains intact as a differential control. New final view after successful v5 build:
+
+```text
+movement_post_mine_strong_residual
+```
+
+Independent diagnostics predict the strict v5 delta:
+
+```text
+web strict nearest rows     18
+normal strict nearest rows  19
+mine total expected         37
+
+post_horwasp_strong_residual  2277  unchanged
+mine_strong_explained           37  expected
+post_mine_strong_residual     2240  expected
+```
+
+These values are not runtime-verified until the normal v5 label build completes.
 
 ## M0 — deterministic skeleton
 
@@ -217,7 +259,7 @@ Current corpus foundation:
 - immutable `/game/loadall` archives cached locally and gitignored;
 - prepared cache for normalized historical snapshots;
 - compiled movement Parquet + DuckDB catalog;
-- separate L2 context-label layer for Chunnel/Horwasp evidence.
+- separate L2 context-label layer.
 
 Current schemas:
 
@@ -230,8 +272,8 @@ compiled movement:
   planets-lab.compiled-movement.v2
 post-compile external-context semantics:
   planets-lab.compiled-movement-storm-context.v2
-compiled context labels:
-  planets-lab.compiled-movement-context-labels.v4
+compiled context labels code:
+  planets-lab.compiled-movement-context-labels.v5
 standalone Chunnel game summary:
   planets-lab.movement-chunnel-context-game.v2
 standalone Chunnel aggregate summary:
@@ -249,50 +291,20 @@ Verified/closed movement progress:
 7. Red Mite tracking/fallback — research closed unless new evidence appears;
 8. classic ion storms selected by authoritative `settings.nuionstorms` — `DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`;
 9. scoped ordinary sphere movement for game `591478` — `CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`;
-10. generic fuel-limited/prorated movement — corpus-observed as a small residual contributor, not yet promoted;
-11. mine/web movement interruption — `DOCUMENTED + CORPUS_OBSERVED`, production integration pending exact rounding/repair differential.
+10. generic fuel-limited/prorated movement — corpus-observed as a small residual contributor, not promoted as a broad classifier;
+11. mine/web interruption + nearest damage rounding — `CORPUS_OBSERVED`, production v5 verification pending.
 
-Recent verified residual changes remain:
+### Immediate work
 
-```text
-classic storms:
-  post_external_residual    6174 -> 4450
-  final strong residual     4477 -> 2753
-
-scoped sphere topology:
-  post_external_residual    4450 -> 3938  (-512)
-  post_chunnel_residual     3063 -> 2551  (-512)
-  horwasp strong             310 ->  240  (-70 overlap)
-  final strong residual     2753 -> 2311  (-442)
-
-route-equivalent Chunnel v4:
-  chunnel_explained         1387 -> 1421  (+34)
-  post_chunnel_residual     2551 -> 2517  (-34)
-  final strong residual     2311 -> 2277  (-34)
-```
-
-Mine diagnostics have not changed these production counts.
-
-### Current diagnostic sequence
-
-```text
-tools/diagnostics/post_sphere_generic_residual_clustering_audit.py
-tools/diagnostics/warp0_external_move_context_audit.py
-tools/diagnostics/mine_hit_residual_audit.py
-tools/diagnostics/mine_hit_hostorder_differential_audit.py
-tools/diagnostics/mine_hit_damage_rounding_audit.py
-```
-
-Immediate work:
-
-1. run the damage-rounding differential against the current `2277` final residual;
-2. compare `ceil`, `floor` and positive-nearest matches on web/normal field-backed rows;
-3. require cross-hull/cross-game separation and sparse no-after-field controls;
-4. treat rows with >=5 supplies as repair-contaminated unless separately reconstructed;
-5. if nearest-integer wins decisively, record a NuHost/documentation compatibility discrepancy and add deterministic regression cases;
-6. only then implement a narrow mine/web context classifier and measure its exact corpus delta;
-7. if rounding does not separate cleanly, investigate repair/impact-order details before production changes;
-8. keep Horwasp hull IDs `201-213`, Red Mite and closed Chunnel work out of generic prioritization.
+1. syntax-check the new mine module, compiled labels and CLI;
+2. run focused mine + compiled-label tests;
+3. run the full pytest suite;
+4. perform a normal v5 L2 build **without `--rebuild`**;
+5. require `0/12` label cache hits and `12/12` prepared cache hits on compile;
+6. verify old Chunnel/Horwasp accounting is unchanged;
+7. verify the expected strict mine differential `37` and final residual `2240`;
+8. group `mine_category`, `mine_damage_hits` and `mine_slowdown_hits` and inspect any deviation;
+9. only after exact runtime closure mark v5 `TESTED + DIFF_VERIFIED` and rebaseline generic residual triage on `movement_post_mine_strong_residual`.
 
 Deprioritized/rejected leads:
 
@@ -303,6 +315,7 @@ Deprioritized/rejected leads:
 - hidden/private-FC Chunnel event discovery added no coverage;
 - route-equivalent Chunnel multiplicity is fixed/closed;
 - ordinary owner-visible Intercept is already excluded from this Move Most corpus layer;
+- repair-bracket mine rows are not part of strict v5 until repair reconstruction is validated;
 - do not generalize game `591478`'s 2170 period to other games;
 - do not reopen Red Mite research without new evidence;
 - hull count alone is not a mechanic identifier.
@@ -328,12 +341,10 @@ Status: **future**.
 
 Unless new evidence changes priorities:
 
-1. resolve mine/web damage rounding on field-backed corpus rows;
-2. promote only a cross-game causal signature that survives Host-order and repair controls;
-3. add regression-backed mine/web context if supported;
-4. otherwise resume generic residual triage rather than overfit minefields;
-5. keep reducing movement residuals with generic mechanics rather than hull-specific rules;
-6. promote stabilized movement behavior into simulator/ruleset code;
-7. expand differential mining into economy/mines/combat/race mechanics;
-8. build the broader compatibility matrix;
-9. only then make M6 AI training a primary workstream.
+1. runtime-verify mine context labels v5;
+2. rebaseline the generic residual on the new final mine-filtered view;
+3. continue reducing movement residuals with generic mechanics rather than hull-specific rules;
+4. promote the stabilized movement subset into simulator/ruleset behavior;
+5. expand differential mining into economy/mines/combat/race mechanics;
+6. build the broader compatibility matrix;
+7. only then make M6 AI training a primary workstream.
