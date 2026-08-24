@@ -15,7 +15,7 @@ Deterministic Planets.nu simulation, reverse-engineering and AI research environ
 
 The active workstream is historical NuHost corpus mining and movement compatibility validation across 12 recent finished games.
 
-Current runtime-verified movement accounting:
+Current runtime-verified pre-mine movement accounting remains:
 
 ```text
 move_most_candidates              227468
@@ -26,16 +26,20 @@ post_horwasp_strong_residual        2277
 
 Recently closed/integrated movement work includes warp-well ordering, scoped Red Mite fallback evidence, Horwasp ballistic topology, classic-vs-cloudy ion-storm handling, evidence-scoped sphere-aware ordinary movement for game `591478`, and route-equivalent Chunnel multi-event handling.
 
-The Chunnel v4 semantic fix is **TESTED + DIFF_VERIFIED**. A pre-fix DB audit found exactly 34 route-equivalent multi-event false residuals; the normal v4 L2 build closed exactly those 34 rows and changed the final residual `2311 -> 2277` while Horwasp strong accounting stayed unchanged.
+The current focused result is mine/web-mine interruption. Historical NuHost residuals strongly support positive nearest-integer mine damage rather than the documentation's literal round-up wording: the field-backed web subset matches nearest on 18/18 rows versus ceil on 3/18, while the strict normal-mine subset matches nearest damage multiples on 19/25 rows and has no comparable no-after-field controls. A fail-closed L2 mine classifier is implemented in `src/planets_lab/corpus/movement_mine_context.py` and compiled label schema v5, but the v5 corpus build is still pending runtime verification.
 
-Post-v4 generic re-triage isolated short-forward movement as the strongest generic family. Two mine/web diagnostics now provide substantial **CORPUS_OBSERVED** evidence: 18/19 web stop-state signatures are backed by an after-turn enemy web field, and 25 normal-mine candidates combine low-tech ~10-ly slowdown, damage increase and an after-turn enemy normal-mine corridor crossing.
+Expected strict v5 differential, to be verified rather than assumed:
 
-The current focused task is a NuHost damage-rounding compatibility differential. Planets.nu documentation says mine-impact damage is rounded up, but historical field-backed examples systematically look like nearest-integer rounding for many hull masses. `tools/diagnostics/mine_hit_damage_rounding_audit.py` compares `ceil`, `floor` and positive nearest rounding with repair and no-field controls before any production mine/web label is promoted.
+```text
+post_horwasp_strong_residual  2277  unchanged
+mine_strong_explained           37  expected
+post_mine_strong_residual     2240  expected
+```
 
 Read these first:
 
 - [`docs/ROADMAP.md`](docs/ROADMAP.md) — operational roadmap and current priorities;
-- [`docs/handoff/2026-08-24-mine-damage-rounding-followup.md`](docs/handoff/2026-08-24-mine-damage-rounding-followup.md) — latest movement/corpus handoff;
+- [`docs/handoff/2026-08-24-mine-context-v5-pending.md`](docs/handoff/2026-08-24-mine-context-v5-pending.md) — latest movement/corpus handoff;
 - [`docs/COMPILED_CORPUS.md`](docs/COMPILED_CORPUS.md) — compiled corpus schemas, cache semantics and current invariants;
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — architecture and evidence boundaries.
 
