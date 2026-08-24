@@ -2,7 +2,7 @@
 
 `validation/corpus/cache/loadall/game-<id>.zip` remains the immutable evidence/source layer. Compiled data is a deterministic local derivative and must be rebuildable from cached archives plus manifests.
 
-Current movement/corpus state is summarized in [`handoff/2026-08-24-chunnel-route-equivalent-verified.md`](handoff/2026-08-24-chunnel-route-equivalent-verified.md).
+Current movement/corpus state is summarized in [`handoff/2026-08-24-mine-context-v5-pending.md`](handoff/2026-08-24-mine-context-v5-pending.md).
 
 ## Build
 
@@ -107,17 +107,21 @@ Private text orders are not exported. Raw fields such as friendly code may be us
 
 ### L2 — compiled context labels
 
-Chunnel and Horwasp classification is stored separately under `labels/movement_context/`. One label row corresponds to one L1 row where `post_external_residual = true`.
+Chunnel, Horwasp and strict mine/web classification is stored separately under `labels/movement_context/`. One label row corresponds to one L1 row where `post_external_residual = true`.
 
-Current schema:
+Current code schema:
 
 ```text
-planets-lab.compiled-movement-context-labels.v4
+planets-lab.compiled-movement-context-labels.v5
 ```
 
-Version 4 changes Chunnel semantics without changing exported columns. After candidate events are filtered to the same pre-Chunnel position and the same observed destination, any non-empty match set closes the movement as Chunnel. Multiple route-equivalent events no longer become false residuals merely because event identity or descriptive role is ambiguous.
+**Runtime note:** v5 is implemented but its normal 12-game label build is still pending verification. The last runtime-verified label corpus is v4. Schema v5 must invalidate v4 label partitions automatically while reusing prepared caches.
 
-Role categories include:
+Version 4 changed Chunnel semantics without changing exported columns. After candidate events are filtered to the same pre-Chunnel position and the same observed destination, any non-empty match set closes the movement as Chunnel. Multiple route-equivalent events no longer become false residuals merely because event identity or descriptive role is ambiguous.
+
+Version 5 adds a fail-closed mine/web layer after Horwasp strong labels. It uses only corpus-verified strict signatures and keeps the documentation-vs-NuHost rounding distinction explicit.
+
+Chunnel role categories include:
 
 ```text
 initiator
@@ -125,6 +129,22 @@ passenger_same_owner
 passenger_other_owner
 route_equivalent_multiple_roles
 ```
+
+Strict mine categories include:
+
+```text
+web_mine_hit_nearest_damage
+normal_mine_hit_nearest_damage
+```
+
+NuHost corpus evidence selects positive nearest-integer damage quanta:
+
+```text
+web:   round_half_up(1000 / (hull_mass + 1))
+normal: round_half_up(10000 / (hull_mass + 1))
+```
+
+The Planets.nu documentation describes mine damage as rounded up. The corpus compatibility layer does not silently replace that statement; v5 records the empirically selected NuHost behavior as a separate compatibility finding.
 
 The compiler may inspect private raw/prepared state locally where a mechanic requires it, but label Parquet exports only derived categories/flags.
 
@@ -135,18 +155,41 @@ Important label fields include:
 - `horwasp_category`;
 - `horwasp_strong_explained`;
 - `horwasp_observed_context_explained`;
-- `post_horwasp_strong_residual`.
+- `post_horwasp_strong_residual`;
+- `mine_category`;
+- `mine_damage_hits`;
+- `mine_slowdown_hits`;
+- `mine_strong_explained`;
+- `post_mine_strong_residual`.
 
-Weak observed-context Horwasp matches remain evidence only and do not reduce the strong residual.
+No minefield IDs, owners, coordinates or friendly codes are exported in the label schema. Minefield state is used locally only to establish a derived mechanical classification.
+
+Weak observed-context Horwasp matches remain evidence only and do not reduce the strong residual. Repair-bracket-only mine candidates also remain evidence only and are not promoted by v5.
 
 Each label partition is tied to the source archive and exact source movement Parquet SHA-256 so stale labels cannot survive a changed movement partition.
 
-Standalone Chunnel evaluator semantics are aligned with compiled v4 behavior and use:
+Standalone Chunnel evaluator semantics remain aligned with compiled v4/v5 behavior and use:
 
 ```text
 planets-lab.movement-chunnel-context-game.v2
 planets-lab.movement-chunnel-context-stats.v2
 ```
+
+## Label layer order
+
+The current ordered label stack is:
+
+```text
+post_external_residual
+  -> Chunnel
+  -> post_chunnel_residual
+  -> Horwasp strong
+  -> post_horwasp_strong_residual
+  -> strict mine/web strong
+  -> post_mine_strong_residual
+```
+
+The pre-mine Horwasp residual remains materialized as a DuckDB view. This is intentional so v5 differential verification can compare the new mine layer against the exact v4 endpoint rather than rewriting prior accounting.
 
 ## DuckDB catalog
 
@@ -159,7 +202,8 @@ planets-lab.movement-chunnel-context-stats.v2
 - `movement_context_labels`;
 - `movement_labeled_residual`;
 - `movement_post_chunnel_residual`;
-- `movement_post_horwasp_strong_residual`.
+- `movement_post_horwasp_strong_residual`;
+- `movement_post_mine_strong_residual` after a successful v5 build.
 
 Useful queries:
 
@@ -177,9 +221,16 @@ WHERE post_baseline_residual = true
 GROUP BY external_context_category
 ORDER BY n DESC;
 
-SELECT hull_id, count(*) AS n
-FROM movement_post_horwasp_strong_residual
-GROUP BY hull_id
+SELECT mine_category, count(*) AS n
+FROM movement_labeled_residual
+WHERE mine_strong_explained = true
+GROUP BY mine_category
+ORDER BY n DESC;
+
+SELECT mine_damage_hits, mine_slowdown_hits, count(*) AS n
+FROM movement_labeled_residual
+WHERE mine_strong_explained = true
+GROUP BY mine_damage_hits, mine_slowdown_hits
 ORDER BY n DESC;
 ```
 
@@ -202,7 +253,7 @@ Context-label metadata additionally records the exact source movement Parquet SH
 
 Bump or add a semantic cache marker whenever classification behavior changes even if columns do not. Do not require users to manually delete caches to make a semantic fix take effect.
 
-## Current runtime-verified 12-game invariants
+## Last runtime-verified 12-game invariants — v4
 
 Movement L1:
 
@@ -216,7 +267,7 @@ external_context_explained    13956
 post_external_residual         3938
 ```
 
-Context labels under v4:
+Context labels under verified v4:
 
 ```text
 external_residual_rows             3938
@@ -230,120 +281,36 @@ post_horwasp_strong_residual       2277
 label_issues                          0
 ```
 
+## Pending v5 differential target
+
+Independent mine rounding diagnostics over the verified v4 endpoint measured:
+
+```text
+web_nearest_delta_match_after_field       18
+normal_nearest_delta_multiple_after_field 19
+web_nearest_control_no_after_field         0
+normal_nearest_control_no_after_field      0
+```
+
+The strict production predicates make these web and normal subsets disjoint. Expected, not yet runtime-verified:
+
+```text
+post_horwasp_strong_residual  2277  unchanged
+mine_strong_explained           37
+post_mine_strong_residual     2240
+```
+
+Any deviation from this target must be investigated rather than normalized away.
+
 ## Route-equivalent Chunnel differential closure
 
-The pre-fix DB-only v3 audit measured:
-
-```text
-labeled_rows                         3938
-multiple_match_rows                    34
-multiple_match_unexplained             34
-multiple_match_post_chunnel             34
-multiple_match_final_residual            34
-multiple_match_warp0_self_waypoint       22
-```
-
-All 34 rows had `chunnel_match_count=2` and category `ambiguous_matching_events`. They occurred only in games `360690` and `591478` and split by baseline category as:
-
-```text
-warp_zero_external_move  22
-above_nominal            12
-```
-
-The normal v4 build produced exactly the predicted accounting delta:
+The pre-fix DB-only v3 audit measured 34 route-equivalent false residuals, all with `chunnel_match_count=2`. The normal v4 build produced exactly the predicted accounting delta:
 
 ```text
 chunnel_explained             1387 -> 1421  (+34)
 post_chunnel_residual         2551 -> 2517  (-34)
-horwasp_strong_explained       240 ->  240  (unchanged)
+horwasp_strong_explained       240 ->  240
 post_horwasp_strong_residual  2311 -> 2277  (-34)
 ```
 
-Post-fix DB verification:
-
-```text
-multiple_match_rows                 34
-multiple_match_unexplained           0
-multiple_match_post_chunnel           0
-multiple_match_final_residual          0
-old_ambiguous_category                0
-```
-
-Post-fix categories for the 34 rows:
-
-```text
-route_equivalent_multiple_roles  19
-passenger_same_owner             15
-```
-
-The ambiguity audit rerun found no final-residual examples. Route-equivalent Chunnel handling is therefore **TESTED + DIFF_VERIFIED**.
-
-## Verified v4 label-cache behavior
-
-The v3 -> v4 semantic schema bump invalidated all 12 label partitions automatically during a normal build without `--rebuild`:
-
-```text
-compiled_label_cache_hits:          0
-compiled_label_cache_misses:       12
-prepared_cache_hits_on_compile:    12
-prepared_cache_misses_on_compile:   0
-games_compiled:                    12
-games_failed:                       0
-```
-
-This is the intended behavior: semantic changes invalidate derived L2 labels while the expensive prepared archive cache remains reusable.
-
-## Scoped sphere categories in L1
-
-```text
-effective_sphere_partial_host_major_minor                    212
-effective_sphere_gravitonic_reachable_warp_well_match        105
-effective_sphere_gravitonic_reachable_exact                   61
-effective_sphere_gravitonic_partial_host_major_minor          58
-effective_sphere_reachable_warp_well_match                    40
-effective_sphere_reachable_exact                              34
-effective_sphere_partial_host_major_minor_warp_well_match      2
------------------------------------------------------------------
-effective_sphere_total                                       512
-```
-
-Raw topology facts for game `591478` remain:
-
-```text
-sphere=true
-map_width=2150
-map_height=2150
-map_shape='1'
-topology_stable=true
-```
-
-## Sphere differential closure
-
-Pre-production final-residual diagnostic predicted 442 effective-only closures under the scoped `2170x2170` period. Production L1 closed 512 rows:
-
-```text
-post_external_residual    4450 -> 3938  (-512)
-post_chunnel_residual     3063 -> 2551  (-512)
-```
-
-Seventy of those rows were previously already explained by Horwasp strong labels:
-
-```text
-horwasp_strong_explained   310 -> 240  (-70)
-```
-
-Therefore the final strong residual changed by exactly the independently predicted amount:
-
-```text
-post_horwasp_strong_residual 2753 -> 2311  (-442)
-```
-
-Sphere-aware ordinary movement is **CORPUS_OBSERVED + TESTED + DIFF_VERIFIED** for its exact evidence scope.
-
-## Next residual work
-
-The current final residual is `2277`. The next step is to rerun generic cross-game/cross-hull clustering and the Warp-0 external-context audit against this post-v4 view before selecting another production mechanic.
-
-Do not restart Red Mite research solely because hull 213 remains large; that investigation is already closed/fail-closed. Known Horwasp hulls also remain outside generic prioritization. Fuel proration remains a verified minor contributor rather than a broad classifier candidate.
-
-These counts are evidence/context closure metrics, not global simulator-accuracy percentages.
+Chunnel v4 remains **TESTED + DIFF_VERIFIED** and is not reopened by v5.
