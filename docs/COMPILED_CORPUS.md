@@ -4,7 +4,7 @@
 
 Current active handoff:
 
-[`handoff/2026-08-26-cloak-fuel-proration-pending.md`](handoff/2026-08-26-cloak-fuel-proration-pending.md)
+[`handoff/2026-08-26-rob-ship-exposure-pending.md`](handoff/2026-08-26-rob-ship-exposure-pending.md)
 
 ## Build commands
 
@@ -49,19 +49,13 @@ standalone Chunnel:                planets-lab.movement-chunnel-context-game.v2
 
 ### L0 — raw archives
 
-`/game/loadall` ZIP files remain unchanged and are the evidence base.
-
-Raw `.trn` members contain richer historical game/settings/player/relations metadata than the privacy-safe prepared projection. Diagnostics that need game-era or diplomacy provenance read only the specific raw members/fields required and do not weaken the portable projection or emit identity/secrets/text fields.
+`/game/loadall` ZIP files remain unchanged and are the evidence base. Raw `.trn` members contain richer historical metadata than the privacy-safe prepared projection; diagnostics needing game-era/diplomacy provenance read only narrowly required raw fields.
 
 ### Prepared cache
 
-`validation/corpus/cache/prepared-v1/*.pickle` is a trusted local performance cache containing normalized private-perspective state. It is not a portable dataset format.
-
-`mechanics_projection()` is intentionally privacy-minimal: `game` is reduced to `{id, turn}`, players to `{id, raceid}`, and settings to an explicit mechanics-safe subset.
+`validation/corpus/cache/prepared-v1/*.pickle` is a trusted local performance cache. `mechanics_projection()` intentionally reduces `game`, players and settings to mechanics-safe subsets.
 
 ### L1 — compiled movement
-
-Current ordered external-context stack:
 
 ```text
 baseline ordinary movement
@@ -97,7 +91,7 @@ post_external_residual
   -> post_fuel_proration_residual
 ```
 
-Strict categories include:
+Strict categories:
 
 ```text
 web_mine_hit_nearest_damage
@@ -105,21 +99,11 @@ normal_mine_hit_nearest_damage
 fuel_proration_waypoint_match
 ```
 
-Raw/private state used to derive those labels remains local; exported label rows contain only derived categories/flags and movement keys.
-
 ## Cache validity
 
-L1 partition metadata binds validity to compiled schema, post-compile context marker, prepared-cache schema, game/settings/archive identity and topology inputs.
+L1 partition validity binds schema/context marker, prepared-cache schema, archive/settings identity and topology inputs. L2 binds label schema, source movement schema, prepared-cache schema, archive/settings identity and exact source movement Parquet SHA-256.
 
-L2 partition metadata binds validity to:
-
-- `label_schema`;
-- `source_movement_schema`;
-- prepared-cache schema;
-- game/settings/archive identity;
-- exact source movement Parquet SHA-256.
-
-Fuel v6 changed the L2 label schema itself, so the normal v6 build correctly produced:
+Fuel v6 changed the L2 schema and correctly produced:
 
 ```text
 compiled_label_cache_hits            0
@@ -145,7 +129,7 @@ post_external_residual         3924
 damage_limited_warp_match       10
 ```
 
-L2 over current L1:
+L2:
 
 ```text
 external_residual_rows             3924
@@ -165,16 +149,7 @@ post_fuel_proration_residual       2220
 label_issues                          0
 ```
 
-Fuel-proration overlap guards are all zero:
-
-```text
-fuel_and_chunnel             0
-fuel_and_horwasp_strong      0
-fuel_and_mine_strong         0
-fuel_not_post_mine_source    0
-```
-
-Runtime accounting matched the independent six-row pre-build prediction exactly.
+Fuel-proration overlap guards remain zero.
 
 ## Current generic final endpoint
 
@@ -206,15 +181,13 @@ Independent audit predicted 10 strict exact rows; production reproduced the exac
 
 ### Mine/web hit v5
 
-Independent diagnostics predicted 18 strict web + 19 strict normal-mine rows; production closed exactly 37. Historical NuHost evidence selects positive nearest-integer mine damage quanta over the documentation's literal round-up wording. Status: **CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**.
+Independent diagnostics predicted 18 strict web + 19 strict normal-mine rows; production closed exactly 37. Status: **CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**.
 
 ### Route-equivalent Tow / Chunnel
 
-Both multiplicity fixes reproduced their independent pre-build differentials exactly. Status: **TESTED + DIFF_VERIFIED**.
+Both multiplicity fixes reproduced independent pre-build differentials exactly. Status: **TESTED + DIFF_VERIFIED**.
 
 ### Nu fuel proration v6
-
-Competing-rule differential measured:
 
 ```text
 Nu waypoint-proration exact   6
@@ -223,81 +196,61 @@ VGAP3-style exact             0
 Nu-only exact                 3
 ```
 
-A global stage audit found all six only in `post_mine_strong_residual`. L2 v6 then reproduced exactly six `fuel_proration_waypoint_match` rows and `2226 -> 2220`. Status: **DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**.
+All six were isolated to the prior `post_mine_strong_residual`; production reproduced `2226 -> 2220`. Status: **DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**.
 
 ## Web Drain evidence-only closure
 
-One post-v6 Crystal Web Drain row is attributable end-to-end:
+One Crystal Web Drain row (`game 360690`, turn 44, hull 53) is attributable end-to-end, including Crystal ownership, pre-2021 game era, exact relation pair, lack of diplomacy immunity, 25 KT fuel/mass reduction, and exact Nu-prorated endpoint. Status: **DOCUMENTED + CORPUS_OBSERVED strong evidence-only**; no production label because support remains one game/hull.
+
+## Rejected post-v6 leads
+
+### Outbound fuel transfer
 
 ```text
-game 360690 / turn 44 / hull 53
-Crystal-owned web count = 1
-fuel 55 -> 30
-movement mass 1274 -> 1249
-raw required = 45
-post-drain required = 44
-exact Nu-prorated endpoint
-```
-
-Raw relation/game-era evidence established:
-
-```text
-era = pre_2021_classic
-Crystal -> target relationfrom = -1
-web_diplomacy_immune = false
-web_drain_allowed = true
-exact_case_diplomacy_guard = PASSED
-```
-
-Status: **DOCUMENTED + CORPUS_OBSERVED strong evidence case; evidence-only** because only one independent game / hull supports the exact chain. No L2 label was added.
-
-## Rejected outbound fuel-transfer lead
-
-Runtime audit over current `movement_post_fuel_proration_residual`:
-
-```text
-generic_non_horwasp_warp1_9_rows = 665
-target_short_forward_rows = 116
 outbound_fuel_transfer = 2
 transfer_target_current_visible = 0
 raw_sufficient_to_transfer_insufficient = 0
 transfer_causal_exact = 0
-
 target_short_outbound_fuel_transfer = 0
-target_short_transfer_causal_exact = 0
 ```
 
-This lead is closed absent new evidence.
-
-## Active Cloak fuel follow-up
-
-Planets.nu documents that standard Cloak fuel consumption happens before normal movement fuel calculation and therefore lowers both available fuel and the mass later moved. Standard Cloak consumes:
+### Standard Cloak fuel burn
 
 ```text
-max(5, floor(hull_mass / 20)) KT
+target_short_forward_rows = 116
+target_short_cloak_capable_hull = 6
+target_short_standard_cloak_hull = 2
+target_short_cloak_mission = 0
+target_short_standard_cloak_fuel_burn_candidate = 0
+target_short_cloak_causal_exact = 0
 ```
 
-Advanced Cloak consumes no fuel, and a ship already damaged at the start of the turn does not consume cloak fuel.
+Globally, the eight relevant mission-10 residual rows were on hulls without static cloak capability. No standard Cloak fuel-burn candidate survived.
+
+## Active Rob Ship exposure follow-up
+
+Planets.nu documents Privateer `Rob Ship` in the early Mission-9 Host block before all movement. The first pass intentionally measures exposure only, before implementing exact robber/target ordering, diplomacy immunity, Host-phase cloak state, Protofield interaction or the 1% failure chance.
 
 Active diagnostic:
 
 ```text
-tools/diagnostics/cloak_fuel_proration_audit.py
+tools/diagnostics/rob_ship_exposure_audit.py
 ```
 
-It evaluates owner-visible mission `10` rows on static standard-cloak hulls with zero raw damage, then compares:
+A `rob_exposure_candidate` requires a co-located owner-record Privateer ship with mission 9, beams, positive fuel and free fuel-tank capacity. Important counters:
 
 ```text
-raw_proration_exact_control
-raw_sufficient_to_cloak_insufficient
-cloak_fuel_only_endpoint_exact
-cloak_fuel_mass_endpoint_exact
-cloak_causal_exact
-fuel_mass_exact_not_fuel_only
-synthetic_cloak_cost_noncloak_mission_exact_control
+privateer_mission9_at_origin
+rob_exposure_candidate
+rob_exposure_static_noncloak_victim
+rob_exposure_positive_victim_fuel
+
+target_short_privateer_mission9_at_origin
+target_short_rob_exposure_candidate
+target_short_rob_exposure_static_noncloak_victim
 ```
 
-The synthetic control applies the same cloak-cost subtraction to otherwise eligible cloak-capable ships not actually running Cloak. No production schema/accounting change is permitted until the first differential is reviewed.
+If target-family exposure is zero, Rob Ship is rejected immediately. If nonzero, a second-pass exact robbery-order/diplomacy audit is justified. No schema/accounting change is permitted during the exposure pass.
 
 ## Current test state
 
