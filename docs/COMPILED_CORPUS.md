@@ -4,7 +4,7 @@
 
 Current active handoff:
 
-[`handoff/2026-08-25-damage-limited-warp-verified-fuel-followup.md`](handoff/2026-08-25-damage-limited-warp-verified-fuel-followup.md)
+[`handoff/2026-08-25-fuel-proration-host-differential-pending.md`](handoff/2026-08-25-fuel-proration-host-differential-pending.md)
 
 ## Build
 
@@ -269,38 +269,84 @@ Runtime result:
 ACCOUNTING DIFFERENTIAL: EXACT MATCH
 ```
 
-Post-build damage audit:
+Post-build damage audit found zero remaining exact production-eligible rows. Generic rebaseline reproduced `779 -> 769` and dominant short-forward `121 -> 119`; measured generic hulls are 76.
+
+## Fuel diagnostics
+
+### Historical affordable-frontier audit
+
+`tools/diagnostics/generic_fuel_limited_residual_audit.py` now defaults to the current final view. Current-endpoint rerun measured:
 
 ```text
-raw_damage_limited_endpoint_exact   0
-raw_exact_low_supply                0
-raw_not_damage_limited_endpoint_exact_control  0
-undamaged_endpoint_exact_control               0
+residual_view= movement_post_mine_strong_residual
+generic_non_horwasp_warp1_9_rows= 671
+
+target_short_forward_rows= 119
+target_short_gravitonic_excluded= 15
+target_short_non_gravitonic= 104
+target_short_fuel_geometry_candidate= 97
+target_short_same_identity_after= 96
+target_short_identity_break_after= 1
+target_short_formula_ready= 97
+
+target_short_insufficient_for_regular= 6
+target_short_formula_brackets_observed= 5
+target_short_affordable_frontier_match= 3
+target_short_depleted_after= 22
+target_short_strong_fuel_limit_signature= 3
 ```
 
-The generic rebaseline reproduced the independently expected `779 -> 769` and dominant short-forward `121 -> 119`; measured generic hulls are now 76.
-
-## Current fuel diagnostic
-
-`tools/diagnostics/generic_fuel_limited_residual_audit.py` now defaults to the current final view:
+Across the wider non-Gravitonic short-same-line population, the historical criterion still reports:
 
 ```text
-movement_post_mine_strong_residual
+strong_fuel_limit_signature= 7
 ```
 
-Historical reproduction remains explicit:
+across six hulls and four games.
+
+These seven rows are **correlation evidence only**. The old strongest criterion uses proximity to the maximum affordable whole-light-year frontier, but that is not the documented Planets.nu insufficient-fuel proration rule.
+
+### Documented Nu fuel-proration differential
+
+Planets.nu documents:
 
 ```text
---residual-view movement_post_horwasp_strong_residual
+actual distance = waypoint distance * fuel available / fuel required
 ```
 
-The diagnostic separately reports the exact current broad-clustering family and should currently begin with:
+and explicitly gives a 60-ly / 12-KT / 11-KT example that travels 55 ly even though 11 KT could otherwise afford 59 ly. The Nu/VGAP3 differences documentation states that VGAP3 instead uses a `warp^2 * fuel / fuel_required` maximum-distance rule.
+
+The repository already implements the documented building blocks:
 
 ```text
-target_short_forward_rows = 119
+src/planets_lab/rules/fuel.py
+src/planets_lab/rules/proration.py
+src/planets_lab/sim/normal_movement.py
 ```
 
-It then measures fuel-specific strong signatures inside that population. Gravitonic rows are reported separately and excluded from the standard fuel formula audit.
+New exact differential:
+
+```text
+tools/diagnostics/fuel_proration_host_differential_audit.py
+```
+
+It compares exact Host-major/minor endpoints for:
+
+1. documented Nu waypoint-distance proration;
+2. historical affordable-whole-LY frontier;
+3. VGAP3-style max-distance ratio.
+
+The first causal pass is intentionally limited to positive-fuel, reachable-waypoint, non-Gravitonic, same-identity rows. Partial waypoints, zero-fuel movement and Gravitonic cases are excluded.
+
+The strongest Nu evidence additionally requires the documented out-of-fuel post-state:
+
+```text
+fuel_after = 0
+warp_after = 0
+waypoint_after = observed current position
+```
+
+No production fuel category exists yet. Promotion requires exact endpoint discrimination plus post-reset and cross-game support.
 
 ## Closed differentials
 
@@ -323,4 +369,4 @@ targeted damage/storm/compiled regression set: 27 passed
 full pytest suite:                         green
 ```
 
-Repository source, schemas/semantic markers and generated corpus are aligned at the verified `2226` endpoint.
+Repository source, schemas/semantic markers and generated corpus are aligned at the verified `2226` endpoint. The new fuel-proration differential is diagnostic-only and does not alter compiled schemas or accounting.
