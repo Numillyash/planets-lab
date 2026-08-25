@@ -68,27 +68,19 @@ Largest surviving coarse families:
  43  warp7-9 0.5-1.0x observed=other same_line_forward
 ```
 
-The active focused mechanic is **pre-movement Crystal Web Drain feeding already verified Nu fuel proration**. The Crystal-owner-aware differential preserved one exact causal-compatible case:
+The Crystal Web Drain investigation is now **evidence-closed without production promotion**. The sole exact post-v6 case remains game `360690`, turn `44`, hull `53`. Raw `.trn` evidence confirmed a Standard game created on `2020-03-03`, a keyed target↔Crystal relation of `relationfrom=-1` from Crystal to target, and therefore no pre-2021 Safe Passage-or-higher immunity. The exact chain is mechanically attributable only when 25 KT is removed from both available fuel and movement mass before already verified Nu fuel proration.
+
+Web Drain is retained as a **DOCUMENTED + CORPUS_OBSERVED strong evidence case**, but one game / one hull is not enough for a production label. Current accounting therefore remains unchanged at `post_fuel_proration_residual = 2220`.
+
+The active focused mechanic is now **submitted outbound fuel transfer before movement feeding Nu fuel proration**. Host order places own cargo updates and foreign ship transfers before mass check and normal movement, while historical ship records contain `transferneutronium`, `transfertargetid`, and `transfertargettype`.
+
+Active diagnostic:
 
 ```text
-all_enemy_web_at_origin                    79
-crystal_owner_web_at_origin                79
-non_crystal_owner_web_at_origin             0
-crystal_web_raw_sufficient_to_insufficient  4
-crystal_web_drain_causal_exact              1
+tools/diagnostics/outbound_fuel_transfer_proration_audit.py
 ```
 
-The exact case remains game `360690`, turn `44`, hull `53`, and is exact only when the drained 25 KT is removed from both available fuel and movement mass. This is strong corpus evidence but still only one game / one hull.
-
-Raw `.trn` discovery recovered the missing historical diplomacy/game-era evidence without weakening the privacy-safe prepared projection. For game `360690`, `game.datecreated` is `3/3/2020` and `iscustom=false`; the exact turn-44 payload contains the full `relations` list and both target/Crystal players have `teamid=0`. Game `511506` was created in 2022 and is also Standard. The raw relation scale contains the historical API fields `playerid`, `playertoid`, `relationto` and `relationfrom` turn-by-turn.
-
-The active task is now the exact keyed relation-pair / era audit:
-
-```text
-tools/diagnostics/web_drain_relation_pair_audit.py
-```
-
-It selects the target↔Crystal relation by `playerid/playertoid` rather than array order, interprets `relationfrom` as Crystal→target, and applies the Standard Web diplomacy rule for the game's creation era. No production schema/accounting change is allowed during this follow-up; even a passing diplomacy guard leaves Web Drain evidence-only until independent cross-game/hull support appears.
+It runs on `movement_post_fuel_proration_residual`, requires `target_short_forward_rows = 116`, requires a current-visible co-located transfer target before attribution, compares fuel-only versus fuel+movement-mass reduction, and reports receiver fuel-tank capacity when directly observable. Unresolved foreign receiver capacity remains evidence-only.
 
 Current schemas:
 
@@ -101,7 +93,7 @@ L2 context labels:          planets-lab.compiled-movement-context-labels.v6
 Read these first:
 
 - [`docs/ROADMAP.md`](docs/ROADMAP.md) — operational roadmap and current priorities;
-- [`docs/handoff/2026-08-26-web-drain-relation-pair-pending.md`](docs/handoff/2026-08-26-web-drain-relation-pair-pending.md) — latest movement/corpus handoff;
+- [`docs/handoff/2026-08-26-web-drain-evidence-closed-transfer-followup.md`](docs/handoff/2026-08-26-web-drain-evidence-closed-transfer-followup.md) — latest movement/corpus handoff;
 - [`docs/COMPILED_CORPUS.md`](docs/COMPILED_CORPUS.md) — compiled corpus schemas, cache semantics and current invariants;
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — architecture and evidence boundaries.
 
