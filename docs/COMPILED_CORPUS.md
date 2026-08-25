@@ -4,7 +4,7 @@
 
 Current active handoff:
 
-[`handoff/2026-08-25-web-drain-crystal-owner-followup.md`](handoff/2026-08-25-web-drain-crystal-owner-followup.md)
+[`handoff/2026-08-25-web-drain-raw-metadata-discovery.md`](handoff/2026-08-25-web-drain-raw-metadata-discovery.md)
 
 ## Build commands
 
@@ -54,6 +54,8 @@ standalone Chunnel:                planets-lab.movement-chunnel-context-game.v2
 ### Prepared cache
 
 `validation/corpus/cache/prepared-v1/*.pickle` is a trusted local performance cache containing normalized private-perspective state. It is not a portable dataset format.
+
+`mechanics_projection()` is intentionally privacy-minimal: `game` is reduced to `{id, turn}`, players to `{id, raceid}`, and settings to an explicit mechanics-safe subset. Therefore diplomacy/game-era metadata must be discovered from raw `.trn` evidence without weakening the prepared-cache privacy boundary.
 
 ### L1 — compiled movement
 
@@ -223,28 +225,28 @@ A global stage audit found all six only in `post_mine_strong_residual`. L2 v6 th
 
 ## Active Web Drain follow-up
 
-The first post-v6 broad Web Drain diagnostic found:
+The broad and Crystal-owner-aware post-v6 diagnostics currently support one exact causal-compatible Web Drain case:
 
 ```text
-raw_proration_exact_control= 0
-raw_sufficient_to_web_insufficient= 4
-web_drain_fuel_only_endpoint_exact= 0
-web_drain_fuel_mass_endpoint_exact= 1
-web_drain_causal_exact= 1
-synthetic_25_no_web_exact_control= 0
+crystal_owner_web_at_origin                 79
+non_crystal_owner_web_at_origin              0
+crystal_web_raw_sufficient_to_insufficient   4
+crystal_web_drain_causal_exact               1
 ```
 
-The one exact row lies in the 116-row dominant short-forward family and matches only when the drained 25 KT is removed from both available fuel and movement mass.
+The exact row lies in the 116-row dominant short-forward family and matches only when the drained 25 KT is removed from both available fuel and movement mass.
 
-This remains evidence-only because the first pass counted every enemy web field. Current Planets.nu documentation states that only web minefields owned by a Crystal player produce the 25 KT/field Web Drain, that drain is defined against the post-decay circle, and that current Standard Full Alliance can matter.
+A first diplomacy/game-era inspector returned `teamid=None`, empty game metadata and empty relation records for all four candidates. That result is not interpretable because the prepared projection deliberately strips those fields.
 
 Active diagnostic:
 
 ```text
-tools/diagnostics/web_drain_crystal_owner_followup_audit.py
+tools/diagnostics/web_drain_raw_metadata_discovery.py
 ```
 
-It requires Crystal owner race, treats non-Crystal-owned web fields as a control, and reports all raw-sufficient -> Crystal-web-insufficient candidates. No schema/accounting change is permitted until that follow-up and diplomacy compatibility are resolved.
+It reads selected raw `.trn` members directly and reports only privacy-safe schema/provenance paths related to creation/start/date/year/host/team/relation/alliance/diplomacy/passage. Sensitive identity/secrets/text fields are not printed.
+
+No schema/accounting change is permitted until game-era/diplomacy compatibility is attributable. If raw loadall lacks the required fields, use a separate public game-info source for game era and leave non-observable diplomacy unresolved rather than guessing.
 
 ## Current test state
 
