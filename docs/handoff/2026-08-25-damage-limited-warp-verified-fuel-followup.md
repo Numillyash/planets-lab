@@ -142,25 +142,27 @@ The damage pass changed the dominant family only `121 -> 119`, exactly as predic
 
 ## Next focused task: current-endpoint fuel proration
 
-Historical audit:
+Diagnostic:
 
 ```text
 tools/diagnostics/generic_fuel_limited_residual_audit.py
 ```
 
-Previously it was hard-wired to `movement_post_horwasp_strong_residual`, so its old population counts were no longer authoritative after mine/Tow/damage closures.
+Previously it was hard-wired to `movement_post_horwasp_strong_residual`, so its old pre-damage population counts are no longer directly reproducible from the current L1 corpus and must be treated as historical recorded evidence only.
 
-It is now parameterized. Default:
+It is now parameterized. Default current final stage:
 
 ```text
 --residual-view movement_post_mine_strong_residual
 ```
 
-Historical reproduction remains available with:
+Optional earlier L2 stage on the **same current L1 corpus**:
 
 ```text
 --residual-view movement_post_horwasp_strong_residual
 ```
+
+This option is not a frozen historical snapshot and must not be described as reproducing the old pre-damage audit exactly.
 
 The audit also now reports the exact current coarse family independently:
 
@@ -201,8 +203,8 @@ Raw snapshot mass remains a correlation input rather than a fully reconstructed 
 2. syntax-check `generic_fuel_limited_residual_audit.py`;
 3. run it on the default current final view;
 4. require `target_short_forward_rows = 119` as the population guard;
-5. compare current strong fuel count against the historical `7` signatures;
-6. inspect how many strong signatures are actually inside the 119-row family;
+5. compare current strong fuel count against the historical recorded `7` signatures without assuming the old population can be reconstructed from current L1;
+6. inspect how many current strong signatures are actually inside the 119-row family;
 7. inspect hull/game spread and formula controls before any production change;
 8. do not broaden fuel classification merely to maximize coverage.
 
