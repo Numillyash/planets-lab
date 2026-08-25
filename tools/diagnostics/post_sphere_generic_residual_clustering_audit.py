@@ -11,8 +11,9 @@ import duckdb
 
 
 DEFAULT_DB = Path("validation/corpus/compiled/v1/corpus.duckdb")
-DEFAULT_RESIDUAL_VIEW = "movement_post_mine_strong_residual"
+DEFAULT_RESIDUAL_VIEW = "movement_post_fuel_proration_residual"
 RESIDUAL_VIEWS = (
+    "movement_post_fuel_proration_residual",
     "movement_post_mine_strong_residual",
     "movement_post_horwasp_strong_residual",
 )
@@ -280,8 +281,8 @@ def main() -> None:
         description=(
             "Cluster the selected final movement residual layer by generic geometry "
             "signatures shared across hulls and games. The default is the current "
-            "post-mine v5 endpoint; the pre-mine Horwasp endpoint remains available "
-            "for reproducing historical triage."
+            "post-fuel L2 v6 endpoint; post-mine and post-Horwasp stages remain "
+            "available for explicit reproduction/overlap work."
         )
     )
     parser.add_argument("--db", type=Path, default=DEFAULT_DB)
@@ -290,7 +291,7 @@ def main() -> None:
         "--residual-view",
         choices=RESIDUAL_VIEWS,
         default=DEFAULT_RESIDUAL_VIEW,
-        help="DuckDB residual view to cluster (default: current post-mine final layer).",
+        help="DuckDB residual view to cluster (default: current post-fuel final layer).",
     )
     parser.add_argument(
         "--include-horwasp",
