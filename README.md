@@ -68,26 +68,32 @@ Largest surviving coarse families:
  43  warp7-9 0.5-1.0x observed=other same_line_forward
 ```
 
-The Crystal Web Drain investigation is now closed as one fully attributable **DOCUMENTED + CORPUS_OBSERVED strong evidence-only** transition. For game `360690`, turn `44`, the exact relation-pair / game-era audit proved that the Crystal-owned web was not diplomacy-immune and that subtracting the documented 25 KT from both available fuel and movement mass produces the exact already-verified Nu-proration endpoint. It is intentionally not production-promoted because support remains one game / one hull.
+The Crystal Web Drain investigation is closed as one fully attributable **DOCUMENTED + CORPUS_OBSERVED strong evidence-only** transition. For game `360690`, turn `44`, the exact relation-pair / game-era audit proved that the Crystal-owned web was not diplomacy-immune and that subtracting the documented 25 KT from both available fuel and movement mass produces the exact already-verified Nu-proration endpoint. It is intentionally not production-promoted because support remains one game / one hull.
 
-The subsequent outbound submitted fuel-transfer pass was negative for the dominant family:
+Two subsequent local pre-movement fuel leads are rejected for the dominant family:
 
 ```text
-target_short_outbound_fuel_transfer = 0
-target_short_transfer_causal_exact = 0
+outbound submitted fuel transfer:
+  target_short_outbound_fuel_transfer = 0
+  target_short_transfer_causal_exact  = 0
+
+standard Cloak fuel burn:
+  target_short_cloak_mission                       = 0
+  target_short_standard_cloak_fuel_burn_candidate = 0
+  target_short_cloak_causal_exact                  = 0
 ```
 
-Only two outbound fuel-transfer rows existed globally in the post-v6 generic Warp 1..9 population, and neither reached a current-visible co-located transfer target. This lead is closed absent new evidence.
+Globally, mission-10 residual rows existed, but the eight relevant mission-10 rows were on hulls without static cloak capability; no standard-Cloak fuel-burn candidate survived the guards.
 
-The active focused mechanic is now **standard Cloak fuel consumption before movement feeding verified Nu waypoint proration**. Planets.nu documents that Cloak occurs before movement, standard Cloak burns `max(5, floor(hull_mass / 20))` KT fuel, that burn reduces movement mass, Advanced Cloak burns no fuel, and ships already damaged at the start of the turn do not spend cloak fuel.
+The active focused mechanic is now **Privateer Rob Ship exposure before movement**. Planets.nu documents Rob Ship in the early Mission-9 block before all movement. Rather than immediately reconstructing robber/target ID ordering, diplomacy, cloak immunity and the 1% failure chance, the first pass only asks whether the remaining residual population was exposed to a mechanically plausible co-located Privateer Mission-9 ship with beams, fuel and free fuel-tank capacity.
 
 Active diagnostic:
 
 ```text
-tools/diagnostics/cloak_fuel_proration_audit.py
+tools/diagnostics/rob_ship_exposure_audit.py
 ```
 
-It tests submitted mission `10` only, requires static standard-cloak capability and zero raw damage, compares fuel-only vs. fuel+mass endpoints, and uses synthetic cloak-cost subtraction on cloak-capable non-Cloak rows as a specificity control. No production schema/accounting change is allowed during this first pass.
+If `target_short_rob_exposure_candidate = 0`, Rob Ship is rejected for the dominant 116-row family without a second pass. If exposure exists, exact robbery-order/diplomacy reconstruction is the next step. No production schema/accounting change is allowed during this audit.
 
 Current schemas:
 
@@ -100,7 +106,7 @@ L2 context labels:          planets-lab.compiled-movement-context-labels.v6
 Read these first:
 
 - [`docs/ROADMAP.md`](docs/ROADMAP.md) — operational roadmap and current priorities;
-- [`docs/handoff/2026-08-26-cloak-fuel-proration-pending.md`](docs/handoff/2026-08-26-cloak-fuel-proration-pending.md) — latest movement/corpus handoff;
+- [`docs/handoff/2026-08-26-rob-ship-exposure-pending.md`](docs/handoff/2026-08-26-rob-ship-exposure-pending.md) — latest movement/corpus handoff;
 - [`docs/COMPILED_CORPUS.md`](docs/COMPILED_CORPUS.md) — compiled corpus schemas, cache semantics and current invariants;
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — architecture and evidence boundaries.
 
