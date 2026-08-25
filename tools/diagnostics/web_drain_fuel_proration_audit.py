@@ -8,7 +8,6 @@ from typing import Any, Mapping
 
 import duckdb
 
-from planets_lab.corpus.movement_chunnel_context import _sample_from_transition
 from planets_lab.corpus.movement_damage_context import _race_map, _same_owner_identity_after
 from planets_lab.corpus.movement_differential import _intish
 from planets_lab.corpus.movement_fuel_context import (
@@ -28,6 +27,7 @@ from planets_lab.corpus.movement_topology_diagnostics import (
 from planets_lab.corpus.prepared_cache import load_or_build_prepared_game_cache
 from planets_lab.corpus.reconstruction import group_perspective_records
 from planets_lab.rules.fuel import movement_fuel_use
+from planets_lab.validation.movement_geometry import MovementSample
 
 
 DEFAULT_DATABASE = Path("validation/corpus/compiled/v1/corpus.duckdb")
@@ -151,6 +151,23 @@ def _load_rows(database: Path) -> list[dict[str, Any]]:
     return [dict(zip(names, row)) for row in raw_rows]
 
 
+def _sample_from_row(row: Mapping[str, Any]) -> MovementSample:
+    return MovementSample(
+        turn=int(row["before_archive_turn"]),
+        ship_id=int(row["ship_id"]),
+        x=int(row["x_before"]),
+        y=int(row["y_before"]),
+        target_x=int(row["target_x"]),
+        target_y=int(row["target_y"]),
+        warp=int(row["warp"]),
+        next_x=int(row["x_after"]),
+        next_y=int(row["y_after"]),
+        gravitonic=row["is_gravitonic_hull"] is True,
+        game_id=int(row["game_id"]),
+        hull_id=int(row["hull_id"]) if row["hull_id"] is not None else None,
+    )
+
+
 def _required_fuel(
     *,
     fuel_factor: int,
@@ -201,6 +218,11 @@ def main() -> int:
     exact_by_web_count: Counter[int] = Counter()
     examples: list[dict[str, Any]] = []
 
+    def bump(key: str, *, is_target: bool, amount: int = 1) -> None:
+        totals[key] += amount
+        if is_target:
+            target[key] += amount
+
     for game_id in sorted(by_game):
         archive_path = RAW_DIR / f"game-{game_id}.zip"
         prepared_path = PREPARED_DIR / f"game-{game_id}.pickle"
@@ -213,10 +235,6 @@ def main() -> int:
         records = prepared.snapshots
         ship_groups = group_perspective_records(records, "ship")
         races = _race_map(records)
-        transition_by_key = {
-            (item.before_archive_turn, item.after_archive_turn, item.entity_id): item
-            for item in prepared.movement_geometry_readiness.results
-        }
         raw_topology = extract_map_topology(archive_data)
         topology = effective_sphere_topology(game_id=game_id, topology=raw_topology)
         specs = extract_static_specs(archive_data)
@@ -234,51 +252,24 @@ def main() -> int:
 
         for row in by_game[game_id]:
             is_target = _is_target_short_forward(row)
-            bucket = target if is_target else totals
-            totals["rows"] += 1
-            if is_target:
-                target["rows"] += 1
+            bump("rows", is_target=is_target)
 
             hull_id = row["hull_id"]
             if hull_id is None or int(hull_id) in HORWASP_HULL_IDS:
-                bucket["hull_unusable"] += 1
+                bump("hull_unusable", is_target=is_target)
                 continue
             if row["is_gravitonic_hull"] is True:
-                bucket["gravitonic_excluded"] += 1
+                bump("gravitonic_excluded", is_target=is_target)
                 continue
 
             before_turn = int(row["before_archive_turn"])
             after_turn = int(row["after_archive_turn"])
             ship_id = int(row["ship_id"])
-            transition = transition_by_key.get((before_turn, after_turn, ship_id))
-            if transition is None:
-                bucket["transition_missing"] += 1
-                continue
-            sample = _sample_from_transition(transition, {})
-            # _sample_from_transition normally needs the entity map to fill target data;
-            # the compiled row already has the authoritative geometry, so construct it
-            # directly when that helper cannot resolve from an empty entity map.
-            if sample is None:
-                from planets_lab.validation.movement_geometry import MovementSample
-
-                sample = MovementSample(
-                    turn=before_turn,
-                    ship_id=ship_id,
-                    x=int(row["x_before"]),
-                    y=int(row["y_before"]),
-                    target_x=int(row["target_x"]),
-                    target_y=int(row["target_y"]),
-                    warp=int(row["warp"]),
-                    next_x=int(row["x_after"]),
-                    next_y=int(row["y_after"]),
-                    gravitonic=False,
-                    game_id=game_id,
-                    hull_id=int(hull_id),
-                )
+            sample = _sample_from_row(row)
 
             owner_id, owner = _owner_record(ship_groups.get((before_turn, ship_id), ()))
             if owner_id is None or owner_id <= 0 or owner is None:
-                bucket["owner_missing"] += 1
+                bump("owner_missing", is_target=is_target)
                 continue
             before_raw = owner.raw
             if not _same_owner_identity_after(
@@ -289,9 +280,9 @@ def main() -> int:
                 owner_id=owner_id,
                 before_raw=before_raw,
             ):
-                bucket["identity_break_after"] += 1
+                bump("identity_break_after", is_target=is_target)
                 continue
-            bucket["same_identity_after"] += 1
+            bump("same_identity_after", is_target=is_target)
 
             effective_sample = sample
             if (
@@ -318,9 +309,9 @@ def main() -> int:
                 or raw_mass is None
                 or raw_mass < 0
             ):
-                bucket["formula_not_ready"] += 1
+                bump("formula_not_ready", is_target=is_target)
                 continue
-            bucket["formula_ready"] += 1
+            bump("formula_ready", is_target=is_target)
 
             origin = (effective_sample.x, effective_sample.y)
             enemy_webs = [
@@ -334,10 +325,10 @@ def main() -> int:
             ]
             web_count = len(enemy_webs)
             if web_count > 0:
-                bucket["visible_enemy_web_at_origin"] += 1
-                bucket[f"visible_web_count_{web_count}"] += 1
+                bump("visible_enemy_web_at_origin", is_target=is_target)
+                bump(f"visible_web_count_{web_count}", is_target=is_target)
             else:
-                bucket["no_visible_enemy_web_at_origin"] += 1
+                bump("no_visible_enemy_web_at_origin", is_target=is_target)
 
             fuel_factor = specs.engines[engine_id].fuel_factor(effective_sample.warp)
             target_distance = hypot(
@@ -345,9 +336,9 @@ def main() -> int:
                 effective_sample.target_y - effective_sample.y,
             )
             if target_distance <= 0.0 or target_distance > effective_sample.warp ** 2 + 1e-9:
-                bucket["not_reachable_waypoint"] += 1
+                bump("not_reachable_waypoint", is_target=is_target)
                 continue
-            bucket["reachable_waypoint"] += 1
+            bump("reachable_waypoint", is_target=is_target)
 
             raw_required = _required_fuel(
                 fuel_factor=fuel_factor,
@@ -356,9 +347,9 @@ def main() -> int:
                 warp=effective_sample.warp,
             )
             if fuel_before >= raw_required:
-                bucket["raw_fuel_sufficient"] += 1
+                bump("raw_fuel_sufficient", is_target=is_target)
             else:
-                bucket["raw_fuel_insufficient"] += 1
+                bump("raw_fuel_insufficient", is_target=is_target)
 
             raw_exact = strict_fuel_proration_endpoint(
                 effective_sample,
@@ -369,7 +360,7 @@ def main() -> int:
                 damage=damage,
             ) is not None
             if raw_exact:
-                bucket["raw_proration_exact_control"] += 1
+                bump("raw_proration_exact_control", is_target=is_target)
 
             if web_count == 0:
                 if fuel_before > WEB_DRAIN_PER_FIELD and raw_mass >= WEB_DRAIN_PER_FIELD:
@@ -382,20 +373,20 @@ def main() -> int:
                         damage=damage,
                     ) is not None
                     if synthetic_exact:
-                        bucket["synthetic_25_no_web_exact_control"] += 1
+                        bump("synthetic_25_no_web_exact_control", is_target=is_target)
                 continue
 
             drained = min(fuel_before, WEB_DRAIN_PER_FIELD * web_count)
             fuel_after_drain = fuel_before - drained
             mass_after_drain = raw_mass - drained
-            bucket["documented_web_drain_rows"] += 1
+            bump("documented_web_drain_rows", is_target=is_target)
             if fuel_after_drain <= 0:
-                bucket["web_drain_to_zero_fuel"] += 1
+                bump("web_drain_to_zero_fuel", is_target=is_target)
                 continue
             if mass_after_drain < 0:
-                bucket["web_drain_invalid_mass"] += 1
+                bump("web_drain_invalid_mass", is_target=is_target)
                 continue
-            bucket["web_drain_positive_fuel"] += 1
+            bump("web_drain_positive_fuel", is_target=is_target)
 
             drained_required = _required_fuel(
                 fuel_factor=fuel_factor,
@@ -405,7 +396,7 @@ def main() -> int:
             )
             causal_conversion = fuel_before >= raw_required and fuel_after_drain < drained_required
             if causal_conversion:
-                bucket["raw_sufficient_to_web_insufficient"] += 1
+                bump("raw_sufficient_to_web_insufficient", is_target=is_target)
 
             fuel_only_exact = strict_fuel_proration_endpoint(
                 effective_sample,
@@ -425,14 +416,14 @@ def main() -> int:
             ) is not None
 
             if fuel_only_exact:
-                bucket["web_drain_fuel_only_endpoint_exact"] += 1
+                bump("web_drain_fuel_only_endpoint_exact", is_target=is_target)
             if fuel_mass_exact:
-                bucket["web_drain_fuel_mass_endpoint_exact"] += 1
+                bump("web_drain_fuel_mass_endpoint_exact", is_target=is_target)
                 exact_by_game[game_id] += 1
                 exact_by_hull[int(hull_id)] += 1
                 exact_by_web_count[web_count] += 1
                 if causal_conversion:
-                    bucket["web_drain_causal_exact"] += 1
+                    bump("web_drain_causal_exact", is_target=is_target)
                 if len(examples) < args.examples:
                     examples.append(
                         {
@@ -453,12 +444,11 @@ def main() -> int:
                         }
                     )
             if fuel_mass_exact and not fuel_only_exact:
-                bucket["fuel_mass_exact_not_fuel_only"] += 1
+                bump("fuel_mass_exact_not_fuel_only", is_target=is_target)
             if fuel_only_exact and not fuel_mass_exact:
-                bucket["fuel_only_exact_not_fuel_mass"] += 1
+                bump("fuel_only_exact_not_fuel_mass", is_target=is_target)
 
-    print("\n===== GLOBAL POST-V6 DIFFERENTIAL =====")
-    for key in (
+    keys = (
         "rows",
         "gravitonic_excluded",
         "same_identity_after",
@@ -480,33 +470,14 @@ def main() -> int:
         "fuel_mass_exact_not_fuel_only",
         "fuel_only_exact_not_fuel_mass",
         "synthetic_25_no_web_exact_control",
-    ):
+    )
+
+    print("\n===== GLOBAL POST-V6 DIFFERENTIAL =====")
+    for key in keys:
         print(f"{key}=", totals[key])
 
     print("\n===== TARGET 116 SHORT-FORWARD FAMILY =====")
-    for key in (
-        "rows",
-        "gravitonic_excluded",
-        "same_identity_after",
-        "identity_break_after",
-        "formula_ready",
-        "visible_enemy_web_at_origin",
-        "no_visible_enemy_web_at_origin",
-        "reachable_waypoint",
-        "raw_fuel_sufficient",
-        "raw_fuel_insufficient",
-        "raw_proration_exact_control",
-        "documented_web_drain_rows",
-        "web_drain_to_zero_fuel",
-        "web_drain_positive_fuel",
-        "raw_sufficient_to_web_insufficient",
-        "web_drain_fuel_only_endpoint_exact",
-        "web_drain_fuel_mass_endpoint_exact",
-        "web_drain_causal_exact",
-        "fuel_mass_exact_not_fuel_only",
-        "fuel_only_exact_not_fuel_mass",
-        "synthetic_25_no_web_exact_control",
-    ):
+    for key in keys:
         print(f"target_short_{key}=", target[key])
 
     print("\n===== EXACT WEB-DRAIN MODEL BY GAME =====")
