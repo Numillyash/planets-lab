@@ -22,11 +22,21 @@ from planets_lab.data.nu_specs import NuStaticSpecs
 from planets_lab.data.nu_static import import_static_all
 from planets_lab.rules.fuel import movement_fuel_use
 
+from damage_limited_warp_residual_audit import (
+    _direction_bucket,
+    _ratio_bucket,
+    _target_relation,
+)
+
 
 DEFAULT_DATABASE = Path("validation/corpus/compiled/v1/corpus.duckdb")
 RAW_DIR = Path("validation/corpus/cache/loadall")
 PREPARED_DIR = Path("validation/corpus/cache/prepared-v1")
 HORWASP_HULL_IDS = frozenset(range(201, 214))
+RESIDUAL_VIEWS = (
+    "movement_post_mine_strong_residual",
+    "movement_post_horwasp_strong_residual",
+)
 
 
 def _identity(owner_id: int | None, raw: Mapping[str, Any] | Any) -> tuple[Any, ...] | None:
@@ -107,19 +117,28 @@ def _max_affordable_whole_distance(
 def main() -> int:
     parser = argparse.ArgumentParser(
         description=(
-            "Audit the generic post-sphere same-line short-movement residual for "
-            "insufficient-fuel signatures across hulls and games. The audit reads "
-            "private raw/prepared state locally but prints only derived mechanical data."
+            "Audit current or historical generic same-line short-movement residuals for "
+            "insufficient-fuel signatures across hulls and games. Private raw/prepared "
+            "state stays local; output is derived mechanical evidence only."
         )
     )
     parser.add_argument("--database", type=Path, default=DEFAULT_DATABASE)
     parser.add_argument("--examples", type=int, default=40)
+    parser.add_argument(
+        "--residual-view",
+        choices=RESIDUAL_VIEWS,
+        default="movement_post_mine_strong_residual",
+        help=(
+            "Residual stage to audit. The default is the current final L2 view; the "
+            "post-Horwasp view is retained only for reproducing historical numbers."
+        ),
+    )
     args = parser.parse_args()
 
     con = duckdb.connect(str(args.database), read_only=True)
     try:
         rows = con.execute(
-            """
+            f"""
             SELECT
                 game_id,
                 before_archive_turn,
@@ -128,8 +147,16 @@ def main() -> int:
                 hull_id,
                 baseline_category,
                 warp,
-                is_gravitonic_hull
-            FROM movement_post_horwasp_strong_residual
+                is_gravitonic_hull,
+                x_before,
+                y_before,
+                x_after,
+                y_after,
+                target_x,
+                target_y,
+                coalesce(observed_distance, 0.0),
+                coalesce(nominal_max_distance, 0.0)
+            FROM {args.residual_view}
             WHERE hull_id NOT BETWEEN 201 AND 213
               AND warp BETWEEN 1 AND 9
             ORDER BY game_id, before_archive_turn, after_archive_turn, ship_id
@@ -139,6 +166,7 @@ def main() -> int:
         con.close()
 
     print("===== GENERIC FUEL-LIMITED RESIDUAL AUDIT =====")
+    print("residual_view=", args.residual_view)
     print("generic_non_horwasp_warp1_9_rows=", len(rows))
 
     by_game: dict[int, list[tuple[Any, ...]]] = defaultdict(list)
@@ -152,6 +180,10 @@ def main() -> int:
     candidate_games = Counter()
     strong_hulls = Counter()
     strong_games = Counter()
+    target_hulls = Counter()
+    target_games = Counter()
+    target_strong_hulls = Counter()
+    target_strong_games = Counter()
     fuel_before_buckets = Counter()
     fuel_after_buckets = Counter()
     engine_counts = Counter()
@@ -192,21 +224,68 @@ def main() -> int:
                 baseline_category,
                 warp,
                 is_gravitonic,
+                x,
+                y,
+                next_x,
+                next_y,
+                target_x,
+                target_y,
+                compiled_observed_distance,
+                compiled_nominal_distance,
             ) = row
             hull_id = int(hull_id)
             before_turn = int(before_turn)
             after_turn = int(after_turn)
             ship_id = int(ship_id)
             warp = int(warp)
+            x = int(x)
+            y = int(y)
+            next_x = int(next_x)
+            next_y = int(next_y)
+            target_x = int(target_x)
+            target_y = int(target_y)
+            compiled_observed_distance = float(compiled_observed_distance)
+            compiled_nominal_distance = float(compiled_nominal_distance)
 
             totals["rows"] += 1
             hull_counts[hull_id] += 1
             game_counts[game_id] += 1
             baseline_counts[str(baseline_category)] += 1
 
+            target_short = (
+                warp >= 7
+                and _ratio_bucket(compiled_observed_distance, compiled_nominal_distance) == "<0.5x"
+                and _target_relation(
+                    x=x,
+                    y=y,
+                    next_x=next_x,
+                    next_y=next_y,
+                    target_x=target_x,
+                    target_y=target_y,
+                )
+                == "observed=other"
+                and _direction_bucket(
+                    x=x,
+                    y=y,
+                    next_x=next_x,
+                    next_y=next_y,
+                    target_x=target_x,
+                    target_y=target_y,
+                )
+                == "same_line_forward"
+            )
+            if target_short:
+                totals["target_short_forward_rows"] += 1
+                target_hulls[hull_id] += 1
+                target_games[game_id] += 1
+
             if is_gravitonic is True:
                 totals["gravitonic_excluded"] += 1
+                if target_short:
+                    totals["target_short_gravitonic_excluded"] += 1
                 continue
+            if target_short:
+                totals["target_short_non_gravitonic"] += 1
 
             transition = transition_by_key.get((before_turn, after_turn, ship_id))
             if transition is None:
@@ -245,6 +324,8 @@ def main() -> int:
                 totals["short_same_line_forward"] += 1
                 candidate_hulls[hull_id] += 1
                 candidate_games[game_id] += 1
+                if target_short:
+                    totals["target_short_fuel_geometry_candidate"] += 1
             else:
                 continue
 
@@ -263,8 +344,12 @@ def main() -> int:
             )
             if same_identity:
                 totals["candidate_same_identity_after"] += 1
+                if target_short:
+                    totals["target_short_same_identity_after"] += 1
             else:
                 totals["candidate_identity_break_after"] += 1
+                if target_short:
+                    totals["target_short_identity_break_after"] += 1
 
             before_fuel = _intish(before_raw.get("neutronium"))
             after_fuel = _intish(after_owner.raw.get("neutronium")) if same_identity else None
@@ -286,6 +371,8 @@ def main() -> int:
                 formula_status["not_ready"] += 1
                 continue
             totals["candidate_formula_ready"] += 1
+            if target_short:
+                totals["target_short_formula_ready"] += 1
 
             fuel_factor = specs.engines[engine_id].fuel_factor(warp)
             required_observed = movement_fuel_use(
@@ -315,18 +402,28 @@ def main() -> int:
 
             if insufficient:
                 formula_status["insufficient_for_regular"] += 1
+                if target_short:
+                    totals["target_short_insufficient_for_regular"] += 1
             else:
                 formula_status["sufficient_for_regular"] += 1
             if observed_affordable:
                 formula_status["observed_affordable"] += 1
+                if target_short:
+                    totals["target_short_observed_affordable"] += 1
             else:
                 formula_status["observed_not_affordable"] += 1
             if insufficient and observed_affordable:
                 formula_status["formula_brackets_observed"] += 1
+                if target_short:
+                    totals["target_short_formula_brackets_observed"] += 1
             if frontier_match:
                 formula_status["affordable_frontier_match"] += 1
+                if target_short:
+                    totals["target_short_affordable_frontier_match"] += 1
             if depleted_after:
                 formula_status["depleted_after"] += 1
+                if target_short:
+                    totals["target_short_depleted_after"] += 1
 
             strong = (
                 same_identity
@@ -339,6 +436,10 @@ def main() -> int:
                 formula_status["strong_fuel_limit_signature"] += 1
                 strong_hulls[hull_id] += 1
                 strong_games[game_id] += 1
+                if target_short:
+                    totals["target_short_strong_fuel_limit_signature"] += 1
+                    target_strong_hulls[hull_id] += 1
+                    target_strong_games[game_id] += 1
 
             detail = {
                 "game": game_id,
@@ -347,6 +448,7 @@ def main() -> int:
                 "hull": hull_id,
                 "baseline": str(baseline_category),
                 "warp": warp,
+                "target_119_family": target_short,
                 "fuel_before": before_fuel,
                 "fuel_after": after_fuel,
                 "mass_before_raw": raw_mass,
@@ -375,6 +477,9 @@ def main() -> int:
     print("\n===== POPULATION =====")
     for key in (
         "rows",
+        "target_short_forward_rows",
+        "target_short_gravitonic_excluded",
+        "target_short_non_gravitonic",
         "gravitonic_excluded",
         "same_line_forward",
         "short_same_line_forward",
@@ -383,6 +488,40 @@ def main() -> int:
         "candidate_formula_ready",
     ):
         print(f"{key}=", totals[key])
+
+    print("\n===== TARGET 119 SHORT-FORWARD FAMILY =====")
+    for key in (
+        "target_short_forward_rows",
+        "target_short_gravitonic_excluded",
+        "target_short_non_gravitonic",
+        "target_short_fuel_geometry_candidate",
+        "target_short_same_identity_after",
+        "target_short_identity_break_after",
+        "target_short_formula_ready",
+        "target_short_insufficient_for_regular",
+        "target_short_observed_affordable",
+        "target_short_formula_brackets_observed",
+        "target_short_affordable_frontier_match",
+        "target_short_depleted_after",
+        "target_short_strong_fuel_limit_signature",
+    ):
+        print(f"{key}=", totals[key])
+
+    print("\n===== TARGET SHORT-FORWARD HULLS =====")
+    for hull_id, count in target_hulls.most_common(40):
+        print(hull_id, count)
+
+    print("\n===== TARGET SHORT-FORWARD GAMES =====")
+    for game_id, count in target_games.most_common():
+        print(game_id, count)
+
+    print("\n===== TARGET STRONG FUEL-LIMIT BY HULL =====")
+    for hull_id, count in target_strong_hulls.most_common():
+        print(hull_id, count)
+
+    print("\n===== TARGET STRONG FUEL-LIMIT BY GAME =====")
+    for game_id, count in target_strong_games.most_common():
+        print(game_id, count)
 
     print("\n===== SHORT SAME-LINE CANDIDATE HULLS =====")
     for hull_id, count in candidate_hulls.most_common(40):
@@ -430,6 +569,14 @@ def main() -> int:
             print(detail)
 
     print("\n===== INTERPRETATION GUARDRAIL =====")
+    print(
+        "The default residual view is the current post-mine final stage. The historical "
+        "post-Horwasp view is available only for reproducing older audit numbers."
+    )
+    print(
+        "The target_short_forward_rows counter reproduces the current broad-clustering "
+        "coarse signature independently of the fuel-specific cross-track filter."
+    )
     print(
         "Raw snapshot mass is used only as a correlation input. A strong signature "
         "requires same-identity continuity, insufficient fuel for the regular move, "
