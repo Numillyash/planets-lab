@@ -68,19 +68,26 @@ Largest surviving coarse families:
  43  warp7-9 0.5-1.0x observed=other same_line_forward
 ```
 
-The Crystal Web Drain investigation is now **evidence-closed without production promotion**. The sole exact post-v6 case remains game `360690`, turn `44`, hull `53`. Raw `.trn` evidence confirmed a Standard game created on `2020-03-03`, a keyed target↔Crystal relation of `relationfrom=-1` from Crystal to target, and therefore no pre-2021 Safe Passage-or-higher immunity. The exact chain is mechanically attributable only when 25 KT is removed from both available fuel and movement mass before already verified Nu fuel proration.
+The Crystal Web Drain investigation is now closed as one fully attributable **DOCUMENTED + CORPUS_OBSERVED strong evidence-only** transition. For game `360690`, turn `44`, the exact relation-pair / game-era audit proved that the Crystal-owned web was not diplomacy-immune and that subtracting the documented 25 KT from both available fuel and movement mass produces the exact already-verified Nu-proration endpoint. It is intentionally not production-promoted because support remains one game / one hull.
 
-Web Drain is retained as a **DOCUMENTED + CORPUS_OBSERVED strong evidence case**, but one game / one hull is not enough for a production label. Current accounting therefore remains unchanged at `post_fuel_proration_residual = 2220`.
+The subsequent outbound submitted fuel-transfer pass was negative for the dominant family:
 
-The active focused mechanic is now **submitted outbound fuel transfer before movement feeding Nu fuel proration**. Host order places own cargo updates and foreign ship transfers before mass check and normal movement, while historical ship records contain `transferneutronium`, `transfertargetid`, and `transfertargettype`.
+```text
+target_short_outbound_fuel_transfer = 0
+target_short_transfer_causal_exact = 0
+```
+
+Only two outbound fuel-transfer rows existed globally in the post-v6 generic Warp 1..9 population, and neither reached a current-visible co-located transfer target. This lead is closed absent new evidence.
+
+The active focused mechanic is now **standard Cloak fuel consumption before movement feeding verified Nu waypoint proration**. Planets.nu documents that Cloak occurs before movement, standard Cloak burns `max(5, floor(hull_mass / 20))` KT fuel, that burn reduces movement mass, Advanced Cloak burns no fuel, and ships already damaged at the start of the turn do not spend cloak fuel.
 
 Active diagnostic:
 
 ```text
-tools/diagnostics/outbound_fuel_transfer_proration_audit.py
+tools/diagnostics/cloak_fuel_proration_audit.py
 ```
 
-It runs on `movement_post_fuel_proration_residual`, requires `target_short_forward_rows = 116`, requires a current-visible co-located transfer target before attribution, compares fuel-only versus fuel+movement-mass reduction, and reports receiver fuel-tank capacity when directly observable. Unresolved foreign receiver capacity remains evidence-only.
+It tests submitted mission `10` only, requires static standard-cloak capability and zero raw damage, compares fuel-only vs. fuel+mass endpoints, and uses synthetic cloak-cost subtraction on cloak-capable non-Cloak rows as a specificity control. No production schema/accounting change is allowed during this first pass.
 
 Current schemas:
 
@@ -93,7 +100,7 @@ L2 context labels:          planets-lab.compiled-movement-context-labels.v6
 Read these first:
 
 - [`docs/ROADMAP.md`](docs/ROADMAP.md) — operational roadmap and current priorities;
-- [`docs/handoff/2026-08-26-web-drain-evidence-closed-transfer-followup.md`](docs/handoff/2026-08-26-web-drain-evidence-closed-transfer-followup.md) — latest movement/corpus handoff;
+- [`docs/handoff/2026-08-26-cloak-fuel-proration-pending.md`](docs/handoff/2026-08-26-cloak-fuel-proration-pending.md) — latest movement/corpus handoff;
 - [`docs/COMPILED_CORPUS.md`](docs/COMPILED_CORPUS.md) — compiled corpus schemas, cache semantics and current invariants;
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — architecture and evidence boundaries.
 
