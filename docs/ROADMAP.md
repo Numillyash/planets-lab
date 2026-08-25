@@ -1,6 +1,6 @@
 # Roadmap
 
-This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). The latest movement/corpus handoff is [`handoff/2026-08-26-web-drain-relation-pair-pending.md`](handoff/2026-08-26-web-drain-relation-pair-pending.md).
+This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). The latest movement/corpus handoff is [`handoff/2026-08-26-web-drain-evidence-closed-transfer-followup.md`](handoff/2026-08-26-web-drain-evidence-closed-transfer-followup.md).
 
 ## Evidence policy
 
@@ -65,15 +65,13 @@ standalone Chunnel:        planets-lab.movement-chunnel-context-game.v2
 - strict damage-limited maximum warp — `DOCUMENTED (legacy Nu page) + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`;
 - strict Nu waypoint-distance fuel proration v6 — `DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`.
 
-Fuel v6 independently predicted six exact Nu-proration rows. Production L2 v6 reproduced exactly:
+Fuel v6 independently predicted six exact Nu-proration rows and production reproduced exactly:
 
 ```text
 post_mine_strong_residual       2226
 fuel_proration_explained           6
 post_fuel_proration_residual    2220
 ```
-
-All Chunnel/Horwasp/mine overlap guards were zero. The v5 -> v6 label-schema bump produced 0/12 L2 cache hits and 12/12 prepared-cache hits. Targeted tests and the full pytest suite were green.
 
 ## Current generic residual landscape
 
@@ -99,53 +97,66 @@ Largest coarse families:
  43  warp7-9 0.5-1.0x observed=other same_line_forward
 ```
 
-## Active investigation — exact Web Drain relation pair
+## Closed evidence-only lead — Crystal Web Drain
 
-The broad and Crystal-owner-aware post-v6 diagnostics currently support one exact causal-compatible Web Drain case:
-
-```text
-crystal_owner_web_at_origin                 79
-non_crystal_owner_web_at_origin              0
-crystal_web_raw_sufficient_to_insufficient   4
-crystal_web_drain_causal_exact               1
-```
-
-The exact row remains game `360690`, turn `44`, hull `53`, and matches only when 25 KT is removed from both available fuel and movement mass.
-
-Raw `.trn` schema discovery recovered the historical metadata needed to resolve diplomacy exactly. Important observed facts:
+The Crystal-owner-aware post-v6 differential found one exact causal-compatible Web Drain case. The exact historical relation-pair / era audit then established:
 
 ```text
-game 360690 datecreated = 2020-03-03
+game 360690 / turn 44 / hull 53
+datecreated = 2020-03-03
 iscustom = false
-turn 44 has relations list with playerid/playertoid/relationto/relationfrom
-slot 6 target teamid = 0
-slot 7 Crystal teamid = 0
-
-game 511506 datecreated = 2022-08-19
-iscustom = false
-turn 47 has the same relation schema
+relation target->Crystal = -1
+relation Crystal->target = -1
+era = pre_2021_classic
+web_diplomacy_immune = false
+web_drain_allowed = true
+exact_case_diplomacy_guard = PASSED
 ```
 
-Game `360690` is therefore a pre-2021 Standard game, where Safe Passage-or-higher from the Crystal owner could suppress Web Drain. Game `511506` is in the 2021-2023 Standard era, where Safe Passage / Full Alliance did not suppress Standard web effects.
+The endpoint matches only when the documented 25 KT Web Drain is removed from both available fuel and movement mass before Nu waypoint-distance proration.
 
-The active follow-up is:
+Status: **DOCUMENTED + CORPUS_OBSERVED strong evidence case; evidence-only, not production-promoted.**
+
+Reason: only one independent game / hull exact case. Do not overfit a production label to it.
+
+## Active investigation — outbound fuel transfer before movement
+
+Planets.nu Host order places own cargo updates and ship-to-foreign-ship transfers before mass check and normal movement. Historical raw ship records expose submitted fields:
 
 ```text
-tools/diagnostics/web_drain_relation_pair_audit.py
+transferneutronium
+transfertargetid
+transfertargettype
 ```
 
-It selects the exact target↔Crystal relation object by `playerid/playertoid`, treats `relationfrom` as Crystal→target, applies the numeric API diplomacy scale (`2=Safe Passage`, `3=Share Intel`, `4=Full Alliance`) and applies the game-creation-era rule. It reports `web_diplomacy_immune`, `web_drain_allowed`, and a dedicated summary for the exact turn-44 case.
+A submitted outbound fuel transfer can therefore lower both available fuel and movement mass before Move Most and potentially feed the already verified Nu waypoint-proration rule.
+
+Active diagnostic:
+
+```text
+tools/diagnostics/outbound_fuel_transfer_proration_audit.py
+```
+
+It runs on `movement_post_fuel_proration_residual` and must preserve:
+
+```text
+target_short_forward_rows = 116
+```
+
+The first pass is attribution-oriented rather than production-oriented. It requires the submitted transfer target to be current-visible and co-located in the sender perspective, reports target-type distribution before assigning numeric semantics, and separately marks receiver fuel-tank capacity as confirmed versus unresolved.
 
 ### Immediate work
 
 1. pull current `main` and confirm clean tree;
-2. syntax-check and run `web_drain_relation_pair_audit.py`;
-3. require `candidate_relation_pairs_found = 4`;
-4. inspect `game=360690 turn=44 target=6 crystal=7`;
-5. require the relation to be selected by exact keys, not list position;
-6. if `exact_case_web_drain_allowed=True`, close the diplomacy guard but keep Web Drain evidence-only because support is still one game / one hull;
-7. if immunity is present, reject Web Drain as the cause of the exact row;
-8. keep production accounting at `2220` regardless of outcome.
+2. syntax-check and run `outbound_fuel_transfer_proration_audit.py`;
+3. require `target_short_forward_rows = 116`;
+4. inspect `outbound_fuel_transfer` and target-type distribution;
+5. inspect current-visible / co-located target coverage;
+6. inspect `raw_sufficient_to_transfer_insufficient`;
+7. compare `transfer_fuel_only_endpoint_exact` vs `transfer_fuel_mass_endpoint_exact`;
+8. treat `transfer_strict_confirmed_exact` as the strongest first-pass evidence subset;
+9. do not change production schemas/accounting from a one-off match;
+10. keep Web Drain evidence-only and closed absent new independent evidence.
 
 ## Deprioritized / closed leads
 
@@ -174,8 +185,7 @@ It selects the exact target↔Crystal relation object by `playerid/playertoid`, 
 
 Unless new evidence changes priorities:
 
-1. finish the exact Web Drain relation-pair / game-era audit;
-2. if the diplomacy guard passes, archive Web Drain as strong evidence-only rather than promoting a one-row production label;
-3. search for a second independent exact Web Drain case only if a broader high-yield diagnostic can do so without overfitting;
-4. otherwise return to the post-v6 `116` short-forward family and split it by the next generic documented pre-movement mechanism;
-5. keep all verified intermediate accounting layers immutable as regression controls.
+1. run the outbound fuel-transfer differential;
+2. promote nothing unless an attributable cross-game/cross-hull subset survives strict controls;
+3. otherwise return to the post-v6 `116` short-forward family and split it by the next generic documented pre-movement mechanism;
+4. keep all verified intermediate accounting layers immutable as regression controls.
