@@ -1,6 +1,6 @@
 # Roadmap
 
-This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). The latest movement/corpus handoff is [`handoff/2026-08-26-cloak-fuel-proration-pending.md`](handoff/2026-08-26-cloak-fuel-proration-pending.md).
+This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). The latest movement/corpus handoff is [`handoff/2026-08-26-rob-ship-exposure-pending.md`](handoff/2026-08-26-rob-ship-exposure-pending.md).
 
 ## Evidence policy
 
@@ -65,7 +65,7 @@ standalone Chunnel:        planets-lab.movement-chunnel-context-game.v2
 - strict damage-limited maximum warp — `DOCUMENTED (legacy Nu page) + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`;
 - strict Nu waypoint-distance fuel proration v6 — `DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`.
 
-Fuel v6 independently predicted six exact Nu-proration rows. Production L2 v6 reproduced exactly:
+Fuel v6 independently predicted six exact Nu-proration rows and production reproduced exactly:
 
 ```text
 post_mine_strong_residual       2226
@@ -73,7 +73,7 @@ fuel_proration_explained           6
 post_fuel_proration_residual    2220
 ```
 
-All Chunnel/Horwasp/mine overlap guards were zero. The v5 -> v6 label-schema bump produced 0/12 L2 cache hits and 12/12 prepared-cache hits. Targeted tests and the full pytest suite were green.
+All Chunnel/Horwasp/mine overlap guards were zero. The v5 -> v6 schema bump produced 0/12 L2 cache hits and 12/12 prepared-cache hits. Targeted tests and full pytest were green.
 
 ## Current generic residual landscape
 
@@ -114,21 +114,11 @@ post-drain required 44
 exact Nu-prorated endpoint
 ```
 
-The keyed raw `.trn` relation-pair / era audit found:
+Status: **DOCUMENTED + CORPUS_OBSERVED strong evidence; evidence-only**. No production label because support remains one independent game/hull.
 
-```text
-era = pre_2021_classic
-relationfrom (Crystal -> target) = -1
-web_diplomacy_immune = false
-web_drain_allowed = true
-exact_case_diplomacy_guard = PASSED
-```
+## Rejected leads
 
-Status: **DOCUMENTED + CORPUS_OBSERVED strong evidence; evidence-only**. No production label because support remains one independent game / hull.
-
-## Rejected lead — outbound fuel transfer
-
-Post-v6 runtime audit found only two outbound `transferneutronium` rows globally and none inside the dominant 116-row family:
+### Outbound submitted fuel transfer
 
 ```text
 outbound_fuel_transfer = 2
@@ -140,73 +130,66 @@ target_short_outbound_fuel_transfer = 0
 target_short_transfer_causal_exact = 0
 ```
 
-No further work on this lead absent new evidence.
+No further work absent new evidence.
 
-## Active investigation — standard Cloak fuel -> Nu proration
+### Standard Cloak fuel burn
 
-Planets.nu documents that Cloak occurs before normal movement fuel calculation. Standard Cloak consumes `max(5, floor(hull_mass / 20))` KT Neutronium; the consumed fuel also reduces movement mass. Advanced Cloak consumes zero fuel. A ship already damaged at the start of the turn cannot cloak and does not consume cloak fuel.
-
-This creates a fully local, owner-visible pre-movement fuel delta:
+Runtime over the current post-v6 endpoint:
 
 ```text
-raw fuel sufficient
-  -> mission 10 Cloak
-  -> standard cloak fuel burn
-  -> movement mass reduced by same amount
-  -> remaining fuel becomes insufficient
-  -> verified Nu waypoint proration
-  -> exact short same-line move
+target_short_forward_rows = 116
+target_short_cloak_capable_hull = 6
+target_short_standard_cloak_hull = 2
+target_short_cloak_mission = 0
+target_short_standard_cloak_fuel_burn_candidate = 0
+target_short_cloak_causal_exact = 0
 ```
 
-Active diagnostic:
+Globally, mission `10` existed in the residual set, but the eight relevant mission-10 rows were all on hulls without static cloak capability. No standard-Cloak fuel-burn candidate survived. Reject for the dominant family.
+
+## Active investigation — Privateer Rob Ship exposure
+
+Planets.nu documents `Rob Ship` as a Privateer special mission in the early Mission-9 Host block, before all movement. Robbers act in ascending ship ID and rob targets in ascending ship ID; fuel is robbed first. Cloaked ships and ships with Safe Passage-or-higher protection are immune, and Rob has a documented 1% failure chance.
+
+Before implementing exact robbery order/diplomacy/failure semantics, perform a high-yield exposure audit:
 
 ```text
-tools/diagnostics/cloak_fuel_proration_audit.py
+tools/diagnostics/rob_ship_exposure_audit.py
 ```
 
-Strict candidate guards:
+A `rob_exposure_candidate` requires a co-located owner-record ship with:
 
 ```text
-mission == 10
-hull.can_cloak == true
-not Advanced Cloak
-raw damage == 0
-positive fuel after cloak burn
-reachable waypoint
-same immutable identity
-non-Gravitonic / non-Horwasp
+owner race == Privateer (5)
+mission == 9
+static beam_count > 0
+fuel > 0
+free fuel-tank capacity > 0
 ```
 
-The diagnostic compares fuel-only against fuel+mass modelling and includes:
-
-```text
-synthetic_cloak_cost_noncloak_mission_exact_control
-```
-
-as a specificity control on cloak-capable ships not actually running mission 10.
+The first pass intentionally does **not** model target-order competition, Safe Passage, Host-phase victim cloak state, Protofield destruction or the 1% Rob failure chance.
 
 ### Immediate work
 
 1. pull current `main` and confirm clean tree;
-2. syntax-check and run `cloak_fuel_proration_audit.py`;
+2. syntax-check/run `rob_ship_exposure_audit.py` without rebuild;
 3. require `residual_view = movement_post_fuel_proration_residual` and `target_short_forward_rows = 116`;
-4. inspect mission-10 coverage within the 116-row family;
-5. inspect standard-vs-Advanced-Cloak and damaged exclusions;
-6. inspect `raw_sufficient_to_cloak_insufficient` and exact endpoint counts;
-7. require synthetic non-Cloak control to remain sparse/zero before treating exact matches as causal;
-8. promote nothing from the first pass unless evidence is cross-game / cross-hull;
-9. keep production accounting at `2220` throughout this audit.
+4. inspect `target_short_privateer_mission9_at_origin` and `target_short_rob_exposure_candidate`;
+5. if exposure is zero, reject Rob immediately;
+6. if exposure is nonzero, inspect examples and only then implement exact robber/target order plus diplomacy/cloak guards;
+7. keep production accounting at `2220` throughout.
 
 ## Deprioritized / closed leads
 
 - old affordable-whole-LY fuel frontier is correlation evidence only; the Nu rule is waypoint-distance proration;
-- outbound submitted fuel transfer is negative for the current dominant family;
+- outbound submitted fuel transfer is negative for the dominant family;
+- standard Cloak fuel burn is structurally absent from the dominant family;
 - Crystal Web Drain is one fully attributable evidence-only row, not a production classifier;
 - multi-waypoint queue did not explain the old hull-79 cluster;
 - hidden/private-FC Chunnel discovery added no coverage;
 - owner-visible Intercept is already excluded from Move Most residuals;
 - repair-bracket mine and damage rows remain evidence-only;
-- target-origin visible non-Tow co-movement remains evidence only;
+- target-origin visible non-Tow co-movement remains evidence-only;
 - do not generalize game `591478`'s 2170 period;
 - do not reopen Red Mite without new evidence;
 - hull count alone is not a mechanic identifier.
@@ -226,7 +209,7 @@ as a specificity control on cloak-capable ships not actually running mission 10.
 
 Unless new evidence changes priorities:
 
-1. run the standard Cloak fuel-proration differential;
-2. if Cloak produces specific cross-game exact support, perform an independent global-stage audit before any production change;
-3. otherwise close it as evidence-only/rejected and return to the surviving 116-row family;
+1. run the Rob Ship exposure audit;
+2. build an exact Rob simulator only if exposure exists in the 116-row family;
+3. otherwise reject Rob and return to the next broad pre-movement external-state mechanism;
 4. keep all verified intermediate accounting layers immutable as regression controls.
