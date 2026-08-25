@@ -1,6 +1,6 @@
 # Roadmap
 
-This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). The latest movement/corpus handoff is [`handoff/2026-08-25-web-drain-diplomacy-followup.md`](handoff/2026-08-25-web-drain-diplomacy-followup.md).
+This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). The latest movement/corpus handoff is [`handoff/2026-08-25-web-drain-raw-metadata-discovery.md`](handoff/2026-08-25-web-drain-raw-metadata-discovery.md).
 
 ## Evidence policy
 
@@ -99,7 +99,7 @@ Largest coarse families:
  43  warp7-9 0.5-1.0x observed=other same_line_forward
 ```
 
-## Active investigation — Web Drain diplomacy / game era
+## Active investigation — Web Drain raw metadata discovery
 
 The first post-v6 diagnostic found one exact causal-compatible case under a broad enemy-web model. The Crystal-owner-aware rerun preserved that case:
 
@@ -121,37 +121,36 @@ crystal_web_drain_causal_exact               1
 
 The exact case remains game `360690`, turn `44`, hull `53`, and is exact only when 25 KT is removed from both available fuel and movement mass. This is strong corpus evidence but still only one game / one hull.
 
-Current Planets.nu documentation also makes Web Drain diplomacy era-dependent for Standard system-generated games. Safe Passage / Full Alliance handling changed on 2021-01-01, and Full Alliance was partially restored for newer games beginning 2023-12-09. Therefore the exact case cannot be promoted until the actual game-era and relation/team state are reconstructed.
+The first diplomacy/game-era inspector found no team metadata, relation records or game-era fields in prepared snapshots. That absence is non-evidence: `mechanics_projection()` intentionally reduces `game` to `{id, turn}`, players to `{id, raceid}`, and settings to a small mechanics-safe subset. The prepared cache therefore cannot answer diplomacy/game-era questions by construction.
 
-The active follow-up is:
-
-```text
-tools/diagnostics/web_drain_diplomacy_followup_audit.py
-```
-
-It inspects the four runtime-verified raw-sufficient -> Crystal-web-insufficient candidates and reports:
+The active follow-up is direct privacy-safe discovery in the raw `.trn` members:
 
 ```text
-target/web owner slots and races
-team IDs and same-team signal
-game/settings metadata including hoststart where present
-raw relation records
-relationto / relationfrom / conflictlevel
+tools/diagnostics/web_drain_raw_metadata_discovery.py
 ```
 
-Numeric diplomacy levels are intentionally not interpreted until runtime payload is observed.
+It reports:
+
+```text
+top-level raw payload keys/shapes
+safe game metadata related to creation/start/date/year/host
+settings keys related to team/relation/alliance/diplomacy/passage
+restricted player excerpts for target/web slots
+recursive matching paths for the same metadata families
+```
+
+Values for names, email, username, savekey, passwords, API keys, secrets, messages and notes are never printed.
 
 ### Immediate work
 
 1. pull current `main` and confirm clean tree;
-2. syntax-check and run `web_drain_diplomacy_followup_audit.py`;
-3. inspect game `360690` host-start/creation era;
-4. inspect target/web owner team IDs for turn `44`;
-5. inspect raw relation records between the target owner and Crystal web owner;
-6. apply the documented Web Drain diplomacy rule for the actual game era;
-7. if the exact case is diplomacy-immune, reject Web Drain as its cause;
-8. if it is not immune, retain Web Drain as strong evidence-only unless cross-game exact support appears;
-9. do not change L1/L2 schemas or accounting during this follow-up.
+2. syntax-check and run `web_drain_raw_metadata_discovery.py`;
+3. inspect game `360690` / turn `44` first;
+4. identify exact raw JSON paths for game creation/host era and relation/team state, if present;
+5. build a narrow deterministic extractor only after those paths are observed;
+6. apply the documented Web Drain diplomacy rule appropriate to the actual game era;
+7. if raw loadall lacks required metadata, use a separate public game-info source for game era and leave non-observable diplomacy unresolved rather than guessing;
+8. do not change L1/L2 schemas or accounting during this follow-up.
 
 ## Deprioritized / closed leads
 
@@ -180,7 +179,8 @@ Numeric diplomacy levels are intentionally not interpreted until runtime payload
 
 Unless new evidence changes priorities:
 
-1. finish Web Drain diplomacy/game-era verification for the four candidates;
-2. do not promote a one-row Web Drain label without surviving the era/diplomacy guard;
-3. if Web Drain remains evidence-only, return to the post-v6 `116` short-forward family and split it by the next generic documented pre-movement mechanism;
-4. keep all verified intermediate accounting layers immutable as regression controls.
+1. discover raw game-era / diplomacy schema for the four Web Drain candidates;
+2. build an extractor only from observed raw paths, without weakening the privacy-safe prepared projection;
+3. do not promote a one-row Web Drain label unless era/diplomacy compatibility is attributable;
+4. if Web Drain remains evidence-only, return to the post-v6 `116` short-forward family and split it by the next generic documented pre-movement mechanism;
+5. keep all verified intermediate accounting layers immutable as regression controls.
