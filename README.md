@@ -54,14 +54,28 @@ generic_games               12
 generic_hulls               76
 ```
 
-The dominant short-forward family changed only `121 -> 119`, confirming damage-limited warp is real but sparse rather than the main cause of that family.
+The dominant short-forward family is now `119` Warp 7-9 `<0.5x` same-line-forward rows.
 
-The current focused task is an exact **fuel-proration Host differential**. A current-endpoint rerun of the historical fuel audit still found seven strong fuel-limited correlations overall and three inside the surviving 119-row family, but its `affordable_frontier_match` criterion is not the documented Planets.nu proration rule. Planets.nu documents waypoint-distance proration (`waypoint distance * fuel available / fuel required`) and explicitly distinguishes it from VGAP3 maximum-distance behavior. `tools/diagnostics/fuel_proration_host_differential_audit.py` now compares documented Nu proration, the historical affordable-frontier heuristic and a VGAP3-style control using exact Host-major/minor endpoints plus out-of-fuel post-state evidence. No production fuel label is promoted pending that differential.
+The current focused mechanic is **documented Planets.nu insufficient-fuel waypoint proration**. On the current final residual, the exact Host-endpoint differential found:
+
+```text
+raw-mass insufficient candidates   19
+Nu waypoint-proration exact         6
+affordable-frontier exact           3
+VGAP3-style exact                    0
+Nu-only exact                        3
+```
+
+The six Nu exact rows span four hulls and three games; three belong to the dominant 119-row family. This is direct corpus discrimination in favor of the documented Nu waypoint-distance rule rather than the old affordable-frontier correlation.
+
+Historical next-turn owner snapshots are **not** treated as immediate post-Host frames for editable `warp`, waypoint or fuel fields. Planets.nu Time Machine preserves historical end-turn orders, so those fields may already reflect the player's next submitted orders/transfers. Host outcome `x/y` remains the primary exact movement observation.
+
+No fuel production label has been promoted yet. The immediate task is `tools/diagnostics/fuel_proration_global_stage_audit.py`, which scans the full current L1 residual and partitions exact Nu matches by downstream Chunnel/Horwasp/mine/final stage while conservatively excluding raw damage-limited rows. This determines whether fuel can safely enter the early L1 context stack or should first remain a later evidence-layer label.
 
 Read these first:
 
 - [`docs/ROADMAP.md`](docs/ROADMAP.md) — operational roadmap and current priorities;
-- [`docs/handoff/2026-08-25-fuel-proration-host-differential-pending.md`](docs/handoff/2026-08-25-fuel-proration-host-differential-pending.md) — latest movement/corpus handoff;
+- [`docs/handoff/2026-08-25-fuel-proration-global-stage-pending.md`](docs/handoff/2026-08-25-fuel-proration-global-stage-pending.md) — latest movement/corpus handoff;
 - [`docs/COMPILED_CORPUS.md`](docs/COMPILED_CORPUS.md) — compiled corpus schemas, cache semantics and current invariants;
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — architecture and evidence boundaries.
 
