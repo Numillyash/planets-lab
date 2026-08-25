@@ -80,15 +80,15 @@ crystal_web_drain_causal_exact              1
 
 The exact case remains game `360690`, turn `44`, hull `53`, and is exact only when the drained 25 KT is removed from both available fuel and movement mass. This is strong corpus evidence but still only one game / one hull.
 
-A diplomacy/game-era inspector then returned empty game metadata and relation records for all four candidates. This is **not evidence of neutral diplomacy**: the privacy-safe corpus normalizer deliberately projects `game` down to `{id, turn}`, `players` down to `{id, raceid}`, and retains only a small mechanics-safe settings subset. The prepared cache therefore cannot contain the missing creation/diplomacy fields.
+Raw `.trn` discovery recovered the missing historical diplomacy/game-era evidence without weakening the privacy-safe prepared projection. For game `360690`, `game.datecreated` is `3/3/2020` and `iscustom=false`; the exact turn-44 payload contains the full `relations` list and both target/Crystal players have `teamid=0`. Game `511506` was created in 2022 and is also Standard. The raw relation scale contains the historical API fields `playerid`, `playertoid`, `relationto` and `relationfrom` turn-by-turn.
 
-The active task is now direct, privacy-safe schema discovery in the raw `.trn` members:
+The active task is now the exact keyed relation-pair / era audit:
 
 ```text
-tools/diagnostics/web_drain_raw_metadata_discovery.py
+tools/diagnostics/web_drain_relation_pair_audit.py
 ```
 
-It reports top-level structure plus only metadata paths whose key names concern creation/start/date/year/host/team/relation/alliance/diplomacy/passage. Values for names, email, username, savekey, passwords, API keys, secrets, messages and notes are never printed. No production schema/accounting change is allowed during this follow-up.
+It selects the target↔Crystal relation by `playerid/playertoid` rather than array order, interprets `relationfrom` as Crystal→target, and applies the Standard Web diplomacy rule for the game's creation era. No production schema/accounting change is allowed during this follow-up; even a passing diplomacy guard leaves Web Drain evidence-only until independent cross-game/hull support appears.
 
 Current schemas:
 
@@ -101,7 +101,7 @@ L2 context labels:          planets-lab.compiled-movement-context-labels.v6
 Read these first:
 
 - [`docs/ROADMAP.md`](docs/ROADMAP.md) — operational roadmap and current priorities;
-- [`docs/handoff/2026-08-25-web-drain-raw-metadata-discovery.md`](docs/handoff/2026-08-25-web-drain-raw-metadata-discovery.md) — latest movement/corpus handoff;
+- [`docs/handoff/2026-08-26-web-drain-relation-pair-pending.md`](docs/handoff/2026-08-26-web-drain-relation-pair-pending.md) — latest movement/corpus handoff;
 - [`docs/COMPILED_CORPUS.md`](docs/COMPILED_CORPUS.md) — compiled corpus schemas, cache semantics and current invariants;
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — architecture and evidence boundaries.
 
