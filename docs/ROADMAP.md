@@ -1,6 +1,6 @@
 # Roadmap
 
-This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). The latest movement/corpus handoff is [`handoff/2026-08-26-web-drain-evidence-closed-transfer-followup.md`](handoff/2026-08-26-web-drain-evidence-closed-transfer-followup.md).
+This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). The latest movement/corpus handoff is [`handoff/2026-08-26-cloak-fuel-proration-pending.md`](handoff/2026-08-26-cloak-fuel-proration-pending.md).
 
 ## Evidence policy
 
@@ -65,13 +65,15 @@ standalone Chunnel:        planets-lab.movement-chunnel-context-game.v2
 - strict damage-limited maximum warp — `DOCUMENTED (legacy Nu page) + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`;
 - strict Nu waypoint-distance fuel proration v6 — `DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`.
 
-Fuel v6 independently predicted six exact Nu-proration rows and production reproduced exactly:
+Fuel v6 independently predicted six exact Nu-proration rows. Production L2 v6 reproduced exactly:
 
 ```text
 post_mine_strong_residual       2226
 fuel_proration_explained           6
 post_fuel_proration_residual    2220
 ```
+
+All Chunnel/Horwasp/mine overlap guards were zero. The v5 -> v6 label-schema bump produced 0/12 L2 cache hits and 12/12 prepared-cache hits. Targeted tests and the full pytest suite were green.
 
 ## Current generic residual landscape
 
@@ -99,68 +101,107 @@ Largest coarse families:
 
 ## Closed evidence-only lead — Crystal Web Drain
 
-The Crystal-owner-aware post-v6 differential found one exact causal-compatible Web Drain case. The exact historical relation-pair / era audit then established:
+One post-v6 transition is attributable end-to-end to Crystal Web Drain feeding Nu fuel proration:
 
 ```text
 game 360690 / turn 44 / hull 53
-datecreated = 2020-03-03
-iscustom = false
-relation target->Crystal = -1
-relation Crystal->target = -1
+one Crystal-owned web
+no historical diplomacy immunity
+fuel 55 -> 30
+movement mass 1274 -> 1249
+raw required 45
+post-drain required 44
+exact Nu-prorated endpoint
+```
+
+The keyed raw `.trn` relation-pair / era audit found:
+
+```text
 era = pre_2021_classic
+relationfrom (Crystal -> target) = -1
 web_diplomacy_immune = false
 web_drain_allowed = true
 exact_case_diplomacy_guard = PASSED
 ```
 
-The endpoint matches only when the documented 25 KT Web Drain is removed from both available fuel and movement mass before Nu waypoint-distance proration.
+Status: **DOCUMENTED + CORPUS_OBSERVED strong evidence; evidence-only**. No production label because support remains one independent game / hull.
 
-Status: **DOCUMENTED + CORPUS_OBSERVED strong evidence case; evidence-only, not production-promoted.**
+## Rejected lead — outbound fuel transfer
 
-Reason: only one independent game / hull exact case. Do not overfit a production label to it.
-
-## Active investigation — outbound fuel transfer before movement
-
-Planets.nu Host order places own cargo updates and ship-to-foreign-ship transfers before mass check and normal movement. Historical raw ship records expose submitted fields:
+Post-v6 runtime audit found only two outbound `transferneutronium` rows globally and none inside the dominant 116-row family:
 
 ```text
-transferneutronium
-transfertargetid
-transfertargettype
+outbound_fuel_transfer = 2
+transfer_target_current_visible = 0
+raw_sufficient_to_transfer_insufficient = 0
+transfer_causal_exact = 0
+
+target_short_outbound_fuel_transfer = 0
+target_short_transfer_causal_exact = 0
 ```
 
-A submitted outbound fuel transfer can therefore lower both available fuel and movement mass before Move Most and potentially feed the already verified Nu waypoint-proration rule.
+No further work on this lead absent new evidence.
+
+## Active investigation — standard Cloak fuel -> Nu proration
+
+Planets.nu documents that Cloak occurs before normal movement fuel calculation. Standard Cloak consumes `max(5, floor(hull_mass / 20))` KT Neutronium; the consumed fuel also reduces movement mass. Advanced Cloak consumes zero fuel. A ship already damaged at the start of the turn cannot cloak and does not consume cloak fuel.
+
+This creates a fully local, owner-visible pre-movement fuel delta:
+
+```text
+raw fuel sufficient
+  -> mission 10 Cloak
+  -> standard cloak fuel burn
+  -> movement mass reduced by same amount
+  -> remaining fuel becomes insufficient
+  -> verified Nu waypoint proration
+  -> exact short same-line move
+```
 
 Active diagnostic:
 
 ```text
-tools/diagnostics/outbound_fuel_transfer_proration_audit.py
+tools/diagnostics/cloak_fuel_proration_audit.py
 ```
 
-It runs on `movement_post_fuel_proration_residual` and must preserve:
+Strict candidate guards:
 
 ```text
-target_short_forward_rows = 116
+mission == 10
+hull.can_cloak == true
+not Advanced Cloak
+raw damage == 0
+positive fuel after cloak burn
+reachable waypoint
+same immutable identity
+non-Gravitonic / non-Horwasp
 ```
 
-The first pass is attribution-oriented rather than production-oriented. It requires the submitted transfer target to be current-visible and co-located in the sender perspective, reports target-type distribution before assigning numeric semantics, and separately marks receiver fuel-tank capacity as confirmed versus unresolved.
+The diagnostic compares fuel-only against fuel+mass modelling and includes:
+
+```text
+synthetic_cloak_cost_noncloak_mission_exact_control
+```
+
+as a specificity control on cloak-capable ships not actually running mission 10.
 
 ### Immediate work
 
 1. pull current `main` and confirm clean tree;
-2. syntax-check and run `outbound_fuel_transfer_proration_audit.py`;
-3. require `target_short_forward_rows = 116`;
-4. inspect `outbound_fuel_transfer` and target-type distribution;
-5. inspect current-visible / co-located target coverage;
-6. inspect `raw_sufficient_to_transfer_insufficient`;
-7. compare `transfer_fuel_only_endpoint_exact` vs `transfer_fuel_mass_endpoint_exact`;
-8. treat `transfer_strict_confirmed_exact` as the strongest first-pass evidence subset;
-9. do not change production schemas/accounting from a one-off match;
-10. keep Web Drain evidence-only and closed absent new independent evidence.
+2. syntax-check and run `cloak_fuel_proration_audit.py`;
+3. require `residual_view = movement_post_fuel_proration_residual` and `target_short_forward_rows = 116`;
+4. inspect mission-10 coverage within the 116-row family;
+5. inspect standard-vs-Advanced-Cloak and damaged exclusions;
+6. inspect `raw_sufficient_to_cloak_insufficient` and exact endpoint counts;
+7. require synthetic non-Cloak control to remain sparse/zero before treating exact matches as causal;
+8. promote nothing from the first pass unless evidence is cross-game / cross-hull;
+9. keep production accounting at `2220` throughout this audit.
 
 ## Deprioritized / closed leads
 
 - old affordable-whole-LY fuel frontier is correlation evidence only; the Nu rule is waypoint-distance proration;
+- outbound submitted fuel transfer is negative for the current dominant family;
+- Crystal Web Drain is one fully attributable evidence-only row, not a production classifier;
 - multi-waypoint queue did not explain the old hull-79 cluster;
 - hidden/private-FC Chunnel discovery added no coverage;
 - owner-visible Intercept is already excluded from Move Most residuals;
@@ -185,7 +226,7 @@ The first pass is attribution-oriented rather than production-oriented. It requi
 
 Unless new evidence changes priorities:
 
-1. run the outbound fuel-transfer differential;
-2. promote nothing unless an attributable cross-game/cross-hull subset survives strict controls;
-3. otherwise return to the post-v6 `116` short-forward family and split it by the next generic documented pre-movement mechanism;
+1. run the standard Cloak fuel-proration differential;
+2. if Cloak produces specific cross-game exact support, perform an independent global-stage audit before any production change;
+3. otherwise close it as evidence-only/rejected and return to the surviving 116-row family;
 4. keep all verified intermediate accounting layers immutable as regression controls.
