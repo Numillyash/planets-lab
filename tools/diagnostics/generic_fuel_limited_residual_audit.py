@@ -117,7 +117,7 @@ def _max_affordable_whole_distance(
 def main() -> int:
     parser = argparse.ArgumentParser(
         description=(
-            "Audit current or historical generic same-line short-movement residuals for "
+            "Audit current generic same-line short-movement residual stages for "
             "insufficient-fuel signatures across hulls and games. Private raw/prepared "
             "state stays local; output is derived mechanical evidence only."
         )
@@ -130,7 +130,7 @@ def main() -> int:
         default="movement_post_mine_strong_residual",
         help=(
             "Residual stage to audit. The default is the current final L2 view; the "
-            "post-Horwasp view is retained only for reproducing historical numbers."
+            "post-Horwasp option selects the earlier L2 stage on the same current L1 corpus."
         ),
     )
     args = parser.parse_args()
@@ -570,8 +570,9 @@ def main() -> int:
 
     print("\n===== INTERPRETATION GUARDRAIL =====")
     print(
-        "The default residual view is the current post-mine final stage. The historical "
-        "post-Horwasp view is available only for reproducing older audit numbers."
+        "The default residual view is the current post-mine final stage. The optional "
+        "post-Horwasp view is an earlier L2 stage over the same current L1 corpus, not "
+        "a frozen historical snapshot from before later L1 fixes."
     )
     print(
         "The target_short_forward_rows counter reproduces the current broad-clustering "
