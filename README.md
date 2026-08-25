@@ -68,17 +68,29 @@ Largest surviving coarse families:
  43  warp7-9 0.5-1.0x observed=other same_line_forward
 ```
 
-The active focused mechanic is **pre-movement Crystal web drain feeding already verified Nu fuel proration**. The first post-v6 differential found one exact causal-compatible row: raw fuel was sufficient, one modeled 25 KT drain made fuel insufficient, and the observed endpoint matched only when the drained fuel was also removed from movement mass. Raw-proration and synthetic no-web controls were zero.
+The active focused mechanic is **pre-movement Crystal Web Drain feeding already verified Nu fuel proration**. The first post-v6 pass found one exact causal-compatible row. A Crystal-owner-aware rerun preserved that exact case and showed that every geometrically relevant web field in the evaluated subset was Crystal-owned:
 
-That first pass is not production-ready. Current Planets.nu documentation specifies that only web fields **owned by a Crystal player** produce the 25 KT/field drain; web fields owned by non-Crystal players do not. The active follow-up therefore adds a Crystal-owner race filter and treats non-Crystal-owned web fields as a control. Full-Alliance immunity remains an explicit unresolved guardrail.
+```text
+all_enemy_web_at_origin                 79
+crystal_owner_web_at_origin             79
+non_crystal_owner_web_at_origin          0
+crystal_web_raw_sufficient_to_insufficient 4
+crystal_web_drain_causal_exact           1
+```
+
+The exact case remains game `360690`, turn `44`, hull `53`. It is exact only when the drained 25 KT is removed from both available fuel and movement mass. This is strong corpus evidence, but one game / one hull is not production-ready.
+
+The remaining mandatory guard is **diplomacy / game-era compatibility**. Standard web-diplomacy semantics changed over time: Safe Passage/Full Alliance handling before 2021 differs from 2021+ Standard, and Full Alliance was partially restored for newer Standard games. We therefore do not infer immunity from current rules alone.
 
 Active diagnostic:
 
 ```text
-tools/diagnostics/web_drain_crystal_owner_followup_audit.py
+tools/diagnostics/web_drain_diplomacy_followup_audit.py
 ```
 
-It runs on `movement_post_fuel_proration_residual`, requires `target_short_forward_rows = 116`, and must determine whether the sole first-pass exact row survives the stricter Crystal-owner-compatible model. No production schema/accounting change is allowed during this follow-up.
+It inspects exactly the four runtime-verified raw-sufficient -> Crystal-web-insufficient candidates and reports game metadata, target/web owner slots, team IDs, and raw `relationto`/`relationfrom` records. Numeric diplomacy levels are intentionally not interpreted until the runtime payload is observed.
+
+No production schema/accounting change is allowed during this follow-up.
 
 Current schemas:
 
@@ -91,7 +103,7 @@ L2 context labels:          planets-lab.compiled-movement-context-labels.v6
 Read these first:
 
 - [`docs/ROADMAP.md`](docs/ROADMAP.md) — operational roadmap and current priorities;
-- [`docs/handoff/2026-08-25-web-drain-crystal-owner-followup.md`](docs/handoff/2026-08-25-web-drain-crystal-owner-followup.md) — latest movement/corpus handoff;
+- [`docs/handoff/2026-08-25-web-drain-diplomacy-followup.md`](docs/handoff/2026-08-25-web-drain-diplomacy-followup.md) — latest movement/corpus handoff;
 - [`docs/COMPILED_CORPUS.md`](docs/COMPILED_CORPUS.md) — compiled corpus schemas, cache semantics and current invariants;
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — architecture and evidence boundaries.
 
