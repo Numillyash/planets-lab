@@ -4,7 +4,7 @@
 
 Current active handoff:
 
-[`handoff/2026-08-26-web-drain-evidence-closed-transfer-followup.md`](handoff/2026-08-26-web-drain-evidence-closed-transfer-followup.md)
+[`handoff/2026-08-26-cloak-fuel-proration-pending.md`](handoff/2026-08-26-cloak-fuel-proration-pending.md)
 
 ## Build commands
 
@@ -51,13 +51,13 @@ standalone Chunnel:                planets-lab.movement-chunnel-context-game.v2
 
 `/game/loadall` ZIP files remain unchanged and are the evidence base.
 
-Raw `.trn` members contain richer historical game/settings/player/relations metadata than the privacy-safe prepared projection. Diagnostics that need game-era or diplomacy provenance must read only the specific raw members/fields required and must not weaken the portable projection or emit identity/secrets/text fields.
+Raw `.trn` members contain richer historical game/settings/player/relations metadata than the privacy-safe prepared projection. Diagnostics that need game-era or diplomacy provenance read only the specific raw members/fields required and do not weaken the portable projection or emit identity/secrets/text fields.
 
 ### Prepared cache
 
 `validation/corpus/cache/prepared-v1/*.pickle` is a trusted local performance cache containing normalized private-perspective state. It is not a portable dataset format.
 
-`mechanics_projection()` is intentionally privacy-minimal: `game` is reduced to `{id, turn}`, players to `{id, raceid}`, and settings to an explicit mechanics-safe subset. Therefore game-era/diplomacy questions are answered from narrowly selected raw `.trn` evidence rather than by broadening prepared-cache contents.
+`mechanics_projection()` is intentionally privacy-minimal: `game` is reduced to `{id, turn}`, players to `{id, raceid}`, and settings to an explicit mechanics-safe subset.
 
 ### L1 — compiled movement
 
@@ -225,60 +225,79 @@ Nu-only exact                 3
 
 A global stage audit found all six only in `post_mine_strong_residual`. L2 v6 then reproduced exactly six `fuel_proration_waypoint_match` rows and `2226 -> 2220`. Status: **DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**.
 
-## Closed evidence-only Web Drain case
+## Web Drain evidence-only closure
 
-Broad, Crystal-owner-aware, raw-metadata and exact relation-pair audits now attribute one Crystal Web Drain transition end-to-end:
+One post-v6 Crystal Web Drain row is attributable end-to-end:
 
 ```text
 game 360690 / turn 44 / hull 53
-Crystal owner slot 7
-target owner slot 6
-game created 2020-03-03, Standard
-Crystal->target relationfrom = -1
-pre-2021 diplomacy immunity = false
-web_drain_allowed = true
-25 KT fuel drain
+Crystal-owned web count = 1
+fuel 55 -> 30
 movement mass 1274 -> 1249
-raw fuel 55 -> effective fuel 30
-raw movement requirement 45
-post-drain movement requirement 44
-exact Nu-prorated observed endpoint
+raw required = 45
+post-drain required = 44
+exact Nu-prorated endpoint
 ```
 
-The relation object was selected by exact `playerid/playertoid`, not array position.
-
-Status: **DOCUMENTED + CORPUS_OBSERVED strong evidence case; evidence-only, not production-promoted.**
-
-Reason: only one independent game / hull exact transition. Production remains v6 at `post_fuel_proration_residual = 2220`.
-
-## Active outbound fuel-transfer follow-up
-
-Host order places own cargo updates and ship-to-foreign-ship transfers before mass check and normal movement. The current active diagnostic is:
+Raw relation/game-era evidence established:
 
 ```text
-tools/diagnostics/outbound_fuel_transfer_proration_audit.py
+era = pre_2021_classic
+Crystal -> target relationfrom = -1
+web_diplomacy_immune = false
+web_drain_allowed = true
+exact_case_diplomacy_guard = PASSED
 ```
 
-It tests whether submitted `transferneutronium` can reduce both available fuel and movement mass enough to produce the already verified Nu waypoint-proration endpoint. It requires a current-visible, co-located transfer target before attribution and reports receiver tank capacity when directly observable.
+Status: **DOCUMENTED + CORPUS_OBSERVED strong evidence case; evidence-only** because only one independent game / hull supports the exact chain. No L2 label was added.
 
-The important first-pass outputs are:
+## Rejected outbound fuel-transfer lead
+
+Runtime audit over current `movement_post_fuel_proration_residual`:
 
 ```text
-outbound_fuel_transfer
-transfer_target_current_visible
-transfer_target_colocated
-transfer_target_same_owner
-transfer_target_foreign_owner
-receiver_full_transfer_capacity_confirmed
-raw_sufficient_to_transfer_insufficient
-transfer_fuel_only_endpoint_exact
-transfer_fuel_mass_endpoint_exact
-transfer_causal_exact
-transfer_strict_confirmed_exact
+generic_non_horwasp_warp1_9_rows = 665
+target_short_forward_rows = 116
+outbound_fuel_transfer = 2
+transfer_target_current_visible = 0
+raw_sufficient_to_transfer_insufficient = 0
+transfer_causal_exact = 0
+
+target_short_outbound_fuel_transfer = 0
+target_short_transfer_causal_exact = 0
+```
+
+This lead is closed absent new evidence.
+
+## Active Cloak fuel follow-up
+
+Planets.nu documents that standard Cloak fuel consumption happens before normal movement fuel calculation and therefore lowers both available fuel and the mass later moved. Standard Cloak consumes:
+
+```text
+max(5, floor(hull_mass / 20)) KT
+```
+
+Advanced Cloak consumes no fuel, and a ship already damaged at the start of the turn does not consume cloak fuel.
+
+Active diagnostic:
+
+```text
+tools/diagnostics/cloak_fuel_proration_audit.py
+```
+
+It evaluates owner-visible mission `10` rows on static standard-cloak hulls with zero raw damage, then compares:
+
+```text
 raw_proration_exact_control
+raw_sufficient_to_cloak_insufficient
+cloak_fuel_only_endpoint_exact
+cloak_fuel_mass_endpoint_exact
+cloak_causal_exact
+fuel_mass_exact_not_fuel_only
+synthetic_cloak_cost_noncloak_mission_exact_control
 ```
 
-No schema/accounting change is permitted from this first-pass diagnostic.
+The synthetic control applies the same cloak-cost subtraction to otherwise eligible cloak-capable ships not actually running Cloak. No production schema/accounting change is permitted until the first differential is reviewed.
 
 ## Current test state
 
