@@ -15,7 +15,7 @@ Deterministic Planets.nu simulation, reverse-engineering and AI research environ
 
 The active workstream is historical NuHost corpus mining and movement compatibility validation across 12 recent finished games.
 
-Current runtime-verified movement accounting:
+Last runtime-verified movement accounting remains:
 
 ```text
 move_most_candidates              227468
@@ -41,22 +41,20 @@ Verified status:
 - route-equivalent Chunnel — **TESTED + DIFF_VERIFIED**;
 - strict damage-limited maximum warp — **DOCUMENTED (legacy Nu help page) + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**.
 
-The damage-limited L1 pass independently predicted and production reproduced exactly `10` strict rows. The accounting differential was an exact match; post-build damage audit found zero remaining exact eligible matches. Targeted tests (`27 passed`) and the full pytest suite are green.
-
-Current generic endpoint:
+The last verified generic endpoint is:
 
 ```text
 final_residual_rows       2226
-closed_mite_rows           786
-known_horwasp_hull_rows   1457
 generic_rows               769
 generic_games               12
 generic_hulls               76
 ```
 
-The dominant short-forward family is now `119` Warp 7-9 `<0.5x` same-line-forward rows.
+The dominant short-forward family is `119` Warp 7-9 `<0.5x` same-line-forward rows.
 
-The current focused mechanic is **documented Planets.nu insufficient-fuel waypoint proration**. On the current final residual, the exact Host-endpoint differential found:
+### Fuel-proration v6 — implemented, runtime pending
+
+Planets.nu documents insufficient-fuel movement as waypoint-distance proration. The current endpoint differential found:
 
 ```text
 raw-mass insufficient candidates   19
@@ -66,16 +64,45 @@ VGAP3-style exact                    0
 Nu-only exact                        3
 ```
 
-The six Nu exact rows span four hulls and three games; three belong to the dominant 119-row family. This is direct corpus discrimination in favor of the documented Nu waypoint-distance rule rather than the old affordable-frontier correlation.
+The six exact Nu rows span four hulls and three games; three lie inside the dominant 119-row family. A global stage audit then found all six only in `post_mine_strong_residual`, with zero overlap against Chunnel, Horwasp strong or strict mine/web labels.
 
-Historical next-turn owner snapshots are **not** treated as immediate post-Host frames for editable `warp`, waypoint or fuel fields. Planets.nu Time Machine preserves historical end-turn orders, so those fields may already reflect the player's next submitted orders/transfers. Host outcome `x/y` remains the primary exact movement observation.
+Historical next-turn owner snapshots are not treated as immediate post-Host frames for editable `warp`, waypoint or fuel fields. Planets.nu Time Machine reproduces saved end-of-turn orders, so exact Host `x/y` outcome is the causal observation used for promotion.
 
-No fuel production label has been promoted yet. The immediate task is `tools/diagnostics/fuel_proration_global_stage_audit.py`, which scans the full current L1 residual and partitions exact Nu matches by downstream Chunnel/Horwasp/mine/final stage while conservatively excluding raw damage-limited rows. This determines whether fuel can safely enter the early L1 context stack or should first remain a later evidence-layer label.
+The strict production-compatible subset is now implemented as the **last L2 context stage after mine/web**, not as an early L1 pass. This preserves all already verified L1 and L2 intermediate layers.
+
+New category/view:
+
+```text
+fuel_proration_waypoint_match
+movement_post_fuel_proration_residual
+```
+
+Source schema is now:
+
+```text
+L1 physical movement:       planets-lab.compiled-movement.v3
+L1 context semantics:       planets-lab.compiled-movement-storm-context.v3
+L2 context labels source:   planets-lab.compiled-movement-context-labels.v6
+```
+
+Generated local data has not yet been rebuilt to v6, so `2226` remains the authoritative runtime endpoint until verification completes. Independent expected v6 differential:
+
+```text
+post_mine_strong_residual        2226   unchanged
+fuel_proration_explained            6
+post_fuel_proration_residual      2220
+label_issues                         0
+
+generic_rows                      769 -> 763
+dominant short-forward            119 -> 116
+```
+
+Because only the L2 label schema changed, no L1 rebuild is required. A normal v6 label build should invalidate all 12 v5 label partitions by schema while reusing the prepared cache.
 
 Read these first:
 
 - [`docs/ROADMAP.md`](docs/ROADMAP.md) — operational roadmap and current priorities;
-- [`docs/handoff/2026-08-25-fuel-proration-global-stage-pending.md`](docs/handoff/2026-08-25-fuel-proration-global-stage-pending.md) — latest movement/corpus handoff;
+- [`docs/handoff/2026-08-25-fuel-proration-v6-runtime-verification.md`](docs/handoff/2026-08-25-fuel-proration-v6-runtime-verification.md) — latest movement/corpus handoff;
 - [`docs/COMPILED_CORPUS.md`](docs/COMPILED_CORPUS.md) — compiled corpus schemas, cache semantics and current invariants;
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — architecture and evidence boundaries.
 
