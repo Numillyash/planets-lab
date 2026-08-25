@@ -4,7 +4,7 @@
 
 Current active handoff:
 
-[`handoff/2026-08-26-web-drain-relation-pair-pending.md`](handoff/2026-08-26-web-drain-relation-pair-pending.md)
+[`handoff/2026-08-26-web-drain-evidence-closed-transfer-followup.md`](handoff/2026-08-26-web-drain-evidence-closed-transfer-followup.md)
 
 ## Build commands
 
@@ -225,37 +225,60 @@ Nu-only exact                 3
 
 A global stage audit found all six only in `post_mine_strong_residual`. L2 v6 then reproduced exactly six `fuel_proration_waypoint_match` rows and `2226 -> 2220`. Status: **DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**.
 
-## Active Web Drain follow-up
+## Closed evidence-only Web Drain case
 
-The broad and Crystal-owner-aware post-v6 diagnostics currently support one exact causal-compatible Web Drain case:
-
-```text
-crystal_owner_web_at_origin                 79
-non_crystal_owner_web_at_origin              0
-crystal_web_raw_sufficient_to_insufficient   4
-crystal_web_drain_causal_exact               1
-```
-
-The exact row lies in the 116-row dominant short-forward family and matches only when the drained 25 KT is removed from both available fuel and movement mass.
-
-Raw `.trn` discovery recovered historical game-era and diplomacy schema directly:
+Broad, Crystal-owner-aware, raw-metadata and exact relation-pair audits now attribute one Crystal Web Drain transition end-to-end:
 
 ```text
-game 360690: datecreated 2020-03-03, iscustom=false, relations present
-game 511506: datecreated 2022-08-19, iscustom=false, relations present
-relation fields: playerid, playertoid, relationto, relationfrom, conflictlevel
-teamid values for the target/Crystal slots are zero in the inspected turns
+game 360690 / turn 44 / hull 53
+Crystal owner slot 7
+target owner slot 6
+game created 2020-03-03, Standard
+Crystal->target relationfrom = -1
+pre-2021 diplomacy immunity = false
+web_drain_allowed = true
+25 KT fuel drain
+movement mass 1274 -> 1249
+raw fuel 55 -> effective fuel 30
+raw movement requirement 45
+post-drain movement requirement 44
+exact Nu-prorated observed endpoint
 ```
 
-The active diagnostic is now:
+The relation object was selected by exact `playerid/playertoid`, not array position.
+
+Status: **DOCUMENTED + CORPUS_OBSERVED strong evidence case; evidence-only, not production-promoted.**
+
+Reason: only one independent game / hull exact transition. Production remains v6 at `post_fuel_proration_residual = 2220`.
+
+## Active outbound fuel-transfer follow-up
+
+Host order places own cargo updates and ship-to-foreign-ship transfers before mass check and normal movement. The current active diagnostic is:
 
 ```text
-tools/diagnostics/web_drain_relation_pair_audit.py
+tools/diagnostics/outbound_fuel_transfer_proration_audit.py
 ```
 
-It selects the exact relation by `playerid/playertoid`, interprets `relationfrom` as Crystal→target, and applies the Standard Web diplomacy rule by game creation era. For pre-2021 Standard the material immunity threshold is Crystal→target Safe Passage or higher (`relationfrom >= 2`). For 2021-to-2023 Standard games Safe Passage/Full Alliance is ignored for Web fields.
+It tests whether submitted `transferneutronium` can reduce both available fuel and movement mass enough to produce the already verified Nu waypoint-proration endpoint. It requires a current-visible, co-located transfer target before attribution and reports receiver tank capacity when directly observable.
 
-No schema/accounting change is permitted during this audit. Even if the sole exact case passes diplomacy attribution, it remains evidence-only until independent cross-game/hull support exists.
+The important first-pass outputs are:
+
+```text
+outbound_fuel_transfer
+transfer_target_current_visible
+transfer_target_colocated
+transfer_target_same_owner
+transfer_target_foreign_owner
+receiver_full_transfer_capacity_confirmed
+raw_sufficient_to_transfer_insufficient
+transfer_fuel_only_endpoint_exact
+transfer_fuel_mass_endpoint_exact
+transfer_causal_exact
+transfer_strict_confirmed_exact
+raw_proration_exact_control
+```
+
+No schema/accounting change is permitted from this first-pass diagnostic.
 
 ## Current test state
 
