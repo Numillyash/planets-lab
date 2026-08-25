@@ -1,6 +1,6 @@
 # Roadmap
 
-This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). The latest movement/corpus handoff is [`handoff/2026-08-25-damage-limited-warp-verified-fuel-followup.md`](handoff/2026-08-25-damage-limited-warp-verified-fuel-followup.md).
+This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). The latest movement/corpus handoff is [`handoff/2026-08-25-fuel-proration-host-differential-pending.md`](handoff/2026-08-25-fuel-proration-host-differential-pending.md).
 
 ## Evidence policy
 
@@ -44,7 +44,7 @@ Verified recent closures:
 - route-equivalent visible Tow handling in L1 v3 — `TESTED + DIFF_VERIFIED`;
 - strict damage-limited maximum warp — `DOCUMENTED (legacy Nu page) + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`.
 
-The active focused investigation is now **fuel-proration / insufficient-fuel signatures on the current 2226 final endpoint**, especially within the surviving 119-row short-forward family.
+The active focused investigation is now an **exact documented Planets.nu fuel-proration differential** on the current `2226` final endpoint. The historical affordable-frontier heuristic remains evidence-only and is no longer treated as the Nu production rule.
 
 ## Current generic residual landscape
 
@@ -164,50 +164,82 @@ This is correct. L2 validity is keyed by label schema, source movement schema, a
 
 Do not force L2 cache misses when the source bytes and source schema are unchanged.
 
-## Current fuel-proration follow-up
+## Fuel-proration follow-up — exact rule differential pending
 
-Historical diagnostic:
+The parameterized historical diagnostic:
 
 ```text
 tools/diagnostics/generic_fuel_limited_residual_audit.py
 ```
 
-Its old result established that fuel-prorated movement exists but is sparse. However, it was previously hard-wired to the historical pre-mine `movement_post_horwasp_strong_residual`, so those old population counts are not current accounting.
-
-The diagnostic is now parameterized. Default:
+was rerun on the current final view and confirmed:
 
 ```text
---residual-view movement_post_mine_strong_residual
+residual_view= movement_post_mine_strong_residual
+generic_non_horwasp_warp1_9_rows= 671
+
+target_short_forward_rows= 119
+target_short_gravitonic_excluded= 15
+target_short_non_gravitonic= 104
+target_short_fuel_geometry_candidate= 97
+target_short_same_identity_after= 96
+target_short_identity_break_after= 1
+target_short_formula_ready= 97
 ```
 
-Historical reproduction remains available with:
+Within the 119-row family, the old heuristic reports:
 
 ```text
---residual-view movement_post_horwasp_strong_residual
+target_short_insufficient_for_regular= 6
+target_short_formula_brackets_observed= 5
+target_short_affordable_frontier_match= 3
+target_short_depleted_after= 22
+target_short_strong_fuel_limit_signature= 3
 ```
 
-It also reports the exact current coarse-family population independently:
+Those three rows span hulls 17/61 and games `511506`, `620636`, `620694`. Across the wider non-Gravitonic short-same-line population the old criterion still reports seven strong signatures across six hulls and four games.
+
+### Critical rule correction
+
+The old strongest criterion used proximity to the maximum affordable whole-light-year frontier. Official Planets.nu `Fuel Consumption Details` instead documents waypoint-distance proration:
 
 ```text
-target_short_forward_rows = 119   # expected guard
+actual distance = waypoint distance * fuel available / fuel required
 ```
 
-Fuel-specific evidence inside that family includes:
+Its example explicitly states that a 60-ly trip requiring 12 KT moves 55 ly with 11 KT, even though that fuel could otherwise afford 59 ly. The Planets.nu/VGAP3 differences page independently states that VGAP3 uses a `warp^2 * fuel / fuel_required` maximum while Planets.nu uses the waypoint-distance ratio.
+
+Therefore the historical seven-row `strong_fuel_limit_signature` result is retained only as correlation evidence. Do **not** promote `affordable_frontier_match` as the Planets.nu fuel rule.
+
+The repository already implements the documented primitives:
 
 ```text
-target_short_gravitonic_excluded
-target_short_non_gravitonic
-target_short_fuel_geometry_candidate
-target_short_same_identity_after
-target_short_formula_ready
-target_short_insufficient_for_regular
-target_short_formula_brackets_observed
-target_short_affordable_frontier_match
-target_short_depleted_after
-target_short_strong_fuel_limit_signature
+src/planets_lab/rules/fuel.py
+src/planets_lab/rules/proration.py
+src/planets_lab/sim/normal_movement.py
 ```
 
-Strong fuel evidence still requires same-identity continuity, insufficient fuel for the regular move, affordability of the observed move, observed distance near the maximum affordable whole-light-year frontier, and fuel depletion to zero. Raw snapshot mass is a correlation input, not yet a reconstructed exact pre-movement mass.
+The new diagnostic is:
+
+```text
+tools/diagnostics/fuel_proration_host_differential_audit.py
+```
+
+Its first causal pass deliberately restricts to reachable, positive-fuel, non-Gravitonic, same-identity rows and compares exact Host-major/minor endpoints for:
+
+1. documented Nu waypoint-distance proration;
+2. historical affordable-frontier heuristic;
+3. VGAP3-style max-distance ratio.
+
+The strongest Nu subset additionally requires the normal out-of-fuel post-state:
+
+```text
+fuel_after = 0
+warp_after = 0
+waypoint_after = observed current position
+```
+
+Partial waypoints, zero-fuel movement and Gravitonic fuel behavior remain outside this first exact differential.
 
 ## Route-equivalent Tow v3 — verified closure
 
@@ -255,7 +287,7 @@ Implemented or partially implemented:
 
 - Planets.nu JSON -> canonical state adapter;
 - cargo transfer and colonization primitives;
-- ordinary movement, movement mass, fuel use and fuel-proration primitives;
+- ordinary movement, movement mass, fuel use and documented waypoint-distance fuel-proration primitives;
 - warp wells;
 - Tow / Intercept / HYP movement phases;
 - pre-movement repair and damage-limited speed;
@@ -330,22 +362,23 @@ Verified/closed movement progress:
 9. scoped ordinary sphere movement for game `591478` — `CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`;
 10. mine/web interruption + nearest damage rounding — `CORPUS_OBSERVED + TESTED + DIFF_VERIFIED` for strict v5;
 11. strict damage-limited warp — `DOCUMENTED (legacy page) + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`;
-12. generic fuel-limited/prorated movement — known real but current endpoint coverage pending rerun.
+12. fuel-limited movement — current-endpoint correlation confirmed; exact documented Nu proration differential pending.
 
 ### Immediate work
 
 1. pull current `main` and confirm clean tree;
-2. syntax-check `tools/diagnostics/generic_fuel_limited_residual_audit.py`;
-3. run it on the default current final view;
-4. require `target_short_forward_rows = 119` as a population guard;
-5. compare current strong fuel count with the historical `7` signatures;
-6. inspect how many strong signatures lie inside the 119-row family and their hull/game spread;
-7. inspect bracketed/false-negative cases before considering any production classifier;
-8. do not broaden fuel logic solely to maximize residual coverage.
+2. syntax-check `tools/diagnostics/fuel_proration_host_differential_audit.py`;
+3. run it on the current `movement_post_mine_strong_residual` endpoint;
+4. require `target_short_forward_rows = 119` as the population guard;
+5. compare `nu_proration_endpoint_exact`, `frontier_endpoint_exact` and `vgap3_endpoint_exact`;
+6. inspect rule-signature overlaps and `nu_proration_strong` post-reset cases;
+7. inspect exact Nu hull/game spread and the subset inside the 119-row family;
+8. do not change production accounting until the documented Nu rule clearly discriminates from the controls.
 
 Deprioritized/rejected/closed leads:
 
 - multi-waypoint queue did not explain the old hull-79 cluster;
+- the historical affordable-frontier fuel criterion is correlation-only and must not be promoted as the Nu proration rule;
 - hidden/private-FC Chunnel event discovery added no coverage;
 - route-equivalent Chunnel multiplicity is fixed/closed;
 - route-equivalent visible Tow multiplicity is fixed/closed;
@@ -378,9 +411,9 @@ Status: **future**.
 
 Unless new evidence changes priorities:
 
-1. rerun fuel-proration differential on the current 2226/769 endpoint;
-2. quantify strong fuel evidence specifically inside the surviving 119-row short-forward family;
-3. promote only a narrow causal subset if independent evidence supports it;
+1. run the exact documented-Nu fuel-proration differential on the current 2226/769 endpoint;
+2. require exact endpoint and out-of-fuel post-state evidence before considering any production fuel classifier;
+3. quantify documented Nu fuel coverage specifically inside the surviving 119-row short-forward family;
 4. continue reducing movement residuals with generic mechanics rather than hull-specific rules;
 5. promote stabilized movement semantics into simulator/ruleset behavior;
 6. expand differential mining into economy/mines/combat/race mechanics;
