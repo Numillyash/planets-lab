@@ -15,7 +15,7 @@ Deterministic Planets.nu simulation, reverse-engineering and AI research environ
 
 The active workstream is historical NuHost corpus mining and movement compatibility validation across 12 recent finished games.
 
-Last runtime-verified movement accounting remains:
+Current runtime-verified movement accounting:
 
 ```text
 move_most_candidates              227468
@@ -29,80 +29,67 @@ horwasp_strong_explained             240
 post_horwasp_strong_residual        2263
 mine_strong_explained                 37
 post_mine_strong_residual           2226
+fuel_proration_explained               6
+post_fuel_proration_residual        2220
 label_issues                           0
 ```
 
-Recently closed/integrated movement work includes warp-well ordering, scoped Red Mite fallback evidence, Horwasp ballistic topology, classic-vs-cloudy ion-storm handling, evidence-scoped sphere-aware ordinary movement for game `591478`, route-equivalent Chunnel multi-event handling, strict mine/web interruption context, route-equivalent visible Tow handling, and strict damage-limited maximum warp.
+Recently closed/integrated movement work includes warp-well ordering, scoped Red Mite fallback evidence, Horwasp ballistic topology, classic-vs-cloudy ion-storm handling, evidence-scoped sphere-aware ordinary movement for game `591478`, route-equivalent Chunnel multi-event handling, strict mine/web interruption context, route-equivalent visible Tow handling, strict damage-limited maximum warp, and documented insufficient-fuel waypoint proration.
 
 Verified status:
 
 - route-equivalent visible Tow — **TESTED + DIFF_VERIFIED**;
 - strict mine/web v5 — **CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**;
 - route-equivalent Chunnel — **TESTED + DIFF_VERIFIED**;
-- strict damage-limited maximum warp — **DOCUMENTED (legacy Nu help page) + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**.
+- strict damage-limited maximum warp — **DOCUMENTED (legacy Nu help page) + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**;
+- strict Nu waypoint-distance fuel proration v6 — **DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**.
 
-The last verified generic endpoint is:
+Fuel-proration v6 reproduced its independently predicted six-row differential exactly. All six rows came from the pre-existing `post_mine_strong_residual`; Chunnel/Horwasp/mine overlap guards were zero. The v5 -> v6 label-schema bump produced 0/12 label-cache hits and 12/12 prepared-cache hits, as intended.
+
+Current generic endpoint:
 
 ```text
-final_residual_rows       2226
-generic_rows               769
+final_residual_rows       2220
+closed_mite_rows           786
+known_horwasp_hull_rows   1457
+generic_rows               763
 generic_games               12
 generic_hulls               76
 ```
 
-The dominant short-forward family is `119` Warp 7-9 `<0.5x` same-line-forward rows.
-
-### Fuel-proration v6 — implemented, runtime pending
-
-Planets.nu documents insufficient-fuel movement as waypoint-distance proration. The current endpoint differential found:
+Largest surviving coarse families:
 
 ```text
-raw-mass insufficient candidates   19
-Nu waypoint-proration exact         6
-affordable-frontier exact           3
-VGAP3-style exact                    0
-Nu-only exact                        3
+116  warp7-9 <0.5x     observed=other same_line_forward
+ 93  warp0   nominal<=0 target=origin
+ 64  warp7-9 <0.5x     observed=origin stationary
+ 52  warp7-9 >3.0x     target=origin
+ 46  warp7-9 >3.0x     observed=other oblique
+ 43  warp7-9 0.5-1.0x observed=other same_line_forward
 ```
 
-The six exact Nu rows span four hulls and three games; three lie inside the dominant 119-row family. A global stage audit then found all six only in `post_mine_strong_residual`, with zero overlap against Chunnel, Horwasp strong or strict mine/web labels.
+The active focused mechanic is now **pre-movement Crystal web drain feeding already verified Nu fuel proration**. Planets.nu documents 25 KT of web drain per enemy Crystal web field before normal movement/fuel usage. This can turn a raw-fuel-sufficient ship into a positive-but-insufficient-fuel move without requiring a web-mine impact.
 
-Historical next-turn owner snapshots are not treated as immediate post-Host frames for editable `warp`, waypoint or fuel fields. Planets.nu Time Machine reproduces saved end-of-turn orders, so exact Host `x/y` outcome is the causal observation used for promotion.
-
-The strict production-compatible subset is now implemented as the **last L2 context stage after mine/web**, not as an early L1 pass. This preserves all already verified L1 and L2 intermediate layers.
-
-New category/view:
+New diagnostic:
 
 ```text
-fuel_proration_waypoint_match
-movement_post_fuel_proration_residual
+tools/diagnostics/web_drain_fuel_proration_audit.py
 ```
 
-Source schema is now:
+It runs on `movement_post_fuel_proration_residual`, requires `target_short_forward_rows = 116`, compares fuel-only vs fuel+movement-mass drain, and includes a synthetic 25-KT no-web negative control. Web-hit v5 remains closed; this is a separate pre-movement fuel-state mechanism.
+
+Current schemas:
 
 ```text
 L1 physical movement:       planets-lab.compiled-movement.v3
 L1 context semantics:       planets-lab.compiled-movement-storm-context.v3
-L2 context labels source:   planets-lab.compiled-movement-context-labels.v6
+L2 context labels:          planets-lab.compiled-movement-context-labels.v6
 ```
-
-Generated local data has not yet been rebuilt to v6, so `2226` remains the authoritative runtime endpoint until verification completes. Independent expected v6 differential:
-
-```text
-post_mine_strong_residual        2226   unchanged
-fuel_proration_explained            6
-post_fuel_proration_residual      2220
-label_issues                         0
-
-generic_rows                      769 -> 763
-dominant short-forward            119 -> 116
-```
-
-Because only the L2 label schema changed, no L1 rebuild is required. A normal v6 label build should invalidate all 12 v5 label partitions by schema while reusing the prepared cache.
 
 Read these first:
 
 - [`docs/ROADMAP.md`](docs/ROADMAP.md) — operational roadmap and current priorities;
-- [`docs/handoff/2026-08-25-fuel-proration-v6-runtime-verification.md`](docs/handoff/2026-08-25-fuel-proration-v6-runtime-verification.md) — latest movement/corpus handoff;
+- [`docs/handoff/2026-08-25-fuel-proration-v6-verified-web-drain-followup.md`](docs/handoff/2026-08-25-fuel-proration-v6-verified-web-drain-followup.md) — latest movement/corpus handoff;
 - [`docs/COMPILED_CORPUS.md`](docs/COMPILED_CORPUS.md) — compiled corpus schemas, cache semantics and current invariants;
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — architecture and evidence boundaries.
 
