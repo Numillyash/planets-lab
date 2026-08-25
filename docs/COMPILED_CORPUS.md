@@ -4,7 +4,7 @@
 
 Current active handoff:
 
-[`handoff/2026-08-25-web-drain-raw-metadata-discovery.md`](handoff/2026-08-25-web-drain-raw-metadata-discovery.md)
+[`handoff/2026-08-26-web-drain-relation-pair-pending.md`](handoff/2026-08-26-web-drain-relation-pair-pending.md)
 
 ## Build commands
 
@@ -51,11 +51,13 @@ standalone Chunnel:                planets-lab.movement-chunnel-context-game.v2
 
 `/game/loadall` ZIP files remain unchanged and are the evidence base.
 
+Raw `.trn` members contain richer historical game/settings/player/relations metadata than the privacy-safe prepared projection. Diagnostics that need game-era or diplomacy provenance must read only the specific raw members/fields required and must not weaken the portable projection or emit identity/secrets/text fields.
+
 ### Prepared cache
 
 `validation/corpus/cache/prepared-v1/*.pickle` is a trusted local performance cache containing normalized private-perspective state. It is not a portable dataset format.
 
-`mechanics_projection()` is intentionally privacy-minimal: `game` is reduced to `{id, turn}`, players to `{id, raceid}`, and settings to an explicit mechanics-safe subset. Therefore diplomacy/game-era metadata must be discovered from raw `.trn` evidence without weakening the prepared-cache privacy boundary.
+`mechanics_projection()` is intentionally privacy-minimal: `game` is reduced to `{id, turn}`, players to `{id, raceid}`, and settings to an explicit mechanics-safe subset. Therefore game-era/diplomacy questions are answered from narrowly selected raw `.trn` evidence rather than by broadening prepared-cache contents.
 
 ### L1 — compiled movement
 
@@ -236,17 +238,24 @@ crystal_web_drain_causal_exact               1
 
 The exact row lies in the 116-row dominant short-forward family and matches only when the drained 25 KT is removed from both available fuel and movement mass.
 
-A first diplomacy/game-era inspector returned `teamid=None`, empty game metadata and empty relation records for all four candidates. That result is not interpretable because the prepared projection deliberately strips those fields.
-
-Active diagnostic:
+Raw `.trn` discovery recovered historical game-era and diplomacy schema directly:
 
 ```text
-tools/diagnostics/web_drain_raw_metadata_discovery.py
+game 360690: datecreated 2020-03-03, iscustom=false, relations present
+game 511506: datecreated 2022-08-19, iscustom=false, relations present
+relation fields: playerid, playertoid, relationto, relationfrom, conflictlevel
+teamid values for the target/Crystal slots are zero in the inspected turns
 ```
 
-It reads selected raw `.trn` members directly and reports only privacy-safe schema/provenance paths related to creation/start/date/year/host/team/relation/alliance/diplomacy/passage. Sensitive identity/secrets/text fields are not printed.
+The active diagnostic is now:
 
-No schema/accounting change is permitted until game-era/diplomacy compatibility is attributable. If raw loadall lacks the required fields, use a separate public game-info source for game era and leave non-observable diplomacy unresolved rather than guessing.
+```text
+tools/diagnostics/web_drain_relation_pair_audit.py
+```
+
+It selects the exact relation by `playerid/playertoid`, interprets `relationfrom` as Crystal→target, and applies the Standard Web diplomacy rule by game creation era. For pre-2021 Standard the material immunity threshold is Crystal→target Safe Passage or higher (`relationfrom >= 2`). For 2021-to-2023 Standard games Safe Passage/Full Alliance is ignored for Web fields.
+
+No schema/accounting change is permitted during this audit. Even if the sole exact case passes diplomacy attribution, it remains evidence-only until independent cross-game/hull support exists.
 
 ## Current test state
 
