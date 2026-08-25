@@ -34,17 +34,7 @@ post_fuel_proration_residual        2220
 label_issues                           0
 ```
 
-Recently closed/integrated movement work includes warp-well ordering, scoped Red Mite fallback evidence, Horwasp ballistic topology, classic-vs-cloudy ion-storm handling, evidence-scoped sphere-aware ordinary movement for game `591478`, route-equivalent Chunnel multi-event handling, strict mine/web interruption context, route-equivalent visible Tow handling, strict damage-limited maximum warp, and documented insufficient-fuel waypoint proration.
-
-Verified status:
-
-- route-equivalent visible Tow — **TESTED + DIFF_VERIFIED**;
-- strict mine/web v5 — **CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**;
-- route-equivalent Chunnel — **TESTED + DIFF_VERIFIED**;
-- strict damage-limited maximum warp — **DOCUMENTED (legacy Nu help page) + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**;
-- strict Nu waypoint-distance fuel proration v6 — **DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**.
-
-Fuel-proration v6 reproduced its independently predicted six-row differential exactly. All six rows came from the pre-existing `post_mine_strong_residual`; Chunnel/Horwasp/mine overlap guards were zero. The v5 -> v6 label-schema bump produced 0/12 label-cache hits and 12/12 prepared-cache hits, as intended.
+Verified recent closures include route-equivalent Tow and Chunnel handling, classic/cloudy ion storms, scoped sphere geometry, strict mine/web hit context, strict damage-limited warp and strict Nu waypoint-distance fuel proration.
 
 Current generic endpoint:
 
@@ -68,32 +58,30 @@ Largest surviving coarse families:
  43  warp7-9 0.5-1.0x observed=other same_line_forward
 ```
 
-The Crystal Web Drain investigation is closed as one fully attributable **DOCUMENTED + CORPUS_OBSERVED strong evidence-only** transition. For game `360690`, turn `44`, the exact relation-pair / game-era audit proved that the Crystal-owned web was not diplomacy-immune and that subtracting the documented 25 KT from both available fuel and movement mass produces the exact already-verified Nu-proration endpoint. It is intentionally not production-promoted because support remains one game / one hull.
+Crystal Web Drain is closed as one fully attributable `DOCUMENTED + CORPUS_OBSERVED` evidence-only transition (`game 360690`, turn 44, hull 53). Ownership, historical diplomacy/game era, 25 KT fuel/mass reduction and exact Nu-prorated endpoint are all attributable, but one game/hull is insufficient for a production label.
 
-Two subsequent local pre-movement fuel leads are rejected for the dominant family:
+Three subsequent pre-movement fuel leads are rejected for the dominant 116-row family:
 
 ```text
 outbound submitted fuel transfer:
   target_short_outbound_fuel_transfer = 0
-  target_short_transfer_causal_exact  = 0
 
 standard Cloak fuel burn:
-  target_short_cloak_mission                       = 0
-  target_short_standard_cloak_fuel_burn_candidate = 0
-  target_short_cloak_causal_exact                  = 0
+  target_short_cloak_mission = 0
+
+Privateer Rob Ship:
+  target_short_rob_exposure_candidate = 0
 ```
 
-Globally, mission-10 residual rows existed, but the eight relevant mission-10 rows were on hulls without static cloak capability; no standard-Cloak fuel-burn candidate survived the guards.
+The sole global Rob exposure is outside the dominant family, so no exact Rob simulator pass is justified for the current target.
 
-The active focused mechanic is now **Privateer Rob Ship exposure before movement**. Planets.nu documents Rob Ship in the early Mission-9 block before all movement. Rather than immediately reconstructing robber/target ID ordering, diplomacy, cloak immunity and the 1% failure chance, the first pass only asks whether the remaining residual population was exposed to a mechanically plausible co-located Privateer Mission-9 ship with beams, fuel and free fuel-tank capacity.
-
-Active diagnostic:
+The active task is now **raw Stellar Cartography feature inventory before any terrain-specific movement model**:
 
 ```text
-tools/diagnostics/rob_ship_exposure_audit.py
+tools/diagnostics/stellar_cartography_raw_feature_inventory.py
 ```
 
-If `target_short_rob_exposure_candidate = 0`, Rob Ship is rejected for the dominant 116-row family without a second pass. If exposure exists, exact robbery-order/diplomacy reconstruction is the next step. No production schema/accounting change is allowed during this audit.
+Planets.nu documentation describes common Stellar Cartography features mostly as visibility, destruction, radiation, tow-disruption or explicit-mission mechanics. Black Hole ergospheres are the notable documented terrain feature that directly inhibits warp speed. The inventory therefore first asks whether black-hole or other movement-relevant terrain payloads exist at all in the 12-game raw corpus and whether they occur on turns containing the dominant 116-row family. No terrain classifier is allowed from schema presence alone.
 
 Current schemas:
 
@@ -105,55 +93,9 @@ L2 context labels:          planets-lab.compiled-movement-context-labels.v6
 
 Read these first:
 
-- [`docs/ROADMAP.md`](docs/ROADMAP.md) — operational roadmap and current priorities;
-- [`docs/handoff/2026-08-26-rob-ship-exposure-pending.md`](docs/handoff/2026-08-26-rob-ship-exposure-pending.md) — latest movement/corpus handoff;
-- [`docs/COMPILED_CORPUS.md`](docs/COMPILED_CORPUS.md) — compiled corpus schemas, cache semantics and current invariants;
-- [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — architecture and evidence boundaries.
+- [`docs/ROADMAP.md`](docs/ROADMAP.md)
+- [`docs/handoff/2026-08-26-stellar-cartography-feature-inventory-pending.md`](docs/handoff/2026-08-26-stellar-cartography-feature-inventory-pending.md)
+- [`docs/COMPILED_CORPUS.md`](docs/COMPILED_CORPUS.md)
+- [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)
 
-GitHub `main` is the source of truth. Do not reconstruct current project state from old chat history when these documents are available.
-
-## Layout
-
-```text
-src/planets_lab/
-  core/         canonical game state and shared domain types
-  sim/          deterministic Host engine
-  rules/        mechanics/ruleset definitions
-  observer/     player observations / fog of war
-  data/         static specs/importers/datasets
-  corpus/       historical acquisition, reconstruction and differential layers
-  ai/           agent/environment interfaces
-
-tests/          unit, regression and scenario tests
-docs/           architecture, roadmap, rule notes and handoffs
-tools/          diagnostics and reproducible audit scripts
-validation/     manifests, golden evidence and local compiled corpus tree
-```
-
-## Development setup
-
-Docker is the recommended environment.
-
-Run the full test suite:
-
-```bash
-docker compose run --rm -T lab pytest -q
-```
-
-Open a shell:
-
-```bash
-docker compose run --rm lab bash
-```
-
-For local development without Docker, Python 3.11+ is supported:
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install --upgrade pip
-python -m pip install -e '.[dev]'
-pytest
-```
-
-Raw historical archives, prepared caches and compiled datasets remain local/gitignored. Git contains privacy-safe manifests, code, schemas, compact evidence and reproducible summaries rather than private raw game data.
+GitHub `main` is the source of truth. Raw historical archives, prepared caches and compiled datasets remain local/gitignored; Git contains privacy-safe manifests, code, schemas and reproducible summaries.
