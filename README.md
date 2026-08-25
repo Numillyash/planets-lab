@@ -56,12 +56,12 @@ generic_hulls               76
 
 The dominant short-forward family changed only `121 -> 119`, confirming damage-limited warp is real but sparse rather than the main cause of that family.
 
-The next focused task is current-endpoint **fuel-proration / insufficient-fuel** auditing. `tools/diagnostics/generic_fuel_limited_residual_audit.py` now defaults to `movement_post_mine_strong_residual`, retains the old post-Horwasp view only for historical reproduction, and separately reports the exact surviving `119` coarse short-forward rows.
+The current focused task is an exact **fuel-proration Host differential**. A current-endpoint rerun of the historical fuel audit still found seven strong fuel-limited correlations overall and three inside the surviving 119-row family, but its `affordable_frontier_match` criterion is not the documented Planets.nu proration rule. Planets.nu documents waypoint-distance proration (`waypoint distance * fuel available / fuel required`) and explicitly distinguishes it from VGAP3 maximum-distance behavior. `tools/diagnostics/fuel_proration_host_differential_audit.py` now compares documented Nu proration, the historical affordable-frontier heuristic and a VGAP3-style control using exact Host-major/minor endpoints plus out-of-fuel post-state evidence. No production fuel label is promoted pending that differential.
 
 Read these first:
 
 - [`docs/ROADMAP.md`](docs/ROADMAP.md) — operational roadmap and current priorities;
-- [`docs/handoff/2026-08-25-damage-limited-warp-verified-fuel-followup.md`](docs/handoff/2026-08-25-damage-limited-warp-verified-fuel-followup.md) — latest movement/corpus handoff;
+- [`docs/handoff/2026-08-25-fuel-proration-host-differential-pending.md`](docs/handoff/2026-08-25-fuel-proration-host-differential-pending.md) — latest movement/corpus handoff;
 - [`docs/COMPILED_CORPUS.md`](docs/COMPILED_CORPUS.md) — compiled corpus schemas, cache semantics and current invariants;
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — architecture and evidence boundaries.
 
