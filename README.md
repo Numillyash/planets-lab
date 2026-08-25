@@ -68,29 +68,27 @@ Largest surviving coarse families:
  43  warp7-9 0.5-1.0x observed=other same_line_forward
 ```
 
-The active focused mechanic is **pre-movement Crystal Web Drain feeding already verified Nu fuel proration**. The first post-v6 pass found one exact causal-compatible row. A Crystal-owner-aware rerun preserved that exact case and showed that every geometrically relevant web field in the evaluated subset was Crystal-owned:
+The active focused mechanic is **pre-movement Crystal Web Drain feeding already verified Nu fuel proration**. The Crystal-owner-aware differential preserved one exact causal-compatible case:
 
 ```text
-all_enemy_web_at_origin                 79
-crystal_owner_web_at_origin             79
-non_crystal_owner_web_at_origin          0
-crystal_web_raw_sufficient_to_insufficient 4
-crystal_web_drain_causal_exact           1
+all_enemy_web_at_origin                    79
+crystal_owner_web_at_origin                79
+non_crystal_owner_web_at_origin             0
+crystal_web_raw_sufficient_to_insufficient  4
+crystal_web_drain_causal_exact              1
 ```
 
-The exact case remains game `360690`, turn `44`, hull `53`. It is exact only when the drained 25 KT is removed from both available fuel and movement mass. This is strong corpus evidence, but one game / one hull is not production-ready.
+The exact case remains game `360690`, turn `44`, hull `53`, and is exact only when the drained 25 KT is removed from both available fuel and movement mass. This is strong corpus evidence but still only one game / one hull.
 
-The remaining mandatory guard is **diplomacy / game-era compatibility**. Standard web-diplomacy semantics changed over time: Safe Passage/Full Alliance handling before 2021 differs from 2021+ Standard, and Full Alliance was partially restored for newer Standard games. We therefore do not infer immunity from current rules alone.
+A diplomacy/game-era inspector then returned empty game metadata and relation records for all four candidates. This is **not evidence of neutral diplomacy**: the privacy-safe corpus normalizer deliberately projects `game` down to `{id, turn}`, `players` down to `{id, raceid}`, and retains only a small mechanics-safe settings subset. The prepared cache therefore cannot contain the missing creation/diplomacy fields.
 
-Active diagnostic:
+The active task is now direct, privacy-safe schema discovery in the raw `.trn` members:
 
 ```text
-tools/diagnostics/web_drain_diplomacy_followup_audit.py
+tools/diagnostics/web_drain_raw_metadata_discovery.py
 ```
 
-It inspects exactly the four runtime-verified raw-sufficient -> Crystal-web-insufficient candidates and reports game metadata, target/web owner slots, team IDs, and raw `relationto`/`relationfrom` records. Numeric diplomacy levels are intentionally not interpreted until the runtime payload is observed.
-
-No production schema/accounting change is allowed during this follow-up.
+It reports top-level structure plus only metadata paths whose key names concern creation/start/date/year/host/team/relation/alliance/diplomacy/passage. Values for names, email, username, savekey, passwords, API keys, secrets, messages and notes are never printed. No production schema/accounting change is allowed during this follow-up.
 
 Current schemas:
 
@@ -103,7 +101,7 @@ L2 context labels:          planets-lab.compiled-movement-context-labels.v6
 Read these first:
 
 - [`docs/ROADMAP.md`](docs/ROADMAP.md) — operational roadmap and current priorities;
-- [`docs/handoff/2026-08-25-web-drain-diplomacy-followup.md`](docs/handoff/2026-08-25-web-drain-diplomacy-followup.md) — latest movement/corpus handoff;
+- [`docs/handoff/2026-08-25-web-drain-raw-metadata-discovery.md`](docs/handoff/2026-08-25-web-drain-raw-metadata-discovery.md) — latest movement/corpus handoff;
 - [`docs/COMPILED_CORPUS.md`](docs/COMPILED_CORPUS.md) — compiled corpus schemas, cache semantics and current invariants;
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — architecture and evidence boundaries.
 
