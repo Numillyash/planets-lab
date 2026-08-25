@@ -1,6 +1,6 @@
 # Roadmap
 
-This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). The latest movement/corpus handoff is [`handoff/2026-08-25-web-drain-crystal-owner-followup.md`](handoff/2026-08-25-web-drain-crystal-owner-followup.md).
+This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). The latest movement/corpus handoff is [`handoff/2026-08-25-web-drain-diplomacy-followup.md`](handoff/2026-08-25-web-drain-diplomacy-followup.md).
 
 ## Evidence policy
 
@@ -99,47 +99,58 @@ Largest coarse families:
  43  warp7-9 0.5-1.0x observed=other same_line_forward
 ```
 
-## Active investigation — Crystal-owner Web Drain
+## Active investigation — Web Drain diplomacy / game era
 
-The first post-v6 diagnostic:
-
-```text
-tools/diagnostics/web_drain_fuel_proration_audit.py
-```
-
-found one exact causal-compatible case under a broad enemy-web model:
+The first post-v6 diagnostic found one exact causal-compatible case under a broad enemy-web model. The Crystal-owner-aware rerun preserved that case:
 
 ```text
-raw_proration_exact_control= 0
-raw_sufficient_to_web_insufficient= 4
-web_drain_fuel_only_endpoint_exact= 0
-web_drain_fuel_mass_endpoint_exact= 1
-web_drain_causal_exact= 1
-synthetic_25_no_web_exact_control= 0
+all_enemy_web_at_origin                     79
+crystal_owner_web_at_origin                 79
+non_crystal_owner_web_at_origin              0
+crystal_web_raw_sufficient_to_insufficient   4
+crystal_web_drain_causal_exact               1
 ```
 
-Inside the dominant 116-row family, three rows converted from raw-fuel-sufficient to post-drain-insufficient and one matched the exact Nu endpoint. The exact case matched only when 25 KT was removed from both available fuel and movement mass.
-
-This is **not production-ready**. Current Planets.nu documentation states that only web minefields owned by a Crystal player produce the 25 KT/field Web Drain. Web fields owned by non-Crystal players do not drain fuel. Web Drain uses the post-decay circle, and current Standard rules may honor Full Alliance.
-
-The active follow-up is therefore:
+Inside the dominant 116-row family:
 
 ```text
-tools/diagnostics/web_drain_crystal_owner_followup_audit.py
+crystal_owner_web_at_origin                 61
+crystal_web_raw_sufficient_to_insufficient   3
+crystal_web_drain_causal_exact               1
 ```
 
-It requires Crystal ownership of the visible post-decay web field, excludes Crystal targets conservatively, treats non-Crystal-owned web fields as a control, and lists every raw-sufficient -> Crystal-web-insufficient candidate. Full-Alliance immunity remains an explicit unresolved guardrail.
+The exact case remains game `360690`, turn `44`, hull `53`, and is exact only when 25 KT is removed from both available fuel and movement mass. This is strong corpus evidence but still only one game / one hull.
+
+Current Planets.nu documentation also makes Web Drain diplomacy era-dependent for Standard system-generated games. Safe Passage / Full Alliance handling changed on 2021-01-01, and Full Alliance was partially restored for newer games beginning 2023-12-09. Therefore the exact case cannot be promoted until the actual game-era and relation/team state are reconstructed.
+
+The active follow-up is:
+
+```text
+tools/diagnostics/web_drain_diplomacy_followup_audit.py
+```
+
+It inspects the four runtime-verified raw-sufficient -> Crystal-web-insufficient candidates and reports:
+
+```text
+target/web owner slots and races
+team IDs and same-team signal
+game/settings metadata including hoststart where present
+raw relation records
+relationto / relationfrom / conflictlevel
+```
+
+Numeric diplomacy levels are intentionally not interpreted until runtime payload is observed.
 
 ### Immediate work
 
 1. pull current `main` and confirm clean tree;
-2. syntax-check and run `web_drain_crystal_owner_followup_audit.py`;
-3. require `target_short_forward_rows = 116`;
-4. inspect `crystal_owner_web_at_origin` versus non-Crystal web overlap;
-5. inspect `crystal_web_raw_sufficient_to_insufficient`;
-6. determine whether the sole first-pass exact survives as `crystal_web_drain_causal_exact`;
-7. if it survives, reconstruct diplomacy / Full-Alliance compatibility before production consideration;
-8. if it does not survive, reject the first-pass Web Drain causal interpretation;
+2. syntax-check and run `web_drain_diplomacy_followup_audit.py`;
+3. inspect game `360690` host-start/creation era;
+4. inspect target/web owner team IDs for turn `44`;
+5. inspect raw relation records between the target owner and Crystal web owner;
+6. apply the documented Web Drain diplomacy rule for the actual game era;
+7. if the exact case is diplomacy-immune, reject Web Drain as its cause;
+8. if it is not immune, retain Web Drain as strong evidence-only unless cross-game exact support appears;
 9. do not change L1/L2 schemas or accounting during this follow-up.
 
 ## Deprioritized / closed leads
@@ -169,7 +180,7 @@ It requires Crystal ownership of the visible post-decay web field, excludes Crys
 
 Unless new evidence changes priorities:
 
-1. finish Crystal-owner Web Drain differential;
-2. if warranted, verify diplomacy compatibility and only then consider a narrow production label;
-3. otherwise return to the post-v6 `116` short-forward family and split it by the next generic documented pre-movement mechanism;
+1. finish Web Drain diplomacy/game-era verification for the four candidates;
+2. do not promote a one-row Web Drain label without surviving the era/diplomacy guard;
+3. if Web Drain remains evidence-only, return to the post-v6 `116` short-forward family and split it by the next generic documented pre-movement mechanism;
 4. keep all verified intermediate accounting layers immutable as regression controls.
