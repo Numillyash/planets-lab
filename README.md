@@ -68,15 +68,17 @@ Largest surviving coarse families:
  43  warp7-9 0.5-1.0x observed=other same_line_forward
 ```
 
-The active focused mechanic is now **pre-movement Crystal web drain feeding already verified Nu fuel proration**. Planets.nu documents 25 KT of web drain per enemy Crystal web field before normal movement/fuel usage. This can turn a raw-fuel-sufficient ship into a positive-but-insufficient-fuel move without requiring a web-mine impact.
+The active focused mechanic is **pre-movement Crystal web drain feeding already verified Nu fuel proration**. The first post-v6 differential found one exact causal-compatible row: raw fuel was sufficient, one modeled 25 KT drain made fuel insufficient, and the observed endpoint matched only when the drained fuel was also removed from movement mass. Raw-proration and synthetic no-web controls were zero.
 
-New diagnostic:
+That first pass is not production-ready. Current Planets.nu documentation specifies that only web fields **owned by a Crystal player** produce the 25 KT/field drain; web fields owned by non-Crystal players do not. The active follow-up therefore adds a Crystal-owner race filter and treats non-Crystal-owned web fields as a control. Full-Alliance immunity remains an explicit unresolved guardrail.
+
+Active diagnostic:
 
 ```text
-tools/diagnostics/web_drain_fuel_proration_audit.py
+tools/diagnostics/web_drain_crystal_owner_followup_audit.py
 ```
 
-It runs on `movement_post_fuel_proration_residual`, requires `target_short_forward_rows = 116`, compares fuel-only vs fuel+movement-mass drain, and includes a synthetic 25-KT no-web negative control. Web-hit v5 remains closed; this is a separate pre-movement fuel-state mechanism.
+It runs on `movement_post_fuel_proration_residual`, requires `target_short_forward_rows = 116`, and must determine whether the sole first-pass exact row survives the stricter Crystal-owner-compatible model. No production schema/accounting change is allowed during this follow-up.
 
 Current schemas:
 
@@ -89,7 +91,7 @@ L2 context labels:          planets-lab.compiled-movement-context-labels.v6
 Read these first:
 
 - [`docs/ROADMAP.md`](docs/ROADMAP.md) — operational roadmap and current priorities;
-- [`docs/handoff/2026-08-25-fuel-proration-v6-verified-web-drain-followup.md`](docs/handoff/2026-08-25-fuel-proration-v6-verified-web-drain-followup.md) — latest movement/corpus handoff;
+- [`docs/handoff/2026-08-25-web-drain-crystal-owner-followup.md`](docs/handoff/2026-08-25-web-drain-crystal-owner-followup.md) — latest movement/corpus handoff;
 - [`docs/COMPILED_CORPUS.md`](docs/COMPILED_CORPUS.md) — compiled corpus schemas, cache semantics and current invariants;
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — architecture and evidence boundaries.
 
