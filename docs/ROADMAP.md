@@ -1,6 +1,6 @@
 # Roadmap
 
-This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). The latest movement/corpus handoff is [`handoff/2026-08-26-rob-ship-exposure-pending.md`](handoff/2026-08-26-rob-ship-exposure-pending.md).
+This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). The latest movement/corpus handoff is [`handoff/2026-08-26-stellar-cartography-feature-inventory-pending.md`](handoff/2026-08-26-stellar-cartography-feature-inventory-pending.md).
 
 ## Evidence policy
 
@@ -18,7 +18,7 @@ Unknown mechanics fail closed. Raw facts and evidence-scoped effective interpret
 
 Active milestone: **M5 — historical NuHost corpus + compatibility mining**.
 
-Current runtime-verified 12-game movement accounting:
+Current runtime-verified movement accounting:
 
 ```text
 move_most_candidates              227468
@@ -45,39 +45,22 @@ prepared cache:            planets-lab.prepared-game-cache.v1
 L1 movement:               planets-lab.compiled-movement.v3
 L1 context semantics:      planets-lab.compiled-movement-storm-context.v3
 L2 context labels:         planets-lab.compiled-movement-context-labels.v6
-residual context:          planets-lab.movement-residual-context-game.v2
-                           planets-lab.movement-residual-context-stats.v2
-standalone Chunnel:        planets-lab.movement-chunnel-context-game.v2
-                           planets-lab.movement-chunnel-context-stats.v2
 ```
 
 ## Verified movement closures
 
 - ordinary movement / Host major-minor geometry;
-- warp-well classifier ordering — `TESTED + DIFF_VERIFIED`;
+- warp-well ordering — `TESTED + DIFF_VERIFIED`;
 - route-equivalent owner-visible Tow — `TESTED + DIFF_VERIFIED`;
 - route-equivalent Chunnel multiplicity — `TESTED + DIFF_VERIFIED`;
 - classic/cloudy ion storms — `DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`;
 - scoped effective sphere topology for game `591478` — `CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`;
-- Horwasp ballistic strong context with scoped 2170 topology;
-- Red Mite tracking/fallback — research closed absent new evidence;
 - strict mine/web interruption v5 — `CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`;
-- strict damage-limited maximum warp — `DOCUMENTED (legacy Nu page) + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`;
-- strict Nu waypoint-distance fuel proration v6 — `DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`.
-
-Fuel v6 independently predicted six exact Nu-proration rows and production reproduced exactly:
-
-```text
-post_mine_strong_residual       2226
-fuel_proration_explained           6
-post_fuel_proration_residual    2220
-```
-
-All Chunnel/Horwasp/mine overlap guards were zero. The v5 -> v6 schema bump produced 0/12 L2 cache hits and 12/12 prepared-cache hits. Targeted tests and full pytest were green.
+- strict damage-limited maximum warp — `DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`;
+- strict Nu waypoint-distance fuel proration v6 — `DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`;
+- Red Mite tracking/fallback — research closed absent new evidence.
 
 ## Current generic residual landscape
-
-Broad clustering against `movement_post_fuel_proration_residual`:
 
 ```text
 final_residual_rows       2220
@@ -101,115 +84,90 @@ Largest coarse families:
 
 ## Closed evidence-only lead — Crystal Web Drain
 
-One post-v6 transition is attributable end-to-end to Crystal Web Drain feeding Nu fuel proration:
+One transition (`game 360690`, turn 44, hull 53) is attributable end-to-end to Crystal Web Drain feeding Nu fuel proration. Historical ownership, game era, exact relation pair and lack of diplomacy immunity were all resolved. Status: **DOCUMENTED + CORPUS_OBSERVED strong evidence; evidence-only** because support remains one independent game/hull.
+
+## Rejected post-v6 leads
+
+### Outbound fuel transfer
 
 ```text
-game 360690 / turn 44 / hull 53
-one Crystal-owned web
-no historical diplomacy immunity
-fuel 55 -> 30
-movement mass 1274 -> 1249
-raw required 45
-post-drain required 44
-exact Nu-prorated endpoint
-```
-
-Status: **DOCUMENTED + CORPUS_OBSERVED strong evidence; evidence-only**. No production label because support remains one independent game/hull.
-
-## Rejected leads
-
-### Outbound submitted fuel transfer
-
-```text
-outbound_fuel_transfer = 2
-transfer_target_current_visible = 0
-raw_sufficient_to_transfer_insufficient = 0
-transfer_causal_exact = 0
-
 target_short_outbound_fuel_transfer = 0
 target_short_transfer_causal_exact = 0
 ```
 
-No further work absent new evidence.
-
 ### Standard Cloak fuel burn
 
-Runtime over the current post-v6 endpoint:
-
 ```text
-target_short_forward_rows = 116
-target_short_cloak_capable_hull = 6
-target_short_standard_cloak_hull = 2
 target_short_cloak_mission = 0
 target_short_standard_cloak_fuel_burn_candidate = 0
 target_short_cloak_causal_exact = 0
 ```
 
-Globally, mission `10` existed in the residual set, but the eight relevant mission-10 rows were all on hulls without static cloak capability. No standard-Cloak fuel-burn candidate survived. Reject for the dominant family.
+### Privateer Rob Ship
 
-## Active investigation — Privateer Rob Ship exposure
-
-Planets.nu documents `Rob Ship` as a Privateer special mission in the early Mission-9 Host block, before all movement. Robbers act in ascending ship ID and rob targets in ascending ship ID; fuel is robbed first. Cloaked ships and ships with Safe Passage-or-higher protection are immune, and Rob has a documented 1% failure chance.
-
-Before implementing exact robbery order/diplomacy/failure semantics, perform a high-yield exposure audit:
+Exposure audit:
 
 ```text
-tools/diagnostics/rob_ship_exposure_audit.py
+rob_exposure_candidate = 1
+rob_exposure_positive_victim_fuel = 1
+
+target_short_privateer_mission9_at_origin = 1
+target_short_rob_exposure_candidate = 0
+target_short_rob_exposure_positive_victim_fuel = 0
 ```
 
-A `rob_exposure_candidate` requires a co-located owner-record ship with:
+The sole global exposure is outside the 116-row family. No exact Rob simulator pass is justified for the current target.
+
+## Active investigation — Stellar Cartography raw feature inventory
+
+Before implementing any terrain-specific movement model, inventory which relevant raw feature families actually occur in the 12-game evidence archives.
+
+Planets.nu documentation indicates:
+
+- nebulae primarily alter visibility / abilities;
+- star clusters primarily cause destruction/radiation;
+- debris disks can destroy ships and disrupt towing;
+- wormholes require the explicit Enter Wormhole mission;
+- Black Hole ergospheres directly inhibit warp speed.
+
+Active diagnostic:
 
 ```text
-owner race == Privateer (5)
-mission == 9
-static beam_count > 0
-fuel > 0
-free fuel-tank capacity > 0
+tools/diagnostics/stellar_cartography_raw_feature_inventory.py
 ```
 
-The first pass intentionally does **not** model target-order competition, Safe Passage, Host-phase victim cloak state, Protofield destruction or the 1% Rob failure chance.
+It reports feature-related raw payload paths and safe scalar excerpts from one deterministic perspective per archive turn, plus whether each path occurs on turns containing the dominant 116-row family.
 
 ### Immediate work
 
 1. pull current `main` and confirm clean tree;
-2. syntax-check/run `rob_ship_exposure_audit.py` without rebuild;
-3. require `residual_view = movement_post_fuel_proration_residual` and `target_short_forward_rows = 116`;
-4. inspect `target_short_privateer_mission9_at_origin` and `target_short_rob_exposure_candidate`;
-5. if exposure is zero, reject Rob immediately;
-6. if exposure is nonzero, inspect examples and only then implement exact robber/target order plus diplomacy/cloak guards;
-7. keep production accounting at `2220` throughout.
+2. syntax-check/run `stellar_cartography_raw_feature_inventory.py` without rebuild;
+3. require `target_short_forward_rows = 116`;
+4. inspect `GLOBAL FEATURE PATHS` first;
+5. determine whether black-hole/ergosphere payloads exist at all;
+6. inspect target-turn occurrences for any movement-relevant terrain path;
+7. build no geometry classifier unless exact raw schema and a documented movement effect are both present;
+8. keep production accounting fixed at `2220`.
 
 ## Deprioritized / closed leads
 
-- old affordable-whole-LY fuel frontier is correlation evidence only; the Nu rule is waypoint-distance proration;
-- outbound submitted fuel transfer is negative for the dominant family;
-- standard Cloak fuel burn is structurally absent from the dominant family;
-- Crystal Web Drain is one fully attributable evidence-only row, not a production classifier;
+- old affordable-whole-LY fuel frontier is correlation evidence only;
+- outbound transfer, standard Cloak and Rob Ship are negative for the dominant family;
+- Crystal Web Drain remains one attributable evidence-only row;
 - multi-waypoint queue did not explain the old hull-79 cluster;
 - hidden/private-FC Chunnel discovery added no coverage;
 - owner-visible Intercept is already excluded from Move Most residuals;
 - repair-bracket mine and damage rows remain evidence-only;
-- target-origin visible non-Tow co-movement remains evidence-only;
 - do not generalize game `591478`'s 2170 period;
-- do not reopen Red Mite without new evidence;
-- hull count alone is not a mechanic identifier.
+- do not reopen Red Mite without new evidence.
 
 ## Wider milestones
 
 - **M0 deterministic skeleton:** substantially complete.
-- **M1 minimal sandbox:** largely implemented for movement subset.
+- **M1 minimal sandbox:** largely implemented.
 - **M2 economy/planetary Host:** in progress, not current priority.
 - **M3 warfare:** partial.
 - **M4 race mechanics:** partial.
 - **M5A historical corpus:** active and operational.
 - **M5B Nu compatibility matrix:** active through movement differentials.
 - **M6 training/AI:** future.
-
-## Working order
-
-Unless new evidence changes priorities:
-
-1. run the Rob Ship exposure audit;
-2. build an exact Rob simulator only if exposure exists in the 116-row family;
-3. otherwise reject Rob and return to the next broad pre-movement external-state mechanism;
-4. keep all verified intermediate accounting layers immutable as regression controls.
