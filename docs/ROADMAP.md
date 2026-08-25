@@ -1,6 +1,6 @@
 # Roadmap
 
-This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). The latest movement/corpus handoff is [`handoff/2026-08-25-web-drain-raw-metadata-discovery.md`](handoff/2026-08-25-web-drain-raw-metadata-discovery.md).
+This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). The latest movement/corpus handoff is [`handoff/2026-08-26-web-drain-relation-pair-pending.md`](handoff/2026-08-26-web-drain-relation-pair-pending.md).
 
 ## Evidence policy
 
@@ -99,58 +99,53 @@ Largest coarse families:
  43  warp7-9 0.5-1.0x observed=other same_line_forward
 ```
 
-## Active investigation — Web Drain raw metadata discovery
+## Active investigation — exact Web Drain relation pair
 
-The first post-v6 diagnostic found one exact causal-compatible case under a broad enemy-web model. The Crystal-owner-aware rerun preserved that case:
+The broad and Crystal-owner-aware post-v6 diagnostics currently support one exact causal-compatible Web Drain case:
 
 ```text
-all_enemy_web_at_origin                     79
 crystal_owner_web_at_origin                 79
 non_crystal_owner_web_at_origin              0
 crystal_web_raw_sufficient_to_insufficient   4
 crystal_web_drain_causal_exact               1
 ```
 
-Inside the dominant 116-row family:
+The exact row remains game `360690`, turn `44`, hull `53`, and matches only when 25 KT is removed from both available fuel and movement mass.
+
+Raw `.trn` schema discovery recovered the historical metadata needed to resolve diplomacy exactly. Important observed facts:
 
 ```text
-crystal_owner_web_at_origin                 61
-crystal_web_raw_sufficient_to_insufficient   3
-crystal_web_drain_causal_exact               1
+game 360690 datecreated = 2020-03-03
+iscustom = false
+turn 44 has relations list with playerid/playertoid/relationto/relationfrom
+slot 6 target teamid = 0
+slot 7 Crystal teamid = 0
+
+game 511506 datecreated = 2022-08-19
+iscustom = false
+turn 47 has the same relation schema
 ```
 
-The exact case remains game `360690`, turn `44`, hull `53`, and is exact only when 25 KT is removed from both available fuel and movement mass. This is strong corpus evidence but still only one game / one hull.
+Game `360690` is therefore a pre-2021 Standard game, where Safe Passage-or-higher from the Crystal owner could suppress Web Drain. Game `511506` is in the 2021-2023 Standard era, where Safe Passage / Full Alliance did not suppress Standard web effects.
 
-The first diplomacy/game-era inspector found no team metadata, relation records or game-era fields in prepared snapshots. That absence is non-evidence: `mechanics_projection()` intentionally reduces `game` to `{id, turn}`, players to `{id, raceid}`, and settings to a small mechanics-safe subset. The prepared cache therefore cannot answer diplomacy/game-era questions by construction.
-
-The active follow-up is direct privacy-safe discovery in the raw `.trn` members:
+The active follow-up is:
 
 ```text
-tools/diagnostics/web_drain_raw_metadata_discovery.py
+tools/diagnostics/web_drain_relation_pair_audit.py
 ```
 
-It reports:
-
-```text
-top-level raw payload keys/shapes
-safe game metadata related to creation/start/date/year/host
-settings keys related to team/relation/alliance/diplomacy/passage
-restricted player excerpts for target/web slots
-recursive matching paths for the same metadata families
-```
-
-Values for names, email, username, savekey, passwords, API keys, secrets, messages and notes are never printed.
+It selects the exact target↔Crystal relation object by `playerid/playertoid`, treats `relationfrom` as Crystal→target, applies the numeric API diplomacy scale (`2=Safe Passage`, `3=Share Intel`, `4=Full Alliance`) and applies the game-creation-era rule. It reports `web_diplomacy_immune`, `web_drain_allowed`, and a dedicated summary for the exact turn-44 case.
 
 ### Immediate work
 
 1. pull current `main` and confirm clean tree;
-2. syntax-check and run `web_drain_raw_metadata_discovery.py`;
-3. inspect game `360690` / turn `44` first;
-4. identify exact raw JSON paths for game creation/host era and relation/team state, if present;
-5. build a narrow deterministic extractor only after those paths are observed;
-6. apply the documented Web Drain diplomacy rule appropriate to the actual game era;
-7. if raw loadall lacks required metadata, use a separate public game-info source for game era and leave non-observable diplomacy unresolved rather than guessing;
-8. do not change L1/L2 schemas or accounting during this follow-up.
+2. syntax-check and run `web_drain_relation_pair_audit.py`;
+3. require `candidate_relation_pairs_found = 4`;
+4. inspect `game=360690 turn=44 target=6 crystal=7`;
+5. require the relation to be selected by exact keys, not list position;
+6. if `exact_case_web_drain_allowed=True`, close the diplomacy guard but keep Web Drain evidence-only because support is still one game / one hull;
+7. if immunity is present, reject Web Drain as the cause of the exact row;
+8. keep production accounting at `2220` regardless of outcome.
 
 ## Deprioritized / closed leads
 
@@ -179,8 +174,8 @@ Values for names, email, username, savekey, passwords, API keys, secrets, messag
 
 Unless new evidence changes priorities:
 
-1. discover raw game-era / diplomacy schema for the four Web Drain candidates;
-2. build an extractor only from observed raw paths, without weakening the privacy-safe prepared projection;
-3. do not promote a one-row Web Drain label unless era/diplomacy compatibility is attributable;
-4. if Web Drain remains evidence-only, return to the post-v6 `116` short-forward family and split it by the next generic documented pre-movement mechanism;
+1. finish the exact Web Drain relation-pair / game-era audit;
+2. if the diplomacy guard passes, archive Web Drain as strong evidence-only rather than promoting a one-row production label;
+3. search for a second independent exact Web Drain case only if a broader high-yield diagnostic can do so without overfitting;
+4. otherwise return to the post-v6 `116` short-forward family and split it by the next generic documented pre-movement mechanism;
 5. keep all verified intermediate accounting layers immutable as regression controls.
