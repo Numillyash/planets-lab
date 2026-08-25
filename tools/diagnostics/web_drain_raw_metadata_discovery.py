@@ -37,6 +37,7 @@ SENSITIVE_TOKENS = (
     "email",
     "username",
     "user_name",
+    "createdby",
     "savekey",
     "password",
     "apikey",
@@ -166,7 +167,9 @@ def _members_for_candidate(
 
 def main() -> int:
     print("===== RAW WEB-DRAIN METADATA / DIPLOMACY DISCOVERY =====")
-    print("Privacy guard: values for names, email, username, savekey, password, API keys, messages and notes are never printed.")
+    print(
+        "Privacy guard: values for names, creator identity, email, username, savekey, password, API keys, secrets, messages and notes are never printed."
+    )
 
     candidates_by_game: dict[int, list[tuple[int, int, int]]] = {}
     for game_id, archive_turn, target_slot, web_slot in CANDIDATES:
@@ -206,7 +209,7 @@ def main() -> int:
                         text = str(key)
                         if _sensitive_key(text):
                             continue
-                        if text.lower() in {"id", "turn", "iscustom", "createdby", "yearstarted", "statusname", "scenarioid"} or _interesting_key(text):
+                        if text.lower() in {"id", "turn", "iscustom", "yearstarted", "statusname", "scenarioid"} or _interesting_key(text):
                             safe_game[text] = _safe_scalar(value)
                     print("safe_game_metadata=", safe_game)
 
@@ -235,7 +238,6 @@ def main() -> int:
                     print("target_web_player_excerpts=", excerpts)
 
                 interesting = _walk_interesting(parsed, path="")
-                # Deduplicate while preserving order.
                 seen: set[str] = set()
                 unique = []
                 for path, value in interesting:
