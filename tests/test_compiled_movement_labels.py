@@ -18,6 +18,7 @@ def _label_row(
     strong: bool = False,
     observed: bool = False,
     mine: bool = False,
+    fuel: bool = False,
 ) -> dict[str, object]:
     return {
         "game_id": 7,
@@ -45,6 +46,11 @@ def _label_row(
         "mine_slowdown_hits": 1 if mine else None,
         "mine_strong_explained": mine,
         "post_mine_strong_residual": (not chunnel) and (not strong) and (not mine),
+        "fuel_proration_category": "fuel_proration_waypoint_match" if fuel else None,
+        "fuel_proration_explained": fuel,
+        "post_fuel_proration_residual": (
+            (not chunnel) and (not strong) and (not mine) and (not fuel)
+        ),
     }
 
 
@@ -58,6 +64,9 @@ def test_label_schema_omits_private_source_fields() -> None:
     assert "minefield_owner" not in names
     assert "minefield_x" not in names
     assert "minefield_y" not in names
+    assert "neutronium" not in names
+    assert "mass" not in names
+    assert "fuel_required" not in names
 
 
 def test_label_stats_preserve_layered_strong_closure() -> None:
@@ -66,17 +75,20 @@ def test_label_stats_preserve_layered_strong_closure() -> None:
         _label_row(2, strong=True),
         _label_row(3, observed=True),
         _label_row(4, mine=True),
-        _label_row(5),
+        _label_row(5, fuel=True),
+        _label_row(6),
     ]
     stats = movement_context_label_stats(rows)
-    assert stats["external_residual_rows"] == 5
+    assert stats["external_residual_rows"] == 6
     assert stats["chunnel_explained"] == 1
-    assert stats["post_chunnel_residual"] == 4
+    assert stats["post_chunnel_residual"] == 5
     assert stats["horwasp_strong_explained"] == 1
     assert stats["horwasp_observed_context_explained"] == 1
-    assert stats["post_horwasp_strong_residual"] == 3
+    assert stats["post_horwasp_strong_residual"] == 4
     assert stats["mine_strong_explained"] == 1
-    assert stats["post_mine_strong_residual"] == 2
+    assert stats["post_mine_strong_residual"] == 3
+    assert stats["fuel_proration_explained"] == 1
+    assert stats["post_fuel_proration_residual"] == 2
 
 
 def test_label_catalog_views_report_partial_coverage_fail_closed(tmp_path) -> None:
@@ -123,6 +135,8 @@ def test_label_catalog_views_report_partial_coverage_fail_closed(tmp_path) -> No
     assert stats["post_horwasp_strong_residual"] == 2
     assert stats["mine_strong_explained"] == 1
     assert stats["post_mine_strong_residual"] == 1
+    assert stats["fuel_proration_explained"] == 0
+    assert stats["post_fuel_proration_residual"] == 1
 
     connection = duckdb.connect(str(database), read_only=True)
     try:
@@ -134,6 +148,9 @@ def test_label_catalog_views_report_partial_coverage_fail_closed(tmp_path) -> No
         ).fetchone() == (2,)
         assert connection.execute(
             "SELECT count(*) FROM movement_post_mine_strong_residual"
+        ).fetchone() == (1,)
+        assert connection.execute(
+            "SELECT count(*) FROM movement_post_fuel_proration_residual"
         ).fetchone() == (1,)
     finally:
         connection.close()

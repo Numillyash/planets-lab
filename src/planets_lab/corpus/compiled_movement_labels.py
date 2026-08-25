@@ -16,7 +16,12 @@ from .movement_chunnel_context import (
     extract_stable_chunnel_abilities,
 )
 from .movement_chunnel_match import route_equivalent_chunnel_category
+from .movement_damage_context import _race_map, _same_owner_identity_after
 from .movement_differential import _entity_map, _planet_tuples_by_turn
+from .movement_fuel_context import (
+    classify_strict_fuel_proration_transition,
+    extract_static_specs,
+)
 from .movement_horwasp_ballistic_context import (
     _classify_ballistic_formula,
     _effective_ballistic_topology,
@@ -33,17 +38,18 @@ from .movement_mine_context import (
 )
 from .movement_residual_context import _owner_record, _storm_consensus_by_turn
 from .movement_residual_profile import extract_hull_catalog
-from .movement_topology_diagnostics import extract_map_topology
+from .movement_sphere_context import effective_sphere_topology
+from .movement_topology_diagnostics import extract_map_topology, sphere_adjusted_sample
 from .prepared_cache import PreparedGameCache
 from .reconstruction import group_perspective_records
 
 
-COMPILED_MOVEMENT_CONTEXT_LABEL_SCHEMA = "planets-lab.compiled-movement-context-labels.v5"
+COMPILED_MOVEMENT_CONTEXT_LABEL_SCHEMA = "planets-lab.compiled-movement-context-labels.v6"
 
 # One row for every post-external-context residual movement transition. Raw
 # private orders/state used to derive these classifications are intentionally
-# absent: no friendly code, heading, minefield coordinates/owners or Horwasp
-# history is exported.
+# absent: no friendly code, heading, fuel amount, mass, minefield coordinates/
+# owners or Horwasp history is exported.
 MOVEMENT_CONTEXT_LABEL_COLUMNS: tuple[tuple[str, str], ...] = (
     ("game_id", "BIGINT"),
     ("before_archive_turn", "INTEGER"),
@@ -64,6 +70,9 @@ MOVEMENT_CONTEXT_LABEL_COLUMNS: tuple[tuple[str, str], ...] = (
     ("mine_slowdown_hits", "INTEGER"),
     ("mine_strong_explained", "BOOLEAN"),
     ("post_mine_strong_residual", "BOOLEAN"),
+    ("fuel_proration_category", "VARCHAR"),
+    ("fuel_proration_explained", "BOOLEAN"),
+    ("post_fuel_proration_residual", "BOOLEAN"),
 )
 
 
@@ -97,7 +106,7 @@ def compile_movement_context_label_rows(
     prepared: PreparedGameCache,
     movement_parquet: Path,
 ) -> list[dict[str, Any]]:
-    """Compile Chunnel, Horwasp and strict mine-hit labels for external residual rows.
+    """Compile ordered L2 movement-context labels for external residual rows.
 
     The compiled movement partition is authoritative for which transitions enter
     this layer. Raw/private state is consulted only during this local build to
@@ -108,6 +117,7 @@ def compile_movement_context_label_rows(
     records = prepared.snapshots
     entities = _entity_map(records)
     ship_groups = group_perspective_records(records, "ship")
+    races = _race_map(records)
     planets_by_turn = _planet_tuples_by_turn(entities)
     storms_by_turn, storm_conflict_turns, storm_invalid_turns = _storm_consensus_by_turn(records)
 
@@ -123,6 +133,8 @@ def compile_movement_context_label_rows(
         events_by_turn[event.before_archive_turn].append(event)
 
     topology = extract_map_topology(archive_data)
+    fuel_topology = effective_sphere_topology(game_id=game_id, topology=topology)
+    fuel_specs = extract_static_specs(archive_data)
     ballistic_topology = _effective_ballistic_topology(
         game_id=game_id,
         topology=topology,
@@ -163,6 +175,9 @@ def compile_movement_context_label_rows(
             "mine_slowdown_hits": None,
             "mine_strong_explained": False,
             "post_mine_strong_residual": True,
+            "fuel_proration_category": None,
+            "fuel_proration_explained": False,
+            "post_fuel_proration_residual": True,
         }
 
         transition = transition_by_key.get((before_turn, after_turn, ship_id))
@@ -217,6 +232,7 @@ def compile_movement_context_label_rows(
             row["post_chunnel_residual"] = False
             row["post_horwasp_strong_residual"] = False
             row["post_mine_strong_residual"] = False
+            row["post_fuel_proration_residual"] = False
             rows.append(row)
             continue
 
@@ -247,6 +263,7 @@ def compile_movement_context_label_rows(
                     row["horwasp_strong_explained"] = True
                     row["post_horwasp_strong_residual"] = False
                     row["post_mine_strong_residual"] = False
+                    row["post_fuel_proration_residual"] = False
                 else:
                     row["horwasp_observed_context_explained"] = True
             rows.append(row)
@@ -270,6 +287,7 @@ def compile_movement_context_label_rows(
                     row["horwasp_strong_explained"] = True
                     row["post_horwasp_strong_residual"] = False
                     row["post_mine_strong_residual"] = False
+                    row["post_fuel_proration_residual"] = False
                 else:
                     row["horwasp_observed_context_explained"] = True
             rows.append(row)
@@ -290,6 +308,39 @@ def compile_movement_context_label_rows(
             row["mine_slowdown_hits"] = mine_evidence.slowdown_hits
             row["mine_strong_explained"] = True
             row["post_mine_strong_residual"] = False
+            row["post_fuel_proration_residual"] = False
+            rows.append(row)
+            continue
+
+        if _same_owner_identity_after(
+            ship_groups=ship_groups,
+            before_turn=before_turn,
+            after_turn=after_turn,
+            ship_id=ship_id,
+            owner_id=owner_id,
+            before_raw=owner.raw,
+        ):
+            fuel_sample = sample
+            if (
+                fuel_topology.sphere is True
+                and fuel_topology.mapwidth is not None
+                and fuel_topology.mapheight is not None
+            ):
+                fuel_sample = sphere_adjusted_sample(
+                    sample,
+                    width=int(fuel_topology.mapwidth),
+                    height=int(fuel_topology.mapheight),
+                )
+            fuel_evidence = classify_strict_fuel_proration_transition(
+                fuel_sample,
+                before_raw=owner.raw,
+                race_id=races.get(owner_id),
+                specs=fuel_specs,
+            )
+            if fuel_evidence is not None:
+                row["fuel_proration_category"] = fuel_evidence.category
+                row["fuel_proration_explained"] = True
+                row["post_fuel_proration_residual"] = False
         rows.append(row)
 
     if len(rows) != len(residual_keys):
@@ -334,6 +385,12 @@ def movement_context_label_stats(rows: Sequence[Mapping[str, Any]]) -> dict[str,
         "post_mine_strong_residual": sum(
             row.get("post_mine_strong_residual") is True for row in rows
         ),
+        "fuel_proration_explained": sum(
+            row.get("fuel_proration_explained") is True for row in rows
+        ),
+        "post_fuel_proration_residual": sum(
+            row.get("post_fuel_proration_residual") is True for row in rows
+        ),
     }
     if stats["chunnel_explained"] + stats["post_chunnel_residual"] != stats["external_residual_rows"]:
         raise AssertionError("compiled Chunnel label accounting is not closed")
@@ -343,6 +400,8 @@ def movement_context_label_stats(rows: Sequence[Mapping[str, Any]]) -> dict[str,
         raise AssertionError("compiled Horwasp Mite label accounting is not closed")
     if stats["mine_strong_explained"] + stats["post_mine_strong_residual"] != stats["post_horwasp_strong_residual"]:
         raise AssertionError("compiled mine strong label accounting is not closed")
+    if stats["fuel_proration_explained"] + stats["post_fuel_proration_residual"] != stats["post_mine_strong_residual"]:
+        raise AssertionError("compiled fuel-proration label accounting is not closed")
     return stats
 
 
@@ -361,6 +420,7 @@ def refresh_movement_context_label_views(
     connection = duckdb.connect(str(database_path))
     try:
         for view in (
+            "movement_post_fuel_proration_residual",
             "movement_post_mine_strong_residual",
             "movement_post_horwasp_strong_residual",
             "movement_post_chunnel_residual",
@@ -409,7 +469,10 @@ def refresh_movement_context_label_views(
                 l.mine_damage_hits,
                 l.mine_slowdown_hits,
                 l.mine_strong_explained,
-                l.post_mine_strong_residual
+                l.post_mine_strong_residual,
+                l.fuel_proration_category,
+                l.fuel_proration_explained,
+                l.post_fuel_proration_residual
             FROM movement_residual AS m
             LEFT JOIN movement_context_labels AS l
               USING (game_id, before_archive_turn, after_archive_turn, ship_id)
@@ -426,6 +489,10 @@ def refresh_movement_context_label_views(
         connection.execute(
             "CREATE VIEW movement_post_mine_strong_residual AS "
             "SELECT * FROM movement_labeled_residual WHERE post_mine_strong_residual = true"
+        )
+        connection.execute(
+            "CREATE VIEW movement_post_fuel_proration_residual AS "
+            "SELECT * FROM movement_labeled_residual WHERE post_fuel_proration_residual = true"
         )
     finally:
         connection.close()
@@ -451,7 +518,9 @@ def query_movement_context_label_catalog_stats(database_path: Path) -> dict[str,
                 sum(CASE WHEN l.horwasp_observed_context_explained = true THEN 1 ELSE 0 END) AS horwasp_observed_context_explained,
                 sum(CASE WHEN l.post_horwasp_strong_residual = true THEN 1 ELSE 0 END) AS post_horwasp_strong_residual,
                 sum(CASE WHEN l.mine_strong_explained = true THEN 1 ELSE 0 END) AS mine_strong_explained,
-                sum(CASE WHEN l.post_mine_strong_residual = true THEN 1 ELSE 0 END) AS post_mine_strong_residual
+                sum(CASE WHEN l.post_mine_strong_residual = true THEN 1 ELSE 0 END) AS post_mine_strong_residual,
+                sum(CASE WHEN l.fuel_proration_explained = true THEN 1 ELSE 0 END) AS fuel_proration_explained,
+                sum(CASE WHEN l.post_fuel_proration_residual = true THEN 1 ELSE 0 END) AS post_fuel_proration_residual
             FROM movement_residual AS m
             LEFT JOIN movement_context_labels AS l
               USING (game_id, before_archive_turn, after_archive_turn, ship_id)
@@ -475,5 +544,7 @@ def query_movement_context_label_catalog_stats(database_path: Path) -> dict[str,
         "post_horwasp_strong_residual",
         "mine_strong_explained",
         "post_mine_strong_residual",
+        "fuel_proration_explained",
+        "post_fuel_proration_residual",
     )
     return {name: int(value or 0) for name, value in zip(names, row or ())}
