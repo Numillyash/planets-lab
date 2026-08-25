@@ -1,12 +1,12 @@
 # Compiled historical corpus
 
-`validation/corpus/cache/loadall/game-<id>.zip` remains the immutable evidence/source layer. Compiled data is deterministic local output and must be rebuildable from cached archives plus manifests.
+`validation/corpus/cache/loadall/game-<id>.zip` is the immutable evidence/source layer. Compiled data is deterministic local output and must be rebuildable from cached archives plus manifests.
 
 Current active handoff:
 
-[`handoff/2026-08-25-fuel-proration-host-differential-pending.md`](handoff/2026-08-25-fuel-proration-host-differential-pending.md)
+[`handoff/2026-08-25-fuel-proration-v6-runtime-verification.md`](handoff/2026-08-25-fuel-proration-v6-runtime-verification.md)
 
-## Build
+## Build commands
 
 L1 movement:
 
@@ -30,20 +30,30 @@ docker compose run --rm -T lab \
 
 Generated `validation/corpus/compiled/` is ignored by Git.
 
-## Current verified schema state
+## Source state vs generated-data state
 
-Source and generated corpus are aligned on:
+Current source on `main`:
 
 ```text
 prepared cache:                    planets-lab.prepared-game-cache.v1
 L1 physical movement schema:       planets-lab.compiled-movement.v3
 L1 post-compile context semantics: planets-lab.compiled-movement-storm-context.v3
-L2 context labels:                 planets-lab.compiled-movement-context-labels.v5
+L2 context labels:                 planets-lab.compiled-movement-context-labels.v6
 movement residual context:         planets-lab.movement-residual-context-game.v2
                                    planets-lab.movement-residual-context-stats.v2
 ```
 
-Physical L1 v3 columns are unchanged by the damage-context work. `storm-context.v3` is the semantic cache marker for the ordered post-compile L1 stack.
+Current generated local corpus is still the last verified **L2 v5** build. It has not yet been rebuilt after the v5 -> v6 fuel-proration label change.
+
+Therefore the authoritative runtime-generated endpoint remains:
+
+```text
+post_mine_strong_residual = 2226
+```
+
+Do not report the expected post-fuel `2220` as runtime verified until the normal v6 L2 build succeeds.
+
+L1 source and generated L1 data are already aligned and unchanged by the v6 work. **Do not rebuild L1 for this migration.**
 
 ## Layer boundaries
 
@@ -73,54 +83,19 @@ baseline ordinary movement
 
 Existing explanatory categories are never stolen by later passes.
 
-#### Route-equivalent Tow
-
-L1 v3 treats a non-empty set of owner-visible matching Tow towers as route evidence when each match starts colocated with the target and shares its same non-stationary observed destination. Tower identity may remain ambiguous. Status: **TESTED + DIFF_VERIFIED**.
-
-#### Scoped sphere geometry
+Verified L1 closures include route-equivalent Tow, authoritative storm mode, evidence-scoped sphere movement and strict damage-limited warp.
 
 Game `591478` alone has independently verified effective toroidal period `2170x2170` while raw facts remain `2150x2150`. Never generalize this to `mapwidth+20`.
 
-#### Strict damage-limited warp
-
-Module:
-
-```text
-src/planets_lab/corpus/movement_damage_context.py
-```
-
-Category:
-
-```text
-damage_limited_warp_match
-```
-
-Strict predicate:
-
-```text
-still unresolved after previous L1 context
-non-Horwasp hull
-resolved owner/race
-same ship identity after transition
-requested warp 1..9
-visible onboard supplies < 5 KT
-raw-damage maximum warp < requested warp
-exact Host-major/minor endpoint at effective warp
-```
-
-Gravitonic distance and scoped effective sphere topology are respected. Repair-bracket-only cases are excluded. Private damage/race/supply values are not added to exported Parquet columns; only the derived category/flags change.
-
-Status: **DOCUMENTED (legacy Nu help page) + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**.
-
 ### L2 — compiled context labels
 
-Current schema:
+Source schema is now:
 
 ```text
-planets-lab.compiled-movement-context-labels.v5
+planets-lab.compiled-movement-context-labels.v6
 ```
 
-Ordered label stack:
+Ordered L2 stack:
 
 ```text
 post_external_residual
@@ -130,9 +105,13 @@ post_external_residual
   -> post_horwasp_strong_residual
   -> strict mine/web strong
   -> post_mine_strong_residual
+  -> strict documented Nu fuel proration
+  -> post_fuel_proration_residual
 ```
 
-Strict mine categories:
+#### Strict mine/web
+
+Categories:
 
 ```text
 web_mine_hit_nearest_damage
@@ -141,15 +120,138 @@ normal_mine_hit_nearest_damage
 
 Historical NuHost evidence selects positive nearest-integer mine damage quanta rather than the documentation's literal round-up wording. Repair-bracket-only mine rows remain evidence-only.
 
+Status: **CORPUS_OBSERVED + TESTED + DIFF_VERIFIED** for the strict 37-row subset.
+
+#### Strict fuel proration — source implemented, runtime pending
+
+Module:
+
+```text
+src/planets_lab/corpus/movement_fuel_context.py
+```
+
+Category:
+
+```text
+fuel_proration_waypoint_match
+```
+
+New derived label columns:
+
+```text
+fuel_proration_category
+fuel_proration_explained
+post_fuel_proration_residual
+```
+
+New final view:
+
+```text
+movement_post_fuel_proration_residual
+```
+
+The previous post-mine view remains intact as an intermediate control:
+
+```text
+movement_post_mine_strong_residual
+```
+
+No raw fuel amount, raw mass or computed fuel requirement is exported in the L2 Parquet. Only derived category/flags are retained.
+
+## Strict fuel predicate
+
+The first production-compatible fuel subset requires:
+
+```text
+survives Chunnel + Horwasp strong + mine/web strong
+non-Horwasp
+non-Gravitonic
+warp 1..9
+waypoint reachable within ordinary warp^2 distance
+same owner/hull/ship identity after transition
+race / engine / raw mass / positive fuel / damage resolved
+damage does not reduce requested warp
+raw mass predicts fuel_required > fuel_available > 0
+documented Nu waypoint-distance proration
+exact Host major/minor observed x/y endpoint
+```
+
+Explicitly excluded:
+
+- partial waypoints beyond normal per-turn range;
+- zero-fuel movement;
+- Gravitonic movement;
+- Horwasp hulls;
+- damage-limited requested warp;
+- affordable-frontier-only matches;
+- VGAP3-style proration;
+- mandatory next-turn Warp/waypoint/fuel reset checks.
+
+Historical Time Machine saved turns are not treated as immediate post-Host frames for editable orders/cargo fields. Exact Host `x/y` is the movement outcome used for corpus compatibility matching; same immutable identity is a continuity guard.
+
+## Independent fuel differential evidence
+
+### Competing-rule endpoint differential
+
+`tools/diagnostics/fuel_proration_host_differential_audit.py` measured on the current verified post-mine endpoint:
+
+```text
+raw_mass_insufficient_for_waypoint= 19
+nu_proration_endpoint_exact= 6
+frontier_endpoint_exact= 3
+vgap3_endpoint_exact= 0
+```
+
+Rule signatures:
+
+```text
+('-', '-', '-')           13
+('nu', '-', '-')           3
+('nu', 'frontier', '-')    3
+```
+
+The six Nu exact rows span four hulls and three games. Three are discriminating Nu-only matches; three also match the old affordable-frontier projection. Three of the six belong to the 119-row dominant short-forward family.
+
+### Global downstream-stage audit
+
+`tools/diagnostics/fuel_proration_global_stage_audit.py` scanned the full current L1 residual:
+
+```text
+l1_non_horwasp_warp1_9_rows= 1334
+reachable_waypoint= 1073
+same_identity_after= 861
+identity_break_after= 212
+raw_damage_limited_excluded= 0
+formula_ready= 861
+zero_required_fuel= 407
+zero_fuel_separate_mechanic= 9
+raw_mass_sufficient_for_waypoint= 423
+raw_mass_insufficient_for_waypoint= 22
+nu_proration_endpoint_exact= 6
+nu_only_endpoint_exact= 3
+```
+
+Critical partition:
+
+```text
+NU EXACT BY DOWNSTREAM STAGE:
+post_mine_strong_residual 6
+
+NU-ONLY EXACT BY DOWNSTREAM STAGE:
+post_mine_strong_residual 3
+```
+
+There are zero exact overlaps with verified Chunnel, Horwasp strong or mine/web strong labels. This is why fuel is placed after mine in L2 rather than added to the early L1 stack.
+
 ## Cache validity
 
-L1 movement partition metadata binds cache validity to:
+### L1
 
-- `compiled_schema`;
-- `storm_context_schema`;
-- prepared-cache schema;
-- game/settings/archive identity;
-- raw topology facts.
+Movement partition metadata binds validity to compiled schema, post-compile context schema, prepared-cache schema, game/settings/archive identity and topology facts.
+
+No L1 schema or semantic marker changed for fuel v6. Existing L1 partitions are authoritative and must be reused.
+
+### L2
 
 L2 metadata binds each label partition to:
 
@@ -159,30 +261,20 @@ L2 metadata binds each label partition to:
 - game/settings/archive identity;
 - exact source movement Parquet SHA-256.
 
-Damage context migration to `storm-context.v3` produced:
+The v5 -> v6 label schema change must invalidate every old v5 label partition on a normal L2 build even though L1 bytes are unchanged.
+
+Expected normal v6 build:
 
 ```text
-L1 normal build:
-  compiled_cache_hits                0
-  compiled_cache_misses             12
-  prepared_cache_hits_on_compile    12
-  prepared_cache_misses_on_compile   0
+compiled_label_cache_hits            0
+compiled_label_cache_misses         12
+prepared_cache_hits_on_compile      12
+prepared_cache_misses_on_compile     0
 ```
 
-L2 normal build produced:
+No manual cache deletion is required.
 
-```text
-compiled_label_cache_hits           3
-compiled_label_cache_misses         9
-prepared_cache_hits_on_compile      9
-prepared_cache_misses_on_compile    0
-```
-
-This is correct. Physical source movement schema remained v3. Three rebuilt L1 partitions were byte-identical because no row in those games changed under the new damage pass, so their exact source Parquet SHA-256 stayed valid and the old L2 labels were safely reused. The other nine source hashes changed and correctly missed.
-
-Do not force L2 cache misses when source bytes and source schema are unchanged. No manual cache deletion should be required.
-
-## Current runtime-verified 12-game invariants
+## Last runtime-verified invariants — generated v5
 
 L1:
 
@@ -197,7 +289,7 @@ post_external_residual         3924
 damage_limited_warp_match       10
 ```
 
-L2 over current L1:
+Generated L2 v5:
 
 ```text
 external_residual_rows             3924
@@ -215,7 +307,7 @@ post_mine_strong_residual          2226
 label_issues                          0
 ```
 
-Current generic final endpoint:
+Last verified generic endpoint:
 
 ```text
 final_residual_rows       2226
@@ -226,147 +318,72 @@ generic_games               12
 generic_hulls               76
 ```
 
-Main coarse signatures:
+Dominant coarse family:
 
 ```text
-119  warp7-9 <0.5x     observed=other same_line_forward
- 93  warp0   nominal<=0 target=origin
- 64  warp7-9 <0.5x     observed=origin stationary
- 52  warp7-9 >3.0x     target=origin
- 46  warp7-9 >3.0x     observed=other oblique
- 45  warp7-9 0.5-1.0x observed=other same_line_forward
+119 warp7-9 <0.5x observed=other same_line_forward
 ```
 
-## Damage-limited warp differential closure
+## Independent expected v6 accounting
 
-Independent pre-build audit measured:
+All six strict-compatible exact fuel rows currently survive in `movement_post_mine_strong_residual` and no exact fuel row overlaps an earlier verified L2 stage.
+
+Expected normal v6 label build:
 
 ```text
-raw_damage_limited                  11
-raw_damage_limited_endpoint_exact   10
-raw_exact_low_supply                10
-raw_not_damage_limited_endpoint_exact_control  0
-undamaged_endpoint_exact_control               0
+external_residual_rows             3924
+chunnel_explained                  1421
+post_chunnel_residual              2503
+horwasp_strong_explained            240
+post_horwasp_strong_residual       2263
+mine_strong_explained                37
+post_mine_strong_residual          2226
+fuel_proration_explained              6
+post_fuel_proration_residual       2220
+label_issues                          0
 ```
 
-The 10 exact rows spanned 9 games, 8 hulls, 6 races and effective warps 1, 3, 4, 5, 6, 7 and 8. Production reproduced exactly the expected 10-row delta:
+Expected broad generic differential:
 
 ```text
-external_context_explained        13960 -> 13970
-post_external_residual             3934 ->  3924
-chunnel_explained                  1421 ->  1421
-post_chunnel_residual              2513 ->  2503
-horwasp_strong_explained            240 ->   240
-post_horwasp_strong_residual       2273 ->  2263
-mine_strong_explained                37 ->    37
-post_mine_strong_residual          2236 ->  2226
-label_issues                          0 ->     0
+generic_rows             769 -> 763
+dominant short-forward   119 -> 116
 ```
 
-Runtime result:
+Closed Mite and known Horwasp counts should remain unchanged. Generic hull count must be measured after build rather than guessed.
+
+## Regression/test state
+
+Last verified repository/corpus state had targeted damage/storm/compiled tests (`27 passed`) and full pytest green.
+
+V6 source adds/changes:
 
 ```text
-ACCOUNTING DIFFERENTIAL: EXACT MATCH
+src/planets_lab/corpus/movement_fuel_context.py
+src/planets_lab/corpus/compiled_movement_labels.py
+src/planets_lab/corpus/compiled_movement_labels_corpus_cli.py
+tests/test_movement_fuel_context.py
+tests/test_compiled_movement_labels.py
+tests/test_movement_chunnel_route_equivalent.py
+tools/diagnostics/post_sphere_generic_residual_clustering_audit.py
 ```
 
-Post-build damage audit found zero remaining exact production-eligible rows. Generic rebaseline reproduced `779 -> 769` and dominant short-forward `121 -> 119`; measured generic hulls are 76.
-
-## Fuel diagnostics
-
-### Historical affordable-frontier audit
-
-`tools/diagnostics/generic_fuel_limited_residual_audit.py` now defaults to the current final view. Current-endpoint rerun measured:
-
-```text
-residual_view= movement_post_mine_strong_residual
-generic_non_horwasp_warp1_9_rows= 671
-
-target_short_forward_rows= 119
-target_short_gravitonic_excluded= 15
-target_short_non_gravitonic= 104
-target_short_fuel_geometry_candidate= 97
-target_short_same_identity_after= 96
-target_short_identity_break_after= 1
-target_short_formula_ready= 97
-
-target_short_insufficient_for_regular= 6
-target_short_formula_brackets_observed= 5
-target_short_affordable_frontier_match= 3
-target_short_depleted_after= 22
-target_short_strong_fuel_limit_signature= 3
-```
-
-Across the wider non-Gravitonic short-same-line population, the historical criterion still reports:
-
-```text
-strong_fuel_limit_signature= 7
-```
-
-across six hulls and four games.
-
-These seven rows are **correlation evidence only**. The old strongest criterion uses proximity to the maximum affordable whole-light-year frontier, but that is not the documented Planets.nu insufficient-fuel proration rule.
-
-### Documented Nu fuel-proration differential
-
-Planets.nu documents:
-
-```text
-actual distance = waypoint distance * fuel available / fuel required
-```
-
-and explicitly gives a 60-ly / 12-KT / 11-KT example that travels 55 ly even though 11 KT could otherwise afford 59 ly. The Nu/VGAP3 differences documentation states that VGAP3 instead uses a `warp^2 * fuel / fuel_required` maximum-distance rule.
-
-The repository already implements the documented building blocks:
-
-```text
-src/planets_lab/rules/fuel.py
-src/planets_lab/rules/proration.py
-src/planets_lab/sim/normal_movement.py
-```
-
-New exact differential:
-
-```text
-tools/diagnostics/fuel_proration_host_differential_audit.py
-```
-
-It compares exact Host-major/minor endpoints for:
-
-1. documented Nu waypoint-distance proration;
-2. historical affordable-whole-LY frontier;
-3. VGAP3-style max-distance ratio.
-
-The first causal pass is intentionally limited to positive-fuel, reachable-waypoint, non-Gravitonic, same-identity rows. Partial waypoints, zero-fuel movement and Gravitonic cases are excluded.
-
-The strongest Nu evidence additionally requires the documented out-of-fuel post-state:
-
-```text
-fuel_after = 0
-warp_after = 0
-waypoint_after = observed current position
-```
-
-No production fuel category exists yet. Promotion requires exact endpoint discrimination plus post-reset and cross-game support.
+Runtime verification is pending. Do not mark fuel v6 `TESTED + DIFF_VERIFIED` until targeted/full tests and the normal L2 build reproduce the six-row prediction exactly.
 
 ## Closed differentials
 
+### Damage-limited warp
+
+Production reproduced the independent ten-row prediction exactly and changed final residual `2236 -> 2226`. Status: **DOCUMENTED (legacy Nu help page) + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**.
+
 ### Route-equivalent Tow v3
 
-Global pre-build audit found four multiple visible Tow matches and zero missed single matches. Production reproduced the exact `+4/-4` accounting delta; post-fix Tow controls are zero. Status: **TESTED + DIFF_VERIFIED**.
+Global differential predicted four rows; production reproduced the exact `+4/-4` accounting delta. Status: **TESTED + DIFF_VERIFIED**.
 
 ### Mine/web v5
 
-Independent diagnostics predicted exactly `18` strict web + `19` strict normal-mine rows. Production closed exactly 37 rows. Status: **CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**.
+Independent diagnostics predicted exactly `18` strict web + `19` strict normal-mine rows; production closed exactly 37. Status: **CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**.
 
 ### Route-equivalent Chunnel v4
 
-Pre-fix audit predicted 34 false residuals and production reproduced the exact Chunnel accounting delta. Status: **TESTED + DIFF_VERIFIED**.
-
-## Current test state
-
-```text
-targeted damage/storm/compiled regression set: 27 passed
-full pytest suite:                         green
-```
-
-Repository source, schemas/semantic markers and generated corpus are aligned at the verified `2226` endpoint. The new fuel-proration differential is diagnostic-only and does not alter compiled schemas or accounting.
+Pre-fix diagnostic predicted 34 false residuals and production reproduced the exact accounting delta. Status: **TESTED + DIFF_VERIFIED**.
