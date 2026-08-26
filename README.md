@@ -2,20 +2,11 @@
 
 Deterministic Planets.nu simulation, reverse-engineering and AI research environment.
 
-## Goals
+## Current movement/corpus state
 
-- represent game state in one canonical schema;
-- implement a deterministic, testable Host simulator;
-- build rule/specification and differential-validation tooling;
-- import historical Planets.nu game data into privacy-safe derived datasets;
-- expose player-limited observations for AI agents;
-- support scripted bots, self-play and ML/RL experiments.
+The active workstream is historical NuHost movement compatibility mining across 12 finished games.
 
-## Current state
-
-The active workstream is historical NuHost corpus mining and movement compatibility validation across 12 recent finished games.
-
-Current runtime-verified movement accounting:
+Runtime-verified accounting:
 
 ```text
 move_most_candidates              227468
@@ -34,8 +25,6 @@ post_fuel_proration_residual        2220
 label_issues                           0
 ```
 
-Verified recent closures include route-equivalent Tow and Chunnel handling, classic/cloudy ion storms, scoped sphere geometry, strict mine/web hit context, strict damage-limited warp and strict Nu waypoint-distance fuel proration.
-
 Current generic endpoint:
 
 ```text
@@ -47,49 +36,25 @@ generic_games               12
 generic_hulls               76
 ```
 
-Largest surviving coarse families:
+Largest surviving coarse family:
 
 ```text
-116  warp7-9 <0.5x     observed=other same_line_forward
- 93  warp0   nominal<=0 target=origin
- 64  warp7-9 <0.5x     observed=origin stationary
- 52  warp7-9 >3.0x     target=origin
- 46  warp7-9 >3.0x     observed=other oblique
- 43  warp7-9 0.5-1.0x observed=other same_line_forward
+116  warp7-9 <0.5x observed=other same_line_forward
 ```
 
-Crystal Web Drain is closed as one fully attributable `DOCUMENTED + CORPUS_OBSERVED` evidence-only transition (`game 360690`, turn 44, hull 53). Ownership, historical diplomacy/game era, 25 KT fuel/mass reduction and exact Nu-prorated endpoint are all attributable, but one game/hull is insufficient for a production label.
+Verified recent production closures include route-equivalent Tow/Chunnel, classic/cloudy ion storms, scoped sphere geometry, strict mine/web hit context, strict damage-limited warp, and strict Nu waypoint-distance fuel proration v6.
 
-Three subsequent pre-movement fuel leads are rejected for the dominant 116-row family:
+Crystal Web Drain is retained as one fully attributable `DOCUMENTED + CORPUS_OBSERVED` evidence-only transition. Outbound submitted fuel transfer, standard Cloak fuel burn, Privateer Rob Ship and Stellar Cartography speed terrain are rejected as broad explanations for the dominant 116-row family.
+
+The refined Stellar Cartography inventory reproduced the exact 116-row population and found no active Black Hole or wormhole state anywhere in the current 12-game corpus. Active nebula/debris state occurs on only seven target turns and is not a documented generic normal-movement speed limiter.
+
+The active diagnostic is now:
 
 ```text
-outbound submitted fuel transfer:
-  target_short_outbound_fuel_transfer = 0
-
-standard Cloak fuel burn:
-  target_short_cloak_mission = 0
-
-Privateer Rob Ship:
-  target_short_rob_exposure_candidate = 0
+tools/diagnostics/normal_mine_slowdown_exposure_audit.py
 ```
 
-The sole global Rob exposure is outside the dominant family, so no exact Rob simulator pass is justified for the current target.
-
-The active task is now a **refined Stellar Cartography active-feature inventory**:
-
-```text
-tools/diagnostics/stellar_cartography_raw_feature_inventory.py
-```
-
-The first inventory run is not valid for target attribution: it measured 126 short-forward rows instead of the authoritative 116 because its local ratio bucket omitted the clustering audit's `~0.5x` tolerance. It also counted path existence rather than active feature presence, so values such as `blackholes: []` and `settings.blackholes = 0` were incorrectly counted as Black Hole occurrences.
-
-The corrected diagnostic must reproduce:
-
-```text
-target_short_forward_rows = 116
-```
-
-and separates `present_turns` from active/non-empty/non-zero `active_turns` / `active_values`, including target-turn equivalents. Only an active movement-relevant terrain feature on target-family turns can justify a geometry/timing follow-up. Schema presence alone is not mechanics evidence.
+It tests the complementary possibility left outside strict mine/web v5: normal-mine hits on hull tech below 7 can slow a ship by 10 ly per hit, while later repair/historical snapshot semantics may hide the damage evidence. The first pass is exposure-only and checks route intersection plus movement deficits near `10 * N` ly before any hull-tech/diplomacy/repair reconstruction.
 
 Current schemas:
 
@@ -102,7 +67,7 @@ L2 context labels:          planets-lab.compiled-movement-context-labels.v6
 Read these first:
 
 - [`docs/ROADMAP.md`](docs/ROADMAP.md)
-- [`docs/handoff/2026-08-26-stellar-cartography-active-inventory-pending.md`](docs/handoff/2026-08-26-stellar-cartography-active-inventory-pending.md)
+- [`docs/handoff/2026-08-26-normal-mine-slowdown-exposure-pending.md`](docs/handoff/2026-08-26-normal-mine-slowdown-exposure-pending.md)
 - [`docs/COMPILED_CORPUS.md`](docs/COMPILED_CORPUS.md)
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)
 
