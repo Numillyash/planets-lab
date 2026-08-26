@@ -1,6 +1,6 @@
 # Roadmap
 
-This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). The latest movement/corpus handoff is [`handoff/2026-08-26-stellar-cartography-feature-inventory-pending.md`](handoff/2026-08-26-stellar-cartography-feature-inventory-pending.md).
+This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). The latest movement/corpus handoff is [`handoff/2026-08-26-stellar-cartography-active-inventory-pending.md`](handoff/2026-08-26-stellar-cartography-active-inventory-pending.md).
 
 ## Evidence policy
 
@@ -84,69 +84,65 @@ Largest coarse families:
 
 ## Closed evidence-only lead — Crystal Web Drain
 
-One transition (`game 360690`, turn 44, hull 53) is attributable end-to-end to Crystal Web Drain feeding Nu fuel proration. Historical ownership, game era, exact relation pair and lack of diplomacy immunity were all resolved. Status: **DOCUMENTED + CORPUS_OBSERVED strong evidence; evidence-only** because support remains one independent game/hull.
+One transition (`game 360690`, turn 44, hull 53) is attributable end-to-end to Crystal Web Drain feeding Nu fuel proration. Status: **DOCUMENTED + CORPUS_OBSERVED strong evidence; evidence-only** because support remains one independent game/hull.
 
 ## Rejected post-v6 leads
 
-### Outbound fuel transfer
-
 ```text
-target_short_outbound_fuel_transfer = 0
-target_short_transfer_causal_exact = 0
+outbound fuel transfer: target_short_outbound_fuel_transfer = 0
+standard Cloak fuel:     target_short_cloak_mission = 0
+Privateer Rob Ship:      target_short_rob_exposure_candidate = 0
 ```
 
-### Standard Cloak fuel burn
+The sole global Rob exposure is outside the 116-row family; no exact Rob simulator pass is justified for the current target.
+
+## Active investigation — refined Stellar Cartography active inventory
+
+The first raw-path inventory must not be used for target attribution. It printed:
 
 ```text
-target_short_cloak_mission = 0
-target_short_standard_cloak_fuel_burn_candidate = 0
-target_short_cloak_causal_exact = 0
+target_short_forward_rows = 126
 ```
 
-### Privateer Rob Ship
+instead of the authoritative 116. Root cause: its local ratio bucket omitted the `~0.5x` tolerance used by the generic clustering audit, so ten near-half-distance rows were incorrectly classified as `<0.5x`.
 
-Exposure audit:
+The first pass also conflated JSON-path existence with active feature presence. Empty/zero values such as:
 
 ```text
-rob_exposure_candidate = 1
-rob_exposure_positive_victim_fuel = 1
-
-target_short_privateer_mission9_at_origin = 1
-target_short_rob_exposure_candidate = 0
-target_short_rob_exposure_positive_victim_fuel = 0
+blackholes: []
+settings.blackholes = 0
 ```
 
-The sole global exposure is outside the 116-row family. No exact Rob simulator pass is justified for the current target.
+were counted as occurrences even though they prove only schema presence.
 
-## Active investigation — Stellar Cartography raw feature inventory
-
-Before implementing any terrain-specific movement model, inventory which relevant raw feature families actually occur in the 12-game evidence archives.
-
-Planets.nu documentation indicates:
-
-- nebulae primarily alter visibility / abilities;
-- star clusters primarily cause destruction/radiation;
-- debris disks can destroy ships and disrupt towing;
-- wormholes require the explicit Enter Wormhole mission;
-- Black Hole ergospheres directly inhibit warp speed.
-
-Active diagnostic:
+The corrected diagnostic remains:
 
 ```text
 tools/diagnostics/stellar_cartography_raw_feature_inventory.py
 ```
 
-It reports feature-related raw payload paths and safe scalar excerpts from one deterministic perspective per archive turn, plus whether each path occurs on turns containing the dominant 116-row family.
+but now must reproduce `target_short_forward_rows = 116` and reports:
+
+```text
+present_turns
+active_turns
+active_values
+target_present_turns
+target_active_turns
+target_active_values
+```
+
+Empty lists, zero numeric settings and false booleans are inactive. Path counts are turn-based; repeated entity fields no longer masquerade as turn occurrences.
 
 ### Immediate work
 
 1. pull current `main` and confirm clean tree;
-2. syntax-check/run `stellar_cartography_raw_feature_inventory.py` without rebuild;
-3. require `target_short_forward_rows = 116`;
-4. inspect `GLOBAL FEATURE PATHS` first;
-5. determine whether black-hole/ergosphere payloads exist at all;
-6. inspect target-turn occurrences for any movement-relevant terrain path;
-7. build no geometry classifier unless exact raw schema and a documented movement effect are both present;
+2. syntax-check/run the corrected inventory without rebuild;
+3. require exactly `target_short_forward_rows = 116`;
+4. inspect `blackholes` and `settings.blackholes` `active_turns` first;
+5. ignore path presence if `active_turns = 0`;
+6. inspect active wormholes/nebulae/debris only as population evidence, not as movement explanations;
+7. build a terrain geometry/timing audit only if an actually active documented speed-modifying feature overlaps target turns;
 8. keep production accounting fixed at `2220`.
 
 ## Deprioritized / closed leads
