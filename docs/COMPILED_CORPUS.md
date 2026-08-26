@@ -4,7 +4,7 @@
 
 Current active handoff:
 
-[`handoff/2026-08-26-stellar-cartography-active-inventory-pending.md`](handoff/2026-08-26-stellar-cartography-active-inventory-pending.md)
+[`handoff/2026-08-26-normal-mine-slowdown-exposure-pending.md`](handoff/2026-08-26-normal-mine-slowdown-exposure-pending.md)
 
 ## Current verified schema state
 
@@ -60,70 +60,92 @@ generic_games               12
 generic_hulls               76
 ```
 
-Largest coarse families:
+Largest coarse family:
 
 ```text
-116  warp7-9 <0.5x     observed=other same_line_forward
- 93  warp0   nominal<=0 target=origin
- 64  warp7-9 <0.5x     observed=origin stationary
- 52  warp7-9 >3.0x     target=origin
- 46  warp7-9 >3.0x     observed=other oblique
- 43  warp7-9 0.5-1.0x observed=other same_line_forward
+116  warp7-9 <0.5x observed=other same_line_forward
 ```
 
 ## Verified / closed recent mechanics
 
-- damage-limited warp: independent 10-row prediction reproduced exactly — **DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**;
-- strict mine/web hit v5: 37 exact rows — **CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**;
-- route-equivalent Tow / Chunnel: exact independent differentials — **TESTED + DIFF_VERIFIED**;
-- Nu waypoint-distance fuel proration v6: `Nu exact=6`, `frontier=3`, `VGAP3=0`, production `2226 -> 2220` — **DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**;
-- Crystal Web Drain: one end-to-end attributable transition — **DOCUMENTED + CORPUS_OBSERVED strong evidence-only**, no production label.
+- damage-limited warp — **DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**;
+- strict mine/web hit v5 — **CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**;
+- route-equivalent Tow / Chunnel — **TESTED + DIFF_VERIFIED**;
+- Nu waypoint-distance fuel proration v6 — **DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**;
+- Crystal Web Drain — one end-to-end attributable `DOCUMENTED + CORPUS_OBSERVED` evidence-only transition.
 
-## Rejected post-v6 leads for dominant 116-row family
-
-```text
-outbound fuel transfer: target_short_outbound_fuel_transfer = 0
-standard Cloak fuel:     target_short_cloak_mission = 0
-Privateer Rob Ship:      target_short_rob_exposure_candidate = 0
-```
-
-The sole global Rob exposure is outside the target family, so no second-pass Rob simulator is justified for the current residual cluster.
-
-## Active refined Stellar Cartography inventory
-
-Diagnostic:
+## Rejected post-v6 broad leads
 
 ```text
-tools/diagnostics/stellar_cartography_raw_feature_inventory.py
+outbound fuel transfer:
+  target_short_outbound_fuel_transfer = 0
+
+standard Cloak fuel burn:
+  target_short_cloak_mission = 0
+
+Privateer Rob Ship:
+  target_short_rob_exposure_candidate = 0
 ```
 
-The first runtime pass is invalid for target-family terrain attribution because it reported:
+### Stellar Cartography speed terrain
+
+The first raw feature inventory was invalid because its local ratio bucket produced 126 rather than the authoritative 116 target rows and because it counted empty lists / zero settings as active features. The refined inventory corrected both issues.
+
+Verified refined population:
 
 ```text
-target_short_forward_rows = 126
+target_short_forward_rows = 116
 ```
 
-instead of the authoritative 116. Its local ratio bucket omitted the generic clustering audit's `~0.5x` tolerance, adding ten near-half-distance rows to `<0.5x`.
+Movement-relevant active counts:
 
-That pass also counted schema/path presence as feature presence. Empty/zero values such as `blackholes: []`, `nebulas: []`, `wormholes: []`, `settings.blackholes=0` and zero debris flags must not be treated as active terrain.
+```text
+blackholes active_turns = 0
+blackholes target_active_turns = 0
+settings.blackholes active_turns = 0
+wormholes active_turns = 0
+wormholes target_active_turns = 0
+settings.maxwormholes active_turns = 0
+```
 
-The corrected diagnostic now:
+Nebula/debris state is active on only seven target turns total and is not documented as a generic normal-movement speed limiter. Terrain-speed is rejected as a broad explanation for the current dominant family.
 
-- reproduces the authoritative coarse ratio semantics;
-- must emit `target_short_forward_rows = 116`;
-- counts paths once per turn;
-- separates `present_turns` from active/non-empty/non-zero `active_turns` and `active_values`;
-- emits matching `target_present_turns`, `target_active_turns`, `target_active_values`;
-- keeps safe excerpts privacy-limited.
+## Active normal-mine slowdown exposure follow-up
 
-Interpretation:
+Planets.nu documents that normal mine impacts slow ships with hull tech below 7 by 10 light-years per hit when more than 10 light-years remain. Hull tech 7+ is not slowed.
 
-- path presence alone is not explanatory evidence;
-- `active_turns = 0` rejects the feature despite schema presence;
-- active movement-relevant terrain with `target_active_turns = 0` is irrelevant to the dominant family;
-- only active target-overlapping terrain plus a documented movement effect justifies a narrow geometry/timing audit.
+Strict mine/web v5 already covers attributable hit/damage rows. The complementary hypothesis is repair-hidden slowdown:
 
-No schema/cache/accounting change is permitted during this inventory.
+```text
+normal mine hit
+  -> 10 ly slowdown per hit on low-tech hull
+  -> observed short same-line movement
+  -> later repair / snapshot semantics remove visible damage evidence
+```
+
+Active diagnostic:
+
+```text
+tools/diagnostics/normal_mine_slowdown_exposure_audit.py
+```
+
+The first pass is intentionally an upper-bound exposure/geometry audit. It currently does **not** filter historical diplomacy, reconstruct hull tech, infer mine-hit RNG or infer repair. It reports:
+
+```text
+normal_mine_route_exposure
+normal_mine_multi_field_route_exposure
+positive_planned_distance_deficit
+deficit_near_10n
+
+target_short_normal_mine_route_exposure
+target_short_normal_mine_multi_field_route_exposure
+target_short_positive_planned_distance_deficit
+target_short_deficit_near_10n
+```
+
+Only material overlap between route exposure and `10*N` deficit geometry justifies a second stricter pass.
+
+No schema/cache/accounting change is permitted during this exposure audit.
 
 ## Current test state
 
