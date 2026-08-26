@@ -1,6 +1,6 @@
 # Roadmap
 
-This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). The latest movement/corpus handoff is [`handoff/2026-08-26-stellar-cartography-active-inventory-pending.md`](handoff/2026-08-26-stellar-cartography-active-inventory-pending.md).
+This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). The latest movement/corpus handoff is [`handoff/2026-08-26-normal-mine-slowdown-exposure-pending.md`](handoff/2026-08-26-normal-mine-slowdown-exposure-pending.md).
 
 ## Evidence policy
 
@@ -18,7 +18,7 @@ Unknown mechanics fail closed. Raw facts and evidence-scoped effective interpret
 
 Active milestone: **M5 — historical NuHost corpus + compatibility mining**.
 
-Current runtime-verified movement accounting:
+Runtime-verified movement accounting remains:
 
 ```text
 move_most_candidates              227468
@@ -40,7 +40,6 @@ label_issues                           0
 Current schemas:
 
 ```text
-manifest:                  planets-lab.corpus-game.v2
 prepared cache:            planets-lab.prepared-game-cache.v1
 L1 movement:               planets-lab.compiled-movement.v3
 L1 context semantics:      planets-lab.compiled-movement-storm-context.v3
@@ -71,91 +70,60 @@ generic_games               12
 generic_hulls               76
 ```
 
-Largest coarse families:
+Largest coarse family:
 
 ```text
-116  warp7-9 <0.5x     observed=other same_line_forward
- 93  warp0   nominal<=0 target=origin
- 64  warp7-9 <0.5x     observed=origin stationary
- 52  warp7-9 >3.0x     target=origin
- 46  warp7-9 >3.0x     observed=other oblique
- 43  warp7-9 0.5-1.0x observed=other same_line_forward
+116  warp7-9 <0.5x observed=other same_line_forward
 ```
 
-## Closed evidence-only lead — Crystal Web Drain
+## Evidence-only / rejected leads
 
-One transition (`game 360690`, turn 44, hull 53) is attributable end-to-end to Crystal Web Drain feeding Nu fuel proration. Status: **DOCUMENTED + CORPUS_OBSERVED strong evidence; evidence-only** because support remains one independent game/hull.
+- Crystal Web Drain — one end-to-end attributable evidence case; no production label because support remains one game/hull.
+- outbound submitted fuel transfer — rejected for the dominant family (`target_short_outbound_fuel_transfer=0`).
+- standard Cloak fuel burn — rejected (`target_short_cloak_mission=0`).
+- Privateer Rob Ship — rejected for the dominant family (`target_short_rob_exposure_candidate=0`).
+- Stellar Cartography speed terrain — rejected as a broad explanation after refined active inventory.
 
-## Rejected post-v6 leads
+Refined Stellar inventory reproduced `target_short_forward_rows=116` exactly and found:
 
 ```text
-outbound fuel transfer: target_short_outbound_fuel_transfer = 0
-standard Cloak fuel:     target_short_cloak_mission = 0
-Privateer Rob Ship:      target_short_rob_exposure_candidate = 0
+blackholes active_turns = 0
+blackholes target_active_turns = 0
+wormholes active_turns = 0
+wormholes target_active_turns = 0
 ```
 
-The sole global Rob exposure is outside the 116-row family; no exact Rob simulator pass is justified for the current target.
+Active nebula/debris state appears on only seven target turns and is not documented as a generic normal-movement speed limiter.
 
-## Active investigation — refined Stellar Cartography active inventory
+## Active investigation — repair-hidden normal-mine slowdown exposure
 
-The first raw-path inventory must not be used for target attribution. It printed:
+Planets.nu documents a 10-ly movement slowdown per normal mine hit for hull tech below 7 when enough travel remains. Hull tech 7+ is not slowed. Strict mine/web v5 already labels attributable hits where damage evidence survives, so the current question is the complementary residual:
 
 ```text
-target_short_forward_rows = 126
+normal mine hit
+  -> low-tech hull loses 10 ly per hit
+  -> route ends short
+  -> later repair / historical snapshot semantics hide damage evidence
 ```
 
-instead of the authoritative 116. Root cause: its local ratio bucket omitted the `~0.5x` tolerance used by the generic clustering audit, so ten near-half-distance rows were incorrectly classified as `<0.5x`.
-
-The first pass also conflated JSON-path existence with active feature presence. Empty/zero values such as:
+First-pass diagnostic:
 
 ```text
-blackholes: []
-settings.blackholes = 0
+tools/diagnostics/normal_mine_slowdown_exposure_audit.py
 ```
 
-were counted as occurrences even though they prove only schema presence.
-
-The corrected diagnostic remains:
-
-```text
-tools/diagnostics/stellar_cartography_raw_feature_inventory.py
-```
-
-but now must reproduce `target_short_forward_rows = 116` and reports:
-
-```text
-present_turns
-active_turns
-active_values
-target_present_turns
-target_active_turns
-target_active_values
-```
-
-Empty lists, zero numeric settings and false booleans are inactive. Path counts are turn-based; repeated entity fields no longer masquerade as turn occurrences.
+This pass is deliberately only an upper-bound population test. It does not yet infer mine-hit RNG, historical diplomacy, hull tech or repair. It measures owner-different normal-mine route exposure and whether the movement deficit is approximately `10 * N` light-years.
 
 ### Immediate work
 
 1. pull current `main` and confirm clean tree;
-2. syntax-check/run the corrected inventory without rebuild;
-3. require exactly `target_short_forward_rows = 116`;
-4. inspect `blackholes` and `settings.blackholes` `active_turns` first;
-5. ignore path presence if `active_turns = 0`;
-6. inspect active wormholes/nebulae/debris only as population evidence, not as movement explanations;
-7. build a terrain geometry/timing audit only if an actually active documented speed-modifying feature overlaps target turns;
+2. syntax-check/run `normal_mine_slowdown_exposure_audit.py` without rebuild;
+3. require `target_short_forward_rows = 116`;
+4. inspect target route exposure by game/hull;
+5. inspect `target_short_deficit_near_10n`;
+6. if either exposure or 10*N geometry is sparse, reject the lead;
+7. only if both are material, build a second pass with hull tech <7, historical diplomacy and damage/repair evidence;
 8. keep production accounting fixed at `2220`.
-
-## Deprioritized / closed leads
-
-- old affordable-whole-LY fuel frontier is correlation evidence only;
-- outbound transfer, standard Cloak and Rob Ship are negative for the dominant family;
-- Crystal Web Drain remains one attributable evidence-only row;
-- multi-waypoint queue did not explain the old hull-79 cluster;
-- hidden/private-FC Chunnel discovery added no coverage;
-- owner-visible Intercept is already excluded from Move Most residuals;
-- repair-bracket mine and damage rows remain evidence-only;
-- do not generalize game `591478`'s 2170 period;
-- do not reopen Red Mite without new evidence.
 
 ## Wider milestones
 
