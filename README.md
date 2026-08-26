@@ -75,13 +75,21 @@ Privateer Rob Ship:
 
 The sole global Rob exposure is outside the dominant family, so no exact Rob simulator pass is justified for the current target.
 
-The active task is now **raw Stellar Cartography feature inventory before any terrain-specific movement model**:
+The active task is now a **refined Stellar Cartography active-feature inventory**:
 
 ```text
 tools/diagnostics/stellar_cartography_raw_feature_inventory.py
 ```
 
-Planets.nu documentation describes common Stellar Cartography features mostly as visibility, destruction, radiation, tow-disruption or explicit-mission mechanics. Black Hole ergospheres are the notable documented terrain feature that directly inhibits warp speed. The inventory therefore first asks whether black-hole or other movement-relevant terrain payloads exist at all in the 12-game raw corpus and whether they occur on turns containing the dominant 116-row family. No terrain classifier is allowed from schema presence alone.
+The first inventory run is not valid for target attribution: it measured 126 short-forward rows instead of the authoritative 116 because its local ratio bucket omitted the clustering audit's `~0.5x` tolerance. It also counted path existence rather than active feature presence, so values such as `blackholes: []` and `settings.blackholes = 0` were incorrectly counted as Black Hole occurrences.
+
+The corrected diagnostic must reproduce:
+
+```text
+target_short_forward_rows = 116
+```
+
+and separates `present_turns` from active/non-empty/non-zero `active_turns` / `active_values`, including target-turn equivalents. Only an active movement-relevant terrain feature on target-family turns can justify a geometry/timing follow-up. Schema presence alone is not mechanics evidence.
 
 Current schemas:
 
@@ -94,7 +102,7 @@ L2 context labels:          planets-lab.compiled-movement-context-labels.v6
 Read these first:
 
 - [`docs/ROADMAP.md`](docs/ROADMAP.md)
-- [`docs/handoff/2026-08-26-stellar-cartography-feature-inventory-pending.md`](docs/handoff/2026-08-26-stellar-cartography-feature-inventory-pending.md)
+- [`docs/handoff/2026-08-26-stellar-cartography-active-inventory-pending.md`](docs/handoff/2026-08-26-stellar-cartography-active-inventory-pending.md)
 - [`docs/COMPILED_CORPUS.md`](docs/COMPILED_CORPUS.md)
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)
 
