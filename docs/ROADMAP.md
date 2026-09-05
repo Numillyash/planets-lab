@@ -1,6 +1,6 @@
 # Roadmap
 
-This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). The latest movement/corpus handoff is [`handoff/2026-09-05-normal-mine-single-candidate-immunity-repair-pending.md`](handoff/2026-09-05-normal-mine-single-candidate-immunity-repair-pending.md).
+This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). New chats should start from [`handoff/2026-09-05-new-chat-context.md`](handoff/2026-09-05-new-chat-context.md); the detailed active mechanics handoff is [`handoff/2026-09-05-normal-mine-single-candidate-immunity-repair-pending.md`](handoff/2026-09-05-normal-mine-single-candidate-immunity-repair-pending.md).
 
 ## Evidence policy
 
