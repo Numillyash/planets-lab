@@ -4,7 +4,7 @@
 
 Current active handoff:
 
-[`handoff/2026-09-05-normal-mine-slowdown-candidate-gate-pending.md`](handoff/2026-09-05-normal-mine-slowdown-candidate-gate-pending.md)
+[`handoff/2026-09-05-normal-mine-single-candidate-immunity-repair-pending.md`](handoff/2026-09-05-normal-mine-single-candidate-immunity-repair-pending.md)
 
 ## Current verified schema state
 
@@ -72,51 +72,79 @@ Largest coarse family:
 - Nu waypoint-distance fuel proration v6 — **DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**;
 - Crystal Web Drain — one end-to-end attributable `DOCUMENTED + CORPUS_OBSERVED` evidence-only transition.
 
-Rejected broad post-v6 leads for the dominant family: outbound fuel transfer, standard Cloak fuel burn, Privateer Rob Ship, and Stellar Cartography speed terrain. The refined terrain inventory reproduced 116 rows exactly and found no active Black Hole or wormhole state anywhere in the current 12-game corpus.
+Rejected broad post-v6 leads for the dominant family: outbound fuel transfer, standard Cloak fuel burn, Privateer Rob Ship, and Stellar Cartography speed terrain.
 
-## Normal-mine slowdown candidate gate
+## Normal-mine slowdown reduction
 
-The upper-bound exposure/geometry pass produced:
+The upper-bound route/geometry pass found:
 
 ```text
 target_short_rows = 116
 target_short_normal_mine_route_exposure = 10
-target_short_normal_mine_multi_field_route_exposure = 2
-target_short_positive_planned_distance_deficit = 10
 target_short_deficit_near_10n = 2
 ```
 
-Only two rows survive:
+The hull-tech gate then resolved:
 
 ```text
-game 360690 / turn 155 / ship 447 / hull 23 / deficit 30.575 / implied 3 slowdown hits
-game 511506 / turn 23  / ship 160 / hull 17 / deficit 21.094 / implied 2 slowdown hits
+candidate_rows_found       = 2
+tech_eligible_candidates   = 1
+tech_ineligible_candidates = 1
 ```
 
-Active diagnostic:
+Rejected:
 
 ```text
-tools/diagnostics/normal_mine_slowdown_candidate_gate_audit.py
+game 360690 / turn 155 / ship 447 / hull 23
+hull tech = 10
 ```
 
-It uses the same authoritative static hull specs and mine context as strict v5 and reports:
+Nu documents that hull tech 7+ is not slowed by normal mine impacts.
+
+Sole surviving candidate:
 
 ```text
-hull_tech
-hull_mass
-slowdown_tech_eligible
-normal_mine_damage_quantum
-enemy normal field IDs / owners
-before damage/supplies/fuel/mass
-observational after damage/supplies/fuel/mass
-observed damage delta
+game 511506 / turn 23 / ship 160 / hull 17
+hull tech = 6
+hull mass = 130
+planned distance = 43.566 ly
+observed distance = 22.472 ly
+deficit = 21.094 ly
+normal-mine corpus damage quantum = 76
+before damage/supplies = 0 / 53
+after damage/supplies  = 66 / 3 (supplies observational)
 ```
 
-Hard rule: hull tech 7+ cannot receive the documented 10-ly normal-mine slowdown. Any such candidate is rejected before diplomacy/friendly-code/RNG/repair work.
+One hit plus submitted-supply auto-repair is exactly compatible with the observed damage:
 
-For tech<7 survivors only, the next layer is historical Safe Passage / minefield friendly-code compatibility, exact route-field attribution, mine-hit multiplicity probability and conservative repair compatibility. One or two rows are insufficient for a production label without independent attributable support.
+```text
+raw damage after one hit = 76
+available repair from 53 supplies = 10%
+predicted damage after repair = 66
+predicted remaining supplies = 3
+```
 
-No schema/cache/accounting change is permitted during this candidate gate.
+Two mine damage hits would instead imply raw damage 152 and a very different post-supply-repair state. Therefore the previous `21 ly ~= 2 * 10 ly` geometry is only a candidate signature, not evidence for two impacts.
+
+## Active strict survivor audit
+
+```text
+tools/diagnostics/normal_mine_single_candidate_immunity_repair_audit.py
+```
+
+It evaluates only the sole tech<7 candidate and reports:
+
+- exact post-decay normal minefields intersecting the planned segment;
+- field IDs/owners and route intervals;
+- turn-specific Safe Passage relation from each mine owner to the target;
+- team identity;
+- minefield Friendly Code values exposed by archived perspectives;
+- exact ship-to-field FC matching;
+- one-hit and two-hit supply-repair predictions.
+
+Normal-mine immunity fails closed. Safe Passage or matching field FC makes a field immune. The ship's universal `MFx` possibility is also checked structurally. If a field FC is not exposed, absence alone is not treated as hostility.
+
+No mine-hit RNG or new production label is inferred from this single transition. No schema/cache/accounting change is permitted during the audit.
 
 ## Current test state
 
