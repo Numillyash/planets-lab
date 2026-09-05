@@ -2,7 +2,11 @@
 
 `validation/corpus/cache/loadall/game-<id>.zip` is the immutable evidence/source layer. Compiled data is deterministic local output and must be rebuildable from cached archives plus manifests.
 
-Current active handoff:
+New chats should start from:
+
+[`handoff/2026-09-05-new-chat-context.md`](handoff/2026-09-05-new-chat-context.md)
+
+Detailed active mechanics handoff:
 
 [`handoff/2026-09-05-normal-mine-single-candidate-immunity-repair-pending.md`](handoff/2026-09-05-normal-mine-single-candidate-immunity-repair-pending.md)
 
