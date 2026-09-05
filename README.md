@@ -82,6 +82,7 @@ L2 context labels:          planets-lab.compiled-movement-context-labels.v6
 
 Read these first:
 
+- [`docs/handoff/2026-09-05-new-chat-context.md`](docs/handoff/2026-09-05-new-chat-context.md)
 - [`docs/ROADMAP.md`](docs/ROADMAP.md)
 - [`docs/handoff/2026-09-05-normal-mine-single-candidate-immunity-repair-pending.md`](docs/handoff/2026-09-05-normal-mine-single-candidate-immunity-repair-pending.md)
 - [`docs/COMPILED_CORPUS.md`](docs/COMPILED_CORPUS.md)
