@@ -4,7 +4,7 @@
 
 Current active handoff:
 
-[`handoff/2026-08-26-normal-mine-slowdown-exposure-pending.md`](handoff/2026-08-26-normal-mine-slowdown-exposure-pending.md)
+[`handoff/2026-09-05-normal-mine-slowdown-candidate-gate-pending.md`](handoff/2026-09-05-normal-mine-slowdown-candidate-gate-pending.md)
 
 ## Current verified schema state
 
@@ -15,7 +15,7 @@ L1 post-compile context semantics: planets-lab.compiled-movement-storm-context.v
 L2 context labels:                 planets-lab.compiled-movement-context-labels.v6
 ```
 
-Raw `/game/loadall` archives remain unchanged. Prepared projection stays privacy-minimal; raw `.trn` evidence is read directly only by diagnostics that need narrowly scoped historical metadata or feature schema.
+Raw `/game/loadall` archives remain unchanged. Prepared projection stays privacy-minimal; raw `.trn` evidence is read directly only by diagnostics that need narrowly scoped historical metadata.
 
 ## Current runtime-verified 12-game invariants
 
@@ -47,8 +47,6 @@ post_fuel_proration_residual       2220
 label_issues                          0
 ```
 
-Fuel-proration overlap guards remain zero.
-
 ## Current generic final endpoint
 
 ```text
@@ -74,78 +72,51 @@ Largest coarse family:
 - Nu waypoint-distance fuel proration v6 — **DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**;
 - Crystal Web Drain — one end-to-end attributable `DOCUMENTED + CORPUS_OBSERVED` evidence-only transition.
 
-## Rejected post-v6 broad leads
+Rejected broad post-v6 leads for the dominant family: outbound fuel transfer, standard Cloak fuel burn, Privateer Rob Ship, and Stellar Cartography speed terrain. The refined terrain inventory reproduced 116 rows exactly and found no active Black Hole or wormhole state anywhere in the current 12-game corpus.
+
+## Normal-mine slowdown candidate gate
+
+The upper-bound exposure/geometry pass produced:
 
 ```text
-outbound fuel transfer:
-  target_short_outbound_fuel_transfer = 0
-
-standard Cloak fuel burn:
-  target_short_cloak_mission = 0
-
-Privateer Rob Ship:
-  target_short_rob_exposure_candidate = 0
+target_short_rows = 116
+target_short_normal_mine_route_exposure = 10
+target_short_normal_mine_multi_field_route_exposure = 2
+target_short_positive_planned_distance_deficit = 10
+target_short_deficit_near_10n = 2
 ```
 
-### Stellar Cartography speed terrain
-
-The first raw feature inventory was invalid because its local ratio bucket produced 126 rather than the authoritative 116 target rows and because it counted empty lists / zero settings as active features. The refined inventory corrected both issues.
-
-Verified refined population:
+Only two rows survive:
 
 ```text
-target_short_forward_rows = 116
-```
-
-Movement-relevant active counts:
-
-```text
-blackholes active_turns = 0
-blackholes target_active_turns = 0
-settings.blackholes active_turns = 0
-wormholes active_turns = 0
-wormholes target_active_turns = 0
-settings.maxwormholes active_turns = 0
-```
-
-Nebula/debris state is active on only seven target turns total and is not documented as a generic normal-movement speed limiter. Terrain-speed is rejected as a broad explanation for the current dominant family.
-
-## Active normal-mine slowdown exposure follow-up
-
-Planets.nu documents that normal mine impacts slow ships with hull tech below 7 by 10 light-years per hit when more than 10 light-years remain. Hull tech 7+ is not slowed.
-
-Strict mine/web v5 already covers attributable hit/damage rows. The complementary hypothesis is repair-hidden slowdown:
-
-```text
-normal mine hit
-  -> 10 ly slowdown per hit on low-tech hull
-  -> observed short same-line movement
-  -> later repair / snapshot semantics remove visible damage evidence
+game 360690 / turn 155 / ship 447 / hull 23 / deficit 30.575 / implied 3 slowdown hits
+game 511506 / turn 23  / ship 160 / hull 17 / deficit 21.094 / implied 2 slowdown hits
 ```
 
 Active diagnostic:
 
 ```text
-tools/diagnostics/normal_mine_slowdown_exposure_audit.py
+tools/diagnostics/normal_mine_slowdown_candidate_gate_audit.py
 ```
 
-The first pass is intentionally an upper-bound exposure/geometry audit. It currently does **not** filter historical diplomacy, reconstruct hull tech, infer mine-hit RNG or infer repair. It reports:
+It uses the same authoritative static hull specs and mine context as strict v5 and reports:
 
 ```text
-normal_mine_route_exposure
-normal_mine_multi_field_route_exposure
-positive_planned_distance_deficit
-deficit_near_10n
-
-target_short_normal_mine_route_exposure
-target_short_normal_mine_multi_field_route_exposure
-target_short_positive_planned_distance_deficit
-target_short_deficit_near_10n
+hull_tech
+hull_mass
+slowdown_tech_eligible
+normal_mine_damage_quantum
+enemy normal field IDs / owners
+before damage/supplies/fuel/mass
+observational after damage/supplies/fuel/mass
+observed damage delta
 ```
 
-Only material overlap between route exposure and `10*N` deficit geometry justifies a second stricter pass.
+Hard rule: hull tech 7+ cannot receive the documented 10-ly normal-mine slowdown. Any such candidate is rejected before diplomacy/friendly-code/RNG/repair work.
 
-No schema/cache/accounting change is permitted during this exposure audit.
+For tech<7 survivors only, the next layer is historical Safe Passage / minefield friendly-code compatibility, exact route-field attribution, mine-hit multiplicity probability and conservative repair compatibility. One or two rows are insufficient for a production label without independent attributable support.
+
+No schema/cache/accounting change is permitted during this candidate gate.
 
 ## Current test state
 
