@@ -46,20 +46,31 @@ Verified recent production closures include route-equivalent Tow/Chunnel, classi
 
 Crystal Web Drain remains one fully attributable `DOCUMENTED + CORPUS_OBSERVED` evidence-only transition. Outbound submitted fuel transfer, standard Cloak fuel burn, Privateer Rob Ship and Stellar Cartography speed terrain are rejected as broad explanations for the dominant 116-row family.
 
-The refined normal-mine slowdown exposure pass found only two target rows with both route exposure and a planned-distance deficit near the documented `10 * N` ly pattern:
+The normal-mine slowdown exposure pass found 10 route-exposed target rows and only two with deficits near the documented `10 * N` pattern. The hull-tech gate then rejected one immediately:
 
 ```text
-game 360690 / turn 155 / ship 447 / hull 23 / deficit 30.575 / implied 3 hits
-game 511506 / turn 23  / ship 160 / hull 17 / deficit 21.094 / implied 2 hits
+game 360690 / turn 155 / hull 23 -> tech 10 -> slowdown impossible
+game 511506 / turn 23  / hull 17 -> tech 6  -> survives gate
 ```
 
-The active diagnostic is now the hard candidate gate:
+The sole surviving candidate has:
 
 ```text
-tools/diagnostics/normal_mine_slowdown_candidate_gate_audit.py
+hull mass = 130
+normal-mine corpus damage quantum = 76
+before damage/supplies = 0 / 53
+after damage/supplies  = 66 / 3 (supplies observational)
 ```
 
-It checks static hull tech/mass, mine damage quantum, field owners and observed before/after damage/supplies for those two candidates. Hull tech 7+ immediately rejects the documented 10-ly mine slowdown; only tech<7 survivors advance to historical diplomacy/friendly-code/RNG/repair reconstruction.
+One 76% mine hit followed by automatic post-movement supply repair of 10% predicts exactly `66%` damage and `3` supplies from the submitted before-state. Two damage hits do not match that repair trace. The active question is therefore one-hit mine attribution plus the remaining movement-distance discrepancy, not a blind two-hit `20 ly` interpretation.
+
+Active diagnostic:
+
+```text
+tools/diagnostics/normal_mine_single_candidate_immunity_repair_audit.py
+```
+
+It checks exact post-decay intersected fields, turn-specific Safe Passage/team state, exposed minefield Friendly Codes, ship/field FC matching, route intervals and one-hit vs two-hit repair predictions for `game 511506 / turn 23 / ship 160` only. Unknown FC state fails closed; no production label is allowed from this single transition.
 
 Current schemas:
 
@@ -72,7 +83,7 @@ L2 context labels:          planets-lab.compiled-movement-context-labels.v6
 Read these first:
 
 - [`docs/ROADMAP.md`](docs/ROADMAP.md)
-- [`docs/handoff/2026-09-05-normal-mine-slowdown-candidate-gate-pending.md`](docs/handoff/2026-09-05-normal-mine-slowdown-candidate-gate-pending.md)
+- [`docs/handoff/2026-09-05-normal-mine-single-candidate-immunity-repair-pending.md`](docs/handoff/2026-09-05-normal-mine-single-candidate-immunity-repair-pending.md)
 - [`docs/COMPILED_CORPUS.md`](docs/COMPILED_CORPUS.md)
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)
 
