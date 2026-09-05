@@ -44,17 +44,22 @@ Largest surviving coarse family:
 
 Verified recent production closures include route-equivalent Tow/Chunnel, classic/cloudy ion storms, scoped sphere geometry, strict mine/web hit context, strict damage-limited warp, and strict Nu waypoint-distance fuel proration v6.
 
-Crystal Web Drain is retained as one fully attributable `DOCUMENTED + CORPUS_OBSERVED` evidence-only transition. Outbound submitted fuel transfer, standard Cloak fuel burn, Privateer Rob Ship and Stellar Cartography speed terrain are rejected as broad explanations for the dominant 116-row family.
+Crystal Web Drain remains one fully attributable `DOCUMENTED + CORPUS_OBSERVED` evidence-only transition. Outbound submitted fuel transfer, standard Cloak fuel burn, Privateer Rob Ship and Stellar Cartography speed terrain are rejected as broad explanations for the dominant 116-row family.
 
-The refined Stellar Cartography inventory reproduced the exact 116-row population and found no active Black Hole or wormhole state anywhere in the current 12-game corpus. Active nebula/debris state occurs on only seven target turns and is not a documented generic normal-movement speed limiter.
-
-The active diagnostic is now:
+The refined normal-mine slowdown exposure pass found only two target rows with both route exposure and a planned-distance deficit near the documented `10 * N` ly pattern:
 
 ```text
-tools/diagnostics/normal_mine_slowdown_exposure_audit.py
+game 360690 / turn 155 / ship 447 / hull 23 / deficit 30.575 / implied 3 hits
+game 511506 / turn 23  / ship 160 / hull 17 / deficit 21.094 / implied 2 hits
 ```
 
-It tests the complementary possibility left outside strict mine/web v5: normal-mine hits on hull tech below 7 can slow a ship by 10 ly per hit, while later repair/historical snapshot semantics may hide the damage evidence. The first pass is exposure-only and checks route intersection plus movement deficits near `10 * N` ly before any hull-tech/diplomacy/repair reconstruction.
+The active diagnostic is now the hard candidate gate:
+
+```text
+tools/diagnostics/normal_mine_slowdown_candidate_gate_audit.py
+```
+
+It checks static hull tech/mass, mine damage quantum, field owners and observed before/after damage/supplies for those two candidates. Hull tech 7+ immediately rejects the documented 10-ly mine slowdown; only tech<7 survivors advance to historical diplomacy/friendly-code/RNG/repair reconstruction.
 
 Current schemas:
 
@@ -67,7 +72,7 @@ L2 context labels:          planets-lab.compiled-movement-context-labels.v6
 Read these first:
 
 - [`docs/ROADMAP.md`](docs/ROADMAP.md)
-- [`docs/handoff/2026-08-26-normal-mine-slowdown-exposure-pending.md`](docs/handoff/2026-08-26-normal-mine-slowdown-exposure-pending.md)
+- [`docs/handoff/2026-09-05-normal-mine-slowdown-candidate-gate-pending.md`](docs/handoff/2026-09-05-normal-mine-slowdown-candidate-gate-pending.md)
 - [`docs/COMPILED_CORPUS.md`](docs/COMPILED_CORPUS.md)
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)
 
