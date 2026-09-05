@@ -1,6 +1,6 @@
 # Roadmap
 
-This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). The latest movement/corpus handoff is [`handoff/2026-09-05-normal-mine-slowdown-candidate-gate-pending.md`](handoff/2026-09-05-normal-mine-slowdown-candidate-gate-pending.md).
+This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md). The latest movement/corpus handoff is [`handoff/2026-09-05-normal-mine-single-candidate-immunity-repair-pending.md`](handoff/2026-09-05-normal-mine-single-candidate-immunity-repair-pending.md).
 
 ## Evidence policy
 
@@ -76,7 +76,7 @@ Largest coarse family:
 116  warp7-9 <0.5x observed=other same_line_forward
 ```
 
-## Evidence-only / rejected leads
+## Evidence-only / rejected broad leads
 
 - Crystal Web Drain — one end-to-end attributable evidence case; no production label because support remains one game/hull.
 - outbound submitted fuel transfer — rejected for the dominant family.
@@ -84,43 +84,54 @@ Largest coarse family:
 - Privateer Rob Ship — rejected for the dominant family.
 - Stellar Cartography speed terrain — rejected as a broad explanation; refined inventory found no active Black Hole or wormhole state in the 12-game corpus.
 
-## Active investigation — normal-mine slowdown candidate gate
+## Active investigation — sole tech<7 normal-mine survivor
 
-The exposure pass found:
-
-```text
-target_short_rows = 116
-target_short_normal_mine_route_exposure = 10
-target_short_normal_mine_multi_field_route_exposure = 2
-target_short_positive_planned_distance_deficit = 10
-target_short_deficit_near_10n = 2
-```
-
-Only two target rows survive the upper-bound route + geometry filter:
+Normal-mine route exposure reduced the 116-row family to 10 route-exposed rows and only two `10*N` geometry candidates. The hull-tech gate then rejected one:
 
 ```text
-game 360690 / turn 155 / ship 447 / hull 23 / deficit 30.575 / implied 3 hits
-game 511506 / turn 23  / ship 160 / hull 17 / deficit 21.094 / implied 2 hits
+game 360690 / turn 155 / hull 23 -> tech 10 -> documented slowdown impossible
+game 511506 / turn 23  / hull 17 -> tech 6  -> survives
 ```
 
-Planets.nu documents that normal-mine hits slow only hull tech below 7; tech 7+ is not slowed. Therefore the next hard gate is static hull tech before any diplomacy/FC/RNG/repair reconstruction.
+The surviving hull 17 candidate has a corpus-observed normal-mine damage quantum of 76 and this before/after context:
+
+```text
+before damage/supplies = 0 / 53
+after damage/supplies  = 66 / 3 (supplies observational)
+planned distance       = 43.566 ly
+observed distance      = 22.472 ly
+deficit                = 21.094 ly
+```
+
+One hit plus automatic post-movement supply repair predicts `76 -> 66` damage and `53 -> 3` supplies exactly. Two damage hits do not match that repair trace. Therefore the working hypothesis is no longer "two 10-ly hits"; it is a possible **one hostile normal-mine hit plus an additional/compound movement consequence**.
 
 Active diagnostic:
 
 ```text
-tools/diagnostics/normal_mine_slowdown_candidate_gate_audit.py
+tools/diagnostics/normal_mine_single_candidate_immunity_repair_audit.py
 ```
+
+It checks only `game 511506 / turn 23 / ship 160`:
+
+1. exact post-decay normal minefields intersecting the planned route;
+2. route intervals through each field;
+3. field owners and turn-specific relation pairs;
+4. Safe Passage from field owner to target;
+5. team identity;
+6. any archived minefield Friendly Code values and exact ship/field FC match;
+7. one-hit vs two-hit supply-repair predictions.
 
 ### Immediate work
 
 1. pull current `main` and confirm clean tree;
-2. syntax-check/run `normal_mine_slowdown_candidate_gate_audit.py` without rebuild;
-3. inspect `hull_tech`, `hull_mass`, and `slowdown_tech_eligible` for both candidates;
-4. inspect the corpus-observed normal-mine damage quantum and before/after damage/supplies context;
-5. reject every candidate with hull tech >=7 immediately;
-6. only tech<7 survivors advance to historical Safe Passage / minefield friendly-code compatibility, exact field intersection, RNG multiplicity and repair reconstruction;
-7. do not promote a label from one or two candidates without independent attributable support;
-8. keep production accounting fixed at `2220`.
+2. syntax-check/run `normal_mine_single_candidate_immunity_repair_audit.py` without rebuild;
+3. inspect `INTERSECTED FIELD ELIGIBILITY` and identify explicitly hostile vs immune vs unresolved fields;
+4. inspect `REPAIR TRACE` and confirm whether one-hit prediction matches observed damage;
+5. if every intersected field is immune, reject mine attribution;
+6. if at least one field is explicitly hostile and one-hit repair trace is exact, retain a one-hit evidence case and investigate the remaining ~11 ly movement discrepancy;
+7. if field FC is unavailable, fail closed rather than infer hostility;
+8. do not promote a production label from this single transition;
+9. keep production accounting fixed at `2220`.
 
 ## Wider milestones
 
