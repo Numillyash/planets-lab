@@ -190,7 +190,7 @@ def _independent_navigation(
     gravitonic = hull_id in GRAVITONIC_HULL_IDS if hull_id is not None else False
     sample = MovementSample(
         turn=before_turn,
-        ship_id=_value(entity_before, "id") or 0,
+        ship_id=0,
         x=x,
         y=y,
         target_x=target_x,
