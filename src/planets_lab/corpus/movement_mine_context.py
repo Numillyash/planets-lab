@@ -1,11 +1,12 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from math import hypot
+from math import floor, hypot
 from typing import Any, Mapping, Sequence
 
 from planets_lab.data.nu_specs import NuStaticSpecs
 from planets_lab.data.nu_static import import_static_all
+from planets_lab.rules.ship_repair import repair_damage_with_supplies
 from planets_lab.validation.movement_geometry import MovementSample
 
 from .archive import read_archive_members, turn_members
@@ -21,6 +22,7 @@ from .reconstruction import PerspectiveRecord, group_perspective_records
 HORWASP_HULL_IDS = frozenset(range(201, 214))
 WEB_MINE_CATEGORY = "web_mine_hit_nearest_damage"
 NORMAL_MINE_CATEGORY = "normal_mine_hit_nearest_damage"
+NORMAL_MINE_SCALED_FLOOR_CATEGORY = "normal_mine_hit_scaled_floor_exact"
 
 
 @dataclass(frozen=True, slots=True)
@@ -300,6 +302,225 @@ def _same_owner_identity_after(
     return after_raw
 
 
+def _round_nearest_nonnegative(value: float) -> int:
+    return floor(value + 0.5)
+
+
+def _major_axis_clicks(
+    *,
+    origin: tuple[int, int],
+    target: tuple[int, int],
+) -> tuple[tuple[int, tuple[int, int]], ...]:
+    """Enumerate the validated planar Classic Host major-axis route raster."""
+
+    dx = target[0] - origin[0]
+    dy = target[1] - origin[1]
+    abs_dx = abs(dx)
+    abs_dy = abs(dy)
+    if abs_dx == 0 and abs_dy == 0:
+        return ((0, origin),)
+
+    result: list[tuple[int, tuple[int, int]]] = []
+    if abs_dx >= abs_dy:
+        major = abs_dx
+        minor = abs_dy
+        sx = 1 if dx >= 0 else -1
+        sy = 1 if dy >= 0 else -1
+        for click in range(major + 1):
+            minor_move = _round_nearest_nonnegative(click * minor / major) if major else 0
+            result.append((click, (origin[0] + sx * click, origin[1] + sy * minor_move)))
+    else:
+        major = abs_dy
+        minor = abs_dx
+        sx = 1 if dx >= 0 else -1
+        sy = 1 if dy >= 0 else -1
+        for click in range(major + 1):
+            minor_move = _round_nearest_nonnegative(click * minor / major) if major else 0
+            result.append((click, (origin[0] + sx * minor_move, origin[1] + sy * click)))
+    return tuple(result)
+
+
+def _click_for_point(
+    clicks: Sequence[tuple[int, tuple[int, int]]],
+    point: tuple[int, int],
+) -> int | None:
+    matches = [click for click, candidate in clicks if candidate == point]
+    if len(matches) != 1:
+        return None
+    return matches[0]
+
+
+def _regular_major_click(
+    *,
+    origin: tuple[int, int],
+    target: tuple[int, int],
+    regular_distance: float,
+) -> int | None:
+    dx = target[0] - origin[0]
+    dy = target[1] - origin[1]
+    major = max(abs(dx), abs(dy))
+    route_distance = hypot(dx, dy)
+    if major <= 0 or route_distance <= 1e-9 or regular_distance < 0.0:
+        return None
+    if regular_distance >= route_distance - 1e-9:
+        return major
+    click = floor(regular_distance * major / route_distance + 0.5)
+    return max(0, min(major, click))
+
+
+def scaled_floor_normal_mine_endpoint(
+    *,
+    origin: tuple[int, int],
+    target: tuple[int, int],
+    nominal_distance: float,
+    regular_distance: float,
+    slowdown_hits: int,
+) -> tuple[tuple[int, int] | None, int | None]:
+    """Return the corpus-observed exact planar scaled-floor endpoint candidate.
+
+    This is an empirical NuHost classifier rule, not a claim that Host literally
+    evaluates this expression internally. It is deliberately limited to the
+    planar Classic Host click raster validated by the historical corpus.
+    """
+
+    if nominal_distance <= 0.0 or regular_distance <= 1e-9 or slowdown_hits < 1:
+        return None, None
+    clicks = _major_axis_clicks(origin=origin, target=target)
+    regular_click = _regular_major_click(
+        origin=origin,
+        target=target,
+        regular_distance=regular_distance,
+    )
+    if regular_click is None:
+        return None, None
+    penalty = floor(10.0 * slowdown_hits * nominal_distance / regular_distance + 1e-12)
+    expected_click = max(0, regular_click - penalty)
+    endpoint = next((point for click, point in clicks if click == expected_click), None)
+    return endpoint, penalty
+
+
+def _exact_supply_repair_hit_count(
+    *,
+    before_damage: int | None,
+    after_damage: int | None,
+    before_supplies: int | None,
+    after_supplies: int | None,
+    quantum: int | None,
+) -> int | None:
+    """Recover one exact mine-hit count from a canonical automatic-repair trace."""
+
+    if (
+        before_damage is None
+        or after_damage is None
+        or before_supplies is None
+        or after_supplies is None
+        or quantum is None
+        or quantum <= 0
+        or min(before_damage, after_damage, before_supplies, after_supplies) < 0
+        or after_supplies > before_supplies
+    ):
+        return None
+
+    spent_supplies = before_supplies - after_supplies
+    if spent_supplies % 5 != 0:
+        return None
+    repaired_damage = spent_supplies // 5
+    raw_damage = after_damage + repaired_damage
+    hits = _positive_multiple(raw_damage - before_damage, quantum)
+    if hits is None:
+        return None
+
+    expected_damage, expected_supplies, _ = repair_damage_with_supplies(
+        damage=before_damage + hits * quantum,
+        supplies=before_supplies,
+    )
+    if expected_damage != after_damage or expected_supplies != after_supplies:
+        return None
+    return hits
+
+
+def _damage_hit_candidates(
+    *,
+    before_raw: Mapping[str, Any],
+    after_raw: Mapping[str, Any],
+    quantum: int | None,
+) -> tuple[int, ...]:
+    before_damage = _intish(before_raw.get("damage"))
+    after_damage = _intish(after_raw.get("damage"))
+    candidates: set[int] = set()
+
+    if before_damage is not None and after_damage is not None:
+        direct_hits = _positive_multiple(after_damage - before_damage, quantum)
+        if direct_hits is not None:
+            candidates.add(direct_hits)
+
+    repair_hits = _exact_supply_repair_hit_count(
+        before_damage=before_damage,
+        after_damage=after_damage,
+        before_supplies=_intish(before_raw.get("supplies")),
+        after_supplies=_intish(after_raw.get("supplies")),
+        quantum=quantum,
+    )
+    if repair_hits is not None:
+        candidates.add(repair_hits)
+    return tuple(sorted(candidates))
+
+
+def _classify_scaled_floor_normal_mine(
+    *,
+    context: MineEvidenceContext,
+    hull_mass: int,
+    hull_tech: int,
+    before_raw: Mapping[str, Any],
+    after_raw: Mapping[str, Any],
+    origin: tuple[int, int],
+    target: tuple[int, int],
+    observed: tuple[int, int],
+    nominal_distance: float,
+    regular_distance: float,
+    normal_field_crossing: bool,
+) -> MineHitEvidence | None:
+    """Classify only the independently equivalence-verified exact subset."""
+
+    if context.topology.sphere is not False:
+        return None
+    if hull_tech >= 7 or not normal_field_crossing:
+        return None
+    if regular_distance <= 1e-9 or regular_distance >= nominal_distance - 1e-9:
+        return None
+
+    quantum = nearest_damage_quantum(hull_mass, web=False)
+    damage_hit_candidates = _damage_hit_candidates(
+        before_raw=before_raw,
+        after_raw=after_raw,
+        quantum=quantum,
+    )
+    if not damage_hit_candidates:
+        return None
+
+    exact_models: set[tuple[int, int]] = set()
+    for damage_hits in damage_hit_candidates:
+        for slowdown_hits in range(1, damage_hits + 1):
+            endpoint, _ = scaled_floor_normal_mine_endpoint(
+                origin=origin,
+                target=target,
+                nominal_distance=nominal_distance,
+                regular_distance=regular_distance,
+                slowdown_hits=slowdown_hits,
+            )
+            if endpoint == observed:
+                exact_models.add((damage_hits, slowdown_hits))
+
+    if len(exact_models) != 1:
+        return None
+    damage_hits, slowdown_hits = next(iter(exact_models))
+    return MineHitEvidence(
+        category=NORMAL_MINE_SCALED_FLOOR_CATEGORY,
+        damage_hits=damage_hits,
+        slowdown_hits=slowdown_hits,
+    )
+
+
 def classify_strong_mine_hit_transition(
     *,
     context: MineEvidenceContext,
@@ -359,8 +580,6 @@ def classify_strong_mine_hit_transition(
         if before_damage is not None and after_damage is not None
         else None
     )
-    if damage_delta is None or damage_delta <= 0:
-        return None
 
     post_warp = _intish(after_raw.get("warp"))
     post_target_x = _intish(after_raw.get("targetx", after_raw.get("waypointx")))
@@ -399,12 +618,28 @@ def classify_strong_mine_hit_transition(
         for field_record in enemy_fields
     )
 
-    return classify_mine_evidence_values(
+    legacy = classify_mine_evidence_values(
         hull_mass=hull_spec.mass,
         hull_tech=hull_spec.tech_level,
         damage_delta=damage_delta,
         lost_distance=regular_distance - observed_distance,
         post_reset=post_reset,
         web_at_observed=web_at_observed,
+        normal_field_crossing=normal_field_crossing,
+    )
+    if legacy is not None:
+        return legacy
+
+    return _classify_scaled_floor_normal_mine(
+        context=context,
+        hull_mass=hull_spec.mass,
+        hull_tech=hull_spec.tech_level,
+        before_raw=before_raw,
+        after_raw=after_raw,
+        origin=origin,
+        target=target,
+        observed=observed,
+        nominal_distance=nominal,
+        regular_distance=regular_distance,
         normal_field_crossing=normal_field_crossing,
     )
