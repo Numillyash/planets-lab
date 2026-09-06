@@ -1,11 +1,19 @@
 from __future__ import annotations
 
 import argparse
+import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any
 
 import duckdb
+
+# Direct execution (``python tools/diagnostics/...py``) puts only the script
+# directory on sys.path. Add the repository root so namespace imports under
+# ``tools.diagnostics`` work the same way as they do under module/test runners.
+REPO_ROOT = Path(__file__).resolve().parents[2]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
 
 from planets_lab.corpus.movement_context import MovementMissionConvention
 from planets_lab.corpus.movement_differential import _entity_map
