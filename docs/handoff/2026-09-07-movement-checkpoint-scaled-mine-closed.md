@@ -120,7 +120,7 @@ No raw message dependency is required by the production classifier.
 
 ## Current generic final endpoint
 
-Runtime-verified after the production rebuild:
+Runtime-verified after the production rebuild and final generic clustering:
 
 ```text
 final_residual_rows       2197
@@ -152,13 +152,23 @@ The short-waypoint scaled-floor normal-mine classifier is:
 - underlying low-tech mine slowdown: `DOCUMENTED`;
 - exact scaled-floor relation: `CORPUS_OBSERVED`;
 - deterministic classifier/tests: `TESTED`;
-- independent 12-game rebuild/accounting and exact production-visible equivalence: `DIFF_VERIFIED`.
+- independent production-visible equivalence plus clean 12-game production rebuild/accounting: `DIFF_VERIFIED`.
 
 Do not relabel the empirical scaled-floor expression itself as documented NuHost source semantics.
 
-## Performance note
+## Test and performance status
 
-The optimized production-evidence equivalence diagnostic reduced the earlier hour-scale run to roughly five minutes by removing a duplicated corpus pass and skipping sphere rows before heavy reconstruction. The full production L2 rebuild completed in about 102 seconds with `--jobs 2`.
+```text
+movement-mine targeted tests = 10 passed
+12-game L2 rebuild           = 12 compiled / 0 failed
+prepared cache hits          = 12/12
+label issues                 = 0
+L2 rebuild wall time         = ~101.6 s with --jobs 2
+```
+
+GitHub Actions was green on the mechanics/test commits; final docs-only commits must also be green before merge.
+
+The optimized production-evidence equivalence diagnostic reduced the earlier hour-scale run to roughly five minutes by removing a duplicated corpus pass and skipping sphere rows before heavy reconstruction.
 
 ## Next project step
 
