@@ -165,4 +165,5 @@ The original `511506 / T23 / ship160 / hull17` survivor is now production-closed
 movement-mine targeted module: 10 passed
 full GitHub Actions pytest:    green
 full 12-game L2 rebuild:       clean / zero failures
+final generic clustering:      2197 total / 740 generic / 75 hulls / largest coarse 113
 ```
