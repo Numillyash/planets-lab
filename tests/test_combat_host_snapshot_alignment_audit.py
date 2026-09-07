@@ -11,14 +11,14 @@ audit = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(audit)
 
 
-def test_scope_distinguishes_strict_alignment_and_private_field_coverage() -> None:
+def test_scope_separates_identity_from_post_movement_position() -> None:
     rows = [
         {
             "t_minus_1": {
                 "present": True,
                 "owner_match": True,
                 "hull_match": True,
-                "position_match": True,
+                "position_match": False,
                 "mission_present": True,
                 "target_present": True,
                 "friendlycode_present": True,
@@ -51,14 +51,17 @@ def test_scope_distinguishes_strict_alignment_and_private_field_coverage() -> No
 
     assert scope["ship_sides"] == 2
     assert scope["t_minus_1"]["presence"] == {"present": 1, "missing": 1}
-    assert scope["t_minus_1"]["strict_owner_hull_position"] == {"match": 1}
+    assert scope["t_minus_1"]["owner_hull_identity"] == {"match": 1}
+    assert scope["t_minus_1"]["owner_hull_position"] == {"not_match": 1}
     assert scope["t_minus_1"]["private_fields_present"] == {
         "mission": 1,
         "mission1target": 1,
         "friendlycode": 1,
     }
+
     assert scope["t"]["presence"] == {"present": 2}
-    assert scope["t"]["strict_owner_hull_position"] == {"not_match": 2}
+    assert scope["t"]["owner_hull_identity"] == {"not_match": 1, "match": 1}
+    assert scope["t"]["owner_hull_position"] == {"not_match": 2}
     assert scope["t"]["private_fields_present"] == {
         "mission": 1,
         "mission1target": 0,
