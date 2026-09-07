@@ -6,7 +6,8 @@ Current durable checkpoints:
 
 - movement: [`handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md`](handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md);
 - Classic combat replay coverage: [`handoff/2026-09-07-combat-c2-classic-replay-coverage.md`](handoff/2026-09-07-combat-c2-classic-replay-coverage.md);
-- ship battle sequences: [`handoff/2026-09-07-combat-c3-ship-sequence-diff-verified.md`](handoff/2026-09-07-combat-c3-ship-sequence-diff-verified.md).
+- ship battle sequences: [`handoff/2026-09-07-combat-c3-ship-sequence-diff-verified.md`](handoff/2026-09-07-combat-c3-ship-sequence-diff-verified.md);
+- planet/starbase sequences: [`handoff/2026-09-07-combat-c4-planet-sequence-checkpoint.md`](handoff/2026-09-07-combat-c4-planet-sequence-checkpoint.md).
 
 ## Evidence policy
 
@@ -24,9 +25,20 @@ Unknown mechanics fail closed. Raw facts and evidence-scoped effective interpret
 
 Active milestone remains **M5 — historical NuHost corpus + compatibility mining**.
 
-Movement has reached a subsystem checkpoint. Classic pairwise combat and ordinary ship battle-sequence carry-over have now also reached explicit compatibility checkpoints. The immediate work is **C4 planet/starbase battle sequences**, followed by the missing Host combat phase around the resolver: engagement eligibility, battle order, side assignment, diplomacy/PE/mission interaction, multi-player queues, and planet/starbase participation.
+Movement, Classic pairwise replay, ordinary ship battle-sequence carry-over, and the attributable ordinary repeated-planet persistence layer now have explicit subsystem checkpoints.
 
-Do not reopen bounded movement or ordinary ship-sequence residual hunting unless a contradiction blocks a larger Host subsystem.
+The immediate combat work is the missing **Host combat phase around the resolver**:
+
+- engagement eligibility;
+- battle ordering / queues;
+- side assignment;
+- Priority Intercept / Primary Enemy / mission interaction;
+- diplomacy / Safe Passage / alliance effects;
+- capture continuation;
+- planet/base participation in the full multi-player queue;
+- the documented ship-to-planet phase boundary, including between-phase repair.
+
+Do not reopen bounded movement, ordinary ship-sequence, or plain-planet sequence residual hunting unless a contradiction blocks a larger Host subsystem.
 
 ## Runtime-verified movement accounting
 
@@ -246,20 +258,134 @@ mismatch                       8
 problem signature         damage
 ```
 
-This boundary has a separate Host repair step and is not a strict same-phase carry oracle. The eight damage rows move to C4/Host-phase reconstruction; do not patch the Classic pairwise resolver to force them closed.
+This boundary has a separate Host repair step and is not a strict same-phase carry oracle. Do not patch the Classic pairwise resolver to force these rows closed.
 
-## Immediate next work — C4 planet/starbase sequences
+### C4 — ordinary planet/starbase battle sequences
+
+C4 compares replay terminal planet/base state from factual VCR N against the factual start state of the same planet in VCR N+1.
+
+Corpus population:
+
+```text
+raw_vcr_observations               22256
+unique_vcrs                         6469
+replay_supported                    6469
+planet_appearances                  3719
+candidate_same_turn_planet_chains    110
+same_location_transitions            136
+```
+
+Ordinary population excluding game `591478`:
+
+```text
+transitions             103
+match                   102
+not_comparable            1
+mismatch                  0
+starbase                  92
+no_starbase               11
+shield carry match       103 / 103
+```
+
+#### Plain-planet exact carry
+
+For factual `hasstarbase=false`, C4 infers candidate persistent DP as:
+
+```text
+planet_defense = combat_mass - 100
+```
+
+The inferred state must reproduce the factual first VCR before it is accepted into the carry oracle.
+
+Final ordinary no-starbase result after correcting native planet beam-tech rounding:
+
+```text
+transitions                      11
+exact next-state match           10
+start reconstruction mismatch     1
+next-state mismatch               0
+shield carry match               11 / 11
+```
+
+The ten comparable rows reproduce the entire next factual combatant. Supported carry includes proportional DP damage, generated planetary fighter losses reducing DP, drained shield persistence and re-derived combat state.
+
+Evidence status for the supported ordinary plain-planet path:
+
+```text
+CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
+```
+
+The sole remaining non-comparable ordinary row has zero active beams and differs only in inactive `beamid` metadata (`0` vs `1`); it is not promoted as a combat mismatch and the strict audit is left unchanged.
+
+#### Native planet beam tech
+
+The first C4 gate showed six ordinary rows whose only mismatch was factual `beamid = imported_value + 1`. The corpus supports nearest-integer native beam tech:
+
+```text
+ROUND(SQRT(DP / 2))
+```
+
+with tech clamped to the supported 1..10 range for positive DP. Threshold regressions are covered by tests.
+
+#### Starbase shield persistence
+
+All ordinary repeated starbase defenders preserve terminal shield into the next factual VCR:
+
+```text
+92 / 92 exact
+```
+
+Evidence status:
+
+```text
+CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
+```
+
+This does **not** promote hidden post-hull-damage starbase defense state.
+
+#### Starbase fail-closed boundary
+
+A surviving starbase with non-zero planet hull damage remains fail-closed because factual VCR state does not uniquely expose the resulting persistent:
+
+```text
+starbase defense
+starbase beam tech
+starbase accumulated damage
+```
+
+The zero-hull-damage starbase carry helper is `TESTED`; the hidden damaged-base branch remains unresolved.
+
+#### Special game 591478
+
+Game `591478` remains separated from ordinary promotion:
+
+```text
+transitions                    33
+match                          17
+not_comparable                  9
+mismatch                        4
+reappearance_after_defeat       3
+shield match                   28
+shield mismatch                 2
+```
+
+Do not generalize these special/campaign/Horwasp residuals into ordinary Classic planet rules.
+
+## Immediate next work — Host combat phase
 
 Proceed in this order:
 
-1. reconstruct consecutive ship-vs-planet/starbase battles at the same planet in factual VCR order;
-2. distinguish plain planet defense from starbase defense;
-3. determine which planet/base combat state persists between attackers and which state resets;
-4. verify ship state entering the planet phase, including documented between-phase repair;
-5. preserve fail-closed handling for surviving damaged bases when exact persistent defense split is not recoverable;
-6. compare simulated planet/base terminal state against the next factual planet VCR wherever an independent oracle exists;
-7. keep game `591478` special mechanics separately labeled;
-8. only after C4 move to Host engagement eligibility/order/side assignment and diplomacy/PE/mission interaction.
+1. reconstruct full factual combat queues by turn/location from ordered VCRs;
+2. determine engagement eligibility and opponent selection for ordinary Classic cases;
+3. reconstruct side assignment / left-right rules separately from pairwise resolution;
+4. integrate Priority Intercept / Primary Enemy / mission semantics only where IDs and behavior are established;
+5. incorporate diplomacy, Safe Passage and alliance/team effects;
+6. model capture continuation in the same Host phase rather than as a pairwise resolver property;
+7. place the documented ship-to-planet repair boundary between ship and planet combat phases;
+8. integrate planet/base participation using the C4 persistence layer while keeping hidden damaged-starbase state fail-closed;
+9. keep game `591478` and other special/campaign mechanics separately labeled until attributable.
+
+The next goal is not merely to replay an already supplied VCR. It is to predict the **set, order and sides of VCRs Host will generate** from the factual co-located game state.
 
 ## Host reconstruction order after combat sequence checkpoints
 
@@ -268,8 +394,8 @@ Proceed in this order unless evidence forces a dependency change:
 1. **Movement checkpoint** — substantially reconstructed; reopen only for bounded contradictions/interactions.
 2. **Classic pairwise combat C1/C2** — extracted and complete for current replay corpus.
 3. **Ordinary ship battle sequences C3** — `DIFF_VERIFIED` on clean same-phase historical chains.
-4. **Planet/starbase sequences C4** — current immediate focus.
-5. **Full Host combat ordering / engagement selection** — eligibility, queues, side assignment, PE/mission/diplomacy and capture continuation.
+4. **Planet/starbase sequences C4** — attributable ordinary plain-planet carry and starbase shield persistence checkpointed; hidden damaged-starbase state remains fail-closed.
+5. **Full Host combat ordering / engagement selection** — current immediate focus: eligibility, queues, side assignment, PE/mission/diplomacy and capture continuation.
 6. **Planet economy + starbases + ship production**.
 7. **Minefield lifecycle** — laying, decay, sweep, web drain, visibility, diplomacy/FC interactions and ordering.
 8. **General missions + special ship abilities**.
@@ -286,8 +412,8 @@ The target remains a high-fidelity NuHost-compatible simulator suitable for real
 - **M0 deterministic skeleton:** substantially complete.
 - **M1 minimal sandbox:** largely implemented.
 - **M2 economy/planetary Host:** in progress.
-- **M3 warfare:** materially advanced: Classic pairwise replay and ordinary ship sequence carry-over are now canonical in `planets-lab`; planet/base sequencing and Host engagement order remain open.
-- **M4 race mechanics:** partial; Federation shield recovery now has scoped differential evidence.
+- **M3 warfare:** materially advanced: Classic pairwise replay, ordinary ship sequences and attributable ordinary repeated-planet persistence are canonical in `planets-lab`; full Host engagement ordering remains open.
+- **M4 race mechanics:** partial; Federation shield recovery has scoped differential evidence.
 - **M5A historical corpus:** active and operational.
-- **M5B Nu compatibility matrix:** active; movement and ordinary ship combat sequences have explicit subsystem checkpoints.
+- **M5B Nu compatibility matrix:** active; movement and ordinary Classic combat sequence checkpoints are explicit.
 - **M6 training/AI:** later, after required simulation/observer surfaces are sufficiently faithful.
