@@ -9,6 +9,7 @@ from planets_lab.rules.combat import (
     replay_nuhost_classic,
     replay_nuhost_from_nu_catalog,
 )
+from planets_lab.rules.combat import nu as nu_rules
 
 
 BEAMS = [
@@ -129,6 +130,32 @@ def test_extended_combat_rng_fails_closed() -> None:
             torpedoes=TORPEDOES,
             settings={"combatrng": 1},
         )
+
+
+def test_signed_cpp_division_matches_c2ng_semantics() -> None:
+    assert nu_rules._cpp_divmod(151, 100) == (1, 51)
+    assert nu_rules._cpp_divmod(-151, 100) == (-1, -51)
+    assert nu_rules._NuSignedClassicReplay._divide_and_round(-151, 100) == -1
+    assert nu_rules._NuSignedClassicReplay._divide_and_round(-50, 100) == 0
+    assert nu_rules._NuSignedClassicReplay._rdivadd(-151, 100, -10) == -11
+
+
+def test_nu_adapter_accepts_crew_defense_above_100() -> None:
+    payload = _vcr()
+    left = payload["left"]
+    assert isinstance(left, dict)
+    left["shield"] = 0
+    left["crewdefensepercent"] = 150
+
+    result = replay_nuhost_from_nu_catalog(
+        payload,
+        beams=BEAMS,
+        torpedoes=TORPEDOES,
+        settings={"combatrng": 0},
+    )
+
+    assert result["engine"] == "nuhost_classic_119"
+    assert result["left"]["crew"] >= 525
 
 
 def test_nu_adapter_matches_direct_normalized_core() -> None:
