@@ -128,3 +128,57 @@ def test_federation_candidate_formula_uses_production_sequence_rule() -> None:
         terminal_shield=95,
         terminal_damage=20,
     ) == 80
+
+
+
+def test_loadall_member_is_top_level_rst(tmp_path) -> None:
+    import argparse
+    import json
+    import zipfile
+
+    archive = tmp_path / "game-123.zip"
+
+    # Real loadall shape: the .trn JSON itself is the RST payload.
+    # There is no additional {"rst": ...} wrapper.
+    rst = {
+        "game": {"id": 123, "turn": 8},
+        "settings": {"combatrng": 0},
+        "beams": [],
+        "torpedos": [],
+        "vcrs": [
+            {
+                "id": 77,
+                "turn": 8,
+            }
+        ],
+    }
+
+    with zipfile.ZipFile(
+        archive,
+        "w",
+        compression=zipfile.ZIP_DEFLATED,
+    ) as zf:
+        zf.writestr(
+            "player1-turn8.trn",
+            json.dumps(rst).encode("utf-8"),
+        )
+
+    args = argparse.Namespace(
+        archive_dir=tmp_path,
+        archive=[],
+        output=None,
+        detail_limit=10,
+        sample_limit=2,
+    )
+
+    report = audit.run(args)
+
+    assert report["summary"]["raw_vcr_observations"] == 1
+    assert report["summary"]["unique_vcrs"] == 1
+
+    # Extraction succeeds; deliberately incomplete VCR then fails closed
+    # during replay rather than disappearing at archive-ingestion time.
+    assert report["summary"]["replay_unsupported"] == 1
+
+    assert report["archives"][0]["game_ids"] == [123]
+    assert report["archives"][0]["vcr_observations"] == 1

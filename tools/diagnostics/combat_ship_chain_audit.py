@@ -276,14 +276,13 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         for member in members:
             raw = raw_members[member.name]
             try:
-                payload = _decode_turn(raw, member.name)
+                # A loadall playerN-turnM.trn member is already the RST object.
+                # Keep this contract aligned with the C2 corpus-parity audit.
+                rst = _decode_turn(raw, member.name)
             except ValueError as exc:
                 summary["malformed_members"] += 1
                 if len(malformed_members) < args.detail_limit:
                     malformed_members.append({"member": member.name, "reason": str(exc)})
-                continue
-            rst = payload.get("rst")
-            if not isinstance(rst, Mapping):
                 continue
             game = rst.get("game")
             if not isinstance(game, Mapping):
