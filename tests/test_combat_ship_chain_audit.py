@@ -67,7 +67,7 @@ def test_race1_federation_candidate_is_reported_without_forcing_advantage() -> N
         ),
         _current(
             {
-                "shield": 70,
+                "shield": 85,
                 "damage": 10,
                 "crew": 100,
                 "torpedos": 4,
@@ -123,12 +123,19 @@ def test_federation_candidate_formula_uses_production_sequence_rule() -> None:
     assert audit._federation_candidate_shield(
         terminal_shield=60,
         terminal_damage=10,
-    ) == 70
+    ) == 85
     assert audit._federation_candidate_shield(
         terminal_shield=95,
         terminal_damage=20,
     ) == 80
-
+    assert audit._federation_candidate_shield(
+        terminal_shield=0,
+        terminal_damage=83,
+    ) == 17
+    assert audit._federation_candidate_shield(
+        terminal_shield=0,
+        terminal_damage=96,
+    ) == 4
 
 
 def test_loadall_member_is_top_level_rst(tmp_path) -> None:
