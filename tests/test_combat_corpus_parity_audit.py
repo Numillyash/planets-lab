@@ -14,7 +14,15 @@ audit = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(audit)
 
 
-BEAMS = [{"id": 7, "crewkill": 20, "damage": 40}]
+BEAMS = [
+    {"id": 1, "crewkill": 10, "damage": 3},
+    {"id": 2, "crewkill": 15, "damage": 1},
+    {"id": 3, "crewkill": 3, "damage": 10},
+    {"id": 4, "crewkill": 10, "damage": 25},
+    {"id": 5, "crewkill": 9, "damage": 29},
+    {"id": 6, "crewkill": 30, "damage": 20},
+    {"id": 7, "crewkill": 20, "damage": 40},
+]
 TORPEDOES = [{"id": 6, "crewkill": 13, "damage": 30, "combatrange": 300}]
 
 
@@ -58,7 +66,7 @@ def _vcr() -> dict[str, object]:
             "launchercount": 0,
             "baycount": 0,
             "hullid": 0,
-            "beamid": 7,
+            "beamid": 1,
             "torpedoid": 0,
             "shield": 0,
             "damage": 0,
