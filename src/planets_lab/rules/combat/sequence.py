@@ -84,10 +84,12 @@ def apply_terminal_state(
 
 
 def federation_recover_shields(raw: Mapping[str, Any]) -> tuple[dict[str, Any], int]:
-    """Apply the current explicit Federation between-fight shield rule.
+    """Apply the explicit Federation between-fight shield recovery candidate.
 
-    The rule is only applied when ``federation_crew_bonus`` is explicitly true.
-    Historical diagnostics must not infer that flag from race id alone.
+    Historical Nu VCR chains show a fixed recovery of up to 25 shield points,
+    capped by the damage-reduced maximum shield level. The rule is only applied
+    when ``federation_crew_bonus`` is explicitly true; historical diagnostics
+    must not infer that flag from race id alone.
     """
 
     result = deepcopy(dict(raw))
@@ -98,10 +100,8 @@ def federation_recover_shields(raw: Mapping[str, Any]) -> tuple[dict[str, Any], 
     damage_value = result.get("damage", 0)
     shield = max(0, min(100, shield_value if isinstance(shield_value, int) and not isinstance(shield_value, bool) else 0))
     damage = max(0, damage_value if isinstance(damage_value, int) and not isinstance(damage_value, bool) else 0)
-    loss = 100 - shield
-    recovered = (loss + 2) // 4
     max_shield = max(0, 100 - damage)
-    next_shield = min(max_shield, shield + recovered)
+    next_shield = min(max_shield, shield + 25)
     result["shield"] = next_shield
     return result, max(0, next_shield - shield)
 
