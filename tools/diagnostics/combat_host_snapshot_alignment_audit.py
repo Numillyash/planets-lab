@@ -120,7 +120,8 @@ def _scope(rows: list[dict[str, Any]]) -> dict[str, Any]:
         hull = Counter()
         position = Counter()
         private = Counter()
-        strict = Counter()
+        identity = Counter()
+        identity_and_position = Counter()
         for row in rows:
             candidate = row[label]
             if not candidate.get("present"):
@@ -133,21 +134,23 @@ def _scope(rows: list[dict[str, Any]]) -> dict[str, Any]:
             private["mission"] += int(candidate.get("mission_present") is True)
             private["mission1target"] += int(candidate.get("target_present") is True)
             private["friendlycode"] += int(candidate.get("friendlycode_present") is True)
-            if (
+
+            identity_match = (
                 candidate.get("owner_match") is True
                 and candidate.get("hull_match") is True
-                and candidate.get("position_match") is True
-            ):
-                strict["match"] += 1
-            else:
-                strict["not_match"] += 1
+            )
+            identity["match" if identity_match else "not_match"] += 1
+            full_match = identity_match and candidate.get("position_match") is True
+            identity_and_position["match" if full_match else "not_match"] += 1
+
         result[label] = {
             "presence": dict(present),
             "owner_match": dict(owner),
             "hull_match": dict(hull),
             "position_match": dict(position),
             "private_fields_present": dict(private),
-            "strict_owner_hull_position": dict(strict),
+            "owner_hull_identity": dict(identity),
+            "owner_hull_position": dict(identity_and_position),
         }
     return result
 
@@ -219,8 +222,12 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     ordinary = [row for row in rows if row["game_id"] != SPECIAL_GAME_ID]
     special = [row for row in rows if row["game_id"] == SPECIAL_GAME_ID]
     return {
-        "schema": "planets-lab.combat-host-snapshot-alignment-audit.v1",
+        "schema": "planets-lab.combat-host-snapshot-alignment-audit.v2",
         "read_only": True,
+        "evidence_boundary": (
+            "Owner+hull identity is the alignment criterion. Position is reported separately "
+            "because T-1 snapshots precede movement while VCR positions are post-movement."
+        ),
         "summary": {"archives": len(archives), "ship_sides": len(rows)},
         "scopes": {
             "ordinary": _scope(ordinary),
