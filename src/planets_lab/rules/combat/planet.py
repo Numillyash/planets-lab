@@ -61,10 +61,17 @@ def planet_beam_count(
 
 
 def planet_native_beam_tech(defense: int) -> int:
+    """Return native planetary beam slot from defense-post count.
+
+    The Planets.nu Defense Posts details page currently prints a TRUNC formula,
+    but its own published capability table uses the ROUND thresholds (5->2,
+    13->3, 25->4, ...). Historical Nu VCRs independently match the table.
+    """
+
     dp = max(0, int(defense))
     if dp <= 0:
         return 0
-    return max(1, min(10, isqrt(dp // 2)))
+    return max(1, min(10, _round_sqrt_ratio(dp, 2)))
 
 
 def damage_defense_posts(defense: int, battle_damage: int) -> int:
