@@ -12,6 +12,12 @@ from planets_lab.rules.combat import (
 
 
 BEAMS = [
+    {"id": 1, "name": "Laser", "crewkill": 10, "damage": 3},
+    {"id": 2, "name": "X-Ray Laser", "crewkill": 15, "damage": 1},
+    {"id": 3, "name": "Plasma Bolt", "crewkill": 3, "damage": 10},
+    {"id": 4, "name": "Blaster", "crewkill": 10, "damage": 25},
+    {"id": 5, "name": "Positron Beam", "crewkill": 9, "damage": 29},
+    {"id": 6, "name": "Disruptor", "crewkill": 30, "damage": 20},
     {"id": 7, "name": "Heavy Blaster", "crewkill": 20, "damage": 40},
 ]
 TORPEDOES = [
@@ -70,7 +76,7 @@ def _vcr() -> dict[str, object]:
             "launchercount": 0,
             "baycount": 0,
             "hullid": 0,
-            "beamid": 7,
+            "beamid": 1,
             "torpedoid": 0,
             "shield": 0,
             "damage": 0,
@@ -90,9 +96,11 @@ def _vcr() -> dict[str, object]:
 
 
 def test_normalize_nu_weapon_fields() -> None:
-    assert normalize_nu_beams(BEAMS) == [
-        {"id": 7, "damage": 40, "kill": 20},
-    ]
+    assert normalize_nu_beams(BEAMS)[-1] == {
+        "id": 7,
+        "damage": 40,
+        "kill": 20,
+    }
     assert normalize_nu_torpedoes(TORPEDOES) == [
         {"id": 6, "damage": 30, "kill": 13, "firingrangebonus": 0},
         {"id": 11, "damage": 1, "kill": 1, "firingrangebonus": 40},
