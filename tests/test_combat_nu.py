@@ -96,6 +96,46 @@ def _vcr() -> dict[str, object]:
     }
 
 
+def _combat_object(**overrides: object) -> nu_rules.CombatObject:
+    values: dict[str, object] = {
+        "object_id": 1,
+        "owner_id": 1,
+        "name": "test ship",
+        "beam_count": 0,
+        "launcher_count": 0,
+        "bay_count": 0,
+        "hull_id": 1,
+        "beam_id": 0,
+        "torpedo_id": 0,
+        "shield": 100,
+        "damage": 0,
+        "crew": 100,
+        "mass": 79,
+        "race_id": 1,
+        "beam_kill_rate": 1,
+        "beam_charge_rate": 1,
+        "torp_charge_rate": 1,
+        "torp_miss_rate": 35,
+        "crew_defense_rate": 0,
+        "torpedoes": 0,
+        "fighters": 0,
+        "is_planet": False,
+    }
+    values.update(overrides)
+    return nu_rules.CombatObject(**values)  # type: ignore[arg-type]
+
+
+def _direct_nu_replay(victim: nu_rules.CombatObject) -> nu_rules._NuSignedClassicReplay:
+    opponent = _combat_object(object_id=2, owner_id=2, name="opponent")
+    return nu_rules._NuSignedClassicReplay(
+        seed=1,
+        left=victim,
+        right=opponent,
+        beams={},
+        torpedoes={},
+    )
+
+
 def test_normalize_nu_weapon_fields() -> None:
     assert normalize_nu_beams(BEAMS)[-1] == {
         "id": 7,
@@ -138,6 +178,26 @@ def test_signed_cpp_division_matches_c2ng_semantics() -> None:
     assert nu_rules._NuSignedClassicReplay._divide_and_round(-151, 100) == -1
     assert nu_rules._NuSignedClassicReplay._divide_and_round(-50, 100) == 0
     assert nu_rules._NuSignedClassicReplay._rdivadd(-151, 100, -10) == -11
+
+
+def test_exact_shield_depletion_does_not_damage_crew_on_same_hit() -> None:
+    replay = _direct_nu_replay(_combat_object(shield=11, crew=100, mass=79))
+
+    replay._hit(replay.status[0], damage=10, kill=10)
+
+    assert replay.status[0].obj.shield == 0
+    assert replay.status[0].obj.damage == 0
+    assert replay.status[0].obj.crew == 100
+
+
+def test_penetrating_shield_hit_still_damages_crew_immediately() -> None:
+    replay = _direct_nu_replay(_combat_object(shield=10, crew=100, mass=79))
+
+    replay._hit(replay.status[0], damage=10, kill=10)
+
+    assert replay.status[0].obj.shield == 0
+    assert replay.status[0].obj.damage == 2
+    assert replay.status[0].obj.crew == 90
 
 
 def test_nu_adapter_accepts_crew_defense_above_100() -> None:

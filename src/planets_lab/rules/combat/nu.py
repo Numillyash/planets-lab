@@ -69,6 +69,58 @@ class _NuSignedClassicReplay(NuHostClassicReplay):
         quotient, _ = _cpp_divmod(a + b // 2, b)
         return quotient
 
+    def _hit(self, side: Any, damage: int, kill: int) -> None:
+        """Apply one hit using c2ng's exact crew-exposure ordering.
+
+        c2ng tests the object's *stored* shield value before assigning the newly
+        computed shield value. Therefore a hit that changes a positive shield
+        to exactly zero does not damage crew on that same hit. A penetrating
+        hit first stores shield zero and therefore does expose crew immediately.
+        """
+
+        obj = side.obj
+        shield = -self._rdivadd(
+            80 * damage,
+            obj.mass + 1,
+            1 - obj.shield,
+        )
+
+        if shield < 0:
+            obj.shield = 0
+            new_damage = self._rdivadd(
+                -80 * shield,
+                obj.mass + 1,
+                obj.damage + 1,
+            )
+            obj.damage = min(new_damage, 9999)
+            shield = 0
+
+            if obj.is_planet and damage > 1:
+                right = self.status[1]
+                beam_limit = 10 - right.obj.damage // 10
+                if beam_limit <= 0:
+                    left_beam = self.status[0].obj.beam_id
+                    if left_beam > 0:
+                        self._set_beam_type(right, left_beam)
+                elif right.obj.beam_id > beam_limit:
+                    self._set_beam_type(right, beam_limit)
+
+        # This deliberately checks the stored object shield, not the local
+        # newly-computed shield. It mirrors c2ng HostAlgorithm::hit().
+        if obj.shield == 0 and not obj.is_planet:
+            effective_kill = self._divide_and_round(
+                (100 - obj.crew_defense_rate) * kill,
+                100,
+            )
+            crew = -self._rdivadd(
+                80 * effective_kill,
+                obj.mass + 1,
+                -obj.crew,
+            )
+            obj.crew = max(crew, 0)
+
+        obj.shield = shield
+
 
 def normalize_nu_beams(
     records: Sequence[Mapping[str, Any]],
