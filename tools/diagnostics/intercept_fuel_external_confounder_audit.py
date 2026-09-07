@@ -14,17 +14,23 @@ if str(REPO_ROOT) not in sys.path:
 import duckdb
 
 from planets_lab.corpus.movement_chunnel_context import (
+    _numeric_friendly_code,
+    _pre_chunnel_position,
     _sample_from_transition,
-    discover_observed_chunnel_events,
     extract_stable_chunnel_abilities,
 )
-from planets_lab.corpus.movement_context import MovementMissionConvention
+from planets_lab.corpus.movement_context import (
+    MOVE_MOST_CANDIDATE,
+    MovementMissionConvention,
+    _classify_owner_record,
+)
 from planets_lab.corpus.movement_differential import (
     GEOMETRY_EXPLAINED_CATEGORIES,
     _entity_map,
     _intish,
     _movement_category,
     _planet_tuples_by_turn,
+    _resolved_value,
 )
 from planets_lab.corpus.movement_mine_context import (
     build_mine_evidence_context,
@@ -33,6 +39,7 @@ from planets_lab.corpus.movement_mine_context import (
 from planets_lab.corpus.movement_residual_context import (
     GRAVITONIC_HULL_IDS,
     _observed_tow_targets,
+    _owner_record,
     _storm_consensus_by_turn,
     _storm_expected_category,
 )
@@ -80,13 +87,89 @@ def _effective_damage_sample(
     )
 
 
+def _targeted_chunnel_matches(
+    *,
+    before_turn: int,
+    after_turn: int,
+    ship_id: int,
+    owner_id: int,
+    observed: tuple[int, int],
+    abilities: Any,
+    entities: Any,
+    ship_groups: Any,
+    transition_by_key: Any,
+    planets: tuple[tuple[int, int, int], ...],
+    storms: tuple[Any, ...],
+) -> tuple[dict[str, Any], ...]:
+    """Check only whether this one ship is an observed Chunnel target route.
+
+    The broad discover_observed_chunnel_events() scan is intentionally avoided
+    here. This audit has at most a handful of strict snapshot-fuel-limited
+    Intercept rows, so scanning every movement transition in a large historical
+    game was pure diagnostic overhead and could take minutes without output.
+    """
+
+    target_before = entities.get(("ship", before_turn, ship_id))
+    if target_before is None:
+        return ()
+    target_hull = _intish(_resolved_value(target_before, "hullid"))
+    if target_hull not in abilities.target_hull_ids:
+        return ()
+
+    convention = MovementMissionConvention()
+    target_code = ship_id % 1000
+    matches: list[dict[str, Any]] = []
+
+    for (kind, turn, initiator_id), entity in entities.items():
+        if kind != "ship" or turn != before_turn or initiator_id == ship_id:
+            continue
+        initiator_hull = _intish(_resolved_value(entity, "hullid"))
+        if initiator_hull not in abilities.initiator_hull_ids:
+            continue
+
+        candidate_owner_id, owner = _owner_record(
+            ship_groups.get((before_turn, initiator_id), ())
+        )
+        if candidate_owner_id != owner_id or owner is None:
+            continue
+        if _classify_owner_record(owner, convention=convention) != MOVE_MOST_CANDIDATE:
+            continue
+        if _numeric_friendly_code(owner) != target_code:
+            continue
+
+        transition = transition_by_key.get((before_turn, after_turn, initiator_id))
+        if transition is None:
+            continue
+        initiator_sample = _sample_from_transition(transition, entities)
+        if initiator_sample is None or initiator_sample.observed_destination != observed:
+            continue
+
+        pre_position, status = _pre_chunnel_position(
+            initiator_sample,
+            planets=planets,
+            storms=storms,
+        )
+        if pre_position is None or pre_position == observed:
+            continue
+        matches.append(
+            {
+                "initiator_ship": initiator_id,
+                "destination": observed,
+                "pre_chunnel_position": pre_position,
+                "pre_chunnel_status": status,
+            }
+        )
+
+    return tuple(matches)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
         description=(
-            "Audit the strict snapshot-fuel-limited Intercept cases for already-known external "
-            "movement mechanics before treating a fuel differential as causal. The diagnostic "
-            "checks the production-verified mine classifier, damage-limited warp, warp wells, "
-            "ion-storm drag, observed Tow routes and observed Chunnel target routes."
+            "Targeted audit of the strict snapshot-fuel-limited Intercept cases for already-"
+            "known external movement mechanics. A cheap first pass identifies the tiny fuel-"
+            "limited population; expensive mine/storm/Tow/Chunnel context is then built only "
+            "for games and turns that actually contain such a case."
         )
     )
     parser.add_argument("--database", type=Path, default=DEFAULT_DATABASE)
@@ -124,6 +207,9 @@ def main() -> int:
     totals = Counter()
     cases: list[dict[str, Any]] = []
 
+    print("===== INTERCEPT FUEL EXTERNAL CONFOUNDER AUDIT =====", flush=True)
+    print("mode= targeted_strict_fuel_limited", flush=True)
+
     for game_id in sorted(by_game):
         archive_path = RAW_DIR / f"game-{game_id}.zip"
         if not archive_path.exists():
@@ -132,7 +218,7 @@ def main() -> int:
         if _settings_unlimited_fuel(archive_data) is True:
             continue
 
-        prepared, _ = load_or_build_prepared_game_cache(
+        prepared, cache_hit = load_or_build_prepared_game_cache(
             archive_data,
             game_id=game_id,
             cache_path=PREPARED_DIR / f"game-{game_id}.pickle",
@@ -148,34 +234,14 @@ def main() -> int:
         entities = _entity_map(prepared.snapshots)
         ship_groups = group_perspective_records(prepared.snapshots, "ship")
         snapshots = _snapshot_by_owner(prepared)
-        planets_by_turn = _planet_tuples_by_turn(entities)
-        races = _race_map(prepared.snapshots)
-        storms_by_turn, storm_conflicts, storm_invalid = _storm_consensus_by_turn(prepared.snapshots)
-        mine_context = build_mine_evidence_context(
-            game_id=game_id,
-            archive_data=archive_data,
-            snapshots=prepared.snapshots,
-        )
         transition_by_key = {
             (item.before_archive_turn, item.after_archive_turn, item.entity_id): item
             for item in prepared.movement_geometry_readiness.results
         }
-        valid_pairs = {
-            (item.before_archive_turn, item.after_archive_turn)
-            for item in prepared.movement_geometry_readiness.results
-        }
-        tow_targets, _ = _observed_tow_targets(
-            entities=entities,
-            ship_groups=ship_groups,
-            valid_pairs=valid_pairs,
-            convention=MovementMissionConvention(),
-        )
-        abilities = extract_stable_chunnel_abilities(archive_data)
-        chunnel_events, _ = discover_observed_chunnel_events(prepared.snapshots, abilities)
-        chunnel_target_events: dict[tuple[int, int], list[Any]] = defaultdict(list)
-        for event in chunnel_events:
-            chunnel_target_events[(event.before_archive_turn, event.target_ship_id)].append(event)
 
+        # First pass: reproduce the strict broad-differential population with
+        # only the inexpensive state needed to determine snapshot fuel limitation.
+        strict_rows: list[dict[str, Any]] = []
         for row in by_game[game_id]:
             (
                 _game_id,
@@ -260,7 +326,67 @@ def main() -> int:
             if not fuel_plan.fuel_limited:
                 continue
 
+            strict_rows.append(
+                {
+                    "before_turn": before_turn,
+                    "after_turn": after_turn,
+                    "embedded_turn": embedded_turn,
+                    "ship_id": ship_id,
+                    "hull_id": hull_id,
+                    "warp": warp,
+                    "origin": origin,
+                    "observed": observed,
+                    "owner_id": owner_id,
+                    "before_raw": before_raw,
+                    "after_raw": after_raw,
+                    "target_id": target_id,
+                    "target_final": target_final,
+                    "fuel_plan": fuel_plan,
+                }
+            )
+
+        if not strict_rows:
+            continue
+
+        print(
+            f"game={game_id} cache_hit={cache_hit} strict_snapshot_fuel_limited={len(strict_rows)}",
+            flush=True,
+        )
+
+        # Expensive contextual indexes are built only for the games that survived
+        # the first pass. Even inside those games Tow/Chunnel checks are turn-local.
+        planets_by_turn = _planet_tuples_by_turn(entities)
+        races = _race_map(prepared.snapshots)
+        storms_by_turn, storm_conflicts, storm_invalid = _storm_consensus_by_turn(prepared.snapshots)
+        mine_context = build_mine_evidence_context(
+            game_id=game_id,
+            archive_data=archive_data,
+            snapshots=prepared.snapshots,
+        )
+        abilities = extract_stable_chunnel_abilities(archive_data)
+
+        for index, item in enumerate(strict_rows, start=1):
+            before_turn = item["before_turn"]
+            after_turn = item["after_turn"]
+            embedded_turn = item["embedded_turn"]
+            ship_id = item["ship_id"]
+            hull_id = item["hull_id"]
+            warp = item["warp"]
+            origin = item["origin"]
+            observed = item["observed"]
+            owner_id = item["owner_id"]
+            before_raw = item["before_raw"]
+            after_raw = item["after_raw"]
+            target_id = item["target_id"]
+            target_final = item["target_final"]
+            fuel_plan = item["fuel_plan"]
+
             totals["strict_snapshot_fuel_limited"] += 1
+            print(
+                f"  case {index}/{len(strict_rows)} turn={before_turn} ship={ship_id}: checking context",
+                flush=True,
+            )
+
             sample = MovementSample(
                 turn=embedded_turn,
                 ship_id=ship_id,
@@ -317,11 +443,31 @@ def main() -> int:
                 if storm_category is not None:
                     totals[f"storm:{storm_category}"] += 1
 
+            tow_targets, _ = _observed_tow_targets(
+                entities=entities,
+                ship_groups=ship_groups,
+                valid_pairs={(before_turn, after_turn)},
+                convention=MovementMissionConvention(),
+            )
             tow_route_towers = tow_targets.get((before_turn, ship_id), ())
             if tow_route_towers:
                 totals["observed_tow_route"] += 1
 
-            chunnel_matches = tuple(chunnel_target_events.get((before_turn, ship_id), ()))
+            chunnel_matches: tuple[dict[str, Any], ...] = ()
+            if after_turn not in storm_conflicts and after_turn not in storm_invalid:
+                chunnel_matches = _targeted_chunnel_matches(
+                    before_turn=before_turn,
+                    after_turn=after_turn,
+                    ship_id=ship_id,
+                    owner_id=owner_id,
+                    observed=observed,
+                    abilities=abilities,
+                    entities=entities,
+                    ship_groups=ship_groups,
+                    transition_by_key=transition_by_key,
+                    planets=planets,
+                    storms=storms_by_turn.get(after_turn, ()),
+                )
             if chunnel_matches:
                 totals["observed_chunnel_target_route"] += 1
 
@@ -386,19 +532,12 @@ def main() -> int:
                     "storm_status": storm_status,
                     "storm_category": storm_category,
                     "observed_tow_route_towers": tuple(tow_route_towers),
-                    "observed_chunnel_target_events": tuple(
-                        {
-                            "initiator_ship": event.initiator_ship_id,
-                            "destination": event.destination,
-                            "pre_chunnel_position": event.pre_chunnel_position,
-                        }
-                        for event in chunnel_matches
-                    ),
+                    "observed_chunnel_target_events": chunnel_matches,
                     "known_external_flags": tuple(flags),
                 }
             )
 
-    print("===== INTERCEPT FUEL EXTERNAL CONFOUNDER AUDIT =====")
+    print("\n===== SUMMARY =====")
     print("strict_snapshot_fuel_limited=", totals["strict_snapshot_fuel_limited"])
     print("cases_with_known_external_explanation=", totals["cases_with_known_external_explanation"])
     print("cases_without_known_external_explanation=", totals["cases_without_known_external_explanation"])
@@ -423,8 +562,8 @@ def main() -> int:
         "movement_mine_context rather than a new ad-hoc Intercept-only rule."
     )
     print(
-        "Observed Tow/Chunnel route matches preserve their existing evidentiary limits: they "
-        "are route evidence, not proof of hidden Host causality."
+        "Tow and Chunnel checks are restricted to the exact candidate turn instead of scanning "
+        "the full historical movement corpus; their evidentiary semantics are unchanged."
     )
     return 0
 
