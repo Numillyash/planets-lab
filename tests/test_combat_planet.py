@@ -8,6 +8,7 @@ from planets_lab.rules.combat import (
     planet_bay_count,
     planet_beam_count,
     planet_fighter_count,
+    planet_native_beam_tech,
     planet_sequence_shape_supported,
     rebuild_planet_combatant,
 )
@@ -20,6 +21,33 @@ def test_planet_component_formulas_use_integer_host_rounding() -> None:
     assert planet_bay_count(25) == 5
     assert planet_beam_count(25, 50, 0) == 5
     assert planet_beam_count(25, 50, 200) == 10
+
+
+def test_planet_native_beam_tech_matches_published_capability_thresholds() -> None:
+    # The Planets.nu Defense Posts page currently prints a TRUNC formula, but
+    # its published capability table and historical VCRs use these ROUND
+    # thresholds instead.
+    assert planet_native_beam_tech(0) == 0
+    assert planet_native_beam_tech(1) == 1
+    assert planet_native_beam_tech(4) == 1
+    assert planet_native_beam_tech(5) == 2
+    assert planet_native_beam_tech(12) == 2
+    assert planet_native_beam_tech(13) == 3
+    assert planet_native_beam_tech(24) == 3
+    assert planet_native_beam_tech(25) == 4
+    assert planet_native_beam_tech(40) == 4
+    assert planet_native_beam_tech(41) == 5
+    assert planet_native_beam_tech(60) == 5
+    assert planet_native_beam_tech(61) == 6
+    assert planet_native_beam_tech(84) == 6
+    assert planet_native_beam_tech(85) == 7
+    assert planet_native_beam_tech(112) == 7
+    assert planet_native_beam_tech(113) == 8
+    assert planet_native_beam_tech(144) == 8
+    assert planet_native_beam_tech(145) == 9
+    assert planet_native_beam_tech(180) == 9
+    assert planet_native_beam_tech(181) == 10
+    assert planet_native_beam_tech(400) == 10
 
 
 def test_rebuild_includes_base_mass_fighters_and_five_bays() -> None:
