@@ -78,18 +78,30 @@ def test_federation_explicit_bonus_keeps_weapons_and_adds_three_bays() -> None:
     assert prepared["bay_count"] == 9
 
 
-def test_federation_shield_recovery_is_explicit_and_damage_capped() -> None:
+def test_federation_shield_recovery_is_fixed_25_and_damage_capped() -> None:
     recovered, amount = federation_recover_shields(
         _ship(shield=60, damage=10, federation_crew_bonus=True)
     )
-    assert recovered["shield"] == 70
-    assert amount == 10
+    assert recovered["shield"] == 85
+    assert amount == 25
 
     capped, amount = federation_recover_shields(
         _ship(shield=95, damage=20, federation_crew_bonus=True)
     )
     assert capped["shield"] == 80
     assert amount == 0
+
+    heavily_damaged, amount = federation_recover_shields(
+        _ship(shield=0, damage=83, federation_crew_bonus=True)
+    )
+    assert heavily_damaged["shield"] == 17
+    assert amount == 17
+
+    critical, amount = federation_recover_shields(
+        _ship(shield=0, damage=96, federation_crew_bonus=True)
+    )
+    assert critical["shield"] == 4
+    assert amount == 4
 
     unchanged, amount = federation_recover_shields(
         _ship(shield=60, damage=10, federation_crew_bonus=False)
