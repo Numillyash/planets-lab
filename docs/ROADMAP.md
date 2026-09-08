@@ -4,7 +4,7 @@ This file is the operational roadmap for `planets-lab`. Architecture boundaries 
 
 Current durable checkpoints:
 
-- Host combat phase C5: [`handoff/2026-09-08-combat-c5-host-phase-current.md`](handoff/2026-09-08-combat-c5-host-phase-current.md) — two ordinary non-PIA side residuals inspected; symmetric T-1 diplomacy rejects the asymmetry hypothesis; causality open, next gate is narrow source-state/VCR context for the same two cases;
+- Host combat phase C5: [`handoff/2026-09-09-combat-c5-source-context-runtime.md`](handoff/2026-09-09-combat-c5-source-context-runtime.md) — the two ordinary non-PIA mission-7 residuals have clean owner-current T-1 alignment and no other same-turn VCR appearances; T is confirmed post-combat for the survivor. Causality remains open; the immediate gate is whether a one-VCR site contained additional noncombatant physical-stack ships;
 
 - movement: [`handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md`](handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md);
 - Classic combat replay coverage: [`handoff/2026-09-07-combat-c2-classic-replay-coverage.md`](handoff/2026-09-07-combat-c2-classic-replay-coverage.md);
@@ -81,7 +81,7 @@ L2 context labels:         planets-lab.compiled-movement-context-labels.v6
 - strict mine/web interruption v5 — `CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`;
 - strict damage-limited maximum warp — `DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`;
 - strict Nu waypoint-distance fuel proration v6 — `DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`;
-- short-waypoint normal-mine scaled-floor exact classifier — `CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`; the low-tech slowdown itself is `DOCUMENTED`;
+- short-waypoint normal-mine scaled-floor exact classifier — `CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`; underlying low-tech slowdown itself is `DOCUMENTED`;
 - Red Mite tracking/fallback — research closed absent new evidence.
 
 Current generic movement residual landscape:
