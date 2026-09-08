@@ -53,6 +53,10 @@ def test_forced_left_override_needed_reproduces_case2_shape() -> None:
         standard_relation="right_higher_priority",
     ) is False
     assert audit._forced_left_override_needed(
+        factual_side="right",
+        standard_relation="right_higher_priority",
+    ) is False
+    assert audit._forced_left_override_needed(
         factual_side="left",
         standard_relation=None,
     ) is None
