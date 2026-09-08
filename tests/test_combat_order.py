@@ -5,10 +5,13 @@ import pytest
 from planets_lab.rules.combat.order import (
     BIRD_RACE_ID,
     CLOAK_INTERCEPT_MISSION_ID,
+    EVIL_EMPIRE_RACE_ID,
+    GORBIE_HULL_ID,
     INTERCEPT_MISSION_ID,
     FriendlyCodePriorityKind,
     classify_battle_friendly_code,
     cloak_intercept_order_signature,
+    galactic_power_forces_left,
     orders_request_ship_combat,
     priority_intercept_order_signature,
     standard_battle_priority_key,
@@ -225,3 +228,45 @@ def test_non_cloak_intercept_mission_is_not_c_and_i() -> None:
         target_owner_id=None,
         hull_can_cloak=None,
     ) is False
+
+
+def test_galactic_power_forces_enabled_evil_empire_gorbie_left() -> None:
+    assert galactic_power_forces_left(
+        owner_race_id=EVIL_EMPIRE_RACE_ID,
+        hull_id=GORBIE_HULL_ID,
+        galactic_power_enabled=True,
+    ) is True
+
+
+def test_galactic_power_does_not_apply_to_captured_or_other_hulls() -> None:
+    assert galactic_power_forces_left(
+        owner_race_id=5,
+        hull_id=GORBIE_HULL_ID,
+        galactic_power_enabled=True,
+    ) is False
+    assert galactic_power_forces_left(
+        owner_race_id=EVIL_EMPIRE_RACE_ID,
+        hull_id=75,
+        galactic_power_enabled=True,
+    ) is False
+
+
+def test_galactic_power_respects_known_disabled_advantage() -> None:
+    assert galactic_power_forces_left(
+        owner_race_id=EVIL_EMPIRE_RACE_ID,
+        hull_id=GORBIE_HULL_ID,
+        galactic_power_enabled=False,
+    ) is False
+
+
+def test_galactic_power_fails_closed_when_effective_advantage_unknown() -> None:
+    assert galactic_power_forces_left(
+        owner_race_id=EVIL_EMPIRE_RACE_ID,
+        hull_id=GORBIE_HULL_ID,
+        galactic_power_enabled=None,
+    ) is None
+    assert galactic_power_forces_left(
+        owner_race_id=None,
+        hull_id=GORBIE_HULL_ID,
+        galactic_power_enabled=True,
+    ) is None
