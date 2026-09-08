@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import sys
 from pathlib import Path
 
 from planets_lab.corpus.reconstruction import PerspectiveRecord
@@ -10,6 +11,7 @@ TOOL = Path(__file__).parents[1] / "tools" / "diagnostics" / "combat_host_residu
 spec = importlib.util.spec_from_file_location("combat_host_residual_source_context_audit", TOOL)
 assert spec is not None and spec.loader is not None
 audit = importlib.util.module_from_spec(spec)
+sys.modules[spec.name] = audit
 spec.loader.exec_module(audit)
 
 
