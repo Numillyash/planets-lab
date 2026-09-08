@@ -4,7 +4,7 @@ This file is the operational roadmap for `planets-lab`. Architecture boundaries 
 
 Current durable checkpoints:
 
-- Host combat phase C5: [`handoff/2026-09-09-combat-c5-physical-stack-runtime.md`](handoff/2026-09-09-combat-c5-physical-stack-runtime.md) — physical-stack runtime split the former two ordinary non-PIA mission-7 side residuals: game 511506 is a larger five-ship context and is no longer a clean pairwise-standard control; game 621896 remains the sole strong physically-two-ship-like residual. The immediate gate is an ordinary matched-control population for non-cloakable targeted Intercept with reciprocal PE before any universal side-rule change;
+- Host combat phase C5: [`handoff/2026-09-09-combat-c5-mission7-controls-galactic-power.md`](handoff/2026-09-09-combat-c5-mission7-controls-galactic-power.md) — matched controls reject a universal non-cloakable Intercept side override: 40/41 matched rows follow standard right-higher ordering and the sole residual is the Evil Empire Gorbie/T-Rex row. Primary Planets.nu documentation identifies Galactic Power as the specific forced-left mechanic for an Evil-Empire-owned Gorbie. A fail-closed primitive is committed; the immediate gate is the ordinary Gorbie corpus/advantage boundary before `DIFF_VERIFIED` promotion or full side-layer integration;
 
 - movement: [`handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md`](handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md);
 - Classic combat replay coverage: [`handoff/2026-09-07-combat-c2-classic-replay-coverage.md`](handoff/2026-09-07-combat-c2-classic-replay-coverage.md);
