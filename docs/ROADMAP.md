@@ -4,7 +4,7 @@ This file is the operational roadmap for `planets-lab`. Architecture boundaries 
 
 Current durable checkpoints:
 
-- Host combat phase C5: [`handoff/2026-09-08-combat-c5-host-phase-current.md`](handoff/2026-09-08-combat-c5-host-phase-current.md) — two ordinary non-PIA side residuals inspected, causality open; next gate is directed T-1 diplomacy for the two exact pairs;
+- Host combat phase C5: [`handoff/2026-09-08-combat-c5-host-phase-current.md`](handoff/2026-09-08-combat-c5-host-phase-current.md) — two ordinary non-PIA side residuals inspected; symmetric T-1 diplomacy rejects the asymmetry hypothesis; causality open, next gate is narrow source-state/VCR context for the same two cases;
 
 - movement: [`handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md`](handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md);
 - Classic combat replay coverage: [`handoff/2026-09-07-combat-c2-classic-replay-coverage.md`](handoff/2026-09-07-combat-c2-classic-replay-coverage.md);

@@ -18,13 +18,13 @@ Last CI-verified C5 code HEAD before transfer docs:
 
 Actual branch HEAD will be later because this transfer/handoff documentation is committed after that code checkpoint. Inspect the ref rather than trusting the recorded SHA blindly.
 
-Current `main` at transfer inspection:
+Historical `main` at initial transfer inspection:
 
 ```text
 030f7489fd94a2af8e60a7da710c9b28b207f152
 ```
 
-C5 and current `main` diverge from merge base `89b5b0f1...`; the three main-only commits are movement/fuel-only and have no combat overlap. Synchronize deliberately if useful.
+That initial three-commit divergence is historical. At the return-from-Work inspection, main was `b3cc67dcee669ce84b8ff14a3237a0e69ab10707` and C5 was `5be8993c57aa0eddc811e13c8231fe724af89612` before this documentation update. Inspect actual refs and delta; no branch synchronization was performed.
 
 ## Closed ordinary C5 evidence
 
@@ -48,11 +48,11 @@ Both ordinary rows have been inspected; their causal explanations remain OPEN:
 
 Read the current handoff for complete fields, canonical keys and evidence boundaries. Combat rules remain unchanged.
 
-Next run the existing `tools/diagnostics/combat_host_diplomacy_residual_audit.py` for:
-- game511506, battle-turn19, player-a6, player-b5;
-- game621896, battle-turn28, player-a5, player-b2.
+The directed diplomacy gate is also COMPLETE. Both exact pairs have symmetric `(relationto, relationfrom, conflictlevel)=(1,1,0)` in each direction, with matching owner perspectives and `mirror_consistent=true`. The asymmetric T-1 diplomacy hypothesis is rejected for both cases. Complete numeric evidence and local artifact paths are in the current handoff.
 
-It selects T-1 automatically. Do not repeat the 12-archive enrichment just to rediscover the two rows. Asymmetric diplomacy and leading-integer FC parsing are hypotheses only; neither is a closed rule. Preserve fail-closed behavior and inspect both cases before promotion.
+**Resume in the project chat.** The user ended Work execution because of its limits. Next prepare one narrow source-context audit for the same two cases: owner-visible `T-2/T-1/T` records with freshness/provenance, selected mechanical VCR fields, and all same-turn appearances of the two ships to inspect state alignment and possible queue/capture context.
+
+That new diagnostic has **not been written or run**. Do not invent a ready script name. Do not repeat the completed 12-archive enrichment or the two diplomacy runs. Leading-integer FC parsing (`2eC -> 2`) remains an unverified hypothesis and cannot explain the separate Gorbie/T-Rex case. Rules are unchanged; unknown branches fail closed; no new mechanic was promoted to `DIFF_VERIFIED`.
 
 After those two rows:
 

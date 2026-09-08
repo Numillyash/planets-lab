@@ -18,7 +18,7 @@ merge base with current main:
                             89b5b0f1c06869a0d03d04cba76caa78bc4b10ce
 ```
 
-The C5 branch is behind current `main` by three commits. The delta is movement/fuel-only (`tools/diagnostics/partial_move_fuel_cost_case_audit.py` and `docs/handoff/2026-09-08-intel-fuel-chat-handoff.md`) and has no combat overlap. Do not infer the actual current HEAD from these recorded SHAs; inspect GitHub refs first in a new session. Synchronize deliberately when useful rather than assuming the branch is already current.
+At that historical transfer checkpoint, the C5 branch was behind `main` by three commits. The delta is movement/fuel-only (`tools/diagnostics/partial_move_fuel_cost_case_audit.py` and `docs/handoff/2026-09-08-intel-fuel-chat-handoff.md`) and has no combat overlap. Do not infer the actual current HEAD from these recorded SHAs; inspect GitHub refs first in a new session. Synchronize deliberately when useful rather than assuming the branch is already current.
 
 ## Completed C5 evidence
 
@@ -321,7 +321,7 @@ Open hypotheses, all `INFERRED`, not promoted:
 - A defensive/pre-standard Intercept interaction may differ from the current narrow static signature. The PIA documentation mentions the target's reciprocal combat, but also explicitly requires the interceptor's matching PE; this text does not prove PE=0 eligibility.
 - Phase-current state mutation or source-state alignment remains possible.
 
-Directed diplomacy must be recorded, but suppression of Firecloud's initiation alone cannot explain Meteor initiating this fight under the observed Kill/PE orders: Meteor has neither. Do not call diplomacy a complete explanation for this case without additional evidence.
+The subsequent T18 diplomacy audit found symmetric `(1,1,0)` values in both directions (see below). Asymmetric T-1 diplomacy is rejected. Independently, suppressing Firecloud's initiation alone would not explain Meteor initiating this fight under the observed Kill/PE orders: Meteor has neither.
 
 ### Case 2: 621896 / battle T28 / VCR67 / (2247,1837)
 
@@ -347,7 +347,7 @@ right (3,38,0)
 
 Both ships request hostility by PE against the factual opponent's owner slot. Owner5 is race8; do not substitute race ID for owner slot in PE comparisons. Neither hull can cloak, so the documented PIA mechanism cannot explain this row. There is no matching FC, signed FC or numeric-shape ambiguity here. T-Rex's T27 damage=24 is not evidence of a side-assignment exception.
 
-Leading next hypothesis (`INFERRED`): asymmetric diplomacy could suppress Gorbie's initiation while allowing T-Rex to initiate, so priority alone would not determine the instigator. This requires the actual directed T27 relation rows, which are not present in the residual-enrichment output. Do not assume Safe Passage or assign relation-level semantics from this hypothesis.
+The asymmetric T-1 diplomacy hypothesis was tested by the subsequent raw audit and rejected: both directed T27 rows contain `(relationto, relationfrom, conflictlevel)=(1,1,0)`. This does not establish a replacement side-assignment rule or rule out an independently evidenced phase-current state mutation.
 
 ### Combined interpretation and next runtime gate
 
@@ -355,25 +355,73 @@ Both supplied rows have been inspected. They do not support a universal Intercep
 
 Combat rules remain unchanged and unknown branches remain fail-closed. The 87 special-game rows do not tune ordinary mechanics.
 
-Next, reuse the existing privacy-safe raw diplomacy diagnostic on exactly these pairs:
+### Directed T-1 diplomacy gate — COMPLETE, asymmetry rejected
 
-```bash
-docker compose run --rm -T lab python \
-  tools/diagnostics/combat_host_diplomacy_residual_audit.py \
-  --game-id 511506 --battle-turn 19 --player-a 6 --player-b 5
+The user ran the existing `tools/diagnostics/combat_host_diplomacy_residual_audit.py` in WSL/Docker for both exact pairs and supplied the complete outputs. Both commands completed successfully. Work did not run these archives itself. The excerpt does not print the run HEAD; do not invent exact runtime SHA provenance. The preceding verified C5 source was `5be8993c57aa0eddc811e13c8231fe724af89612`; the command also writes `source.txt` locally.
 
-docker compose run --rm -T lab python \
-  tools/diagnostics/combat_host_diplomacy_residual_audit.py \
-  --game-id 621896 --battle-turn 28 --player-a 5 --player-b 2
+```text
+511506 / battle T19 / pre-combat archive T18:
+  turn_members=11; perspectives_with_relations=11; target_pair_rows=2
+  perspective5: id50, playerid5, playertoid6, relationto1, relationfrom1, conflictlevel0
+  perspective6: id60, playerid6, playertoid5, relationto1, relationfrom1, conflictlevel0
+  directed_unique_values: 6->5 [[1,1,0]], 5->6 [[1,1,0]]
+  mirror_consistent=true
+  relationto inventory:   0:40, 1:79, 3:2
+  relationfrom inventory: 0:40, 1:79, 3:2
+  conflictlevel inventory: 0:121
+
+621896 / battle T28 / pre-combat archive T27:
+  turn_members=8; perspectives_with_relations=8; target_pair_rows=2
+  perspective2: id13, playerid2, playertoid5, relationto1, relationfrom1, conflictlevel0
+  perspective5: id34, playerid5, playertoid2, relationto1, relationfrom1, conflictlevel0
+  directed_unique_values: 5->2 [[1,1,0]], 2->5 [[1,1,0]]
+  mirror_consistent=true
+  relationto inventory:   0:25, 1:36, 3:3
+  relationfrom inventory: 0:25, 1:36, 3:3
+  conflictlevel inventory: 0:64
 ```
 
-The script selects T-1 itself, prints numeric relation fields with perspective provenance, and does not canonicalize relation levels. No L1/L2 rebuild or full-corpus residual rerun is needed for this gate.
+For both games every member's active player ID matches its filename player, and embedded turn matches the selected archive turn. Only the two involved owners' perspectives contain the target relation rows; other perspectives return no target pair rows. The common relation-key shape is `color, conflictlevel, id, playerid, playertoid, relationfrom, relationto` (121 and 64 total rows respectively).
 
-After diplomacy, choose the smallest discriminating follow-up: a narrow phase-state check and/or an independent leading-integer-FC control audit. Do not weaken the standard priority rule or broaden static PIA eligibility merely to eliminate these rows.
+Evidence: `CORPUS_OBSERVED` symmetric raw relations. This rejects the proposed asymmetric T-1 diplomacy explanation for both residuals without needing to promote numeric relation-level semantics. It does not prove that every possible diplomacy/state mutation throughout Host is absent.
 
-### Source alignment at this result
+Local WSL repository: `/root/projects/planets-lab`.
+Local artifacts remain outside Git:
 
-Fresh GitHub inspection found C5 still at `d608c7d057ddcb38ad4317a879e897b435dead1e` and main at `e88e1a28716d67dadd171c5bbba4f01a9dd6c802`. The older three-commit divergence above is historical transfer context, not a claim about the current delta. This result does not synchronize branches.
+```text
+artifacts/combat-c5-diplomacy-JdlpAJOZ/source.txt
+artifacts/combat-c5-diplomacy-JdlpAJOZ/game-511506.json
+artifacts/combat-c5-diplomacy-JdlpAJOZ/game-511506.log
+artifacts/combat-c5-diplomacy-JdlpAJOZ/game-621896.json
+artifacts/combat-c5-diplomacy-JdlpAJOZ/game-621896.log
+```
+
+### Immediate next gate — resume in the project chat
+
+The user requested ending Work execution and returning to the project chat because of Work limits. Preserve this checkpoint; do not repeat completed residual-enrichment or diplomacy runs.
+
+Prepare one narrow privacy-safe source-context diagnostic for the two cases only:
+1. inspect both ships' owner-visible records around battle T (`T-2, T-1, T`), keeping archive turn, embedded turn, infoturn/freshness and perspective provenance distinct;
+2. extract allowlisted mechanical fields from the factual VCR, and check all same-turn VCR appearances of those ship IDs, including different sites, before asserting isolation or excluding capture/reinsertion;
+3. compare FC/mission/PE, hull/owner, position, cloak, fuel, damage, supplies and combat equipment/ammunition where actually available; absent facts remain unknown;
+4. distinguish snapshot state from combat-phase state and a source-alignment issue from a new Host mechanic.
+
+This source-context diagnostic was proposed but **not written, committed or run** in Work. Choose and verify its actual filename when implementing; there is no ready new script to invoke. Existing enrichment and diplomacy tools remain unchanged.
+
+The `2eC -> 2` leading-integer-FC idea remains `INFERRED` only. It cannot explain the separate Gorbie/T-Rex row. Any future parser promotion needs independent ordinary controls and regression/differential evidence, not fitting this single event. Defensive/pre-standard Intercept interaction is likewise unproven. Unknown branches fail closed; game `591478` stays excluded from ordinary tuning.
+
+After causal inspection of these cases, resume matching-FC/Harmonic Weapon Modulation boundaries and the remaining C5 queue gates listed below. No combat-rule edit or new `DIFF_VERIFIED` claim was made from these results.
+
+### Source alignment at return from Work
+
+Fresh GitHub inspection before this documentation commit:
+
+```text
+main: b3cc67dcee669ce84b8ff14a3237a0e69ab10707
+C5:   5be8993c57aa0eddc811e13c8231fe724af89612
+```
+
+The commit containing this update is newer than the recorded C5 SHA. Inspect actual refs when resuming. No merge, rebase or synchronization with main was performed; PR #28 remains draft. Earlier divergence counts in this document are historical checkpoints.
 
 ### Primary documentation checked
 
