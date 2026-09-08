@@ -12,6 +12,8 @@ KILL_MISSION_ID = 3
 INTERCEPT_MISSION_ID = 7
 CLOAK_INTERCEPT_MISSION_ID = 20
 BIRD_RACE_ID = 3
+EVIL_EMPIRE_RACE_ID = 8
+GORBIE_HULL_ID = 70
 
 
 class FriendlyCodePriorityKind(str, Enum):
@@ -64,11 +66,7 @@ def classify_battle_friendly_code(value: Any) -> FriendlyCodePriority:
             evidence="documented_000_inconsistent",
         )
 
-    if (
-        len(value) == 3
-        and value[0] in "+-"
-        and value[1:].isdigit()
-    ):
+    if len(value) == 3 and value[0] in "+-" and value[1:].isdigit():
         return FriendlyCodePriority(
             FriendlyCodePriorityKind.NUMERIC,
             numeric_value=int(value),
@@ -260,3 +258,31 @@ def cloak_intercept_order_signature(
         and target_owner_id > 0
         and primary_enemy == target_owner_id
     )
+
+
+def galactic_power_forces_left(
+    *,
+    owner_race_id: int | None,
+    hull_id: int | None,
+    galactic_power_enabled: bool | None,
+) -> bool | None:
+    """Return the documented Evil Empire Gorbie forced-left signature.
+
+    Planets.nu documents Galactic Power as forcing an Evil Empire-owned Gorbie
+    Class Battlecarrier to fight from the left-hand side. The advantage is active
+    in Standard games but optional in Campaign, so callers must provide the
+    effective advantage state rather than inferring it from race/hull alone.
+
+    ``True`` means the known facts require the forced-left rule. ``False`` means
+    the race/hull pair is known not to be eligible, or the advantage is known to
+    be disabled. ``None`` means a fact required to decide an eligible
+    Evil-Empire/Gorbie case is unavailable and the caller must fail closed.
+    """
+
+    if owner_race_id is None or hull_id is None:
+        return None
+    if owner_race_id != EVIL_EMPIRE_RACE_ID or hull_id != GORBIE_HULL_ID:
+        return False
+    if galactic_power_enabled is None:
+        return None
+    return galactic_power_enabled
