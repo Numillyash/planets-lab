@@ -171,6 +171,27 @@ and tests whether `mission1target == 50`.
 
 Do not promote the mapping unless the ordinary population exhibits the documented C&I signature. If evidence is mixed, keep mission 20 numeric and retain the residual as unresolved.
 
+Targeted runtime command:
+
+```bash
+cd ~/projects/planets-lab
+set -euo pipefail
+
+git fetch origin
+git checkout agent/combat-c5-host-phase
+git pull --ff-only origin agent/combat-c5-host-phase
+
+docker compose run --rm -T lab \
+  pytest -q tests/test_combat_host_mission20_cloak_intercept_audit.py
+
+mkdir -p logs
+
+docker compose run --rm -T lab \
+  python -u tools/diagnostics/combat_host_mission20_cloak_intercept_audit.py \
+    --output logs/combat-host-mission20-cloak-intercept.json \
+  | tee logs/combat-host-mission20-cloak-intercept.log
+```
+
 ## After mission 20
 
 If the signature closes the residual:
