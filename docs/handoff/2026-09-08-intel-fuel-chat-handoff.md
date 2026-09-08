@@ -7,8 +7,8 @@ GitHub `main` is the only source of truth for `Numillyash/planets-lab`.
 At the latest handoff update, GitHub `main` is expected to be at or after:
 
 ```text
-89b5b0f1c06869a0d03d04cba76caa78bc4b10ce
-fix: handle zero-cost Move Most candidates
+887c67061b8280ccaac1520b475b1904a039f811
+diagnostics: add targeted Move Most fuel case audit
 ```
 
 Always inspect actual `main` before work.
@@ -80,7 +80,7 @@ full target waypoint cost               -> required cost 72
 
 This is evidence that true partial-route fuel cost may be based on the continuous nominal leg before Host endpoint rasterization. One case is not enough to promote a production rule.
 
-## Diagnostic correction
+## Diagnostic corrections
 
 Do not equate `NormalMovePlan.partial` with `waypoint_distance > effective max distance`.
 
@@ -151,30 +151,75 @@ Two other `below_both` rows are not discriminators:
 - `511506/T32/ship45`: snapshot fuel 0, observed endpoint is not reproduced by either candidate; post-reset is true.
 - `511506/T70/ship406`: snapshot fuel 68, after fuel 163, observed endpoint is not reproduced by either candidate; clear evidence that snapshot fuel is not sufficient phase-state evidence here.
 
-## Immediate next research step
+## Targeted Move Most forensic audit
 
-Do **not** run the old broad `partial_move_fuel_cost_population_audit.py` again.
+A dedicated exact-case diagnostic now exists:
 
-The next step is a targeted forensic audit of `360690/T164/ship41` that checks:
+```text
+tools/diagnostics/partial_move_fuel_cost_case_audit.py
+```
 
-- phase-fuel alternatives while recomputing movement mass;
-- explicit owner-visible transfer/load/unload/beam-up fuel orders and co-located objects;
-- next factual fuel state only as supporting evidence, not a phase boundary;
+Commit:
+
+```text
+887c67061b8280ccaac1520b475b1904a039f811
+diagnostics: add targeted Move Most fuel case audit
+```
+
+It defaults to `360690/T164/ship41` and checks:
+
+- hypothetical movement-phase fuel values while recomputing movement mass for each value;
+- projected-raster-distance cost and continuous-nominal-distance cost separately;
+- phase-fuel ranges that reproduce the factual endpoint under either/both models;
+- predicted post-move fuel only as supporting evidence;
+- owner-visible transfer/load/unload/beam-up-like order fields;
+- co-located ships and planets;
+- visible incoming transfer and Tow candidates;
 - strong mine-hit evidence;
 - damage-limited warp;
 - ion-storm movement;
 - observed Tow route;
-- targeted Chunnel route;
-- whether projected-distance or continuous-nominal cost remains uniquely compatible after those confounders are considered.
+- targeted Chunnel route.
 
-Existing reusable diagnostics/helpers include:
+Run after pulling `main`:
 
-```text
-tools/diagnostics/intercept_fuel_phase_state_audit.py
-tools/diagnostics/intercept_fuel_external_confounder_audit.py
+```bash
+cd /opt/planets-lab
+
+git fetch origin
+git pull --ff-only origin main
+
+echo "===== HEAD ====="
+git rev-parse HEAD
+git status --short
+
+echo
+echo "===== TARGETED MOVE MOST FUEL CASE ====="
+
+docker compose run --rm -T lab \
+  python -u tools/diagnostics/partial_move_fuel_cost_case_audit.py \
+  | tee logs/partial-move-fuel-cost-case-360690-t164-ship41.log
+
+RC=("${PIPESTATUS[@]}")
+echo "audit rc=${RC[0]}"
+echo "tee rc=${RC[1]}"
 ```
 
-The exact targeted Move Most audit should be added rather than overloading the broad diagnostic.
+Do **not** run the old broad `partial_move_fuel_cost_population_audit.py` again.
+
+The next evidence decision should be based on this targeted audit output. In particular inspect:
+
+```text
+projected_exact_phase_fuel_ranges
+nominal_exact_phase_fuel_ranges
+both_exact_phase_fuel_ranges
+projected_only_phase_fuel_ranges
+nominal_only_phase_fuel_ranges
+visible_incoming_transfer_candidates
+known_external_flags
+```
+
+If another movement-phase fuel value allows the projected-cost model to reproduce the endpoint, the snapshot-fuel discriminator remains phase-state ambiguous even if 11 KT favors nominal cost. If nominal cost remains uniquely compatible over plausible phase states and known external mechanics are absent, the case becomes a substantially stronger independent anchor, but still should not by itself force a production law.
 
 ## Promotion policy
 
