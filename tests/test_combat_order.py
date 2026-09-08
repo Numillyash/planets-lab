@@ -5,10 +5,12 @@ import pytest
 from planets_lab.rules.combat.order import (
     BIRD_RACE_ID,
     CLOAK_INTERCEPT_MISSION_ID,
+    INTERCEPT_MISSION_ID,
     FriendlyCodePriorityKind,
     classify_battle_friendly_code,
     cloak_intercept_order_signature,
     orders_request_ship_combat,
+    priority_intercept_order_signature,
     standard_battle_priority_key,
 )
 
@@ -90,6 +92,70 @@ def test_orders_request_ship_combat_is_not_full_eligibility() -> None:
     assert not orders_request_ship_combat(mission=0, primary_enemy=8, opponent_owner_id=9)
 
 
+def test_priority_intercept_signature_requires_documented_order_fields() -> None:
+    assert priority_intercept_order_signature(
+        mission=INTERCEPT_MISSION_ID,
+        mission_target_id=50,
+        primary_enemy=4,
+        target_owner_id=4,
+        hull_can_cloak=True,
+    ) is True
+
+
+def test_priority_intercept_signature_does_not_require_current_cloak_state() -> None:
+    assert priority_intercept_order_signature(
+        mission=7,
+        mission_target_id=50,
+        primary_enemy=4,
+        target_owner_id=4,
+        hull_can_cloak=True,
+    )
+
+
+def test_priority_intercept_signature_rejects_known_nonqualifying_orders() -> None:
+    assert priority_intercept_order_signature(
+        mission=7,
+        mission_target_id=50,
+        primary_enemy=5,
+        target_owner_id=4,
+        hull_can_cloak=True,
+    ) is False
+    assert priority_intercept_order_signature(
+        mission=7,
+        mission_target_id=50,
+        primary_enemy=4,
+        target_owner_id=4,
+        hull_can_cloak=False,
+    ) is False
+    assert priority_intercept_order_signature(
+        mission=7,
+        mission_target_id=0,
+        primary_enemy=4,
+        target_owner_id=4,
+        hull_can_cloak=True,
+    ) is False
+
+
+def test_priority_intercept_signature_fails_closed_when_fact_missing() -> None:
+    assert priority_intercept_order_signature(
+        mission=7,
+        mission_target_id=50,
+        primary_enemy=4,
+        target_owner_id=None,
+        hull_can_cloak=True,
+    ) is None
+
+
+def test_non_intercept_mission_is_not_priority_intercept() -> None:
+    assert priority_intercept_order_signature(
+        mission=20,
+        mission_target_id=None,
+        primary_enemy=None,
+        target_owner_id=None,
+        hull_can_cloak=None,
+    ) is False
+
+
 def test_cloak_intercept_signature_matches_residual() -> None:
     assert cloak_intercept_order_signature(
         mission=CLOAK_INTERCEPT_MISSION_ID,
@@ -102,8 +168,6 @@ def test_cloak_intercept_signature_matches_residual() -> None:
 
 
 def test_cloak_intercept_signature_does_not_require_current_iscloaked_state() -> None:
-    # The C5 residual has iscloaked=False in the pre-combat snapshot. C&I is an
-    # order/ability signature; current cloak state is not an input to this helper.
     assert cloak_intercept_order_signature(
         mission=20,
         owner_race_id=3,
