@@ -20,6 +20,7 @@ dist/
 data/raw/
 data/cache/
 validation/data/
+validation/cache/
 validation/corpus/cache/
 validation/corpus/index/
 validation/corpus/compiled/
