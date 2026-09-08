@@ -26,6 +26,7 @@ from .order import (
     classify_battle_friendly_code,
     cloak_intercept_order_signature,
     orders_request_ship_combat,
+    priority_intercept_order_signature,
     standard_battle_priority_key,
 )
 from .planet import (
@@ -81,6 +82,7 @@ __all__ = [
     "planet_native_beam_tech",
     "planet_sequence_shape_supported",
     "prepare_sequence_ship",
+    "priority_intercept_order_signature",
     "rebuild_planet_combatant",
     "replay_nuhost_classic",
     "replay_nuhost_from_nu_catalog",
