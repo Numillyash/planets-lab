@@ -4,11 +4,11 @@ GitHub `main` is the only source of truth for `Numillyash/planets-lab`.
 
 ## Current source checkpoint
 
-At handoff creation, GitHub `main` HEAD is expected to be at or after:
+At the latest handoff update, GitHub `main` is expected to be at or after:
 
 ```text
-adf3704c043ab5137afd10daef25f39b5b032c15
-perf: prefilter partial Move Most fuel audit
+89b5b0f1c06869a0d03d04cba76caa78bc4b10ce
+fix: handle zero-cost Move Most candidates
 ```
 
 Always inspect actual `main` before work.
@@ -86,58 +86,104 @@ Do not equate `NormalMovePlan.partial` with `waypoint_distance > effective max d
 
 `partial` can also be true for a geometrically reachable waypoint shortened due to fuel shortage. A true partial route must be classified geometrically from target distance versus effective max movement.
 
-## Population audit
+A second diagnostic bug was found and fixed in `partial_move_fuel_cost_move_most_audit.py`: a model cost of exactly zero must mean that fuel does not limit the candidate endpoint. The old helper returned `None` for `fuel_required <= 0`, which created a false projected-vs-nominal discriminator at `511506/T95/ship445`. Commit:
 
-A broad `partial_move_fuel_cost_population_audit.py` was too slow and insufficiently chatty for routine interactive use.
+```text
+89b5b0f1c06869a0d03d04cba76caa78bc4b10ce
+fix: handle zero-cost Move Most candidates
+```
 
-A faster prefiltered diagnostic was added:
+## Move Most population audit — runtime result
+
+Use the fast diagnostic:
 
 ```text
 tools/diagnostics/partial_move_fuel_cost_move_most_audit.py
 ```
 
-Relevant commit:
+The corrected runtime population result over the available finite-fuel, non-Sphere archives is:
 
 ```text
-adf3704c043ab5137afd10daef25f39b5b032c15
-perf: prefilter partial Move Most fuel audit
+prefilter_true_partial_rows=32371
+true_partial_route=15560
+prefilter_false_positive=1495
+same_integer_cost=12633
+cost_basis_differs=2927
+fuel_relation:below_both=3
+fuel_relation:between_costs=0
+fuel_relation:sufficient_both=2924
+projected_cost_endpoint_exact=2811
+nominal_cost_endpoint_exact=2812
+discriminating_endpoint=1
+discriminating_nominal_cost_support=1
+discriminating_projected_cost_support=0
+discriminating_with_post_reset=0
 ```
 
-It should prefilter in DuckDB and emit progress before expensive per-game processing. Use this instead of the old broad audit.
+The single surviving independent Move Most discriminator is:
 
-Run:
-
-```bash
-cd /opt/planets-lab
-
-git fetch origin
-git pull --ff-only origin main
-
-echo "===== HEAD ====="
-git rev-parse HEAD
-git symbolic-ref --quiet --short HEAD || true
-
-echo
-echo "===== FAST PARTIAL MOVE MOST FUEL COST ====="
-
-docker compose run --rm -T lab \
-  python -u tools/diagnostics/partial_move_fuel_cost_move_most_audit.py \
-  | tee logs/partial-move-fuel-cost-move-most-audit.log
-
-RC=("${PIPESTATUS[@]}")
-echo "audit rc=${RC[0]}"
-echo "tee rc=${RC[1]}"
+```text
+game=360690
+turn=164 -> 165
+ship=41
+hull=23
+warp=9
+origin=(1949,2950)
+target=(2008,3067)
+observed=(1959,2969)
+nominal one-turn endpoint=(1985,3022)
+waypoint distance=131.034347
+nominal max distance=81
+rasterized one-turn distance=80.498447
+snapshot fuel=11
+after fuel=0
+snapshot movement mass=517
+projected-distance cost=40
+continuous-nominal cost=41
+11/40 endpoint=(1959,2970) [not factual]
+11/41 endpoint=(1959,2969) [factual]
 ```
 
-If it again runs for several minutes without progress, stop it and optimize the diagnostic before asking the user to wait.
+This is potentially an independent Move Most anchor for the same continuous-nominal cost basis suggested by `620694/T73/ship278`. It is **not yet promoted** because pre-Host snapshot fuel is not guaranteed to equal movement-phase fuel and an external/earlier Host mechanic still needs to be excluded for this exact event.
+
+Two other `below_both` rows are not discriminators:
+
+- `511506/T32/ship45`: snapshot fuel 0, observed endpoint is not reproduced by either candidate; post-reset is true.
+- `511506/T70/ship406`: snapshot fuel 68, after fuel 163, observed endpoint is not reproduced by either candidate; clear evidence that snapshot fuel is not sufficient phase-state evidence here.
+
+## Immediate next research step
+
+Do **not** run the old broad `partial_move_fuel_cost_population_audit.py` again.
+
+The next step is a targeted forensic audit of `360690/T164/ship41` that checks:
+
+- phase-fuel alternatives while recomputing movement mass;
+- explicit owner-visible transfer/load/unload/beam-up fuel orders and co-located objects;
+- next factual fuel state only as supporting evidence, not a phase boundary;
+- strong mine-hit evidence;
+- damage-limited warp;
+- ion-storm movement;
+- observed Tow route;
+- targeted Chunnel route;
+- whether projected-distance or continuous-nominal cost remains uniquely compatible after those confounders are considered.
+
+Existing reusable diagnostics/helpers include:
+
+```text
+tools/diagnostics/intercept_fuel_phase_state_audit.py
+tools/diagnostics/intercept_fuel_external_confounder_audit.py
+```
+
+The exact targeted Move Most audit should be added rather than overloading the broad diagnostic.
 
 ## Promotion policy
 
-Do not change production finite-fuel Intercept/Tow law from these three examples alone.
+Do not change production finite-fuel Intercept/Tow/Move Most law from these examples alone.
 
 Desired independent evidence:
 
-- multiple true partial Move Most cases where projected-vs-nominal cost differs;
+- multiple true partial Move Most / normal-movement cases where projected-vs-nominal cost differs;
+- phase-fuel ambiguity either resolved or explicitly bounded;
 - preferably cases with post-move fuel reset/consumption evidence;
 - no already-verified external movement mechanic explaining the same endpoint;
 - consistent preference for one cost basis across independent games/hulls.
