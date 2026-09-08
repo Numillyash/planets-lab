@@ -170,6 +170,21 @@ def _scope(rows: Sequence[Mapping[str, Any]], example_limit: int) -> dict[str, A
 
         left_targets = left_ci == "targets_factual_opponent"
         right_targets = right_ci == "targets_factual_opponent"
+        has_intercept = bool(row.get("has_intercept_mission"))
+
+        if (left_targets or right_targets) and has_intercept:
+            phases["mixed_prestandard_unresolved"] += 1
+            exclusions["mixed_c_and_i_priority_intercept_unresolved"] += 1
+            if len(examples) < example_limit:
+                examples.append(
+                    {
+                        **row,
+                        "classification": "mixed_prestandard_unresolved",
+                        "relation": "c_and_i_and_mission7_present",
+                    }
+                )
+            continue
+
         if left_targets or right_targets:
             phases["cloak_intercept_pre_standard"] += 1
             if left_targets and right_targets:
@@ -183,7 +198,7 @@ def _scope(rows: Sequence[Mapping[str, Any]], example_limit: int) -> dict[str, A
                 examples.append({**row, "classification": "cloak_intercept_pre_standard", "relation": side})
             continue
 
-        if row.get("has_intercept_mission"):
+        if has_intercept:
             phases["priority_intercept_unresolved"] += 1
             exclusions["priority_intercept_unresolved"] += 1
             continue
@@ -377,9 +392,10 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "evidence_boundary": (
             "Single-VCR ship-only sites only. C&I is classified as pre-standard only when owner-visible T-1 state "
             "has mission 20, Bird race, a cloak-capable hull, a positive target, Primary Enemy matching target owner, "
-            "and the target is the factual opponent in this VCR. Mission 7 remains unresolved/excluded. Standard "
-            "ordering uses canonical C5 Friendly Code parsing and does not model engagement eligibility, diplomacy, "
-            "matching-FC exceptions, capture reinsertion or multi-ship opponent selection."
+            "and the target is the factual opponent in this VCR. Mission 7 remains unresolved/excluded, and sites "
+            "containing both a qualified C&I target and mission 7 are explicitly unresolved. Standard ordering uses "
+            "canonical C5 Friendly Code parsing and does not model engagement eligibility, diplomacy, matching-FC "
+            "exceptions, capture reinsertion or multi-ship opponent selection."
         ),
     }
 
