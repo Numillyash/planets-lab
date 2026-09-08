@@ -110,26 +110,73 @@ def plan_full_normal_move(
         raise ValueError(f"missing engine spec {ship.engine_id} for ship {ship.id}")
 
     if partial:
-        destination_x, destination_y = project_toward_waypoint(x=ship.x, y=ship.y, target_x=target_x, target_y=target_y, distance=max_distance)
+        destination_x, destination_y = project_toward_waypoint(
+            x=ship.x,
+            y=ship.y,
+            target_x=target_x,
+            target_y=target_y,
+            distance=max_distance,
+        )
+        # Empirical NuHost differentials show that a geometrically partial
+        # route is charged for the continuous effective one-turn leg before
+        # integer endpoint rasterization. The rasterized endpoint can be less
+        # than max_distance away by a fraction of a light-year, but that does
+        # not lower the movement fuel requirement.
+        fuel_distance = float(max_distance)
     else:
         destination_x, destination_y = target_x, target_y
+        fuel_distance = waypoint_distance
 
     distance = hypot(destination_x - ship.x, destination_y - ship.y)
     total_mass = movement_mass_override if movement_mass_override is not None else ship_movement_mass(ship, specs)
     fuel_factor = engine.fuel_factor(warp)
-    fuel_required = movement_fuel_use(fuel_factor=fuel_factor, total_mass=total_mass, distance_traveled=distance, max_distance_per_turn=max_distance)
+    fuel_required = movement_fuel_use(
+        fuel_factor=fuel_factor,
+        total_mass=total_mass,
+        distance_traveled=fuel_distance,
+        max_distance_per_turn=max_distance,
+    )
     fuel_available = ship.cargo.neutronium
 
     if fuel_available < fuel_required:
         if not allow_fuel_proration:
             return NormalMovePlan(ship.id, target_x, target_y, ship.x, ship.y, warp, waypoint_distance, distance, max_distance, total_mass, fuel_factor, fuel_required, 0, partial, True, False, "insufficient_fuel")
-        if partial:
-            return NormalMovePlan(ship.id, target_x, target_y, ship.x, ship.y, warp, waypoint_distance, distance, max_distance, total_mass, fuel_factor, fuel_required, 0, True, True, False, "insufficient_fuel_partial_waypoint")
 
-        proration = prorate_waypoint_distance(requested_distance=waypoint_distance, fuel_available=fuel_available, fuel_required=fuel_required)
-        destination_x, destination_y = project_toward_waypoint(x=ship.x, y=ship.y, target_x=target_x, target_y=target_y, distance=proration.distance)
+        # For a true partial route the requested movement this turn is the
+        # effective one-turn leg, not the more distant waypoint. For a
+        # reachable route fuel_distance is the waypoint distance, preserving
+        # the documented ordinary insufficient-fuel rule.
+        proration = prorate_waypoint_distance(
+            requested_distance=fuel_distance,
+            fuel_available=fuel_available,
+            fuel_required=fuel_required,
+        )
+        destination_x, destination_y = project_toward_waypoint(
+            x=ship.x,
+            y=ship.y,
+            target_x=target_x,
+            target_y=target_y,
+            distance=proration.distance,
+        )
         actual_distance = hypot(destination_x - ship.x, destination_y - ship.y)
-        return NormalMovePlan(ship.id, target_x, target_y, destination_x, destination_y, warp, waypoint_distance, actual_distance, max_distance, total_mass, fuel_factor, fuel_required, fuel_available, destination_x != target_x or destination_y != target_y, True, True)
+        return NormalMovePlan(
+            ship.id,
+            target_x,
+            target_y,
+            destination_x,
+            destination_y,
+            warp,
+            waypoint_distance,
+            actual_distance,
+            max_distance,
+            total_mass,
+            fuel_factor,
+            fuel_required,
+            fuel_available,
+            destination_x != target_x or destination_y != target_y,
+            True,
+            True,
+        )
 
     return NormalMovePlan(ship.id, target_x, target_y, destination_x, destination_y, warp, waypoint_distance, distance, max_distance, total_mass, fuel_factor, fuel_required, fuel_required, partial, False, True)
 
