@@ -27,6 +27,7 @@ Read first:
 - `docs/handoff/2026-09-09-combat-c5-source-context-runtime.md`
 - `docs/handoff/2026-09-09-combat-c5-physical-stack-runtime.md`
 - `docs/handoff/2026-09-09-combat-c5-mission7-controls-galactic-power.md`
+- `docs/handoff/2026-09-09-combat-c5-galactic-power-runtime.md`
 
 ### Former residual Case 1 — 511506 / T19 / VCR13
 
@@ -34,65 +35,89 @@ Not a clean two-ship physical stack. Additional owner5 Meteors and an owner6 shi
 
 ### Former residual Case 2 — 621896 / T28 / VCR67
 
-Matched-control runtime on source `b1335ea6032a356c12be13be2c4fdb8cbc46b011` completed successfully:
+Matched controls reject a universal non-cloakable Intercept side rule:
 
 ```text
-candidate_rows: 41
-controls: 40
-standard relation:
-  right_higher_priority: 40
-  left_higher_priority:   1
-exact Case-2 order shape:
-  right_higher_priority: 2
-  left_higher_priority:  1
-no-T-extra-survivor subset:
-  right_higher_priority: 30
-  left_higher_priority:   1
+41 matched rows
+40 standard right-higher
+ 1 left-higher residual = exact Gorbie/T-Rex target
 ```
 
-The only left-higher contradiction in every relevant slice is the target Gorbie/T-Rex row. Therefore no universal non-cloakable Intercept side override is supported.
+Primary Planets.nu documentation identifies **Galactic Power** as a forced-left mechanic for an Evil-Empire-owned Gorbie when that advantage is active. The target is race8 / hull70 / factual LEFT and is one of the rows where a forced-left override is actually needed.
 
-Primary Planets.nu documentation supplies the missing specific mechanic: **Galactic Power** forces an Evil Empire-owned Gorbie to fight from the left-hand side, with no special mission or FC required. It is active in new Standard games and optional/disabled-by-default in Campaign.
-
-Target identity exactly matches the documented race/hull signature:
+However, the completed Gorbie corpus runtime on source `c88ade4604b3afd88b095af6ec1ec34a819ae933` shows mixed effective context:
 
 ```text
-owner race 8 = Evil Empire
-hull 70      = Gorbie
-factual side = LEFT
+52 Gorbie appearances
+48 Evil-Empire-owned
+ 4 non-Empire
+
+Empire Gorbie factual side:
+  right: 29
+  left:  19
+
+standard relation among Empire Gorbies:
+  right_higher_priority: 41
+  left_higher_priority:   7
+
+forced-left override required:
+  False: 41
+  True:   7
 ```
 
-Evidence status now:
+All targeted tests passed (`27 passed`), audit rc=0, payload conflicts=0.
 
-```text
-Galactic Power mechanic:             DOCUMENTED
-Case2 race/hull/factual side:         CORPUS_OBSERVED
-matched-control uniqueness:           CORPUS_OBSERVED
-full Galactic Power corpus boundary:  next gate
-DIFF_VERIFIED promotion:              not yet claimed
-```
+The 29 factual-right Empire Gorbies prove that `race8 + hull70` cannot imply Galactic Power enablement. The corpus mixes Standard/Classic/Campaign/Custom or otherwise enabled/disabled advantage contexts. Prepared/archive metadata exposed no usable game context or `activeadvantages` for these rows.
+
+Target Case2 remains a strong Galactic-Power attribution candidate but is **not closed** until game `621896` configuration proves the advantage effective.
 
 ## Canonical Galactic Power primitive
 
-`src/planets_lab/rules/combat/order.py` now contains a fail-closed `galactic_power_forces_left(...)` primitive plus race/hull constants. It requires explicit `galactic_power_enabled` state; race8+hull70 alone is not treated as enabled because Campaign may disable the advantage.
+`src/planets_lab/rules/combat/order.py` contains a fail-closed `galactic_power_forces_left(...)` primitive plus race/hull constants.
 
-New primitive tests and the new corpus audit are committed but not yet user-runtime-validated.
+For the relevant race/hull it requires explicit effective `galactic_power_enabled` state:
 
-## Immediate gate
+- enabled -> `True`;
+- disabled -> `False`;
+- unknown -> `None`.
 
-Run:
+Race8+hull70 alone is never silently treated as enabled. The primitive is now `TESTED`; Galactic Power is not yet `DIFF_VERIFIED` against a resolved enabled-state historical row.
+
+## Immediate gate — public game configuration
+
+Use public Planets.nu `/game/loadinfo` for exactly the six ordinary games containing Empire Gorbie VCRs:
 
 ```text
-tools/diagnostics/combat_host_galactic_power_audit.py
-tests/test_combat_host_galactic_power_audit.py
+360690
+511506
+620694
+621253
+621896
+680435
 ```
 
-The audit checks all ordinary ship-vs-ship Gorbie appearances, owner-race boundaries, captured/non-Empire negative controls, dual-Gorbie ambiguity, standard-order override cases, and bounded game/player advantage metadata where exposed. It does not invent Campaign enablement.
+Capture at minimum:
+
+```text
+game.id
+game.name
+game.shortdescription
+game.gametype
+game.maptype
+game.iscustom
+game.scenarioid
+settings.campaignmode
+settings.maxadvantage
+race8 player id
+race8 player activeadvantages
+```
+
+The decisive target is game `621896`. Do not infer Standard from `campaignmode=false` alone because Classic and Standard share broad API game-type buckets.
 
 ## Next order
 
-1. close Galactic Power boundary and integrate forced-left into the Host side-assignment layer only with explicit effective advantage state;
-2. move Case 1 into dynamic multi-ship opponent selection / cloak eligibility;
+1. resolve public game/advantage context and close or reject Galactic Power attribution for Case2;
+2. move Case1 into dynamic multi-ship opponent selection / cloak eligibility;
 3. resolve matching-FC / Harmonic Weapon Modulation boundaries;
 4. integrate PIA/C&I pair selection;
 5. handle capture/reinsertion and ownership changes;
