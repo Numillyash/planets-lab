@@ -6,8 +6,10 @@ cd "$(dirname "${BASH_SOURCE[0]}")/.."
 test "$(git symbolic-ref --quiet --short HEAD)" = main
 test -z "$(git status --porcelain)"
 git fetch origin main
-test "$(git rev-parse HEAD)" = "$(git rev-parse origin/main)" || {
-    echo 'Checkout is not actual origin/main; update with --ff-only first.' >&2
+remote_main=$(git rev-parse FETCH_HEAD)
+test "$(git rev-parse HEAD)" = "$remote_main" || {
+    echo 'Checkout is not actual fetched origin/main; update with --ff-only first.' >&2
+    printf 'HEAD=%s\nFETCHED_MAIN=%s\n' "$(git rev-parse HEAD)" "$remote_main" >&2
     exit 2
 }
 gate_head=$(git rev-parse HEAD)
