@@ -40,14 +40,19 @@ C5 and current `main` diverge from merge base `89b5b0f1...`; the three main-only
 
 ## Immediate next gate
 
-Run/analyze the already committed narrow diagnostic:
+The residual-enrichment run on `d608c7d` is complete: 12 archives, 0 payload conflicts, exactly 2 ordinary residuals, 87 separate special-game residuals, and 3 targeted tests passed (user-operated WSL/Docker).
 
-```text
-tools/diagnostics/combat_host_priority_intercept_non_pia_residual_audit.py
-tests/test_combat_host_priority_intercept_non_pia_residual_audit.py
-```
+Both ordinary rows have been inspected; their causal explanations remain OPEN:
+- `511506/T19/VCR13`: Firecloud80 (027, Kill/PE) left; Meteor89 (2eC, Intercept80, PE=0) right.
+- `621896/T28/VCR67`: Gorbie62 (001, Intercept38, PE=2) left; T-Rex38 (eqe, PE=5) right.
 
-It must return exactly the two ordinary isolated `mission7_non_pia` cases where canonical standard priority currently predicts left-higher priority. Inspect both rows completely before changing any rule.
+Read the current handoff for complete fields, canonical keys and evidence boundaries. Combat rules remain unchanged.
+
+Next run the existing `tools/diagnostics/combat_host_diplomacy_residual_audit.py` for:
+- game511506, battle-turn19, player-a6, player-b5;
+- game621896, battle-turn28, player-a5, player-b2.
+
+It selects T-1 automatically. Do not repeat the 12-archive enrichment just to rediscover the two rows. Asymmetric diplomacy and leading-integer FC parsing are hypotheses only; neither is a closed rule. Preserve fail-closed behavior and inspect both cases before promotion.
 
 After those two rows:
 

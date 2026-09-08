@@ -262,26 +262,126 @@ It contains only narrow evidence-backed primitives:
 
 Full combat eligibility is intentionally not implemented yet.
 
-## Current gate: two non-PIA mission7 standard-side residuals
+## Current gate: two non-PIA mission7 residuals inspected; causality OPEN
 
-Diagnostic already exists on the C5 branch:
+### Runtime provenance
+
+User-operated WSL/Docker run, source `d608c7d057ddcb38ad4317a879e897b435dead1e`.
+Work did not execute the historical archive audit itself. The supplied complete console output reports:
 
 ```text
-tools/diagnostics/combat_host_priority_intercept_non_pia_residual_audit.py
-tests/test_combat_host_priority_intercept_non_pia_residual_audit.py
+targeted residual-enrichment tests: 3 passed
+archives: 12
+payload_conflicts: 0
+ordinary_residuals: 2
+game_591478_residuals: 87
+all_residuals: 89
+audit rc=0; tee rc=0
 ```
 
-It selects only isolated battles where:
+Local artifacts (not uploaded to GitHub):
 
-- mission 7 is present;
-- neither side has a qualified static PIA signature against the factual opponent;
-- PIA signature is not unknown;
-- FC parsing is supported and FCs do not match;
-- canonical standard key predicts the factual left side has higher priority.
+```text
+artifacts/combat-c5-non-pia-mWCafN7v/source.txt
+artifacts/combat-c5-non-pia-mWCafN7v/tests.log
+artifacts/combat-c5-non-pia-mWCafN7v/audit.log
+artifacts/combat-c5-non-pia-mWCafN7v/report.json
+```
 
-It outputs race, hull name/special/cloak capability, mission targets, PE, FC, target owner, fuel and damage for both sides.
+Evidence: supplied historical rows are `CORPUS_OBSERVED`; the three diagnostic helper tests are `TESTED`. Selection is reproduced, but neither residual has a causally explained or newly `DIFF_VERIFIED` rule.
 
-Expected ordinary count from the prior runtime is exactly 2. Classify these rows before proceeding. Last CI-verified C5 code HEAD before transfer documentation was `8b8f0b43b9d45da4c5b35796e2fa388b6e17fcd9` and CI was `SUCCESS`.
+### Case 1: 511506 / battle T19 / VCR13 / (2565,1729)
+
+Owner-visible T18 records:
+
+```text
+LEFT  ship80 / owner6 / race6 / hull56 Firecloud
+      can_cloak=false; mission=3; target1=0; target2=0
+      enemy=5; FC=027; iscloaked=false; fuel=150; damage=0
+      target_owner=null; pia_class=not_intercept
+RIGHT ship89 / owner5 / race5 / hull46 Meteor
+      can_cloak=true; mission=7; target1=80; target2=0
+      enemy=0; FC=2eC; iscloaked=true; fuel=26; damage=0
+      target_owner=6; pia_class=nonqualifying_intercept
+```
+
+Current canonical keys:
+
+```text
+left  (0,27,80)
+right (4,89,0)
+```
+
+Firecloud requests hostility by both Kill and PE; Meteor does not request hostility by Kill/PE. Meteor targets the factual opponent and has a cloak device, but lacks the documented matching PE requirement for the current static PIA signature. Neither side is mission20/Bird C&I. FCs are supported and unequal.
+
+`iscloaked=true` belongs to T18; it is not proof of an active cloak in the combat phase after the Intercept order executes.
+
+Open hypotheses, all `INFERRED`, not promoted:
+- A leading-integer FC parser would read `2eC` as 2, placing Meteor ahead of 027. This contradicts the documented symbolic-letter FC classification and needs an independent ordinary control population before any parser change.
+- A defensive/pre-standard Intercept interaction may differ from the current narrow static signature. The PIA documentation mentions the target's reciprocal combat, but also explicitly requires the interceptor's matching PE; this text does not prove PE=0 eligibility.
+- Phase-current state mutation or source-state alignment remains possible.
+
+Directed diplomacy must be recorded, but suppression of Firecloud's initiation alone cannot explain Meteor initiating this fight under the observed Kill/PE orders: Meteor has neither. Do not call diplomacy a complete explanation for this case without additional evidence.
+
+### Case 2: 621896 / battle T28 / VCR67 / (2247,1837)
+
+Owner-visible T27 records:
+
+```text
+LEFT  ship62 / owner5 / race8 / hull70 Gorbie
+      can_cloak=false; mission=7; target1=38; target2=0
+      enemy=2; FC=001; iscloaked=false; fuel=1760; damage=0
+      target_owner=2; pia_class=nonqualifying_intercept
+RIGHT ship38 / owner2 / race2 / hull23 T-Rex
+      can_cloak=false; mission=1; target1=0; target2=0
+      enemy=5; FC=eqe; iscloaked=false; fuel=490; damage=24
+      target_owner=null; pia_class=not_intercept
+```
+
+Current canonical keys:
+
+```text
+left  (0,1,62)
+right (3,38,0)
+```
+
+Both ships request hostility by PE against the factual opponent's owner slot. Owner5 is race8; do not substitute race ID for owner slot in PE comparisons. Neither hull can cloak, so the documented PIA mechanism cannot explain this row. There is no matching FC, signed FC or numeric-shape ambiguity here. T-Rex's T27 damage=24 is not evidence of a side-assignment exception.
+
+Leading next hypothesis (`INFERRED`): asymmetric diplomacy could suppress Gorbie's initiation while allowing T-Rex to initiate, so priority alone would not determine the instigator. This requires the actual directed T27 relation rows, which are not present in the residual-enrichment output. Do not assume Safe Passage or assign relation-level semantics from this hypothesis.
+
+### Combined interpretation and next runtime gate
+
+Both supplied rows have been inspected. They do not support a universal Intercept-left or Intercept-right rule: the interceptor is on opposite sides in the two cases. Canonical priority arithmetic was independently executed in Work from the unchanged GitHub `order.py` and reproduced both left-higher keys; this is a small implementation check, not historical Host validation.
+
+Combat rules remain unchanged and unknown branches remain fail-closed. The 87 special-game rows do not tune ordinary mechanics.
+
+Next, reuse the existing privacy-safe raw diplomacy diagnostic on exactly these pairs:
+
+```bash
+docker compose run --rm -T lab python \
+  tools/diagnostics/combat_host_diplomacy_residual_audit.py \
+  --game-id 511506 --battle-turn 19 --player-a 6 --player-b 5
+
+docker compose run --rm -T lab python \
+  tools/diagnostics/combat_host_diplomacy_residual_audit.py \
+  --game-id 621896 --battle-turn 28 --player-a 5 --player-b 2
+```
+
+The script selects T-1 itself, prints numeric relation fields with perspective provenance, and does not canonicalize relation levels. No L1/L2 rebuild or full-corpus residual rerun is needed for this gate.
+
+After diplomacy, choose the smallest discriminating follow-up: a narrow phase-state check and/or an independent leading-integer-FC control audit. Do not weaken the standard priority rule or broaden static PIA eligibility merely to eliminate these rows.
+
+### Source alignment at this result
+
+Fresh GitHub inspection found C5 still at `d608c7d057ddcb38ad4317a879e897b435dead1e` and main at `e88e1a28716d67dadd171c5bbba4f01a9dd6c802`. The older three-commit divergence above is historical transfer context, not a claim about the current delta. This result does not synchronize branches.
+
+### Primary documentation checked
+
+- [Order of Battle](https://help.planets.nu/battle-order): numeric/symbolic priority, directed Safe Passage suppression, and dynamic initiation.
+- [Priority Intercept Attack](https://help.planets.nu/cloak-intercept): installed cloak, matching PE and reciprocal target-combat wording.
+- [Intercept](https://help.planets.nu/mis-intercept): movement phase context; Intercept itself is not blanket combat priority.
+
+Keep `DOCUMENTED / CORPUS_OBSERVED / INFERRED / TESTED / DIFF_VERIFIED` distinctions. PR #28 remains draft.
 
 ## After the two residuals
 
