@@ -8,7 +8,17 @@ Reconstruct the NuHost combat phase that generates VCR engagements, order and le
 
 ## Repository alignment
 
-C5 was merge-synchronized with `main=89b5b0f1c06869a0d03d04cba76caa78bc4b10ce`. The synchronized main delta was movement-only and had no combat overlap.
+At the transfer checkpoint:
+
+```text
+main:                       030f7489fd94a2af8e60a7da710c9b28b207f152
+C5 branch before docs-only transfer commit:
+                            8b8f0b43b9d45da4c5b35796e2fa388b6e17fcd9
+merge base with current main:
+                            89b5b0f1c06869a0d03d04cba76caa78bc4b10ce
+```
+
+The C5 branch is behind current `main` by three commits. The delta is movement/fuel-only (`tools/diagnostics/partial_move_fuel_cost_case_audit.py` and `docs/handoff/2026-09-08-intel-fuel-chat-handoff.md`) and has no combat overlap. Do not infer the actual current HEAD from these recorded SHAs; inspect GitHub refs first in a new session. Synchronize deliberately when useful rather than assuming the branch is already current.
 
 ## Completed C5 evidence
 
@@ -108,7 +118,7 @@ target ship 50 owner=4
 
 ### Direct isolated phase classification — CLOSED
 
-User runtime on HEAD `34bad43`:
+Runtime on HEAD `34bad43`:
 
 ```text
 ordinary candidate_single_ship_battles: 631
@@ -137,14 +147,14 @@ DOCUMENTED priority model
 + DIFF_VERIFIED 413/413
 
 ordinary isolated factual C&I attacker side:
-CORPUS_OBSERVED 7/7 right
+CORPUS_OBSERVED + DIFF_VERIFIED 7/7 right
 ```
 
 One ordinary C&I order signature had `targets_other_ship`; preserve it for later multi-ship target selection.
 
 Special game 591478 remains strongly non-ordinary and is not used to tune ordinary standard rules.
 
-### Priority Intercept Attack — static signature / factual queue evidence
+### Priority Intercept Attack — observed ordinary subset CLOSED
 
 Canonical helper:
 
@@ -254,7 +264,7 @@ Full combat eligibility is intentionally not implemented yet.
 
 ## Current gate: two non-PIA mission7 standard-side residuals
 
-Diagnostic:
+Diagnostic already exists on the C5 branch:
 
 ```text
 tools/diagnostics/combat_host_priority_intercept_non_pia_residual_audit.py
@@ -271,9 +281,7 @@ It selects only isolated battles where:
 
 It outputs race, hull name/special/cloak capability, mission targets, PE, FC, target owner, fuel and damage for both sides.
 
-Expected ordinary count from the prior runtime is exactly 2. Classify these rows before proceeding.
-
-GitHub CI on code HEAD `7e2ce445e8919b5978a4ec1a4f6569fd1bb62537` passed.
+Expected ordinary count from the prior runtime is exactly 2. Classify these rows before proceeding. Last CI-verified C5 code HEAD before transfer documentation was `8b8f0b43b9d45da4c5b35796e2fa388b6e17fcd9` and CI was `SUCCESS`.
 
 ## After the two residuals
 
