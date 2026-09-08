@@ -4,7 +4,7 @@ This file is the operational roadmap for `planets-lab`. Architecture boundaries 
 
 Current durable checkpoints:
 
-- Host combat phase C5: [`handoff/2026-09-09-combat-c5-mission7-controls-galactic-power.md`](handoff/2026-09-09-combat-c5-mission7-controls-galactic-power.md) — matched controls reject a universal non-cloakable Intercept side override: 40/41 matched rows follow standard right-higher ordering and the sole residual is the Evil Empire Gorbie/T-Rex row. Primary Planets.nu documentation identifies Galactic Power as the specific forced-left mechanic for an Evil-Empire-owned Gorbie. A fail-closed primitive is committed; the immediate gate is the ordinary Gorbie corpus/advantage boundary before `DIFF_VERIFIED` promotion or full side-layer integration;
+- Host combat phase C5: [`handoff/2026-09-09-combat-c5-galactic-power-runtime.md`](handoff/2026-09-09-combat-c5-galactic-power-runtime.md) — matched controls reject a universal non-cloakable Intercept side override, while the Gorbie boundary runtime shows 48 Evil-Empire-owned Gorbie appearances split 29 RIGHT / 19 LEFT. Seven rows, including `621896/T28/VCR67`, require a forced-left override relative to standard priority, but prepared/archive metadata exposes no effective advantage state. Galactic Power remains the leading documented Case2 explanation, not yet `DIFF_VERIFIED`; the immediate gate is public `/game/loadinfo` configuration for the six Empire-Gorbie games before any wider side-layer integration;
 
 - movement: [`handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md`](handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md);
 - Classic combat replay coverage: [`handoff/2026-09-07-combat-c2-classic-replay-coverage.md`](handoff/2026-09-07-combat-c2-classic-replay-coverage.md);
@@ -377,15 +377,16 @@ Do not generalize these special/campaign/Horwasp residuals into ordinary Classic
 
 Proceed in this order:
 
-1. reconstruct full factual combat queues by turn/location from ordered VCRs;
-2. determine engagement eligibility and opponent selection for ordinary Classic cases;
-3. reconstruct side assignment / left-right rules separately from pairwise resolution;
-4. integrate Priority Intercept / Primary Enemy / mission semantics only where IDs and behavior are established;
-5. incorporate diplomacy, Safe Passage and alliance/team effects;
-6. model capture continuation in the same Host phase rather than as a pairwise resolver property;
-7. place the documented ship-to-planet repair boundary between ship and planet combat phases;
-8. integrate planet/base participation using the C4 persistence layer while keeping hidden damaged-starbase state fail-closed;
-9. keep game `591478` and other special/campaign mechanics separately labeled until attributable.
+1. resolve public `/game/loadinfo` context for the six Empire-Gorbie games so Galactic Power enablement is attributable rather than inferred from race/hull;
+2. reconstruct full factual combat queues by turn/location from ordered VCRs;
+3. determine engagement eligibility and opponent selection for ordinary Classic cases;
+4. reconstruct side assignment / left-right rules separately from pairwise resolution;
+5. integrate Priority Intercept / Primary Enemy / mission semantics only where IDs and behavior are established;
+6. incorporate diplomacy, Safe Passage and alliance/team effects;
+7. model capture continuation in the same Host phase rather than as a pairwise resolver property;
+8. place the documented ship-to-planet repair boundary between ship and planet combat phases;
+9. integrate planet/base participation using the C4 persistence layer while keeping hidden damaged-starbase state fail-closed;
+10. keep game `591478` and other special/campaign mechanics separately labeled until attributable.
 
 The next goal is not merely to replay an already supplied VCR. It is to predict the **set, order and sides of VCRs Host will generate** from the factual co-located game state.
 
