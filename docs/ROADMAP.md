@@ -4,7 +4,7 @@ This file is the operational roadmap for `planets-lab`. Architecture boundaries 
 
 Current durable checkpoints:
 
-- Host combat phase C5: [`handoff/2026-09-09-combat-c5-source-context-runtime.md`](handoff/2026-09-09-combat-c5-source-context-runtime.md) — the two ordinary non-PIA mission-7 residuals have clean owner-current T-1 alignment and no other same-turn VCR appearances; T is confirmed post-combat for the survivor. Causality remains open; the immediate gate is whether a one-VCR site contained additional noncombatant physical-stack ships;
+- Host combat phase C5: [`handoff/2026-09-09-combat-c5-physical-stack-runtime.md`](handoff/2026-09-09-combat-c5-physical-stack-runtime.md) — physical-stack runtime split the former two ordinary non-PIA mission-7 side residuals: game 511506 is a larger five-ship context and is no longer a clean pairwise-standard control; game 621896 remains the sole strong physically-two-ship-like residual. The immediate gate is an ordinary matched-control population for non-cloakable targeted Intercept with reciprocal PE before any universal side-rule change;
 
 - movement: [`handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md`](handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md);
 - Classic combat replay coverage: [`handoff/2026-09-07-combat-c2-classic-replay-coverage.md`](handoff/2026-09-07-combat-c2-classic-replay-coverage.md);
