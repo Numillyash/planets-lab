@@ -107,12 +107,19 @@ def _documented_side_observation(
 
 
 def _forced_left_override_needed(*, factual_side: str, standard_relation: str | None) -> bool | None:
+    """Whether factual LEFT placement requires overriding standard priority.
+
+    For a Gorbie factually on the right, Galactic Power did not produce the
+    observed side and therefore cannot be the explanation for that row.
+    """
+
     if standard_relation is None or standard_relation == "unsupported":
         return None
     if factual_side not in {"left", "right"}:
         raise ValueError(f"unexpected factual side: {factual_side}")
-    expected_higher = f"{factual_side}_higher_priority"
-    return standard_relation == expected_higher
+    if factual_side != "left":
+        return False
+    return standard_relation == "left_higher_priority"
 
 
 def _safe_order(raw: Mapping[str, Any] | None) -> dict[str, Any] | None:
