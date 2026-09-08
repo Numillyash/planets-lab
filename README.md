@@ -15,10 +15,12 @@ Raw historical archives, prepared caches and compiled datasets remain local/giti
 - Classic pairwise combat, ordinary ship-chain carry and attributable
   planet/starbase-chain checkpoints are recorded in the roadmap. Full Host
   engagement ordering remains a major workstream.
-- The newer continuous nominal-leg partial-fuel planner is a lab-only candidate
-  with two independent empirical anchors and passing regression tests.
-  **Post-change historical validation and separate finite-fuel Tow evidence
-  remain pending. Do not promote it into planets-intel.**
+- The continuous nominal-leg partial-fuel rule is now historical-corpus
+  `CORPUS_OBSERVED + TESTED + DIFF_VERIFIED` for ordinary Move Most and
+  Intercept. The effective one-turn leg is charged before integer endpoint
+  rasterization. Finite-fuel Tow remains separate and OPEN; do not inherit
+  this evidence into Tow automatically.
+- No `planets-intel` production transfer is implied by the lab promotion.
 
 ## Recorded compiled-layer runtime counts
 
@@ -39,20 +41,22 @@ post_fuel_proration_residual        2197
 label_issues                           0
 ```
 
-These are the recorded compiled-layer checkpoint, not a post-change fuel gate.
+These are the recorded compiled-layer checkpoint; the later bounded
+partial-fuel historical gate read the existing corpus without rebuilding L1/L2.
 Generic residuals: 740 rows / 12 games / 75 hulls; largest coarse family: 113.
 See `docs/COMPILED_CORPUS.md` for schemas, scope and evidence boundaries.
 
 ## Start here
 
-1. [Work / partial-fuel validation handoff](docs/handoff/2026-09-08-work-chat-handoff.md)
+1. [Verified partial-fuel historical gate](docs/handoff/2026-09-09-partial-fuel-historical-gate-verified.md)
 2. [Detailed finite-fuel evidence](docs/handoff/2026-09-08-intel-fuel-chat-handoff.md)
 3. [Roadmap](docs/ROADMAP.md)
 4. [Compiled corpus](docs/COMPILED_CORPUS.md)
 5. [Architecture](docs/ARCHITECTURE.md)
 6. [Workflow](docs/WORKFLOW.md)
 
-On current clean server `main`, with existing archives/caches:
+To reproduce the bounded historical gate on a clean server checkout with the
+existing local archives/caches:
 
 ```bash
 bash tools/run-partial-fuel-historical-gate.sh

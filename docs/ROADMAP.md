@@ -4,7 +4,7 @@ This file is the operational roadmap for `planets-lab`. Architecture boundaries 
 
 Current durable checkpoints:
 
-- bounded partial-fuel candidate / pending historical gate: [`handoff/2026-09-08-work-chat-handoff.md`](handoff/2026-09-08-work-chat-handoff.md);
+- verified partial-fuel historical gate: [`handoff/2026-09-09-partial-fuel-historical-gate-verified.md`](handoff/2026-09-09-partial-fuel-historical-gate-verified.md);
 - movement: [`handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md`](handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md);
 - Classic combat replay coverage: [`handoff/2026-09-07-combat-c2-classic-replay-coverage.md`](handoff/2026-09-07-combat-c2-classic-replay-coverage.md);
 - ship battle sequences: [`handoff/2026-09-07-combat-c3-ship-sequence-diff-verified.md`](handoff/2026-09-07-combat-c3-ship-sequence-diff-verified.md);
@@ -39,18 +39,36 @@ The immediate combat work is the missing **Host combat phase around the resolver
 - planet/base participation in the full multi-player queue;
 - the documented ship-to-planet phase boundary, including between-phase repair.
 
-Do not reopen bounded movement, ordinary ship-sequence, or plain-planet sequence residual hunting unless a contradiction blocks a larger Host subsystem.
+Do not reopen bounded movement, ordinary ship-sequence, or plain-planet sequence residual hunting unless a contradiction blocks a larger Host subsystem. Finite-fuel Tow is a separate explicit open boundary, not a reason to weaken or reopen the verified normal-movement rule.
 
 ## Runtime-verified movement accounting
 
-These are the last recorded compiled-layer counts, not a post-change validation
-of the `993e760...` nominal-leg planner candidate. The candidate is `TESTED`
-with two independent empirical anchors, but its new semantics are not yet
-globally `DIFF_VERIFIED`. Run `bash tools/run-partial-fuel-historical-gate.sh`
-on current clean server `main` with the existing historical archives/caches.
-It collects Move Most controls and Intercept baseline/candidate output without
-rebuilding L1/L2. Separate finite-fuel Tow evidence remains required before
-global promotion or transfer into `planets-intel`.
+The recorded compiled-layer counters remain the latest L1/L2 rebuild checkpoint. A later bounded server gate at candidate `f68a31376ff41810d72df0f3fadc165ff55e1017` validated the continuous nominal one-turn fuel basis against the existing 12-game historical corpus without rebuilding L1/L2.
+
+The planner candidate introduced by `993e76046c3ffaa40acf4b0aa7286d5bd9573480` is now scoped:
+
+```text
+Move Most + Intercept true-partial normal movement
+CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
+```
+
+Key gate results:
+
+```text
+pytest                                      371 passed
+Move Most true partial rows                  15560
+Move Most differing cost basis                2927
+Move Most discriminators                         1
+nominal-support discriminators                    1
+projected-support discriminators                  0
+Intercept fuel-limited support             1 -> 2
+Intercept contradictions                   1 -> 1
+missing archives                                0
+```
+
+The independent discriminators are `360690/T164/ship41` (Move Most) and `620694/T73/ship278` (Intercept). Targeted confounder checks found no already-modelled mine/storm/damage/Tow/Chunnel explanation for the supporting cases.
+
+Finite-fuel Tow remains OPEN. Snapshot fuel remains pre-Host evidence and is not automatically movement-phase fuel. A later `planets-intel` transfer must preserve those boundaries.
 
 ```text
 move_most_candidates              227468
@@ -89,6 +107,7 @@ L2 context labels:         planets-lab.compiled-movement-context-labels.v6
 - strict mine/web interruption v5 — `CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`;
 - strict damage-limited maximum warp — `DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`;
 - strict Nu waypoint-distance fuel proration v6 — `DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`;
+- continuous nominal one-turn fuel basis for true-partial Move Most / Intercept — `CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`;
 - short-waypoint normal-mine scaled-floor exact classifier — `CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`; the low-tech slowdown itself is `DOCUMENTED`;
 - Red Mite tracking/fallback — research closed absent new evidence.
 
@@ -401,7 +420,7 @@ The next goal is not merely to replay an already supplied VCR. It is to predict 
 
 Proceed in this order unless evidence forces a dependency change:
 
-1. **Movement checkpoint** — substantially reconstructed; reopen only for bounded contradictions/interactions.
+1. **Movement checkpoint** — substantially reconstructed; reopen only for bounded contradictions/interactions. Finite-fuel Tow remains a distinct open boundary.
 2. **Classic pairwise combat C1/C2** — extracted and complete for current replay corpus.
 3. **Ordinary ship battle sequences C3** — `DIFF_VERIFIED` on clean same-phase historical chains.
 4. **Planet/starbase sequences C4** — attributable ordinary plain-planet carry and starbase shield persistence checkpointed; hidden damaged-starbase state remains fail-closed.

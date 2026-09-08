@@ -8,7 +8,7 @@ New chats should start from:
 
 Current movement checkpoint:
 
-[`handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md`](handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md)
+[`handoff/2026-09-09-partial-fuel-historical-gate-verified.md`](handoff/2026-09-09-partial-fuel-historical-gate-verified.md)
 
 ## Current verified schema state
 
@@ -23,13 +23,7 @@ Raw `/game/loadall` archives remain unchanged. Prepared projection stays privacy
 
 ## Current runtime-verified 12-game invariants
 
-The counters below describe the last recorded compiled-layer runtime checkpoint.
-They do not establish post-change validation of the `993e760...` nominal-leg
-partial-fuel planner candidate. See
-[`handoff/2026-09-08-work-chat-handoff.md`](handoff/2026-09-08-work-chat-handoff.md)
-for its pending historical gate. The gate reads the existing corpus and does
-not rebuild L1/L2 or promote finite-fuel Tow. Missing local archives/caches
-must be reported as missing evidence, never as zero contradictions.
+The compiled-layer counters remain the last recorded L1/L2 rebuild checkpoint. The later partial-fuel historical gate read these existing archives/caches without rebuilding L1/L2 and verified the nominal-leg planner independently.
 
 L1:
 
@@ -60,6 +54,61 @@ label_issues                          0
 ```
 
 The latest L2 rebuild processed all 12 games with zero failures, all prepared caches hit, and completed in about 102 seconds with `--jobs 2`.
+
+## Partial-fuel historical gate
+
+Server gate candidate:
+
+```text
+candidate  f68a31376ff41810d72df0f3fadc165ff55e1017
+baseline   1d01bf20c745e84162b6c5ae249e0e81b0ccdc6c
+planner    993e76046c3ffaa40acf4b0aa7286d5bd9573480
+pytest     371 passed
+archives   12 / 12 present
+```
+
+Move Most control population:
+
+```text
+prefilter_true_partial_rows              32371
+true_partial_route                       15560
+prefilter_false_positive                  1495
+same_integer_cost                        12633
+cost_basis_differs                        2927
+projected_cost_endpoint_exact             2811
+nominal_cost_endpoint_exact               2812
+discriminating_endpoint                      1
+discriminating_nominal_cost_support          1
+discriminating_projected_cost_support        0
+```
+
+Intercept baseline -> candidate:
+
+```text
+fuel_endpoint_exact                     437 -> 438
+fuel_endpoint_differs                    99 -> 99
+fuel_limited_discriminating_support       1 -> 2
+fuel_limited_discriminating_contradiction 1 -> 1
+after_reset_supporting_only               0 -> 1
+missing_archive                           0 -> 0
+```
+
+Independent discriminators:
+
+- `360690/T164/ship41` Move Most supports continuous nominal one-turn fuel cost and rejects rasterized endpoint-distance cost;
+- `620694/T73/ship278` Intercept supports the same nominal-leg basis and reproduces factual `(2742,2070)` with `29/72` fuel proration;
+- `620636/T60/ship44` remains an independent proportional finite-fuel Intercept support case.
+
+Targeted confounder checks found no already-modelled mine/storm/damage/Tow/Chunnel explanation for the two supporting limited-fuel Intercept cases. The unchanged `360690/T69/ship391` contradiction remains a snapshot-vs-phase-fuel boundary, not a new candidate regression.
+
+Scoped evidence status:
+
+```text
+continuous nominal one-turn fuel basis for true-partial Move Most / Intercept
+CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
+```
+
+Finite-fuel Tow is not included in this promotion and remains OPEN.
 
 ## Current generic final endpoint
 
@@ -97,6 +146,7 @@ Residual clusters are investigation leads only; they are not mechanics without i
 - strict mine/web interruption v5 — **CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**;
 - strict damage-limited maximum warp — **DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**;
 - strict Nu waypoint-distance fuel proration v6 — **DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**;
+- continuous nominal one-turn fuel basis for true-partial normal Move Most / Intercept — **CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**;
 - short-waypoint normal-mine scaled-floor exact classifier — **CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**; underlying low-tech slowdown itself is **DOCUMENTED**;
 - Red Mite tracking/fallback research — closed absent new evidence.
 
@@ -172,6 +222,7 @@ The original `511506 / T23 / ship160 / hull17` survivor is now production-closed
 ```text
 movement-mine targeted module: 10 passed
 full GitHub Actions pytest:    green on mechanics/test commit
+partial-fuel server gate:      371 passed / all stages 0/0
 full 12-game L2 rebuild:       clean / zero failures
 final generic clustering:      2197 total / 740 generic / 75 hulls / largest coarse 113
 ```
