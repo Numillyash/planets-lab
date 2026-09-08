@@ -48,21 +48,9 @@ Do not use T-1 position as an alignment gate; T-1 precedes Move while VCR coordi
 
 ### Established raw/order mappings
 
-Owner-visible order fields are structurally stable:
-
-```text
-mission
-enemy
-mission1target
-mission2target
-friendlycode
-```
-
-Established numeric semantics:
-
 ```text
 mission 3  = Kill!
-mission 7  = Intercept        # existing project convention; full PIA qualification is current gate
+mission 7  = Intercept
 mission 20 = Bird Cloak and Intercept
 enemy      = Primary Enemy
 ```
@@ -70,7 +58,7 @@ enemy      = Primary Enemy
 Evidence:
 - `mission 3 = Kill!`: documented causal rule + ordinary `CORPUS_OBSERVED` numeric mapping;
 - `enemy = Primary Enemy`: ordinary `CORPUS_OBSERVED`;
-- `mission 20 = Cloak and Intercept`: 97/97 mission-20 owner records are race 3; ordinary 37/37 race 3, 36/37 positive targets; documented C&I behavior matches the historical signature.
+- `mission 20 = Cloak and Intercept`: 97/97 mission-20 owner records are race 3; ordinary 37/37 race 3, 36/37 positive targets; documented C&I behavior matches historical target/PE signatures.
 
 ### Friendly Code battle priority
 
@@ -108,7 +96,7 @@ ordinary race 3: 37/37
 ordinary positive target: 36/37
 ```
 
-Prior last standard residual, game 621253 / battle T10 / VCR 8:
+Prior last standard residual, game 621253 / battle T10 / VCR 8, is a factual C&I attack:
 
 ```text
 right ship 57 / Dark Wing / owner 3
@@ -118,22 +106,12 @@ enemy=4
 target ship 50 owner=4
 ```
 
-It is a factual C&I attack and not a regular combat-order residual.
-
 ### Direct isolated phase classification — runtime closed
 
-Tool:
+User runtime on HEAD `34bad43`:
 
 ```text
-tools/diagnostics/combat_host_isolated_phase_classification_audit.py
-```
-
-User runtime on HEAD `34bad43` passed all targeted tests.
-
-Ordinary single-VCR ship-only population:
-
-```text
-candidate_single_ship_battles: 631
+ordinary candidate_single_ship_battles: 631
 
 phases:
   standard:                      413
@@ -154,9 +132,10 @@ right_higher_priority: 413
 left_higher_priority:    0
 ```
 
-Therefore ordinary isolated standard left/right assignment is now:
+Evidence:
 
 ```text
+ordinary isolated standard left/right:
 DOCUMENTED priority model
 + CORPUS_OBSERVED signed-FC extension
 + TESTED canonical primitive
@@ -171,50 +150,97 @@ C&I attacker right:                7/7
 C&I attacker left:                 0
 ```
 
-This independently supports the documented aggressive/pre-standard right-side behavior.
+One ordinary C&I order signature had `left:targets_other_ship`; it did not qualify against the factual isolated opponent. Preserve it for later multi-ship target-selection analysis.
 
-One ordinary C&I signature had `left:targets_other_ship`; it did not qualify against the factual isolated opponent and did not affect the 7 C&I target fights. Preserve it for later multi-ship target-selection analysis.
+Special game 591478 remains strongly non-ordinary (`standard 75 right / 80 left`) and is not used to tune ordinary standard rules.
 
-Special game 591478 remains strongly non-ordinary:
+## Current gate: Priority Intercept Attack
 
-```text
-standard: 155
-right_higher_priority: 75
-left_higher_priority: 80
-C&I pre-standard: 20, all factual C&I attackers right
-mixed C&I + mission7 unresolved: 1
-```
+Official Planets.nu rule:
 
-Do not tune ordinary standard rules from this game.
-
-## Current gate: normal Priority Intercept Attack (`mission=7`)
-
-Official Planets.nu rule requires all of the following for Priority Intercept Attack:
-
-1. installed cloaking or advanced-cloaking device;
+1. installed cloak or advanced cloak device;
 2. mission `Intercept`;
 3. positive intercept target;
-4. Primary Enemy matching the target faction;
-5. combat would otherwise occur with that target.
+4. Primary Enemy matching target faction;
+5. combat would otherwise occur with target.
 
-The ship does not need to be cloaked at attack time. If multiple PIA attackers are present, their combats occur in reverse Ship ID order. The target's retaliatory combat against the interceptor is also before regular combats. Intercept Interference can demote Priority Intercept to normal combat priority and must be kept as a possible confounder rather than silently ignored.
+The ship need not currently be cloaked. The entire intercepted pair's applicable combats occur before regular combats. Multiple PIA attackers act in reverse Ship ID order. Intercept Interference can demote Priority Intercept to normal combat priority and is a known confounder.
 
-Next implementation/audit should:
+Canonical primitive added:
 
-- add a fail-closed `priority_intercept_order_signature()` primitive to `order.py`, requiring mission 7, positive target, PE=target owner and known cloak capability;
-- audit all ordinary owner-visible mission-7 records for target/PE/cloak signature coverage;
-- reclassify the 196 ordinary isolated mission-7 battles into true PIA vs non-PIA standard/mismatch cases;
-- for uniquely qualified PIA-vs-target isolated cases, count factual attacker side;
-- on multi-VCR sites, mark the entire intercepted unordered pair as PIA-linked (up to the documented two fights) and test that PIA-linked fights form the combat prefix;
-- where multiple unambiguous PIA attackers exist at one site, test first-attacker ordering against reverse Ship ID;
-- report, do not auto-fit, any prefix/order residuals for Intercept Interference analysis.
+```text
+priority_intercept_order_signature()
+```
+
+It checks only the static documented order signature and deliberately does not claim dynamic PIA eligibility.
+
+Current files:
+
+```text
+src/planets_lab/rules/combat/order.py
+tests/test_combat_order.py
+tools/diagnostics/combat_host_priority_intercept_audit.py
+tests/test_combat_host_priority_intercept_audit.py
+```
+
+The PIA audit reports:
+
+- all owner-visible mission-7 records: target relation, cloak capability and qualifying signature;
+- isolated mission-7 factual battles: true PIA vs non-PIA mission-7 orders and factual attacker side;
+- PIA-linked unordered pairs, including the target's potential retaliation;
+- whether PIA-linked pairs form the ship-combat prefix at each site;
+- unique PIA attacker first-occurrence order vs documented reverse Ship ID;
+- residual examples without auto-fitting Intercept Interference.
+
+GitHub CI on code HEAD `9d02116fc785724289b6aa02b2e326c712a658e3` passed.
+
+Targeted runtime:
+
+```bash
+cd ~/projects/planets-lab
+set -euo pipefail
+
+git fetch origin
+git checkout agent/combat-c5-host-phase
+git pull --ff-only origin agent/combat-c5-host-phase
+
+pytest_args=(
+  tests/test_combat_order.py
+  tests/test_combat_host_priority_intercept_audit.py
+  tests/test_combat_host_isolated_phase_classification_audit.py
+)
+
+docker compose run --rm -T lab pytest -q "${pytest_args[@]}"
+
+mkdir -p logs
+
+docker compose run --rm -T lab \
+  python -u tools/diagnostics/combat_host_priority_intercept_audit.py \
+    --example-limit 80 \
+    --output logs/combat-host-priority-intercept.json \
+  | tee logs/combat-host-priority-intercept.log
+```
+
+Acceptance is evidence-driven, not hardcoded. Particularly inspect ordinary:
+
+```text
+population.signature
+combat.site_counts
+combat.pia_attacker_sides
+combat.isolated_mission7_classes
+combat.isolated_non_pia_standard_priority
+combat.multi_attacker_reverse_id
+```
+
+Desired clean invariants are PIA attacker on the right, PIA-linked prefix exact, non-PIA mission7 standard battles obeying canonical standard priority, and multi-attacker first-occurrence order matching reverse Ship ID. Any residual is classified before modifying mechanics.
 
 ## After Priority Intercept
 
-1. resolve exact matching-FC exceptions / Harmonic Weapon Modulation boundaries;
-2. build dynamic multi-ship opponent selection;
-3. handle capture/reinsertion and ownership changes;
-4. integrate between-phase repair and ship-vs-planet ordering;
-5. keep game 591478 sequence semantics separate.
+1. investigate PIA residuals for Intercept Interference / other eligibility suppressors;
+2. resolve exact matching-FC exceptions / Harmonic Weapon Modulation boundaries;
+3. build dynamic multi-ship opponent selection;
+4. handle capture/reinsertion and ownership changes;
+5. integrate between-phase repair and ship-vs-planet ordering;
+6. keep game 591478 sequence semantics separate.
 
 PR #28 remains draft until ordering/eligibility semantics are sufficiently understood.
