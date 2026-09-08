@@ -44,10 +44,10 @@ def _candidate_endpoint(
     fuel_available: int,
     fuel_required: int,
 ) -> tuple[int, int] | None:
-    if fuel_required <= 0 or fuel_available < 0:
+    if fuel_required < 0 or fuel_available < 0:
         return None
     distance = requested_distance
-    if fuel_available < fuel_required:
+    if fuel_required > 0 and fuel_available < fuel_required:
         distance *= fuel_available / fuel_required
     return project_toward_waypoint(
         x=origin[0],
