@@ -36,6 +36,25 @@ Use these files as the durable state surface:
 
 A documentation-only maintenance commit does **not** recursively require another handoff update merely because the Git SHA changed. The rule applies to semantic/project-state changes, not to bookkeeping recursion.
 
+## Long orchestration commands
+
+Do not paste large multi-stage shell procedures into chat as the primary execution path.
+
+When a server, corpus, validation or deployment operation is long enough to contain multiple stages, error handling, log capture, repeated commands, or non-trivial parsing, preserve it in Git first and make the chat-facing command short and reproducible.
+
+Repository convention:
+
+- `tools/run-*.sh` — orchestration, server-run, corpus-run and validation-gate scripts;
+- `tools/diagnostics/` — focused diagnostic programs and bounded research probes.
+
+A chat should normally invoke an existing tracked runner such as:
+
+```bash
+bash tools/run-partial-fuel-historical-gate.sh
+```
+
+rather than reproducing the runner body inline. Small inspection commands are fine inline. Generated logs and local evidence stay in their established gitignored locations unless a compact durable summary belongs in Git.
+
 ## Post-commit verification
 
 After each material commit is integrated into `main`:
