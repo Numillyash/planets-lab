@@ -16,6 +16,18 @@ from .nu import (
     normalize_nu_torpedoes,
     replay_nuhost_from_nu_catalog,
 )
+from .order import (
+    BIRD_RACE_ID,
+    CLOAK_INTERCEPT_MISSION_ID,
+    INTERCEPT_MISSION_ID,
+    KILL_MISSION_ID,
+    FriendlyCodePriority,
+    FriendlyCodePriorityKind,
+    classify_battle_friendly_code,
+    cloak_intercept_order_signature,
+    orders_request_ship_combat,
+    standard_battle_priority_key,
+)
 from .planet import (
     PLANET_CARRYOVER_BASIS,
     apply_planet_carryover,
@@ -37,9 +49,15 @@ from .sequence import (
 )
 
 __all__ = [
+    "BIRD_RACE_ID",
     "BeamSpec",
+    "CLOAK_INTERCEPT_MISSION_ID",
     "CombatObject",
     "DYNAMIC_CARRY_FIELDS",
+    "FriendlyCodePriority",
+    "FriendlyCodePriorityKind",
+    "INTERCEPT_MISSION_ID",
+    "KILL_MISSION_ID",
     "NuHostClassicReplay",
     "PLANET_CARRYOVER_BASIS",
     "ReplayUnsupported",
@@ -48,12 +66,15 @@ __all__ = [
     "apply_terminal_state",
     "beam_specs_from_catalog",
     "carry_ship_to_next_engagement",
+    "classify_battle_friendly_code",
+    "cloak_intercept_order_signature",
     "combat_rng_from_settings",
     "damage_defense_posts",
     "federation_recover_shields",
     "functional_weapon_limit",
     "normalize_nu_beams",
     "normalize_nu_torpedoes",
+    "orders_request_ship_combat",
     "planet_bay_count",
     "planet_beam_count",
     "planet_fighter_count",
@@ -63,5 +84,6 @@ __all__ = [
     "rebuild_planet_combatant",
     "replay_nuhost_classic",
     "replay_nuhost_from_nu_catalog",
+    "standard_battle_priority_key",
     "torpedo_specs_from_catalog",
 ]
