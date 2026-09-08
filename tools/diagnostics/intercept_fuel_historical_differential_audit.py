@@ -210,6 +210,7 @@ def main() -> int:
     examples: dict[str, list[dict[str, Any]]] = defaultdict(list)
 
     for game_id in sorted(by_game):
+        print(f"game={game_id} stage=archive rows={len(by_game[game_id])}", flush=True)
         archive_path = RAW_DIR / f"game-{game_id}.zip"
         if not archive_path.exists():
             totals["missing_archive"] += len(by_game[game_id])
@@ -217,6 +218,7 @@ def main() -> int:
             continue
 
         archive_data = archive_path.read_bytes()
+        print(f"game={game_id} stage=prepared_cache", flush=True)
         prepared, cache_hit = load_or_build_prepared_game_cache(
             archive_data,
             game_id=game_id,
@@ -236,9 +238,16 @@ def main() -> int:
 
         print(
             f"game={game_id} cache_hit={cache_hit} rows={len(by_game[game_id])} "
-            f"sphere={topology.sphere} unlimitedfuel={unlimited_fuel}"
+            f"sphere={topology.sphere} unlimitedfuel={unlimited_fuel}",
+            flush=True,
         )
 
+        # The planner only reads state. Reuse one import per owner/turn rather
+        # than importing every ship in the snapshot for each Intercept row.
+        # Drop prior-turn states to keep memory bounded on large archives.
+        imported_turn: int | None = None
+        imported_states: dict[int, Any] = {}
+        state_imports = 0
         for row in by_game[game_id]:
             (
                 _game_id,
@@ -253,6 +262,9 @@ def main() -> int:
                 next_y,
             ) = row
             before_turn = int(before_turn)
+            if before_turn != imported_turn:
+                imported_states.clear()
+                imported_turn = before_turn
             after_turn = int(after_turn)
             ship_id = int(ship_id)
             hull_id = int(hull_id)
@@ -345,7 +357,10 @@ def main() -> int:
                 totals["owner_snapshot_missing"] += 1
                 continue
             try:
-                state = snapshot.import_state()
+                if owner_id not in imported_states:
+                    imported_states[owner_id] = snapshot.import_state()
+                    state_imports += 1
+                state = imported_states[owner_id]
                 interceptor = state.ships.get(ship_id)
                 if interceptor is None or interceptor.owner_id != owner_id:
                     totals["owner_snapshot_ship_missing"] += 1
@@ -442,8 +457,11 @@ def main() -> int:
                     }
                 )
 
+        print(f"game={game_id} stage=done snapshot_imports={state_imports}", flush=True)
+
     print("\n===== POPULATION =====")
     for key in (
+        "missing_archive",
         "rows",
         "sphere_excluded",
         "unlimited_fuel_excluded",
