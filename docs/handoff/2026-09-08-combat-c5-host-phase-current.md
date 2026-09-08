@@ -10,6 +10,16 @@ Current durable evidence is split between this high-level handoff and:
 
 Reconstruct the NuHost combat phase that generates VCR engagements, order and sides. Keep factual VCRs, inferred semantics and simulator rules separate. Unknown branches fail closed. Game `591478` remains a separate special/campaign/Horwasp bucket.
 
+## Current repository alignment
+
+At the latest sync point:
+
+```text
+main: 89b5b0f1c06869a0d03d04cba76caa78bc4b10ce
+```
+
+C5 has been merge-synchronized with that main commit. The main-only delta was a movement-only zero-cost Move Most diagnostic fix; there was no combat overlap.
+
 ## Completed C5 evidence
 
 ### Factual queue shape
@@ -106,7 +116,49 @@ NOT DOCUMENTED
 
 Do not generalize to arbitrary signed-string lengths.
 
-## Remaining isolated residual
+### Diplomacy hypothesis for the final residual — rejected
+
+Raw pre-combat turn-9 relation records for game 621253 owners 4↔3:
+
+```text
+4->3: relationto=1 relationfrom=0 conflictlevel=0
+3->4: relationto=1 relationfrom=1 conflictlevel=0
+```
+
+The pair has no Safe Passage-or-higher relation. Diplomacy does not explain the residual. Do not yet canonicalize detailed `relationto/relationfrom` perspective semantics; the two raw rows are not simple mirrors.
+
+### Numeric mission 20 = Bird Cloak and Intercept
+
+Tool:
+
+```text
+tools/diagnostics/combat_host_mission20_cloak_intercept_audit.py
+```
+
+12-archive runtime:
+
+```text
+all mission-20 records: 97
+race_conflict_games: 0
+owner_races: race 3 = 97/97
+```
+
+Ordinary population:
+
+```text
+records: 37
+owner_races: race 3 = 37/37
+owner_hulls: {31:16, 27:9, 29:8, 32:3, 26:1}
+target positive: 36/37
+target other owner: 36/36 applicable
+enemy matches target owner: 22
+enemy zero: 14
+iscloaked: true 26 / false 11
+```
+
+Special game 591478 remains separate and also uses mission 20 only on race 3 ships, but is not used to tune ordinary rules.
+
+The only prior ordinary isolated standard-side residual was:
 
 ```text
 game 621253
@@ -116,93 +168,73 @@ VCR 8
 left:
   ship 50 / hull 37 / owner 4
   mission=0 / enemy=3 / FC=wxd
-  standard priority=[3,50,0]
 
 right:
   ship 57 / hull 29 / owner 3
   mission=20 / enemy=4 / FC=osq
-  standard priority=[3,57,0]
 ```
 
-Gorbie forced-left was tested and rejected.
-
-### Diplomacy hypothesis rejected
-
-Raw pre-combat turn-9 relation records:
+Pre-combat T-1 record for ship 57:
 
 ```text
-4->3: relationto=1 relationfrom=0 conflictlevel=0
-3->4: relationto=1 relationfrom=1 conflictlevel=0
+owner race: 3
+hull: 29
+mission: 20
+mission1target: 50
+enemy: 4
+target ship 50 owner: 4
+targets_expected_opponent: true
 ```
 
-The pair has no Safe Passage-or-higher relation. Therefore diplomacy does not explain the residual.
+Official Planets.nu Race Sheet documents Bird `Cloak and Intercept`: cloaking ships may remain cloaked while intercepting, and if Primary Enemy matches the intercept target faction they engage that target before the regular combat phase.
 
-Do not yet canonicalize the detailed `relationto/relationfrom` perspective semantics; the two raw rows are not simple mirrors.
-
-## Current gate: numeric mission 20
-
-The remaining right-side ship is a Bird Dark Wing on rare `mission=20`.
-
-Official Planets.nu documentation says Bird `Cloak and Intercept` can fight the intercept target before regular combat when Primary Enemy matches the target faction. This is a strong hypothesis for the residual, but numeric `20 = Cloak and Intercept` is NOT established yet.
-
-Current files:
+Therefore the evidence supports:
 
 ```text
-tools/diagnostics/combat_host_mission20_cloak_intercept_audit.py
-tests/test_combat_host_mission20_cloak_intercept_audit.py
+mission 20 = Cloak and Intercept
+numeric mapping: CORPUS_OBSERVED
+phase semantics: DOCUMENTED
+residual classification: CORPUS_OBSERVED + documented rule
 ```
 
-The tool inventories every owner-visible mission-20 record across all 12 archives and reports ordinary vs game591478 separately:
-
-- owner race/hull;
-- mission1target presence;
-- target owner resolution;
-- same-owner vs other-owner target;
-- enemy vs target-owner relation;
-- iscloaked when present.
-
-It separately highlights:
+The prior `419/420` standard-side result should now be interpreted as:
 
 ```text
-game 621253 / archive turn 9 / ship 57
+419 ordinary standard comparable cases: 419/419 right-side priority matches
+1 prior residual: not a standard battle; C&I pre-standard case
 ```
 
-and tests whether `mission1target == 50`.
+This must still be encoded and rerun as a direct differential rather than merely accepted by arithmetic exclusion.
 
-Do not promote the mapping unless the ordinary population exhibits the documented C&I signature. If evidence is mixed, keep mission 20 numeric and retain the residual as unresolved.
+## Current gate: canonical pre-standard vs standard classification
 
-Targeted runtime command:
+Next implementation should introduce small provenance-preserving C5 order primitives, not a full Host simulator yet:
 
-```bash
-cd ~/projects/planets-lab
-set -euo pipefail
+1. accepted Friendly Code battle-priority parsing, including exact-three-character signed `[+/-][0-9][0-9]` corpus behavior;
+2. `mission 3 = Kill!` mapping;
+3. `mission 7 = Intercept` existing project convention;
+4. `mission 20 = Cloak and Intercept` mapping;
+5. standard battle-priority key;
+6. classify C&I target/PE match as pre-standard;
+7. keep normal Priority Intercept qualification separate until its cloak-capability and target evidence is audited.
 
-git fetch origin
-git checkout agent/combat-c5-host-phase
-git pull --ff-only origin agent/combat-c5-host-phase
+Then rerun isolated ordinary battles and require direct accounting:
 
-docker compose run --rm -T lab \
-  pytest -q tests/test_combat_host_mission20_cloak_intercept_audit.py
-
-mkdir -p logs
-
-docker compose run --rm -T lab \
-  python -u tools/diagnostics/combat_host_mission20_cloak_intercept_audit.py \
-    --output logs/combat-host-mission20-cloak-intercept.json \
-  | tee logs/combat-host-mission20-cloak-intercept.log
+```text
+standard comparable: 419 / 419 explained
+C&I pre-standard:       1 / 1 explained
+unresolved ordinary isolated residuals: 0
 ```
 
-## After mission 20
+Do not treat this as full engagement generation yet.
 
-If the signature closes the residual:
+## After isolated phase classification
 
-1. incorporate accepted signed-FC semantics and C&I pre-standard phase into a canonical C5 battle-order model with provenance;
-2. verify ordinary isolated standard side assignment becomes 420/420 once pre-standard C&I is excluded/modeled;
-3. reconstruct normal Priority Intercept (`mission=7`) qualification and reverse-Ship-ID ordering;
-4. handle exact matching-FC exceptions;
-5. build dynamic multi-ship opponent selection;
-6. handle capture/reinsertion and ownership changes;
-7. integrate the repair boundary and ship-vs-planet phase;
-8. keep special game 591478 separate.
+1. reconstruct normal Priority Intercept (`mission=7`) qualification and reverse-Ship-ID ordering;
+2. handle exact matching-FC exceptions;
+3. build dynamic multi-ship opponent selection;
+4. handle capture/reinsertion and ownership changes;
+5. integrate the repair boundary and ship-vs-planet phase;
+6. keep special game 591478 separate.
 
 PR #28 remains draft until ordering/eligibility semantics are sufficiently understood.
