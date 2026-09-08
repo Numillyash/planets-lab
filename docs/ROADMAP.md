@@ -4,6 +4,7 @@ This file is the operational roadmap for `planets-lab`. Architecture boundaries 
 
 Current durable checkpoints:
 
+- bounded partial-fuel candidate / pending historical gate: [`handoff/2026-09-08-work-chat-handoff.md`](handoff/2026-09-08-work-chat-handoff.md);
 - movement: [`handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md`](handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md);
 - Classic combat replay coverage: [`handoff/2026-09-07-combat-c2-classic-replay-coverage.md`](handoff/2026-09-07-combat-c2-classic-replay-coverage.md);
 - ship battle sequences: [`handoff/2026-09-07-combat-c3-ship-sequence-diff-verified.md`](handoff/2026-09-07-combat-c3-ship-sequence-diff-verified.md);
@@ -41,6 +42,15 @@ The immediate combat work is the missing **Host combat phase around the resolver
 Do not reopen bounded movement, ordinary ship-sequence, or plain-planet sequence residual hunting unless a contradiction blocks a larger Host subsystem.
 
 ## Runtime-verified movement accounting
+
+These are the last recorded compiled-layer counts, not a post-change validation
+of the `993e760...` nominal-leg planner candidate. The candidate is `TESTED`
+with two independent empirical anchors, but its new semantics are not yet
+globally `DIFF_VERIFIED`. Run `bash tools/run-partial-fuel-historical-gate.sh`
+on current clean server `main` with the existing historical archives/caches.
+It collects Move Most controls and Intercept baseline/candidate output without
+rebuilding L1/L2. Separate finite-fuel Tow evidence remains required before
+global promotion or transfer into `planets-intel`.
 
 ```text
 move_most_candidates              227468

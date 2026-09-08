@@ -119,7 +119,85 @@ Do not rerun the deprecated broad `partial_move_fuel_cost_population_audit.py`; 
 
 After successful historical validation, update durable rule/status documentation in `planets-lab`. Only then consider whether any corresponding logic should be promoted into `planets-intel`.
 
-## Evidence discipline
+## Work validation preparation
+
+Work independently queried GitHub `main` at
+`e88e1a28716d67dadd171c5bbba4f01a9dd6c802`, read the bootstrap and inspected the
+candidate/callers and recent commits. The exact 368 source files were obtained
+through the GitHub API and every Git blob SHA was checked. This was a source
+snapshot, not a server checkout; ordinary authenticated git clone and SSH
+credentials were unavailable in Work. There were no historical raw archives,
+prepared caches or DuckDB available there.
+
+The complete local suite on that unmodified source snapshot passed:
+
+```text
+Python 3.12 / pytest 8.4.2
+371 passed
+```
+
+The recorded Actions run `34237920543` was also independently queried and
+confirmed successful at `d002858e...`. Neither check is a historical runtime gate.
+
+Prepared runner:
+
+```bash
+bash tools/run-partial-fuel-historical-gate.sh
+```
+
+Run on clean `/opt/planets-lab` `main` after `git pull --ff-only origin main`.
+The runner verifies actual `origin/main`, preserves logs under a unique
+`logs/partial-fuel-*` directory, records command and `tee` exit codes, and stops
+on errors. It uses the existing lab Docker service and checks that local
+archives/prepared caches exist before running the full suite, targeted Move
+Most scan, corrected fast Move Most population, Intercept baseline/candidate
+differentials and targeted Intercept external-confounder audit.
+
+The baseline is the verified parent of implementation `993e760...`:
+`1d01bf20c745e84162b6c5ae249e0e81b0ccdc6c`. Its `src` is read with `git archive`
+into the ignored run directory; the active checkout is never switched/reset.
+Both Intercept passes execute the same current diagnostic and same corpus with
+explicit source paths. Review `source-diff.log` if later source changes appear:
+the comparison must remain attributable to the fuel candidate.
+
+The Intercept diagnostic now reuses read-only imported owner state within each
+turn and releases it at the next turn. It prints archive/cache/game progress
+and missing-archive counts. No sampling predicate, fuel law or counter
+classification changed in this optimization.
+
+`comparison.log` shows all baseline/candidate counter pairs and explicitly
+requires `620694/T73/ship278` to be executable discriminating support at cost
+72 with endpoint `(2742,2070)`. Changed contradiction counts stop the runner
+for investigation. Still inspect all summaries: exit code zero means evidence
+was collected, not automatic `DIFF_VERIFIED` or production promotion.
+
+### Tow evidence boundary
+
+Source review confirms `TowMovementPhase` passes combined tower/target movement
+mass to the common planner. Existing `tow_strict_lock_historical_audit.py` and
+`tow_four_fingers_population_differential_audit.py` address route/lock evidence;
+they do not isolate the nominal-vs-projected finite-fuel cost basis. They cannot
+close this gate merely by returning success.
+
+A separate empirical Tow pass still needs same-identity owner-visible physical
+state for both ships, exact colocation, eligible tower engines, known finite-fuel
+settings, independently attributable Tow routes, and exclusion of contests,
+chains/cycles, warp wells and other movement confounders. Compare both cost
+bases using combined mass, retaining snapshot-vs-phase-fuel uncertainty and
+supporting-only post-fuel observations. This evidence is unavailable in Work
+until the server corpus is queried. Finite-fuel Tow remains **OPEN**.
+
+### Cross-repo checkpoint reconciliation
+
+`planets-intel/feature/operational-ui` was independently observed at
+`e3237cbf3d6e876dfc02ea6849702243289d1693`. Its fresh handoff records production
+deploy/browser acceptance at `f3d807f...`: canonical `Robots (spaceshepherd)`
+contains 3 messages and unresolved root `7649938` still offers Message, not
+Reply. Communications is closed absent a regression. The older Intel
+`CURRENT_HANDOFF.md` had stale deploy/migration claims; it is being reconciled
+with this repository-recorded evidence, without claiming a new server visit.
+
+## Evidence discipline (unchanged)
 
 Keep these invariants:
 

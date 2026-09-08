@@ -23,6 +23,14 @@ Raw `/game/loadall` archives remain unchanged. Prepared projection stays privacy
 
 ## Current runtime-verified 12-game invariants
 
+The counters below describe the last recorded compiled-layer runtime checkpoint.
+They do not establish post-change validation of the `993e760...` nominal-leg
+partial-fuel planner candidate. See
+[`handoff/2026-09-08-work-chat-handoff.md`](handoff/2026-09-08-work-chat-handoff.md)
+for its pending historical gate. The gate reads the existing corpus and does
+not rebuild L1/L2 or promote finite-fuel Tow. Missing local archives/caches
+must be reported as missing evidence, never as zero contradictions.
+
 L1:
 
 ```text
