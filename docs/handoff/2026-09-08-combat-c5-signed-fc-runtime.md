@@ -129,7 +129,7 @@ game 621253 / archive turn 9 / ship 57
 
 and tests whether its `mission1target == 50`.
 
-The diagnostic itself does NOT rename mission 20. Promotion requires corpus evidence that the mission-20 population has the documented Cloak-and-Intercept signature.
+The diagnostic itself does NOT rename mission 20. Promotion requires corpus evidence that the mission-20 population has the documented Cloak-and-Intercept signature. If the population is mixed or target ownership is insufficiently resolved, keep mission 20 numeric and treat the single residual as unresolved.
 
 ## Immediate next actions
 
