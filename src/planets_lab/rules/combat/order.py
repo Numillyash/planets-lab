@@ -160,6 +160,55 @@ def orders_request_ship_combat(
     return False
 
 
+def priority_intercept_order_signature(
+    *,
+    mission: int | None,
+    mission_target_id: int | None,
+    primary_enemy: int | None,
+    target_owner_id: int | None,
+    hull_can_cloak: bool | None,
+) -> bool | None:
+    """Recognize the documented Priority Intercept order signature.
+
+    ``True`` means the known order state contains the static ingredients for a
+    Priority Intercept Attack: Intercept mission, positive target, installed
+    cloaking capability, and Primary Enemy matching the target faction.
+
+    ``False`` means enough state is known and at least one requirement is false.
+    ``None`` means mission 7 is present but a required fact is unavailable, so a
+    caller must fail closed.
+
+    This helper deliberately does *not* decide whether PIA priority actually
+    applies in a particular game turn. Combat must otherwise be eligible, and
+    Intercept Interference can demote a qualifying order to normal combat order.
+    Those dynamic conditions belong to later C5 gates.
+    """
+
+    if mission != INTERCEPT_MISSION_ID:
+        return False
+
+    required = (
+        mission_target_id,
+        primary_enemy,
+        target_owner_id,
+        hull_can_cloak,
+    )
+    if any(value is None for value in required):
+        return None
+
+    assert mission_target_id is not None
+    assert primary_enemy is not None
+    assert target_owner_id is not None
+    assert hull_can_cloak is not None
+
+    return (
+        hull_can_cloak
+        and mission_target_id > 0
+        and target_owner_id > 0
+        and primary_enemy == target_owner_id
+    )
+
+
 def cloak_intercept_order_signature(
     *,
     mission: int | None,
