@@ -4,14 +4,22 @@ GitHub `main` is the only source of truth for `Numillyash/planets-lab`.
 
 ## Current source checkpoint
 
-The latest code checkpoint relevant to this handoff is:
+The latest implementation/test checkpoint relevant to this handoff is:
 
 ```text
-887c67061b8280ccaac1520b475b1904a039f811
-diagnostics: add targeted Move Most fuel case audit
+d002858e3eb2fe06a0f2c1876f14cfdaa3cd3ea1
+tests: lock partial fuel nominal basis anchors
 ```
 
-A documentation commit recording the runtime result is newer than that code checkpoint. Always inspect actual `main` before work.
+Its parent implementation commit is:
+
+```text
+993e76046c3ffaa40acf4b0aa7286d5bd9573480
+sim: use nominal leg for partial fuel cost
+```
+
+GitHub Actions `tests` run `34237920543` completed successfully for `d002858e`.
+A documentation commit recording this checkpoint is newer than the code commit. Always inspect actual `main` before work.
 
 ## Finite-fuel Intercept evidence
 
@@ -67,7 +75,7 @@ After fuel: 0
 
 No known strict mine/storm/damage/Tow/Chunnel explanation was found.
 
-The previous normal planner reports `insufficient_fuel_partial_waypoint`, but a dedicated model comparison showed:
+Dedicated model comparison:
 
 ```text
 integer projected one-turn distance ~80.623 -> required cost 71
@@ -78,7 +86,7 @@ full target waypoint cost               -> required cost 72
 29/72 rasterizes to (2742,2070)  [factual]
 ```
 
-This is evidence that true partial-route fuel cost may be based on the continuous nominal leg before Host endpoint rasterization. By itself it was not enough to promote a general rule.
+This supports a continuous nominal one-turn cost basis before integer endpoint rasterization.
 
 ## Diagnostic corrections
 
@@ -86,7 +94,7 @@ Do not equate `NormalMovePlan.partial` with `waypoint_distance > effective max d
 
 `partial` can also be true for a geometrically reachable waypoint shortened due to fuel shortage. A true partial route must be classified geometrically from target distance versus effective max movement.
 
-A second diagnostic bug was found and fixed in `partial_move_fuel_cost_move_most_audit.py`: a model cost of exactly zero must mean that fuel does not limit the candidate endpoint. The old helper returned `None` for `fuel_required <= 0`, which created a false projected-vs-nominal discriminator at `511506/T95/ship445`. Commit:
+A second diagnostic bug was found and fixed in `partial_move_fuel_cost_move_most_audit.py`: a model cost of exactly zero must mean that fuel does not limit the candidate endpoint. The old helper returned `None` for `fuel_required <= 0`, which created a false projected-vs-nominal discriminator at `511506/T95/ship445`.
 
 ```text
 89b5b0f1c06869a0d03d04cba76caa78bc4b10ce
@@ -95,7 +103,7 @@ fix: handle zero-cost Move Most candidates
 
 ## Move Most population audit — corrected runtime result
 
-Use the fast diagnostic:
+Use:
 
 ```text
 tools/diagnostics/partial_move_fuel_cost_move_most_audit.py
@@ -144,7 +152,7 @@ Code commit:
 diagnostics: add targeted Move Most fuel case audit
 ```
 
-Runtime command completed successfully with `audit rc=0`, `tee rc=0` against source HEAD `030f7489fd94a2af8e60a7da710c9b28b207f152` (that HEAD included the code plus the previous handoff update).
+Runtime completed successfully (`audit rc=0`, `tee rc=0`).
 
 Factual case:
 
@@ -176,7 +184,7 @@ projected endpoint = (1959,2970) [not factual]
 nominal endpoint   = (1959,2969) [factual]
 ```
 
-The targeted phase-fuel scan recomputed movement mass separately for every hypothetical fuel value from 0 through 5000 KT. Result:
+The phase-fuel scan recomputed movement mass for every hypothetical fuel value from 0 through 5000 KT:
 
 ```text
 projected_exact_phase_fuel_ranges=()
@@ -188,7 +196,7 @@ projected_exact_post_fuel_ranges=()
 nominal_exact_post_fuel_ranges=((0,0),)
 ```
 
-This resolves the simple phase-fuel ambiguity for this event: changing only movement-phase neutronium cannot rescue the projected/rasterized-distance cost model anywhere in the scanned physical range. Continuous-nominal cost reproduces the factual endpoint uniquely at exactly the factual snapshot fuel, and predicts post-move fuel 0, matching the next factual state.
+Changing only movement-phase neutronium cannot rescue the projected/rasterized-distance cost model anywhere in the scanned physical range. Continuous-nominal cost reproduces the factual endpoint uniquely at exactly the factual snapshot fuel and predicts post-move fuel 0, matching the next factual state.
 
 Owner-visible pre-Host context:
 
@@ -199,7 +207,7 @@ visible_incoming_tow_tower_ids=()
 colocated_planets=[]
 ```
 
-There were three other same-owner hull-23 ships co-located at the origin, but none had visible transfer/load-like order fields targeting ship41. Co-location alone is not a transfer fact.
+Three other same-owner hull-23 ships were co-located at the origin, but none had visible transfer/load-like order fields targeting ship41. Co-location alone is not a transfer fact.
 
 Known external movement confounders:
 
@@ -219,7 +227,7 @@ known_external_flags=()
 
 ### Evidence interpretation
 
-`360690/T164/ship41` is now a **strong independent Move Most empirical anchor** for continuous-nominal true-partial fuel-cost basis.
+`360690/T164/ship41` is a **strong independent Move Most empirical anchor** for continuous-nominal true-partial fuel-cost basis.
 
 It is stronger than a snapshot-only discriminator because:
 
@@ -230,35 +238,91 @@ It is stronger than a snapshot-only discriminator because:
 5. no owner-visible transfer/load fuel order explains a state mutation;
 6. no currently modelled mine/storm/damage/Tow/Chunnel mechanic explains the endpoint.
 
-The remaining caveat is general Host incompleteness: an unknown mechanic could still alter movement mass/geometry/state. `known_external_flags=()` excludes only the already-modelled factual confounders; it is not proof that no unknown Host behavior exists.
+The remaining caveat is general Host incompleteness: an unknown mechanic could still alter movement mass/geometry/state. `known_external_flags=()` excludes only the already-modelled factual confounders.
 
-Combined with the independent Intercept case `620694/T73/ship278`, the evidence now points consistently to the same rule across different games/hulls/mission contexts: when a route is geometrically longer than the effective one-turn maximum, fuel requirement appears to use the **continuous nominal one-turn leg before integer endpoint rasterization**, and fuel shortage then prorates movement against that cost.
+Combined with independent Intercept `620694/T73/ship278`, evidence consistently points to the same rule across different games/hulls/mission contexts: when a route is geometrically longer than the effective one-turn maximum, fuel requirement uses the **continuous nominal one-turn leg before integer endpoint rasterization**, then insufficient fuel prorates that one-turn leg.
 
 No observed discriminator supports projected/rasterized endpoint distance as the fuel-cost basis.
 
-## Current implementation mismatch
+## Lab implementation candidate
 
-At this checkpoint, `src/planets_lab/sim/normal_movement.py` still computes `fuel_required` from the rasterized destination distance and explicitly returns `insufficient_fuel_partial_waypoint` instead of applying fuel proration when the route is already geometrically partial.
+Caller audit confirmed that ordinary Move Most, Intercept and Tow share `plan_full_normal_move()`:
 
-That implementation therefore does not yet encode the newly strengthened empirical rule.
+- `NormalMovementPhase` passes the ship movement mass;
+- `InterceptMovementPhase` uses the same planner toward the target's phase-current position;
+- `TowMovementPhase` uses the same planner with `movement_mass_override=combined_mass`.
 
-Before changing it, inspect all callers and regression tests for `plan_full_normal_move`, especially normal movement, Intercept and Tow. The change belongs in `planets-lab` reconstruction first. Do not silently promote it into `planets-intel` production inference until lab regression/corpus verification is complete.
+The candidate implementation is therefore centralized rather than mission-specific.
 
-## Immediate next step
+Commit:
 
-1. Audit `src/planets_lab/sim/normal_movement.py` and its callers/tests.
-2. Implement the continuous-nominal cost basis for geometrically partial routes in `planets-lab` only.
-3. Add explicit regression tests reproducing at least:
-   - `360690/T164/ship41` Move Most anchor;
-   - `620694/T73/ship278` Intercept anchor or an equivalent unit-level construction with the same 71-vs-72 distinction.
-4. Run the complete test suite.
-5. Re-run the relevant targeted/corpus diagnostics and compare residuals before considering broader promotion.
+```text
+993e76046c3ffaa40acf4b0aa7286d5bd9573480
+sim: use nominal leg for partial fuel cost
+```
+
+Behavior change in `src/planets_lab/sim/normal_movement.py`:
+
+- geometrically reachable route: unchanged; fuel basis is the continuous waypoint distance;
+- geometrically partial route: integer endpoint is still projected with the verified Host major/minor-axis geometry at the effective one-turn range;
+- its `fuel_required` is now computed from the **continuous effective one-turn range**, not `hypot(rasterized_endpoint-origin)`;
+- if fuel is insufficient and expanded/proration mode is enabled, the movement is no longer rejected as `insufficient_fuel_partial_waypoint`;
+- instead, the continuous one-turn leg is prorated by `fuel_available / fuel_required`, then projected to integer coordinates using the same Host geometry;
+- `NormalMovePlan.distance` remains the actual rasterized endpoint distance, while `fuel_required` may intentionally be based on a slightly larger continuous nominal leg.
+
+This change automatically applies the candidate law to Move Most, Intercept and Tow while preserving Tow's combined movement mass.
+
+## Regression anchors and CI
+
+Commit:
+
+```text
+d002858e3eb2fe06a0f2c1876f14cfdaa3cd3ea1
+tests: lock partial fuel nominal basis anchors
+```
+
+New `tests/test_partial_fuel_nominal_basis.py` contains two explicit diagonal/rasterization discriminators:
+
+1. `360690/T164/ship41`-geometry equivalent:
+   - movement mass 517;
+   - rasterized-distance cost 40;
+   - continuous 81-ly cost 41;
+   - 11 KT must produce `(1959,2969)` and then reset to 0 fuel / warp 0.
+2. `620694/T73/ship278` Intercept-geometry equivalent:
+   - movement mass 900 synthetic equivalent;
+   - rasterized-distance cost 71;
+   - continuous 81-ly cost 72;
+   - 29 KT must produce `(2742,2070)`.
+
+GitHub Actions:
+
+```text
+workflow: tests
+run id: 34237920543
+head: d002858e3eb2fe06a0f2c1876f14cfdaa3cd3ea1
+status: completed
+conclusion: success
+```
+
+This proves the candidate is internally regression-clean against the repository test suite, but does **not** replace historical corpus/runtime differential validation.
+
+## Immediate next step — server historical validation
+
+Pull actual `main` on `/opt/planets-lab`, run the complete pytest suite there, then re-run:
+
+1. `partial_move_fuel_cost_case_audit.py` for the strong Move Most anchor;
+2. `partial_move_fuel_cost_move_most_audit.py` for population consistency;
+3. the finite-fuel Intercept diagnostics most directly affected by `plan_full_normal_move()` — at minimum the historical differential / targeted external-confounder path.
+
+Compare against the recorded baselines rather than accepting a green unit suite alone.
+
+Only after those historical diagnostics remain coherent should `docs/rules/fuel-proration.md` / movement rule status be updated to the new differential-verified semantics.
 
 ## Promotion policy
 
 Do not modify `planets-intel` production finite-fuel inference yet.
 
-For `planets-lab`, the rule now has enough cross-context empirical support to justify an implementation candidate and full regression/differential validation. Promotion beyond the lab still requires confirming that the implementation does not regress established movement/Tow/Intercept behavior.
+For `planets-lab`, the rule has enough cross-context empirical support for this implementation candidate and full regression/differential validation. Promotion beyond the lab still requires confirming no regression of established Move Most/Tow/Intercept historical behavior.
 
 Core evidence discipline remains:
 
