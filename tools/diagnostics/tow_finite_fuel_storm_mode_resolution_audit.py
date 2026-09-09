@@ -124,6 +124,7 @@ def main() -> int:
         for key in (
             "clean_residual_input",
             "unique_games",
+            "loadinfo_attempts",
             "loadinfo_success",
             "loadinfo_error",
             "mode_true_games",
