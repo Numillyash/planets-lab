@@ -4,8 +4,9 @@ import argparse
 import json
 import sys
 from collections import Counter
+from collections.abc import Mapping, Sequence
 from pathlib import Path
-from typing import Any, Mapping
+from typing import Any
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DIAGNOSTICS_DIR = Path(__file__).resolve().parent
@@ -20,8 +21,13 @@ from planets_lab.corpus.movement_differential import (
     _planet_tuples_by_turn,
     _settings_warp_well_state_by_turn,
 )
-from planets_lab.corpus.movement_residual_context import GRAVITONIC_HULL_IDS
+from planets_lab.corpus.movement_residual_context import (
+    GRAVITONIC_HULL_IDS,
+    StormRecord,
+    _storm_consensus_by_turn,
+)
 from planets_lab.corpus.movement_sphere_context import effective_sphere_topology
+from planets_lab.corpus.movement_storm_context import storm_offset_for_mode
 from planets_lab.corpus.movement_topology_diagnostics import extract_map_topology
 from planets_lab.corpus.prepared_cache import load_or_build_prepared_game_cache
 from planets_lab.corpus.reconstruction import group_perspective_records
@@ -60,6 +66,49 @@ TRANSFER_AMOUNT_FIELDS = (
     "transferclans",
     "transfermegacredits",
 )
+
+
+def _boolish(value: Any) -> bool | None:
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, int) and not isinstance(value, bool) and value in (0, 1):
+        return bool(value)
+    if isinstance(value, str):
+        text = value.strip().lower()
+        if text in {"1", "true", "yes", "y"}:
+            return True
+        if text in {"0", "false", "no", "n"}:
+            return False
+    return None
+
+
+def _find_named_setting(value: Any, normalized_name: str) -> list[Any]:
+    found: list[Any] = []
+    if isinstance(value, Mapping):
+        for key, child in value.items():
+            normalized = str(key).lower().replace("_", "").replace("-", "")
+            if normalized == normalized_name:
+                found.append(child)
+            if isinstance(child, (Mapping, list, tuple)):
+                found.extend(_find_named_setting(child, normalized_name))
+    elif isinstance(value, (list, tuple)):
+        for child in value:
+            if isinstance(child, (Mapping, list, tuple)):
+                found.extend(_find_named_setting(child, normalized_name))
+    return found
+
+
+def _nuionstorms_consensus(snapshots: Sequence[Any]) -> tuple[bool | None, tuple[str, ...]]:
+    parsed: set[bool] = set()
+    raw_values: set[str] = set()
+    for snapshot in snapshots:
+        mechanics_payload = getattr(snapshot, "mechanics_payload", None)
+        for value in _find_named_setting(mechanics_payload, "nuionstorms"):
+            raw_values.add(repr(value))
+            flag = _boolish(value)
+            if flag is not None:
+                parsed.add(flag)
+    return (next(iter(parsed)) if len(parsed) == 1 else None), tuple(sorted(raw_values))
 
 
 def _nonzero_transfer_amount(raw: Mapping[str, Any]) -> bool:
@@ -155,6 +204,24 @@ def _special_movement_reason(
     return None
 
 
+def _storm_adjusted_position(
+    position: tuple[int, int],
+    *,
+    storms: Sequence[StormRecord],
+    nuionstorms: bool | None,
+) -> tuple[tuple[int, int] | None, str, bool]:
+    offset, status = storm_offset_for_mode(
+        storms,
+        x=position[0],
+        y=position[1],
+        nuionstorms=nuionstorms,
+    )
+    if offset is None:
+        return None, status, False
+    adjusted = (position[0] + int(offset[0]), position[1] + int(offset[1]))
+    return adjusted, status, offset != (0, 0)
+
+
 def _normal_position_prediction(
     *,
     game_id: int,
@@ -170,6 +237,8 @@ def _normal_position_prediction(
     tow_targets: frozenset[int],
     chunnel_source_sites: frozenset[tuple[int, int]],
     sphere: bool | None,
+    storms: Sequence[StormRecord] = (),
+    nuionstorms: bool | None = None,
 ) -> tuple[tuple[int, int] | None, str]:
     del game_id  # retained in the call surface for future game-scoped mechanics.
 
@@ -201,7 +270,14 @@ def _normal_position_prediction(
         x, y = _xy(raw)
         if x is None or y is None:
             return None, "position_unknown"
-        return (int(x), int(y)), "stationary_effective_warp_zero"
+        adjusted, storm_status, storm_applied = _storm_adjusted_position(
+            (int(x), int(y)),
+            storms=storms,
+            nuionstorms=nuionstorms,
+        )
+        if adjusted is None:
+            return None, storm_status
+        return adjusted, "stationary_ion_storm" if storm_applied else "stationary_effective_warp_zero"
 
     raw_mass = _intish(raw.get("mass"))
     if raw_mass is None or raw_mass <= 0:
@@ -237,11 +313,28 @@ def _normal_position_prediction(
     if not plan.executable:
         return None, f"normal_plan_{plan.reason or 'not_executable'}"
 
-    destination = (int(plan.destination_x), int(plan.destination_y))
-    if effective_warp <= 1 or destination == (ship.x, ship.y):
-        return destination, "normal_move"
+    base_destination = (int(plan.destination_x), int(plan.destination_y))
+    offset, storm_status = storm_offset_for_mode(
+        storms,
+        x=int(ship.x),
+        y=int(ship.y),
+        nuionstorms=nuionstorms,
+    )
+    if offset is None:
+        return None, storm_status
+    storm_applied = offset != (0, 0)
+    destination = (
+        base_destination[0] + int(offset[0]),
+        base_destination[1] + int(offset[1]),
+    )
+    source = "normal_move_ion_storm" if storm_applied else "normal_move"
+
+    if effective_warp <= 1:
+        return destination, source
+    if destination == (ship.x, ship.y) and not storm_applied:
+        return destination, source
     if warp_wells_enabled is False:
-        return destination, "normal_move"
+        return destination, source
 
     # `planets` contains all factual planet objects for the turn, not only the
     # already-recognized warp-well-eligible subset. This matters when the
@@ -261,7 +354,8 @@ def _normal_position_prediction(
             return None, "warp_well_setting_unknown"
         if possible_planet is not None:
             return None, "warp_well_setting_unknown"
-        return destination, "normal_move_warp_well_irrelevant"
+        suffix = "_warp_well_irrelevant"
+        return destination, f"{source}{suffix}"
 
     eligible_ids = eligible_warp_well_planet_ids
     if eligible_ids is None:
@@ -283,13 +377,13 @@ def _normal_position_prediction(
         return None, "warp_well_ambiguous"
 
     if well_planet is None:
-        return destination, "normal_move"
+        return destination, source
 
     planet_map = {planet_id: (x, y) for planet_id, x, y in planets}
     snapped = planet_map.get(well_planet)
     if snapped is None:
         return None, "warp_well_planet_missing"
-    return (int(snapped[0]), int(snapped[1])), "normal_move_warp_well"
+    return (int(snapped[0]), int(snapped[1])), f"{source}_warp_well"
 
 
 def run(args: argparse.Namespace) -> dict[str, Any]:
@@ -299,6 +393,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     normal_reasons: Counter[str] = Counter()
     pair_counts: Counter[str] = Counter()
     site_counts: Counter[str] = Counter()
+    storm_mode_counts: Counter[str] = Counter()
     examples: list[dict[str, Any]] = []
 
     for archive_path in sorted(args.archive_dir.glob("game-*.zip")):
@@ -333,6 +428,17 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             game_id=game_id,
             topology=extract_map_topology(archive_data),
         )
+        storms_by_turn, storm_conflicts, storm_invalid = _storm_consensus_by_turn(
+            prepared.snapshots
+        )
+        nuionstorms, _nuionstorms_raw = _nuionstorms_consensus(prepared.snapshots)
+        storm_mode_counts[
+            "nuionstorms_true"
+            if nuionstorms is True
+            else "nuionstorms_false"
+            if nuionstorms is False
+            else "nuionstorms_unknown"
+        ] += 1
 
         rows_by_turn: dict[int, dict[int, tuple[int, Mapping[str, Any]]]] = {}
         tow_targets_by_turn: dict[int, frozenset[int]] = {}
@@ -361,6 +467,15 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 else None
             )
             warp_wells_enabled = warp_wells_by_turn.get(before_turn)
+            if battle_turn in storm_conflicts:
+                storms: Sequence[StormRecord] | None = None
+                storm_issue = "storm_context_conflict"
+            elif battle_turn in storm_invalid:
+                storms = None
+                storm_issue = "storm_context_invalid"
+            else:
+                storms = storms_by_turn.get(battle_turn, ())
+                storm_issue = None
 
             factual_pairs = {tuple(pair) for pair in factual["pairs"]}
             ship_ids = sorted({ship_id for pair in factual_pairs for ship_id in pair})
@@ -385,27 +500,42 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 source = ""
                 if stationary_reason is None:
                     sx, sy = _xy(raw)
-                    if sx is not None and sy is not None:
-                        predicted = (int(sx), int(sy))
-                        source = "stationary"
+                    if sx is None or sy is None:
+                        source = "position_unknown"
+                    elif storm_issue is not None:
+                        source = storm_issue
                     else:
-                        stationary_reason = "position_unknown"
+                        adjusted, status, storm_applied = _storm_adjusted_position(
+                            (int(sx), int(sy)),
+                            storms=storms or (),
+                            nuionstorms=nuionstorms,
+                        )
+                        if adjusted is None:
+                            source = status
+                        else:
+                            predicted = adjusted
+                            source = "stationary_ion_storm" if storm_applied else "stationary"
                 elif stationary_reason == "self_movement_possible":
-                    predicted, source = _normal_position_prediction(
-                        game_id=game_id,
-                        ship_id=ship_id,
-                        owner_id=owner_id,
-                        raw=raw,
-                        race_id=races.get(owner_id),
-                        specs=specs,
-                        planets=planets,
-                        warp_wells_enabled=warp_wells_enabled,
-                        eligible_warp_well_planet_ids=eligible_ids,
-                        inbound_transfer_targets=inbound_targets,
-                        tow_targets=tow_targets,
-                        chunnel_source_sites=chunnel_sites,
-                        sphere=topology.sphere,
-                    )
+                    if storm_issue is not None:
+                        source = storm_issue
+                    else:
+                        predicted, source = _normal_position_prediction(
+                            game_id=game_id,
+                            ship_id=ship_id,
+                            owner_id=owner_id,
+                            raw=raw,
+                            race_id=races.get(owner_id),
+                            specs=specs,
+                            planets=planets,
+                            warp_wells_enabled=warp_wells_enabled,
+                            eligible_warp_well_planet_ids=eligible_ids,
+                            inbound_transfer_targets=inbound_targets,
+                            tow_targets=tow_targets,
+                            chunnel_source_sites=chunnel_sites,
+                            sphere=topology.sphere,
+                            storms=storms or (),
+                            nuionstorms=nuionstorms,
+                        )
                     normal_reasons[source] += 1
                 else:
                     source = stationary_reason
@@ -413,9 +543,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 if predicted is None:
                     occurrence_status[ship_id] = "uncovered"
                     occurrence_counts["position_uncovered"] += 1
-                    occurrence_counts[
-                        f"uncovered:{source or stationary_reason or 'unknown'}"
-                    ] += 1
+                    occurrence_counts[f"uncovered:{source or 'unknown'}"] += 1
                     continue
 
                 occurrence_counts["position_predicted"] += 1
@@ -474,13 +602,14 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "archives_considered": archives_considered,
         "special_game_591478_excluded": True,
         "payload_conflicts": payload_conflicts,
+        "storm_mode_games": _serialize(storm_mode_counts),
         "ship_occurrences": _serialize(occurrence_counts),
         "normal_prediction_reasons": _serialize(normal_reasons),
         "factual_pairs": _serialize(pair_counts),
         "sites": _serialize(site_counts),
     }
     return {
-        "schema": "planets-lab.combat-host-normal-movement-position-audit.v2",
+        "schema": "planets-lab.combat-host-normal-movement-position-audit.v3",
         "read_only": True,
         "summary": summary,
         "examples": examples,
@@ -488,11 +617,12 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "Site-conditioned T-1 position differential for ordinary factual ship combatants. "
             "Factual VCR coordinates are comparison targets only and are never used to compute a ship endpoint. "
             "The normal-movement branch uses owner-current T-1 navigation, raw mass/fuel/components, canonical Host "
-            "major/minor movement, Gravitonic distance, the strict existing raw-damage warp cap, and known warp-well "
-            "state. Moving Tow/Intercept/C&I/HYP ships, Tow targets, obvious Chunnel source stacks, explicit cargo-transfer "
-            "cases and sphere topology remain uncovered before ordinary geometry is attempted. Fuel proration is "
-            "intentionally excluded in this first movement expansion. A mismatch is a movement-position residual to "
-            "investigate before integrating the row into candidate-set prediction."
+            "major/minor movement, Gravitonic distance, the strict existing raw-damage warp cap, authoritative archived "
+            "ion-storm mode/state, and known warp-well state. Ion-storm drag is composed after ordinary navigation and "
+            "before warp-well snapping, matching the independently validated movement context stack. Moving Tow/Intercept/" 
+            "C&I/HYP ships, Tow targets, obvious Chunnel source stacks, explicit cargo-transfer cases and sphere topology "
+            "remain uncovered before ordinary geometry is attempted. Fuel proration is still excluded. A mismatch is a "
+            "movement-position residual to investigate before integrating the row into candidate-set prediction."
         ),
     }
 
