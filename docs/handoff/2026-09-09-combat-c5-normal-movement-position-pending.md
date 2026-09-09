@@ -28,7 +28,7 @@ tests/test_combat_host_normal_movement_position_audit.py
 Schema:
 
 ```text
-planets-lab.combat-host-normal-movement-position-audit.v1
+planets-lab.combat-host-normal-movement-position-audit.v2
 ```
 
 ## Evidence boundary
@@ -44,7 +44,7 @@ For every factual ship occurrence, the predictor starts from owner-current `T-1`
 
 ### Stationary branch
 
-The exact v1 stationary policy is retained:
+The conservative v1 stationary policy is retained for direct position proofs:
 
 - Warp 0;
 - not Tow / Intercept / C&I;
@@ -54,9 +54,19 @@ The exact v1 stationary policy is retained:
 
 ### Normal self-movement branch
 
-Only ships whose v1 exclusion was exactly `self_movement_possible` enter this branch.
+Only rows initially classified as `self_movement_possible` are considered for ordinary self-movement, but v2 **rechecks special movement before normal geometry**. This is required because the older stationary helper reports non-zero Warp before testing special movement state.
 
-The branch uses:
+A moving ship remains uncovered if any of these apply:
+
+- mission Tow (`6`);
+- mission Intercept (`7`);
+- mission Bird Cloak and Intercept (`20`);
+- FC `HYP`;
+- the ship is a visible Tow target;
+- its origin is an obvious Firecloud Chunnel-source stack;
+- its T-1 position is unknown.
+
+Only after those guards does the ordinary normal-movement branch use:
 
 - owner-current `T-1` position, waypoint and requested warp;
 - owner-current `T-1` engine/components/cargo fields;
@@ -66,14 +76,20 @@ The branch uses:
 - the existing strict raw-damage maximum-warp rule where its fail-closed prerequisites hold;
 - known ordinary warp-well setting and eligible warp-well planets.
 
-### Deliberate first-pass exclusions
+### Warp-well fail-closed rule in v2
+
+The audit obtains **all factual planets** for the turn, not only the already-recognized warp-well-eligible subset.
+
+- `warp_wells_enabled=False`: ordinary endpoint is retained.
+- `warp_wells_enabled=True`: eligible planet ids must be known; otherwise endpoint is unresolved. Known eligible wells are applied using canonical warp-well geometry.
+- `warp_wells_enabled=None`: if the predicted endpoint could be affected by any factual planet's warp well, the result is `warp_well_setting_unknown`; only an endpoint for which warp wells are geometrically irrelevant is accepted.
+
+This prevents unknown settings from being silently treated as disabled.
+
+### Other deliberate first-pass exclusions
 
 This first movement expansion does **not** guess:
 
-- Tow movement;
-- Intercept/C&I movement;
-- HYP;
-- Chunnel movement;
 - sphere movement;
 - explicit inbound/outbound cargo-transfer cases;
 - MKT pre-movement mass mutation;
@@ -91,6 +107,21 @@ Nu waypoint fuel proration itself is already differential-verified in a strict m
 2. whether all pre-movement fuel/mass mutations have been reconstructed for combatants.
 
 The first gate therefore requires raw-fuel sufficiency. Explicit transfer cases are removed. Repair-related mass reduction can only make a raw-fuel-sufficient movement cheaper; it cannot create a shorter endpoint unless it changes the effective damage-limited warp, which is separately fail-closed.
+
+## Pre-runtime hardening regressions
+
+The targeted tests now pin the specific v2 boundaries:
+
+- moving Intercept does not fall through to ordinary movement;
+- moving Tow target does not fall through;
+- moving `HYP` does not fall through;
+- moving ship in an obvious Chunnel-source stack does not fall through;
+- unknown warp-well state plus a potentially relevant factual planet remains unresolved;
+- explicit transfer remains unresolved;
+- raw-fuel-insufficient movement does not guess fuel proration;
+- canonical full and partial normal endpoints remain covered.
+
+These tests are committed but are not `TESTED` until the user runtime reports success.
 
 ## Runtime interpretation
 
