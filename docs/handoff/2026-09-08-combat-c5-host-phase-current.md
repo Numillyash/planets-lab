@@ -182,43 +182,107 @@ All six attributed rows are exact classic ion-storm drag with authoritative `nui
 620694/T128 ships 146,214,278
 ```
 
-Four rows remain unresolved and must not be patched with factual coordinates:
-
-```text
-360690/T54/ship26
-511506/T95/ship332
-620694/T62/ship83
-680910/T14/ship65
-```
-
-No exact strong-mine or observed-Tow attribution was available for those four in the bounded residual gate.
-
-`680910/T14/ship65` is hull 1102, Scorpius Class Carrier, tech 6. Low-tech normal-mine slowdown is a plausible lead only; it is not promoted without an independent route/field gate because the ship has no owner-current postcombat survivor state for the existing strong mine classifier.
-
-## Immediate gate — full storm-aware position v3
+## Focused four-row attribution — runtime complete
 
 Read:
 
 ```text
-docs/handoff/2026-09-09-combat-c5-normal-movement-position-v3-pending.md
+docs/handoff/2026-09-09-combat-c5-unresolved-movement-context-runtime.md
 ```
 
-New reusable helper:
+Runtime source:
 
 ```text
-src/planets_lab/corpus/movement_storm_context.py
+070cb150a7b88e9a406f3ef8ca9f5984b873211e
+```
+
+Artifact:
+
+```text
+artifacts/combat-c5-position-v3-20260909-234137/unresolved-context.json
+```
+
+Result:
+
+```text
+tests rc=0
+focused-context rc=0
+unresolved_rows=4
+vcr_start_found=4
+exact_scaled_floor_geometry=3
+exact_scaled_floor_with_field_crossing=3
+single_focused_candidate_family=2
+still_unresolved=2
+vcr_damage_normal_mine_multiple=2
+```
+
+Two rows are now historically attributable to one normal-mine hit plus the existing low-tech scaled-floor slowdown:
+
+```text
+620694/T62/ship83:
+  tech 6
+  exact one-hit scaled-floor endpoint
+  hostile normal-field crossing visible at T-1 and T
+  T-1 damage 0 -> VCR-start damage 40
+  normal-mine quantum 40
+
+680910/T14/ship65:
+  tech 6
+  exact one-hit scaled-floor endpoint
+  hostile normal-field crossing visible at T
+  T-1 damage 0 -> VCR-start damage 30
+  normal-mine quantum 30
+```
+
+Specific historical attribution for these rows is `CORPUS_OBSERVED + DIFF_VERIFIED`. Exact candidate-time mine-hit position remains stochastic/not reconstructed. In particular, ship65's matching field is not present in the T-1 crossing set, so battle-turn minefield state must never be used as a predictor input.
+
+Two rows remain bounded unresolved:
+
+```text
+360690/T54/ship26
+511506/T95/ship332
+```
+
+For ship26 there is no exact storm, strong-mine, observed Tow or route-equivalent observed Chunnel match despite 166 observed Chunnel events in that game. Ship332 is tech 7, has no T-1->VCR damage increase, and therefore the trivial one-light-year scaled-floor geometric coincidence is explicitly rejected as mine evidence. Do not create case-specific rules for either row.
+
+## Storm-aware position v3 — first runtime invalid as coverage evidence
+
+Read:
+
+```text
+docs/handoff/2026-09-09-combat-c5-normal-movement-position-v3-first-runtime-invalid.md
+```
+
+The first v3 run on source `070cb150...` exited cleanly but produced:
+
+```text
+storm_mode_games={'nuionstorms_unknown': 11}
+position_uncovered=3193
+uncovered:storm_mode_unknown=1810
+factual_pairs position_uncovered=1986
+```
+
+This is an instrumentation/source-context failure, not a Host mechanics result. Root cause: `ArchiveTurnSnapshot.mechanics_payload` is a privacy/minimal mechanics projection whose settings projection intentionally retains only `nowarpwells`; it does not retain `nuionstorms`.
+
+## Immediate gate — repaired full storm-aware position v3
+
+`src/planets_lab/corpus/movement_storm_context.py` exposes:
+
+```text
 storm_offset_for_mode(...)
 ```
 
-The helper exposes the already-validated Nu/classic deterministic storm vector without factual endpoint input. Existing `storm_expected_category_for_mode(...)` now uses the same primitive.
+The helper is endpoint-independent and reuses the already validated Nu/classic storm implementations.
 
-`tools/diagnostics/combat_host_normal_movement_position_audit.py` is now schema:
+`tools/diagnostics/combat_host_normal_movement_position_audit.py` remains schema:
 
 ```text
 planets-lab.combat-host-normal-movement-position-audit.v3
 ```
 
-The independent predictor order is:
+but storm mode is now resolved from the first/last **raw archived `.trn` payloads**, matching the successful residual audit. A regression test builds a synthetic archive and verifies stable `False/False -> False` and conflicting `True/False -> None` behavior.
+
+The independent predictor order remains:
 
 ```text
 T-1 owner-current ordinary navigation
@@ -228,22 +292,21 @@ T-1 owner-current ordinary navigation
 -> factual battle coordinate only as comparison target
 ```
 
-Stationary ordinary ships also receive storm drag. Non-empty storm population with unresolved `nuionstorms`, storm conflicts/invalid state, and existing special-movement branches fail closed.
-
-Tow/Intercept/C&I/HYP/obvious Chunnel-source/transfer/MKT/sphere/fuel-proration branches remain outside this gate.
+Tow/Intercept/C&I/HYP/obvious Chunnel-source/transfer/MKT/sphere/fuel-proration branches remain outside this gate. Historical stochastic mine-hit rows are attribution evidence, not deterministic predictor inputs.
 
 ### Required next runtime
 
-Run the targeted storm/position tests and then the complete ordinary v3 position audit. Do not rely on the six residual rows alone: adding storm mechanics must not regress the 1,800 rows that were already exact under v2.
+Run the targeted storm/position tests and the complete ordinary v3 position audit again on the repaired source. Do not rerun the four-row focused attribution unless a contradiction appears; that gate is complete.
 
 Success criterion before candidate-set v2:
 
 - tests and audit rc=0;
+- raw archived storm mode resolves as expected rather than all-unknown;
 - payload_conflicts=0;
-- all known storm rows exact or independently fail-closed;
+- the six classic-storm rows move from mismatch to exact;
 - no new unexplained predicted mismatch population;
-- any remaining unresolved movement mechanism stays `uncovered` until separately reconstructed.
+- the two DIFF_VERIFIED stochastic mine rows and two bounded unresolved rows stay outside any claimed deterministic position guarantee.
 
-After this, integrate only validated position sources into candidate-set v2 and then evaluate pair-level `eligible / blocked / unresolved` coverage. Mutable target-list/queue reconstruction, capture continuation and ship-to-planet repair/planet participation remain later phases.
+After this, candidate-set v2 may consume the independently predicted position layer with explicit accounting for remaining stochastic/unresolved position residuals. Mutable target-list/queue reconstruction, capture continuation and ship-to-planet repair/planet participation remain later phases.
 
 Keep `DOCUMENTED / CORPUS_OBSERVED / INFERRED / TESTED / DIFF_VERIFIED` distinct.
