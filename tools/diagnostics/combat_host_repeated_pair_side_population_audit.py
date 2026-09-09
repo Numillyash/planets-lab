@@ -176,6 +176,7 @@ def _side_tminus1_projection(
 
 def run(args: argparse.Namespace) -> dict[str, Any]:
     payload_conflicts = 0
+    invalid_owner_vcr_rows = 0
     archives_considered = 0
     repeated_groups: list[dict[str, Any]] = []
 
@@ -213,6 +214,14 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             right_id = int(right["ship_id"])
             left_owner = _int(vcr, "leftownerid")
             right_owner = _int(vcr, "rightownerid")
+            if (
+                left_owner is None
+                or right_owner is None
+                or left_owner <= 0
+                or right_owner <= 0
+            ):
+                invalid_owner_vcr_rows += 1
+                continue
             sites[(int(battle_turn), int(x), int(y))].append(
                 {
                     "vcr_id": int(vcr_id),
@@ -251,14 +260,12 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
 
                 before_turn = battle_turn - 1
                 tminus1: dict[int, dict[str, Any]] = {}
-                raw_by_ship: dict[int, Mapping[str, Any] | None] = {}
                 priority_by_ship: dict[int, tuple[int, int, int] | None] = {}
                 exact_special_order = False
                 potential_galactic_power = False
 
                 for ship_id in pair:
                     owner_t1, raw = _owner_raw(ship_groups, before_turn, ship_id)
-                    raw_by_ship[ship_id] = raw
                     projection = _side_tminus1_projection(
                         ship_id=ship_id,
                         factual_owner_id=factual_owner_by_ship[ship_id],
@@ -382,6 +389,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "archives_considered": archives_considered,
         "special_game_591478_excluded": True,
         "payload_conflicts": payload_conflicts,
+        "invalid_owner_vcr_rows": invalid_owner_vcr_rows,
         **{key: int(value) for key, value in sorted(counts.items())},
         "occurrence_count": _serialize(occurrence_count),
         "max_occurrences": max_occurrences,
