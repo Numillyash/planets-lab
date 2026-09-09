@@ -70,11 +70,11 @@ sites
 
 Interpretation:
 
-- `factual_pair_position_status.exact` is the population whose two ship positions independently resolve to the factual site before pair eligibility is considered.
+- `factual_pair_position_status.exact` is the population whose two ship positions independently resolve to the factual site before pair eligibility is considered;
 - a candidate-covered factual pair with `conditional.engagement_eligible=False` is a real pair-eligibility contradiction and must be investigated individually;
-- `strict unresolved` is not a mismatch: leave-pair-out diplomacy intentionally remains conservative;
+- strict unresolved is not a mismatch: leave-pair-out diplomacy intentionally remains conservative;
 - `eligible_nonfactual` is not yet a queue error: target selection, survival/capture mutation and repeated-pair history are not applied by this diagnostic;
-- position `unresolved`/`mismatch` rows remain movement coverage boundaries, not combat blockers.
+- position unresolved/mismatch rows remain movement coverage boundaries, not combat blockers.
 
 ## Runtime gate
 
