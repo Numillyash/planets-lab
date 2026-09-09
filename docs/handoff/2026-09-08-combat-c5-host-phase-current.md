@@ -98,7 +98,7 @@ tests/test_combat_host_matching_fc_suppression_audit.py
 
 The audit excludes game `591478` and searches for stationary owner-current pairs that remain at the same coordinate from T-1 to T, keep the same owners, have exact ordinary matching FC, resolved non-Bird races, known non-cloakable hulls, positive fuel before/after, are alive and armed, and have Kill!/Primary-Enemy hostility.
 
-Diplomacy is controlled without assigning undocumented numeric relation labels: a candidate relation signature must be uniquely observed at T-1 and independently occur in factual ship combat in the same game. A stronger count requires the same signature in factual ship combat in the same turn.
+Diplomacy is controlled without assigning undocumented numeric relation labels. Because Safe Passage is directional, a candidate must have a unique T-1 relation signature **and at least one of its actual Kill!/PE request directions** (`low_to_high` / `high_to_low`) must already be observed as an aggression direction in factual ship combat under the same relation signature in the same game. A stronger subset requires the same directed control in the same turn.
 
 The target differential is a strict candidate satisfying all those conditions with **no factual VCR between the pair**. The cleanest subset also requires neither ship to participate in any other ship VCR at that site.
 
