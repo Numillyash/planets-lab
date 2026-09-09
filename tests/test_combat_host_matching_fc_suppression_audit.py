@@ -52,6 +52,21 @@ def test_hostility_shape_uses_kill_or_primary_enemy() -> None:
     ) == "none"
 
 
+def test_request_directions_preserve_owner_orientation() -> None:
+    assert audit._request_directions(
+        hostility_shape="left_only", left_owner=2, right_owner=5
+    ) == ("low_to_high",)
+    assert audit._request_directions(
+        hostility_shape="left_only", left_owner=5, right_owner=2
+    ) == ("high_to_low",)
+    assert audit._request_directions(
+        hostility_shape="both", left_owner=5, right_owner=2
+    ) == ("high_to_low", "low_to_high")
+    assert audit._request_directions(
+        hostility_shape="none", left_owner=2, right_owner=5
+    ) == ()
+
+
 def test_relation_signature_is_owner_order_stable() -> None:
     rows = {
         (5, 2): {(1, 1, 0)},
