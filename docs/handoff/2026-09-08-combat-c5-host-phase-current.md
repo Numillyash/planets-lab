@@ -24,6 +24,7 @@ This file is a compact pointer; use the dated handoffs for full evidence.
 - `docs/handoff/2026-09-09-combat-c5-factual-queue-runtime.md`
 - `docs/handoff/2026-09-09-combat-c5-repeated-pair-side-runtime.md`
 - `docs/handoff/2026-09-09-combat-c5-candidate-set-v1-runtime.md`
+- `docs/handoff/2026-09-09-combat-c5-normal-movement-position-pending.md`
 
 ## Closed special residuals
 
@@ -215,23 +216,31 @@ candidate-set prediction generally:     NOT YET DIFF_VERIFIED
 post-movement stack reconstruction:     NOT YET COMPLETE
 ```
 
-## Immediate gate — T-1 normal self-movement position expansion
+## Immediate gate — T-1 stationary/normal-movement position differential
 
-Build a second position profile from owner-current `T-1` using already canonical movement mechanics.
+Committed:
 
-Required boundary:
+```text
+tools/diagnostics/combat_host_normal_movement_position_audit.py
+tests/test_combat_host_normal_movement_position_audit.py
+docs/handoff/2026-09-09-combat-c5-normal-movement-position-pending.md
+```
 
-- never use factual `T` ship coordinates as predictor input;
-- keep Tow (`6`), Intercept (`7`), C&I (`20`), HYP and Chunnel outside ordinary self-movement;
-- use Host major/minor geometry from canonical normal movement code;
-- use factual T-1 mass/fuel/engine/waypoint/warp inputs where available;
-- handle Gravitonic distance;
-- account for strict damage-limited maximum warp when its existing fail-closed prerequisites are met;
-- apply warp-well snapping only when effective setting/planet eligibility is known;
-- fail closed when transfer/repair/topology state can materially change the endpoint and is unresolved;
-- retain factual VCR coordinates only as site-conditioned comparison coordinates, never as a per-ship movement input.
+This gate isolates movement-position reconstruction from combat eligibility. It predicts factual combatant positions from owner-current `T-1` and compares them with factual battle-site coordinates; factual `T` ship positions are never predictor inputs.
 
-First goal: materially improve `factual_pairs_candidate_covered` while keeping candidate-covered factual `blocked` rows at zero. Only after position coverage is useful should mutable target-list/queue precision be interpreted.
+The first normal-movement branch:
+
+- keeps Tow (`6`), Intercept (`7`), C&I (`20`), HYP and obvious Chunnel-source stacks uncovered;
+- uses canonical `plan_full_normal_move(...)` Host major/minor geometry;
+- uses factual T-1 raw mass/fuel/engine/waypoint/warp;
+- handles Gravitonic distance;
+- uses the existing strict evidence-scoped damage-limited maximum warp;
+- applies warp-well snapping only when effective setting/eligibility is known;
+- fails closed on explicit inbound/outbound transfer cases, MKT mass mutation, sphere movement and raw-fuel-insufficient/fuel-proration cases.
+
+Every predicted endpoint mismatch is a **movement-position residual**, not a combat residual. Do not integrate mismatching sources into candidate-set v2 until attributable.
+
+First goal: materially increase factual-pair position coverage while keeping mismatches zero or tightly bounded. After a clean position gate, integrate validated position sources into candidate-set v2 and only then interpret pair-level `eligible / blocked / unresolved` coverage.
 
 Capture continuation and the ship-to-planet repair boundary remain later queue phases.
 
