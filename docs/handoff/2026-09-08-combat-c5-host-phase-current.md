@@ -111,7 +111,7 @@ Case1 remains reciprocal PIA with side deliberately unresolved. Case2 remains ex
 
 ### Exact-target PIA binding — runtime validated
 
-`_normal_pia_candidate(...)` now requires the considered opponent ship to equal the interceptor's actual `mission1target`. This removed the three false PIA side mismatches where mission7 targeted another ship of the same owner.
+`_normal_pia_candidate(...)` requires the considered opponent ship to equal the interceptor's actual `mission1target`. This removed the three false PIA side mismatches where mission7 targeted another ship of the same owner.
 
 The audit-specific normal-PIA count changed `47 -> 36`, larger than the initial estimate. Do not restore owner-only binding: primary semantics bind Priority Intercept to the actual Intercept target. The older 37-row linked-PIA audit has a different scope and is not reopened absent a direct contradiction.
 
@@ -123,7 +123,7 @@ canonical pair binding:        TESTED
 factual correction:             DIFF_VERIFIED
 ```
 
-## Remaining side residuals — identified as repeated-pair second passes
+## Remaining side residuals — repeated-pair second passes
 
 Only two resolved side mismatches remain:
 
@@ -158,6 +158,8 @@ Committed, pending user runtime:
 tools/diagnostics/combat_host_repeated_pair_side_population_audit.py
 tests/test_combat_host_repeated_pair_side_population_audit.py
 ```
+
+The population tool now counts/skips invalid factual owner IDs instead of allowing an incomplete VCR to abort the pass.
 
 See:
 
