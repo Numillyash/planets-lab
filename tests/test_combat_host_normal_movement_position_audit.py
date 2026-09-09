@@ -3,6 +3,7 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
+from planets_lab.corpus.movement_residual_context import StormRecord
 from planets_lab.data import EngineSpec, HullSpec, NuStaticSpecs, ResourceCost
 
 TOOLS_DIR = Path(__file__).resolve().parents[1] / "tools" / "diagnostics"
@@ -80,6 +81,19 @@ def _raw(**changes: object) -> dict[str, object]:
     return raw
 
 
+def _storm() -> StormRecord:
+    return StormRecord(
+        id=1,
+        x=100.0,
+        y=100.0,
+        radius=100.0,
+        voltage=200.0,
+        warp=6,
+        heading=90.0,
+        parent_id=0,
+    )
+
+
 def _predict(
     *,
     raw: dict[str, object] | None = None,
@@ -90,6 +104,8 @@ def _predict(
     inbound_transfer_targets: frozenset[int] = frozenset(),
     tow_targets: frozenset[int] = frozenset(),
     chunnel_source_sites: frozenset[tuple[int, int]] = frozenset(),
+    storms: tuple[StormRecord, ...] = (),
+    nuionstorms: bool | None = False,
 ) -> tuple[tuple[int, int] | None, str]:
     return _normal_position_prediction(
         game_id=1,
@@ -105,6 +121,8 @@ def _predict(
         tow_targets=tow_targets,
         chunnel_source_sites=chunnel_source_sites,
         sphere=False,
+        storms=storms,
+        nuionstorms=nuionstorms,
     )
 
 
@@ -195,3 +213,31 @@ def test_unknown_warp_well_setting_with_nearby_factual_planet_fails_closed() -> 
     )
     assert predicted is None
     assert reason == "warp_well_setting_unknown"
+
+
+def test_classic_storm_offset_is_applied_after_normal_navigation() -> None:
+    predicted, reason = _predict(storms=(_storm(),), nuionstorms=False)
+    assert predicted == (137, 100)
+    assert reason == "normal_move_ion_storm"
+
+
+def test_unknown_storm_mode_with_nonempty_storm_population_fails_closed() -> None:
+    predicted, reason = _predict(storms=(_storm(),), nuionstorms=None)
+    assert predicted is None
+    assert reason == "storm_mode_unknown"
+
+
+def test_unknown_storm_mode_without_storms_does_not_block_normal_move() -> None:
+    predicted, reason = _predict(storms=(), nuionstorms=None)
+    assert predicted == (110, 100)
+    assert reason == "normal_move"
+
+
+def test_warp_one_ship_can_still_be_dragged_by_classic_storm() -> None:
+    predicted, reason = _predict(
+        raw=_raw(warp=1, targetx=100, targety=100),
+        storms=(_storm(),),
+        nuionstorms=False,
+    )
+    assert predicted == (127, 100)
+    assert reason == "normal_move_ion_storm"
