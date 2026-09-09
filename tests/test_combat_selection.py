@@ -127,6 +127,27 @@ def test_one_sided_safe_passage_can_block_the_only_aggressor() -> None:
     assert "no_combat_request" in decision.unresolved_reasons
 
 
+def test_known_aggressor_allows_standard_phase_with_unknown_opposite_diplomacy() -> None:
+    decision = decide_ship_combat_pair(
+        left=_ship(
+            10,
+            1,
+            mission=3,
+            diplomacy_allows_attack=True,
+        ),
+        right=_ship(
+            20,
+            2,
+            primary_enemy=1,
+            diplomacy_allows_attack=None,
+        ),
+        same_location=True,
+    )
+    assert decision.engagement_eligible is True
+    assert decision.phase is ShipCombatPairPhase.STANDARD
+    assert decision.unresolved_reasons == ()
+
+
 def test_normal_priority_intercept_is_prestandard_and_attacker_is_right() -> None:
     decision = decide_ship_combat_pair(
         left=_ship(
