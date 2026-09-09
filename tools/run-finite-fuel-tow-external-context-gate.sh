@@ -39,22 +39,53 @@ run_stage() {
     fi
 }
 
-run_quiet_stage() {
+run_progress_stage() {
     local stage=$1
     shift
+    local log_file="$gate_dir/$stage.log"
+    local started now elapsed bytes lines rc pid latest
+
     printf '\nSTAGE %s\n' "$stage"
+    started=$(date +%s)
+
     set +e
-    "$@" >"$gate_dir/$stage.log" 2>&1
-    local rc=$?
+    "$@" >"$log_file" 2>&1 &
+    pid=$!
     set -e
+
+    while kill -0 "$pid" 2>/dev/null; do
+        sleep 10
+        if kill -0 "$pid" 2>/dev/null; then
+            now=$(date +%s)
+            elapsed=$((now - started))
+            bytes=$(wc -c <"$log_file" | tr -d '[:space:]')
+            lines=$(wc -l <"$log_file" | tr -d '[:space:]')
+            printf 'PROGRESS stage=%s elapsed=%ss log_lines=%s log_bytes=%s\n' \
+                "$stage" "$elapsed" "$lines" "$bytes"
+            latest=$(grep -E "^(\\{'game':|game=|PROGRESS )" "$log_file" | tail -n 1 || true)
+            if test -n "$latest"; then
+                printf 'LATEST %s\n' "$latest"
+            fi
+        fi
+    done
+
+    set +e
+    wait "$pid"
+    rc=$?
+    set -e
+
     printf '%s\t%s\t0\n' "$stage" "$rc" >> "$gate_dir/status.tsv"
     if (( rc != 0 )); then
-        tail -n 120 "$gate_dir/$stage.log" >&2 || true
+        tail -n 120 "$log_file" >&2 || true
         echo "Stopped at $stage; preserve $gate_dir" >&2
         exit 1
     fi
+
+    now=$(date +%s)
+    elapsed=$((now - started))
+    printf 'PROGRESS stage=%s completed elapsed=%ss\n' "$stage" "$elapsed"
     grep -E '^(===== |phase_neither_possible=|phase_warpwell_neither_possible=|residual_input=|classified_cases=|with_known_context_or_transfer_confounder=|without_known_context_or_transfer_confounder=|finite-fuel Tow remains OPEN)' \
-        "$gate_dir/$stage.log" | tail -n 40 || true
+        "$log_file" | tail -n 40 || true
 }
 
 lab=(docker compose run --rm -T -e PYTHONPATH=/workspace/src lab)
@@ -92,19 +123,19 @@ PY
 
 run_stage pytest "${lab[@]}" python -m pytest
 
-# Complete example capture stays in gitignored logs. The interactive terminal receives
-# only compact counters so long historical evidence dumps are never pasted manually.
-run_quiet_stage discovery-full \
+# Complete example capture stays in gitignored logs. Long historical stages still
+# emit a 10-second heartbeat so an interactive run never looks hung.
+run_progress_stage discovery-full \
     "${lab[@]}" \
     python -u tools/diagnostics/tow_finite_fuel_population_audit.py --examples 100000
 
-run_quiet_stage warp-well-full \
+run_progress_stage warp-well-full \
     "${lab[@]}" \
     python -u tools/diagnostics/tow_finite_fuel_warp_well_audit.py \
         --discovery-log "$gate_dir/discovery-full.log" \
         --examples 100000
 
-run_quiet_stage external-context \
+run_progress_stage external-context \
     "${lab[@]}" \
     python -u tools/diagnostics/tow_finite_fuel_external_context_audit.py \
         --discovery-log "$gate_dir/discovery-full.log" \
