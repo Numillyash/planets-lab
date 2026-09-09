@@ -38,22 +38,10 @@ Case 2 is closed as the Standard-game Evil-Empire Gorbie Galactic Power forced-l
 
 ## Matching Friendly Code / HWM — bounded
 
-Positive runtime found 55 factual same-FC ship battles: all 54 ordinary rows plus the one `591478` row are documented MKT/LFM exceptions. No ordinary exact-match HWM candidate exists; NTP is simply unobserved in the current corpus.
-
-Strict suppression runtime on source `8bef008342c8760e6f33d450335f1b3fb95443bf` passed tests/audit with zero payload conflicts but produced no clean negative-control population:
-
-```text
-stationary_colocated_pairs=199341
-different_owner_pairs=21307
-ordinary_exact_matching_fc_pairs=11
-hostile_order_pairs=1
-resolved_nonbird_pairs=1
-known_noncloaking_pairs=0
-strict_directed_relation_pair_vcr_absent_rows=0
-strict_isolated_no_ship_vcr_rows=0
-same_turn_directed_relation_rows=0
-same_turn_directed_relation_isolated_rows=0
-```
+- Positive runtime: 55 factual same-FC ship battles; all 54 ordinary rows plus the one `591478` row are documented MKT/LFM exceptions.
+- NTP is unobserved in the current corpus; this is coverage only.
+- No ordinary HWM factual candidate exists.
+- Strict suppression runtime produced no clean negative-control population.
 
 Evidence status:
 
@@ -61,27 +49,19 @@ Evidence status:
 matching-FC suppression text:                DOCUMENTED
 MKT/NTP/LFM exception text:                  DOCUMENTED
 matching-FC/HWM eligibility primitives:      TESTED
-55 factual same-FC VCR rows:                 CORPUS_OBSERVED
 54/54 ordinary factual rows MKT/LFM:         CORPUS_OBSERVED
-ordinary HWM factual support:                NOT PRESENT IN CURRENT CORPUS
 ordinary exact matching-FC suppression:      DOCUMENTED + TESTED
 historical suppression differential:         NOT AVAILABLE IN CURRENT CORPUS
 ```
 
-Do not reopen this gate merely to relax controls unless future end-to-end evidence contradicts the documented rule or new historical data adds a clean pair.
+Do not reopen this gate merely to relax controls.
 
-## Unified pair-level selection — RUNTIME COMPLETE
+## Unified pair-level selection — TESTED
 
 User runtime on source:
 
 ```text
 7ac5d70a77f592dfd1d3660c237b244e61795305
-```
-
-Artifact:
-
-```text
-artifacts/combat-c5-pair-selection-20260909-201758
 ```
 
 passed:
@@ -94,58 +74,85 @@ tests/test_combat_selection.py
 tests rc=0
 ```
 
-Therefore `src/planets_lab/rules/combat/selection.py` and the canonical pair-level composition are now `TESTED`.
+Therefore `src/planets_lab/rules/combat/selection.py` is `TESTED` at the deterministic composition boundary. Dynamic diplomacy, advantage state, active cloak and Intercept Interference remain explicit tri-state inputs.
 
-The API exposes:
+## Factual queue differential — runtime produced first real stack result
 
-```text
-ShipCombatSideInput
-ShipCombatPairDecision
-ShipCombatPairPhase
-ShipCombatPrestandardKind
-decide_ship_combat_pair(...)
-```
-
-Dynamic facts remain explicit tri-state inputs: combat eligibility, directed diplomacy/Safe Passage, HWM enablement, C&I enablement, modern C&I hull eligibility, active cloak at the Intercept step, Intercept Interference protection and Galactic Power enablement. The runtime validates composition/fail-closed propagation only; it is not a historical candidate-set differential.
-
-## Immediate runtime gate — factual ship-vs-ship queue differential
-
-Committed, **not yet user-runtime-validated**:
+Successful user runtime on source:
 
 ```text
-tools/diagnostics/combat_host_factual_queue_selection_audit.py
-tests/test_combat_host_factual_queue_selection_audit.py
+104332ee9d93c5de83bea613282b4c9a2d9cd863
 ```
 
-Schema:
+reported:
 
 ```text
-planets-lab.combat-host-factual-queue-selection-audit.v1
+factual_ship_vcr_rows=1968
+sites=1216
+multi_vcr_sites=348
+payload_conflicts=0
+
+conditional:
+  engagement True=1968
+  phase standard=1904, priority_intercept=48, unresolved=16
+  side exact=1944, unresolved=19, mismatch=5
+
+strict:
+  engagement True=1949, unresolved=19
+  phase standard=1885, priority_intercept=48, unresolved=35
+  side exact=1925, unresolved=38, mismatch=5
+
+strict fully_resolved_prefix_exact=1183/1183
+conditional fully_resolved_prefix_exact=1202/1202
+known phase-prefix violations=0
 ```
 
-This gate consumes actual ordinary ship-vs-ship VCR queues and the canonical pair-selection API. It deliberately does **not** claim to predict pair existence.
+Case1 remains reciprocal PIA with side intentionally unresolved. Case2 remains exact Galactic Power forced-left.
 
-Two scopes are reported:
+### Canonical normal-PIA pair-binding fix
 
-1. `strict` — directed diplomacy is supplied only from a different one-sided factual combat under the same unique T-1 relation signature and aggression direction; otherwise it remains `None`;
-2. `conditional` — for a factual VCR only, raw Kill!/PE requests are treated as effective so phase/side composition can be measured conditional on an engagement that already happened.
+Three of the five side mismatches were false PIA classifications:
 
-Additional dynamic boundaries remain fail-closed:
+```text
+622476/T25/VCR87: ship40 intercept target15, factual opponent72
+622476/T26/VCR93: ship65 intercept target27, factual opponent54
+622476/T28/VCR110: ship45 intercept target35, factual opponent42
+```
 
-- Intercept Interference is false when no same-owner SSC/SSC-II began at the target's T-1 position; a source is treated as active only in the previously public-verified Standard game contexts, false in verified Classic, and unknown otherwise;
-- the prior public game-context mapping supplies Galactic Power state only for the six already audited Empire-Gorbie games;
-- mission20 establishes the historical C&I order, but modern buildable-hull eligibility and active cloak at the later Intercept step remain unresolved from T-1 alone.
+`_normal_pia_candidate(...)` now requires the considered opponent ship to equal the interceptor's actual `mission1target`. A mission-7 ship may later fight another hostile ship of the same faction in standard combat, but that pair is not the Priority Intercept pair.
 
-The audit reports row-level phase/side results, unresolved reasons, site-level pre-standard prefix consistency, normal-PIA reverse-ID comparables, and explicit Case1/Case2 rows. Game `591478` is excluded.
+Regression added:
 
-## Next order
+```text
+test_normal_pia_does_not_apply_to_other_ship_of_same_target_owner
+```
 
-1. run the factual queue selection tests/audit;
-2. if the resolved rows show coherent phase/side behavior, design candidate-set prediction from reconstructed post-movement stacks;
-3. only after candidate-set evidence, implement mutable queue selection;
-4. handle capture/reinsertion and ownership changes;
-5. place between-phase repair before ship-vs-planet combat;
-6. integrate planet/base participation using C4 persistence;
-7. keep game `591478` separate.
+This new code is committed but **not yet user-runtime-validated**.
 
-Keep `DOCUMENTED / CORPUS_OBSERVED / INFERRED / TESTED / DIFF_VERIFIED` distinct. Do not merge or mark PR #28 ready yet.
+### Remaining two side residuals — queue history gate
+
+```text
+620917/T7/VCR6
+621896/T25/VCR52
+```
+
+Do not change `standard_battle_priority_key(...)` from these rows yet. Primary documentation notes dynamic shifts in complex stacked combat, and classic Host documentation identifies repeated same-pair combat after timeout as a side/initiator exception to the static battle-value rule.
+
+Targeted diagnostic committed:
+
+```text
+tools/diagnostics/combat_host_factual_queue_side_residual_audit.py
+tests/test_combat_host_factual_queue_side_residual_audit.py
+```
+
+It reports full same-site ship-VCR queues, same-pair occurrence indices and T-1 standard priority inputs for only these two residuals.
+
+## Immediate gate
+
+1. rerun the main factual queue audit after the exact-target PIA fix;
+2. run the two-row side-residual queue-history audit;
+3. verify the expected first-order change: normal PIA `47 -> 44`, standard `+3`, side mismatches `5 -> <=2`;
+4. if remaining mismatches are repeated-pair/history-dependent, keep static pair-side rules unchanged and move that state into the future mutable queue layer;
+5. only after the factual queue gate is understood, design candidate-set prediction from reconstructed post-movement stacks.
+
+Do not implement mutable target selection yet. Keep `DOCUMENTED / CORPUS_OBSERVED / INFERRED / TESTED / DIFF_VERIFIED` distinct. Do not merge or mark PR #28 ready yet.
