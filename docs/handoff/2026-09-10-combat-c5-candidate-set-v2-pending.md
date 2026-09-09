@@ -16,7 +16,7 @@ Runtime source `14ebd6442b6ca705c42c2c5ff4a4e5a2d9b1240c` passed tests/audit wit
 ship occurrences: factual=3204 predicted=1810 exact=1806 mismatch=4 uncovered=1383
 factual pairs: total=1986 exact=678 mismatch=4 uncovered=1304
 sites: total=1220 fully exact=346 mismatch=4
-storm modes: false=10 true=1
+storm modes: nuionstorms_false=10 nuionstorms_true=1
 payload_conflicts=0
 ```
 
