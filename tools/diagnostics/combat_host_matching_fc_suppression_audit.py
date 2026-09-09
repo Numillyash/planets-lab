@@ -36,6 +36,7 @@ from combat_host_residual_physical_stack_audit import _turn_owner_index, _xy
 DEFAULT_EXAMPLE_LIMIT = 40
 RelationTriple = tuple[int | None, int | None, int | None]
 RelationSignature = tuple[tuple[RelationTriple, ...], tuple[RelationTriple, ...]]
+DirectedRelationControl = tuple[RelationSignature, str]
 
 
 def _serialize(counter: Counter[Any]) -> dict[str, int]:
@@ -99,6 +100,21 @@ def _hostility_shape(
     if right_requests:
         return "right_only"
     return "none"
+
+
+def _request_directions(
+    *,
+    hostility_shape: str,
+    left_owner: int,
+    right_owner: int,
+) -> tuple[str, ...]:
+    low, high = sorted((left_owner, right_owner))
+    directions: set[str] = set()
+    if hostility_shape in {"left_only", "both"}:
+        directions.add("low_to_high" if left_owner == low else "high_to_low")
+    if hostility_shape in {"right_only", "both"}:
+        directions.add("low_to_high" if right_owner == low else "high_to_low")
+    return tuple(sorted(directions))
 
 
 def _relation_inventory(archive_data: bytes) -> dict[int, dict[tuple[int, int], set[RelationTriple]]]:
@@ -207,9 +223,16 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         payload_conflicts += conflicts
         relations = _relation_inventory(archive_data)
 
+        turns = sorted({turn for turn, _ship_id in ship_groups})
+        owner_indices: dict[int, dict[int, PerspectiveRecord]] = {}
+        for turn in turns:
+            owner_indices[turn] = _turn_owner_index(ship_groups, turn)[0]
+
         pair_vcrs_by_turn: dict[int, set[frozenset[int]]] = defaultdict(set)
         site_participants: dict[tuple[int, int, int], set[int]] = defaultdict(set)
-        factual_combat_owner_pairs: list[tuple[int, int, int]] = []
+        combat_controls_by_turn: dict[int, set[DirectedRelationControl]] = defaultdict(set)
+        combat_controls_game: set[DirectedRelationControl] = set()
+
         for (seen_game, battle_turn, _vcr_id), (_digest, vcr) in seen.items():
             if seen_game != game_id:
                 continue
@@ -224,26 +247,42 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             y = _intish(vcr.get("y"))
             if x is not None and y is not None:
                 site_participants[(battle_turn, x, y)].update((left_id, right_id))
+
             left_owner = int(left["owner_id"])
             right_owner = int(right["owner_id"])
-            if left_owner > 0 and right_owner > 0 and left_owner != right_owner:
-                factual_combat_owner_pairs.append((battle_turn, left_owner, right_owner))
-
-        combat_signatures_by_turn: dict[int, set[RelationSignature]] = defaultdict(set)
-        combat_signatures_game: set[RelationSignature] = set()
-        for battle_turn, owner_a, owner_b in factual_combat_owner_pairs:
-            signature = _relation_signature(relations.get(battle_turn - 1, {}), owner_a, owner_b)
+            if left_owner <= 0 or right_owner <= 0 or left_owner == right_owner:
+                continue
+            signature = _relation_signature(relations.get(battle_turn - 1, {}), left_owner, right_owner)
             if not _unique_relation_signature(signature):
                 continue
-            combat_signatures_by_turn[battle_turn].add(signature)
-            combat_signatures_game.add(signature)
 
-        turns = sorted({turn for turn, _ship_id in ship_groups})
-        for battle_turn in turns:
-            if battle_turn - 1 not in turns:
+            before_index = owner_indices.get(battle_turn - 1, {})
+            left_before = before_index.get(left_id)
+            right_before = before_index.get(right_id)
+            if left_before is None or right_before is None:
                 continue
-            before_index, _before_unresolved = _turn_owner_index(ship_groups, battle_turn - 1)
-            after_index, _after_unresolved = _turn_owner_index(ship_groups, battle_turn)
+            if _positive_owner(left_before.raw) != left_owner or _positive_owner(right_before.raw) != right_owner:
+                continue
+            hostility = _hostility_shape(
+                left_raw=left_before.raw,
+                left_owner=left_owner,
+                right_raw=right_before.raw,
+                right_owner=right_owner,
+            )
+            for direction in _request_directions(
+                hostility_shape=hostility,
+                left_owner=left_owner,
+                right_owner=right_owner,
+            ):
+                control = (signature, direction)
+                combat_controls_by_turn[battle_turn].add(control)
+                combat_controls_game.add(control)
+
+        for battle_turn in turns:
+            if battle_turn - 1 not in owner_indices:
+                continue
+            before_index = owner_indices[battle_turn - 1]
+            after_index = owner_indices[battle_turn]
 
             stationary: list[tuple[int, PerspectiveRecord, PerspectiveRecord]] = []
             for ship_id, before_record in before_index.items():
@@ -295,6 +334,11 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                     if hostility == "none":
                         continue
                     pipeline["hostile_order_pairs"] += 1
+                    request_directions = _request_directions(
+                        hostility_shape=hostility,
+                        left_owner=left_owner,
+                        right_owner=right_owner,
+                    )
 
                     left_race = races.get(left_owner)
                     right_race = races.get(right_owner)
@@ -333,12 +377,23 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                     relation_unique = _unique_relation_signature(signature)
                     if relation_unique:
                         pipeline["unique_relation_pairs"] += 1
-                    compatible_game = relation_unique and signature in combat_signatures_game
-                    compatible_turn = relation_unique and signature in combat_signatures_by_turn.get(battle_turn, set())
+
+                    compatible_directions_game = tuple(
+                        direction
+                        for direction in request_directions
+                        if (signature, direction) in combat_controls_game
+                    ) if relation_unique else ()
+                    compatible_directions_turn = tuple(
+                        direction
+                        for direction in request_directions
+                        if (signature, direction) in combat_controls_by_turn.get(battle_turn, set())
+                    ) if relation_unique else ()
+                    compatible_game = bool(compatible_directions_game)
+                    compatible_turn = bool(compatible_directions_turn)
                     if compatible_game:
-                        pipeline["relation_combat_compatible_same_game_pairs"] += 1
+                        pipeline["directed_relation_combat_compatible_same_game_pairs"] += 1
                     if compatible_turn:
-                        pipeline["relation_combat_compatible_same_turn_pairs"] += 1
+                        pipeline["directed_relation_combat_compatible_same_turn_pairs"] += 1
 
                     pair_key = frozenset((left_id, right_id))
                     pair_vcr_present = pair_key in pair_vcrs_by_turn.get(battle_turn, set())
@@ -360,9 +415,10 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                             "y": y,
                             "matching_friendly_code": matching_fc,
                             "hostility_shape": hostility,
+                            "request_directions": list(request_directions),
                             "relation_signature": _safe_signature(signature),
-                            "relation_combat_compatible_same_game": compatible_game,
-                            "relation_combat_compatible_same_turn": compatible_turn,
+                            "directed_relation_combat_compatible_same_game": list(compatible_directions_game),
+                            "directed_relation_combat_compatible_same_turn": list(compatible_directions_turn),
                             "pair_vcr_present": pair_vcr_present,
                             "either_ship_in_other_site_ship_vcr": either_in_other_ship_vcr,
                             "isolated_no_ship_vcr": not either_in_other_ship_vcr,
@@ -386,22 +442,22 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                     )
 
     isolated = [row for row in rows if row["isolated_no_ship_vcr"]]
-    same_turn = [row for row in rows if row["relation_combat_compatible_same_turn"]]
+    same_turn = [row for row in rows if row["directed_relation_combat_compatible_same_turn"]]
     same_turn_isolated = [
-        row for row in isolated if row["relation_combat_compatible_same_turn"]
+        row for row in isolated if row["directed_relation_combat_compatible_same_turn"]
     ]
     return {
-        "schema": "planets-lab.combat-host-matching-fc-suppression-audit.v1",
+        "schema": "planets-lab.combat-host-matching-fc-suppression-audit.v2",
         "read_only": True,
         "summary": {
             "archives_considered": archives_considered,
             "special_game_591478_excluded": True,
             "payload_conflicts": payload_conflicts,
             "pipeline": dict(sorted(pipeline.items())),
-            "strict_relation_compatible_pair_vcr_absent_rows": len(rows),
+            "strict_directed_relation_pair_vcr_absent_rows": len(rows),
             "strict_isolated_no_ship_vcr_rows": len(isolated),
-            "same_turn_relation_compatible_rows": len(same_turn),
-            "same_turn_relation_compatible_isolated_rows": len(same_turn_isolated),
+            "same_turn_directed_relation_rows": len(same_turn),
+            "same_turn_directed_relation_isolated_rows": len(same_turn_isolated),
             "matching_friendly_code": _serialize(Counter(row["matching_friendly_code"] for row in rows)),
             "hostility_shape": _serialize(Counter(row["hostility_shape"] for row in rows)),
             "games": _serialize(Counter(row["game_id"] for row in rows)),
@@ -414,10 +470,12 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "owner-current pairs present at the same coordinate in both T-1 and T, with unchanged owners, exact "
             "non-special matching FC, non-Bird resolved races, known non-cloakable hulls, positive fuel before/after, "
             "both ships alive and armed, and Kill!/Primary-Enemy hostility. The strict promoted rows additionally require "
-            "a unique raw T-1 diplomacy relation signature that is independently seen in factual ship combat in the same "
-            "game, and no factual VCR between the pair. The isolated subset also requires neither ship to appear in any "
-            "other ship VCR at that site. This controls common absence-of-VCR confounders without assigning undocumented "
-            "numeric diplomacy labels. Game 591478 is excluded."
+            "a unique raw T-1 diplomacy relation signature plus at least one candidate aggression direction that is "
+            "independently observed as a Kill!/PE aggression direction in factual ship combat under the same relation "
+            "signature in the same game. The stronger same-turn subset requires that directed control in the same turn. "
+            "This preserves the documented asymmetry of Safe Passage without assigning undocumented numeric relation "
+            "labels. No factual VCR may exist between the candidate pair; the isolated subset also requires neither ship "
+            "to appear in any other ship VCR at that site. Game 591478 is excluded."
         ),
     }
 
@@ -447,7 +505,7 @@ def main() -> int:
     for row in report["isolated_rows"]:
         print(row)
     print()
-    print("SAME-TURN RELATION CONTROL ROWS:")
+    print("SAME-TURN DIRECTED RELATION CONTROL ROWS:")
     for row in report["same_turn_rows"]:
         print(row)
     if args.output is not None:
