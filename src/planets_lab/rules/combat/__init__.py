@@ -11,6 +11,11 @@ from .classic import (
     replay_nuhost_classic,
     torpedo_specs_from_catalog,
 )
+from .eligibility import (
+    MATCHING_SHIP_FC_COMBAT_EXCEPTIONS,
+    harmonic_weapon_modulation_applies,
+    matching_ship_friendly_code_blocks_combat,
+)
 from .nu import (
     normalize_nu_beams,
     normalize_nu_torpedoes,
@@ -19,14 +24,18 @@ from .nu import (
 from .order import (
     BIRD_RACE_ID,
     CLOAK_INTERCEPT_MISSION_ID,
+    EVIL_EMPIRE_RACE_ID,
+    GORBIE_HULL_ID,
     INTERCEPT_MISSION_ID,
     KILL_MISSION_ID,
     FriendlyCodePriority,
     FriendlyCodePriorityKind,
     classify_battle_friendly_code,
     cloak_intercept_order_signature,
+    galactic_power_forces_left,
     orders_request_ship_combat,
     priority_intercept_order_signature,
+    priority_intercept_reciprocal_target_signature,
     standard_battle_priority_key,
 )
 from .planet import (
@@ -39,6 +48,13 @@ from .planet import (
     planet_native_beam_tech,
     planet_sequence_shape_supported,
     rebuild_planet_combatant,
+)
+from .selection import (
+    ShipCombatPairDecision,
+    ShipCombatPairPhase,
+    ShipCombatPrestandardKind,
+    ShipCombatSideInput,
+    decide_ship_combat_pair,
 )
 from .sequence import (
     DYNAMIC_CARRY_FIELDS,
@@ -55,13 +71,20 @@ __all__ = [
     "CLOAK_INTERCEPT_MISSION_ID",
     "CombatObject",
     "DYNAMIC_CARRY_FIELDS",
+    "EVIL_EMPIRE_RACE_ID",
     "FriendlyCodePriority",
     "FriendlyCodePriorityKind",
+    "GORBIE_HULL_ID",
     "INTERCEPT_MISSION_ID",
     "KILL_MISSION_ID",
+    "MATCHING_SHIP_FC_COMBAT_EXCEPTIONS",
     "NuHostClassicReplay",
     "PLANET_CARRYOVER_BASIS",
     "ReplayUnsupported",
+    "ShipCombatPairDecision",
+    "ShipCombatPairPhase",
+    "ShipCombatPrestandardKind",
+    "ShipCombatSideInput",
     "TorpedoSpec",
     "apply_planet_carryover",
     "apply_terminal_state",
@@ -71,8 +94,12 @@ __all__ = [
     "cloak_intercept_order_signature",
     "combat_rng_from_settings",
     "damage_defense_posts",
+    "decide_ship_combat_pair",
     "federation_recover_shields",
     "functional_weapon_limit",
+    "galactic_power_forces_left",
+    "harmonic_weapon_modulation_applies",
+    "matching_ship_friendly_code_blocks_combat",
     "normalize_nu_beams",
     "normalize_nu_torpedoes",
     "orders_request_ship_combat",
@@ -83,6 +110,7 @@ __all__ = [
     "planet_sequence_shape_supported",
     "prepare_sequence_ship",
     "priority_intercept_order_signature",
+    "priority_intercept_reciprocal_target_signature",
     "rebuild_planet_combatant",
     "replay_nuhost_classic",
     "replay_nuhost_from_nu_catalog",
