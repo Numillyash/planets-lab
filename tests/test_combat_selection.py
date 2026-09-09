@@ -169,6 +169,24 @@ def test_normal_priority_intercept_is_prestandard_and_attacker_is_right() -> Non
     assert decision.right_ship_id == 89
 
 
+def test_normal_pia_does_not_apply_to_other_ship_of_same_target_owner() -> None:
+    decision = decide_ship_combat_pair(
+        left=_ship(
+            40,
+            1,
+            mission=7,
+            mission_target_id=15,
+            primary_enemy=2,
+            hull_can_cloak=True,
+        ),
+        right=_ship(72, 2),
+        same_location=True,
+    )
+    assert decision.engagement_eligible is True
+    assert decision.phase is ShipCombatPairPhase.STANDARD
+    assert decision.prestandard_kind is None
+
+
 def test_intercept_interference_demotes_normal_pia_to_standard() -> None:
     decision = decide_ship_combat_pair(
         left=_ship(
