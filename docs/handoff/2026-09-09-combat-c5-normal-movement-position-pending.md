@@ -1,0 +1,138 @@
+# C5 Host combat — T-1 normal-movement position gate — pending runtime — 2026-09-09
+
+GitHub is the source of truth. PR #28 remains open/draft. Game `591478` remains excluded from ordinary promotion.
+
+## Why this gate follows candidate-set v1
+
+Candidate-set v1 was clean but covered only:
+
+```text
+1 / 1986 factual unique ship pairs
+```
+
+because its position scope admitted only intrinsically stationary Warp-0 ships. The dominant exclusion was:
+
+```text
+self_movement_possible=1606
+```
+
+Therefore the next dependency is movement-derived precombat position, not weaker combat eligibility.
+
+## Committed diagnostic
+
+```text
+tools/diagnostics/combat_host_normal_movement_position_audit.py
+tests/test_combat_host_normal_movement_position_audit.py
+```
+
+Schema:
+
+```text
+planets-lab.combat-host-normal-movement-position-audit.v1
+```
+
+## Evidence boundary
+
+This audit is site-conditioned but does not use factual `T` ship state as predictor input.
+
+Factual ship-vs-ship VCRs provide only:
+
+- ordinary `(game, battle_turn, x, y)` comparison coordinates;
+- factual pair membership used to define which combatant occurrences must be explained.
+
+For every factual ship occurrence, the predictor starts from owner-current `T-1`.
+
+### Stationary branch
+
+The exact v1 stationary policy is retained:
+
+- Warp 0;
+- not Tow / Intercept / C&I;
+- not HYP;
+- not a visible Tow target;
+- not an obvious Firecloud Chunnel-source stack.
+
+### Normal self-movement branch
+
+Only ships whose v1 exclusion was exactly `self_movement_possible` enter this branch.
+
+The branch uses:
+
+- owner-current `T-1` position, waypoint and requested warp;
+- owner-current `T-1` engine/components/cargo fields;
+- raw T-1 `mass` as the movement-mass input;
+- canonical `plan_full_normal_move(...)` Host major/minor geometry;
+- Gravitonic doubling for known gravitonic hulls;
+- the existing strict raw-damage maximum-warp rule where its fail-closed prerequisites hold;
+- known ordinary warp-well setting and eligible warp-well planets.
+
+### Deliberate first-pass exclusions
+
+This first movement expansion does **not** guess:
+
+- Tow movement;
+- Intercept/C&I movement;
+- HYP;
+- Chunnel movement;
+- sphere movement;
+- explicit inbound/outbound cargo-transfer cases;
+- MKT pre-movement mass mutation;
+- fuel-prorated movement when raw T-1 fuel is insufficient.
+
+If one of these can materially change the endpoint, the occurrence stays uncovered.
+
+Partial ordinary movement to the canonical Host major/minor endpoint is allowed only when raw T-1 fuel is sufficient for that movement at raw T-1 mass.
+
+## Why fuel proration is excluded here
+
+Nu waypoint fuel proration itself is already differential-verified in a strict movement scope, but introducing it into this first combat-position gate would mix two questions:
+
+1. whether ordinary self-movement endpoint composition is correct;
+2. whether all pre-movement fuel/mass mutations have been reconstructed for combatants.
+
+The first gate therefore requires raw-fuel sufficiency. Explicit transfer cases are removed. Repair-related mass reduction can only make a raw-fuel-sufficient movement cheaper; it cannot create a shorter endpoint unless it changes the effective damage-limited warp, which is separately fail-closed.
+
+## Runtime interpretation
+
+After tests/audit return `rc=0`, require:
+
+```text
+payload_conflicts=0
+```
+
+Then inspect:
+
+```text
+ship_occurrences.position_predicted
+ship_occurrences.position_exact
+ship_occurrences.position_mismatch
+ship_occurrences.position_uncovered
+
+factual_pairs.position_exact
+factual_pairs.position_mismatch
+factual_pairs.position_uncovered
+
+sites.all_factual_pairs_position_exact
+sites.has_position_mismatch
+normal_prediction_reasons
+```
+
+### Strong result
+
+A useful gate has:
+
+- materially higher factual-pair coverage than v1;
+- zero or very few movement-position mismatches;
+- any mismatch explainable by a bounded missing movement mechanic rather than by changing combat rules.
+
+### Mismatch policy
+
+Every predicted factual-combatant endpoint that differs from the factual battle site is a movement-position residual. Do not feed that occurrence into candidate-set v2 until explained or explicitly moved back to uncovered.
+
+Do not use factual `T` survivor position to patch the predictor.
+
+## Next step after runtime
+
+If the normal-movement position scope is clean enough, integrate only the exact/validated position sources into candidate-set v2 and remeasure factual-pair coverage plus pair-level `eligible / blocked / unresolved`.
+
+If mismatches are material, cluster them first by movement source/context (damage, transfer, warp well, mine/web, ion storm, topology, etc.) and close only attributable branches.
