@@ -4,7 +4,7 @@ This file is the operational roadmap for `planets-lab`. Architecture boundaries 
 
 Current durable checkpoints:
 
-- Host combat phase C5: [`handoff/2026-09-09-combat-c5-galactic-power-runtime.md`](handoff/2026-09-09-combat-c5-galactic-power-runtime.md) — matched controls reject a universal non-cloakable Intercept side override, while the Gorbie boundary runtime shows 48 Evil-Empire-owned Gorbie appearances split 29 RIGHT / 19 LEFT. Seven rows, including `621896/T28/VCR67`, require a forced-left override relative to standard priority, but prepared/archive metadata exposes no effective advantage state. Galactic Power remains the leading documented Case2 explanation, not yet `DIFF_VERIFIED`; the immediate gate is public `/game/loadinfo` configuration for the six Empire-Gorbie games before any wider side-layer integration;
+- Host combat phase C5: [`handoff/2026-09-09-combat-c5-galactic-power-case2-closed.md`](handoff/2026-09-09-combat-c5-galactic-power-case2-closed.md) — former mission-7 Case 2 (`621896/T28/VCR67`) is closed as the documented Evil-Empire Gorbie Galactic Power forced-left exception. Public `loadinfo` resolves the game as `Standard Beginners`, and primary Planets.nu game-type documentation enables Galactic Power for Beginner/Standard while disabling it for Classic. Scoped status: `DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`. The immediate C5 gate is Case 1 (`511506/T19/VCR13`): primary documentation identifies a reciprocal Priority Intercept pre-standard branch where an intercepted target that would combat its cloak-capable interceptor is pulled forward even when the interceptor lacks matching PE. A separate fail-closed primitive and population audit are committed but not yet user-runtime-validated;
 
 - movement: [`handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md`](handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md);
 - Classic combat replay coverage: [`handoff/2026-09-07-combat-c2-classic-replay-coverage.md`](handoff/2026-09-07-combat-c2-classic-replay-coverage.md);
@@ -377,16 +377,13 @@ Do not generalize these special/campaign/Horwasp residuals into ordinary Classic
 
 Proceed in this order:
 
-1. resolve public `/game/loadinfo` context for the six Empire-Gorbie games so Galactic Power enablement is attributable rather than inferred from race/hull;
-2. reconstruct full factual combat queues by turn/location from ordered VCRs;
-3. determine engagement eligibility and opponent selection for ordinary Classic cases;
-4. reconstruct side assignment / left-right rules separately from pairwise resolution;
-5. integrate Priority Intercept / Primary Enemy / mission semantics only where IDs and behavior are established;
-6. incorporate diplomacy, Safe Passage and alliance/team effects;
-7. model capture continuation in the same Host phase rather than as a pairwise resolver property;
-8. place the documented ship-to-planet repair boundary between ship and planet combat phases;
-9. integrate planet/base participation using the C4 persistence layer while keeping hidden damaged-starbase state fail-closed;
-10. keep game `591478` and other special/campaign mechanics separately labeled until attributable.
+1. validate the reciprocal Priority Intercept population gate for Case 1 (`511506/T19/VCR13`): cloak-capable mission7 interceptor targets the factual opponent, normal PIA PE signature is false, and the intercepted target would itself combat the interceptor;
+2. determine matching-FC / Harmonic Weapon Modulation boundaries;
+3. integrate normal PIA, reciprocal Intercept and C&I pair selection into the dynamic combat queue;
+4. model capture continuation in the same Host phase rather than as a pairwise resolver property;
+5. place the documented ship-to-planet repair boundary between ship and planet combat phases;
+6. integrate planet/base participation using the C4 persistence layer while keeping hidden damaged-starbase state fail-closed;
+7. keep game `591478` and other special/campaign mechanics separately labeled until attributable.
 
 The next goal is not merely to replay an already supplied VCR. It is to predict the **set, order and sides of VCRs Host will generate** from the factual co-located game state.
 
@@ -416,7 +413,7 @@ The target remains a high-fidelity NuHost-compatible simulator suitable for real
 - **M1 minimal sandbox:** largely implemented.
 - **M2 economy/planetary Host:** in progress.
 - **M3 warfare:** materially advanced: Classic pairwise replay, ordinary ship sequences and attributable ordinary repeated-planet persistence are canonical in `planets-lab`; full Host engagement ordering remains open.
-- **M4 race mechanics:** partial; Federation shield recovery has scoped differential evidence.
+- **M4 race mechanics:** partial; Federation shield recovery and scoped Galactic Power side assignment now have differential evidence.
 - **M5A historical corpus:** active and operational.
 - **M5B Nu compatibility matrix:** active; movement and ordinary Classic combat sequence checkpoints are explicit.
 - **M6 training/AI:** later, after required simulation/observer surfaces are sufficiently faithful.
