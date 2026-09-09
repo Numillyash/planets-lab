@@ -12,8 +12,8 @@ from .movement_differential import _entity_map, _planet_tuples_by_turn, _warp_we
 from .movement_residual_context import (
     StormRecord,
     _navigation_endpoint,
+    _resolved_storm_offset,
     _storm_consensus_by_turn,
-    _storm_expected_category,
 )
 from .movement_sphere_context import apply_effective_sphere_context_rows
 from .prepared_cache import PreparedGameCache
@@ -73,6 +73,30 @@ def _classic_constant_storm_offset(
     return (total_dx, total_dy), "resolved_drag"
 
 
+def storm_offset_for_mode(
+    storms: Sequence[StormRecord],
+    *,
+    x: int,
+    y: int,
+    nuionstorms: bool | None,
+) -> tuple[tuple[int, int] | None, str]:
+    """Return the deterministic ion-storm drag vector for one authoritative mode.
+
+    The offset depends on the ship's position at the storm phase, not on its
+    factual post-turn destination. An empty resolved storm set is mode-agnostic:
+    no storm can move the ship even when the mode setting itself is unavailable.
+    Unknown mode with a non-empty storm population remains fail-closed.
+    """
+
+    if not storms:
+        return (0, 0), "not_affected"
+    if nuionstorms is True:
+        return _resolved_storm_offset(storms, x=x, y=y)
+    if nuionstorms is False:
+        return _classic_constant_storm_offset(storms, x=x, y=y)
+    return None, "storm_mode_unknown"
+
+
 def storm_expected_category_for_mode(
     sample: MovementSample,
     *,
@@ -83,17 +107,17 @@ def storm_expected_category_for_mode(
     """Classify ion-storm displacement using the game's authoritative storm mode.
 
     ``nuionstorms=True`` is the cloudy model already implemented by
-    ``_storm_expected_category``. ``False`` is the classic constant-voltage
-    model. Unknown mode is fail-closed so compiled corpus builds never silently
+    ``_resolved_storm_offset``. ``False`` is the classic constant-voltage model.
+    Unknown mode is fail-closed so compiled corpus builds never silently
     reinterpret storm geometry.
     """
 
-    if nuionstorms is True:
-        return _storm_expected_category(sample, storms=storms, planets=planets)
-    if nuionstorms is None:
-        return None, "storm_mode_unknown"
-
-    offset, status = _classic_constant_storm_offset(storms, x=sample.x, y=sample.y)
+    offset, status = storm_offset_for_mode(
+        storms,
+        x=sample.x,
+        y=sample.y,
+        nuionstorms=nuionstorms,
+    )
     if offset is None or offset == (0, 0):
         return None, status
 
