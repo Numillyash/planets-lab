@@ -14,6 +14,7 @@ for path in (REPO_ROOT, DIAGNOSTICS_DIR):
     if str(path) not in sys.path:
         sys.path.insert(0, str(path))
 
+from planets_lab.corpus.archive import read_archive_members, turn_members
 from planets_lab.corpus.movement_damage_context import max_warp_from_damage
 from planets_lab.corpus.movement_differential import (
     _entity_map,
@@ -29,6 +30,7 @@ from planets_lab.corpus.movement_residual_context import (
 from planets_lab.corpus.movement_sphere_context import effective_sphere_topology
 from planets_lab.corpus.movement_storm_context import storm_offset_for_mode
 from planets_lab.corpus.movement_topology_diagnostics import extract_map_topology
+from planets_lab.corpus.normalizer import _decode_member_json
 from planets_lab.corpus.prepared_cache import load_or_build_prepared_game_cache
 from planets_lab.corpus.reconstruction import group_perspective_records
 from planets_lab.data.nu_loadturn import NuLoadTurnError, _ship
@@ -98,16 +100,35 @@ def _find_named_setting(value: Any, normalized_name: str) -> list[Any]:
     return found
 
 
-def _nuionstorms_consensus(snapshots: Sequence[Any]) -> tuple[bool | None, tuple[str, ...]]:
+def _archive_nuionstorms_consensus(archive_data: bytes) -> tuple[bool | None, tuple[str, ...]]:
+    """Resolve the archived game-wide ion-storm mode from raw turn payloads.
+
+    Prepared snapshots intentionally do not retain every game setting. The residual
+    audit already demonstrated that first/last raw turn payloads carry a stable
+    ``nuionstorms`` value for the historical games in this corpus, so the position
+    predictor reads the same authoritative source rather than treating missing
+    prepared metadata as an unknown game mode.
+    """
+
+    members = turn_members(archive_data)
+    if not members:
+        return None, ()
+
+    selected = [members[0]]
+    if members[-1].name != members[0].name:
+        selected.append(members[-1])
+    raw_by_name = read_archive_members(archive_data, [member.name for member in selected])
+
     parsed: set[bool] = set()
     raw_values: set[str] = set()
-    for snapshot in snapshots:
-        mechanics_payload = getattr(snapshot, "mechanics_payload", None)
-        for value in _find_named_setting(mechanics_payload, "nuionstorms"):
+    for member in selected:
+        payload, _ = _decode_member_json(raw_by_name[member.name], member)
+        for value in _find_named_setting(payload, "nuionstorms"):
             raw_values.add(repr(value))
             flag = _boolish(value)
             if flag is not None:
                 parsed.add(flag)
+
     return (next(iter(parsed)) if len(parsed) == 1 else None), tuple(sorted(raw_values))
 
 
@@ -431,7 +452,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         storms_by_turn, storm_conflicts, storm_invalid = _storm_consensus_by_turn(
             prepared.snapshots
         )
-        nuionstorms, _nuionstorms_raw = _nuionstorms_consensus(prepared.snapshots)
+        nuionstorms, _nuionstorms_raw = _archive_nuionstorms_consensus(archive_data)
         storm_mode_counts[
             "nuionstorms_true"
             if nuionstorms is True
@@ -619,7 +640,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "The normal-movement branch uses owner-current T-1 navigation, raw mass/fuel/components, canonical Host "
             "major/minor movement, Gravitonic distance, the strict existing raw-damage warp cap, authoritative archived "
             "ion-storm mode/state, and known warp-well state. Ion-storm drag is composed after ordinary navigation and "
-            "before warp-well snapping, matching the independently validated movement context stack. Moving Tow/Intercept/" 
+            "before warp-well snapping, matching the independently validated movement context stack. Moving Tow/Intercept/"
             "C&I/HYP ships, Tow targets, obvious Chunnel source stacks, explicit cargo-transfer cases and sphere topology "
             "remain uncovered before ordinary geometry is attempted. Fuel proration is still excluded. A mismatch is a "
             "movement-position residual to investigate before integrating the row into candidate-set prediction."
