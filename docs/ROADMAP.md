@@ -4,7 +4,7 @@ This file is the operational roadmap for `planets-lab`. Architecture boundaries 
 
 Current durable checkpoints:
 
-- Host combat phase C5: [`handoff/2026-09-09-combat-c5-reciprocal-priority-intercept-runtime.md`](handoff/2026-09-09-combat-c5-reciprocal-priority-intercept-runtime.md) — both former mission-7 `left_higher_priority` residuals are removed from standard-priority tuning for distinct documented reasons. Case 2 (`621896/T28/VCR67`) is the Standard-game Galactic Power forced-left Gorbie exception. Case 1 (`511506/T19/VCR13`) is the sole ordinary reciprocal-only Priority Intercept candidate: targeted tests and audit passed with zero payload conflicts, and the documented reciprocal branch explains the factual Firecloud80/Meteor89 pre-standard pairing in the larger physical stack. Scoped Case1 pair/phase attribution is `DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`, but `candidate_rows=1` is insufficient to promote a universal reciprocal-interceptor side or multi-VCR ordering rule. The immediate C5 gate is matching-Friendly-Code suppression and Harmonic Weapon Modulation boundaries;
+- Host combat phase C5: [`handoff/2026-09-09-combat-c5-matching-fc-positive-runtime.md`](handoff/2026-09-09-combat-c5-matching-fc-positive-runtime.md) — both former mission-7 `left_higher_priority` residuals are removed from standard-priority tuning for distinct documented reasons: Case 2 is the Standard-game Galactic Power forced-left Gorbie exception, while Case 1 is the sole ordinary reciprocal-only Priority Intercept candidate and is closed for pair/pre-standard attribution (`DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`) without promoting a universal reciprocal-side rule. The matching-FC positive runtime then found 55 factual same-FC ship battles: all 54 ordinary rows plus the one game591478 row are documented MKT/LFM exceptions, with zero ordinary exact-match/HWM candidates and zero payload conflicts. Matching-FC suppression itself remains `DOCUMENTED + TESTED`, not yet `DIFF_VERIFIED`, because positive VCR evidence cannot prove suppression by absence. The immediate gate is a strict ordinary negative-control audit using stationary co-located non-Bird/non-cloakable fueled armed hostile pairs and independently combat-compatible diplomacy relation signatures;
 
 - movement: [`handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md`](handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md);
 - Classic combat replay coverage: [`handoff/2026-09-07-combat-c2-classic-replay-coverage.md`](handoff/2026-09-07-combat-c2-classic-replay-coverage.md);
@@ -377,8 +377,8 @@ Do not generalize these special/campaign/Horwasp residuals into ordinary Classic
 
 Proceed in this order:
 
-1. determine matching-FC suppression and Harmonic Weapon Modulation boundaries with controlled ordinary pair/stack evidence; do not infer suppression from absence of VCR without controlling co-location, hostility, fuel, diplomacy and other blockers;
-2. integrate normal PIA, reciprocal Intercept and C&I pair selection into the dynamic combat queue;
+1. run the strict ordinary matching-FC suppression negative-control audit. Promote suppression only if a clean non-empty population survives stationary co-location, unchanged ownership, ordinary exact matching FC, non-Bird/non-cloakable hulls, positive fuel before/after, armed/alive state, Kill!/PE hostility and independently combat-compatible diplomacy relation signatures; otherwise keep the rule `DOCUMENTED + TESTED` and move on;
+2. integrate matching-FC eligibility with normal PIA, reciprocal Intercept and C&I pair selection into the dynamic combat queue;
 3. model capture continuation in the same Host phase rather than as a pairwise resolver property;
 4. place the documented ship-to-planet repair boundary between ship and planet combat phases;
 5. integrate planet/base participation using the C4 persistence layer while keeping hidden damaged-starbase state fail-closed;
