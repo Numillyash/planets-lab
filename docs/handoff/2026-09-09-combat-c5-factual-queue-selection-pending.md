@@ -54,6 +54,92 @@ Scoped fix:
 
 This failed attempt is **not mechanics evidence**. No factual queue summary was emitted.
 
+## Second factual-queue runtime — first real stack differential
+
+User runtime on source:
+
+```text
+104332ee9d93c5de83bea613282b4c9a2d9cd863
+```
+
+completed successfully:
+
+```text
+TARGETED TESTS: 67 passed
+tests rc=0
+audit rc=0
+payload_conflicts=0
+factual_ship_vcr_rows=1968
+sites=1216
+multi_vcr_sites=348
+```
+
+Conditional factual-positive scope:
+
+```text
+engagement_eligible: True=1968
+phase: standard=1904, priority_intercept=48, unresolved=16
+prestandard_kind: normal_priority_intercept=47, reciprocal_priority_intercept=1
+side_result: exact=1944, unresolved=19, mismatch=5
+```
+
+Strict scope:
+
+```text
+engagement_eligible: True=1949, unresolved=19
+phase: standard=1885, priority_intercept=48, unresolved=35
+side_result: exact=1925, unresolved=38, mismatch=5
+```
+
+Site-layer result is strong:
+
+```text
+strict all_phase_resolved_sites=1183
+strict fully_resolved_prefix_exact=1183
+conditional all_phase_resolved_sites=1202
+conditional fully_resolved_prefix_exact=1202
+known prefix violations=0
+```
+
+Case1 remains the intended reciprocal Priority Intercept classification with universal side unresolved. Case2 remains exact under Galactic Power forced-left.
+
+### Three of five side mismatches are a canonical PIA pair-binding bug
+
+Rows:
+
+```text
+622476/T25/VCR87: interceptor ship40 mission7 target15, factual opponent72
+622476/T26/VCR93: interceptor ship65 mission7 target27, factual opponent54
+622476/T28/VCR110: interceptor ship45 mission7 target35, factual opponent42
+```
+
+The pair-level `_normal_pia_candidate(...)` used the static mission7/PE/cloak signature but did not additionally require that the considered pair opponent was the actual `mission1target`. This incorrectly promoted an ordinary later combat against another ship of the same target owner into PIA.
+
+Canonical fix committed:
+
+- normal PIA now requires `interceptor.mission_target_id == target.ship_id`;
+- regression `test_normal_pia_does_not_apply_to_other_ship_of_same_target_owner` added.
+
+Do not reinterpret the existing `priority_intercept_order_signature(...)`; its role remains the broad order signature. Exact pair binding belongs in the pair-selection layer where the opponent ship ID exists.
+
+### Two standard side residuals remain for queue-history analysis
+
+```text
+620917/T7/VCR6
+621896/T25/VCR52
+```
+
+Both are standard-phase residuals and must not be used to weaken `standard_battle_priority_key(...)` yet. Primary Planets.nu documentation explicitly notes dynamic shifts in complex stacked combat, and classic Host documentation describes repeated same-pair combat after timeout as a side/initiator exception to the static battle-value rule.
+
+Targeted diagnostic committed:
+
+```text
+tools/diagnostics/combat_host_factual_queue_side_residual_audit.py
+tests/test_combat_host_factual_queue_side_residual_audit.py
+```
+
+It reports the full site ship-VCR queue for these two cases plus same-pair occurrence index/count and T-1 standard priority inputs. The purpose is to determine whether either mismatch is a second-or-later encounter of the same pair or otherwise requires mutable queue state.
+
 ## Objective
 
 Validate the pair-level composition across real ordinary ship-vs-ship VCR queues before implementing mutable Host target selection.
@@ -66,17 +152,26 @@ This gate deliberately does **not** claim to predict which pairs will fight. Exi
 - does normal-PIA attacker ordering remain compatible with reverse Ship ID where a multi-attacker site becomes comparable;
 - do Case1 and Case2 retain their scoped explanations under the unified API.
 
-## Committed diagnostic — pending successful runtime
+## Committed diagnostics — pending rerun after target-binding fix
 
 ```text
 tools/diagnostics/combat_host_factual_queue_selection_audit.py
 tests/test_combat_host_factual_queue_selection_audit.py
+
+tools/diagnostics/combat_host_factual_queue_side_residual_audit.py
+tests/test_combat_host_factual_queue_side_residual_audit.py
 ```
 
-Schema:
+Main schema:
 
 ```text
 planets-lab.combat-host-factual-queue-selection-audit.v1
+```
+
+Residual schema:
+
+```text
+planets-lab.combat-host-factual-queue-side-residual-audit.v1
 ```
 
 ## Evidence scopes
@@ -133,55 +228,25 @@ Observed mission20 establishes the historical C&I order, but T-1 does not indepe
 
 Those values therefore remain unresolved in this gate. C&I rows may intentionally remain phase-unresolved; this is evidence of missing dynamic state, not an audit failure.
 
-## Runtime gate
+## Next runtime gate
 
-Run:
+Run the main factual queue audit again after the exact-target PIA fix, plus the narrow side-residual diagnostic.
 
-```text
-tests/test_combat_order.py
-tests/test_combat_eligibility.py
-tests/test_combat_selection.py
-tests/test_combat_host_factual_queue_selection_audit.py
-```
-
-then:
+Expected first-order effect if the fix is correct:
 
 ```text
-tools/diagnostics/combat_host_factual_queue_selection_audit.py
+normal_priority_intercept: 47 -> 44
+standard: +3
+resolved side mismatches: 5 -> at most 2
 ```
 
-Important outputs:
-
-```text
-summary.factual_ship_vcr_rows
-summary.sites
-summary.multi_vcr_sites
-summary.strict
-summary.conditional
-summary.strict_sites
-summary.conditional_sites
-case1_reciprocal
-case2_galactic_power
-```
-
-Most important interpretation fields:
-
-```text
-side_result.exact / mismatch / unresolved
-unresolved_reasons
-all_phase_resolved_sites
-fully_resolved_prefix_exact
-fully_resolved_prefix_violation
-known_prefix_violation_any_scope
-normal_pia_reverse_id_comparable
-normal_pia_reverse_id_exact
-normal_pia_reverse_id_mismatch
-```
+The two remaining standard residuals then determine whether static pair-side assignment needs a queue-history input or a different bounded exception.
 
 ## Promotion rules
 
-- A zero side mismatch count on resolved rows can support the current side composition boundary.
+- A zero side mismatch count on resolved first-occurrence/static-comparable rows can support the current side composition boundary.
 - A zero known pre-standard-prefix violation count supports the current phase layering on attributable rows.
 - Unresolved rows are coverage gaps and must not be counted as matches.
+- Repeated same-pair rows are queue-history dependent and must not be forced into a static pair-side rule.
 - Candidate-set prediction remains open regardless of how clean this gate is.
 - Do not implement mutable queue selection until this runtime is understood.
