@@ -247,7 +247,8 @@ def _build_independent_controls(
     A control contributes only when exactly one T-1 Kill!/PE direction requests
     combat. Candidate evaluation later removes every VCR belonging to the exact
     candidate pair at the current site, so a factual pair never proves its own
-    directed permission.
+    directed permission. Owner-current T-1 owners must match factual VCR owners,
+    excluding capture/reinsertion rows from the calibration population.
     """
 
     controls: dict[
@@ -274,6 +275,8 @@ def _build_independent_controls(
             or left_raw is None
             or right_raw is None
         ):
+            continue
+        if left_owner != left.get("owner_id") or right_owner != right.get("owner_id"):
             continue
         signature = _relation_signature(relations.get(before_turn, {}), left_owner, right_owner)
         if not _unique_relation_signature(signature):
@@ -715,10 +718,10 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "Candidate ships must be owner-current T-1 records already at the site and intrinsically stationary under a "
             "conservative Warp-0/no-Tow/no-Intercept/no-C&I/no-HYP/no-obvious-Tow-target/no-obvious-Chunnel-source filter. "
             "T-1 nonpositive fuel remains unresolved rather than blocked. Strict diplomacy is leave-pair-out and requires "
-            "another one-sided factual combat with the same raw directed relation signature; conditional diplomacy is an "
-            "upper-bound composition profile, not an independent predictor. Extra eligible nonfactual pairs are not treated "
-            "as pair-eligibility errors because mutable Host target selection can legitimately choose only a subset. Game "
-            "591478 is excluded. This v1 gate does not claim full post-movement stack reconstruction."
+            "another owner-aligned one-sided factual combat with the same raw directed relation signature; conditional "
+            "diplomacy is an upper-bound composition profile, not an independent predictor. Extra eligible nonfactual pairs "
+            "are not treated as pair-eligibility errors because mutable Host target selection can legitimately choose only "
+            "a subset. Game 591478 is excluded. This v1 gate does not claim full post-movement stack reconstruction."
         ),
     }
 
