@@ -181,6 +181,13 @@ def _normal_pia_candidate(
     if signature is None:
         return None, "normal_pia_signature_unknown"
 
+    # PIA priority is attached to the actual intercepted target, not merely any
+    # ship owned by the target faction. A mission-7 ship may later fight another
+    # hostile ship at the same location in ordinary combat, but that pair is not
+    # the documented Priority Intercept pair.
+    if interceptor.mission_target_id != target.ship_id:
+        return False, None
+
     # Normal PIA is the interceptor-initiated branch. If directed diplomacy
     # blocks that attack, the target may still create the reciprocal branch.
     if interceptor_attack_request is False:
