@@ -23,6 +23,7 @@ def _ship(ship_id: int, owner_id: int, **overrides: object) -> ShipCombatSideInp
         "diplomacy_allows_attack": True,
         "harmonic_weapon_modulation_enabled": False,
         "cloak_and_intercept_enabled": False,
+        "cloak_and_intercept_hull_eligible": True,
         "active_cloak_at_intercept": False,
         "intercept_interference_protected": False,
         "galactic_power_enabled": False,
@@ -187,7 +188,7 @@ def test_reciprocal_priority_intercept_phase_is_known_but_side_is_not_generalize
     assert "reciprocal_priority_intercept_side_unverified" in decision.unresolved_reasons
 
 
-def test_cloak_and_intercept_requires_effective_advantage_and_active_cloak() -> None:
+def test_cloak_and_intercept_requires_effective_advantage_active_cloak_and_hull_eligibility() -> None:
     decision = decide_ship_combat_pair(
         left=_ship(
             50,
@@ -198,6 +199,7 @@ def test_cloak_and_intercept_requires_effective_advantage_and_active_cloak() -> 
             primary_enemy=2,
             hull_can_cloak=True,
             cloak_and_intercept_enabled=True,
+            cloak_and_intercept_hull_eligible=True,
             active_cloak_at_intercept=True,
         ),
         right=_ship(70, 2),
@@ -208,6 +210,49 @@ def test_cloak_and_intercept_requires_effective_advantage_and_active_cloak() -> 
     assert decision.prestandard_kind is ShipCombatPrestandardKind.CLOAK_AND_INTERCEPT
     assert decision.phase_attacker_ship_id == 50
     assert decision.right_ship_id == 50
+
+
+def test_unknown_c_and_i_hull_eligibility_keeps_phase_unresolved() -> None:
+    decision = decide_ship_combat_pair(
+        left=_ship(
+            50,
+            1,
+            race_id=3,
+            mission=20,
+            mission_target_id=70,
+            primary_enemy=2,
+            hull_can_cloak=True,
+            cloak_and_intercept_enabled=True,
+            cloak_and_intercept_hull_eligible=None,
+            active_cloak_at_intercept=True,
+        ),
+        right=_ship(70, 2),
+        same_location=True,
+    )
+    assert decision.engagement_eligible is True
+    assert decision.phase is None
+    assert "cloak_intercept_hull_eligibility_unknown" in decision.unresolved_reasons
+
+
+def test_ineligible_c_and_i_hull_falls_back_to_standard() -> None:
+    decision = decide_ship_combat_pair(
+        left=_ship(
+            50,
+            1,
+            race_id=3,
+            mission=20,
+            mission_target_id=70,
+            primary_enemy=2,
+            hull_can_cloak=True,
+            cloak_and_intercept_enabled=True,
+            cloak_and_intercept_hull_eligible=False,
+            active_cloak_at_intercept=True,
+        ),
+        right=_ship(70, 2),
+        same_location=True,
+    )
+    assert decision.engagement_eligible is True
+    assert decision.phase is ShipCombatPairPhase.STANDARD
 
 
 def test_unknown_active_cloak_keeps_c_and_i_phase_unresolved() -> None:
