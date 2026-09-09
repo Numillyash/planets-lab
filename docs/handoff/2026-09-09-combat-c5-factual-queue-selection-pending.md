@@ -62,7 +62,7 @@ User runtime on source:
 104332ee9d93c5de83bea613282b4c9a2d9cd863
 ```
 
-completed successfully:
+completed successfully. User transcript artifact in chat: `Вставленный текст(20260909-180630).txt`.
 
 ```text
 TARGETED TESTS: 67 passed
