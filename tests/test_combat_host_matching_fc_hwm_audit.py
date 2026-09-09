@@ -1,24 +1,35 @@
 from __future__ import annotations
 
-from tools.diagnostics.combat_host_matching_fc_hwm_audit import (
-    _hwm_observation,
-    _matching_fc_kind,
-    _site_position,
+import importlib.util
+import sys
+from pathlib import Path
+
+
+TOOL = (
+    Path(__file__).parents[1]
+    / "tools"
+    / "diagnostics"
+    / "combat_host_matching_fc_hwm_audit.py"
 )
+spec = importlib.util.spec_from_file_location("combat_host_matching_fc_hwm_audit", TOOL)
+assert spec is not None and spec.loader is not None
+audit = importlib.util.module_from_spec(spec)
+sys.modules[spec.name] = audit
+spec.loader.exec_module(audit)
 
 
 def test_matching_fc_kind_is_exact_case_sensitive() -> None:
-    assert _matching_fc_kind("abc", "abc") == "ordinary_exact_match"
-    assert _matching_fc_kind("abc", "Abc") == "not_matching"
+    assert audit._matching_fc_kind("abc", "abc") == "ordinary_exact_match"
+    assert audit._matching_fc_kind("abc", "Abc") == "not_matching"
 
 
 def test_matching_fc_kind_recognizes_documented_ship_exceptions_case_insensitively() -> None:
     for value in ("MKT", "mkt", "NtP", "Lfm"):
-        assert _matching_fc_kind(value, value) == "documented_ship_exception"
+        assert audit._matching_fc_kind(value, value) == "documented_ship_exception"
 
 
 def test_hwm_observation_requires_bird_for_nonexception_match() -> None:
-    assert _hwm_observation(
+    assert audit._hwm_observation(
         matching_fc_kind="ordinary_exact_match",
         left_race_id=1,
         right_race_id=2,
@@ -29,7 +40,7 @@ def test_hwm_observation_requires_bird_for_nonexception_match() -> None:
 
 
 def test_hwm_observation_detects_unshielded_bird_opponent_on_first_site_vcr() -> None:
-    assert _hwm_observation(
+    assert audit._hwm_observation(
         matching_fc_kind="ordinary_exact_match",
         left_race_id=3,
         right_race_id=2,
@@ -40,7 +51,7 @@ def test_hwm_observation_detects_unshielded_bird_opponent_on_first_site_vcr() ->
 
 
 def test_hwm_observation_does_not_confuse_prior_combat_with_clean_first_site_signal() -> None:
-    assert _hwm_observation(
+    assert audit._hwm_observation(
         matching_fc_kind="ordinary_exact_match",
         left_race_id=3,
         right_race_id=2,
@@ -51,7 +62,7 @@ def test_hwm_observation_does_not_confuse_prior_combat_with_clean_first_site_sig
 
 
 def test_documented_ship_exception_is_not_labeled_hwm() -> None:
-    assert _hwm_observation(
+    assert audit._hwm_observation(
         matching_fc_kind="documented_ship_exception",
         left_race_id=3,
         right_race_id=2,
@@ -62,7 +73,7 @@ def test_documented_ship_exception_is_not_labeled_hwm() -> None:
 
 
 def test_site_position_is_one_based() -> None:
-    assert _site_position([8, 4, 10], 8) == {
+    assert audit._site_position([8, 4, 10], 8) == {
         "site_ship_vcr_ids": [4, 8, 10],
         "site_ship_vcr_count": 3,
         "site_ship_vcr_index": 2,
