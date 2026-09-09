@@ -17,13 +17,42 @@ with:
 tests rc=0
 ```
 
-Therefore `src/planets_lab/rules/combat/selection.py` is now `TESTED` at the unit-composition boundary.
+Therefore `src/planets_lab/rules/combat/selection.py` is `TESTED` at the unit-composition boundary.
 
 See:
 
 ```text
 docs/handoff/2026-09-09-combat-c5-pair-selection-runtime.md
 ```
+
+## First factual-queue runtime attempt — harness invariant fixed
+
+User runtime on source:
+
+```text
+a6ac305e41ad17f351ff75c8906fb22b8eef2b52
+```
+
+passed all targeted tests but the corpus audit stopped before producing mechanics output:
+
+```text
+TARGETED TESTS: 66 passed
+audit: AssertionError in decide_ship_combat_pair(...)
+tests rc=0
+audit rc=1
+```
+
+The failing assertion required both directed attack permissions to be non-`None` after `_base_engagement()` returned eligible. That invariant was too strong: one known-allowed Kill!/PE requester is sufficient to establish engagement while the opposite direction may legitimately remain unknown.
+
+Scoped fix:
+
+- removed the invalid both-directions-known assertion;
+- preserve the opposite `None` into pre-standard classification;
+- special branches that actually depend on that unknown direction still fail closed;
+- ordinary standard phase may continue when one known requester already proves the factual pair can engage;
+- added regression `test_known_aggressor_allows_standard_phase_with_unknown_opposite_diplomacy`.
+
+This failed attempt is **not mechanics evidence**. No factual queue summary was emitted.
 
 ## Objective
 
@@ -37,7 +66,7 @@ This gate deliberately does **not** claim to predict which pairs will fight. Exi
 - does normal-PIA attacker ordering remain compatible with reverse Ship ID where a multi-attacker site becomes comparable;
 - do Case1 and Case2 retain their scoped explanations under the unified API.
 
-## Committed diagnostic — pending runtime
+## Committed diagnostic — pending successful runtime
 
 ```text
 tools/diagnostics/combat_host_factual_queue_selection_audit.py
@@ -63,7 +92,7 @@ The factual VCR still supplies positive engagement existence, but directed diplo
 
 A stronger flag records when such an independent control exists in the same battle turn.
 
-If no independent directed control exists, the relevant side permission remains `None` and selection must fail closed.
+If no independent directed control exists, the relevant side permission remains `None` and selection must fail closed only where that unknown actually matters to the requested classification.
 
 ### conditional factual-positive
 
