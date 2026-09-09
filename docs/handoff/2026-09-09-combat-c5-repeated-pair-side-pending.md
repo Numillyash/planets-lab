@@ -56,7 +56,7 @@ Schema:
 planets-lab.combat-host-repeated-pair-side-population-audit.v1
 ```
 
-The diagnostic scans all ordinary ship-vs-ship VCRs and groups identical ship pairs within one battle-turn/location.
+The diagnostic scans all ordinary ship-vs-ship VCRs and groups identical ship pairs within one battle-turn/location. Missing or invalid factual owner IDs are counted in `invalid_owner_vcr_rows` and skipped rather than crashing the population pass.
 
 It reports:
 
@@ -79,6 +79,7 @@ plain_static_second_reversed_mismatch
 plain_static_two_pass_exact
 plain_static_two_pass_mismatch
 target_residual_groups
+invalid_owner_vcr_rows
 ```
 
 ## Conservative plain-static subset
