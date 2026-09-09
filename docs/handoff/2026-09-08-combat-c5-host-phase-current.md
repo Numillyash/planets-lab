@@ -18,125 +18,98 @@ Reconstruct the NuHost combat phase that generates VCR engagements, queue order 
 - Direct isolated standard classification remains 413/413 right-higher after removing documented special branches.
 - Factual isolated C&I attacker is 7/7 right.
 - Ordinary linked normal-PIA pairs are 37/37 before regular ship combat and 37/37 with the PIA attacker on the right.
-- Directed T-1 diplomacy was symmetric for both former mission-7 residuals.
 
-## Latest completed gates
+## Latest detailed checkpoints
 
 Read first:
 
-- `docs/handoff/2026-09-09-combat-c5-source-context-runtime.md`
-- `docs/handoff/2026-09-09-combat-c5-physical-stack-runtime.md`
-- `docs/handoff/2026-09-09-combat-c5-mission7-controls-galactic-power.md`
-- `docs/handoff/2026-09-09-combat-c5-galactic-power-runtime.md`
 - `docs/handoff/2026-09-09-combat-c5-galactic-power-case2-closed.md`
 - `docs/handoff/2026-09-09-combat-c5-reciprocal-priority-intercept-runtime.md`
+- `docs/handoff/2026-09-09-combat-c5-matching-fc-positive-runtime.md`
 
-## Former Case 2 — CLOSED: 621896 / T28 / VCR67
-
-Matched controls reject a universal non-cloakable Intercept side rule: 40/41 structurally matched rows follow canonical standard right-higher ordering; the sole residual is the exact Evil Empire Gorbie/T-Rex target.
-
-Corrected public Planets.nu `loadinfo` resolves game `621896` as `Standard Beginners`. Primary Planets.nu documentation enables Galactic Power for Standard and states that an Evil-Empire-owned Gorbie fights from the left. The target is race8 / hull70 / factual LEFT and is one of seven corpus rows where forced-left actually overrides canonical standard priority.
-
-Scoped status:
-
-```text
-Galactic Power:                          DOCUMENTED
-Case2 race8/hull70/factual LEFT:         CORPUS_OBSERVED
-fail-closed primitive:                   TESTED
-Case2 Galactic Power attribution:        DIFF_VERIFIED
-```
-
-`galactic_power_forces_left(...)` remains tri-state/fail-closed. Never infer enablement from race8+hull70 alone because Classic and Campaign/custom contexts differ.
-
-## Former Case 1 — pair/phase CLOSED: 511506 / T19 / VCR13
-
-Physical-stack runtime proved this is not a two-ship stack. T/T-1 context contains Firecloud80, Meteors29/89/102 and ship73, but the only factual VCR is:
-
-```text
-LEFT  Firecloud80 owner6 hull56
-      mission3 Kill / PE5 / FC027
-
-RIGHT Meteor89 owner5 hull46
-      cloak-capable / mission7 target80 / PE0 / FC2eC
-```
-
-Primary Planets.nu Priority Intercept documentation contains a reciprocal pre-standard branch: if the intercepted target would itself combat the intercepting ship, that combat also occurs before other combats at the location.
-
-Case1 matches exactly:
-
-```text
-Meteor89: cloak-capable + mission7 + target80
-Meteor89 PE=0 -> normal PE-matching PIA signature is false
-Firecloud80: Kill + PE5 -> requests combat with owner5 Meteor89
-```
-
-User runtime on source `1576dd083b2691464b98e3260d7c6474fb2ed339` passed targeted regressions and the reciprocal audit:
-
-```text
-tests rc=0
-audit rc=0
-payload_conflicts=0
-candidate_rows=1
-target_case_rows=1
-interceptor_side: right=1
-standard_relation: left_higher_priority=1
-target_aggression_shape: kill_and_pe=1
-site_first_ship_vcr: True=1
-multi_vcr_site_rows=0
-```
-
-Thus the sole old Case1 standard-side contradiction is the sole ordinary reciprocal-only candidate. The Intercept relation explains why ship89 is paired with Firecloud80 despite the larger physical stack.
-
-Scoped status:
-
-```text
-reciprocal Priority Intercept text:                DOCUMENTED
-Case1 stacked context / factual pair:              CORPUS_OBSERVED
-priority_intercept_reciprocal_target_signature:   TESTED
-Case1 reciprocal pair/pre-standard attribution:   DIFF_VERIFIED
-```
-
-Important boundary: `candidate_rows=1` gives no independent population control. Do **not** promote `reciprocal interceptor always RIGHT`, reverse-ID ordering, or multi-VCR queue semantics as universal diff-verified rules from this gate alone. The factual Case1 side is CORPUS_OBSERVED and is consistent with the documented general aggressor/right principle, but the reciprocal-specific side rule remains un-generalized.
-
-## Consequence for former mission-7 residuals
-
-Both former `left_higher_priority` rows are removed from standard battle-priority tuning for different documented reasons:
+## Former mission-7 residuals — removed from standard tuning
 
 ```text
 511506/T19/VCR13 -> reciprocal Priority Intercept pre-standard pair
 621896/T28/VCR67 -> Galactic Power forced-left Gorbie
 ```
 
-Do not weaken standard priority, Intercept semantics, diplomacy or FC parsing to fit either row.
+Case 1 runtime found exactly one ordinary reciprocal-only candidate, the target itself. The documented reciprocal branch explains the Firecloud80/Meteor89 pairing inside the larger physical stack. Scoped pair/pre-standard attribution is `DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`; `candidate_rows=1` is insufficient to promote a universal reciprocal-interceptor side or multi-VCR ordering rule.
 
-## Immediate gate — matching Friendly Codes / Harmonic Weapon Modulation
+Case 2 is closed as the Standard-game Evil-Empire Gorbie Galactic Power forced-left exception. Do not weaken standard priority, Intercept semantics, diplomacy or FC parsing to fit either former residual.
 
-Detailed pending checkpoint:
+## Matching Friendly Code / HWM positive gate — RUNTIME COMPLETE
 
-- `docs/handoff/2026-09-09-combat-c5-matching-fc-hwm-pending.md`
+Primary Planets.nu documentation states that exact case-sensitive matching ship Friendly Codes normally suppress ship-vs-ship combat, with `MKT`, `NTP`, and `LFM` as documented ship-combat exceptions. Bird Harmonic Weapon Modulation can override matching-FC suppression when effectively enabled; race alone does not establish Campaign advantage state.
 
-Committed but not yet user-runtime-validated:
+User runtime on source:
 
 ```text
-src/planets_lab/rules/combat/eligibility.py
-tests/test_combat_eligibility.py
-tools/diagnostics/combat_host_matching_fc_hwm_audit.py
-tests/test_combat_host_matching_fc_hwm_audit.py
+ff66d4b8d268205adb8b0d096b12be4fee57df90
 ```
 
-The first gate uses positive factual VCRs only. It identifies exact matching-FC ship combat, separates documented `MKT/NTP/LFM` exceptions, reports ordinary vs game591478 separately, and looks for the distinctive Bird HWM signal where a non-special matching-FC opponent enters the first site VCR at shield=0.
+passed targeted tests and the positive factual VCR audit:
 
-Do not call the new primitives `TESTED` before runtime. Do not infer HWM enablement from Bird race alone.
+```text
+tests rc=0
+audit rc=0
+payload_conflicts=0
+matching_fc_vcr_rows=55
+```
 
-Suppression-by-absence is intentionally deferred: absence of a VCR is not proof of matching-FC suppression until physical co-location, hostility, fuel, diplomacy, cloakability/state and other blockers are controlled.
+Ordinary scope excluding game `591478`:
+
+```text
+rows=54
+matching_fc_kind:
+  documented_ship_exception=54
+matching_friendly_code:
+  lfm=32
+  mkt=22
+ordinary exact-match HWM candidates=0
+```
+
+Special game `591478` contributes one additional factual same-FC `mkt` battle.
+
+Therefore all 55 factual same-FC ship combats in the current corpus are documented MKT/LFM exceptions. No NTP example is present; this is a coverage gap, not contrary evidence. No ordinary HWM candidate is present.
+
+Evidence status:
+
+```text
+matching-FC suppression text:                DOCUMENTED
+MKT/NTP/LFM exception text:                  DOCUMENTED
+matching-FC/HWM eligibility primitives:      TESTED
+55 factual same-FC VCR rows:                 CORPUS_OBSERVED
+54/54 ordinary rows documented exceptions:  CORPUS_OBSERVED
+ordinary HWM factual support:                NOT PRESENT IN CURRENT CORPUS
+ordinary matching-FC suppression:            NOT YET DIFF_VERIFIED
+```
+
+Do not infer suppression from absence of a VCR based only on this positive gate.
+
+## Immediate gate — strict ordinary matching-FC suppression controls
+
+Prepared, but **not yet user-runtime-validated**:
+
+```text
+tools/diagnostics/combat_host_matching_fc_suppression_audit.py
+tests/test_combat_host_matching_fc_suppression_audit.py
+```
+
+The audit excludes game `591478` and searches for stationary owner-current pairs that remain at the same coordinate from T-1 to T, keep the same owners, have exact ordinary matching FC, resolved non-Bird races, known non-cloakable hulls, positive fuel before/after, are alive and armed, and have Kill!/Primary-Enemy hostility.
+
+Diplomacy is controlled without assigning undocumented numeric relation labels: a candidate relation signature must be uniquely observed at T-1 and independently occur in factual ship combat in the same game. A stronger count requires the same signature in factual ship combat in the same turn.
+
+The target differential is a strict candidate satisfying all those conditions with **no factual VCR between the pair**. The cleanest subset also requires neither ship to participate in any other ship VCR at that site.
+
+If a non-empty clean population exists, ordinary matching-FC suppression can be promoted toward `DIFF_VERIFIED`. If the strict population is empty or diplomacy remains ambiguous, keep the rule `DOCUMENTED + TESTED` and move on rather than relaxing controls until the desired answer appears.
 
 ## Next order
 
-1. run the positive matching-FC / HWM gate;
-2. build strict matching-FC suppression negative controls only if the positive gate leaves a material boundary;
-3. integrate normal PIA, reciprocal Intercept and C&I into one dynamic pair-selection layer;
-4. handle capture/reinsertion and ownership changes;
-5. place between-phase repair before ship-vs-planet combat;
-6. keep game `591478` separate.
+1. run the strict matching-FC suppression negative-control gate;
+2. integrate matching-FC eligibility with normal PIA, reciprocal Intercept and C&I in one dynamic pair-selection layer;
+3. handle capture/reinsertion and ownership changes;
+4. place between-phase repair before ship-vs-planet combat;
+5. keep game `591478` separate.
 
 Keep `DOCUMENTED / CORPUS_OBSERVED / INFERRED / TESTED / DIFF_VERIFIED` distinct. Do not merge or mark PR #28 ready yet.
