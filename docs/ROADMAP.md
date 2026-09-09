@@ -4,7 +4,7 @@ This file is the operational roadmap for `planets-lab`. Architecture boundaries 
 
 Current durable checkpoints:
 
-- Host combat phase C5: [`handoff/2026-09-09-combat-c5-factual-queue-selection-pending.md`](handoff/2026-09-09-combat-c5-factual-queue-selection-pending.md) — both former mission-7 `left_higher_priority` residuals remain removed from standard-priority tuning for distinct documented reasons: Case 2 is the Standard-game Galactic Power forced-left Gorbie exception, while Case 1 is the sole ordinary reciprocal-only Priority Intercept candidate and is closed for pair/pre-standard attribution (`DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`) without promoting a universal reciprocal-side rule. Matching-FC positive runtime found 55 factual same-FC ship battles, all documented MKT/LFM exceptions; strict suppression controls yielded no clean negative-control population, so suppression remains `DOCUMENTED + TESTED`. The unified pair-level selection layer passed its targeted unit-composition runtime and is `TESTED`. The first successful factual-positive queue differential covered 1,968 ordinary ship VCR rows / 1,216 sites with zero resolved phase-prefix violations; 1,944 conditional side assignments were exact, 19 unresolved and 5 mismatched. Three of those five mismatches exposed a canonical normal-PIA pair-binding bug: mission7 had been applied to another ship of the same target owner instead of requiring the actual `mission1target`; that exact-target fix and regression are committed. The immediate gate is rerunning the factual queue audit plus the targeted two-row standard-side residual audit for `620917/T7/VCR6` and `621896/T25/VCR52`, checking whether either is queue-history/repeated-pair dependent rather than weakening static standard priority;
+- Host combat phase C5: [`handoff/2026-09-09-combat-c5-repeated-pair-side-pending.md`](handoff/2026-09-09-combat-c5-repeated-pair-side-pending.md) — both former mission-7 `left_higher_priority` residuals remain removed from standard-priority tuning for distinct documented reasons: Case 2 is the Standard-game Galactic Power forced-left Gorbie exception, while Case 1 is the sole ordinary reciprocal-only Priority Intercept candidate and is closed for pair/pre-standard attribution (`DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`) without promoting a universal reciprocal-side rule. Matching-FC positive runtime found 55 factual same-FC ship battles, all documented MKT/LFM exceptions; strict suppression controls yielded no clean negative-control population, so suppression remains `DOCUMENTED + TESTED`. The unified pair-level selection layer is `TESTED`. The successful factual-positive queue rerun on `31509d2c9e9f4af89f80e5088597452d40f393c1` covered 1,968 ordinary ship VCR rows / 1,216 sites with zero resolved phase-prefix violations; conditional side assignments were 1,947 exact, 19 unresolved and only 2 mismatched. Exact-target PIA binding is runtime-validated and removed the three false PIA mismatches. The remaining two mismatches (`620917/T7/VCR6`, `621896/T25/VCR52`) are both second occurrences of the same pair in the same battle-turn/location, with first-pass static RIGHT followed by reversed second-pass RIGHT. Static `standard_battle_priority_key(...)` therefore remains unchanged. The immediate gate is the ordinary repeated-pair population audit, checking the documented maximum of two fights and whether clean stable-owner/static-priority pairs universally follow the two-pass side-flip pattern before a mutable queue-side helper is promoted;
 
 - movement: [`handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md`](handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md);
 - Classic combat replay coverage: [`handoff/2026-09-07-combat-c2-classic-replay-coverage.md`](handoff/2026-09-07-combat-c2-classic-replay-coverage.md);
@@ -377,13 +377,14 @@ Do not generalize these special/campaign/Horwasp residuals into ordinary Classic
 
 Proceed in this order:
 
-1. rerun the factual-positive queue differential after the exact-target normal-PIA fix and run the two-row queue-history residual audit;
-2. if the remaining resolved side residuals are queue-history dependent, keep static pair priority unchanged and move that state into the mutable queue layer;
-3. only after the factual queue gate is understood, design candidate-set prediction from reconstructed post-movement stacks;
-4. model capture continuation in the same Host phase rather than as a pairwise resolver property;
-5. place the documented ship-to-planet repair boundary between ship and planet combat phases;
-6. integrate planet/base participation using the C4 persistence layer while keeping hidden damaged-starbase state fail-closed;
-7. keep game `591478` and other special/campaign mechanics separately labeled until attributable.
+1. run the ordinary repeated-pair side population audit and verify the documented maximum of two combats per pair;
+2. if the conservative stable-owner/plain-static population has zero two-pass mismatches, promote a narrow repeated-pair queue-side helper with explicit first/second occurrence state; keep capture/ownership-change, PIA/C&I and Galactic Power branches separate;
+3. then design candidate-set prediction from reconstructed post-movement stacks;
+4. only after candidate-set evidence, implement mutable target selection and queue mutation;
+5. model capture continuation in the same Host phase rather than as a pairwise resolver property;
+6. place the documented ship-to-planet repair boundary between ship and planet combat phases;
+7. integrate planet/base participation using the C4 persistence layer while keeping hidden damaged-starbase state fail-closed;
+8. keep game `591478` and other special/campaign mechanics separately labeled until attributable.
 
 The next goal is not merely to replay an already supplied VCR. It is to predict the **set, order and sides of VCRs Host will generate** from the factual co-located game state.
 
