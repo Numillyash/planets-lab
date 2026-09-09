@@ -4,7 +4,7 @@ This file is the operational roadmap for `planets-lab`. Architecture boundaries 
 
 Current durable checkpoints:
 
-- Host combat phase C5: [`handoff/2026-09-09-combat-c5-galactic-power-case2-closed.md`](handoff/2026-09-09-combat-c5-galactic-power-case2-closed.md) — former mission-7 Case 2 (`621896/T28/VCR67`) is closed as the documented Evil-Empire Gorbie Galactic Power forced-left exception. Public `loadinfo` resolves the game as `Standard Beginners`, and primary Planets.nu game-type documentation enables Galactic Power for Beginner/Standard while disabling it for Classic. Scoped status: `DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`. The immediate C5 gate is Case 1 (`511506/T19/VCR13`): primary documentation identifies a reciprocal Priority Intercept pre-standard branch where an intercepted target that would combat its cloak-capable interceptor is pulled forward even when the interceptor lacks matching PE. A separate fail-closed primitive and population audit are committed but not yet user-runtime-validated;
+- Host combat phase C5: [`handoff/2026-09-09-combat-c5-reciprocal-priority-intercept-runtime.md`](handoff/2026-09-09-combat-c5-reciprocal-priority-intercept-runtime.md) — both former mission-7 `left_higher_priority` residuals are removed from standard-priority tuning for distinct documented reasons. Case 2 (`621896/T28/VCR67`) is the Standard-game Galactic Power forced-left Gorbie exception. Case 1 (`511506/T19/VCR13`) is the sole ordinary reciprocal-only Priority Intercept candidate: targeted tests and audit passed with zero payload conflicts, and the documented reciprocal branch explains the factual Firecloud80/Meteor89 pre-standard pairing in the larger physical stack. Scoped Case1 pair/phase attribution is `DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`, but `candidate_rows=1` is insufficient to promote a universal reciprocal-interceptor side or multi-VCR ordering rule. The immediate C5 gate is matching-Friendly-Code suppression and Harmonic Weapon Modulation boundaries;
 
 - movement: [`handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md`](handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md);
 - Classic combat replay coverage: [`handoff/2026-09-07-combat-c2-classic-replay-coverage.md`](handoff/2026-09-07-combat-c2-classic-replay-coverage.md);
@@ -377,13 +377,12 @@ Do not generalize these special/campaign/Horwasp residuals into ordinary Classic
 
 Proceed in this order:
 
-1. validate the reciprocal Priority Intercept population gate for Case 1 (`511506/T19/VCR13`): cloak-capable mission7 interceptor targets the factual opponent, normal PIA PE signature is false, and the intercepted target would itself combat the interceptor;
-2. determine matching-FC / Harmonic Weapon Modulation boundaries;
-3. integrate normal PIA, reciprocal Intercept and C&I pair selection into the dynamic combat queue;
-4. model capture continuation in the same Host phase rather than as a pairwise resolver property;
-5. place the documented ship-to-planet repair boundary between ship and planet combat phases;
-6. integrate planet/base participation using the C4 persistence layer while keeping hidden damaged-starbase state fail-closed;
-7. keep game `591478` and other special/campaign mechanics separately labeled until attributable.
+1. determine matching-FC suppression and Harmonic Weapon Modulation boundaries with controlled ordinary pair/stack evidence; do not infer suppression from absence of VCR without controlling co-location, hostility, fuel, diplomacy and other blockers;
+2. integrate normal PIA, reciprocal Intercept and C&I pair selection into the dynamic combat queue;
+3. model capture continuation in the same Host phase rather than as a pairwise resolver property;
+4. place the documented ship-to-planet repair boundary between ship and planet combat phases;
+5. integrate planet/base participation using the C4 persistence layer while keeping hidden damaged-starbase state fail-closed;
+6. keep game `591478` and other special/campaign mechanics separately labeled until attributable.
 
 The next goal is not merely to replay an already supplied VCR. It is to predict the **set, order and sides of VCRs Host will generate** from the factual co-located game state.
 
