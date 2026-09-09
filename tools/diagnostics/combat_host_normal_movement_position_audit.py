@@ -21,19 +21,20 @@ from planets_lab.corpus.movement_differential import (
     _settings_warp_well_state_by_turn,
 )
 from planets_lab.corpus.movement_residual_context import GRAVITONIC_HULL_IDS
-from planets_lab.corpus.prepared_cache import load_or_build_prepared_game_cache
-from planets_lab.corpus.reconstruction import group_perspective_records
 from planets_lab.corpus.movement_sphere_context import effective_sphere_topology
 from planets_lab.corpus.movement_topology_diagnostics import extract_map_topology
+from planets_lab.corpus.prepared_cache import load_or_build_prepared_game_cache
+from planets_lab.corpus.reconstruction import group_perspective_records
 from planets_lab.data.nu_loadturn import NuLoadTurnError, _ship
+from planets_lab.rules.combat.order import CLOAK_INTERCEPT_MISSION_ID, INTERCEPT_MISSION_ID
 from planets_lab.rules.movement import WarpWellAmbiguityError, warp_well_planet_id
 from planets_lab.sim.normal_movement import plan_full_normal_move
 
 from combat_host_candidate_set_audit import (
+    TOW_MISSION_ID,
     _factual_sites,
     _intrinsic_stationary_reason,
     _owner_rows_for_turn,
-    _pair,
     _potential_chunnel_source_sites,
     _serialize,
     _tow_target_ids,
@@ -97,8 +98,8 @@ def _effective_requested_warp(
     if damage is None or damage < 0:
         return None, "damage_unknown"
 
-    # Both ordinary and Lizard tables allow Warp 9 in this low-damage band,
-    # so race resolution is unnecessary here.
+    # Both ordinary and Lizard damage tables permit Warp 9 at <=19%, so race
+    # resolution is unnecessary in this low-damage band.
     if damage <= 19:
         return requested, None
 
@@ -108,12 +109,50 @@ def _effective_requested_warp(
     if requested <= max_warp:
         return requested, None
 
-    # Existing differential evidence only promotes raw-damage limiting when
-    # visible supplies cannot repair even 1% before movement.
+    # Existing differential evidence only promotes the raw-damage limiting
+    # branch when visible supplies cannot repair even 1% before movement.
     supplies = _intish(raw.get("supplies"))
     if supplies is None or supplies < 0 or supplies >= 5:
         return None, "damage_repair_can_change_warp"
     return max_warp, None
+
+
+def _special_movement_reason(
+    *,
+    ship_id: int,
+    raw: Mapping[str, Any],
+    tow_targets: frozenset[int],
+    chunnel_source_sites: frozenset[tuple[int, int]],
+) -> str | None:
+    """Fail closed on movement branches that supersede ordinary self-movement.
+
+    This guard is intentionally independent of the stationary-v1 reason order:
+    a moving ship can still be a Tow target, Tow/Intercept/C&I actor, HYP ship,
+    or passenger in an obvious Chunnel-source stack.
+    """
+
+    mission = _intish(raw.get("mission"))
+    if mission == TOW_MISSION_ID:
+        return "tow_attempt"
+    if mission == INTERCEPT_MISSION_ID:
+        return "intercept_movement"
+    if mission == CLOAK_INTERCEPT_MISSION_ID:
+        return "cloak_intercept_movement"
+
+    fc = raw.get("friendlycode")
+    if isinstance(fc, str) and fc.strip().lower() == "hyp":
+        return "hyperjump_movement"
+
+    if ship_id in tow_targets:
+        return "tow_target"
+
+    x, y = _xy(raw)
+    if x is None or y is None:
+        return "position_unknown"
+    if (int(x), int(y)) in chunnel_source_sites:
+        return "potential_chunnel_source_stack"
+
+    return None
 
 
 def _normal_position_prediction(
@@ -128,8 +167,21 @@ def _normal_position_prediction(
     warp_wells_enabled: bool | None,
     eligible_warp_well_planet_ids: frozenset[int] | None,
     inbound_transfer_targets: frozenset[int],
+    tow_targets: frozenset[int],
+    chunnel_source_sites: frozenset[tuple[int, int]],
     sphere: bool | None,
 ) -> tuple[tuple[int, int] | None, str]:
+    del game_id  # retained in the call surface for future game-scoped mechanics.
+
+    special_reason = _special_movement_reason(
+        ship_id=ship_id,
+        raw=raw,
+        tow_targets=tow_targets,
+        chunnel_source_sites=chunnel_source_sites,
+    )
+    if special_reason is not None:
+        return None, special_reason
+
     if sphere is True:
         return None, "sphere_topology_not_integrated"
 
@@ -186,13 +238,37 @@ def _normal_position_prediction(
         return None, f"normal_plan_{plan.reason or 'not_executable'}"
 
     destination = (int(plan.destination_x), int(plan.destination_y))
-    if warp_wells_enabled is False or effective_warp <= 1 or destination == (ship.x, ship.y):
+    if effective_warp <= 1 or destination == (ship.x, ship.y):
         return destination, "normal_move"
+    if warp_wells_enabled is False:
+        return destination, "normal_move"
+
+    # `planets` contains all factual planet objects for the turn, not only the
+    # already-recognized warp-well-eligible subset. This matters when the
+    # effective warp-well state itself is unknown: a nearby planet must make the
+    # endpoint unresolved rather than silently looking irrelevant.
+    if warp_wells_enabled is None:
+        try:
+            possible_planet = warp_well_planet_id(
+                origin_x=ship.x,
+                origin_y=ship.y,
+                end_x=destination[0],
+                end_y=destination[1],
+                movement_warp=int(effective_warp),
+                planets=planets,
+            )
+        except WarpWellAmbiguityError:
+            return None, "warp_well_setting_unknown"
+        if possible_planet is not None:
+            return None, "warp_well_setting_unknown"
+        return destination, "normal_move_warp_well_irrelevant"
 
     eligible_ids = eligible_warp_well_planet_ids
     if eligible_ids is None:
         return None, "warp_well_eligibility_unknown"
-    excluded = frozenset(planet_id for planet_id, _x, _y in planets if planet_id not in eligible_ids)
+    excluded = frozenset(
+        planet_id for planet_id, _x, _y in planets if planet_id not in eligible_ids
+    )
     try:
         well_planet = warp_well_planet_id(
             origin_x=ship.x,
@@ -205,11 +281,6 @@ def _normal_position_prediction(
         )
     except WarpWellAmbiguityError:
         return None, "warp_well_ambiguous"
-
-    if warp_wells_enabled is None:
-        if well_planet is None:
-            return destination, "normal_move_warp_well_irrelevant"
-        return None, "warp_well_setting_unknown"
 
     if well_planet is None:
         return destination, "normal_move"
@@ -253,7 +324,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         sites = _factual_sites(game_id=game_id, seen=seen)
 
         entities = _entity_map(prepared.snapshots)
-        planets_by_turn = _planet_tuples_by_turn(entities)
+        planets_by_turn = _planet_tuples_by_turn(entities, include_ineligible=True)
         warp_wells_by_turn, _warp_well_conflicts = _settings_warp_well_state_by_turn(
             prepared.snapshots
         )
@@ -331,6 +402,8 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                         warp_wells_enabled=warp_wells_enabled,
                         eligible_warp_well_planet_ids=eligible_ids,
                         inbound_transfer_targets=inbound_targets,
+                        tow_targets=tow_targets,
+                        chunnel_source_sites=chunnel_sites,
                         sphere=topology.sphere,
                     )
                     normal_reasons[source] += 1
@@ -340,7 +413,9 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 if predicted is None:
                     occurrence_status[ship_id] = "uncovered"
                     occurrence_counts["position_uncovered"] += 1
-                    occurrence_counts[f"uncovered:{source or stationary_reason or 'unknown'}"] += 1
+                    occurrence_counts[
+                        f"uncovered:{source or stationary_reason or 'unknown'}"
+                    ] += 1
                     continue
 
                 occurrence_counts["position_predicted"] += 1
@@ -362,6 +437,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                                 "predicted": list(predicted),
                                 "factual_site": [x, y],
                                 "warp": _intish(raw.get("warp")),
+                                "mission": _intish(raw.get("mission")),
                                 "damage": _intish(raw.get("damage")),
                                 "fuel": _intish(raw.get("neutronium")),
                                 "mass": _intish(raw.get("mass")),
@@ -404,7 +480,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "sites": _serialize(site_counts),
     }
     return {
-        "schema": "planets-lab.combat-host-normal-movement-position-audit.v1",
+        "schema": "planets-lab.combat-host-normal-movement-position-audit.v2",
         "read_only": True,
         "summary": summary,
         "examples": examples,
@@ -413,9 +489,10 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "Factual VCR coordinates are comparison targets only and are never used to compute a ship endpoint. "
             "The normal-movement branch uses owner-current T-1 navigation, raw mass/fuel/components, canonical Host "
             "major/minor movement, Gravitonic distance, the strict existing raw-damage warp cap, and known warp-well "
-            "state. Tow, Intercept, C&I, HYP, obvious Chunnel source stacks and explicit cargo-transfer cases remain "
-            "uncovered. Fuel proration is intentionally excluded in this first movement expansion. A mismatch is a "
-            "movement-position residual to investigate before integrating the row into candidate-set prediction."
+            "state. Moving Tow/Intercept/C&I/HYP ships, Tow targets, obvious Chunnel source stacks, explicit cargo-transfer "
+            "cases and sphere topology remain uncovered before ordinary geometry is attempted. Fuel proration is "
+            "intentionally excluded in this first movement expansion. A mismatch is a movement-position residual to "
+            "investigate before integrating the row into candidate-set prediction."
         ),
     }
 
