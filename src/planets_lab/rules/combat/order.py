@@ -207,6 +207,61 @@ def priority_intercept_order_signature(
     )
 
 
+def priority_intercept_reciprocal_target_signature(
+    *,
+    interceptor_mission: int | None,
+    interceptor_target_id: int | None,
+    interceptor_hull_can_cloak: bool | None,
+    target_ship_id: int | None,
+    target_would_combat_interceptor: bool | None,
+) -> bool | None:
+    """Recognize the documented reciprocal pre-standard Intercept branch.
+
+    Planets.nu documents a second Priority Intercept ordering case in addition
+    to a normal PIA initiated by the interceptor: if a cloak-capable ship is set
+    to Intercept a target and the *intercepted target* would combat the
+    interceptor, that pair also fights before ordinary ship combat.
+
+    This helper intentionally does not require the interceptor's Primary Enemy
+    to match the target. That requirement belongs to
+    :func:`priority_intercept_order_signature`, i.e. the interceptor-initiated
+    PIA branch. Here the hostility request comes from the intercepted target.
+
+    ``target_would_combat_interceptor`` must already include whatever dynamic
+    eligibility facts the caller is claiming to know. Passing ``True`` merely
+    because the target has Kill!/Primary Enemy orders is appropriate only for a
+    diagnostic that separately verifies blockers or observes the factual pair.
+
+    ``None`` means an Intercept order is present but a fact required to decide
+    this branch is unavailable, so callers must fail closed.
+    """
+
+    if interceptor_mission != INTERCEPT_MISSION_ID:
+        return False
+
+    required = (
+        interceptor_target_id,
+        interceptor_hull_can_cloak,
+        target_ship_id,
+        target_would_combat_interceptor,
+    )
+    if any(value is None for value in required):
+        return None
+
+    assert interceptor_target_id is not None
+    assert interceptor_hull_can_cloak is not None
+    assert target_ship_id is not None
+    assert target_would_combat_interceptor is not None
+
+    return (
+        interceptor_hull_can_cloak
+        and interceptor_target_id > 0
+        and target_ship_id > 0
+        and interceptor_target_id == target_ship_id
+        and target_would_combat_interceptor
+    )
+
+
 def cloak_intercept_order_signature(
     *,
     mission: int | None,
