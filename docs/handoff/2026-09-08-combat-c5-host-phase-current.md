@@ -111,21 +111,32 @@ Do not weaken standard priority, Intercept semantics, diplomacy or FC parsing to
 
 ## Immediate gate — matching Friendly Codes / Harmonic Weapon Modulation
 
-Next reconstruct the matching-FC suppression boundary separately from battle priority:
+Detailed pending checkpoint:
 
-1. identify ordinary co-located hostile pairs whose FCs match and therefore suppress combat;
-2. identify documented exceptions / special FCs and Harmonic Weapon Modulation cases;
-3. separate game/race advantage enablement from raw matching-FC equality;
-4. only then integrate matching-FC eligibility with normal PIA, reciprocal Priority Intercept and Bird C&I dynamic pair selection.
+- `docs/handoff/2026-09-09-combat-c5-matching-fc-hwm-pending.md`
 
-Do not use absence of a VCR as proof of matching-FC suppression until physical co-location, hostility, fuel, diplomacy and other blockers are controlled.
+Committed but not yet user-runtime-validated:
+
+```text
+src/planets_lab/rules/combat/eligibility.py
+tests/test_combat_eligibility.py
+tools/diagnostics/combat_host_matching_fc_hwm_audit.py
+tests/test_combat_host_matching_fc_hwm_audit.py
+```
+
+The first gate uses positive factual VCRs only. It identifies exact matching-FC ship combat, separates documented `MKT/NTP/LFM` exceptions, reports ordinary vs game591478 separately, and looks for the distinctive Bird HWM signal where a non-special matching-FC opponent enters the first site VCR at shield=0.
+
+Do not call the new primitives `TESTED` before runtime. Do not infer HWM enablement from Bird race alone.
+
+Suppression-by-absence is intentionally deferred: absence of a VCR is not proof of matching-FC suppression until physical co-location, hostility, fuel, diplomacy, cloakability/state and other blockers are controlled.
 
 ## Next order
 
-1. resolve matching-FC / Harmonic Weapon Modulation boundaries;
-2. integrate normal PIA, reciprocal Intercept and C&I into one dynamic pair-selection layer;
-3. handle capture/reinsertion and ownership changes;
-4. place between-phase repair before ship-vs-planet combat;
-5. keep game `591478` separate.
+1. run the positive matching-FC / HWM gate;
+2. build strict matching-FC suppression negative controls only if the positive gate leaves a material boundary;
+3. integrate normal PIA, reciprocal Intercept and C&I into one dynamic pair-selection layer;
+4. handle capture/reinsertion and ownership changes;
+5. place between-phase repair before ship-vs-planet combat;
+6. keep game `591478` separate.
 
 Keep `DOCUMENTED / CORPUS_OBSERVED / INFERRED / TESTED / DIFF_VERIFIED` distinct. Do not merge or mark PR #28 ready yet.
