@@ -1,6 +1,9 @@
 from __future__ import annotations
 
+import io
+import json
 import sys
+import zipfile
 from pathlib import Path
 
 from planets_lab.corpus.movement_residual_context import StormRecord
@@ -11,6 +14,7 @@ if str(TOOLS_DIR) not in sys.path:
     sys.path.insert(0, str(TOOLS_DIR))
 
 from combat_host_normal_movement_position_audit import (  # noqa: E402
+    _archive_nuionstorms_consensus,
     _effective_requested_warp,
     _inbound_transfer_targets,
     _nonzero_transfer_amount,
@@ -94,6 +98,17 @@ def _storm() -> StormRecord:
     )
 
 
+def _archive_with_storm_modes(*values: object) -> bytes:
+    buffer = io.BytesIO()
+    with zipfile.ZipFile(buffer, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+        for turn, value in enumerate(values, start=1):
+            archive.writestr(
+                f"player1-turn{turn}.trn",
+                json.dumps({"settings": {"nuionstorms": value}}),
+            )
+    return buffer.getvalue()
+
+
 def _predict(
     *,
     raw: dict[str, object] | None = None,
@@ -124,6 +139,16 @@ def _predict(
         storms=storms,
         nuionstorms=nuionstorms,
     )
+
+
+def test_archive_nuionstorms_consensus_reads_raw_turn_settings() -> None:
+    assert _archive_nuionstorms_consensus(_archive_with_storm_modes(False, False)) == (
+        False,
+        ("False",),
+    )
+    mode, raw_values = _archive_nuionstorms_consensus(_archive_with_storm_modes(True, False))
+    assert mode is None
+    assert raw_values == ("False", "True")
 
 
 def test_nonzero_transfer_amount_only_uses_payload_amounts() -> None:
