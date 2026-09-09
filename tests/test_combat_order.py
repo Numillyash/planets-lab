@@ -14,6 +14,7 @@ from planets_lab.rules.combat.order import (
     galactic_power_forces_left,
     orders_request_ship_combat,
     priority_intercept_order_signature,
+    priority_intercept_reciprocal_target_signature,
     standard_battle_priority_key,
 )
 
@@ -157,6 +158,60 @@ def test_non_intercept_mission_is_not_priority_intercept() -> None:
         target_owner_id=None,
         hull_can_cloak=None,
     ) is False
+
+
+def test_reciprocal_priority_intercept_does_not_require_interceptor_pe() -> None:
+    assert priority_intercept_reciprocal_target_signature(
+        interceptor_mission=INTERCEPT_MISSION_ID,
+        interceptor_target_id=80,
+        interceptor_hull_can_cloak=True,
+        target_ship_id=80,
+        target_would_combat_interceptor=True,
+    ) is True
+
+
+def test_reciprocal_priority_intercept_requires_cloakable_targeted_intercept() -> None:
+    assert priority_intercept_reciprocal_target_signature(
+        interceptor_mission=INTERCEPT_MISSION_ID,
+        interceptor_target_id=80,
+        interceptor_hull_can_cloak=False,
+        target_ship_id=80,
+        target_would_combat_interceptor=True,
+    ) is False
+    assert priority_intercept_reciprocal_target_signature(
+        interceptor_mission=INTERCEPT_MISSION_ID,
+        interceptor_target_id=81,
+        interceptor_hull_can_cloak=True,
+        target_ship_id=80,
+        target_would_combat_interceptor=True,
+    ) is False
+    assert priority_intercept_reciprocal_target_signature(
+        interceptor_mission=0,
+        interceptor_target_id=80,
+        interceptor_hull_can_cloak=True,
+        target_ship_id=80,
+        target_would_combat_interceptor=True,
+    ) is False
+
+
+def test_reciprocal_priority_intercept_requires_target_hostility() -> None:
+    assert priority_intercept_reciprocal_target_signature(
+        interceptor_mission=INTERCEPT_MISSION_ID,
+        interceptor_target_id=80,
+        interceptor_hull_can_cloak=True,
+        target_ship_id=80,
+        target_would_combat_interceptor=False,
+    ) is False
+
+
+def test_reciprocal_priority_intercept_fails_closed_on_missing_dynamic_fact() -> None:
+    assert priority_intercept_reciprocal_target_signature(
+        interceptor_mission=INTERCEPT_MISSION_ID,
+        interceptor_target_id=80,
+        interceptor_hull_can_cloak=True,
+        target_ship_id=80,
+        target_would_combat_interceptor=None,
+    ) is None
 
 
 def test_cloak_intercept_signature_matches_residual() -> None:
