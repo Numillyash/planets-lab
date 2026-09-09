@@ -2,7 +2,7 @@
 
 GitHub is the source of truth. PR #28 remains draft/open. Game `591478` remains excluded from ordinary promotion.
 
-## Runtime source
+## Population runtime source
 
 ```text
 692bde1fb4aad4b8e50801253a2294c01a0206ba
@@ -106,7 +106,7 @@ The exact reversal is consistent with secondary classic Host descriptions, but c
 
 Do not change `standard_battle_priority_key(...)`.
 
-## Canonical queue primitive committed after runtime
+## Canonical queue primitive — TESTED
 
 ```text
 src/planets_lab/rules/combat/queue.py
@@ -128,12 +128,36 @@ Scope and behavior:
 - the helper does **not** decide whether a second combat occurs;
 - PIA, reciprocal PIA, C&I, Galactic Power, capture/reinsertion and target selection remain outside this helper.
 
-The primitive is committed but is **pending user runtime** before its implementation receives the `TESTED` label. The underlying two-row historical pattern is already `CORPUS_OBSERVED + DIFF_VERIFIED` in the scoped population above.
+User implementation runtime source:
+
+```text
+de824ab4ecc0bc8cd32784ce4d3df9021eddd71b
+```
+
+Artifact:
+
+```text
+artifacts/combat-c5-queue-primitive-20260909-221345
+```
+
+Result:
+
+```text
+QUEUE PRIMITIVE TESTS
+.................................................................... [100%]
+tests rc=0
+```
+
+Therefore the queue primitive is `TESTED`. This label applies to the implementation; the historical second-pass reversal remains `CORPUS_OBSERVED + DIFF_VERIFIED` in the bounded scope above.
 
 ## Next gate
 
-1. run `tests/test_combat_queue.py` together with canonical combat-order/selection regressions;
-2. if green, mark the queue-side primitive `TESTED`;
-3. proceed to **candidate-set prediction from reconstructed post-movement stacks**;
-4. keep that next gate separate from the mutable combat resolver: first predict which ship pairs are eligible/selected and where state is unresolved, then implement mutation/continuation;
-5. do not reopen the static standard priority, matching-FC, Galactic Power or reciprocal-PIA gates absent contradiction.
+Proceed to the candidate-set differential:
+
+```text
+docs/handoff/2026-09-09-combat-c5-candidate-set-pending.md
+```
+
+The next gate must not use factual VCR presence as a positive pair-eligibility oracle. It starts with a conservative site-conditioned T-1 stationary subset, preserves movement/fuel/diplomacy unknowns, and compares canonical `eligible / blocked / unresolved` decisions against the held-out factual pair set before mutable target selection is implemented.
+
+Do not reopen static standard priority, matching-FC, Galactic Power or reciprocal-PIA gates absent contradiction.
