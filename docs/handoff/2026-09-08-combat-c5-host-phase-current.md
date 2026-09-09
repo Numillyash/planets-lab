@@ -2,7 +2,7 @@
 
 GitHub is the only source of truth. Inspect actual `main` and `agent/combat-c5-host-phase` HEADs before continuing. PR #28 remains draft/open. Game `591478` remains a separate special/campaign/Horwasp bucket and must not tune ordinary mechanics.
 
-This file is intentionally a compact pointer. Detailed evidence is in dated handoffs and Git history.
+This file is a compact pointer; use the dated handoffs for full evidence.
 
 ## Stable C5 evidence
 
@@ -14,7 +14,7 @@ This file is intentionally a compact pointer. Detailed evidence is in dated hand
 - Factual isolated C&I attacker: 7/7 right.
 - Ordinary linked normal-PIA population: 37/37 before regular ship combat and 37/37 with PIA attacker on right.
 
-## Read these current checkpoints first
+## Read these checkpoints first
 
 - `docs/handoff/2026-09-09-combat-c5-galactic-power-case2-closed.md`
 - `docs/handoff/2026-09-09-combat-c5-reciprocal-priority-intercept-runtime.md`
@@ -23,8 +23,9 @@ This file is intentionally a compact pointer. Detailed evidence is in dated hand
 - `docs/handoff/2026-09-09-combat-c5-pair-selection-runtime.md`
 - `docs/handoff/2026-09-09-combat-c5-factual-queue-runtime.md`
 - `docs/handoff/2026-09-09-combat-c5-repeated-pair-side-runtime.md`
+- `docs/handoff/2026-09-09-combat-c5-candidate-set-pending.md`
 
-## Former mission-7 residuals — closed
+## Closed special residuals
 
 ```text
 511506/T19/VCR13 -> reciprocal Priority Intercept pre-standard pair
@@ -33,13 +34,11 @@ This file is intentionally a compact pointer. Detailed evidence is in dated hand
 
 Case1 is `DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED` for pair/pre-standard attribution; reciprocal-specific universal side remains unpromoted from one row.
 
-Case2 is closed as the Standard-game Evil-Empire Gorbie Galactic Power forced-left exception. Do not weaken standard priority, Intercept semantics, diplomacy or FC parsing to fit either former residual.
+Case2 is the Standard-game Evil-Empire Gorbie Galactic Power forced-left exception. Do not weaken standard priority, Intercept semantics, diplomacy or FC parsing to fit either former residual.
 
 ## Matching Friendly Code / HWM — bounded
 
-Positive runtime found 55 factual same-FC ship battles. All 54 ordinary rows plus the one `591478` row are documented MKT/LFM exceptions. NTP is unobserved. No ordinary HWM factual candidate exists. Strict suppression controls produced no clean negative-control population.
-
-Evidence status:
+Positive runtime found 55 factual same-FC ship battles; all 54 ordinary rows plus the one `591478` row are documented MKT/LFM exceptions. NTP is unobserved. No ordinary HWM factual candidate exists. Strict suppression controls produced no clean negative-control population.
 
 ```text
 matching-FC suppression text:                DOCUMENTED
@@ -66,11 +65,11 @@ Canonical layer:
 src/planets_lab/rules/combat/selection.py
 ```
 
-Order + eligibility + pair-selection regressions passed together. Dynamic diplomacy, HWM/C&I enablement, C&I hull/active-cloak state, Intercept Interference and Galactic Power remain explicit tri-state inputs.
+Dynamic diplomacy, HWM/C&I enablement, C&I hull/active-cloak state, Intercept Interference and Galactic Power remain explicit tri-state inputs.
 
 ## Factual-positive queue differential — runtime complete
 
-Successful runtime source:
+Runtime source:
 
 ```text
 31509d2c9e9f4af89f80e5088597452d40f393c1
@@ -107,23 +106,9 @@ conditional fully_resolved_prefix_exact=1202/1202
 known phase-prefix violations=0
 ```
 
-Case1 remains reciprocal PIA with side deliberately unresolved. Case2 remains exact under Galactic Power forced-left.
+Exact-target normal PIA binding is runtime validated: Priority Intercept is bound to the actual `mission1target`, not merely another ship of the same owner. The older 37-row linked-PIA audit has a different scope and is not reopened absent contradiction.
 
-### Exact-target PIA binding — runtime validated
-
-`_normal_pia_candidate(...)` requires the considered opponent ship to equal the interceptor's actual `mission1target`. This removed the three false PIA side mismatches where mission7 targeted another ship of the same owner.
-
-The audit-specific normal-PIA count changed `47 -> 36`, larger than the initial estimate. Do not restore owner-only binding: primary semantics bind Priority Intercept to the actual Intercept target. The older 37-row linked-PIA audit has a different scope and is not reopened absent a direct contradiction.
-
-Evidence status:
-
-```text
-exact PIA target binding text: DOCUMENTED
-canonical pair binding:        TESTED
-factual correction:             DIFF_VERIFIED
-```
-
-## Repeated-pair side history — population closed
+## Repeated-pair side history — closed
 
 Population runtime source:
 
@@ -131,46 +116,19 @@ Population runtime source:
 692bde1fb4aad4b8e50801253a2294c01a0206ba
 ```
 
-Artifact:
-
-```text
-artifacts/combat-c5-repeated-pair-side-20260909-215615
-```
-
-Across all 11 ordinary archives the **entire** repeated same-pair ship population is exactly the two former side residual groups:
+Across all 11 ordinary archives the entire repeated same-pair ship population is exactly two groups / four VCRs:
 
 ```text
 repeated_pair_groups=2
-repeated_pair_vcr_rows=4
 occurrence_count={'2': 2}
 max_occurrences=2
-stable_owner_groups=2
 plain_static_comparable_groups=2
 plain_static_first_right_exact=2
 plain_static_second_reversed_exact=2
 plain_static_two_pass_exact=2
-target_residual_groups=2
-payload_conflicts=0
-invalid_owner_vcr_rows=0
 ```
 
-No third occurrence, owner-change group, same-orientation repeat or plain-static mismatch exists in the ordinary population.
-
-The two groups are:
-
-```text
-620917/T7 pair (13,14):
-  VCR5 LEFT14 RIGHT13
-  VCR6 LEFT13 RIGHT14
-
-621896/T25 pair (34,67):
-  VCR49 LEFT67 RIGHT34
-  VCR52 LEFT34 RIGHT67
-```
-
-In both cases first RIGHT is the static higher-priority ship; second RIGHT is the opposite ship. Therefore **do not change `standard_battle_priority_key(...)`**.
-
-Evidence status for the conservative plain ordinary standard repeated-pair scope:
+They are the former two factual-queue side residuals. In both, first RIGHT is the static higher-priority ship and second RIGHT is the opposite ship. `standard_battle_priority_key(...)` therefore remains unchanged.
 
 ```text
 maximum two fights / dynamic stack order: DOCUMENTED
@@ -179,31 +137,63 @@ second-pass side reversal:                  CORPUS_OBSERVED + DIFF_VERIFIED
 exact reversal as primary documentation:    NOT PROMOTED
 ```
 
-## Canonical repeated-pair queue primitive — pending user runtime
-
-Committed after the clean population gate:
+### Canonical queue primitive — TESTED
 
 ```text
 src/planets_lab/rules/combat/queue.py
 tests/test_combat_queue.py
-```
-
-Public helper:
-
-```text
 standard_pair_sides_for_occurrence(...)
 ```
 
-It does not decide whether a second combat occurs. It only maps already-resolved first-pass sides onto occurrence 1 or 2 of the same ordinary STANDARD pair; occurrence >2 fails closed. PIA/C&I/Galactic Power/capture/target selection stay outside it.
+Implementation runtime source:
 
-The historical rule is already `CORPUS_OBSERVED + DIFF_VERIFIED` in the scoped population. The implementation itself is **not `TESTED` until the new queue regressions run successfully**.
+```text
+de824ab4ecc0bc8cd32784ce4d3df9021eddd71b
+```
 
-## Immediate gate
+Artifact:
 
-1. run canonical order/eligibility/selection regressions plus `tests/test_combat_queue.py`;
-2. if green, promote the queue-side primitive implementation to `TESTED`;
-3. then proceed to **candidate-set prediction from reconstructed post-movement stacks**;
-4. candidate-set work must first classify eligible/blocked/unresolved pair candidates without mutating combat state or using factual VCR presence as an eligibility oracle;
-5. only after candidate-set precision/recall is understood should the full mutable target queue and capture continuation be implemented.
+```text
+artifacts/combat-c5-queue-primitive-20260909-221345
+```
+
+Result:
+
+```text
+QUEUE PRIMITIVE TESTS
+.................................................................... [100%]
+tests rc=0
+```
+
+The helper is `TESTED`. It maps an already-selected ordinary STANDARD pair onto occurrence 1/2 sides; occurrence >2 fails closed. It does not decide whether a second combat occurs. PIA/C&I/Galactic Power/capture/target selection remain outside it.
+
+## Immediate gate — candidate-set differential
+
+Committed:
+
+```text
+tools/diagnostics/combat_host_candidate_set_audit.py
+tests/test_combat_host_candidate_set_audit.py
+```
+
+Detailed boundary:
+
+```text
+docs/handoff/2026-09-09-combat-c5-candidate-set-pending.md
+```
+
+This v1 gate is intentionally **site-conditioned and movement-conservative**, not full post-movement reconstruction.
+
+- factual VCRs supply site coordinates and the held-out comparison pair set only;
+- candidate ship membership comes from owner-current `T-1`;
+- only intrinsically stationary Warp-0/no-Tow/no-Intercept/no-C&I/no-HYP/no-obvious-Tow-target/no-obvious-Chunnel-source ships enter the v1 position-proven set;
+- zero/missing `T-1` fuel stays unresolved rather than becoming a hard blocker;
+- strict diplomacy is owner-aligned, directional, raw-signature based and leave-pair-out;
+- conditional diplomacy is an upper-bound composition profile, not an independent predictor;
+- `eligible_nonfactual` pairs are not queue false positives because mutable target selection is not implemented yet.
+
+After a green runtime, the strongest contradiction is a candidate-covered factual pair classified `blocked`, especially in the conditional profile. Factual unresolved rows are coverage gaps. Do not weaken canonical rules from unresolved or movement-uncovered rows.
+
+After this gate, expand movement-resolved stack membership and/or begin mutable target-list selection on clean fully reconstructed sites. Capture continuation and the ship-to-planet repair boundary remain later queue phases.
 
 Keep `DOCUMENTED / CORPUS_OBSERVED / INFERRED / TESTED / DIFF_VERIFIED` distinct. Do not merge or mark PR #28 ready yet.
