@@ -28,100 +28,60 @@ Read first:
 - `docs/handoff/2026-09-09-combat-c5-physical-stack-runtime.md`
 - `docs/handoff/2026-09-09-combat-c5-mission7-controls-galactic-power.md`
 - `docs/handoff/2026-09-09-combat-c5-galactic-power-runtime.md`
+- `docs/handoff/2026-09-09-combat-c5-galactic-power-case2-closed.md`
 
-### Former residual Case 1 — 511506 / T19 / VCR13
+## Case 2 — CLOSED: 621896 / T28 / VCR67
 
-Not a clean two-ship physical stack. Additional owner5 Meteors and an owner6 ship survive at the battle coordinate. This row is removed from pairwise standard-side tuning and belongs to dynamic multi-ship eligibility / target selection / cloak-state reconstruction.
+Matched controls reject a universal non-cloakable Intercept side rule: 40/41 structurally matched rows follow canonical standard right-higher ordering; the sole residual is the exact Evil Empire Gorbie/T-Rex target.
 
-### Former residual Case 2 — 621896 / T28 / VCR67
+The Gorbie corpus gate found 48 Evil-Empire-owned Gorbie appearances, with 7 rows where factual LEFT actually requires overriding standard priority. The target is one of those seven.
 
-Matched controls reject a universal non-cloakable Intercept side rule:
-
-```text
-41 matched rows
-40 standard right-higher
- 1 left-higher residual = exact Gorbie/T-Rex target
-```
-
-Primary Planets.nu documentation identifies **Galactic Power** as a forced-left mechanic for an Evil-Empire-owned Gorbie when that advantage is active. The target is race8 / hull70 / factual LEFT and is one of the rows where a forced-left override is actually needed.
-
-However, the completed Gorbie corpus runtime on source `c88ade4604b3afd88b095af6ec1ec34a819ae933` shows mixed effective context:
+Corrected public Planets.nu `loadinfo` resolves game `621896` as:
 
 ```text
-52 Gorbie appearances
-48 Evil-Empire-owned
- 4 non-Empire
-
-Empire Gorbie factual side:
-  right: 29
-  left:  19
-
-standard relation among Empire Gorbies:
-  right_higher_priority: 41
-  left_higher_priority:   7
-
-forced-left override required:
-  False: 41
-  True:   7
+New Boston Sector
+shortdescription: Standard Beginners
+iscustom: false
+campaignmode: false
+race8 player: id 5
 ```
 
-All targeted tests passed (`27 passed`), audit rc=0, payload conflicts=0.
+Primary Planets.nu documentation explicitly lists Galactic Power as enabled for Beginner/Standard and disabled for Classic; the dedicated advantage page states that an Evil-Empire-owned Gorbie is forced to the left when the advantage is active.
 
-The 29 factual-right Empire Gorbies prove that `race8 + hull70` cannot imply Galactic Power enablement. The corpus mixes Standard/Classic/Campaign/Custom or otherwise enabled/disabled advantage contexts. Prepared/archive metadata exposed no usable game context or `activeadvantages` for these rows.
-
-Target Case2 remains a strong Galactic-Power attribution candidate but is **not closed** until game `621896` configuration proves the advantage effective.
-
-## Canonical Galactic Power primitive
-
-`src/planets_lab/rules/combat/order.py` contains a fail-closed `galactic_power_forces_left(...)` primitive plus race/hull constants.
-
-For the relevant race/hull it requires explicit effective `galactic_power_enabled` state:
-
-- enabled -> `True`;
-- disabled -> `False`;
-- unknown -> `None`.
-
-Race8+hull70 alone is never silently treated as enabled. The primitive is now `TESTED`; Galactic Power is not yet `DIFF_VERIFIED` against a resolved enabled-state historical row.
-
-## Immediate gate — public game configuration
-
-Use public Planets.nu `/game/loadinfo` for exactly the six ordinary games containing Empire Gorbie VCRs:
+Therefore the target is now closed as the documented Galactic Power forced-left exception:
 
 ```text
-360690
-511506
-620694
-621253
-621896
-680435
+Galactic Power:                          DOCUMENTED
+Case2 race8/hull70/factual LEFT:         CORPUS_OBSERVED
+fail-closed primitive:                   TESTED
+Case2 Galactic Power attribution:        DIFF_VERIFIED
 ```
 
-Capture at minimum:
+Do not change Intercept semantics, FC parsing, diplomacy, or standard priority to fit this row.
 
-```text
-game.id
-game.name
-game.shortdescription
-game.gametype
-game.maptype
-game.iscustom
-game.scenarioid
-settings.campaignmode
-settings.maxadvantage
-race8 player id
-race8 player activeadvantages
-```
+`galactic_power_forces_left(...)` remains tri-state/fail-closed. Do not simplify `race8 + hull70` to enabled: Classic and Campaign/custom contexts differ, and effective game-type/advantage state belongs in the future settings layer.
 
-The decisive target is game `621896`. Do not infer Standard from `campaignmode=false` alone because Classic and Standard share broad API game-type buckets.
+## Case 1 — CURRENT GATE: 511506 / T19 / VCR13
+
+This is not a clean two-ship physical stack. T/T-1 context shows Firecloud80 plus Meteors29/89/102 and ship73 at or converging on the battle location. Only ship89 vs Firecloud80 appears in the factual VCR.
+
+Known context:
+
+- Firecloud80: owner6, hull56, mission3 Kill, PE5, FC027, already at battle coordinate;
+- Meteor89: owner5, hull46, mission7 target80, FC2eC, T-1 cloak true;
+- Meteor29: owner5, hull46, mission1 target80, FCypg, same origin as 89, T-1 cloak true;
+- Meteor102: owner5, hull46, mission1, FCroo, same origin, T-1 cloak true;
+- ship73: owner6 hull17, already at battle location, unarmed.
+
+The next task is dynamic engagement eligibility / opponent selection / cloak-state reconstruction. Do not put Case 1 back into pairwise standard-side tuning.
 
 ## Next order
 
-1. resolve public game/advantage context and close or reject Galactic Power attribution for Case2;
-2. move Case1 into dynamic multi-ship opponent selection / cloak eligibility;
-3. resolve matching-FC / Harmonic Weapon Modulation boundaries;
-4. integrate PIA/C&I pair selection;
-5. handle capture/reinsertion and ownership changes;
-6. place between-phase repair before ship-vs-planet combat;
-7. keep game `591478` separate.
+1. reconstruct Case 1 dynamic multi-ship eligibility / target selection / cloak-state behavior;
+2. resolve matching-FC / Harmonic Weapon Modulation boundaries;
+3. integrate dynamic PIA/C&I pair selection;
+4. handle capture/reinsertion and ownership changes;
+5. place between-phase repair before ship-vs-planet combat;
+6. keep game `591478` separate.
 
 Keep `DOCUMENTED / CORPUS_OBSERVED / INFERRED / TESTED / DIFF_VERIFIED` distinct. Do not merge or mark PR #28 ready yet.
