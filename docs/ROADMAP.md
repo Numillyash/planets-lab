@@ -2,13 +2,14 @@
 
 This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md).
 
-Current durable checkpoints:
+## Current durable checkpoints
 
-- Host combat phase C5: [`handoff/2026-09-08-combat-c5-host-phase-current.md`](handoff/2026-09-08-combat-c5-host-phase-current.md) — pair/queue composition is `TESTED`; the factual-positive queue differential covered 1,968 ordinary ship VCR rows / 1,216 sites with zero known phase-prefix violations; the complete repeated-pair population is two stable-owner groups and supports the scoped second-pass RIGHT reversal (`CORPUS_OBSERVED + DIFF_VERIFIED`). Candidate-set v1 was clean but independently covered only `1/1986` factual pairs, so movement-derived precombat position became the dependency. Position v2 then predicted 1,810 factual ship occurrences with 1,800 exact and expanded exact factual-pair coverage to `677/1986`. Residual attribution closed six rows as exact classic ion-storm drag. A focused four-row runtime then closed `620694/T62/ship83` and `680910/T14/ship65` as one-hit normal-mine low-tech scaled-floor events using exact endpoint geometry + minefield crossing + factual VCR-start damage quantum; `360690/T54/ship26` and `511506/T95/ship332` remain bounded unresolved. The first storm-aware v3 full run is invalid as position coverage evidence because it read `nuionstorms` from the prepared mechanics projection, which intentionally does not retain that setting. The predictor now reads first/last raw archived `.trn` settings instead; immediate gate is a full repaired v3 position differential before candidate-set v2;
-
-- movement: [`handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md`](handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md);
-- Classic combat replay coverage: [`handoff/2026-09-07-combat-c2-classic-replay-coverage.md`](handoff/2026-09-07-combat-c2-classic-replay-coverage.md);
-- ship battle sequences: [`handoff/2026-09-07-combat-c3-ship-sequence-diff-verified.md`](handoff/2026-09-07-combat-c3-ship-sequence-diff-verified.md);
+- Host combat phase C5: [`handoff/2026-09-08-combat-c5-host-phase-current.md`](handoff/2026-09-08-combat-c5-host-phase-current.md).
+- Active C5 runtime gate: [`handoff/2026-09-10-combat-c5-candidate-set-v2-pending.md`](handoff/2026-09-10-combat-c5-candidate-set-v2-pending.md).
+- Repaired storm-aware precombat position runtime: [`handoff/2026-09-09-combat-c5-normal-movement-position-v3-runtime.md`](handoff/2026-09-09-combat-c5-normal-movement-position-v3-runtime.md).
+- movement: [`handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md`](handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md).
+- Classic combat replay coverage: [`handoff/2026-09-07-combat-c2-classic-replay-coverage.md`](handoff/2026-09-07-combat-c2-classic-replay-coverage.md).
+- ship battle sequences: [`handoff/2026-09-07-combat-c3-ship-sequence-diff-verified.md`](handoff/2026-09-07-combat-c3-ship-sequence-diff-verified.md).
 - planet/starbase sequences: [`handoff/2026-09-07-combat-c4-planet-sequence-checkpoint.md`](handoff/2026-09-07-combat-c4-planet-sequence-checkpoint.md).
 
 ## Evidence policy
@@ -27,20 +28,66 @@ Unknown mechanics fail closed. Raw facts and evidence-scoped effective interpret
 
 Active milestone remains **M5 — historical NuHost corpus + compatibility mining**.
 
-Movement, Classic pairwise replay, ordinary ship battle-sequence carry-over, and the attributable ordinary repeated-planet persistence layer now have explicit subsystem checkpoints.
+Combat C1-C4 are checkpointed. C5 is the current immediate focus: reconstruct the Host phase around the deterministic resolver rather than merely replaying already supplied VCRs.
 
-The immediate combat work is the missing **Host combat phase around the resolver**:
+Stable C5 layers already include:
 
-- engagement eligibility;
-- battle ordering / queues;
-- side assignment;
-- Priority Intercept / Primary Enemy / mission interaction;
-- diplomacy / Safe Passage / alliance effects;
-- capture continuation;
-- planet/base participation in the full multi-player queue;
-- the documented ship-to-planet phase boundary, including between-phase repair.
+```text
+pair selection                         TESTED
+factual queue phase ordering           CORPUS_OBSERVED + DIFF_VERIFIED
+normal Priority Intercept scope        DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
+reciprocal PIA pair attribution        DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
+Galactic Power scoped forced-left      DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
+matching-FC positive exceptions        DOCUMENTED + TESTED + CORPUS_OBSERVED
+plain STANDARD repeated-pair reversal  CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
+```
 
-Do not reopen bounded movement, ordinary ship-sequence, or plain-planet sequence residual hunting unless a contradiction blocks a larger Host subsystem.
+The repaired T-1 -> precombat position differential now has the following ordinary runtime population:
+
+```text
+source=14ebd6442b6ca705c42c2c5ff4a4e5a2d9b1240c
+payload_conflicts=0
+storm modes: false=10 true=1
+
+ship occurrences:
+  factual=3204
+  predicted=1810
+  exact=1806
+  mismatch=4
+  uncovered=1383
+
+factual pairs:
+  total=1986
+  exact=678
+  mismatch=4
+  uncovered=1304
+
+sites:
+  total=1220
+  fully position-exact=346
+  mismatch sites=4
+```
+
+All six previously attributable classic ion-storm residuals are now exact through independent `normal movement -> ion storm -> warp well` prediction. Two of the four remaining rows are specific stochastic normal-mine hits with `CORPUS_OBSERVED + DIFF_VERIFIED` attribution; two remain bounded unresolved. No factual coordinate is injected into the predictor.
+
+### Immediate combat work
+
+Proceed in this order:
+
+1. run `tools/diagnostics/combat_host_candidate_set_v2_audit.py` over the 11 ordinary archives;
+2. require `tests rc=0`, `audit rc=0`, `payload_conflicts=0`;
+3. require factual candidate coverage materially larger than candidate-set v1's `1/1986`;
+4. investigate every **candidate-covered factual pair** that the conditional canonical pair layer hard-blocks;
+5. keep movement mismatch/unresolved pairs outside combat claims rather than patching them from VCR/T state;
+6. if candidate-set v2 is coherent, implement mutable target-list / queue selection on fully position-covered sites;
+7. then model capture continuation inside the same Host phase;
+8. place the documented ship-to-planet repair boundary between ship and planet phases;
+9. integrate planet/base participation using the C4 persistence layer;
+10. keep game `591478` and special/campaign mechanics separately labeled.
+
+Candidate-set v2 is still site-conditioned: factual VCR supplies the site coordinate and held-out pair set, but not per-ship position or positive eligibility. All owner-current T-1 ships are independently moved into or away from the site. Visible T-1 foreign normal/web mine crossings fail closed because hit occurrence is stochastic.
+
+The next goal is to predict the **set, order and sides of VCRs Host will generate** from reconstructed precombat state, with unresolved movement and queue state explicit.
 
 ## Runtime-verified movement accounting
 
@@ -70,59 +117,17 @@ L1 context semantics:      planets-lab.compiled-movement-storm-context.v3
 L2 context labels:         planets-lab.compiled-movement-context-labels.v6
 ```
 
-## Verified movement closures
+Verified movement closures include ordinary major/minor geometry, warp-well ordering, route-equivalent Tow and Chunnel, classic/cloudy ion storms, scoped sphere topology, strict mine/web interruption, damage-limited maximum warp, strict Nu waypoint fuel proration, and short-waypoint normal-mine scaled-floor compatibility. See the movement handoffs for evidence boundaries.
 
-- ordinary movement / Host major-minor geometry;
-- warp-well ordering — `TESTED + DIFF_VERIFIED`;
-- route-equivalent owner-visible Tow — `TESTED + DIFF_VERIFIED`;
-- route-equivalent Chunnel multiplicity — `TESTED + DIFF_VERIFIED`;
-- classic/cloudy ion storms — `DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`;
-- scoped effective sphere topology for game `591478` — `CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`;
-- strict mine/web interruption v5 — `CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`;
-- strict damage-limited maximum warp — `DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`;
-- strict Nu waypoint-distance fuel proration v6 — `DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`;
-- short-waypoint normal-mine scaled-floor exact classifier — `CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`; underlying low-tech slowdown itself is `DOCUMENTED`;
-- Red Mite tracking/fallback — research closed absent new evidence.
+Generic movement residuals remain bounded evidence-mining targets, not a requirement to reach zero residuals before continuing the Host simulator.
 
-Current generic movement residual landscape:
-
-```text
-final_residual_rows       2197
-closed_mite_rows           786
-known_horwasp_hull_rows   1457
-generic_rows               740
-generic_games               12
-generic_hulls               75
-```
-
-Largest coarse family:
-
-```text
-113  warp7-9 <0.5x observed=other same_line_forward
-```
-
-Largest detailed member:
-
-```text
-89  warp7-9 reachable_other <0.5x observed=other same_line_forward non-gravitonic
-```
-
-These remain bounded evidence-mining targets, not a requirement to reach zero residuals before continuing the simulator.
-
-## Combat integration checkpoint
+## Combat integration checkpoints
 
 ### C1 — Classic resolver extraction
 
-Completed:
-
-- imported the deterministic Classic VCR resolver into `rules/combat`;
-- preserved c2ng/PCC2 BSD attribution;
-- kept dashboard DB/API/UI dependencies out of the canonical mechanics layer;
-- added independent unit tests.
+Completed: deterministic Classic VCR resolver imported into `rules/combat`, with independent unit tests and no dashboard/API coupling.
 
 ### C2 — Nu adapter and historical replay coverage
-
-Current historical corpus:
 
 ```text
 archives                   12
@@ -135,45 +140,9 @@ replay_result_conflicts      0
 malformed_members            0
 ```
 
-Battle-shape population from C2:
-
-```text
-ship_vs_planet  3719
-ship_vs_ship    2750
-```
-
-Raw `combatrng` is available in factual RST for all processed turn members; no inferred settings manifest is needed.
-
-C2 evidence status:
-
-```text
-CORPUS_OBSERVED + TESTED
-```
-
-C2 alone is replay coverage, not an independent terminal-state proof.
+C2 status: `CORPUS_OBSERVED + TESTED`. Replay coverage is not by itself independent terminal-state proof.
 
 ### C3 — ordinary ship battle sequences
-
-C3 compares deterministic terminal state from factual VCR N against factual start state in the next same-turn/same-location appearance of the same ship.
-
-Final corpus sanity:
-
-```text
-raw_vcr_observations      22256
-unique_vcrs                6469
-ship_appearances           9219
-candidate_ship_turn_chains 1015
-same_location_transitions  1485
-metadata_conflicts            0
-```
-
-Phase distribution:
-
-```text
-ship_vs_ship -> ship_vs_ship      938
-ship_vs_ship -> ship_vs_planet    544
-ship_vs_planet -> ship_vs_planet    3
-```
 
 Strong ordinary same-phase survivor oracle:
 
@@ -184,96 +153,9 @@ match        764
 mismatch       0
 ```
 
-Per-field:
-
-```text
-damage      764 / 764 exact
-crew        764 / 764 exact
-torpedoes   764 / 764 exact
-fighters    764 / 764 exact
-shield      764 / 764 exact-carry or scoped Federation recovery
-```
-
-Strongest globally adjacent subset:
-
-```text
-VCR gap = 1
-transitions  751
-match        751
-mismatch       0
-```
-
-This promotes ordinary Classic ship battle sequence carry-over to:
-
-```text
-CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
-```
-
-### Federation recovery closure
-
-Historical race-1 chains reject the imported `25% of missing shields` interpretation. The current corpus supports:
-
-```text
-next_shield = min(100 - damage, shield + 25)
-```
-
-Across 48 race-1 transitions:
-
-```text
-exact/both             28
-federation_candidate   20
-shield mismatch          0
-```
-
-Scoped evidence status:
-
-```text
-CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
-```
-
-### Exact-zero shield crew correction
-
-C3 exposed a port mismatch against upstream c2ng `HostAlgorithm::hit()`: a hit that takes positive shields exactly to zero does not apply crew damage on that same hit. Correcting Nu replay ordering removed all 20 crew-only mismatches from the strict ordinary ship-to-ship survivor subset.
-
-### Capture and special-game boundary
-
-Across the full C3 chain population:
-
-```text
-terminal survived    1431
-terminal captured      25
-terminal destroyed     29
-```
-
-All 25 captured reappearances change owner. True `destroyed -> reappeared` transitions are confined to special/campaign/Horwasp-heavy game `591478`, so they are not generalized into ordinary Classic carry-over.
-
-### Ship-to-planet phase boundary
-
-Ordinary `ship_vs_ship -> ship_vs_planet` transitions retain eight damage-only mismatches after C3 cleanup:
-
-```text
-transitions                  397
-match                        374
-reappearance_after_capture    15
-mismatch                       8
-problem signature         damage
-```
-
-This boundary has a separate Host repair step and is not a strict same-phase carry oracle. Do not patch the Classic pairwise resolver to force these rows closed.
+Ordinary sequence carry-over is `CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`. Federation recovery and exact-zero shield crew ordering have separate closed checkpoints. Capture reappearance changes owner as expected; special game `591478` remains isolated.
 
 ### C4 — ordinary planet/starbase battle sequences
-
-C4 compares replay terminal planet/base state from factual VCR N against the factual start state of the same planet in VCR N+1.
-
-Corpus population:
-
-```text
-raw_vcr_observations               22256
-unique_vcrs                         6469
-planet_appearances                  3719
-candidate_same_turn_planet_chains    110
-same_location_transitions            136
-```
 
 Ordinary population excluding game `591478`:
 
@@ -287,135 +169,47 @@ no_starbase               11
 shield carry match       103 / 103
 ```
 
-#### Plain-planet exact carry
+Comparable plain-planet carry and starbase shield persistence are `CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`. Hidden damaged-starbase state remains fail-closed.
 
-For factual `hasstarbase=false`, C4 infers candidate persistent DP as:
+### C5 — Host engagement/ordering around the resolver
 
-```text
-planet_defense = combat_mass - 100
-```
+Current active stage. Pair mechanics are substantially reconstructed; the immediate missing layers are:
 
-The inferred state must reproduce the factual first VCR before it is accepted into the carry oracle.
+- broad post-movement candidate-set reconstruction;
+- mutable target selection and queue mutation;
+- capture continuation;
+- ship-to-planet repair/phase boundary;
+- planet/base participation in the full multi-player queue.
 
-Final ordinary no-starbase result after correcting native planet beam-tech rounding:
+Do not reopen closed C5 sub-gates merely to fit residuals unless a new contradiction directly requires it.
 
-```text
-transitions                      11
-exact next-state match           10
-start reconstruction mismatch     1
-next-state mismatch               0
-shield carry match               11 / 11
-```
-
-The ten comparable rows reproduce the entire next factual combatant. Supported carry includes proportional DP damage, generated planetary fighter losses reducing DP, drained shield persistence and re-derived combat state.
-
-Evidence status for the supported ordinary plain-planet path:
-
-```text
-CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
-```
-
-The sole remaining non-comparable ordinary row has zero active beams and differs only in inactive `beamid` metadata (`0` vs `1`); it is not promoted as a combat mismatch and the strict audit is left unchanged.
-
-#### Native planet beam tech
-
-The first C4 gate showed six ordinary rows whose only mismatch was factual `beamid = imported_value + 1`. The corpus supports nearest-integer native beam tech:
-
-```text
-ROUND(SQRT(DP / 2))
-```
-
-with tech clamped to the supported 1..10 range for positive DP. Threshold regressions are covered by tests.
-
-#### Starbase shield persistence
-
-All ordinary repeated starbase defenders preserve terminal shield into the next factual VCR:
-
-```text
-92 / 92 exact
-```
-
-Evidence status:
-
-```text
-CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
-```
-
-This does **not** promote hidden post-hull-damage starbase defense state.
-
-#### Starbase fail-closed boundary
-
-A surviving starbase with non-zero planet hull damage remains fail-closed because factual VCR state does not uniquely expose the resulting persistent:
-
-```text
-starbase defense
-starbase beam tech
-starbase accumulated damage
-```
-
-The zero-hull-damage starbase carry helper is `TESTED`; the hidden damaged-base branch remains unresolved.
-
-#### Special game 591478
-
-Game `591478` remains separated from ordinary promotion:
-
-```text
-transitions                    33
-match                          17
-not_comparable                  9
-mismatch                        4
-reappearance_after_defeat       3
-shield match                   28
-shield mismatch                 2
-```
-
-Do not generalize these special/campaign/Horwasp residuals into ordinary Classic planet rules.
-
-## Immediate next work — Host combat phase
-
-Proceed in this order:
-
-1. rerun the complete ordinary storm-aware position v3 after the raw-archive `nuionstorms` source fix; do not interpret the first all-unknown v3 output as mechanics evidence;
-2. require targeted tests + audit rc=0 and `payload_conflicts=0`;
-3. confirm that raw archived storm mode resolves rather than all 11 games becoming unknown, that the six classic-storm residuals become exact, and that the former 1,800 v2 exact occurrences do not regress;
-4. keep the two DIFF_VERIFIED random normal-mine rows (`620694/T62/83`, `680910/T14/65`) explicitly outside deterministic endpoint guarantees; battle-turn mine/VCR evidence is attribution-only, not predictor input;
-5. keep `360690/T54/26` and `511506/T95/332` bounded unresolved unless a new independent mechanism contradicts that boundary; do not continue broad residual hunting merely to reach zero;
-6. once the repaired position population is stable, build candidate-set v2 over independently reconstructed positions with explicit accounting for stochastic/unresolved position rows and remeasure factual `eligible / blocked / unresolved` coverage;
-7. only after candidate-set position/eligibility coverage is useful, implement mutable target-list selection and queue mutation;
-8. model capture continuation in the same Host phase rather than as a pairwise resolver property;
-9. place the documented ship-to-planet repair boundary between ship and planet combat phases;
-10. integrate planet/base participation using the C4 persistence layer while keeping hidden damaged-starbase state fail-closed;
-11. keep game `591478` and other special/campaign mechanics separately labeled until attributable.
-
-The next goal is not merely to replay an already supplied VCR. It is to predict the **set, order and sides of VCRs Host will generate** from reconstructed pre-combat state, while keeping stochastic/unresolved movement and queue state explicit.
-
-## Host reconstruction order after combat sequence checkpoints
+## Host reconstruction order
 
 Proceed in this order unless evidence forces a dependency change:
 
-1. **Movement checkpoint** — substantially reconstructed; reopen only for bounded contradictions/interactions.
-2. **Classic pairwise combat C1/C2** — extracted and complete for current replay corpus.
-3. **Ordinary ship battle sequences C3** — `DIFF_VERIFIED` on clean same-phase historical chains.
-4. **Planet/starbase sequences C4** — attributable ordinary plain-planet carry and starbase shield persistence checkpointed; hidden damaged-starbase state remains fail-closed.
-5. **Full Host combat ordering / engagement selection** — current immediate focus: eligibility, queues, side assignment, PE/mission/diplomacy and capture continuation.
-6. **Planet economy + starbases + ship production**.
-7. **Minefield lifecycle** — laying, decay, sweep, web drain, visibility, diplomacy/FC interactions and ordering.
-8. **General missions + special ship abilities**.
-9. **Diplomacy / Safe Passage / alliance / team semantics across all subsystems**.
-10. **Race-specific mechanics**, integrated vertically rather than as an isolated final pass.
-11. **Observer / visibility / fog-of-war / shared intel** for player-safe agent input.
-12. **End-to-end Host-order differential validation** over complete turns.
-13. **Training environment and AI** — later, after required simulation/observer surfaces are sufficiently faithful.
-
-The target remains a high-fidelity NuHost-compatible simulator suitable for real-game evaluation and later self-play. Do not shortcut unresolved Host rules merely to begin training sooner.
+1. Movement checkpoint — substantially reconstructed; reopen only for bounded contradictions/interactions.
+2. Classic pairwise combat C1/C2.
+3. Ordinary ship battle sequences C3.
+4. Planet/starbase sequences C4.
+5. Full Host combat ordering / engagement selection C5 — current immediate focus.
+6. Planet economy + starbases + ship production.
+7. Minefield lifecycle.
+8. General missions + special ship abilities.
+9. Diplomacy / Safe Passage / alliance / team semantics across all subsystems.
+10. Race-specific mechanics integrated vertically.
+11. Observer / visibility / fog-of-war / shared intel.
+12. End-to-end Host-order differential validation over complete turns.
+13. Training environment and AI after simulator/observer fidelity is sufficient.
 
 ## Wider milestones
 
 - **M0 deterministic skeleton:** substantially complete.
 - **M1 minimal sandbox:** largely implemented.
 - **M2 economy/planetary Host:** in progress.
-- **M3 warfare:** materially advanced: Classic pairwise replay, ordinary ship sequences and attributable ordinary repeated-planet persistence are canonical in `planets-lab`; full Host engagement ordering remains open.
-- **M4 race mechanics:** partial; Federation shield recovery and scoped Galactic Power side assignment now have differential evidence.
+- **M3 warfare:** materially advanced; full Host engagement ordering remains open.
+- **M4 race mechanics:** partial; Federation recovery and scoped Galactic Power have differential evidence.
 - **M5A historical corpus:** active and operational.
-- **M5B Nu compatibility matrix:** active; movement and ordinary Classic combat sequence checkpoints are explicit.
+- **M5B Nu compatibility matrix:** active.
 - **M6 training/AI:** later, after required simulation/observer surfaces are sufficiently faithful.
+
+The target remains a high-fidelity NuHost-compatible simulator suitable for real-game evaluation and later self-play. Do not shortcut unresolved Host rules merely to begin training sooner.
