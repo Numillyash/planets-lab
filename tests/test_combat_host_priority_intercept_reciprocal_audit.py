@@ -1,11 +1,21 @@
 from __future__ import annotations
 
-from tools.diagnostics.combat_host_priority_intercept_reciprocal_audit import (
-    _qualifies_reciprocal_only,
-    _safe_side,
-    _site_position,
-    _target_aggression_shape,
+import importlib.util
+import sys
+from pathlib import Path
+
+
+TOOL = (
+    Path(__file__).parents[1]
+    / "tools"
+    / "diagnostics"
+    / "combat_host_priority_intercept_reciprocal_audit.py"
 )
+spec = importlib.util.spec_from_file_location("combat_host_priority_intercept_reciprocal_audit", TOOL)
+assert spec is not None and spec.loader is not None
+audit = importlib.util.module_from_spec(spec)
+sys.modules[spec.name] = audit
+spec.loader.exec_module(audit)
 
 
 def _ship(**overrides: object) -> dict[str, object]:
@@ -25,7 +35,7 @@ def _ship(**overrides: object) -> dict[str, object]:
 def test_reciprocal_only_selector_matches_case1_shape() -> None:
     interceptor = _ship()
     target = _ship(mission=3, mission1target=0, enemy=5, friendlycode="027")
-    assert _qualifies_reciprocal_only(
+    assert audit._qualifies_reciprocal_only(
         interceptor_raw=interceptor,
         interceptor_owner_id=5,
         interceptor_hull_can_cloak=True,
@@ -38,7 +48,7 @@ def test_reciprocal_only_selector_matches_case1_shape() -> None:
 def test_reciprocal_only_selector_excludes_normal_pia() -> None:
     interceptor = _ship(enemy=6)
     target = _ship(mission=3, mission1target=0, enemy=5, friendlycode="027")
-    assert not _qualifies_reciprocal_only(
+    assert not audit._qualifies_reciprocal_only(
         interceptor_raw=interceptor,
         interceptor_owner_id=5,
         interceptor_hull_can_cloak=True,
@@ -49,19 +59,19 @@ def test_reciprocal_only_selector_excludes_normal_pia() -> None:
 
 
 def test_target_aggression_shape_distinguishes_kill_and_pe() -> None:
-    assert _target_aggression_shape(
+    assert audit._target_aggression_shape(
         target_raw={"mission": 3, "enemy": 5}, interceptor_owner_id=5
     ) == "kill_and_pe"
-    assert _target_aggression_shape(
+    assert audit._target_aggression_shape(
         target_raw={"mission": 3, "enemy": 0}, interceptor_owner_id=5
     ) == "kill_only"
-    assert _target_aggression_shape(
+    assert audit._target_aggression_shape(
         target_raw={"mission": 1, "enemy": 5}, interceptor_owner_id=5
     ) == "pe_only"
 
 
 def test_site_position_is_one_based_and_marks_first() -> None:
-    assert _site_position([13, 17, 15], 13) == {
+    assert audit._site_position([13, 17, 15], 13) == {
         "site_ship_vcr_ids": [13, 15, 17],
         "site_ship_vcr_count": 3,
         "site_ship_vcr_index": 1,
@@ -72,7 +82,7 @@ def test_site_position_is_one_based_and_marks_first() -> None:
 
 def test_safe_side_is_privacy_allowlisted() -> None:
     raw = _ship(name="PRIVATE", note="PRIVATE", messages=["PRIVATE"])
-    row = _safe_side(
+    row = audit._safe_side(
         ship_id=89,
         owner_id=5,
         race_id=5,
