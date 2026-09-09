@@ -432,8 +432,9 @@ def decide_ship_combat_pair(
             unresolved_reasons=base_reasons,
         )
 
-    assert left_request is not None and right_request is not None
-
+    # At least one directed request is known True here. The opposite direction
+    # may still be unknown; preserve that tri-state value because it only blocks
+    # phase classification when the special branch actually depends on it.
     left_kind, left_reason = _side_prestandard_kind(
         side=left,
         target=right,
