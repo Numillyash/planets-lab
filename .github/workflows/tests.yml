@@ -28,9 +28,11 @@ jobs:
           bash -n tools/run-finite-fuel-tow-historical-gate.sh
           bash -n tools/run-finite-fuel-tow-warp-well-gate.sh
           bash -n tools/run-finite-fuel-tow-external-context-gate.sh
+          bash -n tools/run-finite-fuel-tow-residual-shape-gate.sh
           python tools/diagnostics/tow_finite_fuel_population_audit.py --help >/dev/null
           python tools/diagnostics/tow_finite_fuel_warp_well_audit.py --help >/dev/null
           python tools/diagnostics/tow_finite_fuel_external_context_audit.py --help >/dev/null
+          python tools/diagnostics/tow_finite_fuel_residual_shape_audit.py --help >/dev/null
 
       - name: Run tests
         run: pytest
