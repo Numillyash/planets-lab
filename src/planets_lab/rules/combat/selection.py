@@ -7,8 +7,9 @@ pre-standard phase applies, and any attributable left/right assignment.
 
 Dynamic Host facts which are not yet reconstructed globally (directed
 Diplomacy/Safe Passage, Intercept Interference protection, active cloak state at
-the Intercept step, effective advantage enablement) are explicit inputs. ``None``
-is preserved rather than silently replaced by a default.
+the Intercept step, effective advantage enablement and era-dependent C&I hull
+eligibility) are explicit inputs. ``None`` is preserved rather than silently
+replaced by a default.
 """
 
 from __future__ import annotations
@@ -34,16 +35,12 @@ from .order import (
 
 
 class ShipCombatPairPhase(str, Enum):
-    """Pair-level combat phase known from current C5 evidence."""
-
     PRIORITY_INTERCEPT = "priority_intercept"
     CLOAK_INTERCEPT = "cloak_intercept"
     STANDARD = "standard"
 
 
 class ShipCombatPrestandardKind(str, Enum):
-    """Why a pair was promoted before standard ship combat."""
-
     NORMAL_PRIORITY_INTERCEPT = "normal_priority_intercept"
     RECIPROCAL_PRIORITY_INTERCEPT = "reciprocal_priority_intercept"
     CLOAK_AND_INTERCEPT = "cloak_and_intercept"
@@ -51,7 +48,7 @@ class ShipCombatPrestandardKind(str, Enum):
 
 @dataclass(frozen=True, slots=True)
 class ShipCombatSideInput:
-    """Mechanical inputs for one ship in a candidate Host combat pair."""
+    """Mechanical and resolved dynamic inputs for one ship in a pair."""
 
     ship_id: int
     owner_id: int
@@ -68,14 +65,23 @@ class ShipCombatSideInput:
     diplomacy_allows_attack: bool | None = None
     harmonic_weapon_modulation_enabled: bool | None = None
     cloak_and_intercept_enabled: bool | None = None
+    cloak_and_intercept_hull_eligible: bool | None = None
     active_cloak_at_intercept: bool | None = None
     intercept_interference_protected: bool | None = None
     galactic_power_enabled: bool | None = None
 
     def __post_init__(self) -> None:
-        if isinstance(self.ship_id, bool) or self.ship_id <= 0:
+        if (
+            isinstance(self.ship_id, bool)
+            or not isinstance(self.ship_id, int)
+            or self.ship_id <= 0
+        ):
             raise ValueError("ship_id must be a positive integer")
-        if isinstance(self.owner_id, bool) or self.owner_id <= 0:
+        if (
+            isinstance(self.owner_id, bool)
+            or not isinstance(self.owner_id, int)
+            or self.owner_id <= 0
+        ):
             raise ValueError("owner_id must be a positive integer")
 
 
@@ -119,8 +125,6 @@ def _base_engagement(
     same_location: bool | None,
     matching_fc_blocks: bool | None,
 ) -> tuple[bool | None, tuple[str, ...], bool | None, bool | None]:
-    """Resolve pair-level ship combat eligibility before phase selection."""
-
     if left.owner_id == right.owner_id:
         return False, ("same_owner",), False, False
 
@@ -178,12 +182,14 @@ def _normal_pia_candidate(
         return None, "normal_pia_signature_unknown"
 
     # Normal PIA is the interceptor-initiated branch. If directed diplomacy
-    # disallows that attack, the target may still create the reciprocal branch.
+    # blocks that attack, the target may still create the reciprocal branch.
     if interceptor_attack_request is False:
         return False, None
     if interceptor_attack_request is None:
         return None, "normal_pia_directed_attack_unknown"
 
+    # Intercept Interference keeps normal Intercept movement but removes PIA
+    # combat priority.
     if target.intercept_interference_protected is True:
         return False, None
     if target.intercept_interference_protected is None:
@@ -240,8 +246,16 @@ def _c_and_i_candidate(
     if interceptor.cloak_and_intercept_enabled is None:
         return None, "cloak_intercept_advantage_unknown"
 
-    # The mission page explicitly requires the ship to retain its active cloak
-    # until the Intercept step; hull capability alone is insufficient here.
+    # In games after 2021 C&I only affects hulls buildable by the Birds. Keep
+    # this era/static-catalog fact external rather than assuming every captured
+    # cloak-capable hull is eligible.
+    if interceptor.cloak_and_intercept_hull_eligible is False:
+        return False, None
+    if interceptor.cloak_and_intercept_hull_eligible is None:
+        return None, "cloak_intercept_hull_eligibility_unknown"
+
+    # The mission page requires the ship to retain its active cloak until the
+    # Intercept step; hull capability alone is insufficient.
     if interceptor.active_cloak_at_intercept is False:
         return False, None
     if interceptor.active_cloak_at_intercept is None:
@@ -252,6 +266,7 @@ def _c_and_i_candidate(
     if interceptor_attack_request is None:
         return None, "cloak_intercept_directed_attack_unknown"
 
+    # Intercept Interference breaks the C&I intercept lock entirely.
     if target.intercept_interference_protected is True:
         return False, None
     if target.intercept_interference_protected is None:
@@ -372,9 +387,8 @@ def decide_ship_combat_pair(
     """Compose known C5 mechanics for one candidate ship-vs-ship pair.
 
     The function does not build a target list, mutate ships, or resolve combat.
-    It is designed to become the pure pair-level predicate consumed by a future
-    stack queue. A known blocker wins immediately. Otherwise unknown dynamic
-    facts remain explicit.
+    It is the pure pair-level predicate for a future stack queue. A known blocker
+    wins immediately; otherwise unknown dynamic facts remain explicit.
     """
 
     matching_fc_blocks = matching_ship_friendly_code_blocks_combat(
@@ -466,16 +480,15 @@ def decide_ship_combat_pair(
         base_left, base_right, side_reason = _standard_side_assignment(left, right)
     elif len(candidates) == 1:
         attacker_ship_id, prestandard_kind = candidates[0]
+        opponent_ship_id = right.ship_id if attacker_ship_id == left.ship_id else left.ship_id
         if prestandard_kind is ShipCombatPrestandardKind.CLOAK_AND_INTERCEPT:
             phase = ShipCombatPairPhase.CLOAK_INTERCEPT
             # Ordinary factual C5 corpus: 7/7 isolated C&I attackers are right.
-            base_right = attacker_ship_id
-            base_left = right.ship_id if attacker_ship_id == left.ship_id else left.ship_id
+            base_left, base_right = opponent_ship_id, attacker_ship_id
         elif prestandard_kind is ShipCombatPrestandardKind.NORMAL_PRIORITY_INTERCEPT:
             phase = ShipCombatPairPhase.PRIORITY_INTERCEPT
             # Ordinary linked normal-PIA corpus: 37/37 attackers are right.
-            base_right = attacker_ship_id
-            base_left = right.ship_id if attacker_ship_id == left.ship_id else left.ship_id
+            base_left, base_right = opponent_ship_id, attacker_ship_id
         else:
             phase = ShipCombatPairPhase.PRIORITY_INTERCEPT
             # Reciprocal-only population currently contains one historical row;
@@ -491,8 +504,8 @@ def decide_ship_combat_pair(
             attacker_ship_id = max(ship_id for ship_id, _kind in candidates)
             prestandard_kind = ShipCombatPrestandardKind.NORMAL_PRIORITY_INTERCEPT
             phase = ShipCombatPairPhase.PRIORITY_INTERCEPT
-            base_right = attacker_ship_id
-            base_left = right.ship_id if attacker_ship_id == left.ship_id else left.ship_id
+            opponent_ship_id = right.ship_id if attacker_ship_id == left.ship_id else left.ship_id
+            base_left, base_right = opponent_ship_id, attacker_ship_id
         else:
             return ShipCombatPairDecision(
                 engagement_eligible=True,
