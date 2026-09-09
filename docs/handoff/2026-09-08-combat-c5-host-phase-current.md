@@ -22,7 +22,7 @@ This file is intentionally a compact pointer. Detailed evidence is in dated hand
 - `docs/handoff/2026-09-09-combat-c5-matching-fc-suppression-runtime.md`
 - `docs/handoff/2026-09-09-combat-c5-pair-selection-runtime.md`
 - `docs/handoff/2026-09-09-combat-c5-factual-queue-runtime.md`
-- `docs/handoff/2026-09-09-combat-c5-repeated-pair-side-pending.md`
+- `docs/handoff/2026-09-09-combat-c5-repeated-pair-side-runtime.md`
 
 ## Former mission-7 residuals — closed
 
@@ -123,58 +123,87 @@ canonical pair binding:        TESTED
 factual correction:             DIFF_VERIFIED
 ```
 
-## Remaining side residuals — repeated-pair second passes
+## Repeated-pair side history — population closed
 
-Only two resolved side mismatches remain:
+Population runtime source:
 
 ```text
-620917/T7/VCR6
-621896/T25/VCR52
+692bde1fb4aad4b8e50801253a2294c01a0206ba
 ```
 
-Targeted queue-history runtime proved both are the **second occurrence of the same pair** in one battle-turn/location:
+Artifact:
 
 ```text
-620917/T7:
-  VCR5  LEFT14 RIGHT13
-  VCR6  LEFT13 RIGHT14
-  same pair (13,14), occurrence 2/2
+artifacts/combat-c5-repeated-pair-side-20260909-215615
+```
 
-621896/T25:
+Across all 11 ordinary archives the **entire** repeated same-pair ship population is exactly the two former side residual groups:
+
+```text
+repeated_pair_groups=2
+repeated_pair_vcr_rows=4
+occurrence_count={'2': 2}
+max_occurrences=2
+stable_owner_groups=2
+plain_static_comparable_groups=2
+plain_static_first_right_exact=2
+plain_static_second_reversed_exact=2
+plain_static_two_pass_exact=2
+target_residual_groups=2
+payload_conflicts=0
+invalid_owner_vcr_rows=0
+```
+
+No third occurrence, owner-change group, same-orientation repeat or plain-static mismatch exists in the ordinary population.
+
+The two groups are:
+
+```text
+620917/T7 pair (13,14):
+  VCR5 LEFT14 RIGHT13
+  VCR6 LEFT13 RIGHT14
+
+621896/T25 pair (34,67):
   VCR49 LEFT67 RIGHT34
   VCR52 LEFT34 RIGHT67
-  same pair (34,67), occurrence 2/2
 ```
 
-In both cases the first VCR places the static higher-priority ship on RIGHT; the second VCR reverses the same pair. Therefore **do not change `standard_battle_priority_key(...)`**. These rows are mutable queue-history observations, not static pair-priority contradictions.
+In both cases first RIGHT is the static higher-priority ship; second RIGHT is the opposite ship. Therefore **do not change `standard_battle_priority_key(...)`**.
 
-Primary Planets.nu documentation establishes dynamic stacked order and a maximum of two combats per pair. Exact second-pass side reversal is corroborated by classic secondary documentation but is not yet labeled primary `DOCUMENTED`.
-
-## Immediate gate — repeated-pair population
-
-Committed, pending user runtime:
+Evidence status for the conservative plain ordinary standard repeated-pair scope:
 
 ```text
-tools/diagnostics/combat_host_repeated_pair_side_population_audit.py
-tests/test_combat_host_repeated_pair_side_population_audit.py
+maximum two fights / dynamic stack order: DOCUMENTED
+repeated-pair factual population:           CORPUS_OBSERVED
+second-pass side reversal:                  CORPUS_OBSERVED + DIFF_VERIFIED
+exact reversal as primary documentation:    NOT PROMOTED
 ```
 
-The population tool now counts/skips invalid factual owner IDs instead of allowing an incomplete VCR to abort the pass.
+## Canonical repeated-pair queue primitive — pending user runtime
 
-See:
+Committed after the clean population gate:
 
 ```text
-docs/handoff/2026-09-09-combat-c5-repeated-pair-side-pending.md
+src/planets_lab/rules/combat/queue.py
+tests/test_combat_queue.py
 ```
 
-The gate checks all ordinary repeated ship pairs for:
+Public helper:
 
-- documented maximum of two combats;
-- stable-owner vs capture/ownership-change groups;
-- side flip across exactly-two stable-owner pairs;
-- conservative plain-static two-pass pattern: first RIGHT = static higher priority, second RIGHT = opposite ship;
-- whether the two former residuals are ordinary members of the wider population.
+```text
+standard_pair_sides_for_occurrence(...)
+```
 
-Promote a reusable repeated-pair queue-side helper only after this population runtime is clean. Then proceed to candidate-set prediction from reconstructed post-movement stacks before implementing the full mutable target queue.
+It does not decide whether a second combat occurs. It only maps already-resolved first-pass sides onto occurrence 1 or 2 of the same ordinary STANDARD pair; occurrence >2 fails closed. PIA/C&I/Galactic Power/capture/target selection stay outside it.
+
+The historical rule is already `CORPUS_OBSERVED + DIFF_VERIFIED` in the scoped population. The implementation itself is **not `TESTED` until the new queue regressions run successfully**.
+
+## Immediate gate
+
+1. run canonical order/eligibility/selection regressions plus `tests/test_combat_queue.py`;
+2. if green, promote the queue-side primitive implementation to `TESTED`;
+3. then proceed to **candidate-set prediction from reconstructed post-movement stacks**;
+4. candidate-set work must first classify eligible/blocked/unresolved pair candidates without mutating combat state or using factual VCR presence as an eligibility oracle;
+5. only after candidate-set precision/recall is understood should the full mutable target queue and capture continuation be implemented.
 
 Keep `DOCUMENTED / CORPUS_OBSERVED / INFERRED / TESTED / DIFF_VERIFIED` distinct. Do not merge or mark PR #28 ready yet.
