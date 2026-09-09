@@ -37,6 +37,7 @@ jobs:
           python tools/diagnostics/tow_finite_fuel_residual_shape_audit.py --help >/dev/null
           python tools/diagnostics/tow_finite_fuel_storm_vector_audit.py --help >/dev/null
           python tools/diagnostics/tow_finite_fuel_transient_storm_state_audit.py --help >/dev/null
+          PYTHONPATH="$PWD/src:$PWD/tools/diagnostics" python -c "from intercept_fuel_historical_differential_audit import PREPARED_DIR, RAW_DIR; assert PREPARED_DIR; assert RAW_DIR"
 
       - name: Run tests
         run: pytest

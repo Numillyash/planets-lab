@@ -52,7 +52,7 @@ run_stage() {
     fi
 }
 
-lab=(docker compose run --rm -T -e PYTHONPATH=/workspace/src lab)
+lab=(docker compose run --rm -T -e PYTHONPATH=/workspace/src:/workspace/tools/diagnostics lab)
 
 run_stage inputs "${lab[@]}" python -u - "$external_log" <<'PY'
 from pathlib import Path
