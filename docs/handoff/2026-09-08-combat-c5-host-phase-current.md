@@ -23,7 +23,7 @@ This file is a compact pointer; use the dated handoffs for full evidence.
 - `docs/handoff/2026-09-09-combat-c5-pair-selection-runtime.md`
 - `docs/handoff/2026-09-09-combat-c5-factual-queue-runtime.md`
 - `docs/handoff/2026-09-09-combat-c5-repeated-pair-side-runtime.md`
-- `docs/handoff/2026-09-09-combat-c5-candidate-set-pending.md`
+- `docs/handoff/2026-09-09-combat-c5-candidate-set-v1-runtime.md`
 
 ## Closed special residuals
 
@@ -167,33 +167,72 @@ tests rc=0
 
 The helper is `TESTED`. It maps an already-selected ordinary STANDARD pair onto occurrence 1/2 sides; occurrence >2 fails closed. It does not decide whether a second combat occurs. PIA/C&I/Galactic Power/capture/target selection remain outside it.
 
-## Immediate gate — candidate-set differential
+## Candidate-set v1 — runtime complete, coverage-limited
 
-Committed:
-
-```text
-tools/diagnostics/combat_host_candidate_set_audit.py
-tests/test_combat_host_candidate_set_audit.py
-```
-
-Detailed boundary:
+Runtime source:
 
 ```text
-docs/handoff/2026-09-09-combat-c5-candidate-set-pending.md
+1ef175f77419970b244c5d69df2863a06390ab6c
 ```
 
-This v1 gate is intentionally **site-conditioned and movement-conservative**, not full post-movement reconstruction.
+Artifact:
 
-- factual VCRs supply site coordinates and the held-out comparison pair set only;
-- candidate ship membership comes from owner-current `T-1`;
-- only intrinsically stationary Warp-0/no-Tow/no-Intercept/no-C&I/no-HYP/no-obvious-Tow-target/no-obvious-Chunnel-source ships enter the v1 position-proven set;
-- zero/missing `T-1` fuel stays unresolved rather than becoming a hard blocker;
-- strict diplomacy is owner-aligned, directional, raw-signature based and leave-pair-out;
-- conditional diplomacy is an upper-bound composition profile, not an independent predictor;
-- `eligible_nonfactual` pairs are not queue false positives because mutable target selection is not implemented yet.
+```text
+artifacts/combat-c5-candidate-set-20260909-223013
+```
 
-After a green runtime, the strongest contradiction is a candidate-covered factual pair classified `blocked`, especially in the conditional profile. Factual unresolved rows are coverage gaps. Do not weaken canonical rules from unresolved or movement-uncovered rows.
+The stationary-only v1 audit passed targeted tests and runtime:
 
-After this gate, expand movement-resolved stack membership and/or begin mutable target-list selection on clean fully reconstructed sites. Capture continuation and the ship-to-planet repair boundary remain later queue phases.
+```text
+tests rc=0
+audit rc=0
+payload_conflicts=0
+archives_considered=11
+factual_ship_combat_sites=1220
+factual_unique_pairs=1986
+candidate_pairs=107
+factual_pairs_candidate_covered=1
+factual_pairs_movement_uncovered=1985
+```
+
+The only candidate-covered factual pair was `eligible` under both strict and conditional pair profiles. There were no candidate-covered factual blockers and no eligible nonfactual rows.
+
+The result is **not** broad candidate-set validation: coverage is only `1/1986` factual unique pairs. The dominant exclusion is:
+
+```text
+self_movement_possible=1606
+```
+
+followed by Tow-target / HYP / Tow / Chunnel / Intercept exclusions. Therefore the correct next step is movement-derived position reconstruction, not relaxing eligibility rules.
+
+Evidence status:
+
+```text
+v1 diagnostic/helper behavior:          TESTED
+v1 one-row factual covered result:      CORPUS_OBSERVED
+canonical pair contradiction:           NONE IN COVERED SUBSET
+candidate-set prediction generally:     NOT YET DIFF_VERIFIED
+post-movement stack reconstruction:     NOT YET COMPLETE
+```
+
+## Immediate gate — T-1 normal self-movement position expansion
+
+Build a second position profile from owner-current `T-1` using already canonical movement mechanics.
+
+Required boundary:
+
+- never use factual `T` ship coordinates as predictor input;
+- keep Tow (`6`), Intercept (`7`), C&I (`20`), HYP and Chunnel outside ordinary self-movement;
+- use Host major/minor geometry from canonical normal movement code;
+- use factual T-1 mass/fuel/engine/waypoint/warp inputs where available;
+- handle Gravitonic distance;
+- account for strict damage-limited maximum warp when its existing fail-closed prerequisites are met;
+- apply warp-well snapping only when effective setting/planet eligibility is known;
+- fail closed when transfer/repair/topology state can materially change the endpoint and is unresolved;
+- retain factual VCR coordinates only as site-conditioned comparison coordinates, never as a per-ship movement input.
+
+First goal: materially improve `factual_pairs_candidate_covered` while keeping candidate-covered factual `blocked` rows at zero. Only after position coverage is useful should mutable target-list/queue precision be interpreted.
+
+Capture continuation and the ship-to-planet repair boundary remain later queue phases.
 
 Keep `DOCUMENTED / CORPUS_OBSERVED / INFERRED / TESTED / DIFF_VERIFIED` distinct. Do not merge or mark PR #28 ready yet.
