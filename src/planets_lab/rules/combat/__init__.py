@@ -49,6 +49,10 @@ from .planet import (
     planet_sequence_shape_supported,
     rebuild_planet_combatant,
 )
+from .queue import (
+    STANDARD_PAIR_MAX_OCCURRENCES,
+    standard_pair_sides_for_occurrence,
+)
 from .selection import (
     ShipCombatPairDecision,
     ShipCombatPairPhase,
@@ -81,6 +85,7 @@ __all__ = [
     "NuHostClassicReplay",
     "PLANET_CARRYOVER_BASIS",
     "ReplayUnsupported",
+    "STANDARD_PAIR_MAX_OCCURRENCES",
     "ShipCombatPairDecision",
     "ShipCombatPairPhase",
     "ShipCombatPrestandardKind",
@@ -115,5 +120,6 @@ __all__ = [
     "replay_nuhost_classic",
     "replay_nuhost_from_nu_catalog",
     "standard_battle_priority_key",
+    "standard_pair_sides_for_occurrence",
     "torpedo_specs_from_catalog",
 ]
