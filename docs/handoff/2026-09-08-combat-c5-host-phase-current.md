@@ -23,6 +23,7 @@ Read first:
 - `docs/handoff/2026-09-09-combat-c5-matching-fc-positive-runtime.md`
 - `docs/handoff/2026-09-09-combat-c5-matching-fc-suppression-runtime.md`
 - `docs/handoff/2026-09-09-combat-c5-pair-selection-runtime.md`
+- `docs/handoff/2026-09-09-combat-c5-factual-queue-selection-pending.md`
 
 ## Former mission-7 residuals — removed from standard tuning
 
@@ -71,7 +72,7 @@ Do not reopen this gate merely to relax controls unless future end-to-end eviden
 
 ## Unified pair-level selection — RUNTIME COMPLETE
 
-Runtime source:
+User runtime on source:
 
 ```text
 7ac5d70a77f592dfd1d3660c237b244e61795305
@@ -83,24 +84,19 @@ Artifact:
 artifacts/combat-c5-pair-selection-20260909-201758
 ```
 
-Exact targeted suite:
+passed:
 
 ```text
 tests/test_combat_order.py
 tests/test_combat_eligibility.py
 tests/test_combat_selection.py
-```
-
-Result:
-
-```text
 ........................................................ [100%]
 tests rc=0
 ```
 
-Therefore `src/planets_lab/rules/combat/selection.py` and its composition boundary are now `TESTED`.
+Therefore `src/planets_lab/rules/combat/selection.py` and the canonical pair-level composition are now `TESTED`.
 
-The canonical API exposes:
+The API exposes:
 
 ```text
 ShipCombatSideInput
@@ -110,35 +106,42 @@ ShipCombatPrestandardKind
 decide_ship_combat_pair(...)
 ```
 
-It composes known C5 mechanics without building a mutable stack queue or invoking the pairwise combat resolver. Dynamic facts remain explicit tri-state inputs: co-location, combat fuel, directed diplomacy/Safe Passage, HWM enablement, C&I enablement, modern C&I hull eligibility, active cloak at the Intercept step, Intercept Interference protection and Galactic Power enablement.
+Dynamic facts remain explicit tri-state inputs: combat eligibility, directed diplomacy/Safe Passage, HWM enablement, C&I enablement, modern C&I hull eligibility, active cloak at the Intercept step, Intercept Interference protection and Galactic Power enablement. The runtime validates composition/fail-closed propagation only; it is not a historical candidate-set differential.
 
-The green runtime validates composition and fail-closed propagation; it is not a historical stack differential and does not claim candidate-set prediction.
+## Immediate runtime gate — factual ship-vs-ship queue differential
 
-## Immediate gate — factual ship-vs-ship queue differential
+Committed, **not yet user-runtime-validated**:
 
-Build a read-only ordinary historical audit over factual ship-vs-ship VCR queues that consumes `decide_ship_combat_pair(...)`.
+```text
+tools/diagnostics/combat_host_factual_queue_selection_audit.py
+tests/test_combat_host_factual_queue_selection_audit.py
+```
 
-Keep two evidence scopes separate:
+Schema:
 
-1. **strict attributable scope** — directed diplomacy and other dynamic facts are supplied only where independently controlled; unresolved rows remain unresolved;
-2. **conditional factual-positive scope** — factual VCR presence is used only as an oracle that the pair reached combat, so the audit can measure phase and side composition conditional on an engagement that actually occurred. This scope must never be described as predicting the VCR set.
+```text
+planets-lab.combat-host-factual-queue-selection-audit.v1
+```
 
-The audit should report:
+This gate consumes actual ordinary ship-vs-ship VCR queues and the canonical pair-selection API. It deliberately does **not** claim to predict pair existence.
 
-- phase/pre-standard classification per factual pair;
-- resolved side assignment exact/mismatch/unresolved;
-- unresolved-reason inventory;
-- whether resolved pre-standard rows form a prefix before resolved standard rows at multi-VCR sites;
-- normal-PIA attacker order where comparable;
-- explicit Case1 reciprocal and Case2 Galactic-Power checks;
-- game `591478` excluded.
+Two scopes are reported:
 
-Do not implement mutable target selection until this queue-composition gate is green and its unresolved population is understood.
+1. `strict` — directed diplomacy is supplied only from a different one-sided factual combat under the same unique T-1 relation signature and aggression direction; otherwise it remains `None`;
+2. `conditional` — for a factual VCR only, raw Kill!/PE requests are treated as effective so phase/side composition can be measured conditional on an engagement that already happened.
+
+Additional dynamic boundaries remain fail-closed:
+
+- Intercept Interference is false when no same-owner SSC/SSC-II began at the target's T-1 position; a source is treated as active only in the previously public-verified Standard game contexts, false in verified Classic, and unknown otherwise;
+- the prior public game-context mapping supplies Galactic Power state only for the six already audited Empire-Gorbie games;
+- mission20 establishes the historical C&I order, but modern buildable-hull eligibility and active cloak at the later Intercept step remain unresolved from T-1 alone.
+
+The audit reports row-level phase/side results, unresolved reasons, site-level pre-standard prefix consistency, normal-PIA reverse-ID comparables, and explicit Case1/Case2 rows. Game `591478` is excluded.
 
 ## Next order
 
-1. run the factual ordinary ship-queue differential;
-2. if coherent, design candidate-set prediction from co-located post-movement state;
+1. run the factual queue selection tests/audit;
+2. if the resolved rows show coherent phase/side behavior, design candidate-set prediction from reconstructed post-movement stacks;
 3. only after candidate-set evidence, implement mutable queue selection;
 4. handle capture/reinsertion and ownership changes;
 5. place between-phase repair before ship-vs-planet combat;
