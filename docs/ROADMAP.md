@@ -4,7 +4,7 @@ This file is the operational roadmap for `planets-lab`. Architecture boundaries 
 
 Current durable checkpoints:
 
-- Host combat phase C5: [`handoff/2026-09-09-combat-c5-pair-selection-pending.md`](handoff/2026-09-09-combat-c5-pair-selection-pending.md) — both former mission-7 `left_higher_priority` residuals are removed from standard-priority tuning for distinct documented reasons: Case 2 is the Standard-game Galactic Power forced-left Gorbie exception, while Case 1 is the sole ordinary reciprocal-only Priority Intercept candidate and is closed for pair/pre-standard attribution (`DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`) without promoting a universal reciprocal-side rule. Matching-FC positive runtime found 55 factual same-FC ship battles, all documented MKT/LFM exceptions; strict suppression controls yielded no clean negative-control population, so suppression remains `DOCUMENTED + TESTED`. A new fail-closed pair-level selection layer is committed and pending targeted runtime; it composes base eligibility, matching-FC/HWM, normal/reciprocal PIA, modern Bird C&I constraints, Intercept Interference, standard priority and Galactic Power while keeping unresolved dynamic state explicit;
+- Host combat phase C5: [`handoff/2026-09-09-combat-c5-factual-queue-selection-pending.md`](handoff/2026-09-09-combat-c5-factual-queue-selection-pending.md) — both former mission-7 `left_higher_priority` residuals are removed from standard-priority tuning for distinct documented reasons: Case 2 is the Standard-game Galactic Power forced-left Gorbie exception, while Case 1 is the sole ordinary reciprocal-only Priority Intercept candidate and is closed for pair/pre-standard attribution (`DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`) without promoting a universal reciprocal-side rule. Matching-FC positive runtime found 55 factual same-FC ship battles, all documented MKT/LFM exceptions; strict suppression controls yielded no clean negative-control population, so suppression remains `DOCUMENTED + TESTED`. The unified fail-closed pair-level selection layer passed its targeted unit-composition runtime on `7ac5d70a77f592dfd1d3660c237b244e61795305` and is now `TESTED`. The immediate gate is a factual-positive ordinary ship queue differential that consumes the pair-level API, keeps strict vs conditional diplomacy scopes separate, excludes game591478, and measures resolved phase/side consistency without yet claiming candidate-set prediction;
 
 - movement: [`handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md`](handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md);
 - Classic combat replay coverage: [`handoff/2026-09-07-combat-c2-classic-replay-coverage.md`](handoff/2026-09-07-combat-c2-classic-replay-coverage.md);
@@ -377,12 +377,13 @@ Do not generalize these special/campaign/Horwasp residuals into ordinary Classic
 
 Proceed in this order:
 
-1. run the targeted unit gate for `tests/test_combat_order.py`, `tests/test_combat_eligibility.py`, and `tests/test_combat_selection.py`; promote the new pair-level composition to `TESTED` only if green;
-2. build a stack-level historical queue audit on top of that stable API, comparing generated pre-standard/standard pair classifications against factual ordinary VCR queues while leaving unresolved dynamic state explicit;
-3. model capture continuation in the same Host phase rather than as a pairwise resolver property;
-4. place the documented ship-to-planet repair boundary between ship and planet combat phases;
-5. integrate planet/base participation using the C4 persistence layer while keeping hidden damaged-starbase state fail-closed;
-6. keep game `591478` and other special/campaign mechanics separately labeled until attributable.
+1. run the factual-positive ordinary ship queue differential in `tools/diagnostics/combat_host_factual_queue_selection_audit.py` together with its targeted regressions; treat strict unresolved rows as coverage gaps and conditional rows only as phase/side checks for engagements that factually occurred;
+2. if resolved rows remain coherent, design candidate-set prediction from reconstructed post-movement stacks rather than from VCR presence;
+3. only after candidate-set evidence, implement mutable Host queue selection;
+4. model capture continuation in the same Host phase rather than as a pairwise resolver property;
+5. place the documented ship-to-planet repair boundary between ship and planet combat phases;
+6. integrate planet/base participation using the C4 persistence layer while keeping hidden damaged-starbase state fail-closed;
+7. keep game `591478` and other special/campaign mechanics separately labeled until attributable.
 
 The next goal is not merely to replay an already supplied VCR. It is to predict the **set, order and sides of VCRs Host will generate** from the factual co-located game state.
 
