@@ -4,7 +4,7 @@ This file is the operational roadmap for `planets-lab`. Architecture boundaries 
 
 Current durable checkpoints:
 
-- Host combat phase C5: [`handoff/2026-09-09-combat-c5-repeated-pair-side-pending.md`](handoff/2026-09-09-combat-c5-repeated-pair-side-pending.md) — both former mission-7 `left_higher_priority` residuals remain removed from standard-priority tuning for distinct documented reasons: Case 2 is the Standard-game Galactic Power forced-left Gorbie exception, while Case 1 is the sole ordinary reciprocal-only Priority Intercept candidate and is closed for pair/pre-standard attribution (`DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`) without promoting a universal reciprocal-side rule. Matching-FC positive runtime found 55 factual same-FC ship battles, all documented MKT/LFM exceptions; strict suppression controls yielded no clean negative-control population, so suppression remains `DOCUMENTED + TESTED`. The unified pair-level selection layer is `TESTED`. The successful factual-positive queue rerun on `31509d2c9e9f4af89f80e5088597452d40f393c1` covered 1,968 ordinary ship VCR rows / 1,216 sites with zero resolved phase-prefix violations; conditional side assignments were 1,947 exact, 19 unresolved and only 2 mismatched. Exact-target PIA binding is runtime-validated and removed the three false PIA mismatches. The remaining two mismatches (`620917/T7/VCR6`, `621896/T25/VCR52`) are both second occurrences of the same pair in the same battle-turn/location, with first-pass static RIGHT followed by reversed second-pass RIGHT. Static `standard_battle_priority_key(...)` therefore remains unchanged. The immediate gate is the ordinary repeated-pair population audit, checking the documented maximum of two fights and whether clean stable-owner/static-priority pairs universally follow the two-pass side-flip pattern before a mutable queue-side helper is promoted;
+- Host combat phase C5: [`handoff/2026-09-09-combat-c5-repeated-pair-side-pending.md`](handoff/2026-09-09-combat-c5-repeated-pair-side-pending.md) — both former mission-7 `left_higher_priority` residuals remain removed from standard-priority tuning for distinct documented reasons: Case 2 is the Standard-game Galactic Power forced-left Gorbie exception, while Case 1 is the sole ordinary reciprocal-only Priority Intercept candidate and is closed for pair/pre-standard attribution (`DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`) without promoting a universal reciprocal-side rule. Matching-FC positive runtime found 55 factual same-FC ship battles, all documented MKT/LFM exceptions; strict suppression controls yielded no clean negative-control population, so suppression remains `DOCUMENTED + TESTED`. The unified pair-level selection layer is `TESTED`. The successful factual-positive queue rerun on `31509d2c9e9f4af89f80e5088597452d40f393c1` covered 1,968 ordinary ship VCR rows / 1,216 sites with zero resolved phase-prefix violations; conditional side assignments were 1,947 exact, 19 unresolved and only 2 mismatched. Exact-target PIA binding is runtime-validated and removed the three false PIA mismatches. The remaining two mismatches (`620917/T7/VCR6`, `621896/T25/VCR52`) are both second occurrences of the same pair in the same battle-turn/location, with first-pass static RIGHT followed by reversed second-pass RIGHT. Static `standard_battle_priority_key(...)` therefore remains unchanged. The immediate gate is the ordinary repeated-pair population audit, checking the documented maximum of two fights and whether clean stable-owner/static-priority pairs universally follow the two-pass side-flip pattern before a mutable queue-side helper is promoted; the audit now fail-closes incomplete owner IDs instead of aborting the population pass;
 
 - movement: [`handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md`](handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md);
 - Classic combat replay coverage: [`handoff/2026-09-07-combat-c2-classic-replay-coverage.md`](handoff/2026-09-07-combat-c2-classic-replay-coverage.md);
@@ -161,7 +161,6 @@ Final corpus sanity:
 ```text
 raw_vcr_observations      22256
 unique_vcrs                6469
-replay_supported           6469
 ship_appearances           9219
 candidate_ship_turn_chains 1015
 same_location_transitions  1485
@@ -271,7 +270,6 @@ Corpus population:
 ```text
 raw_vcr_observations               22256
 unique_vcrs                         6469
-replay_supported                    6469
 planet_appearances                  3719
 candidate_same_turn_planet_chains    110
 same_location_transitions            136
@@ -404,7 +402,7 @@ Proceed in this order unless evidence forces a dependency change:
 10. **Race-specific mechanics**, integrated vertically rather than as an isolated final pass.
 11. **Observer / visibility / fog-of-war / shared intel** for player-safe agent input.
 12. **End-to-end Host-order differential validation** over complete turns.
-13. **Training environment and AI** — historical baselines first, then simulator/self-play once the required Host surface is sufficiently complete.
+13. **Training environment and AI** — later, after required simulation/observer surfaces are sufficiently faithful.
 
 The target remains a high-fidelity NuHost-compatible simulator suitable for real-game evaluation and later self-play. Do not shortcut unresolved Host rules merely to begin training sooner.
 
