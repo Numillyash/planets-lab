@@ -26,6 +26,7 @@ Read first:
 - `docs/handoff/2026-09-09-combat-c5-galactic-power-case2-closed.md`
 - `docs/handoff/2026-09-09-combat-c5-reciprocal-priority-intercept-runtime.md`
 - `docs/handoff/2026-09-09-combat-c5-matching-fc-positive-runtime.md`
+- `docs/handoff/2026-09-09-combat-c5-matching-fc-suppression-runtime.md`
 
 ## Former mission-7 residuals — removed from standard tuning
 
@@ -34,44 +35,50 @@ Read first:
 621896/T28/VCR67 -> Galactic Power forced-left Gorbie
 ```
 
-Case 1 runtime found exactly one ordinary reciprocal-only candidate, the target itself. The documented reciprocal branch explains the Firecloud80/Meteor89 pairing inside the larger physical stack. Scoped pair/pre-standard attribution is `DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`; `candidate_rows=1` is insufficient to promote a universal reciprocal-interceptor side or multi-VCR ordering rule.
+Case 1 is the sole ordinary reciprocal-only candidate. The documented reciprocal branch explains the Firecloud80/Meteor89 pairing inside the larger physical stack. Scoped pair/pre-standard attribution is `DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`; one candidate is insufficient to promote a universal reciprocal-interceptor side or multi-VCR ordering rule.
 
 Case 2 is closed as the Standard-game Evil-Empire Gorbie Galactic Power forced-left exception. Do not weaken standard priority, Intercept semantics, diplomacy or FC parsing to fit either former residual.
 
-## Matching Friendly Code / HWM positive gate — RUNTIME COMPLETE
+## Matching Friendly Code / HWM — current boundary
 
-Primary Planets.nu documentation states that exact case-sensitive matching ship Friendly Codes normally suppress ship-vs-ship combat, with `MKT`, `NTP`, and `LFM` as documented ship-combat exceptions. Bird Harmonic Weapon Modulation can override matching-FC suppression when effectively enabled; race alone does not establish Campaign advantage state.
+Primary Planets.nu documentation states that exact case-sensitive matching ship Friendly Codes normally suppress ship-vs-ship combat, with `MKT`, `NTP`, and `LFM` as documented exceptions. Bird Harmonic Weapon Modulation can override matching-FC suppression when effectively enabled; race alone does not establish Campaign advantage state.
 
-User runtime on source:
-
-```text
-ff66d4b8d268205adb8b0d096b12be4fee57df90
-```
-
-passed targeted tests and the positive factual VCR audit:
+Positive factual runtime on source `ff66d4b8d268205adb8b0d096b12be4fee57df90`:
 
 ```text
 tests rc=0
 audit rc=0
 payload_conflicts=0
 matching_fc_vcr_rows=55
+ordinary rows=54
+ordinary documented_ship_exception=54
+ordinary FCs: lfm=32, mkt=22
+special 591478: mkt=1
+hwm_candidate_rows=0
+hwm_unshielded_first_site_rows=0
 ```
 
-Ordinary scope excluding game `591478`:
+Thus every factual same-FC ship battle in the current corpus is a documented MKT/LFM exception. NTP has no historical example in the current corpus; this is a coverage gap only. No ordinary HWM candidate exists.
+
+Strict suppression runtime on source `8bef008342c8760e6f33d450335f1b3fb95443bf`:
 
 ```text
-rows=54
-matching_fc_kind:
-  documented_ship_exception=54
-matching_friendly_code:
-  lfm=32
-  mkt=22
-ordinary exact-match HWM candidates=0
+tests rc=0
+audit rc=0
+payload_conflicts=0
+stationary_colocated_pairs=199341
+different_owner_pairs=21307
+ordinary_exact_matching_fc_pairs=11
+hostile_order_pairs=1
+resolved_nonbird_pairs=1
+known_noncloaking_pairs=0
+strict_directed_relation_pair_vcr_absent_rows=0
+strict_isolated_no_ship_vcr_rows=0
+same_turn_directed_relation_rows=0
+same_turn_directed_relation_isolated_rows=0
 ```
 
-Special game `591478` contributes one additional factual same-FC `mkt` battle.
-
-Therefore all 55 factual same-FC ship combats in the current corpus are documented MKT/LFM exceptions. No NTP example is present; this is a coverage gap, not contrary evidence. No ordinary HWM candidate is present.
+The clean suppression-control population is therefore empty. Do not relax the controls merely to manufacture `DIFF_VERIFIED`: the sole hostile ordinary matching-FC near-candidate is already confounded before the known-noncloaking gate.
 
 Evidence status:
 
@@ -80,36 +87,36 @@ matching-FC suppression text:                DOCUMENTED
 MKT/NTP/LFM exception text:                  DOCUMENTED
 matching-FC/HWM eligibility primitives:      TESTED
 55 factual same-FC VCR rows:                 CORPUS_OBSERVED
-54/54 ordinary rows documented exceptions:  CORPUS_OBSERVED
+54/54 ordinary factual rows MKT/LFM:         CORPUS_OBSERVED
 ordinary HWM factual support:                NOT PRESENT IN CURRENT CORPUS
-ordinary matching-FC suppression:            NOT YET DIFF_VERIFIED
+ordinary exact matching-FC suppression:      DOCUMENTED + TESTED
+historical suppression differential:         NOT AVAILABLE IN CURRENT CORPUS
 ```
 
-Do not infer suppression from absence of a VCR based only on this positive gate.
+Close this research gate absent contradictory future end-to-end evidence or new historical data.
 
-## Immediate gate — strict ordinary matching-FC suppression controls
+## Immediate gate — unified dynamic ship pair-selection layer
 
-Prepared, but **not yet user-runtime-validated**:
+Integrate the bounded primitives without inventing unresolved Host state. The next canonical layer should expose pair-level decisions separately from the pairwise combat resolver:
 
-```text
-tools/diagnostics/combat_host_matching_fc_suppression_audit.py
-tests/test_combat_host_matching_fc_suppression_audit.py
-```
+1. base ship-combat request / dynamic eligibility inputs;
+2. matching-FC blocker and HWM override;
+3. normal Priority Intercept;
+4. reciprocal Priority Intercept;
+5. Bird Cloak-and-Intercept;
+6. standard battle priority;
+7. Galactic Power forced-left side override;
+8. Intercept Interference, diplomacy/Safe Passage and unknown advantage state as explicit fail-closed inputs rather than guessed semantics.
 
-The audit excludes game `591478` and searches for stationary owner-current pairs that remain at the same coordinate from T-1 to T, keep the same owners, have exact ordinary matching FC, resolved non-Bird races, known non-cloakable hulls, positive fuel before/after, are alive and armed, and have Kill!/Primary-Enemy hostility.
-
-Diplomacy is controlled without assigning undocumented numeric relation labels. Because Safe Passage is directional, a candidate must have a unique T-1 relation signature **and at least one of its actual Kill!/PE request directions** (`low_to_high` / `high_to_low`) must already be observed as an aggression direction in factual ship combat under the same relation signature in the same game. A stronger subset requires the same directed control in the same turn.
-
-The target differential is a strict candidate satisfying all those conditions with **no factual VCR between the pair**. The cleanest subset also requires neither ship to participate in any other ship VCR at that site.
-
-If a non-empty clean population exists, ordinary matching-FC suppression can be promoted toward `DIFF_VERIFIED`. If the strict population is empty or diplomacy remains ambiguous, keep the rule `DOCUMENTED + TESTED` and move on rather than relaxing controls until the desired answer appears.
+Prefer a small deterministic decision object (eligibility / phase / side-order hints / unresolved reason) over a monolithic Host function. First tests should cover composition of already established primitives and unknown-state propagation. Historical stack-level queue differential comes after the pair-level API is stable.
 
 ## Next order
 
-1. run the strict matching-FC suppression negative-control gate;
-2. integrate matching-FC eligibility with normal PIA, reciprocal Intercept and C&I in one dynamic pair-selection layer;
+1. implement/test the unified pair-level decision layer;
+2. build a stack-level factual queue audit against normal PIA, reciprocal PIA, C&I and standard priority;
 3. handle capture/reinsertion and ownership changes;
 4. place between-phase repair before ship-vs-planet combat;
-5. keep game `591478` separate.
+5. integrate planet/base participation using C4 persistence;
+6. keep game `591478` separate.
 
 Keep `DOCUMENTED / CORPUS_OBSERVED / INFERRED / TESTED / DIFF_VERIFIED` distinct. Do not merge or mark PR #28 ready yet.
