@@ -8,7 +8,8 @@ This file is the operational roadmap for `planets-lab`. Architecture boundaries 
 - Candidate-set v2 runtime: [`handoff/2026-09-10-combat-c5-candidate-set-v2-runtime.md`](handoff/2026-09-10-combat-c5-candidate-set-v2-runtime.md).
 - Initial plain-STANDARD target-order runtime: [`handoff/2026-09-10-combat-c5-initial-standard-target-runtime.md`](handoff/2026-09-10-combat-c5-initial-standard-target-runtime.md).
 - Initial-target fuel residual runtime: [`handoff/2026-09-10-combat-c5-initial-standard-target-fuel-runtime.md`](handoff/2026-09-10-combat-c5-initial-standard-target-fuel-runtime.md).
-- Active C5 cloak residual gate: [`handoff/2026-09-10-combat-c5-initial-standard-target-cloak-residual-pending.md`](handoff/2026-09-10-combat-c5-initial-standard-target-cloak-residual-pending.md).
+- Initial-target cloak residual runtime: [`handoff/2026-09-10-combat-c5-initial-standard-target-cloak-residual-runtime.md`](handoff/2026-09-10-combat-c5-initial-standard-target-cloak-residual-runtime.md).
+- Active C5 Privateer Rob cloak population gate: [`handoff/2026-09-10-combat-c5-privateer-rob-cloak-population-pending.md`](handoff/2026-09-10-combat-c5-privateer-rob-cloak-population-pending.md).
 - Repaired storm-aware precombat position runtime: [`handoff/2026-09-09-combat-c5-normal-movement-position-v3-runtime.md`](handoff/2026-09-09-combat-c5-normal-movement-position-v3-runtime.md).
 - movement: [`handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md`](handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md).
 - Classic combat replay coverage: [`handoff/2026-09-07-combat-c2-classic-replay-coverage.md`](handoff/2026-09-07-combat-c2-classic-replay-coverage.md).
@@ -91,7 +92,7 @@ strict exact-set:      sites=162 first_pair_exact=162 first_right_exact=162
 exact-set informative target-order sites: 15/15 target rank 1
 ```
 
-The tested ordering hypothesis is therefore strongly supported when the eligible set is correct:
+The target-order hypothesis is strongly supported when the eligible set is correct:
 
 ```text
 first active ship = highest standard Combat Priority ship having an eligible target
@@ -101,47 +102,62 @@ first target      = highest-priority eligible target for that active ship
 Only two broad-scope mismatches remain:
 
 ```text
-360690/T83: active 264; extra candidate target 98; factual target 190
-511506/T94: active 496; extra candidate target 202; factual target 332
+360690/T83: active264; extra target98; factual target190
+511506/T94: active496; extra target202; factual target332
 ```
 
-Both already choose the correct active ship. Do not invert target ordering: investigate why the extra pair survives candidate eligibility.
+Both already choose the correct active ship. Do not invert target ordering.
 
-### Fuel residual checkpoint
+### Residual blocker checkpoints
 
-Runtime source `55ad7c5799f52d8bc703f3247cf7ed179dbb18f9`:
+Fuel runtime source `55ad7c5799f52d8bc703f3247cf7ed179dbb18f9` rejected the post-movement-zero-fuel hypothesis:
 
 ```text
-tests rc=0
-audit rc=0
-extra_target_postmove_fuel_zero=0
-extra_target_postmove_fuel_nonzero=2
-extra_target_postmove_fuel_unresolved=0
-
-360690/T83 ship98:  T-1 fuel=45, ordinary fuel_used=0, postmove_fuel=45
-511506/T94 ship202: T-1 fuel=37, ordinary fuel_used=8, postmove_fuel=29
+ship98 postmove fuel=45
+ship202 postmove fuel=29
+zero-fuel extras=0
 ```
 
-Post-movement zero fuel therefore explains neither extra target. Do not modify fuel or target-order semantics from these rows.
+Cloak runtime source `3d3b8d91f3ff281b0563a0f7112fadbe86222f2b` then split the residuals:
 
-A stronger common clue is that both extra targets use raw mission `9`. At `360690/T83`, stationary ship98 changes visible fuel `45 -> 40` between T-1 and T, compatible with the documented minimum ordinary cloak fuel cost. This motivates the active Bird/Super-Spy/effective-cloak gate.
+```text
+511506/T94 ship202:
+  owner3 -> race3 Bird
+  hull47 Red Wind can cloak
+  mission9 Super Spy signature
+  T-1 iscloaked=true, fuel sufficient
+  T same owner/hull and iscloaked=true
+  => strong scoped effective-cloak blocker clue
+
+360690/T83 ship98:
+  owner5 -> race5 Privateer
+  hull46 Meteor can cloak
+  mission9 Privateer race-specific mission / Rob, not Bird Super Spy
+  T-1 iscloaked=true, fuel sufficient
+  T same owner/hull and iscloaked=true
+  => state persists in this row but semantics remain unresolved
+```
+
+Factual target `511506/T94/ship332` is a critical negative control: it also has `T-1 iscloaked=true`, current mission2, and VCR728 occurs. Therefore raw T-1 `iscloaked` is **not** a safe blanket combat blocker.
 
 ### Immediate combat work
 
 Proceed in this order:
 
-1. run `tools/diagnostics/combat_host_initial_standard_target_cloak_residual_audit.py` over the same two broad residual sites;
-2. resolve archive `race_id`, hull identity and `hull_can_cloak` instead of inferring race from owner slot;
-3. inspect Bird + mission9 + cloak-capable static signature, T-1 fuel/damage/iscloaked, T same-owner/same-hull/iscloaked control and factual VCR scalar outcome;
-4. if both extra targets are clean effective-cloak exclusions, add a generic tri-state ordinary active-cloak input to pair eligibility: directed attacks against an effectively cloaked target are blocked, while a cloaked ship's own Primary Enemy request can still initiate combat;
-5. rerun pair tests, candidate-set v2 and initial target-order differential and require the two broad residuals to disappear without introducing candidate-covered factual hard blockers;
-6. if cloak does not explain either row, investigate another blocker without changing standard Combat Priority or target ordering;
-7. after initial selector closure, implement mutable target-list / queue selection with survivor/destruction state;
-8. compose already-closed second-pass repeated-pair orientation;
-9. model capture continuation;
-10. place the documented ship-to-planet repair boundary between ship and planet phases;
-11. integrate planet/base participation using the C4 persistence layer;
-12. keep game `591478` and special/campaign mechanics separately labeled.
+1. run `tools/diagnostics/combat_host_privateer_rob_cloak_population_audit.py`;
+2. inventory ordinary archive-resolved race5 + mission9 + cloak-capable rows across consecutive turns;
+3. interpret T-state only when owner, hull/equipment and available build-turn identity remain aligned, because same Ship ID can be reused after combat;
+4. inspect stable cloak transitions and especially `stable_before_cloaked_pe_zero_vcr` / `stable_true_to_true_pe_zero_vcr` counterexamples;
+5. keep exact target `360690 T82->T83 ship98` explicit in the output;
+6. do not modify `selection.py` or target order from cloak-state persistence alone;
+7. if population evidence establishes a safe current-host effective-cloak rule, add it as a directional tri-state blocker and rerun candidate-set v2 + initial-target differential;
+8. otherwise keep ship98 bounded and investigate the next blocker/state source without weakening standard priority;
+9. after initial selector closure, implement mutable target-list / queue selection with survivor/destruction state;
+10. compose already-closed second-pass repeated-pair orientation;
+11. model capture continuation;
+12. place the documented ship-to-planet repair boundary between ship and planet phases;
+13. integrate planet/base participation using the C4 persistence layer;
+14. keep game `591478` and special/campaign mechanics separately labeled.
 
 The next goal remains prediction of the **set, order and sides of VCRs Host will generate** from reconstructed precombat state, with unresolved movement and queue state explicit.
 
