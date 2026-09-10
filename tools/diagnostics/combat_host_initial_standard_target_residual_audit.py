@@ -13,6 +13,7 @@ for path in (REPO_ROOT, DIAGNOSTICS_DIR):
         sys.path.insert(0, str(path))
 
 from planets_lab.corpus.movement_differential import _intish
+from planets_lab.corpus.movement_residual_context import GRAVITONIC_HULL_IDS
 from planets_lab.corpus.prepared_cache import load_or_build_prepared_game_cache
 from planets_lab.corpus.reconstruction import group_perspective_records
 from planets_lab.data.nu_loadturn import NuLoadTurnError, _ship
@@ -153,7 +154,7 @@ def _normal_fuel_projection(
             target_x=int(target_x),
             target_y=int(target_y),
             warp=int(effective_warp),
-            gravitonic=ship.hull_id in {46},
+            gravitonic=ship.hull_id in GRAVITONIC_HULL_IDS,
             allow_partial=True,
             allow_fuel_proration=False,
             movement_mass_override=int(raw_mass),
