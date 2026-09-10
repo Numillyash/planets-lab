@@ -36,6 +36,7 @@ jobs:
           bash -n tools/run-finite-fuel-tow-classic-storm-reclassification-gate.sh
           bash -n tools/run-finite-fuel-tow-classic-multiroot-gate.sh
           bash -n tools/run-finite-fuel-tow-passenger-chunnel-context-gate.sh
+          bash -n tools/run-finite-fuel-tow-passenger-chunnel-resolution-gate.sh
           python tools/diagnostics/tow_finite_fuel_population_audit.py --help >/dev/null
           python tools/diagnostics/tow_finite_fuel_warp_well_audit.py --help >/dev/null
           python tools/diagnostics/tow_finite_fuel_external_context_audit.py --help >/dev/null
@@ -47,6 +48,7 @@ jobs:
           PYTHONPATH="$PWD/src:$PWD/tools/diagnostics" python tools/diagnostics/tow_finite_fuel_classic_storm_reclassification_audit.py --help >/dev/null
           PYTHONPATH="$PWD/src:$PWD/tools/diagnostics" python tools/diagnostics/tow_finite_fuel_classic_multiroot_audit.py --help >/dev/null
           PYTHONPATH="$PWD/src:$PWD/tools/diagnostics" python tools/diagnostics/tow_finite_fuel_passenger_chunnel_context_audit.py --help >/dev/null
+          PYTHONPATH="$PWD/src:$PWD/tools/diagnostics" python tools/diagnostics/tow_finite_fuel_passenger_chunnel_resolution_audit.py --help >/dev/null
           PYTHONPATH="$PWD/src:$PWD/tools/diagnostics" python -c "from intercept_fuel_historical_differential_audit import PREPARED_DIR, RAW_DIR; assert PREPARED_DIR; assert RAW_DIR"
 
       - name: Run tests
