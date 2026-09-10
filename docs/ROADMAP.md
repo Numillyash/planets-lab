@@ -5,8 +5,9 @@ This file is the operational roadmap for `planets-lab`. Architecture boundaries 
 ## Current durable checkpoints
 
 - Host combat phase C5: [`handoff/2026-09-08-combat-c5-host-phase-current.md`](handoff/2026-09-08-combat-c5-host-phase-current.md).
-- Active C5 runtime gate: [`handoff/2026-09-10-combat-c5-initial-standard-target-pending.md`](handoff/2026-09-10-combat-c5-initial-standard-target-pending.md).
 - Candidate-set v2 runtime: [`handoff/2026-09-10-combat-c5-candidate-set-v2-runtime.md`](handoff/2026-09-10-combat-c5-candidate-set-v2-runtime.md).
+- Initial plain-STANDARD target-order runtime: [`handoff/2026-09-10-combat-c5-initial-standard-target-runtime.md`](handoff/2026-09-10-combat-c5-initial-standard-target-runtime.md).
+- Active C5 residual gate: [`handoff/2026-09-10-combat-c5-initial-standard-target-residual-pending.md`](handoff/2026-09-10-combat-c5-initial-standard-target-residual-pending.md).
 - Repaired storm-aware precombat position runtime: [`handoff/2026-09-09-combat-c5-normal-movement-position-v3-runtime.md`](handoff/2026-09-09-combat-c5-normal-movement-position-v3-runtime.md).
 - movement: [`handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md`](handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md).
 - Classic combat replay coverage: [`handoff/2026-09-07-combat-c2-classic-replay-coverage.md`](handoff/2026-09-07-combat-c2-classic-replay-coverage.md).
@@ -29,7 +30,7 @@ Unknown mechanics fail closed. Raw facts and evidence-scoped effective interpret
 
 Active milestone remains **M5 — historical NuHost corpus + compatibility mining**.
 
-Combat C1-C4 are checkpointed. C5 is the current immediate focus: reconstruct the Host phase around the deterministic resolver rather than merely replaying already supplied VCRs.
+Combat C1-C4 are checkpointed. C5 is the immediate focus: reconstruct the Host phase around the deterministic resolver rather than merely replaying supplied VCRs.
 
 Stable C5 layers already include:
 
@@ -41,80 +42,87 @@ reciprocal PIA pair attribution        DOCUMENTED + CORPUS_OBSERVED + TESTED + D
 Galactic Power scoped forced-left      DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
 matching-FC positive exceptions        DOCUMENTED + TESTED + CORPUS_OBSERVED
 plain STANDARD repeated-pair reversal  CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
-candidate-set v2 positive differential CORPUS_OBSERVED + DIFF_VERIFIED (covered scope)
 ```
 
-The repaired T-1 -> precombat position differential has the following ordinary runtime population:
+### Repaired precombat position checkpoint
+
+Runtime source `14ebd6442b6ca705c42c2c5ff4a4e5a2d9b1240c`:
 
 ```text
-source=14ebd6442b6ca705c42c2c5ff4a4e5a2d9b1240c
 payload_conflicts=0
 storm modes: false=10 true=1
-
-ship occurrences:
-  factual=3204
-  predicted=1810
-  exact=1806
-  mismatch=4
-  uncovered=1383
-
-factual pairs:
-  total=1986
-  exact=678
-  mismatch=4
-  uncovered=1304
-
-sites:
-  total=1220
-  fully position-exact=346
-  mismatch sites=4
+ship occurrences: factual=3204 predicted=1810 exact=1806 mismatch=4 uncovered=1383
+factual pairs: total=1986 exact=678 mismatch=4 unresolved=1304
+sites: total=1220 fully position-exact=346 mismatch sites=4
 ```
 
-All six previously attributable classic ion-storm residuals are exact through independent `normal movement -> ion storm -> warp well` prediction. Two of the four remaining rows are specific stochastic normal-mine hits with `CORPUS_OBSERVED + DIFF_VERIFIED` attribution; two remain bounded unresolved. No factual coordinate is injected into the predictor.
+Six previously attributable classic ion-storm residuals are now exact through independent `normal movement -> ion storm -> warp well` prediction. Two of the four remaining rows are specific stochastic normal-mine hits with `CORPUS_OBSERVED + DIFF_VERIFIED`; two remain bounded unresolved. No factual coordinate is injected into the predictor.
 
-Candidate-set v2 then expanded the independent combat-candidate population:
+### Candidate-set v2 checkpoint
+
+Runtime source `c804575f4275f4454dbb282d9fcfc99fad0700d6`:
 
 ```text
-source=c804575f4275f4454dbb282d9fcfc99fad0700d6
 tests rc=0
 audit rc=0
 payload_conflicts=0
-
 factual unique pairs=1986
 candidate-covered factual pairs=428
 candidate-uncovered factual pairs=1558
 candidate pairs=1092
-
-strict factual:      eligible=420 unresolved=8 blocked=0
+strict factual: eligible=420 unresolved=8 blocked=0
 conditional factual: eligible=427 unresolved=1 blocked=0
 conditional eligible nonfactual=331
-
 all factual positions covered sites=242
 conditional factual subset of eligible=236
 conditional eligible exactly factual=171
 ```
 
-No candidate-covered factual pair is conditionally hard-blocked. The single conditional factual unresolved row is a fuel-state coverage gap. Extra eligible nonfactual pairs are now the expected input to target-list / survivor-mutation reconstruction rather than evidence against pair eligibility.
+No candidate-covered factual pair is conditionally hard-blocked. Candidate-set v2 therefore gives a broad positive differential for canonical pair eligibility. Extra eligible nonfactual pairs belong to target-selection/queue reconstruction rather than being classified as pair-eligibility failures by default.
+
+### Initial plain-STANDARD target-order checkpoint
+
+Runtime source `d7ade79d1344ba21a99f21d3fcc2d3e911dff3c3`:
+
+```text
+conditional exact-set: sites=169 first_pair_exact=169 first_right_exact=169
+strict exact-set:      sites=162 first_pair_exact=162 first_right_exact=162
+exact-set informative target-order sites: 15/15 target rank 1
+```
+
+The tested ordering hypothesis is therefore strongly supported when the eligible set is correct:
+
+```text
+first active ship = highest standard Combat Priority ship having an eligible target
+first target      = highest-priority eligible target for that active ship
+```
+
+Only two broad-scope mismatches remain:
+
+```text
+360690/T83: active 264; extra candidate target 98; factual target 190
+511506/T94: active 496; extra candidate target 202; factual target 332
+```
+
+Both already choose the correct active ship. Do not invert target ordering: investigate why the extra pair survives candidate eligibility.
 
 ### Immediate combat work
 
 Proceed in this order:
 
-1. run `tools/diagnostics/combat_host_initial_standard_target_audit.py` over the 11 ordinary archives;
-2. evaluate the first plain-STANDARD VCR only on position-covered/resolved sites, before any combat outcome mutation;
-3. compare the documented/inferred selector `highest-priority active -> highest-priority eligible target` against the factual first VCR;
-4. report the exact-candidate-set control separately from the broader `factual ⊆ eligible` population and compare against the low-priority-target control;
-5. investigate every first-pair/right mismatch before adding a canonical target selector;
-6. if the first-selection rule is coherent, implement the narrow canonical selector and then compose mutable survivor/destruction state;
-7. integrate the already closed second-pass repeated-pair orientation when both ships survive to the later active-ship pass;
-8. then model capture continuation inside the same Host phase;
+1. run `tools/diagnostics/combat_host_initial_standard_target_residual_audit.py` over the two broad residual sites;
+2. test whether the extra target independently spends its final T-1 fuel during ordinary normal movement;
+3. if both extras reach combat with reconstructed `postmove_fuel=0`, integrate safe post-movement fuel into candidate inputs rather than raw positive T-1 fuel;
+4. rerun candidate-set v2 and initial target-order differential and require the two broad residuals to disappear before canonical selector promotion;
+5. if fuel does not explain either row, investigate another blocker without changing standard Combat Priority;
+6. after initial selector closure, implement mutable target-list / queue selection with survivor/destruction state;
+7. compose already-closed second-pass repeated-pair orientation;
+8. model capture continuation;
 9. place the documented ship-to-planet repair boundary between ship and planet phases;
 10. integrate planet/base participation using the C4 persistence layer;
 11. keep game `591478` and special/campaign mechanics separately labeled.
 
-Candidate-set v2 remains site-conditioned: factual VCR supplies the site coordinate and held-out pair set, but not per-ship position or positive eligibility. Visible T-1 foreign normal/web mine crossings fail closed because hit occurrence is stochastic.
-
-The next goal is to predict the **set, order and sides of VCRs Host will generate** from reconstructed precombat state, with unresolved movement and queue state explicit.
+The next goal remains prediction of the **set, order and sides of VCRs Host will generate** from reconstructed precombat state, with unresolved movement and queue state explicit.
 
 ## Runtime-verified movement accounting
 
@@ -144,9 +152,7 @@ L1 context semantics:      planets-lab.compiled-movement-storm-context.v3
 L2 context labels:         planets-lab.compiled-movement-context-labels.v6
 ```
 
-Verified movement closures include ordinary major/minor geometry, warp-well ordering, route-equivalent Tow and Chunnel, classic/cloudy ion storms, scoped sphere topology, strict mine/web interruption, damage-limited maximum warp, strict Nu waypoint fuel proration, and short-waypoint normal-mine scaled-floor compatibility. See the movement handoffs for evidence boundaries.
-
-Generic movement residuals remain bounded evidence-mining targets, not a requirement to reach zero residuals before continuing the Host simulator.
+Verified movement closures include ordinary major/minor geometry, warp-well ordering, route-equivalent Tow and Chunnel, classic/cloudy ion storms, scoped sphere topology, strict mine/web interruption, damage-limited maximum warp, strict Nu waypoint fuel proration, and short-waypoint normal-mine scaled-floor compatibility. Generic movement residuals remain bounded evidence-mining targets, not a requirement to reach zero residuals before continuing the Host simulator.
 
 ## Combat integration checkpoints
 
@@ -200,10 +206,11 @@ Comparable plain-planet carry and starbase shield persistence are `CORPUS_OBSERV
 
 ### C5 — Host engagement/ordering around the resolver
 
-Current active stage. Pair mechanics and a broad covered candidate-set differential are reconstructed; the immediate missing layers are:
+Current active stage. Pair mechanics and a broad candidate-set layer are reconstructed. Immediate missing layers are:
 
-- initial standard target-list ordering;
-- mutable survivor/destruction queue mutation;
+- final initial-target candidate blocker closure;
+- canonical first target selection;
+- mutable target selection and queue mutation;
 - capture continuation;
 - ship-to-planet repair/phase boundary;
 - planet/base participation in the full multi-player queue.
