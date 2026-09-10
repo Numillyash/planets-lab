@@ -5,7 +5,8 @@ This file is the operational roadmap for `planets-lab`. Architecture boundaries 
 ## Current durable checkpoints
 
 - Host combat phase C5: [`handoff/2026-09-08-combat-c5-host-phase-current.md`](handoff/2026-09-08-combat-c5-host-phase-current.md).
-- Active C5 runtime gate: [`handoff/2026-09-10-combat-c5-candidate-set-v2-pending.md`](handoff/2026-09-10-combat-c5-candidate-set-v2-pending.md).
+- Active C5 runtime gate: [`handoff/2026-09-10-combat-c5-initial-standard-target-pending.md`](handoff/2026-09-10-combat-c5-initial-standard-target-pending.md).
+- Candidate-set v2 runtime: [`handoff/2026-09-10-combat-c5-candidate-set-v2-runtime.md`](handoff/2026-09-10-combat-c5-candidate-set-v2-runtime.md).
 - Repaired storm-aware precombat position runtime: [`handoff/2026-09-09-combat-c5-normal-movement-position-v3-runtime.md`](handoff/2026-09-09-combat-c5-normal-movement-position-v3-runtime.md).
 - movement: [`handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md`](handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md).
 - Classic combat replay coverage: [`handoff/2026-09-07-combat-c2-classic-replay-coverage.md`](handoff/2026-09-07-combat-c2-classic-replay-coverage.md).
@@ -40,9 +41,10 @@ reciprocal PIA pair attribution        DOCUMENTED + CORPUS_OBSERVED + TESTED + D
 Galactic Power scoped forced-left      DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
 matching-FC positive exceptions        DOCUMENTED + TESTED + CORPUS_OBSERVED
 plain STANDARD repeated-pair reversal  CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
+candidate-set v2 positive differential CORPUS_OBSERVED + DIFF_VERIFIED (covered scope)
 ```
 
-The repaired T-1 -> precombat position differential now has the following ordinary runtime population:
+The repaired T-1 -> precombat position differential has the following ordinary runtime population:
 
 ```text
 source=14ebd6442b6ca705c42c2c5ff4a4e5a2d9b1240c
@@ -68,24 +70,49 @@ sites:
   mismatch sites=4
 ```
 
-All six previously attributable classic ion-storm residuals are now exact through independent `normal movement -> ion storm -> warp well` prediction. Two of the four remaining rows are specific stochastic normal-mine hits with `CORPUS_OBSERVED + DIFF_VERIFIED` attribution; two remain bounded unresolved. No factual coordinate is injected into the predictor.
+All six previously attributable classic ion-storm residuals are exact through independent `normal movement -> ion storm -> warp well` prediction. Two of the four remaining rows are specific stochastic normal-mine hits with `CORPUS_OBSERVED + DIFF_VERIFIED` attribution; two remain bounded unresolved. No factual coordinate is injected into the predictor.
+
+Candidate-set v2 then expanded the independent combat-candidate population:
+
+```text
+source=c804575f4275f4454dbb282d9fcfc99fad0700d6
+tests rc=0
+audit rc=0
+payload_conflicts=0
+
+factual unique pairs=1986
+candidate-covered factual pairs=428
+candidate-uncovered factual pairs=1558
+candidate pairs=1092
+
+strict factual:      eligible=420 unresolved=8 blocked=0
+conditional factual: eligible=427 unresolved=1 blocked=0
+conditional eligible nonfactual=331
+
+all factual positions covered sites=242
+conditional factual subset of eligible=236
+conditional eligible exactly factual=171
+```
+
+No candidate-covered factual pair is conditionally hard-blocked. The single conditional factual unresolved row is a fuel-state coverage gap. Extra eligible nonfactual pairs are now the expected input to target-list / survivor-mutation reconstruction rather than evidence against pair eligibility.
 
 ### Immediate combat work
 
 Proceed in this order:
 
-1. run `tools/diagnostics/combat_host_candidate_set_v2_audit.py` over the 11 ordinary archives;
-2. require `tests rc=0`, `audit rc=0`, `payload_conflicts=0`;
-3. require factual candidate coverage materially larger than candidate-set v1's `1/1986`;
-4. investigate every **candidate-covered factual pair** that the conditional canonical pair layer hard-blocks;
-5. keep movement mismatch/unresolved pairs outside combat claims rather than patching them from VCR/T state;
-6. if candidate-set v2 is coherent, implement mutable target-list / queue selection on fully position-covered sites;
-7. then model capture continuation inside the same Host phase;
-8. place the documented ship-to-planet repair boundary between ship and planet phases;
-9. integrate planet/base participation using the C4 persistence layer;
-10. keep game `591478` and special/campaign mechanics separately labeled.
+1. run `tools/diagnostics/combat_host_initial_standard_target_audit.py` over the 11 ordinary archives;
+2. evaluate the first plain-STANDARD VCR only on position-covered/resolved sites, before any combat outcome mutation;
+3. compare the documented/inferred selector `highest-priority active -> highest-priority eligible target` against the factual first VCR;
+4. report the exact-candidate-set control separately from the broader `factual ⊆ eligible` population and compare against the low-priority-target control;
+5. investigate every first-pair/right mismatch before adding a canonical target selector;
+6. if the first-selection rule is coherent, implement the narrow canonical selector and then compose mutable survivor/destruction state;
+7. integrate the already closed second-pass repeated-pair orientation when both ships survive to the later active-ship pass;
+8. then model capture continuation inside the same Host phase;
+9. place the documented ship-to-planet repair boundary between ship and planet phases;
+10. integrate planet/base participation using the C4 persistence layer;
+11. keep game `591478` and special/campaign mechanics separately labeled.
 
-Candidate-set v2 is still site-conditioned: factual VCR supplies the site coordinate and held-out pair set, but not per-ship position or positive eligibility. All owner-current T-1 ships are independently moved into or away from the site. Visible T-1 foreign normal/web mine crossings fail closed because hit occurrence is stochastic.
+Candidate-set v2 remains site-conditioned: factual VCR supplies the site coordinate and held-out pair set, but not per-ship position or positive eligibility. Visible T-1 foreign normal/web mine crossings fail closed because hit occurrence is stochastic.
 
 The next goal is to predict the **set, order and sides of VCRs Host will generate** from reconstructed precombat state, with unresolved movement and queue state explicit.
 
@@ -173,10 +200,10 @@ Comparable plain-planet carry and starbase shield persistence are `CORPUS_OBSERV
 
 ### C5 — Host engagement/ordering around the resolver
 
-Current active stage. Pair mechanics are substantially reconstructed; the immediate missing layers are:
+Current active stage. Pair mechanics and a broad covered candidate-set differential are reconstructed; the immediate missing layers are:
 
-- broad post-movement candidate-set reconstruction;
-- mutable target selection and queue mutation;
+- initial standard target-list ordering;
+- mutable survivor/destruction queue mutation;
 - capture continuation;
 - ship-to-planet repair/phase boundary;
 - planet/base participation in the full multi-player queue.
