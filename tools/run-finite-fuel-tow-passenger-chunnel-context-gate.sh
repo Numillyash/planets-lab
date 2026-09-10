@@ -139,6 +139,8 @@ def counter(key):
 keys = (
     "post_classic_storm_input",
     "cases",
+    "ability_catalog_changed_games",
+    "rows_under_changed_ability_catalog",
     "rows_with_observed_chunnel_destination",
     "rows_with_observed_chunnel_origin_route",
     "rows_with_observed_chunnel_geometry_route",
@@ -151,6 +153,7 @@ keys = (
     "structural_origin_chunnel_lead",
     "same_origin_comovement_only_lead",
     "same_destination_observed_chunnel_only_lead",
+    "ability_catalog_changed_unresolved_lead",
     "no_chunnel_lead",
 )
 for key in keys:
@@ -166,10 +169,12 @@ lead_total = sum(
         "structural_origin_chunnel_lead",
         "same_origin_comovement_only_lead",
         "same_destination_observed_chunnel_only_lead",
+        "ability_catalog_changed_unresolved_lead",
         "no_chunnel_lead",
     )
 )
 assert lead_total == 9, f"lead accounting mismatch: {lead_total} != 9"
+print("Changed ability catalogs are fail-closed: stable-intersection positives are retained, otherwise the row stays unresolved.")
 print("Passenger Chunnel categories are evidence-scoped context leads; no hidden event is inferred from distance alone.")
 print("finite-fuel Tow remains OPEN; planets-intel is unchanged.")
 PY
