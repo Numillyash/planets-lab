@@ -232,8 +232,10 @@ def main() -> int:
             cache_path=PREPARED_DIR / f"game-{game_id}.pickle",
         )
         abilities = extract_stable_chunnel_abilities(archive_data)
-        if not abilities.ability_sets_consistent:
-            raise ValueError(f"game {game_id}: Chunnel ability catalog changed across archive")
+        catalog_changed = not abilities.ability_sets_consistent
+        if catalog_changed:
+            totals["ability_catalog_changed_games"] += 1
+            totals["rows_under_changed_ability_catalog"] += len(by_game[game_id])
 
         entities = _entity_map(prepared.snapshots)
         ship_groups = group_perspective_records(prepared.snapshots, "ship")
@@ -244,11 +246,14 @@ def main() -> int:
             events_by_turn_destination[(event.before_archive_turn, event.destination)].append(event)
 
         game_counts: Counter[str] = Counter()
+        if catalog_changed:
+            game_counts["ability_catalog_changed"] = 1
         print(
             {
                 "game": game_id,
                 "cache_hit": cache_hit,
                 "cases": len(by_game[game_id]),
+                "ability_sets_consistent": abilities.ability_sets_consistent,
                 "initiator_hulls": tuple(sorted(abilities.initiator_hull_ids)),
                 "target_hulls": tuple(sorted(abilities.target_hull_ids)),
                 "self_hulls": tuple(sorted(abilities.self_hull_ids)),
@@ -353,6 +358,9 @@ def main() -> int:
             elif route_events:
                 lead = "same_destination_observed_chunnel_only"
                 totals["same_destination_observed_chunnel_only_lead"] += 1
+            elif catalog_changed:
+                lead = "ability_catalog_changed_unresolved"
+                totals["ability_catalog_changed_unresolved_lead"] += 1
             else:
                 lead = "no_chunnel_lead"
                 totals["no_chunnel_lead"] += 1
@@ -374,6 +382,7 @@ def main() -> int:
                         "geometry": geometry,
                         "observed": observed,
                         "residual_vector": case.get("residual_vector"),
+                        "ability_catalog_changed": catalog_changed,
                         "lead": lead,
                         "observed_chunnel_destination_events": event_details,
                         "origin_route_events": origin_events,
@@ -399,6 +408,7 @@ def main() -> int:
             "structural_origin_chunnel_lead",
             "same_origin_comovement_only_lead",
             "same_destination_observed_chunnel_only_lead",
+            "ability_catalog_changed_unresolved_lead",
             "no_chunnel_lead",
         )
     )
@@ -409,6 +419,8 @@ def main() -> int:
     for key in (
         "post_classic_storm_input",
         "cases",
+        "ability_catalog_changed_games",
+        "rows_under_changed_ability_catalog",
         "rows_with_observed_chunnel_destination",
         "rows_with_observed_chunnel_origin_route",
         "rows_with_observed_chunnel_geometry_route",
@@ -421,6 +433,7 @@ def main() -> int:
         "structural_origin_chunnel_lead",
         "same_origin_comovement_only_lead",
         "same_destination_observed_chunnel_only_lead",
+        "ability_catalog_changed_unresolved_lead",
         "no_chunnel_lead",
     ):
         print(f"{key}= {totals[key]}")
@@ -446,6 +459,11 @@ def main() -> int:
     print(
         "numeric-FC structural origin evidence requires an initiator-ability ship at the factual Tow origin that ends at the same "
         "destination plus a stationary target-ability ship already there with same known owner and matching numeric friendly code."
+    )
+    print(
+        "When the archive-wide Chunnel ability catalog changes, positive evidence is still searched with the stable first/last "
+        "intersection, but an otherwise negative row is labeled ability_catalog_changed_unresolved rather than no_chunnel_lead. "
+        "This is fail-closed because a turn-specific ability could be absent from the stable intersection."
     )
     print(
         "Same-destination events and co-movement without an exact event route are weaker leads only. Distance alone is never used "
