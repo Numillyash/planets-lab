@@ -7,7 +7,7 @@ This is the compact current pointer; dated handoffs contain full evidence and ru
 ## Stable C5 layers
 
 - corpus: 12 archives / 22,256 raw VCR observations / 6,469 unique VCRs / 0 payload conflicts;
-- owner-current `T-1` is the precombat order/state source; `T` ship state is postcombat;
+- owner-current `T-1` is the precombat order/state source; `T` ship state is postcombat, but same Ship ID at T is not automatically the same physical ship because post-combat builds can reuse open IDs;
 - mission 3 = Kill!, mission 7 = Intercept, mission 20 = Bird Cloak and Intercept, raw `enemy` = Primary Enemy;
 - direct isolated ordinary STANDARD relation: 413/413 higher static priority on RIGHT;
 - normal PIA linked population: 37/37 before regular combat and 37/37 attacker RIGHT;
@@ -96,27 +96,50 @@ Broad scope has only two residuals, identical in strict/conditional:
 
 In both cases the active ship is correct and the factual pair is already eligible; the mismatch exists only because one extra nonfactual candidate pair survives. Do **not** invert target ordering from these rows.
 
-## Immediate gate — post-movement fuel on the two extra targets
+## Fuel residual hypothesis — rejected
 
 Read:
 
 ```text
-docs/handoff/2026-09-10-combat-c5-initial-standard-target-residual-pending.md
+docs/handoff/2026-09-10-combat-c5-initial-standard-target-fuel-runtime.md
+```
+
+Runtime source `55ad7c5799f52d8bc703f3247cf7ed179dbb18f9`:
+
+```text
+tests rc=0
+audit rc=0
+extra_target_postmove_fuel_zero=0
+extra_target_postmove_fuel_nonzero=2
+extra_target_postmove_fuel_unresolved=0
+
+360690/T83 ship98:  T-1 fuel=45, fuel_used=0, postmove_fuel=45
+511506/T94 ship202: T-1 fuel=37, fuel_used=8, postmove_fuel=29
+```
+
+Therefore post-movement zero fuel explains neither broad residual. Do not change fuel semantics to fit them.
+
+## Immediate gate — ordinary cloak / Super Spy attribution
+
+Read:
+
+```text
+docs/handoff/2026-09-10-combat-c5-initial-standard-target-cloak-residual-pending.md
 ```
 
 Diagnostic:
 
 ```text
-tools/diagnostics/combat_host_initial_standard_target_residual_audit.py
-tests/test_combat_host_initial_standard_target_residual_audit.py
+tools/diagnostics/combat_host_initial_standard_target_cloak_residual_audit.py
+tests/test_combat_host_initial_standard_target_cloak_residual_audit.py
 ```
 
-Current candidate inputs derive `has_fuel` from positive T-1 neutronium. That is intentionally conservative for earlier positive gates but can be wrong after movement: an arriving ship may spend its final fuel and therefore be unable to combat.
+Both reconstructed extra targets have raw mission `9`. Planets.nu documents that Bird ships on Super Spy attempt to cloak when the hull can cloak; cloaked ships are protected from enemy attack. The focused diagnostic must resolve archive `race_id`, hull identity/capability, T-1/T `iscloaked`, ordinary basic-cloak fuel sufficiency and scalar VCR outcome without inferring race from owner slot.
 
-The focused audit reconstructs normal-movement fuel for active, extra-target and factual-target ships at the two residual sites using the existing canonical movement planner. It reports `fuel_required`, `fuel_used` and `postmove_fuel`. T state is attribution/control only.
+A particularly strong clue exists at `360690/T83`: stationary extra target ship98 has T-1 fuel 45 and T fuel 40, a 5 kt difference compatible with the documented minimum basic cloak cost, while factual target ship190 has only 4 kt at T-1 and changes owner by T. This is a hypothesis to test, not yet promoted mechanics.
 
-If both extra targets independently resolve to `postmove_fuel=0`, treat the two broad target-order residuals as missing post-movement-fuel blockers. Then integrate safe reconstructed fuel into candidate inputs and rerun candidate-set v2 + initial-target differential before promoting any canonical selector. If either does not, investigate another blocker; do not change standard Combat Priority or target ordering.
+If both residuals show a clean effective-cloak explanation, add a generic tri-state ordinary active-cloak input to pair eligibility. Directed attacks must be blocked **against** an effectively cloaked target, while a cloaked ship's own Primary Enemy request must remain capable of initiating combat. Then rerun pair tests, candidate-set v2 and initial-target differential and require the broad residuals to disappear without introducing factual hard blockers.
 
-Later C5 work remains: canonical initial selector after evidence closure, mutable survivor/destruction state, second-pass composition, capture continuation, ship-to-planet repair boundary, then planet/base participation.
+Later C5 work remains: canonical initial selector after blocker closure, mutable survivor/destruction state, second-pass composition, capture continuation, ship-to-planet repair boundary, then planet/base participation.
 
 Keep `DOCUMENTED / CORPUS_OBSERVED / INFERRED / TESTED / DIFF_VERIFIED` distinct. Unknown branches fail closed.
