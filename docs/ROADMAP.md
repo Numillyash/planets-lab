@@ -8,7 +8,8 @@ This file is the operational roadmap for `planets-lab`. Architecture boundaries 
 - Candidate-set v2 runtime: [`handoff/2026-09-10-combat-c5-candidate-set-v2-runtime.md`](handoff/2026-09-10-combat-c5-candidate-set-v2-runtime.md).
 - Initial plain-STANDARD target-order runtime: [`handoff/2026-09-10-combat-c5-initial-standard-target-runtime.md`](handoff/2026-09-10-combat-c5-initial-standard-target-runtime.md).
 - Privateer Rob attack-opportunity runtime: [`handoff/2026-09-11-combat-c5-privateer-rob-attack-opportunity-runtime.md`](handoff/2026-09-11-combat-c5-privateer-rob-attack-opportunity-runtime.md).
-- Active initial-decision gate: [`handoff/2026-09-11-combat-c5-privateer-rob-initial-decision-pending.md`](handoff/2026-09-11-combat-c5-privateer-rob-initial-decision-pending.md).
+- Privateer Rob initial-decision runtime: [`handoff/2026-09-11-combat-c5-privateer-rob-initial-decision-runtime.md`](handoff/2026-09-11-combat-c5-privateer-rob-initial-decision-runtime.md).
+- Active clean prior-true cloak-context gate: [`handoff/2026-09-11-combat-c5-privateer-rob-initial-cloak-context-pending.md`](handoff/2026-09-11-combat-c5-privateer-rob-initial-cloak-context-pending.md).
 - Repaired storm-aware precombat position runtime: [`handoff/2026-09-09-combat-c5-normal-movement-position-v3-runtime.md`](handoff/2026-09-09-combat-c5-normal-movement-position-v3-runtime.md).
 - movement: [`handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md`](handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md).
 - Classic combat replay coverage: [`handoff/2026-09-07-combat-c2-classic-replay-coverage.md`](handoff/2026-09-07-combat-c2-classic-replay-coverage.md).
@@ -33,7 +34,7 @@ Active milestone remains **M5 — historical NuHost corpus + compatibility minin
 
 Combat C1-C4 are checkpointed. C5 is the immediate focus: reconstruct the Host phase around the deterministic resolver rather than merely replaying supplied VCRs.
 
-Stable C5 layers include pair composition, factual phase ordering, normal/reciprocal Priority Intercept attribution, scoped Galactic Power, matching-FC exceptions, repaired precombat positions, candidate-set v2, and plain STANDARD repeated-pair reversal. Closed gates are not reopened absent direct contradiction.
+Stable C5 layers include pair composition, factual phase ordering, normal/reciprocal Priority Intercept attribution, scoped Galactic Power, matching-FC exceptions, repaired precombat positions, candidate-set v2, plain STANDARD repeated-pair reversal and clean first-target ordering. Closed gates are not reopened absent direct contradiction.
 
 ### Position / candidate checkpoint
 
@@ -76,11 +77,9 @@ Do not invert target ordering.
 
 ### Residual blocker state
 
-Fuel is rejected for both residuals. Bird ship202 remains a strong scoped Super Spy/effective-cloak candidate. Privateer ship98 required separate investigation.
+Fuel is rejected for both original residuals. Bird ship202 remains a strong scoped Super Spy/effective-cloak candidate. Privateer ship98 is now narrowed through site-conditioned Rob controls.
 
-Privateer race5 mission9/Rob raw-cloak population shows large archive `iscloaked` persistence but raw prior cloak is not a combat oracle.
-
-Latest site-conditioned attack-opportunity runtime source `bab8689c18d894399448543d3362f1cec288f5b4`:
+Attack-opportunity runtime:
 
 ```text
 strict/conditional plain-STANDARD opportunities=16
@@ -89,20 +88,48 @@ prior false: pair_vcr=5, neither_vcr=1
 payload_conflicts=0
 ```
 
-The two `true:pair_vcr` rows reject both a blanket raw-cloak blocker and a scoped `Privateer Rob + prior iscloaked` blocker. The eight skipped targets cannot yet be classified as protected because the attacker may simply have fought a different higher-priority target first and then left the mutable queue.
+Initial-decision runtime source `7cb29984bc09b241241a8e738f6b6701bc61d5b4`:
+
+```text
+opportunities=16
+initial_pair_vcr=5
+initial_skip_target_not_above_factual=5
+initial_skip_target_outranks_factual=3
+attacker_no_factual_vcr=1
+later_pair_vcr=1
+noninitial_attacker_context=1
+payload_conflicts=0
+```
+
+All three clean first-decision skips have prior `iscloaked=true`:
+
+```text
+360690/T83 ship98
+360690/T57 ship46
+360690/T57 ship280
+```
+
+Two sites provide matched visible controls against the same attacker / same Privateer owner / same Meteor hull / same Rob mission / PE0:
+
+```text
+T83: ship98 true skipped; ship190 false fought
+T57: ship46 true skipped; ship280 true skipped; ship293 false fought
+```
+
+The only clean prior-true first-pair control is `620694/T64/ship118`, T-1 fuel 5. Raw prior `iscloaked` remains rejected as a direct blocker until this control is attributed.
 
 ### Immediate combat work
 
 Proceed in this order:
 
-1. run `tools/diagnostics/combat_host_privateer_rob_initial_decision_audit.py`;
-2. classify the 16 Rob attack opportunities by factual VCR position and canonical target priority;
-3. treat `initial_skip_target_outranks_factual` as the strongest clean missing-blocker shape because no prior combat can have mutated that site queue;
-4. confirm the known `360690/T83/ship98` residual remains in that scope;
-5. classify the two prior-true `pair_vcr` controls as initial vs later before interpreting raw cloak state;
-6. do not infer targetability from later-attacker skips until survivor/destruction replay is composed;
-7. for clean initial residuals only, audit documented current-Host effective-cloak/decloak context (mission, fuel, damage, Loki, ion/mine/glory and special cloak type) rather than copying archive `iscloaked`;
-8. keep Bird Super Spy ship202 separate from Privateer Rob ship98;
+1. run `tools/diagnostics/combat_host_privateer_rob_initial_cloak_context_audit.py` with its targeted test;
+2. require exactly 4 focus rows: three `initial_skip_target_outranks_factual` plus one prior-true `initial_pair_vcr` control;
+3. compare T-1 damage, reference movement fuel depletion, Rob-origin visible fuel sources and Loki context;
+4. inspect whether `620694/T64/ship118` exactly exhausts its 5 KT raw fuel during movement while having no visible Rob fuel source, or has another documented decloak discriminator;
+5. require the three skipped targets to lack that discriminator before treating prior-cloak state as evidence for an effective blocker;
+6. if ship118 remains unexplained, expand only the documented decloak context needed for that row (ion/mine/glory/etc.); do not weaken target ordering;
+7. keep Bird Super Spy ship202 separate from Privateer Rob ship98;
+8. no `selection.py` change until a current-Host effective state can be reconstructed without copying raw prior `iscloaked` blindly;
 9. after initial blocker closure, promote the canonical first selector and rerun candidate/target differentials;
 10. implement mutable survivor/destruction state, then compose closed second-pass orientation and capture continuation;
 11. place ship-to-planet repair boundary and integrate planet/base participation;
