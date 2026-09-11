@@ -2,6 +2,10 @@
 
 GitHub is the only source of truth. Inspect actual `main` and `agent/combat-c5-host-phase` HEADs before continuing. PR #28 remains draft/open and must not be merged or marked ready without explicit instruction. Game `591478` remains isolated from ordinary promotion.
 
+Progress overview: `docs/handoff/2026-09-11-reverse-progress-assessment.md`.
+
+Planning estimate only (not evidence): combat mechanics knowledge C1-C5 ~70-80%; current independently reconstructed ordinary ship-combat candidate coverage ~20-25%; whole NuHost roadmap ~40-50%.
+
 ## Stable C5 layers
 
 Do not reopen these absent a direct contradiction:
@@ -199,7 +203,17 @@ tools/diagnostics/combat_host_privateer_rob_cloak_fuel_attribution_audit.py
 tests/test_combat_host_privateer_rob_cloak_fuel_attribution_audit.py
 ```
 
-It has two purposes.
+Latest attempted runtime source `180429508419581cf5082bb5363e1b8c528dd14f` is **INVALID** as mechanics evidence:
+
+```text
+tests rc=2
+audit rc=99
+pytest collection: ModuleNotFoundError: No module named 'tools'
+```
+
+The failure was caused by the two newest tests importing diagnostics as `tools.diagnostics...` instead of following the established repository convention of inserting `tools/diagnostics` into `sys.path`. Both tests are repaired on the active branch. No attribution counters from that failed run exist and no mechanics conclusion changes.
+
+The gate has two purposes.
 
 First, isolate a cleaner visible-input fuel population requiring:
 
