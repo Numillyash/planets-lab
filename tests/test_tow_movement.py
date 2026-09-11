@@ -92,6 +92,25 @@ def test_tow_phase_moves_both_and_uses_combined_mass() -> None:
     assert next_state.metadata["movement.reserved_ship_ids"] == (1, 2)
 
 
+def test_finite_fuel_tow_prorates_combined_mass_move() -> None:
+    tower = _ship(1, hull_id=16, fuel=5, waypoint_x=150, mission="6", target_id=2)
+    target = _ship(2, hull_id=17, fuel=0, waypoint_x=170)
+    phase = TowMovementPhase(specs=_specs(), enable_expanded_movement=True)
+
+    next_state, events = HostEngine((phase,)).step(_state(tower, target), TurnOrders.empty())
+
+    assert (next_state.ships[1].x, next_state.ships[1].y) == (128, 100)
+    assert (next_state.ships[2].x, next_state.ships[2].y) == (128, 100)
+    assert next_state.ships[1].cargo.neutronium == 0
+    assert next_state.ships[1].warp == 0
+    assert next_state.ships[1].waypoint_x == 128
+    assert next_state.ships[2].warp == 0
+    assert next_state.ships[2].waypoint_x == 170
+    assert events[0].kind == "tow_moved"
+    assert ("fuel_used", "5") in events[0].details
+    assert ("movement_mass", "155") in events[0].details
+
+
 def test_failed_tow_is_bumped_to_move_most() -> None:
     tower = _ship(1, hull_id=16, fuel=100, mission="6", target_id=2)
     target = _ship(2, hull_id=17, fuel=0)

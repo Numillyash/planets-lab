@@ -6,9 +6,10 @@ New chats should start from:
 
 [`handoff/2026-09-05-new-chat-context.md`](handoff/2026-09-05-new-chat-context.md)
 
-Current movement checkpoint:
+Current movement checkpoints:
 
-[`handoff/2026-09-09-partial-fuel-historical-gate-verified.md`](handoff/2026-09-09-partial-fuel-historical-gate-verified.md)
+- [`handoff/2026-09-11-finite-fuel-tow-documented-reconciliation-runtime.md`](handoff/2026-09-11-finite-fuel-tow-documented-reconciliation-runtime.md)
+- [`handoff/2026-09-09-partial-fuel-historical-gate-verified.md`](handoff/2026-09-09-partial-fuel-historical-gate-verified.md)
 
 ## Current verified schema state
 
@@ -23,7 +24,7 @@ Raw `/game/loadall` archives remain unchanged. Prepared projection stays privacy
 
 ## Current runtime-verified 12-game invariants
 
-The compiled-layer counters remain the last recorded L1/L2 rebuild checkpoint. The later partial-fuel historical gate read these existing archives/caches without rebuilding L1/L2 and verified the nominal-leg planner independently.
+The compiled-layer counters remain the last recorded L1/L2 rebuild checkpoint. Later partial-fuel and finite-fuel Tow historical gates read these existing archives/caches without rebuilding L1/L2 and verified narrowly scoped movement rules independently.
 
 L1:
 
@@ -108,7 +109,59 @@ continuous nominal one-turn fuel basis for true-partial Move Most / Intercept
 CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
 ```
 
-Finite-fuel Tow is not included in this promotion and remains OPEN.
+Finite-fuel Tow is a separate evidence chain and is not inferred from this promotion.
+
+## Finite-fuel Tow documented reconciliation gate
+
+The finite-fuel Tow evidence chain first isolated strict owner-visible Tow transitions, then bounded warp-well, storm, Chunnel, break-independent-movement and web-context confounders. The final cleaned same-line case is `360690/T41`, tower `425`, target `353`.
+
+Server gate candidate:
+
+```text
+candidate  bc3b767330dc23ed09303eed766365fa53877209
+source     logs/finite-fuel-tow-same-line-context-resolution-20260911T123937Z-c0f954cf-11500
+collected  logs/finite-fuel-tow-documented-reconcile-20260911T160149Z-bc3b7673-29099
+stages     all 0/0
+```
+
+The towed hull is an Alchemy ship with an exact observed cargo conversion:
+
+```text
+supplies          2700 -> 0
+minerals total       0 -> 900
+mass reduction         1800 KT
+```
+
+Three competing models were evaluated against the factual endpoint `(2183,2688)`:
+
+```text
+model                         mass KT  fuel required/available  endpoint       exact
+pre-Alchemy combined             3963          241 / 124        (2172,2712)     no
+post-Alchemy combined            2163          131 / 124        (2183,2688)     yes
+post-Alchemy tower-only           333           20 / 124        (2184,2685)     no
+```
+
+Gate summary:
+
+```text
+cases=1
+pre_alchemy_combined_exact=0
+post_alchemy_combined_exact=1
+post_alchemy_tower_only_exact=0
+alchemy_mass_basis_discriminator=1
+combined_mass_discriminator=1
+```
+
+This is a clean historical discriminator for the documented rule: a successful finite-fuel Tow uses post-Alchemy combined tower+towed movement mass and proportional insufficient-fuel distance. Official Planets.nu documentation independently supplies all three semantics: towed-mass inclusion, mass evaluation after Alchemy, and proportional insufficient-fuel movement.
+
+Scoped evidence status:
+
+```text
+base finite-fuel Tow movement
+DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
+```
+
+The promotion is intentionally narrow. `360690/T44` and `360690/T185` remain bounded hostile-web damage context rather than Tow-fuel evidence. Tow contests/chains/cycles, deterministic web/mine hit location, Chunnel/storm interaction ordering, special/campaign behavior and any unimplemented end-to-end Alchemy phase remain separate boundaries.
 
 ## Current generic final endpoint
 
@@ -140,6 +193,7 @@ Residual clusters are investigation leads only; they are not mechanics without i
 - ordinary movement / Host major-minor geometry;
 - warp-well ordering — **TESTED + DIFF_VERIFIED**;
 - route-equivalent owner-visible Tow — **TESTED + DIFF_VERIFIED**;
+- base finite-fuel Tow post-Alchemy combined-mass proportional movement — **DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**;
 - route-equivalent Chunnel multiplicity — **TESTED + DIFF_VERIFIED**;
 - classic/cloudy ion storms — **DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**;
 - scoped effective sphere topology for game `591478` — **CORPUS_OBSERVED + TESTED + DIFF_VERIFIED**;
@@ -223,6 +277,7 @@ The original `511506 / T23 / ship160 / hull17` survivor is now production-closed
 movement-mine targeted module: 10 passed
 full GitHub Actions pytest:    green on mechanics/test commit
 partial-fuel server gate:      371 passed / all stages 0/0
+finite-fuel Tow gate:          documented reconciliation all stages 0/0
 full 12-game L2 rebuild:       clean / zero failures
 final generic clustering:      2197 total / 740 generic / 75 hulls / largest coarse 113
 ```
