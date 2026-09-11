@@ -11,7 +11,9 @@ This file is the operational roadmap for `planets-lab`. Architecture boundaries 
 - Privateer Rob selector-impact runtime: [`handoff/2026-09-11-combat-c5-privateer-rob-selector-impact-runtime.md`](handoff/2026-09-11-combat-c5-privateer-rob-selector-impact-runtime.md).
 - Bird Super Spy cloak-context runtime: [`handoff/2026-09-11-combat-c5-bird-super-spy-cloak-context-runtime.md`](handoff/2026-09-11-combat-c5-bird-super-spy-cloak-context-runtime.md).
 - Combined blocker projection runtime: [`handoff/2026-09-11-combat-c5-initial-standard-combined-blocker-projection-runtime.md`](handoff/2026-09-11-combat-c5-initial-standard-combined-blocker-projection-runtime.md).
-- Active Bird population gate: [`handoff/2026-09-11-combat-c5-bird-super-spy-population-pending.md`](handoff/2026-09-11-combat-c5-bird-super-spy-population-pending.md).
+- Bird population runtime: [`handoff/2026-09-11-combat-c5-bird-super-spy-population-runtime.md`](handoff/2026-09-11-combat-c5-bird-super-spy-population-runtime.md).
+- Advanced Cloak visible-context runtime: [`handoff/2026-09-11-combat-c5-bird-advanced-cloak-decisive-context-runtime.md`](handoff/2026-09-11-combat-c5-bird-advanced-cloak-decisive-context-runtime.md).
+- Active Advanced Cloak raw-event gate: [`handoff/2026-09-11-combat-c5-bird-advanced-cloak-event-pending.md`](handoff/2026-09-11-combat-c5-bird-advanced-cloak-event-pending.md).
 
 ## Evidence policy
 
@@ -75,73 +77,104 @@ The two original broad mismatches were:
 
 ```text
 360690/T83: active264; extra98; factual190   # Privateer Rob
-511506/T94: active496; extra202; factual332  # Bird Super Spy
+511506/T94: active496; extra202; factual332  # Bird ordinary Super Spy
 ```
 
 Privateer Rob ordinary-cloak directional targetability is `CORPUS_OBSERVED + TESTED + DIFF_VERIFIED` within its tested scope. Bird ship202 is `DOCUMENTED + CORPUS_OBSERVED + TESTED` at the focused ordinary-cloak Super Spy targetability boundary.
 
-The combined structural projection runtime now closes all four strict/conditional baseline mismatch profiles:
+The combined structural projection closes all four strict/conditional baseline mismatch profiles:
 
 ```text
 baseline_mismatch_examples=4
-privateer_residual_profiles=2
-privateer_residual_profiles_projected_fixed=2
-bird_residual_profiles=2
-bird_residual_profiles_projected_fixed=2
+privateer_residual_profiles_projected_fixed=2/2
+bird_residual_profiles_projected_fixed=2/2
 unrelated_baseline_mismatches=0
-```
-
-Acceptance:
-
-```text
-privateer_gate_still_clean=True
-bird_context_gate_clean=True
-privateer_residual_all_profiles_projected_fixed=True
-bird_residual_all_profiles_projected_fixed=True
-no_unrelated_baseline_mismatches=True
 all_original_broad_mismatches_projected_fixed=True
 ```
 
-This is a structural composition checkpoint only. It does not yet justify a corpus-wide Bird rule or canonical selector wiring.
+This is structural composition only; canonical selector wiring is still intentionally deferred.
 
-### Immediate combat work — Bird Super Spy population differential
+### Bird population checkpoint
 
-Active diagnostic:
-
-```text
-tools/diagnostics/combat_host_bird_super_spy_attack_opportunity_audit.py
-tests/test_combat_host_bird_super_spy_attack_opportunity_audit.py
-```
-
-The gate reconstructs all one-way hostile plain-STANDARD opportunities against Bird race3 / mission9 Super Spy / cloak-capable targets at factual combat sites. It uses the same position-v3/candidate-set-v2, diplomacy and canonical pair-decision primitives as the existing initial STANDARD and Privateer diagnostics.
-
-Each target is evaluated conservatively for documented ordinary cloak using damage, fuel, independently reconstructed reference movement, prior archived cloak, ion storm, possible planet Ion Pulse, Loki and active Glory context. Advanced/unresolved state fails closed.
-
-Queue-decisive labels remain limited to:
+Population audit over Bird race3 / mission9 Super Spy / cloak-capable targets:
 
 ```text
-initial_pair_vcr                       -> expected eligible
-initial_skip_target_outranks_factual  -> expected blocked
+bird_super_spy_targets_at_factual_sites=30
+plain STANDARD one-way opportunities=8
+
+decisive_rows=4
+decisive_match=1
+decisive_mismatch=0
+decisive_unresolved=3
+blocked factual-pair regressions=0
 ```
 
-Acceptance requires:
+All hard acceptance checks passed. The original ordinary-cloak ship202 residual is the one decisive match. All three decisive unresolved rows are Advanced Cloak:
 
 ```text
-no_race_conflicts=True
-no_payload_conflicts=True
-no_blocked_factual_pair_regressions=True
-no_decisive_mismatch=True
-target_residual_present=True
-target_residual_supported=True
+620694/T119 ship26 vs74 — expected blocked
+620694/T119 ship69 vs74 — expected blocked
+680435/T31 ship68 vs26 — factual pair / expected eligible
 ```
 
-`decisive_unresolved>0` is not automatically a contradiction because the model deliberately fails closed, but every unresolved decisive row must be inspected before promotion.
+Therefore Advanced Cloak cannot be blanket-blocked.
 
-If the Bird population gate is clean enough:
+### Advanced Cloak visible-context checkpoint
 
-1. compose supported Bird states with the already DIFF_VERIFIED Privateer targetability overlay;
-2. run a population-wide directional STANDARD targetability differential over the full initial selector baseline;
-3. require all previously exact first selectors to remain exact, zero factual-pair regressions, zero first-selector regressions and both original residuals fixed;
+Focused full-position/post-movement audit:
+
+```text
+focus_rows=3
+expected_blocked_rows=2
+expected_eligible_rows=1
+postmove_active_glory_possible_rows=0
+postmove_loki_possible_rows=0
+```
+
+All three rows have no visible candidate-set mine-route risk. The factual ship68 and skipped ship26/69 are therefore not separated by visible Glory, Loki or visible mine geometry.
+
+`620694/T119 ship26/69` remain stable at T with damage0 and `iscloaked=true`; this supports continued cloak attribution but T remains post-Host and cannot feed precombat state. `680435/T31 ship68` has no stable T identity because it participates in the factual combat.
+
+Attacker ship26 mission3 is canonical `Kill!`, so the ship68 factual pair is a valid ordinary-STANDARD negative control rather than a phase-classification artifact.
+
+Population-wide Bird Advanced Cloak targetability remains:
+
+```text
+UNRESOLVED
+```
+
+### Immediate combat work — raw Host events / hidden context
+
+Active gate:
+
+```text
+tools/diagnostics/combat_host_bird_advanced_cloak_event_audit.py
+tests/test_combat_host_bird_advanced_cloak_event_audit.py
+```
+
+The diagnostic inspects narrow raw `.trn` windows around the two decisive cases and inventories only tightly scoped mechanical evidence:
+
+```text
+680435: T30/T31/T32; focus ships68/26; site(1984,2266)
+620694: T118/T119/T120; focus ships26/69/74; site(1590,1837)
+```
+
+It reports owner3 active race/campaign advantages, settings and visible minefields; focus ship timelines; exact-ID/site mechanical messages; sanitized event/report records; and matching VCRs.
+
+Priority hypotheses:
+
+1. explicit mine/web hit or cloak-failure report for factual ship68;
+2. Hidden Minefields or another relevant active advantage plus compatible mechanical evidence;
+3. typed damage/decloak/Loki/Glory event not represented by the normalized context;
+4. another raw Host event that separates ship68 from skipped ship26/69.
+
+**Absence of a message is not proof of no event.** If no positive separator appears, Advanced Cloak stays unresolved/fail-closed rather than being special-cased.
+
+After Advanced Cloak is either resolved or explicitly kept outside the supported targetability scope:
+
+1. compose only supported Privateer/Bird directional targetability states;
+2. run the population-wide initial STANDARD selector differential;
+3. require all previously exact first selectors to remain exact, zero factual-pair/first-selector regressions and both original residuals fixed;
 4. only then wire directional targetability into the canonical first STANDARD selector;
 5. proceed to mutable survivor/destruction state, second-pass orientation, capture continuation and ship-to-planet/planet-base integration;
 6. keep game `591478` separate.
