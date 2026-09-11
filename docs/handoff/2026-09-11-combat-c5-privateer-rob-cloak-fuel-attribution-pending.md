@@ -1,140 +1,54 @@
-# C5 Host combat — Privateer Rob cloak/fuel attribution gate
+# C5 Host combat — Privateer Rob cloak/fuel attribution gate — COMPLETE
 
 GitHub is the source of truth. PR #28 remains draft/open and unmerged. Game `591478` stays excluded from ordinary promotion.
 
-## Latest runtime attempt — INVALID / infrastructure only
-
-Attempted source:
+This gate has been completed successfully on source:
 
 ```text
-180429508419581cf5082bb5363e1b8c528dd14f
+16f9253b92f7e48f7f2179f9c3b704469de4128a
 ```
 
 Runtime result:
 
 ```text
-tests rc=2
-audit rc=99
+tests rc=0
+audit rc=0
 ```
 
-Both targeted tests failed during pytest collection with:
+Full durable result:
 
 ```text
-ModuleNotFoundError: No module named 'tools'
+docs/handoff/2026-09-11-combat-c5-privateer-rob-cloak-fuel-attribution-runtime.md
 ```
 
-This is **not mechanics evidence** and does not change any combat conclusion. The new tests used `from tools.diagnostics...` while the established repository convention is to add `tools/diagnostics` to `sys.path` and import diagnostic modules directly.
-
-The import regression is now repaired in both:
-
-```text
-tests/test_combat_host_privateer_rob_cloak_fuel_state_audit.py
-tests/test_combat_host_privateer_rob_cloak_fuel_attribution_audit.py
-```
-
-The attribution gate remains pending until rerun on the repaired branch HEAD.
-
-Depends on:
-
-```text
-docs/handoff/2026-09-11-combat-c5-privateer-rob-cloak-fuel-state-runtime.md
-```
-
-The population runtime established a large structured exact ordinary-cloak-reference fuel-debit cluster among stable prior-true Privateer mission9/Rob cloak-capable rows:
+Headline findings:
 
 ```text
 stable prior-true rows=1413
-exact_reference_debit=545
-exact true_to_true=541
-same-position quiet bucket: 515 exact / 112 other / 86 zero
+clean stationary/no-visible-fuel-mutation rows=12
+clean exact-reference-debit=2
+clean zero-debit=7
+clean other-debit=3
+
+threshold rows fuel <= reference cost=14
+ordinary-cloak threshold rows=13
+ordinary threshold true_to_false=13/13
+advanced-cloak threshold true_to_true=1/1
 ```
 
-The exact debit is therefore not a sparse coincidence, but it is still only `CORPUS_OBSERVED + TESTED` state correlation. Mission9 is documented Rob Ship, not ordinary Cloak.
+The clean subset therefore rejects the simple universal interpretation `Rob Ship consumes ordinary cloak reference fuel`: the broad exact-debit correlation collapses from the earlier 72.2% quiet-bucket share to only 2/12 in the stricter visible-input subset.
 
-The strongest unresolved control remains `620694/T64/ship118`: T-1 fuel equals the 5-KT Meteor reference cost and the ship enters the factual first battle. A hypothetical reference debit would exhaust it, but T identity after combat is not stable and the debit is not observed.
+The low-fuel controls instead expose a strong threshold correlation: every ordinary-cloak hull row with archived prior `iscloaked=true` and `fuel_before <= reference_cost` transitions `true_to_false` in this population. The sole below-threshold `true_to_true` row is an advanced-cloak hull and has confounded fuel acquisition / foreign-origin context.
 
-## Diagnostic
+This threshold is `CORPUS_OBSERVED + TESTED`, but is **not yet a canonical combat blocker predicate**. All 13 ordinary threshold controls have nonzero requested Warp, so phase/order attribution is still required.
 
-```text
-tools/diagnostics/combat_host_privateer_rob_cloak_fuel_attribution_audit.py
-tests/test_combat_host_privateer_rob_cloak_fuel_attribution_audit.py
-```
+The next gate is an explicit fail-closed effective-cloak candidate differential:
 
-Schema:
+1. partition ordinary-cloak vs advanced-cloak Privateer mission9 prior-true rows;
+2. model fuel margin around `fuel_before - reference_cost`;
+3. control requested Warp / transfer / ion / Loki / Glory context;
+4. apply the candidate helper only in diagnostics;
+5. rerun initial-target opportunities and test whether the three skipped Meteors are blocked while `620694/T64/ship118` remains eligible;
+6. keep Bird `511506/T94/ship202` separate.
 
-```text
-planets-lab.combat-host-privateer-rob-cloak-fuel-attribution-audit.v1
-```
-
-## Clean fuel-attribution subset
-
-The diagnostic builds a deliberately conservative visible-input subset from stable prior-true mission9 rows:
-
-```text
-damage=0
-effective requested Warp=0
-T position unchanged
-no nonzero submitted outbound transfer
-not a visible submitted inbound-transfer target
-no foreign owner-current ship co-located at T-1 Rob origin
-```
-
-This removes the dominant visible sources of net fuel mutation:
-
-```text
-normal movement fuel use
-visible Rob fuel acquisition opportunity
-visible submitted ship transfer
-```
-
-It does not claim complete causal isolation. Starbase refuel, web drain, hidden/visibility-dependent effects or other Host phases can still change T fuel.
-
-## Low-fuel threshold controls
-
-The previous population contains:
-
-```text
-fuel_before == reference_cost: 3 stable rows
-fuel_before <  reference_cost: 11 stable rows
-```
-
-These 14 rows are emitted in full, including:
-
-```text
-fuel before/after/debit
-reference cost
-true_to_true / true_to_false
-VCR participation
-requested warp / same-position state
-visible Rob-origin ships
-submitted transfer context
-T-1 ion-disturbance context
-T-1 Loki exposure
-co-located static-spec Glory Device with POP/TRG code
-advanced-cloak static special flag
-```
-
-This is the highest-value threshold control population because it can test whether insufficient/exact fuel predicts loss of the archived cloak-state signal and/or combat participation.
-
-## Decloak context
-
-T-1 annotations are attribution only:
-
-- ion disturbance: target origin lies within an archived T-1 storm circle;
-- Loki: foreign hull7 with damage <=19% within 10 ly at T-1;
-- Glory: foreign co-located hull whose archive static `special` contains `Glory`, with active `POP`/`TRG` FC separately flagged.
-
-These annotations do not reconstruct diplomacy immunity, moving Glory arrival, post-movement Loki arrival or exact trigger resolution.
-
-## Decision boundary
-
-Strong support for a current-Host fuel-threshold state would require both:
-
-1. a large clean stationary/no-visible-fuel-source population continuing to show exact reference debit; and
-2. low-fuel controls showing a structured threshold transition, especially stable `fuel==reference_cost` or `fuel<reference_cost` rows becoming `true_to_false` or otherwise ceasing to behave like the positive-fuel population without an alternative documented decloak context.
-
-Even then, do not immediately write `mission9 => cloak` into combat selection. First convert the evidence into an explicit effective-state helper with fail-closed inputs and rerun the initial-target differential.
-
-If the clean population loses the exact-debit signal, or threshold controls contradict the model, reject the threshold explanation and retain raw prior `iscloaked` as non-causal historical state.
-
-No canonical combat code changes in this gate.
+No canonical `selection.py`, `queue.py`, STANDARD priority or FC parser changes are justified yet.
