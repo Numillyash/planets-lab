@@ -83,9 +83,10 @@ docs/handoff/2026-09-11-combat-c5-privateer-rob-cloak-population-runtime.md
 docs/handoff/2026-09-11-combat-c5-privateer-rob-attack-opportunity-runtime.md
 docs/handoff/2026-09-11-combat-c5-privateer-rob-initial-decision-runtime.md
 docs/handoff/2026-09-11-combat-c5-privateer-rob-initial-cloak-context-runtime.md
+docs/handoff/2026-09-11-combat-c5-privateer-rob-cloak-fuel-state-runtime.md
 ```
 
-Raw archived `T-1 iscloaked=true` is rejected as a blanket or direct scoped Privateer-Rob blocker.
+Raw archived `T-1 iscloaked=true` remains rejected as a blanket or direct scoped Privateer-Rob blocker.
 
 Initial-decision runtime isolated three genuine clean missing-state residuals with no prior queue mutation:
 
@@ -104,15 +105,9 @@ The only clean prior-true initial fought control is:
 T-1 fuel=5
 ```
 
-### Latest cloak-context runtime
+### Focused cloak-context runtime
 
-Runtime source:
-
-```text
-fe9f1575b81d7ea4c922426c8f56d689dbd66ef3
-```
-
-Tests/audit rc0. The focused four-row gate found:
+Runtime source `fe9f1575b81d7ea4c922426c8f56d689dbd66ef3`, tests/audit rc0:
 
 ```text
 focus_rows=4
@@ -121,62 +116,111 @@ normal movement distance=0 / fuel_used=0 for all 4
 no active Loki within 10 ly for all 4
 ```
 
-Therefore damage, normal-movement fuel exhaustion and Loki do **not** explain why ship118 is fought while the other three are skipped.
+Damage, normal-movement fuel exhaustion and Loki therefore do not explain the fought ship118 versus the three skipped Meteors.
 
-A strong new corpus correlation emerged on the three stable skipped Meteors:
+### Cloak/fuel-state population runtime
+
+Runtime source:
 
 ```text
-ship46:   58 -> 53  exact -5 KT, remains iscloaked=true
-ship280:   9 ->  4  exact -5 KT, remains iscloaked=true
-ship98:   45 -> 40  exact -5 KT, remains iscloaked=true
+cf52a264c31418a8247987a64332c54e50e07a91
 ```
 
-Meteor ordinary-cloak reference cost is 5 KT. The sole clean fought prior-true control starts with exactly 5 KT. A hypothetical 5-KT debit would therefore leave all three skipped targets with positive fuel and exhaust ship118 exactly.
+Tests/audit rc0; payload conflicts remain zero.
+
+```text
+stable prior-true rows=1413
+exact_reference_debit=545
+zero_debit=90
+other_debit=778
+
+same_position=718
+position_changed=695
+
+true_to_true=1378
+true_to_false=35
+
+threshold above reference cost=1399
+threshold equals reference cost=3
+threshold below reference cost=11
+```
+
+The exact ordinary-cloak-reference debit is a large structured signal, not a four-row coincidence:
+
+```text
+545 / 1413 = 38.6% overall
+541 / 545 = 99.3% exact-debit rows are true_to_true
+```
+
+Strongest stationary quiet bucket:
+
+```text
+same_position=True, damage0, PE0, no VCR:
+  exact=515
+  other=112
+  zero=86
+  exact share=72.2%
+```
+
+The three skipped Meteors remain exact 5-KT observations:
+
+```text
+ship46:  58 -> 53
+ship280:  9 -> 4
+ship98:  45 -> 40
+```
+
+Meteor ordinary-cloak reference cost is 5 KT. Ship118 starts with exactly 5 KT, so a hypothetical reference debit would exhaust it exactly. Because ship118 T physical identity is not stable, `5 -> 0` is still **not observed**.
 
 Evidence status:
 
 ```text
-CORPUS_OBSERVED + INFERRED
+large structured exact-reference-debit population:
+  CORPUS_OBSERVED + TESTED
+
+"Rob Ship consumes cloak fuel" / "mission9 preserves cloak":
+  NOT PROMOTED
 ```
 
-Do **not** promote this as `Rob Ship consumes cloak fuel`: mission9 is Rob Ship, not the documented ordinary Cloak mission, and T is post-Host. Existing ordinary cloak-fuel work uses mission10 as the causal Cloak branch.
+Official cloak documentation describes fuel consumption for the `Cloak` mission; Privateer mission9 is documented `Rob Ship`. Therefore the population signal still needs phase/fuel-source attribution before any canonical effective-cloak rule.
 
-## Immediate gate — Privateer Rob cloak/fuel-state population
+## Immediate gate — Privateer Rob cloak/fuel attribution
 
 Read:
 
 ```text
-docs/handoff/2026-09-11-combat-c5-privateer-rob-cloak-fuel-state-pending.md
+docs/handoff/2026-09-11-combat-c5-privateer-rob-cloak-fuel-attribution-pending.md
 ```
 
 Diagnostic:
 
 ```text
-tools/diagnostics/combat_host_privateer_rob_cloak_fuel_state_audit.py
-tests/test_combat_host_privateer_rob_cloak_fuel_state_audit.py
+tools/diagnostics/combat_host_privateer_rob_cloak_fuel_attribution_audit.py
+tests/test_combat_host_privateer_rob_cloak_fuel_attribution_audit.py
 ```
 
-Measure across all stable physical Privateer race5 mission9 cloak-capable rows with prior archived `iscloaked=true`:
+It has two purposes.
+
+First, isolate a cleaner visible-input fuel population requiring:
 
 ```text
-fuel_before - fuel_after
-ordinary cloak reference cost
-exact_reference_debit / zero_debit / other_debit
-same-position vs moved
-damage
-true_to_true / true_to_false
-PE0 vs nonzero
-VCR participation
-fuel-before threshold vs reference cost
+damage0
+effective requested Warp0
+same T position
+no submitted outbound transfer
+not a submitted inbound-transfer target
+no foreign owner-current ship at the T-1 Rob origin
 ```
 
-The four clean initial rows are emitted separately. Ship118 `5 -> 0` is hypothetical only because its T physical identity is not stable.
+Second, emit all low-fuel threshold controls. The completed population contains 3 stable rows with `fuel==reference_cost` and 11 with `fuel<reference_cost`; these are higher-value controls than another broad prevalence count.
+
+The attribution gate also annotates T-1 ion-disturbance, Loki and co-located active Glory-device context from archived state/static specs.
 
 Decision boundary:
 
-- broad structured exact-reference debit -> run a second clean attribution gate controlling Rob/transfer exposure plus ion/glory context;
-- sparse/noisy exact debit -> reject the attractive 5-KT threshold explanation and search another hidden state discriminator;
-- no `selection.py` or `queue.py` change before this evidence closes.
+- clean stationary/no-visible-fuel-source rows retain a dominant exact-reference debit, and low-fuel rows show a structured threshold transition -> promote only an explicit evidence-scoped effective-state model, then rerun initial-target differential;
+- clean signal collapses or low-fuel controls contradict the threshold -> reject the 5-KT threshold explanation;
+- no `selection.py`, `queue.py`, target-order, STANDARD priority or FC parser change before this gate.
 
 Later C5 work: close Privateer ship98 and Bird ship202 state; promote canonical first selector; compose mutable survivor/destruction state; second-pass orientation; capture continuation; ship-to-planet repair boundary; planet/base participation.
 
