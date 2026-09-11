@@ -1,7 +1,16 @@
+from __future__ import annotations
+
+import sys
+from pathlib import Path
 from types import SimpleNamespace
 
 from planets_lab.corpus.movement_residual_context import StormRecord
-from tools.diagnostics.combat_host_privateer_rob_cloak_fuel_attribution_audit import (
+
+TOOLS_DIR = Path(__file__).resolve().parents[1] / "tools" / "diagnostics"
+if str(TOOLS_DIR) not in sys.path:
+    sys.path.insert(0, str(TOOLS_DIR))
+
+from combat_host_privateer_rob_cloak_fuel_attribution_audit import (  # noqa: E402
     _clean_stationary_fuel_context,
     _glory_start_context,
     _inside_any_ion_disturbance,
