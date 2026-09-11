@@ -113,7 +113,7 @@ raw prior iscloaked as blanket blocker:
 
 The helper remains at `src/planets_lab/rules/combat/effective_state.py`, but targetability is not yet wired into canonical selection.
 
-## Bird Super Spy blocker — CLOSED at focused targetability boundary
+## Bird ordinary Super Spy blocker — CLOSED at focused boundary
 
 Focused runtime source `6cf47de46fadcbe1619c6a6eee5731d51866c12e`, 21 targeted tests passed.
 
@@ -149,15 +149,7 @@ Runtime:
 docs/handoff/2026-09-11-combat-c5-initial-standard-combined-blocker-projection-runtime.md
 ```
 
-Source HEAD:
-
-```text
-96ce64a1cc3d7da7874f0e9f37dea1333531330c
-```
-
-Targeted tests: 25 passed.
-
-Baseline remains exactly four mismatch profile rows, two per historical site. Combined projection result:
+Source HEAD `96ce64a1cc3d7da7874f0e9f37dea1333531330c`, 25 targeted tests passed.
 
 ```text
 baseline_mismatch_examples=4
@@ -168,46 +160,32 @@ bird_residual_profiles_projected_fixed=2
 unrelated_baseline_mismatches=0
 ```
 
-All acceptance flags are true:
+All acceptance flags are true. This is structural composition only; canonical targetability remains unwired.
 
-```text
-privateer_gate_still_clean=True
-bird_context_gate_clean=True
-privateer_residual_all_profiles_projected_fixed=True
-bird_residual_all_profiles_projected_fixed=True
-no_unrelated_baseline_mismatches=True
-all_original_broad_mismatches_projected_fixed=True
-```
-
-This closes the structural composition of the two independently established blockers, but does **not** yet prove a corpus-wide Bird rule or justify canonical targetability wiring.
-
-## Immediate gate — Bird Super Spy population opportunity differential
+## Bird Super Spy population runtime — hard contradiction gate PASSED
 
 Read:
 
 ```text
-docs/handoff/2026-09-11-combat-c5-bird-super-spy-population-pending.md
+docs/handoff/2026-09-11-combat-c5-bird-super-spy-population-runtime.md
 ```
 
-Diagnostic:
+Source HEAD `2edb1349562d0ed7fc7a6c74a807004e540c46b8`, 17 targeted tests passed.
 
 ```text
-tools/diagnostics/combat_host_bird_super_spy_attack_opportunity_audit.py
-tests/test_combat_host_bird_super_spy_attack_opportunity_audit.py
+bird_super_spy_targets_at_factual_sites=30
+raw_attack_opportunities=8
+conditional_plain_standard_opportunities=8
+strict_plain_standard_opportunities=8
+
+decisive_rows=4
+decisive_match=1
+decisive_mismatch=0
+decisive_unresolved=3
+blocked_factual_pair_regressions=0
 ```
 
-It scans all ordinary historical archives except game `591478`, reconstructing hostile one-way plain-STANDARD opportunities against Bird race3 / mission9 Super Spy / cloak-capable targets through the same position-v3, candidate-set-v2, diplomacy and canonical pair-decision layers used elsewhere.
-
-The documented effective-cloak candidate remains conservative: ordinary cloak only, damage/fuel/reference movement resolved, prior archived cloak positive, and T-1 ion storm / possible planet Ion Pulse / Loki / active Glory contexts clear. Advanced and unresolved states remain unresolved.
-
-Queue-decisive labels are only:
-
-```text
-initial_pair_vcr                       -> expected eligible
-initial_skip_target_outranks_factual  -> expected blocked
-```
-
-Strong acceptance:
+Hard acceptance all passed:
 
 ```text
 no_race_conflicts=True
@@ -218,10 +196,104 @@ target_residual_present=True
 target_residual_supported=True
 ```
 
-`decisive_unresolved>0` is not itself a contradiction because the candidate deliberately fails closed; every unresolved decisive row must be inspected before generic promotion.
+All three decisive unresolved rows are Advanced Cloak:
 
-If this population gate is clean enough, next compose supported Bird states with the DIFF_VERIFIED Privateer overlay and rerun a population-wide directional STANDARD targetability differential over the full initial selector baseline. Require all previously exact selectors to stay exact, zero factual-pair/first-selector regressions, and both historical residuals fixed.
+```text
+620694/T119 ship26 vs74 — expected blocked
+620694/T119 ship69 vs74 — expected blocked
+680435/T31 ship68 vs26 — factual pair / expected eligible
+```
 
-Only then wire targetability into the canonical first STANDARD selector. After that C5 moves to mutable survivor/destruction state, mutable second-pass orientation, capture continuation and ship-to-planet/planet-base integration.
+Therefore ordinary Super Spy is supported within scope, while blanket Advanced-Cloak targetability is explicitly not promoted.
+
+## Advanced Cloak visible-context runtime — NO SEPARATOR FOUND
+
+Read:
+
+```text
+docs/handoff/2026-09-11-combat-c5-bird-advanced-cloak-decisive-context-runtime.md
+```
+
+Source HEAD `838aca3a931d16f7cb46e28350271b34a1cacf8c`, 16 targeted tests passed.
+
+```text
+focus_rows=3
+expected_blocked_rows=2
+expected_eligible_rows=1
+stable_t_identity_rows=2
+postmove_active_glory_possible_rows=0
+postmove_loki_possible_rows=0
+t_cloak_false_rows=0
+t_cloak_true_rows=2
+```
+
+Factual control `680435/T31 ship68`:
+
+```text
+start=(1996,2287)
+full predicted position=(1984,2266)
+position source=normal_move_warp_well
+visible mine route risk=None
+prior cloak=true, damage0, fuel480
+postmove active Glory=[]
+postmove Loki=[]
+T stable identity=False
+```
+
+Skipped `620694/T119 ship26/69`:
+
+```text
+start=(1574,1872)
+full predicted position=(1590,1837)
+position source=normal_move_warp_well
+visible mine route risk=None
+postmove active Glory at site=False
+postmove Loki within 10 ly=False
+T stable identities=True
+T damage=0
+T iscloaked=True for both
+```
+
+No visible post-movement Glory/Loki/mine separator exists. A blanket Advanced-Cloak blocker would still regress the factual ship68 pair. Attacker ship26 mission3 is canonical `Kill!`, so ship68 is a valid ordinary-STANDARD negative control rather than a pre-standard mission artifact.
+
+Evidence status:
+
+```text
+Advanced Cloak decisive visible-context audit:
+  CORPUS_OBSERVED + TESTED
+
+population-wide Advanced Cloak targetability:
+  UNRESOLVED
+```
+
+## Immediate gate — raw Host events / hidden context
+
+Read:
+
+```text
+docs/handoff/2026-09-11-combat-c5-bird-advanced-cloak-event-pending.md
+```
+
+Diagnostic:
+
+```text
+tools/diagnostics/combat_host_bird_advanced_cloak_event_audit.py
+tests/test_combat_host_bird_advanced_cloak_event_audit.py
+```
+
+The gate reads raw `.trn` members around the two decisive cases and inventories only tightly scoped mechanical evidence:
+
+```text
+680435: T30/T31/T32; ships68/26; site(1984,2266)
+620694: T118/T119/T120; ships26/69/74; site(1590,1837)
+```
+
+It reports owner3 active advantages/settings/visible minefields, focus-ship timelines, exact-ID/site mechanical messages, sanitized event/report records and matching VCRs.
+
+High-value positive evidence is an explicit mine/web hit, cloak failure, damage/decloak report, Hidden Minefields or related active advantage plus a compatible mechanical report, or another typed event referencing ship68. **Message absence is not proof of no event.**
+
+If the raw-event gate still yields no positive separator, Advanced Cloak stays fail-closed/unresolved. Do not reopen ordinary ship202 or Privateer closures merely because this branch is unresolved.
+
+Only after supported targetability states are population-differential clean should directional targetability be wired into the canonical first STANDARD selector. Then C5 proceeds to mutable survivor/destruction state, mutable second-pass orientation, capture continuation and ship-to-planet/planet-base integration.
 
 Keep `DOCUMENTED / CORPUS_OBSERVED / INFERRED / TESTED / DIFF_VERIFIED` distinct. Unknown branches fail closed.
