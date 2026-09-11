@@ -3,12 +3,15 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
+from planets_lab.corpus.reconstruction import PerspectiveRecord
+
 TOOLS_DIR = Path(__file__).resolve().parents[1] / "tools" / "diagnostics"
 if str(TOOLS_DIR) not in sys.path:
     sys.path.insert(0, str(TOOLS_DIR))
 
 from combat_host_bird_super_spy_cloak_context_audit import (  # noqa: E402
     _documented_super_spy_effective_cloak_candidate,
+    _planet_ion_pulse_context,
 )
 
 
@@ -31,6 +34,19 @@ def _candidate(**overrides):
     }
     values.update(overrides)
     return _documented_super_spy_effective_cloak_candidate(**values)
+
+
+def _planet_record(*, owner_id: int, defense: int | None) -> PerspectiveRecord:
+    raw = {"id": 1, "ownerid": owner_id, "x": 100, "y": 200}
+    if defense is not None:
+        raw["defense"] = defense
+    return PerspectiveRecord(
+        player_id=owner_id,
+        archive_turn=93,
+        embedded_turn=93,
+        infoturn=93,
+        raw=raw,
+    )
 
 
 def test_documented_super_spy_positive_candidate() -> None:
@@ -79,3 +95,39 @@ def test_advanced_cloak_is_deliberately_unresolved() -> None:
     state, reason = _candidate(advanced_cloak=True)
     assert state is None
     assert reason == "advanced_cloak_unresolved"
+
+
+def test_foreign_planet_with_30_defense_is_conservative_pulse_risk() -> None:
+    record = _planet_record(owner_id=6, defense=30)
+    result = _planet_ion_pulse_context(
+        planet_groups={(93, 1): (record,)},
+        turn=93,
+        ship_owner_id=3,
+        position=(100, 200),
+    )
+    assert result["possible"] is True
+    assert result["status"] == "possible"
+
+
+def test_same_owner_planet_is_not_super_spy_pulse_risk() -> None:
+    record = _planet_record(owner_id=3, defense=100)
+    result = _planet_ion_pulse_context(
+        planet_groups={(93, 1): (record,)},
+        turn=93,
+        ship_owner_id=3,
+        position=(100, 200),
+    )
+    assert result["possible"] is False
+    assert result["status"] == "clear"
+
+
+def test_foreign_planet_unknown_defense_fails_closed() -> None:
+    record = _planet_record(owner_id=6, defense=None)
+    result = _planet_ion_pulse_context(
+        planet_groups={(93, 1): (record,)},
+        turn=93,
+        ship_owner_id=3,
+        position=(100, 200),
+    )
+    assert result["possible"] is None
+    assert result["status"] == "unresolved"
