@@ -8,8 +8,8 @@ This file is the operational roadmap for `planets-lab`. Architecture boundaries 
 - Host combat phase C5: [`handoff/2026-09-08-combat-c5-host-phase-current.md`](handoff/2026-09-08-combat-c5-host-phase-current.md).
 - Candidate-set v2 runtime: [`handoff/2026-09-10-combat-c5-candidate-set-v2-runtime.md`](handoff/2026-09-10-combat-c5-candidate-set-v2-runtime.md).
 - Initial plain-STANDARD target-order runtime: [`handoff/2026-09-10-combat-c5-initial-standard-target-runtime.md`](handoff/2026-09-10-combat-c5-initial-standard-target-runtime.md).
-- Privateer Rob cloak/fuel-state population runtime: [`handoff/2026-09-11-combat-c5-privateer-rob-cloak-fuel-state-runtime.md`](handoff/2026-09-11-combat-c5-privateer-rob-cloak-fuel-state-runtime.md).
-- Active Rob cloak/fuel attribution gate: [`handoff/2026-09-11-combat-c5-privateer-rob-cloak-fuel-attribution-pending.md`](handoff/2026-09-11-combat-c5-privateer-rob-cloak-fuel-attribution-pending.md).
+- Privateer Rob clean fuel-attribution runtime: [`handoff/2026-09-11-combat-c5-privateer-rob-cloak-fuel-attribution-runtime.md`](handoff/2026-09-11-combat-c5-privateer-rob-cloak-fuel-attribution-runtime.md).
+- Privateer Rob effective-cloak threshold runtime: [`handoff/2026-09-11-combat-c5-privateer-rob-effective-cloak-threshold-runtime.md`](handoff/2026-09-11-combat-c5-privateer-rob-effective-cloak-threshold-runtime.md).
 
 ## Evidence policy
 
@@ -26,9 +26,9 @@ movement ordinary-core reconstruction:                  ~80-90%
 whole NuHost reverse across the roadmap:                ~40-50%
 ```
 
-The combat coverage number refers to the independent candidate-set boundary, not final full Host VCR prediction. Candidate-set v2 independently covers `428 / 1986 = 21.6%` factual ship-vs-ship pairs, with zero conditionally hard-blocked covered factual pairs. Position v3 predicts 1810/3204 factual ship occurrences, 1806 exact and 4 mismatch. Mechanics knowledge is therefore substantially ahead of full independent historical coverage.
+Candidate-set v2 independently covers `428 / 1986 = 21.6%` factual ship-vs-ship pairs, with zero conditionally hard-blocked covered factual pairs. Position v3 predicts 1810/3204 factual ship occurrences, 1806 exact and 4 mismatch.
 
-Whole-NuHost progress is lower because economy/starbase production, minefield lifecycle, general missions/special abilities, race mechanics, cross-subsystem diplomacy, observer/visibility and complete-turn differential validation remain major work. See `docs/handoff/2026-09-11-reverse-progress-assessment.md`.
+Whole-NuHost progress is lower because economy/starbase production, minefield lifecycle, general missions/special abilities, race mechanics, cross-subsystem diplomacy, observer/visibility and complete-turn differential validation remain major work.
 
 ## Current focus
 
@@ -58,7 +58,7 @@ strict exact-set:      162/162 first pair exact
 informative exact-set target-order controls: 15/15 rank1
 ```
 
-When the eligible set is correct, evidence strongly supports:
+When the eligible set is correct:
 
 ```text
 first active ship = highest STANDARD Combat Priority ship with an eligible target
@@ -69,53 +69,76 @@ Do not invert target ordering.
 
 ### Residual blocker state
 
-The two original broad initial residuals remain:
+Original broad initial residuals:
 
 ```text
-360690/T83: active264; extra98; factual190
-511506/T94: active496; extra202; factual332
+360690/T83: active264; extra98; factual190   # Privateer Rob branch
+511506/T94: active496; extra202; factual332  # Bird Super Spy branch
 ```
 
-Bird ship202 remains a separate Super Spy/effective-cloak branch. Privateer ship98 is narrowed through Rob controls.
+The Privateer branch is now strongly narrowed.
 
-Population fuel-state runtime source `cf52a264c31418a8247987a64332c54e50e07a91` is complete:
+Clean fuel-attribution runtime rejected universal `Rob Ship consumes ordinary cloak fuel`:
 
 ```text
-stable prior-true rows=1413
-exact_reference_debit=545
-zero_debit=90
-other_debit=778
-true_to_true=1378
-true_to_false=35
-threshold equals reference cost=3
-threshold below reference cost=11
+clean stationary/no-visible-fuel-mutation rows=12
+exact_reference_debit=2
+zero_debit=7
+other_debit=3
 ```
 
-The exact ordinary-cloak-reference debit is strongly structured:
+But the low-fuel threshold controls are coherent:
 
 ```text
-545 / 1413 = 38.6% overall
-541 / 545 = 99.3% exact-debit rows are true_to_true
-same-position damage0 PE0 no-VCR bucket:
-  515 exact / 112 other / 86 zero
+ordinary-cloak prior-true rows with fuel <= reference cost:
+  13/13 true_to_false
 ```
 
-This is `CORPUS_OBSERVED + TESTED` correlation only. Do not encode `Rob Ship consumes cloak fuel` or raw prior `iscloaked` as a blocker.
+Effective-cloak threshold differential over all 16 independently reconstructed Rob plain-STANDARD opportunities:
+
+```text
+decisive_rows=8
+decisive_match=8
+decisive_mismatch=0
+decisive_unresolved=0
+
+expected blocked -> candidate blocked: 3/3
+expected eligible -> candidate eligible: 5/5
+```
+
+Supported evidence-scoped candidate:
+
+```text
+Privateer race5 + mission9 Rob + ordinary cloak-capable hull:
+  prior false                         -> not effectively cloaked
+  prior true + fuel <= reference cost -> not effectively cloaked
+  prior true + fuel >  reference cost -> effectively cloaked
+  advanced cloak                      -> unresolved
+```
+
+Status: `CORPUS_OBSERVED + TESTED` at this scoped state-model boundary.
+
+A fail-closed helper now exists in:
+
+```text
+src/planets_lab/rules/combat/effective_state.py
+```
+
+It is not wired into canonical `selection.py` or `queue.py` yet.
 
 ### Immediate combat work
 
-The first cloak/fuel attribution runtime attempt on source `180429508419581cf5082bb5363e1b8c528dd14f` is **invalid** as mechanics evidence: pytest collection failed with `ModuleNotFoundError: No module named 'tools'` (`tests rc=2`, `audit rc=99`). Both new tests now use the established `tools/diagnostics` import convention.
-
 Proceed in this order:
 
-1. rerun `tools/diagnostics/combat_host_privateer_rob_cloak_fuel_attribution_audit.py` and its targeted tests on the repaired HEAD;
-2. inspect the clean stationary/no-visible-fuel-mutation population;
-3. inspect all 14 stable low-fuel controls (`3 == reference cost`, `11 < reference cost`) including ion/Loki/Glory context;
-4. if a coherent threshold transition survives, define an evidence-scoped effective-state helper and rerun initial-target differential;
-5. otherwise reject the threshold explanation rather than special-case ship118;
-6. keep Bird Super Spy ship202 separate from Privateer Rob ship98;
-7. after blocker closure, promote the canonical first selector, then compose mutable survivor/destruction state, second-pass orientation, capture continuation and ship-to-planet/planet-base integration;
-8. keep game `591478` separate.
+1. run `tests/test_combat_effective_state.py` and `tests/test_combat_host_privateer_rob_selector_impact_audit.py`;
+2. run `tools/diagnostics/combat_host_privateer_rob_selector_impact_audit.py` over the historical corpus;
+3. require zero blocked factual pairs and zero potential first-selector regression rows;
+4. require the Privateer `360690/T83/ship98` broad mismatch to project fixed in every comparable profile;
+5. require Bird `511506/T94/ship202` to remain present and untouched;
+6. if the impact gate passes, treat Privateer ship98 blocker state as closed and decide canonical candidate/selector integration;
+7. investigate Bird Super Spy/effective-cloak state separately;
+8. after broad initial blocker closure, promote the canonical first selector and move to mutable survivor/destruction state, second-pass orientation, capture continuation and ship-to-planet/planet-base integration;
+9. keep game `591478` separate.
 
 ## Wider Host reconstruction order
 
