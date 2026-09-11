@@ -185,18 +185,7 @@ decisive_unresolved=3
 blocked_factual_pair_regressions=0
 ```
 
-Hard acceptance all passed:
-
-```text
-no_race_conflicts=True
-no_payload_conflicts=True
-no_blocked_factual_pair_regressions=True
-no_decisive_mismatch=True
-target_residual_present=True
-target_residual_supported=True
-```
-
-All three decisive unresolved rows are Advanced Cloak:
+Hard acceptance all passed. The only decisive unresolved rows were Advanced Cloak:
 
 ```text
 620694/T119 ship26 vs74 — expected blocked
@@ -204,9 +193,7 @@ All three decisive unresolved rows are Advanced Cloak:
 680435/T31 ship68 vs26 — factual pair / expected eligible
 ```
 
-Therefore ordinary Super Spy is supported within scope, while blanket Advanced-Cloak targetability is explicitly not promoted.
-
-## Advanced Cloak visible-context runtime — NO SEPARATOR FOUND
+## Advanced Cloak visible-context runtime — no visible separator
 
 Read:
 
@@ -216,83 +203,92 @@ docs/handoff/2026-09-11-combat-c5-bird-advanced-cloak-decisive-context-runtime.m
 
 Source HEAD `838aca3a931d16f7cb46e28350271b34a1cacf8c`, 16 targeted tests passed.
 
-```text
-focus_rows=3
-expected_blocked_rows=2
-expected_eligible_rows=1
-stable_t_identity_rows=2
-postmove_active_glory_possible_rows=0
-postmove_loki_possible_rows=0
-t_cloak_false_rows=0
-t_cloak_true_rows=2
-```
+The full position predictor found no visible post-movement Glory, Loki or candidate-set mine-route separator. Ship68 remained a genuine ordinary-STANDARD negative control; attacker26 mission3 is canonical `Kill!`.
 
-Factual control `680435/T31 ship68`:
-
-```text
-start=(1996,2287)
-full predicted position=(1984,2266)
-position source=normal_move_warp_well
-visible mine route risk=None
-prior cloak=true, damage0, fuel480
-postmove active Glory=[]
-postmove Loki=[]
-T stable identity=False
-```
-
-Skipped `620694/T119 ship26/69`:
-
-```text
-start=(1574,1872)
-full predicted position=(1590,1837)
-position source=normal_move_warp_well
-visible mine route risk=None
-postmove active Glory at site=False
-postmove Loki within 10 ly=False
-T stable identities=True
-T damage=0
-T iscloaked=True for both
-```
-
-No visible post-movement Glory/Loki/mine separator exists. A blanket Advanced-Cloak blocker would still regress the factual ship68 pair. Attacker ship26 mission3 is canonical `Kill!`, so ship68 is a valid ordinary-STANDARD negative control rather than a pre-standard mission artifact.
-
-Evidence status:
-
-```text
-Advanced Cloak decisive visible-context audit:
-  CORPUS_OBSERVED + TESTED
-
-population-wide Advanced Cloak targetability:
-  UNRESOLVED
-```
-
-## Immediate gate — raw Host events / hidden context
+## Advanced Cloak raw-event runtime — MINE-HIT SEPARATOR FOUND
 
 Read:
 
 ```text
-docs/handoff/2026-09-11-combat-c5-bird-advanced-cloak-event-pending.md
+docs/handoff/2026-09-12-combat-c5-bird-advanced-cloak-raw-event-runtime.md
+```
+
+Source HEAD `17dd581be1a2ffc5c99154a24854765e6f839246`, 11 targeted tests passed.
+
+For factual `680435/T31 ship68`, the Bird owner receives an explicit Host message:
+
+```text
+RESOLUTE CLASS BATTLECRUISER ID#68 has struck a mine!
+Damage is at: 55
+(1989,2273)
+```
+
+The same ship's factual VCR at `(1984,2266)` starts with:
+
+```text
+objectid=68
+hullid=31
+damage=55
+```
+
+Thus the previously unexplained control is directly attributed:
+
+```text
+Advanced-Cloak Super Spy ship68
+  -> movement mine hit
+  -> cloak broken / damage55
+  -> ordinary STANDARD combat
+```
+
+This matches official Host-order documentation: cloaking requires an undamaged ship, and a cloaked ship hitting a mine during movement becomes uncloaked. Advanced Cloak does not exempt mine-hit decloak.
+
+The skipped `620694/T119 ship26/69` retain stable same-owner/same-hull T identity with `damage=0` and `iscloaked=true`; this is attribution-only positive evidence, not a production input. Raw message absence is not used as proof because IDs collide heavily with unrelated objects in that game.
+
+Evidence status:
+
+```text
+Advanced Cloak + mine hit -> uncloaked:
+  DOCUMENTED + CORPUS_OBSERVED + TESTED
+
+blanket / fully predictive Advanced-Cloak targetability:
+  NOT promoted; dynamic upstream state still matters
+```
+
+## Immediate gate — decisive Advanced-Cloak closure
+
+Read:
+
+```text
+docs/handoff/2026-09-12-combat-c5-bird-advanced-cloak-decisive-closure-pending.md
 ```
 
 Diagnostic:
 
 ```text
-tools/diagnostics/combat_host_bird_advanced_cloak_event_audit.py
-tests/test_combat_host_bird_advanced_cloak_event_audit.py
+tools/diagnostics/combat_host_bird_advanced_cloak_decisive_closure_audit.py
+tests/test_combat_host_bird_advanced_cloak_decisive_closure_audit.py
 ```
 
-The gate reads raw `.trn` members around the two decisive cases and inventories only tightly scoped mechanical evidence:
+Strong acceptance:
 
 ```text
-680435: T30/T31/T32; ships68/26; site(1984,2266)
-620694: T118/T119/T120; ships26/69/74; site(1590,1837)
+factual_mine_decloak_closed=True
+blocked_advanced_controls_closed=True
+all_decisive_advanced_rows_explained=True
 ```
 
-It reports owner3 active advantages/settings/visible minefields, focus-ship timelines, exact-ID/site mechanical messages, sanitized event/report records and matching VCRs.
+Expected counters:
 
-High-value positive evidence is an explicit mine/web hit, cloak failure, damage/decloak report, Hidden Minefields or related active advantage plus a compatible mechanical report, or another typed event referencing ship68. **Message absence is not proof of no event.**
+```text
+focus_rows=3
+factual_rows=1
+blocked_rows=2
+explicit_target_mine_hit_rows=1
+mine_hit_vcr_damage_match_rows=1
+blocked_stable_t_cloak_true_rows=2
+```
 
-If the raw-event gate still yields no positive separator, Advanced Cloak stays fail-closed/unresolved. Do not reopen ordinary ship202 or Privateer closures merely because this branch is unresolved.
+This is evidence closure only. Host messages and T state must never become production inputs. After this passes, resume the combined population-wide directional STANDARD targetability differential using supported Bird ordinary-cloak + DIFF_VERIFIED Privateer states. Dynamic Advanced-Cloak states remain fail-closed unless the precombat movement/mine/Glory/fuel pipeline independently resolves them.
 
 Only after supported targetability states are population-differential clean should directional targetability be wired into the canonical first STANDARD selector. Then C5 proceeds to mutable survivor/destruction state, mutable second-pass orientation, capture continuation and ship-to-planet/planet-base integration.
 
