@@ -88,86 +88,93 @@ Only two broad residuals remain, both with the correct active ship and factual t
 
 Do not invert target ordering from these rows.
 
-## Fuel residual — rejected
+## Residual blocker checkpoints
 
-Read `docs/handoff/2026-09-10-combat-c5-initial-standard-target-fuel-runtime.md`.
-
-Runtime source `55ad7c5799f52d8bc703f3247cf7ed179dbb18f9`:
+Fuel runtime `docs/handoff/2026-09-10-combat-c5-initial-standard-target-fuel-runtime.md` rejected zero fuel for both extras:
 
 ```text
-extra target98 postmove fuel=45
-extra target202 postmove fuel=29
-zero-fuel extras=0
+ship98 postmove fuel=45
+ship202 postmove fuel=29
 ```
 
-Post-movement zero fuel explains neither residual.
+Cloak attribution runtime `docs/handoff/2026-09-10-combat-c5-initial-standard-target-cloak-residual-runtime.md` split the rows:
 
-## Cloak residual runtime — partial closure
+```text
+511506/T94 ship202:
+  owner3 -> race3 Bird
+  hull47 Red Wind can cloak
+  mission9 Super Spy signature
+  T-1 iscloaked=true; fuel sufficient
+  T same owner/hull and iscloaked=true
+  => strong scoped effective-cloak candidate
+
+360690/T83 ship98:
+  owner5 -> race5 Privateer
+  hull46 Meteor can cloak
+  mission9 / Rob
+  T-1 iscloaked=true; fuel45
+  T same owner/hull and iscloaked=true; fuel40
+  => raw state persistence, not yet combat-effective cloak
+```
+
+Factual target `511506/T94/ship332` is the key negative control: it also has `T-1 iscloaked=true`, current mission2, and VCR728 occurs. Raw T-1 `iscloaked` is therefore rejected as a blanket blocker.
+
+## Privateer Rob cloak-state population — runtime complete
 
 Read:
 
 ```text
-docs/handoff/2026-09-10-combat-c5-initial-standard-target-cloak-residual-runtime.md
+docs/handoff/2026-09-11-combat-c5-privateer-rob-cloak-population-runtime.md
 ```
 
-Runtime source `3d3b8d91f3ff281b0563a0f7112fadbe86222f2b`, tests/audit rc0, payload conflicts0.
-
-`511506/T94/ship202` is a clean scoped Bird Super Spy clue:
+Runtime source `e0b7f9ac91f99e8006546b80ec4a940ab21e2a6e`:
 
 ```text
-owner3 resolves race3
-hull47 Red Wind can cloak
-mission9
-T-1 iscloaked=true
-T-1 fuel37 >= ordinary 5 kt reference
-T same owner/hull and iscloaked=true
+tests passed; audit rc=0; payload_conflicts=0
+candidate_rows=2223
+stable_identity=2174
+stable_vcr_participant=2
+before_cloak_true=1433
+
+stable transitions:
+  true_to_true=1378
+  false_to_true=693
+  false_to_false=68
+  true_to_false=35
+
+stable_before_cloaked_pe_zero_no_vcr=1394
+stable_true_to_true_pe_zero_no_vcr=1360
+stable_before_cloaked_pe_zero_vcr=0
+stable_true_to_true_pe_zero_vcr=0
 ```
 
-This strongly supports a missing effective-cloak blocker for pair `[202,496]`, but no generic current-host cloak implementation is promoted yet.
+Exact residual `360690/T82->T83/ship98` is a stable identity, PE=0, `true_to_true`, no-VCR row and is typical of this population.
 
-`360690/T83/ship98` is different:
+Interpretation boundary:
+
+- this is strong `CORPUS_OBSERVED` persistence of the archive `iscloaked` field;
+- it is not yet a combat-effective-cloak differential because most rows do not prove a hostile attack opportunity at the same reconstructed combat site;
+- current Planets.nu Host documentation keeps `Cloak` and `Rob` as separate Host steps and documents ordinary cloak activation through the Cloak mission;
+- therefore do not promote Privateer mission9 itself as a cloak-generating rule and do not copy raw T-1 `iscloaked` into pair eligibility.
+
+## Immediate gate
+
+The population contains only two stable Privateer mission9 VCR-participant rows. Extract and classify both explicitly before writing another mechanics rule.
+
+For each row capture:
 
 ```text
-owner5 resolves race5 Privateer
-hull46 Meteor can cloak
-mission9 (Privateer race-specific mission, not Bird Super Spy)
-T-1 iscloaked=true, fuel45
-T same owner/hull and iscloaked=true
+game / before_turn / battle_turn / ship
+T-1 iscloaked
+PE
+cloak transition
+VCR id / side / opponent owner
+stable identity
 ```
 
-Factual target ship190 has the same owner/race/hull/mission9 but T-1 fuel4, below the ordinary 5 kt cloak reference, `T-1 iscloaked=false`, and fights/captures as observed.
+If neither row is a prior-cloaked PE=0 counterexample, proceed immediately to a **site-conditioned hostile attack-opportunity differential** using reconstructed post-movement stacks. That gate must require an actual opposing Kill!/PE requester at the same site; mere no-VCR persistence is insufficient.
 
-Crucially factual target `511506/T94/ship332` also has `T-1 iscloaked=true` yet current mission2 and VCR728 occurs. Therefore **raw T-1 `iscloaked` is rejected as a blanket combat blocker**.
-
-## Immediate gate — Privateer Rob cloak-state population
-
-Read:
-
-```text
-docs/handoff/2026-09-10-combat-c5-privateer-rob-cloak-population-pending.md
-```
-
-Diagnostic:
-
-```text
-tools/diagnostics/combat_host_privateer_rob_cloak_population_audit.py
-tests/test_combat_host_privateer_rob_cloak_population_audit.py
-```
-
-It inventories ordinary archive-resolved race5 + mission9 + cloak-capable hull rows across consecutive archive turns. T-state is attribution-only. Same Ship ID is not sufficient: owner, hull/equipment and available build-turn identity must align before a cloak transition is treated as the same physical ship.
-
-Key population questions:
-
-```text
-stable true_to_true / true_to_false / false_to_true / false_to_false
-stable_before_cloaked_pe_zero_vcr
-stable_true_to_true_pe_zero_vcr
-exact target row 360690 T82->T83 ship98
-```
-
-A stable prior-cloaked + PE0 + VCR row is a direct counterexample to treating the previous raw cloak bit as combat protection in that Host. Systematic true->true persistence without VCR would support state persistence/timing semantics but still would not alone prove combat-step effective cloak.
-
-No `selection.py` or target-order change is allowed until this population gate is reviewed.
+No `selection.py` or target-order change is allowed before that site-conditioned evidence.
 
 Later C5 work remains: close the last initial candidate blocker, add canonical initial selector, mutable survivor/destruction state, second-pass composition, capture continuation, ship-to-planet repair boundary, then planet/base participation.
 
