@@ -4,6 +4,7 @@ This file is the operational roadmap for `planets-lab`. Architecture boundaries 
 
 ## Current durable checkpoints
 
+- Reverse progress assessment: [`handoff/2026-09-11-reverse-progress-assessment.md`](handoff/2026-09-11-reverse-progress-assessment.md).
 - Host combat phase C5: [`handoff/2026-09-08-combat-c5-host-phase-current.md`](handoff/2026-09-08-combat-c5-host-phase-current.md).
 - Candidate-set v2 runtime: [`handoff/2026-09-10-combat-c5-candidate-set-v2-runtime.md`](handoff/2026-09-10-combat-c5-candidate-set-v2-runtime.md).
 - Initial plain-STANDARD target-order runtime: [`handoff/2026-09-10-combat-c5-initial-standard-target-runtime.md`](handoff/2026-09-10-combat-c5-initial-standard-target-runtime.md).
@@ -29,6 +30,21 @@ Mechanics are promoted only with explicit evidence status:
 - `DIFF_VERIFIED` — matched against clean attributable NuHost transitions.
 
 Unknown mechanics fail closed. Raw facts and evidence-scoped effective interpretations remain separate.
+
+## Engineering progress estimate
+
+These are planning estimates, **not mechanics evidence** and not percentages derived from test count. Keep mechanics understanding separate from end-to-end historical coverage.
+
+```text
+combat mechanics reconstruction (C1-C5 knowledge):     ~70-80%
+ordinary ship-combat independent end-to-end coverage:  ~20-25%
+movement ordinary-core reconstruction:                  ~80-90%
+whole NuHost reverse across the roadmap:                ~40-50%
+```
+
+The apparently large gap between combat knowledge and end-to-end coverage is expected. Candidate-set v2 independently covers only `428 / 1986 = 21.6%` factual ship-vs-ship pairs, while the candidate-covered eligibility model itself has zero conditionally hard-blocked factual pairs. Position v3 similarly predicts 1810/3204 factual ship occurrences, with 1806 exact and only 4 mismatches. In other words, deterministic rules are increasingly well constrained, but many special/stochastic precombat states still fail closed.
+
+Whole-NuHost progress is lower because economy/starbase production, minefield lifecycle, general missions/special abilities, race mechanics, cross-subsystem diplomacy, observer/visibility and full-turn end-to-end validation remain substantial work. See `docs/handoff/2026-09-11-reverse-progress-assessment.md` for the detailed basis.
 
 ## Current focus
 
@@ -93,7 +109,7 @@ Matched same-site prior-false Meteors are actually fought by the same attackers.
 
 Focused cloak-context runtime source `fe9f1575b81d7ea4c922426c8f56d689dbd66ef3` rejected damage / normal-movement fuel / Loki as the ship118 discriminator.
 
-Population fuel-state runtime source `cf52a264c31418a8247987a64332c54e50e07a91` is now complete:
+Population fuel-state runtime source `cf52a264c31418a8247987a64332c54e50e07a91` is complete:
 
 ```text
 stable prior-true rows=1413
@@ -144,9 +160,11 @@ Rob Ship cloak-fuel mechanic / mission9 effective cloak:
 
 ### Immediate combat work
 
+The first cloak/fuel attribution runtime attempt on source `180429508419581cf5082bb5363e1b8c528dd14f` is **invalid** as mechanics evidence: pytest collection failed with `ModuleNotFoundError: No module named 'tools'` (`tests rc=2`, `audit rc=99`). The test imports have been repaired using the established `tools/diagnostics` path convention. Rerun the gate on the repaired HEAD before interpreting any attribution result.
+
 Proceed in this order:
 
-1. run `tools/diagnostics/combat_host_privateer_rob_cloak_fuel_attribution_audit.py` and its targeted test;
+1. rerun `tools/diagnostics/combat_host_privateer_rob_cloak_fuel_attribution_audit.py` and its targeted tests on the repaired HEAD;
 2. inspect the cleaner subset requiring damage0, effective Warp0, unchanged T position, no submitted inbound/outbound transfer and no foreign owner-current ship at the T-1 Rob origin;
 3. compare exact/zero/other debit in that clean subset;
 4. inspect all 14 stable low-fuel controls: 3 rows with `fuel==reference_cost` and 11 with `fuel<reference_cost`;
@@ -180,13 +198,19 @@ The target remains prediction of the **set, order and sides of VCRs Host will ge
 
 ## Wider milestones
 
-- **M0 deterministic skeleton:** substantially complete.
-- **M1 minimal sandbox:** largely implemented.
-- **M2 economy/planetary Host:** in progress.
-- **M3 warfare:** materially advanced; full Host engagement ordering remains open.
-- **M4 race mechanics:** partial; Federation recovery and scoped Galactic Power have differential evidence.
-- **M5A historical corpus:** active and operational.
-- **M5B Nu compatibility matrix:** active.
-- **M6 training/AI:** later, after required simulation/observer surfaces are sufficiently faithful.
+Planning estimates only:
+
+```text
+M0 deterministic skeleton:          ~90%+
+M1 minimal sandbox/infrastructure: ~80-90%
+M2 economy/planetary Host:         ~35-50%
+M3 warfare overall:                ~65-75%
+M4 race-specific mechanics:        ~35-50%
+M5A historical corpus pipeline:    ~75-85%
+M5B Nu compatibility/differential: ~60-75%
+M6 training/AI:                    intentionally later
+```
+
+`M3 warfare` is lower than the combat-only estimate because complete minefield lifecycle and several special/race interactions are not yet integrated end-to-end.
 
 Do not shortcut unresolved Host rules merely to begin training sooner.
