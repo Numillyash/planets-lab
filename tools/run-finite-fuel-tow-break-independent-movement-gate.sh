@@ -88,14 +88,18 @@ PY
 
 run_stage tooling "${lab[@]}" python -u - <<'PY'
 from pathlib import Path
-path = Path("tools/diagnostics/tow_finite_fuel_break_independent_movement_audit.py")
-compile(path.read_text(), str(path), "exec")
-print("compiled=", path)
+for raw in (
+    "tools/diagnostics/tow_finite_fuel_break_independent_movement_audit.py",
+    "tools/diagnostics/tow_finite_fuel_break_independent_movement_compat_audit.py",
+):
+    path = Path(raw)
+    compile(path.read_text(), str(path), "exec")
+    print("compiled=", path)
 PY
 
 run_stage break-independent-movement \
     "${lab[@]}" \
-    python -u tools/diagnostics/tow_finite_fuel_break_independent_movement_audit.py \
+    python -u tools/diagnostics/tow_finite_fuel_break_independent_movement_compat_audit.py \
         --resolution-log "$source_log" \
         --examples 100
 
