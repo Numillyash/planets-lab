@@ -53,6 +53,7 @@ run_stage() {
 }
 
 lab=(docker compose run --rm -T -e PYTHONPATH=/workspace/src:/workspace/tools/diagnostics lab)
+normalized_log="$gate_dir/same-line-reconciliation-normalized.log"
 
 run_stage inputs "${lab[@]}" python -u - "$source_log" <<'PY'
 from pathlib import Path
@@ -86,6 +87,51 @@ print("runtime_checkpoint=3 same-line rows / 3 neither proportional fuel model")
 print("target_game=360690 prepared_cache=1")
 PY
 
+# The producer historically emitted the three case dictionaries inline before
+# SUMMARY rather than under a CASES marker. Normalize that log contract locally
+# without modifying or replacing the immutable source gate.
+run_stage normalize-input "${lab[@]}" python -u - "$source_log" "$normalized_log" <<'PY'
+import ast
+from pathlib import Path
+import sys
+
+source = Path(sys.argv[1])
+destination = Path(sys.argv[2])
+text = source.read_text(encoding="utf-8")
+
+if "===== CASES =====" in text:
+    destination.write_text(text, encoding="utf-8")
+    print("source_cases_marker=present")
+    print("normalized_log=", destination)
+    raise SystemExit(0)
+
+prefix = text.split("===== SUMMARY =====", 1)[0]
+cases = []
+for raw_line in prefix.splitlines():
+    line = raw_line.strip()
+    if not line.startswith("{"):
+        continue
+    value = ast.literal_eval(line)
+    if not isinstance(value, dict):
+        continue
+    if {"game", "turn", "tower_ship", "target_ship", "envelope_class"}.issubset(value):
+        cases.append(value)
+
+assert len(cases) == 3, f"expected 3 inline same-line cases, got {len(cases)}"
+assert {int(item["game"]) for item in cases} == {360690}
+assert {int(item["turn"]) for item in cases} == {41, 44, 185}
+assert all(item.get("envelope_class") == "neither_model" for item in cases)
+
+normalized = text.rstrip() + "\n\n===== CASES =====\n"
+normalized += "\n".join(repr(item) for item in cases)
+normalized += "\n===== INTERPRETATION =====\n"
+destination.write_text(normalized, encoding="utf-8")
+print("source_cases_marker=absent")
+print("recovered_inline_cases=", len(cases))
+print("recovered_turns=", tuple(sorted(int(item["turn"]) for item in cases)))
+print("normalized_log=", destination)
+PY
+
 run_stage tooling "${lab[@]}" python -u - <<'PY'
 from pathlib import Path
 path = Path("tools/diagnostics/tow_finite_fuel_same_line_stop_context_audit.py")
@@ -96,7 +142,7 @@ PY
 run_stage same-line-stop-context \
     "${lab[@]}" \
     python -u tools/diagnostics/tow_finite_fuel_same_line_stop_context_audit.py \
-        --same-line-log "$source_log"
+        --same-line-log "$normalized_log"
 
 run_stage summary "${lab[@]}" python -u - "$gate_dir/same-line-stop-context.log" <<'PY'
 from pathlib import Path
