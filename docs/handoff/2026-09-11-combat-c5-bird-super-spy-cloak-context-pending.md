@@ -55,11 +55,14 @@ Official Planets.nu Super Spy documentation states that a Bird ship on the `Supe
 
 Official Planets.nu Cloak documentation states that cloaked ships are protected from enemy attack, ordinary cloak consumes `max(5, floor(hull_mass / 20))` KT under the documented formula, Advanced Cloak consumes no fuel, and a damaged ship cannot initiate or maintain cloak.
 
+Official defense-post documentation separately describes the Super-Spy planet ion pulse: a sufficiently defended planet can decloak cloaked ships in orbit when a relevant Super Spy Deluxe/Command event is detected. This is distinct from ion storms and must fail closed separately.
+
 Sources:
 
 ```text
 https://help.planets.nu/mis-super-spy
 https://help.planets.nu/mis-cloak
+https://help.planets.nu/defense-outposts-details
 ```
 
 This gives the Bird residual a stronger DOCUMENTED basis than the Privateer Rob branch; the remaining question is whether the archived precombat dynamic context satisfies the documented cloak conditions without a visible decloak source.
@@ -74,7 +77,7 @@ tests/test_combat_host_bird_super_spy_cloak_context_audit.py
 Schema:
 
 ```text
-planets-lab.combat-host-bird-super-spy-cloak-context-audit.v1
+planets-lab.combat-host-bird-super-spy-cloak-context-audit.v2
 ```
 
 The gate projects both ship202 and factual ship332 and reports:
@@ -87,6 +90,7 @@ T-1 fuel and ordinary reference cost
 reference normal-movement fuel remaining
 T-1 archived iscloaked
 ion-storm start context
+foreign-planet Super-Spy ion-pulse possibility
 Loki start exposure
 co-located active Glory context
 T owner/hull/iscloaked as attribution-only controls
@@ -107,11 +111,14 @@ fuel > reference cost
 reference normal move resolved
 reference remaining fuel > reference cost
 not inside archived T-1 ion disturbance
+no conservatively possible foreign-planet Super-Spy ion pulse
 no active Loki start exposure
 no co-located active POP/TRG Glory device
 ```
 
-This is deliberately stricter than the official minimum and is scoped to the observed residual. T-state is never an input.
+Planet ion-pulse trigger settings/random resolution are not reconstructed. A foreign planet at the ship position with at least 30 observed defense posts is conservatively marked `possible=True`; unknown foreign defense state is unresolved. This can only prevent promotion, never create a false positive.
+
+This gate is deliberately stricter than the official minimum and is scoped to the observed residual. T-state is never an input.
 
 ## Acceptance
 
@@ -126,4 +133,4 @@ race_conflicts=0
 
 If that passes, classify the Bird blocker as `DOCUMENTED + CORPUS_OBSERVED + TESTED` at the focused initial-STANDARD targetability boundary and project removal of ship202 from both baseline profiles. Only then promote a generic directional STANDARD targetability composition; do not introduce a symmetric pair-combat cloak blocker.
 
-If the candidate is unresolved because of movement fuel, damage or a visible decloak context, keep Bird open and investigate that factor directly.
+If the candidate is unresolved because of movement fuel, damage, planet ion pulse, ion storm, Loki or Glory context, keep Bird open and investigate that factor directly.
