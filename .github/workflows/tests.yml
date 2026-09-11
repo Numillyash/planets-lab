@@ -39,6 +39,7 @@ jobs:
           bash -n tools/run-finite-fuel-tow-passenger-chunnel-resolution-gate.sh
           bash -n tools/run-finite-fuel-tow-break-independent-movement-gate.sh
           bash -n tools/run-finite-fuel-tow-same-line-reconciliation-gate.sh
+          bash -n tools/run-finite-fuel-tow-same-line-stop-context-gate.sh
           python tools/diagnostics/tow_finite_fuel_population_audit.py --help >/dev/null
           python tools/diagnostics/tow_finite_fuel_warp_well_audit.py --help >/dev/null
           python tools/diagnostics/tow_finite_fuel_external_context_audit.py --help >/dev/null
@@ -53,6 +54,7 @@ jobs:
           PYTHONPATH="$PWD/src:$PWD/tools/diagnostics" python tools/diagnostics/tow_finite_fuel_passenger_chunnel_resolution_audit.py --help >/dev/null
           PYTHONPATH="$PWD/src:$PWD/tools/diagnostics" python tools/diagnostics/tow_finite_fuel_break_independent_movement_audit.py --help >/dev/null
           PYTHONPATH="$PWD/src:$PWD/tools/diagnostics" python tools/diagnostics/tow_finite_fuel_same_line_reconciliation_audit.py --help >/dev/null
+          PYTHONPATH="$PWD/src:$PWD/tools/diagnostics" python tools/diagnostics/tow_finite_fuel_same_line_stop_context_audit.py --help >/dev/null
           PYTHONPATH="$PWD/src:$PWD/tools/diagnostics" python -c "from intercept_fuel_historical_differential_audit import PREPARED_DIR, RAW_DIR; assert PREPARED_DIR; assert RAW_DIR"
 
       - name: Run tests
