@@ -25,6 +25,7 @@ def _candidate(**overrides):
         "reference_remaining_fuel": 37,
         "prior_iscloaked": True,
         "ion_start_inside": False,
+        "planet_ion_pulse_possible": False,
         "loki_start_exposed": False,
         "active_glory_colocated": False,
     }
@@ -54,6 +55,18 @@ def test_visible_decloak_context_fails_closed() -> None:
     state, reason = _candidate(loki_start_exposed=True)
     assert state is None
     assert reason == "loki_context_present"
+
+
+def test_planet_ion_pulse_possibility_fails_closed() -> None:
+    state, reason = _candidate(planet_ion_pulse_possible=True)
+    assert state is None
+    assert reason == "planet_ion_pulse_possible"
+
+
+def test_unresolved_planet_ion_pulse_context_fails_closed() -> None:
+    state, reason = _candidate(planet_ion_pulse_possible=None)
+    assert state is None
+    assert reason == "planet_ion_pulse_context_unresolved"
 
 
 def test_non_super_spy_prior_cloak_control_is_out_of_scope() -> None:
