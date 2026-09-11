@@ -10,6 +10,8 @@ This file is the operational roadmap for `planets-lab`. Architecture boundaries 
 - Initial plain-STANDARD target-order runtime: [`handoff/2026-09-10-combat-c5-initial-standard-target-runtime.md`](handoff/2026-09-10-combat-c5-initial-standard-target-runtime.md).
 - Privateer Rob clean fuel-attribution runtime: [`handoff/2026-09-11-combat-c5-privateer-rob-cloak-fuel-attribution-runtime.md`](handoff/2026-09-11-combat-c5-privateer-rob-cloak-fuel-attribution-runtime.md).
 - Privateer Rob effective-cloak threshold runtime: [`handoff/2026-09-11-combat-c5-privateer-rob-effective-cloak-threshold-runtime.md`](handoff/2026-09-11-combat-c5-privateer-rob-effective-cloak-threshold-runtime.md).
+- Privateer Rob selector-impact runtime: [`handoff/2026-09-11-combat-c5-privateer-rob-selector-impact-runtime.md`](handoff/2026-09-11-combat-c5-privateer-rob-selector-impact-runtime.md).
+- Active Bird Super Spy gate: [`handoff/2026-09-11-combat-c5-bird-super-spy-cloak-context-pending.md`](handoff/2026-09-11-combat-c5-bird-super-spy-cloak-context-pending.md).
 
 ## Evidence policy
 
@@ -76,23 +78,9 @@ Original broad initial residuals:
 511506/T94: active496; extra202; factual332  # Bird Super Spy branch
 ```
 
-The Privateer branch is now strongly narrowed.
+The **Privateer branch is now closed at the scoped initial-STANDARD targetability boundary**.
 
-Clean fuel-attribution runtime rejected universal `Rob Ship consumes ordinary cloak fuel`:
-
-```text
-clean stationary/no-visible-fuel-mutation rows=12
-exact_reference_debit=2
-zero_debit=7
-other_debit=3
-```
-
-But the low-fuel threshold controls are coherent:
-
-```text
-ordinary-cloak prior-true rows with fuel <= reference cost:
-  13/13 true_to_false
-```
+Clean fuel attribution rejected a universal `Rob Ship consumes ordinary cloak fuel` rule, but low-fuel threshold controls showed `13/13` ordinary-cloak prior-true rows at or below the reference cost transitioning `true_to_false`.
 
 Effective-cloak threshold differential over all 16 independently reconstructed Rob plain-STANDARD opportunities:
 
@@ -101,44 +89,82 @@ decisive_rows=8
 decisive_match=8
 decisive_mismatch=0
 decisive_unresolved=0
-
 expected blocked -> candidate blocked: 3/3
 expected eligible -> candidate eligible: 5/5
 ```
 
-Supported evidence-scoped candidate:
+Selector-impact runtime on source `5bfdecfc090357cd7f38fa69f9cb05d2c6aee611`:
 
 ```text
-Privateer race5 + mission9 Rob + ordinary cloak-capable hull:
-  prior false                         -> not effectively cloaked
-  prior true + fuel <= reference cost -> not effectively cloaked
-  prior true + fuel >  reference cost -> effectively cloaked
-  advanced cloak                      -> unresolved
+overlay_rows=16
+overlay_blocked=7
+overlay_eligible=9
+blocked_factual_pair_rows=0
+potential_first_selector_regression_rows=0
+privateer_residual_profiles_projected_fixed=2/2
+bird_residual_profiles_overlay_affected=0/2
 ```
 
-Status: `CORPUS_OBSERVED + TESTED` at this scoped state-model boundary.
+Acceptance was fully true. Status of the Privateer ordinary-cloak targetability model:
 
-A fail-closed helper now exists in:
+```text
+CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
+```
+
+Evidence-scoped helper:
 
 ```text
 src/planets_lab/rules/combat/effective_state.py
 ```
 
-It is not wired into canonical `selection.py` or `queue.py` yet.
+Architectural boundary: the Privateer evidence supports a **directional ordinary-STANDARD targetability blocker**, not a symmetric blanket pair-combat cloak blocker. The helper is therefore still not wired directly into `selection.py` or `queue.py`.
 
-### Immediate combat work
+### Immediate combat work — Bird Super Spy
+
+The sole remaining original broad initial blocker is `511506/T94/ship202`.
+
+Existing corpus evidence:
+
+```text
+ship202:
+  Bird race3
+  Red Wind cloak-capable hull
+  mission9 Super Spy
+  T-1 iscloaked=true
+  T-1 fuel=37
+  ordinary reference cloak cost=5
+  same owner/hull at T and T iscloaked=true
+
+ship332 factual target control:
+  Bird race3
+  Resolute cloak-capable hull
+  mission2 (not Super Spy)
+  T-1 iscloaked=true
+  factual combat against ship496 occurs
+```
+
+Thus raw `T-1 iscloaked` remains rejected as a generic blocker.
+
+Official Planets.nu documentation explicitly states that a Bird ship on Super Spy which can cloak attempts to cloak normally, inadequate fuel prevents the cloak, cloaked ships are protected from enemy attack, and damage prevents cloak.
+
+Active gate:
+
+```text
+tools/diagnostics/combat_host_bird_super_spy_cloak_context_audit.py
+tests/test_combat_host_bird_super_spy_cloak_context_audit.py
+```
+
+The gate requires ordinary cloak, damage0, positive fuel margin before and after independently reconstructed normal movement, prior archived cloak=true, and clear T-1 ion/Loki/active-Glory context. T state is attribution-only.
 
 Proceed in this order:
 
-1. run `tests/test_combat_effective_state.py` and `tests/test_combat_host_privateer_rob_selector_impact_audit.py`;
-2. run `tools/diagnostics/combat_host_privateer_rob_selector_impact_audit.py` over the historical corpus;
-3. require zero blocked factual pairs and zero potential first-selector regression rows;
-4. require the Privateer `360690/T83/ship98` broad mismatch to project fixed in every comparable profile;
-5. require Bird `511506/T94/ship202` to remain present and untouched;
-6. if the impact gate passes, treat Privateer ship98 blocker state as closed and decide canonical candidate/selector integration;
-7. investigate Bird Super Spy/effective-cloak state separately;
-8. after broad initial blocker closure, promote the canonical first selector and move to mutable survivor/destruction state, second-pass orientation, capture continuation and ship-to-planet/planet-base integration;
-9. keep game `591478` separate.
+1. run the Bird Super Spy context unit tests;
+2. run `combat_host_bird_super_spy_cloak_context_audit.py` on the historical corpus;
+3. require ship202 `documented_effective_cloak_supported=True`, ship332 not supported for an explicit non-Super-Spy reason, `raw_prior_cloak_control_separates=True`, and zero race conflicts;
+4. if clean, mark Bird target blocker `DOCUMENTED + CORPUS_OBSERVED + TESTED` and project removal of ship202 from both strict/conditional baseline mismatches;
+5. after both Privateer and Bird blockers are closed, promote a generic directional STANDARD targetability composition and rerun the full initial-selector differential;
+6. only then promote the canonical first selector and move to mutable survivor/destruction state, mutable second-pass orientation, capture continuation and ship-to-planet/planet-base integration;
+7. keep game `591478` separate.
 
 ## Wider Host reconstruction order
 
