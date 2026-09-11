@@ -1,9 +1,11 @@
 # C5 Host combat — Privateer Rob cloak population pending — superseded
 
-This gate has completed successfully at runtime and is superseded by:
+This gate completed successfully at runtime and is superseded by:
 
 ```text
 docs/handoff/2026-09-11-combat-c5-privateer-rob-cloak-population-runtime.md
+docs/handoff/2026-09-11-combat-c5-privateer-rob-vcr-control-runtime.md
+docs/handoff/2026-09-11-combat-c5-privateer-rob-attack-opportunity-pending.md
 ```
 
 Runtime source:
@@ -30,8 +32,8 @@ stable_true_to_true_pe_zero_vcr=0
 
 The exact `360690/T82->T83/ship98` residual is a stable Privateer race5 / mission9 / cloak-capable Meteor `true_to_true`, PE=0, no-VCR row.
 
-This population establishes archive cloak-state persistence but does not establish combat-effective cloak because most rows do not prove the presence of a hostile attack opportunity. Current Planets.nu Host documentation keeps Cloak and Rob as distinct Host steps and does not make Privateer Rob a cloak-generating mission.
+The two stable VCR-participant controls both have their own nonzero Primary Enemy, so neither is a PE0 hostile-targetability counterexample.
 
-No `selection.py` or target-order change was promoted from this gate.
+This population establishes archive cloak-state persistence but does not establish combat-effective cloak because most rows do not prove a hostile attack opportunity. Current Planets.nu Host documentation keeps Cloak and Rob as distinct Host steps and does not make Privateer Rob a cloak-generating mission.
 
-Immediate follow-up: classify the two stable VCR-participant rows, then perform a site-conditioned hostile attack-opportunity differential before deciding whether any effective-cloak blocker is safe to encode.
+No `selection.py` or target-order change was promoted from this gate. The active follow-up is the site-conditioned hostile attack-opportunity differential.
