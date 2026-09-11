@@ -1,0 +1,68 @@
+from __future__ import annotations
+
+import sys
+from pathlib import Path
+
+TOOLS_DIR = Path(__file__).resolve().parents[1] / "tools" / "diagnostics"
+if str(TOOLS_DIR) not in sys.path:
+    sys.path.insert(0, str(TOOLS_DIR))
+
+from combat_host_bird_super_spy_cloak_context_audit import (  # noqa: E402
+    _documented_super_spy_effective_cloak_candidate,
+)
+
+
+def _candidate(**overrides):
+    values = {
+        "race_id": 3,
+        "mission": 9,
+        "hull_can_cloak": True,
+        "advanced_cloak": False,
+        "damage": 0,
+        "fuel_before": 37,
+        "reference_cost": 5,
+        "reference_move_resolved": True,
+        "reference_remaining_fuel": 37,
+        "prior_iscloaked": True,
+        "ion_start_inside": False,
+        "loki_start_exposed": False,
+        "active_glory_colocated": False,
+    }
+    values.update(overrides)
+    return _documented_super_spy_effective_cloak_candidate(**values)
+
+
+def test_documented_super_spy_positive_candidate() -> None:
+    state, reason = _candidate()
+    assert state is True
+    assert reason == "documented_super_spy_ordinary_cloak_supported"
+
+
+def test_damage_blocks_documented_super_spy_cloak() -> None:
+    state, reason = _candidate(damage=1)
+    assert state is False
+    assert reason == "damage_blocks_cloak"
+
+
+def test_low_fuel_is_not_promoted_as_effective_cloak() -> None:
+    state, reason = _candidate(fuel_before=5)
+    assert state is False
+    assert reason == "fuel_not_safely_above_reference_cost"
+
+
+def test_visible_decloak_context_fails_closed() -> None:
+    state, reason = _candidate(loki_start_exposed=True)
+    assert state is None
+    assert reason == "loki_context_present"
+
+
+def test_non_super_spy_prior_cloak_control_is_out_of_scope() -> None:
+    state, reason = _candidate(mission=2)
+    assert state is None
+    assert reason == "outside_super_spy_scope"
+
+
+def test_advanced_cloak_is_deliberately_unresolved() -> None:
+    state, reason = _candidate(advanced_cloak=True)
+    assert state is None
+    assert reason == "advanced_cloak_unresolved"
