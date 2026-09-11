@@ -23,7 +23,16 @@ Both targeted tests failed during pytest collection with:
 ModuleNotFoundError: No module named 'tools'
 ```
 
-This is **not mechanics evidence** and does not change any combat conclusion. The new tests used `from tools.diagnostics...` while the established repository convention is to add `tools/diagnostics` to `sys.path` and import diagnostic modules directly. The collection regression is fixed in subsequent branch commits; the attribution gate remains pending until rerun on the repaired HEAD.
+This is **not mechanics evidence** and does not change any combat conclusion. The new tests used `from tools.diagnostics...` while the established repository convention is to add `tools/diagnostics` to `sys.path` and import diagnostic modules directly.
+
+The import regression is now repaired in both:
+
+```text
+tests/test_combat_host_privateer_rob_cloak_fuel_state_audit.py
+tests/test_combat_host_privateer_rob_cloak_fuel_attribution_audit.py
+```
+
+The attribution gate remains pending until rerun on the repaired branch HEAD.
 
 Depends on:
 
