@@ -7,7 +7,7 @@ This is the compact current pointer; dated handoffs contain full evidence and ru
 ## Stable C5 layers
 
 - corpus: 12 archives / 22,256 raw VCR observations / 6,469 unique VCRs / 0 payload conflicts;
-- owner-current `T-1` is the precombat order/state source; `T` is post-Host/postcombat state, and same Ship ID at T is not automatically the same physical ship because later construction can reuse open IDs;
+- owner-current `T-1` is the precombat order/state source; `T` is post-Host/postcombat state and same Ship ID is not automatically the same physical ship because later construction can reuse open IDs;
 - mission 3 = Kill!, mission 7 = Intercept, mission 20 = Bird Cloak and Intercept, raw `enemy` = Primary Enemy;
 - direct isolated ordinary STANDARD relation: 413/413 higher static priority on RIGHT;
 - normal PIA linked population: 37/37 before regular combat and 37/37 attacker RIGHT;
@@ -72,14 +72,14 @@ strict exact-set:      sites=162 first_pair_exact=162 first_right_exact=162
 exact-set informative target-order sites: 15/15 target rank 1
 ```
 
-This strongly supports, conditional on a correct eligible set:
+Strongly supported when the eligible set is correct:
 
 ```text
 first active ship = highest standard Combat Priority ship having an eligible target
 first target      = highest-priority eligible target for that active ship
 ```
 
-Only two broad residuals remain, both with the correct active ship and factual target already eligible:
+Only two broad residuals remain; both already choose the correct active ship and have the factual target eligible:
 
 ```text
 360690/T83: active264; reconstructed extra target98; factual target190
@@ -90,14 +90,14 @@ Do not invert target ordering from these rows.
 
 ## Residual blocker checkpoints
 
-Fuel runtime `docs/handoff/2026-09-10-combat-c5-initial-standard-target-fuel-runtime.md` rejected zero fuel for both extras:
+Fuel runtime `docs/handoff/2026-09-10-combat-c5-initial-standard-target-fuel-runtime.md` rejected zero fuel:
 
 ```text
 ship98 postmove fuel=45
 ship202 postmove fuel=29
 ```
 
-Cloak attribution runtime `docs/handoff/2026-09-10-combat-c5-initial-standard-target-cloak-residual-runtime.md` split the rows:
+Cloak attribution runtime `docs/handoff/2026-09-10-combat-c5-initial-standard-target-cloak-residual-runtime.md` split the residuals:
 
 ```text
 511506/T94 ship202:
@@ -117,23 +117,24 @@ Cloak attribution runtime `docs/handoff/2026-09-10-combat-c5-initial-standard-ta
   => raw state persistence, not yet combat-effective cloak
 ```
 
-Factual target `511506/T94/ship332` is the key negative control: it also has `T-1 iscloaked=true`, current mission2, and VCR728 occurs. Raw T-1 `iscloaked` is therefore rejected as a blanket blocker.
+Factual `511506/T94/ship332` is the key negative control: it also has T-1 `iscloaked=true`, current mission2, and VCR728 occurs. Raw T-1 `iscloaked` is rejected as a blanket blocker.
 
-## Privateer Rob cloak-state population — runtime complete
+## Privateer Rob raw-cloak population — runtime complete
 
 Read:
 
 ```text
 docs/handoff/2026-09-11-combat-c5-privateer-rob-cloak-population-runtime.md
+docs/handoff/2026-09-11-combat-c5-privateer-rob-vcr-control-runtime.md
 ```
 
-Runtime source `e0b7f9ac91f99e8006546b80ec4a940ab21e2a6e`:
+Runtime source `e0b7f9ac91f99e8006546b80ec4a940ab21e2a6e` plus control extraction source `6ef2c9344b1544a7e60952db50e1d942e352e53e`:
 
 ```text
-tests passed; audit rc=0; payload_conflicts=0
 candidate_rows=2223
 stable_identity=2174
 stable_vcr_participant=2
+stable_no_vcr=2172
 before_cloak_true=1433
 
 stable transitions:
@@ -146,35 +147,82 @@ stable_before_cloaked_pe_zero_no_vcr=1394
 stable_true_to_true_pe_zero_no_vcr=1360
 stable_before_cloaked_pe_zero_vcr=0
 stable_true_to_true_pe_zero_vcr=0
+payload_conflicts=0
 ```
 
-Exact residual `360690/T82->T83/ship98` is a stable identity, PE=0, `true_to_true`, no-VCR row and is typical of this population.
+The exact residual `360690/T82->T83/ship98` is a stable PE=0 `true_to_true`, no-VCR row and is typical of this population.
+
+The only two stable Privateer mission9 VCR participants are:
+
+```text
+511506/T15 ship89:  PE=6,  true_to_true, VCR7 vs owner6
+511506/T22 ship157: PE=11, true_to_true, VCR25 vs owner11
+```
+
+Both can initiate combat through their own Primary Enemy. Therefore neither is a PE=0 hostile-targetability counterexample.
 
 Interpretation boundary:
 
-- this is strong `CORPUS_OBSERVED` persistence of the archive `iscloaked` field;
-- it is not yet a combat-effective-cloak differential because most rows do not prove a hostile attack opportunity at the same reconstructed combat site;
-- current Planets.nu Host documentation keeps `Cloak` and `Rob` as separate Host steps and documents ordinary cloak activation through the Cloak mission;
-- therefore do not promote Privateer mission9 itself as a cloak-generating rule and do not copy raw T-1 `iscloaked` into pair eligibility.
+- Privateer mission9 archive `iscloaked` persistence is `CORPUS_OBSERVED + TESTED`;
+- there are zero stable prior-cloaked PE0 VCR participants in this population (`CORPUS_OBSERVED`);
+- this still does not prove combat-effective cloak because most no-VCR rows do not prove a hostile attack opportunity;
+- current Planets.nu Host documentation keeps Cloak and Rob as separate Host steps;
+- do not promote Rob as cloak-generating and do not copy raw T-1 `iscloaked` into pair eligibility.
 
-## Immediate gate
+## Immediate gate — site-conditioned Rob attack opportunity
 
-The population contains only two stable Privateer mission9 VCR-participant rows. Extract and classify both explicitly before writing another mechanics rule.
-
-For each row capture:
+Read:
 
 ```text
-game / before_turn / battle_turn / ship
-T-1 iscloaked
-PE
-cloak transition
-VCR id / side / opponent owner
-stable identity
+docs/handoff/2026-09-11-combat-c5-privateer-rob-attack-opportunity-pending.md
 ```
 
-If neither row is a prior-cloaked PE=0 counterexample, proceed immediately to a **site-conditioned hostile attack-opportunity differential** using reconstructed post-movement stacks. That gate must require an actual opposing Kill!/PE requester at the same site; mere no-VCR persistence is insufficient.
+Diagnostic:
 
-No `selection.py` or target-order change is allowed before that site-conditioned evidence.
+```text
+tools/diagnostics/combat_host_privateer_rob_attack_opportunity_audit.py
+tests/test_combat_host_privateer_rob_attack_opportunity_audit.py
+```
+
+Require:
+
+```text
+ordinary factual battle site
+Privateer race5 target
+mission9 / Rob
+cloak-capable hull
+PE=0
+target + opponent independently position-resolved at site
+opponent Kill!/PE requests combat against Privateer owner
+target does not request combat back
+canonical conditional pair decision = eligible plain STANDARD
+```
+
+Strict scope additionally requires independent diplomacy permission for the attacker's direction.
+
+Key outcome classes:
+
+```text
+pair_vcr
+attacker_fought_other
+target_fought_other
+both_fought_other
+neither_vcr
+```
+
+Known residual must appear as:
+
+```text
+360690/T83 target98 / attacker264
+prior iscloaked=true
+conditional plain-STANDARD opportunity
+factual outcome=attacker_fought_other
+factual pair [190,264]
+```
+
+Any `prior cloak=true + PE0 + pair_vcr` row is a direct counterexample to a blanket raw-bit blocker and must be inspected before promotion. The strongest positive blocker evidence is `prior cloak=true + attacker_fought_other + target skipped`, especially when strict diplomacy is independently resolved.
+
+No `selection.py` or target-order change before this gate.
 
 Later C5 work remains: close the last initial candidate blocker, add canonical initial selector, mutable survivor/destruction state, second-pass composition, capture continuation, ship-to-planet repair boundary, then planet/base participation.
 
