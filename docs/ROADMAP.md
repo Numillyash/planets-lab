@@ -10,6 +10,8 @@ This file is the operational roadmap for `planets-lab`. Architecture boundaries 
 - Initial plain-STANDARD target-order runtime: [`handoff/2026-09-10-combat-c5-initial-standard-target-runtime.md`](handoff/2026-09-10-combat-c5-initial-standard-target-runtime.md).
 - Privateer Rob selector-impact runtime: [`handoff/2026-09-11-combat-c5-privateer-rob-selector-impact-runtime.md`](handoff/2026-09-11-combat-c5-privateer-rob-selector-impact-runtime.md).
 - Bird Super Spy cloak-context runtime: [`handoff/2026-09-11-combat-c5-bird-super-spy-cloak-context-runtime.md`](handoff/2026-09-11-combat-c5-bird-super-spy-cloak-context-runtime.md).
+- Combined blocker projection runtime: [`handoff/2026-09-11-combat-c5-initial-standard-combined-blocker-projection-runtime.md`](handoff/2026-09-11-combat-c5-initial-standard-combined-blocker-projection-runtime.md).
+- Active Bird population gate: [`handoff/2026-09-11-combat-c5-bird-super-spy-population-pending.md`](handoff/2026-09-11-combat-c5-bird-super-spy-population-pending.md).
 
 ## Evidence policy
 
@@ -67,7 +69,7 @@ first target      = highest-priority eligible target for that active ship
 
 Do not invert target ordering.
 
-### Original broad initial blockers — CLOSED independently
+### Original broad initial blockers — independently closed
 
 The two original broad mismatches were:
 
@@ -76,96 +78,73 @@ The two original broad mismatches were:
 511506/T94: active496; extra202; factual332  # Bird Super Spy
 ```
 
-#### Privateer Rob
+Privateer Rob ordinary-cloak directional targetability is `CORPUS_OBSERVED + TESTED + DIFF_VERIFIED` within its tested scope. Bird ship202 is `DOCUMENTED + CORPUS_OBSERVED + TESTED` at the focused ordinary-cloak Super Spy targetability boundary.
 
-Scoped ordinary-cloak state:
-
-```text
-Privateer race5 + mission9 Rob + ordinary cloak-capable hull:
-  prior false                         -> not effectively cloaked
-  prior true + fuel <= reference cost -> not effectively cloaked
-  prior true + fuel >  reference cost -> effectively cloaked
-  advanced cloak                      -> unresolved
-```
-
-Differential evidence:
+The combined structural projection runtime now closes all four strict/conditional baseline mismatch profiles:
 
 ```text
-queue-decisive rows=8
-matches=8
-mismatches=0
-
-selector impact:
-  blocked_factual_pair_rows=0
-  potential_first_selector_regression_rows=0
-  privateer_residual_profiles_projected_fixed=2/2
+baseline_mismatch_examples=4
+privateer_residual_profiles=2
+privateer_residual_profiles_projected_fixed=2
+bird_residual_profiles=2
+bird_residual_profiles_projected_fixed=2
+unrelated_baseline_mismatches=0
 ```
 
-Status:
+Acceptance:
 
 ```text
-CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
+privateer_gate_still_clean=True
+bird_context_gate_clean=True
+privateer_residual_all_profiles_projected_fixed=True
+bird_residual_all_profiles_projected_fixed=True
+no_unrelated_baseline_mismatches=True
+all_original_broad_mismatches_projected_fixed=True
 ```
 
-#### Bird Super Spy
+This is a structural composition checkpoint only. It does not yet justify a corpus-wide Bird rule or canonical selector wiring.
 
-Focused runtime source:
+### Immediate combat work — Bird Super Spy population differential
+
+Active diagnostic:
 
 ```text
-6cf47de46fadcbe1619c6a6eee5731d51866c12e
+tools/diagnostics/combat_host_bird_super_spy_attack_opportunity_audit.py
+tests/test_combat_host_bird_super_spy_attack_opportunity_audit.py
 ```
 
-Runtime:
+The gate reconstructs all one-way hostile plain-STANDARD opportunities against Bird race3 / mission9 Super Spy / cloak-capable targets at factual combat sites. It uses the same position-v3/candidate-set-v2, diplomacy and canonical pair-decision primitives as the existing initial STANDARD and Privateer diagnostics.
+
+Each target is evaluated conservatively for documented ordinary cloak using damage, fuel, independently reconstructed reference movement, prior archived cloak, ion storm, possible planet Ion Pulse, Loki and active Glory context. Advanced/unresolved state fails closed.
+
+Queue-decisive labels remain limited to:
 
 ```text
-21 targeted tests passed
-focus_row_found=True
-archive_found=True
-race_conflicts=0
-extra_ship_documented_effective_cloak_supported=True
-factual_ship_documented_effective_cloak_supported=False
-raw_prior_cloak_control_separates=True
+initial_pair_vcr                       -> expected eligible
+initial_skip_target_outranks_factual  -> expected blocked
 ```
 
-For ship202:
+Acceptance requires:
 
 ```text
-Bird race3 / Red Wind / mission9 Super Spy
-damage=0
-fuel 37, reference cloak cost 5
-reference normal move fuel used 8, remaining 29
-prior iscloaked=true
-ion storm=False
-planet Super-Spy Ion Pulse=False
-Loki=False
-active Glory=False
+no_race_conflicts=True
+no_payload_conflicts=True
+no_blocked_factual_pair_regressions=True
+no_decisive_mismatch=True
+target_residual_present=True
+target_residual_supported=True
 ```
 
-Status at focused ordinary-STANDARD targetability boundary:
+`decisive_unresolved>0` is not automatically a contradiction because the model deliberately fails closed, but every unresolved decisive row must be inspected before promotion.
 
-```text
-DOCUMENTED + CORPUS_OBSERVED + TESTED
-```
+If the Bird population gate is clean enough:
 
-Matched factual ship332 has prior `iscloaked=true` but mission2 and actually fights, so raw archived cloak remains rejected as a blanket blocker.
-
-### Immediate combat work — generic directional STANDARD targetability
-
-The next gate is **not** another ship-specific patch.
-
-Proceed in this order:
-
-1. compose evidence-scoped Privateer and Bird cloak states into a directional STANDARD-targetability projection;
-2. keep symmetric pair eligibility and PIA/C&I/pre-standard semantics unchanged;
-3. apply the projection across reconstructed relevant target opportunities, not only the two known residual ship IDs;
-4. rerun the full initial STANDARD selector differential;
-5. require all previously exact first selectors to stay exact;
-6. require zero blocked factual-pair regressions and zero first-selector regressions;
-7. require both original broad residuals to project fixed in every comparable strict/conditional profile;
-8. unresolved/advanced/out-of-scope effective state must fail closed and must not silently block combat;
-9. only after this passes, promote the canonical first STANDARD selector;
-10. then move to mutable survivor/destruction state, mutable second-pass orientation, capture continuation and ship-to-planet/planet-base integration;
-11. keep game `591478` separate.
+1. compose supported Bird states with the already DIFF_VERIFIED Privateer targetability overlay;
+2. run a population-wide directional STANDARD targetability differential over the full initial selector baseline;
+3. require all previously exact first selectors to remain exact, zero factual-pair regressions, zero first-selector regressions and both original residuals fixed;
+4. only then wire directional targetability into the canonical first STANDARD selector;
+5. proceed to mutable survivor/destruction state, second-pass orientation, capture continuation and ship-to-planet/planet-base integration;
+6. keep game `591478` separate.
 
 ## Wider Host reconstruction order
 
