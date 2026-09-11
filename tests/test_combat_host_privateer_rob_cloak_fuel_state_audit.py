@@ -1,4 +1,13 @@
-from tools.diagnostics.combat_host_privateer_rob_cloak_fuel_state_audit import (
+from __future__ import annotations
+
+import sys
+from pathlib import Path
+
+TOOLS_DIR = Path(__file__).resolve().parents[1] / "tools" / "diagnostics"
+if str(TOOLS_DIR) not in sys.path:
+    sys.path.insert(0, str(TOOLS_DIR))
+
+from combat_host_privateer_rob_cloak_fuel_state_audit import (  # noqa: E402
     _classify_fuel_debit,
     _focus_projection,
     _fuel_threshold,
