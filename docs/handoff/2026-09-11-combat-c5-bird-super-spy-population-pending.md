@@ -42,6 +42,16 @@ cloak-capable target hull
 
 Targets and attackers must independently reach the factual combat site through the same position-v3 / candidate-set-v2 movement layer used by the initial STANDARD audit. Visible foreign mine-route risks fail closed. The attacker must request combat; opportunities where the Bird target also requests combat are separated rather than treated as simple directional-targetability controls.
 
+The known focused residual is identified structurally as:
+
+```text
+game=511506
+battle_turn=94
+site=(2716,1999)
+target_ship_id=202
+attacker_ship_id=496
+```
+
 Factual VCRs are used only after opportunity construction as outcome and queue labels.
 
 ## Effective-cloak candidate
