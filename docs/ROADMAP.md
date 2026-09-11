@@ -4,6 +4,7 @@ This file is the operational roadmap for `planets-lab`. Architecture boundaries 
 
 Current durable checkpoints:
 
+- finite-fuel Tow documented reconciliation: [`handoff/2026-09-11-finite-fuel-tow-documented-reconciliation-runtime.md`](handoff/2026-09-11-finite-fuel-tow-documented-reconciliation-runtime.md);
 - verified partial-fuel historical gate: [`handoff/2026-09-09-partial-fuel-historical-gate-verified.md`](handoff/2026-09-09-partial-fuel-historical-gate-verified.md);
 - movement: [`handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md`](handoff/2026-09-07-movement-checkpoint-scaled-mine-closed.md);
 - Classic combat replay coverage: [`handoff/2026-09-07-combat-c2-classic-replay-coverage.md`](handoff/2026-09-07-combat-c2-classic-replay-coverage.md);
@@ -26,7 +27,7 @@ Unknown mechanics fail closed. Raw facts and evidence-scoped effective interpret
 
 Active milestone remains **M5 — historical NuHost corpus + compatibility mining**.
 
-Movement, Classic pairwise replay, ordinary ship battle-sequence carry-over, and the attributable ordinary repeated-planet persistence layer now have explicit subsystem checkpoints.
+Movement, including the base finite-fuel Tow mass/proration rule, Classic pairwise replay, ordinary ship battle-sequence carry-over, and the attributable ordinary repeated-planet persistence layer now have explicit subsystem checkpoints.
 
 The immediate combat work is the missing **Host combat phase around the resolver**:
 
@@ -39,7 +40,19 @@ The immediate combat work is the missing **Host combat phase around the resolver
 - planet/base participation in the full multi-player queue;
 - the documented ship-to-planet phase boundary, including between-phase repair.
 
-Do not reopen bounded movement, ordinary ship-sequence, or plain-planet sequence residual hunting unless a contradiction blocks a larger Host subsystem. Finite-fuel Tow is a separate explicit open boundary, not a reason to weaken or reopen the verified normal-movement rule.
+Do not reopen bounded movement, ordinary ship-sequence, or plain-planet sequence residual hunting unless a contradiction blocks a larger Host subsystem. The base finite-fuel Tow movement rule is closed; Tow contests/chains/cycles and mine/web/Chunnel/storm interaction ordering remain separately scoped and fail closed where unresolved.
+
+## Planning progress snapshot — 2026-09-11
+
+These are approximate planning estimates, **not evidence labels** and not substitutes for differential validation:
+
+- ordinary/Classic movement core: roughly **90%** reconstructed at the rule level; remaining work is dominated by bounded interactions and special/campaign mechanics rather than basic movement geometry/fuel;
+- Classic pairwise combat plus ordinary survivor/planet persistence: roughly **75–80%** of the low-level combat state-transition layer; the pairwise resolver is strong, but Host still has to decide who fights whom, in what order, and on which side;
+- full Host combat engagement/order layer: roughly **30–35%**; factual VCR replay is mature, predictive queue generation is not yet reconstructed end-to-end;
+- overall reverse-engineering understanding of the ordinary Classic core: roughly **60–65%**;
+- overall high-fidelity end-to-end Host surface needed before serious self-play: roughly **45–50%**.
+
+The apparent gap between the last two numbers is intentional: several mechanics are understood in isolation but are not yet integrated into a complete Host-order prediction pipeline. Large breadth items still remain after combat ordering: planetary production, complete minefield lifecycle, general missions and special abilities, diplomacy, race-specific rules, observer/visibility semantics and complete-turn differential validation.
 
 ## Runtime-verified movement accounting
 
@@ -68,7 +81,24 @@ missing archives                                0
 
 The independent discriminators are `360690/T164/ship41` (Move Most) and `620694/T73/ship278` (Intercept). Targeted confounder checks found no already-modelled mine/storm/damage/Tow/Chunnel explanation for the supporting cases.
 
-Finite-fuel Tow remains OPEN. Snapshot fuel remains pre-Host evidence and is not automatically movement-phase fuel. A later `planets-intel` transfer must preserve those boundaries.
+The separate finite-fuel Tow chain is now also closed for its base movement rule. Runtime candidate `bc3b767330dc23ed09303eed766365fa53877209` produced one cleaned discriminator at `360690/T41`:
+
+```text
+pre-Alchemy combined exact       0
+post-Alchemy combined exact      1
+post-Alchemy tower-only exact    0
+Alchemy mass-basis discriminator 1
+combined-mass discriminator      1
+```
+
+The factual endpoint `(2183,2688)` is reproduced only by post-Alchemy combined tower+towed mass (`2163 KT`) with `124/131` proportional insufficient-fuel movement. Official Nu documentation independently specifies towed-mass inclusion, post-Alchemy movement-mass evaluation and proportional insufficient-fuel distance. Scoped status:
+
+```text
+base finite-fuel Tow movement
+DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
+```
+
+This does not promote unresolved Tow topology or external interaction ordering. Snapshot fuel remains pre-Host evidence and is not automatically movement-phase fuel outside attributable cases. A later `planets-intel` transfer must preserve those boundaries.
 
 ```text
 move_most_candidates              227468
@@ -101,6 +131,7 @@ L2 context labels:         planets-lab.compiled-movement-context-labels.v6
 - ordinary movement / Host major-minor geometry;
 - warp-well ordering — `TESTED + DIFF_VERIFIED`;
 - route-equivalent owner-visible Tow — `TESTED + DIFF_VERIFIED`;
+- base finite-fuel Tow post-Alchemy combined-mass proportional movement — `DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`;
 - route-equivalent Chunnel multiplicity — `TESTED + DIFF_VERIFIED`;
 - classic/cloudy ion storms — `DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`;
 - scoped effective sphere topology for game `591478` — `CORPUS_OBSERVED + TESTED + DIFF_VERIFIED`;
@@ -420,7 +451,7 @@ The next goal is not merely to replay an already supplied VCR. It is to predict 
 
 Proceed in this order unless evidence forces a dependency change:
 
-1. **Movement checkpoint** — substantially reconstructed; reopen only for bounded contradictions/interactions. Finite-fuel Tow remains a distinct open boundary.
+1. **Movement checkpoint** — substantially reconstructed, including the base finite-fuel Tow mass/proration rule; reopen only for bounded contradictions/interactions.
 2. **Classic pairwise combat C1/C2** — extracted and complete for current replay corpus.
 3. **Ordinary ship battle sequences C3** — `DIFF_VERIFIED` on clean same-phase historical chains.
 4. **Planet/starbase sequences C4** — attributable ordinary plain-planet carry and starbase shield persistence checkpointed; hidden damaged-starbase state remains fail-closed.
@@ -441,8 +472,8 @@ The target remains a high-fidelity NuHost-compatible simulator suitable for real
 - **M0 deterministic skeleton:** substantially complete.
 - **M1 minimal sandbox:** largely implemented.
 - **M2 economy/planetary Host:** in progress.
-- **M3 warfare:** materially advanced: Classic pairwise replay, ordinary ship sequences and attributable ordinary repeated-planet persistence are canonical in `planets-lab`; full Host engagement ordering remains open.
+- **M3 warfare:** materially advanced: ordinary movement including base finite-fuel Tow, Classic pairwise replay, ordinary ship sequences and attributable ordinary repeated-planet persistence are canonical in `planets-lab`; full Host engagement ordering remains open.
 - **M4 race mechanics:** partial; Federation shield recovery has scoped differential evidence.
 - **M5A historical corpus:** active and operational.
-- **M5B Nu compatibility matrix:** active; movement and ordinary Classic combat sequence checkpoints are explicit.
+- **M5B Nu compatibility matrix:** active; movement, base finite-fuel Tow and ordinary Classic combat sequence checkpoints are explicit.
 - **M6 training/AI:** later, after required simulation/observer surfaces are sufficiently faithful.
