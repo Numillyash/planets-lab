@@ -67,7 +67,7 @@ https://help.planets.nu/mis-rob-ship
 https://help.planets.nu/out-of-fuel
 ```
 
-Important evidence boundary: official documentation also describes all ships as starting a Host turn uncloaked and ordinary cloak as being engaged by the Cloak mission. Therefore this gate must not silently interpret archived prior `iscloaked=true` on mission9/Rob as current effective cloak. The purpose is to identify the state discriminator empirically.
+Important evidence boundary: official documentation also describes all ships as starting a Host turn uncloaked and ordinary cloak as being engaged by the Cloak mission. Therefore this gate must not silently interpret archived prior `iscloaked=true` on mission9/Rob as current effective cloak. The purpose is to identify the state discriminator empirically, including the possibility that the archive bit is only correlated with another Host state.
 
 ## Diagnostic
 
@@ -117,9 +117,9 @@ raw_reference_remaining_fuel == 0
 AND no visible foreign ship at T-1 origin
 ```
 
-is much stronger than raw fuel exhaustion alone.
+is much stronger than raw fuel exhaustion alone. A nonzero foreign-origin population is only Rob exposure; this gate does not reconstruct diplomacy immunity, victim cloak, exact Rob order or the documented 1% failure chance.
 
-A nonzero foreign-origin population is only Rob exposure; this gate does not reconstruct diplomacy immunity, victim cloak, exact Rob order or the documented 1% failure chance.
+The existing candidate position layer already fails closed on visible submitted inbound/outbound transfer ambiguity, so a focus row reaching this gate does not silently rely on those transfer branches for its endpoint.
 
 ### Loki interpretation
 
@@ -140,15 +140,14 @@ Strong support for a scoped effective-state blocker would be:
 ```text
 all three clean skips:
   damage=0
-  retain positive fuel through reference movement or have no documented decloak context
-  no active Loki context
+  no documented decloak discriminator found in the narrow context
 
 clean fought control ship118:
   has a documented decloak discriminator absent from skips
   e.g. exact fuel exhaustion with no Rob fuel source, or active Loki context
 ```
 
-If ship118 is cleanly explained, the next step is a larger matched-control population before changing `selection.py`.
+Even that result does not by itself prove that mission9 engages/preserves cloak; it only removes the current clean counterexample and strengthens the empirical state correlation. A larger matched-control population is required before changing canonical pair eligibility.
 
 If ship118 is not explained, do not promote raw cloak. Expand only the documented decloak attribution boundary needed by that row (ion/mine/glory or other exact context).
 
