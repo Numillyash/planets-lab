@@ -2,6 +2,29 @@
 
 GitHub is the source of truth. PR #28 remains draft/open and unmerged. Game `591478` stays excluded from ordinary promotion.
 
+## Latest runtime attempt — INVALID / infrastructure only
+
+Attempted source:
+
+```text
+180429508419581cf5082bb5363e1b8c528dd14f
+```
+
+Runtime result:
+
+```text
+tests rc=2
+audit rc=99
+```
+
+Both targeted tests failed during pytest collection with:
+
+```text
+ModuleNotFoundError: No module named 'tools'
+```
+
+This is **not mechanics evidence** and does not change any combat conclusion. The new tests used `from tools.diagnostics...` while the established repository convention is to add `tools/diagnostics` to `sys.path` and import diagnostic modules directly. The collection regression is fixed in subsequent branch commits; the attribution gate remains pending until rerun on the repaired HEAD.
+
 Depends on:
 
 ```text
