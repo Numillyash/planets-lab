@@ -11,12 +11,12 @@ GitHub remains the source of truth. At this checkpoint `main` is `bc3b767330dc23
 
 ```text
 combat mechanics reconstruction (C1-C5 knowledge):     ~70-80%
-ordinary ship-combat independent end-to-end coverage:  ~20-25%
+ordinary ship-combat independent candidate coverage:    ~20-25%
 movement ordinary-core reconstruction:                  ~80-90%
 whole NuHost reverse across the roadmap:                ~40-50%
 ```
 
-The ranges are deliberately broad. They are planning estimates, not promoted mechanics evidence.
+The ranges are deliberately broad. They are planning estimates, not promoted mechanics evidence. The `~20-25%` combat number refers specifically to the current independent candidate-set boundary; complete end-to-end Host VCR prediction is not yet promoted because effective blockers and mutable post-battle queue state remain open.
 
 ## Why combat knowledge is already ~70-80%
 
@@ -48,7 +48,7 @@ The major remaining C5 mechanics are concentrated rather than broad:
 
 This is why combat is materially advanced even though C5 is not complete.
 
-## Why end-to-end combat coverage is only ~20-25%
+## Why independent combat coverage is only ~20-25%
 
 The current candidate-set v2 historical checkpoint is:
 
