@@ -23,21 +23,17 @@ Do not reopen absent a direct contradiction:
 
 ## Position / candidate checkpoint
 
-Position v3:
-
 ```text
-factual ship occurrences=3204
-predicted=1810 exact=1806 mismatch=4 uncovered=1383
-factual pairs exact=678 mismatch=4 unresolved=1304
-```
+position v3:
+  factual ship occurrences=3204
+  predicted=1810 exact=1806 mismatch=4 uncovered=1383
+  factual pairs exact=678 mismatch=4 unresolved=1304
 
-Candidate-set v2:
-
-```text
-factual unique pairs=1986
-candidate-covered=428
-conditional factual eligible=427 unresolved=1 blocked=0
-strict factual eligible=420 unresolved=8 blocked=0
+candidate-set v2:
+  factual unique pairs=1986
+  candidate-covered=428
+  conditional factual eligible=427 unresolved=1 blocked=0
+  strict factual eligible=420 unresolved=8 blocked=0
 ```
 
 No candidate-covered factual pair is conditionally hard-blocked.
@@ -59,29 +55,26 @@ first target      = highest-priority eligible target for that active ship
 
 Do not invert target ordering.
 
-The two original broad initial residuals are:
+Original broad initial mismatches:
 
 ```text
 360690/T83: active264; extra98; factual190
 511506/T94: active496; extra202; factual332
 ```
 
-Bird `511506/T94/ship202` remains a separate Super Spy/effective-cloak residual.
+## Privateer Rob blocker — CLOSED at scoped targetability boundary
 
-## Privateer Rob effective-cloak closure path
-
-Read in order:
+Read:
 
 ```text
 docs/handoff/2026-09-11-combat-c5-privateer-rob-initial-decision-runtime.md
 docs/handoff/2026-09-11-combat-c5-privateer-rob-cloak-fuel-state-runtime.md
 docs/handoff/2026-09-11-combat-c5-privateer-rob-cloak-fuel-attribution-runtime.md
 docs/handoff/2026-09-11-combat-c5-privateer-rob-effective-cloak-threshold-runtime.md
+docs/handoff/2026-09-11-combat-c5-privateer-rob-selector-impact-runtime.md
 ```
 
-### Initial-decision controls
-
-Three clean missing-state rows:
+Three clean blocker controls:
 
 ```text
 360690/T57 ship46  vs attacker146
@@ -89,75 +82,43 @@ Three clean missing-state rows:
 360690/T83 ship98  vs attacker264
 ```
 
-All are Privateer race5 / Meteor hull46 / mission9 Rob / PE0 / prior `iscloaked=true`, and each strictly outranks the factual first target for the same initial attacker.
-
-The clean fought prior-true control is:
+Clean fought threshold control:
 
 ```text
 620694/T64 ship118 vs attacker134
-fuel=5
+prior iscloaked=true
+fuel == reference cost == 5
+factual initial pair exists
+archived transition true_to_false
 ```
 
-### Fuel-state population
+The broad exact-reference fuel-debit signal was real but the clean attribution subset rejected universal `Rob Ship consumes ordinary cloak fuel` causality:
 
 ```text
-stable prior-true rows=1413
-exact_reference_debit=545
-zero_debit=90
-other_debit=778
-true_to_true=1378
-true_to_false=35
-threshold above=1399
-threshold equals=3
-threshold below=11
-```
-
-The broad exact-reference-debit correlation is real but not causal proof.
-
-### Clean attribution runtime
-
-Runtime source `16f9253b92f7e48f7f2179f9c3b704469de4128a`, tests/audit rc0.
-
-Conservative stationary/no-visible-fuel-mutation subset:
-
-```text
-rows=12
+clean stationary/no-visible-fuel-mutation rows=12
 exact_reference_debit=2
 zero_debit=7
 other_debit=3
-all 12 true_to_true
 ```
 
-Therefore reject the simple universal rule `Rob Ship consumes ordinary cloak reference fuel`.
-
-The low-fuel controls are much stronger:
+The low-fuel transition was much cleaner:
 
 ```text
 ordinary-cloak prior-true rows with fuel <= reference cost:
   13/13 true_to_false
-
-sole threshold true_to_true row:
-  advanced-cloak hull29, fuel acquisition confounded
 ```
 
-No ordinary threshold row has archived T-1 ion/Loki/active-Glory exposure in this diagnostic.
-
-### Effective-cloak threshold differential
-
-Runtime source `37ea8fc3a68be3b18737f6a71a2a09bb36226ad5`, tests 5 passed, audit rc0.
-
-Candidate:
+Evidence-scoped Privateer state:
 
 ```text
 Privateer race5 + mission9 Rob + ordinary cloak-capable hull:
-
-prior false                              -> not effectively cloaked
-prior true + fuel <= reference cost      -> not effectively cloaked
-prior true + fuel >  reference cost      -> effectively cloaked
-advanced cloak                           -> unresolved / fail closed
+  prior false                         -> not effectively cloaked
+  prior true + fuel <= reference cost -> not effectively cloaked
+  prior true + fuel >  reference cost -> effectively cloaked
+  advanced cloak                      -> unresolved / fail closed
 ```
 
-Queue-decisive result:
+Queue-decisive differential:
 
 ```text
 opportunities=16
@@ -165,79 +126,143 @@ decisive_rows=8
 decisive_match=8
 decisive_mismatch=0
 decisive_unresolved=0
-
 expected blocked -> candidate blocked: 3/3
 expected eligible -> candidate eligible: 5/5
 ```
 
-The three skipped Meteors are all blocked. The five factual initial-pair controls remain eligible. Crucially:
+Selector-impact runtime source `5bfdecfc090357cd7f38fa69f9cb05d2c6aee611`, 15 targeted tests passed:
 
 ```text
-620694/T64 ship118:
-  prior=true
-  fuel == reference cost == 5
-  candidate effective cloak=false
-  factual initial pair exists
-  archived transition true_to_false
+overlay_rows=16
+overlay_blocked=7
+overlay_eligible=9
+blocked_factual_pair_rows=0
+potential_first_selector_regression_rows=0
+privateer_residual_profiles=2
+privateer_residual_profiles_projected_fixed=2
+bird_residual_profiles=2
+bird_residual_profiles_overlay_affected=0
 ```
 
-This resolves the previous apparent contradiction without a ship-specific exception.
+All acceptance flags are true.
 
 Evidence status:
 
 ```text
-Privateer Rob ordinary-cloak threshold state:
-  CORPUS_OBSERVED + TESTED
+Privateer Rob ordinary-cloak targetability state:
+  CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
 
 universal Rob fuel-consumption causality:
   REJECTED
 
-raw prior iscloaked as direct blocker:
+raw prior iscloaked as blanket blocker:
   REJECTED
 
-advanced-cloak threshold:
-  UNRESOLVED
-
-Bird Super Spy effective cloak:
+advanced-cloak Privateer branch:
   UNRESOLVED
 ```
 
-## Effective-state helper
-
-A fail-closed helper now exists at:
+Helper:
 
 ```text
 src/planets_lab/rules/combat/effective_state.py
 ```
 
-`privateer_rob_ordinary_cloak_state(...)` encodes only the evidence scope above. Other races/missions, advanced cloak, unresolved cloak type or unresolved fuel/reference inputs return `None`.
+Important: this evidence establishes a **directional ordinary-STANDARD targetability effect**, not a symmetric pair-combat ban. Do not wire `effective_cloak=True` into `_base_engagement` as a blanket pair blocker. A cloaked ship may have its own attack request and pre-standard phases have separate semantics.
 
-The helper is **not wired into `selection.py` or `queue.py` yet**.
+## Remaining original blocker — Bird Super Spy ship202
 
-## Immediate gate — selector impact differential
+Read:
+
+```text
+docs/handoff/2026-09-10-combat-c5-initial-standard-target-cloak-residual-runtime.md
+docs/handoff/2026-09-11-combat-c5-bird-super-spy-cloak-context-pending.md
+```
+
+Residual:
+
+```text
+game 511506 / T94
+active 496 owner5/race5 Bloodfang
+extra  202 owner3/race3 Red Wind, mission9
+factual 332 owner3/race3 Resolute, mission2
+```
+
+Existing archive/static facts for ship202:
+
+```text
+Bird race3
+cloak-capable Red Wind
+mission9 Super Spy
+T-1 iscloaked=true
+T-1 fuel=37
+ordinary cloak reference cost=5
+T same owner/hull and iscloaked=true
+```
+
+Matched negative control ship332:
+
+```text
+Bird Resolute, cloak-capable
+mission2, not Super Spy
+T-1 iscloaked=true
+factual VCR with ship496 occurs
+```
+
+This independently rejects raw `T-1 iscloaked=true` as a generic blocker.
+
+Official Planets.nu documentation provides a direct rule basis:
+
+- Super Spy: Bird ships on Super Spy which can cloak attempt to cloak normally; inadequate fuel means cloak does not occur while Super Spy continues.
+- Cloak: cloaked ships are protected from enemy attack; ordinary cloak consumes the normal hull-mass-based reference fuel; damage prevents initiating or maintaining cloak; Advanced Cloak has separate fuel semantics.
+
+Sources:
+
+```text
+https://help.planets.nu/mis-super-spy
+https://help.planets.nu/mis-cloak
+```
+
+## Immediate gate — Bird Super Spy dynamic context
 
 Diagnostic:
 
 ```text
-tools/diagnostics/combat_host_privateer_rob_selector_impact_audit.py
-tests/test_combat_effective_state.py
-tests/test_combat_host_privateer_rob_selector_impact_audit.py
+tools/diagnostics/combat_host_bird_super_spy_cloak_context_audit.py
+tests/test_combat_host_bird_super_spy_cloak_context_audit.py
 ```
 
-It reruns the unchanged full initial-STANDARD baseline and projects the helper over all 16 independently reconstructed Rob plain-STANDARD opportunities.
+The diagnostic is deliberately stricter than the documentation. It only reports the focused ship202 candidate supported when all of these resolve:
 
-Acceptance boundary:
+```text
+Bird race3
+mission9 Super Spy
+cloak-capable ordinary-cloak hull
+damage=0
+prior archived iscloaked=true
+fuel > reference cost
+reference normal movement resolved
+reference remaining fuel > reference cost
+T-1 ion context clear
+T-1 Loki exposure clear
+no co-located active POP/TRG Glory device
+```
 
-1. no effectively-cloaked overlay row may be a factual pair;
-2. no effectively-cloaked overlay row may be a factual initial pair;
-3. potential first-selector regression rows must be zero;
-4. the Privateer `360690/T83/ship98` baseline mismatch must be projected fixed for every comparable profile;
-5. Bird `511506/T94/ship202` must remain present and untouched;
-6. baseline exact-set evidence must not be contradicted;
-7. advanced/unresolved state fails closed.
+T state remains attribution-only.
 
-If this passes, Privateer ship98 blocker state is closed strongly enough to consider canonical candidate/selector integration. Bird ship202 remains the separate blocker investigation before declaring the broad initial selector fully closed.
+Acceptance:
 
-Later C5 work: close Bird ship202; promote canonical first selector; compose mutable survivor/destruction state; second-pass orientation in the mutable queue; capture continuation; ship-to-planet repair boundary; planet/base participation.
+```text
+extra_ship_documented_effective_cloak_supported=True
+factual_ship_documented_effective_cloak_supported=False
+raw_prior_cloak_control_separates=True
+race_conflicts=0
+```
+
+If this passes, promote the Bird blocker only at the focused ordinary-STANDARD targetability boundary as `DOCUMENTED + CORPUS_OBSERVED + TESTED`, then project ship202 removal over both baseline profiles. After both original broad blockers are closed, introduce a generic directional STANDARD targetability composition and rerun the full initial selector differential before promoting the canonical first selector.
+
+If Bird fails or is unresolved, follow the specific reported movement/damage/ion/Loki/Glory factor rather than special-casing ship202.
+
+Later C5 work after broad initial-blocker closure: canonical first selector; mutable survivor/destruction state; second-pass orientation in the mutable queue; capture continuation; ship-to-planet repair boundary; planet/base participation.
 
 Keep `DOCUMENTED / CORPUS_OBSERVED / INFERRED / TESTED / DIFF_VERIFIED` distinct. Unknown branches fail closed.
