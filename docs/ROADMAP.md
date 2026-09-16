@@ -11,7 +11,8 @@ This file is the operational roadmap for `planets-lab`. Architecture boundaries 
 - Directional targetability population runtime: [`handoff/2026-09-16-combat-c5-directional-targetability-population-runtime.md`](handoff/2026-09-16-combat-c5-directional-targetability-population-runtime.md).
 - Canonical pair-level targetability runtime: [`handoff/2026-09-16-combat-c5-directional-targetability-canonical-wiring-runtime.md`](handoff/2026-09-16-combat-c5-directional-targetability-canonical-wiring-runtime.md).
 - Canonical initial plain-STANDARD selector runtime: [`handoff/2026-09-16-combat-c5-initial-standard-canonical-selector-runtime.md`](handoff/2026-09-16-combat-c5-initial-standard-canonical-selector-runtime.md).
-- Active production effective-state gate: [`handoff/2026-09-16-combat-c5-production-effective-state-pending.md`](handoff/2026-09-16-combat-c5-production-effective-state-pending.md).
+- Production precombat effective-state runtime: [`handoff/2026-09-16-combat-c5-production-effective-state-runtime.md`](handoff/2026-09-16-combat-c5-production-effective-state-runtime.md).
+- Active mutable ship-queue gate: [`handoff/2026-09-16-combat-c5-mutable-ship-queue-pending.md`](handoff/2026-09-16-combat-c5-mutable-ship-queue-pending.md).
 - Advanced Cloak decisive historical closure: [`handoff/2026-09-12-combat-c5-bird-advanced-cloak-decisive-closure-runtime.md`](handoff/2026-09-12-combat-c5-bird-advanced-cloak-decisive-closure-runtime.md).
 
 ## Evidence policy
@@ -31,8 +32,6 @@ whole NuHost reverse across the roadmap:                ~40-50%
 
 Candidate-set v2 independently covers `428 / 1986 = 21.6%` factual ship-vs-ship pairs, with zero conditionally hard-blocked covered factual pairs. Position v3 predicts 1810/3204 factual ship occurrences, 1806 exact and 4 mismatch.
 
-Whole-NuHost progress remains lower because economy/starbase production, minefield lifecycle, general missions/special abilities, race mechanics, cross-subsystem diplomacy, observer/visibility and complete-turn differential validation remain major work.
-
 ## Current focus
 
 Active milestone remains **M5 — historical NuHost corpus + compatibility mining**. Combat C1-C4 are checkpointed. C5 remains immediate.
@@ -43,9 +42,10 @@ Stable C5 layers now include:
 - normal/reciprocal Priority Intercept attribution;
 - scoped Galactic Power and matching-FC exceptions;
 - repaired precombat positions and candidate-set v2;
-- repeated-pair side reversal;
 - directional ordinary-STANDARD targetability at pair level;
-- production initial plain-STANDARD stack selector.
+- production initial plain-STANDARD stack selector;
+- ordinary Privateer Rob and ordinary Bird Super Spy precombat targetability;
+- repeated-pair second-occurrence side reversal.
 
 ### Position / candidate checkpoint
 
@@ -61,22 +61,14 @@ candidate-set v2:
   strict factual eligible=420 unresolved=8 blocked=0
 ```
 
-### Initial STANDARD selector — production closed
-
-Evidence rule:
+### Initial plain-STANDARD selector — production closed
 
 ```text
 first active ship = highest STANDARD Combat Priority ship with an eligible target
 first target      = highest-priority eligible target for that active ship
 ```
 
-Production API:
-
-```python
-select_initial_plain_standard(...)
-```
-
-Corpus differential:
+Production differential:
 
 ```text
 strict:      225/225 broad, 162/162 exact-set
@@ -86,11 +78,16 @@ conditional: 234/234 broad, 169/169 exact-set
 Status:
 
 ```text
-initial plain-STANDARD stack selector:
-  CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
+CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
 ```
 
-### Directional targetability — pair/selector boundary closed
+### Directional targetability — production closed for ordinary supported scopes
+
+Canonical input:
+
+```python
+ShipCombatSideInput.standard_targetable_by_opponent: bool | None
+```
 
 Population gate:
 
@@ -103,77 +100,107 @@ baseline mismatch profiles fixed=4/4
 unrelated mismatches=0
 ```
 
-Canonical input:
-
-```python
-ShipCombatSideInput.standard_targetable_by_opponent: bool | None
-```
-
-It applies only to incoming ordinary STANDARD requests after PIA/C&I classification. It is directional, preserves the target ship's own attack request and does not misuse fuel as cloak state.
-
-### Current combat work — production precombat effective state
-
-Privateer ordinary Rob already has production reconstruction:
-
-```python
-privateer_rob_ordinary_cloak_state(...)
-```
-
-Bird ordinary Super Spy now has production reconstruction:
-
-```python
-bird_super_spy_ordinary_cloak_state(...)
-standard_targetability_from_effective_cloak(...)
-```
-
-Implementation commit:
+Privateer ordinary Rob:
 
 ```text
-0b88541df32c441ead4b9b9d6054af04fd2fee7a
+CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
 ```
 
-The Bird helper uses only precombat-resolvable state: T-1 damage/fuel/prior cloak, ordinary reference cost, independently reconstructed reference movement and remaining fuel, ion/Loki/Glory/planet-pulse context. Advanced Cloak remains unresolved.
+Bird ordinary Super Spy production runtime:
+
+```text
+41 targeted tests passed
+one-way plain-STANDARD opportunities=8
+decisive rows=4
+match=1 mismatch=0 unresolved=3
+blocked factual-pair regressions=0
+focused 511506/T94 ship202 <- 496:
+  effective_cloak=True
+  standard_targetable_by_opponent=False
+```
+
+Status within the conservative ordinary Super Spy scope:
+
+```text
+DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
+```
+
+Advanced Cloak remains unresolved in production. The three decisive historical Advanced rows are explained but not promoted into a generic predictor.
+
+### C3 state carry prerequisite
+
+`carry_ship_to_next_engagement(...)` remains the verified between-combat state primitive. Clean owner-certain C3 chain subset:
+
+```text
+5 eligible transitions
+5/5 exact carry differential
+old reset baseline 3/5
+```
+
+Captured predecessor transitions are outside this proof because capture may change ownership and hostility.
+
+### Current combat work — mutable active ship queue
+
+Production module:
+
+```text
+src/planets_lab/rules/combat/mutable_queue.py
+```
+
+API:
+
+```python
+ShipQueueMutationResult
+apply_ship_terminal_batch(...)
+```
+
+Semantics:
+
+```text
+destroyed -> remove from active map
+survivor  -> require full C3 carry vector and carry state
+captured  -> unresolved / fail closed
+```
+
+The batch is atomic: capture, unknown terminal flags, incomplete survivor state or carry error leaves the entire original active map unchanged.
 
 Active diagnostic:
 
 ```text
-tools/diagnostics/combat_host_bird_super_spy_production_effective_state_audit.py
+tools/diagnostics/combat_host_mutable_ship_queue_audit.py
+```
+
+Tests:
+
+```text
+tests/test_combat_mutable_queue.py
+tests/test_combat_host_mutable_ship_queue_audit.py
 ```
 
 Required acceptance:
 
 ```text
-population_no_race_conflicts=True
-population_no_payload_conflicts=True
-population_no_blocked_factual_pair_regressions=True
-population_no_decisive_mismatch=True
-population_target_residual_present=True
-population_target_residual_supported=True
-production_targetability_blocks_target_residual=True
-advanced_rows_remain_unresolved=True
-production_effective_state_gate_passed=True
+survivor_population_present=True
+survivor_membership_exact=True
+capture_fail_closed_if_observed=True
+destroyed_removal_if_reappearance_observed=True
+no_production_mutation_errors=True
+no_terminal_flag_unknowns=True
+mutable_ship_queue_transition_gate_passed=True
 ```
 
-Expected retained Bird population:
+The corpus gate reuses the independent C3 ship-chain replay and tests C5 membership/continuation only. Absence of destroyed-reappearance rows is not treated as standalone corpus proof of destruction ordering.
 
-```text
-one-way plain-STANDARD opportunities=8
-decisive rows=4
-match=1 mismatch=0 unresolved=3
-blocked factual-pair regressions=0
-```
+### Next combat gates
 
-The three unresolved rows must remain Advanced Cloak. Historical explanation of those rows does not yet constitute a predictive production resolver.
+After mutable membership passes:
 
-### After the active gate
-
-If production effective-state runtime is green, leave the initial cloak/targetability loop and proceed with mutable C5 queue reconstruction:
-
-1. survivor/destruction mutation;
-2. mutable second-pass pair eligibility and side reversal;
-3. capture continuation;
-4. ship-to-planet / planet-base queue integration;
-5. keep game `591478` separate.
+1. compose membership mutation with the initial selector;
+2. track pair occurrence count and apply the already DIFF_VERIFIED second-pass side reversal;
+3. differentially validate the second ordinary STANDARD queue step;
+4. reconstruct capture ownership/hostility continuation as a separate branch;
+5. integrate ship-to-planet / planet-base queue ordering;
+6. keep game `591478` separate.
 
 ## Wider Host reconstruction order
 
