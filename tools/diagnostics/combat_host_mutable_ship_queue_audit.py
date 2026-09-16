@@ -25,9 +25,8 @@ SCHEMA = "planets-lab.combat-host-mutable-ship-queue-audit.v1"
 def _dummy_active_ship(previous: Mapping[str, Any]) -> dict[str, Any]:
     """Build only the structural state needed by the production carry helper.
 
-    The C3 chain audit remains the authority for exact terminal->next-start field
-    differential.  This C5 gate tests membership/continuation only, so weapon
-    counts are intentionally neutral and are not compared with factual VCRs.
+    Exact terminal->next-start field differential remains the independent C3
+    audit's responsibility. This C5 gate tests membership/continuation only.
     """
 
     ship_id = previous.get("ship_id")
@@ -46,9 +45,7 @@ def _dummy_active_ship(previous: Mapping[str, Any]) -> dict[str, Any]:
     }
 
 
-def _mutation_projection(
-    previous: Mapping[str, Any],
-) -> dict[str, Any]:
+def _mutation_projection(previous: Mapping[str, Any]) -> dict[str, Any]:
     terminal = previous.get("terminal")
     ship_id = previous.get("ship_id")
     if not isinstance(terminal, Mapping):
@@ -62,10 +59,7 @@ def _mutation_projection(
             terminals_by_ship_id={ship_id: terminal},
         )
     except (KeyError, TypeError, ValueError) as exc:
-        return {
-            "status": "error",
-            "reason": f"{type(exc).__name__}:{exc}",
-        }
+        return {"status": "error", "reason": f"{type(exc).__name__}:{exc}"}
 
     return {
         "status": "resolved" if result.resolved is True else "unresolved",
@@ -96,45 +90,40 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         terminal = terminal if isinstance(terminal, Mapping) else {}
         destroyed = terminal.get("destroyed")
         captured = terminal.get("captured")
+        mismatch = False
 
         if projection.get("status") == "error":
             counts["production_mutation_errors"] += 1
+            mismatch = True
         elif captured is True:
             counts["captured_predecessor_transitions"] += 1
-            if (
+            exact = (
                 projection.get("resolved") is None
                 and projection.get("ship_remains_active") is True
-            ):
-                counts["captured_fail_closed_exact"] += 1
-            else:
-                counts["captured_fail_closed_mismatch"] += 1
+            )
+            counts["captured_fail_closed_exact" if exact else "captured_fail_closed_mismatch"] += 1
+            mismatch = not exact
         elif destroyed is True:
             counts["destroyed_predecessor_reappearances"] += 1
-            if (
+            exact = (
                 projection.get("resolved") is True
                 and projection.get("ship_remains_active") is False
-            ):
-                counts["destroyed_removal_exact"] += 1
-            else:
-                counts["destroyed_removal_mismatch"] += 1
+            )
+            counts["destroyed_removal_exact" if exact else "destroyed_removal_mismatch"] += 1
+            mismatch = not exact
         elif destroyed is False and captured is False:
             counts["survivor_transitions"] += 1
-            if (
+            exact = (
                 projection.get("resolved") is True
                 and projection.get("ship_remains_active") is True
-            ):
-                counts["survivor_membership_exact"] += 1
-            else:
-                counts["survivor_membership_mismatch"] += 1
+            )
+            counts["survivor_membership_exact" if exact else "survivor_membership_mismatch"] += 1
+            mismatch = not exact
         else:
             counts["terminal_flags_unresolved"] += 1
+            mismatch = True
 
-        if (
-            projection.get("status") == "error"
-            or counts["survivor_membership_mismatch"]
-            or counts["captured_fail_closed_mismatch"]
-            or counts["destroyed_removal_mismatch"]
-        ) and len(examples) < args.example_limit:
+        if mismatch and len(examples) < args.example_limit:
             examples.append(
                 {
                     "game_id": previous.get("game_id"),
@@ -146,16 +135,16 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                     "production_mutation": projection,
                 }
             )
-
         return baseline
 
     chain_module._transition_comparison = wrapped_transition
     try:
         chain_report = chain_module.run(
             argparse.Namespace(
-                archive=getattr(args, "archive", None),
+                archive=getattr(args, "archive", None) or [],
                 archive_dir=args.archive_dir,
-                max_samples=args.example_limit,
+                detail_limit=args.example_limit,
+                sample_limit=min(args.example_limit, 20),
             )
         )
     finally:
