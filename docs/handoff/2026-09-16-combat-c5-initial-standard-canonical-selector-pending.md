@@ -78,6 +78,8 @@ Covers:
 8. all-known-blocked set returns no engagement;
 9. duplicate pair input fails closed.
 
+Synthetic fixtures use distinct symbolic Friendly Codes per owner so matching-FC suppression cannot accidentally replace the mechanic under test.
+
 ## Corpus differential
 
 New read-only diagnostic:
@@ -87,6 +89,12 @@ tools/diagnostics/combat_host_initial_standard_canonical_selector_audit.py
 ```
 
 It deliberately reuses the existing `combat_host_initial_standard_target_audit.py` archive reconstruction and proven site-level baseline. An adapter converts the already-composed projected pair rows into the production selector API. No second archive/candidate reconstruction is implemented.
+
+Adapter unit coverage:
+
+```text
+tests/test_combat_host_initial_standard_canonical_selector_audit.py
+```
 
 Comparison scope is only baseline `broad_comparable` / `exact_comparable`, where engagement is fully resolved, every eligible pair is plain STANDARD, static side orientation is resolved, factual positions are exact and the factual pair set is covered.
 
