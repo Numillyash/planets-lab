@@ -7,9 +7,9 @@ pre-standard phase applies, and any attributable left/right assignment.
 
 Dynamic Host facts which are not yet reconstructed globally (directed
 Diplomacy/Safe Passage, Intercept Interference protection, active cloak state at
-the Intercept step, effective advantage enablement and era-dependent C&I hull
-eligibility) are explicit inputs. ``None`` is preserved rather than silently
-replaced by a default.
+the Intercept step, ordinary-STANDARD directional targetability, effective
+advantage enablement and era-dependent C&I hull eligibility) are explicit
+inputs. ``None`` is preserved rather than silently replaced by a default.
 """
 
 from __future__ import annotations
@@ -69,6 +69,13 @@ class ShipCombatSideInput:
     active_cloak_at_intercept: bool | None = None
     intercept_interference_protected: bool | None = None
     galactic_power_enabled: bool | None = None
+
+    # Pair-specific fact for ordinary STANDARD combat only: whether this ship
+    # can be selected as the target of the opponent's directed attack request.
+    # It is deliberately not consulted by PIA/C&I. Ordinary callers default to
+    # targetable; upstream potentially-cloaked branches must explicitly supply
+    # False or None after reconstructing their dynamic precombat state.
+    standard_targetable_by_opponent: bool | None = True
 
     def __post_init__(self) -> None:
         if (
@@ -161,6 +168,52 @@ def _base_engagement(
     if unknown:
         return None, tuple(unknown), left_request, right_request
     return True, (), left_request, right_request
+
+
+def _standard_request_after_targetability(
+    *,
+    request: bool | None,
+    targetable: bool | None,
+) -> bool | None:
+    """Filter one directed ordinary-STANDARD request by its target state.
+
+    A known non-targetable target wins even when the directed request itself is
+    unresolved. Conversely, a known absent request never depends on targetability.
+    This helper is intentionally unused by pre-standard PIA/C&I classification.
+    """
+
+    if targetable is False:
+        return False
+    if request is False:
+        return False
+    if request is None:
+        return None
+    if targetable is None:
+        return None
+    return True
+
+
+def _standard_targetability_reasons(
+    *,
+    left: ShipCombatSideInput,
+    right: ShipCombatSideInput,
+    left_request: bool | None,
+    right_request: bool | None,
+    left_standard_request: bool | None,
+    right_standard_request: bool | None,
+) -> tuple[str, ...]:
+    reasons: list[str] = []
+    if left_standard_request is None:
+        if left_request is None:
+            reasons.append("left_standard_attack_request_unknown")
+        elif right.standard_targetable_by_opponent is None:
+            reasons.append("right_standard_targetability_unknown")
+    if right_standard_request is None:
+        if right_request is None:
+            reasons.append("right_standard_attack_request_unknown")
+        elif left.standard_targetable_by_opponent is None:
+            reasons.append("left_standard_targetability_unknown")
+    return tuple(reasons)
 
 
 def _normal_pia_candidate(
@@ -484,6 +537,43 @@ def decide_ship_combat_pair(
     side_reason: str | None = None
 
     if not candidates:
+        left_standard_request = _standard_request_after_targetability(
+            request=left_request,
+            targetable=right.standard_targetable_by_opponent,
+        )
+        right_standard_request = _standard_request_after_targetability(
+            request=right_request,
+            targetable=left.standard_targetable_by_opponent,
+        )
+        if left_standard_request is not True and right_standard_request is not True:
+            if left_standard_request is False and right_standard_request is False:
+                standard_reasons = ("no_standard_combat_request_after_targetability",)
+                standard_eligible: bool | None = False
+            else:
+                standard_reasons = _standard_targetability_reasons(
+                    left=left,
+                    right=right,
+                    left_request=left_request,
+                    right_request=right_request,
+                    left_standard_request=left_standard_request,
+                    right_standard_request=right_standard_request,
+                )
+                if not standard_reasons:
+                    standard_reasons = ("standard_targetability_or_request_unknown",)
+                standard_eligible = None
+            return ShipCombatPairDecision(
+                engagement_eligible=standard_eligible,
+                matching_fc_blocks=matching_fc_blocks,
+                left_hwm_applies=left_hwm,
+                right_hwm_applies=right_hwm,
+                phase=None,
+                prestandard_kind=None,
+                phase_attacker_ship_id=None,
+                left_ship_id=None,
+                right_ship_id=None,
+                unresolved_reasons=standard_reasons,
+            )
+
         phase = ShipCombatPairPhase.STANDARD
         base_left, base_right, side_reason = _standard_side_assignment(left, right)
     elif len(candidates) == 1:
