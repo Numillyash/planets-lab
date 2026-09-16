@@ -1,8 +1,8 @@
-# C5 directional STANDARD targetability — canonical wiring pending runtime
+# C5 directional STANDARD targetability — canonical wiring gate closed
 
 GitHub branch: `agent/combat-c5-host-phase`
 
-Population evidence gate: **PASSED** at source HEAD `23e3b672d4e7c513f348eefd3d0493cc7e21cfef`; see `2026-09-16-combat-c5-directional-targetability-population-runtime.md`.
+Population evidence gate: **PASSED**; see `2026-09-16-combat-c5-directional-targetability-population-runtime.md`.
 
 Canonical pair-level wiring commits:
 
@@ -11,9 +11,21 @@ Canonical pair-level wiring commits:
 c4701ebae04568fb74755ebf6c41c3c9bf159d2f  test: cover directional STANDARD targetability
 ```
 
+Runtime gate: **PASSED** at source HEAD:
+
+```text
+606971df33aad68d6e1c2a998e24288bed49e538
+```
+
+Durable runtime:
+
+```text
+docs/handoff/2026-09-16-combat-c5-directional-targetability-canonical-wiring-runtime.md
+```
+
 ## Production boundary
 
-`ShipCombatSideInput` now has one explicit pair-specific input:
+`ShipCombatSideInput` has one explicit pair-specific input:
 
 ```python
 standard_targetable_by_opponent: bool | None = True
@@ -52,29 +64,30 @@ Consequences:
 - if one direction is suppressed but the reciprocal request survives, ordinary STANDARD combat still occurs;
 - unknown targetability cannot silently become `True` for an explicitly unresolved potentially-cloaked branch.
 
-## New unit coverage
+## Runtime result
 
-`tests/test_combat_standard_targetability.py` covers:
-
-1. sole ordinary aggressor cannot attack a non-targetable opponent;
-2. bidirectional pair remains eligible when only one direction is suppressed;
-3. unknown targetability fails closed for the sole request;
-4. normal Priority Intercept remains pre-standard despite STANDARD non-targetability;
-5. Cloak & Intercept remains pre-standard despite STANDARD non-targetability;
-6. default targetability preserves existing ordinary STANDARD behavior.
-
-The existing `tests/test_combat_selection.py` must also remain fully green.
-
-## Runtime gate
-
-Run at least:
+Targeted canonical tests were fully green. Population regression retained:
 
 ```text
-tests/test_combat_selection.py
-tests/test_combat_standard_targetability.py
-tests/test_combat_host_initial_standard_directional_targetability_audit.py
+supported_block_rows=10
+supported_block_conflicts=0
+blocked_factual_pair_rows=0
+potential_first_selector_regression_rows=0
+baseline_mismatch_profiles=4
+baseline_mismatch_profiles_fixed=4
+privateer residual profiles=2/2 fixed
+bird residual profiles=2/2 fixed
+unrelated baseline mismatches=0
 ```
 
-Then rerun `combat_host_initial_standard_directional_targetability_audit.py` and require the previously passed population acceptance to remain all true.
+Every population acceptance flag passed and strict/conditional exact-set controls remained `162/162` and `169/169` respectively.
 
-This runtime proves the pair-level canonical primitive does not regress prior C5 composition. It does **not** claim that a production stack queue already reconstructs every upstream cloak state: the stack-level target-list/queue remains the next composition layer.
+## Next composition layer
+
+Pair-level wiring is no longer pending. The repository now proceeds to the bounded initial plain-STANDARD stack selector described in:
+
+```text
+docs/handoff/2026-09-16-combat-c5-initial-standard-canonical-selector-pending.md
+```
+
+That layer consumes already-composed pair decisions. It does not invent upstream cloak state and does not yet model mutable survivor/destruction state.
