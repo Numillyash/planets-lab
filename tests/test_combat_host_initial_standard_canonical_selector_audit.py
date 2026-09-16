@@ -20,6 +20,8 @@ def _ship(ship_id: int, owner_id: int, **overrides: object) -> ShipCombatSideInp
     values: dict[str, object] = {
         "ship_id": ship_id,
         "owner_id": owner_id,
+        "race_id": 1 if owner_id % 2 else 2,
+        "hull_id": 20,
         "mission": 0,
         "primary_enemy": 0,
         "friendly_code": f"f{owner_id:02d}",
