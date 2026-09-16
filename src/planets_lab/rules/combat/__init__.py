@@ -11,6 +11,13 @@ from .classic import (
     replay_nuhost_classic,
     torpedo_specs_from_catalog,
 )
+from .effective_state import (
+    EffectiveCloakState,
+    StandardTargetabilityState,
+    bird_super_spy_ordinary_cloak_state,
+    privateer_rob_ordinary_cloak_state,
+    standard_targetability_from_effective_cloak,
+)
 from .eligibility import (
     MATCHING_SHIP_FC_COMBAT_EXCEPTIONS,
     harmonic_weapon_modulation_applies,
@@ -79,6 +86,7 @@ __all__ = [
     "CombatObject",
     "DYNAMIC_CARRY_FIELDS",
     "EVIL_EMPIRE_RACE_ID",
+    "EffectiveCloakState",
     "FriendlyCodePriority",
     "FriendlyCodePriorityKind",
     "GORBIE_HULL_ID",
@@ -95,10 +103,12 @@ __all__ = [
     "ShipCombatPairPhase",
     "ShipCombatPrestandardKind",
     "ShipCombatSideInput",
+    "StandardTargetabilityState",
     "TorpedoSpec",
     "apply_planet_carryover",
     "apply_terminal_state",
     "beam_specs_from_catalog",
+    "bird_super_spy_ordinary_cloak_state",
     "carry_ship_to_next_engagement",
     "classify_battle_friendly_code",
     "cloak_intercept_order_signature",
@@ -121,11 +131,13 @@ __all__ = [
     "prepare_sequence_ship",
     "priority_intercept_order_signature",
     "priority_intercept_reciprocal_target_signature",
+    "privateer_rob_ordinary_cloak_state",
     "rebuild_planet_combatant",
     "replay_nuhost_classic",
     "replay_nuhost_from_nu_catalog",
     "select_initial_plain_standard",
     "standard_battle_priority_key",
     "standard_pair_sides_for_occurrence",
+    "standard_targetability_from_effective_cloak",
     "torpedo_specs_from_catalog",
 ]
