@@ -51,6 +51,9 @@ from .planet import (
 )
 from .queue import (
     STANDARD_PAIR_MAX_OCCURRENCES,
+    InitialStandardPairInput,
+    InitialStandardSelection,
+    select_initial_plain_standard,
     standard_pair_sides_for_occurrence,
 )
 from .selection import (
@@ -80,6 +83,8 @@ __all__ = [
     "FriendlyCodePriorityKind",
     "GORBIE_HULL_ID",
     "INTERCEPT_MISSION_ID",
+    "InitialStandardPairInput",
+    "InitialStandardSelection",
     "KILL_MISSION_ID",
     "MATCHING_SHIP_FC_COMBAT_EXCEPTIONS",
     "NuHostClassicReplay",
@@ -119,6 +124,7 @@ __all__ = [
     "rebuild_planet_combatant",
     "replay_nuhost_classic",
     "replay_nuhost_from_nu_catalog",
+    "select_initial_plain_standard",
     "standard_battle_priority_key",
     "standard_pair_sides_for_occurrence",
     "torpedo_specs_from_catalog",
