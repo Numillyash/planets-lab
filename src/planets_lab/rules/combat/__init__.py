@@ -23,6 +23,10 @@ from .eligibility import (
     harmonic_weapon_modulation_applies,
     matching_ship_friendly_code_blocks_combat,
 )
+from .mutable_queue import (
+    ShipQueueMutationResult,
+    apply_ship_terminal_batch,
+)
 from .nu import (
     normalize_nu_beams,
     normalize_nu_torpedoes,
@@ -103,9 +107,11 @@ __all__ = [
     "ShipCombatPairPhase",
     "ShipCombatPrestandardKind",
     "ShipCombatSideInput",
+    "ShipQueueMutationResult",
     "StandardTargetabilityState",
     "TorpedoSpec",
     "apply_planet_carryover",
+    "apply_ship_terminal_batch",
     "apply_terminal_state",
     "beam_specs_from_catalog",
     "bird_super_spy_ordinary_cloak_state",
