@@ -82,16 +82,7 @@ tests/test_combat_mutable_queue.py
 tests/test_combat_host_mutable_ship_queue_audit.py
 ```
 
-Covers:
-
-- destroyed removal + survivor carry + unrelated ship preservation;
-- two surviving combatants;
-- reuse of the C3 Federation between-combat shield recovery;
-- capture atomic fail-closed;
-- unknown terminal flags;
-- incomplete survivor vector;
-- inactive terminal programming error;
-- corpus adapter projection for survivor/destroyed/captured/unknown states.
+Covers destroyed removal, survivor carry, unrelated preservation, two survivors, Federation recharge reuse, capture atomic fail-closed, unknown terminal flags, incomplete survivor vector, inactive terminal programming error, and corpus adapter projection for survivor/destroyed/captured/unknown states.
 
 ## Corpus transition diagnostic
 
@@ -113,13 +104,13 @@ captured predecessor
   -> production must be unresolved and retain baseline membership atomically
 
 destroyed predecessor followed by another factual VCR
-  -> production must remove it; the factual reappearance is surfaced as an
-     explicit control/contradiction candidate rather than normalized away
+  -> production removes it, but the factual reappearance is a hard contradiction
+     for this bounded queue model and must fail the gate
 ```
 
 The exact dynamic terminal->next-start field match remains the independent C3 differential's responsibility. This gate tests C5 membership/continuation only.
 
-Absence of destroyed-reappearance rows is **not** treated as independent proof of destruction ordering; destruction removal is unit-tested mechanically and any informative corpus rows are reported separately.
+Absence of destroyed-reappearance rows is **not** treated as independent proof of destruction ordering; it is only absence of a corpus contradiction. Destruction removal itself is unit-tested mechanically.
 
 Required acceptance:
 
@@ -128,6 +119,7 @@ survivor_population_present=True
 survivor_membership_exact=True
 capture_fail_closed_if_observed=True
 destroyed_removal_if_reappearance_observed=True
+no_destroyed_predecessor_reappearances=True
 no_production_mutation_errors=True
 no_terminal_flag_unknowns=True
 mutable_ship_queue_transition_gate_passed=True
