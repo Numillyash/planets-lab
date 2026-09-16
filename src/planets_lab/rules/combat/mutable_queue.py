@@ -11,7 +11,7 @@ from copy import deepcopy
 from dataclasses import dataclass
 from typing import Any, Mapping
 
-from .sequence import carry_ship_to_next_engagement
+from .sequence import DYNAMIC_CARRY_FIELDS, carry_ship_to_next_engagement
 
 
 @dataclass(frozen=True, slots=True)
@@ -46,7 +46,7 @@ def apply_ship_terminal_batch(
     """Apply terminal states for one resolved ship combat atomically.
 
     The caller supplies the current active ship map and terminal replay/result
-    state for every participant whose queue state must be updated.  Terminal
+    state for every participant whose queue state must be updated. Terminal
     ``destroyed`` and ``captured`` flags must be explicit booleans.
 
     Supported scope:
@@ -56,9 +56,10 @@ def apply_ship_terminal_batch(
       :func:`carry_ship_to_next_engagement` C3 transition;
     - capture -> unresolved, because ownership/hostility continuation has not yet
       passed a C5 queue gate;
-    - missing/unknown terminal flags or carry failure -> unresolved.
+    - missing/unknown terminal flags or incomplete survivor carry state ->
+      unresolved.
 
-    Failure is atomic.  An unresolved capture or malformed survivor prevents all
+    Failure is atomic. An unresolved capture or malformed survivor prevents all
     sibling terminal mutations from being partially committed.
     """
 
@@ -85,6 +86,12 @@ def apply_ship_terminal_batch(
             unresolved.append(f"{ship_id}:captured_state_unresolved")
         elif captured:
             unresolved.append(f"{ship_id}:capture_branch_unresolved")
+
+        if destroyed is False and captured is False:
+            for field in DYNAMIC_CARRY_FIELDS:
+                value = terminal.get(field)
+                if isinstance(value, bool) or not isinstance(value, int):
+                    unresolved.append(f"{ship_id}:survivor_{field}_unresolved")
 
     if unresolved:
         return ShipQueueMutationResult(
