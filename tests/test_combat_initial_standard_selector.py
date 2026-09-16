@@ -172,12 +172,13 @@ def test_eligible_prestandard_pair_is_not_silently_dropped() -> None:
 
 
 def test_standard_side_override_is_outside_plain_selector_scope() -> None:
-    ordinary = _ship(10, 1, mission=3, primary_enemy=2, friendly_code="001")
+    ordinary = _ship(10, 1, mission=0, primary_enemy=0, friendly_code="abc")
     gorbie = _ship(
         62,
         2,
         race_id=8,
         hull_id=70,
+        mission=3,
         primary_enemy=1,
         friendly_code="eqe",
         galactic_power_enabled=True,
@@ -186,6 +187,7 @@ def test_standard_side_override_is_outside_plain_selector_scope() -> None:
 
     assert pair.decision.phase is ShipCombatPairPhase.STANDARD
     assert pair.decision.left_ship_id == 62
+    assert pair.decision.right_ship_id == 10
 
     selected = select_initial_plain_standard([pair])
 
