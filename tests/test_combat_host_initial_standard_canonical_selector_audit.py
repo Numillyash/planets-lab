@@ -22,7 +22,7 @@ def _ship(ship_id: int, owner_id: int, **overrides: object) -> ShipCombatSideInp
         "owner_id": owner_id,
         "mission": 0,
         "primary_enemy": 0,
-        "friendly_code": "abc",
+        "friendly_code": f"f{owner_id:02d}",
         "has_fuel": True,
         "diplomacy_allows_attack": True,
         "harmonic_weapon_modulation_enabled": False,
