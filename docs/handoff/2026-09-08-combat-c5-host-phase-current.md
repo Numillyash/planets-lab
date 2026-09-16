@@ -33,9 +33,13 @@ candidate-set v2:
   strict factual eligible=420 unresolved=8 blocked=0
 ```
 
-No candidate-covered factual pair is conditionally hard-blocked.
+## Initial plain-STANDARD selector — CLOSED
 
-## Initial STANDARD ordering — CLOSED
+Production:
+
+```python
+select_initial_plain_standard(...)
+```
 
 Evidence order:
 
@@ -44,145 +48,107 @@ first active ship = highest STANDARD Combat Priority ship with an eligible targe
 first target      = highest-priority eligible target for that active ship
 ```
 
-Do not invert target ordering.
-
-Original diagnostic checkpoint:
-
-```text
-conditional exact-set: 169/169 first pair + RIGHT exact
-strict exact-set:      162/162 first pair + RIGHT exact
-informative exact-set target-order controls: 15/15 rank1
-```
-
-Production selector:
-
-```python
-InitialStandardPairInput
-InitialStandardSelection
-select_initial_plain_standard(...)
-```
-
-Implementation:
-
-```text
-2f18cb6d2fe8edb5dd0d38ec9ec870a0bafbdefe
-```
-
 Runtime:
 
 ```text
 docs/handoff/2026-09-16-combat-c5-initial-standard-canonical-selector-runtime.md
 ```
 
-Production-vs-established selector differential:
+Differential:
 
 ```text
 strict:      225/225 broad, 162/162 exact-set
 conditional: 234/234 broad, 169/169 exact-set
 ```
 
-All unit/regression tests passed after a fixture-only Galactic Power state repair at `0225ff7116ca662fdf7e079bedaf58482d7d9f4d`.
-
 Status:
 
 ```text
-initial plain-STANDARD stack selector:
-  CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
+CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
 ```
 
-The selector is intentionally bounded: unresolved candidates, eligible pre-standard pairs, unsupported priority or STANDARD side overrides fail closed.
+Unresolved candidates, eligible pre-standard pairs, unsupported priority or STANDARD side overrides fail closed.
 
-## Directional ordinary-STANDARD targetability — CLOSED at pair/selector boundary
-
-Original broad mismatch sites:
-
-```text
-360690/T83: active264; extra98; factual190   # Privateer Rob
-511506/T94: active496; extra202; factual332  # Bird ordinary Super Spy
-```
-
-Population gate runtime:
-
-```text
-docs/handoff/2026-09-16-combat-c5-directional-targetability-population-runtime.md
-```
-
-Observed:
-
-```text
-supported_block_rows=10
-  privateer_rob_ordinary=7
-  bird_super_spy_ordinary=1
-  bird_super_spy_advanced_historical_control=2
-supported_block_conflicts=0
-blocked_factual_pair_rows=0
-potential_first_selector_regressions=0
-baseline mismatch profiles fixed=4/4
-unrelated baseline mismatches=0
-```
+## Directional ordinary-STANDARD targetability — CLOSED
 
 Canonical pair input:
 
 ```python
-ShipCombatSideInput.standard_targetable_by_opponent: bool | None = True
+ShipCombatSideInput.standard_targetable_by_opponent: bool | None
+```
+
+Semantics:
+
+- affects only the opponent's ordinary STANDARD request;
+- is applied after PIA/reciprocal-PIA/C&I classification;
+- is directional, not a symmetric pair blocker;
+- preserves the potentially cloaked ship's own attack request;
+- never encodes cloak as `has_fuel=False`;
+- unknown is fail-closed.
+
+Population gate:
+
+```text
+supported blocks=10
+conflicts=0
+blocked factual pair rows=0
+potential first-selector regressions=0
+baseline mismatch profiles fixed=4/4
+unrelated mismatches=0
 ```
 
 Runtime:
 
 ```text
+docs/handoff/2026-09-16-combat-c5-directional-targetability-population-runtime.md
 docs/handoff/2026-09-16-combat-c5-directional-targetability-canonical-wiring-runtime.md
 ```
 
-Semantics:
+## Production precombat effective state — CLOSED for ordinary Privateer/Bird scopes
 
-- applies only to the opponent's ordinary STANDARD attack request;
-- is evaluated after PIA/reciprocal-PIA/C&I classification;
-- is directional, not a symmetric pair blocker;
-- does not suppress the potentially cloaked ship's own attack request;
-- does not encode cloak by abusing `has_fuel=False`;
-- explicit unknown remains fail-closed.
-
-Pair-level runtime retained all population acceptance, all 4/4 projected mismatch repairs, zero factual-pair regressions, and exact-set controls.
-
-## Privateer Rob ordinary cloak — CLOSED within scope
-
-Production helper:
+Privateer ordinary Rob:
 
 ```python
 privateer_rob_ordinary_cloak_state(...)
 ```
 
-Supported scope:
+Scope:
 
 ```text
-Privateer race5 + mission9 Rob + ordinary cloak-capable hull:
-  prior false                          -> effective cloak False
-  prior true + fuel <= reference cost -> effective cloak False
-  prior true + fuel >  reference cost -> effective cloak True
-  advanced cloak                       -> unresolved
-```
-
-Selector-impact differential:
-
-```text
-overlay_rows=16
-blocked=7 eligible=9
-blocked factual pair rows=0
-potential selector regressions=0
-Privateer residual profiles fixed=2/2
-Bird residual profiles affected=0/2
+race5 + mission9 Rob + ordinary cloak-capable hull
+prior false                          -> effective cloak False
+prior true + fuel <= reference cost -> effective cloak False
+prior true + fuel >  reference cost -> effective cloak True
+advanced cloak                       -> unresolved
 ```
 
 Status:
 
 ```text
-Privateer Rob ordinary-cloak directional STANDARD targetability:
-  CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
+CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
 ```
 
-## Bird ordinary Super Spy — production effective-state gate ACTIVE
+Bird ordinary Super Spy production API:
 
-Historical/documented population remains:
+```python
+bird_super_spy_ordinary_cloak_state(...)
+standard_targetability_from_effective_cloak(...)
+```
+
+Runtime:
+
+```text
+docs/handoff/2026-09-16-combat-c5-production-effective-state-runtime.md
+```
+
+User runtime source:
+
+```text
+6a5e39796e385f4d98dc10697d30c958ad3a8898
+41 targeted tests passed
+```
+
+Population result:
 
 ```text
 bird_super_spy_targets_at_factual_sites=30
@@ -195,71 +161,25 @@ decisive_unresolved=3
 blocked factual-pair regressions=0
 ```
 
-Focused ordinary residual `511506/T94 ship202 <- attacker496` has:
+Focused residual:
 
 ```text
-Bird race3 / Red Wind / mission9 Super Spy
-damage=0
-fuel=37, ordinary reference cost=5
-reference movement remaining fuel=29
-prior iscloaked=true
-ion storm=False
-planet pulse=False
-Loki=False
-active Glory=False
+511506/T94 target202 <- attacker496
+effective_cloak=True
+standard_targetable_by_opponent=False
 ```
 
-The matched factual target ship332 also had raw prior cloak but mission2 and fought; raw `iscloaked` therefore cannot be a blanket blocker.
-
-Production helper added at:
+All production effective-state acceptance flags passed. Ordinary Bird Super Spy targetability is therefore:
 
 ```text
-0b88541df32c441ead4b9b9d6054af04fd2fee7a
+DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
 ```
 
-API:
+The three unresolved decisive rows remain Advanced Cloak by design.
 
-```python
-bird_super_spy_ordinary_cloak_state(...)
-standard_targetability_from_effective_cloak(...)
-```
+## Advanced Cloak — historical closure only
 
-The helper consumes only precombat-resolvable inputs and preserves the conservative diagnostic boundary. It never reads post-Host T, VCR outcome or Host messages.
-
-Targetability projection:
-
-```text
-effective_cloak=True  -> standard_targetable_by_opponent=False
-effective_cloak=False -> standard_targetable_by_opponent=True
-effective_cloak=None  -> standard_targetable_by_opponent=None
-```
-
-Active runtime gate:
-
-```text
-docs/handoff/2026-09-16-combat-c5-production-effective-state-pending.md
-tools/diagnostics/combat_host_bird_super_spy_production_effective_state_audit.py
-tests/test_combat_effective_state.py
-tests/test_combat_host_bird_super_spy_production_effective_state_audit.py
-```
-
-The diagnostic reuses the existing Bird population reconstruction but substitutes the production helper for the diagnostic candidate. Required acceptance:
-
-```text
-population_no_race_conflicts=True
-population_no_payload_conflicts=True
-population_no_blocked_factual_pair_regressions=True
-population_no_decisive_mismatch=True
-population_target_residual_present=True
-population_target_residual_supported=True
-production_targetability_blocks_target_residual=True
-advanced_rows_remain_unresolved=True
-production_effective_state_gate_passed=True
-```
-
-## Advanced Cloak — historical rows closed, generic predictor NOT promoted
-
-Three decisive Bird population rows:
+Known decisive rows:
 
 ```text
 620694/T119 ship26 vs74 — expected blocked
@@ -269,28 +189,95 @@ Three decisive Bird population rows:
 
 Historical closure:
 
-- ship68 has an explicit mine hit -> damage55 -> same damage in factual VCR -> combat eligible;
-- ship26/69 have stable same-owner/same-hull T attribution, damage0 and iscloaked=true -> skipped.
+- ship68: explicit mine hit -> damage55 -> same damage in factual VCR -> combat eligible;
+- ship26/69: stable same-owner/same-hull T attribution, damage0, iscloaked=true -> skipped.
 
-Evidence boundary:
+Do not promote a generic predictor. Post-Host T/messages are attribution evidence only.
 
-```text
-Advanced Cloak + mine-hit decloak:
-  DOCUMENTED + CORPUS_OBSERVED + TESTED
+## C3 survivor carry-over — prerequisite for current gate
 
-fully predictive generic Advanced-Cloak state resolver:
-  NOT promoted
+Existing production in `src/planets_lab/rules/combat/sequence.py`:
+
+```python
+carry_ship_to_next_engagement(...)
 ```
 
-Do not encode ship IDs, post-Host T or messages into production. Advanced Cloak must remain unresolved until movement/mine/decloak state is independently predictive.
+Clean owner-certain same-turn same-location C3 subset:
 
-## After the active effective-state gate
+```text
+5 eligible transitions
+5/5 exact under carry-over model
+old reset baseline only 3/5
+```
 
-If green, ordinary Privateer Rob and ordinary Bird Super Spy may feed production targetability within their tested scopes. Then leave the cloak/initial-selector loop and proceed with mutable C5 queue state:
+Captured predecessor transitions were explicitly excluded because ownership/hostility continuation is a separate mechanic.
 
-1. survivor/destruction mutation;
-2. mutable second-pass eligibility and side reversal;
-3. capture continuation;
-4. ship-to-planet / planet-base integration.
+## ACTIVE GATE — mutable ship queue membership
+
+Pending handoff:
+
+```text
+docs/handoff/2026-09-16-combat-c5-mutable-ship-queue-pending.md
+```
+
+Production module:
+
+```text
+src/planets_lab/rules/combat/mutable_queue.py
+```
+
+API:
+
+```python
+ShipQueueMutationResult
+apply_ship_terminal_batch(...)
+```
+
+Supported semantics:
+
+```text
+destroyed -> remove from active map
+survivor  -> require full C3 dynamic vector and carry state
+captured  -> unresolved / fail closed
+```
+
+Mutation is atomic. Capture, unknown terminal flags, incomplete survivor state or carry failure return the original active map unchanged.
+
+Diagnostic:
+
+```text
+tools/diagnostics/combat_host_mutable_ship_queue_audit.py
+```
+
+Tests:
+
+```text
+tests/test_combat_mutable_queue.py
+tests/test_combat_host_mutable_ship_queue_audit.py
+```
+
+Required acceptance:
+
+```text
+survivor_population_present=True
+survivor_membership_exact=True
+capture_fail_closed_if_observed=True
+destroyed_removal_if_reappearance_observed=True
+no_production_mutation_errors=True
+no_terminal_flag_unknowns=True
+mutable_ship_queue_transition_gate_passed=True
+```
+
+Evidence boundary: exact dynamic field carry remains the independent C3 differential's responsibility. This gate tests active membership/continuation only. Absence of destroyed-reappearance rows is not treated as standalone proof of destruction order.
+
+## Next C5 work after mutable membership
+
+If green:
+
+1. compose active membership mutation with initial selector;
+2. add pair occurrence state and second-pass eligibility/orientation using the already DIFF_VERIFIED side-reversal helper;
+3. validate the second ordinary STANDARD queue step against factual queues;
+4. reconstruct capture continuation separately;
+5. integrate ship-to-planet / planet-base queue ordering.
 
 Keep `DOCUMENTED / CORPUS_OBSERVED / INFERRED / TESTED / DIFF_VERIFIED` distinct.
