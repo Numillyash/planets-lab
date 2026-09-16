@@ -110,7 +110,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 and projection.get("ship_remains_active") is False
             )
             counts["destroyed_removal_exact" if exact else "destroyed_removal_mismatch"] += 1
-            mismatch = not exact
+            mismatch = True
         elif destroyed is False and captured is False:
             counts["survivor_transitions"] += 1
             exact = (
@@ -167,6 +167,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             int(counts["destroyed_removal_exact"]) == destroyed_reappearances
             and int(counts["destroyed_removal_mismatch"]) == 0
         ),
+        "no_destroyed_predecessor_reappearances": destroyed_reappearances == 0,
         "no_production_mutation_errors": int(counts["production_mutation_errors"]) == 0,
         "no_terminal_flag_unknowns": int(counts["terminal_flags_unresolved"]) == 0,
     }
@@ -185,9 +186,10 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "C5 membership/continuation differential over the existing C3 same-turn same-location ship-chain reconstruction. "
             "Exact dynamic field carry remains established by the independent C3 chain audit; this gate asks only whether the "
             "new production mutable-queue primitive retains replay survivors, removes replay-destroyed predecessors and fails "
-            "closed on capture. A destroyed predecessor followed by another factual VCR is surfaced as a reappearance control, "
-            "not silently normalized. Absence of such rows is not treated as independent population proof of destruction order. "
-            "No next-pair selection, repeated-pair occurrence counter, capture ownership, planet combat or Host T state is modeled."
+            "closed on capture. A destroyed predecessor followed by another factual VCR is a hard reappearance contradiction "
+            "for this bounded queue model. Absence of such rows is not treated as independent population proof of destruction "
+            "order. No next-pair selection, repeated-pair occurrence counter, capture ownership, planet combat or Host T state "
+            "is modeled."
         ),
     }
 
