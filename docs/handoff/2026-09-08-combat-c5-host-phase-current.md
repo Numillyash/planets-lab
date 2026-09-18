@@ -369,7 +369,7 @@ production occurrence-aware second STANDARD orientation:
 CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
 ```
 
-## ACTIVE GATE — post-mutation next-pair differential
+## POST-MUTATION NEXT-PAIR DIFFERENTIAL — CLOSED
 
 Pending runtime:
 
@@ -411,3 +411,57 @@ initial independently reconstructed pair graph
 Factual VCR N+1 is not selector input.
 
 Capture predecessors fail closed/exclude the continuation. Game `591478`, planet combat, non-exact-set sites, unresolved/pre-standard candidate sets and dynamic post-combat pair-decision recomputation remain outside this bounded gate.
+
+
+## 2026-09-18 post-mutation next-pair runtime closure
+
+Runtime source HEAD:
+
+```text
+c3cacd9b1f4dfc45595ee51c11b576f47d01a6aa
+```
+
+Durable runtime:
+
+```text
+docs/handoff/2026-09-18-combat-c5-post-mutation-next-pair-runtime.md
+```
+
+For both strict and conditional profiles:
+
+```text
+multi_vcr_exact_set_sites=23
+site_status:exact=16
+site_status:excluded=7
+excluded:capture_predecessor=7
+transitions_compared=22
+next_vcr_exact=22
+next_vcr_mismatch=0
+transitions_with_inactive_filter=22
+all_profiles_pass=True
+```
+
+Status:
+
+```text
+bounded post-mutation ordinary next-pair selection:
+CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
+```
+
+All compared transitions exercised inactive-pair filtering. The only exact-set continuation hole is capture.
+
+## ACTIVE GATE — capture continuation
+
+Pending runtime:
+
+```text
+docs/handoff/2026-09-18-combat-c5-capture-continuation-pending.md
+```
+
+Diagnostic:
+
+```text
+tools/diagnostics/combat_host_capture_continuation_audit.py
+```
+
+The first pass is descriptive and does not modify production. It measures captured-ship race transfer, hull preservation, terminal-to-next-start combat state, next opponent identity and side orientation. Production capture remains fail-closed until the ordinary corpus result is reviewed.
