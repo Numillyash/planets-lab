@@ -212,7 +212,7 @@ old reset baseline only 3/5
 
 Captured predecessor transitions were explicitly excluded because ownership/hostility continuation is a separate mechanic.
 
-## ACTIVE GATE — mutable ship queue membership
+## MUTABLE SHIP QUEUE — scope-repair runtime pending
 
 Pending handoff:
 
@@ -281,3 +281,40 @@ If green:
 5. integrate ship-to-planet / planet-base queue ordering.
 
 Keep `DOCUMENTED / CORPUS_OBSERVED / INFERRED / TESTED / DIFF_VERIFIED` distinct.
+
+
+## ACTIVE GATE — ordinary STANDARD queue history/composition
+
+Pending runtime:
+
+```text
+docs/handoff/2026-09-18-combat-c5-standard-queue-composition-pending.md
+```
+
+The first mutable-queue corpus run was contaminated by isolated game `591478`: it ran 12 archives, and all 29 printed destroyed-predecessor reappearances came from that game. The ordinary gate has been repaired to exclude `591478`, matching the other C5 population diagnostics. Do not weaken the hard contradiction acceptance; rerun on the 11 ordinary archives.
+
+New production module:
+
+```text
+src/planets_lab/rules/combat/host_queue.py
+```
+
+API:
+
+```python
+StandardQueueState
+StandardQueueStepResult
+select_next_plain_standard(...)
+select_after_ship_mutation(...)
+record_standard_queue_step(...)
+```
+
+This layer composes active membership, the canonical selector and pair-occurrence history without recomputing pair mechanics. Pair inputs after a mutation must be supplied freshly by the caller.
+
+Second-occurrence production corpus gate:
+
+```text
+tools/diagnostics/combat_host_second_standard_queue_audit.py
+```
+
+Scope is deliberately narrow: stable-owner, exactly-two, plain-static-comparable repeated pairs from the ordinary corpus. Expected population remains the two existing controls from games 620917 and 621896. Passing this gate promotes production occurrence-history composition only; full post-mutation next-pair selection among a multi-pair stack remains the following gate.
