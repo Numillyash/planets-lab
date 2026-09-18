@@ -371,6 +371,12 @@ CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
 
 ## ACTIVE GATE — post-mutation next-pair differential
 
+Pending runtime:
+
+```text
+docs/handoff/2026-09-18-combat-c5-post-mutation-next-pair-pending.md
+```
+
 Diagnostic:
 
 ```text
