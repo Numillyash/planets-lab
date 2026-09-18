@@ -140,3 +140,45 @@ This gate does not yet model:
 Compose active membership mutation with the already-tested initial selector and repeated-pair occurrence-aware side helper, then differentially validate the second ordinary STANDARD queue step.
 
 Capture remains a separate branch and must not be silently treated as destruction.
+
+
+## 2026-09-18 scope correction after first runtime
+
+The first user runtime executed the chain audit over 12 archives and reported:
+
+```text
+survivor_transitions=1431
+survivor_membership_exact=1431
+captured_predecessor_transitions=25
+captured_fail_closed_exact=25
+destroyed_predecessor_reappearances=29
+destroyed_removal_exact=29
+```
+
+The only failing acceptance was:
+
+```text
+no_destroyed_predecessor_reappearances=False
+```
+
+Every printed destroyed-reappearance example was from game `591478`. That game is explicitly isolated from ordinary-mechanic promotion throughout C5, while the neighboring initial-target and repeated-pair population audits already exclude it.
+
+The diagnostic itself was therefore out of scope: it consumed 12 archives instead of the ordinary 11-archive population.
+
+Scope repair:
+
+```text
+e817ab0ae5881bf0f8b6a6a0c750b7ab97984833
+  combat: exclude isolated game from mutable queue gate
+
+715ba4682a6138e3b0a25de5945ff98d2c5383a8
+  test: keep isolated game out of mutable queue gate
+```
+
+The repaired gate filters `game-591478.zip` before invoking the underlying C3 chain audit and also ignores any special-game transition defensively. It reports:
+
+```text
+special_game_591478_excluded=True
+```
+
+Do not weaken the destroyed-reappearance acceptance. Re-run it on the ordinary corpus. The expected ordinary result is zero destroyed predecessor reappearances; if any non-591478 row remains, treat it as a real contradiction.
