@@ -23,6 +23,13 @@ from .eligibility import (
     harmonic_weapon_modulation_applies,
     matching_ship_friendly_code_blocks_combat,
 )
+from .host_queue import (
+    StandardQueueState,
+    StandardQueueStepResult,
+    record_standard_queue_step,
+    select_after_ship_mutation,
+    select_next_plain_standard,
+)
 from .mutable_queue import (
     ShipQueueMutationResult,
     apply_ship_terminal_batch,
@@ -109,6 +116,8 @@ __all__ = [
     "ShipCombatSideInput",
     "ShipQueueMutationResult",
     "StandardTargetabilityState",
+    "StandardQueueStepResult",
+    "StandardQueueState",
     "TorpedoSpec",
     "apply_planet_carryover",
     "apply_ship_terminal_batch",
@@ -139,9 +148,12 @@ __all__ = [
     "priority_intercept_reciprocal_target_signature",
     "privateer_rob_ordinary_cloak_state",
     "rebuild_planet_combatant",
+    "record_standard_queue_step",
     "replay_nuhost_classic",
     "replay_nuhost_from_nu_catalog",
+    "select_after_ship_mutation",
     "select_initial_plain_standard",
+    "select_next_plain_standard",
     "standard_battle_priority_key",
     "standard_pair_sides_for_occurrence",
     "standard_targetability_from_effective_cloak",
