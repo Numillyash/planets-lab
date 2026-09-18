@@ -212,7 +212,7 @@ old reset baseline only 3/5
 
 Captured predecessor transitions were explicitly excluded because ownership/hostility continuation is a separate mechanic.
 
-## MUTABLE SHIP QUEUE — scope-repair runtime pending
+## MUTABLE SHIP QUEUE — CLOSED
 
 Pending handoff:
 
@@ -283,7 +283,7 @@ If green:
 Keep `DOCUMENTED / CORPUS_OBSERVED / INFERRED / TESTED / DIFF_VERIFIED` distinct.
 
 
-## ACTIVE GATE — ordinary STANDARD queue history/composition
+## ORDINARY STANDARD QUEUE HISTORY/SECOND OCCURRENCE — CLOSED
 
 Pending runtime:
 
@@ -318,3 +318,90 @@ tools/diagnostics/combat_host_second_standard_queue_audit.py
 ```
 
 Scope is deliberately narrow: stable-owner, exactly-two, plain-static-comparable repeated pairs from the ordinary corpus. Expected population remains the two existing controls from games 620917 and 621896. Passing this gate promotes production occurrence-history composition only; full post-mutation next-pair selection among a multi-pair stack remains the following gate.
+
+
+## 2026-09-18 runtime closure
+
+Runtime source HEAD:
+
+```text
+87bef989984c909b61e79f86f06fb575cb69c431
+```
+
+Durable runtime:
+
+```text
+docs/handoff/2026-09-18-combat-c5-mutable-and-second-standard-runtime.md
+```
+
+Ordinary mutable queue population after excluding isolated game `591478`:
+
+```text
+archives=11
+same_location_transitions=1169
+survivor_membership_exact=1146/1146
+captured_fail_closed_exact=23/23
+destroyed_predecessor_reappearances=0
+production_mutation_errors=0
+terminal_flag_unknowns=0
+mutable_ship_queue_transition_gate_passed=True
+```
+
+Status:
+
+```text
+ordinary mutable ship membership:
+CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
+```
+
+Production second STANDARD occurrence:
+
+```text
+comparable_repeated_groups=2
+production_second_occurrence_exact=2/2
+second_standard_queue_gate_passed=True
+```
+
+Status:
+
+```text
+production occurrence-aware second STANDARD orientation:
+CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
+```
+
+## ACTIVE GATE — post-mutation next-pair differential
+
+Diagnostic:
+
+```text
+tools/diagnostics/combat_host_post_mutation_next_pair_audit.py
+```
+
+Test:
+
+```text
+tests/test_combat_host_post_mutation_next_pair_audit.py
+```
+
+The gate composes two existing independent pipelines:
+
+1. owner-current T-1 candidate reconstruction from `combat_host_initial_standard_target_audit.py`;
+2. deterministic Classic replay terminal state from `combat_ship_chain_audit.py`.
+
+For exact-set comparable multi-VCR sites only:
+
+```text
+initial independently reconstructed pair graph
+  -> production first STANDARD selection
+  -> factual VCR N terminal replay only
+  -> apply_ship_terminal_batch(...)
+  -> active membership filter
+  -> StandardQueueState occurrence history
+  -> canonical next selector
+  -> predicted next pair/sides
+  -> compare with held-out factual VCR N+1
+```
+
+Factual VCR N+1 is not selector input.
+
+Capture predecessors fail closed/exclude the continuation. Game `591478`, planet combat, non-exact-set sites, unresolved/pre-standard candidate sets and dynamic post-combat pair-decision recomputation remain outside this bounded gate.
