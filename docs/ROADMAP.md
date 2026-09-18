@@ -12,7 +12,7 @@ This file is the operational roadmap for `planets-lab`. Architecture boundaries 
 - Canonical pair-level targetability runtime: [`handoff/2026-09-16-combat-c5-directional-targetability-canonical-wiring-runtime.md`](handoff/2026-09-16-combat-c5-directional-targetability-canonical-wiring-runtime.md).
 - Canonical initial plain-STANDARD selector runtime: [`handoff/2026-09-16-combat-c5-initial-standard-canonical-selector-runtime.md`](handoff/2026-09-16-combat-c5-initial-standard-canonical-selector-runtime.md).
 - Production precombat effective-state runtime: [`handoff/2026-09-16-combat-c5-production-effective-state-runtime.md`](handoff/2026-09-16-combat-c5-production-effective-state-runtime.md).
-- Active mutable ship-queue gate: [`handoff/2026-09-16-combat-c5-mutable-ship-queue-pending.md`](handoff/2026-09-16-combat-c5-mutable-ship-queue-pending.md).
+- Mutable ship-queue scope-repair gate: [`handoff/2026-09-16-combat-c5-mutable-ship-queue-pending.md`](handoff/2026-09-16-combat-c5-mutable-ship-queue-pending.md).\n- Active STANDARD queue composition gate: [`handoff/2026-09-18-combat-c5-standard-queue-composition-pending.md`](handoff/2026-09-18-combat-c5-standard-queue-composition-pending.md).
 - Advanced Cloak decisive historical closure: [`handoff/2026-09-12-combat-c5-bird-advanced-cloak-decisive-closure-runtime.md`](handoff/2026-09-12-combat-c5-bird-advanced-cloak-decisive-closure-runtime.md).
 
 ## Evidence policy
@@ -232,3 +232,24 @@ M6 training/AI:                    intentionally later
 ```
 
 Do not shortcut unresolved Host rules merely to begin training sooner.
+
+
+### 2026-09-18 queue composition checkpoint
+
+The first mutable membership runtime included isolated game `591478` and therefore ran 12 archives instead of the ordinary 11. Its survivor and capture behavior was exact, but all printed destroyed-reappearance contradictions were from the isolated game. The diagnostic now excludes `591478` before promotion accounting; rerun is pending.
+
+Production ordinary STANDARD queue history now lives in:
+
+```text
+src/planets_lab/rules/combat/host_queue.py
+```
+
+It filters inactive/exhausted pairs, delegates pair choice to the canonical selector, records first-pass sides and occurrence count, and applies the already DIFF_VERIFIED second-pass reversal. It fails closed on incomplete occurrence history and never silently reuses pre-mutation pair decisions.
+
+Current runtime gates:
+
+1. rerun mutable membership on the repaired 11-game ordinary scope;
+2. validate production occurrence-history composition on the two repeated-pair controls;
+3. then build the full post-mutation multi-pair differential: replay VCR N terminal state -> mutate active set -> independently rebuild current pair candidates -> canonical next selector -> compare with factual VCR N+1.
+
+Capture ownership/hostility continuation remains separate.
