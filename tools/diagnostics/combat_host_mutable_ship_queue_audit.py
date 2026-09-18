@@ -17,9 +17,30 @@ for path in (REPO_ROOT, DIAGNOSTICS_DIR):
 from planets_lab.rules.combat.mutable_queue import apply_ship_terminal_batch
 
 import combat_ship_chain_audit as chain_module
+from combat_host_priority_intercept_audit import SPECIAL_GAME_ID
 
 
 SCHEMA = "planets-lab.combat-host-mutable-ship-queue-audit.v1"
+
+
+def _ordinary_archive_paths(args: argparse.Namespace) -> list[Path]:
+    """Return the ordinary corpus, keeping game 591478 out of promotion gates."""
+
+    raw_paths = (
+        [Path(value) for value in args.archive]
+        if getattr(args, "archive", None)
+        else sorted(args.archive_dir.glob("game-*.zip"))
+    )
+    result: list[Path] = []
+    for path in raw_paths:
+        try:
+            game_id = int(path.stem.split("-")[-1])
+        except ValueError:
+            result.append(path)
+            continue
+        if game_id != SPECIAL_GAME_ID:
+            result.append(path)
+    return result
 
 
 def _dummy_active_ship(previous: Mapping[str, Any]) -> dict[str, Any]:
@@ -83,6 +104,10 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         current: Mapping[str, Any],
     ) -> dict[str, Any]:
         baseline = original_transition(previous, current)
+        if previous.get("game_id") == SPECIAL_GAME_ID:
+            counts["special_game_transitions_excluded"] += 1
+            return baseline
+
         projection = _mutation_projection(previous)
         counts["same_location_reappearance_transitions"] += 1
 
@@ -139,9 +164,10 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
 
     chain_module._transition_comparison = wrapped_transition
     try:
+        ordinary_archives = _ordinary_archive_paths(args)
         chain_report = chain_module.run(
             argparse.Namespace(
-                archive=getattr(args, "archive", None) or [],
+                archive=[str(path) for path in ordinary_archives],
                 archive_dir=args.archive_dir,
                 detail_limit=args.example_limit,
                 sample_limit=min(args.example_limit, 20),
@@ -177,6 +203,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "schema": SCHEMA,
         "read_only": True,
         "summary": {
+            "special_game_591478_excluded": True,
             "counts": dict(sorted(counts.items())),
             "chain_audit_summary": chain_report.get("summary"),
             "acceptance": acceptance,
@@ -184,6 +211,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "examples": examples,
         "evidence_boundary": (
             "C5 membership/continuation differential over the existing C3 same-turn same-location ship-chain reconstruction. "
+            "Game 591478 is excluded from the ordinary promotion population, matching the other C5 corpus gates. "
             "Exact dynamic field carry remains established by the independent C3 chain audit; this gate asks only whether the "
             "new production mutable-queue primitive retains replay survivors, removes replay-destroyed predecessors and fails "
             "closed on capture. A destroyed predecessor followed by another factual VCR is a hard reappearance contradiction "
