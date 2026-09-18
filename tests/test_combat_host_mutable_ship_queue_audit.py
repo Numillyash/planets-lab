@@ -7,7 +7,10 @@ TOOLS_DIR = Path(__file__).resolve().parents[1] / "tools" / "diagnostics"
 if str(TOOLS_DIR) not in sys.path:
     sys.path.insert(0, str(TOOLS_DIR))
 
-from combat_host_mutable_ship_queue_audit import _mutation_projection  # noqa: E402
+from combat_host_mutable_ship_queue_audit import (  # noqa: E402
+    _mutation_projection,
+    _ordinary_archive_paths,
+)
 
 
 def _previous(**terminal_overrides: object) -> dict[str, object]:
@@ -65,3 +68,16 @@ def test_unknown_terminal_flag_is_unresolved_not_error() -> None:
     assert result["status"] == "unresolved"
     assert result["resolved"] is None
     assert "10:destroyed_state_unresolved" in result["unresolved_reasons"]
+
+
+def test_ordinary_archive_paths_excludes_isolated_game(tmp_path: Path) -> None:
+    ordinary = tmp_path / "game-620917.zip"
+    isolated = tmp_path / "game-591478.zip"
+    ordinary.touch()
+    isolated.touch()
+
+    class Args:
+        archive = None
+        archive_dir = tmp_path
+
+    assert _ordinary_archive_paths(Args()) == [ordinary]
