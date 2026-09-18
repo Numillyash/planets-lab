@@ -139,7 +139,7 @@ old reset baseline 3/5
 
 Captured predecessor transitions are outside this proof because capture may change ownership and hostility.
 
-### Current combat work — mutable active ship queue
+### Mutable active ship queue — closed
 
 Production module:
 
@@ -253,3 +253,38 @@ Current runtime gates:
 3. then build the full post-mutation multi-pair differential: replay VCR N terminal state -> mutate active set -> independently rebuild current pair candidates -> canonical next selector -> compare with factual VCR N+1.
 
 Capture ownership/hostility continuation remains separate.
+
+
+### 2026-09-18 runtime closure and active next-pair gate
+
+Runtime:
+
+```text
+docs/handoff/2026-09-18-combat-c5-mutable-and-second-standard-runtime.md
+```
+
+Closed ordinary-scope results:
+
+```text
+mutable membership:
+  11 archives
+  survivor membership 1146/1146
+  capture fail-closed 23/23
+  destroyed predecessor reappearances 0
+  gate passed
+
+second STANDARD occurrence:
+  repeated controls 2
+  production exact 2/2
+  gate passed
+```
+
+The active C5 gate is now:
+
+```text
+tools/diagnostics/combat_host_post_mutation_next_pair_audit.py
+```
+
+It tests held-out next-VCR prediction over exact-set multi-VCR sites by composing independently reconstructed T-1 candidate rows, deterministic replay terminal state for VCR N, production membership mutation, occurrence history and the canonical selector. VCR N+1 is comparator-only.
+
+If this bounded gate is green, the next refinement is dynamic pair-decision recomposition after combat rather than reusing the already verified T-1 pair projections. Capture continuation remains separate.
