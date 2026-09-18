@@ -12,7 +12,9 @@ This file is the operational roadmap for `planets-lab`. Architecture boundaries 
 - Canonical pair-level targetability runtime: [`handoff/2026-09-16-combat-c5-directional-targetability-canonical-wiring-runtime.md`](handoff/2026-09-16-combat-c5-directional-targetability-canonical-wiring-runtime.md).
 - Canonical initial plain-STANDARD selector runtime: [`handoff/2026-09-16-combat-c5-initial-standard-canonical-selector-runtime.md`](handoff/2026-09-16-combat-c5-initial-standard-canonical-selector-runtime.md).
 - Production precombat effective-state runtime: [`handoff/2026-09-16-combat-c5-production-effective-state-runtime.md`](handoff/2026-09-16-combat-c5-production-effective-state-runtime.md).
-- Mutable ship-queue scope-repair gate: [`handoff/2026-09-16-combat-c5-mutable-ship-queue-pending.md`](handoff/2026-09-16-combat-c5-mutable-ship-queue-pending.md).\n- STANDARD queue composition checkpoint: [`handoff/2026-09-18-combat-c5-standard-queue-composition-pending.md`](handoff/2026-09-18-combat-c5-standard-queue-composition-pending.md).\n- Active post-mutation next-pair runtime gate: [`handoff/2026-09-18-combat-c5-post-mutation-next-pair-pending.md`](handoff/2026-09-18-combat-c5-post-mutation-next-pair-pending.md).
+- Mutable ship-queue scope-repair gate: [`handoff/2026-09-16-combat-c5-mutable-ship-queue-pending.md`](handoff/2026-09-16-combat-c5-mutable-ship-queue-pending.md).
+- STANDARD queue composition checkpoint: [`handoff/2026-09-18-combat-c5-standard-queue-composition-pending.md`](handoff/2026-09-18-combat-c5-standard-queue-composition-pending.md).
+- Post-mutation next-pair runtime: [`handoff/2026-09-18-combat-c5-post-mutation-next-pair-runtime.md`](handoff/2026-09-18-combat-c5-post-mutation-next-pair-runtime.md).\n- Active capture continuation gate: [`handoff/2026-09-18-combat-c5-capture-continuation-pending.md`](handoff/2026-09-18-combat-c5-capture-continuation-pending.md).
 - Advanced Cloak decisive historical closure: [`handoff/2026-09-12-combat-c5-bird-advanced-cloak-decisive-closure-runtime.md`](handoff/2026-09-12-combat-c5-bird-advanced-cloak-decisive-closure-runtime.md).
 
 ## Evidence policy
@@ -288,3 +290,38 @@ tools/diagnostics/combat_host_post_mutation_next_pair_audit.py
 It tests held-out next-VCR prediction over exact-set multi-VCR sites by composing independently reconstructed T-1 candidate rows, deterministic replay terminal state for VCR N, production membership mutation, occurrence history and the canonical selector. VCR N+1 is comparator-only.
 
 If this bounded gate is green, the next refinement is dynamic pair-decision recomposition after combat rather than reusing the already verified T-1 pair projections. Capture continuation remains separate.
+
+
+### 2026-09-18 post-mutation next-pair closure
+
+Held-out next-VCR differential:
+
+```text
+strict:
+  23 exact-set multi-VCR sites
+  16 exact sites
+  7 capture exclusions
+  22/22 compared next VCR transitions exact
+
+conditional:
+  same population/result
+
+transitions_with_inactive_filter=22/22
+all_profiles_pass=True
+```
+
+Status:
+
+```text
+CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
+```
+
+The active C5 queue gap is now capture continuation. Production still fails closed on `captured=True`.
+
+New capture diagnostic:
+
+```text
+tools/diagnostics/combat_host_capture_continuation_audit.py
+```
+
+It measures whether a captured ship's factual next-VCR race changes to the captor race, whether hull/combat state carries, whether Federation recovery applies under a Federation captor, and whether the next opponent is the captor or a third ship. No production capture semantics are promoted until runtime is reviewed.
