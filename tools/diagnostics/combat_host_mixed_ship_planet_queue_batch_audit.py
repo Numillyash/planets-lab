@@ -467,6 +467,14 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             ship_id = int(ship["object_id"])
             planet_id = int(planet["object_id"])
 
+            capture_key = (
+                game_id,
+                battle_turn,
+                int(row["vcr_id"]),
+                ship_id,
+            )
+            post_capture = capture_key in capture_index
+
             planet_side_counts[str(planet["side"])] += 1
             if planet["side"] == "right":
                 counts["planet_on_right"] += 1
@@ -562,13 +570,6 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             if immediate_previous_same_ship:
                 counts["ship_to_planet_immediate_same_ship"] += 1
 
-            capture_key = (
-                game_id,
-                battle_turn,
-                int(row["vcr_id"]),
-                ship_id,
-            )
-            post_capture = capture_key in capture_index
             if post_capture:
                 counts["planet_rows_post_capture"] += 1
             elif appeared_in_prior_ship_combat:
