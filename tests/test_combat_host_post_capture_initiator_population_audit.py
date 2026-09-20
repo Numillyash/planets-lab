@@ -9,6 +9,7 @@ if str(TOOLS_DIR) not in sys.path:
 
 from combat_host_post_capture_initiator_population_audit import (  # noqa: E402
     _planet_attack_projection,
+    _required_unresolved_total,
     _ship_request_projection,
 )
 
@@ -52,3 +53,26 @@ def test_planet_ordinary_friendly_code_is_not_attack_candidate() -> None:
     result = _planet_attack_projection({"friendlycode": "abc"})
 
     assert result["independent_attack_code"] is False
+
+
+
+def test_optional_captured_ship_history_does_not_block_required_adapter_gate() -> None:
+    counts = {
+        "unresolved:captured_ship_tminus1": 2,
+        "unresolved:next_vcr_missing": 0,
+        "unresolved:opponent_projection": 0,
+        "unresolved:opponent_object_id": 0,
+        "unresolved:opponent_ship_tminus1": 0,
+        "unresolved:opponent_planet_tminus1": 0,
+    }
+
+    assert _required_unresolved_total(counts) == 0
+
+
+def test_required_opponent_state_still_blocks_adapter_gate() -> None:
+    counts = {
+        "unresolved:captured_ship_tminus1": 2,
+        "unresolved:opponent_ship_tminus1": 1,
+    }
+
+    assert _required_unresolved_total(counts) == 1
