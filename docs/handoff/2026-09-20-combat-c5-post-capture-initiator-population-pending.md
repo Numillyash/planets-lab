@@ -184,3 +184,81 @@ echo
 echo "===== STATUS ====="
 git status --short
 ```
+
+
+## 2026-09-20 first runtime result and acceptance repair
+
+Runtime source:
+
+```text
+b59f363e4e8a44ecfa6ba4da4f6080e1cf0b0c49
+```
+
+Durable descriptive runtime:
+
+```text
+docs/handoff/2026-09-20-combat-c5-post-capture-initiator-descriptive-runtime.md
+```
+
+Observed:
+
+```text
+capture_continuations=23
+independent_opponent_attack_candidate=23
+
+independent_attack:planet=15/15
+independent_attack:ship=8/8
+
+explanation:opponent_only=21
+explanation:both=2
+explanation:captured_old_orders_only=0
+explanation:neither=0
+
+captured_old_orders_unresolved=2
+```
+
+The v1 hard acceptance incorrectly treated the last two optional old-order history gaps as required adapter failures. That contradicts the diagnostic's own evidence boundary: captured old T-1 orders are an observational alternative only.
+
+The v2 repair:
+
+```text
+6747d672e499ef6da3974c6713cf0560801798a1
+71ebdabe6888739e6a7e3a559271581715c6c441
+```
+
+now separates:
+
+```text
+required unresolved:
+  next VCR
+  opponent projection/object
+  opponent ship T-1
+  opponent planet T-1
+
+optional unresolved:
+  captured ship old T-1 history
+```
+
+and adds the stronger hard acceptance:
+
+```text
+all_continuations_have_independent_opponent_attack=True
+```
+
+Expected v2 acceptance from the observed population:
+
+```text
+capture_continuation_population_present=True
+payload_conflicts_absent=True
+no_required_adapter_unresolved=True
+all_continuations_have_independent_opponent_attack=True
+third_party_population_present=True
+all_third_party_have_independent_attack=True
+ship_and_planet_continuations_present=True
+post_capture_initiator_gate_passed=True
+
+required_unresolved_total=0
+optional_old_order_unresolved=2
+```
+
+The v2 runtime is still required before final closure.
