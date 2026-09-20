@@ -465,3 +465,56 @@ tools/diagnostics/combat_host_capture_continuation_audit.py
 ```
 
 The first pass is descriptive and does not modify production. It measures captured-ship race transfer, hull preservation, terminal-to-next-start combat state, next opponent identity and side orientation. Production capture remains fail-closed until the ordinary corpus result is reviewed.
+
+
+## 2026-09-20 capture descriptive runtime and production promotion candidate
+
+Descriptive runtime:
+
+```text
+docs/handoff/2026-09-20-combat-c5-capture-continuation-descriptive-runtime.md
+```
+
+Observed ordinary capture continuation:
+
+```text
+capture reappearances=23
+hull preserved=23/23
+owner/race transfer to captor=23/23
+crew terminal0 -> next10=23/23
+torpedoes exact=23/23
+fighters exact=23/23
+damage exact=22/23
+raw shield carry exact=22/23
+```
+
+Official Planets.nu Combat Basics documents the 10-person prize crew. Official Nu/VGAP differences documentation places Federation shield recharge at the end of each battle. That order explains the only shield residual: a pre-capture Federation ship leaves combat at shield0, recovers to25, and appears in the next VCR under the captor race.
+
+Production now has an explicit capture transfer path:
+
+```python
+ShipCaptureTransfer(...)
+carry_captured_ship_to_next_engagement(...)
+apply_ship_terminal_batch(..., capture_transfers_by_ship_id=...)
+```
+
+Capture remains fail-closed without explicit captor metadata.
+
+Production order:
+
+```text
+terminal
+ -> pre-capture Fed recovery
+ -> prize crew10
+ -> owner/race transfer
+ -> new-owner race bonus flags
+ -> prepare next engagement
+```
+
+Active gate remains the capture continuation diagnostic, now v2 and production-wired. Required result is exact owner/race/hull/shield/crew/ammunition state across all 23 rows, with no new damage residual beyond the isolated upstream replay row:
+
+```text
+621253/T17 ship84 VCR39->45 damage11->7
+```
+
+No capture-repair special case is encoded for that singleton.
