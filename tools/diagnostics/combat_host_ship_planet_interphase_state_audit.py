@@ -17,6 +17,10 @@ for path in (REPO_ROOT, DIAGNOSTICS_DIR):
 from planets_lab.corpus.movement_differential import _intish
 from planets_lab.corpus.prepared_cache import load_or_build_prepared_game_cache
 from planets_lab.corpus.reconstruction import group_perspective_records
+from planets_lab.rules.combat.interphase import (
+    SUPPLIES_PER_DAMAGE_POINT,
+    repair_ship_with_supplies,
+)
 
 import combat_ship_chain_audit as chain_module
 import combat_host_post_capture_opponent_audit as opponent_module
@@ -108,6 +112,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     gap_counts: Counter[int] = Counter()
     examples: list[dict[str, Any]] = []
     changed_examples: list[dict[str, Any]] = []
+    repair_compatibility: Counter[str] = Counter()
 
     for row in transitions:
         if not isinstance(row, Mapping):
@@ -184,6 +189,94 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             ship_id=ship_id,
         )
 
+        repair_projection: dict[str, Any] | None = None
+        if status in {"match", "mismatch"}:
+            carry = comparison.get("carry")
+            damage_values = carry.get("damage") if isinstance(carry, Mapping) else None
+            terminal_damage = (
+                damage_values.get("terminal")
+                if isinstance(damage_values, Mapping)
+                else None
+            )
+            next_damage = (
+                damage_values.get("next_start")
+                if isinstance(damage_values, Mapping)
+                else None
+            )
+            supplies = context.get("supplies") if isinstance(context, Mapping) else None
+            if (
+                isinstance(terminal_damage, int)
+                and not isinstance(terminal_damage, bool)
+                and isinstance(next_damage, int)
+                and not isinstance(next_damage, bool)
+                and isinstance(supplies, int)
+                and not isinstance(supplies, bool)
+                and supplies >= 0
+            ):
+                observed_repair = terminal_damage - next_damage
+                max_from_tminus1 = min(
+                    terminal_damage,
+                    supplies // SUPPLIES_PER_DAMAGE_POINT,
+                )
+                if observed_repair < 0:
+                    compatibility = "damage_increased"
+                elif observed_repair > max_from_tminus1:
+                    compatibility = "exceeds_tminus1_supply_budget"
+                elif observed_repair == max_from_tminus1:
+                    compatibility = "full_tminus1_budget_exact"
+                else:
+                    compatibility = "compatible_with_prior_supply_consumption"
+
+                repair_compatibility[compatibility] += 1
+                if observed_repair > 0:
+                    counts["observed_supply_repair_transitions"] += 1
+                    non_damage_preserved = all(
+                        field_directions[field]["decrease"]
+                        + field_directions[field]["increase"]
+                        == 0
+                        for field in ("crew", "torpedoes", "fighters")
+                    )
+                    if shield_model in {"exact_carry", "both"}:
+                        counts["repair_rows_without_shield_recharge"] += 1
+
+                production_damage = None
+                if compatibility == "full_tminus1_budget_exact":
+                    raw = {
+                        "hull_id": int(row["hull_id"]),
+                        "damage": terminal_damage,
+                        "supplies": supplies,
+                        "physical_beam_count": 0,
+                        "physical_launcher_count": 0,
+                        "physical_bay_count": 0,
+                        "beam_count": 0,
+                        "launcher_count": 0,
+                        "bay_count": 0,
+                        "shield": 0,
+                        "crew": 1,
+                        "torpedoes": 0,
+                        "fighters": 0,
+                        "federation_crew_bonus": False,
+                        "lizard_crew_bonus": False,
+                    }
+                    repaired_state, repaired = repair_ship_with_supplies(raw)
+                    production_damage = repaired_state["damage"]
+                    if production_damage == next_damage:
+                        counts["production_supply_repair_exact"] += 1
+                    else:
+                        counts["production_supply_repair_mismatch"] += 1
+
+                repair_projection = {
+                    "terminal_damage": terminal_damage,
+                    "next_damage": next_damage,
+                    "observed_repair": observed_repair,
+                    "tminus1_supplies": supplies,
+                    "max_repair_from_tminus1_supplies": max_from_tminus1,
+                    "compatibility": compatibility,
+                    "production_damage_when_full_tminus1_budget": production_damage,
+                }
+            else:
+                repair_compatibility["unresolved"] += 1
+
         projection = {
             "game_id": game_id,
             "battle_turn": battle_turn,
@@ -196,6 +289,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "shield_model": shield_model,
             "comparison": comparison,
             "tminus1": context,
+            "repair_projection": repair_projection,
         }
         if len(examples) < args.example_limit:
             examples.append(projection)
@@ -212,10 +306,17 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         for key, value in counts.items()
         if key.startswith("required_unresolved:")
     )
+    repair_contradictions = (
+        int(repair_compatibility["damage_increased"])
+        + int(repair_compatibility["exceeds_tminus1_supply_budget"])
+    )
     acceptance = {
         "ship_to_planet_population_present": population > 0,
         "payload_conflicts_absent": payload_conflicts == 0,
         "required_inputs_resolved": required_unresolved == 0,
+        "supply_repair_population_present": int(counts["observed_supply_repair_transitions"]) > 0,
+        "all_damage_changes_supply_repair_compatible": repair_contradictions == 0,
+        "production_full_budget_rows_exact": int(counts["production_supply_repair_mismatch"]) == 0,
         "ordinary_transition_population_present": (
             int(counts["ordinary_exact_transition"])
             + int(counts["ordinary_transition_with_change"])
@@ -235,6 +336,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 for field, values in field_directions.items()
             },
             "shield_models": dict(sorted(shield_models.items())),
+            "repair_compatibility": dict(sorted(repair_compatibility.items())),
             "vcr_gap_distribution": {
                 str(key): value for key, value in sorted(gap_counts.items())
             },
@@ -250,8 +352,11 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "with the factual planet-combat start state. Changes are inventoried "
             "rather than explained. T-1 cargo/order state is context only. "
             "Captured/defeated predecessor reappearances remain separate from "
-            "ordinary survivor transitions. This audit does not yet implement "
-            "the documented repair/MKT step."
+            "ordinary survivor transitions. The documented five-supplies-per-"
+            "damage-point production repair primitive is checked where T-1 "
+            "supplies are a sufficient current-budget proxy; rows requiring "
+            "earlier Host supply consumption are classified separately. MKT "
+            "torpedo construction remains outside this gate."
         ),
     }
 
@@ -288,8 +393,8 @@ def main() -> int:
         )
         print("output:", args.output)
     print(
-        "NOTE: change inventory only; repair/MKT rules are not promoted until "
-        "the observed phase-boundary residuals are explained."
+        "NOTE: supply repair is production-checked; prior Host supply consumption "
+        "and MKT torpedo construction remain separate."
     )
     return 0
 
