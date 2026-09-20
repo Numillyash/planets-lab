@@ -36,7 +36,7 @@ from combat_host_priority_intercept_audit import (
 )
 
 
-SCHEMA = "planets-lab.combat-host-mixed-ship-planet-queue-batch-audit.v3"
+SCHEMA = "planets-lab.combat-host-mixed-ship-planet-queue-batch-audit.v4"
 DEFAULT_EXAMPLE_LIMIT = 80
 PLANET_ATTACK_CODES = frozenset({"nuk", "att"})
 HORWASP_RACE_ID = 12
@@ -181,12 +181,38 @@ def _planet_projection(
     }
 
 
+def _race_owner_map(snapshots: Sequence[Any]) -> dict[int, int]:
+    owners: dict[int, set[int]] = defaultdict(set)
+    for snapshot in snapshots:
+        players = snapshot.mechanics_payload.get("players", [])
+        if not isinstance(players, list):
+            continue
+        for player in players:
+            if not isinstance(player, Mapping):
+                continue
+            player_id = _intish(player.get("id"))
+            race_id = _intish(player.get("raceid"))
+            if (
+                player_id is None
+                or player_id <= 0
+                or race_id is None
+                or race_id <= 0
+            ):
+                continue
+            owners[race_id].add(player_id)
+    return {
+        race_id: next(iter(player_ids))
+        for race_id, player_ids in owners.items()
+        if len(player_ids) == 1
+    }
+
+
 def _load_groups(
     *,
     archive_dir: Path,
     prepared_dir: Path,
     game_id: int,
-) -> tuple[Mapping[Any, Any], Mapping[Any, Any]]:
+) -> tuple[Mapping[Any, Any], Mapping[Any, Any], Mapping[int, int]]:
     archive_path = archive_dir / f"game-{game_id}.zip"
     prepared, _ = load_or_build_prepared_game_cache(
         archive_path.read_bytes(),
@@ -196,7 +222,64 @@ def _load_groups(
     return (
         group_perspective_records(prepared.snapshots, "ship"),
         group_perspective_records(prepared.snapshots, "planet"),
+        _race_owner_map(prepared.snapshots),
     )
+
+
+def _resolved_owner_at_turn(
+    groups: Mapping[Any, Any],
+    *,
+    turn: int,
+    entity_id: int,
+) -> int | None:
+    owner_id, _raw = _owner_raw(groups, turn, entity_id)
+    return owner_id
+
+
+def _effective_planet_owner(
+    *,
+    ship_owner_id: int,
+    vcr_planet_owner_id: int,
+    planet_race_id: int | None,
+    race_owner_map: Mapping[int, int],
+    tminus1_owner_id: int | None,
+    current_owner_id: int | None,
+) -> dict[str, Any]:
+    mapped_owner = (
+        race_owner_map.get(planet_race_id)
+        if planet_race_id is not None
+        else None
+    )
+    if vcr_planet_owner_id != ship_owner_id:
+        return {
+            "resolved": True,
+            "owner_id": vcr_planet_owner_id,
+            "source": "vcr_owner_foreign",
+            "vcr_owner_id": vcr_planet_owner_id,
+            "race_mapped_owner_id": mapped_owner,
+            "tminus1_owner_id": tminus1_owner_id,
+            "current_owner_id": current_owner_id,
+        }
+    if mapped_owner is not None and mapped_owner != ship_owner_id:
+        return {
+            "resolved": True,
+            "owner_id": mapped_owner,
+            "source": "same_owner_vcr_repaired_by_race_map",
+            "vcr_owner_id": vcr_planet_owner_id,
+            "race_mapped_owner_id": mapped_owner,
+            "tminus1_owner_id": tminus1_owner_id,
+            "current_owner_id": current_owner_id,
+            "current_owner_confirms_race_map": current_owner_id == mapped_owner,
+        }
+    return {
+        "resolved": False,
+        "owner_id": None,
+        "source": "same_owner_vcr_unresolved",
+        "vcr_owner_id": vcr_planet_owner_id,
+        "race_mapped_owner_id": mapped_owner,
+        "tminus1_owner_id": tminus1_owner_id,
+        "current_owner_id": current_owner_id,
+    }
 
 
 def _capture_index(
@@ -270,6 +353,57 @@ def _same_planet_priority_group(
         "factual_ship_order": factual,
         "expected_standard_priority_order": expected,
         "exact": factual == expected,
+    }
+
+
+def _capture_reset_priority_order(
+    rows: Sequence[Mapping[str, Any]],
+) -> dict[str, Any]:
+    if len(rows) < 2:
+        return {"comparable": False, "reason": "single_planet_engagement"}
+
+    priorities: list[tuple[tuple[int, int, int], int]] = []
+    factual = [int(row["ship"]["object_id"]) for row in rows]
+    for row in rows:
+        projection = row.get("ship_tminus1")
+        if (
+            not isinstance(projection, Mapping)
+            or projection.get("resolved") is not True
+        ):
+            return {
+                "comparable": False,
+                "reason": "ship_tminus1_unresolved",
+                "factual_ship_order": factual,
+            }
+        ship_id = int(row["ship"]["object_id"])
+        if row.get("post_capture") is True:
+            key = standard_battle_priority_key(
+                ship_id=ship_id,
+                mission=None,
+                primary_enemy=None,
+                friendly_code=projection.get("friendlycode"),
+            )
+        else:
+            key = standard_battle_priority_key(
+                ship_id=ship_id,
+                mission=projection.get("mission"),
+                primary_enemy=projection.get("enemy"),
+                friendly_code=projection.get("friendlycode"),
+            )
+        if key is None:
+            return {
+                "comparable": False,
+                "reason": "capture_reset_priority_unresolved",
+                "factual_ship_order": factual,
+            }
+        priorities.append((key, ship_id))
+
+    predicted = [ship_id for _key, ship_id in sorted(priorities)]
+    return {
+        "comparable": True,
+        "factual_ship_order": factual,
+        "predicted_ship_order": predicted,
+        "exact": factual == predicted,
     }
 
 
@@ -381,7 +515,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
 
     groups_by_game: dict[
         int,
-        tuple[Mapping[Any, Any], Mapping[Any, Any]],
+        tuple[Mapping[Any, Any], Mapping[Any, Any], Mapping[int, int]],
     ] = {}
     counts: Counter[str] = Counter()
     profiles: Counter[str] = Counter()
@@ -405,7 +539,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 prepared_dir=args.prepared_dir,
                 game_id=game_id,
             )
-        ship_groups, planet_groups = groups_by_game[game_id]
+        ship_groups, planet_groups, race_owner_map = groups_by_game[game_id]
 
         profile = _site_profile(rows)
         profiles[profile] += 1
@@ -496,6 +630,37 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 battle_turn=battle_turn,
                 planet_id=planet_id,
             )
+            planet_current_owner_id = _resolved_owner_at_turn(
+                planet_groups,
+                turn=battle_turn,
+                entity_id=planet_id,
+            )
+            planet_owner_resolution = _effective_planet_owner(
+                ship_owner_id=int(ship["owner_id"]),
+                vcr_planet_owner_id=int(planet["owner_id"]),
+                planet_race_id=(
+                    int(planet["race_id"])
+                    if isinstance(planet.get("race_id"), int)
+                    else None
+                ),
+                race_owner_map=race_owner_map,
+                tminus1_owner_id=(
+                    int(planet_projection["owner_id"])
+                    if planet_projection.get("resolved") is True
+                    else None
+                ),
+                current_owner_id=planet_current_owner_id,
+            )
+            counts[
+                f"planet_owner_resolution:{planet_owner_resolution['source']}"
+            ] += 1
+            if (
+                planet_owner_resolution.get("source")
+                == "same_owner_vcr_repaired_by_race_map"
+                and planet_owner_resolution.get("current_owner_confirms_race_map")
+                is True
+            ):
+                counts["planet_owner_race_repairs_confirmed_by_current_owner"] += 1
             if ship_projection.get("resolved") is True:
                 counts["planet_attacker_priority_resolved"] += 1
             else:
@@ -515,17 +680,23 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                     counts["planet_nonattack_code_rows"] += 1
 
                 if ship_projection.get("resolved") is True:
-                    ordinary_ship_request = orders_request_ship_combat(
-                        mission=ship_projection.get("mission"),
-                        primary_enemy=ship_projection.get("enemy"),
-                        opponent_owner_id=int(planet_projection["owner_id"]),
+                    effective_planet_owner_id = planet_owner_resolution.get("owner_id")
+                    ordinary_ship_request = (
+                        orders_request_ship_combat(
+                            mission=ship_projection.get("mission"),
+                            primary_enemy=ship_projection.get("enemy"),
+                            opponent_owner_id=int(effective_planet_owner_id),
+                        )
+                        if isinstance(effective_planet_owner_id, int)
+                        else False
                     )
                     horwasp_ship_request = (
                         (
                             ship.get("race_id") == HORWASP_RACE_ID
                             or ship_projection.get("race_id") == HORWASP_RACE_ID
                         )
-                        and int(ship["owner_id"]) != int(planet["owner_id"])
+                        and isinstance(effective_planet_owner_id, int)
+                        and int(ship["owner_id"]) != int(effective_planet_owner_id)
                     )
                     ship_requests_planet = bool(
                         ordinary_ship_request or horwasp_ship_request
@@ -538,7 +709,8 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                             planet.get("race_id") == HORWASP_RACE_ID
                             or planet_projection.get("race_id") == HORWASP_RACE_ID
                         )
-                        and int(ship["owner_id"]) != int(planet["owner_id"])
+                        and isinstance(effective_planet_owner_id, int)
+                        and int(ship["owner_id"]) != int(effective_planet_owner_id)
                     )
                     if horwasp_planet_request and not planet_requests_ship:
                         planet_requests_ship = True
@@ -570,6 +742,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                                     "planet_tminus1_race_id": planet_projection.get("race_id"),
                                     "ship_tminus1": ship_projection,
                                     "planet_tminus1": planet_projection,
+                "planet_owner_resolution": planet_owner_resolution,
                                     "post_capture": post_capture,
                                 }
                             )
@@ -696,6 +869,22 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                         counts["repeated_planet_priority_mismatch"] += 1
                         repeated_planet_priority["naive_mismatch"] += 1
 
+                capture_reset = _capture_reset_priority_order(planet_rows)
+                if has_post_capture:
+                    if capture_reset["comparable"] is True:
+                        counts["capture_reset_priority_comparable"] += 1
+                        if capture_reset["exact"] is True:
+                            counts["capture_reset_priority_exact"] += 1
+                            repeated_planet_priority["capture_reset_exact"] += 1
+                        else:
+                            counts["capture_reset_priority_mismatch"] += 1
+                            repeated_planet_priority["capture_reset_mismatch"] += 1
+                    else:
+                        counts["capture_reset_priority_unresolved"] += 1
+                        repeated_planet_priority[
+                            f"capture_reset_unresolved:{capture_reset['reason']}"
+                        ] += 1
+
                 result = _production_planet_order(planet_rows)
                 if result["comparable"] is True:
                     counts["production_planet_order_comparable"] += 1
@@ -786,6 +975,10 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             int(counts["repeated_planet_groups_with_post_capture"]) > 0
             and int(counts["post_capture_rows_interleaved_before_ordinary_attackers"])
             == 0
+        ),
+        "capture_reset_aggression_priority_exact_when_comparable": (
+            int(counts["capture_reset_priority_comparable"]) > 0
+            and int(counts["capture_reset_priority_mismatch"]) == 0
         ),
         "naive_all_repeated_groups_follow_tminus1_priority": (
             priority_comparable > 0
