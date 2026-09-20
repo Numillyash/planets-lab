@@ -9,6 +9,7 @@ if str(TOOLS_DIR) not in sys.path:
 
 from combat_host_mixed_ship_planet_queue_batch_audit import (  # noqa: E402
     _planet_pair,
+    _production_planet_order,
     _same_planet_priority_group,
     _shape,
     _site_profile,
@@ -154,3 +155,65 @@ def test_repeated_planet_group_fails_closed_on_unresolved_priority() -> None:
 
     assert result["comparable"] is False
     assert result["reason"] == "ship_priority_unresolved"
+
+
+
+def test_production_planet_order_matches_ordinary_priority() -> None:
+    rows = [
+        {
+            "ship": {"object_id": 20},
+            "ship_tminus1": {
+                "resolved": True,
+                "mission": 3,
+                "enemy": 0,
+                "friendlycode": "100",
+            },
+            "post_capture": False,
+        },
+        {
+            "ship": {"object_id": 30},
+            "ship_tminus1": {
+                "resolved": True,
+                "mission": 0,
+                "enemy": 7,
+                "friendlycode": "abc",
+            },
+            "post_capture": False,
+        },
+    ]
+
+    result = _production_planet_order(rows)
+
+    assert result["comparable"] is True
+    assert result["predicted_ship_order"] == [20, 30]
+    assert result["exact"] is True
+
+
+def test_production_planet_order_fails_closed_with_post_capture_candidate() -> None:
+    rows = [
+        {
+            "ship": {"object_id": 20},
+            "ship_tminus1": {
+                "resolved": True,
+                "mission": 3,
+                "enemy": 0,
+                "friendlycode": "100",
+            },
+            "post_capture": False,
+        },
+        {
+            "ship": {"object_id": 30},
+            "ship_tminus1": {
+                "resolved": True,
+                "mission": 0,
+                "enemy": 7,
+                "friendlycode": "abc",
+            },
+            "post_capture": True,
+        },
+    ]
+
+    result = _production_planet_order(rows)
+
+    assert result["comparable"] is False
+    assert result["reason"] == "post_capture_generated_order_present"
