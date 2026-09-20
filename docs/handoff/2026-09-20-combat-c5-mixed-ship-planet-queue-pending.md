@@ -241,3 +241,144 @@ bash tools/run-combat-c5-mixed-queue-batch.sh
 ```
 
 After completion, the full log file is sufficient for review. No need to manually run each diagnostic separately.
+
+
+## 2026-09-20 first large-batch runtime — PASSED
+
+Durable runtime:
+
+```text
+docs/handoff/2026-09-20-combat-c5-mixed-queue-batch-runtime-v1.md
+```
+
+Source HEAD:
+
+```text
+209abdad14682cfab8d9bc4729f2b63b4ad9a5a4
+```
+
+All six batch stages returned rc=0.
+
+Major factual results:
+
+```text
+ordinary mixed sites=391
+
+ship block before planet block=391/391
+P->S transitions=0
+
+planet RIGHT=435/435
+planet LEFT=0
+
+repeated planet groups=36
+naive T-1 STANDARD priority:
+  comparable=35
+  exact=34
+  mismatch=1
+  unresolved=1
+```
+
+The single comparable mismatch is exactly:
+
+```text
+511506/T48 planet131
+factual: ship489 -> ship480
+naive old T-1 priority: ship480 -> ship489
+ship480 is a post-capture candidate
+```
+
+Therefore ordinary planet ordering and capture-generated ordering must be separated.
+
+## Production v2 work now committed
+
+New production module:
+
+```text
+src/planets_lab/rules/combat/mixed_queue.py
+```
+
+It provides:
+
+- strict phase state machine:
+  `SHIP -> INTERPHASE_REPAIR_MKT -> PLANET -> COMPLETE`;
+- evidence-backed ship LEFT / planet RIGHT projection;
+- ordinary planet-attacker selection using standard Combat Priority;
+- fail-closed handling for eligible post-capture generated-order candidates.
+
+Tests:
+
+```text
+tests/test_combat_mixed_queue.py
+```
+
+Production/differential commits:
+
+```text
+86e300a697bb0481954b80af31cea441c498a0f0
+afc7c8bf5b035b9c7a59c71293c65de75b9ceac3
+d9fd97e3f6dd2edef1e2243815a51741de17df43
+d5beeeae628bff538f267e60edc00fa84f6a83c6
+25b5d0d9381a155662c626066e156520afabf5c4
+915538e41c9e7e8319119dee59d94cccc387dd61
+6fa40012db02c88f57d1ce50ece8506dc74d667d
+3e600cad3a4b30e3c298c896eec7b0ba635f92b3
+9334f29b20ca1d773e08e433c5059acc90e6e887
+```
+
+## v2 batch scope
+
+The same one-command runner now additionally validates:
+
+1. production phase boundary;
+2. production ordinary planet selector;
+3. basic planet fight initiator population:
+   - ship Kill!/Primary Enemy;
+   - planet NUK/ATT;
+4. ordinary repeated planet ordering with post-capture groups excluded;
+5. observational insertion shape for capture-containing groups;
+6. ship->planet interphase state changes across the documented repair/MKT step.
+
+New interphase diagnostic:
+
+```text
+tools/diagnostics/combat_host_ship_planet_interphase_state_audit.py
+```
+
+It inventories changes in:
+
+```text
+damage
+crew
+torpedoes
+fighters
+shield model
+```
+
+and adds T-1 supplies/minerals/order context to changed rows.
+
+The audit intentionally does not yet implement repair/MKT mechanics.
+
+## v2 runtime
+
+Still one command:
+
+```bash
+cd ~/projects/planets-lab
+git fetch origin
+git checkout agent/combat-c5-host-phase
+git pull --ff-only origin agent/combat-c5-host-phase
+bash tools/run-combat-c5-mixed-queue-batch.sh
+```
+
+Review the final stage summary plus:
+
+```text
+SHIP->PLANET INTERPHASE STATE
+MIXED SHIP/PLANET DISCOVERY V2
+```
+
+The complete log remains:
+
+```text
+artifacts/combat-c5-mixed-queue-batch.log
+```
