@@ -959,3 +959,42 @@ Five mixed initiator residuals are now isolated to impossible same-owner VCR pla
 Capture V4 hypothesis clears captured old Mission/PE aggression priority while preserving Friendly Code priority, then compares the resulting STANDARD order across every comparable capture-containing repeated planet group.
 
 V4 also adds an all-planet engagement population sweep over the entire ordinary ship-vs-planet corpus.
+
+
+## 2026-09-20 mixed queue batch v4 closure
+
+Runtime:
+
+```text
+docs/handoff/2026-09-20-combat-c5-mixed-queue-batch-runtime-v4.md
+```
+
+All eight stages passed.
+
+All ordinary ship-vs-planet population:
+
+```text
+2406 VCR rows
+1981 ship-only initiator
+86 planet-only initiator
+337 both
+2 unresolved
+0 hard residuals
+planet_engagement_population_gate_passed=True
+```
+
+Important correction: the prior five apparent same-owner residuals were a diagnostic interpretation error. The printed v3 `planet_owner_id` was T-1 planet owner. V4 explicitly shows factual VCR defender owner is foreign in 2406/2406 ordinary rows. No same-owner combat exception exists in this corpus.
+
+The actual remaining production gap is earlier Host planet-ownership mutation before ship-vs-planet combat.
+
+Capture-generated planet priority now has:
+
+```text
+8/8 comparable groups exact
+0 mismatch
+1 fail-closed missing-T-1 group
+```
+
+Production now preserves captured Friendly Code priority while clearing old Mission/Primary Enemy aggression for the generated planet-combat order. Eligibility remains independent upstream state.
+
+Next batch adds full `T-1 -> VCR defender -> T` planet ownership timeline and reruns capture-containing groups through the production selector.
