@@ -11,6 +11,9 @@ from copy import deepcopy
 from typing import Any, Mapping
 
 
+CAPTURE_PRIZE_CREW = 10
+
+
 DYNAMIC_CARRY_FIELDS = ("shield", "damage", "crew", "torpedoes", "fighters")
 
 
@@ -116,4 +119,53 @@ def carry_ship_to_next_engagement(
         raise ValueError("defeated ship cannot be carried to another engagement")
     carried = apply_terminal_state(ship, terminal)
     carried, _recovered = federation_recover_shields(carried)
+    return prepare_sequence_ship(carried)
+
+
+
+def carry_captured_ship_to_next_engagement(
+    ship: Mapping[str, Any],
+    terminal: Mapping[str, Any],
+    *,
+    new_owner_id: int,
+    new_race_id: int,
+    new_federation_crew_bonus: bool,
+    new_lizard_crew_bonus: bool,
+) -> dict[str, Any]:
+    """Carry one combat-captured ship into its next same-turn engagement.
+
+    Evidence-scoped ordering:
+
+    1. apply the deterministic combat terminal vector;
+    2. apply any end-of-battle Federation shield recovery using the ship's
+       *pre-capture* crew-bonus state;
+    3. install the documented 10-person prize crew;
+    4. transfer owner/race identity to the captor;
+    5. switch race-derived combat bonus flags to the new owner;
+    6. recompute effective weapon counts for the next engagement.
+
+    The helper deliberately does not infer the captor.  Queue/orchestration
+    callers must supply explicit transfer metadata.
+    """
+
+    if terminal.get("captured") is not True or terminal.get("destroyed") is not False:
+        raise ValueError("capture carry requires captured=True and destroyed=False")
+    for name, value in (
+        ("new_owner_id", new_owner_id),
+        ("new_race_id", new_race_id),
+    ):
+        if isinstance(value, bool) or not isinstance(value, int) or value <= 0:
+            raise ValueError(f"{name} must be a positive integer")
+    if not isinstance(new_federation_crew_bonus, bool):
+        raise ValueError("new_federation_crew_bonus must be boolean")
+    if not isinstance(new_lizard_crew_bonus, bool):
+        raise ValueError("new_lizard_crew_bonus must be boolean")
+
+    carried = apply_terminal_state(ship, terminal)
+    carried, _recovered = federation_recover_shields(carried)
+    carried["crew"] = CAPTURE_PRIZE_CREW
+    carried["owner_id"] = new_owner_id
+    carried["race_id"] = new_race_id
+    carried["federation_crew_bonus"] = new_federation_crew_bonus
+    carried["lizard_crew_bonus"] = new_lizard_crew_bonus
     return prepare_sequence_ship(carried)
