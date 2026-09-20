@@ -39,6 +39,7 @@ from combat_host_priority_intercept_audit import (
 SCHEMA = "planets-lab.combat-host-mixed-ship-planet-queue-batch-audit.v2"
 DEFAULT_EXAMPLE_LIMIT = 80
 PLANET_ATTACK_CODES = frozenset({"nuk", "att"})
+HORWASP_RACE_ID = 12
 
 
 def _counter(counter: Counter[Any]) -> dict[str, int]:
@@ -142,6 +143,7 @@ def _priority_projection(
         "reason": None if key is not None else "priority_unresolved",
         "ship_id": ship_id,
         "owner_id": owner_id,
+        "race_id": _intish(raw.get("raceid")),
         "mission": mission,
         "enemy": enemy,
         "friendlycode": fc,
@@ -168,6 +170,7 @@ def _planet_projection(
         "resolved": True,
         "planet_id": planet_id,
         "owner_id": owner_id,
+        "race_id": _intish(raw.get("raceid")),
         "friendlycode": fc,
         "normalized_friendlycode": normalized,
         "attack_code": normalized in PLANET_ATTACK_CODES,
@@ -510,11 +513,28 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                     counts["planet_nonattack_code_rows"] += 1
 
                 if ship_projection.get("resolved") is True:
-                    ship_requests_planet = orders_request_ship_combat(
+                    ordinary_ship_request = orders_request_ship_combat(
                         mission=ship_projection.get("mission"),
                         primary_enemy=ship_projection.get("enemy"),
                         opponent_owner_id=int(planet_projection["owner_id"]),
                     )
+                    horwasp_ship_request = (
+                        ship_projection.get("race_id") == HORWASP_RACE_ID
+                        and int(ship["owner_id"]) != int(planet["owner_id"])
+                    )
+                    ship_requests_planet = bool(
+                        ordinary_ship_request or horwasp_ship_request
+                    )
+                    if horwasp_ship_request and not ordinary_ship_request:
+                        counts["planet_initiator:horwasp_ship_kill_equivalent"] += 1
+
+                    horwasp_planet_request = (
+                        planet_projection.get("race_id") == HORWASP_RACE_ID
+                        and int(ship["owner_id"]) != int(planet["owner_id"])
+                    )
+                    if horwasp_planet_request and not planet_requests_ship:
+                        planet_requests_ship = True
+                        counts["planet_initiator:horwasp_planet_nuk_equivalent"] += 1
                     if ship_requests_planet and planet_requests_ship:
                         counts["planet_initiator:both"] += 1
                     elif ship_requests_planet:
@@ -533,8 +553,11 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                                     "vcr_id": int(row["vcr_id"]),
                                     "ship_id": ship_id,
                                     "planet_id": planet_id,
-                                    "ship_owner_id": ship_projection.get("owner_id"),
+                                    "ship_tminus1_owner_id": ship_projection.get("owner_id"),
+                                    "ship_vcr_owner_id": ship.get("owner_id"),
+                                    "ship_race_id": ship_projection.get("race_id"),
                                     "planet_owner_id": planet_projection.get("owner_id"),
+                                    "planet_race_id": planet_projection.get("race_id"),
                                     "ship_tminus1": ship_projection,
                                     "planet_tminus1": planet_projection,
                                     "post_capture": post_capture,
@@ -575,6 +598,13 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             elif appeared_in_prior_ship_combat:
                 counts["planet_rows_post_ship_non_capture"] += 1
 
+            owner_changed_since_tminus1 = (
+                ship_projection.get("resolved") is True
+                and ship_projection.get("owner_id") != ship.get("owner_id")
+            )
+            if owner_changed_since_tminus1:
+                counts["planet_rows_owner_changed_since_tminus1"] += 1
+
             projection = {
                 "vcr_id": int(row["vcr_id"]),
                 "shape": shape,
@@ -595,6 +625,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 "appeared_in_prior_ship_combat": appeared_in_prior_ship_combat,
                 "immediate_previous_same_ship": immediate_previous_same_ship,
                 "post_capture": post_capture,
+                "owner_changed_since_tminus1": owner_changed_since_tminus1,
             }
             detailed_rows.append(projection)
             planet_rows_by_id[planet_id].append(projection)
