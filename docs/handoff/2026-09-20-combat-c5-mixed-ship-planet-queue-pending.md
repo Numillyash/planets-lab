@@ -382,3 +382,78 @@ The complete log remains:
 ```text
 artifacts/combat-c5-mixed-queue-batch.log
 ```
+
+
+## 2026-09-20 second large-batch runtime — PASSED
+
+Durable runtime:
+
+```text
+docs/handoff/2026-09-20-combat-c5-mixed-queue-batch-runtime-v2.md
+```
+
+Source HEAD:
+
+```text
+3db42c59439226f249e19615197e75582de10590
+```
+
+All seven stages returned rc=0.
+
+New closures:
+
+```text
+ordinary repeated planet attacker order:
+  27/27 production exact
+  post-capture groups excluded/fail-closed
+
+ship->planet survivor state:
+  374 exact carry
+  8 damage decreases
+  crew/torpedoes/fighters unchanged in 382/382 ordinary survivor rows
+```
+
+The eight damage decreases are compatible with the documented automatic supply-repair rule. Seven consume the full T-1 supply budget; one requires earlier Host supply consumption, which is allowed by earlier repair opportunities.
+
+Production supply-repair primitive:
+
+```text
+src/planets_lab/rules/combat/interphase.py
+```
+
+Current unresolved mixed-order populations:
+
+```text
+planet initiator neither-basic-order=5
+planet T-1 unresolved=5
+ship T-1 unresolved=1
+
+capture-containing repeated planet groups=9
+  captured after all ordinary attackers=8
+  captured interleaved before ordinary attacker=1
+```
+
+Therefore neither "all planet fights use only the eleven-race basic initiator surface" nor "captured planet attackers always append last" may be promoted yet.
+
+## ACTIVE V3 LARGE BATCH
+
+V3 adds:
+
+- race-aware Horwasp Kill!/NUK equivalents;
+- explicit initiator residual examples;
+- all nine capture-group examples;
+- factual VCR race ids;
+- T-1 owner vs VCR owner context;
+- production supply repair differential;
+- prior-supply-consumption classification;
+- MKT candidate inventory.
+
+Still use one command:
+
+```bash
+cd ~/projects/planets-lab
+git fetch origin
+git checkout agent/combat-c5-host-phase
+git pull --ff-only origin agent/combat-c5-host-phase
+bash tools/run-combat-c5-mixed-queue-batch.sh
+```
