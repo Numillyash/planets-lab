@@ -998,3 +998,45 @@ Capture-generated planet priority now has:
 Production now preserves captured Friendly Code priority while clearing old Mission/Primary Enemy aggression for the generated planet-combat order. Eligibility remains independent upstream state.
 
 Next batch adds full `T-1 -> VCR defender -> T` planet ownership timeline and reruns capture-containing groups through the production selector.
+
+
+## 2026-09-21 mixed queue batch v5 closure
+
+Runtime:
+
+```text
+docs/handoff/2026-09-21-combat-c5-mixed-queue-batch-runtime-v5.md
+```
+
+All nine stages passed.
+
+Capture-generated planet priority is now production differential verified:
+
+```text
+production repeated planet order:
+  35/35 exact comparable
+capture-generated subset:
+  8/8 exact comparable
+  1 unresolved missing-T-1 row
+  0 mismatch
+```
+
+Status:
+
+```text
+CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
+```
+
+Planet ownership timeline narrowed the remaining mixed-queue production gap:
+
+```text
+2406 ordinary planet VCRs
+2303 unique planet-turn combat timelines
+59 unique precombat owner-change timelines
+42 change from attacking ship's T-1 ownership to a different factual defender
+17 third-party ownership changes
+```
+
+Factual VCR defender owner remains attribution/comparator evidence only. Production must reconstruct earlier Host planet ownership mutation before planet-combat candidate composition.
+
+V6 inventories T-1 co-located future-defender ships and clans/order fields across all 59 changed timelines before any ground-combat production rule is introduced.
