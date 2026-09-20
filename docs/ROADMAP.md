@@ -696,3 +696,41 @@ T-1 owner unresolved rows=12
 The next immediate subsystem is earlier-Host planet ownership mutation, not further planet queue ordering.
 
 V6 inventories co-located future-defender ships and clan/drop-order state over all 59 changed timelines, then reruns the full 10-stage mixed regression batch.
+
+
+### 2026-09-21 mixed queue batch v6
+
+Durable runtime:
+`docs/handoff/2026-09-21-combat-c5-mixed-queue-batch-runtime-v6.md`
+
+All 10 batch stages rc=0.
+
+Current bounded mixed combat closures:
+
+```text
+ordinary mixed phase ordering: stable
+ordinary repeated planet priority: DIFF_VERIFIED
+capture-generated planet priority: DIFF_VERIFIED
+interphase supply repair: DIFF_VERIFIED
+all-planet initiator population: 2406 rows, 0 hard residuals
+```
+
+Ownership source inventory:
+
+```text
+59 unique precombat owner-change timelines overall
+42 positive-owner reversal timelines handled by current source adapter
+42/42 have future-defender ship co-located at T-1
+33/42 have onboard clans>0
+9/42 have onboard clans=0 but may still carry directed transferclans orders
+```
+
+The next C5 task is explicit directed clan-drop / ground-combat ownership reconstruction before planet targetability.
+
+Updated planning estimate:
+`docs/handoff/2026-09-21-reverse-progress-assessment.md`
+
+```text
+combat C1-C5 mechanics knowledge: ~90-93%
+whole NuHost reverse:            ~45-55%
+```
