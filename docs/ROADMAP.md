@@ -14,7 +14,7 @@ This file is the operational roadmap for `planets-lab`. Architecture boundaries 
 - Production precombat effective-state runtime: [`handoff/2026-09-16-combat-c5-production-effective-state-runtime.md`](handoff/2026-09-16-combat-c5-production-effective-state-runtime.md).
 - Mutable ship-queue scope-repair gate: [`handoff/2026-09-16-combat-c5-mutable-ship-queue-pending.md`](handoff/2026-09-16-combat-c5-mutable-ship-queue-pending.md).
 - STANDARD queue composition checkpoint: [`handoff/2026-09-18-combat-c5-standard-queue-composition-pending.md`](handoff/2026-09-18-combat-c5-standard-queue-composition-pending.md).
-- Post-mutation next-pair runtime: [`handoff/2026-09-18-combat-c5-post-mutation-next-pair-runtime.md`](handoff/2026-09-18-combat-c5-post-mutation-next-pair-runtime.md).\n- Capture descriptive runtime: [`handoff/2026-09-20-combat-c5-capture-continuation-descriptive-runtime.md`](handoff/2026-09-20-combat-c5-capture-continuation-descriptive-runtime.md).\n- Production capture runtime: [`handoff/2026-09-20-combat-c5-capture-production-runtime.md`](handoff/2026-09-20-combat-c5-capture-production-runtime.md).\n- Post-capture opponent population gate: [`handoff/2026-09-20-combat-c5-post-capture-opponent-pending.md`](handoff/2026-09-20-combat-c5-post-capture-opponent-pending.md).\n- Active third-party residual gate: [`handoff/2026-09-20-combat-c5-post-capture-third-party-residual-pending.md`](handoff/2026-09-20-combat-c5-post-capture-third-party-residual-pending.md).
+- Post-mutation next-pair runtime: [`handoff/2026-09-18-combat-c5-post-mutation-next-pair-runtime.md`](handoff/2026-09-18-combat-c5-post-mutation-next-pair-runtime.md).\n- Capture descriptive runtime: [`handoff/2026-09-20-combat-c5-capture-continuation-descriptive-runtime.md`](handoff/2026-09-20-combat-c5-capture-continuation-descriptive-runtime.md).\n- Production capture runtime: [`handoff/2026-09-20-combat-c5-capture-production-runtime.md`](handoff/2026-09-20-combat-c5-capture-production-runtime.md).\n- Post-capture opponent population gate: [`handoff/2026-09-20-combat-c5-post-capture-opponent-pending.md`](handoff/2026-09-20-combat-c5-post-capture-opponent-pending.md).\n- Third-party residual runtime: [`handoff/2026-09-20-combat-c5-post-capture-third-party-residual-runtime.md`](handoff/2026-09-20-combat-c5-post-capture-third-party-residual-runtime.md).\n- Active post-capture initiator population gate: [`handoff/2026-09-20-combat-c5-post-capture-initiator-population-pending.md`](handoff/2026-09-20-combat-c5-post-capture-initiator-population-pending.md).
 - Advanced Cloak decisive historical closure: [`handoff/2026-09-12-combat-c5-bird-advanced-cloak-decisive-closure-runtime.md`](handoff/2026-09-12-combat-c5-bird-advanced-cloak-decisive-closure-runtime.md).
 
 ## Evidence policy
@@ -410,3 +410,26 @@ tools/diagnostics/combat_host_post_capture_third_party_residual_audit.py
 ```
 
 It determines whether ship48's independent T-1 Kill!/PE request against owner3 already explains VCR38, while also inventorying the complete site queue and relation signatures. Do not encode captured-ship old-order persistence unless this independent initiator hypothesis fails.
+
+
+### 2026-09-20 post-capture opponent attribution — universal invariant rejected
+
+Observed immediate opponent owner after capture:
+
+```text
+pre-capture owner=22/23
+third party=1/23
+captor=0/23
+```
+
+The universal old-owner rule is rejected.
+
+The third-party residual `622476/T17 ship7 -> ship48` is independently explained by ship48's T-1 Kill! aggression against post-capture owner3. This does not prove captured-ship old-order persistence.
+
+Active next gate:
+
+```text
+tools/diagnostics/combat_host_post_capture_initiator_population_audit.py
+```
+
+It classifies all 23 continuations by independently attributable opponent aggression versus captured-ship old-order aggression candidates.
