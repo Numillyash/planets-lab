@@ -556,3 +556,130 @@ The all-planet stage covers every ordinary ship-vs-planet VCR and tests:
 - hard residual population after owner repair.
 
 Mixed V4 additionally tests capture-reset priority across all capture-containing repeated planet groups.
+
+
+## 2026-09-20 fourth large-batch runtime — PASSED
+
+Durable runtime:
+
+```text
+docs/handoff/2026-09-20-combat-c5-mixed-queue-batch-runtime-v4.md
+```
+
+Source HEAD:
+
+```text
+f48e39ee46ce5a9f8d7605adbb320d61b3e5883f
+```
+
+All eight stages returned rc=0.
+
+### All ordinary ship-vs-planet initiators
+
+```text
+ordinary ship-vs-planet VCRs = 2406
+ship_only                     = 1981
+planet_only                   = 86
+both                          = 337
+unresolved                    = 2
+hard residuals                = 0
+planet_engagement_population_gate_passed=True
+```
+
+This is a population-attribution closure only. Factual VCR planet-owner identity is not a production precombat input.
+
+### Correction to v3 same-owner interpretation
+
+The v3 residual field `planet_owner_id` was T-1 reconstructed owner, not factual VCR owner.
+
+V4 explicitly showed:
+
+```text
+owner_resolution:vcr_owner_foreign = 2406/2406
+same-owner VCR rows                 = 0
+race-map repair rows                = 0
+```
+
+Therefore the five v3 residuals were stale-T-1-owner artifacts. Do not preserve a same-owner combat hypothesis.
+
+The production problem is now narrower and correctly stated:
+
+```text
+reconstruct planet owner after earlier Host ownership-changing phases
+and before ship-vs-planet combat
+```
+
+### Capture-generated planet priority
+
+```text
+capture-containing repeated planet groups = 9
+comparable capture-reset groups            = 8
+exact                                      = 8
+mismatch                                   = 0
+unresolved                                 = 1
+```
+
+The one unresolved group is `622476/T13 planet55`, because captured ship68 lacks T-1 state.
+
+Supported bounded rule:
+
+```text
+captured generated order:
+  preserve Friendly Code priority
+  clear old Mission/Primary Enemy aggression priority
+  use STANDARD Combat Priority
+```
+
+Production commits after the runtime:
+
+```text
+0ea90f55844673f660ea3914207d2d819a2c97c8
+  combat: support capture-reset planet priority
+
+6eab133f19e3a161d4c6ba3994a4c81bfc69f686
+  test: cover production capture-reset planet priority
+
+eb1845f65bc1d757b98bbf8aa48256552a325336
+  diagnostics: diff capture-reset planet priority through production
+
+462fc34890683b79f12bb7520b687b64458db7dc
+  test: route capture ordering through production selector
+```
+
+The next runtime must promote this from experimental 8/8 to production `DIFF_VERIFIED` if the production selector reproduces the same population.
+
+## ACTIVE V5 LARGE BATCH
+
+V5 adds:
+
+```text
+PLANET OWNERSHIP TIMELINE
+MIXED SHIP/PLANET DISCOVERY V5
+```
+
+New diagnostic:
+
+```text
+tools/diagnostics/combat_host_planet_ownership_timeline_audit.py
+```
+
+It measures all ordinary:
+
+```text
+T-1 planet owner
+  -> factual VCR defender owner
+  -> T post-Host owner
+```
+
+and classifies:
+
+- owner unchanged before combat;
+- precombat owner changed;
+- precombat owner changed from attacker slot to factual defender slot;
+- postcombat defender retained;
+- postcombat attacker owns planet;
+- neutral/other/unresolved outcomes.
+
+Factual VCR and T remain attribution/comparator evidence only. This stage measures the size of the production ownership-transition subsystem that must be reconstructed; it does not feed factual VCR owner into production.
+
+V5 also routes all comparable capture-containing repeated planet groups through the real production selector.
