@@ -450,7 +450,7 @@ CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
 
 All compared transitions exercised inactive-pair filtering. The only exact-set continuation hole is capture.
 
-## ACTIVE GATE — capture continuation
+## CAPTURE CONTINUATION — CLOSED
 
 Pending runtime:
 
@@ -518,3 +518,78 @@ Active gate remains the capture continuation diagnostic, now v2 and production-w
 ```
 
 No capture-repair special case is encoded for that singleton.
+
+
+## 2026-09-20 production capture runtime closure
+
+Runtime:
+
+```text
+docs/handoff/2026-09-20-combat-c5-capture-production-runtime.md
+```
+
+User runtime source:
+
+```text
+52cd8f07f03afa7eabebf03c8b742859ab11dd9f
+```
+
+Production result:
+
+```text
+capture_reappearance_transitions=23
+
+owner_id exact=23/23
+race_id exact=23/23
+hull_id exact=23/23
+shield exact=23/23
+crew exact=23/23
+torpedoes exact=23/23
+fighters exact=23/23
+damage exact=22/23
+
+known damage residual only:
+621253/T17 ship84 VCR39->45 11->7
+
+capture_transition_gate_passed=True
+```
+
+Status:
+
+```text
+bounded production capture state transition:
+CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
+```
+
+Production capture remains fail-closed without explicit `ShipCaptureTransfer`.
+
+## ACTIVE GATE — post-capture opponent attribution
+
+Pending runtime:
+
+```text
+docs/handoff/2026-09-20-combat-c5-post-capture-opponent-pending.md
+```
+
+Diagnostic:
+
+```text
+tools/diagnostics/combat_host_post_capture_opponent_audit.py
+```
+
+The production capture corpus contains exactly:
+
+```text
+15 immediate planet/base continuations
+8 immediate third-ship continuations
+```
+
+This gate determines only whether the opposite side in the immediate next VCR belongs to:
+
+```text
+pre_capture_owner
+captor
+third_party
+```
+
+The factual next VCR is observation-only. Specific target selection, post-capture mission/PE/diplomacy and mixed ship/planet queue ordering remain separate future gates.
