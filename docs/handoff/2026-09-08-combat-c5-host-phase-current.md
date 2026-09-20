@@ -828,3 +828,49 @@ The batch keeps running after individual failures, writes per-stage return codes
 Current mixed-order batch tests population shape, S/P phase transitions, planet side orientation, NUK/ATT state, survivor/capture handoff into planet combat, repeated same-planet attacks and a naive STANDARD-priority ordering hypothesis in one execution.
 
 Use focused follow-up diagnostics only after this broad batch identifies actual residuals.
+
+
+## 2026-09-20 mixed queue batch v1 runtime
+
+Runtime:
+
+```text
+docs/handoff/2026-09-20-combat-c5-mixed-queue-batch-runtime-v1.md
+```
+
+All six stages passed.
+
+Strong ordinary invariants:
+
+```text
+mixed sites=391
+ship block before planet block=391/391
+P->S=0
+
+planet RIGHT=435/435
+planet LEFT=0
+```
+
+This aligns with documented Host sequencing:
+
+```text
+ship-vs-ship
+-> repair/MKT
+-> ship-vs-planet
+```
+
+Repeated planet attackers:
+
+```text
+36 groups
+35 naive T-1 priority comparable
+34 exact
+1 mismatch
+1 unresolved
+```
+
+The only mismatch is `511506/T48 planet131`, where the lower old T-1 priority ship480 is a post-capture entrant. Old T-1 priority must not be used as its capture-generated order.
+
+Production now contains an explicit mixed phase state machine and an ordinary planet selector in `mixed_queue.py`; post-capture generated-order candidates fail closed.
+
+The active large-batch runner now also measures the ship->planet repair/MKT state boundary before full mixed orchestration is promoted.
