@@ -1040,3 +1040,36 @@ Planet ownership timeline narrowed the remaining mixed-queue production gap:
 Factual VCR defender owner remains attribution/comparator evidence only. Production must reconstruct earlier Host planet ownership mutation before planet-combat candidate composition.
 
 V6 inventories T-1 co-located future-defender ships and clans/order fields across all 59 changed timelines before any ground-combat production rule is introduced.
+
+
+## 2026-09-21 mixed queue batch v6 closure
+
+Runtime:
+`docs/handoff/2026-09-21-combat-c5-mixed-queue-batch-runtime-v6.md`
+
+All ten stages passed.
+
+Production mixed ordering remains fully green in bounded scope:
+
+```text
+35/35 repeated planet groups exact comparable
+8/8 capture-reset groups exact comparable
+0 mismatch
+```
+
+The immediate mixed C5 gap has moved upstream into precombat planet ownership reconstruction.
+
+V6 source inventory resolves 42 positive-owner reversal timelines:
+
+```text
+co-located future-defender ship=42/42
+onboard clans>0=33/42
+onboard clans=0=9/42
+```
+
+The nine zero-onboard-cargo rows cannot be treated as negative controls because the T-1 ship schema exposes directed cargo orders. Examples include `clans=0` with positive `transferclans` targeting the exact planet.
+
+Next gate must use `transferclans/transfertargetid/transfertargettype`, then replay cargo-drop / ground-combat ownership effects in Ship-ID order.
+
+Updated planning assessment:
+`docs/handoff/2026-09-21-reverse-progress-assessment.md`
