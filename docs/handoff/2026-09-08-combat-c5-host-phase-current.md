@@ -874,3 +874,49 @@ The only mismatch is `511506/T48 planet131`, where the lower old T-1 priority sh
 Production now contains an explicit mixed phase state machine and an ordinary planet selector in `mixed_queue.py`; post-capture generated-order candidates fail closed.
 
 The active large-batch runner now also measures the ship->planet repair/MKT state boundary before full mixed orchestration is promoted.
+
+
+## 2026-09-20 mixed queue batch v2 closure
+
+Runtime:
+
+```text
+docs/handoff/2026-09-20-combat-c5-mixed-queue-batch-runtime-v2.md
+```
+
+All seven batch stages passed.
+
+Ordinary repeated planet order:
+
+```text
+27/27 production exact
+```
+
+Status:
+
+```text
+DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
+```
+
+Post-capture repeated planet groups remain fail-closed:
+
+```text
+9 groups
+8 captured entrants after ordinary attackers
+1 captured entrant interleaved before an ordinary attacker
+```
+
+Ship->planet interphase state:
+
+```text
+397 transitions
+374 ordinary exact carry
+8 ordinary damage decreases
+15 defeated/captured predecessor reappearances
+
+crew/torpedoes/fighters unchanged=382/382 ordinary survivors
+```
+
+The eight damage decreases follow the documented 5 supplies per 1% damage repair surface. Production support now exists in `combat/interphase.py`. T-1 supplies are not treated as guaranteed current interphase supplies because earlier Host repair steps can consume them.
+
+Active v3 batch is now a residual sweep over Horwasp/initiator rows, all capture-containing repeated planet groups, supply-repair production differential and MKT candidates.
