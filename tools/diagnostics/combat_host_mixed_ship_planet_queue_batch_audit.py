@@ -36,7 +36,7 @@ from combat_host_priority_intercept_audit import (
 )
 
 
-SCHEMA = "planets-lab.combat-host-mixed-ship-planet-queue-batch-audit.v2"
+SCHEMA = "planets-lab.combat-host-mixed-ship-planet-queue-batch-audit.v3"
 DEFAULT_EXAMPLE_LIMIT = 80
 PLANET_ATTACK_CODES = frozenset({"nuk", "att"})
 HORWASP_RACE_ID = 12
@@ -83,10 +83,12 @@ def _side(
     owner_id = _int(raw_vcr, owner_key)
     if hull_id is None or object_id is None or owner_id is None:
         return None
+    race_id = _int(raw, "raceid")
     return {
         "side": side_name,
         "object_id": object_id,
         "owner_id": owner_id,
+        "race_id": race_id,
         "hull_id": hull_id,
         "kind": "planet" if hull_id <= 0 else "ship",
         "raw": raw,
@@ -519,7 +521,10 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                         opponent_owner_id=int(planet_projection["owner_id"]),
                     )
                     horwasp_ship_request = (
-                        ship_projection.get("race_id") == HORWASP_RACE_ID
+                        (
+                            ship.get("race_id") == HORWASP_RACE_ID
+                            or ship_projection.get("race_id") == HORWASP_RACE_ID
+                        )
                         and int(ship["owner_id"]) != int(planet["owner_id"])
                     )
                     ship_requests_planet = bool(
@@ -529,7 +534,10 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                         counts["planet_initiator:horwasp_ship_kill_equivalent"] += 1
 
                     horwasp_planet_request = (
-                        planet_projection.get("race_id") == HORWASP_RACE_ID
+                        (
+                            planet.get("race_id") == HORWASP_RACE_ID
+                            or planet_projection.get("race_id") == HORWASP_RACE_ID
+                        )
                         and int(ship["owner_id"]) != int(planet["owner_id"])
                     )
                     if horwasp_planet_request and not planet_requests_ship:
@@ -555,9 +563,11 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                                     "planet_id": planet_id,
                                     "ship_tminus1_owner_id": ship_projection.get("owner_id"),
                                     "ship_vcr_owner_id": ship.get("owner_id"),
-                                    "ship_race_id": ship_projection.get("race_id"),
+                                    "ship_vcr_race_id": ship.get("race_id"),
+                                    "ship_tminus1_race_id": ship_projection.get("race_id"),
                                     "planet_owner_id": planet_projection.get("owner_id"),
-                                    "planet_race_id": planet_projection.get("race_id"),
+                                    "planet_vcr_race_id": planet.get("race_id"),
+                                    "planet_tminus1_race_id": planet_projection.get("race_id"),
                                     "ship_tminus1": ship_projection,
                                     "planet_tminus1": planet_projection,
                                     "post_capture": post_capture,
