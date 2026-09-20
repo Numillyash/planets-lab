@@ -1,6 +1,9 @@
 from __future__ import annotations
 
-from planets_lab.rules.combat.mutable_queue import apply_ship_terminal_batch
+from planets_lab.rules.combat.mutable_queue import (
+    ShipCaptureTransfer,
+    apply_ship_terminal_batch,
+)
 
 
 def _ship(ship_id: int, **overrides: object) -> dict[str, object]:
@@ -137,5 +140,68 @@ def test_terminal_for_inactive_ship_is_programming_error() -> None:
         )
     except ValueError as exc:
         assert "not active" in str(exc)
+    else:
+        raise AssertionError("expected ValueError")
+
+
+
+def test_capture_with_explicit_transfer_remains_active() -> None:
+    active = {
+        10: _ship(
+            10,
+            owner_id=4,
+            race_id=1,
+            federation_crew_bonus=True,
+            lizard_crew_bonus=False,
+        ),
+        20: _ship(20, owner_id=9, race_id=3),
+    }
+    result = apply_ship_terminal_batch(
+        active_ships=active,
+        terminals_by_ship_id={
+            10: _terminal(
+                captured=True,
+                shield=0,
+                damage=35,
+                crew=0,
+                torpedoes=5,
+            ),
+            20: _terminal(shield=40, damage=5, crew=90),
+        },
+        capture_transfers_by_ship_id={
+            10: ShipCaptureTransfer(
+                new_owner_id=9,
+                new_race_id=3,
+                new_federation_crew_bonus=False,
+                new_lizard_crew_bonus=False,
+            )
+        },
+    )
+
+    assert result.resolved is True
+    assert result.captured_ship_ids == (10,)
+    assert result.carried_ship_ids == (20,)
+    assert result.active_ships[10]["owner_id"] == 9
+    assert result.active_ships[10]["race_id"] == 3
+    assert result.active_ships[10]["crew"] == 10
+    assert result.active_ships[10]["shield"] == 25
+
+
+def test_capture_transfer_for_noncaptured_ship_is_programming_error() -> None:
+    try:
+        apply_ship_terminal_batch(
+            active_ships={10: _ship(10)},
+            terminals_by_ship_id={10: _terminal()},
+            capture_transfers_by_ship_id={
+                10: ShipCaptureTransfer(
+                    new_owner_id=2,
+                    new_race_id=2,
+                    new_federation_crew_bonus=False,
+                    new_lizard_crew_bonus=True,
+                )
+            },
+        )
+    except ValueError as exc:
+        assert "is not captured" in str(exc)
     else:
         raise AssertionError("expected ValueError")
