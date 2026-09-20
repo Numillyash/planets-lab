@@ -14,7 +14,13 @@ This file is the operational roadmap for `planets-lab`. Architecture boundaries 
 - Production precombat effective-state runtime: [`handoff/2026-09-16-combat-c5-production-effective-state-runtime.md`](handoff/2026-09-16-combat-c5-production-effective-state-runtime.md).
 - Mutable ship-queue scope-repair gate: [`handoff/2026-09-16-combat-c5-mutable-ship-queue-pending.md`](handoff/2026-09-16-combat-c5-mutable-ship-queue-pending.md).
 - STANDARD queue composition checkpoint: [`handoff/2026-09-18-combat-c5-standard-queue-composition-pending.md`](handoff/2026-09-18-combat-c5-standard-queue-composition-pending.md).
-- Post-mutation next-pair runtime: [`handoff/2026-09-18-combat-c5-post-mutation-next-pair-runtime.md`](handoff/2026-09-18-combat-c5-post-mutation-next-pair-runtime.md).\n- Capture descriptive runtime: [`handoff/2026-09-20-combat-c5-capture-continuation-descriptive-runtime.md`](handoff/2026-09-20-combat-c5-capture-continuation-descriptive-runtime.md).\n- Production capture runtime: [`handoff/2026-09-20-combat-c5-capture-production-runtime.md`](handoff/2026-09-20-combat-c5-capture-production-runtime.md).\n- Post-capture opponent population gate: [`handoff/2026-09-20-combat-c5-post-capture-opponent-pending.md`](handoff/2026-09-20-combat-c5-post-capture-opponent-pending.md).\n- Third-party residual runtime: [`handoff/2026-09-20-combat-c5-post-capture-third-party-residual-runtime.md`](handoff/2026-09-20-combat-c5-post-capture-third-party-residual-runtime.md).\n- Post-capture initiator runtime: [`handoff/2026-09-20-combat-c5-post-capture-initiator-runtime.md`](handoff/2026-09-20-combat-c5-post-capture-initiator-runtime.md).\n- Active mixed ship/planet queue handoff: [`handoff/2026-09-20-combat-c5-mixed-ship-planet-queue-pending.md`](handoff/2026-09-20-combat-c5-mixed-ship-planet-queue-pending.md).
+- Post-mutation next-pair runtime: [`handoff/2026-09-18-combat-c5-post-mutation-next-pair-runtime.md`](handoff/2026-09-18-combat-c5-post-mutation-next-pair-runtime.md).
+- Capture descriptive runtime: [`handoff/2026-09-20-combat-c5-capture-continuation-descriptive-runtime.md`](handoff/2026-09-20-combat-c5-capture-continuation-descriptive-runtime.md).
+- Production capture runtime: [`handoff/2026-09-20-combat-c5-capture-production-runtime.md`](handoff/2026-09-20-combat-c5-capture-production-runtime.md).
+- Post-capture opponent population gate: [`handoff/2026-09-20-combat-c5-post-capture-opponent-pending.md`](handoff/2026-09-20-combat-c5-post-capture-opponent-pending.md).
+- Third-party residual runtime: [`handoff/2026-09-20-combat-c5-post-capture-third-party-residual-runtime.md`](handoff/2026-09-20-combat-c5-post-capture-third-party-residual-runtime.md).
+- Post-capture initiator runtime: [`handoff/2026-09-20-combat-c5-post-capture-initiator-runtime.md`](handoff/2026-09-20-combat-c5-post-capture-initiator-runtime.md).
+- Active mixed ship/planet queue handoff: [`handoff/2026-09-20-combat-c5-mixed-ship-planet-queue-pending.md`](handoff/2026-09-20-combat-c5-mixed-ship-planet-queue-pending.md).
 - Advanced Cloak decisive historical closure: [`handoff/2026-09-12-combat-c5-bird-advanced-cloak-decisive-closure-runtime.md`](handoff/2026-09-12-combat-c5-bird-advanced-cloak-decisive-closure-runtime.md).
 
 ## Evidence policy
@@ -161,10 +167,11 @@ Semantics:
 ```text
 destroyed -> remove from active map
 survivor  -> require full C3 carry vector and carry state
-captured  -> unresolved / fail closed
+captured without explicit ShipCaptureTransfer -> unresolved / fail closed
+captured with explicit ShipCaptureTransfer    -> prize-crew/owner/race transition and remain active
 ```
 
-The batch is atomic: capture, unknown terminal flags, incomplete survivor state or carry error leaves the entire original active map unchanged.
+The batch remains atomic for unresolved/invalid inputs. Capture semantics were promoted later in C5 after the 23-row production differential; see the production capture runtime checkpoint below.
 
 Active diagnostic:
 
@@ -193,16 +200,23 @@ mutable_ship_queue_transition_gate_passed=True
 
 The corpus gate reuses the independent C3 ship-chain replay and tests C5 membership/continuation only. Absence of destroyed-reappearance rows is not treated as standalone corpus proof of destruction ordering.
 
-### Next combat gates
+### Current remaining combat gates
 
-After mutable membership passes:
+Already closed after this historical mutable-membership checkpoint:
 
-1. compose membership mutation with the initial selector;
-2. track pair occurrence count and apply the already DIFF_VERIFIED second-pass side reversal;
-3. differentially validate the second ordinary STANDARD queue step;
-4. reconstruct capture ownership/hostility continuation as a separate branch;
-5. integrate ship-to-planet / planet-base queue ordering;
-6. keep game `591478` separate.
+- selector + membership composition;
+- pair occurrence state and second-pass orientation;
+- held-out post-mutation next-pair selection;
+- production capture ownership/state transition;
+- post-capture opponent initiator population.
+
+Current immediate C5 gate:
+
+1. mixed ship / planet-base queue ordering;
+2. broader planet/base C4->C5 integration;
+3. complete-site / complete-turn combat differential;
+4. expand independent candidate coverage beyond the current 21.6%;
+5. keep game `591478` separate.
 
 ## Wider Host reconstruction order
 
