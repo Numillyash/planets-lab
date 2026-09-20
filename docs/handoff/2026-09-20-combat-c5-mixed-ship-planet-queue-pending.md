@@ -457,3 +457,102 @@ git checkout agent/combat-c5-host-phase
 git pull --ff-only origin agent/combat-c5-host-phase
 bash tools/run-combat-c5-mixed-queue-batch.sh
 ```
+
+
+## 2026-09-20 third large-batch runtime — PASSED
+
+Durable runtime:
+
+```text
+docs/handoff/2026-09-20-combat-c5-mixed-queue-batch-runtime-v3.md
+```
+
+Source HEAD:
+
+```text
+26703b5556e5fe40a0bea2e3ea9c3d9f3378bbc2
+```
+
+All seven stages returned rc=0.
+
+New production closure:
+
+```text
+ship->planet interphase supply repair gate:
+  passed=True
+  positive observed repairs=8
+  production positive exact=7
+  production positive mismatch=0
+  hard supply-budget contradictions=0
+
+crew/torpedoes/fighters preserved=382/382 ordinary survivor transitions
+repair rows without shield recharge=8/8
+```
+
+MKT remains observational only:
+
+```text
+MKT candidates=36
+torpedo count unchanged=36/36
+```
+
+Mixed v3 residuals:
+
+```text
+neither-basic-order=5
+capture-containing repeated planet groups=9
+```
+
+All five initiator residuals have same VCR ship/planet owner but a different VCR planet race. Do not promote same-owner combat. V4 must resolve planet ownership through independent race->player mapping and current-owner confirmation.
+
+Capture-order v4 hypothesis:
+
+```text
+captured entrant:
+  preserve Friendly Code
+  clear old Mission/Primary Enemy aggression priority
+  recompute STANDARD Combat Priority
+```
+
+V4 implementation commits now include:
+
+```text
+71a33a171dc0f884a7c8790344d91517909af61d
+  combat: add owner repair and capture-reset ordering differential
+
+336b23c05886f9a8aaa3878ac06d79929f9fcc02
+  combat: add all-planet engagement population audit
+
+d209ab94ad4b7679e408b0ac1e24f79c0ab51239
+  test: cover owner repair and capture-reset planet ordering
+
+9dc73740025ec1f2fb0f548b609b6c2e351e0bb1
+  tools: add all-planet owner and initiator sweep to C5 batch
+
+85dae5e96328ad79ba6b11751d3a2aec0077ca28
+  diagnostics: include planet owner repair in mixed row output
+
+eca2e00c8b150d13ab599727944cdc1e826b0e5c
+  docs: record mixed queue batch v3 runtime
+```
+
+### ACTIVE V4 LARGE BATCH
+
+The one-command runner now adds:
+
+```text
+ALL PLANET ENGAGEMENT POPULATION
+MIXED SHIP/PLANET DISCOVERY V4
+```
+
+The all-planet stage covers every ordinary ship-vs-planet VCR and tests:
+
+- raw VCR owner versus race->player owner mapping;
+- T-1 and T planet ownership context;
+- owner repairs only for impossible same-owner VCR rows;
+- ship Kill!/PE initiation;
+- planet NUK/ATT initiation;
+- Horwasp Kill!/NUK-equivalent initiation;
+- hard residual population after owner repair.
+
+Mixed V4 additionally tests capture-reset priority across all capture-containing repeated planet groups.
