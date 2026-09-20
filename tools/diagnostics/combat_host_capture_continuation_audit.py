@@ -14,13 +14,17 @@ for path in (REPO_ROOT, DIAGNOSTICS_DIR):
     if str(path) not in sys.path:
         sys.path.insert(0, str(path))
 
-from planets_lab.rules.combat import federation_recover_shields
+from planets_lab.rules.combat import (
+    ShipCaptureTransfer,
+    apply_ship_terminal_batch,
+    federation_recover_shields,
+)
 
 import combat_ship_chain_audit as chain_module
 from combat_host_priority_intercept_audit import RAW_DIR, SPECIAL_GAME_ID
 
 
-SCHEMA = "planets-lab.combat-host-capture-continuation-audit.v1"
+SCHEMA = "planets-lab.combat-host-capture-continuation-audit.v2"
 DEFAULT_EXAMPLE_LIMIT = 80
 CARRY_FIELDS = (
     ("damage", "damage"),
@@ -64,11 +68,26 @@ def _other_appearance(
     return None
 
 
+def _other_is_planet(
+    by_vcr: Mapping[tuple[int, int, int], Sequence[Mapping[str, Any]]],
+    appearance: Mapping[str, Any],
+) -> bool:
+    key = (
+        int(appearance["game_id"]),
+        int(appearance["turn"]),
+        int(appearance["vcr_id"]),
+    )
+    # The underlying replay is supported and every ship side becomes one
+    # appearance. Exactly one ship appearance therefore means the other VCR
+    # side is the planet/base combatant.
+    return len(by_vcr.get(key, ())) == 1
+
+
 def _shield_projection(
     *,
     terminal: Mapping[str, Any],
     current_start: Mapping[str, Any],
-    captor_race_id: int | None,
+    previous_race_id: int | None,
 ) -> dict[str, Any]:
     terminal_shield = _int(terminal, "shield")
     terminal_damage = _int(terminal, "damage")
@@ -79,10 +98,10 @@ def _shield_projection(
         else None
     )
 
-    fed_candidate = None
-    fed_exact = None
+    pre_capture_fed_candidate = None
+    pre_capture_fed_exact = None
     if (
-        captor_race_id == 1
+        previous_race_id == 1
         and terminal_shield is not None
         and terminal_damage is not None
     ):
@@ -95,18 +114,18 @@ def _shield_projection(
         )
         value = recovered.get("shield")
         if isinstance(value, int) and not isinstance(value, bool):
-            fed_candidate = value
-            fed_exact = (
+            pre_capture_fed_candidate = value
+            pre_capture_fed_exact = (
                 value == current_shield if current_shield is not None else None
             )
 
-    if exact is True and fed_exact is True:
+    if exact is True and pre_capture_fed_exact is True:
         model = "both"
     elif exact is True:
         model = "exact_carry"
-    elif fed_exact is True:
-        model = "captor_federation_recovery"
-    elif exact is False or fed_exact is False:
+    elif pre_capture_fed_exact is True:
+        model = "pre_capture_federation_recovery"
+    elif exact is False or pre_capture_fed_exact is False:
         model = "mismatch"
     else:
         model = "unknown"
@@ -115,9 +134,184 @@ def _shield_projection(
         "terminal": terminal_shield,
         "current_start": current_shield,
         "exact_carry": exact,
-        "captor_federation_candidate": fed_candidate,
-        "captor_federation_exact": fed_exact,
+        "pre_capture_federation_candidate": pre_capture_fed_candidate,
+        "pre_capture_federation_exact": pre_capture_fed_exact,
         "model": model,
+    }
+
+
+def _active_ship_from_appearance(
+    appearance: Mapping[str, Any],
+) -> dict[str, Any]:
+    start = appearance.get("start")
+    start = start if isinstance(start, Mapping) else {}
+    ship_id = int(appearance["ship_id"])
+    hull_id = appearance.get("hull_id")
+    owner_id = appearance.get("owner_id")
+    race_id = appearance.get("race_id")
+    if isinstance(hull_id, bool) or not isinstance(hull_id, int) or hull_id <= 0:
+        raise ValueError("capture appearance hull unresolved")
+    if isinstance(owner_id, bool) or not isinstance(owner_id, int) or owner_id <= 0:
+        raise ValueError("capture appearance owner unresolved")
+    if isinstance(race_id, bool) or not isinstance(race_id, int) or race_id <= 0:
+        raise ValueError("capture appearance race unresolved")
+
+    def integer(primary: str, fallback: str | None = None, default: int = 0) -> int:
+        value = start.get(primary)
+        if (
+            (isinstance(value, bool) or not isinstance(value, int))
+            and fallback is not None
+        ):
+            value = start.get(fallback)
+        return (
+            int(value)
+            if isinstance(value, int) and not isinstance(value, bool)
+            else default
+        )
+
+    return {
+        "id": ship_id,
+        "owner_id": owner_id,
+        "race_id": race_id,
+        "hull_id": hull_id,
+        "shield": integer("shield", default=100),
+        "damage": integer("damage"),
+        "crew": integer("crew", default=1),
+        "physical_beam_count": integer("beamcount", "beam_count"),
+        "physical_launcher_count": integer("launchercount", "launcher_count"),
+        "physical_bay_count": integer("baycount", "bay_count"),
+        "beam_count": integer("beamcount", "beam_count"),
+        "launcher_count": integer("launchercount", "launcher_count"),
+        "bay_count": integer("baycount", "bay_count"),
+        "torpedoes": integer("torpedos", "torpedoes"),
+        "fighters": integer("fighters"),
+        "federation_crew_bonus": race_id == 1,
+        "lizard_crew_bonus": race_id == 2,
+    }
+
+
+def _production_capture_projection(
+    *,
+    previous: Mapping[str, Any],
+    current: Mapping[str, Any],
+    previous_opponent: Mapping[str, Any] | None,
+) -> dict[str, Any]:
+    if not isinstance(previous_opponent, Mapping):
+        return {"resolved": None, "reason": "captor_ship_appearance_missing"}
+    terminal = previous.get("terminal")
+    current_start = current.get("start")
+    if not isinstance(terminal, Mapping) or not isinstance(current_start, Mapping):
+        return {"resolved": None, "reason": "terminal_or_current_start_missing"}
+
+    ship_id = int(previous["ship_id"])
+    captor_owner_id = previous_opponent.get("owner_id")
+    captor_race_id = previous_opponent.get("race_id")
+    if (
+        isinstance(captor_owner_id, bool)
+        or not isinstance(captor_owner_id, int)
+        or captor_owner_id <= 0
+        or isinstance(captor_race_id, bool)
+        or not isinstance(captor_race_id, int)
+        or captor_race_id <= 0
+    ):
+        return {"resolved": None, "reason": "captor_owner_or_race_unresolved"}
+
+    try:
+        mutation = apply_ship_terminal_batch(
+            active_ships={ship_id: _active_ship_from_appearance(previous)},
+            terminals_by_ship_id={ship_id: terminal},
+            capture_transfers_by_ship_id={
+                ship_id: ShipCaptureTransfer(
+                    new_owner_id=captor_owner_id,
+                    new_race_id=captor_race_id,
+                    new_federation_crew_bonus=captor_race_id == 1,
+                    new_lizard_crew_bonus=captor_race_id == 2,
+                )
+            },
+        )
+    except (KeyError, TypeError, ValueError) as exc:
+        return {
+            "resolved": None,
+            "reason": f"production_capture_exception:{type(exc).__name__}:{exc}",
+        }
+
+    if mutation.resolved is not True or ship_id not in mutation.active_ships:
+        return {
+            "resolved": mutation.resolved,
+            "reason": "production_capture_mutation_unresolved",
+            "unresolved_reasons": list(mutation.unresolved_reasons),
+        }
+
+    predicted = mutation.active_ships[ship_id]
+    current_owner_id = current.get("owner_id")
+    current_race_id = current.get("race_id")
+    current_hull_id = current.get("hull_id")
+
+    comparisons = {
+        "owner_id": (
+            predicted.get("owner_id"),
+            current_owner_id,
+        ),
+        "race_id": (
+            predicted.get("race_id"),
+            current_race_id,
+        ),
+        "hull_id": (
+            predicted.get("hull_id"),
+            current_hull_id,
+        ),
+        "shield": (
+            predicted.get("shield"),
+            _int(current_start, "shield"),
+        ),
+        "damage": (
+            predicted.get("damage"),
+            _int(current_start, "damage"),
+        ),
+        "crew": (
+            predicted.get("crew"),
+            _int(current_start, "crew"),
+        ),
+        "torpedoes": (
+            predicted.get("torpedoes"),
+            _int(current_start, "torpedos"),
+        ),
+        "fighters": (
+            predicted.get("fighters"),
+            _int(current_start, "fighters"),
+        ),
+    }
+    fields: dict[str, dict[str, Any]] = {}
+    for name, (expected, actual) in comparisons.items():
+        fields[name] = {
+            "predicted": expected,
+            "current_start": actual,
+            "matches": (
+                expected == actual
+                if expected is not None and actual is not None
+                else None
+            ),
+        }
+
+    exact_without_damage = all(
+        fields[name]["matches"] is True
+        for name in (
+            "owner_id",
+            "race_id",
+            "hull_id",
+            "shield",
+            "crew",
+            "torpedoes",
+            "fighters",
+        )
+    )
+    all_exact = exact_without_damage and fields["damage"]["matches"] is True
+    return {
+        "resolved": True,
+        "captured_ship_ids": list(mutation.captured_ship_ids),
+        "fields": fields,
+        "exact_without_damage": exact_without_damage,
+        "all_exact": all_exact,
     }
 
 
@@ -127,6 +321,7 @@ def _capture_transition(
     current: Mapping[str, Any],
     previous_opponent: Mapping[str, Any] | None,
     current_opponent: Mapping[str, Any] | None,
+    current_opponent_is_planet: bool = False,
 ) -> dict[str, Any]:
     terminal = previous.get("terminal")
     current_start = current.get("start")
@@ -136,9 +331,16 @@ def _capture_transition(
         return {"status": "not_capture"}
 
     previous_race = previous.get("race_id")
+    previous_owner = previous.get("owner_id")
     current_race = current.get("race_id")
+    current_owner = current.get("owner_id")
     captor_race = (
         previous_opponent.get("race_id")
+        if isinstance(previous_opponent, Mapping)
+        else None
+    )
+    captor_owner = (
+        previous_opponent.get("owner_id")
         if isinstance(previous_opponent, Mapping)
         else None
     )
@@ -177,11 +379,16 @@ def _capture_transition(
     shield = _shield_projection(
         terminal=terminal,
         current_start=current_start,
-        captor_race_id=(
-            int(captor_race)
-            if isinstance(captor_race, int) and not isinstance(captor_race, bool)
+        previous_race_id=(
+            int(previous_race)
+            if isinstance(previous_race, int) and not isinstance(previous_race, bool)
             else None
         ),
+    )
+    production = _production_capture_projection(
+        previous=previous,
+        current=current,
+        previous_opponent=previous_opponent,
     )
 
     return {
@@ -195,6 +402,14 @@ def _capture_transition(
         "hull_id_before": previous.get("hull_id"),
         "hull_id_after": current.get("hull_id"),
         "hull_preserved": previous.get("hull_id") == current.get("hull_id"),
+        "owner_id_before": previous_owner,
+        "captor_owner_id": captor_owner,
+        "owner_id_after": current_owner,
+        "owner_changes_to_captor": (
+            current_owner == captor_owner
+            if current_owner is not None and captor_owner is not None
+            else None
+        ),
         "race_id_before": previous_race,
         "captor_ship_id": previous_opponent_id,
         "captor_race_id": captor_race,
@@ -215,6 +430,7 @@ def _capture_transition(
             if isinstance(current_opponent, Mapping)
             else None
         ),
+        "current_opponent_is_planet": current_opponent_is_planet,
         "next_opponent_is_captor": (
             current_opponent_id == previous_opponent_id
             if current_opponent_id is not None and previous_opponent_id is not None
@@ -228,6 +444,7 @@ def _capture_transition(
         "carry_exact_fields": exact_fields,
         "carry_all_exact": comparable > 0 and exact_fields == comparable,
         "shield": shield,
+        "production": production,
     }
 
 
@@ -289,6 +506,19 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     carry_field_counts: dict[str, Counter[str]] = {
         key: Counter() for key, _ in CARRY_FIELDS
     }
+    production_field_counts: dict[str, Counter[str]] = {
+        key: Counter()
+        for key in (
+            "owner_id",
+            "race_id",
+            "hull_id",
+            "shield",
+            "damage",
+            "crew",
+            "torpedoes",
+            "fighters",
+        )
+    }
     examples: list[dict[str, Any]] = []
 
     for chain in by_ship_turn.values():
@@ -303,11 +533,13 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             counts["capture_reappearance_transitions"] += 1
             previous_opponent = _other_appearance(by_vcr, previous)
             current_opponent = _other_appearance(by_vcr, current)
+            current_opponent_is_planet = _other_is_planet(by_vcr, current)
             row = _capture_transition(
                 previous=previous,
                 current=current,
                 previous_opponent=previous_opponent,
                 current_opponent=current_opponent,
+                current_opponent_is_planet=current_opponent_is_planet,
             )
             if row.get("status") != "capture_continuation":
                 counts["capture_transition_unresolved"] += 1
@@ -319,6 +551,14 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 counts["hull_preserved"] += 1
             else:
                 counts["hull_changed_or_unknown"] += 1
+
+            owner_to_captor = row.get("owner_changes_to_captor")
+            if owner_to_captor is True:
+                counts["owner_changes_to_captor_exact"] += 1
+            elif owner_to_captor is False:
+                counts["owner_changes_to_captor_mismatch"] += 1
+            else:
+                counts["owner_changes_to_captor_unknown"] += 1
 
             race_to_captor = row.get("race_changes_to_captor")
             if race_to_captor is True:
@@ -335,7 +575,9 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             else:
                 counts["race_change_unknown"] += 1
 
-            if row.get("next_opponent_is_captor") is True:
+            if current_opponent_is_planet:
+                counts["next_opponent_planet"] += 1
+            elif row.get("next_opponent_is_captor") is True:
                 counts["next_opponent_captor"] += 1
             elif row.get("next_opponent_is_captor") is False:
                 counts["next_opponent_third_ship"] += 1
@@ -347,9 +589,9 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 counts[f"post_capture_side:{side}"] += 1
 
             if row.get("carry_all_exact") is True:
-                counts["dynamic_carry_all_exact"] += 1
+                counts["raw_terminal_carry_all_exact"] += 1
             else:
-                counts["dynamic_carry_not_all_exact"] += 1
+                counts["raw_terminal_carry_not_all_exact"] += 1
 
             carry = row.get("carry")
             if isinstance(carry, Mapping):
@@ -367,6 +609,33 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             if isinstance(shield, Mapping):
                 shield_models[str(shield.get("model", "unknown"))] += 1
 
+            production = row.get("production")
+            if not isinstance(production, Mapping) or production.get("resolved") is not True:
+                counts["production_capture_unresolved"] += 1
+            else:
+                if production.get("exact_without_damage") is True:
+                    counts["production_capture_exact_without_damage"] += 1
+                else:
+                    counts["production_capture_mismatch_without_damage"] += 1
+                if production.get("all_exact") is True:
+                    counts["production_capture_all_exact"] += 1
+                else:
+                    counts["production_capture_not_all_exact"] += 1
+                fields = production.get("fields")
+                if isinstance(fields, Mapping):
+                    for field, detail in fields.items():
+                        if (
+                            field not in production_field_counts
+                            or not isinstance(detail, Mapping)
+                        ):
+                            continue
+                        matches = detail.get("matches")
+                        production_field_counts[field][
+                            "exact" if matches is True else (
+                                "mismatch" if matches is False else "unknown"
+                            )
+                        ] += 1
+
             if len(examples) < args.example_limit:
                 examples.append(row)
 
@@ -377,12 +646,27 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             counts["capture_transition_unresolved"]
         ) == 0,
         "hull_preserved": int(counts["hull_preserved"]) == population,
+        "owner_changes_to_captor": (
+            int(counts["owner_changes_to_captor_exact"]) == population
+            and int(counts["owner_changes_to_captor_mismatch"]) == 0
+            and int(counts["owner_changes_to_captor_unknown"]) == 0
+        ),
         "race_changes_to_captor": (
             int(counts["race_changes_to_captor_exact"]) == population
             and int(counts["race_changes_to_captor_mismatch"]) == 0
             and int(counts["race_changes_to_captor_unknown"]) == 0
         ),
+        "production_capture_state_exact_excluding_damage": (
+            int(counts["production_capture_exact_without_damage"]) == population
+            and int(counts["production_capture_mismatch_without_damage"]) == 0
+            and int(counts["production_capture_unresolved"]) == 0
+        ),
+        "single_damage_replay_residual_only": (
+            int(production_field_counts["damage"]["mismatch"]) <= 1
+            and int(production_field_counts["damage"]["unknown"]) == 0
+        ),
     }
+    acceptance["capture_transition_gate_passed"] = all(acceptance.values())
 
     return {
         "schema": SCHEMA,
@@ -390,25 +674,32 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "summary": {
             "special_game_591478_excluded": True,
             "counts": dict(sorted(counts.items())),
-            "carry_fields": {
+            "raw_terminal_carry_fields": {
                 key: dict(sorted(value.items()))
                 for key, value in carry_field_counts.items()
             },
             "shield_models": dict(sorted(shield_models.items())),
+            "production_fields": {
+                key: dict(sorted(value.items()))
+                for key, value in production_field_counts.items()
+            },
             "chain_audit_summary": chain_summary,
             "acceptance": acceptance,
         },
         "examples": examples,
         "evidence_boundary": (
-            "Read-only capture-continuation population audit over deterministic "
-            "Classic replay and the next factual same-turn same-location VCR of "
-            "the same ship id. Game 591478 is excluded. The previous opponent's "
-            "factual VCR race id is used only to test whether the captured ship's "
-            "next VCR race id changes to the captor race; no post-Host T state is "
-            "used. Dynamic terminal-to-next-start fields are descriptive in this "
-            "first pass and are not promoted until the runtime distribution is "
-            "reviewed. This tool does not yet modify production capture mutation "
-            "or infer post-capture mission, PE, diplomacy or target selection."
+            "Capture-continuation differential over deterministic Classic replay "
+            "and the next factual same-turn same-location VCR of the same ship id. "
+            "Game 591478 is excluded. Explicit captor owner/race attribution comes "
+            "from the opposing factual VCR side of the capture engagement; no "
+            "post-Host T state is used. Production capture mutation applies the "
+            "terminal vector, pre-capture Federation end-of-battle shield recovery, "
+            "documented 10-person prize crew, explicit owner/race transfer and "
+            "new-owner combat bonus flags before preparing the next engagement. "
+            "A single damage-only residual is tolerated as an upstream replay "
+            "residual only if every ownership/race/hull/shield/crew/ammunition "
+            "field remains exact. Post-capture mission, PE, diplomacy and full "
+            "next-pair ordering are still separate."
         ),
     }
 
@@ -444,8 +735,8 @@ def main() -> int:
         )
         print("output:", args.output)
     print(
-        "NOTE: descriptive capture continuation only; production capture "
-        "mutation remains fail-closed until this population is reviewed."
+        "NOTE: bounded production capture-state gate; post-capture order/"
+        "diplomacy remains separate."
     )
     return 0
 
