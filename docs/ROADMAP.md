@@ -531,3 +531,38 @@ bash tools/run-combat-c5-mixed-queue-batch.sh
 It runs the relevant regression suite plus factual queue shape, planet carry, ship next-pair, post-capture initiator and mixed ship/planet population audits. It continues after individual stage failures and saves a complete log under `artifacts/`.
 
 The immediate objective is to use one broad mixed-order run to narrow several candidate rules at once before creating any focused residual gate.
+
+
+### 2026-09-20 mixed queue batch v1
+
+First large mixed queue runtime:
+
+```text
+391 ordinary mixed sites
+391/391 ship block before planet block
+435/435 planet on RIGHT
+0 P->S transitions
+
+36 repeated planet groups
+35 naive T-1 priority comparable
+34 exact
+1 mismatch
+1 unresolved
+```
+
+The one priority mismatch is entirely post-capture and therefore does not falsify ordinary documented planet Combat Priority.
+
+New bounded production:
+
+```text
+src/planets_lab/rules/combat/mixed_queue.py
+```
+
+contains:
+
+- Host combat phase state machine;
+- ship LEFT / planet RIGHT projection;
+- ordinary planet attacker selector;
+- fail-closed post-capture generated-order boundary.
+
+Before promoting full mixed queue orchestration, the v2 large batch must also close the documented interphase repair/MKT state transition.
