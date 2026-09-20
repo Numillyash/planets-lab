@@ -599,3 +599,34 @@ Remaining immediate mixed-queue residuals are now concentrated:
 ```
 
 V3 large batch is race-aware and captures all residual rows/groups in one execution.
+
+
+### 2026-09-20 mixed queue batch v3
+
+Runtime:
+
+```text
+docs/handoff/2026-09-20-combat-c5-mixed-queue-batch-runtime-v3.md
+```
+
+New closure:
+
+```text
+automatic interphase supply repair:
+  DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
+
+ordinary repeated planet order:
+  27/27 production exact
+```
+
+Immediate residuals narrowed to:
+
+```text
+5 mixed planet initiator rows with impossible same-owner VCR attribution
+9 capture-containing repeated planet groups
+5 planet T-1 unresolved rows
+1 ship T-1 unresolved row
+MKT persistent resource state not yet reconstructed
+```
+
+V4 expands beyond mixed sites to all ordinary ship-vs-planet VCRs and tests race->player owner repair plus capture-reset aggression priority in one batch.
