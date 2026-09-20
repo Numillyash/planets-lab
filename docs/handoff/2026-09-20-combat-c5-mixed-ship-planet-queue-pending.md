@@ -774,3 +774,49 @@ tools/diagnostics/combat_host_planet_precombat_owner_source_audit.py
 It inventories all 59 changed planet-turns for T-1 co-located ships, future-defender ownership and positive clan cargo. It also exposes actual drop/transfer/mission/target fields present on those ship objects.
 
 Official Host order places cargo drop / Imperial Assault / Ground Combat before later combat and processes it in Ship ID order. This is only a hypothesis source for the audit; no ground-combat transition is promoted yet.
+
+
+## 2026-09-21 sixth large-batch runtime — PASSED
+
+Durable runtime:
+`docs/handoff/2026-09-21-combat-c5-mixed-queue-batch-runtime-v6.md`
+
+Source HEAD:
+`370ecaf5de029fadfd0acafd1107e1fb35c9cb54`
+
+All ten stages returned rc=0.
+
+Stable production mixed ordering remains:
+
+```text
+production repeated planet order=35/35 exact comparable
+capture-reset priority=8/8 exact comparable
+mismatch=0
+```
+
+Precombat ownership source inventory:
+
+```text
+positive-owner reversal timelines=42
+future-defender ship co-located=42/42
+future-defender ship with onboard clans>0=33/42
+without onboard clans>0=9/42
+```
+
+Correction: V6 did not cover all 59 unique owner-change timelines. The current positive-owner adapter covers 42; the remaining 17 require separate neutral/other owner-state handling.
+
+The key new evidence is explicit directed clan-transfer state on T-1 ships. Rows with `clans=0` may still have `transferclans>0` targeted directly at the planet. Therefore onboard cargo alone is not the correct next criterion.
+
+### ACTIVE NEXT OWNERSHIP GATE
+
+Reconstruct directed planet clan drops using:
+
+```text
+transferclans > 0
+transfertargettype == planet
+transfertargetid == planet_id
+```
+
+then evaluate sequential ownership effects in Host Ship-ID order.
+
+No generic ground-combat ownership transition is promoted before that differential.
