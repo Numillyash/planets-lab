@@ -665,3 +665,34 @@ T-1 owner -> factual combat defender -> T owner
 ```
 
 to size the remaining pre-combat ownership reconstruction problem without using factual VCR ownership as a production input.
+
+
+### 2026-09-21 mixed queue batch v5
+
+Durable runtime:
+
+```text
+docs/handoff/2026-09-21-combat-c5-mixed-queue-batch-runtime-v5.md
+```
+
+Closed:
+
+```text
+capture-generated planet priority:
+  production 35/35 exact comparable
+  capture subset 8/8 exact comparable
+  status CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
+```
+
+Ownership timeline:
+
+```text
+ordinary planet VCRs=2406
+unique timelines=2303
+unique precombat owner changes=59
+T-1 owner unresolved rows=12
+```
+
+The next immediate subsystem is earlier-Host planet ownership mutation, not further planet queue ordering.
+
+V6 inventories co-located future-defender ships and clan/drop-order state over all 59 changed timelines, then reruns the full 10-stage mixed regression batch.
