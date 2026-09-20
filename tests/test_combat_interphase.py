@@ -28,7 +28,6 @@ def _ship(*, damage: int, supplies: int) -> dict[str, int | bool]:
 @pytest.mark.parametrize(
     ("damage", "supplies", "expected_damage", "expected_supplies", "repaired"),
     [
-        (88, 155, 57, 0, 31),
         (12, 45, 3, 0, 9),
         (82, 100, 62, 0, 20),
         (51, 58, 40, 3, 11),
@@ -38,7 +37,7 @@ def _ship(*, damage: int, supplies: int) -> dict[str, int | bool]:
         (24, 36, 17, 1, 7),
     ],
 )
-def test_supply_repair_matches_interphase_runtime_examples(
+def test_supply_repair_matches_full_budget_interphase_runtime_examples(
     damage: int,
     supplies: int,
     expected_damage: int,
@@ -88,3 +87,13 @@ def test_supply_repair_rejects_invalid_state(field: str, value: object) -> None:
 
     with pytest.raises(ValueError):
         repair_ship_with_supplies(raw)
+
+
+def test_supply_repair_uses_all_current_supplies_not_tminus1_history() -> None:
+    result, amount = repair_ship_with_supplies(
+        _ship(damage=88, supplies=155)
+    )
+
+    assert amount == 31
+    assert result["damage"] == 57
+    assert result["supplies"] == 0
