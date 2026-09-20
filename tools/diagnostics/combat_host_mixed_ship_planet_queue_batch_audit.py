@@ -412,15 +412,6 @@ def _production_planet_order(
 ) -> dict[str, Any]:
     if len(rows) < 2:
         return {"comparable": False, "reason": "single_planet_engagement"}
-    if any(row.get("post_capture") is True for row in rows):
-        return {
-            "comparable": False,
-            "reason": "post_capture_generated_order_present",
-            "factual_ship_order": [
-                int(row["ship"]["object_id"]) for row in rows
-            ],
-        }
-
     remaining = list(rows)
     predicted: list[int] = []
     while remaining:
@@ -448,6 +439,9 @@ def _production_planet_order(
                     primary_enemy=projection.get("enemy"),
                     friendly_code=projection.get("friendlycode"),
                     engagement_eligible=True,
+                    post_capture_generated_order=(
+                        row.get("post_capture") is True
+                    ),
                 )
             )
 
