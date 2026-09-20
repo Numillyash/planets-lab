@@ -17,7 +17,14 @@ for path in (REPO_ROOT, DIAGNOSTICS_DIR):
 from planets_lab.corpus.movement_differential import _intish
 from planets_lab.corpus.prepared_cache import load_or_build_prepared_game_cache
 from planets_lab.corpus.reconstruction import group_perspective_records
-from planets_lab.rules.combat.order import standard_battle_priority_key
+from planets_lab.rules.combat.mixed_queue import (
+    PlanetAttackCandidate,
+    select_initial_plain_planet_attacker,
+)
+from planets_lab.rules.combat.order import (
+    orders_request_ship_combat,
+    standard_battle_priority_key,
+)
 
 import combat_host_capture_continuation_audit as capture_module
 import combat_host_post_capture_opponent_audit as opponent_module
@@ -29,7 +36,7 @@ from combat_host_priority_intercept_audit import (
 )
 
 
-SCHEMA = "planets-lab.combat-host-mixed-ship-planet-queue-batch-audit.v1"
+SCHEMA = "planets-lab.combat-host-mixed-ship-planet-queue-batch-audit.v2"
 DEFAULT_EXAMPLE_LIMIT = 80
 PLANET_ATTACK_CODES = frozenset({"nuk", "att"})
 
@@ -261,6 +268,76 @@ def _same_planet_priority_group(
     }
 
 
+def _production_planet_order(
+    rows: Sequence[Mapping[str, Any]],
+) -> dict[str, Any]:
+    if len(rows) < 2:
+        return {"comparable": False, "reason": "single_planet_engagement"}
+    if any(row.get("post_capture") is True for row in rows):
+        return {
+            "comparable": False,
+            "reason": "post_capture_generated_order_present",
+            "factual_ship_order": [
+                int(row["ship"]["object_id"]) for row in rows
+            ],
+        }
+
+    remaining = list(rows)
+    predicted: list[int] = []
+    while remaining:
+        candidates: list[PlanetAttackCandidate] = []
+        by_ship: dict[int, Mapping[str, Any]] = {}
+        for row in remaining:
+            projection = row.get("ship_tminus1")
+            if (
+                not isinstance(projection, Mapping)
+                or projection.get("resolved") is not True
+            ):
+                return {
+                    "comparable": False,
+                    "reason": "ship_priority_unresolved",
+                    "factual_ship_order": [
+                        int(item["ship"]["object_id"]) for item in rows
+                    ],
+                }
+            ship_id = int(row["ship"]["object_id"])
+            by_ship[ship_id] = row
+            candidates.append(
+                PlanetAttackCandidate(
+                    ship_id=ship_id,
+                    mission=projection.get("mission"),
+                    primary_enemy=projection.get("enemy"),
+                    friendly_code=projection.get("friendlycode"),
+                    engagement_eligible=True,
+                )
+            )
+
+        selected = select_initial_plain_planet_attacker(candidates)
+        if selected.engagement_available is not True or selected.ship_id is None:
+            return {
+                "comparable": False,
+                "reason": "production_planet_selector_unresolved",
+                "unresolved_reasons": list(selected.unresolved_reasons),
+                "factual_ship_order": [
+                    int(item["ship"]["object_id"]) for item in rows
+                ],
+            }
+        predicted.append(selected.ship_id)
+        remaining = [
+            row
+            for row in remaining
+            if int(row["ship"]["object_id"]) != selected.ship_id
+        ]
+
+    factual = [int(row["ship"]["object_id"]) for row in rows]
+    return {
+        "comparable": True,
+        "factual_ship_order": factual,
+        "predicted_ship_order": predicted,
+        "exact": factual == predicted,
+    }
+
+
 def run(args: argparse.Namespace) -> dict[str, Any]:
     vcrs, payload_conflicts = opponent_module._vcr_index(args.archive_dir)
     capture_index = _capture_index(archive_dir=args.archive_dir)
@@ -409,15 +486,47 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             else:
                 counts["planet_attacker_priority_unresolved"] += 1
 
+            ship_requests_planet = None
+            planet_requests_ship = None
             if planet_projection.get("resolved") is True:
                 code = planet_projection.get("normalized_friendlycode")
                 planet_codes[str(code)] += 1
-                if planet_projection.get("attack_code") is True:
+                planet_requests_ship = (
+                    planet_projection.get("attack_code") is True
+                )
+                if planet_requests_ship:
                     counts["planet_attack_code_rows"] += 1
                 else:
                     counts["planet_nonattack_code_rows"] += 1
+
+                if ship_projection.get("resolved") is True:
+                    ship_requests_planet = orders_request_ship_combat(
+                        mission=ship_projection.get("mission"),
+                        primary_enemy=ship_projection.get("enemy"),
+                        opponent_owner_id=int(planet_projection["owner_id"]),
+                    )
+                    if ship_requests_planet and planet_requests_ship:
+                        counts["planet_initiator:both"] += 1
+                    elif ship_requests_planet:
+                        counts["planet_initiator:ship_only"] += 1
+                    elif planet_requests_ship:
+                        counts["planet_initiator:planet_only"] += 1
+                    else:
+                        counts["planet_initiator:neither_basic_order"] += 1
+
+                    ship_fc = ship_projection.get("friendlycode")
+                    planet_fc = planet_projection.get("friendlycode")
+                    if (
+                        isinstance(ship_fc, str)
+                        and isinstance(planet_fc, str)
+                        and ship_fc == planet_fc
+                    ):
+                        counts["ship_planet_matching_fc_rows"] += 1
+                else:
+                    counts["planet_initiator_unresolved:ship_tminus1"] += 1
             else:
                 counts["planet_tminus1_unresolved"] += 1
+                counts["planet_initiator_unresolved:planet_tminus1"] += 1
 
             appeared_in_prior_ship_combat = ship_id in prior_ship_ids
             if appeared_in_prior_ship_combat:
@@ -461,6 +570,8 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 },
                 "ship_tminus1": ship_projection,
                 "planet_tminus1": planet_projection,
+                "ship_requests_planet": ship_requests_planet,
+                "planet_requests_ship": planet_requests_ship,
                 "appeared_in_prior_ship_combat": appeared_in_prior_ship_combat,
                 "immediate_previous_same_ship": immediate_previous_same_ship,
                 "post_capture": post_capture,
@@ -479,15 +590,49 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             if len(planet_rows) > 1:
                 counts["repeated_planet_groups"] += 1
                 counts["repeated_planet_vcrs"] += len(planet_rows)
-                result = _same_planet_priority_group(planet_rows)
-                if result["comparable"] is True:
+
+                has_post_capture = any(
+                    row.get("post_capture") is True for row in planet_rows
+                )
+                if has_post_capture:
+                    counts["repeated_planet_groups_with_post_capture"] += 1
+                    seen_post_capture = False
+                    capture_after_ordinary = True
+                    for item in planet_rows:
+                        if item.get("post_capture") is True:
+                            seen_post_capture = True
+                        elif seen_post_capture:
+                            capture_after_ordinary = False
+                    if capture_after_ordinary:
+                        counts[
+                            "post_capture_rows_after_all_ordinary_attackers"
+                        ] += 1
+                    else:
+                        counts[
+                            "post_capture_rows_interleaved_before_ordinary_attackers"
+                        ] += 1
+                else:
+                    counts["repeated_planet_groups_without_post_capture"] += 1
+
+                naive = _same_planet_priority_group(planet_rows)
+                if naive["comparable"] is True:
                     counts["repeated_planet_priority_comparable"] += 1
-                    if result["exact"] is True:
+                    if naive["exact"] is True:
                         counts["repeated_planet_priority_exact"] += 1
-                        repeated_planet_priority["exact"] += 1
+                        repeated_planet_priority["naive_exact"] += 1
                     else:
                         counts["repeated_planet_priority_mismatch"] += 1
-                        repeated_planet_priority["mismatch"] += 1
+                        repeated_planet_priority["naive_mismatch"] += 1
+
+                result = _production_planet_order(planet_rows)
+                if result["comparable"] is True:
+                    counts["production_planet_order_comparable"] += 1
+                    if result["exact"] is True:
+                        counts["production_planet_order_exact"] += 1
+                        repeated_planet_priority["production_exact"] += 1
+                    else:
+                        counts["production_planet_order_mismatch"] += 1
+                        repeated_planet_priority["production_mismatch"] += 1
                         if len(priority_examples) < args.example_limit:
                             priority_examples.append(
                                 {
@@ -501,8 +646,26 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                                 }
                             )
                 else:
-                    counts["repeated_planet_priority_unresolved"] += 1
-                    repeated_planet_priority[str(result["reason"])] += 1
+                    counts["production_planet_order_unresolved"] += 1
+                    repeated_planet_priority[
+                        f"production_unresolved:{result['reason']}"
+                    ] += 1
+                    if (
+                        result["reason"]
+                        == "post_capture_generated_order_present"
+                        and len(priority_examples) < args.example_limit
+                    ):
+                        priority_examples.append(
+                            {
+                                "game_id": game_id,
+                                "battle_turn": battle_turn,
+                                "x": x,
+                                "y": y,
+                                "planet_id": planet_id,
+                                "result": result,
+                                "rows": planet_rows,
+                            }
+                        )
 
         if len(site_examples) < args.example_limit:
             site_examples.append(
@@ -520,6 +683,13 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     mixed_sites = int(counts["mixed_sites"])
     planet_rows = int(counts["ship_vs_planet_vcrs"])
     priority_comparable = int(counts["repeated_planet_priority_comparable"])
+    production_comparable = int(counts["production_planet_order_comparable"])
+    basic_initiator_resolved = (
+        int(counts["planet_initiator:both"])
+        + int(counts["planet_initiator:ship_only"])
+        + int(counts["planet_initiator:planet_only"])
+        + int(counts["planet_initiator:neither_basic_order"])
+    )
     hypotheses = {
         "ship_block_always_precedes_planet_block": (
             mixed_sites > 0
@@ -530,7 +700,22 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             and int(counts["planet_on_right"]) == planet_rows
             and int(counts["planet_on_left"]) == 0
         ),
-        "all_comparable_repeated_planet_groups_follow_standard_ship_priority": (
+        "all_resolved_planet_fights_have_basic_ship_or_planet_initiator": (
+            basic_initiator_resolved > 0
+            and int(counts["planet_initiator:neither_basic_order"]) == 0
+        ),
+        "ordinary_repeated_planet_groups_follow_production_priority": (
+            production_comparable > 0
+            and int(counts["production_planet_order_exact"])
+            == production_comparable
+            and int(counts["production_planet_order_mismatch"]) == 0
+        ),
+        "capture_insertion_groups_place_post_capture_after_ordinary_attackers": (
+            int(counts["repeated_planet_groups_with_post_capture"]) > 0
+            and int(counts["post_capture_rows_interleaved_before_ordinary_attackers"])
+            == 0
+        ),
+        "naive_all_repeated_groups_follow_tminus1_priority": (
             priority_comparable > 0
             and int(counts["repeated_planet_priority_exact"]) == priority_comparable
             and int(counts["repeated_planet_priority_mismatch"]) == 0
@@ -573,8 +758,9 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "transitions, planet side orientation, T-1 NUK/ATT state, whether "
             "planet attackers already fought ships at the site, capture-to-planet "
             "handoffs, repeated attacks on the same planet, and a deliberately "
-            "naive STANDARD-priority ordering hypothesis for comparable repeated "
-            "planet groups. Factual queue order is used only as an observation. "
+            "naive and production ordinary-priority ordering for repeated planet "
+            "groups, basic ship/planet initiator orders, and capture-aware group "
+            "partitioning. Factual queue order is used only as an observation. "
             "No mixed-order production rule is promoted by this pass; false "
             "hypotheses are expected to expose the next focused gate."
         ),
