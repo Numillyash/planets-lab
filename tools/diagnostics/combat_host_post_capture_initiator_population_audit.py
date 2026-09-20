@@ -29,7 +29,7 @@ from combat_host_priority_intercept_audit import (
 )
 
 
-SCHEMA = "planets-lab.combat-host-post-capture-initiator-population-audit.v1"
+SCHEMA = "planets-lab.combat-host-post-capture-initiator-population-audit.v2"
 DEFAULT_EXAMPLE_LIMIT = 80
 PLANET_ATTACK_FRIENDLY_CODES = frozenset({"nuk", "att"})
 
@@ -84,6 +84,19 @@ def _load_groups(
         group_perspective_records(prepared.snapshots, "ship"),
         group_perspective_records(prepared.snapshots, "planet"),
     )
+
+
+REQUIRED_UNRESOLVED_KEYS = frozenset({
+    "unresolved:next_vcr_missing",
+    "unresolved:opponent_projection",
+    "unresolved:opponent_object_id",
+    "unresolved:opponent_ship_tminus1",
+    "unresolved:opponent_planet_tminus1",
+})
+
+
+def _required_unresolved_total(counts: Mapping[str, int]) -> int:
+    return sum(int(counts.get(key, 0)) for key in REQUIRED_UNRESOLVED_KEYS)
 
 
 def run(args: argparse.Namespace) -> dict[str, Any]:
@@ -279,16 +292,20 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             )
 
     population = int(counts["capture_continuations"])
-    unresolved = sum(
-        value
-        for key, value in counts.items()
-        if key.startswith("unresolved:")
-    )
+    required_unresolved = _required_unresolved_total(counts)
+    optional_old_order_unresolved = int(counts["unresolved:captured_ship_tminus1"])
     third_party = int(counts["owner_relation:third_party"])
+    independent = int(counts["independent_opponent_attack_candidate"])
     acceptance = {
         "capture_continuation_population_present": population > 0,
         "payload_conflicts_absent": payload_conflicts == 0,
-        "no_adapter_unresolved": unresolved == 0,
+        "no_required_adapter_unresolved": required_unresolved == 0,
+        "all_continuations_have_independent_opponent_attack": (
+            population > 0
+            and independent == population
+            and int(counts["no_independent_opponent_attack_candidate"]) == 0
+            and int(counts["independent_opponent_attack_unresolved"]) == 0
+        ),
         "third_party_population_present": third_party > 0,
         "all_third_party_have_independent_attack": (
             third_party > 0
@@ -300,6 +317,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             and int(counts["opponent_type:planet"]) > 0
         ),
     }
+    acceptance["post_capture_initiator_gate_passed"] = all(acceptance.values())
 
     return {
         "schema": SCHEMA,
@@ -308,6 +326,8 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "special_game_591478_excluded": True,
             "payload_conflicts": payload_conflicts,
             "counts": dict(sorted(counts.items())),
+            "required_unresolved_total": required_unresolved,
+            "optional_old_order_unresolved": optional_old_order_unresolved,
             "acceptance": acceptance,
         },
         "examples": examples,
@@ -318,8 +338,11 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "ship's new owner. Planet/base opponents are checked only for the "
             "documented NUK/ATT attack-code trigger. The captured ship's own T-1 "
             "orders are reported as a historical alternative but are never "
-            "assumed to persist through capture. This diagnostic does not yet "
-            "apply diplomacy or matching-FC suppression to the initiator "
+            "assumed to persist through capture. Missing old captured-ship T-1 "
+            "orders are therefore informational and never block acceptance. "
+            "Hard acceptance requires a resolved independent opponent initiator "
+            "for every continuation. This diagnostic does not yet apply "
+            "diplomacy or matching-FC suppression to the initiator "
             "candidates, nor infer the newly generated capture target list."
         ),
     }
