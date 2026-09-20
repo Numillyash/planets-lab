@@ -262,3 +262,36 @@ optional_old_order_unresolved=2
 ```
 
 The v2 runtime is still required before final closure.
+
+
+## 2026-09-20 v2 runtime — PASSED
+
+Runtime:
+
+```text
+docs/handoff/2026-09-20-combat-c5-post-capture-initiator-runtime.md
+```
+
+Final acceptance:
+
+```text
+capture_continuation_population_present=True
+payload_conflicts_absent=True
+no_required_adapter_unresolved=True
+all_continuations_have_independent_opponent_attack=True
+third_party_population_present=True
+all_third_party_have_independent_attack=True
+ship_and_planet_continuations_present=True
+post_capture_initiator_gate_passed=True
+
+required_unresolved_total=0
+optional_old_order_unresolved=2
+```
+
+This gate is CLOSED.
+
+Next:
+
+```text
+docs/handoff/2026-09-20-combat-c5-mixed-ship-planet-queue-pending.md
+```
