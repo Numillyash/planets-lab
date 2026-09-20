@@ -856,7 +856,16 @@ def main() -> int:
         for row in report["priority_mismatch_examples"]:
             print(row)
     if report["initiator_residual_examples"]:
-        print()\n        print("INITIATOR RESIDUAL EXAMPLES:")\n        for row in report["initiator_residual_examples"]:\n            print(row)\n    if report["capture_group_examples"]:\n        print()\n        print("CAPTURE GROUP EXAMPLES:")\n        for row in report["capture_group_examples"]:\n            print(row)\n    if report["site_examples"]:
+        print()
+        print("INITIATOR RESIDUAL EXAMPLES:")
+        for row in report["initiator_residual_examples"]:
+            print(row)
+    if report["capture_group_examples"]:
+        print()
+        print("CAPTURE GROUP EXAMPLES:")
+        for row in report["capture_group_examples"]:
+            print(row)
+    if report["site_examples"]:
         print()
         print("SITE EXAMPLES:")
         for row in report["site_examples"]:
