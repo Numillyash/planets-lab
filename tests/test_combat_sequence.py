@@ -4,6 +4,7 @@ import pytest
 
 from planets_lab.rules.combat import (
     apply_terminal_state,
+    carry_captured_ship_to_next_engagement,
     carry_ship_to_next_engagement,
     federation_recover_shields,
     functional_weapon_limit,
@@ -144,3 +145,69 @@ def test_defeated_ship_cannot_be_carried_forward() -> None:
 def test_planet_is_rejected_by_ship_sequence_preparation() -> None:
     with pytest.raises(ValueError, match="positive hull_id"):
         prepare_sequence_ship({"hull_id": 0})
+
+
+
+def test_captured_ship_gets_prize_crew_transfer_and_old_fed_recovery() -> None:
+    carried = carry_captured_ship_to_next_engagement(
+        _ship(
+            owner_id=11,
+            race_id=1,
+            shield=100,
+            federation_crew_bonus=True,
+            lizard_crew_bonus=False,
+        ),
+        {
+            "shield": 0,
+            "damage": 35,
+            "crew": 0,
+            "torpedoes": 4,
+            "fighters": 2,
+            "destroyed": False,
+            "captured": True,
+        },
+        new_owner_id=22,
+        new_race_id=3,
+        new_federation_crew_bonus=False,
+        new_lizard_crew_bonus=False,
+    )
+
+    assert carried["owner_id"] == 22
+    assert carried["race_id"] == 3
+    assert carried["crew"] == 10
+    assert carried["shield"] == 25
+    assert carried["damage"] == 35
+    assert carried["torpedoes"] == 4
+    assert carried["fighters"] == 2
+    assert carried["federation_crew_bonus"] is False
+    assert carried["lizard_crew_bonus"] is False
+
+
+def test_capture_transfer_recalculates_weapons_under_new_owner_bonus() -> None:
+    carried = carry_captured_ship_to_next_engagement(
+        _ship(
+            owner_id=11,
+            race_id=3,
+            damage=0,
+            federation_crew_bonus=False,
+            lizard_crew_bonus=False,
+        ),
+        {
+            "shield": 0,
+            "damage": 80,
+            "crew": 0,
+            "torpedoes": 4,
+            "fighters": 2,
+            "destroyed": False,
+            "captured": True,
+        },
+        new_owner_id=22,
+        new_race_id=1,
+        new_federation_crew_bonus=True,
+        new_lizard_crew_bonus=False,
+    )
+
+    assert carried["crew"] == 10
+    assert carried["beam_count"] == 8
+    assert carried["launcher_count"] == 4
+    assert carried["bay_count"] == 9
