@@ -630,3 +630,38 @@ MKT persistent resource state not yet reconstructed
 ```
 
 V4 expands beyond mixed sites to all ordinary ship-vs-planet VCRs and tests race->player owner repair plus capture-reset aggression priority in one batch.
+
+
+### 2026-09-20 mixed queue batch v4
+
+Durable runtime:
+
+```text
+docs/handoff/2026-09-20-combat-c5-mixed-queue-batch-runtime-v4.md
+```
+
+New evidence:
+
+```text
+ordinary ship-vs-planet VCRs=2406
+hard initiator residuals=0
+unresolved attribution rows=2
+
+capture-reset priority:
+  comparable=8
+  exact=8
+  mismatch=0
+  unresolved=1
+```
+
+Correction: no ordinary same-owner ship-vs-planet VCR population was observed. Previous five rows were stale T-1 owner artifacts.
+
+Production capture-generated priority is now implemented. Next runtime must differential-verify production on the capture population.
+
+Active V5 additionally inventories planet ownership transitions:
+
+```text
+T-1 owner -> factual combat defender -> T owner
+```
+
+to size the remaining pre-combat ownership reconstruction problem without using factual VCR ownership as a production input.
