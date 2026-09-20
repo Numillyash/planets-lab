@@ -8,6 +8,8 @@ if str(TOOLS_DIR) not in sys.path:
     sys.path.insert(0, str(TOOLS_DIR))
 
 from combat_host_mixed_ship_planet_queue_batch_audit import (  # noqa: E402
+    _capture_reset_priority_order,
+    _effective_planet_owner,
     _planet_pair,
     _production_planet_order,
     _same_planet_priority_group,
@@ -217,3 +219,125 @@ def test_production_planet_order_fails_closed_with_post_capture_candidate() -> N
 
     assert result["comparable"] is False
     assert result["reason"] == "post_capture_generated_order_present"
+
+
+
+def test_effective_planet_owner_repairs_impossible_same_owner_from_race_map() -> None:
+    result = _effective_planet_owner(
+        ship_owner_id=10,
+        vcr_planet_owner_id=10,
+        planet_race_id=4,
+        race_owner_map={4: 7, 10: 10},
+        tminus1_owner_id=10,
+        current_owner_id=7,
+    )
+
+    assert result["resolved"] is True
+    assert result["owner_id"] == 7
+    assert result["source"] == "same_owner_vcr_repaired_by_race_map"
+    assert result["current_owner_confirms_race_map"] is True
+
+
+def test_effective_planet_owner_prefers_foreign_vcr_owner_without_repair() -> None:
+    result = _effective_planet_owner(
+        ship_owner_id=3,
+        vcr_planet_owner_id=6,
+        planet_race_id=8,
+        race_owner_map={8: 6},
+        tminus1_owner_id=6,
+        current_owner_id=6,
+    )
+
+    assert result["resolved"] is True
+    assert result["owner_id"] == 6
+    assert result["source"] == "vcr_owner_foreign"
+
+
+def test_capture_reset_priority_clears_old_aggression_but_keeps_numeric_fc() -> None:
+    rows = [
+        {
+            "ship": {"object_id": 489},
+            "ship_tminus1": {
+                "resolved": True,
+                "mission": 6,
+                "enemy": 6,
+                "friendlycode": "yis",
+            },
+            "post_capture": False,
+        },
+        {
+            "ship": {"object_id": 480},
+            "ship_tminus1": {
+                "resolved": True,
+                "mission": 3,
+                "enemy": 3,
+                "friendlycode": "ysD",
+            },
+            "post_capture": True,
+        },
+    ]
+
+    result = _capture_reset_priority_order(rows)
+
+    assert result["comparable"] is True
+    assert result["predicted_ship_order"] == [489, 480]
+    assert result["exact"] is True
+
+
+def test_capture_reset_priority_preserves_numeric_fc_priority() -> None:
+    rows = [
+        {
+            "ship": {"object_id": 34},
+            "ship_tminus1": {
+                "resolved": True,
+                "mission": 8,
+                "enemy": 0,
+                "friendlycode": "999",
+            },
+            "post_capture": True,
+        },
+        {
+            "ship": {"object_id": 67},
+            "ship_tminus1": {
+                "resolved": True,
+                "mission": 2,
+                "enemy": 6,
+                "friendlycode": "md7",
+            },
+            "post_capture": False,
+        },
+    ]
+
+    result = _capture_reset_priority_order(rows)
+
+    assert result["comparable"] is True
+    assert result["predicted_ship_order"] == [34, 67]
+    assert result["exact"] is True
+
+
+def test_capture_reset_priority_fails_closed_without_tminus1_fc() -> None:
+    rows = [
+        {
+            "ship": {"object_id": 5},
+            "ship_tminus1": {
+                "resolved": True,
+                "mission": 1,
+                "enemy": 0,
+                "friendlycode": "vcr",
+            },
+            "post_capture": True,
+        },
+        {
+            "ship": {"object_id": 68},
+            "ship_tminus1": {
+                "resolved": False,
+                "reason": "ship_tminus1_unresolved",
+            },
+            "post_capture": True,
+        },
+    ]
+
+    result = _capture_reset_priority_order(rows)
+
+    assert result["comparable"] is False
+    assert result["reason"] == "ship_tminus1_unresolved"
