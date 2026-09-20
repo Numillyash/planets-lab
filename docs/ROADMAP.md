@@ -14,7 +14,7 @@ This file is the operational roadmap for `planets-lab`. Architecture boundaries 
 - Production precombat effective-state runtime: [`handoff/2026-09-16-combat-c5-production-effective-state-runtime.md`](handoff/2026-09-16-combat-c5-production-effective-state-runtime.md).
 - Mutable ship-queue scope-repair gate: [`handoff/2026-09-16-combat-c5-mutable-ship-queue-pending.md`](handoff/2026-09-16-combat-c5-mutable-ship-queue-pending.md).
 - STANDARD queue composition checkpoint: [`handoff/2026-09-18-combat-c5-standard-queue-composition-pending.md`](handoff/2026-09-18-combat-c5-standard-queue-composition-pending.md).
-- Post-mutation next-pair runtime: [`handoff/2026-09-18-combat-c5-post-mutation-next-pair-runtime.md`](handoff/2026-09-18-combat-c5-post-mutation-next-pair-runtime.md).\n- Active capture continuation gate: [`handoff/2026-09-18-combat-c5-capture-continuation-pending.md`](handoff/2026-09-18-combat-c5-capture-continuation-pending.md).
+- Post-mutation next-pair runtime: [`handoff/2026-09-18-combat-c5-post-mutation-next-pair-runtime.md`](handoff/2026-09-18-combat-c5-post-mutation-next-pair-runtime.md).\n- Capture descriptive runtime: [`handoff/2026-09-20-combat-c5-capture-continuation-descriptive-runtime.md`](handoff/2026-09-20-combat-c5-capture-continuation-descriptive-runtime.md).\n- Active production capture differential: [`handoff/2026-09-18-combat-c5-capture-continuation-pending.md`](handoff/2026-09-18-combat-c5-capture-continuation-pending.md).
 - Advanced Cloak decisive historical closure: [`handoff/2026-09-12-combat-c5-bird-advanced-cloak-decisive-closure-runtime.md`](handoff/2026-09-12-combat-c5-bird-advanced-cloak-decisive-closure-runtime.md).
 
 ## Evidence policy
@@ -325,3 +325,31 @@ tools/diagnostics/combat_host_capture_continuation_audit.py
 ```
 
 It measures whether a captured ship's factual next-VCR race changes to the captor race, whether hull/combat state carries, whether Federation recovery applies under a Federation captor, and whether the next opponent is the captor or a third ship. No production capture semantics are promoted until runtime is reviewed.
+
+
+### 2026-09-20 capture transition checkpoint
+
+Descriptive ordinary corpus:
+
+```text
+23 capture reappearances
+23/23 hull preserved
+23/23 owner/race -> captor
+23/23 next crew = 10
+23/23 torpedoes carry
+23/23 fighters carry
+22/23 damage carry
+22/23 raw shield carry
+```
+
+The documented 10-person prize crew and NuHost end-of-battle Federation shield recovery are now wired into a bounded production capture transition.
+
+Production capture requires explicit `ShipCaptureTransfer`; missing transfer metadata still fails closed. The captured ship remains active after transfer.
+
+Active differential:
+
+```text
+tools/diagnostics/combat_host_capture_continuation_audit.py
+```
+
+It now validates production owner/race/hull/shield/crew/ammunition state against the next factual VCR. The known `621253/T17 ship84 11->7` damage-only replay residual remains isolated and any additional damage residual fails the gate.
