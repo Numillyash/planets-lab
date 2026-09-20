@@ -484,6 +484,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "match_samples": match_samples,
         "race1_samples": race1_samples,
         "malformed_member_samples": malformed_members,
+        "transitions": transitions,
         "seconds": round(elapsed, 3),
     }
 
