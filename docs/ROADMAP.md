@@ -516,3 +516,18 @@ whole NuHost roadmap:            ~45-55%
 ```
 
 Independent ship-combat candidate coverage remains ~21.6%; mechanics knowledge is therefore much farther ahead than end-to-end historical coverage.
+
+
+### 2026-09-20 larger-batch execution policy
+
+To reduce operator interruption, related C5 hypotheses should be grouped into longer batch runs.
+
+Current one-command batch:
+
+```text
+bash tools/run-combat-c5-mixed-queue-batch.sh
+```
+
+It runs the relevant regression suite plus factual queue shape, planet carry, ship next-pair, post-capture initiator and mixed ship/planet population audits. It continues after individual stage failures and saves a complete log under `artifacts/`.
+
+The immediate objective is to use one broad mixed-order run to narrow several candidate rules at once before creating any focused residual gate.
