@@ -689,3 +689,54 @@ For all 23 production-validated capture continuations:
 - captured ship old T-1 orders are reported only as an alternative historical candidate and are not assumed to persist.
 
 The resulting explanation distribution will decide whether observed continuations can be reproduced using ordinary attack/defense semantics alone or whether capture-generated target-list reconstruction is required immediately.
+
+
+## 2026-09-20 post-capture initiator population — empirical closure pending v2 acceptance rerun
+
+First runtime:
+
+```text
+docs/handoff/2026-09-20-combat-c5-post-capture-initiator-descriptive-runtime.md
+```
+
+Observed:
+
+```text
+capture continuations=23
+
+independent opponent initiator=23/23
+  ship Kill!/PE=8/8
+  planet NUK/ATT=15/15
+
+explanation:
+  opponent_only=21
+  both=2
+  captured_old_orders_only=0
+  neither=0
+
+captured old T-1 orders:
+  compatible=2
+  incompatible=19
+  unavailable=2
+```
+
+Therefore no observed post-capture continuation requires persistence of the prize ship's old mission/PE. The documented capture-generated target list remains a real Host mechanic, but its contents are not identifiable from this population because opponent-side aggression already explains every continuation.
+
+The first diagnostic run reported `no_adapter_unresolved=False` only because two optional captured-ship old-order histories were unavailable. This was an acceptance-scope bug. v2 now treats those rows as informational and requires only opponent-side inputs to resolve.
+
+Active rerun gate:
+
+```text
+tools/diagnostics/combat_host_post_capture_initiator_population_audit.py
+schema v2
+```
+
+Required:
+
+```text
+no_required_adapter_unresolved=True
+all_continuations_have_independent_opponent_attack=True
+post_capture_initiator_gate_passed=True
+```
+
+After this rerun, do not invent captured-ship old-order persistence. Move to mixed ship/planet queue ordering, because 15/23 observed prize-ship continuations are planet/base combats.
