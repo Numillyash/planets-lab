@@ -133,3 +133,111 @@ Keep separate:
 - broad candidate-coverage expansion.
 
 These must not be mixed into the first mixed-queue ordering gate.
+
+
+## 2026-09-20 large-batch workflow
+
+Per user workflow preference, C5 research now groups several related hypotheses into one longer batch rather than requiring one command per micro-gate.
+
+New broad first-pass diagnostic:
+
+```text
+tools/diagnostics/combat_host_mixed_ship_planet_queue_batch_audit.py
+```
+
+Unit coverage:
+
+```text
+tests/test_combat_host_mixed_ship_planet_queue_batch_audit.py
+```
+
+One-command runner:
+
+```text
+tools/run-combat-c5-mixed-queue-batch.sh
+```
+
+Implementation commits:
+
+```text
+1e9a455c6b3dd1b93baff88150119636e7486424
+  combat: add mixed ship-planet queue batch audit
+
+e6f19ee1352d45da9f7afc2238a740569f195d3d
+  test: cover mixed ship-planet queue batch audit
+
+c40bc44eaca7551f5dfe25b17bca613d1c3f1394
+  tools: add one-command C5 mixed queue batch
+
+8e32455dbc40556283fdc1ff043ce1766e400a3a
+  tools: keep mixed queue batch running after failures
+
+a3b24234b07055ef1d3edbf6353ccad00cc47344
+  tools: save full mixed queue batch log
+```
+
+### What the mixed diagnostic measures in one pass
+
+1. mixed-site population and full factual queue profiles such as `SSPP`, `SPP`, etc.;
+2. transition counts:
+   - ship->ship;
+   - ship->planet;
+   - planet->planet;
+   - planet->ship;
+3. whether all ship combat forms a block before the planet/base block;
+4. factual LEFT/RIGHT orientation of planet/base combat;
+5. T-1 planet Friendly Code distribution and NUK/ATT population;
+6. whether each planet attacker already participated in ship combat at the same site;
+7. immediate same-ship ship->planet handoff counts;
+8. capture->planet handoff counts;
+9. repeated engagement groups against the same planet/base;
+10. number of distinct planets per mixed site;
+11. a deliberately naive comparison of repeated planet-attacker order against ordinary STANDARD ship Combat Priority.
+
+The three ordering ideas are reported independently under `hypotheses`; a false hypothesis does not invalidate the batch and is expected to identify the next focused mechanic.
+
+### One-command batch contents
+
+The runner continues after individual stage failures and prints a final stage/RC summary.
+
+It executes:
+
+```text
+pytest:
+  mixed queue audit
+  factual queue-shape audit
+  planet mechanics + planet-chain audit
+  ship post-mutation next-pair regression
+  post-capture initiator regression
+  host queue / mutable queue regressions
+
+corpus:
+  factual queue shape
+  planet carry differential
+  ship next-pair differential
+  post-capture initiator differential
+  mixed ship/planet discovery audit
+```
+
+Full output is automatically captured to:
+
+```text
+artifacts/combat-c5-mixed-queue-batch.log
+```
+
+JSON artifacts are written under `artifacts/`.
+
+### Runtime
+
+Use only:
+
+```bash
+cd ~/projects/planets-lab
+git fetch origin
+git checkout agent/combat-c5-host-phase
+git pull --ff-only origin agent/combat-c5-host-phase
+
+bash tools/run-combat-c5-mixed-queue-batch.sh
+```
+
+After completion, the full log file is sufficient for review. No need to manually run each diagnostic separately.
