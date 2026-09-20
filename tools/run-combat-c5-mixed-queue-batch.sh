@@ -3,6 +3,10 @@ set -uo pipefail
 
 cd "$(git rev-parse --show-toplevel)"
 
+mkdir -p artifacts
+LOG_PATH="artifacts/combat-c5-mixed-queue-batch.log"
+exec > >(tee "$LOG_PATH") 2>&1
+
 declare -a STAGE_NAMES=()
 declare -a STAGE_RCS=()
 OVERALL_RC=0
@@ -75,5 +79,8 @@ done
 echo
 echo "===== C5 MIXED QUEUE BATCH: STATUS ====="
 git status --short
+
+echo
+echo "full_log: $LOG_PATH"
 
 exit "$OVERALL_RC"
