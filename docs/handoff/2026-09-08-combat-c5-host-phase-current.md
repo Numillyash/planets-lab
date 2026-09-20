@@ -563,7 +563,7 @@ CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
 
 Production capture remains fail-closed without explicit `ShipCaptureTransfer`.
 
-## ACTIVE GATE — post-capture opponent attribution
+## POST-CAPTURE OPPONENT ATTRIBUTION — RESIDUAL OPEN
 
 Pending runtime:
 
@@ -593,3 +593,47 @@ third_party
 ```
 
 The factual next VCR is observation-only. Specific target selection, post-capture mission/PE/diplomacy and mixed ship/planet queue ordering remain separate future gates.
+
+
+## 2026-09-20 post-capture opponent population result
+
+User runtime source:
+
+```text
+d1c5be4318dbe58a93bab78659f4d79e5b359e0f
+```
+
+Population:
+
+```text
+capture_continuations=23
+next_combat:planet=15
+next_combat:ship=8
+
+next_owner_relation:pre_capture_owner=22
+next_owner_relation:third_party=1
+next_owner_relation:captor=0
+
+payload_conflicts=0
+missing next VCR=0
+projection unresolved=0
+```
+
+The attempted invariant "immediate next opponent is always the pre-capture owner" is false and is not promoted.
+
+Sole residual:
+
+```text
+622476/T17 @ 1973,1734
+ship7 owner5 -> captured by ship44 owner3
+next VCR38: ship7 owner3 vs ship48 owner8
+```
+
+This is now the active focused gate:
+
+```text
+docs/handoff/2026-09-20-combat-c5-post-capture-third-party-residual-pending.md
+tools/diagnostics/combat_host_post_capture_third_party_residual_audit.py
+```
+
+The diagnostic inventories the full site queue, T-1 orders/PE/FC/static priority for all participants, request directions against owners 3/5/8 and raw relation signatures. It specifically tests whether ship48 independently requests combat against post-capture owner3. If yes, the residual can be explained as ordinary third-party aggression against the newly transferred prize ship, without assuming captured ship7 retained old orders.
