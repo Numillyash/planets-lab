@@ -566,3 +566,36 @@ contains:
 - fail-closed post-capture generated-order boundary.
 
 Before promoting full mixed queue orchestration, the v2 large batch must also close the documented interphase repair/MKT state transition.
+
+
+### 2026-09-20 mixed queue batch v2
+
+Runtime:
+
+```text
+docs/handoff/2026-09-20-combat-c5-mixed-queue-batch-runtime-v2.md
+```
+
+Closed bounded mechanics:
+
+```text
+ordinary repeated planet attacker order:
+  production exact=27/27
+
+ship-vs-ship -> planet phase:
+  documented automatic supply repair implemented
+  crew/ammunition preserved in 382/382 ordinary survivor transitions
+  8 observed damage repairs
+```
+
+Remaining immediate mixed-queue residuals are now concentrated:
+
+```text
+5 basic initiator residual rows
+9 capture-containing repeated planet groups
+1 capture-order interleaving group
+5 planet T-1 unresolved rows
+1 ship T-1 unresolved row
+```
+
+V3 large batch is race-aware and captures all residual rows/groups in one execution.
