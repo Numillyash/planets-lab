@@ -33,7 +33,7 @@ from combat_host_priority_intercept_audit import (
 )
 
 
-SCHEMA = "planets-lab.combat-host-ship-planet-interphase-state-audit.v1"
+SCHEMA = "planets-lab.combat-host-ship-planet-interphase-state-audit.v2"
 DEFAULT_EXAMPLE_LIMIT = 80
 CARRY_FIELDS = ("damage", "crew", "torpedoes", "fighters")
 
@@ -188,6 +188,20 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             battle_turn=battle_turn,
             ship_id=ship_id,
         )
+        friendly_code = context.get("friendlycode") if isinstance(context, Mapping) else None
+        if isinstance(friendly_code, str) and friendly_code.lower() == "mkt":
+            counts["mkt_candidate_rows"] += 1
+            torpedo_values = (
+                comparison.get("carry", {}).get("torpedoes")
+                if isinstance(comparison.get("carry"), Mapping)
+                else None
+            )
+            if isinstance(torpedo_values, Mapping):
+                torpedo_direction = _direction(
+                    torpedo_values.get("terminal"),
+                    torpedo_values.get("next_start"),
+                )
+                counts[f"mkt_torpedoes:{torpedo_direction}"] += 1
 
         repair_projection: dict[str, Any] | None = None
         if status in {"match", "mismatch"}:
@@ -275,8 +289,12 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                     production_damage = repaired_state["damage"]
                     if production_damage == next_damage:
                         counts["production_supply_repair_exact"] += 1
+                        if observed_repair > 0:
+                            counts["production_positive_supply_repair_exact"] += 1
                     else:
                         counts["production_supply_repair_mismatch"] += 1
+                        if observed_repair > 0:
+                            counts["production_positive_supply_repair_mismatch"] += 1
 
                 repair_projection = {
                     "terminal_damage": terminal_damage,
@@ -330,6 +348,8 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "supply_repair_population_present": int(counts["observed_supply_repair_transitions"]) > 0,
         "all_damage_changes_supply_repair_compatible": repair_contradictions == 0,
         "production_full_budget_rows_exact": int(counts["production_supply_repair_mismatch"]) == 0,
+        "production_positive_repair_population_present": int(counts["production_positive_supply_repair_exact"]) > 0,
+        "production_positive_repairs_exact": int(counts["production_positive_supply_repair_mismatch"]) == 0,
         "repair_rows_preserve_crew_and_ammunition": int(counts["repair_rows_non_damage_state_changed"]) == 0,
         "repair_rows_do_not_recharge_shields": int(counts["repair_rows_with_other_shield_model"]) == 0,
         "ordinary_transition_population_present": (
@@ -338,6 +358,8 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             + int(counts["ordinary_not_comparable"])
         ) > 0,
     }
+
+    acceptance["interphase_supply_repair_gate_passed"] = all(acceptance.values())
 
     return {
         "schema": SCHEMA,
