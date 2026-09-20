@@ -113,26 +113,56 @@ def test_planet_selector_fails_closed_on_unknown_eligibility() -> None:
     assert "10:planet_engagement_unresolved" in selection.unresolved_reasons
 
 
-def test_planet_selector_fails_closed_on_post_capture_generated_order() -> None:
+def test_planet_selector_capture_generated_order_clears_old_aggression() -> None:
     selection = select_initial_plain_planet_attacker(
         [
             PlanetAttackCandidate(
-                ship_id=20,
+                ship_id=30,
                 mission=3,
                 primary_enemy=7,
-                friendly_code="100",
+                friendly_code="abc",
                 engagement_eligible=True,
                 post_capture_generated_order=True,
-            )
+            ),
+            PlanetAttackCandidate(
+                ship_id=20,
+                mission=0,
+                primary_enemy=7,
+                friendly_code="abc",
+                engagement_eligible=True,
+            ),
         ]
     )
 
-    assert selection.engagement_available is None
-    assert selection.ship_id is None
-    assert (
-        "20:post_capture_generated_order_unresolved"
-        in selection.unresolved_reasons
+    assert selection.engagement_available is True
+    assert selection.ship_id == 20
+    assert selection.priority == (3, 20, 0)
+
+
+def test_planet_selector_capture_generated_order_preserves_numeric_fc_priority() -> None:
+    selection = select_initial_plain_planet_attacker(
+        [
+            PlanetAttackCandidate(
+                ship_id=34,
+                mission=8,
+                primary_enemy=0,
+                friendly_code="999",
+                engagement_eligible=True,
+                post_capture_generated_order=True,
+            ),
+            PlanetAttackCandidate(
+                ship_id=67,
+                mission=2,
+                primary_enemy=6,
+                friendly_code="md7",
+                engagement_eligible=True,
+            ),
+        ]
     )
+
+    assert selection.engagement_available is True
+    assert selection.ship_id == 34
+    assert selection.priority == (0, 999, 34)
 
 
 def test_planet_selector_rejects_duplicate_ship_candidates() -> None:
