@@ -23,6 +23,7 @@ from .eligibility import (
     harmonic_weapon_modulation_applies,
     matching_ship_friendly_code_blocks_combat,
 )
+from .interphase import SUPPLIES_PER_DAMAGE_POINT, repair_ship_with_supplies
 from .host_queue import (
     StandardQueueState,
     StandardQueueStepResult,
@@ -125,6 +126,7 @@ __all__ = [
     "PLANET_CARRYOVER_BASIS",
     "ReplayUnsupported",
     "STANDARD_PAIR_MAX_OCCURRENCES",
+    "SUPPLIES_PER_DAMAGE_POINT",
     "ShipCombatPairDecision",
     "ShipCombatPairPhase",
     "ShipCombatPrestandardKind",
@@ -168,6 +170,7 @@ __all__ = [
     "priority_intercept_reciprocal_target_signature",
     "privateer_rob_ordinary_cloak_state",
     "rebuild_planet_combatant",
+    "repair_ship_with_supplies",
     "record_standard_queue_step",
     "replay_nuhost_classic",
     "replay_nuhost_from_nu_catalog",
