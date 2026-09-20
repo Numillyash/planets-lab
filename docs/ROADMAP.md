@@ -433,3 +433,30 @@ tools/diagnostics/combat_host_post_capture_initiator_population_audit.py
 ```
 
 It classifies all 23 continuations by independently attributable opponent aggression versus captured-ship old-order aggression candidates.
+
+
+### 2026-09-20 post-capture initiator population
+
+Observed across all 23 production-validated capture continuations:
+
+```text
+independent opponent initiator=23/23
+
+ship opponent:
+  Kill!/PE against new owner=8/8
+
+planet/base opponent:
+  NUK/ATT=15/15
+
+explanation:
+  opponent_only=21
+  both=2
+  captured_old_orders_only=0
+  neither=0
+```
+
+The two missing old captured-ship T-1 rows are optional historical observability gaps, not failures of opponent-initiator reconstruction. v2 diagnostic acceptance has been repaired accordingly.
+
+No observed continuation requires old captured-ship aggression to persist. Do not promote old mission/PE persistence from this corpus.
+
+After the v2 acceptance rerun, the next C5 queue target is mixed ship/planet ordering rather than capture-list guessing.
