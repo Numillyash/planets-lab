@@ -107,11 +107,11 @@ def test_capture_transition_recognizes_captor_race_and_exact_carry() -> None:
     assert result["shield"]["model"] == "exact_carry"
 
 
-def test_capture_transition_detects_federation_recovery_candidate() -> None:
+def test_capture_transition_detects_pre_capture_federation_recovery() -> None:
     previous = _appearance(
         ship_id=10,
         vcr_id=1,
-        race_id=3,
+        race_id=1,
         side="left",
         terminal={
             "shield": 40,
@@ -123,19 +123,19 @@ def test_capture_transition_detects_federation_recovery_candidate() -> None:
             "captured": True,
         },
     )
-    federation_captor = _appearance(
+    bird_captor = _appearance(
         ship_id=20,
         vcr_id=1,
-        race_id=1,
+        race_id=3,
         side="right",
     )
     current = _appearance(
         ship_id=10,
         vcr_id=2,
-        race_id=1,
+        race_id=3,
         side="right",
         start={
-            "shield": 65,
+            "shield": 25,
             "damage": 0,
             "crew": 0,
             "torpedos": 5,
@@ -152,11 +152,11 @@ def test_capture_transition_detects_federation_recovery_candidate() -> None:
     result = _capture_transition(
         previous=previous,
         current=current,
-        previous_opponent=federation_captor,
+        previous_opponent=bird_captor,
         current_opponent=next_opponent,
     )
 
     assert result["race_changes_to_captor"] is True
-    assert result["shield"]["captor_federation_candidate"] == 65
-    assert result["shield"]["captor_federation_exact"] is True
-    assert result["shield"]["model"] == "captor_federation_recovery"
+    assert result["shield"]["pre_capture_federation_candidate"] == 25
+    assert result["shield"]["pre_capture_federation_exact"] is True
+    assert result["shield"]["model"] == "pre_capture_federation_recovery"
