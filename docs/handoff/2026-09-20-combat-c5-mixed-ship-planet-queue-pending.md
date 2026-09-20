@@ -683,3 +683,94 @@ and classifies:
 Factual VCR and T remain attribution/comparator evidence only. This stage measures the size of the production ownership-transition subsystem that must be reconstructed; it does not feed factual VCR owner into production.
 
 V5 also routes all comparable capture-containing repeated planet groups through the real production selector.
+
+
+## 2026-09-21 fifth large-batch runtime — PASSED
+
+Durable runtime:
+
+```text
+docs/handoff/2026-09-21-combat-c5-mixed-queue-batch-runtime-v5.md
+```
+
+Source HEAD:
+
+```text
+8aadffd019fab8017dc149eb7b3fba72097e3068
+```
+
+All nine stages returned rc=0.
+
+### Capture-generated planet priority — production closure
+
+```text
+production repeated planet order:
+  comparable=35
+  exact=35
+  mismatch=0
+  unresolved=1
+
+capture subset:
+  comparable=8
+  exact=8
+  mismatch=0
+  unresolved=1
+```
+
+The sole unresolved group remains `622476/T13 planet55`, where captured ship68 lacks T-1 ship state.
+
+Status:
+
+```text
+capture-generated planet priority:
+CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
+```
+
+Bounded rule:
+
+```text
+preserve captured Friendly Code priority
+clear captured old Mission / Primary Enemy aggression priority
+evaluate ordinary STANDARD Combat Priority
+```
+
+Eligibility/targetability remains independently composed.
+
+### Planet ownership timeline
+
+```text
+ordinary planet VCRs=2406
+unique planet-turn timelines=2303
+precombat owner changed=60 VCR rows / 59 unique planet-turns
+precombat owner unchanged=2334 rows
+T-1 owner unresolved=12 rows
+
+changed from attacking ship owner to factual defender:
+  43 VCR rows / 42 unique planet-turns
+
+changed between third-party owners:
+  17 VCR rows
+```
+
+VCR defender is foreign to the attacking ship and race-owner consistent in 2406/2406 rows.
+
+The remaining production gap is not combat ordering. It is reconstruction of planet ownership changes earlier in Host.
+
+## ACTIVE V6 LARGE BATCH
+
+V6 adds:
+
+```text
+PLANET PRECOMBAT OWNER SOURCE
+MIXED SHIP/PLANET DISCOVERY V6
+```
+
+New diagnostic:
+
+```text
+tools/diagnostics/combat_host_planet_precombat_owner_source_audit.py
+```
+
+It inventories all 59 changed planet-turns for T-1 co-located ships, future-defender ownership and positive clan cargo. It also exposes actual drop/transfer/mission/target fields present on those ship objects.
+
+Official Host order places cargo drop / Imperial Assault / Ground Combat before later combat and processes it in Ship ID order. This is only a hypothesis source for the audit; no ground-combat transition is promoted yet.
