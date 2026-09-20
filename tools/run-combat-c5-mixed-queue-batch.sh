@@ -73,7 +73,7 @@ run_stage "SHIP->PLANET INTERPHASE STATE" \
     --example-limit 30 \
     --output /workspace/artifacts/combat-host-ship-planet-interphase-state.json
 
-run_stage "MIXED SHIP/PLANET DISCOVERY V2" \
+run_stage "MIXED SHIP/PLANET DISCOVERY V3" \
   docker compose run --rm lab python \
     tools/diagnostics/combat_host_mixed_ship_planet_queue_batch_audit.py \
     --example-limit 20 \
