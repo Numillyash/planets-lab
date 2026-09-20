@@ -920,3 +920,42 @@ crew/torpedoes/fighters unchanged=382/382 ordinary survivors
 The eight damage decreases follow the documented 5 supplies per 1% damage repair surface. Production support now exists in `combat/interphase.py`. T-1 supplies are not treated as guaranteed current interphase supplies because earlier Host repair steps can consume them.
 
 Active v3 batch is now a residual sweep over Horwasp/initiator rows, all capture-containing repeated planet groups, supply-repair production differential and MKT candidates.
+
+
+## 2026-09-20 mixed queue batch v3 closure
+
+Runtime:
+
+```text
+docs/handoff/2026-09-20-combat-c5-mixed-queue-batch-runtime-v3.md
+```
+
+All seven stages passed.
+
+Interphase supply repair is now closed in bounded production scope:
+
+```text
+DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
+```
+
+Runtime:
+
+```text
+397 ship->planet transitions
+374 exact carry
+8 positive damage repairs
+15 defeated/captured predecessor reappearances
+
+382/382 ordinary survivor rows preserve crew/torpedoes/fighters
+8/8 observed repair rows preserve shields without recharge
+0 hard supply-budget contradictions
+interphase_supply_repair_gate_passed=True
+```
+
+MKT remains outside production; 36 MKT-candidate rows show no torpedo-count delta but T-1 resource state is not current interphase cargo.
+
+Five mixed initiator residuals are now isolated to impossible same-owner VCR planet attribution shapes. V4 uses unique VCR race->player mapping plus T current planet owner as independent context rather than inventing same-owner combat.
+
+Capture V4 hypothesis clears captured old Mission/PE aggression priority while preserving Friendly Code priority, then compares the resulting STANDARD order across every comparable capture-containing repeated planet group.
+
+V4 also adds an all-planet engagement population sweep over the entire ordinary ship-vs-planet corpus.
