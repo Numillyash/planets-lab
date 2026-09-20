@@ -30,6 +30,14 @@ from .host_queue import (
     select_after_ship_mutation,
     select_next_plain_standard,
 )
+from .mixed_queue import (
+    HostCombatQueuePhase,
+    PlanetAttackCandidate,
+    PlanetAttackSelection,
+    host_combat_phase,
+    select_initial_plain_planet_attacker,
+    ship_planet_sides,
+)
 from .mutable_queue import (
     ShipCaptureTransfer,
     ShipQueueMutationResult,
@@ -108,6 +116,9 @@ __all__ = [
     "INTERCEPT_MISSION_ID",
     "InitialStandardPairInput",
     "InitialStandardSelection",
+    "HostCombatQueuePhase",
+    "PlanetAttackCandidate",
+    "PlanetAttackSelection",
     "KILL_MISSION_ID",
     "MATCHING_SHIP_FC_COMBAT_EXCEPTIONS",
     "NuHostClassicReplay",
@@ -140,6 +151,9 @@ __all__ = [
     "functional_weapon_limit",
     "galactic_power_forces_left",
     "harmonic_weapon_modulation_applies",
+    "host_combat_phase",
+    "select_initial_plain_planet_attacker",
+    "ship_planet_sides",
     "matching_ship_friendly_code_blocks_combat",
     "normalize_nu_beams",
     "normalize_nu_torpedoes",
