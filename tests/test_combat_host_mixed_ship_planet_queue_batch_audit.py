@@ -191,7 +191,7 @@ def test_production_planet_order_matches_ordinary_priority() -> None:
     assert result["exact"] is True
 
 
-def test_production_planet_order_fails_closed_with_post_capture_candidate() -> None:
+def test_production_planet_order_applies_capture_reset_priority() -> None:
     rows = [
         {
             "ship": {"object_id": 20},
@@ -207,7 +207,7 @@ def test_production_planet_order_fails_closed_with_post_capture_candidate() -> N
             "ship": {"object_id": 30},
             "ship_tminus1": {
                 "resolved": True,
-                "mission": 0,
+                "mission": 3,
                 "enemy": 7,
                 "friendlycode": "abc",
             },
@@ -217,8 +217,9 @@ def test_production_planet_order_fails_closed_with_post_capture_candidate() -> N
 
     result = _production_planet_order(rows)
 
-    assert result["comparable"] is False
-    assert result["reason"] == "post_capture_generated_order_present"
+    assert result["comparable"] is True
+    assert result["predicted_ship_order"] == [20, 30]
+    assert result["exact"] is True
 
 
 
