@@ -11,7 +11,33 @@ from copy import deepcopy
 from dataclasses import dataclass
 from typing import Any, Mapping
 
-from .sequence import DYNAMIC_CARRY_FIELDS, carry_ship_to_next_engagement
+from .sequence import (
+    DYNAMIC_CARRY_FIELDS,
+    carry_captured_ship_to_next_engagement,
+    carry_ship_to_next_engagement,
+)
+
+
+@dataclass(frozen=True, slots=True)
+class ShipCaptureTransfer:
+    """Explicit post-combat ownership/race attribution for a captured ship."""
+
+    new_owner_id: int
+    new_race_id: int
+    new_federation_crew_bonus: bool
+    new_lizard_crew_bonus: bool
+
+    def __post_init__(self) -> None:
+        for name, value in (
+            ("new_owner_id", self.new_owner_id),
+            ("new_race_id", self.new_race_id),
+        ):
+            if isinstance(value, bool) or not isinstance(value, int) or value <= 0:
+                raise ValueError(f"{name} must be a positive integer")
+        if not isinstance(self.new_federation_crew_bonus, bool):
+            raise ValueError("new_federation_crew_bonus must be boolean")
+        if not isinstance(self.new_lizard_crew_bonus, bool):
+            raise ValueError("new_lizard_crew_bonus must be boolean")
 
 
 @dataclass(frozen=True, slots=True)
@@ -22,6 +48,7 @@ class ShipQueueMutationResult:
     active_ships: dict[int, dict[str, Any]]
     removed_ship_ids: tuple[int, ...] = ()
     carried_ship_ids: tuple[int, ...] = ()
+    captured_ship_ids: tuple[int, ...] = ()
     unresolved_reasons: tuple[str, ...] = ()
 
 
@@ -42,6 +69,7 @@ def apply_ship_terminal_batch(
     *,
     active_ships: Mapping[int, Mapping[str, Any]],
     terminals_by_ship_id: Mapping[int, Mapping[str, Any]],
+    capture_transfers_by_ship_id: Mapping[int, ShipCaptureTransfer] | None = None,
 ) -> ShipQueueMutationResult:
     """Apply terminal states for one resolved ship combat atomically.
 
@@ -54,8 +82,9 @@ def apply_ship_terminal_batch(
     - destroyed ship -> removed from the active map;
     - non-destroyed/non-captured survivor -> carried through the already-tested
       :func:`carry_ship_to_next_engagement` C3 transition;
-    - capture -> unresolved, because ownership/hostility continuation has not yet
-      passed a C5 queue gate;
+    - capture without explicit transfer metadata -> unresolved/fail closed;
+    - capture with explicit :class:`ShipCaptureTransfer` -> retain the ship,
+      apply the documented prize crew and transfer identity to the captor;
     - missing/unknown terminal flags or incomplete survivor carry state ->
       unresolved.
 
@@ -64,6 +93,7 @@ def apply_ship_terminal_batch(
     """
 
     baseline = _active_copy(active_ships)
+    capture_transfers = dict(capture_transfers_by_ship_id or {})
     if not terminals_by_ship_id:
         raise ValueError("terminals_by_ship_id must not be empty")
 
@@ -84,7 +114,7 @@ def apply_ship_terminal_batch(
             unresolved.append(f"{ship_id}:destroyed_state_unresolved")
         if not isinstance(captured, bool):
             unresolved.append(f"{ship_id}:captured_state_unresolved")
-        elif captured:
+        elif captured and ship_id not in capture_transfers:
             unresolved.append(f"{ship_id}:capture_branch_unresolved")
 
         if destroyed is False and captured is False:
@@ -92,6 +122,21 @@ def apply_ship_terminal_batch(
                 value = terminal.get(field)
                 if isinstance(value, bool) or not isinstance(value, int):
                     unresolved.append(f"{ship_id}:survivor_{field}_unresolved")
+        elif destroyed is False and captured is True:
+            for field in DYNAMIC_CARRY_FIELDS:
+                value = terminal.get(field)
+                if isinstance(value, bool) or not isinstance(value, int):
+                    unresolved.append(f"{ship_id}:captured_{field}_unresolved")
+
+    for ship_id, transfer in capture_transfers.items():
+        if isinstance(ship_id, bool) or not isinstance(ship_id, int) or ship_id <= 0:
+            raise ValueError("capture transfer ship ids must be positive integers")
+        if ship_id not in terminal_rows:
+            raise ValueError(f"capture transfer ship {ship_id} has no terminal state")
+        if not isinstance(transfer, ShipCaptureTransfer):
+            raise TypeError(f"capture transfer ship {ship_id} must use ShipCaptureTransfer")
+        if terminal_rows[ship_id].get("captured") is not True:
+            raise ValueError(f"capture transfer ship {ship_id} is not captured")
 
     if unresolved:
         return ShipQueueMutationResult(
@@ -103,6 +148,7 @@ def apply_ship_terminal_batch(
     staged = deepcopy(baseline)
     removed: list[int] = []
     carried: list[int] = []
+    captured_ids: list[int] = []
 
     try:
         for ship_id in sorted(terminal_rows):
@@ -110,6 +156,19 @@ def apply_ship_terminal_batch(
             if terminal["destroyed"] is True:
                 del staged[ship_id]
                 removed.append(ship_id)
+                continue
+
+            if terminal["captured"] is True:
+                transfer = capture_transfers[ship_id]
+                staged[ship_id] = carry_captured_ship_to_next_engagement(
+                    baseline[ship_id],
+                    terminal,
+                    new_owner_id=transfer.new_owner_id,
+                    new_race_id=transfer.new_race_id,
+                    new_federation_crew_bonus=transfer.new_federation_crew_bonus,
+                    new_lizard_crew_bonus=transfer.new_lizard_crew_bonus,
+                )
+                captured_ids.append(ship_id)
                 continue
 
             staged[ship_id] = carry_ship_to_next_engagement(
@@ -131,4 +190,5 @@ def apply_ship_terminal_batch(
         active_ships=staged,
         removed_ship_ids=tuple(removed),
         carried_ship_ids=tuple(carried),
+        captured_ship_ids=tuple(captured_ids),
     )
