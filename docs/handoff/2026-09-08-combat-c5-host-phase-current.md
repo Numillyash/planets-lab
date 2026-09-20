@@ -637,3 +637,55 @@ tools/diagnostics/combat_host_post_capture_third_party_residual_audit.py
 ```
 
 The diagnostic inventories the full site queue, T-1 orders/PE/FC/static priority for all participants, request directions against owners 3/5/8 and raw relation signatures. It specifically tests whether ship48 independently requests combat against post-capture owner3. If yes, the residual can be explained as ordinary third-party aggression against the newly transferred prize ship, without assuming captured ship7 retained old orders.
+
+
+## 2026-09-20 post-capture opponent attribution — universal invariant rejected
+
+Runtime:
+
+```text
+docs/handoff/2026-09-20-combat-c5-post-capture-opponent-runtime.md
+```
+
+Population:
+
+```text
+23 capture continuations
+22 immediate opponents owned by pre-capture owner
+1 immediate opponent owned by third party
+0 immediate opponents owned by captor
+15 planet/base continuations
+8 ship continuations
+```
+
+Therefore "always pre-capture owner" is false and remains unpromoted.
+
+The sole residual `622476/T17 ship7 -> ship48` is separately closed as an explanatory residual:
+
+```text
+docs/handoff/2026-09-20-combat-c5-post-capture-third-party-residual-runtime.md
+```
+
+T-1 ship48 has Kill! and independently requests combat against the captured ship's new owner3. VCR38 therefore does not require persistence of ship7's old PE/orders. Ship7's old PE also targets owner8, so this row cannot distinguish old-order persistence from pure defense.
+
+## ACTIVE GATE — post-capture initiator population
+
+Pending runtime:
+
+```text
+docs/handoff/2026-09-20-combat-c5-post-capture-initiator-population-pending.md
+```
+
+Diagnostic:
+
+```text
+tools/diagnostics/combat_host_post_capture_initiator_population_audit.py
+```
+
+For all 23 production-validated capture continuations:
+
+- ship opponents are checked for independent T-1 Kill!/PE aggression against the new owner;
+- planet/base opponents are checked for NUK/ATT attack codes;
+- captured ship old T-1 orders are reported only as an alternative historical candidate and are not assumed to persist.
+
+The resulting explanation distribution will decide whether observed continuations can be reproduced using ordinary attack/defense semantics alone or whether capture-generated target-list reconstruction is required immediately.
