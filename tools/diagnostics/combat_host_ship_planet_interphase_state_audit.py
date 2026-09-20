@@ -230,14 +230,27 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 repair_compatibility[compatibility] += 1
                 if observed_repair > 0:
                     counts["observed_supply_repair_transitions"] += 1
-                    non_damage_preserved = all(
-                        field_directions[field]["decrease"]
-                        + field_directions[field]["increase"]
-                        == 0
-                        for field in ("crew", "torpedoes", "fighters")
-                    )
+                    row_non_damage_preserved = True
+                    if isinstance(carry, Mapping):
+                        for field in ("crew", "torpedoes", "fighters"):
+                            values = carry.get(field)
+                            if (
+                                not isinstance(values, Mapping)
+                                or values.get("matches") is not True
+                            ):
+                                row_non_damage_preserved = False
+                    else:
+                        row_non_damage_preserved = False
+
+                    if row_non_damage_preserved:
+                        counts["repair_rows_non_damage_state_preserved"] += 1
+                    else:
+                        counts["repair_rows_non_damage_state_changed"] += 1
+
                     if shield_model in {"exact_carry", "both"}:
                         counts["repair_rows_without_shield_recharge"] += 1
+                    else:
+                        counts["repair_rows_with_other_shield_model"] += 1
 
                 production_damage = None
                 if compatibility == "full_tminus1_budget_exact":
@@ -317,6 +330,8 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "supply_repair_population_present": int(counts["observed_supply_repair_transitions"]) > 0,
         "all_damage_changes_supply_repair_compatible": repair_contradictions == 0,
         "production_full_budget_rows_exact": int(counts["production_supply_repair_mismatch"]) == 0,
+        "repair_rows_preserve_crew_and_ammunition": int(counts["repair_rows_non_damage_state_changed"]) == 0,
+        "repair_rows_do_not_recharge_shields": int(counts["repair_rows_with_other_shield_model"]) == 0,
         "ordinary_transition_population_present": (
             int(counts["ordinary_exact_transition"])
             + int(counts["ordinary_transition_with_change"])
