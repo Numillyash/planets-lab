@@ -742,7 +742,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                                     "planet_tminus1_race_id": planet_projection.get("race_id"),
                                     "ship_tminus1": ship_projection,
                                     "planet_tminus1": planet_projection,
-                "planet_owner_resolution": planet_owner_resolution,
+                                    "planet_owner_resolution": planet_owner_resolution,
                                     "post_capture": post_capture,
                                 }
                             )
@@ -803,6 +803,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 },
                 "ship_tminus1": ship_projection,
                 "planet_tminus1": planet_projection,
+                "planet_owner_resolution": planet_owner_resolution,
                 "ship_requests_planet": ship_requests_planet,
                 "planet_requests_ship": planet_requests_ship,
                 "appeared_in_prior_ship_combat": appeared_in_prior_ship_combat,
