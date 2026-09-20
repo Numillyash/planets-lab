@@ -33,6 +33,7 @@ git status --short
 
 run_stage "REGRESSION TESTS" \
   docker compose run --rm lab pytest -q \
+    tests/test_combat_interphase.py \
     tests/test_combat_mixed_queue.py \
     tests/test_combat_host_mixed_ship_planet_queue_batch_audit.py \
     tests/test_combat_host_ship_planet_interphase_state_audit.py \
