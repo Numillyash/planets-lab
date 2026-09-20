@@ -386,6 +386,8 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     repeated_planet_priority: Counter[str] = Counter()
     site_examples: list[dict[str, Any]] = []
     priority_examples: list[dict[str, Any]] = []
+    initiator_residual_examples: list[dict[str, Any]] = []
+    capture_group_examples: list[dict[str, Any]] = []
 
     counts["mixed_sites"] = len(mixed_keys)
 
@@ -513,6 +515,23 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                         counts["planet_initiator:planet_only"] += 1
                     else:
                         counts["planet_initiator:neither_basic_order"] += 1
+                        if len(initiator_residual_examples) < args.example_limit:
+                            initiator_residual_examples.append(
+                                {
+                                    "game_id": game_id,
+                                    "battle_turn": battle_turn,
+                                    "x": x,
+                                    "y": y,
+                                    "vcr_id": int(row["vcr_id"]),
+                                    "ship_id": ship_id,
+                                    "planet_id": planet_id,
+                                    "ship_owner_id": ship_projection.get("owner_id"),
+                                    "planet_owner_id": planet_projection.get("owner_id"),
+                                    "ship_tminus1": ship_projection,
+                                    "planet_tminus1": planet_projection,
+                                    "post_capture": post_capture,
+                                }
+                            )
 
                     ship_fc = ship_projection.get("friendlycode")
                     planet_fc = planet_projection.get("friendlycode")
@@ -596,6 +615,17 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 )
                 if has_post_capture:
                     counts["repeated_planet_groups_with_post_capture"] += 1
+                    if len(capture_group_examples) < args.example_limit:
+                        capture_group_examples.append(
+                            {
+                                "game_id": game_id,
+                                "battle_turn": battle_turn,
+                                "x": x,
+                                "y": y,
+                                "planet_id": planet_id,
+                                "rows": planet_rows,
+                            }
+                        )
                     seen_post_capture = False
                     capture_after_ordinary = True
                     for item in planet_rows:
@@ -751,6 +781,8 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "hypotheses": hypotheses,
         },
         "priority_mismatch_examples": priority_examples,
+        "initiator_residual_examples": initiator_residual_examples,
+        "capture_group_examples": capture_group_examples,
         "site_examples": site_examples,
         "evidence_boundary": (
             "Large read-only first-pass mixed ship/planet queue batch. It "
@@ -791,7 +823,8 @@ def main() -> int:
         print("PRIORITY MISMATCH EXAMPLES:")
         for row in report["priority_mismatch_examples"]:
             print(row)
-    if report["site_examples"]:
+    if report["initiator_residual_examples"]:
+        print()\n        print("INITIATOR RESIDUAL EXAMPLES:")\n        for row in report["initiator_residual_examples"]:\n            print(row)\n    if report["capture_group_examples"]:\n        print()\n        print("CAPTURE GROUP EXAMPLES:")\n        for row in report["capture_group_examples"]:\n            print(row)\n    if report["site_examples"]:
         print()
         print("SITE EXAMPLES:")
         for row in report["site_examples"]:
