@@ -26,6 +26,9 @@ from combat_host_priority_intercept_audit import RAW_DIR, SPECIAL_GAME_ID
 
 SCHEMA = "planets-lab.combat-host-capture-continuation-audit.v2"
 DEFAULT_EXAMPLE_LIMIT = 80
+KNOWN_DAMAGE_REPLAY_RESIDUALS = {
+    (621253, 17, 84, 39, 45, 11, 7),
+}
 CARRY_FIELDS = (
     ("damage", "damage"),
     ("crew", "crew"),
@@ -520,6 +523,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         )
     }
     examples: list[dict[str, Any]] = []
+    damage_residuals: set[tuple[int, int, int, int, int, int, int]] = set()
 
     for chain in by_ship_turn.values():
         chain.sort(key=lambda item: int(item["vcr_id"]))
@@ -623,6 +627,26 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                     counts["production_capture_not_all_exact"] += 1
                 fields = production.get("fields")
                 if isinstance(fields, Mapping):
+                    damage_detail = fields.get("damage")
+                    if (
+                        isinstance(damage_detail, Mapping)
+                        and damage_detail.get("matches") is False
+                        and isinstance(damage_detail.get("predicted"), int)
+                        and not isinstance(damage_detail.get("predicted"), bool)
+                        and isinstance(damage_detail.get("current_start"), int)
+                        and not isinstance(damage_detail.get("current_start"), bool)
+                    ):
+                        damage_residuals.add(
+                            (
+                                int(row["game_id"]),
+                                int(row["turn"]),
+                                int(row["ship_id"]),
+                                int(row["from_vcr_id"]),
+                                int(row["to_vcr_id"]),
+                                int(damage_detail["predicted"]),
+                                int(damage_detail["current_start"]),
+                            )
+                        )
                     for field, detail in fields.items():
                         if (
                             field not in production_field_counts
@@ -661,8 +685,8 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             and int(counts["production_capture_mismatch_without_damage"]) == 0
             and int(counts["production_capture_unresolved"]) == 0
         ),
-        "single_damage_replay_residual_only": (
-            int(production_field_counts["damage"]["mismatch"]) <= 1
+        "no_new_damage_replay_residuals": (
+            damage_residuals <= KNOWN_DAMAGE_REPLAY_RESIDUALS
             and int(production_field_counts["damage"]["unknown"]) == 0
         ),
     }
@@ -679,6 +703,10 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 for key, value in carry_field_counts.items()
             },
             "shield_models": dict(sorted(shield_models.items())),
+            "damage_replay_residuals": [list(row) for row in sorted(damage_residuals)],
+            "known_damage_replay_residuals": [
+                list(row) for row in sorted(KNOWN_DAMAGE_REPLAY_RESIDUALS)
+            ],
             "production_fields": {
                 key: dict(sorted(value.items()))
                 for key, value in production_field_counts.items()
