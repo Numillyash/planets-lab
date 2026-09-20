@@ -14,6 +14,7 @@ for path in (REPO_ROOT, DIAGNOSTICS_DIR):
     if str(path) not in sys.path:
         sys.path.insert(0, str(path))
 
+from planets_lab.corpus.movement_differential import _intish
 from planets_lab.corpus.prepared_cache import load_or_build_prepared_game_cache
 from planets_lab.corpus.reconstruction import group_perspective_records
 from planets_lab.rules.combat.order import orders_request_ship_combat
@@ -44,8 +45,8 @@ def _ship_request_projection(
     *,
     target_owner_id: int,
 ) -> dict[str, Any]:
-    mission = raw.get("mission")
-    enemy = raw.get("enemy")
+    mission = _intish(raw.get("mission"))
+    enemy = _intish(raw.get("enemy"))
     return {
         "mission": mission,
         "enemy": enemy,
