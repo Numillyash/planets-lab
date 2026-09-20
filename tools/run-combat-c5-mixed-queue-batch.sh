@@ -73,7 +73,13 @@ run_stage "SHIP->PLANET INTERPHASE STATE" \
     --example-limit 30 \
     --output /workspace/artifacts/combat-host-ship-planet-interphase-state.json
 
-run_stage "MIXED SHIP/PLANET DISCOVERY V3" \
+run_stage "ALL PLANET ENGAGEMENT POPULATION" \
+  docker compose run --rm lab python \
+    tools/diagnostics/combat_host_planet_engagement_population_audit.py \
+    --example-limit 40 \
+    --output /workspace/artifacts/combat-host-planet-engagement-population.json
+
+run_stage "MIXED SHIP/PLANET DISCOVERY V4" \
   docker compose run --rm lab python \
     tools/diagnostics/combat_host_mixed_ship_planet_queue_batch_audit.py \
     --example-limit 20 \
