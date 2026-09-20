@@ -31,6 +31,7 @@ from .host_queue import (
     select_next_plain_standard,
 )
 from .mutable_queue import (
+    ShipCaptureTransfer,
     ShipQueueMutationResult,
     apply_ship_terminal_batch,
 )
@@ -82,8 +83,10 @@ from .selection import (
     decide_ship_combat_pair,
 )
 from .sequence import (
+    CAPTURE_PRIZE_CREW,
     DYNAMIC_CARRY_FIELDS,
     apply_terminal_state,
+    carry_captured_ship_to_next_engagement,
     carry_ship_to_next_engagement,
     federation_recover_shields,
     functional_weapon_limit,
@@ -95,6 +98,7 @@ __all__ = [
     "BeamSpec",
     "CLOAK_INTERCEPT_MISSION_ID",
     "CombatObject",
+    "CAPTURE_PRIZE_CREW",
     "DYNAMIC_CARRY_FIELDS",
     "EVIL_EMPIRE_RACE_ID",
     "EffectiveCloakState",
@@ -114,6 +118,7 @@ __all__ = [
     "ShipCombatPairPhase",
     "ShipCombatPrestandardKind",
     "ShipCombatSideInput",
+    "ShipCaptureTransfer",
     "ShipQueueMutationResult",
     "StandardTargetabilityState",
     "StandardQueueStepResult",
@@ -124,6 +129,7 @@ __all__ = [
     "apply_terminal_state",
     "beam_specs_from_catalog",
     "bird_super_spy_ordinary_cloak_state",
+    "carry_captured_ship_to_next_engagement",
     "carry_ship_to_next_engagement",
     "classify_battle_friendly_code",
     "cloak_intercept_order_signature",
