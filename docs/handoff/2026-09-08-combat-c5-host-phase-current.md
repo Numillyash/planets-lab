@@ -805,3 +805,26 @@ Immediate questions:
 - mixed LEFT/RIGHT semantics.
 
 Keep capture-generated target-list contents, Advanced Cloak production, game 591478 and broad candidate-coverage expansion separate.
+
+
+## 2026-09-20 workflow change — larger runtime batches
+
+C5 runtime work should now prefer grouped batches over one-hypothesis-per-user-run.
+
+Active batch:
+
+```text
+tools/run-combat-c5-mixed-queue-batch.sh
+```
+
+Primary new diagnostic:
+
+```text
+tools/diagnostics/combat_host_mixed_ship_planet_queue_batch_audit.py
+```
+
+The batch keeps running after individual failures, writes per-stage return codes, saves one complete log to `artifacts/combat-c5-mixed-queue-batch.log`, and emits separate JSON artifacts.
+
+Current mixed-order batch tests population shape, S/P phase transitions, planet side orientation, NUK/ATT state, survivor/capture handoff into planet combat, repeated same-planet attacks and a naive STANDARD-priority ordering hypothesis in one execution.
+
+Use focused follow-up diagnostics only after this broad batch identifies actual residuals.
