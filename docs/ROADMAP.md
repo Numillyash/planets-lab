@@ -14,7 +14,7 @@ This file is the operational roadmap for `planets-lab`. Architecture boundaries 
 - Production precombat effective-state runtime: [`handoff/2026-09-16-combat-c5-production-effective-state-runtime.md`](handoff/2026-09-16-combat-c5-production-effective-state-runtime.md).
 - Mutable ship-queue scope-repair gate: [`handoff/2026-09-16-combat-c5-mutable-ship-queue-pending.md`](handoff/2026-09-16-combat-c5-mutable-ship-queue-pending.md).
 - STANDARD queue composition checkpoint: [`handoff/2026-09-18-combat-c5-standard-queue-composition-pending.md`](handoff/2026-09-18-combat-c5-standard-queue-composition-pending.md).
-- Post-mutation next-pair runtime: [`handoff/2026-09-18-combat-c5-post-mutation-next-pair-runtime.md`](handoff/2026-09-18-combat-c5-post-mutation-next-pair-runtime.md).\n- Capture descriptive runtime: [`handoff/2026-09-20-combat-c5-capture-continuation-descriptive-runtime.md`](handoff/2026-09-20-combat-c5-capture-continuation-descriptive-runtime.md).\n- Active production capture differential: [`handoff/2026-09-18-combat-c5-capture-continuation-pending.md`](handoff/2026-09-18-combat-c5-capture-continuation-pending.md).
+- Post-mutation next-pair runtime: [`handoff/2026-09-18-combat-c5-post-mutation-next-pair-runtime.md`](handoff/2026-09-18-combat-c5-post-mutation-next-pair-runtime.md).\n- Capture descriptive runtime: [`handoff/2026-09-20-combat-c5-capture-continuation-descriptive-runtime.md`](handoff/2026-09-20-combat-c5-capture-continuation-descriptive-runtime.md).\n- Production capture runtime: [`handoff/2026-09-20-combat-c5-capture-production-runtime.md`](handoff/2026-09-20-combat-c5-capture-production-runtime.md).\n- Active post-capture opponent gate: [`handoff/2026-09-20-combat-c5-post-capture-opponent-pending.md`](handoff/2026-09-20-combat-c5-post-capture-opponent-pending.md).
 - Advanced Cloak decisive historical closure: [`handoff/2026-09-12-combat-c5-bird-advanced-cloak-decisive-closure-runtime.md`](handoff/2026-09-12-combat-c5-bird-advanced-cloak-decisive-closure-runtime.md).
 
 ## Evidence policy
@@ -353,3 +353,29 @@ tools/diagnostics/combat_host_capture_continuation_audit.py
 ```
 
 It now validates production owner/race/hull/shield/crew/ammunition state against the next factual VCR. The known `621253/T17 ship84 11->7` damage-only replay residual remains isolated and any additional damage residual fails the gate.
+
+
+### 2026-09-20 production capture closure
+
+Production capture state differential:
+
+```text
+owner/race/hull/shield/crew/torpedoes/fighters 23/23 exact
+damage 22/23 exact
+only known 621253/T17 ship84 11->7 replay residual remains
+capture_transition_gate_passed=True
+```
+
+Status:
+
+```text
+CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
+```
+
+Active next gate:
+
+```text
+tools/diagnostics/combat_host_post_capture_opponent_audit.py
+```
+
+It classifies the immediate post-capture opponent owner as pre-capture owner / captor / third party across the observed 15 planet/base and 8 ship continuations. This is intentionally narrower than target ordering.
