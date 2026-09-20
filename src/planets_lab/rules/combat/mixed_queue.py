@@ -11,11 +11,14 @@ Evidence boundary:
 - ordinary ship-vs-planet attacker ordering uses the same documented Combat
   Priority key as ordinary ship-vs-ship ordering;
 - factual ordinary mixed-site VCRs place the ship on LEFT and planet/base on
-  RIGHT.
+  RIGHT;
+- capture-generated planet-attacker priority preserves Friendly Code priority
+  but does not carry the captured ship's old Mission / Primary Enemy aggression
+  into the newly generated combat order.
 
-Capture-generated target/order lists remain separate.  A post-capture candidate
-therefore fails closed here until its capture-generated priority/order semantics
-are independently reconstructed.
+Capture-generated target-list contents remain separate. The selector therefore
+supports only the bounded priority reset above; eligibility/targetability still
+must be composed independently upstream.
 """
 
 from __future__ import annotations
@@ -104,10 +107,15 @@ def select_initial_plain_planet_attacker(
 ) -> PlanetAttackSelection:
     """Select the highest-priority ordinary planet attacker.
 
-    Pair/planet eligibility must be composed upstream.  Known-ineligible rows are
-    ignored.  Unknown eligibility, duplicate ship inputs, unsupported Friendly
-    Code priority, or an eligible post-capture generated-order candidate makes
-    the selection unresolved rather than silently changing queue order.
+    Pair/planet eligibility must be composed upstream. Known-ineligible rows are
+    ignored. Unknown eligibility, duplicate ship inputs, or unsupported Friendly
+    Code priority makes the selection unresolved.
+
+    A capture-generated order is bounded differently: its Friendly Code still
+    participates in Combat Priority, while the captured ship's old Mission and
+    Primary Enemy are cleared for this newly generated order. This rule changes
+    priority only; it does not assert that the captured ship is eligible to fight
+    any particular planet/base.
     """
 
     if not candidates:
@@ -135,14 +143,18 @@ def select_initial_plain_planet_attacker(
             continue
         if candidate.engagement_eligible is False:
             continue
-        if candidate.post_capture_generated_order:
-            unresolved.append(f"{ship_id}:post_capture_generated_order_unresolved")
-            continue
-
         priority = standard_battle_priority_key(
             ship_id=ship_id,
-            mission=candidate.mission,
-            primary_enemy=candidate.primary_enemy,
+            mission=(
+                None
+                if candidate.post_capture_generated_order
+                else candidate.mission
+            ),
+            primary_enemy=(
+                None
+                if candidate.post_capture_generated_order
+                else candidate.primary_enemy
+            ),
             friendly_code=candidate.friendly_code,
         )
         if priority is None:
