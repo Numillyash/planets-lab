@@ -2,7 +2,7 @@
 
 GitHub is the only source of truth. Verify actual `main` and `agent/combat-c5-host-phase` HEADs before continuing. PR #28 must remain **open + draft** and must not be merged or marked ready without explicit instruction. Game `591478` remains isolated from ordinary promotion.
 
-Progress overview: `docs/handoff/2026-09-11-reverse-progress-assessment.md`.
+Progress overview: `docs/handoff/2026-09-20-reverse-progress-assessment.md`.
 
 ## Stable C5 layers
 
@@ -668,7 +668,7 @@ docs/handoff/2026-09-20-combat-c5-post-capture-third-party-residual-runtime.md
 
 T-1 ship48 has Kill! and independently requests combat against the captured ship's new owner3. VCR38 therefore does not require persistence of ship7's old PE/orders. Ship7's old PE also targets owner8, so this row cannot distinguish old-order persistence from pure defense.
 
-## ACTIVE GATE — post-capture initiator population
+## POST-CAPTURE INITIATOR POPULATION — CLOSED
 
 Pending runtime:
 
@@ -740,3 +740,68 @@ post_capture_initiator_gate_passed=True
 ```
 
 After this rerun, do not invent captured-ship old-order persistence. Move to mixed ship/planet queue ordering, because 15/23 observed prize-ship continuations are planet/base combats.
+
+
+## 2026-09-20 post-capture initiator v2 runtime closure
+
+Runtime:
+
+```text
+docs/handoff/2026-09-20-combat-c5-post-capture-initiator-runtime.md
+```
+
+User runtime source:
+
+```text
+33145c99748642cc75a8f25b1bf819c1f7ba0445
+```
+
+Result:
+
+```text
+capture_continuations=23
+
+independent opponent initiator=23/23
+  ship Kill!/PE=8/8
+  planet/base NUK/ATT=15/15
+
+explanation:
+  opponent_only=21
+  both=2
+  captured_old_orders_only=0
+  neither=0
+
+required_unresolved_total=0
+optional_old_order_unresolved=2
+
+post_capture_initiator_gate_passed=True
+```
+
+Status:
+
+```text
+DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
+```
+
+No observed continuation requires persistence of captured old mission/PE.
+
+## ACTIVE GATE — mixed ship / planet-base queue ordering
+
+Pending handoff:
+
+```text
+docs/handoff/2026-09-20-combat-c5-mixed-ship-planet-queue-pending.md
+```
+
+This is now the main remaining C5 queue boundary.
+
+Immediate questions:
+
+- interleaving of ship-vs-ship and ship-vs-planet/base VCRs;
+- ordering among multiple eligible attackers/defenders;
+- interaction with ship Combat Priority;
+- survivor/capture re-entry around planet/base combat;
+- NUK/ATT planet-initiated battles;
+- mixed LEFT/RIGHT semantics.
+
+Keep capture-generated target-list contents, Advanced Cloak production, game 591478 and broad candidate-coverage expansion separate.
