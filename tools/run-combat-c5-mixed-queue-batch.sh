@@ -79,7 +79,13 @@ run_stage "ALL PLANET ENGAGEMENT POPULATION" \
     --example-limit 40 \
     --output /workspace/artifacts/combat-host-planet-engagement-population.json
 
-run_stage "MIXED SHIP/PLANET DISCOVERY V4" \
+run_stage "PLANET OWNERSHIP TIMELINE" \
+  docker compose run --rm lab python \
+    tools/diagnostics/combat_host_planet_ownership_timeline_audit.py \
+    --example-limit 40 \
+    --output /workspace/artifacts/combat-host-planet-ownership-timeline.json
+
+run_stage "MIXED SHIP/PLANET DISCOVERY V5" \
   docker compose run --rm lab python \
     tools/diagnostics/combat_host_mixed_ship_planet_queue_batch_audit.py \
     --example-limit 20 \
