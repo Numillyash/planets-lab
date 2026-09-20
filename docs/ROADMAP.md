@@ -4,7 +4,7 @@ This file is the operational roadmap for `planets-lab`. Architecture boundaries 
 
 ## Current durable checkpoints
 
-- Reverse progress assessment: [`handoff/2026-09-11-reverse-progress-assessment.md`](handoff/2026-09-11-reverse-progress-assessment.md).
+- Reverse progress assessment: [`handoff/2026-09-20-reverse-progress-assessment.md`](handoff/2026-09-20-reverse-progress-assessment.md).
 - Host combat phase C5: [`handoff/2026-09-08-combat-c5-host-phase-current.md`](handoff/2026-09-08-combat-c5-host-phase-current.md).
 - Candidate-set v2 runtime: [`handoff/2026-09-10-combat-c5-candidate-set-v2-runtime.md`](handoff/2026-09-10-combat-c5-candidate-set-v2-runtime.md).
 - Initial target-order evidence runtime: [`handoff/2026-09-10-combat-c5-initial-standard-target-runtime.md`](handoff/2026-09-10-combat-c5-initial-standard-target-runtime.md).
@@ -14,7 +14,7 @@ This file is the operational roadmap for `planets-lab`. Architecture boundaries 
 - Production precombat effective-state runtime: [`handoff/2026-09-16-combat-c5-production-effective-state-runtime.md`](handoff/2026-09-16-combat-c5-production-effective-state-runtime.md).
 - Mutable ship-queue scope-repair gate: [`handoff/2026-09-16-combat-c5-mutable-ship-queue-pending.md`](handoff/2026-09-16-combat-c5-mutable-ship-queue-pending.md).
 - STANDARD queue composition checkpoint: [`handoff/2026-09-18-combat-c5-standard-queue-composition-pending.md`](handoff/2026-09-18-combat-c5-standard-queue-composition-pending.md).
-- Post-mutation next-pair runtime: [`handoff/2026-09-18-combat-c5-post-mutation-next-pair-runtime.md`](handoff/2026-09-18-combat-c5-post-mutation-next-pair-runtime.md).\n- Capture descriptive runtime: [`handoff/2026-09-20-combat-c5-capture-continuation-descriptive-runtime.md`](handoff/2026-09-20-combat-c5-capture-continuation-descriptive-runtime.md).\n- Production capture runtime: [`handoff/2026-09-20-combat-c5-capture-production-runtime.md`](handoff/2026-09-20-combat-c5-capture-production-runtime.md).\n- Post-capture opponent population gate: [`handoff/2026-09-20-combat-c5-post-capture-opponent-pending.md`](handoff/2026-09-20-combat-c5-post-capture-opponent-pending.md).\n- Third-party residual runtime: [`handoff/2026-09-20-combat-c5-post-capture-third-party-residual-runtime.md`](handoff/2026-09-20-combat-c5-post-capture-third-party-residual-runtime.md).\n- Active post-capture initiator population gate: [`handoff/2026-09-20-combat-c5-post-capture-initiator-population-pending.md`](handoff/2026-09-20-combat-c5-post-capture-initiator-population-pending.md).
+- Post-mutation next-pair runtime: [`handoff/2026-09-18-combat-c5-post-mutation-next-pair-runtime.md`](handoff/2026-09-18-combat-c5-post-mutation-next-pair-runtime.md).\n- Capture descriptive runtime: [`handoff/2026-09-20-combat-c5-capture-continuation-descriptive-runtime.md`](handoff/2026-09-20-combat-c5-capture-continuation-descriptive-runtime.md).\n- Production capture runtime: [`handoff/2026-09-20-combat-c5-capture-production-runtime.md`](handoff/2026-09-20-combat-c5-capture-production-runtime.md).\n- Post-capture opponent population gate: [`handoff/2026-09-20-combat-c5-post-capture-opponent-pending.md`](handoff/2026-09-20-combat-c5-post-capture-opponent-pending.md).\n- Third-party residual runtime: [`handoff/2026-09-20-combat-c5-post-capture-third-party-residual-runtime.md`](handoff/2026-09-20-combat-c5-post-capture-third-party-residual-runtime.md).\n- Post-capture initiator runtime: [`handoff/2026-09-20-combat-c5-post-capture-initiator-runtime.md`](handoff/2026-09-20-combat-c5-post-capture-initiator-runtime.md).\n- Active mixed ship/planet queue handoff: [`handoff/2026-09-20-combat-c5-mixed-ship-planet-queue-pending.md`](handoff/2026-09-20-combat-c5-mixed-ship-planet-queue-pending.md).
 - Advanced Cloak decisive historical closure: [`handoff/2026-09-12-combat-c5-bird-advanced-cloak-decisive-closure-runtime.md`](handoff/2026-09-12-combat-c5-bird-advanced-cloak-decisive-closure-runtime.md).
 
 ## Evidence policy
@@ -26,10 +26,10 @@ Mechanics are promoted only with explicit evidence status: `DOCUMENTED / CORPUS_
 Planning estimates only:
 
 ```text
-combat mechanics reconstruction (C1-C5 knowledge):     ~75-85%
+combat mechanics reconstruction (C1-C5 knowledge):     ~85-90%
 ordinary ship-combat independent candidate coverage:    ~20-25%
 movement ordinary-core reconstruction:                  ~80-90%
-whole NuHost reverse across the roadmap:                ~40-50%
+whole NuHost reverse across the roadmap:                ~45-55%
 ```
 
 Candidate-set v2 independently covers `428 / 1986 = 21.6%` factual ship-vs-ship pairs, with zero conditionally hard-blocked covered factual pairs. Position v3 predicts 1810/3204 factual ship occurrences, 1806 exact and 4 mismatch.
@@ -226,10 +226,10 @@ After mutable membership passes:
 M0 deterministic skeleton:          ~90%+
 M1 minimal sandbox/infrastructure: ~80-90%
 M2 economy/planetary Host:         ~35-50%
-M3 warfare overall:                ~65-75%
+M3 warfare overall:                ~70-80%
 M4 race-specific mechanics:        ~35-50%
-M5A historical corpus pipeline:    ~75-85%
-M5B Nu compatibility/differential: ~60-75%
+M5A historical corpus pipeline:    ~80-90%
+M5B Nu compatibility/differential: ~70-80%
 M6 training/AI:                    intentionally later
 ```
 
@@ -460,3 +460,45 @@ The two missing old captured-ship T-1 rows are optional historical observability
 No observed continuation requires old captured-ship aggression to persist. Do not promote old mission/PE persistence from this corpus.
 
 After the v2 acceptance rerun, the next C5 queue target is mixed ship/planet ordering rather than capture-list guessing.
+
+
+### 2026-09-20 post-capture initiator closure
+
+v2 runtime:
+
+```text
+23 capture continuations
+23/23 independent opponent initiators
+8/8 ship via Kill!/PE
+15/15 planet/base via NUK/ATT
+21 opponent_only
+2 both
+0 captured_old_orders_only
+0 neither
+required unresolved=0
+optional old-order history gaps=2
+gate passed
+```
+
+Status:
+
+```text
+DOCUMENTED + CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
+```
+
+No observed continuation requires captured old mission/PE persistence.
+
+Current C5 focus is now mixed ship/planet-base queue ordering:
+
+```text
+docs/handoff/2026-09-20-combat-c5-mixed-ship-planet-queue-pending.md
+```
+
+Current engineering estimate:
+
+```text
+combat C1-C5 mechanics knowledge: ~85-90%
+whole NuHost roadmap:            ~45-55%
+```
+
+Independent ship-combat candidate coverage remains ~21.6%; mechanics knowledge is therefore much farther ahead than end-to-end historical coverage.
