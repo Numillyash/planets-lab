@@ -36,7 +36,7 @@ from combat_host_priority_intercept_audit import (
 )
 
 
-SCHEMA = "planets-lab.combat-host-mixed-ship-planet-queue-batch-audit.v4"
+SCHEMA = "planets-lab.combat-host-mixed-ship-planet-queue-batch-audit.v5"
 DEFAULT_EXAMPLE_LIMIT = 80
 PLANET_ATTACK_CODES = frozenset({"nuk", "att"})
 HORWASP_RACE_ID = 12
