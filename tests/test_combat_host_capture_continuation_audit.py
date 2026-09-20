@@ -16,6 +16,7 @@ def _appearance(
     vcr_id: int,
     race_id: int,
     side: str,
+    owner_id: int | None = None,
     terminal: dict[str, object] | None = None,
     start: dict[str, object] | None = None,
 ) -> dict[str, object]:
@@ -27,6 +28,7 @@ def _appearance(
         "side": side,
         "ship_id": ship_id,
         "hull_id": 20,
+        "owner_id": race_id if owner_id is None else owner_id,
         "race_id": race_id,
         "start": start
         or {
@@ -79,7 +81,7 @@ def test_capture_transition_recognizes_captor_race_and_exact_carry() -> None:
         start={
             "shield": 20,
             "damage": 30,
-            "crew": 0,
+            "crew": 10,
             "torpedos": 5,
             "fighters": 0,
         },
@@ -103,8 +105,10 @@ def test_capture_transition_recognizes_captor_race_and_exact_carry() -> None:
     assert result["race_changed"] is True
     assert result["hull_preserved"] is True
     assert result["next_opponent_is_captor"] is False
-    assert result["carry_all_exact"] is True
+    assert result["carry_all_exact"] is False
     assert result["shield"]["model"] == "exact_carry"
+    assert result["production"]["resolved"] is True
+    assert result["production"]["all_exact"] is True
 
 
 def test_capture_transition_detects_pre_capture_federation_recovery() -> None:
@@ -114,7 +118,7 @@ def test_capture_transition_detects_pre_capture_federation_recovery() -> None:
         race_id=1,
         side="left",
         terminal={
-            "shield": 40,
+            "shield": 0,
             "damage": 0,
             "crew": 0,
             "torpedoes": 5,
@@ -137,7 +141,7 @@ def test_capture_transition_detects_pre_capture_federation_recovery() -> None:
         start={
             "shield": 25,
             "damage": 0,
-            "crew": 0,
+            "crew": 10,
             "torpedos": 5,
             "fighters": 0,
         },
@@ -160,3 +164,5 @@ def test_capture_transition_detects_pre_capture_federation_recovery() -> None:
     assert result["shield"]["pre_capture_federation_candidate"] == 25
     assert result["shield"]["pre_capture_federation_exact"] is True
     assert result["shield"]["model"] == "pre_capture_federation_recovery"
+    assert result["production"]["resolved"] is True
+    assert result["production"]["all_exact"] is True
