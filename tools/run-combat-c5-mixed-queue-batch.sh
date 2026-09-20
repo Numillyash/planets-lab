@@ -33,7 +33,9 @@ git status --short
 
 run_stage "REGRESSION TESTS" \
   docker compose run --rm lab pytest -q \
+    tests/test_combat_mixed_queue.py \
     tests/test_combat_host_mixed_ship_planet_queue_batch_audit.py \
+    tests/test_combat_host_ship_planet_interphase_state_audit.py \
     tests/test_combat_host_queue_shape_audit.py \
     tests/test_combat_planet.py \
     tests/test_combat_planet_chain_audit.py \
@@ -64,7 +66,13 @@ run_stage "POST-CAPTURE INITIATOR REGRESSION" \
     --example-limit 20 \
     --output /workspace/artifacts/combat-host-post-capture-initiator-batch.json
 
-run_stage "MIXED SHIP/PLANET DISCOVERY" \
+run_stage "SHIP->PLANET INTERPHASE STATE" \
+  docker compose run --rm lab python \
+    tools/diagnostics/combat_host_ship_planet_interphase_state_audit.py \
+    --example-limit 30 \
+    --output /workspace/artifacts/combat-host-ship-planet-interphase-state.json
+
+run_stage "MIXED SHIP/PLANET DISCOVERY V2" \
   docker compose run --rm lab python \
     tools/diagnostics/combat_host_mixed_ship_planet_queue_batch_audit.py \
     --example-limit 20 \
