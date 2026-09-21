@@ -414,6 +414,7 @@ def archive_feature_rows(
         "evidence.vcr.ship_vs_planet_count",
         "evidence.vcr.payload_conflict_count",
         "evidence.relations.members_available",
+        "evidence.relations.complete_across_members",
         "evidence.relations.record_count",
     )
     if data is None:
@@ -511,7 +512,9 @@ def archive_feature_rows(
         "evidence.vcr.ship_vs_planet_count": shapes.get("ship_vs_planet", 0),
         "evidence.vcr.payload_conflict_count": payload_conflicts,
         "evidence.relations.members_available": relations_members_available,
-        "evidence.relations.record_count": relation_record_count,
+        "evidence.relations.complete_across_members": (
+            relations_members_available == len(members)
+        ),
     }
     for feature, value in facts.items():
         rows.append(
@@ -524,6 +527,22 @@ def archive_feature_rows(
                 source_location=location,
             )
         )
+
+    relations_complete = relations_members_available == len(members)
+    rows.append(
+        feature_row(
+            game_id=game_id,
+            feature="evidence.relations.record_count",
+            value=relation_record_count if relations_complete else None,
+            known=relations_complete,
+            source_kind=(
+                "loadall_archive"
+                if relations_complete
+                else "archive_partial_field_coverage"
+            ),
+            source_location=location,
+        )
+    )
     return rows
 
 
