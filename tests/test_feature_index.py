@@ -428,3 +428,53 @@ def test_partial_relation_field_coverage_does_not_become_zero(tmp_path) -> None:
     )
     assert rows["evidence.relations.record_count"]["known"] is False
     assert rows["evidence.relations.record_count"]["int_value"] is None
+
+
+
+def test_combat_planar_no_horwasp_profile_preserves_legacy_ordinary_scope() -> None:
+    from planets_lab.corpus.feature_index import (
+        profile_predicates,
+        profile_selection_summary,
+    )
+
+    classic = manifest_feature_rows(
+        _manifest(10),
+        manifest_location="manifest.jsonl",
+    )
+    custom_campaign = manifest_feature_rows(
+        _manifest(20, campaign=True, custom=True),
+        manifest_location="manifest.jsonl",
+    )
+    horwasp_sphere = manifest_feature_rows(
+        _manifest(
+            30,
+            sphere=True,
+            campaign=True,
+            game_type=4,
+            races=(1, 12),
+        ),
+        manifest_location="manifest.jsonl",
+    )
+
+    rows = [*classic, *custom_campaign, *horwasp_sphere]
+    decisions = select_games(
+        rows,
+        profile_predicates("combat-planar-no-horwasp"),
+    )
+    assert [(row.game_id, row.included) for row in decisions] == [
+        (10, True),
+        (20, True),
+        (30, False),
+    ]
+
+    summary = profile_selection_summary(
+        rows,
+        profile="combat-planar-no-horwasp",
+    )
+    assert summary == {
+        "profile": "combat-planar-no-horwasp",
+        "predicate_count": 3,
+        "included_game_ids": [10, 20],
+        "excluded_game_ids": [30],
+        "unknown_game_ids": [],
+    }
