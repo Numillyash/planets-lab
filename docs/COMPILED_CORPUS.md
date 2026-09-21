@@ -178,8 +178,23 @@ combat_ship_chain_phase_audit.py
 combat_ship_chain_cluster_audit.py
 ```
 
-Pending continuity gate:
-`tools/run-combat-feature-scope-gate.sh`.
+Runtime continuity gate:
+
+```text
+source HEAD                         2b75c9ec079b55e4219f2a64e569b6a5d708e6ae
+selected games                      11
+excluded games                       1
+UNKNOWN selector games               0
+C4 selected transitions            103
+C3 selected transitions           1169
+C3 ship->ship survivor            764/764
+C3 adjacent ship->ship            751/751
+integration exact                    true
+failures                               []
+```
+
+Runtime handoff:
+`docs/handoff/2026-09-21-combat-feature-scope-selector-runtime.md`.
 
 
 ## Current runtime-verified 12-game invariants
