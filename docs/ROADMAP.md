@@ -490,6 +490,16 @@ combat parity integration exact=true
 Runtime:
 `docs/handoff/2026-09-21-corpus-feature-index-v1-runtime.md`.
 
+
+Feature Index is now also being integrated into mechanics diagnostics. A separate
+`combat-planar-no-horwasp` profile preserves the historical 11-game C3/C4
+scope without hardcoding a special game id. Planet-chain, ship-chain phase and
+ship-chain cluster diagnostics now use selector-backed selected/excluded/UNKNOWN
+partitions.
+
+Pending archive continuity gate:
+`docs/handoff/2026-09-21-combat-feature-scope-selector-pending.md`.
+
 ## Immediate next work — Host combat phase
 
 Proceed in this order:
