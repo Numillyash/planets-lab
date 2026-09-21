@@ -189,5 +189,8 @@ def test_all_indexed_feature_selector_preserves_replay_result(tmp_path: Path) ->
     assert selected["feature_selection"] == {
         "index": str(index_path),
         "profile": "all-indexed",
-        "selected_game_ids": [123456],
+        "predicate_count": 0,
+        "included_game_ids": [123456],
+        "excluded_game_ids": [],
+        "unknown_game_ids": [],
     }
