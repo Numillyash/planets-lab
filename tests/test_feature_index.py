@@ -234,6 +234,8 @@ def test_archive_features_deduplicate_vcrs_and_count_shapes() -> None:
     assert rows["evidence.vcr.ship_vs_planet_count"]["int_value"] == 1
     assert rows["evidence.vcr.payload_conflict_count"]["int_value"] == 0
     assert rows["evidence.relations.members_available"]["int_value"] == 4
+    assert rows["evidence.relations.complete_across_members"]["bool_value"] is True
+    assert rows["evidence.relations.record_count"]["known"] is True
     assert rows["evidence.relations.record_count"]["int_value"] == 4
 
 
@@ -372,3 +374,30 @@ def test_build_is_deterministic_and_reads_compiled_movement_count(tmp_path) -> N
     assert first["feature_index_schema"] == FEATURE_INDEX_SCHEMA
     assert first["parquet_sha256"] == second["parquet_sha256"]
     assert first_parquet.read_bytes() == second_parquet.read_bytes()
+
+
+
+def test_partial_relation_field_coverage_does_not_become_zero(tmp_path) -> None:
+    buffer = io.BytesIO()
+    first = _turn_payload(42, 1, 0, relations=[{"id": 1}])
+    second = _turn_payload(42, 1, 1)
+    second.pop("relations")
+    with zipfile.ZipFile(buffer, "w") as archive:
+        archive.writestr("player1-turn0.trn", json.dumps(first))
+        archive.writestr("player1-turn1.trn", json.dumps(second))
+
+    rows = _by_feature(
+        archive_feature_rows(
+            game_id=42,
+            archive_path=tmp_path / "game-42.zip",
+            data=buffer.getvalue(),
+        )
+    )
+
+    assert rows["evidence.relations.members_available"]["int_value"] == 1
+    assert (
+        rows["evidence.relations.complete_across_members"]["bool_value"]
+        is False
+    )
+    assert rows["evidence.relations.record_count"]["known"] is False
+    assert rows["evidence.relations.record_count"]["int_value"] is None
