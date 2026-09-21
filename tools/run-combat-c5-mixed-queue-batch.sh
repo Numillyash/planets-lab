@@ -31,6 +31,10 @@ echo "===== C5 MIXED QUEUE BATCH: HEAD ====="
 git rev-parse HEAD
 git status --short
 
+run_stage "SHARED IMPORT SMOKE" \
+  docker compose run --rm lab python -c \
+    'import sys; sys.path.insert(0, "/workspace/tools/diagnostics"); import combat_host_mixed_ship_planet_queue_batch_audit; import combat_host_ship_planet_interphase_state_audit; import combat_host_planet_engagement_population_audit; import combat_host_planet_ownership_timeline_audit; import combat_host_planet_precombat_owner_source_audit'
+
 run_stage "REGRESSION TESTS" \
   docker compose run --rm lab pytest -q \
     tests/test_combat_interphase.py \
