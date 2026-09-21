@@ -2,7 +2,10 @@ import pytest
 
 from planets_lab.corpus.compiled_movement_corpus_cli import _manifest_nuionstorms
 from planets_lab.corpus.movement_residual_context import StormRecord
-from planets_lab.corpus.movement_storm_context import storm_expected_category_for_mode
+from planets_lab.corpus.movement_storm_context import (
+    storm_expected_category_for_mode,
+    storm_offset_for_mode,
+)
 from planets_lab.validation.movement_geometry import MovementSample
 
 
@@ -65,6 +68,24 @@ def test_unknown_storm_mode_fails_closed() -> None:
     )
     assert category is None
     assert status == "storm_mode_unknown"
+
+
+def test_mode_aware_offset_exposes_same_classic_vector_without_endpoint_input() -> None:
+    offset, status = storm_offset_for_mode(
+        (_storm(),),
+        x=190,
+        y=100,
+        nuionstorms=False,
+    )
+    assert offset == (27, 0)
+    assert status == "resolved_drag"
+
+
+def test_empty_storm_population_is_mode_agnostic() -> None:
+    assert storm_offset_for_mode((), x=190, y=100, nuionstorms=None) == (
+        (0, 0),
+        "not_affected",
+    )
 
 
 def test_manifest_storm_mode_requires_authoritative_boolean() -> None:
