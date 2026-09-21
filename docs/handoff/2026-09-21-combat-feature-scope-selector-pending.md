@@ -254,3 +254,13 @@ Durable runtime:
 `docs/handoff/2026-09-21-combat-feature-scope-selector-runtime.md`.
 
 The migration is closed. No mechanics evidence label changed.
+
+
+## Shared resolver follow-up
+
+The initially verified selector migration was subsequently refactored to use the
+common `FeatureScope` API in `src/planets_lab/corpus/feature_scope.py`.
+
+The next run of `tools/run-combat-feature-scope-gate.sh` additionally requires
+the selected/excluded/UNKNOWN partitions to be disjoint. This is an
+infrastructure-equivalence rerun, not a new mechanics evidence gate.
