@@ -446,3 +446,54 @@ bash tools/run-corpus-feature-index-gate.sh
 ```
 
 and requires the gitignored immutable ZIP cache that exists on the corpus host.
+
+
+## Local gate portability repair
+
+The first corpus-host execution of:
+
+```bash
+bash tools/run-corpus-feature-index-gate.sh
+```
+
+failed during pytest collection with:
+
+```text
+ModuleNotFoundError: No module named 'planets_lab'
+```
+
+The host was using system Python 3.10 against a `src/` layout checkout with no
+editable package installation. GitHub Actions did not expose this because CI
+installs `-e '.[dev]'` under Python 3.12 before running tests.
+
+This was a runner portability defect, not a feature-index or corpus failure.
+
+Repair commit:
+
+```text
+d2b3195a03711852f5f5769aaecf50a43da65a96
+  fix: run corpus feature index gate in project container
+```
+
+The gate now follows the mature historical-gate convention:
+
+```text
+docker compose run --rm -T
+-e PYTHONPATH=/workspace/src:/workspace/tools/diagnostics
+lab
+```
+
+The project image is Python 3.12 and already contains `.[dev]` dependencies.
+The repository is bind-mounted at `/workspace`, so source is always taken from
+the checked-out revision even if the image itself was built earlier.
+
+The gate now additionally verifies:
+
+- current branch is `main`;
+- the checkout is clean;
+- HEAD exactly matches freshly fetched `origin/main`;
+- container Python is >= 3.11;
+- `planets_lab` imports from `/workspace/src`;
+- tracked working-tree state remains unchanged after the gate.
+
+No evidence or selector result was taken from the failed host attempt.
