@@ -89,6 +89,7 @@ SETTING_FEATURES: tuple[str, ...] = (
 GAME_FEATURES: tuple[tuple[str, str], ...] = (
     ("game.status", "status"),
     ("game.status_name", "statusname"),
+    ("game.short_description", "shortdescription"),
     ("game.game_type", "gametype"),
     ("game.is_custom", "iscustom"),
     ("game.is_private", "isprivate"),
