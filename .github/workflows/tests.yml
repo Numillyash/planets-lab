@@ -61,5 +61,12 @@ jobs:
           PYTHONPATH="$PWD/src:$PWD/tools/diagnostics" python tools/diagnostics/tow_finite_fuel_documented_reconciliation_audit.py --help >/dev/null
           PYTHONPATH="$PWD/src:$PWD/tools/diagnostics" python -c "from intercept_fuel_historical_differential_audit import PREPARED_DIR, RAW_DIR; assert PREPARED_DIR; assert RAW_DIR"
 
+      - name: Validate corpus feature index tooling
+        run: |
+          bash -n tools/run-corpus-feature-index-gate.sh
+          python -m planets_lab.corpus.feature_index_cli --help >/dev/null
+          python tools/diagnostics/corpus_feature_index_integration_check.py --help >/dev/null
+          python tools/diagnostics/combat_classic_corpus_parity_audit.py --help >/dev/null
+
       - name: Run tests
         run: pytest
