@@ -12,6 +12,7 @@ from .movement_differential import _entity_map, _planet_tuples_by_turn, _warp_we
 from .movement_residual_context import (
     StormRecord,
     _navigation_endpoint,
+    _resolved_storm_offset,
     _storm_consensus_by_turn,
     _storm_expected_category,
 )
@@ -71,6 +72,30 @@ def _classic_constant_storm_offset(
     if not affected:
         return (0, 0), "not_affected"
     return (total_dx, total_dy), "resolved_drag"
+
+
+def storm_offset_for_mode(
+    storms: Sequence[StormRecord],
+    *,
+    x: int,
+    y: int,
+    nuionstorms: bool | None,
+) -> tuple[tuple[int, int] | None, str]:
+    """Return deterministic storm drag for the authoritative mode.
+
+    This compatibility helper is observation-independent and is used by the
+    C5 precombat position reconstructor. Empty storm sets resolve to zero even
+    when mode metadata is unavailable; a non-empty set with unknown mode
+    remains fail-closed.
+    """
+
+    if not storms:
+        return (0, 0), "not_affected"
+    if nuionstorms is True:
+        return _resolved_storm_offset(storms, x=x, y=y)
+    if nuionstorms is False:
+        return _classic_constant_storm_offset(storms, x=x, y=y)
+    return None, "storm_mode_unknown"
 
 
 def storm_expected_category_for_mode(
