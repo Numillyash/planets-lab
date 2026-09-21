@@ -227,6 +227,7 @@ def _appearance(
         "side": side_name,
         "ship_id": ship_id,
         "hull_id": hull_id,
+        "owner_id": _int(replay_side, "owner_id"),
         "race_id": _int(raw_side, "raceid"),
         "start": dict(raw_side),
         "terminal": dict(replay_side),
