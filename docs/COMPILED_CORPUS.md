@@ -196,6 +196,19 @@ failures                               []
 Runtime handoff:
 `docs/handoff/2026-09-21-combat-feature-scope-selector-runtime.md`.
 
+Shared scope resolver:
+
+```text
+src/planets_lab/corpus/feature_scope.py
+FeatureScope
+load_feature_scope
+optional_feature_scope
+```
+
+Combat parity, planet-chain, phase and cluster diagnostics now share this one
+selector implementation. UNKNOWN is a disjoint fail-closed partition rather than
+an alias for known exclusion.
+
 
 ## Current runtime-verified 12-game invariants
 
