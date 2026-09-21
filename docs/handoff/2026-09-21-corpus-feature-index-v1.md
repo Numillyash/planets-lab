@@ -419,3 +419,30 @@ The normal pipeline remains:
 5. deterministic tests;
 6. historical differential gate;
 7. evidence promotion using the existing labels only.
+
+
+## GitHub Actions validation
+
+Push CI after the completed v1 implementation ran the normal repository workflow successfully.
+
+```text
+full pytest: 384 passed
+feature-index CLI/import checks: passed
+tracked 12-game manifest build: passed
+second deterministic manifest rebuild: passed
+Parquet byte comparison: exact
+ordinary-classic selector CLI: passed
+```
+
+The CI build deliberately points archive/compiled source directories at empty
+temporary paths. This proves that the current 12 tracked games still compile
+deterministically while archive-derived and compiled-derived features fail
+closed to UNKNOWN instead of zero/default values.
+
+The archive-enriched gate remains:
+
+```bash
+bash tools/run-corpus-feature-index-gate.sh
+```
+
+and requires the gitignored immutable ZIP cache that exists on the corpus host.
