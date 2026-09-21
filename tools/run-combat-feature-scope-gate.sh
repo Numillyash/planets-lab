@@ -33,6 +33,8 @@ ARTIFACT_DIR="${ARTIFACT_DIR:-artifacts/combat-feature-scope-v1}"
 PROFILE="${PROFILE:-combat-planar-no-horwasp}"
 
 mkdir -p "$ARTIFACT_DIR"
+LOG_PATH="$ARTIFACT_DIR/gate.log"
+exec > >(tee "$LOG_PATH") 2>&1
 
 echo "===== COMBAT FEATURE SCOPE: BUILD LAB IMAGE ====="
 docker compose build lab
@@ -119,3 +121,4 @@ echo "planet:       $ARTIFACT_DIR/planet-chain.json"
 echo "ship_phase:   $ARTIFACT_DIR/ship-phase.json"
 echo "ship_cluster: $ARTIFACT_DIR/ship-cluster.json"
 echo "integration:  $ARTIFACT_DIR/integration.json"
+echo "full_log:     $LOG_PATH"
