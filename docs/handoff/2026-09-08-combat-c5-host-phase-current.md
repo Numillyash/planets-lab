@@ -1091,3 +1091,25 @@ The v7 corpus diagnostic now evaluates every currently reconstructible positive-
 
 Pending runtime:
 `docs/handoff/2026-09-21-combat-c5-directed-clan-drop-pending.md`
+
+
+## 2026-09-21 v7 first runtime invalidated and repaired
+
+The first v7 attempt is not a mechanics result. The shared mixed diagnostic was accidentally truncated by a schema-only edit that replaced the whole file with a 40-line fetch fragment.
+
+Observed failures were import-only:
+`_shape`, `_load_groups`, `HORWASP_RACE_ID`, `_capture_reset_priority_order`.
+
+Repair commit:
+`2d0dec4c497912ce93fcf596844214a05b75d24a`.
+
+The restored file is 42153 bytes and all shared symbols are present again.
+
+A new fast batch stage:
+`SHARED IMPORT SMOKE`
+now runs before the regression/corpus stages.
+
+Incident handoff:
+`docs/handoff/2026-09-21-combat-c5-v7-import-failure.md`.
+
+No evidence labels changed from the failed run. Last valid corpus checkpoint remains v6. Directed clan-drop v7 remains pending rerun.
