@@ -7,9 +7,9 @@ from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any, Mapping
 
-from planets_lab.corpus.feature_index import (
-    load_feature_rows,
-    profile_selection_summary,
+from planets_lab.corpus.feature_scope import (
+    DEFAULT_FEATURE_INDEX_PATH,
+    optional_feature_scope,
 )
 
 
@@ -21,7 +21,7 @@ chain_audit = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(chain_audit)
 
 DEFAULT_ARCHIVE_DIR = Path("validation/corpus/cache/loadall")
-DEFAULT_FEATURE_INDEX = Path("validation/corpus/compiled/v1/metadata/game_features.parquet")
+DEFAULT_FEATURE_INDEX = DEFAULT_FEATURE_INDEX_PATH
 DEFAULT_SCOPE_PROFILE = "combat-planar-no-horwasp"
 CARRY_FIELDS = ("damage", "crew", "torpedoes", "fighters")
 
@@ -119,17 +119,6 @@ def _status_counts_for_games(
     return result
 
 
-def _scope_selection(args: argparse.Namespace) -> dict[str, Any] | None:
-    feature_index = getattr(args, "feature_index", None)
-    if feature_index is None:
-        return None
-    rows = load_feature_rows(Path(feature_index))
-    return profile_selection_summary(
-        rows,
-        profile=getattr(args, "scope_profile", DEFAULT_SCOPE_PROFILE),
-    )
-
-
 def run(args: argparse.Namespace) -> dict[str, Any]:
     base_args = argparse.Namespace(
         archive_dir=args.archive_dir,
@@ -144,18 +133,22 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     problems = list(base.get("mismatch_details") or [])
     race1 = list(base.get("race1_samples") or [])
 
-    selection = _scope_selection(args)
+    feature_scope = optional_feature_scope(
+        getattr(args, "feature_index", None),
+        profile=getattr(args, "scope_profile", DEFAULT_SCOPE_PROFILE),
+    )
+    selection = feature_scope.to_dict() if feature_scope is not None else None
     games = base.get("games")
     games = games if isinstance(games, Mapping) else {}
     all_game_ids = {int(game_id) for game_id in games}
-    if selection is None:
+    if feature_scope is None:
         selected_ids = set(all_game_ids)
         excluded_ids: set[int] = set()
         unknown_ids: set[int] = set()
     else:
-        selected_ids = set(selection["included_game_ids"])
-        excluded_ids = set(selection["excluded_game_ids"])
-        unknown_ids = set(selection["unknown_game_ids"])
+        selected_ids = set(feature_scope.selected_ids)
+        excluded_ids = set(feature_scope.excluded_ids)
+        unknown_ids = set(feature_scope.unknown_ids)
 
     by_scope_status: dict[str, Counter[str]] = defaultdict(Counter)
     by_scope_signature: dict[str, Counter[str]] = defaultdict(Counter)
