@@ -1073,3 +1073,21 @@ Next gate must use `transferclans/transfertargetid/transfertargettype`, then rep
 
 Updated planning assessment:
 `docs/handoff/2026-09-21-reverse-progress-assessment.md`
+
+
+## 2026-09-21 active directed clan-drop ownership gate
+
+Mixed queue v6 is durable and green. The immediate C5 production gap is precombat planet ownership, not planet attacker ordering.
+
+New production boundary:
+
+```text
+src/planets_lab/rules/combat/planet_ownership.py
+```
+
+It validates directed clan transfers to planets and sorts them in Host Ship-ID order. It deliberately stops before ground-combat casualty math.
+
+The v7 corpus diagnostic now evaluates every currently reconstructible positive-owner reversal against explicit `transferclans/transfertargetid/transfertargettype` orders, inventories ordered multi-wave streams, and captures planet clan/defense fields needed for the later reducer.
+
+Pending runtime:
+`docs/handoff/2026-09-21-combat-c5-directed-clan-drop-pending.md`
