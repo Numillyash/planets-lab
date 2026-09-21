@@ -37,6 +37,8 @@ from combat_host_priority_intercept_audit import (
 SCHEMA = "planets-lab.combat-host-planet-precombat-owner-source-audit.v2"
 DEFAULT_EXAMPLE_LIMIT = 100
 
+PLANET_FIELD_TOKENS = ("clan", "defen", "friendly", "owner", "race", "base")
+
 ORDER_FIELD_TOKENS = (
     "clan",
     "drop",
@@ -56,6 +58,16 @@ def _interesting_ship_fields(raw: Mapping[str, Any]) -> dict[str, Any]:
         if key in {"id", "ownerid", "raceid", "hullid", "x", "y", "clans"} or any(
             token in lowered for token in ORDER_FIELD_TOKENS
         ):
+            if isinstance(value, (str, int, float, bool)) or value is None:
+                result[str(key)] = value
+    return dict(sorted(result.items()))
+
+
+def _interesting_planet_fields(raw: Mapping[str, Any]) -> dict[str, Any]:
+    result: dict[str, Any] = {}
+    for key, value in raw.items():
+        lowered = str(key).lower()
+        if any(token in lowered for token in PLANET_FIELD_TOKENS):
             if isinstance(value, (str, int, float, bool)) or value is None:
                 result[str(key)] = value
     return dict(sorted(result.items()))
@@ -101,6 +113,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     counts: Counter[str] = Counter()
     examples: list[dict[str, Any]] = []
     field_presence: Counter[str] = Counter()
+    planet_field_presence: Counter[str] = Counter()
 
     for (game_id, battle_turn, vcr_id), raw_vcr in sorted(vcrs.items()):
         if game_id == SPECIAL_GAME_ID or _shape(raw_vcr) != "ship_vs_planet":
@@ -151,12 +164,15 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 "planet_tminus1_x": _intish(planet_raw.get("x")),
                 "planet_tminus1_y": _intish(planet_raw.get("y")),
                 "planet_tminus1_clans": _intish(planet_raw.get("clans")),
+                "planet_tminus1_fields": _interesting_planet_fields(planet_raw),
                 "attacking_ship_owner_ids": set(),
                 "vcr_ids": [],
             },
         )
         row["attacking_ship_owner_ids"].add(int(ship["owner_id"]))
         row["vcr_ids"].append(int(vcr_id))
+        for field in row["planet_tminus1_fields"]:
+            planet_field_presence[field] += 1
 
     for key in sorted(changed):
         row = changed[key]
@@ -294,6 +310,23 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 counts["ordered_drop:last_owner_is_defender"] += 1
             if any(order.owner_id == defender_owner for order in ordered_drops):
                 counts["ordered_drop:defender_present"] += 1
+
+            planet_clans = row.get("planet_tminus1_clans")
+            if (
+                len(ordered_drops) == 1
+                and ordered_drops[0].owner_id == defender_owner
+                and isinstance(planet_clans, int)
+                and not isinstance(planet_clans, bool)
+                and planet_clans >= 0
+            ):
+                counts["single_defender_drop_controls"] += 1
+                drop_clans = ordered_drops[0].clans
+                if drop_clans > planet_clans:
+                    counts["single_drop_vs_planet_clans:greater"] += 1
+                elif drop_clans == planet_clans:
+                    counts["single_drop_vs_planet_clans:equal"] += 1
+                else:
+                    counts["single_drop_vs_planet_clans:less"] += 1
         else:
             counts["changed_without_any_directed_clan_drop"] += 1
 
@@ -353,6 +386,9 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "counts": dict(sorted(counts.items())),
             "ship_field_presence_on_colocated_candidates": dict(
                 sorted(field_presence.items())
+            ),
+            "planet_field_presence_on_changed_timelines": dict(
+                sorted(planet_field_presence.items())
             ),
             "acceptance": acceptance,
         },
