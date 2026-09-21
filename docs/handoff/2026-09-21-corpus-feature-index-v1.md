@@ -533,3 +533,29 @@ cb72f539775d22726d8d7f225fc7b3deeb8f936312873df12db59340e1dd7735
 ```
 
 The feature-index workstream v1 acceptance target is therefore met on the actual immutable archive corpus.
+
+
+## Mechanics integration profile
+
+Feature Index v1 now includes a separate:
+
+```text
+combat-planar-no-horwasp
+```
+
+profile for continuity with existing C3/C4 diagnostics.
+
+Predicates:
+
+```text
+game.status == 3
+settings.sphere == false
+population.horwasp_present == false
+```
+
+This is intentionally not called Classic. It preserves the current historical
+11-game clean combat scope while the stricter `ordinary-classic` profile
+continues to select only three Classic-signature games.
+
+The first migrated diagnostics and archive continuity gate are documented in:
+`docs/handoff/2026-09-21-combat-feature-scope-selector-pending.md`.
