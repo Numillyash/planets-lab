@@ -734,3 +734,35 @@ Updated planning estimate:
 combat C1-C5 mechanics knowledge: ~90-93%
 whole NuHost reverse:            ~45-55%
 ```
+
+
+### 2026-09-21 C5 directed clan-drop gate — prepared
+
+After green mixed batch v6, the remaining mixed combat gap is upstream planet ownership mutation.
+
+New production:
+```text
+src/planets_lab/rules/combat/planet_ownership.py
+```
+
+Bounded primitives:
+```text
+PlanetClanDropOrder
+directed_planet_clan_drop(...)
+ordered_planet_clan_drops(...)
+```
+
+The active v7 batch now tests the 42 currently reconstructible positive-owner reversals against explicit T-1 directed clan-drop orders:
+
+```text
+transferclans > 0
+transfertargettype == 1
+transfertargetid == planet_id
+```
+
+and records the complete Ship-ID ordered transfer stream plus starting planet clan/defense fields.
+
+Pending handoff:
+`docs/handoff/2026-09-21-combat-c5-directed-clan-drop-pending.md`
+
+No casualty/ground-combat reducer is promoted until this population differential is reviewed.
