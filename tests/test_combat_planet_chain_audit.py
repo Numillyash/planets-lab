@@ -1,8 +1,10 @@
 from __future__ import annotations
 
+import argparse
 import importlib.util
 from pathlib import Path
 
+from planets_lab.corpus.feature_index import feature_row, write_feature_index
 from planets_lab.rules.combat import rebuild_planet_combatant
 
 
@@ -149,3 +151,58 @@ def test_scope_keeps_plain_planet_and_starbase_populations_separate() -> None:
     assert scope["base_kind"] == {"no_starbase": 1, "starbase": 1}
     assert scope["shield_carry"] == {"match": 2}
     assert scope["exact_no_starbase"] == {"match": 1, "not_applicable": 1}
+
+
+
+def test_scope_selection_is_loaded_from_feature_index(tmp_path: Path) -> None:
+    rows = []
+    for game_id, sphere, horwasp in (
+        (10, False, False),
+        (20, True, True),
+    ):
+        rows.extend(
+            [
+                feature_row(
+                    game_id=game_id,
+                    feature="game.status",
+                    value=3,
+                    known=True,
+                    source_kind="fixture",
+                    source_location="fixture",
+                ),
+                feature_row(
+                    game_id=game_id,
+                    feature="settings.sphere",
+                    value=sphere,
+                    known=True,
+                    source_kind="fixture",
+                    source_location="fixture",
+                ),
+                feature_row(
+                    game_id=game_id,
+                    feature="population.horwasp_present",
+                    value=horwasp,
+                    known=True,
+                    source_kind="fixture",
+                    source_location="fixture",
+                ),
+            ]
+        )
+
+    index = tmp_path / "game_features.parquet"
+    write_feature_index(
+        rows=rows,
+        parquet_path=index,
+        database_path=tmp_path / "corpus.duckdb",
+    )
+    selection = audit._scope_selection(
+        argparse.Namespace(
+            feature_index=index,
+            scope_profile="combat-planar-no-horwasp",
+        )
+    )
+
+    assert selection is not None
+    assert selection["included_game_ids"] == [10]
+    assert selection["excluded_game_ids"] == [20]
+    assert selection["unknown_game_ids"] == []
