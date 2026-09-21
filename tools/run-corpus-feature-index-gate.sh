@@ -36,6 +36,9 @@ REBUILD_DIR="$ARTIFACT_DIR/rebuild"
 
 mkdir -p "$ARTIFACT_DIR" "$REBUILD_DIR"
 
+echo "===== FEATURE INDEX: BUILD LAB IMAGE ====="
+docker compose build lab
+
 # The repository is a src-layout Python package and requires Python >=3.11.
 # Run the gate in the project's Docker service rather than depending on a host
 # editable install or the host Python version. The bind mount keeps all compiled
