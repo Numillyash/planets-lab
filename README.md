@@ -71,3 +71,13 @@ bash tools/run-partial-fuel-historical-gate.sh
 The finite-fuel Tow evidence chain is preserved in tracked `tools/run-*.sh`
 runners and the 2026-09-11 handoffs. Broad movement residual hunting remains
 closed unless a bounded contradiction or interaction requires reopening it.
+
+
+### Predictive Host combat queue gate
+
+The evidence-backed C5 order/selection/mutable-queue primitives have been
+reintegrated over current `main`. A selector-backed held-out next-VCR gate is
+tracked in `tools/run-combat-predictive-queue-gate.sh`. It runs the shared
+`combat-planar-no-horwasp` FeatureScope acceptance first, then validates
+multi-step ordinary STANDARD queue prediction. Fresh archive-host acceptance is
+still required before recording a new runtime checkpoint.

@@ -571,3 +571,21 @@ The target remains a high-fidelity NuHost-compatible simulator suitable for real
 - **M5A historical corpus:** active and operational; deterministic Game / Host Feature Index v1 is implemented for bounded corpus selection.
 - **M5B Nu compatibility matrix:** active; movement, base finite-fuel Tow and ordinary Classic combat sequence checkpoints are explicit.
 - **M6 training/AI:** later, after required simulation/observer surfaces are sufficiently faithful.
+
+
+### Active combat gate: selector-backed predictive ship queue
+
+Current integration restores the previously validated C5 canonical primitives
+for engagement/order, initial STANDARD selection, occurrence-aware side
+assignment, mutable survivor/capture state and post-mutation selection.
+
+The immediate runtime gate is now one command:
+
+```bash
+bash tools/run-combat-predictive-queue-gate.sh
+```
+
+It must first preserve the shared FeatureScope C3/C4 checkpoints, then reproduce
+the historical held-out ordinary queue population with zero next-VCR mismatches.
+Do not advance to broader complete-site or mixed planet ownership mechanics if
+that gate is not exact.

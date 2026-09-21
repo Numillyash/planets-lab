@@ -472,3 +472,22 @@ finite-fuel Tow gate:          documented reconciliation all stages 0/0
 full 12-game L2 rebuild:       clean / zero failures
 final generic clustering:      2197 total / 740 generic / 75 hulls / largest coarse 113
 ```
+
+
+## Predictive combat queue consumer
+
+The current predictive ship-queue differential consumes the compiled Feature
+Index only through shared `FeatureScope`, using profile
+`combat-planar-no-horwasp`.
+
+The selector is population infrastructure only. Factual VCR `N+1` remains
+held out from selector input and is used only as the comparator after VCR `N`
+terminal replay and active-queue mutation.
+
+Tracked archive-host runner:
+
+```text
+tools/run-combat-predictive-queue-gate.sh
+```
+
+Generated queue reports remain under `artifacts/` and are not committed.
