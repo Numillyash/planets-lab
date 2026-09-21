@@ -156,6 +156,32 @@ combat integration exact=true, mismatches=[]
 Runtime handoff:
 `docs/handoff/2026-09-21-corpus-feature-index-v1-runtime.md`.
 
+Mechanics integration adds a second named profile:
+
+```text
+combat-planar-no-horwasp:
+  game.status == 3
+  settings.sphere == false
+  population.horwasp_present == false
+```
+
+On the current 12-game corpus it selects 11 games and excludes only the
+Sphere/Horwasp game. This deliberately preserves the historical C3/C4 clean
+scope while removing ad-hoc game-id checks. It is distinct from the stricter
+3-game `ordinary-classic` profile.
+
+Migrated diagnostics:
+
+```text
+combat_planet_chain_audit.py
+combat_ship_chain_phase_audit.py
+combat_ship_chain_cluster_audit.py
+```
+
+Pending continuity gate:
+`tools/run-combat-feature-scope-gate.sh`.
+
+
 ## Current runtime-verified 12-game invariants
 
 The compiled-layer counters remain the last recorded L1/L2 rebuild checkpoint. Later partial-fuel and finite-fuel Tow historical gates read these existing archives/caches without rebuilding L1/L2 and verified narrowly scoped movement rules independently.
