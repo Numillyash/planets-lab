@@ -67,6 +67,11 @@ jobs:
           python -m planets_lab.corpus.feature_index_cli --help >/dev/null
           python tools/diagnostics/corpus_feature_index_integration_check.py --help >/dev/null
           python tools/diagnostics/combat_classic_corpus_parity_audit.py --help >/dev/null
+          python tools/diagnostics/combat_planet_chain_audit.py --help >/dev/null
+          python tools/diagnostics/combat_ship_chain_phase_audit.py --help >/dev/null
+          python tools/diagnostics/combat_ship_chain_cluster_audit.py --help >/dev/null
+          python tools/diagnostics/combat_feature_scope_integration_check.py --help >/dev/null
+          bash -n tools/run-combat-feature-scope-gate.sh
           mkdir -p /tmp/feature-index-a /tmp/feature-index-b /tmp/no-loadall /tmp/no-compiled
           python -m planets_lab.corpus.feature_index_cli build \
             --archive-dir /tmp/no-loadall \
