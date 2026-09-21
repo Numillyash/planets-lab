@@ -517,6 +517,16 @@ the historical C3/C4 counters.
 
 ## Immediate next work — Host combat phase
 
+Current transition handoff:
+
+`docs/handoff/2026-09-21-new-chat-combat-engagement-order.md`
+
+The first bounded action in the next session is the final archive-host rerun of
+`tools/run-combat-feature-scope-gate.sh` against actual GitHub `main`. If the
+shared `FeatureScope` path preserves the previously accepted C3/C4 populations
+and disjoint selector partitions, close selector plumbing and return immediately
+to substantive Host engagement/order reconstruction.
+
 Proceed in this order:
 
 1. reconstruct full factual combat queues by turn/location from ordered VCRs;
