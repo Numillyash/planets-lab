@@ -497,8 +497,18 @@ scope without hardcoding a special game id. Planet-chain, ship-chain phase and
 ship-chain cluster diagnostics now use selector-backed selected/excluded/UNKNOWN
 partitions.
 
-Pending archive continuity gate:
-`docs/handoff/2026-09-21-combat-feature-scope-selector-pending.md`.
+Archive continuity gate is now verified exactly:
+
+```text
+selector partition shared            true
+C3 checkpoint preserved              true
+C4 checkpoint preserved              true
+cluster partition preserved          true
+failures                              []
+```
+
+Durable runtime:
+`docs/handoff/2026-09-21-combat-feature-scope-selector-runtime.md`.
 
 ## Immediate next work — Host combat phase
 
