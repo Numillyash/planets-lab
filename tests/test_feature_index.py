@@ -478,3 +478,104 @@ def test_combat_planar_no_horwasp_profile_preserves_legacy_ordinary_scope() -> N
         "excluded_game_ids": [30],
         "unknown_game_ids": [],
     }
+
+
+
+def test_feature_scope_classifies_selected_excluded_unknown_and_unindexed(
+    tmp_path,
+) -> None:
+    from planets_lab.corpus.feature_scope import load_feature_scope
+
+    rows = [
+        feature_row(
+            game_id=1,
+            feature="game.status",
+            value=3,
+            known=True,
+            source_kind="fixture",
+            source_location="fixture",
+        ),
+        feature_row(
+            game_id=1,
+            feature="settings.sphere",
+            value=False,
+            known=True,
+            source_kind="fixture",
+            source_location="fixture",
+        ),
+        feature_row(
+            game_id=1,
+            feature="population.horwasp_present",
+            value=False,
+            known=True,
+            source_kind="fixture",
+            source_location="fixture",
+        ),
+        feature_row(
+            game_id=2,
+            feature="game.status",
+            value=3,
+            known=True,
+            source_kind="fixture",
+            source_location="fixture",
+        ),
+        feature_row(
+            game_id=2,
+            feature="settings.sphere",
+            value=True,
+            known=True,
+            source_kind="fixture",
+            source_location="fixture",
+        ),
+        feature_row(
+            game_id=2,
+            feature="population.horwasp_present",
+            value=False,
+            known=True,
+            source_kind="fixture",
+            source_location="fixture",
+        ),
+        feature_row(
+            game_id=3,
+            feature="game.status",
+            value=3,
+            known=True,
+            source_kind="fixture",
+            source_location="fixture",
+        ),
+        feature_row(
+            game_id=3,
+            feature="settings.sphere",
+            known=False,
+            source_kind="fixture",
+            source_location="fixture",
+        ),
+        feature_row(
+            game_id=3,
+            feature="population.horwasp_present",
+            value=False,
+            known=True,
+            source_kind="fixture",
+            source_location="fixture",
+        ),
+    ]
+    index = tmp_path / "game_features.parquet"
+    write_feature_index(
+        rows=rows,
+        parquet_path=index,
+        database_path=tmp_path / "corpus.duckdb",
+    )
+
+    scope = load_feature_scope(
+        index,
+        profile="combat-planar-no-horwasp",
+    )
+
+    assert scope.included_game_ids == (1,)
+    assert scope.excluded_game_ids == (2, 3)
+    assert scope.unknown_game_ids == (3,)
+    assert scope.classify(1) == "selected"
+    assert scope.classify(2) == "excluded"
+    assert scope.classify(3) == "unknown"
+    assert scope.classify(4) == "unindexed"
+    assert scope.to_dict()["profile"] == "combat-planar-no-horwasp"
