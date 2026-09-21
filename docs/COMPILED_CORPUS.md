@@ -22,6 +22,51 @@ L2 context labels:                 planets-lab.compiled-movement-context-labels.
 
 Raw `/game/loadall` archives remain unchanged. Prepared projection stays privacy-minimal; raw `.trn` evidence is read directly only by diagnostics that need narrowly scoped historical metadata.
 
+## Planned game / Host feature index
+
+The immutable `loadall` ZIP archives remain the evidence source. A separate compiled **game feature index** is planned to make corpus selection explicit and reproducible before running mechanic-specific diagnostics.
+
+Design requirements:
+
+- derive only from cached Planets.nu archives, manifests and other attributable metadata already collected by the corpus pipeline;
+- store source/provenance for each indexed field where practical;
+- distinguish unknown/unavailable from false/disabled;
+- never rewrite raw archives;
+- rebuild deterministically;
+- keep the index useful for SQL/DuckDB or CLI filtering;
+- never treat a third-party analyzer's computed statistics as corpus truth.
+
+Candidate categories:
+
+```text
+identity/version:
+  game_id
+  host / engine / version where exposed
+  turn/archive coverage
+
+map/settings:
+  planar vs Sphere / topology
+  production queue
+  ship-limit / PLS family
+  combat RNG
+  campaign/special feature flags
+  diplomacy/team format
+  other Host settings exposed in factual game metadata
+
+population/evidence:
+  participating races
+  Horwasp/special population presence
+  VCR counts
+  movement-transition counts
+  relevant mission/ability observations when directly indexable
+```
+
+Primary purpose: reduce confounders and improve discriminator discovery. Example consumers may request a population such as "ordinary Classic planar games without Horwasp" before performing a strict mechanic audit.
+
+This index is infrastructure only. Filtering a corpus by settings does not elevate any result above the repository's normal evidence policy.
+
+See `docs/handoff/2026-09-21-corpus-feature-index-workstream.md`.
+
 ## Current runtime-verified 12-game invariants
 
 The compiled-layer counters remain the last recorded L1/L2 rebuild checkpoint. Later partial-fuel and finite-fuel Tow historical gates read these existing archives/caches without rebuilding L1/L2 and verified narrowly scoped movement rules independently.

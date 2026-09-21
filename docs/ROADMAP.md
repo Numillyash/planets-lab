@@ -431,6 +431,47 @@ shield mismatch                 2
 
 Do not generalize these special/campaign/Horwasp residuals into ordinary Classic planet rules.
 
+## Planned corpus feature index and historical-game selector
+
+A bounded corpus-infrastructure workstream is recorded from review of external Planets.nu analysis tools. The goal is **not** to trust or import third-party derived statistics. The useful idea is a local, deterministic index of factual game/Host settings and corpus features so diagnostics can select cleaner populations before differential analysis.
+
+External references reviewed on 2026-09-21:
+
+- T-Continuum Analyser — historical-game corpus browsing and filtering by game/Host settings;
+- `derblondehans/player-affinity-tool` — public game/player history handling, useful only as a reference for event/participation semantics;
+- chmeee.org tools — product UX reference only; not a mechanics-evidence source.
+
+The feature index should be compiled from immutable cached Planets.nu evidence and documented metadata already available to this repository. It must remain reproducible from raw archives/manifests.
+
+Candidate indexed fields include, where factually available:
+
+- game id, status, host/engine/version identifiers;
+- map topology / Sphere and related geography settings;
+- Production Queue and relevant build/economy settings;
+- combat RNG and combat-related options;
+- diplomacy/team/alliance format metadata;
+- PLS / ship-limit variants;
+- enabled campaign/special mechanics;
+- race participation;
+- turn range / archive coverage;
+- presence of Horwasp or other special populations;
+- availability/counts of VCR, movement and other diagnostic evidence.
+
+The index exists to support queries such as:
+
+```text
+ordinary Classic + planar + no Horwasp + combat RNG mode X
+games with Cloak+Intercept enabled
+games with enough candidate transitions for a specific mechanic
+games excluding known special/campaign confounders
+```
+
+This is an **evidence-selection aid**, not an evidence label. A game matching a filter does not prove a mechanic, and any selected transition still requires the normal attribution/differential gates.
+
+Detailed scope is recorded in:
+
+- `docs/handoff/2026-09-21-corpus-feature-index-workstream.md`
+
 ## Immediate next work — Host combat phase
 
 Proceed in this order:
@@ -474,6 +515,6 @@ The target remains a high-fidelity NuHost-compatible simulator suitable for real
 - **M2 economy/planetary Host:** in progress.
 - **M3 warfare:** materially advanced: ordinary movement including base finite-fuel Tow, Classic pairwise replay, ordinary ship sequences and attributable ordinary repeated-planet persistence are canonical in `planets-lab`; full Host engagement ordering remains open.
 - **M4 race mechanics:** partial; Federation shield recovery has scoped differential evidence.
-- **M5A historical corpus:** active and operational.
+- **M5A historical corpus:** active and operational; planned next infrastructure includes a deterministic game/Host feature index for bounded corpus selection.
 - **M5B Nu compatibility matrix:** active; movement, base finite-fuel Tow and ordinary Classic combat sequence checkpoints are explicit.
 - **M6 training/AI:** later, after required simulation/observer surfaces are sufficiently faithful.
