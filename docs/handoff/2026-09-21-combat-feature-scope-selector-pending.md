@@ -1,4 +1,4 @@
-# Combat diagnostics feature-scope migration — pending runtime
+# Combat diagnostics feature-scope migration — runtime verified
 
 Date: 2026-09-21
 
@@ -218,3 +218,39 @@ selector match
 
 Existing C3/C4 conclusions remain unchanged unless an archive runtime exposes a
 population drift or contradiction.
+
+
+## Runtime closure
+
+Archive runtime on source HEAD:
+
+```text
+2b75c9ec079b55e4219f2a64e569b6a5d708e6ae
+```
+
+passed the continuity checker:
+
+```text
+exact=true
+failures=[]
+selector_partition_shared=true
+planet_c4_checkpoint_preserved=true
+ship_c3_checkpoint_preserved=true
+cluster_partition_preserved=true
+```
+
+The Feature Index rebuild was identical to the accepted v1 archive build:
+
+```text
+games=12
+rows=1152
+known=1116
+unknown=36
+missing_archives=[]
+sha256=cb72f539775d22726d8d7f225fc7b3deeb8f936312873df12db59340e1dd7735
+```
+
+Durable runtime:
+`docs/handoff/2026-09-21-combat-feature-scope-selector-runtime.md`.
+
+The migration is closed. No mechanics evidence label changed.
