@@ -66,6 +66,12 @@ from .order import (
     priority_intercept_reciprocal_target_signature,
     standard_battle_priority_key,
 )
+from .planet_ownership import (
+    PLANET_TRANSFER_TARGET_TYPE,
+    PlanetClanDropOrder,
+    directed_planet_clan_drop,
+    ordered_planet_clan_drops,
+)
 from .planet import (
     PLANET_CARRYOVER_BASIS,
     apply_planet_carryover,
@@ -124,6 +130,8 @@ __all__ = [
     "MATCHING_SHIP_FC_COMBAT_EXCEPTIONS",
     "NuHostClassicReplay",
     "PLANET_CARRYOVER_BASIS",
+    "PLANET_TRANSFER_TARGET_TYPE",
+    "PlanetClanDropOrder",
     "ReplayUnsupported",
     "STANDARD_PAIR_MAX_OCCURRENCES",
     "SUPPLIES_PER_DAMAGE_POINT",
@@ -148,6 +156,7 @@ __all__ = [
     "cloak_intercept_order_signature",
     "combat_rng_from_settings",
     "damage_defense_posts",
+    "directed_planet_clan_drop",
     "decide_ship_combat_pair",
     "federation_recover_shields",
     "functional_weapon_limit",
@@ -160,6 +169,7 @@ __all__ = [
     "normalize_nu_beams",
     "normalize_nu_torpedoes",
     "orders_request_ship_combat",
+    "ordered_planet_clan_drops",
     "planet_bay_count",
     "planet_beam_count",
     "planet_fighter_count",
