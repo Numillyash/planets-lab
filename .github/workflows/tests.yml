@@ -73,8 +73,12 @@ jobs:
           python tools/diagnostics/combat_feature_scope_integration_check.py --help >/dev/null
           PYTHONPATH="$PWD/src:$PWD/tools/diagnostics" python tools/diagnostics/combat_host_post_mutation_next_pair_audit.py --help >/dev/null
           python tools/diagnostics/combat_predictive_queue_integration_check.py --help >/dev/null
+          PYTHONPATH="$PWD/src:$PWD/tools/diagnostics" python tools/diagnostics/combat_host_capture_continuation_audit.py --help >/dev/null
+          PYTHONPATH="$PWD/src:$PWD/tools/diagnostics" python tools/diagnostics/combat_host_post_capture_initiator_population_audit.py --help >/dev/null
+          python tools/diagnostics/combat_capture_reintegration_check.py --help >/dev/null
           bash -n tools/run-combat-feature-scope-gate.sh
           bash -n tools/run-combat-predictive-queue-gate.sh
+          bash -n tools/run-combat-capture-reintegration-gate.sh
           mkdir -p /tmp/feature-index-a /tmp/feature-index-b /tmp/no-loadall /tmp/no-compiled
           python -m planets_lab.corpus.feature_index_cli build \
             --archive-dir /tmp/no-loadall \

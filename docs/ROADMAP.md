@@ -620,3 +620,21 @@ Durable runtime:
 
 The immediate residual is post-capture candidate-graph reconstruction after
 owner/race transfer; do not reopen the already exact non-capture queue path.
+
+
+### Active capture residual
+
+The exact non-capture predictive queue is closed. The current gate revalidates
+the already production-wired capture state transition and independent
+post-capture initiator population under shared `FeatureScope`.
+
+Tracked runner:
+
+```bash
+bash tools/run-combat-capture-reintegration-gate.sh
+```
+
+Historical continuity target is 23 capture continuations: 8 ship and 15
+planet/base. Once this is fresh-runtime green, move directly to rebuilding the
+post-capture candidate graph after owner/race mutation; do not infer persistence
+of the captured ship's old mission/PE.

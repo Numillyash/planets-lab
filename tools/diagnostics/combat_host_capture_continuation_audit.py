@@ -726,7 +726,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "evidence_boundary": (
             "Capture-continuation differential over deterministic Classic replay "
             "and the next factual same-turn same-location VCR of the same ship id. "
-            "Game 591478 is excluded. Explicit captor owner/race attribution comes "
+            "The population is selected through shared FeatureScope. Explicit captor owner/race attribution comes "
             "from the opposing factual VCR side of the capture engagement; no "
             "post-Host T state is used. Production capture mutation applies the "
             "terminal vector, pre-capture Federation end-of-battle shield recovery, "
