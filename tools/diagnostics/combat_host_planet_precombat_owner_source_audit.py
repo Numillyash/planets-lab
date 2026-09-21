@@ -234,6 +234,20 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             and isinstance(candidate["clans"], int)
             and candidate["clans"] > 0
         ]
+        defender_directed_drops = [
+            candidate
+            for candidate in defender_ships
+            if candidate.get("directed_planet_drop") is not None
+        ]
+        all_directed_orders = [
+            PlanetClanDropOrder(**candidate["directed_planet_drop"])
+            for candidate in colocated
+            if isinstance(candidate.get("directed_planet_drop"), Mapping)
+        ]
+        ordered_drops = ordered_planet_clan_drops(
+            all_directed_orders,
+            planet_id=planet_id,
+        )
 
         if defender_ships:
             counts["changed_with_defender_ship_colocated"] += 1
