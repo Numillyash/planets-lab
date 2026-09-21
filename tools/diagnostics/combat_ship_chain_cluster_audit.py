@@ -7,6 +7,11 @@ from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any, Mapping
 
+from planets_lab.corpus.feature_index import (
+    load_feature_rows,
+    profile_selection_summary,
+)
+
 
 CHAIN_TOOL = Path(__file__).with_name("combat_ship_chain_audit.py")
 spec = importlib.util.spec_from_file_location("combat_ship_chain_audit", CHAIN_TOOL)
@@ -16,7 +21,8 @@ chain_audit = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(chain_audit)
 
 DEFAULT_ARCHIVE_DIR = Path("validation/corpus/cache/loadall")
-SPECIAL_GAME_ID = 591478
+DEFAULT_FEATURE_INDEX = Path("validation/corpus/compiled/v1/metadata/game_features.parquet")
+DEFAULT_SCOPE_PROFILE = "combat-planar-no-horwasp"
 CARRY_FIELDS = ("damage", "crew", "torpedoes", "fighters")
 
 
@@ -37,8 +43,17 @@ def _gap_bucket(gap: int) -> str:
     return ">10"
 
 
-def _scope(game_id: int) -> str:
-    return "game_591478" if game_id == SPECIAL_GAME_ID else "excluding_591478"
+def _scope(
+    game_id: int,
+    *,
+    selected_ids: set[int],
+    unknown_ids: set[int],
+) -> str:
+    if game_id in unknown_ids:
+        return "profile_unknown"
+    if game_id in selected_ids:
+        return "profile_selected"
+    return "profile_excluded"
 
 
 def _problem_signature(comparison: Mapping[str, Any]) -> str:
@@ -88,21 +103,31 @@ def _shield_delta(comparison: Mapping[str, Any]) -> int | None:
     return next_start - terminal
 
 
-def _status_counts_for_scope(
+def _status_counts_for_games(
     games: Mapping[str, Mapping[str, Any]],
-    *,
-    include_special: bool,
+    game_ids: set[int],
 ) -> Counter[str]:
     result: Counter[str] = Counter()
     for raw_game_id, values in games.items():
         game_id = int(raw_game_id)
-        if (game_id == SPECIAL_GAME_ID) != include_special:
+        if game_id not in game_ids:
             continue
         for key in ("same_location_transitions", "match", "mismatch", "not_comparable", "reappearance_after_defeat"):
             value = _int(values.get(key))
             if value is not None:
                 result[key] += value
     return result
+
+
+def _scope_selection(args: argparse.Namespace) -> dict[str, Any] | None:
+    feature_index = getattr(args, "feature_index", None)
+    if feature_index is None:
+        return None
+    rows = load_feature_rows(Path(feature_index))
+    return profile_selection_summary(
+        rows,
+        profile=getattr(args, "scope_profile", DEFAULT_SCOPE_PROFILE),
+    )
 
 
 def run(args: argparse.Namespace) -> dict[str, Any]:
@@ -112,10 +137,25 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         output=None,
         detail_limit=1_000_000,
         sample_limit=1_000_000,
+        feature_index=None,
+        feature_profile="all-indexed",
     )
     base = chain_audit.run(base_args)
     problems = list(base.get("mismatch_details") or [])
     race1 = list(base.get("race1_samples") or [])
+
+    selection = _scope_selection(args)
+    games = base.get("games")
+    games = games if isinstance(games, Mapping) else {}
+    all_game_ids = {int(game_id) for game_id in games}
+    if selection is None:
+        selected_ids = set(all_game_ids)
+        excluded_ids: set[int] = set()
+        unknown_ids: set[int] = set()
+    else:
+        selected_ids = set(selection["included_game_ids"])
+        excluded_ids = set(selection["excluded_game_ids"])
+        unknown_ids = set(selection["unknown_game_ids"])
 
     by_scope_status: dict[str, Counter[str]] = defaultdict(Counter)
     by_scope_signature: dict[str, Counter[str]] = defaultdict(Counter)
@@ -135,7 +175,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         if not isinstance(item, Mapping):
             continue
         game_id = int(item["game_id"])
-        scope = _scope(game_id)
+        scope = _scope(game_id, selected_ids=selected_ids, unknown_ids=unknown_ids)
         comparison = item.get("comparison")
         if not isinstance(comparison, Mapping):
             continue
@@ -217,10 +257,9 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             race1_shield_deltas[next_start - terminal] += 1
             race1_terminal_to_next[f"{terminal}->{next_start}"] += 1
 
-    games = base.get("games")
-    games = games if isinstance(games, Mapping) else {}
-    special_status = _status_counts_for_scope(games, include_special=True)
-    ordinary_status = _status_counts_for_scope(games, include_special=False)
+    selected_status = _status_counts_for_games(games, selected_ids)
+    excluded_status = _status_counts_for_games(games, excluded_ids)
+    unknown_status = _status_counts_for_games(games, unknown_ids)
 
     def scope_payload(scope: str, status_counts: Counter[str]) -> dict[str, Any]:
         return {
@@ -241,13 +280,15 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         }
 
     return {
-        "schema": "planets-lab.combat-ship-chain-cluster-audit.v1",
+        "schema": "planets-lab.combat-ship-chain-cluster-audit.v2",
         "read_only": True,
         "source_chain_schema": base.get("schema"),
         "source_summary": base.get("summary"),
+        "scope_selection": selection,
         "scopes": {
-            "excluding_591478": scope_payload("excluding_591478", ordinary_status),
-            "game_591478": scope_payload("game_591478", special_status),
+            "profile_selected": scope_payload("profile_selected", selected_status),
+            "profile_excluded": scope_payload("profile_excluded", excluded_status),
+            "profile_unknown": scope_payload("profile_unknown", unknown_status),
         },
         "race1_shield": {
             "transitions": len(race1),
@@ -258,7 +299,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         },
         "notes": [
             "This diagnostic clusters C3 differential failures; it does not change combat mechanics.",
-            "Game 591478 is reported separately because it dominates failures and contains special/campaign/Horwasp context.",
+            "Scope classification comes from the feature-index profile; no game id is special-cased.",
             "Field deltas are factual next-VCR start minus deterministic previous-VCR terminal state.",
             "Race-1 shield models are observational candidates only; no Federation rule is promoted here.",
         ],
@@ -271,6 +312,17 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--archive-dir", type=Path, default=DEFAULT_ARCHIVE_DIR)
     parser.add_argument("--archive", action="append", default=[])
+    parser.add_argument(
+        "--feature-index",
+        type=Path,
+        default=DEFAULT_FEATURE_INDEX,
+        help="Compiled game feature index used only to classify report scopes.",
+    )
+    parser.add_argument(
+        "--scope-profile",
+        default=DEFAULT_SCOPE_PROFILE,
+        help="Feature-index profile defining the clean combat scope.",
+    )
     parser.add_argument("--sample-limit", type=int, default=12)
     parser.add_argument("--output", type=Path, default=None)
     return parser.parse_args()
