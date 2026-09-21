@@ -14,6 +14,7 @@ GAME_METADATA_FIELDS = (
     "name",
     "status",
     "statusname",
+    "shortdescription",
     "turn",
     "datecreated",
     "dateended",
