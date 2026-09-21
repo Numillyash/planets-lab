@@ -8,6 +8,10 @@ from pathlib import Path
 from typing import Any, Mapping
 
 from planets_lab.corpus.archive import read_archive_members, turn_members
+from planets_lab.corpus.feature_index import (
+    load_feature_rows,
+    profile_selection_summary,
+)
 
 
 CHAIN_TOOL = Path(__file__).with_name("combat_ship_chain_audit.py")
@@ -18,7 +22,8 @@ chain_audit = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(chain_audit)
 
 DEFAULT_ARCHIVE_DIR = Path("validation/corpus/cache/loadall")
-SPECIAL_GAME_ID = 591478
+DEFAULT_FEATURE_INDEX = Path("validation/corpus/compiled/v1/metadata/game_features.parquet")
+DEFAULT_SCOPE_PROFILE = "combat-planar-no-horwasp"
 CARRY_FIELDS = ("damage", "crew", "torpedoes", "fighters")
 
 
@@ -60,6 +65,17 @@ def _archive_paths(args: argparse.Namespace) -> list[Path]:
     if args.archive:
         return [Path(value) for value in args.archive]
     return sorted(args.archive_dir.glob("game-*.zip"))
+
+
+def _scope_selection(args: argparse.Namespace) -> dict[str, Any] | None:
+    feature_index = getattr(args, "feature_index", None)
+    if feature_index is None:
+        return None
+    rows = load_feature_rows(Path(feature_index))
+    return profile_selection_summary(
+        rows,
+        profile=getattr(args, "scope_profile", DEFAULT_SCOPE_PROFILE),
+    )
 
 
 def _vcr_metadata(args: argparse.Namespace) -> tuple[dict[tuple[int, int, int], dict[str, Any]], int]:
@@ -123,6 +139,8 @@ def _capture_all_transitions(args: argparse.Namespace) -> tuple[dict[str, Any], 
             output=None,
             detail_limit=1_000_000,
             sample_limit=1_000_000,
+            feature_index=None,
+            feature_profile="all-indexed",
         )
         base = chain_audit.run(base_args)
     finally:
@@ -277,10 +295,23 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             }
         )
 
-    ordinary = [row for row in rows if row["game_id"] != SPECIAL_GAME_ID]
+    selection = _scope_selection(args)
+    if selection is None:
+        selected_ids = {int(row["game_id"]) for row in rows}
+        excluded_ids: set[int] = set()
+        unknown_ids: set[int] = set()
+    else:
+        selected_ids = set(selection["included_game_ids"])
+        excluded_ids = set(selection["excluded_game_ids"])
+        unknown_ids = set(selection["unknown_game_ids"])
+
+    selected = [row for row in rows if int(row["game_id"]) in selected_ids]
+    excluded = [row for row in rows if int(row["game_id"]) in excluded_ids]
+    unknown_scope = [row for row in rows if int(row["game_id"]) in unknown_ids]
+
     ordinary_ship_ship_survivors = [
         row
-        for row in ordinary
+        for row in selected
         if row["from_shape"] == "ship_vs_ship"
         and row["to_shape"] == "ship_vs_ship"
         and row["terminal_kind"] == "survived"
@@ -290,7 +321,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     ]
     ordinary_phase_boundary = [
         row
-        for row in ordinary
+        for row in selected
         if row["from_shape"] == "ship_vs_ship"
         and row["to_shape"] == "ship_vs_planet"
     ]
@@ -298,18 +329,21 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     destroyed_reappearances = [row for row in rows if row["terminal_kind"] == "destroyed"]
 
     return {
-        "schema": "planets-lab.combat-ship-chain-phase-audit.v1",
+        "schema": "planets-lab.combat-ship-chain-phase-audit.v2",
         "read_only": True,
         "source_summary": base.get("summary"),
         "metadata_conflicts": metadata_conflicts,
         "all_phase_transitions": _counter(phase_counts),
         "terminal_kinds": _counter(terminal_kinds),
         "capture_owner_changes": _counter(capture_owner_changes),
+        "scope_selection": selection,
         "scopes": {
-            "ordinary_all": _scope_summary(ordinary),
-            "ordinary_ship_vs_ship_survivors": _scope_summary(ordinary_ship_ship_survivors),
-            "ordinary_ship_vs_ship_survivors_gap1": _scope_summary(ordinary_ship_ship_gap1),
-            "ordinary_ship_to_planet_boundary": _scope_summary(ordinary_phase_boundary),
+            "profile_selected_all": _scope_summary(selected),
+            "profile_selected_ship_vs_ship_survivors": _scope_summary(ordinary_ship_ship_survivors),
+            "profile_selected_ship_vs_ship_survivors_gap1": _scope_summary(ordinary_ship_ship_gap1),
+            "profile_selected_ship_to_planet_boundary": _scope_summary(ordinary_phase_boundary),
+            "profile_excluded_all": _scope_summary(excluded),
+            "profile_unknown_all": _scope_summary(unknown_scope),
             "captured_reappearances_all_games": _scope_summary(captured_reappearances),
             "destroyed_reappearances_all_games": _scope_summary(destroyed_reappearances),
         },
@@ -318,7 +352,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "The gap=1 subset is reported separately as the strongest globally-adjacent VCR subset.",
             "Ship-vs-ship to ship-vs-planet is a Host phase boundary where between-phase repair may intervene and is not treated as a strict exact-carry oracle.",
             "Captured and destroyed terminals are reported separately; a captured ship can legitimately reappear under a new owner.",
-            "Game 591478 remains excluded from ordinary strict scopes because it contains campaign/Horwasp/special combat context.",
+            "Clean strict scopes are selected by the feature-index profile; no game id is special-cased in this diagnostic.",
         ],
     }
 
@@ -329,6 +363,17 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--archive-dir", type=Path, default=DEFAULT_ARCHIVE_DIR)
     parser.add_argument("--archive", action="append", default=[])
+    parser.add_argument(
+        "--feature-index",
+        type=Path,
+        default=DEFAULT_FEATURE_INDEX,
+        help="Compiled game feature index used only to classify report scopes.",
+    )
+    parser.add_argument(
+        "--scope-profile",
+        default=DEFAULT_SCOPE_PROFILE,
+        help="Feature-index profile defining the clean combat scope.",
+    )
     parser.add_argument("--output", type=Path, default=None)
     return parser.parse_args()
 
