@@ -572,7 +572,7 @@ def test_feature_scope_classifies_selected_excluded_unknown_and_unindexed(
     )
 
     assert scope.included_game_ids == (1,)
-    assert scope.excluded_game_ids == (2, 3)
+    assert scope.excluded_game_ids == (2,)
     assert scope.unknown_game_ids == (3,)
     assert scope.classify(1) == "selected"
     assert scope.classify(2) == "excluded"
