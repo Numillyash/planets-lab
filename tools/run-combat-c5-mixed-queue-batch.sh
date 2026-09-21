@@ -38,6 +38,7 @@ run_stage "REGRESSION TESTS" \
     tests/test_combat_host_mixed_ship_planet_queue_batch_audit.py \
     tests/test_combat_host_ship_planet_interphase_state_audit.py \
     tests/test_combat_host_planet_precombat_owner_source_audit.py \
+    tests/test_combat_planet_ownership.py \
     tests/test_combat_host_queue_shape_audit.py \
     tests/test_combat_planet.py \
     tests/test_combat_planet_chain_audit.py \
@@ -86,13 +87,13 @@ run_stage "PLANET OWNERSHIP TIMELINE" \
     --example-limit 40 \
     --output /workspace/artifacts/combat-host-planet-ownership-timeline.json
 
-run_stage "PLANET PRECOMBAT OWNER SOURCE" \
+run_stage "PLANET DIRECTED CLAN-DROP SOURCE" \
   docker compose run --rm lab python \
     tools/diagnostics/combat_host_planet_precombat_owner_source_audit.py \
     --example-limit 80 \
     --output /workspace/artifacts/combat-host-planet-precombat-owner-source.json
 
-run_stage "MIXED SHIP/PLANET DISCOVERY V6" \
+run_stage "MIXED SHIP/PLANET DISCOVERY V7" \
   docker compose run --rm lab python \
     tools/diagnostics/combat_host_mixed_ship_planet_queue_batch_audit.py \
     --example-limit 20 \
