@@ -139,6 +139,23 @@ feature-index match
 Detailed handoff:
 `docs/handoff/2026-09-21-corpus-feature-index-v1.md`.
 
+Archive-enriched acceptance runtime:
+
+```text
+HEAD      68ed7006732c22273b47a5e915d7c2ed9b4e1f74
+archives  12/12
+rows      1152
+known     1116
+unknown   36
+parquet   cb72f539775d22726d8d7f225fc7b3deeb8f936312873df12db59340e1dd7735
+rebuild   byte/SHA exact
+selector  360690, 511506, 620694
+combat integration exact=true, mismatches=[]
+```
+
+Runtime handoff:
+`docs/handoff/2026-09-21-corpus-feature-index-v1-runtime.md`.
+
 ## Current runtime-verified 12-game invariants
 
 The compiled-layer counters remain the last recorded L1/L2 rebuild checkpoint. Later partial-fuel and finite-fuel Tow historical gates read these existing archives/caches without rebuilding L1/L2 and verified narrowly scoped movement rules independently.
