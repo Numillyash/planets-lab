@@ -42,7 +42,7 @@ def test_delta_and_gap_helpers() -> None:
     assert audit._gap_bucket(12) == ">10"
 
 
-def test_scope_status_counts_separate_special_game() -> None:
+def test_scope_status_counts_follow_selected_game_ids() -> None:
     games = {
         "591478": {
             "same_location_transitions": 10,
@@ -56,9 +56,36 @@ def test_scope_status_counts_separate_special_game() -> None:
             "mismatch": 1,
         },
     }
-    special = audit._status_counts_for_scope(games, include_special=True)
-    ordinary = audit._status_counts_for_scope(games, include_special=False)
-    assert special["same_location_transitions"] == 10
-    assert special["mismatch"] == 7
-    assert ordinary["same_location_transitions"] == 5
-    assert ordinary["match"] == 4
+    excluded = audit._status_counts_for_games(games, {591478})
+    selected = audit._status_counts_for_games(games, {620694})
+    assert excluded["same_location_transitions"] == 10
+    assert excluded["mismatch"] == 7
+    assert selected["same_location_transitions"] == 5
+    assert selected["match"] == 4
+
+
+def test_scope_classification_has_no_special_game_constant() -> None:
+    assert (
+        audit._scope(
+            620694,
+            selected_ids={620694},
+            unknown_ids=set(),
+        )
+        == "profile_selected"
+    )
+    assert (
+        audit._scope(
+            591478,
+            selected_ids={620694},
+            unknown_ids=set(),
+        )
+        == "profile_excluded"
+    )
+    assert (
+        audit._scope(
+            42,
+            selected_ids={620694},
+            unknown_ids={42},
+        )
+        == "profile_unknown"
+    )
