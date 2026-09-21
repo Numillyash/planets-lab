@@ -81,3 +81,10 @@ tracked in `tools/run-combat-predictive-queue-gate.sh`. It runs the shared
 `combat-planar-no-horwasp` FeatureScope acceptance first, then validates
 multi-step ordinary STANDARD queue prediction. Fresh archive-host acceptance is
 still required before recording a new runtime checkpoint.
+
+
+The selector-backed predictive ordinary ship queue now has fresh archive-host
+runtime acceptance on the 11-game `combat-planar-no-horwasp` population:
+22/22 held-out next-VCR transitions exact in both strict and conditional
+profiles, with zero mismatch. The only exact-set continuation exclusion is
+capture, which is the next active combat gate.

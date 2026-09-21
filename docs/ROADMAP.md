@@ -589,3 +589,34 @@ It must first preserve the shared FeatureScope C3/C4 checkpoints, then reproduce
 the historical held-out ordinary queue population with zero next-VCR mismatches.
 Do not advance to broader complete-site or mixed planet ownership mechanics if
 that gate is not exact.
+
+
+### Predictive ordinary ship queue — runtime closed
+
+Archive-host runtime at `21435cd15c9744e00d958e0e271b9b8a8fd483ad`
+passed the combined shared-scope + held-out queue gate.
+
+For both strict and conditional exact-set profiles:
+
+```text
+23 multi-VCR sites
+16 exact sites
+7 capture-predecessor exclusions
+22 compared transitions
+22 exact
+0 mismatch
+```
+
+Shared FeatureScope continuity remained exact with no failures.
+
+Status for the bounded non-capture ordinary plain-STANDARD predictive queue:
+
+```text
+CORPUS_OBSERVED + TESTED + DIFF_VERIFIED
+```
+
+Durable runtime:
+`docs/handoff/2026-09-22-combat-predictive-queue-runtime.md`.
+
+The immediate residual is post-capture candidate-graph reconstruction after
+owner/race transfer; do not reopen the already exact non-capture queue path.

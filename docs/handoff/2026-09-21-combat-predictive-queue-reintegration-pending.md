@@ -150,3 +150,24 @@ tracked runner above executes on the archive host.
 
 If the FeatureScope stage fails, treat it as selector/population plumbing first;
 do not modify combat mechanics merely to make the gate green.
+
+
+## 2026-09-22 archive-host closure
+
+The prepared gate was executed against exact HEAD
+`21435cd15c9744e00d958e0e271b9b8a8fd483ad` and passed.
+
+Final combined checker:
+
+```text
+exact=true
+failures=[]
+strict      22/22, mismatch=0
+conditional 22/22, mismatch=0
+```
+
+FeatureScope continuity also remained exact.
+
+This pending document is superseded for runtime status by:
+
+`docs/handoff/2026-09-22-combat-predictive-queue-runtime.md`.

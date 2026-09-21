@@ -491,3 +491,21 @@ tools/run-combat-predictive-queue-gate.sh
 ```
 
 Generated queue reports remain under `artifacts/` and are not committed.
+
+
+## Predictive queue runtime checkpoint
+
+Fresh archive-host runtime of `tools/run-combat-predictive-queue-gate.sh` at
+`21435cd15c9744e00d958e0e271b9b8a8fd483ad` preserved the shared FeatureScope
+partition and the C3/C4 checkpoints.
+
+Held-out next-VCR result:
+
+```text
+strict:      22 / 22 exact, 0 mismatch
+conditional: 22 / 22 exact, 0 mismatch
+capture predecessor exclusions: 7
+```
+
+The factual next VCR remains comparator-only. The next unresolved queue boundary
+is rebuilding pair candidates after a combat capture changes ownership/race.
