@@ -67,6 +67,24 @@ jobs:
           python -m planets_lab.corpus.feature_index_cli --help >/dev/null
           python tools/diagnostics/corpus_feature_index_integration_check.py --help >/dev/null
           python tools/diagnostics/combat_classic_corpus_parity_audit.py --help >/dev/null
+          mkdir -p /tmp/feature-index-a /tmp/feature-index-b /tmp/no-loadall /tmp/no-compiled
+          python -m planets_lab.corpus.feature_index_cli build \
+            --archive-dir /tmp/no-loadall \
+            --compiled-dir /tmp/no-compiled \
+            --output /tmp/feature-index-a/game_features.parquet \
+            --database /tmp/feature-index-a/corpus.duckdb \
+            --build-meta /tmp/feature-index-a/build.json >/dev/null
+          python -m planets_lab.corpus.feature_index_cli build \
+            --archive-dir /tmp/no-loadall \
+            --compiled-dir /tmp/no-compiled \
+            --output /tmp/feature-index-b/game_features.parquet \
+            --database /tmp/feature-index-b/corpus.duckdb \
+            --build-meta /tmp/feature-index-b/build.json >/dev/null
+          cmp /tmp/feature-index-a/game_features.parquet /tmp/feature-index-b/game_features.parquet
+          python -m planets_lab.corpus.feature_index_cli select \
+            --index /tmp/feature-index-a/game_features.parquet \
+            --profile ordinary-classic \
+            --output /tmp/feature-index-a/ordinary-classic.json >/dev/null
 
       - name: Run tests
         run: pytest
