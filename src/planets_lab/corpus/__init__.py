@@ -5,6 +5,7 @@ from .feature_index import (
     FEATURE_INDEX_SCHEMA,
     FeaturePredicate,
     load_feature_rows,
+    profile_selection_summary,
     select_games,
     selected_game_ids,
 )
@@ -18,6 +19,7 @@ __all__ = [
     "PlanetsNuPublicApi",
     "build_game_manifest",
     "load_feature_rows",
+    "profile_selection_summary",
     "select_games",
     "selected_game_ids",
     "settings_hash",
