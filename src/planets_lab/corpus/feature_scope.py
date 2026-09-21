@@ -66,13 +66,22 @@ def load_feature_scope(
 ) -> FeatureScope:
     rows = load_feature_rows(index_path)
     summary = profile_selection_summary(rows, profile=profile)
+    unknown_game_ids = tuple(
+        int(value) for value in summary["unknown_game_ids"]
+    )
+    unknown_set = set(unknown_game_ids)
+    excluded_game_ids = tuple(
+        int(value)
+        for value in summary["excluded_game_ids"]
+        if int(value) not in unknown_set
+    )
     return FeatureScope(
         index_path=index_path,
         profile=str(summary["profile"]),
         predicate_count=int(summary["predicate_count"]),
         included_game_ids=tuple(int(value) for value in summary["included_game_ids"]),
-        excluded_game_ids=tuple(int(value) for value in summary["excluded_game_ids"]),
-        unknown_game_ids=tuple(int(value) for value in summary["unknown_game_ids"]),
+        excluded_game_ids=excluded_game_ids,
+        unknown_game_ids=unknown_game_ids,
     )
 
 
