@@ -22,50 +22,122 @@ L2 context labels:                 planets-lab.compiled-movement-context-labels.
 
 Raw `/game/loadall` archives remain unchanged. Prepared projection stays privacy-minimal; raw `.trn` evidence is read directly only by diagnostics that need narrowly scoped historical metadata.
 
-## Planned game / Host feature index
+## Game / Host feature index v1
 
-The immutable `loadall` ZIP archives remain the evidence source. A separate compiled **game feature index** is planned to make corpus selection explicit and reproducible before running mechanic-specific diagnostics.
-
-Design requirements:
-
-- derive only from cached Planets.nu archives, manifests and other attributable metadata already collected by the corpus pipeline;
-- store source/provenance for each indexed field where practical;
-- distinguish unknown/unavailable from false/disabled;
-- never rewrite raw archives;
-- rebuild deterministically;
-- keep the index useful for SQL/DuckDB or CLI filtering;
-- never treat a third-party analyzer's computed statistics as corpus truth.
-
-Candidate categories:
+Implemented schema:
 
 ```text
-identity/version:
-  game_id
-  host / engine / version where exposed
-  turn/archive coverage
-
-map/settings:
-  planar vs Sphere / topology
-  production queue
-  ship-limit / PLS family
-  combat RNG
-  campaign/special feature flags
-  diplomacy/team format
-  other Host settings exposed in factual game metadata
-
-population/evidence:
-  participating races
-  Horwasp/special population presence
-  VCR counts
-  movement-transition counts
-  relevant mission/ability observations when directly indexable
+planets-lab.game-feature-index.v1
 ```
 
-Primary purpose: reduce confounders and improve discriminator discovery. Example consumers may request a population such as "ordinary Classic planar games without Horwasp" before performing a strict mechanic audit.
+The immutable `loadall` ZIP archives remain the evidence source. The feature
+index is deterministic compiled selection infrastructure built from:
 
-This index is infrastructure only. Filtering a corpus by settings does not elevate any result above the repository's normal evidence policy.
+- the tracked privacy-safe `/game/loadinfo` manifest;
+- immutable cached `/game/loadall` archives when locally present;
+- existing compiled movement per-game metadata where its semantics already fit.
 
-See `docs/handoff/2026-09-21-corpus-feature-index-workstream.md`.
+Default compiled outputs:
+
+```text
+validation/corpus/compiled/v1/metadata/game_features.parquet
+validation/corpus/compiled/v1/metadata/game_feature_build.json
+validation/corpus/compiled/v1/corpus.duckdb -> view game_features
+```
+
+The normalized row model is:
+
+```text
+schema_version
+game_id
+feature
+value_type
+known
+bool_value / int_value / double_value / text_value
+source_kind
+source_location
+```
+
+Unknown is explicit and never coerced to a default:
+
+```text
+unknown != false
+missing != disabled
+not present != zero
+```
+
+Current tracked manifest coverage is 12 games. Major settings are factual 12/12,
+including Sphere, Production Queue, PLS/ship-limit fields, `combatrng`,
+Cloak+Intercept, campaign mode, diplomacy limits, cloning and ground-attack
+adjustments.
+
+Current explicit UNKNOWN fields include:
+
+```text
+engine.host_version
+engine.engine_version
+game.short_description   # current manifest predates its allowlist
+```
+
+The manifest builder now safely allowlists public `shortdescription` for future
+refreshes. No Host/engine version is inferred from date/name/configuration.
+
+Archive-derived counters include turn coverage, VCR raw/unique/shape counts,
+payload conflicts and relation availability. Missing archives make those
+counters UNKNOWN. Partial relation-field coverage makes total relation count
+UNKNOWN rather than zero.
+
+Reusable selector API/CLI:
+
+```text
+src/planets_lab/corpus/feature_index.py
+src/planets_lab/corpus/feature_index_cli.py
+```
+
+Named `ordinary-classic` uses an explicit settings-strict Classic rule
+signature rather than treating `gametype=2` as Classic. On the current tracked
+manifest it selects:
+
+```text
+360690
+511506
+620694
+```
+
+and has zero UNKNOWN predicates for that profile.
+
+Existing integration proof consumer:
+
+```text
+tools/diagnostics/combat_classic_corpus_parity_audit.py
+  --feature-index ...
+  --feature-profile ...
+```
+
+The `all-indexed` control must preserve its evidence-bearing replay output
+exactly.
+
+Reproducible archive-enriched gate:
+
+```bash
+bash tools/run-corpus-feature-index-gate.sh
+```
+
+GitHub Actions also compiles the actual current 12-game manifest twice without
+gitignored archives and byte-compares the Parquet outputs. In that environment
+archive-derived rows remain correctly UNKNOWN.
+
+This index is an evidence-selection aid only:
+
+```text
+feature-index match
+!= mechanic observation
+!= discriminator
+!= DIFF_VERIFIED
+```
+
+Detailed handoff:
+`docs/handoff/2026-09-21-corpus-feature-index-v1.md`.
 
 ## Current runtime-verified 12-game invariants
 
