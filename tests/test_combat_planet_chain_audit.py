@@ -1,10 +1,10 @@
 from __future__ import annotations
 
-import argparse
 import importlib.util
 from pathlib import Path
 
 from planets_lab.corpus.feature_index import feature_row, write_feature_index
+from planets_lab.corpus.feature_scope import load_feature_scope
 from planets_lab.rules.combat import rebuild_planet_combatant
 
 
@@ -195,14 +195,11 @@ def test_scope_selection_is_loaded_from_feature_index(tmp_path: Path) -> None:
         parquet_path=index,
         database_path=tmp_path / "corpus.duckdb",
     )
-    selection = audit._scope_selection(
-        argparse.Namespace(
-            feature_index=index,
-            scope_profile="combat-planar-no-horwasp",
-        )
+    scope = load_feature_scope(
+        index,
+        profile="combat-planar-no-horwasp",
     )
 
-    assert selection is not None
-    assert selection["included_game_ids"] == [10]
-    assert selection["excluded_game_ids"] == [20]
-    assert selection["unknown_game_ids"] == []
+    assert scope.included_game_ids == (10,)
+    assert scope.excluded_game_ids == (20,)
+    assert scope.unknown_game_ids == ()
