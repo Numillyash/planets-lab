@@ -120,6 +120,11 @@ class FeatureDecision:
 
 PROFILE_PREDICATES: dict[str, tuple[FeaturePredicate, ...]] = {
     "all-indexed": (),
+    "combat-planar-no-horwasp": (
+        FeaturePredicate("game.status", "eq", 3),
+        FeaturePredicate("settings.sphere", "eq", False),
+        FeaturePredicate("population.horwasp_present", "eq", False),
+    ),
     "ordinary-classic": (
         FeaturePredicate("game.status", "eq", 3),
         FeaturePredicate("game.game_type", "eq", 2),
@@ -805,6 +810,32 @@ def selected_game_ids(
         for decision in select_games(rows, predicates)
         if decision.included
     )
+
+
+def profile_selection_summary(
+    rows: Sequence[Mapping[str, Any]],
+    *,
+    profile: str,
+) -> dict[str, Any]:
+    predicates = profile_predicates(profile)
+    decisions = select_games(rows, predicates)
+    included = [decision.game_id for decision in decisions if decision.included]
+    excluded = [decision.game_id for decision in decisions if not decision.included]
+    unknown = [
+        decision.game_id
+        for decision in decisions
+        if any(
+            predicate.get("status") == "unknown"
+            for predicate in decision.predicates
+        )
+    ]
+    return {
+        "profile": profile,
+        "predicate_count": len(predicates),
+        "included_game_ids": included,
+        "excluded_game_ids": excluded,
+        "unknown_game_ids": unknown,
+    }
 
 
 def game_id_from_archive_path(path: Path) -> int | None:
