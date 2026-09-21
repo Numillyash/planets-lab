@@ -88,6 +88,7 @@ def test_checkpoint_continuity_accepts_expected_c3_c4_populations() -> None:
     assert report["failures"] == []
     assert report["checks"] == {
         "selector_partition_shared": True,
+        "selector_partition_disjoint": True,
         "planet_c4_checkpoint_preserved": True,
         "ship_c3_checkpoint_preserved": True,
         "cluster_partition_preserved": True,
