@@ -69,10 +69,28 @@ def check(
                     failures,
                 )
 
-        included = selections[0].get("included_game_ids")
-        excluded = selections[0].get("excluded_game_ids")
-        _expect(len(included or []), 11, "selected game count", failures)
-        _expect(len(excluded or []), 1, "excluded game count", failures)
+        included = list(selections[0].get("included_game_ids") or [])
+        excluded = list(selections[0].get("excluded_game_ids") or [])
+        unknown = list(selections[0].get("unknown_game_ids") or [])
+        _expect(len(included), 11, "selected game count", failures)
+        _expect(len(excluded), 1, "excluded game count", failures)
+        _expect(len(unknown), 0, "unknown game count", failures)
+
+        selected_set = set(included)
+        excluded_set = set(excluded)
+        unknown_set = set(unknown)
+        if selected_set & excluded_set:
+            failures.append("scope partitions overlap: selected/excluded")
+        if selected_set & unknown_set:
+            failures.append("scope partitions overlap: selected/unknown")
+        if excluded_set & unknown_set:
+            failures.append("scope partitions overlap: excluded/unknown")
+        _expect(
+            len(selected_set | excluded_set | unknown_set),
+            12,
+            "scope partition coverage",
+            failures,
+        )
 
     # C4 checkpoint continuity: selector-backed scope must preserve the exact
     # historical 11-game population previously defined by an ad-hoc game-id
@@ -172,6 +190,12 @@ def check(
             "selector_partition_shared": True if selections and not any(
                 failure.startswith("selection[") for failure in failures
             ) else False,
+            "selector_partition_disjoint": not any(
+                failure.startswith("scope partitions overlap")
+                or failure.startswith("scope partition coverage")
+                or failure.startswith("unknown game count")
+                for failure in failures
+            ),
             "planet_c4_checkpoint_preserved": not any(
                 failure.startswith("planet.") for failure in failures
             ),
