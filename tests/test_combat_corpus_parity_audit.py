@@ -6,6 +6,8 @@ import zipfile
 from pathlib import Path
 from types import SimpleNamespace
 
+from planets_lab.corpus.feature_index import feature_row, write_feature_index
+
 
 TOOL = Path(__file__).parents[1] / "tools" / "diagnostics" / "combat_classic_corpus_parity_audit.py"
 spec = importlib.util.spec_from_file_location("combat_classic_corpus_parity_audit", TOOL)
@@ -107,6 +109,8 @@ def _args(path: Path, *, manifest: Path | None = None) -> SimpleNamespace:
         output=None,
         detail_limit=100,
         include_supported=False,
+        feature_index=None,
+        feature_profile="all-indexed",
     )
 
 
@@ -144,3 +148,46 @@ def test_raw_manifest_combat_rng_conflict_fails_closed() -> None:
     assert settings is None
     assert source == "conflict"
     assert error is not None and "conflicts" in error
+
+
+
+def test_all_indexed_feature_selector_preserves_replay_result(tmp_path: Path) -> None:
+    archive_path = tmp_path / "game-123456.zip"
+    _write_archive(archive_path, [_turn(1), _turn(2)])
+
+    baseline_args = _args(archive_path)
+    baseline = audit.run(baseline_args)
+
+    index_path = tmp_path / "game_features.parquet"
+    database_path = tmp_path / "corpus.duckdb"
+    write_feature_index(
+        rows=[
+            feature_row(
+                game_id=123456,
+                feature="game.status",
+                value=3,
+                known=True,
+                source_kind="fixture",
+                source_location="fixture",
+            )
+        ],
+        parquet_path=index_path,
+        database_path=database_path,
+    )
+
+    selected_args = _args(archive_path)
+    selected_args.feature_index = index_path
+    selected_args.feature_profile = "all-indexed"
+    selected = audit.run(selected_args)
+
+    assert selected["summary"] == baseline["summary"]
+    assert selected["battle_shapes"] == baseline["battle_shapes"]
+    assert selected["games"] == baseline["games"]
+    assert selected["settings_sources_per_turn_member"] == (
+        baseline["settings_sources_per_turn_member"]
+    )
+    assert selected["feature_selection"] == {
+        "index": str(index_path),
+        "profile": "all-indexed",
+        "selected_game_ids": [123456],
+    }
