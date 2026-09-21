@@ -10,6 +10,10 @@ from pathlib import Path
 from typing import Any, Mapping
 
 from planets_lab.corpus.archive import read_archive_members, turn_members
+from planets_lab.corpus.feature_index import (
+    load_feature_rows,
+    profile_selection_summary,
+)
 from planets_lab.rules.combat import (
     PLANET_CARRYOVER_BASIS,
     ReplayUnsupported,
@@ -20,7 +24,8 @@ from planets_lab.rules.combat import (
 
 
 DEFAULT_ARCHIVE_DIR = Path("validation/corpus/cache/loadall")
-SPECIAL_GAME_ID = 591478
+DEFAULT_FEATURE_INDEX = Path("validation/corpus/compiled/v1/metadata/game_features.parquet")
+DEFAULT_SCOPE_PROFILE = "combat-planar-no-horwasp"
 FIELD_MAP = {
     "beam_count": "beamcount",
     "launcher_count": "launchercount",
@@ -102,6 +107,17 @@ def _archive_paths(args: argparse.Namespace) -> list[Path]:
     if missing:
         raise ValueError(f"archive paths do not exist: {missing}")
     return paths
+
+
+def _scope_selection(args: argparse.Namespace) -> dict[str, Any] | None:
+    feature_index = getattr(args, "feature_index", None)
+    if feature_index is None:
+        return None
+    rows = load_feature_rows(Path(feature_index))
+    return profile_selection_summary(
+        rows,
+        profile=getattr(args, "scope_profile", DEFAULT_SCOPE_PROFILE),
+    )
 
 
 def _same_position(a: Mapping[str, Any], b: Mapping[str, Any]) -> bool:
@@ -461,13 +477,30 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             summary["same_location_transitions"] += 1
             summary[str(transition.get("status", "unknown"))] += 1
 
-    ordinary = [row for row in transitions if row.get("game_id") != SPECIAL_GAME_ID]
-    special = [row for row in transitions if row.get("game_id") == SPECIAL_GAME_ID]
-    no_starbase_ordinary = [
-        row for row in ordinary if row.get("has_starbase") is False
+    selection = _scope_selection(args)
+    if selection is None:
+        selected_ids = {int(row["game_id"]) for row in transitions}
+        excluded_ids: set[int] = set()
+        unknown_ids: set[int] = set()
+    else:
+        selected_ids = set(selection["included_game_ids"])
+        excluded_ids = set(selection["excluded_game_ids"])
+        unknown_ids = set(selection["unknown_game_ids"])
+
+    selected = [
+        row for row in transitions if int(row["game_id"]) in selected_ids
     ]
-    starbase_ordinary = [
-        row for row in ordinary if row.get("has_starbase") is True
+    excluded = [
+        row for row in transitions if int(row["game_id"]) in excluded_ids
+    ]
+    unknown_scope = [
+        row for row in transitions if int(row["game_id"]) in unknown_ids
+    ]
+    no_starbase_selected = [
+        row for row in selected if row.get("has_starbase") is False
+    ]
+    starbase_selected = [
+        row for row in selected if row.get("has_starbase") is True
     ]
 
     details = [
@@ -477,7 +510,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     ][: args.detail_limit]
 
     return {
-        "schema": "planets-lab.combat-planet-chain-audit.v1",
+        "schema": "planets-lab.combat-planet-chain-audit.v2",
         "read_only": True,
         "evidence_boundary": (
             "Independent differential: replay terminal planet state from factual VCR N "
@@ -487,11 +520,13 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "reproduces the factual VCR start."
         ),
         "summary": dict(summary),
+        "scope_selection": selection,
         "scopes": {
-            "ordinary_all": _scope(ordinary),
-            "ordinary_no_starbase": _scope(no_starbase_ordinary),
-            "ordinary_starbase": _scope(starbase_ordinary),
-            "game_591478": _scope(special),
+            "profile_selected_all": _scope(selected),
+            "profile_selected_no_starbase": _scope(no_starbase_selected),
+            "profile_selected_starbase": _scope(starbase_selected),
+            "profile_excluded": _scope(excluded),
+            "profile_unknown": _scope(unknown_scope),
         },
         "replay_unsupported_reasons": dict(sorted(replay_unsupported_reasons.items())),
         "archives": archive_reports,
@@ -507,6 +542,17 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--archive-dir", type=Path, default=DEFAULT_ARCHIVE_DIR)
     parser.add_argument("--archive", action="append", default=[])
+    parser.add_argument(
+        "--feature-index",
+        type=Path,
+        default=DEFAULT_FEATURE_INDEX,
+        help="Compiled game feature index used only to classify report scopes.",
+    )
+    parser.add_argument(
+        "--scope-profile",
+        default=DEFAULT_SCOPE_PROFILE,
+        help="Feature-index profile defining the clean combat scope.",
+    )
     parser.add_argument("--output", type=Path, default=None)
     parser.add_argument("--detail-limit", type=int, default=100)
     return parser.parse_args()
