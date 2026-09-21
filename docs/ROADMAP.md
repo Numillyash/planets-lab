@@ -476,6 +476,20 @@ observation.
 Detailed state:
 `docs/handoff/2026-09-21-corpus-feature-index-v1.md`.
 
+Archive-enriched v1 gate is now runtime-verified on all 12 immutable cached games:
+
+```text
+rows=1152
+known=1116
+unknown=36
+deterministic rebuild exact
+ordinary-classic=360690,511506,620694
+combat parity integration exact=true
+```
+
+Runtime:
+`docs/handoff/2026-09-21-corpus-feature-index-v1-runtime.md`.
+
 ## Immediate next work — Host combat phase
 
 Proceed in this order:
