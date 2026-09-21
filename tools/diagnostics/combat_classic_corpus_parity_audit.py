@@ -10,6 +10,11 @@ from pathlib import Path
 from typing import Any, Mapping
 
 from planets_lab.corpus.archive import read_archive_members, turn_members
+from planets_lab.corpus.feature_index import (
+    game_id_from_archive_path,
+    load_feature_rows,
+    selected_game_ids,
+)
 from planets_lab.rules.combat import (
     ReplayUnsupported,
     combat_rng_from_settings,
@@ -168,7 +173,20 @@ def _resolve_settings(
     return None, "missing", "combatrng unavailable"
 
 
-def _archive_paths(args: argparse.Namespace) -> list[Path]:
+def _feature_selected_ids(args: argparse.Namespace) -> set[int] | None:
+    feature_index = getattr(args, "feature_index", None)
+    if feature_index is None:
+        return None
+    rows = load_feature_rows(Path(feature_index))
+    profile = getattr(args, "feature_profile", "all-indexed")
+    return set(selected_game_ids(rows, profile=profile))
+
+
+def _archive_paths(
+    args: argparse.Namespace,
+    *,
+    selected_ids: set[int] | None = None,
+) -> list[Path]:
     explicit = [Path(value) for value in args.archive]
     if explicit:
         paths = explicit
@@ -179,6 +197,21 @@ def _archive_paths(args: argparse.Namespace) -> list[Path]:
     missing = [str(path) for path in paths if not path.is_file()]
     if missing:
         raise ValueError(f"archive paths do not exist: {missing}")
+
+    if selected_ids is not None:
+        filtered: list[Path] = []
+        for path in paths:
+            game_id = game_id_from_archive_path(path)
+            if game_id is None:
+                raise ValueError(
+                    "feature-index filtering requires game-<id>.zip archive names: "
+                    f"{path}"
+                )
+            if game_id in selected_ids:
+                filtered.append(path)
+        paths = filtered
+        if not paths:
+            raise ValueError("feature selector excluded every available archive")
     return paths
 
 
@@ -191,7 +224,8 @@ def _shape(payload: Mapping[str, Any]) -> str:
 def run(args: argparse.Namespace) -> dict[str, Any]:
     started = time.perf_counter()
     settings_manifest = _load_settings_manifest(args.settings_manifest)
-    archives = _archive_paths(args)
+    feature_selected_ids = _feature_selected_ids(args)
+    archives = _archive_paths(args, selected_ids=feature_selected_ids)
 
     observations: dict[tuple[int, int, int], list[dict[str, Any]]] = defaultdict(list)
     archive_reports: list[dict[str, Any]] = []
@@ -374,6 +408,15 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "observation is supplied."
         ),
         "summary": dict(summary),
+        "feature_selection": (
+            {
+                "index": str(args.feature_index),
+                "profile": getattr(args, "feature_profile", "all-indexed"),
+                "selected_game_ids": sorted(feature_selected_ids),
+            }
+            if feature_selected_ids is not None
+            else None
+        ),
         "settings_sources_per_turn_member": dict(sorted(settings_sources.items())),
         "unsupported_reasons": dict(sorted(unsupported_reasons.items())),
         "battle_shapes": dict(sorted(shapes.items())),
@@ -409,6 +452,21 @@ def parse_args() -> argparse.Namespace:
             "Optional JSON object keyed by game id. Each value may be a settings object "
             "or an integer combatrng. Raw RST combatrng wins unless it conflicts."
         ),
+    )
+    parser.add_argument(
+        "--feature-index",
+        type=Path,
+        default=None,
+        help=(
+            "Optional compiled game_features.parquet. When supplied, archives are "
+            "preselected before replay without changing replay/evidence semantics."
+        ),
+    )
+    parser.add_argument(
+        "--feature-profile",
+        default="all-indexed",
+        choices=("all-indexed", "ordinary-classic"),
+        help="Named feature-index selection profile used with --feature-index.",
     )
     parser.add_argument("--output", type=Path, default=None)
     parser.add_argument("--detail-limit", type=int, default=100)
