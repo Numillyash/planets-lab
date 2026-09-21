@@ -293,3 +293,64 @@ C4 checkpoint preserved exactly
 cluster partition preserved exactly
 mechanics conclusions unchanged
 ```
+
+
+## Shared scope API follow-up
+
+After the successful archive runtime, selector plumbing was consolidated into:
+
+```text
+src/planets_lab/corpus/feature_scope.py
+```
+
+API:
+
+```text
+FeatureScope
+load_feature_scope(...)
+optional_feature_scope(...)
+```
+
+`FeatureScope` owns:
+
+- index/profile metadata;
+- selected game IDs;
+- known-mismatch excluded game IDs;
+- UNKNOWN game IDs;
+- per-game classification;
+- JSON-safe report metadata.
+
+Partitions are explicitly disjoint:
+
+```text
+selected ∩ excluded = empty
+selected ∩ unknown  = empty
+excluded ∩ unknown  = empty
+```
+
+An unindexed game classifies separately as `unindexed` and is never silently
+treated as selected.
+
+The following combat diagnostics now consume the shared resolver:
+
+```text
+combat_classic_corpus_parity_audit.py
+combat_planet_chain_audit.py
+combat_ship_chain_phase_audit.py
+combat_ship_chain_cluster_audit.py
+```
+
+The base `combat_ship_chain_audit.py` does not construct a special-game clean
+scope and therefore does not need selector plumbing.
+
+The continuity checker now gates both historical C3/C4 counts and disjoint scope
+partitions.
+
+Full GitHub Actions after the shared resolver refactor reached:
+
+```text
+390 passed
+```
+
+A final archive-host rerun of `tools/run-combat-feature-scope-gate.sh` is the
+runtime acceptance for the refactored shared path.
