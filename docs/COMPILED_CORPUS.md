@@ -391,6 +391,9 @@ The original `511506 / T23 / ship160 / hull17` survivor is now production-closed
 ## Current test state
 
 ```text
+feature index v1 GitHub Actions: 384 passed
+feature index 12-game manifest deterministic rebuild: exact Parquet bytes
+feature index ordinary-classic selector CLI: passed
 movement-mine targeted module: 10 passed
 full GitHub Actions pytest:    green on mechanics/test commit
 partial-fuel server gate:      371 passed / all stages 0/0
