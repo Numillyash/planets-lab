@@ -302,14 +302,33 @@ def test_ordinary_classic_profile_excludes_campaign_horwasp_game() -> None:
         ),
         manifest_location="manifest.jsonl",
     )
+    standard_manifest = _manifest(30)
+    standard_manifest["settings"].update(
+        {
+            "productionqueue": True,
+            "planetaryproductionqueue": True,
+            "shiplimittype": 1,
+            "plsminships": 20,
+            "cloakandintercept": True,
+            "galacticpower": True,
+            "superspyadvanced": True,
+            "fascistdoublebeams": True,
+            "unlimitedfuel": True,
+        }
+    )
+    standard = manifest_feature_rows(
+        standard_manifest,
+        manifest_location="manifest.jsonl",
+    )
     decisions = select_games(
-        [*normal, *special],
+        [*normal, *special, *standard],
         profile_predicates("ordinary-classic"),
     )
 
     assert [(row.game_id, row.included) for row in decisions] == [
         (10, True),
         (20, False),
+        (30, False),
     ]
     failed = [
         predicate["feature"]
@@ -320,6 +339,14 @@ def test_ordinary_classic_profile_excludes_campaign_horwasp_game() -> None:
     assert "settings.campaignmode" in failed
     assert "settings.sphere" in failed
     assert "population.horwasp_present" in failed
+
+    standard_failed = [
+        predicate["feature"]
+        for predicate in decisions[2].predicates
+        if predicate["status"] != "match"
+    ]
+    assert "settings.productionqueue" in standard_failed
+    assert "settings.cloakandintercept" in standard_failed
 
 
 def test_build_is_deterministic_and_reads_compiled_movement_count(tmp_path) -> None:
