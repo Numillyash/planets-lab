@@ -497,3 +497,39 @@ The gate now additionally verifies:
 - tracked working-tree state remains unchanged after the gate.
 
 No evidence or selector result was taken from the failed host attempt.
+
+
+## Archive-enriched v1 runtime — PASSED
+
+Durable runtime:
+`docs/handoff/2026-09-21-corpus-feature-index-v1-runtime.md`
+
+Runtime source HEAD:
+
+```text
+68ed7006732c22273b47a5e915d7c2ed9b4e1f74
+```
+
+Result:
+
+```text
+12/12 archives present
+games=12
+feature rows=1152
+known=1116
+unknown=36
+deterministic rebuild SHA exact
+ordinary-classic included=3
+ordinary-classic excluded=9
+UNKNOWN selector predicates=0
+combat integration exact=true
+combat integration mismatches=[]
+```
+
+Compiled Parquet SHA:
+
+```text
+cb72f539775d22726d8d7f225fc7b3deeb8f936312873df12db59340e1dd7735
+```
+
+The feature-index workstream v1 acceptance target is therefore met on the actual immutable archive corpus.
