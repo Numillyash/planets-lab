@@ -89,3 +89,28 @@ After this passes, the next new mechanics gate is post-capture candidate-graph
 reconstruction for the eight ship continuations: owner/race mutation must create
 new foreign pairs and remove new same-owner pairs before canonical next-pair
 selection. Factual next VCR remains comparator-only.
+
+
+## New discovery stage in the same run
+
+The runner also emits:
+
+```text
+artifacts/combat-capture-reintegration-v1/post-capture-ship-candidates.json
+```
+
+For each of the historical ship continuations after capture, it independently
+reconstructs the battle-site ship population from owner-current T-1 movement
+state, applies the prize ship's new owner for opponent-side request evaluation,
+and records:
+
+- whether the factual next opponent was independently predicted at the site;
+- whether its T-1 orders request combat against the new owner;
+- strict relation permission with the factual pair removed from its own control
+  evidence;
+- its static Combat Priority rank among independently aggressive foreign ships.
+
+This stage is descriptive and deliberately does not fail the reintegration gate.
+It does not yet apply active-membership history from earlier VCRs at the site,
+so its output is the evidence input for the next candidate-graph implementation,
+not a promoted rule.

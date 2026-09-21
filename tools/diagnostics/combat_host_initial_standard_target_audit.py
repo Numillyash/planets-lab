@@ -555,6 +555,26 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 for ship_id, entry in predictions.items()
                 if entry.get("position") == site
             }
+
+            site_observer = getattr(args, "site_observer", None)
+            if callable(site_observer):
+                site_observer(
+                    {
+                        "game_id": game_id,
+                        "battle_turn": battle_turn,
+                        "before_turn": before_turn,
+                        "x": x,
+                        "y": y,
+                        "site": site,
+                        "site_ship_rows": site_ship_rows,
+                        "relations": relations,
+                        "controls": controls,
+                        "start_stacks": start_stacks,
+                        "factual": factual,
+                        "factual_queue": factual_queue,
+                    }
+                )
+
             candidate_rows: list[dict[str, Any]] = []
             for a_id, b_id in combinations(sorted(site_ship_rows), 2):
                 a = site_ship_rows[a_id]

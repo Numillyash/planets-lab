@@ -37,6 +37,7 @@ echo "===== CAPTURE REINTEGRATION: TARGETED TESTS ====="
   tests/test_combat_host_capture_continuation_audit.py \
   tests/test_combat_host_post_capture_opponent_audit.py \
   tests/test_combat_host_post_capture_initiator_population_audit.py \
+  tests/test_combat_host_post_capture_ship_candidate_audit.py \
   tests/test_combat_host_post_mutation_next_pair_audit.py
 
 echo
@@ -55,7 +56,15 @@ echo "===== CAPTURE REINTEGRATION: OPPONENT INITIATOR DIFFERENTIAL ====="
   --scope-profile "$PROFILE" \
   --output "$ARTIFACT_DIR/post-capture-initiator.json"
 
+
 echo
+echo "===== CAPTURE REINTEGRATION: POST-CAPTURE SHIP CANDIDATE DISCOVERY ====="
+"${lab[@]}" python tools/diagnostics/combat_host_post_capture_ship_candidate_audit.py \
+  --archive-dir "$ARCHIVE_DIR" \
+  --feature-index "$INDEX" \
+  --scope-profile "$PROFILE" \
+  --output "$ARTIFACT_DIR/post-capture-ship-candidates.json"
+
 echo "===== CAPTURE REINTEGRATION: ACCEPTANCE ====="
 "${lab[@]}" python tools/diagnostics/combat_capture_reintegration_check.py \
   "$PREDICTIVE_ARTIFACT_DIR/integration.json" \
@@ -68,5 +77,6 @@ echo "===== CAPTURE REINTEGRATION: COMPLETE ====="
 echo "profile:      $PROFILE"
 echo "capture:      $ARTIFACT_DIR/capture-continuation.json"
 echo "initiator:    $ARTIFACT_DIR/post-capture-initiator.json"
+echo "candidates:   $ARTIFACT_DIR/post-capture-ship-candidates.json"
 echo "integration:  $ARTIFACT_DIR/integration.json"
 echo "full_log:     $LOG_PATH"

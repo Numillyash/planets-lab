@@ -75,6 +75,7 @@ jobs:
           python tools/diagnostics/combat_predictive_queue_integration_check.py --help >/dev/null
           PYTHONPATH="$PWD/src:$PWD/tools/diagnostics" python tools/diagnostics/combat_host_capture_continuation_audit.py --help >/dev/null
           PYTHONPATH="$PWD/src:$PWD/tools/diagnostics" python tools/diagnostics/combat_host_post_capture_initiator_population_audit.py --help >/dev/null
+          PYTHONPATH="$PWD/src:$PWD/tools/diagnostics" python tools/diagnostics/combat_host_post_capture_ship_candidate_audit.py --help >/dev/null
           python tools/diagnostics/combat_capture_reintegration_check.py --help >/dev/null
           bash -n tools/run-combat-feature-scope-gate.sh
           bash -n tools/run-combat-predictive-queue-gate.sh
