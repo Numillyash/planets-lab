@@ -766,3 +766,25 @@ Pending handoff:
 `docs/handoff/2026-09-21-combat-c5-directed-clan-drop-pending.md`
 
 No casualty/ground-combat reducer is promoted until this population differential is reviewed.
+
+
+### 2026-09-21 v7 first runtime invalidated — infrastructure repair
+
+The first directed clan-drop v7 runtime from HEAD `e7086e0d...` is not evidence-bearing.
+
+Root cause:
+`combat_host_mixed_ship_planet_queue_batch_audit.py` was accidentally truncated from 42153 bytes to 1219 bytes by a partial-content GitHub update. Shared imports therefore failed before the dependent corpus stages could run.
+
+Repair:
+```text
+2d0dec4c  fix: restore full mixed queue audit after schema truncation
+a7959617  tools: add shared diagnostic import smoke gate
+```
+
+Durable incident note:
+`docs/handoff/2026-09-21-combat-c5-v7-import-failure.md`
+
+Last evidence-bearing runtime remains v6:
+`370ecaf5de029fadfd0acafd1107e1fb35c9cb54`, 10/10 rc=0.
+
+The active mechanics task is unchanged: rerun v7 directed clan-drop ownership differential from the repaired branch.
