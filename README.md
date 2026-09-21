@@ -27,7 +27,7 @@ Raw historical archives, prepared caches and compiled datasets remain local/giti
   engagement ordering remains the immediate major workstream.
 - No `planets-intel` production transfer is implied by a lab evidence promotion;
   production use must preserve the same evidence and scope boundaries.
-
+- Corpus Game / Host Feature Index v1 is implemented as normalized typed Parquet +\n  DuckDB selection infrastructure. The settings-strict `ordinary-classic` profile\n  currently selects games `360690`, `511506`, and `620694`; index membership is\n  not a mechanics evidence promotion.\n
 ## Recorded compiled-layer runtime counts
 
 ```text
@@ -59,7 +59,7 @@ read the existing corpus without rebuilding L1/L2. Generic residuals: 740 rows /
 3. [Roadmap](docs/ROADMAP.md)
 4. [Compiled corpus](docs/COMPILED_CORPUS.md)
 5. [Architecture](docs/ARCHITECTURE.md)
-6. [Workflow](docs/WORKFLOW.md)
+6. [Corpus feature index v1](docs/handoff/2026-09-21-corpus-feature-index-v1.md)\n7. [Workflow](docs/WORKFLOW.md)
 
 To reproduce the bounded ordinary partial-fuel historical gate on a clean server
 checkout with the existing local archives/caches:
