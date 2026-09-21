@@ -10,11 +10,8 @@ from pathlib import Path
 from typing import Any, Mapping
 
 from planets_lab.corpus.archive import read_archive_members, turn_members
-from planets_lab.corpus.feature_index import (
-    game_id_from_archive_path,
-    load_feature_rows,
-    selected_game_ids,
-)
+from planets_lab.corpus.feature_index import game_id_from_archive_path
+from planets_lab.corpus.feature_scope import optional_feature_scope
 from planets_lab.rules.combat import (
     ReplayUnsupported,
     combat_rng_from_settings,
@@ -173,15 +170,6 @@ def _resolve_settings(
     return None, "missing", "combatrng unavailable"
 
 
-def _feature_selected_ids(args: argparse.Namespace) -> set[int] | None:
-    feature_index = getattr(args, "feature_index", None)
-    if feature_index is None:
-        return None
-    rows = load_feature_rows(Path(feature_index))
-    profile = getattr(args, "feature_profile", "all-indexed")
-    return set(selected_game_ids(rows, profile=profile))
-
-
 def _archive_paths(
     args: argparse.Namespace,
     *,
@@ -224,7 +212,13 @@ def _shape(payload: Mapping[str, Any]) -> str:
 def run(args: argparse.Namespace) -> dict[str, Any]:
     started = time.perf_counter()
     settings_manifest = _load_settings_manifest(args.settings_manifest)
-    feature_selected_ids = _feature_selected_ids(args)
+    feature_scope = optional_feature_scope(
+        getattr(args, "feature_index", None),
+        profile=getattr(args, "feature_profile", "all-indexed"),
+    )
+    feature_selected_ids = (
+        set(feature_scope.selected_ids) if feature_scope is not None else None
+    )
     archives = _archive_paths(args, selected_ids=feature_selected_ids)
 
     observations: dict[tuple[int, int, int], list[dict[str, Any]]] = defaultdict(list)
@@ -409,13 +403,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         ),
         "summary": dict(summary),
         "feature_selection": (
-            {
-                "index": str(args.feature_index),
-                "profile": getattr(args, "feature_profile", "all-indexed"),
-                "selected_game_ids": sorted(feature_selected_ids),
-            }
-            if feature_selected_ids is not None
-            else None
+            feature_scope.to_dict() if feature_scope is not None else None
         ),
         "settings_sources_per_turn_member": dict(sorted(settings_sources.items())),
         "unsupported_reasons": dict(sorted(unsupported_reasons.items())),
@@ -465,7 +453,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--feature-profile",
         default="all-indexed",
-        choices=("all-indexed", "ordinary-classic"),
+        choices=("all-indexed", "combat-planar-no-horwasp", "ordinary-classic"),
         help="Named feature-index selection profile used with --feature-index.",
     )
     parser.add_argument("--output", type=Path, default=None)
