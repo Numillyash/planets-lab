@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from combat_host_planet_precombat_owner_source_audit import (
+    _interesting_planet_fields,
     _interesting_ship_fields,
     _same_position,
 )
@@ -42,3 +43,27 @@ def test_interesting_ship_fields_keeps_clan_and_order_context() -> None:
     assert fields["enemy"] == 5
     assert fields["warp"] == 0
     assert "name" not in fields
+
+
+
+def test_interesting_planet_fields_keeps_ground_combat_context() -> None:
+    raw = {
+        "id": 88,
+        "ownerid": 8,
+        "raceid": 8,
+        "clans": 510,
+        "defense": 20,
+        "friendlycode": "abc",
+        "mines": 100,
+        "factories": 100,
+    }
+
+    fields = _interesting_planet_fields(raw)
+
+    assert fields["ownerid"] == 8
+    assert fields["raceid"] == 8
+    assert fields["clans"] == 510
+    assert fields["defense"] == 20
+    assert fields["friendlycode"] == "abc"
+    assert "mines" not in fields
+    assert "factories" not in fields
