@@ -510,6 +510,11 @@ failures                              []
 Durable runtime:
 `docs/handoff/2026-09-21-combat-feature-scope-selector-runtime.md`.
 
+Combat diagnostics now share `src/planets_lab/corpus/feature_scope.py`; the
+selector contract explicitly separates selected, known-excluded and UNKNOWN
+games. The continuity gate checks those partitions for overlap in addition to
+the historical C3/C4 counters.
+
 ## Immediate next work — Host combat phase
 
 Proceed in this order:
