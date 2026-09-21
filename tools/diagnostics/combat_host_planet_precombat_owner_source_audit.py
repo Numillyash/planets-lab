@@ -15,6 +15,11 @@ for path in (REPO_ROOT, DIAGNOSTICS_DIR):
         sys.path.insert(0, str(path))
 
 import combat_host_post_capture_opponent_audit as opponent_module
+from planets_lab.rules.combat.planet_ownership import (
+    PlanetClanDropOrder,
+    directed_planet_clan_drop,
+    ordered_planet_clan_drops,
+)
 from combat_host_mixed_ship_planet_queue_batch_audit import (
     _load_groups,
     _planet_pair,
@@ -29,7 +34,7 @@ from combat_host_priority_intercept_audit import (
 )
 
 
-SCHEMA = "planets-lab.combat-host-planet-precombat-owner-source-audit.v1"
+SCHEMA = "planets-lab.combat-host-planet-precombat-owner-source-audit.v2"
 DEFAULT_EXAMPLE_LIMIT = 100
 
 ORDER_FIELD_TOKENS = (
@@ -183,12 +188,29 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 if not _same_position(raw, x=x, y=y):
                     continue
                 clans = _intish(raw.get("clans"))
+                drop_order = directed_planet_clan_drop(
+                    ship_id=ship_id,
+                    owner_id=owner_id,
+                    transfer_clans=_intish(raw.get("transferclans")),
+                    transfer_target_id=_intish(raw.get("transfertargetid")),
+                    transfer_target_type=_intish(raw.get("transfertargettype")),
+                )
                 candidate = {
                     "ship_id": ship_id,
                     "owner_id": owner_id,
                     "race_id": _intish(raw.get("raceid")),
                     "hull_id": _intish(raw.get("hullid")),
                     "clans": clans,
+                    "directed_planet_drop": (
+                        {
+                            "ship_id": drop_order.ship_id,
+                            "owner_id": drop_order.owner_id,
+                            "planet_id": drop_order.planet_id,
+                            "clans": drop_order.clans,
+                        }
+                        if drop_order is not None and drop_order.planet_id == planet_id
+                        else None
+                    ),
                     "fields": _interesting_ship_fields(raw),
                 }
                 colocated.append(candidate)
@@ -233,6 +255,34 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         else:
             counts["defender_positive_clan_candidate_count:0"] += 1
 
+        if defender_directed_drops:
+            counts["changed_with_defender_directed_clan_drop"] += 1
+            counts["defender_directed_drop_clans_total"] += sum(
+                int(candidate["directed_planet_drop"]["clans"])
+                for candidate in defender_directed_drops
+            )
+        else:
+            counts["changed_without_defender_directed_clan_drop"] += 1
+
+        if len(defender_directed_drops) == 1:
+            counts["defender_directed_drop_candidate_count:1"] += 1
+        elif len(defender_directed_drops) > 1:
+            counts["defender_directed_drop_candidate_count:multi"] += 1
+        else:
+            counts["defender_directed_drop_candidate_count:0"] += 1
+
+        if ordered_drops:
+            counts["changed_with_any_directed_clan_drop"] += 1
+            counts[f"ordered_drop_stream_length:{len(ordered_drops)}"] += 1
+            if ordered_drops[0].owner_id == defender_owner:
+                counts["ordered_drop:first_owner_is_defender"] += 1
+            if ordered_drops[-1].owner_id == defender_owner:
+                counts["ordered_drop:last_owner_is_defender"] += 1
+            if any(order.owner_id == defender_owner for order in ordered_drops):
+                counts["ordered_drop:defender_present"] += 1
+        else:
+            counts["changed_without_any_directed_clan_drop"] += 1
+
         predicted_source_ship_id = (
             min(candidate["ship_id"] for candidate in defender_positive_clans)
             if defender_positive_clans
@@ -250,7 +300,17 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "defender_ship_count": len(defender_ships),
             "defender_positive_clan_ship_count": len(defender_positive_clans),
             "foreign_positive_clan_ship_count": len(foreign_positive_clans),
+            "defender_directed_drop_count": len(defender_directed_drops),
             "predicted_lowest_id_defender_clan_ship": predicted_source_ship_id,
+            "ordered_directed_drop_stream": [
+                {
+                    "ship_id": order.ship_id,
+                    "owner_id": order.owner_id,
+                    "planet_id": order.planet_id,
+                    "clans": order.clans,
+                }
+                for order in ordered_drops
+            ],
             "defender_positive_clan_ships": defender_positive_clans,
             "all_colocated_ships": colocated,
         }
@@ -262,6 +322,9 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "payload_conflicts_absent": payload_conflicts == 0,
         "pair_projection_resolved": counts["pair_projection_unresolved"] == 0,
         "tminus1_positions_resolved": counts["planet_tminus1_position_unresolved"] == 0,
+        "all_changed_have_defender_directed_clan_drop": (
+            counts["changed_without_defender_directed_clan_drop"] == 0
+        ),
     }
     acceptance["precombat_owner_source_inventory_gate_passed"] = all(
         acceptance.values()
@@ -281,9 +344,10 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         },
         "examples": examples,
         "evidence_boundary": (
-            "This is a source-candidate inventory, not yet a ground-combat "
-            "simulator. It checks T-1 co-location and clan cargo for ships owned "
-            "by the factual pre-combat defender. Official Host ordering places "
+            "This is a source-candidate and directed-order differential, not yet "
+            "a ground-combat casualty simulator. It checks T-1 co-location, "
+            "onboard clan cargo, and explicit transferclans orders targeting the "
+            "factual planet. Official Host ordering places "
             "cargo drop / Imperial Assault / ground combat before later combat, "
             "but exact drop orders, kill ratios, Imperial Assault conditions, "
             "Horwasp exceptions and sequential multi-ship cargo-drop effects "
