@@ -240,7 +240,7 @@ def parse_args() -> argparse.Namespace:
     select.add_argument(
         "--profile",
         default="all-indexed",
-        choices=("all-indexed", "ordinary-classic"),
+        choices=("all-indexed", "combat-planar-no-horwasp", "ordinary-classic"),
     )
     for flag in ("eq", "ne", "gt", "ge", "lt", "le"):
         select.add_argument(
