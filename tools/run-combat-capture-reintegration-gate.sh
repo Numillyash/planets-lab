@@ -15,6 +15,16 @@ mkdir -p "$ARTIFACT_DIR"
 LOG_PATH="$ARTIFACT_DIR/gate.log"
 exec > >(tee "$LOG_PATH") 2>&1
 
+DOCKER_PREFLIGHT_TIMEOUT="${DOCKER_PREFLIGHT_TIMEOUT:-10}"
+echo "===== CAPTURE REINTEGRATION: DOCKER PREFLIGHT ====="
+if ! timeout "${DOCKER_PREFLIGHT_TIMEOUT}s" docker info >/dev/null 2>&1; then
+  echo "ERROR: Docker daemon/backend is not responding within ${DOCKER_PREFLIGHT_TIMEOUT}s." >&2
+  echo "Restart Docker Desktop/backend, verify 'docker info', then rerun this gate." >&2
+  exit 69
+fi
+echo "docker: ready"
+
+echo
 echo "===== CAPTURE REINTEGRATION: PREDICTIVE QUEUE CHECKPOINT ====="
 ARTIFACT_DIR="$PREDICTIVE_ARTIFACT_DIR" \
 ARCHIVE_DIR="$ARCHIVE_DIR" \

@@ -3,8 +3,10 @@ from __future__ import annotations
 import json
 import os
 import shutil
+import signal
 import stat
 import subprocess
+import time
 from pathlib import Path
 
 
@@ -163,3 +165,70 @@ def test_runtime_evidence_rejects_non_artifact_include(tmp_path: Path) -> None:
 
     assert result.returncode == 64
     assert "must be under artifacts/" in result.stdout
+
+
+def test_runtime_evidence_publishes_partial_log_on_sigterm(tmp_path: Path) -> None:
+    repo, remote = _prepare_repo(tmp_path, runner_exit=0)
+
+    slow = repo / "tools" / "slow-runner.sh"
+    slow.write_text(
+        "#!/usr/bin/env bash\n"
+        "set -u\n"
+        "mkdir -p artifacts/demo\n"
+        "printf '{\"started\": true}\\n' > artifacts/demo/result.json\n"
+        "echo slow-runner-started\n"
+        "sleep 60\n",
+        encoding="utf-8",
+    )
+    slow.chmod(slow.stat().st_mode | stat.S_IXUSR)
+
+    proc = subprocess.Popen(
+        [
+            "bash",
+            "tools/run-with-runtime-evidence.sh",
+            "demo-signal",
+            "--include",
+            "artifacts/demo",
+            "--",
+            "bash",
+            "tools/slow-runner.sh",
+        ],
+        cwd=repo,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        start_new_session=True,
+    )
+    assert proc.stdout is not None
+
+    output_lines: list[str] = []
+    deadline = time.time() + 10
+    while time.time() < deadline:
+        line = proc.stdout.readline()
+        if line:
+            output_lines.append(line)
+            if "slow-runner-started" in line:
+                break
+    else:
+        proc.kill()
+        raise AssertionError("slow runner did not start")
+
+    os.killpg(proc.pid, signal.SIGTERM)
+    remainder, _ = proc.communicate(timeout=20)
+    output = "".join(output_lines) + remainder
+
+    assert proc.returncode == 143
+    assert "runtime_evidence: published" in output
+
+    paths = _runtime_paths(remote)
+    metadata_path = next(
+        path
+        for path in paths
+        if "/demo-signal/" in path and path.endswith("/metadata.json")
+    )
+    metadata = json.loads(_show(remote, metadata_path))
+    assert metadata["exit_code"] == 143
+    assert metadata["interrupted_signal"] == "TERM"
+
+    prefix = metadata_path.rsplit("/", 1)[0]
+    assert "slow-runner-started" in _show(remote, f"{prefix}/gate.log")

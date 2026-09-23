@@ -124,6 +124,18 @@ cleanup() {
 }
 trap cleanup EXIT
 
+INTERRUPTED_SIGNAL=""
+on_interrupt() {
+  local signal_name="$1"
+  if [[ -z "$INTERRUPTED_SIGNAL" ]]; then
+    INTERRUPTED_SIGNAL="$signal_name"
+    echo >&2
+    echo "WARNING: received $signal_name; waiting for the interrupted runner to stop, then publishing partial evidence" >&2
+  fi
+}
+trap 'on_interrupt INT' INT
+trap 'on_interrupt TERM' TERM
+
 LOG_PATH="$EVIDENCE_ROOT/gate.log"
 
 echo "===== RUNTIME EVIDENCE ====="
@@ -137,6 +149,16 @@ set +e
 "${COMMAND[@]}" 2>&1 | tee "$LOG_PATH"
 RUN_EXIT=${PIPESTATUS[0]}
 set -e
+
+if [[ "$INTERRUPTED_SIGNAL" == "INT" ]]; then
+  RUN_EXIT=130
+elif [[ "$INTERRUPTED_SIGNAL" == "TERM" ]]; then
+  RUN_EXIT=143
+fi
+
+# The foreground runner has stopped. Further Ctrl+C/TERM should not silently
+# discard evidence while publication is in progress.
+trap '' INT TERM
 
 FINISHED_AT="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
 
@@ -193,6 +215,7 @@ SOURCE_DIRTY_ENV="$SOURCE_DIRTY" \
 STARTED_AT_ENV="$STARTED_AT" \
 FINISHED_AT_ENV="$FINISHED_AT" \
 RUN_EXIT_ENV="$RUN_EXIT" \
+INTERRUPTED_SIGNAL_ENV="$INTERRUPTED_SIGNAL" \
 RUNNER_ENV="${COMMAND[0]}" \
 REMOTE_ENV="$REMOTE" \
 EVIDENCE_BRANCH_ENV="$EVIDENCE_BRANCH" \
@@ -221,6 +244,7 @@ metadata = {
     "started_at_utc": os.environ["STARTED_AT_ENV"],
     "finished_at_utc": os.environ["FINISHED_AT_ENV"],
     "exit_code": int(os.environ["RUN_EXIT_ENV"]),
+    "interrupted_signal": os.environ.get("INTERRUPTED_SIGNAL_ENV") or None,
     "runner": os.environ["RUNNER_ENV"],
     "hostname": socket.gethostname(),
     "remote": os.environ["REMOTE_ENV"],
@@ -241,6 +265,7 @@ run_name: $RUN_NAME
 run_id: $RUN_ID
 source_commit: $SOURCE_COMMIT
 exit_code: $RUN_EXIT
+interrupted_signal: ${INTERRUPTED_SIGNAL:-none}
 
 See metadata.json for machine-readable metadata.
 EOF
