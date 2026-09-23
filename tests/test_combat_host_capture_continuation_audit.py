@@ -7,7 +7,10 @@ TOOLS_DIR = Path(__file__).resolve().parents[1] / "tools" / "diagnostics"
 if str(TOOLS_DIR) not in sys.path:
     sys.path.insert(0, str(TOOLS_DIR))
 
-from combat_host_capture_continuation_audit import _capture_transition  # noqa: E402
+from combat_host_capture_continuation_audit import (  # noqa: E402
+    _capture_transition,
+    _collect_appearances,
+)
 
 
 def _appearance(
@@ -166,3 +169,44 @@ def test_capture_transition_detects_pre_capture_federation_recovery() -> None:
     assert result["shield"]["model"] == "pre_capture_federation_recovery"
     assert result["production"]["resolved"] is True
     assert result["production"]["all_exact"] is True
+
+
+def test_collect_appearances_uses_explicit_selected_ids(tmp_path, monkeypatch) -> None:
+    import argparse
+    import combat_host_capture_continuation_audit as module
+
+    (tmp_path / "game-1.zip").write_bytes(b"")
+    (tmp_path / "game-2.zip").write_bytes(b"")
+
+    monkeypatch.setattr(
+        module.chain_module,
+        "_appearance",
+        lambda *args, **kwargs: {
+            "game_id": int(kwargs["game_id"]),
+            "turn": 7,
+            "vcr_id": 1,
+            "ship_id": 10,
+        },
+    )
+
+    observed_archives = []
+
+    def fake_run(args):
+        observed_archives.extend(args.archive)
+        module.chain_module._appearance(game_id=1)
+        module.chain_module._appearance(game_id=2)
+        return {"summary": {"ok": True}}
+
+    monkeypatch.setattr(module.chain_module, "run", fake_run)
+
+    appearances, summary = _collect_appearances(
+        argparse.Namespace(
+            archive_dir=tmp_path,
+            example_limit=10,
+        ),
+        selected_ids={1},
+    )
+
+    assert [row["game_id"] for row in appearances] == [1]
+    assert observed_archives == [str(tmp_path / "game-1.zip")]
+    assert summary == {"ok": True}
