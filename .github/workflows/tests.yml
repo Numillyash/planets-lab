@@ -80,6 +80,8 @@ jobs:
           bash -n tools/run-combat-feature-scope-gate.sh
           bash -n tools/run-combat-predictive-queue-gate.sh
           bash -n tools/run-combat-capture-reintegration-gate.sh
+          bash -n tools/run-with-runtime-evidence.sh
+          bash -n tools/run-combat-capture-reintegration-with-evidence.sh
           mkdir -p /tmp/feature-index-a /tmp/feature-index-b /tmp/no-loadall /tmp/no-compiled
           python -m planets_lab.corpus.feature_index_cli build \
             --archive-dir /tmp/no-loadall \

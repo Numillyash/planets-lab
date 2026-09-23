@@ -88,3 +88,19 @@ runtime acceptance on the 11-game `combat-planar-no-horwasp` population:
 22/22 held-out next-VCR transitions exact in both strict and conditional
 profiles, with zero mismatch. The only exact-set continuation exclusion is
 capture, which is the next active combat gate.
+
+
+## Archive-host runtime evidence
+
+For long local corpus runs, prefer the tracked evidence wrapper so raw logs and
+JSON artifacts are pushed to the dedicated orphan `runtime-logs` branch rather
+than pasted into chat.
+
+Current capture command:
+
+```bash
+bash tools/run-combat-capture-reintegration-with-evidence.sh
+```
+
+Source code and accepted handoffs remain on `main`; machine-generated evidence
+lives only on `runtime-logs`.

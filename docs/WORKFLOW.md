@@ -72,3 +72,44 @@ If `git status` reports generated corpus data, inspect it before ignoring or com
 ## Commit discipline
 
 Prefer one coherent logical change over chains of tiny commits that leave `main` temporarily self-contradictory. When tooling forces multiple sequential commits, finish the sequence by restoring documentation/runtime consistency before starting the next mechanic or investigation.
+
+
+## Runtime evidence publication
+
+Long archive-host gates should be executed through the generic evidence wrapper
+instead of pasting full logs into chat:
+
+```bash
+bash tools/run-with-runtime-evidence.sh \
+  RUN_NAME \
+  --include artifacts/some-gate-v1 \
+  -- \
+  bash tools/run-some-gate.sh
+```
+
+The wrapper:
+
+- preserves the source checkout and never switches it to the evidence branch;
+- captures stdout/stderr even when the gate exits non-zero;
+- records minimal metadata without environment variables or full command args;
+- accepts only explicit include paths under `artifacts/`;
+- creates/updates the orphan `runtime-logs` branch via a temporary worktree;
+- stores immutable runs under
+  `runtime-logs/<run-name>/<UTC timestamp>_<source SHA>/`;
+- retries push races;
+- preserves the gate's non-zero exit code after successfully publishing failure
+  evidence;
+- returns 70 only when the gate itself succeeded but evidence publication failed.
+
+The `runtime-logs` branch is machine evidence only. Do not put source code or
+durable conclusions there. Accepted conclusions still belong in
+`docs/handoff/*-runtime.md` on `main`.
+
+The current combat capture gate has a convenience launcher:
+
+```bash
+bash tools/run-combat-capture-reintegration-with-evidence.sh
+```
+
+It publishes the FeatureScope, predictive queue, and capture-reintegration
+artifact directories together with the outer full log and metadata.
