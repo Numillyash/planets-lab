@@ -457,6 +457,8 @@ def _capture_transition(
 
 def _collect_appearances(
     args: argparse.Namespace,
+    *,
+    selected_ids: set[int],
 ) -> tuple[list[dict[str, Any]], Mapping[str, Any]]:
     appearances: list[dict[str, Any]] = []
     original_appearance = chain_module._appearance
@@ -500,7 +502,10 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         args.feature_index,
         profile=args.scope_profile,
     )
-    appearances, chain_summary = _collect_appearances(args)
+    appearances, chain_summary = _collect_appearances(
+        args,
+        selected_ids=set(feature_scope.selected_ids),
+    )
 
     by_vcr: dict[tuple[int, int, int], list[dict[str, Any]]] = defaultdict(list)
     by_ship_turn: dict[tuple[int, int, int], list[dict[str, Any]]] = defaultdict(list)
