@@ -1,0 +1,1589 @@
+{
+  "archives": [
+    {
+      "archive": "game-360690.zip",
+      "game_ids": [
+        360690
+      ],
+      "seconds": 29.683,
+      "turn_members": 2090,
+      "vcr_observations": 6969
+    },
+    {
+      "archive": "game-511506.zip",
+      "game_ids": [
+        511506
+      ],
+      "seconds": 12.041,
+      "turn_members": 1078,
+      "vcr_observations": 2253
+    },
+    {
+      "archive": "game-591478.zip",
+      "game_ids": [
+        591478
+      ],
+      "seconds": 34.004,
+      "turn_members": 3420,
+      "vcr_observations": 7003
+    },
+    {
+      "archive": "game-620636.zip",
+      "game_ids": [
+        620636
+      ],
+      "seconds": 0.784,
+      "turn_members": 186,
+      "vcr_observations": 194
+    },
+    {
+      "archive": "game-620694.zip",
+      "game_ids": [
+        620694
+      ],
+      "seconds": 17.969,
+      "turn_members": 1419,
+      "vcr_observations": 2981
+    },
+    {
+      "archive": "game-620917.zip",
+      "game_ids": [
+        620917
+      ],
+      "seconds": 1.169,
+      "turn_members": 344,
+      "vcr_observations": 500
+    },
+    {
+      "archive": "game-621103.zip",
+      "game_ids": [
+        621103
+      ],
+      "seconds": 1.109,
+      "turn_members": 310,
+      "vcr_observations": 325
+    },
+    {
+      "archive": "game-621253.zip",
+      "game_ids": [
+        621253
+      ],
+      "seconds": 1.382,
+      "turn_members": 351,
+      "vcr_observations": 559
+    },
+    {
+      "archive": "game-621896.zip",
+      "game_ids": [
+        621896
+      ],
+      "seconds": 0.894,
+      "turn_members": 264,
+      "vcr_observations": 205
+    },
+    {
+      "archive": "game-622476.zip",
+      "game_ids": [
+        622476
+      ],
+      "seconds": 1.426,
+      "turn_members": 396,
+      "vcr_observations": 506
+    },
+    {
+      "archive": "game-680435.zip",
+      "game_ids": [
+        680435
+      ],
+      "seconds": 0.946,
+      "turn_members": 272,
+      "vcr_observations": 336
+    },
+    {
+      "archive": "game-680910.zip",
+      "game_ids": [
+        680910
+      ],
+      "seconds": 1.13,
+      "turn_members": 320,
+      "vcr_observations": 425
+    }
+  ],
+  "details": [
+    {
+      "exact_no_starbase": {
+        "start_reconstruction": {
+          "comparable_fields": [
+            "beamcount",
+            "launchercount",
+            "baycount",
+            "beamid",
+            "torpedoid",
+            "shield",
+            "damage",
+            "crew",
+            "mass",
+            "fighters",
+            "hasstarbase"
+          ],
+          "fields": {
+            "baycount": {
+              "factual": 4,
+              "matches": true,
+              "predicted": 4
+            },
+            "beamcount": {
+              "factual": 2,
+              "matches": false,
+              "predicted": 3
+            },
+            "beamid": {
+              "factual": 3,
+              "matches": true,
+              "predicted": 3
+            },
+            "crew": {
+              "factual": 10000,
+              "matches": true,
+              "predicted": 10000
+            },
+            "damage": {
+              "factual": 0,
+              "matches": true,
+              "predicted": 0
+            },
+            "fighters": {
+              "factual": 8,
+              "matches": false,
+              "predicted": 4
+            },
+            "hasstarbase": {
+              "factual": false,
+              "matches": true,
+              "predicted": false
+            },
+            "launchercount": {
+              "factual": 2,
+              "matches": false,
+              "predicted": 0
+            },
+            "mass": {
+              "factual": 120,
+              "matches": true,
+              "predicted": 120
+            },
+            "shield": {
+              "factual": 0,
+              "matches": true,
+              "predicted": 0
+            },
+            "torpedoid": {
+              "factual": 2,
+              "matches": false,
+              "predicted": 0
+            }
+          },
+          "mismatches": [
+            "beamcount",
+            "launchercount",
+            "torpedoid",
+            "fighters"
+          ],
+          "status": "mismatch"
+        },
+        "status": "start_reconstruction_mismatch"
+      },
+      "from_vcr": 483,
+      "game_id": 591478,
+      "gap": 1,
+      "has_starbase": false,
+      "planet_id": 513,
+      "shield_carry": {
+        "matches": true,
+        "next_start": 0,
+        "terminal": 0
+      },
+      "status": "not_comparable",
+      "to_vcr": 484,
+      "turn": 37
+    },
+    {
+      "exact_no_starbase": {
+        "status": "not_applicable"
+      },
+      "from_vcr": 685,
+      "game_id": 591478,
+      "gap": 1,
+      "has_starbase": true,
+      "planet_id": 194,
+      "shield_carry": {
+        "matches": false,
+        "next_start": 0,
+        "terminal": 100
+      },
+      "status": "mismatch",
+      "to_vcr": 686,
+      "turn": 46
+    },
+    {
+      "from_vcr": 686,
+      "game_id": 591478,
+      "gap": 1,
+      "has_starbase": true,
+      "planet_id": 194,
+      "status": "reappearance_after_defeat",
+      "to_vcr": 687,
+      "turn": 46
+    },
+    {
+      "exact_no_starbase": {
+        "start_reconstruction": {
+          "comparable_fields": [
+            "beamcount",
+            "launchercount",
+            "baycount",
+            "beamid",
+            "torpedoid",
+            "shield",
+            "damage",
+            "crew",
+            "mass",
+            "fighters",
+            "hasstarbase"
+          ],
+          "fields": {
+            "baycount": {
+              "factual": 1,
+              "matches": true,
+              "predicted": 1
+            },
+            "beamcount": {
+              "factual": 1,
+              "matches": true,
+              "predicted": 1
+            },
+            "beamid": {
+              "factual": 1,
+              "matches": true,
+              "predicted": 1
+            },
+            "crew": {
+              "factual": 10000,
+              "matches": true,
+              "predicted": 10000
+            },
+            "damage": {
+              "factual": 0,
+              "matches": true,
+              "predicted": 0
+            },
+            "fighters": {
+              "factual": 2,
+              "matches": false,
+              "predicted": 1
+            },
+            "hasstarbase": {
+              "factual": false,
+              "matches": true,
+              "predicted": false
+            },
+            "launchercount": {
+              "factual": 1,
+              "matches": false,
+              "predicted": 0
+            },
+            "mass": {
+              "factual": 101,
+              "matches": true,
+              "predicted": 101
+            },
+            "shield": {
+              "factual": 0,
+              "matches": true,
+              "predicted": 0
+            },
+            "torpedoid": {
+              "factual": 1,
+              "matches": false,
+              "predicted": 0
+            }
+          },
+          "mismatches": [
+            "launchercount",
+            "torpedoid",
+            "fighters"
+          ],
+          "status": "mismatch"
+        },
+        "status": "start_reconstruction_mismatch"
+      },
+      "from_vcr": 761,
+      "game_id": 591478,
+      "gap": 1,
+      "has_starbase": false,
+      "planet_id": 412,
+      "shield_carry": {
+        "matches": true,
+        "next_start": 0,
+        "terminal": 0
+      },
+      "status": "not_comparable",
+      "to_vcr": 762,
+      "turn": 49
+    },
+    {
+      "exact_no_starbase": {
+        "basis": "nuhost_fixed_defense_exact_v2",
+        "comparison": {
+          "comparable_fields": [
+            "beamcount",
+            "launchercount",
+            "baycount",
+            "beamid",
+            "torpedoid",
+            "shield",
+            "damage",
+            "crew",
+            "mass",
+            "fighters",
+            "hasstarbase"
+          ],
+          "fields": {
+            "baycount": {
+              "factual": 13,
+              "matches": true,
+              "predicted": 13
+            },
+            "beamcount": {
+              "factual": 8,
+              "matches": true,
+              "predicted": 8
+            },
+            "beamid": {
+              "factual": 10,
+              "matches": true,
+              "predicted": 10
+            },
+            "crew": {
+              "factual": 10000,
+              "matches": true,
+              "predicted": 10000
+            },
+            "damage": {
+              "factual": 0,
+              "matches": true,
+              "predicted": 0
+            },
+            "fighters": {
+              "factual": 14,
+              "matches": true,
+              "predicted": 14
+            },
+            "hasstarbase": {
+              "factual": false,
+              "matches": true,
+              "predicted": false
+            },
+            "launchercount": {
+              "factual": 0,
+              "matches": true,
+              "predicted": 0
+            },
+            "mass": {
+              "factual": 285,
+              "matches": false,
+              "predicted": 288
+            },
+            "shield": {
+              "factual": 100,
+              "matches": true,
+              "predicted": 100
+            },
+            "torpedoid": {
+              "factual": 0,
+              "matches": true,
+              "predicted": 0
+            }
+          },
+          "mismatches": [
+            "mass"
+          ],
+          "status": "mismatch"
+        },
+        "predicted_next_planet_defense": 188,
+        "start_planet_defense": 191,
+        "status": "mismatch"
+      },
+      "from_vcr": 838,
+      "game_id": 591478,
+      "gap": 1,
+      "has_starbase": false,
+      "planet_id": 312,
+      "shield_carry": {
+        "matches": true,
+        "next_start": 100,
+        "terminal": 100
+      },
+      "status": "mismatch",
+      "to_vcr": 839,
+      "turn": 52
+    },
+    {
+      "exact_no_starbase": {
+        "start_reconstruction": {
+          "comparable_fields": [
+            "beamcount",
+            "launchercount",
+            "baycount",
+            "beamid",
+            "torpedoid",
+            "shield",
+            "damage",
+            "crew",
+            "mass",
+            "fighters",
+            "hasstarbase"
+          ],
+          "fields": {
+            "baycount": {
+              "factual": 4,
+              "matches": false,
+              "predicted": 11
+            },
+            "beamcount": {
+              "factual": 2,
+              "matches": false,
+              "predicted": 7
+            },
+            "beamid": {
+              "factual": 3,
+              "matches": false,
+              "predicted": 8
+            },
+            "crew": {
+              "factual": 10000,
+              "matches": true,
+              "predicted": 10000
+            },
+            "damage": {
+              "factual": 0,
+              "matches": true,
+              "predicted": 0
+            },
+            "fighters": {
+              "factual": 8,
+              "matches": false,
+              "predicted": 11
+            },
+            "hasstarbase": {
+              "factual": false,
+              "matches": true,
+              "predicted": false
+            },
+            "launchercount": {
+              "factual": 2,
+              "matches": false,
+              "predicted": 0
+            },
+            "mass": {
+              "factual": 232,
+              "matches": true,
+              "predicted": 232
+            },
+            "shield": {
+              "factual": 0,
+              "matches": true,
+              "predicted": 0
+            },
+            "torpedoid": {
+              "factual": 2,
+              "matches": false,
+              "predicted": 0
+            }
+          },
+          "mismatches": [
+            "beamcount",
+            "launchercount",
+            "baycount",
+            "beamid",
+            "torpedoid",
+            "fighters"
+          ],
+          "status": "mismatch"
+        },
+        "status": "start_reconstruction_mismatch"
+      },
+      "from_vcr": 977,
+      "game_id": 591478,
+      "gap": 1,
+      "has_starbase": false,
+      "planet_id": 307,
+      "shield_carry": {
+        "matches": true,
+        "next_start": 0,
+        "terminal": 0
+      },
+      "status": "not_comparable",
+      "to_vcr": 978,
+      "turn": 59
+    },
+    {
+      "exact_no_starbase": {
+        "start_reconstruction": {
+          "comparable_fields": [
+            "beamcount",
+            "launchercount",
+            "baycount",
+            "beamid",
+            "torpedoid",
+            "shield",
+            "damage",
+            "crew",
+            "mass",
+            "fighters",
+            "hasstarbase"
+          ],
+          "fields": {
+            "baycount": {
+              "factual": 3,
+              "matches": false,
+              "predicted": 10
+            },
+            "beamcount": {
+              "factual": 2,
+              "matches": false,
+              "predicted": 6
+            },
+            "beamid": {
+              "factual": 2,
+              "matches": false,
+              "predicted": 8
+            },
+            "crew": {
+              "factual": 10000,
+              "matches": true,
+              "predicted": 10000
+            },
+            "damage": {
+              "factual": 0,
+              "matches": true,
+              "predicted": 0
+            },
+            "fighters": {
+              "factual": 6,
+              "matches": false,
+              "predicted": 11
+            },
+            "hasstarbase": {
+              "factual": false,
+              "matches": true,
+              "predicted": false
+            },
+            "launchercount": {
+              "factual": 2,
+              "matches": false,
+              "predicted": 0
+            },
+            "mass": {
+              "factual": 218,
+              "matches": true,
+              "predicted": 218
+            },
+            "shield": {
+              "factual": 0,
+              "matches": true,
+              "predicted": 0
+            },
+            "torpedoid": {
+              "factual": 2,
+              "matches": false,
+              "predicted": 0
+            }
+          },
+          "mismatches": [
+            "beamcount",
+            "launchercount",
+            "baycount",
+            "beamid",
+            "torpedoid",
+            "fighters"
+          ],
+          "status": "mismatch"
+        },
+        "status": "start_reconstruction_mismatch"
+      },
+      "from_vcr": 978,
+      "game_id": 591478,
+      "gap": 1,
+      "has_starbase": false,
+      "planet_id": 307,
+      "shield_carry": {
+        "matches": true,
+        "next_start": 0,
+        "terminal": 0
+      },
+      "status": "not_comparable",
+      "to_vcr": 979,
+      "turn": 59
+    },
+    {
+      "exact_no_starbase": {
+        "start_reconstruction": {
+          "comparable_fields": [
+            "beamcount",
+            "launchercount",
+            "baycount",
+            "beamid",
+            "torpedoid",
+            "shield",
+            "damage",
+            "crew",
+            "mass",
+            "fighters",
+            "hasstarbase"
+          ],
+          "fields": {
+            "baycount": {
+              "factual": 5,
+              "matches": false,
+              "predicted": 12
+            },
+            "beamcount": {
+              "factual": 3,
+              "matches": false,
+              "predicted": 7
+            },
+            "beamid": {
+              "factual": 4,
+              "matches": false,
+              "predicted": 9
+            },
+            "crew": {
+              "factual": 10000,
+              "matches": true,
+              "predicted": 10000
+            },
+            "damage": {
+              "factual": 0,
+              "matches": true,
+              "predicted": 0
+            },
+            "fighters": {
+              "factual": 10,
+              "matches": false,
+              "predicted": 12
+            },
+            "hasstarbase": {
+              "factual": false,
+              "matches": true,
+              "predicted": false
+            },
+            "launchercount": {
+              "factual": 2,
+              "matches": false,
+              "predicted": 0
+            },
+            "mass": {
+              "factual": 250,
+              "matches": true,
+              "predicted": 250
+            },
+            "shield": {
+              "factual": 0,
+              "matches": true,
+              "predicted": 0
+            },
+            "torpedoid": {
+              "factual": 3,
+              "matches": false,
+              "predicted": 0
+            }
+          },
+          "mismatches": [
+            "beamcount",
+            "launchercount",
+            "baycount",
+            "beamid",
+            "torpedoid",
+            "fighters"
+          ],
+          "status": "mismatch"
+        },
+        "status": "start_reconstruction_mismatch"
+      },
+      "from_vcr": 1006,
+      "game_id": 591478,
+      "gap": 1,
+      "has_starbase": false,
+      "planet_id": 443,
+      "shield_carry": {
+        "matches": true,
+        "next_start": 0,
+        "terminal": 0
+      },
+      "status": "not_comparable",
+      "to_vcr": 1007,
+      "turn": 60
+    },
+    {
+      "from_vcr": 1102,
+      "game_id": 591478,
+      "gap": 1,
+      "has_starbase": false,
+      "planet_id": 1,
+      "status": "reappearance_after_defeat",
+      "to_vcr": 1103,
+      "turn": 66
+    },
+    {
+      "exact_no_starbase": {
+        "start_reconstruction": {
+          "comparable_fields": [
+            "beamcount",
+            "launchercount",
+            "baycount",
+            "beamid",
+            "torpedoid",
+            "shield",
+            "damage",
+            "crew",
+            "mass",
+            "fighters",
+            "hasstarbase"
+          ],
+          "fields": {
+            "baycount": {
+              "factual": 17,
+              "matches": false,
+              "predicted": 26
+            },
+            "beamcount": {
+              "factual": 10,
+              "matches": true,
+              "predicted": 10
+            },
+            "beamid": {
+              "factual": 10,
+              "matches": true,
+              "predicted": 10
+            },
+            "crew": {
+              "factual": 10000,
+              "matches": true,
+              "predicted": 10000
+            },
+            "damage": {
+              "factual": 0,
+              "matches": true,
+              "predicted": 0
+            },
+            "fighters": {
+              "factual": 36,
+              "matches": false,
+              "predicted": 27
+            },
+            "hasstarbase": {
+              "factual": false,
+              "matches": true,
+              "predicted": false
+            },
+            "launchercount": {
+              "factual": 9,
+              "matches": false,
+              "predicted": 0
+            },
+            "mass": {
+              "factual": 822,
+              "matches": true,
+              "predicted": 822
+            },
+            "shield": {
+              "factual": 0,
+              "matches": true,
+              "predicted": 0
+            },
+            "torpedoid": {
+              "factual": 10,
+              "matches": false,
+              "predicted": 0
+            }
+          },
+          "mismatches": [
+            "launchercount",
+            "baycount",
+            "torpedoid",
+            "fighters"
+          ],
+          "status": "mismatch"
+        },
+        "status": "start_reconstruction_mismatch"
+      },
+      "from_vcr": 1112,
+      "game_id": 591478,
+      "gap": 1,
+      "has_starbase": false,
+      "planet_id": 483,
+      "shield_carry": {
+        "matches": true,
+        "next_start": 0,
+        "terminal": 0
+      },
+      "status": "not_comparable",
+      "to_vcr": 1113,
+      "turn": 66
+    },
+    {
+      "from_vcr": 1708,
+      "game_id": 591478,
+      "gap": 1,
+      "has_starbase": false,
+      "planet_id": 417,
+      "status": "reappearance_after_defeat",
+      "to_vcr": 1709,
+      "turn": 98
+    },
+    {
+      "exact_no_starbase": {
+        "start_reconstruction": {
+          "comparable_fields": [
+            "beamcount",
+            "launchercount",
+            "baycount",
+            "beamid",
+            "torpedoid",
+            "shield",
+            "damage",
+            "crew",
+            "mass",
+            "fighters",
+            "hasstarbase"
+          ],
+          "fields": {
+            "baycount": {
+              "factual": 8,
+              "matches": false,
+              "predicted": 15
+            },
+            "beamcount": {
+              "factual": 5,
+              "matches": false,
+              "predicted": 9
+            },
+            "beamid": {
+              "factual": 6,
+              "matches": false,
+              "predicted": 10
+            },
+            "crew": {
+              "factual": 10000,
+              "matches": true,
+              "predicted": 10000
+            },
+            "damage": {
+              "factual": 0,
+              "matches": true,
+              "predicted": 0
+            },
+            "fighters": {
+              "factual": 16,
+              "matches": false,
+              "predicted": 15
+            },
+            "hasstarbase": {
+              "factual": false,
+              "matches": true,
+              "predicted": false
+            },
+            "launchercount": {
+              "factual": 4,
+              "matches": false,
+              "predicted": 0
+            },
+            "mass": {
+              "factual": 330,
+              "matches": true,
+              "predicted": 330
+            },
+            "shield": {
+              "factual": 0,
+              "matches": true,
+              "predicted": 0
+            },
+            "torpedoid": {
+              "factual": 5,
+              "matches": false,
+              "predicted": 0
+            }
+          },
+          "mismatches": [
+            "beamcount",
+            "launchercount",
+            "baycount",
+            "beamid",
+            "torpedoid",
+            "fighters"
+          ],
+          "status": "mismatch"
+        },
+        "status": "start_reconstruction_mismatch"
+      },
+      "from_vcr": 1734,
+      "game_id": 591478,
+      "gap": 1,
+      "has_starbase": false,
+      "planet_id": 285,
+      "shield_carry": {
+        "matches": true,
+        "next_start": 0,
+        "terminal": 0
+      },
+      "status": "not_comparable",
+      "to_vcr": 1735,
+      "turn": 99
+    },
+    {
+      "exact_no_starbase": {
+        "basis": "nuhost_fixed_defense_exact_v2",
+        "comparison": {
+          "comparable_fields": [
+            "beamcount",
+            "launchercount",
+            "baycount",
+            "beamid",
+            "torpedoid",
+            "shield",
+            "damage",
+            "crew",
+            "mass",
+            "fighters",
+            "hasstarbase"
+          ],
+          "fields": {
+            "baycount": {
+              "factual": 15,
+              "matches": false,
+              "predicted": 17
+            },
+            "beamcount": {
+              "factual": 9,
+              "matches": false,
+              "predicted": 10
+            },
+            "beamid": {
+              "factual": 10,
+              "matches": true,
+              "predicted": 10
+            },
+            "crew": {
+              "factual": 10000,
+              "matches": true,
+              "predicted": 10000
+            },
+            "damage": {
+              "factual": 0,
+              "matches": true,
+              "predicted": 0
+            },
+            "fighters": {
+              "factual": 16,
+              "matches": false,
+              "predicted": 17
+            },
+            "hasstarbase": {
+              "factual": false,
+              "matches": true,
+              "predicted": false
+            },
+            "launchercount": {
+              "factual": 0,
+              "matches": true,
+              "predicted": 0
+            },
+            "mass": {
+              "factual": 352,
+              "matches": false,
+              "predicted": 392
+            },
+            "shield": {
+              "factual": 0,
+              "matches": false,
+              "predicted": 100
+            },
+            "torpedoid": {
+              "factual": 0,
+              "matches": true,
+              "predicted": 0
+            }
+          },
+          "mismatches": [
+            "beamcount",
+            "baycount",
+            "shield",
+            "mass",
+            "fighters"
+          ],
+          "status": "mismatch"
+        },
+        "predicted_next_planet_defense": 292,
+        "start_planet_defense": 292,
+        "status": "mismatch"
+      },
+      "from_vcr": 1801,
+      "game_id": 591478,
+      "gap": 1,
+      "has_starbase": false,
+      "planet_id": 197,
+      "shield_carry": {
+        "matches": false,
+        "next_start": 0,
+        "terminal": 100
+      },
+      "status": "mismatch",
+      "to_vcr": 1802,
+      "turn": 101
+    },
+    {
+      "exact_no_starbase": {
+        "basis": "nuhost_fixed_defense_exact_v2",
+        "comparison": {
+          "comparable_fields": [
+            "beamcount",
+            "launchercount",
+            "baycount",
+            "beamid",
+            "torpedoid",
+            "shield",
+            "damage",
+            "crew",
+            "mass",
+            "fighters",
+            "hasstarbase"
+          ],
+          "fields": {
+            "baycount": {
+              "factual": 4,
+              "matches": false,
+              "predicted": 15
+            },
+            "beamcount": {
+              "factual": 3,
+              "matches": false,
+              "predicted": 9
+            },
+            "beamid": {
+              "factual": 3,
+              "matches": false,
+              "predicted": 10
+            },
+            "crew": {
+              "factual": 10000,
+              "matches": true,
+              "predicted": 10000
+            },
+            "damage": {
+              "factual": 0,
+              "matches": true,
+              "predicted": 0
+            },
+            "fighters": {
+              "factual": 4,
+              "matches": false,
+              "predicted": 16
+            },
+            "hasstarbase": {
+              "factual": false,
+              "matches": true,
+              "predicted": false
+            },
+            "launchercount": {
+              "factual": 0,
+              "matches": true,
+              "predicted": 0
+            },
+            "mass": {
+              "factual": 120,
+              "matches": false,
+              "predicted": 344
+            },
+            "shield": {
+              "factual": 0,
+              "matches": true,
+              "predicted": 0
+            },
+            "torpedoid": {
+              "factual": 0,
+              "matches": true,
+              "predicted": 0
+            }
+          },
+          "mismatches": [
+            "beamcount",
+            "baycount",
+            "beamid",
+            "mass",
+            "fighters"
+          ],
+          "status": "mismatch"
+        },
+        "predicted_next_planet_defense": 244,
+        "start_planet_defense": 252,
+        "status": "mismatch"
+      },
+      "from_vcr": 1802,
+      "game_id": 591478,
+      "gap": 1,
+      "has_starbase": false,
+      "planet_id": 197,
+      "shield_carry": {
+        "matches": true,
+        "next_start": 0,
+        "terminal": 0
+      },
+      "status": "mismatch",
+      "to_vcr": 1803,
+      "turn": 101
+    },
+    {
+      "exact_no_starbase": {
+        "start_reconstruction": {
+          "comparable_fields": [
+            "beamcount",
+            "launchercount",
+            "baycount",
+            "beamid",
+            "torpedoid",
+            "shield",
+            "damage",
+            "crew",
+            "mass",
+            "fighters",
+            "hasstarbase"
+          ],
+          "fields": {
+            "baycount": {
+              "factual": 9,
+              "matches": false,
+              "predicted": 16
+            },
+            "beamcount": {
+              "factual": 5,
+              "matches": false,
+              "predicted": 9
+            },
+            "beamid": {
+              "factual": 7,
+              "matches": false,
+              "predicted": 10
+            },
+            "crew": {
+              "factual": 10000,
+              "matches": true,
+              "predicted": 10000
+            },
+            "damage": {
+              "factual": 0,
+              "matches": true,
+              "predicted": 0
+            },
+            "fighters": {
+              "factual": 18,
+              "matches": false,
+              "predicted": 16
+            },
+            "hasstarbase": {
+              "factual": false,
+              "matches": true,
+              "predicted": false
+            },
+            "launchercount": {
+              "factual": 5,
+              "matches": false,
+              "predicted": 0
+            },
+            "mass": {
+              "factual": 370,
+              "matches": true,
+              "predicted": 370
+            },
+            "shield": {
+              "factual": 0,
+              "matches": true,
+              "predicted": 0
+            },
+            "torpedoid": {
+              "factual": 5,
+              "matches": false,
+              "predicted": 0
+            }
+          },
+          "mismatches": [
+            "beamcount",
+            "launchercount",
+            "baycount",
+            "beamid",
+            "torpedoid",
+            "fighters"
+          ],
+          "status": "mismatch"
+        },
+        "status": "start_reconstruction_mismatch"
+      },
+      "from_vcr": 1873,
+      "game_id": 591478,
+      "gap": 1,
+      "has_starbase": false,
+      "planet_id": 544,
+      "shield_carry": {
+        "matches": true,
+        "next_start": 0,
+        "terminal": 0
+      },
+      "status": "not_comparable",
+      "to_vcr": 1874,
+      "turn": 105
+    },
+    {
+      "exact_no_starbase": {
+        "start_reconstruction": {
+          "comparable_fields": [
+            "beamcount",
+            "launchercount",
+            "baycount",
+            "beamid",
+            "torpedoid",
+            "shield",
+            "damage",
+            "crew",
+            "mass",
+            "fighters",
+            "hasstarbase"
+          ],
+          "fields": {
+            "baycount": {
+              "factual": 5,
+              "matches": false,
+              "predicted": 9
+            },
+            "beamcount": {
+              "factual": 3,
+              "matches": false,
+              "predicted": 6
+            },
+            "beamid": {
+              "factual": 4,
+              "matches": false,
+              "predicted": 7
+            },
+            "crew": {
+              "factual": 10000,
+              "matches": true,
+              "predicted": 10000
+            },
+            "damage": {
+              "factual": 0,
+              "matches": true,
+              "predicted": 0
+            },
+            "fighters": {
+              "factual": 12,
+              "matches": false,
+              "predicted": 10
+            },
+            "hasstarbase": {
+              "factual": false,
+              "matches": true,
+              "predicted": false
+            },
+            "launchercount": {
+              "factual": 3,
+              "matches": false,
+              "predicted": 0
+            },
+            "mass": {
+              "factual": 195,
+              "matches": true,
+              "predicted": 195
+            },
+            "shield": {
+              "factual": 0,
+              "matches": true,
+              "predicted": 0
+            },
+            "torpedoid": {
+              "factual": 3,
+              "matches": false,
+              "predicted": 0
+            }
+          },
+          "mismatches": [
+            "beamcount",
+            "launchercount",
+            "baycount",
+            "beamid",
+            "torpedoid",
+            "fighters"
+          ],
+          "status": "mismatch"
+        },
+        "status": "start_reconstruction_mismatch"
+      },
+      "from_vcr": 2012,
+      "game_id": 591478,
+      "gap": 1,
+      "has_starbase": false,
+      "planet_id": 442,
+      "shield_carry": {
+        "matches": true,
+        "next_start": 0,
+        "terminal": 0
+      },
+      "status": "not_comparable",
+      "to_vcr": 2013,
+      "turn": 111
+    },
+    {
+      "exact_no_starbase": {
+        "start_reconstruction": {
+          "comparable_fields": [
+            "beamcount",
+            "launchercount",
+            "baycount",
+            "beamid",
+            "torpedoid",
+            "shield",
+            "damage",
+            "crew",
+            "mass",
+            "fighters",
+            "hasstarbase"
+          ],
+          "fields": {
+            "baycount": {
+              "factual": 0,
+              "matches": true,
+              "predicted": 0
+            },
+            "beamcount": {
+              "factual": 0,
+              "matches": true,
+              "predicted": 0
+            },
+            "beamid": {
+              "factual": 1,
+              "matches": false,
+              "predicted": 0
+            },
+            "crew": {
+              "factual": 10000,
+              "matches": true,
+              "predicted": 10000
+            },
+            "damage": {
+              "factual": 0,
+              "matches": true,
+              "predicted": 0
+            },
+            "fighters": {
+              "factual": 0,
+              "matches": true,
+              "predicted": 0
+            },
+            "hasstarbase": {
+              "factual": false,
+              "matches": true,
+              "predicted": false
+            },
+            "launchercount": {
+              "factual": 0,
+              "matches": true,
+              "predicted": 0
+            },
+            "mass": {
+              "factual": 100,
+              "matches": true,
+              "predicted": 100
+            },
+            "shield": {
+              "factual": 0,
+              "matches": true,
+              "predicted": 0
+            },
+            "torpedoid": {
+              "factual": 0,
+              "matches": true,
+              "predicted": 0
+            }
+          },
+          "mismatches": [
+            "beamid"
+          ],
+          "status": "mismatch"
+        },
+        "status": "start_reconstruction_mismatch"
+      },
+      "from_vcr": 111,
+      "game_id": 621253,
+      "gap": 1,
+      "has_starbase": false,
+      "planet_id": 113,
+      "shield_carry": {
+        "matches": true,
+        "next_start": 0,
+        "terminal": 0
+      },
+      "status": "not_comparable",
+      "to_vcr": 112,
+      "turn": 26
+    }
+  ],
+  "evidence_boundary": "Independent differential: replay terminal planet state from factual VCR N versus factual start state of the same planet in its next same-turn same-location VCR. Exact DP reconstruction is attempted only when hasstarbase is explicitly false and the inferred first engagement reproduces the factual VCR start.",
+  "malformed_member_samples": [],
+  "read_only": true,
+  "replay_unsupported_reasons": {},
+  "schema": "planets-lab.combat-planet-chain-audit.v2",
+  "scope_selection": {
+    "excluded_game_ids": [
+      591478
+    ],
+    "included_game_ids": [
+      360690,
+      511506,
+      620636,
+      620694,
+      620917,
+      621103,
+      621253,
+      621896,
+      622476,
+      680435,
+      680910
+    ],
+    "index": "validation/corpus/compiled/v1/metadata/game_features.parquet",
+    "predicate_count": 3,
+    "profile": "combat-planar-no-horwasp",
+    "unknown_game_ids": []
+  },
+  "scopes": {
+    "profile_excluded": {
+      "base_kind": {
+        "no_starbase": 16,
+        "starbase": 17
+      },
+      "exact_mismatch_fields": {
+        "baycount": 2,
+        "beamcount": 2,
+        "beamid": 1,
+        "fighters": 2,
+        "mass": 3,
+        "shield": 1
+      },
+      "exact_no_starbase": {
+        "match": 2,
+        "mismatch": 3,
+        "not_applicable": 16,
+        "start_reconstruction_mismatch": 9
+      },
+      "shield_carry": {
+        "match": 28,
+        "mismatch": 2
+      },
+      "status": {
+        "match": 17,
+        "mismatch": 4,
+        "not_comparable": 9,
+        "reappearance_after_defeat": 3
+      },
+      "transitions": 33,
+      "vcr_gaps": {
+        "1": 33
+      }
+    },
+    "profile_selected_all": {
+      "base_kind": {
+        "no_starbase": 11,
+        "starbase": 92
+      },
+      "exact_mismatch_fields": {},
+      "exact_no_starbase": {
+        "match": 10,
+        "not_applicable": 92,
+        "start_reconstruction_mismatch": 1
+      },
+      "shield_carry": {
+        "match": 103
+      },
+      "status": {
+        "match": 102,
+        "not_comparable": 1
+      },
+      "transitions": 103,
+      "vcr_gaps": {
+        "1": 103
+      }
+    },
+    "profile_selected_no_starbase": {
+      "base_kind": {
+        "no_starbase": 11
+      },
+      "exact_mismatch_fields": {},
+      "exact_no_starbase": {
+        "match": 10,
+        "start_reconstruction_mismatch": 1
+      },
+      "shield_carry": {
+        "match": 11
+      },
+      "status": {
+        "match": 10,
+        "not_comparable": 1
+      },
+      "transitions": 11,
+      "vcr_gaps": {
+        "1": 11
+      }
+    },
+    "profile_selected_starbase": {
+      "base_kind": {
+        "starbase": 92
+      },
+      "exact_mismatch_fields": {},
+      "exact_no_starbase": {
+        "not_applicable": 92
+      },
+      "shield_carry": {
+        "match": 92
+      },
+      "status": {
+        "match": 92
+      },
+      "transitions": 92,
+      "vcr_gaps": {
+        "1": 92
+      }
+    },
+    "profile_unknown": {
+      "base_kind": {},
+      "exact_mismatch_fields": {},
+      "exact_no_starbase": {},
+      "shield_carry": {},
+      "status": {},
+      "transitions": 0,
+      "vcr_gaps": {}
+    }
+  },
+  "seconds": 114.081,
+  "summary": {
+    "archives": 12,
+    "candidate_same_turn_planet_chains": 110,
+    "match": 119,
+    "mismatch": 4,
+    "not_comparable": 10,
+    "payload_conflicts": 0,
+    "planet_appearances": 3719,
+    "raw_vcr_observations": 22256,
+    "reappearance_after_defeat": 3,
+    "replay_supported": 6469,
+    "same_location_transitions": 136,
+    "unique_vcrs": 6469
+  }
+}

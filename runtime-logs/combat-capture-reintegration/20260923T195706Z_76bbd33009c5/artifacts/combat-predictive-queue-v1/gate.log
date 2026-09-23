@@ -1,0 +1,6 @@
+===== PREDICTIVE COMBAT QUEUE: FEATURE SCOPE ACCEPTANCE =====
+From github.com:Numillyash/planets-lab
+ * branch            main       -> FETCH_HEAD
+===== COMBAT FEATURE SCOPE: BUILD LAB IMAGE =====
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true

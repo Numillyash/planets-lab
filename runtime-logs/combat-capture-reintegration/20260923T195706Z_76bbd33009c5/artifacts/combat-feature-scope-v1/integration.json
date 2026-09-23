@@ -1,0 +1,13 @@
+{
+  "checks": {
+    "cluster_partition_preserved": true,
+    "planet_c4_checkpoint_preserved": true,
+    "selector_partition_disjoint": true,
+    "selector_partition_shared": true,
+    "ship_c3_checkpoint_preserved": true
+  },
+  "exact": true,
+  "failures": [],
+  "profile": "combat-planar-no-horwasp",
+  "schema": "planets-lab.combat-feature-scope-integration-check.v1"
+}

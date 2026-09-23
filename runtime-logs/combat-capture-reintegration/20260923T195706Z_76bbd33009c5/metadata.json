@@ -1,0 +1,23 @@
+{
+  "evidence_branch": "runtime-logs",
+  "exit_code": 255,
+  "finished_at_utc": "2026-09-23T20:44:34Z",
+  "hostname": "GEORGUL-GAMER",
+  "log_file": "gate.log",
+  "missing_artifact_paths": [],
+  "remote": "origin",
+  "requested_artifact_paths": [
+    "artifacts/combat-feature-scope-v1",
+    "artifacts/combat-predictive-queue-v1",
+    "artifacts/combat-capture-reintegration-v1"
+  ],
+  "run_id": "20260923T195706Z_76bbd33009c5",
+  "run_name": "combat-capture-reintegration",
+  "runner": "bash",
+  "schema": "planets-lab.runtime-evidence.v1",
+  "skipped_oversized_artifact_paths": [],
+  "source_branch": "main",
+  "source_commit": "76bbd33009c5620d09a7f8e2a99681d88da2563c",
+  "source_dirty": false,
+  "started_at_utc": "2026-09-23T19:57:06Z"
+}

@@ -1,0 +1,907 @@
+{
+  "notes": [
+    "This diagnostic clusters C3 differential failures; it does not change combat mechanics.",
+    "Scope classification comes from the feature-index profile; no game id is special-cased.",
+    "Field deltas are factual next-VCR start minus deterministic previous-VCR terminal state.",
+    "Race-1 shield models are observational candidates only; no Federation rule is promoted here."
+  ],
+  "race1_shield": {
+    "deltas_next_minus_terminal": {
+      "0": 28,
+      "12": 1,
+      "16": 1,
+      "17": 1,
+      "20": 1,
+      "21": 2,
+      "25": 13,
+      "4": 1
+    },
+    "models": {
+      "both": 28,
+      "federation_candidate": 20
+    },
+    "status": {
+      "match": 48
+    },
+    "terminal_to_next": {
+      "0->17": 1,
+      "0->25": 8,
+      "0->4": 1,
+      "100->100": 27,
+      "36->61": 1,
+      "40->65": 2,
+      "55->80": 1,
+      "65->90": 1,
+      "79->100": 2,
+      "80->100": 1,
+      "84->100": 1,
+      "88->100": 1,
+      "98->98": 1
+    },
+    "transitions": 48
+  },
+  "read_only": true,
+  "schema": "planets-lab.combat-ship-chain-cluster-audit.v2",
+  "scope_selection": {
+    "excluded_game_ids": [
+      591478
+    ],
+    "included_game_ids": [
+      360690,
+      511506,
+      620636,
+      620694,
+      620917,
+      621103,
+      621253,
+      621896,
+      622476,
+      680435,
+      680910
+    ],
+    "index": "validation/corpus/compiled/v1/metadata/game_features.parquet",
+    "predicate_count": 3,
+    "profile": "combat-planar-no-horwasp",
+    "unknown_game_ids": []
+  },
+  "scopes": {
+    "profile_excluded": {
+      "field_deltas_next_minus_terminal": {
+        "crew": {
+          "-1": 2,
+          "-10": 2,
+          "-112": 1,
+          "-12": 2,
+          "-14": 1,
+          "-18": 4,
+          "-26": 1,
+          "-27": 1,
+          "-28": 3,
+          "-3": 2,
+          "-30": 1,
+          "-31": 1,
+          "-35": 2,
+          "-36": 1,
+          "-4": 1,
+          "-40": 1,
+          "-42": 4,
+          "-43": 1,
+          "-48": 1,
+          "-49": 1,
+          "-6": 1,
+          "-62": 3,
+          "-63": 1,
+          "-7": 4,
+          "-72": 1,
+          "-9": 2,
+          "0": 150,
+          "11": 1,
+          "18": 2,
+          "27": 1,
+          "3": 1,
+          "4": 1,
+          "5": 1,
+          "7": 1,
+          "9": 1
+        },
+        "damage": {
+          "-15": 1,
+          "-2": 4,
+          "-21": 2,
+          "-22": 1,
+          "-24": 1,
+          "-27": 1,
+          "-3": 1,
+          "-30": 1,
+          "-32": 2,
+          "-4": 1,
+          "-41": 1,
+          "-45": 1,
+          "-5": 1,
+          "-54": 1,
+          "-59": 1,
+          "-6": 1,
+          "-60": 2,
+          "-7": 1,
+          "-8": 2,
+          "-80": 1,
+          "-90": 2,
+          "0": 133,
+          "1": 4,
+          "10": 2,
+          "11": 1,
+          "12": 2,
+          "14": 2,
+          "16": 1,
+          "17": 1,
+          "18": 1,
+          "2": 2,
+          "20": 2,
+          "21": 4,
+          "23": 1,
+          "24": 1,
+          "3": 4,
+          "32": 1,
+          "34": 1,
+          "4": 1,
+          "43": 1,
+          "57": 1,
+          "6": 3,
+          "8": 3,
+          "85": 3
+        },
+        "fighters": {
+          "-11": 4,
+          "-12": 1,
+          "-14": 1,
+          "-15": 1,
+          "-16": 1,
+          "-17": 2,
+          "-18": 1,
+          "-2": 4,
+          "-20": 1,
+          "-26": 1,
+          "-27": 1,
+          "-3": 58,
+          "-30": 1,
+          "-34": 1,
+          "-38": 1,
+          "-4": 4,
+          "-5": 4,
+          "-6": 4,
+          "-7": 2,
+          "-9": 1,
+          "0": 92,
+          "1": 2,
+          "2": 1,
+          "21": 1,
+          "24": 1,
+          "3": 1,
+          "39": 1,
+          "4": 2,
+          "44": 1,
+          "5": 2,
+          "6": 2,
+          "7": 1,
+          "8": 2,
+          "9": 1
+        },
+        "torpedoes": {
+          "-1": 6,
+          "-12": 1,
+          "-2": 5,
+          "-28": 1,
+          "0": 146,
+          "1": 8,
+          "12": 3,
+          "15": 1,
+          "16": 1,
+          "2": 6,
+          "3": 16,
+          "4": 2,
+          "6": 7,
+          "8": 1
+        }
+      },
+      "problem_hulls": {
+        "1041": 3,
+        "115": 3,
+        "117": 6,
+        "118": 3,
+        "119": 4,
+        "2038": 1,
+        "2071": 19,
+        "210": 27,
+        "29": 6,
+        "3033": 1,
+        "31": 1,
+        "35": 24,
+        "39": 2,
+        "46": 9,
+        "52": 50,
+        "53": 4,
+        "70": 65,
+        "74": 3,
+        "99": 4
+      },
+      "problem_races": {
+        "11": 4,
+        "12": 43,
+        "3": 9,
+        "4": 29,
+        "5": 60,
+        "6": 43,
+        "8": 47
+      },
+      "problem_self_classes": {
+        "hull_ge_1000": 24,
+        "ordinary_id_self": 168,
+        "race12": 43
+      },
+      "problem_side_transitions": {
+        "left->left": 110,
+        "left->right": 24,
+        "right->left": 53,
+        "right->right": 48
+      },
+      "problem_signatures": {
+        "crew+fighters": 2,
+        "crew+shield": 3,
+        "damage": 2,
+        "damage+crew": 10,
+        "damage+crew+fighters": 14,
+        "damage+crew+fighters+shield": 6,
+        "damage+crew+shield": 11,
+        "damage+crew+torpedoes": 4,
+        "damage+crew+torpedoes+shield": 4,
+        "damage+fighters": 1,
+        "damage+torpedoes": 10,
+        "damage+torpedoes+fighters": 9,
+        "fighters": 48,
+        "fighters+shield": 32,
+        "reappearance_after_defeat": 31,
+        "shield": 17,
+        "torpedoes": 18,
+        "torpedoes+shield": 13
+      },
+      "problem_status": {
+        "mismatch": 204,
+        "reappearance_after_defeat": 31
+      },
+      "problem_vcr_gap_buckets": {
+        "1": 119,
+        "2-3": 6,
+        "4-10": 52,
+        ">10": 58
+      },
+      "samples": [
+        {
+          "carry_deltas": {
+            "crew": 0,
+            "damage": -32,
+            "fighters": 3,
+            "torpedoes": 12
+          },
+          "from_vcr": 19,
+          "game_id": 591478,
+          "hull_id": 119,
+          "race_id": 12,
+          "shield_delta": 0,
+          "ship_id": 59,
+          "side": "left->left",
+          "signature": "damage+torpedoes+fighters",
+          "status": "mismatch",
+          "to_vcr": 23,
+          "turn": 12
+        },
+        {
+          "carry_deltas": {
+            "crew": 0,
+            "damage": -60,
+            "fighters": 0,
+            "torpedoes": 3
+          },
+          "from_vcr": 147,
+          "game_id": 591478,
+          "hull_id": 210,
+          "race_id": 12,
+          "shield_delta": 0,
+          "ship_id": 1024,
+          "side": "right->right",
+          "signature": "damage+torpedoes",
+          "status": "mismatch",
+          "to_vcr": 148,
+          "turn": 24
+        },
+        {
+          "carry_deltas": {
+            "crew": 0,
+            "damage": 0,
+            "fighters": 0,
+            "torpedoes": 3
+          },
+          "from_vcr": 148,
+          "game_id": 591478,
+          "hull_id": 210,
+          "race_id": 12,
+          "shield_delta": 0,
+          "ship_id": 1024,
+          "side": "right->left",
+          "signature": "torpedoes",
+          "status": "mismatch",
+          "to_vcr": 153,
+          "turn": 24
+        },
+        {
+          "carry_deltas": {
+            "crew": 0,
+            "damage": 0,
+            "fighters": 0,
+            "torpedoes": 2
+          },
+          "from_vcr": 253,
+          "game_id": 591478,
+          "hull_id": 118,
+          "race_id": 12,
+          "shield_delta": 0,
+          "ship_id": 207,
+          "side": "right->left",
+          "signature": "torpedoes",
+          "status": "mismatch",
+          "to_vcr": 254,
+          "turn": 29
+        },
+        {
+          "carry_deltas": {
+            "crew": null,
+            "damage": null,
+            "fighters": null,
+            "torpedoes": null
+          },
+          "from_vcr": 253,
+          "game_id": 591478,
+          "hull_id": 2071,
+          "race_id": 8,
+          "shield_delta": null,
+          "ship_id": 251,
+          "side": "left->right",
+          "signature": "reappearance_after_defeat",
+          "status": "reappearance_after_defeat",
+          "to_vcr": 254,
+          "turn": 29
+        },
+        {
+          "carry_deltas": {
+            "crew": -30,
+            "damage": 21,
+            "fighters": 0,
+            "torpedoes": 2
+          },
+          "from_vcr": 258,
+          "game_id": 591478,
+          "hull_id": 3033,
+          "race_id": 3,
+          "shield_delta": -51,
+          "ship_id": 395,
+          "side": "left->left",
+          "signature": "damage+crew+torpedoes+shield",
+          "status": "mismatch",
+          "to_vcr": 261,
+          "turn": 29
+        },
+        {
+          "carry_deltas": {
+            "crew": 0,
+            "damage": 0,
+            "fighters": -3,
+            "torpedoes": 0
+          },
+          "from_vcr": 276,
+          "game_id": 591478,
+          "hull_id": 70,
+          "race_id": 5,
+          "shield_delta": 0,
+          "ship_id": 372,
+          "side": "left->left",
+          "signature": "fighters",
+          "status": "mismatch",
+          "to_vcr": 286,
+          "turn": 30
+        },
+        {
+          "carry_deltas": {
+            "crew": 0,
+            "damage": -4,
+            "fighters": 9,
+            "torpedoes": 6
+          },
+          "from_vcr": 330,
+          "game_id": 591478,
+          "hull_id": 119,
+          "race_id": 12,
+          "shield_delta": 0,
+          "ship_id": 88,
+          "side": "left->left",
+          "signature": "damage+torpedoes+fighters",
+          "status": "mismatch",
+          "to_vcr": 346,
+          "turn": 32
+        },
+        {
+          "carry_deltas": {
+            "crew": -31,
+            "damage": 0,
+            "fighters": 0,
+            "torpedoes": 0
+          },
+          "from_vcr": 339,
+          "game_id": 591478,
+          "hull_id": 31,
+          "race_id": 3,
+          "shield_delta": -29,
+          "ship_id": 423,
+          "side": "left->left",
+          "signature": "crew+shield",
+          "status": "mismatch",
+          "to_vcr": 341,
+          "turn": 32
+        },
+        {
+          "carry_deltas": {
+            "crew": 0,
+            "damage": -60,
+            "fighters": 0,
+            "torpedoes": 3
+          },
+          "from_vcr": 370,
+          "game_id": 591478,
+          "hull_id": 210,
+          "race_id": 12,
+          "shield_delta": 0,
+          "ship_id": 1008,
+          "side": "right->left",
+          "signature": "damage+torpedoes",
+          "status": "mismatch",
+          "to_vcr": 373,
+          "turn": 33
+        },
+        {
+          "carry_deltas": {
+            "crew": 0,
+            "damage": 0,
+            "fighters": 0,
+            "torpedoes": 3
+          },
+          "from_vcr": 386,
+          "game_id": 591478,
+          "hull_id": 210,
+          "race_id": 12,
+          "shield_delta": 0,
+          "ship_id": 1038,
+          "side": "right->left",
+          "signature": "torpedoes",
+          "status": "mismatch",
+          "to_vcr": 412,
+          "turn": 34
+        },
+        {
+          "carry_deltas": {
+            "crew": 0,
+            "damage": 0,
+            "fighters": -3,
+            "torpedoes": 0
+          },
+          "from_vcr": 417,
+          "game_id": 591478,
+          "hull_id": 52,
+          "race_id": 6,
+          "shield_delta": 0,
+          "ship_id": 427,
+          "side": "left->right",
+          "signature": "fighters",
+          "status": "mismatch",
+          "to_vcr": 418,
+          "turn": 35
+        }
+      ],
+      "shield_deltas_next_minus_terminal": {
+        "-10": 6,
+        "-100": 14,
+        "-11": 4,
+        "-16": 1,
+        "-17": 1,
+        "-18": 2,
+        "-19": 1,
+        "-2": 2,
+        "-20": 9,
+        "-22": 2,
+        "-23": 2,
+        "-24": 1,
+        "-25": 1,
+        "-28": 1,
+        "-29": 1,
+        "-30": 2,
+        "-32": 2,
+        "-37": 3,
+        "-40": 4,
+        "-44": 1,
+        "-45": 1,
+        "-5": 1,
+        "-50": 1,
+        "-51": 1,
+        "-6": 1,
+        "-63": 2,
+        "-7": 3,
+        "-8": 2,
+        "-9": 1,
+        "0": 118,
+        "10": 1,
+        "17": 1,
+        "18": 1,
+        "3": 2,
+        "30": 1,
+        "32": 1,
+        "34": 1,
+        "40": 1,
+        "48": 1,
+        "5": 1,
+        "50": 1,
+        "98": 1
+      },
+      "status": {
+        "match": 81,
+        "mismatch": 204,
+        "reappearance_after_defeat": 31,
+        "same_location_transitions": 316
+      }
+    },
+    "profile_selected": {
+      "field_deltas_next_minus_terminal": {
+        "crew": {
+          "0": 8
+        },
+        "damage": {
+          "-11": 1,
+          "-16": 1,
+          "-2": 1,
+          "-20": 1,
+          "-3": 1,
+          "-7": 1,
+          "-8": 1,
+          "-9": 1
+        },
+        "fighters": {
+          "0": 8
+        },
+        "torpedoes": {
+          "0": 8
+        }
+      },
+      "problem_hulls": {
+        "104": 2,
+        "16": 4,
+        "17": 5,
+        "29": 1,
+        "31": 1,
+        "4": 1,
+        "51": 1,
+        "52": 1,
+        "56": 1,
+        "60": 1,
+        "69": 1,
+        "71": 3,
+        "75": 1,
+        "82": 3,
+        "87": 1,
+        "94": 4
+      },
+      "problem_races": {
+        "1": 1,
+        "10": 7,
+        "11": 3,
+        "2": 2,
+        "3": 2,
+        "5": 1,
+        "6": 4,
+        "7": 1,
+        "8": 7,
+        "9": 3
+      },
+      "problem_self_classes": {
+        "ordinary_id_self": 31
+      },
+      "problem_side_transitions": {
+        "left->left": 15,
+        "right->left": 15,
+        "right->right": 1
+      },
+      "problem_signatures": {
+        "damage": 8,
+        "reappearance_after_defeat": 23
+      },
+      "problem_status": {
+        "mismatch": 8,
+        "reappearance_after_defeat": 23
+      },
+      "problem_vcr_gap_buckets": {
+        "1": 7,
+        "2-3": 8,
+        "4-10": 15,
+        ">10": 1
+      },
+      "samples": [
+        {
+          "carry_deltas": {
+            "crew": 0,
+            "damage": -16,
+            "fighters": 0,
+            "torpedoes": 0
+          },
+          "from_vcr": 685,
+          "game_id": 360690,
+          "hull_id": 94,
+          "race_id": 10,
+          "shield_delta": 0,
+          "ship_id": 41,
+          "side": "right->left",
+          "signature": "damage",
+          "status": "mismatch",
+          "to_vcr": 689,
+          "turn": 84
+        },
+        {
+          "carry_deltas": {
+            "crew": 0,
+            "damage": -9,
+            "fighters": 0,
+            "torpedoes": 0
+          },
+          "from_vcr": 1324,
+          "game_id": 360690,
+          "hull_id": 52,
+          "race_id": 6,
+          "shield_delta": 0,
+          "ship_id": 184,
+          "side": "right->left",
+          "signature": "damage",
+          "status": "mismatch",
+          "to_vcr": 1327,
+          "turn": 169
+        },
+        {
+          "carry_deltas": {
+            "crew": 0,
+            "damage": -20,
+            "fighters": 0,
+            "torpedoes": 0
+          },
+          "from_vcr": 1415,
+          "game_id": 360690,
+          "hull_id": 94,
+          "race_id": 10,
+          "shield_delta": 0,
+          "ship_id": 451,
+          "side": "right->left",
+          "signature": "damage",
+          "status": "mismatch",
+          "to_vcr": 1419,
+          "turn": 177
+        },
+        {
+          "carry_deltas": {
+            "crew": null,
+            "damage": null,
+            "fighters": null,
+            "torpedoes": null
+          },
+          "from_vcr": 54,
+          "game_id": 511506,
+          "hull_id": 56,
+          "race_id": 6,
+          "shield_delta": null,
+          "ship_id": 27,
+          "side": "right->right",
+          "signature": "reappearance_after_defeat",
+          "status": "reappearance_after_defeat",
+          "to_vcr": 55,
+          "turn": 26
+        },
+        {
+          "carry_deltas": {
+            "crew": null,
+            "damage": null,
+            "fighters": null,
+            "torpedoes": null
+          },
+          "from_vcr": 93,
+          "game_id": 511506,
+          "hull_id": 60,
+          "race_id": 7,
+          "shield_delta": null,
+          "ship_id": 25,
+          "side": "right->left",
+          "signature": "reappearance_after_defeat",
+          "status": "reappearance_after_defeat",
+          "to_vcr": 94,
+          "turn": 33
+        },
+        {
+          "carry_deltas": {
+            "crew": null,
+            "damage": null,
+            "fighters": null,
+            "torpedoes": null
+          },
+          "from_vcr": 196,
+          "game_id": 511506,
+          "hull_id": 51,
+          "race_id": 6,
+          "shield_delta": null,
+          "ship_id": 480,
+          "side": "right->left",
+          "signature": "reappearance_after_defeat",
+          "status": "reappearance_after_defeat",
+          "to_vcr": 203,
+          "turn": 48
+        },
+        {
+          "carry_deltas": {
+            "crew": null,
+            "damage": null,
+            "fighters": null,
+            "torpedoes": null
+          },
+          "from_vcr": 337,
+          "game_id": 511506,
+          "hull_id": 104,
+          "race_id": 9,
+          "shield_delta": null,
+          "ship_id": 32,
+          "side": "right->left",
+          "signature": "reappearance_after_defeat",
+          "status": "reappearance_after_defeat",
+          "to_vcr": 338,
+          "turn": 60
+        },
+        {
+          "carry_deltas": {
+            "crew": null,
+            "damage": null,
+            "fighters": null,
+            "torpedoes": null
+          },
+          "from_vcr": 346,
+          "game_id": 511506,
+          "hull_id": 104,
+          "race_id": 6,
+          "shield_delta": null,
+          "ship_id": 414,
+          "side": "left->left",
+          "signature": "reappearance_after_defeat",
+          "status": "reappearance_after_defeat",
+          "to_vcr": 353,
+          "turn": 60
+        },
+        {
+          "carry_deltas": {
+            "crew": null,
+            "damage": null,
+            "fighters": null,
+            "torpedoes": null
+          },
+          "from_vcr": 674,
+          "game_id": 511506,
+          "hull_id": 75,
+          "race_id": 8,
+          "shield_delta": null,
+          "ship_id": 136,
+          "side": "left->left",
+          "signature": "reappearance_after_defeat",
+          "status": "reappearance_after_defeat",
+          "to_vcr": 677,
+          "turn": 90
+        },
+        {
+          "carry_deltas": {
+            "crew": 0,
+            "damage": -11,
+            "fighters": 0,
+            "torpedoes": 0
+          },
+          "from_vcr": 84,
+          "game_id": 620636,
+          "hull_id": 94,
+          "race_id": 10,
+          "shield_delta": 0,
+          "ship_id": 60,
+          "side": "right->left",
+          "signature": "damage",
+          "status": "mismatch",
+          "to_vcr": 85,
+          "turn": 71
+        },
+        {
+          "carry_deltas": {
+            "crew": 0,
+            "damage": -2,
+            "fighters": 0,
+            "torpedoes": 0
+          },
+          "from_vcr": 201,
+          "game_id": 620694,
+          "hull_id": 94,
+          "race_id": 10,
+          "shield_delta": 0,
+          "ship_id": 224,
+          "side": "right->left",
+          "signature": "damage",
+          "status": "mismatch",
+          "to_vcr": 209,
+          "turn": 46
+        },
+        {
+          "carry_deltas": {
+            "crew": null,
+            "damage": null,
+            "fighters": null,
+            "torpedoes": null
+          },
+          "from_vcr": 280,
+          "game_id": 620694,
+          "hull_id": 16,
+          "race_id": 5,
+          "shield_delta": null,
+          "ship_id": 461,
+          "side": "left->left",
+          "signature": "reappearance_after_defeat",
+          "status": "reappearance_after_defeat",
+          "to_vcr": 285,
+          "turn": 56
+        }
+      ],
+      "shield_deltas_next_minus_terminal": {
+        "0": 8
+      },
+      "status": {
+        "match": 1138,
+        "mismatch": 8,
+        "reappearance_after_defeat": 23,
+        "same_location_transitions": 1169
+      }
+    },
+    "profile_unknown": {
+      "field_deltas_next_minus_terminal": {
+        "crew": {},
+        "damage": {},
+        "fighters": {},
+        "torpedoes": {}
+      },
+      "problem_hulls": {},
+      "problem_races": {},
+      "problem_self_classes": {},
+      "problem_side_transitions": {},
+      "problem_signatures": {},
+      "problem_status": {},
+      "problem_vcr_gap_buckets": {},
+      "samples": [],
+      "shield_deltas_next_minus_terminal": {},
+      "status": {}
+    }
+  },
+  "source_chain_schema": "planets-lab.combat-ship-chain-audit.v1",
+  "source_summary": {
+    "archives": 12,
+    "candidate_ship_turn_chains": 1015,
+    "match": 1219,
+    "mismatch": 212,
+    "non_race1_transitions": 1383,
+    "payload_conflicts": 0,
+    "race1_transitions": 48,
+    "raw_vcr_observations": 22256,
+    "reappearance_after_defeat": 54,
+    "replay_supported": 6469,
+    "same_location_transitions": 1485,
+    "ship_appearances": 9219,
+    "unique_vcrs": 6469
+  }
+}

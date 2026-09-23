@@ -1,0 +1,3 @@
+===== COMBAT FEATURE SCOPE: BUILD LAB IMAGE =====
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
