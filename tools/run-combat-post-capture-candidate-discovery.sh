@@ -46,6 +46,7 @@ echo "===== POST-CAPTURE CANDIDATE DISCOVERY: TARGETED TESTS ====="
   tests/test_combat_host_post_capture_opponent_audit.py \
   tests/test_combat_host_post_capture_initiator_population_audit.py \
   tests/test_combat_host_post_capture_ship_candidate_audit.py \
+  tests/test_combat_host_post_capture_special_movement_audit.py \
   tests/test_combat_host_post_mutation_next_pair_audit.py \
   tests/test_combat_host_queue.py
 
@@ -58,7 +59,16 @@ echo "===== POST-CAPTURE CANDIDATE DISCOVERY: RUNTIME ====="
   --output "$ARTIFACT_DIR/post-capture-ship-candidates.json"
 
 echo
+echo "===== POST-CAPTURE CANDIDATE DISCOVERY: SPECIAL MOVEMENT RESIDUAL ====="
+"${lab[@]}" python tools/diagnostics/combat_host_post_capture_special_movement_audit.py \
+  --archive-dir "$ARCHIVE_DIR" \
+  --feature-index "$INDEX" \
+  --scope-profile "$PROFILE" \
+  --output "$ARTIFACT_DIR/post-capture-special-movement.json"
+
+echo
 echo "===== POST-CAPTURE CANDIDATE DISCOVERY: COMPLETE ====="
 echo "profile:    $PROFILE"
-echo "candidates: $ARTIFACT_DIR/post-capture-ship-candidates.json"
-echo "full_log:   $LOG_PATH"
+echo "candidates:       $ARTIFACT_DIR/post-capture-ship-candidates.json"
+echo "special_movement: $ARTIFACT_DIR/post-capture-special-movement.json"
+echo "full_log:         $LOG_PATH"
