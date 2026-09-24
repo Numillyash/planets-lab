@@ -16,6 +16,7 @@ from combat_host_post_capture_special_movement_audit import (
     _simulate_special_subject,
     _special_movement_kind,
     _strict_same_owner_ship_transfer,
+    _transfer_target_namespace,
 )
 
 
@@ -412,3 +413,89 @@ def test_intercept_foreign_transfer_geometry_can_be_endpoint_invariant(monkeypat
         result["transfer_sensitivity"]["both_subject_positions_match_factual_site"]
         is True
     )
+
+
+def test_transfer_target_namespace_prefers_colocated_planet_over_distant_same_id_ship() -> None:
+    sender = _raw(
+        20,
+        2,
+        x=110,
+        fuel=100,
+        supplies=10,
+        transfer_target=30,
+        transfer_target_type=1,
+        transfer_supplies=5,
+    )
+    distant_same_id_ship = _raw(30, 3, x=500, fuel=20)
+
+    resolved = _transfer_target_namespace(
+        sender_raw=sender,
+        owner_rows={20: (2, sender), 30: (3, distant_same_id_ship)},
+        planets=((30, 110, 100),),
+    )
+
+    assert resolved["target_type_raw"] == 1
+    assert resolved["ship_candidate"]["colocated"] is False
+    assert resolved["planet_candidate"]["colocated"] is True
+    assert resolved["resolved_namespace"] == "planet"
+    assert resolved["reason"] == "unique_colocated_planet"
+
+
+def test_intercept_planet_namespace_transfer_geometry_is_endpoint_invariant(monkeypatch) -> None:
+    monkeypatch.setattr(module, "_foreign_mine_route_risk", lambda **kwargs: None)
+
+    interceptor = _raw(
+        10,
+        1,
+        x=100,
+        target_x=100,
+        warp=9,
+        mission=7,
+        mission_target=20,
+        fuel=100,
+    )
+    target = _raw(
+        20,
+        2,
+        x=110,
+        target_x=120,
+        warp=9,
+        mission=0,
+        fuel=100,
+        supplies=10,
+        transfer_target=30,
+        transfer_target_type=1,
+        transfer_supplies=5,
+    )
+    distant_same_id_ship = _raw(30, 3, x=500, target_x=500, warp=0, fuel=20)
+    owner_rows = {
+        10: (1, interceptor),
+        20: (2, target),
+        30: (3, distant_same_id_ship),
+    }
+
+    result = _simulate_special_subject(
+        game_id=1,
+        battle_turn=5,
+        site=(120, 100),
+        subject_id=10,
+        subject_owner_id=1,
+        subject_raw=interceptor,
+        owner_rows=owner_rows,
+        specs=_specs(),
+        planets=((30, 110, 100),),
+        warp_wells_enabled=False,
+        eligible_warp_well_planet_ids=frozenset(),
+        races={1: 1, 2: 2, 3: 3},
+        mine_context=None,
+    )
+
+    assert result["status"] == "exact"
+    transfer = result["target_outbound_transfer"]
+    assert transfer["target_namespace"]["resolved_namespace"] == "planet"
+    bound = result["foreign_transfer_sender_bound"]
+    assert bound["applicable"] is True
+    sensitivity = result["transfer_sensitivity"]
+    assert sensitivity["target_position_invariant"] is True
+    assert sensitivity["subject_position_invariant"] is True
+    assert sensitivity["both_subject_positions_match_factual_site"] is True
