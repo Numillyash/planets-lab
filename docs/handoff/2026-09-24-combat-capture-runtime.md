@@ -166,3 +166,73 @@ runtime-logs/combat-post-capture-candidate/
 The next decision boundary is whether all eight ship capture observations now
 resolve and whether the factual next opponent remains rank 1 after rebuilding
 the post-capture foreign candidate set.
+
+
+## Candidate discovery v2 archive runtime
+
+Runtime source:
+
+```text
+041772b543e322aa906dfdbd46f8e2c3a33d00cb
+```
+
+Published evidence:
+
+```text
+runtime-logs/combat-post-capture-candidate/20260924T162521Z_041772b543e3
+```
+
+The repaired diagnostic preserves all factual ship continuations:
+
+```text
+ship_capture_observations=8
+ship_capture_sites=7
+status:resolved=8
+target_sites_missing=0
+```
+
+Prize-ship presence is independently reconstructed at five observations and
+anchored by the already-validated capture event at three observations.
+
+For six of the eight observations, the ordinary T-1 position adapter also
+reconstructs the factual next opponent at the battle site. Every such opponent:
+
+```text
+requests the prize ship's new owner=6/6
+strict permission=true=6/6
+requester rank 1=6/6
+strict rank 1=6/6
+```
+
+The informative multi-requester site remains:
+
+```text
+622476/T17 @1973,1734
+requester order: 48, 53, 57
+factual opponent: 48
+rank: 1
+```
+
+Two observations remain outside the ordinary per-ship movement adapter:
+
+```text
+511506/T26 @2514,1772 opponent ship119 mission=6 (Tow)
+511506/T33 @1491,2315 opponent ship268 mission=7 (Intercept)
+```
+
+These are not capture-state or candidate-order counterexamples. The ordinary
+position helper deliberately fails closed on Tow and Intercept movement, while
+the independent initiator audit already resolves T-1 aggression for all eight
+ship opponents.
+
+A dedicated residual differential now runs existing production movement phases
+in Host order:
+
+```text
+Tow -> Move Most -> Intercept
+```
+
+from owner-current T-1 state and compares the resulting special-movement
+opponent position with the held-out factual combat site. This keeps movement
+mechanics out of the combat diagnostic and will determine whether candidate
+reconstruction can consume a common post-movement state for these two rows.
