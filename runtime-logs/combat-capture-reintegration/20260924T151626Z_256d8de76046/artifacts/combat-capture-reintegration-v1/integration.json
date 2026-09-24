@@ -1,0 +1,27 @@
+{
+  "checks": {
+    "all_continuations_have_independent_opponent_attack": true,
+    "capture_population_preserved": true,
+    "capture_required_unresolved_zero": true,
+    "capture_scope_profile_exact": true,
+    "capture_transition_gate_passed": true,
+    "initiator_population_preserved": true,
+    "initiator_scope_profile_exact": true,
+    "planet_continuation_population_preserved": true,
+    "post_capture_initiator_gate_passed": true,
+    "predictive_queue_checkpoint_exact": true,
+    "predictive_queue_checkpoint_no_failures": true,
+    "ship_continuation_population_preserved": true
+  },
+  "counts": {
+    "capture_continuations": 23,
+    "independent_opponent_attack": 23,
+    "initiator_continuations": 23,
+    "planet_continuations": 15,
+    "ship_continuations": 8
+  },
+  "exact": true,
+  "failures": [],
+  "profile": "combat-planar-no-horwasp",
+  "schema": "planets-lab.combat-capture-reintegration-check.v1"
+}

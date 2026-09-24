@@ -1,0 +1,933 @@
+{
+  "evidence_boundary": "Read-only initiator inventory across every production-validated same-turn post-capture continuation. Ship opponents are checked for an independent T-1 Kill!/Primary-Enemy request against the captured ship's new owner. Planet/base opponents are checked only for the documented NUK/ATT attack-code trigger. The captured ship's own T-1 orders are reported as a historical alternative but are never assumed to persist through capture. Missing old captured-ship T-1 orders are therefore informational and never block acceptance. Hard acceptance requires a resolved independent opponent initiator for every continuation. This diagnostic does not yet apply diplomacy or matching-FC suppression to the initiator candidates, nor infer the newly generated capture target list.",
+  "examples": [
+    {
+      "battle_turn": 26,
+      "captured_ship_old_orders": {
+        "enemy": 5,
+        "friendlycode": "mkt",
+        "mission": 2,
+        "requests_target_owner": false
+      },
+      "explanation": "opponent_only",
+      "from_vcr_id": 54,
+      "game_id": 511506,
+      "independent_attack_candidate": true,
+      "independent_opponent": {
+        "enemy": 5,
+        "friendlycode": "ona",
+        "kind": "ship",
+        "mission": 6,
+        "owner_id": 6,
+        "requests_target_owner": true,
+        "ship_id": 119
+      },
+      "old_orders_attack_candidate": false,
+      "opponent": {
+        "opponent_hull_id": 52,
+        "opponent_is_captor": false,
+        "opponent_is_planet": false,
+        "opponent_is_pre_capture_owner": true,
+        "opponent_object_id": 119,
+        "opponent_owner_id": 6,
+        "opponent_side": "left",
+        "owner_relation": "pre_capture_owner",
+        "resolved": true
+      },
+      "opponent_type": "ship",
+      "post_capture_owner_id": 5,
+      "pre_capture_owner_id": 6,
+      "ship_id": 27,
+      "to_vcr_id": 55
+    },
+    {
+      "battle_turn": 33,
+      "captured_ship_old_orders": {
+        "enemy": 8,
+        "friendlycode": "125",
+        "mission": 7,
+        "requests_target_owner": false
+      },
+      "explanation": "opponent_only",
+      "from_vcr_id": 93,
+      "game_id": 511506,
+      "independent_attack_candidate": true,
+      "independent_opponent": {
+        "enemy": 8,
+        "friendlycode": "482",
+        "kind": "ship",
+        "mission": 7,
+        "owner_id": 7,
+        "requests_target_owner": true,
+        "ship_id": 268
+      },
+      "old_orders_attack_candidate": false,
+      "opponent": {
+        "opponent_hull_id": 61,
+        "opponent_is_captor": false,
+        "opponent_is_planet": false,
+        "opponent_is_pre_capture_owner": true,
+        "opponent_object_id": 268,
+        "opponent_owner_id": 7,
+        "opponent_side": "right",
+        "owner_relation": "pre_capture_owner",
+        "resolved": true
+      },
+      "opponent_type": "ship",
+      "post_capture_owner_id": 8,
+      "pre_capture_owner_id": 7,
+      "ship_id": 25,
+      "to_vcr_id": 94
+    },
+    {
+      "battle_turn": 48,
+      "captured_ship_old_orders": {
+        "enemy": 3,
+        "friendlycode": "ysD",
+        "mission": 3,
+        "requests_target_owner": true
+      },
+      "explanation": "both",
+      "from_vcr_id": 196,
+      "game_id": 511506,
+      "independent_attack_candidate": true,
+      "independent_opponent": {
+        "friendlycode": "att",
+        "independent_attack_code": true,
+        "kind": "planet",
+        "normalized_friendlycode": "att",
+        "owner_id": 6,
+        "planet_id": 131
+      },
+      "old_orders_attack_candidate": true,
+      "opponent": {
+        "opponent_hull_id": 0,
+        "opponent_is_captor": false,
+        "opponent_is_planet": true,
+        "opponent_is_pre_capture_owner": true,
+        "opponent_object_id": 131,
+        "opponent_owner_id": 6,
+        "opponent_side": "right",
+        "owner_relation": "pre_capture_owner",
+        "resolved": true
+      },
+      "opponent_type": "planet",
+      "post_capture_owner_id": 3,
+      "pre_capture_owner_id": 6,
+      "ship_id": 480,
+      "to_vcr_id": 203
+    },
+    {
+      "battle_turn": 60,
+      "captured_ship_old_orders": {
+        "enemy": 2,
+        "friendlycode": "ml0",
+        "mission": 1,
+        "requests_target_owner": false
+      },
+      "explanation": "opponent_only",
+      "from_vcr_id": 337,
+      "game_id": 511506,
+      "independent_attack_candidate": true,
+      "independent_opponent": {
+        "enemy": 2,
+        "friendlycode": "lfm",
+        "kind": "ship",
+        "mission": 1,
+        "owner_id": 9,
+        "requests_target_owner": true,
+        "ship_id": 180
+      },
+      "old_orders_attack_candidate": false,
+      "opponent": {
+        "opponent_hull_id": 79,
+        "opponent_is_captor": false,
+        "opponent_is_planet": false,
+        "opponent_is_pre_capture_owner": true,
+        "opponent_object_id": 180,
+        "opponent_owner_id": 9,
+        "opponent_side": "right",
+        "owner_relation": "pre_capture_owner",
+        "resolved": true
+      },
+      "opponent_type": "ship",
+      "post_capture_owner_id": 2,
+      "pre_capture_owner_id": 9,
+      "ship_id": 32,
+      "to_vcr_id": 338
+    },
+    {
+      "battle_turn": 60,
+      "captured_ship_old_orders": {
+        "enemy": 3,
+        "friendlycode": "rtx",
+        "mission": 0,
+        "requests_target_owner": false
+      },
+      "explanation": "opponent_only",
+      "from_vcr_id": 346,
+      "game_id": 511506,
+      "independent_attack_candidate": true,
+      "independent_opponent": {
+        "friendlycode": "att",
+        "independent_attack_code": true,
+        "kind": "planet",
+        "normalized_friendlycode": "att",
+        "owner_id": 6,
+        "planet_id": 450
+      },
+      "old_orders_attack_candidate": false,
+      "opponent": {
+        "opponent_hull_id": 0,
+        "opponent_is_captor": false,
+        "opponent_is_planet": true,
+        "opponent_is_pre_capture_owner": true,
+        "opponent_object_id": 450,
+        "opponent_owner_id": 6,
+        "opponent_side": "right",
+        "owner_relation": "pre_capture_owner",
+        "resolved": true
+      },
+      "opponent_type": "planet",
+      "post_capture_owner_id": 3,
+      "pre_capture_owner_id": 6,
+      "ship_id": 414,
+      "to_vcr_id": 353
+    },
+    {
+      "battle_turn": 90,
+      "captured_ship_old_orders": {
+        "enemy": 0,
+        "friendlycode": "jyj",
+        "mission": 2,
+        "requests_target_owner": false
+      },
+      "explanation": "opponent_only",
+      "from_vcr_id": 674,
+      "game_id": 511506,
+      "independent_attack_candidate": true,
+      "independent_opponent": {
+        "friendlycode": "att",
+        "independent_attack_code": true,
+        "kind": "planet",
+        "normalized_friendlycode": "att",
+        "owner_id": 8,
+        "planet_id": 7
+      },
+      "old_orders_attack_candidate": false,
+      "opponent": {
+        "opponent_hull_id": 0,
+        "opponent_is_captor": false,
+        "opponent_is_planet": true,
+        "opponent_is_pre_capture_owner": true,
+        "opponent_object_id": 7,
+        "opponent_owner_id": 8,
+        "opponent_side": "right",
+        "owner_relation": "pre_capture_owner",
+        "resolved": true
+      },
+      "opponent_type": "planet",
+      "post_capture_owner_id": 5,
+      "pre_capture_owner_id": 8,
+      "ship_id": 136,
+      "to_vcr_id": 677
+    },
+    {
+      "battle_turn": 56,
+      "captured_ship_old_orders": {
+        "enemy": 0,
+        "friendlycode": "uwx",
+        "mission": 1,
+        "requests_target_owner": false
+      },
+      "explanation": "opponent_only",
+      "from_vcr_id": 280,
+      "game_id": 620694,
+      "independent_attack_candidate": true,
+      "independent_opponent": {
+        "friendlycode": "nuk",
+        "independent_attack_code": true,
+        "kind": "planet",
+        "normalized_friendlycode": "nuk",
+        "owner_id": 5,
+        "planet_id": 171
+      },
+      "old_orders_attack_candidate": false,
+      "opponent": {
+        "opponent_hull_id": 0,
+        "opponent_is_captor": false,
+        "opponent_is_planet": true,
+        "opponent_is_pre_capture_owner": true,
+        "opponent_object_id": 171,
+        "opponent_owner_id": 5,
+        "opponent_side": "right",
+        "owner_relation": "pre_capture_owner",
+        "resolved": true
+      },
+      "opponent_type": "planet",
+      "post_capture_owner_id": 3,
+      "pre_capture_owner_id": 5,
+      "ship_id": 461,
+      "to_vcr_id": 285
+    },
+    {
+      "battle_turn": 18,
+      "captured_ship_old_orders": {
+        "enemy": 0,
+        "friendlycode": "fee",
+        "mission": 4,
+        "requests_target_owner": false
+      },
+      "explanation": "opponent_only",
+      "from_vcr_id": 63,
+      "game_id": 620917,
+      "independent_attack_candidate": true,
+      "independent_opponent": {
+        "friendlycode": "nuk",
+        "independent_attack_code": true,
+        "kind": "planet",
+        "normalized_friendlycode": "nuk",
+        "owner_id": 2,
+        "planet_id": 49
+      },
+      "old_orders_attack_candidate": false,
+      "opponent": {
+        "opponent_hull_id": 0,
+        "opponent_is_captor": false,
+        "opponent_is_planet": true,
+        "opponent_is_pre_capture_owner": true,
+        "opponent_object_id": 49,
+        "opponent_owner_id": 2,
+        "opponent_side": "right",
+        "owner_relation": "pre_capture_owner",
+        "resolved": true
+      },
+      "opponent_type": "planet",
+      "post_capture_owner_id": 3,
+      "pre_capture_owner_id": 2,
+      "ship_id": 18,
+      "to_vcr_id": 66
+    },
+    {
+      "battle_turn": 27,
+      "captured_ship_old_orders": {
+        "enemy": 0,
+        "friendlycode": "jwb",
+        "mission": 8,
+        "requests_target_owner": false
+      },
+      "explanation": "opponent_only",
+      "from_vcr_id": 117,
+      "game_id": 620917,
+      "independent_attack_candidate": true,
+      "independent_opponent": {
+        "friendlycode": "nuk",
+        "independent_attack_code": true,
+        "kind": "planet",
+        "normalized_friendlycode": "nuk",
+        "owner_id": 5,
+        "planet_id": 79
+      },
+      "old_orders_attack_candidate": false,
+      "opponent": {
+        "opponent_hull_id": 0,
+        "opponent_is_captor": false,
+        "opponent_is_planet": true,
+        "opponent_is_pre_capture_owner": true,
+        "opponent_object_id": 79,
+        "opponent_owner_id": 5,
+        "opponent_side": "right",
+        "owner_relation": "pre_capture_owner",
+        "resolved": true
+      },
+      "opponent_type": "planet",
+      "post_capture_owner_id": 3,
+      "pre_capture_owner_id": 5,
+      "ship_id": 5,
+      "to_vcr_id": 119
+    },
+    {
+      "battle_turn": 13,
+      "captured_ship_old_orders": {
+        "enemy": 0,
+        "friendlycode": "fui",
+        "mission": 0,
+        "requests_target_owner": false
+      },
+      "explanation": "opponent_only",
+      "from_vcr_id": 19,
+      "game_id": 621253,
+      "independent_attack_candidate": true,
+      "independent_opponent": {
+        "friendlycode": "nuk",
+        "independent_attack_code": true,
+        "kind": "planet",
+        "normalized_friendlycode": "nuk",
+        "owner_id": 6,
+        "planet_id": 60
+      },
+      "old_orders_attack_candidate": false,
+      "opponent": {
+        "opponent_hull_id": 0,
+        "opponent_is_captor": false,
+        "opponent_is_planet": true,
+        "opponent_is_pre_capture_owner": true,
+        "opponent_object_id": 60,
+        "opponent_owner_id": 6,
+        "opponent_side": "right",
+        "owner_relation": "pre_capture_owner",
+        "resolved": true
+      },
+      "opponent_type": "planet",
+      "post_capture_owner_id": 5,
+      "pre_capture_owner_id": 6,
+      "ship_id": 45,
+      "to_vcr_id": 22
+    },
+    {
+      "battle_turn": 17,
+      "captured_ship_old_orders": {
+        "enemy": 0,
+        "friendlycode": "vgg",
+        "mission": 4,
+        "requests_target_owner": false
+      },
+      "explanation": "opponent_only",
+      "from_vcr_id": 34,
+      "game_id": 621253,
+      "independent_attack_candidate": true,
+      "independent_opponent": {
+        "friendlycode": "att",
+        "independent_attack_code": true,
+        "kind": "planet",
+        "normalized_friendlycode": "att",
+        "owner_id": 8,
+        "planet_id": 51
+      },
+      "old_orders_attack_candidate": false,
+      "opponent": {
+        "opponent_hull_id": 0,
+        "opponent_is_captor": false,
+        "opponent_is_planet": true,
+        "opponent_is_pre_capture_owner": true,
+        "opponent_object_id": 51,
+        "opponent_owner_id": 8,
+        "opponent_side": "right",
+        "owner_relation": "pre_capture_owner",
+        "resolved": true
+      },
+      "opponent_type": "planet",
+      "post_capture_owner_id": 6,
+      "pre_capture_owner_id": 8,
+      "ship_id": 8,
+      "to_vcr_id": 44
+    },
+    {
+      "battle_turn": 17,
+      "captured_ship_old_orders": {
+        "enemy": 0,
+        "friendlycode": "ytn",
+        "mission": 0,
+        "requests_target_owner": false
+      },
+      "explanation": "opponent_only",
+      "from_vcr_id": 39,
+      "game_id": 621253,
+      "independent_attack_candidate": true,
+      "independent_opponent": {
+        "friendlycode": "att",
+        "independent_attack_code": true,
+        "kind": "planet",
+        "normalized_friendlycode": "att",
+        "owner_id": 8,
+        "planet_id": 51
+      },
+      "old_orders_attack_candidate": false,
+      "opponent": {
+        "opponent_hull_id": 0,
+        "opponent_is_captor": false,
+        "opponent_is_planet": true,
+        "opponent_is_pre_capture_owner": true,
+        "opponent_object_id": 51,
+        "opponent_owner_id": 8,
+        "opponent_side": "right",
+        "owner_relation": "pre_capture_owner",
+        "resolved": true
+      },
+      "opponent_type": "planet",
+      "post_capture_owner_id": 6,
+      "pre_capture_owner_id": 8,
+      "ship_id": 84,
+      "to_vcr_id": 45
+    },
+    {
+      "battle_turn": 14,
+      "captured_ship_old_orders": {
+        "enemy": 0,
+        "friendlycode": "md2",
+        "mission": 2,
+        "requests_target_owner": false
+      },
+      "explanation": "opponent_only",
+      "from_vcr_id": 16,
+      "game_id": 621896,
+      "independent_attack_candidate": true,
+      "independent_opponent": {
+        "friendlycode": "nuk",
+        "independent_attack_code": true,
+        "kind": "planet",
+        "normalized_friendlycode": "nuk",
+        "owner_id": 1,
+        "planet_id": 30
+      },
+      "old_orders_attack_candidate": false,
+      "opponent": {
+        "opponent_hull_id": 0,
+        "opponent_is_captor": false,
+        "opponent_is_planet": true,
+        "opponent_is_pre_capture_owner": true,
+        "opponent_object_id": 30,
+        "opponent_owner_id": 1,
+        "opponent_side": "right",
+        "owner_relation": "pre_capture_owner",
+        "resolved": true
+      },
+      "opponent_type": "planet",
+      "post_capture_owner_id": 3,
+      "pre_capture_owner_id": 1,
+      "ship_id": 36,
+      "to_vcr_id": 20
+    },
+    {
+      "battle_turn": 25,
+      "captured_ship_old_orders": {
+        "enemy": 0,
+        "friendlycode": "999",
+        "mission": 8,
+        "requests_target_owner": false
+      },
+      "explanation": "opponent_only",
+      "from_vcr_id": 49,
+      "game_id": 621896,
+      "independent_attack_candidate": true,
+      "independent_opponent": {
+        "enemy": 2,
+        "friendlycode": "isx",
+        "kind": "ship",
+        "mission": 3,
+        "owner_id": 6,
+        "requests_target_owner": true,
+        "ship_id": 29
+      },
+      "old_orders_attack_candidate": false,
+      "opponent": {
+        "opponent_hull_id": 79,
+        "opponent_is_captor": false,
+        "opponent_is_planet": false,
+        "opponent_is_pre_capture_owner": true,
+        "opponent_object_id": 29,
+        "opponent_owner_id": 6,
+        "opponent_side": "right",
+        "owner_relation": "pre_capture_owner",
+        "resolved": true
+      },
+      "opponent_type": "ship",
+      "post_capture_owner_id": 2,
+      "pre_capture_owner_id": 6,
+      "ship_id": 34,
+      "to_vcr_id": 50
+    },
+    {
+      "battle_turn": 25,
+      "captured_ship_old_orders": null,
+      "explanation": "opponent_only",
+      "from_vcr_id": 50,
+      "game_id": 621896,
+      "independent_attack_candidate": true,
+      "independent_opponent": {
+        "enemy": 6,
+        "friendlycode": "md7",
+        "kind": "ship",
+        "mission": 2,
+        "owner_id": 2,
+        "requests_target_owner": true,
+        "ship_id": 67
+      },
+      "old_orders_attack_candidate": null,
+      "opponent": {
+        "opponent_hull_id": 23,
+        "opponent_is_captor": false,
+        "opponent_is_planet": false,
+        "opponent_is_pre_capture_owner": true,
+        "opponent_object_id": 67,
+        "opponent_owner_id": 2,
+        "opponent_side": "right",
+        "owner_relation": "pre_capture_owner",
+        "resolved": true
+      },
+      "opponent_type": "ship",
+      "post_capture_owner_id": 6,
+      "pre_capture_owner_id": 2,
+      "ship_id": 34,
+      "to_vcr_id": 52
+    },
+    {
+      "battle_turn": 25,
+      "captured_ship_old_orders": {
+        "enemy": 0,
+        "friendlycode": "999",
+        "mission": 8,
+        "requests_target_owner": false
+      },
+      "explanation": "opponent_only",
+      "from_vcr_id": 52,
+      "game_id": 621896,
+      "independent_attack_candidate": true,
+      "independent_opponent": {
+        "friendlycode": "nuk",
+        "independent_attack_code": true,
+        "kind": "planet",
+        "normalized_friendlycode": "nuk",
+        "owner_id": 6,
+        "planet_id": 5
+      },
+      "old_orders_attack_candidate": false,
+      "opponent": {
+        "opponent_hull_id": 0,
+        "opponent_is_captor": false,
+        "opponent_is_planet": true,
+        "opponent_is_pre_capture_owner": true,
+        "opponent_object_id": 5,
+        "opponent_owner_id": 6,
+        "opponent_side": "right",
+        "owner_relation": "pre_capture_owner",
+        "resolved": true
+      },
+      "opponent_type": "planet",
+      "post_capture_owner_id": 2,
+      "pre_capture_owner_id": 6,
+      "ship_id": 34,
+      "to_vcr_id": 54
+    },
+    {
+      "battle_turn": 13,
+      "captured_ship_old_orders": {
+        "enemy": 0,
+        "friendlycode": "vcr",
+        "mission": 1,
+        "requests_target_owner": false
+      },
+      "explanation": "opponent_only",
+      "from_vcr_id": 17,
+      "game_id": 622476,
+      "independent_attack_candidate": true,
+      "independent_opponent": {
+        "friendlycode": "Nuk",
+        "independent_attack_code": true,
+        "kind": "planet",
+        "normalized_friendlycode": "nuk",
+        "owner_id": 5,
+        "planet_id": 55
+      },
+      "old_orders_attack_candidate": false,
+      "opponent": {
+        "opponent_hull_id": 0,
+        "opponent_is_captor": false,
+        "opponent_is_planet": true,
+        "opponent_is_pre_capture_owner": true,
+        "opponent_object_id": 55,
+        "opponent_owner_id": 5,
+        "opponent_side": "right",
+        "owner_relation": "pre_capture_owner",
+        "resolved": true
+      },
+      "opponent_type": "planet",
+      "post_capture_owner_id": 3,
+      "pre_capture_owner_id": 5,
+      "ship_id": 5,
+      "to_vcr_id": 24
+    },
+    {
+      "battle_turn": 13,
+      "captured_ship_old_orders": null,
+      "explanation": "opponent_only",
+      "from_vcr_id": 18,
+      "game_id": 622476,
+      "independent_attack_candidate": true,
+      "independent_opponent": {
+        "friendlycode": "Nuk",
+        "independent_attack_code": true,
+        "kind": "planet",
+        "normalized_friendlycode": "nuk",
+        "owner_id": 5,
+        "planet_id": 55
+      },
+      "old_orders_attack_candidate": null,
+      "opponent": {
+        "opponent_hull_id": 0,
+        "opponent_is_captor": false,
+        "opponent_is_planet": true,
+        "opponent_is_pre_capture_owner": true,
+        "opponent_object_id": 55,
+        "opponent_owner_id": 5,
+        "opponent_side": "right",
+        "owner_relation": "pre_capture_owner",
+        "resolved": true
+      },
+      "opponent_type": "planet",
+      "post_capture_owner_id": 3,
+      "pre_capture_owner_id": 5,
+      "ship_id": 68,
+      "to_vcr_id": 25
+    },
+    {
+      "battle_turn": 14,
+      "captured_ship_old_orders": {
+        "enemy": 0,
+        "friendlycode": "999",
+        "mission": 4,
+        "requests_target_owner": false
+      },
+      "explanation": "opponent_only",
+      "from_vcr_id": 27,
+      "game_id": 622476,
+      "independent_attack_candidate": true,
+      "independent_opponent": {
+        "enemy": 5,
+        "friendlycode": "lfm",
+        "kind": "ship",
+        "mission": 0,
+        "owner_id": 8,
+        "requests_target_owner": true,
+        "ship_id": 30
+      },
+      "old_orders_attack_candidate": false,
+      "opponent": {
+        "opponent_hull_id": 92,
+        "opponent_is_captor": false,
+        "opponent_is_planet": false,
+        "opponent_is_pre_capture_owner": true,
+        "opponent_object_id": 30,
+        "opponent_owner_id": 8,
+        "opponent_side": "right",
+        "owner_relation": "pre_capture_owner",
+        "resolved": true
+      },
+      "opponent_type": "ship",
+      "post_capture_owner_id": 5,
+      "pre_capture_owner_id": 8,
+      "ship_id": 16,
+      "to_vcr_id": 28
+    },
+    {
+      "battle_turn": 17,
+      "captured_ship_old_orders": {
+        "enemy": 8,
+        "friendlycode": "qqt",
+        "mission": 1,
+        "requests_target_owner": true
+      },
+      "explanation": "both",
+      "from_vcr_id": 37,
+      "game_id": 622476,
+      "independent_attack_candidate": true,
+      "independent_opponent": {
+        "enemy": 0,
+        "friendlycode": "800",
+        "kind": "ship",
+        "mission": 3,
+        "owner_id": 8,
+        "requests_target_owner": true,
+        "ship_id": 48
+      },
+      "old_orders_attack_candidate": true,
+      "opponent": {
+        "opponent_hull_id": 71,
+        "opponent_is_captor": false,
+        "opponent_is_planet": false,
+        "opponent_is_pre_capture_owner": false,
+        "opponent_object_id": 48,
+        "opponent_owner_id": 8,
+        "opponent_side": "right",
+        "owner_relation": "third_party",
+        "resolved": true
+      },
+      "opponent_type": "ship",
+      "post_capture_owner_id": 3,
+      "pre_capture_owner_id": 5,
+      "ship_id": 7,
+      "to_vcr_id": 38
+    },
+    {
+      "battle_turn": 28,
+      "captured_ship_old_orders": {
+        "enemy": 0,
+        "friendlycode": "200",
+        "mission": 8,
+        "requests_target_owner": false
+      },
+      "explanation": "opponent_only",
+      "from_vcr_id": 105,
+      "game_id": 622476,
+      "independent_attack_candidate": true,
+      "independent_opponent": {
+        "enemy": 2,
+        "friendlycode": "101",
+        "kind": "ship",
+        "mission": 3,
+        "owner_id": 7,
+        "requests_target_owner": true,
+        "ship_id": 42
+      },
+      "old_orders_attack_candidate": false,
+      "opponent": {
+        "opponent_hull_id": 88,
+        "opponent_is_captor": false,
+        "opponent_is_planet": false,
+        "opponent_is_pre_capture_owner": true,
+        "opponent_object_id": 42,
+        "opponent_owner_id": 7,
+        "opponent_side": "right",
+        "owner_relation": "pre_capture_owner",
+        "resolved": true
+      },
+      "opponent_type": "ship",
+      "post_capture_owner_id": 2,
+      "pre_capture_owner_id": 7,
+      "ship_id": 35,
+      "to_vcr_id": 109
+    },
+    {
+      "battle_turn": 30,
+      "captured_ship_old_orders": {
+        "enemy": 0,
+        "friendlycode": "300",
+        "mission": 0,
+        "requests_target_owner": false
+      },
+      "explanation": "opponent_only",
+      "from_vcr_id": 117,
+      "game_id": 622476,
+      "independent_attack_candidate": true,
+      "independent_opponent": {
+        "friendlycode": "att",
+        "independent_attack_code": true,
+        "kind": "planet",
+        "normalized_friendlycode": "att",
+        "owner_id": 8,
+        "planet_id": 17
+      },
+      "old_orders_attack_candidate": false,
+      "opponent": {
+        "opponent_hull_id": 0,
+        "opponent_is_captor": false,
+        "opponent_is_planet": true,
+        "opponent_is_pre_capture_owner": true,
+        "opponent_object_id": 17,
+        "opponent_owner_id": 8,
+        "opponent_side": "right",
+        "owner_relation": "pre_capture_owner",
+        "resolved": true
+      },
+      "opponent_type": "planet",
+      "post_capture_owner_id": 3,
+      "pre_capture_owner_id": 8,
+      "ship_id": 66,
+      "to_vcr_id": 121
+    },
+    {
+      "battle_turn": 30,
+      "captured_ship_old_orders": {
+        "enemy": 0,
+        "friendlycode": "999",
+        "mission": 0,
+        "requests_target_owner": false
+      },
+      "explanation": "opponent_only",
+      "from_vcr_id": 118,
+      "game_id": 622476,
+      "independent_attack_candidate": true,
+      "independent_opponent": {
+        "friendlycode": "att",
+        "independent_attack_code": true,
+        "kind": "planet",
+        "normalized_friendlycode": "att",
+        "owner_id": 8,
+        "planet_id": 17
+      },
+      "old_orders_attack_candidate": false,
+      "opponent": {
+        "opponent_hull_id": 0,
+        "opponent_is_captor": false,
+        "opponent_is_planet": true,
+        "opponent_is_pre_capture_owner": true,
+        "opponent_object_id": 17,
+        "opponent_owner_id": 8,
+        "opponent_side": "right",
+        "owner_relation": "pre_capture_owner",
+        "resolved": true
+      },
+      "opponent_type": "planet",
+      "post_capture_owner_id": 3,
+      "pre_capture_owner_id": 8,
+      "ship_id": 16,
+      "to_vcr_id": 122
+    }
+  ],
+  "read_only": true,
+  "schema": "planets-lab.combat-host-post-capture-initiator-population-audit.v2",
+  "summary": {
+    "acceptance": {
+      "all_continuations_have_independent_opponent_attack": true,
+      "all_third_party_have_independent_attack": true,
+      "capture_continuation_population_present": true,
+      "no_required_adapter_unresolved": true,
+      "payload_conflicts_absent": true,
+      "post_capture_initiator_gate_passed": true,
+      "ship_and_planet_continuations_present": true,
+      "third_party_population_present": true
+    },
+    "counts": {
+      "capture_continuations": 23,
+      "captured_old_orders_attack_candidate": 2,
+      "captured_old_orders_no_attack_candidate": 19,
+      "captured_old_orders_unresolved": 2,
+      "explanation:both": 2,
+      "explanation:opponent_only": 21,
+      "independent_attack:planet": 15,
+      "independent_attack:ship": 8,
+      "independent_opponent_attack_candidate": 23,
+      "opponent_type:planet": 15,
+      "opponent_type:ship": 8,
+      "owner_relation:pre_capture_owner": 22,
+      "owner_relation:third_party": 1,
+      "third_party_independent_attack_exact": 1,
+      "unresolved:captured_ship_tminus1": 2
+    },
+    "feature_scope": {
+      "excluded_game_ids": [
+        591478
+      ],
+      "included_game_ids": [
+        360690,
+        511506,
+        620636,
+        620694,
+        620917,
+        621103,
+        621253,
+        621896,
+        622476,
+        680435,
+        680910
+      ],
+      "index": "validation/corpus/compiled/v1/metadata/game_features.parquet",
+      "predicate_count": 3,
+      "profile": "combat-planar-no-horwasp",
+      "unknown_game_ids": []
+    },
+    "optional_old_order_unresolved": 2,
+    "payload_conflicts": 0,
+    "required_unresolved_total": 0
+  }
+}

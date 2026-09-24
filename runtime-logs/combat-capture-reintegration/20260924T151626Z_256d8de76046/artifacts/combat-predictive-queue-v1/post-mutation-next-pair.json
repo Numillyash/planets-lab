@@ -1,0 +1,169 @@
+{
+  "evidence_boundary": "Bounded post-combat next-pair differential. Candidate rows are independently reconstructed from owner-current T-1 by the existing initial STANDARD target audit; only its exact-set comparable sites with at least two factual ship VCRs enter this gate. Deterministic Classic replay of factual VCR N supplies only terminal state for membership mutation. Factual VCR N+1 is held out until comparison. The selector receives the independently reconstructed T-1 pair decision rows filtered by production active membership and pair occurrence history; it never receives the factual next pair. Capture predecessors are excluded/fail-closed. The clean population is selected through shared FeatureScope; excluded, UNKNOWN and unindexed games do not enter the proof. Planet combat, unresolved/pre-standard candidate sets and non-exact-set sites remain outside this proof. Pair decisions themselves are the same bounded T-1 projections used by the already DIFF_VERIFIED initial selector; this gate does not yet claim dynamic pair-decision recomputation after combat.",
+  "mismatch_examples": [],
+  "read_only": true,
+  "schema": "planets-lab.combat-host-post-mutation-next-pair-audit.v1",
+  "summary": {
+    "acceptance": {
+      "all_profiles_pass": true,
+      "conditional": {
+        "all_compared_next_vcr_exact": true,
+        "multi_vcr_exact_set_population_present": true,
+        "next_vcr_transition_population_present": true,
+        "no_nonexcluded_unresolved_sites": true
+      },
+      "strict": {
+        "all_compared_next_vcr_exact": true,
+        "multi_vcr_exact_set_population_present": true,
+        "next_vcr_transition_population_present": true,
+        "no_nonexcluded_unresolved_sites": true
+      }
+    },
+    "baseline_initial_standard": {
+      "all_factual_positions_exact_sites": 243,
+      "archives_considered": 11,
+      "conditional": {
+        "broad": {
+          "first_pair_exact": 232,
+          "first_pair_mismatch": 2,
+          "first_right_exact": 232,
+          "first_right_mismatch": 2,
+          "low_target_control_pair_exact": 183,
+          "multi_candidate_sites": 88,
+          "sites": 234,
+          "target_highest_priority_exact": 51,
+          "target_order_informative_sites": 53
+        },
+        "exact_set": {
+          "first_pair_exact": 169,
+          "first_right_exact": 169,
+          "low_target_control_pair_exact": 154,
+          "multi_candidate_sites": 23,
+          "sites": 169,
+          "target_highest_priority_exact": 15,
+          "target_order_informative_sites": 15
+        },
+        "ranks": {
+          "pair_rank:1": 401,
+          "pair_rank:2": 2,
+          "target_rank:1": 66,
+          "target_rank:2": 2
+        }
+      },
+      "exclusion_reasons": {
+        "conditional:candidate_engagement_unresolved": 6,
+        "conditional:nonplain_standard_side_override": 3,
+        "strict:candidate_engagement_unresolved": 15,
+        "strict:nonplain_standard_side_override": 3
+      },
+      "feature_scope": {
+        "excluded_game_ids": [
+          591478
+        ],
+        "included_game_ids": [
+          360690,
+          511506,
+          620636,
+          620694,
+          620917,
+          621103,
+          621253,
+          621896,
+          622476,
+          680435,
+          680910
+        ],
+        "index": "validation/corpus/compiled/v1/metadata/game_features.parquet",
+        "predicate_count": 3,
+        "profile": "combat-planar-no-horwasp",
+        "unknown_game_ids": []
+      },
+      "payload_conflicts": 0,
+      "scope_excluded_archives": 1,
+      "scope_unindexed_archives": 0,
+      "scope_unknown_archives": 0,
+      "sites": 1220,
+      "strict": {
+        "broad": {
+          "first_pair_exact": 223,
+          "first_pair_mismatch": 2,
+          "first_right_exact": 223,
+          "first_right_mismatch": 2,
+          "low_target_control_pair_exact": 174,
+          "multi_candidate_sites": 86,
+          "sites": 225,
+          "target_highest_priority_exact": 51,
+          "target_order_informative_sites": 53
+        },
+        "exact_set": {
+          "first_pair_exact": 162,
+          "first_right_exact": 162,
+          "low_target_control_pair_exact": 147,
+          "multi_candidate_sites": 23,
+          "sites": 162,
+          "target_highest_priority_exact": 15,
+          "target_order_informative_sites": 15
+        },
+        "ranks": {
+          "pair_rank:1": 385,
+          "pair_rank:2": 2,
+          "target_rank:1": 66,
+          "target_rank:2": 2
+        }
+      }
+    },
+    "chain_audit_summary": {
+      "archives": 11,
+      "candidate_ship_turn_chains": 797,
+      "match": 1138,
+      "mismatch": 8,
+      "non_race1_transitions": 1098,
+      "payload_conflicts": 0,
+      "race1_transitions": 48,
+      "raw_vcr_observations": 15253,
+      "reappearance_after_defeat": 23,
+      "replay_supported": 4394,
+      "same_location_transitions": 1169,
+      "ship_appearances": 6382,
+      "unique_vcrs": 4394
+    },
+    "counts": {
+      "conditional:excluded:capture_predecessor": 7,
+      "conditional:multi_vcr_exact_set_sites": 23,
+      "conditional:next_vcr_exact": 22,
+      "conditional:site_status:exact": 16,
+      "conditional:site_status:excluded": 7,
+      "conditional:transitions_compared": 22,
+      "conditional:transitions_with_inactive_filter": 22,
+      "strict:excluded:capture_predecessor": 7,
+      "strict:multi_vcr_exact_set_sites": 23,
+      "strict:next_vcr_exact": 22,
+      "strict:site_status:exact": 16,
+      "strict:site_status:excluded": 7,
+      "strict:transitions_compared": 22,
+      "strict:transitions_with_inactive_filter": 22
+    },
+    "feature_scope": {
+      "excluded_game_ids": [
+        591478
+      ],
+      "included_game_ids": [
+        360690,
+        511506,
+        620636,
+        620694,
+        620917,
+        621103,
+        621253,
+        621896,
+        622476,
+        680435,
+        680910
+      ],
+      "index": "validation/corpus/compiled/v1/metadata/game_features.parquet",
+      "predicate_count": 3,
+      "profile": "combat-planar-no-horwasp",
+      "unknown_game_ids": []
+    }
+  }
+}

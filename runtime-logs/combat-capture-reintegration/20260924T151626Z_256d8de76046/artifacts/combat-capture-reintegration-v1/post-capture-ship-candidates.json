@@ -1,0 +1,427 @@
+{
+  "evidence_boundary": "Descriptive post-capture ship-candidate inventory only. Capture rows come from the production capture differential. Site membership is reconstructed independently by the existing owner-current T-1 position pipeline. For each foreign predicted ship, its T-1 Kill!/Primary-Enemy request is reevaluated against the prize ship's new owner, and strict diplomacy permission removes factual rows for the exact candidate pair so the held-out next engagement cannot prove its own permission. Factual VCR N+1 contributes only the opponent ship id comparator after candidates are built. This v1 does not yet apply active-membership history before the capture, rebuild captured-ship aggression, or promote a next-pair rule.",
+  "examples": [
+    {
+      "battle_turn": 26,
+      "capture": {
+        "captor_owner_id": 5,
+        "captor_ship_id": 102,
+        "current_opponent_ship_id": 119,
+        "from_vcr_id": 54,
+        "ship_id": 27,
+        "to_vcr_id": 55
+      },
+      "game_id": 511506,
+      "result": {
+        "reason": "captured_ship_not_independently_predicted_at_site",
+        "status": "unresolved"
+      },
+      "x": 2514,
+      "y": 1772
+    },
+    {
+      "battle_turn": 33,
+      "capture": {
+        "captor_owner_id": 8,
+        "captor_ship_id": 174,
+        "current_opponent_ship_id": 268,
+        "from_vcr_id": 93,
+        "ship_id": 25,
+        "to_vcr_id": 94
+      },
+      "game_id": 511506,
+      "result": {
+        "reason": "captured_ship_not_independently_predicted_at_site",
+        "status": "unresolved"
+      },
+      "x": 1491,
+      "y": 2315
+    },
+    {
+      "battle_turn": 60,
+      "capture": {
+        "captor_owner_id": 2,
+        "captor_ship_id": 101,
+        "current_opponent_ship_id": 180,
+        "from_vcr_id": 337,
+        "ship_id": 32,
+        "to_vcr_id": 338
+      },
+      "game_id": 511506,
+      "result": {
+        "reason": "captured_ship_not_independently_predicted_at_site",
+        "status": "unresolved"
+      },
+      "x": 1907,
+      "y": 1138
+    },
+    {
+      "battle_turn": 25,
+      "capture": {
+        "captor_owner_id": 6,
+        "captor_ship_id": 29,
+        "current_opponent_ship_id": 67,
+        "from_vcr_id": 50,
+        "ship_id": 34,
+        "to_vcr_id": 52
+      },
+      "game_id": 621896,
+      "result": {
+        "candidates": [
+          {
+            "is_factual_next_opponent": true,
+            "owner_id": 2,
+            "priority": [
+              3,
+              67,
+              0
+            ],
+            "requests_new_owner": true,
+            "ship_id": 67,
+            "strict_permission": true
+          }
+        ],
+        "captured_ship_id": 34,
+        "factual_opponent_predicted_at_site": true,
+        "factual_opponent_requester_rank": 1,
+        "factual_opponent_requests_new_owner": true,
+        "factual_opponent_ship_id": 67,
+        "factual_opponent_strict_permission": true,
+        "factual_opponent_strict_rank": 1,
+        "foreign_candidate_count": 1,
+        "new_owner_id": 6,
+        "predicted_site_ship_count": 3,
+        "requester_count": 1,
+        "requester_order": [
+          67
+        ],
+        "status": "resolved",
+        "strict_requester_count": 1,
+        "strict_requester_order": [
+          67
+        ]
+      },
+      "x": 2140,
+      "y": 2187
+    },
+    {
+      "battle_turn": 14,
+      "capture": {
+        "captor_owner_id": 5,
+        "captor_ship_id": 66,
+        "current_opponent_ship_id": 30,
+        "from_vcr_id": 27,
+        "ship_id": 16,
+        "to_vcr_id": 28
+      },
+      "game_id": 622476,
+      "result": {
+        "candidates": [
+          {
+            "is_factual_next_opponent": true,
+            "owner_id": 8,
+            "priority": [
+              3,
+              30,
+              0
+            ],
+            "requests_new_owner": true,
+            "ship_id": 30,
+            "strict_permission": true
+          }
+        ],
+        "captured_ship_id": 16,
+        "factual_opponent_predicted_at_site": true,
+        "factual_opponent_requester_rank": 1,
+        "factual_opponent_requests_new_owner": true,
+        "factual_opponent_ship_id": 30,
+        "factual_opponent_strict_permission": true,
+        "factual_opponent_strict_rank": 1,
+        "foreign_candidate_count": 1,
+        "new_owner_id": 5,
+        "predicted_site_ship_count": 2,
+        "requester_count": 1,
+        "requester_order": [
+          30
+        ],
+        "status": "resolved",
+        "strict_requester_count": 1,
+        "strict_requester_order": [
+          30
+        ]
+      },
+      "x": 1914,
+      "y": 1692
+    },
+    {
+      "battle_turn": 17,
+      "capture": {
+        "captor_owner_id": 3,
+        "captor_ship_id": 44,
+        "current_opponent_ship_id": 48,
+        "from_vcr_id": 37,
+        "ship_id": 7,
+        "to_vcr_id": 38
+      },
+      "game_id": 622476,
+      "result": {
+        "candidates": [
+          {
+            "is_factual_next_opponent": false,
+            "owner_id": 8,
+            "priority": [
+              3,
+              11,
+              0
+            ],
+            "requests_new_owner": false,
+            "ship_id": 11,
+            "strict_permission": false
+          },
+          {
+            "is_factual_next_opponent": true,
+            "owner_id": 8,
+            "priority": [
+              0,
+              800,
+              48
+            ],
+            "requests_new_owner": true,
+            "ship_id": 48,
+            "strict_permission": true
+          },
+          {
+            "is_factual_next_opponent": false,
+            "owner_id": 8,
+            "priority": [
+              0,
+              800,
+              53
+            ],
+            "requests_new_owner": true,
+            "ship_id": 53,
+            "strict_permission": true
+          },
+          {
+            "is_factual_next_opponent": false,
+            "owner_id": 8,
+            "priority": [
+              0,
+              800,
+              57
+            ],
+            "requests_new_owner": true,
+            "ship_id": 57,
+            "strict_permission": true
+          }
+        ],
+        "captured_ship_id": 7,
+        "factual_opponent_predicted_at_site": true,
+        "factual_opponent_requester_rank": 1,
+        "factual_opponent_requests_new_owner": true,
+        "factual_opponent_ship_id": 48,
+        "factual_opponent_strict_permission": true,
+        "factual_opponent_strict_rank": 1,
+        "foreign_candidate_count": 4,
+        "new_owner_id": 3,
+        "predicted_site_ship_count": 5,
+        "requester_count": 3,
+        "requester_order": [
+          48,
+          53,
+          57
+        ],
+        "status": "resolved",
+        "strict_requester_count": 3,
+        "strict_requester_order": [
+          48,
+          53,
+          57
+        ]
+      },
+      "x": 1973,
+      "y": 1734
+    },
+    {
+      "battle_turn": 28,
+      "capture": {
+        "captor_owner_id": 2,
+        "captor_ship_id": 45,
+        "current_opponent_ship_id": 42,
+        "from_vcr_id": 105,
+        "ship_id": 35,
+        "to_vcr_id": 109
+      },
+      "game_id": 622476,
+      "result": {
+        "candidates": [
+          {
+            "is_factual_next_opponent": true,
+            "owner_id": 7,
+            "priority": [
+              0,
+              101,
+              42
+            ],
+            "requests_new_owner": true,
+            "ship_id": 42,
+            "strict_permission": true
+          }
+        ],
+        "captured_ship_id": 35,
+        "factual_opponent_predicted_at_site": true,
+        "factual_opponent_requester_rank": 1,
+        "factual_opponent_requests_new_owner": true,
+        "factual_opponent_ship_id": 42,
+        "factual_opponent_strict_permission": true,
+        "factual_opponent_strict_rank": 1,
+        "foreign_candidate_count": 1,
+        "new_owner_id": 2,
+        "predicted_site_ship_count": 2,
+        "requester_count": 1,
+        "requester_order": [
+          42
+        ],
+        "status": "resolved",
+        "strict_requester_count": 1,
+        "strict_requester_order": [
+          42
+        ]
+      },
+      "x": 2369,
+      "y": 1847
+    }
+  ],
+  "read_only": true,
+  "schema": "planets-lab.combat-host-post-capture-ship-candidate-audit.v1",
+  "summary": {
+    "baseline_initial_standard": {
+      "all_factual_positions_exact_sites": 243,
+      "archives_considered": 11,
+      "conditional": {
+        "broad": {
+          "first_pair_exact": 232,
+          "first_pair_mismatch": 2,
+          "first_right_exact": 232,
+          "first_right_mismatch": 2,
+          "low_target_control_pair_exact": 183,
+          "multi_candidate_sites": 88,
+          "sites": 234,
+          "target_highest_priority_exact": 51,
+          "target_order_informative_sites": 53
+        },
+        "exact_set": {
+          "first_pair_exact": 169,
+          "first_right_exact": 169,
+          "low_target_control_pair_exact": 154,
+          "multi_candidate_sites": 23,
+          "sites": 169,
+          "target_highest_priority_exact": 15,
+          "target_order_informative_sites": 15
+        },
+        "ranks": {
+          "pair_rank:1": 401,
+          "pair_rank:2": 2,
+          "target_rank:1": 66,
+          "target_rank:2": 2
+        }
+      },
+      "exclusion_reasons": {
+        "conditional:candidate_engagement_unresolved": 6,
+        "conditional:nonplain_standard_side_override": 3,
+        "strict:candidate_engagement_unresolved": 15,
+        "strict:nonplain_standard_side_override": 3
+      },
+      "feature_scope": {
+        "excluded_game_ids": [
+          591478
+        ],
+        "included_game_ids": [
+          360690,
+          511506,
+          620636,
+          620694,
+          620917,
+          621103,
+          621253,
+          621896,
+          622476,
+          680435,
+          680910
+        ],
+        "index": "validation/corpus/compiled/v1/metadata/game_features.parquet",
+        "predicate_count": 3,
+        "profile": "combat-planar-no-horwasp",
+        "unknown_game_ids": []
+      },
+      "payload_conflicts": 0,
+      "scope_excluded_archives": 1,
+      "scope_unindexed_archives": 0,
+      "scope_unknown_archives": 0,
+      "sites": 1220,
+      "strict": {
+        "broad": {
+          "first_pair_exact": 223,
+          "first_pair_mismatch": 2,
+          "first_right_exact": 223,
+          "first_right_mismatch": 2,
+          "low_target_control_pair_exact": 174,
+          "multi_candidate_sites": 86,
+          "sites": 225,
+          "target_highest_priority_exact": 51,
+          "target_order_informative_sites": 53
+        },
+        "exact_set": {
+          "first_pair_exact": 162,
+          "first_right_exact": 162,
+          "low_target_control_pair_exact": 147,
+          "multi_candidate_sites": 23,
+          "sites": 162,
+          "target_highest_priority_exact": 15,
+          "target_order_informative_sites": 15
+        },
+        "ranks": {
+          "pair_rank:1": 385,
+          "pair_rank:2": 2,
+          "target_rank:1": 66,
+          "target_rank:2": 2
+        }
+      }
+    },
+    "counts": {
+      "factual_opponent_predicted_at_site": 4,
+      "factual_opponent_requests_new_owner": 4,
+      "factual_opponent_strict_permission_true": 4,
+      "requester_rank:1": 4,
+      "ship_capture_targets": 7,
+      "status:resolved": 4,
+      "status:unresolved": 3,
+      "strict_rank:1": 4,
+      "target_sites_missing": 0,
+      "target_sites_observed_by_position_reconstructor": 7
+    },
+    "feature_scope": {
+      "excluded_game_ids": [
+        591478
+      ],
+      "included_game_ids": [
+        360690,
+        511506,
+        620636,
+        620694,
+        620917,
+        621103,
+        621253,
+        621896,
+        622476,
+        680435,
+        680910
+      ],
+      "index": "validation/corpus/compiled/v1/metadata/game_features.parquet",
+      "predicate_count": 3,
+      "profile": "combat-planar-no-horwasp",
+      "unknown_game_ids": []
+    },
+    "missing_target_sites": []
+  }
+}
