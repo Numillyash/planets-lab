@@ -47,11 +47,23 @@ from combat_host_normal_movement_position_audit import (
 from combat_host_priority_intercept_audit import PREPARED_DIR, RAW_DIR, _static_specs
 
 
-SCHEMA = "planets-lab.combat-host-post-capture-special-movement-audit.v1"
+SCHEMA = "planets-lab.combat-host-post-capture-special-movement-audit.v2"
 DEFAULT_EXAMPLE_LIMIT = 40
 TOW_MISSION_ID = 6
 INTERCEPT_MISSION_ID = 7
 SUPPORTED_SPECIAL_MISSIONS = frozenset({TOW_MISSION_ID, INTERCEPT_MISSION_ID})
+TRANSFER_FIELDS = (
+    ("transferneutronium", "neutronium"),
+    ("transferduranium", "duranium"),
+    ("transfertritanium", "tritanium"),
+    ("transfermolybdenum", "molybdenum"),
+    ("transfersupplies", "supplies"),
+    ("transferclans", "clans"),
+    ("transfermegacredits", "megacredits"),
+)
+BULK_CARGO_FIELDS = frozenset(
+    {"duranium", "tritanium", "molybdenum", "supplies", "clans"}
+)
 
 
 def _capture_ship_rows(
@@ -76,6 +88,149 @@ def _special_movement_kind(raw: Mapping[str, Any]) -> str | None:
     if mission == INTERCEPT_MISSION_ID:
         return "intercept"
     return None
+
+
+def _strict_same_owner_ship_transfer(
+    *,
+    sender_id: int,
+    sender_owner_id: int,
+    sender_raw: Mapping[str, Any],
+    owner_rows: Mapping[int, tuple[int, Mapping[str, Any]]],
+    specs: Any,
+) -> dict[str, Any]:
+    amounts: dict[str, int] = {}
+    malformed: list[str] = []
+    for raw_field, cargo_field in TRANSFER_FIELDS:
+        value = _intish(sender_raw.get(raw_field))
+        if value is None:
+            if sender_raw.get(raw_field) not in (None, "", 0, "0"):
+                malformed.append(raw_field)
+            continue
+        if value < 0:
+            malformed.append(raw_field)
+        elif value > 0:
+            amounts[cargo_field] = int(value)
+
+    projection: dict[str, Any] = {
+        "sender_ship_id": sender_id,
+        "sender_owner_id": sender_owner_id,
+        "target_id": _intish(sender_raw.get("transfertargetid")),
+        "target_type_raw": _intish(sender_raw.get("transfertargettype")),
+        "amounts": dict(sorted(amounts.items())),
+        "applicable": False,
+        "reason": None,
+    }
+    if malformed:
+        projection["reason"] = "transfer_amount_malformed"
+        projection["malformed_fields"] = sorted(malformed)
+        return projection
+    if not amounts:
+        projection["reason"] = "no_outbound_transfer"
+        return projection
+
+    target_id = projection["target_id"]
+    if isinstance(target_id, bool) or not isinstance(target_id, int) or target_id <= 0:
+        projection["reason"] = "transfer_target_id_missing"
+        return projection
+    if target_id == sender_id:
+        projection["reason"] = "transfer_target_self"
+        return projection
+
+    receiver_entry = owner_rows.get(target_id)
+    if receiver_entry is None:
+        projection["reason"] = "transfer_target_ship_not_current_visible"
+        return projection
+    receiver_owner_id, receiver_raw = receiver_entry
+    projection["receiver_owner_id"] = int(receiver_owner_id)
+    if int(receiver_owner_id) != sender_owner_id:
+        projection["reason"] = "foreign_ship_transfer_not_integrated"
+        return projection
+
+    sender_x = _intish(sender_raw.get("x"))
+    sender_y = _intish(sender_raw.get("y"))
+    receiver_x = _intish(receiver_raw.get("x"))
+    receiver_y = _intish(receiver_raw.get("y"))
+    projection["sender_position"] = [sender_x, sender_y]
+    projection["receiver_position"] = [receiver_x, receiver_y]
+    if None in (sender_x, sender_y, receiver_x, receiver_y):
+        projection["reason"] = "transfer_position_unresolved"
+        return projection
+    if (sender_x, sender_y) != (receiver_x, receiver_y):
+        projection["reason"] = "transfer_target_not_colocated"
+        return projection
+
+    sender_before: dict[str, int] = {}
+    receiver_before: dict[str, int] = {}
+    for _raw_field, cargo_field in TRANSFER_FIELDS:
+        sender_value = _intish(sender_raw.get(cargo_field))
+        receiver_value = _intish(receiver_raw.get(cargo_field))
+        if sender_value is None or sender_value < 0:
+            projection["reason"] = f"sender_{cargo_field}_unresolved"
+            return projection
+        if receiver_value is None or receiver_value < 0:
+            projection["reason"] = f"receiver_{cargo_field}_unresolved"
+            return projection
+        sender_before[cargo_field] = int(sender_value)
+        receiver_before[cargo_field] = int(receiver_value)
+
+    for cargo_field, amount in amounts.items():
+        if amount > sender_before[cargo_field]:
+            projection["reason"] = f"sender_{cargo_field}_insufficient"
+            return projection
+
+    receiver_hull_id = _intish(
+        receiver_raw.get("hullid", receiver_raw.get("hull_id"))
+    )
+    hull = specs.hulls.get(receiver_hull_id) if receiver_hull_id is not None else None
+    if hull is None:
+        projection["reason"] = "receiver_hull_unresolved"
+        return projection
+
+    resulting_fuel = receiver_before["neutronium"] + amounts.get("neutronium", 0)
+    if resulting_fuel > hull.fuel_tank:
+        projection["reason"] = "receiver_fuel_capacity_exceeded"
+        return projection
+
+    resulting_bulk = sum(receiver_before[name] for name in BULK_CARGO_FIELDS) + sum(
+        amounts.get(name, 0) for name in BULK_CARGO_FIELDS
+    )
+    if resulting_bulk > hull.cargo_capacity:
+        projection["reason"] = "receiver_bulk_capacity_exceeded"
+        return projection
+
+    projection.update(
+        {
+            "receiver_ship_id": int(target_id),
+            "receiver_hull_id": int(receiver_hull_id),
+            "sender_before": sender_before,
+            "receiver_before": receiver_before,
+            "receiver_fuel_tank": int(hull.fuel_tank),
+            "receiver_cargo_capacity": int(hull.cargo_capacity),
+            "applicable": True,
+            "reason": "strict_same_owner_ship_transfer",
+        }
+    )
+    return projection
+
+
+def _apply_transfer_projection(
+    state: GameState,
+    projection: Mapping[str, Any],
+) -> None:
+    if projection.get("applicable") is not True:
+        raise ValueError("transfer projection is not applicable")
+    sender_id = int(projection["sender_ship_id"])
+    receiver_id = int(projection["receiver_ship_id"])
+    amounts = projection.get("amounts")
+    if not isinstance(amounts, Mapping):
+        raise ValueError("transfer projection amounts missing")
+
+    sender = state.ships[sender_id]
+    receiver = state.ships[receiver_id]
+    for cargo_field, raw_amount in amounts.items():
+        amount = int(raw_amount)
+        setattr(sender.cargo, cargo_field, getattr(sender.cargo, cargo_field) - amount)
+        setattr(receiver.cargo, cargo_field, getattr(receiver.cargo, cargo_field) + amount)
 
 
 def _event_dict(event: Any) -> dict[str, Any]:
@@ -207,6 +362,7 @@ def _simulate_special_subject(
     )
 
     mission_target_id = _intish(subject_raw.get("mission1target"))
+    target_transfer: dict[str, Any] | None = None
     if mission_target_id is None or mission_target_id <= 0:
         preflight.append("subject_mission_target_missing")
     elif mission_target_id not in owner_rows:
@@ -214,7 +370,15 @@ def _simulate_special_subject(
     else:
         target_owner_id, target_raw = owner_rows[mission_target_id]
         if _nonzero_transfer_amount(target_raw):
-            preflight.append("target_outbound_transfer")
+            target_transfer = _strict_same_owner_ship_transfer(
+                sender_id=int(mission_target_id),
+                sender_owner_id=int(target_owner_id),
+                sender_raw=target_raw,
+                owner_rows=owner_rows,
+                specs=specs,
+            )
+            if target_transfer.get("applicable") is not True:
+                preflight.append("target_outbound_transfer_unresolved")
         inbound = _inbound_transfer_targets(owner_rows)
         if mission_target_id in inbound:
             preflight.append("target_inbound_transfer")
@@ -243,6 +407,7 @@ def _simulate_special_subject(
             "status": "unresolved",
             "movement_kind": kind,
             "mission_target_id": mission_target_id,
+            "target_outbound_transfer": target_transfer,
             "preflight_issues": sorted(set(preflight)),
         }
 
@@ -257,8 +422,23 @@ def _simulate_special_subject(
             "status": "unresolved",
             "movement_kind": kind,
             "mission_target_id": mission_target_id,
+            "target_outbound_transfer": target_transfer,
             "preflight_issues": list(state_issues),
         }
+
+    if target_transfer is not None and target_transfer.get("applicable") is True:
+        try:
+            _apply_transfer_projection(state, target_transfer)
+        except (KeyError, TypeError, ValueError) as exc:
+            return {
+                "status": "unresolved",
+                "movement_kind": kind,
+                "mission_target_id": mission_target_id,
+                "target_outbound_transfer": target_transfer,
+                "preflight_issues": [
+                    f"target_outbound_transfer_apply:{type(exc).__name__}:{exc}"
+                ],
+            }
 
     all_planet_ids = frozenset(int(planet_id) for planet_id, _x, _y in planets)
     excluded_well_ids = (
@@ -303,6 +483,7 @@ def _simulate_special_subject(
             "status": "unresolved",
             "movement_kind": kind,
             "mission_target_id": mission_target_id,
+            "target_outbound_transfer": target_transfer,
             "preflight_issues": [
                 f"movement_pipeline:{type(exc).__name__}:{exc}",
             ],
@@ -314,6 +495,7 @@ def _simulate_special_subject(
             "status": "unresolved",
             "movement_kind": kind,
             "mission_target_id": mission_target_id,
+            "target_outbound_transfer": target_transfer,
             "preflight_issues": ["subject_missing_after_pipeline"],
         }
 
@@ -322,11 +504,17 @@ def _simulate_special_subject(
     relevant_ids = {subject_id}
     if mission_target_id is not None and mission_target_id > 0:
         relevant_ids.add(mission_target_id)
+    if (
+        target_transfer is not None
+        and isinstance(target_transfer.get("receiver_ship_id"), int)
+    ):
+        relevant_ids.add(int(target_transfer["receiver_ship_id"]))
 
     return {
         "status": "exact" if exact else "mismatch",
         "movement_kind": kind,
         "mission_target_id": mission_target_id,
+        "target_outbound_transfer": target_transfer,
         "origin": [
             _intish(subject_raw.get("x")),
             _intish(subject_raw.get("y")),
@@ -506,7 +694,10 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "factual next opponent is absent from the ordinary per-ship position "
             "adapter solely because its T-1 mission is Tow or Intercept. It builds "
             "owner-current T-1 GameState and runs the existing production movement "
-            "phases in Host order Tow -> Move Most -> Intercept. Transfers, MKT "
+            "phases in Host order Tow -> Move Most -> Intercept. A target-side "
+            "outbound transfer is applied only as a bounded hypothesis when it is "
+            "a fully observable co-located same-owner ship transfer with sufficient "
+            "sender cargo and receiver capacity; foreign/ambiguous transfers, MKT "
             "mass changes, mine-risk routes, unresolved warp-well context and HYP "
             "intercept targets fail closed. Factual combat-site coordinates are "
             "used only as the held-out comparator. This diagnostic does not alter "
