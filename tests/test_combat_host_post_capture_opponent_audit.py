@@ -7,7 +7,10 @@ TOOLS_DIR = Path(__file__).resolve().parents[1] / "tools" / "diagnostics"
 if str(TOOLS_DIR) not in sys.path:
     sys.path.insert(0, str(TOOLS_DIR))
 
-from combat_host_post_capture_opponent_audit import _opponent_projection  # noqa: E402
+from combat_host_post_capture_opponent_audit import (  # noqa: E402
+    _opponent_projection,
+    _vcr_index,
+)
 
 
 def _capture_row(*, side: str = "left") -> dict[str, object]:
@@ -81,3 +84,62 @@ def test_right_side_captured_ship_reads_left_opponent() -> None:
     assert result["opponent_side"] == "left"
     assert result["opponent_owner_id"] == 6
     assert result["owner_relation"] == "pre_capture_owner"
+
+
+def test_vcr_index_filters_archives_by_explicit_selected_ids(tmp_path, monkeypatch) -> None:
+    import combat_host_post_capture_opponent_audit as module
+
+    (tmp_path / "game-1.zip").write_bytes(b"one")
+    (tmp_path / "game-2.zip").write_bytes(b"two")
+    seen_payloads: list[bytes] = []
+
+    def fake_dedup(payload: bytes):
+        seen_payloads.append(payload)
+        game_id = 1 if payload == b"one" else 2
+        return {
+            (game_id, 7, 11): (
+                "digest",
+                {
+                    "leftownerid": 1,
+                    "rightownerid": 2,
+                    "left": {"objectid": 10, "hullid": 20},
+                    "right": {"objectid": 20, "hullid": 30},
+                },
+            )
+        }, 0
+
+    monkeypatch.setattr(module, "_dedup_vcrs", fake_dedup)
+
+    rows, conflicts = _vcr_index(tmp_path, selected_ids={2})
+
+    assert conflicts == 0
+    assert seen_payloads == [b"two"]
+    assert sorted(rows) == [(2, 7, 11)]
+
+
+def test_vcr_index_without_scope_keeps_all_archives(tmp_path, monkeypatch) -> None:
+    import combat_host_post_capture_opponent_audit as module
+
+    (tmp_path / "game-1.zip").write_bytes(b"one")
+    (tmp_path / "game-2.zip").write_bytes(b"two")
+
+    def fake_dedup(payload: bytes):
+        game_id = 1 if payload == b"one" else 2
+        return {
+            (game_id, 7, 11): (
+                "digest",
+                {
+                    "leftownerid": 1,
+                    "rightownerid": 2,
+                    "left": {"objectid": 10, "hullid": 20},
+                    "right": {"objectid": 20, "hullid": 30},
+                },
+            )
+        }, 0
+
+    monkeypatch.setattr(module, "_dedup_vcrs", fake_dedup)
+
+    rows, conflicts = _vcr_index(tmp_path)
+
+    assert conflicts == 0
+    assert sorted(rows) == [(1, 7, 11), (2, 7, 11)]
