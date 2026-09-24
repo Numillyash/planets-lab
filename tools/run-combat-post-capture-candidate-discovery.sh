@@ -43,10 +43,11 @@ echo
 echo "===== POST-CAPTURE CANDIDATE DISCOVERY: TARGETED TESTS ====="
 "${lab[@]}" python -m pytest -q \
   tests/test_combat_host_capture_continuation_audit.py \
+  tests/test_combat_host_post_capture_opponent_audit.py \
+  tests/test_combat_host_post_capture_initiator_population_audit.py \
   tests/test_combat_host_post_capture_ship_candidate_audit.py \
-  tests/test_combat_host_initial_standard_target_audit.py \
-  tests/test_combat_host_candidate_set_audit.py \
-  tests/test_combat_host_matching_fc_suppression_audit.py
+  tests/test_combat_host_post_mutation_next_pair_audit.py \
+  tests/test_combat_host_queue.py
 
 echo
 echo "===== POST-CAPTURE CANDIDATE DISCOVERY: RUNTIME ====="
