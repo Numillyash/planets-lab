@@ -236,3 +236,73 @@ from owner-current T-1 state and compares the resulting special-movement
 opponent position with the held-out factual combat site. This keeps movement
 mechanics out of the combat diagnostic and will determine whether candidate
 reconstruction can consume a common post-movement state for these two rows.
+
+
+## Special-movement bridge runtime
+
+Runtime source:
+
+```text
+3e416007021f7eb26ba48750c4f63a34b13ad3a1
+```
+
+Published evidence:
+
+```text
+runtime-logs/combat-post-capture-candidate/20260924T212428Z_3e416007021f
+```
+
+Population:
+
+```text
+ordinary ship opponents=6
+special-movement opponents=2
+Tow=1
+Intercept=1
+```
+
+The Tow residual closes exactly through the existing production movement
+pipeline:
+
+```text
+511506/T26
+opponent ship119
+mission=6 Tow
+target ship102
+origin=(2565,1729)
+waypoint=(2516,1770)
+warp=9
+
+TowMovementPhase:
+  from=(2565,1729)
+  to=(2514,1772)
+  fuel_used=95
+  movement_mass=1523
+  warpwell_planet_id=112
+
+predicted=(2514,1772)
+factual=(2514,1772)
+exact=true
+```
+
+The remaining Intercept row is not a movement mismatch. It remains fail-closed
+before simulation because the Intercept target has a submitted outbound transfer:
+
+```text
+511506/T33
+opponent ship268
+mission=7 Intercept
+target ship174
+factual site=(1491,2315)
+preflight issue=target_outbound_transfer
+```
+
+Therefore the remaining bridge gap is specifically pre-movement transfer state
+for ship174, not capture ownership/state, candidate aggression, Tow geometry or
+generic Intercept ordering.
+
+The v2 residual diagnostic now tests only a bounded transfer hypothesis before
+Move Most: a current-visible, co-located, same-owner ship receiver with
+sufficient sender cargo and receiver capacity. Foreign or ambiguous transfers
+remain fail-closed. No generic ship-transfer production rule is promoted by
+this diagnostic.
