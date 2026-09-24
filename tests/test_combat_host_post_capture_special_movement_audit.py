@@ -12,6 +12,7 @@ from planets_lab.data import EngineSpec, HullSpec, NuStaticSpecs, ResourceCost
 import combat_host_post_capture_special_movement_audit as module
 from combat_host_post_capture_special_movement_audit import (
     _capture_ship_rows,
+    _foreign_transfer_sender_reduction,
     _simulate_special_subject,
     _special_movement_kind,
     _strict_same_owner_ship_transfer,
@@ -326,3 +327,88 @@ def test_intercept_target_strict_outbound_transfer_is_applied_before_move(monkey
     assert transfer["applicable"] is True
     assert transfer["receiver_ship_id"] == 30
     assert transfer["amounts"] == {"neutronium": 10}
+
+
+def test_foreign_transfer_sender_bound_requires_colocation_and_sender_cargo() -> None:
+    sender = _raw(
+        20,
+        2,
+        x=110,
+        fuel=100,
+        supplies=10,
+        transfer_target=30,
+        transfer_neutronium=10,
+        transfer_supplies=5,
+    )
+    receiver = _raw(30, 3, x=110, fuel=20)
+    strict = _strict_same_owner_ship_transfer(
+        sender_id=20,
+        sender_owner_id=2,
+        sender_raw=sender,
+        owner_rows={20: (2, sender), 30: (3, receiver)},
+        specs=_specs(),
+    )
+
+    bound = _foreign_transfer_sender_reduction(
+        projection=strict,
+        sender_raw=sender,
+        owner_rows={20: (2, sender), 30: (3, receiver)},
+    )
+
+    assert strict["reason"] == "foreign_ship_transfer_not_integrated"
+    assert bound["applicable"] is True
+    assert bound["amounts"] == {"neutronium": 10, "supplies": 5}
+
+
+def test_intercept_foreign_transfer_geometry_can_be_endpoint_invariant(monkeypatch) -> None:
+    monkeypatch.setattr(module, "_foreign_mine_route_risk", lambda **kwargs: None)
+
+    interceptor = _raw(
+        10,
+        1,
+        x=100,
+        target_x=100,
+        warp=9,
+        mission=7,
+        mission_target=20,
+        fuel=100,
+    )
+    target = _raw(
+        20,
+        2,
+        x=110,
+        target_x=120,
+        warp=9,
+        mission=0,
+        fuel=100,
+        supplies=10,
+        transfer_target=30,
+        transfer_target_type=1,
+        transfer_supplies=5,
+    )
+    receiver = _raw(30, 3, x=110, target_x=110, warp=0, fuel=20)
+    owner_rows = {10: (1, interceptor), 20: (2, target), 30: (3, receiver)}
+
+    result = _simulate_special_subject(
+        game_id=1,
+        battle_turn=5,
+        site=(120, 100),
+        subject_id=10,
+        subject_owner_id=1,
+        subject_raw=interceptor,
+        owner_rows=owner_rows,
+        specs=_specs(),
+        planets=(),
+        warp_wells_enabled=False,
+        eligible_warp_well_planet_ids=frozenset(),
+        races={1: 1, 2: 2, 3: 3},
+        mine_context=None,
+    )
+
+    assert result["status"] == "exact"
+    assert result["transfer_sensitivity"]["target_position_invariant"] is True
+    assert result["transfer_sensitivity"]["subject_position_invariant"] is True
+    assert (
+        result["transfer_sensitivity"]["both_subject_positions_match_factual_site"]
+        is True
+    )
