@@ -1,0 +1,136 @@
+{
+  "evidence_boundary": "Read-only bridge diagnostic for ship post-capture continuations whose factual next opponent is absent from the ordinary per-ship position adapter solely because its T-1 mission is Tow or Intercept. It builds owner-current T-1 GameState and runs the existing production movement phases in Host order Tow -> Move Most -> Intercept. A target-side outbound transfer is applied only as a bounded hypothesis when it is a fully observable co-located same-owner ship transfer with sufficient sender cargo and receiver capacity; foreign/ambiguous transfers, MKT mass changes, mine-risk routes, unresolved warp-well context and HYP intercept targets fail closed. Factual combat-site coordinates are used only as the held-out comparator. This diagnostic does not alter combat selection and does not yet claim full movement-pipeline closure for ion-storm/chunnel/special-movement combinations.",
+  "examples": [
+    {
+      "battle_turn": 26,
+      "captured_ship_id": 27,
+      "from_vcr_id": 54,
+      "game_id": 511506,
+      "nuionstorms": false,
+      "opponent_enemy": 5,
+      "opponent_friendlycode": "ona",
+      "opponent_mission": 6,
+      "opponent_owner_id": 6,
+      "opponent_ship_id": 119,
+      "raw_nuionstorms": [
+        "False"
+      ],
+      "result": {
+        "events": [
+          {
+            "details": {
+              "from_x": "2565",
+              "from_y": "1729",
+              "fuel_used": "95",
+              "movement_mass": "1523",
+              "target_ship_id": "102",
+              "to_x": "2514",
+              "to_y": "1772",
+              "warpwell_planet_id": "112"
+            },
+            "entity_id": 119,
+            "kind": "tow_moved",
+            "phase": "tow_movement"
+          }
+        ],
+        "factual_site": [
+          2514,
+          1772
+        ],
+        "mission_target_id": 102,
+        "movement_kind": "tow",
+        "origin": [
+          2565,
+          1729
+        ],
+        "predicted_position": [
+          2514,
+          1772
+        ],
+        "status": "exact",
+        "target_outbound_transfer": null,
+        "warp": 9,
+        "waypoint": [
+          2516,
+          1770
+        ]
+      },
+      "to_vcr_id": 55
+    },
+    {
+      "battle_turn": 33,
+      "captured_ship_id": 25,
+      "from_vcr_id": 93,
+      "game_id": 511506,
+      "nuionstorms": false,
+      "opponent_enemy": 8,
+      "opponent_friendlycode": "482",
+      "opponent_mission": 7,
+      "opponent_owner_id": 7,
+      "opponent_ship_id": 268,
+      "raw_nuionstorms": [
+        "False"
+      ],
+      "result": {
+        "mission_target_id": 174,
+        "movement_kind": "intercept",
+        "preflight_issues": [
+          "target_outbound_transfer_unresolved"
+        ],
+        "status": "unresolved",
+        "target_outbound_transfer": {
+          "amounts": {
+            "clans": 30
+          },
+          "applicable": false,
+          "reason": "foreign_ship_transfer_not_integrated",
+          "receiver_owner_id": 6,
+          "sender_owner_id": 8,
+          "sender_ship_id": 174,
+          "target_id": 224,
+          "target_type_raw": 1
+        }
+      },
+      "to_vcr_id": 94
+    }
+  ],
+  "read_only": true,
+  "schema": "planets-lab.combat-host-post-capture-special-movement-audit.v2",
+  "summary": {
+    "acceptance": {
+      "all_special_movement_positions_exact": false,
+      "special_movement_gate_passed": false,
+      "special_movement_population_present": true
+    },
+    "counts": {
+      "ordinary_opponent": 6,
+      "special_kind:intercept": 1,
+      "special_kind:tow": 1,
+      "special_movement_opponent": 2,
+      "status:exact": 1,
+      "status:unresolved": 1
+    },
+    "feature_scope": {
+      "excluded_game_ids": [
+        591478
+      ],
+      "included_game_ids": [
+        360690,
+        511506,
+        620636,
+        620694,
+        620917,
+        621103,
+        621253,
+        621896,
+        622476,
+        680435,
+        680910
+      ],
+      "index": "validation/corpus/compiled/v1/metadata/game_features.parquet",
+      "predicate_count": 3,
+      "profile": "combat-planar-no-horwasp",
+      "unknown_game_ids": []
+    }
+  }
+}
