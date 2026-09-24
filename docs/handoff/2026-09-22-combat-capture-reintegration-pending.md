@@ -114,3 +114,18 @@ This stage is descriptive and deliberately does not fail the reintegration gate.
 It does not yet apply active-membership history from earlier VCRs at the site,
 so its output is the evidence input for the next candidate-graph implementation,
 not a promoted rule.
+
+
+## Narrow candidate-discovery rerun
+
+After the full capture reintegration gate has passed once, candidate-graph
+diagnostic changes do not need to rebuild/revalidate the entire FeatureScope and
+predictive queue checkpoint. The archive host can run:
+
+```bash
+bash tools/run-combat-post-capture-candidate-with-evidence.sh
+```
+
+This reuses the existing compiled feature index, runs the targeted diagnostic
+tests and candidate inventory, and publishes only the new candidate evidence to
+the orphan `runtime-logs` branch.

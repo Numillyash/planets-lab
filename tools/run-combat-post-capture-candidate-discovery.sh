@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$ROOT"
+
+ARTIFACT_DIR="${ARTIFACT_DIR:-artifacts/combat-post-capture-candidate-v2}"
+ARCHIVE_DIR="${ARCHIVE_DIR:-validation/corpus/cache/loadall}"
+COMPILED_DIR="${COMPILED_DIR:-validation/corpus/compiled/v1}"
+INDEX="${INDEX:-$COMPILED_DIR/metadata/game_features.parquet}"
+PROFILE="${PROFILE:-combat-planar-no-horwasp}"
+DOCKER_PREFLIGHT_TIMEOUT="${DOCKER_PREFLIGHT_TIMEOUT:-10}"
+
+mkdir -p "$ARTIFACT_DIR"
+LOG_PATH="$ARTIFACT_DIR/gate.log"
+exec > >(tee "$LOG_PATH") 2>&1
+
+echo "===== POST-CAPTURE CANDIDATE DISCOVERY: PREFLIGHT ====="
+if ! timeout "${DOCKER_PREFLIGHT_TIMEOUT}s" docker info >/dev/null 2>&1; then
+  echo "ERROR: Docker daemon/backend is not responding within ${DOCKER_PREFLIGHT_TIMEOUT}s." >&2
+  exit 69
+fi
+if [[ ! -f "$INDEX" ]]; then
+  echo "ERROR: feature index missing: $INDEX" >&2
+  echo "Run the full combat feature-scope gate once before this narrow discovery gate." >&2
+  exit 66
+fi
+if ! compgen -G "$ARCHIVE_DIR/game-*.zip" >/dev/null; then
+  echo "ERROR: archive corpus missing under: $ARCHIVE_DIR" >&2
+  exit 66
+fi
+echo "docker:  ready"
+echo "index:   $INDEX"
+echo "profile: $PROFILE"
+
+lab=(
+  docker compose run --rm -T
+  -e PYTHONPATH=/workspace/src:/workspace/tools/diagnostics
+  lab
+)
+
+echo
+echo "===== POST-CAPTURE CANDIDATE DISCOVERY: TARGETED TESTS ====="
+"${lab[@]}" python -m pytest -q \
+  tests/test_combat_host_capture_continuation_audit.py \
+  tests/test_combat_host_post_capture_ship_candidate_audit.py \
+  tests/test_combat_host_initial_standard_target_audit.py \
+  tests/test_combat_host_candidate_set_audit.py \
+  tests/test_combat_host_matching_fc_suppression_audit.py
+
+echo
+echo "===== POST-CAPTURE CANDIDATE DISCOVERY: RUNTIME ====="
+"${lab[@]}" python tools/diagnostics/combat_host_post_capture_ship_candidate_audit.py \
+  --archive-dir "$ARCHIVE_DIR" \
+  --feature-index "$INDEX" \
+  --scope-profile "$PROFILE" \
+  --output "$ARTIFACT_DIR/post-capture-ship-candidates.json"
+
+echo
+echo "===== POST-CAPTURE CANDIDATE DISCOVERY: COMPLETE ====="
+echo "profile:    $PROFILE"
+echo "candidates: $ARTIFACT_DIR/post-capture-ship-candidates.json"
+echo "full_log:   $LOG_PATH"
