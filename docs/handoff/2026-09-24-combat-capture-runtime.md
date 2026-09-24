@@ -306,3 +306,48 @@ Move Most: a current-visible, co-located, same-owner ship receiver with
 sufficient sender cargo and receiver capacity. Foreign or ambiguous transfers
 remain fail-closed. No generic ship-transfer production rule is promoted by
 this diagnostic.
+
+
+## Transfer-target namespace residual
+
+Runtime source:
+
+\`\`\`text
+c5d2a777dc22f8e15d0e7c1581570c826a3b6cba
+\`\`\`
+
+Published evidence:
+
+\`\`\`text
+runtime-logs/combat-post-capture-candidate/20260924T220519Z_c5d2a777dc22
+\`\`\`
+
+The remaining Intercept case still fails closed, but the reason is now more
+specific:
+
+\`\`\`text
+511506/T33
+interceptor ship268
+Intercept target ship174
+submitted transfer:
+  target_id=224
+  target_type_raw=1
+  clans=30
+
+ship174 position=(1491,2368)
+ship id 224 position=(2576,1469)
+\`\`\`
+
+Therefore the earlier assumption that \`transfertargetid=224\` identifies ship
+224 is not supported by T-1 geometry. The numeric \`transfertargettype\` value
+must not be interpreted by guesswork.
+
+The next differential resolves the submitted transfer target by actual T-1
+co-location across both ship and planet namespaces. The raw numeric target type
+is retained as evidence only. If exactly one object namespace with the target
+ID is co-located with the sender, receiver-side transfer semantics remain
+unpromoted and movement is tested under both no-transfer and sender-reduced
+bounds.
+
+This keeps the combat/Intercept geometry question independent from full
+ship/planet transfer reconstruction.
