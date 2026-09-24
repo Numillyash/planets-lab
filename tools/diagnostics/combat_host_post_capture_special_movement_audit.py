@@ -47,7 +47,7 @@ from combat_host_normal_movement_position_audit import (
 from combat_host_priority_intercept_audit import PREPARED_DIR, RAW_DIR, _static_specs
 
 
-SCHEMA = "planets-lab.combat-host-post-capture-special-movement-audit.v2"
+SCHEMA = "planets-lab.combat-host-post-capture-special-movement-audit.v3"
 DEFAULT_EXAMPLE_LIMIT = 40
 TOW_MISSION_ID = 6
 INTERCEPT_MISSION_ID = 7
@@ -211,6 +211,94 @@ def _strict_same_owner_ship_transfer(
         }
     )
     return projection
+
+
+def _foreign_transfer_sender_reduction(
+    *,
+    projection: Mapping[str, Any],
+    sender_raw: Mapping[str, Any],
+    owner_rows: Mapping[int, tuple[int, Mapping[str, Any]]],
+) -> dict[str, Any]:
+    result = {
+        "applicable": False,
+        "reason": None,
+    }
+    if projection.get("reason") != "foreign_ship_transfer_not_integrated":
+        result["reason"] = "not_foreign_ship_transfer"
+        return result
+
+    sender_id = projection.get("sender_ship_id")
+    target_id = projection.get("target_id")
+    amounts = projection.get("amounts")
+    if (
+        isinstance(sender_id, bool)
+        or not isinstance(sender_id, int)
+        or isinstance(target_id, bool)
+        or not isinstance(target_id, int)
+        or not isinstance(amounts, Mapping)
+    ):
+        result["reason"] = "transfer_projection_incomplete"
+        return result
+
+    receiver_entry = owner_rows.get(target_id)
+    if receiver_entry is None:
+        result["reason"] = "foreign_receiver_not_current_visible"
+        return result
+    receiver_owner_id, receiver_raw = receiver_entry
+
+    sender_x = _intish(sender_raw.get("x"))
+    sender_y = _intish(sender_raw.get("y"))
+    receiver_x = _intish(receiver_raw.get("x"))
+    receiver_y = _intish(receiver_raw.get("y"))
+    result.update(
+        {
+            "sender_ship_id": sender_id,
+            "receiver_ship_id": target_id,
+            "receiver_owner_id": int(receiver_owner_id),
+            "sender_position": [sender_x, sender_y],
+            "receiver_position": [receiver_x, receiver_y],
+            "amounts": dict(amounts),
+        }
+    )
+    if None in (sender_x, sender_y, receiver_x, receiver_y):
+        result["reason"] = "foreign_transfer_position_unresolved"
+        return result
+    if (sender_x, sender_y) != (receiver_x, receiver_y):
+        result["reason"] = "foreign_transfer_target_not_colocated"
+        return result
+
+    for cargo_field, raw_amount in amounts.items():
+        amount = int(raw_amount)
+        available = _intish(sender_raw.get(cargo_field))
+        if available is None or available < amount:
+            result["reason"] = f"foreign_transfer_sender_{cargo_field}_insufficient"
+            return result
+
+    result["applicable"] = True
+    result["reason"] = "foreign_transfer_sender_reduction_bound"
+    return result
+
+
+def _apply_sender_reduction(
+    state: GameState,
+    projection: Mapping[str, Any],
+) -> None:
+    if projection.get("applicable") is not True:
+        raise ValueError("sender-reduction projection is not applicable")
+    sender_id = int(projection["sender_ship_id"])
+    amounts = projection.get("amounts")
+    if not isinstance(amounts, Mapping):
+        raise ValueError("sender-reduction amounts missing")
+    sender = state.ships[sender_id]
+    for cargo_field, raw_amount in amounts.items():
+        amount = int(raw_amount)
+        available = getattr(sender.cargo, cargo_field)
+        if amount > available:
+            raise ValueError(
+                f"sender {sender_id} has insufficient {cargo_field}: "
+                f"{amount}>{available}"
+            )
+        setattr(sender.cargo, cargo_field, available - amount)
 
 
 def _apply_transfer_projection(
@@ -377,7 +465,10 @@ def _simulate_special_subject(
                 owner_rows=owner_rows,
                 specs=specs,
             )
-            if target_transfer.get("applicable") is not True:
+            if (
+                target_transfer.get("applicable") is not True
+                and target_transfer.get("reason") != "foreign_ship_transfer_not_integrated"
+            ):
                 preflight.append("target_outbound_transfer_unresolved")
         inbound = _inbound_transfer_targets(owner_rows)
         if mission_target_id in inbound:
@@ -476,6 +567,31 @@ def _simulate_special_subject(
         )
     )
 
+    foreign_transfer_bound: dict[str, Any] | None = None
+    if (
+        target_transfer is not None
+        and target_transfer.get("reason") == "foreign_ship_transfer_not_integrated"
+        and mission_target_id is not None
+        and mission_target_id in owner_rows
+    ):
+        _target_owner_id, target_raw = owner_rows[mission_target_id]
+        foreign_transfer_bound = _foreign_transfer_sender_reduction(
+            projection=target_transfer,
+            sender_raw=target_raw,
+            owner_rows=owner_rows,
+        )
+        if foreign_transfer_bound.get("applicable") is not True:
+            return {
+                "status": "unresolved",
+                "movement_kind": kind,
+                "mission_target_id": mission_target_id,
+                "target_outbound_transfer": target_transfer,
+                "foreign_transfer_sender_bound": foreign_transfer_bound,
+                "preflight_issues": [
+                    "foreign_transfer_sender_bound_unresolved"
+                ],
+            }
+
     try:
         next_state, events = engine.step(state, TurnOrders.empty())
     except Exception as exc:  # diagnostic must preserve the concrete unsupported boundary
@@ -484,10 +600,106 @@ def _simulate_special_subject(
             "movement_kind": kind,
             "mission_target_id": mission_target_id,
             "target_outbound_transfer": target_transfer,
+            "foreign_transfer_sender_bound": foreign_transfer_bound,
             "preflight_issues": [
                 f"movement_pipeline:{type(exc).__name__}:{exc}",
             ],
         }
+
+    sensitivity: dict[str, Any] | None = None
+    if foreign_transfer_bound is not None:
+        reduced_state = state.clone()
+        try:
+            _apply_sender_reduction(reduced_state, foreign_transfer_bound)
+            reduced_next_state, reduced_events = engine.step(
+                reduced_state,
+                TurnOrders.empty(),
+            )
+        except Exception as exc:
+            return {
+                "status": "unresolved",
+                "movement_kind": kind,
+                "mission_target_id": mission_target_id,
+                "target_outbound_transfer": target_transfer,
+                "foreign_transfer_sender_bound": foreign_transfer_bound,
+                "preflight_issues": [
+                    f"foreign_transfer_sensitivity:{type(exc).__name__}:{exc}"
+                ],
+            }
+
+        baseline_subject = next_state.ships.get(subject_id)
+        reduced_subject = reduced_next_state.ships.get(subject_id)
+        baseline_target = next_state.ships.get(mission_target_id)
+        reduced_target = reduced_next_state.ships.get(mission_target_id)
+        if (
+            baseline_subject is None
+            or reduced_subject is None
+            or baseline_target is None
+            or reduced_target is None
+        ):
+            return {
+                "status": "unresolved",
+                "movement_kind": kind,
+                "mission_target_id": mission_target_id,
+                "target_outbound_transfer": target_transfer,
+                "foreign_transfer_sender_bound": foreign_transfer_bound,
+                "preflight_issues": [
+                    "foreign_transfer_sensitivity_ship_missing"
+                ],
+            }
+
+        baseline_subject_position = (
+            int(baseline_subject.x),
+            int(baseline_subject.y),
+        )
+        reduced_subject_position = (
+            int(reduced_subject.x),
+            int(reduced_subject.y),
+        )
+        baseline_target_position = (
+            int(baseline_target.x),
+            int(baseline_target.y),
+        )
+        reduced_target_position = (
+            int(reduced_target.x),
+            int(reduced_target.y),
+        )
+        sensitivity = {
+            "baseline_subject_position": list(baseline_subject_position),
+            "sender_reduced_subject_position": list(reduced_subject_position),
+            "baseline_target_position": list(baseline_target_position),
+            "sender_reduced_target_position": list(reduced_target_position),
+            "target_position_invariant": (
+                baseline_target_position == reduced_target_position
+            ),
+            "subject_position_invariant": (
+                baseline_subject_position == reduced_subject_position
+            ),
+            "both_subject_positions_match_factual_site": (
+                baseline_subject_position == site
+                and reduced_subject_position == site
+            ),
+            "sender_reduced_events": [
+                _event_dict(event)
+                for event in reduced_events
+                if getattr(event, "entity_id", None)
+                in {subject_id, mission_target_id}
+            ],
+        }
+        if not (
+            sensitivity["target_position_invariant"]
+            and sensitivity["subject_position_invariant"]
+            and sensitivity["both_subject_positions_match_factual_site"]
+        ):
+            return {
+                "status": "mismatch",
+                "movement_kind": kind,
+                "mission_target_id": mission_target_id,
+                "target_outbound_transfer": target_transfer,
+                "foreign_transfer_sender_bound": foreign_transfer_bound,
+                "transfer_sensitivity": sensitivity,
+                "factual_site": list(site),
+            }
 
     subject = next_state.ships.get(subject_id)
     if subject is None:
@@ -515,6 +727,8 @@ def _simulate_special_subject(
         "movement_kind": kind,
         "mission_target_id": mission_target_id,
         "target_outbound_transfer": target_transfer,
+        "foreign_transfer_sender_bound": foreign_transfer_bound,
+        "transfer_sensitivity": sensitivity,
         "origin": [
             _intish(subject_raw.get("x")),
             _intish(subject_raw.get("y")),
@@ -697,8 +911,13 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "phases in Host order Tow -> Move Most -> Intercept. A target-side "
             "outbound transfer is applied only as a bounded hypothesis when it is "
             "a fully observable co-located same-owner ship transfer with sufficient "
-            "sender cargo and receiver capacity; foreign/ambiguous transfers, MKT "
-            "mass changes, mine-risk routes, unresolved warp-well context and HYP "
+            "sender cargo and receiver capacity. For a co-located foreign ship "
+            "transfer, legality/receiver semantics remain unresolved; instead the "
+            "diagnostic runs both the no-transfer and sender-reduced movement bounds "
+            "and accepts geometry only when target and interceptor endpoints are "
+            "identical and both interceptor endpoints equal the held-out factual "
+            "combat site. Other ambiguous transfers, MKT mass changes, mine-risk "
+            "routes, unresolved warp-well context and HYP "
             "intercept targets fail closed. Factual combat-site coordinates are "
             "used only as the held-out comparator. This diagnostic does not alter "
             "combat selection and does not yet claim full movement-pipeline closure "
