@@ -1,0 +1,33 @@
+{
+  "checks": {
+    "cluster_partition_preserved": true,
+    "conditional_held_out_next_vcr_exact": true,
+    "conditional_historical_population_preserved": true,
+    "feature_scope_exact": true,
+    "feature_scope_no_failures": true,
+    "planet_c4_checkpoint_preserved": true,
+    "queue_all_profiles_pass": true,
+    "queue_scope_profile_exact": true,
+    "selector_partition_disjoint": true,
+    "selector_partition_shared": true,
+    "ship_c3_checkpoint_preserved": true,
+    "strict_held_out_next_vcr_exact": true,
+    "strict_historical_population_preserved": true
+  },
+  "exact": true,
+  "failures": [],
+  "profile": "combat-planar-no-horwasp",
+  "profile_counts": {
+    "conditional": {
+      "next_vcr_exact": 22,
+      "next_vcr_mismatch": 0,
+      "transitions_compared": 22
+    },
+    "strict": {
+      "next_vcr_exact": 22,
+      "next_vcr_mismatch": 0,
+      "transitions_compared": 22
+    }
+  },
+  "schema": "planets-lab.combat-predictive-queue-integration-check.v1"
+}

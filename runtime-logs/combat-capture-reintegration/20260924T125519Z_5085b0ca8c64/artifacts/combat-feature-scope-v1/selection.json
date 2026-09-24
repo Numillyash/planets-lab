@@ -1,0 +1,458 @@
+{
+  "excluded_game_ids": [
+    591478
+  ],
+  "feature_index_schema": "planets-lab.game-feature-index.v1",
+  "games": [
+    {
+      "exclusion_reasons": [],
+      "game_id": 360690,
+      "included": true,
+      "predicates": [
+        {
+          "actual": 3,
+          "expected": 3,
+          "feature": "game.status",
+          "op": "eq",
+          "source_kind": "manifest",
+          "source_location": "validation/corpus/manifests/accounts-recent-finished.jsonl:game_id=360690:game.status",
+          "status": "match"
+        },
+        {
+          "actual": false,
+          "expected": false,
+          "feature": "settings.sphere",
+          "op": "eq",
+          "source_kind": "manifest",
+          "source_location": "validation/corpus/manifests/accounts-recent-finished.jsonl:game_id=360690:settings.sphere",
+          "status": "match"
+        },
+        {
+          "actual": false,
+          "expected": false,
+          "feature": "population.horwasp_present",
+          "op": "eq",
+          "source_kind": "manifest",
+          "source_location": "validation/corpus/manifests/accounts-recent-finished.jsonl:game_id=360690:player_slots[*].raceid",
+          "status": "match"
+        }
+      ],
+      "unknown_predicates": []
+    },
+    {
+      "exclusion_reasons": [],
+      "game_id": 511506,
+      "included": true,
+      "predicates": [
+        {
+          "actual": 3,
+          "expected": 3,
+          "feature": "game.status",
+          "op": "eq",
+          "source_kind": "manifest",
+          "source_location": "validation/corpus/manifests/accounts-recent-finished.jsonl:game_id=511506:game.status",
+          "status": "match"
+        },
+        {
+          "actual": false,
+          "expected": false,
+          "feature": "settings.sphere",
+          "op": "eq",
+          "source_kind": "manifest",
+          "source_location": "validation/corpus/manifests/accounts-recent-finished.jsonl:game_id=511506:settings.sphere",
+          "status": "match"
+        },
+        {
+          "actual": false,
+          "expected": false,
+          "feature": "population.horwasp_present",
+          "op": "eq",
+          "source_kind": "manifest",
+          "source_location": "validation/corpus/manifests/accounts-recent-finished.jsonl:game_id=511506:player_slots[*].raceid",
+          "status": "match"
+        }
+      ],
+      "unknown_predicates": []
+    },
+    {
+      "exclusion_reasons": [
+        {
+          "actual": true,
+          "expected": false,
+          "feature": "settings.sphere",
+          "status": "mismatch"
+        },
+        {
+          "actual": true,
+          "expected": false,
+          "feature": "population.horwasp_present",
+          "status": "mismatch"
+        }
+      ],
+      "game_id": 591478,
+      "included": false,
+      "predicates": [
+        {
+          "actual": 3,
+          "expected": 3,
+          "feature": "game.status",
+          "op": "eq",
+          "source_kind": "manifest",
+          "source_location": "validation/corpus/manifests/accounts-recent-finished.jsonl:game_id=591478:game.status",
+          "status": "match"
+        },
+        {
+          "actual": true,
+          "expected": false,
+          "feature": "settings.sphere",
+          "op": "eq",
+          "source_kind": "manifest",
+          "source_location": "validation/corpus/manifests/accounts-recent-finished.jsonl:game_id=591478:settings.sphere",
+          "status": "mismatch"
+        },
+        {
+          "actual": true,
+          "expected": false,
+          "feature": "population.horwasp_present",
+          "op": "eq",
+          "source_kind": "manifest",
+          "source_location": "validation/corpus/manifests/accounts-recent-finished.jsonl:game_id=591478:player_slots[*].raceid",
+          "status": "mismatch"
+        }
+      ],
+      "unknown_predicates": []
+    },
+    {
+      "exclusion_reasons": [],
+      "game_id": 620636,
+      "included": true,
+      "predicates": [
+        {
+          "actual": 3,
+          "expected": 3,
+          "feature": "game.status",
+          "op": "eq",
+          "source_kind": "manifest",
+          "source_location": "validation/corpus/manifests/accounts-recent-finished.jsonl:game_id=620636:game.status",
+          "status": "match"
+        },
+        {
+          "actual": false,
+          "expected": false,
+          "feature": "settings.sphere",
+          "op": "eq",
+          "source_kind": "manifest",
+          "source_location": "validation/corpus/manifests/accounts-recent-finished.jsonl:game_id=620636:settings.sphere",
+          "status": "match"
+        },
+        {
+          "actual": false,
+          "expected": false,
+          "feature": "population.horwasp_present",
+          "op": "eq",
+          "source_kind": "manifest",
+          "source_location": "validation/corpus/manifests/accounts-recent-finished.jsonl:game_id=620636:player_slots[*].raceid",
+          "status": "match"
+        }
+      ],
+      "unknown_predicates": []
+    },
+    {
+      "exclusion_reasons": [],
+      "game_id": 620694,
+      "included": true,
+      "predicates": [
+        {
+          "actual": 3,
+          "expected": 3,
+          "feature": "game.status",
+          "op": "eq",
+          "source_kind": "manifest",
+          "source_location": "validation/corpus/manifests/accounts-recent-finished.jsonl:game_id=620694:game.status",
+          "status": "match"
+        },
+        {
+          "actual": false,
+          "expected": false,
+          "feature": "settings.sphere",
+          "op": "eq",
+          "source_kind": "manifest",
+          "source_location": "validation/corpus/manifests/accounts-recent-finished.jsonl:game_id=620694:settings.sphere",
+          "status": "match"
+        },
+        {
+          "actual": false,
+          "expected": false,
+          "feature": "population.horwasp_present",
+          "op": "eq",
+          "source_kind": "manifest",
+          "source_location": "validation/corpus/manifests/accounts-recent-finished.jsonl:game_id=620694:player_slots[*].raceid",
+          "status": "match"
+        }
+      ],
+      "unknown_predicates": []
+    },
+    {
+      "exclusion_reasons": [],
+      "game_id": 620917,
+      "included": true,
+      "predicates": [
+        {
+          "actual": 3,
+          "expected": 3,
+          "feature": "game.status",
+          "op": "eq",
+          "source_kind": "manifest",
+          "source_location": "validation/corpus/manifests/accounts-recent-finished.jsonl:game_id=620917:game.status",
+          "status": "match"
+        },
+        {
+          "actual": false,
+          "expected": false,
+          "feature": "settings.sphere",
+          "op": "eq",
+          "source_kind": "manifest",
+          "source_location": "validation/corpus/manifests/accounts-recent-finished.jsonl:game_id=620917:settings.sphere",
+          "status": "match"
+        },
+        {
+          "actual": false,
+          "expected": false,
+          "feature": "population.horwasp_present",
+          "op": "eq",
+          "source_kind": "manifest",
+          "source_location": "validation/corpus/manifests/accounts-recent-finished.jsonl:game_id=620917:player_slots[*].raceid",
+          "status": "match"
+        }
+      ],
+      "unknown_predicates": []
+    },
+    {
+      "exclusion_reasons": [],
+      "game_id": 621103,
+      "included": true,
+      "predicates": [
+        {
+          "actual": 3,
+          "expected": 3,
+          "feature": "game.status",
+          "op": "eq",
+          "source_kind": "manifest",
+          "source_location": "validation/corpus/manifests/accounts-recent-finished.jsonl:game_id=621103:game.status",
+          "status": "match"
+        },
+        {
+          "actual": false,
+          "expected": false,
+          "feature": "settings.sphere",
+          "op": "eq",
+          "source_kind": "manifest",
+          "source_location": "validation/corpus/manifests/accounts-recent-finished.jsonl:game_id=621103:settings.sphere",
+          "status": "match"
+        },
+        {
+          "actual": false,
+          "expected": false,
+          "feature": "population.horwasp_present",
+          "op": "eq",
+          "source_kind": "manifest",
+          "source_location": "validation/corpus/manifests/accounts-recent-finished.jsonl:game_id=621103:player_slots[*].raceid",
+          "status": "match"
+        }
+      ],
+      "unknown_predicates": []
+    },
+    {
+      "exclusion_reasons": [],
+      "game_id": 621253,
+      "included": true,
+      "predicates": [
+        {
+          "actual": 3,
+          "expected": 3,
+          "feature": "game.status",
+          "op": "eq",
+          "source_kind": "manifest",
+          "source_location": "validation/corpus/manifests/accounts-recent-finished.jsonl:game_id=621253:game.status",
+          "status": "match"
+        },
+        {
+          "actual": false,
+          "expected": false,
+          "feature": "settings.sphere",
+          "op": "eq",
+          "source_kind": "manifest",
+          "source_location": "validation/corpus/manifests/accounts-recent-finished.jsonl:game_id=621253:settings.sphere",
+          "status": "match"
+        },
+        {
+          "actual": false,
+          "expected": false,
+          "feature": "population.horwasp_present",
+          "op": "eq",
+          "source_kind": "manifest",
+          "source_location": "validation/corpus/manifests/accounts-recent-finished.jsonl:game_id=621253:player_slots[*].raceid",
+          "status": "match"
+        }
+      ],
+      "unknown_predicates": []
+    },
+    {
+      "exclusion_reasons": [],
+      "game_id": 621896,
+      "included": true,
+      "predicates": [
+        {
+          "actual": 3,
+          "expected": 3,
+          "feature": "game.status",
+          "op": "eq",
+          "source_kind": "manifest",
+          "source_location": "validation/corpus/manifests/accounts-recent-finished.jsonl:game_id=621896:game.status",
+          "status": "match"
+        },
+        {
+          "actual": false,
+          "expected": false,
+          "feature": "settings.sphere",
+          "op": "eq",
+          "source_kind": "manifest",
+          "source_location": "validation/corpus/manifests/accounts-recent-finished.jsonl:game_id=621896:settings.sphere",
+          "status": "match"
+        },
+        {
+          "actual": false,
+          "expected": false,
+          "feature": "population.horwasp_present",
+          "op": "eq",
+          "source_kind": "manifest",
+          "source_location": "validation/corpus/manifests/accounts-recent-finished.jsonl:game_id=621896:player_slots[*].raceid",
+          "status": "match"
+        }
+      ],
+      "unknown_predicates": []
+    },
+    {
+      "exclusion_reasons": [],
+      "game_id": 622476,
+      "included": true,
+      "predicates": [
+        {
+          "actual": 3,
+          "expected": 3,
+          "feature": "game.status",
+          "op": "eq",
+          "source_kind": "manifest",
+          "source_location": "validation/corpus/manifests/accounts-recent-finished.jsonl:game_id=622476:game.status",
+          "status": "match"
+        },
+        {
+          "actual": false,
+          "expected": false,
+          "feature": "settings.sphere",
+          "op": "eq",
+          "source_kind": "manifest",
+          "source_location": "validation/corpus/manifests/accounts-recent-finished.jsonl:game_id=622476:settings.sphere",
+          "status": "match"
+        },
+        {
+          "actual": false,
+          "expected": false,
+          "feature": "population.horwasp_present",
+          "op": "eq",
+          "source_kind": "manifest",
+          "source_location": "validation/corpus/manifests/accounts-recent-finished.jsonl:game_id=622476:player_slots[*].raceid",
+          "status": "match"
+        }
+      ],
+      "unknown_predicates": []
+    },
+    {
+      "exclusion_reasons": [],
+      "game_id": 680435,
+      "included": true,
+      "predicates": [
+        {
+          "actual": 3,
+          "expected": 3,
+          "feature": "game.status",
+          "op": "eq",
+          "source_kind": "manifest",
+          "source_location": "validation/corpus/manifests/accounts-recent-finished.jsonl:game_id=680435:game.status",
+          "status": "match"
+        },
+        {
+          "actual": false,
+          "expected": false,
+          "feature": "settings.sphere",
+          "op": "eq",
+          "source_kind": "manifest",
+          "source_location": "validation/corpus/manifests/accounts-recent-finished.jsonl:game_id=680435:settings.sphere",
+          "status": "match"
+        },
+        {
+          "actual": false,
+          "expected": false,
+          "feature": "population.horwasp_present",
+          "op": "eq",
+          "source_kind": "manifest",
+          "source_location": "validation/corpus/manifests/accounts-recent-finished.jsonl:game_id=680435:player_slots[*].raceid",
+          "status": "match"
+        }
+      ],
+      "unknown_predicates": []
+    },
+    {
+      "exclusion_reasons": [],
+      "game_id": 680910,
+      "included": true,
+      "predicates": [
+        {
+          "actual": 3,
+          "expected": 3,
+          "feature": "game.status",
+          "op": "eq",
+          "source_kind": "manifest",
+          "source_location": "validation/corpus/manifests/accounts-recent-finished.jsonl:game_id=680910:game.status",
+          "status": "match"
+        },
+        {
+          "actual": false,
+          "expected": false,
+          "feature": "settings.sphere",
+          "op": "eq",
+          "source_kind": "manifest",
+          "source_location": "validation/corpus/manifests/accounts-recent-finished.jsonl:game_id=680910:settings.sphere",
+          "status": "match"
+        },
+        {
+          "actual": false,
+          "expected": false,
+          "feature": "population.horwasp_present",
+          "op": "eq",
+          "source_kind": "manifest",
+          "source_location": "validation/corpus/manifests/accounts-recent-finished.jsonl:game_id=680910:player_slots[*].raceid",
+          "status": "match"
+        }
+      ],
+      "unknown_predicates": []
+    }
+  ],
+  "included_game_ids": [
+    360690,
+    511506,
+    620636,
+    620694,
+    620917,
+    621103,
+    621253,
+    621896,
+    622476,
+    680435,
+    680910
+  ],
+  "index": "validation/corpus/compiled/v1/metadata/game_features.parquet",
+  "predicate_count": 3,
+  "profile": "combat-planar-no-horwasp",
+  "schema": "planets-lab.game-feature-selection.v1"
+}

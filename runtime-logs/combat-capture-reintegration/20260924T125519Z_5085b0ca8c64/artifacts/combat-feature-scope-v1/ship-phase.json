@@ -1,0 +1,912 @@
+{
+  "all_phase_transitions": {
+    "ship_vs_planet->ship_vs_planet": 3,
+    "ship_vs_ship->ship_vs_planet": 544,
+    "ship_vs_ship->ship_vs_ship": 938
+  },
+  "capture_owner_changes": {
+    "changed": 25
+  },
+  "metadata_conflicts": 0,
+  "notes": [
+    "The strongest C3 exact-carry oracle is an ordinary-game surviving ship moving from ship-vs-ship combat to another ship-vs-ship combat.",
+    "The gap=1 subset is reported separately as the strongest globally-adjacent VCR subset.",
+    "Ship-vs-ship to ship-vs-planet is a Host phase boundary where between-phase repair may intervene and is not treated as a strict exact-carry oracle.",
+    "Captured and destroyed terminals are reported separately; a captured ship can legitimately reappear under a new owner.",
+    "Clean strict scopes are selected by the feature-index profile; no game id is special-cased in this diagnostic."
+  ],
+  "read_only": true,
+  "schema": "planets-lab.combat-ship-chain-phase-audit.v2",
+  "scope_selection": {
+    "excluded_game_ids": [
+      591478
+    ],
+    "included_game_ids": [
+      360690,
+      511506,
+      620636,
+      620694,
+      620917,
+      621103,
+      621253,
+      621896,
+      622476,
+      680435,
+      680910
+    ],
+    "index": "validation/corpus/compiled/v1/metadata/game_features.parquet",
+    "predicate_count": 3,
+    "profile": "combat-planar-no-horwasp",
+    "unknown_game_ids": []
+  },
+  "scopes": {
+    "captured_reappearances_all_games": {
+      "field_deltas_next_minus_terminal": {
+        "crew": {},
+        "damage": {},
+        "fighters": {},
+        "torpedoes": {}
+      },
+      "hulls": {
+        "104": 2,
+        "16": 4,
+        "17": 5,
+        "39": 2,
+        "4": 1,
+        "51": 1,
+        "56": 1,
+        "60": 1,
+        "71": 3,
+        "75": 1,
+        "82": 3,
+        "87": 1
+      },
+      "problem_signatures": {
+        "reappearance_after_capture": 25
+      },
+      "races": {
+        "1": 1,
+        "10": 3,
+        "11": 3,
+        "2": 2,
+        "4": 2,
+        "5": 1,
+        "6": 3,
+        "7": 1,
+        "8": 6,
+        "9": 3
+      },
+      "shield_models": {},
+      "side_transitions": {
+        "left->left": 15,
+        "right->left": 9,
+        "right->right": 1
+      },
+      "status": {
+        "reappearance_after_capture": 25
+      },
+      "transitions": 25,
+      "vcr_gaps": {
+        "1": 6,
+        "10": 1,
+        "14": 1,
+        "2": 3,
+        "3": 3,
+        "4": 4,
+        "5": 1,
+        "6": 1,
+        "7": 4,
+        "9": 1
+      }
+    },
+    "destroyed_reappearances_all_games": {
+      "field_deltas_next_minus_terminal": {
+        "crew": {},
+        "damage": {},
+        "fighters": {},
+        "torpedoes": {}
+      },
+      "hulls": {
+        "115": 1,
+        "117": 2,
+        "118": 2,
+        "2071": 19,
+        "210": 5
+      },
+      "problem_signatures": {
+        "reappearance_after_destroyed": 29
+      },
+      "races": {
+        "12": 10,
+        "5": 16,
+        "8": 3
+      },
+      "shield_models": {},
+      "side_transitions": {
+        "left->left": 7,
+        "left->right": 10,
+        "right->left": 10,
+        "right->right": 2
+      },
+      "status": {
+        "reappearance_after_destroyed": 29
+      },
+      "transitions": 29,
+      "vcr_gaps": {
+        "1": 24,
+        "13": 1,
+        "14": 1,
+        "19": 1,
+        "4": 1,
+        "6": 1
+      }
+    },
+    "profile_excluded_all": {
+      "field_deltas_next_minus_terminal": {
+        "crew": {
+          "-1": 2,
+          "-10": 2,
+          "-112": 1,
+          "-12": 2,
+          "-14": 1,
+          "-18": 4,
+          "-26": 1,
+          "-27": 1,
+          "-28": 3,
+          "-3": 2,
+          "-30": 1,
+          "-31": 1,
+          "-35": 2,
+          "-36": 1,
+          "-4": 1,
+          "-40": 1,
+          "-42": 4,
+          "-43": 1,
+          "-48": 1,
+          "-49": 1,
+          "-6": 1,
+          "-62": 3,
+          "-63": 1,
+          "-7": 4,
+          "-72": 1,
+          "-9": 2,
+          "0": 231,
+          "11": 1,
+          "18": 2,
+          "27": 1,
+          "3": 1,
+          "4": 1,
+          "5": 1,
+          "7": 1,
+          "9": 1
+        },
+        "damage": {
+          "-15": 1,
+          "-2": 4,
+          "-21": 2,
+          "-22": 1,
+          "-24": 1,
+          "-27": 1,
+          "-3": 1,
+          "-30": 1,
+          "-32": 2,
+          "-4": 1,
+          "-41": 1,
+          "-45": 1,
+          "-5": 1,
+          "-54": 1,
+          "-59": 1,
+          "-6": 1,
+          "-60": 2,
+          "-7": 1,
+          "-8": 2,
+          "-80": 1,
+          "-90": 2,
+          "0": 214,
+          "1": 4,
+          "10": 2,
+          "11": 1,
+          "12": 2,
+          "14": 2,
+          "16": 1,
+          "17": 1,
+          "18": 1,
+          "2": 2,
+          "20": 2,
+          "21": 4,
+          "23": 1,
+          "24": 1,
+          "3": 4,
+          "32": 1,
+          "34": 1,
+          "4": 1,
+          "43": 1,
+          "57": 1,
+          "6": 3,
+          "8": 3,
+          "85": 3
+        },
+        "fighters": {
+          "-11": 4,
+          "-12": 1,
+          "-14": 1,
+          "-15": 1,
+          "-16": 1,
+          "-17": 2,
+          "-18": 1,
+          "-2": 4,
+          "-20": 1,
+          "-26": 1,
+          "-27": 1,
+          "-3": 58,
+          "-30": 1,
+          "-34": 1,
+          "-38": 1,
+          "-4": 4,
+          "-5": 4,
+          "-6": 4,
+          "-7": 2,
+          "-9": 1,
+          "0": 173,
+          "1": 2,
+          "2": 1,
+          "21": 1,
+          "24": 1,
+          "3": 1,
+          "39": 1,
+          "4": 2,
+          "44": 1,
+          "5": 2,
+          "6": 2,
+          "7": 1,
+          "8": 2,
+          "9": 1
+        },
+        "torpedoes": {
+          "-1": 6,
+          "-12": 1,
+          "-2": 5,
+          "-28": 1,
+          "0": 227,
+          "1": 8,
+          "12": 3,
+          "15": 1,
+          "16": 1,
+          "2": 6,
+          "3": 16,
+          "4": 2,
+          "6": 7,
+          "8": 1
+        }
+      },
+      "hulls": {
+        "1033": 1,
+        "1041": 4,
+        "1050": 3,
+        "1054": 1,
+        "115": 3,
+        "117": 6,
+        "118": 3,
+        "119": 4,
+        "2033": 1,
+        "2038": 2,
+        "2071": 19,
+        "210": 27,
+        "28": 2,
+        "29": 9,
+        "3033": 2,
+        "31": 1,
+        "35": 26,
+        "36": 5,
+        "39": 2,
+        "44": 1,
+        "46": 21,
+        "52": 50,
+        "53": 6,
+        "56": 2,
+        "70": 106,
+        "74": 3,
+        "92": 1,
+        "99": 5
+      },
+      "problem_signatures": {
+        "crew+fighters": 2,
+        "crew+shield": 3,
+        "damage": 2,
+        "damage+crew": 10,
+        "damage+crew+fighters": 14,
+        "damage+crew+fighters+shield": 6,
+        "damage+crew+shield": 11,
+        "damage+crew+torpedoes": 4,
+        "damage+crew+torpedoes+shield": 4,
+        "damage+fighters": 1,
+        "damage+torpedoes": 10,
+        "damage+torpedoes+fighters": 9,
+        "fighters": 48,
+        "fighters+shield": 32,
+        "reappearance_after_capture": 2,
+        "reappearance_after_destroyed": 29,
+        "shield": 17,
+        "torpedoes": 18,
+        "torpedoes+shield": 13
+      },
+      "races": {
+        "11": 6,
+        "12": 43,
+        "3": 15,
+        "4": 37,
+        "5": 89,
+        "6": 48,
+        "8": 78
+      },
+      "shield_models": {
+        "exact_carry": 199,
+        "mismatch": 86
+      },
+      "side_transitions": {
+        "left->left": 161,
+        "left->right": 27,
+        "right->left": 73,
+        "right->right": 55
+      },
+      "status": {
+        "match": 81,
+        "mismatch": 204,
+        "reappearance_after_capture": 2,
+        "reappearance_after_destroyed": 29
+      },
+      "transitions": 316,
+      "vcr_gaps": {
+        "1": 169,
+        "10": 8,
+        "11": 6,
+        "12": 8,
+        "13": 9,
+        "14": 14,
+        "15": 6,
+        "16": 6,
+        "17": 4,
+        "18": 6,
+        "19": 1,
+        "2": 3,
+        "21": 2,
+        "23": 1,
+        "24": 1,
+        "25": 1,
+        "26": 3,
+        "29": 1,
+        "3": 7,
+        "30": 1,
+        "4": 7,
+        "5": 10,
+        "6": 10,
+        "7": 13,
+        "8": 8,
+        "9": 11
+      }
+    },
+    "profile_selected_all": {
+      "field_deltas_next_minus_terminal": {
+        "crew": {
+          "0": 1146
+        },
+        "damage": {
+          "-11": 1,
+          "-16": 1,
+          "-2": 1,
+          "-20": 1,
+          "-3": 1,
+          "-7": 1,
+          "-8": 1,
+          "-9": 1,
+          "0": 1138
+        },
+        "fighters": {
+          "0": 1146
+        },
+        "torpedoes": {
+          "0": 1146
+        }
+      },
+      "hulls": {
+        "101": 1,
+        "103": 2,
+        "104": 4,
+        "105": 3,
+        "13": 15,
+        "16": 4,
+        "17": 6,
+        "19": 6,
+        "2": 4,
+        "20": 17,
+        "2034": 1,
+        "2083": 6,
+        "21": 3,
+        "22": 13,
+        "23": 66,
+        "25": 2,
+        "26": 2,
+        "27": 1,
+        "28": 1,
+        "29": 28,
+        "31": 31,
+        "33": 9,
+        "35": 16,
+        "36": 10,
+        "37": 25,
+        "38": 1,
+        "39": 1,
+        "4": 1,
+        "42": 1,
+        "45": 1,
+        "46": 4,
+        "49": 16,
+        "5": 4,
+        "50": 3,
+        "51": 4,
+        "52": 107,
+        "53": 11,
+        "54": 1,
+        "55": 1,
+        "56": 1,
+        "60": 1,
+        "61": 7,
+        "63": 13,
+        "67": 2,
+        "69": 23,
+        "7": 2,
+        "70": 23,
+        "71": 8,
+        "74": 2,
+        "75": 2,
+        "76": 5,
+        "77": 7,
+        "78": 48,
+        "79": 159,
+        "80": 79,
+        "81": 4,
+        "82": 3,
+        "84": 2,
+        "85": 2,
+        "86": 4,
+        "87": 8,
+        "88": 2,
+        "92": 11,
+        "94": 128,
+        "96": 5,
+        "99": 186
+      },
+      "problem_signatures": {
+        "damage": 8,
+        "reappearance_after_capture": 23
+      },
+      "races": {
+        "1": 49,
+        "10": 142,
+        "11": 204,
+        "2": 108,
+        "3": 60,
+        "4": 60,
+        "5": 17,
+        "6": 123,
+        "7": 26,
+        "8": 72,
+        "9": 308
+      },
+      "shield_models": {
+        "both": 28,
+        "exact_carry": 1098,
+        "federation_candidate": 20
+      },
+      "side_transitions": {
+        "left->left": 307,
+        "left->right": 84,
+        "right->left": 346,
+        "right->right": 432
+      },
+      "status": {
+        "match": 1138,
+        "mismatch": 8,
+        "reappearance_after_capture": 23
+      },
+      "transitions": 1169,
+      "vcr_gaps": {
+        "1": 820,
+        "10": 15,
+        "11": 1,
+        "12": 7,
+        "13": 1,
+        "14": 3,
+        "15": 1,
+        "16": 1,
+        "17": 1,
+        "18": 1,
+        "19": 1,
+        "2": 79,
+        "20": 1,
+        "3": 63,
+        "4": 52,
+        "5": 37,
+        "6": 36,
+        "7": 24,
+        "8": 16,
+        "9": 9
+      }
+    },
+    "profile_selected_ship_to_planet_boundary": {
+      "field_deltas_next_minus_terminal": {
+        "crew": {
+          "0": 382
+        },
+        "damage": {
+          "-11": 1,
+          "-16": 1,
+          "-2": 1,
+          "-20": 1,
+          "-3": 1,
+          "-7": 1,
+          "-8": 1,
+          "-9": 1,
+          "0": 374
+        },
+        "fighters": {
+          "0": 382
+        },
+        "torpedoes": {
+          "0": 382
+        }
+      },
+      "hulls": {
+        "103": 1,
+        "104": 1,
+        "13": 4,
+        "16": 4,
+        "17": 3,
+        "20": 7,
+        "2034": 1,
+        "22": 4,
+        "23": 30,
+        "25": 1,
+        "26": 1,
+        "27": 1,
+        "29": 12,
+        "31": 12,
+        "33": 7,
+        "35": 6,
+        "36": 3,
+        "37": 13,
+        "4": 1,
+        "45": 1,
+        "46": 1,
+        "49": 5,
+        "5": 2,
+        "50": 3,
+        "51": 4,
+        "52": 37,
+        "53": 4,
+        "54": 1,
+        "55": 1,
+        "61": 3,
+        "63": 8,
+        "69": 6,
+        "7": 2,
+        "70": 3,
+        "71": 5,
+        "74": 2,
+        "75": 1,
+        "76": 2,
+        "77": 5,
+        "78": 16,
+        "79": 36,
+        "80": 24,
+        "81": 2,
+        "82": 1,
+        "84": 1,
+        "85": 2,
+        "86": 3,
+        "87": 7,
+        "88": 1,
+        "92": 7,
+        "94": 44,
+        "96": 4,
+        "99": 41
+      },
+      "problem_signatures": {
+        "damage": 8,
+        "reappearance_after_capture": 15
+      },
+      "races": {
+        "1": 16,
+        "10": 56,
+        "11": 53,
+        "2": 44,
+        "3": 25,
+        "4": 29,
+        "5": 9,
+        "6": 46,
+        "7": 13,
+        "8": 23,
+        "9": 83
+      },
+      "shield_models": {
+        "both": 6,
+        "exact_carry": 367,
+        "federation_candidate": 9
+      },
+      "side_transitions": {
+        "left->left": 59,
+        "right->left": 338
+      },
+      "status": {
+        "match": 374,
+        "mismatch": 8,
+        "reappearance_after_capture": 15
+      },
+      "transitions": 397,
+      "vcr_gaps": {
+        "1": 63,
+        "10": 15,
+        "11": 1,
+        "12": 7,
+        "13": 1,
+        "14": 3,
+        "15": 1,
+        "16": 1,
+        "17": 1,
+        "18": 1,
+        "19": 1,
+        "2": 71,
+        "20": 1,
+        "3": 61,
+        "4": 50,
+        "5": 36,
+        "6": 34,
+        "7": 24,
+        "8": 16,
+        "9": 9
+      }
+    },
+    "profile_selected_ship_vs_ship_survivors": {
+      "field_deltas_next_minus_terminal": {
+        "crew": {
+          "0": 764
+        },
+        "damage": {
+          "0": 764
+        },
+        "fighters": {
+          "0": 764
+        },
+        "torpedoes": {
+          "0": 764
+        }
+      },
+      "hulls": {
+        "101": 1,
+        "103": 1,
+        "104": 2,
+        "105": 3,
+        "13": 11,
+        "17": 1,
+        "19": 6,
+        "2": 4,
+        "20": 10,
+        "2083": 6,
+        "21": 3,
+        "22": 9,
+        "23": 36,
+        "25": 1,
+        "26": 1,
+        "28": 1,
+        "29": 16,
+        "31": 19,
+        "33": 2,
+        "35": 10,
+        "36": 7,
+        "37": 12,
+        "38": 1,
+        "39": 1,
+        "42": 1,
+        "46": 3,
+        "49": 11,
+        "5": 2,
+        "52": 70,
+        "53": 7,
+        "61": 4,
+        "63": 5,
+        "67": 2,
+        "69": 17,
+        "70": 20,
+        "71": 2,
+        "75": 1,
+        "76": 3,
+        "77": 2,
+        "78": 32,
+        "79": 123,
+        "80": 55,
+        "81": 2,
+        "84": 1,
+        "86": 1,
+        "87": 1,
+        "88": 1,
+        "92": 4,
+        "94": 84,
+        "96": 1,
+        "99": 145
+      },
+      "problem_signatures": {},
+      "races": {
+        "1": 33,
+        "10": 85,
+        "11": 150,
+        "2": 63,
+        "3": 35,
+        "4": 31,
+        "5": 8,
+        "6": 76,
+        "7": 12,
+        "8": 48,
+        "9": 223
+      },
+      "shield_models": {
+        "both": 22,
+        "exact_carry": 731,
+        "federation_candidate": 11
+      },
+      "side_transitions": {
+        "left->left": 245,
+        "left->right": 84,
+        "right->left": 4,
+        "right->right": 431
+      },
+      "status": {
+        "match": 764
+      },
+      "transitions": 764,
+      "vcr_gaps": {
+        "1": 751,
+        "2": 7,
+        "3": 2,
+        "4": 1,
+        "5": 1,
+        "6": 2
+      }
+    },
+    "profile_selected_ship_vs_ship_survivors_gap1": {
+      "field_deltas_next_minus_terminal": {
+        "crew": {
+          "0": 751
+        },
+        "damage": {
+          "0": 751
+        },
+        "fighters": {
+          "0": 751
+        },
+        "torpedoes": {
+          "0": 751
+        }
+      },
+      "hulls": {
+        "101": 1,
+        "103": 1,
+        "104": 2,
+        "105": 3,
+        "13": 11,
+        "17": 1,
+        "19": 6,
+        "2": 4,
+        "20": 10,
+        "2083": 6,
+        "21": 1,
+        "22": 8,
+        "23": 35,
+        "25": 1,
+        "28": 1,
+        "29": 15,
+        "31": 17,
+        "33": 1,
+        "35": 9,
+        "36": 7,
+        "37": 12,
+        "38": 1,
+        "39": 1,
+        "42": 1,
+        "46": 2,
+        "49": 11,
+        "5": 2,
+        "52": 70,
+        "53": 7,
+        "61": 4,
+        "63": 5,
+        "67": 2,
+        "69": 16,
+        "70": 20,
+        "71": 1,
+        "75": 1,
+        "76": 3,
+        "77": 2,
+        "78": 32,
+        "79": 123,
+        "80": 55,
+        "81": 2,
+        "84": 1,
+        "86": 1,
+        "87": 1,
+        "88": 1,
+        "92": 4,
+        "94": 84,
+        "96": 1,
+        "99": 145
+      },
+      "problem_signatures": {},
+      "races": {
+        "1": 33,
+        "10": 85,
+        "11": 150,
+        "2": 59,
+        "3": 31,
+        "4": 29,
+        "5": 7,
+        "6": 76,
+        "7": 12,
+        "8": 46,
+        "9": 223
+      },
+      "shield_models": {
+        "both": 22,
+        "exact_carry": 718,
+        "federation_candidate": 11
+      },
+      "side_transitions": {
+        "left->left": 240,
+        "left->right": 83,
+        "right->left": 2,
+        "right->right": 426
+      },
+      "status": {
+        "match": 751
+      },
+      "transitions": 751,
+      "vcr_gaps": {
+        "1": 751
+      }
+    },
+    "profile_unknown_all": {
+      "field_deltas_next_minus_terminal": {
+        "crew": {},
+        "damage": {},
+        "fighters": {},
+        "torpedoes": {}
+      },
+      "hulls": {},
+      "problem_signatures": {},
+      "races": {},
+      "shield_models": {},
+      "side_transitions": {},
+      "status": {},
+      "transitions": 0,
+      "vcr_gaps": {}
+    }
+  },
+  "source_summary": {
+    "archives": 12,
+    "candidate_ship_turn_chains": 1015,
+    "match": 1219,
+    "mismatch": 212,
+    "non_race1_transitions": 1383,
+    "payload_conflicts": 0,
+    "race1_transitions": 48,
+    "raw_vcr_observations": 22256,
+    "reappearance_after_defeat": 54,
+    "replay_supported": 6469,
+    "same_location_transitions": 1485,
+    "ship_appearances": 9219,
+    "unique_vcrs": 6469
+  },
+  "terminal_kinds": {
+    "captured": 25,
+    "destroyed": 29,
+    "survived": 1431
+  }
+}

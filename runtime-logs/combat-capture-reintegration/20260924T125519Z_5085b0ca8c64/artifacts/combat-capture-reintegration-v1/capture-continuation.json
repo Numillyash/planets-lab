@@ -1,0 +1,2784 @@
+{
+  "evidence_boundary": "Capture-continuation differential over deterministic Classic replay and the next factual same-turn same-location VCR of the same ship id. The population is selected through shared FeatureScope. Explicit captor owner/race attribution comes from the opposing factual VCR side of the capture engagement; no post-Host T state is used. Production capture mutation applies the terminal vector, pre-capture Federation end-of-battle shield recovery, documented 10-person prize crew, explicit owner/race transfer and new-owner combat bonus flags before preparing the next engagement. A single damage-only residual is tolerated as an upstream replay residual only if every ownership/race/hull/shield/crew/ammunition field remains exact. Post-capture mission, PE, diplomacy and full next-pair ordering are still separate.",
+  "examples": [
+    {
+      "captor_owner_id": 5,
+      "captor_race_id": 5,
+      "captor_ship_id": 102,
+      "carry": {
+        "crew": {
+          "current_start": 10,
+          "matches": false,
+          "terminal": 0
+        },
+        "damage": {
+          "current_start": 46,
+          "matches": true,
+          "terminal": 46
+        },
+        "fighters": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        },
+        "torpedoes": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        }
+      },
+      "carry_all_exact": false,
+      "carry_comparable_fields": 4,
+      "carry_exact_fields": 3,
+      "current_opponent_is_planet": false,
+      "current_opponent_race_id": 6,
+      "current_opponent_ship_id": 119,
+      "current_side": "right",
+      "from_vcr_id": 54,
+      "game_id": 511506,
+      "hull_id_after": 56,
+      "hull_id_before": 56,
+      "hull_preserved": true,
+      "next_opponent_is_captor": false,
+      "owner_changes_to_captor": true,
+      "owner_id_after": 5,
+      "owner_id_before": 6,
+      "position": [
+        2514,
+        1772
+      ],
+      "production": {
+        "all_exact": true,
+        "captured_ship_ids": [
+          27
+        ],
+        "exact_without_damage": true,
+        "fields": {
+          "crew": {
+            "current_start": 10,
+            "matches": true,
+            "predicted": 10
+          },
+          "damage": {
+            "current_start": 46,
+            "matches": true,
+            "predicted": 46
+          },
+          "fighters": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "hull_id": {
+            "current_start": 56,
+            "matches": true,
+            "predicted": 56
+          },
+          "owner_id": {
+            "current_start": 5,
+            "matches": true,
+            "predicted": 5
+          },
+          "race_id": {
+            "current_start": 5,
+            "matches": true,
+            "predicted": 5
+          },
+          "shield": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "torpedoes": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          }
+        },
+        "resolved": true
+      },
+      "race_changed": true,
+      "race_changes_to_captor": true,
+      "race_id_after": 5,
+      "race_id_before": 6,
+      "shield": {
+        "current_start": 0,
+        "exact_carry": true,
+        "model": "exact_carry",
+        "pre_capture_federation_candidate": null,
+        "pre_capture_federation_exact": null,
+        "terminal": 0
+      },
+      "ship_id": 27,
+      "status": "capture_continuation",
+      "terminal_captured": true,
+      "terminal_destroyed": false,
+      "to_vcr_id": 55,
+      "turn": 26
+    },
+    {
+      "captor_owner_id": 8,
+      "captor_race_id": 8,
+      "captor_ship_id": 174,
+      "carry": {
+        "crew": {
+          "current_start": 10,
+          "matches": false,
+          "terminal": 0
+        },
+        "damage": {
+          "current_start": 75,
+          "matches": true,
+          "terminal": 75
+        },
+        "fighters": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        },
+        "torpedoes": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        }
+      },
+      "carry_all_exact": false,
+      "carry_comparable_fields": 4,
+      "carry_exact_fields": 3,
+      "current_opponent_is_planet": false,
+      "current_opponent_race_id": 7,
+      "current_opponent_ship_id": 268,
+      "current_side": "left",
+      "from_vcr_id": 93,
+      "game_id": 511506,
+      "hull_id_after": 60,
+      "hull_id_before": 60,
+      "hull_preserved": true,
+      "next_opponent_is_captor": false,
+      "owner_changes_to_captor": true,
+      "owner_id_after": 8,
+      "owner_id_before": 7,
+      "position": [
+        1491,
+        2315
+      ],
+      "production": {
+        "all_exact": true,
+        "captured_ship_ids": [
+          25
+        ],
+        "exact_without_damage": true,
+        "fields": {
+          "crew": {
+            "current_start": 10,
+            "matches": true,
+            "predicted": 10
+          },
+          "damage": {
+            "current_start": 75,
+            "matches": true,
+            "predicted": 75
+          },
+          "fighters": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "hull_id": {
+            "current_start": 60,
+            "matches": true,
+            "predicted": 60
+          },
+          "owner_id": {
+            "current_start": 8,
+            "matches": true,
+            "predicted": 8
+          },
+          "race_id": {
+            "current_start": 8,
+            "matches": true,
+            "predicted": 8
+          },
+          "shield": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "torpedoes": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          }
+        },
+        "resolved": true
+      },
+      "race_changed": true,
+      "race_changes_to_captor": true,
+      "race_id_after": 8,
+      "race_id_before": 7,
+      "shield": {
+        "current_start": 0,
+        "exact_carry": true,
+        "model": "exact_carry",
+        "pre_capture_federation_candidate": null,
+        "pre_capture_federation_exact": null,
+        "terminal": 0
+      },
+      "ship_id": 25,
+      "status": "capture_continuation",
+      "terminal_captured": true,
+      "terminal_destroyed": false,
+      "to_vcr_id": 94,
+      "turn": 33
+    },
+    {
+      "captor_owner_id": 3,
+      "captor_race_id": 3,
+      "captor_ship_id": 489,
+      "carry": {
+        "crew": {
+          "current_start": 10,
+          "matches": false,
+          "terminal": 0
+        },
+        "damage": {
+          "current_start": 6,
+          "matches": true,
+          "terminal": 6
+        },
+        "fighters": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        },
+        "torpedoes": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        }
+      },
+      "carry_all_exact": false,
+      "carry_comparable_fields": 4,
+      "carry_exact_fields": 3,
+      "current_opponent_is_planet": true,
+      "current_opponent_race_id": null,
+      "current_opponent_ship_id": null,
+      "current_side": "left",
+      "from_vcr_id": 196,
+      "game_id": 511506,
+      "hull_id_after": 51,
+      "hull_id_before": 51,
+      "hull_preserved": true,
+      "next_opponent_is_captor": null,
+      "owner_changes_to_captor": true,
+      "owner_id_after": 3,
+      "owner_id_before": 6,
+      "position": [
+        2910,
+        1780
+      ],
+      "production": {
+        "all_exact": true,
+        "captured_ship_ids": [
+          480
+        ],
+        "exact_without_damage": true,
+        "fields": {
+          "crew": {
+            "current_start": 10,
+            "matches": true,
+            "predicted": 10
+          },
+          "damage": {
+            "current_start": 6,
+            "matches": true,
+            "predicted": 6
+          },
+          "fighters": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "hull_id": {
+            "current_start": 51,
+            "matches": true,
+            "predicted": 51
+          },
+          "owner_id": {
+            "current_start": 3,
+            "matches": true,
+            "predicted": 3
+          },
+          "race_id": {
+            "current_start": 3,
+            "matches": true,
+            "predicted": 3
+          },
+          "shield": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "torpedoes": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          }
+        },
+        "resolved": true
+      },
+      "race_changed": true,
+      "race_changes_to_captor": true,
+      "race_id_after": 3,
+      "race_id_before": 6,
+      "shield": {
+        "current_start": 0,
+        "exact_carry": true,
+        "model": "exact_carry",
+        "pre_capture_federation_candidate": null,
+        "pre_capture_federation_exact": null,
+        "terminal": 0
+      },
+      "ship_id": 480,
+      "status": "capture_continuation",
+      "terminal_captured": true,
+      "terminal_destroyed": false,
+      "to_vcr_id": 203,
+      "turn": 48
+    },
+    {
+      "captor_owner_id": 2,
+      "captor_race_id": 2,
+      "captor_ship_id": 101,
+      "carry": {
+        "crew": {
+          "current_start": 10,
+          "matches": false,
+          "terminal": 0
+        },
+        "damage": {
+          "current_start": 69,
+          "matches": true,
+          "terminal": 69
+        },
+        "fighters": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        },
+        "torpedoes": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        }
+      },
+      "carry_all_exact": false,
+      "carry_comparable_fields": 4,
+      "carry_exact_fields": 3,
+      "current_opponent_is_planet": false,
+      "current_opponent_race_id": 9,
+      "current_opponent_ship_id": 180,
+      "current_side": "left",
+      "from_vcr_id": 337,
+      "game_id": 511506,
+      "hull_id_after": 104,
+      "hull_id_before": 104,
+      "hull_preserved": true,
+      "next_opponent_is_captor": false,
+      "owner_changes_to_captor": true,
+      "owner_id_after": 2,
+      "owner_id_before": 9,
+      "position": [
+        1907,
+        1138
+      ],
+      "production": {
+        "all_exact": true,
+        "captured_ship_ids": [
+          32
+        ],
+        "exact_without_damage": true,
+        "fields": {
+          "crew": {
+            "current_start": 10,
+            "matches": true,
+            "predicted": 10
+          },
+          "damage": {
+            "current_start": 69,
+            "matches": true,
+            "predicted": 69
+          },
+          "fighters": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "hull_id": {
+            "current_start": 104,
+            "matches": true,
+            "predicted": 104
+          },
+          "owner_id": {
+            "current_start": 2,
+            "matches": true,
+            "predicted": 2
+          },
+          "race_id": {
+            "current_start": 2,
+            "matches": true,
+            "predicted": 2
+          },
+          "shield": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "torpedoes": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          }
+        },
+        "resolved": true
+      },
+      "race_changed": true,
+      "race_changes_to_captor": true,
+      "race_id_after": 2,
+      "race_id_before": 9,
+      "shield": {
+        "current_start": 0,
+        "exact_carry": true,
+        "model": "exact_carry",
+        "pre_capture_federation_candidate": null,
+        "pre_capture_federation_exact": null,
+        "terminal": 0
+      },
+      "ship_id": 32,
+      "status": "capture_continuation",
+      "terminal_captured": true,
+      "terminal_destroyed": false,
+      "to_vcr_id": 338,
+      "turn": 60
+    },
+    {
+      "captor_owner_id": 3,
+      "captor_race_id": 3,
+      "captor_ship_id": 411,
+      "carry": {
+        "crew": {
+          "current_start": 10,
+          "matches": false,
+          "terminal": 0
+        },
+        "damage": {
+          "current_start": 86,
+          "matches": true,
+          "terminal": 86
+        },
+        "fighters": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        },
+        "torpedoes": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        }
+      },
+      "carry_all_exact": false,
+      "carry_comparable_fields": 4,
+      "carry_exact_fields": 3,
+      "current_opponent_is_planet": true,
+      "current_opponent_race_id": null,
+      "current_opponent_ship_id": null,
+      "current_side": "left",
+      "from_vcr_id": 346,
+      "game_id": 511506,
+      "hull_id_after": 104,
+      "hull_id_before": 104,
+      "hull_preserved": true,
+      "next_opponent_is_captor": null,
+      "owner_changes_to_captor": true,
+      "owner_id_after": 3,
+      "owner_id_before": 6,
+      "position": [
+        2565,
+        1729
+      ],
+      "production": {
+        "all_exact": true,
+        "captured_ship_ids": [
+          414
+        ],
+        "exact_without_damage": true,
+        "fields": {
+          "crew": {
+            "current_start": 10,
+            "matches": true,
+            "predicted": 10
+          },
+          "damage": {
+            "current_start": 86,
+            "matches": true,
+            "predicted": 86
+          },
+          "fighters": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "hull_id": {
+            "current_start": 104,
+            "matches": true,
+            "predicted": 104
+          },
+          "owner_id": {
+            "current_start": 3,
+            "matches": true,
+            "predicted": 3
+          },
+          "race_id": {
+            "current_start": 3,
+            "matches": true,
+            "predicted": 3
+          },
+          "shield": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "torpedoes": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          }
+        },
+        "resolved": true
+      },
+      "race_changed": true,
+      "race_changes_to_captor": true,
+      "race_id_after": 3,
+      "race_id_before": 6,
+      "shield": {
+        "current_start": 0,
+        "exact_carry": true,
+        "model": "exact_carry",
+        "pre_capture_federation_candidate": null,
+        "pre_capture_federation_exact": null,
+        "terminal": 0
+      },
+      "ship_id": 414,
+      "status": "capture_continuation",
+      "terminal_captured": true,
+      "terminal_destroyed": false,
+      "to_vcr_id": 353,
+      "turn": 60
+    },
+    {
+      "captor_owner_id": 5,
+      "captor_race_id": 5,
+      "captor_ship_id": 405,
+      "carry": {
+        "crew": {
+          "current_start": 10,
+          "matches": false,
+          "terminal": 0
+        },
+        "damage": {
+          "current_start": 24,
+          "matches": true,
+          "terminal": 24
+        },
+        "fighters": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        },
+        "torpedoes": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        }
+      },
+      "carry_all_exact": false,
+      "carry_comparable_fields": 4,
+      "carry_exact_fields": 3,
+      "current_opponent_is_planet": true,
+      "current_opponent_race_id": null,
+      "current_opponent_ship_id": null,
+      "current_side": "left",
+      "from_vcr_id": 674,
+      "game_id": 511506,
+      "hull_id_after": 75,
+      "hull_id_before": 75,
+      "hull_preserved": true,
+      "next_opponent_is_captor": null,
+      "owner_changes_to_captor": true,
+      "owner_id_after": 5,
+      "owner_id_before": 8,
+      "position": [
+        1813,
+        2742
+      ],
+      "production": {
+        "all_exact": true,
+        "captured_ship_ids": [
+          136
+        ],
+        "exact_without_damage": true,
+        "fields": {
+          "crew": {
+            "current_start": 10,
+            "matches": true,
+            "predicted": 10
+          },
+          "damage": {
+            "current_start": 24,
+            "matches": true,
+            "predicted": 24
+          },
+          "fighters": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "hull_id": {
+            "current_start": 75,
+            "matches": true,
+            "predicted": 75
+          },
+          "owner_id": {
+            "current_start": 5,
+            "matches": true,
+            "predicted": 5
+          },
+          "race_id": {
+            "current_start": 5,
+            "matches": true,
+            "predicted": 5
+          },
+          "shield": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "torpedoes": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          }
+        },
+        "resolved": true
+      },
+      "race_changed": true,
+      "race_changes_to_captor": true,
+      "race_id_after": 5,
+      "race_id_before": 8,
+      "shield": {
+        "current_start": 0,
+        "exact_carry": true,
+        "model": "exact_carry",
+        "pre_capture_federation_candidate": null,
+        "pre_capture_federation_exact": null,
+        "terminal": 0
+      },
+      "ship_id": 136,
+      "status": "capture_continuation",
+      "terminal_captured": true,
+      "terminal_destroyed": false,
+      "to_vcr_id": 677,
+      "turn": 90
+    },
+    {
+      "captor_owner_id": 3,
+      "captor_race_id": 3,
+      "captor_ship_id": 41,
+      "carry": {
+        "crew": {
+          "current_start": 10,
+          "matches": false,
+          "terminal": 0
+        },
+        "damage": {
+          "current_start": 4,
+          "matches": true,
+          "terminal": 4
+        },
+        "fighters": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        },
+        "torpedoes": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        }
+      },
+      "carry_all_exact": false,
+      "carry_comparable_fields": 4,
+      "carry_exact_fields": 3,
+      "current_opponent_is_planet": true,
+      "current_opponent_race_id": null,
+      "current_opponent_ship_id": null,
+      "current_side": "left",
+      "from_vcr_id": 280,
+      "game_id": 620694,
+      "hull_id_after": 16,
+      "hull_id_before": 16,
+      "hull_preserved": true,
+      "next_opponent_is_captor": null,
+      "owner_changes_to_captor": true,
+      "owner_id_after": 3,
+      "owner_id_before": 5,
+      "position": [
+        1009,
+        2144
+      ],
+      "production": {
+        "all_exact": true,
+        "captured_ship_ids": [
+          461
+        ],
+        "exact_without_damage": true,
+        "fields": {
+          "crew": {
+            "current_start": 10,
+            "matches": true,
+            "predicted": 10
+          },
+          "damage": {
+            "current_start": 4,
+            "matches": true,
+            "predicted": 4
+          },
+          "fighters": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "hull_id": {
+            "current_start": 16,
+            "matches": true,
+            "predicted": 16
+          },
+          "owner_id": {
+            "current_start": 3,
+            "matches": true,
+            "predicted": 3
+          },
+          "race_id": {
+            "current_start": 3,
+            "matches": true,
+            "predicted": 3
+          },
+          "shield": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "torpedoes": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          }
+        },
+        "resolved": true
+      },
+      "race_changed": true,
+      "race_changes_to_captor": true,
+      "race_id_after": 3,
+      "race_id_before": 5,
+      "shield": {
+        "current_start": 0,
+        "exact_carry": true,
+        "model": "exact_carry",
+        "pre_capture_federation_candidate": null,
+        "pre_capture_federation_exact": null,
+        "terminal": 0
+      },
+      "ship_id": 461,
+      "status": "capture_continuation",
+      "terminal_captured": true,
+      "terminal_destroyed": false,
+      "to_vcr_id": 285,
+      "turn": 56
+    },
+    {
+      "captor_owner_id": 3,
+      "captor_race_id": 3,
+      "captor_ship_id": 28,
+      "carry": {
+        "crew": {
+          "current_start": 10,
+          "matches": false,
+          "terminal": 0
+        },
+        "damage": {
+          "current_start": 38,
+          "matches": true,
+          "terminal": 38
+        },
+        "fighters": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        },
+        "torpedoes": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        }
+      },
+      "carry_all_exact": false,
+      "carry_comparable_fields": 4,
+      "carry_exact_fields": 3,
+      "current_opponent_is_planet": true,
+      "current_opponent_race_id": null,
+      "current_opponent_ship_id": null,
+      "current_side": "left",
+      "from_vcr_id": 63,
+      "game_id": 620917,
+      "hull_id_after": 17,
+      "hull_id_before": 17,
+      "hull_preserved": true,
+      "next_opponent_is_captor": null,
+      "owner_changes_to_captor": true,
+      "owner_id_after": 3,
+      "owner_id_before": 2,
+      "position": [
+        2119,
+        1707
+      ],
+      "production": {
+        "all_exact": true,
+        "captured_ship_ids": [
+          18
+        ],
+        "exact_without_damage": true,
+        "fields": {
+          "crew": {
+            "current_start": 10,
+            "matches": true,
+            "predicted": 10
+          },
+          "damage": {
+            "current_start": 38,
+            "matches": true,
+            "predicted": 38
+          },
+          "fighters": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "hull_id": {
+            "current_start": 17,
+            "matches": true,
+            "predicted": 17
+          },
+          "owner_id": {
+            "current_start": 3,
+            "matches": true,
+            "predicted": 3
+          },
+          "race_id": {
+            "current_start": 3,
+            "matches": true,
+            "predicted": 3
+          },
+          "shield": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "torpedoes": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          }
+        },
+        "resolved": true
+      },
+      "race_changed": true,
+      "race_changes_to_captor": true,
+      "race_id_after": 3,
+      "race_id_before": 2,
+      "shield": {
+        "current_start": 0,
+        "exact_carry": true,
+        "model": "exact_carry",
+        "pre_capture_federation_candidate": null,
+        "pre_capture_federation_exact": null,
+        "terminal": 0
+      },
+      "ship_id": 18,
+      "status": "capture_continuation",
+      "terminal_captured": true,
+      "terminal_destroyed": false,
+      "to_vcr_id": 66,
+      "turn": 18
+    },
+    {
+      "captor_owner_id": 3,
+      "captor_race_id": 3,
+      "captor_ship_id": 60,
+      "carry": {
+        "crew": {
+          "current_start": 10,
+          "matches": false,
+          "terminal": 0
+        },
+        "damage": {
+          "current_start": 4,
+          "matches": true,
+          "terminal": 4
+        },
+        "fighters": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        },
+        "torpedoes": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        }
+      },
+      "carry_all_exact": false,
+      "carry_comparable_fields": 4,
+      "carry_exact_fields": 3,
+      "current_opponent_is_planet": true,
+      "current_opponent_race_id": null,
+      "current_opponent_ship_id": null,
+      "current_side": "left",
+      "from_vcr_id": 117,
+      "game_id": 620917,
+      "hull_id_after": 16,
+      "hull_id_before": 16,
+      "hull_preserved": true,
+      "next_opponent_is_captor": null,
+      "owner_changes_to_captor": true,
+      "owner_id_after": 3,
+      "owner_id_before": 5,
+      "position": [
+        1716,
+        1891
+      ],
+      "production": {
+        "all_exact": true,
+        "captured_ship_ids": [
+          5
+        ],
+        "exact_without_damage": true,
+        "fields": {
+          "crew": {
+            "current_start": 10,
+            "matches": true,
+            "predicted": 10
+          },
+          "damage": {
+            "current_start": 4,
+            "matches": true,
+            "predicted": 4
+          },
+          "fighters": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "hull_id": {
+            "current_start": 16,
+            "matches": true,
+            "predicted": 16
+          },
+          "owner_id": {
+            "current_start": 3,
+            "matches": true,
+            "predicted": 3
+          },
+          "race_id": {
+            "current_start": 3,
+            "matches": true,
+            "predicted": 3
+          },
+          "shield": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "torpedoes": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          }
+        },
+        "resolved": true
+      },
+      "race_changed": true,
+      "race_changes_to_captor": true,
+      "race_id_after": 3,
+      "race_id_before": 8,
+      "shield": {
+        "current_start": 0,
+        "exact_carry": true,
+        "model": "exact_carry",
+        "pre_capture_federation_candidate": null,
+        "pre_capture_federation_exact": null,
+        "terminal": 0
+      },
+      "ship_id": 5,
+      "status": "capture_continuation",
+      "terminal_captured": true,
+      "terminal_destroyed": false,
+      "to_vcr_id": 119,
+      "turn": 27
+    },
+    {
+      "captor_owner_id": 5,
+      "captor_race_id": 6,
+      "captor_ship_id": 36,
+      "carry": {
+        "crew": {
+          "current_start": 10,
+          "matches": false,
+          "terminal": 0
+        },
+        "damage": {
+          "current_start": 57,
+          "matches": true,
+          "terminal": 57
+        },
+        "fighters": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        },
+        "torpedoes": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        }
+      },
+      "carry_all_exact": false,
+      "carry_comparable_fields": 4,
+      "carry_exact_fields": 3,
+      "current_opponent_is_planet": true,
+      "current_opponent_race_id": null,
+      "current_opponent_ship_id": null,
+      "current_side": "left",
+      "from_vcr_id": 19,
+      "game_id": 621253,
+      "hull_id_after": 17,
+      "hull_id_before": 17,
+      "hull_preserved": true,
+      "next_opponent_is_captor": null,
+      "owner_changes_to_captor": true,
+      "owner_id_after": 5,
+      "owner_id_before": 6,
+      "position": [
+        1919,
+        2198
+      ],
+      "production": {
+        "all_exact": true,
+        "captured_ship_ids": [
+          45
+        ],
+        "exact_without_damage": true,
+        "fields": {
+          "crew": {
+            "current_start": 10,
+            "matches": true,
+            "predicted": 10
+          },
+          "damage": {
+            "current_start": 57,
+            "matches": true,
+            "predicted": 57
+          },
+          "fighters": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "hull_id": {
+            "current_start": 17,
+            "matches": true,
+            "predicted": 17
+          },
+          "owner_id": {
+            "current_start": 5,
+            "matches": true,
+            "predicted": 5
+          },
+          "race_id": {
+            "current_start": 6,
+            "matches": true,
+            "predicted": 6
+          },
+          "shield": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "torpedoes": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          }
+        },
+        "resolved": true
+      },
+      "race_changed": true,
+      "race_changes_to_captor": true,
+      "race_id_after": 6,
+      "race_id_before": 8,
+      "shield": {
+        "current_start": 0,
+        "exact_carry": true,
+        "model": "exact_carry",
+        "pre_capture_federation_candidate": null,
+        "pre_capture_federation_exact": null,
+        "terminal": 0
+      },
+      "ship_id": 45,
+      "status": "capture_continuation",
+      "terminal_captured": true,
+      "terminal_destroyed": false,
+      "to_vcr_id": 22,
+      "turn": 13
+    },
+    {
+      "captor_owner_id": 6,
+      "captor_race_id": 8,
+      "captor_ship_id": 24,
+      "carry": {
+        "crew": {
+          "current_start": 10,
+          "matches": false,
+          "terminal": 0
+        },
+        "damage": {
+          "current_start": 12,
+          "matches": true,
+          "terminal": 12
+        },
+        "fighters": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        },
+        "torpedoes": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        }
+      },
+      "carry_all_exact": false,
+      "carry_comparable_fields": 4,
+      "carry_exact_fields": 3,
+      "current_opponent_is_planet": true,
+      "current_opponent_race_id": null,
+      "current_opponent_ship_id": null,
+      "current_side": "left",
+      "from_vcr_id": 34,
+      "game_id": 621253,
+      "hull_id_after": 16,
+      "hull_id_before": 16,
+      "hull_preserved": true,
+      "next_opponent_is_captor": null,
+      "owner_changes_to_captor": true,
+      "owner_id_after": 6,
+      "owner_id_before": 8,
+      "position": [
+        1628,
+        2204
+      ],
+      "production": {
+        "all_exact": true,
+        "captured_ship_ids": [
+          8
+        ],
+        "exact_without_damage": true,
+        "fields": {
+          "crew": {
+            "current_start": 10,
+            "matches": true,
+            "predicted": 10
+          },
+          "damage": {
+            "current_start": 12,
+            "matches": true,
+            "predicted": 12
+          },
+          "fighters": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "hull_id": {
+            "current_start": 16,
+            "matches": true,
+            "predicted": 16
+          },
+          "owner_id": {
+            "current_start": 6,
+            "matches": true,
+            "predicted": 6
+          },
+          "race_id": {
+            "current_start": 8,
+            "matches": true,
+            "predicted": 8
+          },
+          "shield": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "torpedoes": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          }
+        },
+        "resolved": true
+      },
+      "race_changed": true,
+      "race_changes_to_captor": true,
+      "race_id_after": 8,
+      "race_id_before": 10,
+      "shield": {
+        "current_start": 0,
+        "exact_carry": true,
+        "model": "exact_carry",
+        "pre_capture_federation_candidate": null,
+        "pre_capture_federation_exact": null,
+        "terminal": 0
+      },
+      "ship_id": 8,
+      "status": "capture_continuation",
+      "terminal_captured": true,
+      "terminal_destroyed": false,
+      "to_vcr_id": 44,
+      "turn": 17
+    },
+    {
+      "captor_owner_id": 6,
+      "captor_race_id": 8,
+      "captor_ship_id": 24,
+      "carry": {
+        "crew": {
+          "current_start": 10,
+          "matches": false,
+          "terminal": 0
+        },
+        "damage": {
+          "current_start": 7,
+          "matches": false,
+          "terminal": 11
+        },
+        "fighters": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        },
+        "torpedoes": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        }
+      },
+      "carry_all_exact": false,
+      "carry_comparable_fields": 4,
+      "carry_exact_fields": 2,
+      "current_opponent_is_planet": true,
+      "current_opponent_race_id": null,
+      "current_opponent_ship_id": null,
+      "current_side": "left",
+      "from_vcr_id": 39,
+      "game_id": 621253,
+      "hull_id_after": 87,
+      "hull_id_before": 87,
+      "hull_preserved": true,
+      "next_opponent_is_captor": null,
+      "owner_changes_to_captor": true,
+      "owner_id_after": 6,
+      "owner_id_before": 8,
+      "position": [
+        1628,
+        2204
+      ],
+      "production": {
+        "all_exact": false,
+        "captured_ship_ids": [
+          84
+        ],
+        "exact_without_damage": true,
+        "fields": {
+          "crew": {
+            "current_start": 10,
+            "matches": true,
+            "predicted": 10
+          },
+          "damage": {
+            "current_start": 7,
+            "matches": false,
+            "predicted": 11
+          },
+          "fighters": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "hull_id": {
+            "current_start": 87,
+            "matches": true,
+            "predicted": 87
+          },
+          "owner_id": {
+            "current_start": 6,
+            "matches": true,
+            "predicted": 6
+          },
+          "race_id": {
+            "current_start": 8,
+            "matches": true,
+            "predicted": 8
+          },
+          "shield": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "torpedoes": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          }
+        },
+        "resolved": true
+      },
+      "race_changed": true,
+      "race_changes_to_captor": true,
+      "race_id_after": 8,
+      "race_id_before": 10,
+      "shield": {
+        "current_start": 0,
+        "exact_carry": true,
+        "model": "exact_carry",
+        "pre_capture_federation_candidate": null,
+        "pre_capture_federation_exact": null,
+        "terminal": 0
+      },
+      "ship_id": 84,
+      "status": "capture_continuation",
+      "terminal_captured": true,
+      "terminal_destroyed": false,
+      "to_vcr_id": 45,
+      "turn": 17
+    },
+    {
+      "captor_owner_id": 3,
+      "captor_race_id": 3,
+      "captor_ship_id": 11,
+      "carry": {
+        "crew": {
+          "current_start": 10,
+          "matches": false,
+          "terminal": 0
+        },
+        "damage": {
+          "current_start": 35,
+          "matches": true,
+          "terminal": 35
+        },
+        "fighters": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        },
+        "torpedoes": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        }
+      },
+      "carry_all_exact": false,
+      "carry_comparable_fields": 4,
+      "carry_exact_fields": 3,
+      "current_opponent_is_planet": true,
+      "current_opponent_race_id": null,
+      "current_opponent_ship_id": null,
+      "current_side": "left",
+      "from_vcr_id": 16,
+      "game_id": 621896,
+      "hull_id_after": 4,
+      "hull_id_before": 4,
+      "hull_preserved": true,
+      "next_opponent_is_captor": null,
+      "owner_changes_to_captor": true,
+      "owner_id_after": 3,
+      "owner_id_before": 1,
+      "position": [
+        1704,
+        1904
+      ],
+      "production": {
+        "all_exact": true,
+        "captured_ship_ids": [
+          36
+        ],
+        "exact_without_damage": true,
+        "fields": {
+          "crew": {
+            "current_start": 10,
+            "matches": true,
+            "predicted": 10
+          },
+          "damage": {
+            "current_start": 35,
+            "matches": true,
+            "predicted": 35
+          },
+          "fighters": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "hull_id": {
+            "current_start": 4,
+            "matches": true,
+            "predicted": 4
+          },
+          "owner_id": {
+            "current_start": 3,
+            "matches": true,
+            "predicted": 3
+          },
+          "race_id": {
+            "current_start": 3,
+            "matches": true,
+            "predicted": 3
+          },
+          "shield": {
+            "current_start": 25,
+            "matches": true,
+            "predicted": 25
+          },
+          "torpedoes": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          }
+        },
+        "resolved": true
+      },
+      "race_changed": true,
+      "race_changes_to_captor": true,
+      "race_id_after": 3,
+      "race_id_before": 1,
+      "shield": {
+        "current_start": 25,
+        "exact_carry": false,
+        "model": "pre_capture_federation_recovery",
+        "pre_capture_federation_candidate": 25,
+        "pre_capture_federation_exact": true,
+        "terminal": 0
+      },
+      "ship_id": 36,
+      "status": "capture_continuation",
+      "terminal_captured": true,
+      "terminal_destroyed": false,
+      "to_vcr_id": 20,
+      "turn": 14
+    },
+    {
+      "captor_owner_id": 2,
+      "captor_race_id": 2,
+      "captor_ship_id": 67,
+      "carry": {
+        "crew": {
+          "current_start": 10,
+          "matches": false,
+          "terminal": 0
+        },
+        "damage": {
+          "current_start": 21,
+          "matches": true,
+          "terminal": 21
+        },
+        "fighters": {
+          "current_start": 104,
+          "matches": true,
+          "terminal": 104
+        },
+        "torpedoes": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        }
+      },
+      "carry_all_exact": false,
+      "carry_comparable_fields": 4,
+      "carry_exact_fields": 3,
+      "current_opponent_is_planet": false,
+      "current_opponent_race_id": 9,
+      "current_opponent_ship_id": 29,
+      "current_side": "left",
+      "from_vcr_id": 49,
+      "game_id": 621896,
+      "hull_id_after": 82,
+      "hull_id_before": 82,
+      "hull_preserved": true,
+      "next_opponent_is_captor": false,
+      "owner_changes_to_captor": true,
+      "owner_id_after": 2,
+      "owner_id_before": 6,
+      "position": [
+        2140,
+        2187
+      ],
+      "production": {
+        "all_exact": true,
+        "captured_ship_ids": [
+          34
+        ],
+        "exact_without_damage": true,
+        "fields": {
+          "crew": {
+            "current_start": 10,
+            "matches": true,
+            "predicted": 10
+          },
+          "damage": {
+            "current_start": 21,
+            "matches": true,
+            "predicted": 21
+          },
+          "fighters": {
+            "current_start": 104,
+            "matches": true,
+            "predicted": 104
+          },
+          "hull_id": {
+            "current_start": 82,
+            "matches": true,
+            "predicted": 82
+          },
+          "owner_id": {
+            "current_start": 2,
+            "matches": true,
+            "predicted": 2
+          },
+          "race_id": {
+            "current_start": 2,
+            "matches": true,
+            "predicted": 2
+          },
+          "shield": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "torpedoes": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          }
+        },
+        "resolved": true
+      },
+      "race_changed": true,
+      "race_changes_to_captor": true,
+      "race_id_after": 2,
+      "race_id_before": 9,
+      "shield": {
+        "current_start": 0,
+        "exact_carry": true,
+        "model": "exact_carry",
+        "pre_capture_federation_candidate": null,
+        "pre_capture_federation_exact": null,
+        "terminal": 0
+      },
+      "ship_id": 34,
+      "status": "capture_continuation",
+      "terminal_captured": true,
+      "terminal_destroyed": false,
+      "to_vcr_id": 50,
+      "turn": 25
+    },
+    {
+      "captor_owner_id": 6,
+      "captor_race_id": 9,
+      "captor_ship_id": 29,
+      "carry": {
+        "crew": {
+          "current_start": 10,
+          "matches": false,
+          "terminal": 0
+        },
+        "damage": {
+          "current_start": 66,
+          "matches": true,
+          "terminal": 66
+        },
+        "fighters": {
+          "current_start": 104,
+          "matches": true,
+          "terminal": 104
+        },
+        "torpedoes": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        }
+      },
+      "carry_all_exact": false,
+      "carry_comparable_fields": 4,
+      "carry_exact_fields": 3,
+      "current_opponent_is_planet": false,
+      "current_opponent_race_id": 2,
+      "current_opponent_ship_id": 67,
+      "current_side": "left",
+      "from_vcr_id": 50,
+      "game_id": 621896,
+      "hull_id_after": 82,
+      "hull_id_before": 82,
+      "hull_preserved": true,
+      "next_opponent_is_captor": false,
+      "owner_changes_to_captor": true,
+      "owner_id_after": 6,
+      "owner_id_before": 2,
+      "position": [
+        2140,
+        2187
+      ],
+      "production": {
+        "all_exact": true,
+        "captured_ship_ids": [
+          34
+        ],
+        "exact_without_damage": true,
+        "fields": {
+          "crew": {
+            "current_start": 10,
+            "matches": true,
+            "predicted": 10
+          },
+          "damage": {
+            "current_start": 66,
+            "matches": true,
+            "predicted": 66
+          },
+          "fighters": {
+            "current_start": 104,
+            "matches": true,
+            "predicted": 104
+          },
+          "hull_id": {
+            "current_start": 82,
+            "matches": true,
+            "predicted": 82
+          },
+          "owner_id": {
+            "current_start": 6,
+            "matches": true,
+            "predicted": 6
+          },
+          "race_id": {
+            "current_start": 9,
+            "matches": true,
+            "predicted": 9
+          },
+          "shield": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "torpedoes": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          }
+        },
+        "resolved": true
+      },
+      "race_changed": true,
+      "race_changes_to_captor": true,
+      "race_id_after": 9,
+      "race_id_before": 2,
+      "shield": {
+        "current_start": 0,
+        "exact_carry": true,
+        "model": "exact_carry",
+        "pre_capture_federation_candidate": null,
+        "pre_capture_federation_exact": null,
+        "terminal": 0
+      },
+      "ship_id": 34,
+      "status": "capture_continuation",
+      "terminal_captured": true,
+      "terminal_destroyed": false,
+      "to_vcr_id": 52,
+      "turn": 25
+    },
+    {
+      "captor_owner_id": 2,
+      "captor_race_id": 2,
+      "captor_ship_id": 67,
+      "carry": {
+        "crew": {
+          "current_start": 10,
+          "matches": false,
+          "terminal": 0
+        },
+        "damage": {
+          "current_start": 72,
+          "matches": true,
+          "terminal": 72
+        },
+        "fighters": {
+          "current_start": 99,
+          "matches": true,
+          "terminal": 99
+        },
+        "torpedoes": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        }
+      },
+      "carry_all_exact": false,
+      "carry_comparable_fields": 4,
+      "carry_exact_fields": 3,
+      "current_opponent_is_planet": true,
+      "current_opponent_race_id": null,
+      "current_opponent_ship_id": null,
+      "current_side": "left",
+      "from_vcr_id": 52,
+      "game_id": 621896,
+      "hull_id_after": 82,
+      "hull_id_before": 82,
+      "hull_preserved": true,
+      "next_opponent_is_captor": null,
+      "owner_changes_to_captor": true,
+      "owner_id_after": 2,
+      "owner_id_before": 6,
+      "position": [
+        2140,
+        2187
+      ],
+      "production": {
+        "all_exact": true,
+        "captured_ship_ids": [
+          34
+        ],
+        "exact_without_damage": true,
+        "fields": {
+          "crew": {
+            "current_start": 10,
+            "matches": true,
+            "predicted": 10
+          },
+          "damage": {
+            "current_start": 72,
+            "matches": true,
+            "predicted": 72
+          },
+          "fighters": {
+            "current_start": 99,
+            "matches": true,
+            "predicted": 99
+          },
+          "hull_id": {
+            "current_start": 82,
+            "matches": true,
+            "predicted": 82
+          },
+          "owner_id": {
+            "current_start": 2,
+            "matches": true,
+            "predicted": 2
+          },
+          "race_id": {
+            "current_start": 2,
+            "matches": true,
+            "predicted": 2
+          },
+          "shield": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "torpedoes": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          }
+        },
+        "resolved": true
+      },
+      "race_changed": true,
+      "race_changes_to_captor": true,
+      "race_id_after": 2,
+      "race_id_before": 9,
+      "shield": {
+        "current_start": 0,
+        "exact_carry": true,
+        "model": "exact_carry",
+        "pre_capture_federation_candidate": null,
+        "pre_capture_federation_exact": null,
+        "terminal": 0
+      },
+      "ship_id": 34,
+      "status": "capture_continuation",
+      "terminal_captured": true,
+      "terminal_destroyed": false,
+      "to_vcr_id": 54,
+      "turn": 25
+    },
+    {
+      "captor_owner_id": 3,
+      "captor_race_id": 3,
+      "captor_ship_id": 11,
+      "carry": {
+        "crew": {
+          "current_start": 10,
+          "matches": false,
+          "terminal": 0
+        },
+        "damage": {
+          "current_start": 18,
+          "matches": true,
+          "terminal": 18
+        },
+        "fighters": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        },
+        "torpedoes": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        }
+      },
+      "carry_all_exact": false,
+      "carry_comparable_fields": 4,
+      "carry_exact_fields": 3,
+      "current_opponent_is_planet": true,
+      "current_opponent_race_id": null,
+      "current_opponent_ship_id": null,
+      "current_side": "left",
+      "from_vcr_id": 17,
+      "game_id": 622476,
+      "hull_id_after": 16,
+      "hull_id_before": 16,
+      "hull_preserved": true,
+      "next_opponent_is_captor": null,
+      "owner_changes_to_captor": true,
+      "owner_id_after": 3,
+      "owner_id_before": 5,
+      "position": [
+        1823,
+        1737
+      ],
+      "production": {
+        "all_exact": true,
+        "captured_ship_ids": [
+          5
+        ],
+        "exact_without_damage": true,
+        "fields": {
+          "crew": {
+            "current_start": 10,
+            "matches": true,
+            "predicted": 10
+          },
+          "damage": {
+            "current_start": 18,
+            "matches": true,
+            "predicted": 18
+          },
+          "fighters": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "hull_id": {
+            "current_start": 16,
+            "matches": true,
+            "predicted": 16
+          },
+          "owner_id": {
+            "current_start": 3,
+            "matches": true,
+            "predicted": 3
+          },
+          "race_id": {
+            "current_start": 3,
+            "matches": true,
+            "predicted": 3
+          },
+          "shield": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "torpedoes": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          }
+        },
+        "resolved": true
+      },
+      "race_changed": true,
+      "race_changes_to_captor": true,
+      "race_id_after": 3,
+      "race_id_before": 8,
+      "shield": {
+        "current_start": 0,
+        "exact_carry": true,
+        "model": "exact_carry",
+        "pre_capture_federation_candidate": null,
+        "pre_capture_federation_exact": null,
+        "terminal": 0
+      },
+      "ship_id": 5,
+      "status": "capture_continuation",
+      "terminal_captured": true,
+      "terminal_destroyed": false,
+      "to_vcr_id": 24,
+      "turn": 13
+    },
+    {
+      "captor_owner_id": 3,
+      "captor_race_id": 3,
+      "captor_ship_id": 11,
+      "carry": {
+        "crew": {
+          "current_start": 10,
+          "matches": false,
+          "terminal": 0
+        },
+        "damage": {
+          "current_start": 3,
+          "matches": true,
+          "terminal": 3
+        },
+        "fighters": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        },
+        "torpedoes": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        }
+      },
+      "carry_all_exact": false,
+      "carry_comparable_fields": 4,
+      "carry_exact_fields": 3,
+      "current_opponent_is_planet": true,
+      "current_opponent_race_id": null,
+      "current_opponent_ship_id": null,
+      "current_side": "left",
+      "from_vcr_id": 18,
+      "game_id": 622476,
+      "hull_id_after": 71,
+      "hull_id_before": 71,
+      "hull_preserved": true,
+      "next_opponent_is_captor": null,
+      "owner_changes_to_captor": true,
+      "owner_id_after": 3,
+      "owner_id_before": 5,
+      "position": [
+        1823,
+        1737
+      ],
+      "production": {
+        "all_exact": true,
+        "captured_ship_ids": [
+          68
+        ],
+        "exact_without_damage": true,
+        "fields": {
+          "crew": {
+            "current_start": 10,
+            "matches": true,
+            "predicted": 10
+          },
+          "damage": {
+            "current_start": 3,
+            "matches": true,
+            "predicted": 3
+          },
+          "fighters": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "hull_id": {
+            "current_start": 71,
+            "matches": true,
+            "predicted": 71
+          },
+          "owner_id": {
+            "current_start": 3,
+            "matches": true,
+            "predicted": 3
+          },
+          "race_id": {
+            "current_start": 3,
+            "matches": true,
+            "predicted": 3
+          },
+          "shield": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "torpedoes": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          }
+        },
+        "resolved": true
+      },
+      "race_changed": true,
+      "race_changes_to_captor": true,
+      "race_id_after": 3,
+      "race_id_before": 8,
+      "shield": {
+        "current_start": 0,
+        "exact_carry": true,
+        "model": "exact_carry",
+        "pre_capture_federation_candidate": null,
+        "pre_capture_federation_exact": null,
+        "terminal": 0
+      },
+      "ship_id": 68,
+      "status": "capture_continuation",
+      "terminal_captured": true,
+      "terminal_destroyed": false,
+      "to_vcr_id": 25,
+      "turn": 13
+    },
+    {
+      "captor_owner_id": 5,
+      "captor_race_id": 8,
+      "captor_ship_id": 66,
+      "carry": {
+        "crew": {
+          "current_start": 10,
+          "matches": false,
+          "terminal": 0
+        },
+        "damage": {
+          "current_start": 57,
+          "matches": true,
+          "terminal": 57
+        },
+        "fighters": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        },
+        "torpedoes": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        }
+      },
+      "carry_all_exact": false,
+      "carry_comparable_fields": 4,
+      "carry_exact_fields": 3,
+      "current_opponent_is_planet": false,
+      "current_opponent_race_id": 11,
+      "current_opponent_ship_id": 30,
+      "current_side": "left",
+      "from_vcr_id": 27,
+      "game_id": 622476,
+      "hull_id_after": 17,
+      "hull_id_before": 17,
+      "hull_preserved": true,
+      "next_opponent_is_captor": false,
+      "owner_changes_to_captor": true,
+      "owner_id_after": 5,
+      "owner_id_before": 8,
+      "position": [
+        1914,
+        1692
+      ],
+      "production": {
+        "all_exact": true,
+        "captured_ship_ids": [
+          16
+        ],
+        "exact_without_damage": true,
+        "fields": {
+          "crew": {
+            "current_start": 10,
+            "matches": true,
+            "predicted": 10
+          },
+          "damage": {
+            "current_start": 57,
+            "matches": true,
+            "predicted": 57
+          },
+          "fighters": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "hull_id": {
+            "current_start": 17,
+            "matches": true,
+            "predicted": 17
+          },
+          "owner_id": {
+            "current_start": 5,
+            "matches": true,
+            "predicted": 5
+          },
+          "race_id": {
+            "current_start": 8,
+            "matches": true,
+            "predicted": 8
+          },
+          "shield": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "torpedoes": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          }
+        },
+        "resolved": true
+      },
+      "race_changed": true,
+      "race_changes_to_captor": true,
+      "race_id_after": 8,
+      "race_id_before": 11,
+      "shield": {
+        "current_start": 0,
+        "exact_carry": true,
+        "model": "exact_carry",
+        "pre_capture_federation_candidate": null,
+        "pre_capture_federation_exact": null,
+        "terminal": 0
+      },
+      "ship_id": 16,
+      "status": "capture_continuation",
+      "terminal_captured": true,
+      "terminal_destroyed": false,
+      "to_vcr_id": 28,
+      "turn": 14
+    },
+    {
+      "captor_owner_id": 3,
+      "captor_race_id": 3,
+      "captor_ship_id": 44,
+      "carry": {
+        "crew": {
+          "current_start": 10,
+          "matches": false,
+          "terminal": 0
+        },
+        "damage": {
+          "current_start": 30,
+          "matches": true,
+          "terminal": 30
+        },
+        "fighters": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        },
+        "torpedoes": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        }
+      },
+      "carry_all_exact": false,
+      "carry_comparable_fields": 4,
+      "carry_exact_fields": 3,
+      "current_opponent_is_planet": false,
+      "current_opponent_race_id": 11,
+      "current_opponent_ship_id": 48,
+      "current_side": "left",
+      "from_vcr_id": 37,
+      "game_id": 622476,
+      "hull_id_after": 71,
+      "hull_id_before": 71,
+      "hull_preserved": true,
+      "next_opponent_is_captor": false,
+      "owner_changes_to_captor": true,
+      "owner_id_after": 3,
+      "owner_id_before": 5,
+      "position": [
+        1973,
+        1734
+      ],
+      "production": {
+        "all_exact": true,
+        "captured_ship_ids": [
+          7
+        ],
+        "exact_without_damage": true,
+        "fields": {
+          "crew": {
+            "current_start": 10,
+            "matches": true,
+            "predicted": 10
+          },
+          "damage": {
+            "current_start": 30,
+            "matches": true,
+            "predicted": 30
+          },
+          "fighters": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "hull_id": {
+            "current_start": 71,
+            "matches": true,
+            "predicted": 71
+          },
+          "owner_id": {
+            "current_start": 3,
+            "matches": true,
+            "predicted": 3
+          },
+          "race_id": {
+            "current_start": 3,
+            "matches": true,
+            "predicted": 3
+          },
+          "shield": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "torpedoes": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          }
+        },
+        "resolved": true
+      },
+      "race_changed": true,
+      "race_changes_to_captor": true,
+      "race_id_after": 3,
+      "race_id_before": 8,
+      "shield": {
+        "current_start": 0,
+        "exact_carry": true,
+        "model": "exact_carry",
+        "pre_capture_federation_candidate": null,
+        "pre_capture_federation_exact": null,
+        "terminal": 0
+      },
+      "ship_id": 7,
+      "status": "capture_continuation",
+      "terminal_captured": true,
+      "terminal_destroyed": false,
+      "to_vcr_id": 38,
+      "turn": 17
+    },
+    {
+      "captor_owner_id": 2,
+      "captor_race_id": 2,
+      "captor_ship_id": 45,
+      "carry": {
+        "crew": {
+          "current_start": 10,
+          "matches": false,
+          "terminal": 0
+        },
+        "damage": {
+          "current_start": 64,
+          "matches": true,
+          "terminal": 64
+        },
+        "fighters": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        },
+        "torpedoes": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        }
+      },
+      "carry_all_exact": false,
+      "carry_comparable_fields": 4,
+      "carry_exact_fields": 3,
+      "current_opponent_is_planet": false,
+      "current_opponent_race_id": 10,
+      "current_opponent_ship_id": 42,
+      "current_side": "left",
+      "from_vcr_id": 105,
+      "game_id": 622476,
+      "hull_id_after": 17,
+      "hull_id_before": 17,
+      "hull_preserved": true,
+      "next_opponent_is_captor": false,
+      "owner_changes_to_captor": true,
+      "owner_id_after": 2,
+      "owner_id_before": 7,
+      "position": [
+        2369,
+        1847
+      ],
+      "production": {
+        "all_exact": true,
+        "captured_ship_ids": [
+          35
+        ],
+        "exact_without_damage": true,
+        "fields": {
+          "crew": {
+            "current_start": 10,
+            "matches": true,
+            "predicted": 10
+          },
+          "damage": {
+            "current_start": 64,
+            "matches": true,
+            "predicted": 64
+          },
+          "fighters": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "hull_id": {
+            "current_start": 17,
+            "matches": true,
+            "predicted": 17
+          },
+          "owner_id": {
+            "current_start": 2,
+            "matches": true,
+            "predicted": 2
+          },
+          "race_id": {
+            "current_start": 2,
+            "matches": true,
+            "predicted": 2
+          },
+          "shield": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "torpedoes": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          }
+        },
+        "resolved": true
+      },
+      "race_changed": true,
+      "race_changes_to_captor": true,
+      "race_id_after": 2,
+      "race_id_before": 10,
+      "shield": {
+        "current_start": 0,
+        "exact_carry": true,
+        "model": "exact_carry",
+        "pre_capture_federation_candidate": null,
+        "pre_capture_federation_exact": null,
+        "terminal": 0
+      },
+      "ship_id": 35,
+      "status": "capture_continuation",
+      "terminal_captured": true,
+      "terminal_destroyed": false,
+      "to_vcr_id": 109,
+      "turn": 28
+    },
+    {
+      "captor_owner_id": 3,
+      "captor_race_id": 3,
+      "captor_ship_id": 68,
+      "carry": {
+        "crew": {
+          "current_start": 10,
+          "matches": false,
+          "terminal": 0
+        },
+        "damage": {
+          "current_start": 31,
+          "matches": true,
+          "terminal": 31
+        },
+        "fighters": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        },
+        "torpedoes": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        }
+      },
+      "carry_all_exact": false,
+      "carry_comparable_fields": 4,
+      "carry_exact_fields": 3,
+      "current_opponent_is_planet": true,
+      "current_opponent_race_id": null,
+      "current_opponent_ship_id": null,
+      "current_side": "left",
+      "from_vcr_id": 117,
+      "game_id": 622476,
+      "hull_id_after": 71,
+      "hull_id_before": 71,
+      "hull_preserved": true,
+      "next_opponent_is_captor": null,
+      "owner_changes_to_captor": true,
+      "owner_id_after": 3,
+      "owner_id_before": 8,
+      "position": [
+        2060,
+        1693
+      ],
+      "production": {
+        "all_exact": true,
+        "captured_ship_ids": [
+          66
+        ],
+        "exact_without_damage": true,
+        "fields": {
+          "crew": {
+            "current_start": 10,
+            "matches": true,
+            "predicted": 10
+          },
+          "damage": {
+            "current_start": 31,
+            "matches": true,
+            "predicted": 31
+          },
+          "fighters": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "hull_id": {
+            "current_start": 71,
+            "matches": true,
+            "predicted": 71
+          },
+          "owner_id": {
+            "current_start": 3,
+            "matches": true,
+            "predicted": 3
+          },
+          "race_id": {
+            "current_start": 3,
+            "matches": true,
+            "predicted": 3
+          },
+          "shield": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "torpedoes": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          }
+        },
+        "resolved": true
+      },
+      "race_changed": true,
+      "race_changes_to_captor": true,
+      "race_id_after": 3,
+      "race_id_before": 11,
+      "shield": {
+        "current_start": 0,
+        "exact_carry": true,
+        "model": "exact_carry",
+        "pre_capture_federation_candidate": null,
+        "pre_capture_federation_exact": null,
+        "terminal": 0
+      },
+      "ship_id": 66,
+      "status": "capture_continuation",
+      "terminal_captured": true,
+      "terminal_destroyed": false,
+      "to_vcr_id": 121,
+      "turn": 30
+    },
+    {
+      "captor_owner_id": 3,
+      "captor_race_id": 3,
+      "captor_ship_id": 68,
+      "carry": {
+        "crew": {
+          "current_start": 10,
+          "matches": false,
+          "terminal": 0
+        },
+        "damage": {
+          "current_start": 54,
+          "matches": true,
+          "terminal": 54
+        },
+        "fighters": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        },
+        "torpedoes": {
+          "current_start": 0,
+          "matches": true,
+          "terminal": 0
+        }
+      },
+      "carry_all_exact": false,
+      "carry_comparable_fields": 4,
+      "carry_exact_fields": 3,
+      "current_opponent_is_planet": true,
+      "current_opponent_race_id": null,
+      "current_opponent_ship_id": null,
+      "current_side": "left",
+      "from_vcr_id": 118,
+      "game_id": 622476,
+      "hull_id_after": 17,
+      "hull_id_before": 17,
+      "hull_preserved": true,
+      "next_opponent_is_captor": null,
+      "owner_changes_to_captor": true,
+      "owner_id_after": 3,
+      "owner_id_before": 8,
+      "position": [
+        2060,
+        1693
+      ],
+      "production": {
+        "all_exact": true,
+        "captured_ship_ids": [
+          16
+        ],
+        "exact_without_damage": true,
+        "fields": {
+          "crew": {
+            "current_start": 10,
+            "matches": true,
+            "predicted": 10
+          },
+          "damage": {
+            "current_start": 54,
+            "matches": true,
+            "predicted": 54
+          },
+          "fighters": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "hull_id": {
+            "current_start": 17,
+            "matches": true,
+            "predicted": 17
+          },
+          "owner_id": {
+            "current_start": 3,
+            "matches": true,
+            "predicted": 3
+          },
+          "race_id": {
+            "current_start": 3,
+            "matches": true,
+            "predicted": 3
+          },
+          "shield": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          },
+          "torpedoes": {
+            "current_start": 0,
+            "matches": true,
+            "predicted": 0
+          }
+        },
+        "resolved": true
+      },
+      "race_changed": true,
+      "race_changes_to_captor": true,
+      "race_id_after": 3,
+      "race_id_before": 11,
+      "shield": {
+        "current_start": 0,
+        "exact_carry": true,
+        "model": "exact_carry",
+        "pre_capture_federation_candidate": null,
+        "pre_capture_federation_exact": null,
+        "terminal": 0
+      },
+      "ship_id": 16,
+      "status": "capture_continuation",
+      "terminal_captured": true,
+      "terminal_destroyed": false,
+      "to_vcr_id": 122,
+      "turn": 30
+    }
+  ],
+  "read_only": true,
+  "schema": "planets-lab.combat-host-capture-continuation-audit.v2",
+  "summary": {
+    "acceptance": {
+      "capture_reappearance_population_present": true,
+      "capture_transition_gate_passed": true,
+      "hull_preserved": true,
+      "no_capture_transition_adapter_errors": true,
+      "no_new_damage_replay_residuals": true,
+      "owner_changes_to_captor": true,
+      "production_capture_state_exact_excluding_damage": true,
+      "race_changes_to_captor": true
+    },
+    "chain_audit_summary": {
+      "archives": 11,
+      "candidate_ship_turn_chains": 797,
+      "match": 1138,
+      "mismatch": 8,
+      "non_race1_transitions": 1098,
+      "payload_conflicts": 0,
+      "race1_transitions": 48,
+      "raw_vcr_observations": 15253,
+      "reappearance_after_defeat": 23,
+      "replay_supported": 4394,
+      "same_location_transitions": 1169,
+      "ship_appearances": 6382,
+      "unique_vcrs": 4394
+    },
+    "counts": {
+      "capture_reappearance_transitions": 23,
+      "hull_preserved": 23,
+      "next_opponent_planet": 15,
+      "next_opponent_third_ship": 8,
+      "owner_changes_to_captor_exact": 23,
+      "post_capture_side:left": 22,
+      "post_capture_side:right": 1,
+      "production_capture_all_exact": 22,
+      "production_capture_exact_without_damage": 23,
+      "production_capture_not_all_exact": 1,
+      "race_changed": 23,
+      "race_changes_to_captor_exact": 23,
+      "raw_terminal_carry_not_all_exact": 23
+    },
+    "damage_replay_residuals": [
+      [
+        621253,
+        17,
+        84,
+        39,
+        45,
+        11,
+        7
+      ]
+    ],
+    "feature_scope": {
+      "excluded_game_ids": [
+        591478
+      ],
+      "included_game_ids": [
+        360690,
+        511506,
+        620636,
+        620694,
+        620917,
+        621103,
+        621253,
+        621896,
+        622476,
+        680435,
+        680910
+      ],
+      "index": "validation/corpus/compiled/v1/metadata/game_features.parquet",
+      "predicate_count": 3,
+      "profile": "combat-planar-no-horwasp",
+      "unknown_game_ids": []
+    },
+    "known_damage_replay_residuals": [
+      [
+        621253,
+        17,
+        84,
+        39,
+        45,
+        11,
+        7
+      ]
+    ],
+    "production_fields": {
+      "crew": {
+        "exact": 23
+      },
+      "damage": {
+        "exact": 22,
+        "mismatch": 1
+      },
+      "fighters": {
+        "exact": 23
+      },
+      "hull_id": {
+        "exact": 23
+      },
+      "owner_id": {
+        "exact": 23
+      },
+      "race_id": {
+        "exact": 23
+      },
+      "shield": {
+        "exact": 23
+      },
+      "torpedoes": {
+        "exact": 23
+      }
+    },
+    "raw_terminal_carry_fields": {
+      "crew": {
+        "mismatch": 23
+      },
+      "damage": {
+        "exact": 22,
+        "mismatch": 1
+      },
+      "fighters": {
+        "exact": 23
+      },
+      "torpedoes": {
+        "exact": 23
+      }
+    },
+    "shield_models": {
+      "exact_carry": 22,
+      "pre_capture_federation_recovery": 1
+    }
+  }
+}
