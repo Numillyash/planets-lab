@@ -47,7 +47,7 @@ from combat_host_normal_movement_position_audit import (
 from combat_host_priority_intercept_audit import PREPARED_DIR, RAW_DIR, _static_specs
 
 
-SCHEMA = "planets-lab.combat-host-post-capture-special-movement-audit.v3"
+SCHEMA = "planets-lab.combat-host-post-capture-special-movement-audit.v4"
 DEFAULT_EXAMPLE_LIMIT = 40
 TOW_MISSION_ID = 6
 INTERCEPT_MISSION_ID = 7
@@ -88,6 +88,149 @@ def _special_movement_kind(raw: Mapping[str, Any]) -> str | None:
     if mission == INTERCEPT_MISSION_ID:
         return "intercept"
     return None
+
+
+
+def _transfer_target_namespace(
+    *,
+    sender_raw: Mapping[str, Any],
+    owner_rows: Mapping[int, tuple[int, Mapping[str, Any]]],
+    planets: Sequence[tuple[int, int, int]],
+) -> dict[str, Any]:
+    target_id = _intish(sender_raw.get("transfertargetid"))
+    target_type_raw = _intish(sender_raw.get("transfertargettype"))
+    sender_x = _intish(sender_raw.get("x"))
+    sender_y = _intish(sender_raw.get("y"))
+
+    result: dict[str, Any] = {
+        "target_id": target_id,
+        "target_type_raw": target_type_raw,
+        "sender_position": [sender_x, sender_y],
+        "ship_candidate": None,
+        "planet_candidate": None,
+        "resolved_namespace": None,
+        "reason": None,
+    }
+    if (
+        target_id is None
+        or target_id <= 0
+        or sender_x is None
+        or sender_y is None
+    ):
+        result["reason"] = "target_or_sender_position_unresolved"
+        return result
+
+    ship_entry = owner_rows.get(target_id)
+    ship_colocated = False
+    if ship_entry is not None:
+        ship_owner_id, ship_raw = ship_entry
+        ship_x = _intish(ship_raw.get("x"))
+        ship_y = _intish(ship_raw.get("y"))
+        ship_colocated = (
+            ship_x is not None
+            and ship_y is not None
+            and (ship_x, ship_y) == (sender_x, sender_y)
+        )
+        result["ship_candidate"] = {
+            "owner_id": int(ship_owner_id),
+            "position": [ship_x, ship_y],
+            "colocated": ship_colocated,
+        }
+
+    planet_matches = [
+        (int(planet_id), int(x), int(y))
+        for planet_id, x, y in planets
+        if int(planet_id) == target_id
+    ]
+    planet_colocated = False
+    if len(planet_matches) == 1:
+        _planet_id, planet_x, planet_y = planet_matches[0]
+        planet_colocated = (planet_x, planet_y) == (sender_x, sender_y)
+        result["planet_candidate"] = {
+            "position": [planet_x, planet_y],
+            "colocated": planet_colocated,
+        }
+    elif len(planet_matches) > 1:
+        result["planet_candidate"] = {
+            "ambiguous_matches": [list(row) for row in planet_matches],
+            "colocated": False,
+        }
+
+    colocated = [
+        namespace
+        for namespace, present in (
+            ("ship", ship_colocated),
+            ("planet", planet_colocated),
+        )
+        if present
+    ]
+    if colocated == ["ship"]:
+        result["resolved_namespace"] = "ship"
+        result["reason"] = "unique_colocated_ship"
+    elif colocated == ["planet"]:
+        result["resolved_namespace"] = "planet"
+        result["reason"] = "unique_colocated_planet"
+    elif len(colocated) > 1:
+        result["reason"] = "ambiguous_colocated_namespaces"
+    else:
+        result["reason"] = "no_colocated_target"
+    return result
+
+
+def _submitted_transfer_amounts(
+    raw: Mapping[str, Any],
+) -> tuple[dict[str, int], tuple[str, ...]]:
+    amounts: dict[str, int] = {}
+    malformed: list[str] = []
+    for raw_field, cargo_field in TRANSFER_FIELDS:
+        value = _intish(raw.get(raw_field))
+        if value is None:
+            if raw.get(raw_field) not in (None, "", 0, "0"):
+                malformed.append(raw_field)
+            continue
+        if value < 0:
+            malformed.append(raw_field)
+        elif value > 0:
+            amounts[cargo_field] = int(value)
+    return amounts, tuple(sorted(malformed))
+
+
+def _sender_reduction_bound(
+    *,
+    sender_id: int,
+    sender_owner_id: int,
+    sender_raw: Mapping[str, Any],
+    target_namespace: Mapping[str, Any],
+) -> dict[str, Any]:
+    amounts, malformed = _submitted_transfer_amounts(sender_raw)
+    result: dict[str, Any] = {
+        "applicable": False,
+        "reason": None,
+        "sender_ship_id": sender_id,
+        "sender_owner_id": sender_owner_id,
+        "target_namespace": dict(target_namespace),
+        "amounts": dict(sorted(amounts.items())),
+    }
+    if malformed:
+        result["reason"] = "transfer_amount_malformed"
+        result["malformed_fields"] = list(malformed)
+        return result
+    if not amounts:
+        result["reason"] = "no_outbound_transfer"
+        return result
+    if target_namespace.get("resolved_namespace") not in {"ship", "planet"}:
+        result["reason"] = "transfer_target_namespace_unresolved"
+        return result
+
+    for cargo_field, amount in amounts.items():
+        available = _intish(sender_raw.get(cargo_field))
+        if available is None or available < amount:
+            result["reason"] = f"sender_{cargo_field}_insufficient"
+            return result
+
+    result["applicable"] = True
+    result["reason"] = "sender_reduction_bound"
+    return result
 
 
 def _strict_same_owner_ship_transfer(
