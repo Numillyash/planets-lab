@@ -14,6 +14,11 @@ for path in (REPO_ROOT, DIAGNOSTICS_DIR):
     if str(path) not in sys.path:
         sys.path.insert(0, str(path))
 
+from planets_lab.corpus.feature_scope import (
+    DEFAULT_FEATURE_INDEX_PATH,
+    load_feature_scope,
+)
+
 import combat_host_capture_continuation_audit as capture_module
 from combat_host_mission7_matched_control_audit import _dedup_vcrs
 from combat_host_priority_intercept_audit import RAW_DIR, _int
@@ -25,6 +30,8 @@ DEFAULT_EXAMPLE_LIMIT = 80
 
 def _vcr_index(
     archive_dir: Path,
+    *,
+    selected_ids: set[int] | None = None,
 ) -> tuple[dict[tuple[int, int, int], dict[str, Any]], int]:
     result: dict[tuple[int, int, int], dict[str, Any]] = {}
     conflicts = 0
