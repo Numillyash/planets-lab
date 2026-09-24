@@ -146,7 +146,48 @@ echo "evidence_branch:$EVIDENCE_BRANCH"
 echo
 
 set +e
-"${COMMAND[@]}" 2>&1 | tee "$LOG_PATH"
+"${COMMAND[@]}" 2>&1 | python3 -c '
+import errno
+import os
+import signal
+import sys
+
+# The logger must outlive a foreground process-group interrupt long enough to
+# drain the runner pipe. Write each chunk to the evidence file before exposing
+# the same chunk on stdout, so any output observed by a caller is already
+# present in gate.log even if SIGINT/SIGTERM arrives immediately afterwards.
+signal.signal(signal.SIGINT, signal.SIG_IGN)
+signal.signal(signal.SIGTERM, signal.SIG_IGN)
+
+log_fd = os.open(
+    sys.argv[1],
+    os.O_WRONLY | os.O_CREAT | os.O_TRUNC,
+    0o644,
+)
+
+def write_all(fd, payload):
+    view = memoryview(payload)
+    while view:
+        written = os.write(fd, view)
+        view = view[written:]
+
+stdout_open = True
+try:
+    while True:
+        chunk = os.read(0, 65536)
+        if not chunk:
+            break
+        write_all(log_fd, chunk)
+        if stdout_open:
+            try:
+                write_all(1, chunk)
+            except OSError as exc:
+                if exc.errno != errno.EPIPE:
+                    raise
+                stdout_open = False
+finally:
+    os.close(log_fd)
+' "$LOG_PATH"
 RUN_EXIT=${PIPESTATUS[0]}
 set -e
 
