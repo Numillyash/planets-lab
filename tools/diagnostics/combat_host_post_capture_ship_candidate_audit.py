@@ -29,7 +29,7 @@ from combat_host_matching_fc_suppression_audit import _relation_signature
 from combat_host_priority_intercept_audit import PREPARED_DIR, RAW_DIR
 
 
-SCHEMA = "planets-lab.combat-host-post-capture-ship-candidate-audit.v1"
+SCHEMA = "planets-lab.combat-host-post-capture-ship-candidate-audit.v2"
 DEFAULT_EXAMPLE_LIMIT = 80
 
 
@@ -44,8 +44,8 @@ def _priority(raw: Mapping[str, Any], ship_id: int) -> tuple[int, int, int] | No
 
 def _capture_targets(
     capture_report: Mapping[str, Any],
-) -> dict[tuple[int, int, int, int], Mapping[str, Any]]:
-    result: dict[tuple[int, int, int, int], Mapping[str, Any]] = {}
+) -> dict[tuple[int, int, int, int], list[Mapping[str, Any]]]:
+    result: dict[tuple[int, int, int, int], list[Mapping[str, Any]]] = {}
     rows = capture_report.get("examples")
     if not isinstance(rows, Sequence) or isinstance(rows, (str, bytes)):
         return result
@@ -69,7 +69,7 @@ def _capture_targets(
             int(position[0]),
             int(position[1]),
         )
-        result[key] = row
+        result.setdefault(key, []).append(row)
     return result
 
 
@@ -92,11 +92,7 @@ def _analyze_site(
         return {"status": "unresolved", "reason": "factual_ship_opponent_missing"}
 
     captured_entry = site_rows.get(captured_ship_id)
-    if not isinstance(captured_entry, Mapping):
-        return {
-            "status": "unresolved",
-            "reason": "captured_ship_not_independently_predicted_at_site",
-        }
+    captured_ship_predicted_at_site = isinstance(captured_entry, Mapping)
 
     relations = context.get("relations")
     controls = context.get("controls")
@@ -178,6 +174,7 @@ def _analyze_site(
     return {
         "status": "resolved",
         "captured_ship_id": captured_ship_id,
+        "captured_ship_predicted_at_site": captured_ship_predicted_at_site,
         "new_owner_id": new_owner_id,
         "factual_opponent_ship_id": factual_opponent_id,
         "predicted_site_ship_count": len(site_rows),
@@ -216,7 +213,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     targets = _capture_targets(capture_report)
     counts: Counter[str] = Counter()
     examples: list[dict[str, Any]] = []
-    seen_targets: set[tuple[int, int, int, int]] = set()
+    seen_sites: set[tuple[int, int, int, int]] = set()
 
     def observer(context: Mapping[str, Any]) -> None:
         key = (
@@ -225,46 +222,51 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             int(context["x"]),
             int(context["y"]),
         )
-        capture = targets.get(key)
-        if capture is None:
+        captures = targets.get(key)
+        if not captures:
             return
-        seen_targets.add(key)
-        result = _analyze_site(context, capture)
-        status = str(result.get("status", "unknown"))
-        counts[f"status:{status}"] += 1
-        if status == "resolved":
-            if result.get("factual_opponent_predicted_at_site") is True:
-                counts["factual_opponent_predicted_at_site"] += 1
-            if result.get("factual_opponent_requests_new_owner") is True:
-                counts["factual_opponent_requests_new_owner"] += 1
-            if result.get("factual_opponent_strict_permission") is True:
-                counts["factual_opponent_strict_permission_true"] += 1
-            elif result.get("factual_opponent_strict_permission") is None:
-                counts["factual_opponent_strict_permission_unknown"] += 1
-            else:
-                counts["factual_opponent_strict_permission_false"] += 1
-            rank = result.get("factual_opponent_requester_rank")
-            counts[f"requester_rank:{rank if rank is not None else 'none'}"] += 1
-            strict_rank = result.get("factual_opponent_strict_rank")
-            counts[f"strict_rank:{strict_rank if strict_rank is not None else 'none'}"] += 1
-        if len(examples) < args.example_limit:
-            examples.append(
-                {
-                    "game_id": key[0],
-                    "battle_turn": key[1],
-                    "x": key[2],
-                    "y": key[3],
-                    "capture": {
-                        "ship_id": capture.get("ship_id"),
-                        "captor_ship_id": capture.get("captor_ship_id"),
-                        "captor_owner_id": capture.get("captor_owner_id"),
-                        "current_opponent_ship_id": capture.get("current_opponent_ship_id"),
-                        "from_vcr_id": capture.get("from_vcr_id"),
-                        "to_vcr_id": capture.get("to_vcr_id"),
-                    },
-                    "result": result,
-                }
-            )
+        seen_sites.add(key)
+        for capture in captures:
+            result = _analyze_site(context, capture)
+            status = str(result.get("status", "unknown"))
+            counts[f"status:{status}"] += 1
+            if status == "resolved":
+                if result.get("captured_ship_predicted_at_site") is True:
+                    counts["captured_ship_predicted_at_site"] += 1
+                else:
+                    counts["captured_ship_anchored_by_capture_event"] += 1
+                if result.get("factual_opponent_predicted_at_site") is True:
+                    counts["factual_opponent_predicted_at_site"] += 1
+                if result.get("factual_opponent_requests_new_owner") is True:
+                    counts["factual_opponent_requests_new_owner"] += 1
+                if result.get("factual_opponent_strict_permission") is True:
+                    counts["factual_opponent_strict_permission_true"] += 1
+                elif result.get("factual_opponent_strict_permission") is None:
+                    counts["factual_opponent_strict_permission_unknown"] += 1
+                else:
+                    counts["factual_opponent_strict_permission_false"] += 1
+                rank = result.get("factual_opponent_requester_rank")
+                counts[f"requester_rank:{rank if rank is not None else 'none'}"] += 1
+                strict_rank = result.get("factual_opponent_strict_rank")
+                counts[f"strict_rank:{strict_rank if strict_rank is not None else 'none'}"] += 1
+            if len(examples) < args.example_limit:
+                examples.append(
+                    {
+                        "game_id": key[0],
+                        "battle_turn": key[1],
+                        "x": key[2],
+                        "y": key[3],
+                        "capture": {
+                            "ship_id": capture.get("ship_id"),
+                            "captor_ship_id": capture.get("captor_ship_id"),
+                            "captor_owner_id": capture.get("captor_owner_id"),
+                            "current_opponent_ship_id": capture.get("current_opponent_ship_id"),
+                            "from_vcr_id": capture.get("from_vcr_id"),
+                            "to_vcr_id": capture.get("to_vcr_id"),
+                        },
+                        "result": result,
+                    }
+                )
 
     baseline = baseline_module.run(
         argparse.Namespace(
@@ -278,9 +280,11 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         )
     )
 
-    missing = sorted(set(targets) - seen_targets)
-    counts["ship_capture_targets"] = len(targets)
-    counts["target_sites_observed_by_position_reconstructor"] = len(seen_targets)
+    missing = sorted(set(targets) - seen_sites)
+    capture_observations = sum(len(rows) for rows in targets.values())
+    counts["ship_capture_observations"] = capture_observations
+    counts["ship_capture_sites"] = len(targets)
+    counts["target_sites_observed_by_position_reconstructor"] = len(seen_sites)
     counts["target_sites_missing"] = len(missing)
 
     return {
@@ -295,9 +299,12 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "examples": examples,
         "evidence_boundary": (
             "Descriptive post-capture ship-candidate inventory only. Capture rows "
-            "come from the production capture differential. Site membership is "
-            "reconstructed independently by the existing owner-current T-1 "
-            "position pipeline. For each foreign predicted ship, its T-1 "
+            "come from the production capture differential. The prize ship's "
+            "presence is anchored by that independently validated capture event; "
+            "all other site membership is reconstructed independently by the "
+            "existing owner-current T-1 position pipeline. Multiple capture "
+            "continuations at one site remain separate observations. For each "
+            "foreign predicted ship, its T-1 "
             "Kill!/Primary-Enemy request is reevaluated against the prize ship's "
             "new owner, and strict diplomacy permission removes factual rows for "
             "the exact candidate pair so the held-out next engagement cannot "
