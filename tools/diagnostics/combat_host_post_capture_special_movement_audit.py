@@ -608,9 +608,22 @@ def _simulate_special_subject(
                 owner_rows=owner_rows,
                 specs=specs,
             )
+            target_namespace = _transfer_target_namespace(
+                sender_raw=target_raw,
+                owner_rows=owner_rows,
+                planets=planets,
+            )
+            target_transfer["target_namespace"] = target_namespace
+            sender_bound = _sender_reduction_bound(
+                sender_id=int(mission_target_id),
+                sender_owner_id=int(target_owner_id),
+                sender_raw=target_raw,
+                target_namespace=target_namespace,
+            )
+            target_transfer["sender_reduction_bound"] = sender_bound
             if (
                 target_transfer.get("applicable") is not True
-                and target_transfer.get("reason") != "foreign_ship_transfer_not_integrated"
+                and sender_bound.get("applicable") is not True
             ):
                 preflight.append("target_outbound_transfer_unresolved")
         inbound = _inbound_transfer_targets(owner_rows)
@@ -711,17 +724,15 @@ def _simulate_special_subject(
     )
 
     foreign_transfer_bound: dict[str, Any] | None = None
-    if (
-        target_transfer is not None
-        and target_transfer.get("reason") == "foreign_ship_transfer_not_integrated"
-        and mission_target_id is not None
-        and mission_target_id in owner_rows
-    ):
-        _target_owner_id, target_raw = owner_rows[mission_target_id]
-        foreign_transfer_bound = _foreign_transfer_sender_reduction(
-            projection=target_transfer,
-            sender_raw=target_raw,
-            owner_rows=owner_rows,
+    if target_transfer is not None and target_transfer.get("applicable") is not True:
+        raw_bound = target_transfer.get("sender_reduction_bound")
+        foreign_transfer_bound = (
+            dict(raw_bound)
+            if isinstance(raw_bound, Mapping)
+            else {
+                "applicable": False,
+                "reason": "sender_reduction_bound_missing",
+            }
         )
         if foreign_transfer_bound.get("applicable") is not True:
             return {
@@ -731,7 +742,7 @@ def _simulate_special_subject(
                 "target_outbound_transfer": target_transfer,
                 "foreign_transfer_sender_bound": foreign_transfer_bound,
                 "preflight_issues": [
-                    "foreign_transfer_sender_bound_unresolved"
+                    "transfer_sender_bound_unresolved"
                 ],
             }
 
@@ -1054,8 +1065,9 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "phases in Host order Tow -> Move Most -> Intercept. A target-side "
             "outbound transfer is applied only as a bounded hypothesis when it is "
             "a fully observable co-located same-owner ship transfer with sufficient "
-            "sender cargo and receiver capacity. For a co-located foreign ship "
-            "transfer, legality/receiver semantics remain unresolved; instead the "
+            "sender cargo and receiver capacity. Other submitted transfers are "
+            "resolved only to a unique co-located ship/planet namespace; legality "
+            "and receiver semantics remain unresolved, so the "
             "diagnostic runs both the no-transfer and sender-reduced movement bounds "
             "and accepts geometry only when target and interceptor endpoints are "
             "identical and both interceptor endpoints equal the held-out factual "
