@@ -1,0 +1,10 @@
+===== POST-CAPTURE CANDIDATE DISCOVERY: PREFLIGHT =====
+docker:  ready
+index:   validation/corpus/compiled/v1/metadata/game_features.parquet
+profile: combat-planar-no-horwasp
+
+===== POST-CAPTURE CANDIDATE DISCOVERY: TARGETED TESTS =====
+
+ERROR: file or directory not found: tests/test_combat_host_initial_standard_target_audit.py
+
+exit status 4

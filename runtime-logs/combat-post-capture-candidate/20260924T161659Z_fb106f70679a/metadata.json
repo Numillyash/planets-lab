@@ -1,0 +1,22 @@
+{
+  "evidence_branch": "runtime-logs",
+  "exit_code": 4,
+  "finished_at_utc": "2026-09-24T16:17:01Z",
+  "hostname": "GEORGUL-GAMER",
+  "interrupted_signal": null,
+  "log_file": "gate.log",
+  "missing_artifact_paths": [],
+  "remote": "origin",
+  "requested_artifact_paths": [
+    "artifacts/combat-post-capture-candidate-v2"
+  ],
+  "run_id": "20260924T161659Z_fb106f70679a",
+  "run_name": "combat-post-capture-candidate",
+  "runner": "bash",
+  "schema": "planets-lab.runtime-evidence.v1",
+  "skipped_oversized_artifact_paths": [],
+  "source_branch": "main",
+  "source_commit": "fb106f70679a25d51615264764c6960684eec8bc",
+  "source_dirty": false,
+  "started_at_utc": "2026-09-24T16:16:59Z"
+}
