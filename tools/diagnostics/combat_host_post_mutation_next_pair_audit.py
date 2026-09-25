@@ -137,7 +137,6 @@ def _active_ship_from_appearance(
         "bay_count": integer("baycount", "bay_count"),
         "torpedoes": integer("torpedos", "torpedoes"),
         "fighters": integer("fighters"),
-        "federation_crew_bonus": race_id == 1,
     }
 
 
