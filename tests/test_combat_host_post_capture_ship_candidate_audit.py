@@ -7,8 +7,10 @@ TOOLS_DIR = Path(__file__).resolve().parents[1] / "tools" / "diagnostics"
 if str(TOOLS_DIR) not in sys.path:
     sys.path.insert(0, str(TOOLS_DIR))
 
+from combat_host_initial_standard_target_audit import _merge_prediction_overlay  # noqa: E402
 from combat_host_post_capture_ship_candidate_audit import (  # noqa: E402
     _analyze_site,
+    _candidate_acceptance,
     _capture_targets,
 )
 
@@ -116,3 +118,69 @@ def test_capture_targets_preserve_multiple_capture_observations_at_same_site() -
 
     assert list(targets) == [(1, 7, 100, 200)]
     assert [row["from_vcr_id"] for row in targets[(1, 7, 100, 200)]] == [4, 5]
+
+
+def test_prediction_overlay_replaces_fail_closed_position_with_special_prediction() -> None:
+    rows = {
+        10: {
+            "ship_id": 10,
+            "owner_id": 1,
+            "position": None,
+            "source": "intercept_movement",
+        },
+        20: {
+            "ship_id": 20,
+            "owner_id": 2,
+            "position": (100, 100),
+            "source": "normal_movement",
+        },
+    }
+
+    _merge_prediction_overlay(
+        rows,
+        {
+            10: {
+                "ship_id": 10,
+                "owner_id": 1,
+                "position": (120, 100),
+                "source": "special_intercept_movement_phase",
+            }
+        },
+    )
+
+    assert rows[10]["position"] == (120, 100)
+    assert rows[10]["source"] == "special_intercept_movement_phase"
+    assert rows[20]["position"] == (100, 100)
+
+
+def test_candidate_acceptance_requires_all_eight_rank_one() -> None:
+    counts = {
+        "status:resolved": 8,
+        "factual_opponent_predicted_at_site": 8,
+        "factual_opponent_requests_new_owner": 8,
+        "factual_opponent_strict_permission_true": 8,
+        "requester_rank:1": 8,
+        "strict_rank:1": 8,
+    }
+
+    acceptance = _candidate_acceptance(counts, observation_count=8)
+
+    assert acceptance["post_capture_ship_candidate_gate_passed"] is True
+
+
+def test_candidate_acceptance_fails_if_one_opponent_is_not_rank_one() -> None:
+    counts = {
+        "status:resolved": 8,
+        "factual_opponent_predicted_at_site": 8,
+        "factual_opponent_requests_new_owner": 8,
+        "factual_opponent_strict_permission_true": 8,
+        "requester_rank:1": 7,
+        "requester_rank:2": 1,
+        "strict_rank:1": 7,
+        "strict_rank:2": 1,
+    }
+
+    acceptance = _candidate_acceptance(counts, observation_count=8)
+
+    assert acceptance["post_capture_ship_candidate_gate_passed"] is False
+    assert acceptance["all_factual_opponents_requester_rank_one"] is False
