@@ -560,7 +560,7 @@ def _simulate_special_subject(
     *,
     game_id: int,
     battle_turn: int,
-    site: tuple[int, int],
+    site: tuple[int, int] | None,
     subject_id: int,
     subject_owner_id: int,
     subject_raw: Mapping[str, Any],
@@ -832,6 +832,8 @@ def _simulate_special_subject(
             "both_subject_positions_match_factual_site": (
                 baseline_subject_position == site
                 and reduced_subject_position == site
+                if site is not None
+                else None
             ),
             "sender_reduced_events": [
                 _event_dict(event)
@@ -840,11 +842,16 @@ def _simulate_special_subject(
                 in {subject_id, mission_target_id}
             ],
         }
-        if not (
+        sensitivity_ok = (
             sensitivity["target_position_invariant"]
             and sensitivity["subject_position_invariant"]
-            and sensitivity["both_subject_positions_match_factual_site"]
-        ):
+        )
+        if site is not None:
+            sensitivity_ok = (
+                sensitivity_ok
+                and sensitivity["both_subject_positions_match_factual_site"] is True
+            )
+        if not sensitivity_ok:
             return {
                 "status": "mismatch",
                 "movement_kind": kind,
@@ -852,7 +859,7 @@ def _simulate_special_subject(
                 "target_outbound_transfer": target_transfer,
                 "foreign_transfer_sender_bound": foreign_transfer_bound,
                 "transfer_sensitivity": sensitivity,
-                "factual_site": list(site),
+                "factual_site": list(site) if site is not None else None,
             }
 
     subject = next_state.ships.get(subject_id)
@@ -866,7 +873,7 @@ def _simulate_special_subject(
         }
 
     predicted = (int(subject.x), int(subject.y))
-    exact = predicted == site
+    exact = predicted == site if site is not None else None
     relevant_ids = {subject_id}
     if mission_target_id is not None and mission_target_id > 0:
         relevant_ids.add(mission_target_id)
@@ -877,7 +884,11 @@ def _simulate_special_subject(
         relevant_ids.add(int(target_transfer["receiver_ship_id"]))
 
     return {
-        "status": "exact" if exact else "mismatch",
+        "status": (
+            "predicted"
+            if site is None
+            else ("exact" if exact else "mismatch")
+        ),
         "movement_kind": kind,
         "mission_target_id": mission_target_id,
         "target_outbound_transfer": target_transfer,
@@ -893,13 +904,88 @@ def _simulate_special_subject(
         ],
         "warp": _intish(subject_raw.get("warp")),
         "predicted_position": list(predicted),
-        "factual_site": list(site),
+        "factual_site": list(site) if site is not None else None,
         "events": [
             _event_dict(event)
             for event in events
             if getattr(event, "entity_id", None) in relevant_ids
         ],
     }
+
+
+
+def special_position_overlay(
+    context: Mapping[str, Any],
+) -> dict[int, dict[str, Any]]:
+    owner_rows = context.get("owner_rows")
+    if not isinstance(owner_rows, Mapping):
+        return {}
+
+    game_id = int(context["game_id"])
+    battle_turn = int(context["battle_turn"])
+    specs = context["specs"]
+    planets = context.get("planets", ())
+    warp_wells_enabled = context.get("warp_wells_enabled")
+    eligible_ids = context.get("eligible_warp_well_planet_ids")
+    races = context.get("races")
+    mine_context = context.get("mine_context")
+    if not isinstance(races, Mapping):
+        return {}
+
+    rows: dict[int, dict[str, Any]] = {}
+    for raw_ship_id, owner_entry in sorted(owner_rows.items(), key=lambda item: int(item[0])):
+        ship_id = int(raw_ship_id)
+        if (
+            not isinstance(owner_entry, tuple)
+            or len(owner_entry) != 2
+            or not isinstance(owner_entry[1], Mapping)
+        ):
+            continue
+        owner_id = int(owner_entry[0])
+        raw = owner_entry[1]
+        kind = _special_movement_kind(raw)
+        if kind is None:
+            continue
+
+        result = _simulate_special_subject(
+            game_id=game_id,
+            battle_turn=battle_turn,
+            site=None,
+            subject_id=ship_id,
+            subject_owner_id=owner_id,
+            subject_raw=raw,
+            owner_rows=owner_rows,
+            specs=specs,
+            planets=planets,
+            warp_wells_enabled=warp_wells_enabled,
+            eligible_warp_well_planet_ids=eligible_ids,
+            races=races,
+            mine_context=mine_context,
+        )
+        if result.get("status") != "predicted":
+            continue
+        position = result.get("predicted_position")
+        if (
+            not isinstance(position, Sequence)
+            or isinstance(position, (str, bytes))
+            or len(position) != 2
+        ):
+            continue
+
+        hull_id = _intish(raw.get("hullid", raw.get("hull_id")))
+        hull = specs.hulls.get(hull_id) if hull_id is not None else None
+        rows[ship_id] = {
+            "ship_id": ship_id,
+            "owner_id": owner_id,
+            "raw": raw,
+            "race_id": races.get(owner_id),
+            "hull_id": hull_id,
+            "hull_can_cloak": hull.can_cloak if hull is not None else None,
+            "position": (int(position[0]), int(position[1])),
+            "source": f"special_{kind}_movement_phase",
+            "special_movement": result,
+        }
+    return rows
 
 
 def run(args: argparse.Namespace) -> dict[str, Any]:
