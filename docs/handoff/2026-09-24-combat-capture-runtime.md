@@ -351,3 +351,83 @@ bounds.
 
 This keeps the combat/Intercept geometry question independent from full
 ship/planet transfer reconstruction.
+
+
+## Special-movement bridge closed
+
+Runtime source:
+
+\`\`\`text
+f148012d79803c5c63848a16f6f74b5e758fde54
+\`\`\`
+
+Published evidence:
+
+\`\`\`text
+runtime-logs/combat-post-capture-candidate/20260925T122343Z_f148012d7980
+\`\`\`
+
+The bounded special-movement population is now exact:
+
+\`\`\`text
+special_movement_opponents=2
+Tow=1
+Intercept=1
+status:exact=2
+status:mismatch=0
+status:unresolved=0
+special_movement_gate_passed=true
+\`\`\`
+
+Tow remains exact through production \`TowMovementPhase\`:
+
+\`\`\`text
+511506/T26
+ship119 -> (2514,1772)
+factual site=(2514,1772)
+\`\`\`
+
+The Intercept residual is also closed without promoting full transfer semantics.
+The submitted transfer on Intercept target ship174 resolves by T-1 object
+co-location to planet 224 rather than the unrelated ship with the same numeric
+ID:
+
+\`\`\`text
+ship174 sender position=(1491,2368)
+target_id=224
+target_type_raw=1
+ship224 position=(2576,1469)      colocated=false
+planet224 position=(1491,2368)    colocated=true
+resolved_namespace=planet
+transfer amount=30 clans
+\`\`\`
+
+Transfer legality and receiver-side semantics remain deliberately unpromoted.
+For combat geometry, the no-transfer and sender-reduced bounds are invariant:
+
+\`\`\`text
+baseline target ship174 endpoint=(1491,2315)
+sender-reduced target endpoint=(1491,2315)
+baseline interceptor ship268 endpoint=(1491,2315)
+sender-reduced interceptor endpoint=(1491,2315)
+factual combat site=(1491,2315)
+\`\`\`
+
+Therefore the bounded Tow/Intercept geometry bridge is closed independently of
+the unresolved generic transfer mechanic.
+
+The post-capture candidate inventory now has an opt-in T-1 special-movement
+position overlay. It predicts all supported Tow/Intercept ships independently
+before the factual next-opponent comparator is consulted. The next runtime
+acceptance requires all eight observed ship capture continuations to satisfy:
+
+\`\`\`text
+factual opponent predicted at site = 8/8
+requests new prize owner           = 8/8
+strict permission                  = 8/8
+requester rank 1                   = 8/8
+strict rank 1                      = 8/8
+\`\`\`
+
+Active-membership history and complete mutable post-capture pair recomposition
+remain separate after this candidate-graph gate.
