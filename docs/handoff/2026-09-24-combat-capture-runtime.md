@@ -431,3 +431,76 @@ strict rank 1                      = 8/8
 
 Active-membership history and complete mutable post-capture pair recomposition
 remain separate after this candidate-graph gate.
+
+
+## Post-capture ship candidate graph closed
+
+Runtime source:
+
+\`\`\`text
+6c09da53ac4aa5378cf93e9ac59060dad4d46dc0
+\`\`\`
+
+Published evidence:
+
+\`\`\`text
+runtime-logs/combat-post-capture-candidate/20260925T125307Z_6c09da53ac4a
+\`\`\`
+
+The independent special-position overlay closes the complete observed
+ship-to-ship capture continuation population:
+
+\`\`\`text
+ship_capture_observations=8
+ship_capture_sites=7
+status:resolved=8
+factual_opponent_predicted_at_site=8
+factual_opponent_requests_new_owner=8
+factual_opponent_strict_permission_true=8
+requester_rank:1=8
+strict_rank:1=8
+post_capture_ship_candidate_gate_passed=true
+\`\`\`
+
+The two formerly missing geometry cases now enter the same candidate graph from
+production-phase movement rather than from held-out VCR identity:
+
+\`\`\`text
+511506/T26 factual ship119
+  source=special_tow_movement_phase
+  requester rank=1
+  strict rank=1
+
+511506/T33 factual ship268
+  source=special_intercept_movement_phase
+  requester order=268,246
+  strict requester order=268,246
+  requester rank=1
+  strict rank=1
+\`\`\`
+
+The bounded special-movement oracle remains independently exact at 2/2.
+
+This closes candidate geometry + directed attack + strict diplomacy + static
+priority for the observed ship post-capture population. It does not by itself
+prove that every T-1 site member is still active at the exact capture point.
+
+The next gate therefore replays only already-elapsed VCR history through
+production \`apply_ship_terminal_batch\`, including capture owner/race transfer
+derived from VCR N. It then rebuilds the post-capture opponent list from the
+mutated active membership. VCR N+1 remains held out.
+
+Tracked narrow runner remains:
+
+\`\`\`bash
+bash tools/run-combat-post-capture-candidate-with-evidence.sh
+\`\`\`
+
+The v3 runtime now additionally writes:
+
+\`\`\`text
+artifacts/combat-post-capture-candidate-v3/post-capture-active-membership.json
+\`\`\`
+
+A successful active-membership gate is the prerequisite for complete
+post-capture pair recomposition and left/right prediction.
