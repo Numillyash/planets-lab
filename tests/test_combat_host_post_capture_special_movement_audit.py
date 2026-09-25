@@ -17,6 +17,7 @@ from combat_host_post_capture_special_movement_audit import (
     _special_movement_kind,
     _strict_same_owner_ship_transfer,
     _transfer_target_namespace,
+    special_position_overlay,
 )
 
 
@@ -499,3 +500,95 @@ def test_intercept_planet_namespace_transfer_geometry_is_endpoint_invariant(monk
     assert sensitivity["target_position_invariant"] is True
     assert sensitivity["subject_position_invariant"] is True
     assert sensitivity["both_subject_positions_match_factual_site"] is True
+
+
+def test_special_subject_can_predict_without_held_out_site(monkeypatch) -> None:
+    monkeypatch.setattr(module, "_foreign_mine_route_risk", lambda **kwargs: None)
+
+    interceptor = _raw(
+        10,
+        1,
+        x=100,
+        target_x=100,
+        warp=9,
+        mission=7,
+        mission_target=20,
+        fuel=100,
+    )
+    target = _raw(
+        20,
+        2,
+        x=110,
+        target_x=120,
+        warp=9,
+        mission=0,
+        fuel=100,
+    )
+
+    result = _simulate_special_subject(
+        game_id=1,
+        battle_turn=5,
+        site=None,
+        subject_id=10,
+        subject_owner_id=1,
+        subject_raw=interceptor,
+        owner_rows={10: (1, interceptor), 20: (2, target)},
+        specs=_specs(),
+        planets=(),
+        warp_wells_enabled=False,
+        eligible_warp_well_planet_ids=frozenset(),
+        races={1: 1, 2: 2},
+        mine_context=None,
+    )
+
+    assert result["status"] == "predicted"
+    assert result["predicted_position"] == [120, 100]
+    assert result["factual_site"] is None
+
+
+def test_special_position_overlay_returns_all_supported_predictions(monkeypatch) -> None:
+    monkeypatch.setattr(module, "_foreign_mine_route_risk", lambda **kwargs: None)
+
+    interceptor = _raw(
+        10,
+        1,
+        x=100,
+        target_x=100,
+        warp=9,
+        mission=7,
+        mission_target=20,
+        fuel=100,
+    )
+    target = _raw(
+        20,
+        2,
+        x=110,
+        target_x=120,
+        warp=9,
+        mission=0,
+        fuel=100,
+    )
+    ordinary = _raw(30, 3, x=130, target_x=130, warp=0, mission=0)
+
+    rows = special_position_overlay(
+        {
+            "game_id": 1,
+            "battle_turn": 5,
+            "before_turn": 4,
+            "owner_rows": {
+                10: (1, interceptor),
+                20: (2, target),
+                30: (3, ordinary),
+            },
+            "specs": _specs(),
+            "planets": (),
+            "warp_wells_enabled": False,
+            "eligible_warp_well_planet_ids": frozenset(),
+            "races": {1: 1, 2: 2, 3: 3},
+            "mine_context": None,
+        }
+    )
+
+    assert sorted(rows) == [10]
+    assert rows[10]["position"] == (120, 100)
+    assert rows[10]["source"] == "special_intercept_movement_phase"
