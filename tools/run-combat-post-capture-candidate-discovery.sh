@@ -71,7 +71,6 @@ echo
 echo "===== POST-CAPTURE CANDIDATE DISCOVERY: ACTIVE MEMBERSHIP ====="
 "${lab[@]}" python tools/diagnostics/combat_host_post_capture_active_membership_audit.py \
   --archive-dir "$ARCHIVE_DIR" \
-  --prepared-dir validation/corpus/compiled/v1/prepared \
   --feature-index "$INDEX" \
   --scope-profile "$PROFILE" \
   --output "$ARTIFACT_DIR/post-capture-active-membership.json"
