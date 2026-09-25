@@ -20,6 +20,7 @@ from planets_lab.rules.combat.order import standard_battle_priority_key
 
 import combat_host_capture_continuation_audit as capture_module
 import combat_host_initial_standard_target_audit as baseline_module
+import combat_host_post_capture_special_movement_audit as special_movement_module
 from combat_host_candidate_set_audit import (
     _independent_permission,
     _pair,
@@ -29,7 +30,7 @@ from combat_host_matching_fc_suppression_audit import _relation_signature
 from combat_host_priority_intercept_audit import PREPARED_DIR, RAW_DIR
 
 
-SCHEMA = "planets-lab.combat-host-post-capture-ship-candidate-audit.v2"
+SCHEMA = "planets-lab.combat-host-post-capture-ship-candidate-audit.v3"
 DEFAULT_EXAMPLE_LIMIT = 80
 
 
@@ -143,6 +144,7 @@ def _analyze_site(
                 "requests_new_owner": request,
                 "strict_permission": strict_permission,
                 "priority": list(priority) if priority is not None else None,
+                "position_source": entry.get("source"),
                 "is_factual_next_opponent": ship_id == factual_opponent_id,
             }
         )
@@ -200,6 +202,42 @@ def _analyze_site(
     }
 
 
+
+def _candidate_acceptance(
+    counts: Mapping[str, int],
+    *,
+    observation_count: int,
+) -> dict[str, bool]:
+    acceptance = {
+        "population_present": observation_count > 0,
+        "all_observations_resolved": (
+            int(counts.get("status:resolved", 0)) == observation_count
+        ),
+        "all_factual_opponents_predicted_at_site": (
+            int(counts.get("factual_opponent_predicted_at_site", 0))
+            == observation_count
+        ),
+        "all_factual_opponents_request_new_owner": (
+            int(counts.get("factual_opponent_requests_new_owner", 0))
+            == observation_count
+        ),
+        "all_factual_opponents_strictly_permitted": (
+            int(counts.get("factual_opponent_strict_permission_true", 0))
+            == observation_count
+        ),
+        "all_factual_opponents_requester_rank_one": (
+            int(counts.get("requester_rank:1", 0)) == observation_count
+        ),
+        "all_factual_opponents_strict_rank_one": (
+            int(counts.get("strict_rank:1", 0)) == observation_count
+        ),
+    }
+    acceptance["post_capture_ship_candidate_gate_passed"] = all(
+        acceptance.values()
+    )
+    return acceptance
+
+
 def run(args: argparse.Namespace) -> dict[str, Any]:
     capture_report = capture_module.run(
         argparse.Namespace(
@@ -211,9 +249,24 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         )
     )
     targets = _capture_targets(capture_report)
+    target_turns = {
+        (game_id, battle_turn)
+        for game_id, battle_turn, _x, _y in targets
+    }
     counts: Counter[str] = Counter()
     examples: list[dict[str, Any]] = []
     seen_sites: set[tuple[int, int, int, int]] = set()
+
+    def prediction_overlay(
+        context: Mapping[str, Any],
+    ) -> dict[int, dict[str, Any]]:
+        key = (int(context["game_id"]), int(context["battle_turn"]))
+        if key not in target_turns:
+            return {}
+        rows = special_movement_module.special_position_overlay(context)
+        counts["special_position_overlay_turns"] += 1
+        counts["special_position_overlay_rows"] += len(rows)
+        return rows
 
     def observer(context: Mapping[str, Any]) -> None:
         key = (
@@ -277,6 +330,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             example_limit=0,
             output=None,
             site_observer=observer,
+            prediction_overlay=prediction_overlay,
         )
     )
 
@@ -286,6 +340,10 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     counts["ship_capture_sites"] = len(targets)
     counts["target_sites_observed_by_position_reconstructor"] = len(seen_sites)
     counts["target_sites_missing"] = len(missing)
+    acceptance = _candidate_acceptance(
+        counts,
+        observation_count=capture_observations,
+    )
 
     return {
         "schema": SCHEMA,
@@ -295,21 +353,24 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "counts": dict(sorted(counts.items())),
             "baseline_initial_standard": baseline.get("summary"),
             "missing_target_sites": [list(row) for row in missing],
+            "acceptance": acceptance,
         },
         "examples": examples,
         "evidence_boundary": (
             "Descriptive post-capture ship-candidate inventory only. Capture rows "
             "come from the production capture differential. The prize ship's "
             "presence is anchored by that independently validated capture event; "
-            "all other site membership is reconstructed independently by the "
-            "existing owner-current T-1 position pipeline. Multiple capture "
+            "all other site membership is reconstructed independently from T-1 "
+            "state. Ordinary ships use the existing owner-current position path; "
+            "Tow/Intercept ships use the independently validated production-phase "
+            "special-movement overlay. Multiple capture "
             "continuations at one site remain separate observations. For each "
             "foreign predicted ship, its T-1 "
             "Kill!/Primary-Enemy request is reevaluated against the prize ship's "
             "new owner, and strict diplomacy permission removes factual rows for "
             "the exact candidate pair so the held-out next engagement cannot "
             "prove its own permission. Factual VCR N+1 contributes only the "
-            "opponent ship id comparator after candidates are built. This v1 "
+            "opponent ship id comparator after candidates are built. This v3 "
             "does not yet apply active-membership history before the capture, "
             "rebuild captured-ship aggression, or promote a next-pair rule."
         ),
