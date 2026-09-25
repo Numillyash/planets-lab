@@ -600,6 +600,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                         "y": y,
                         "site": site,
                         "site_ship_rows": site_ship_rows,
+                        "predictions": predictions,
                         "relations": relations,
                         "controls": controls,
                         "start_stacks": start_stacks,
