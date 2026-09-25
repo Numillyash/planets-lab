@@ -115,9 +115,17 @@ def _active_ship_from_appearance(
             else default
         )
 
+    owner_id = appearance.get("owner_id") if isinstance(appearance, Mapping) else None
+    if isinstance(owner_id, bool) or not isinstance(owner_id, int) or owner_id <= 0:
+        owner_id = None
+
     return {
         "id": ship_id,
         "hull_id": hull_id,
+        "owner_id": owner_id,
+        "race_id": race_id,
+        "federation_crew_bonus": race_id == 1,
+        "lizard_crew_bonus": race_id == 2,
         "shield": integer("shield", default=100),
         "damage": integer("damage"),
         "crew": integer("crew", default=1),
