@@ -374,6 +374,22 @@ def _accumulate_scope(
                 counter["target_highest_priority_exact"] += 1
 
 
+
+def _merge_prediction_overlay(
+    predicted_rows: dict[int, dict[str, Any]],
+    overlay_rows: Mapping[int, Mapping[str, Any]] | None,
+) -> None:
+    if not isinstance(overlay_rows, Mapping):
+        return
+    for raw_ship_id, overlay in overlay_rows.items():
+        if not isinstance(overlay, Mapping):
+            continue
+        ship_id = int(raw_ship_id)
+        merged = dict(predicted_rows.get(ship_id, {}))
+        merged.update(overlay)
+        predicted_rows[ship_id] = merged
+
+
 def run(args: argparse.Namespace) -> dict[str, Any]:
     totals: Counter[str] = Counter()
     strict_broad: Counter[str] = Counter()
@@ -533,6 +549,23 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                         "position": predicted,
                         "source": source,
                     }
+                prediction_overlay = getattr(args, "prediction_overlay", None)
+                if callable(prediction_overlay):
+                    overlay_rows = prediction_overlay(
+                        {
+                            "game_id": game_id,
+                            "battle_turn": battle_turn,
+                            "before_turn": before_turn,
+                            "owner_rows": owner_rows,
+                            "specs": specs,
+                            "planets": planets,
+                            "warp_wells_enabled": warp_wells_enabled,
+                            "eligible_warp_well_planet_ids": eligible_ids,
+                            "races": races,
+                            "mine_context": mine_context,
+                        }
+                    )
+                    _merge_prediction_overlay(predicted_rows, overlay_rows)
                 predictions_by_battle_turn[battle_turn] = predicted_rows
 
             predictions = predictions_by_battle_turn[battle_turn]
