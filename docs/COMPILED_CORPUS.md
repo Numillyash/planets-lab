@@ -11,6 +11,26 @@ Current movement checkpoints:
 - [`handoff/2026-09-11-finite-fuel-tow-documented-reconciliation-runtime.md`](handoff/2026-09-11-finite-fuel-tow-documented-reconciliation-runtime.md)
 - [`handoff/2026-09-09-partial-fuel-historical-gate-verified.md`](handoff/2026-09-09-partial-fuel-historical-gate-verified.md)
 
+External reference/corpus-discovery policy:
+
+- [`handoff/2026-09-27-external-planets-tools-mechanics-reference.md`](handoff/2026-09-27-external-planets-tools-mechanics-reference.md)
+
+Third-party tools may propose candidate game ids, message signatures, formulas or
+field interpretations, but the compiled corpus accepts evidence only from our
+own attributable official Planets.nu acquisition. A game discovered via
+T-Continuum Analyser, a replay tool or a plugin catalog must still pass:
+
+```text
+external discovery
+-> official loadinfo / loadall
+-> immutable archive + provenance
+-> feature-index classification
+-> bounded diagnostic
+```
+
+Likewise, a formula seen in an external simulator remains a candidate until a
+clean corpus discriminator and local test justify the applicable evidence label.
+
 ## Current verified schema state
 
 ```text
