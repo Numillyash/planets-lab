@@ -504,3 +504,99 @@ artifacts/combat-post-capture-candidate-v3/post-capture-active-membership.json
 
 A successful active-membership gate is the prerequisite for complete
 post-capture pair recomposition and left/right prediction.
+
+
+## Post-capture active membership closed
+
+Runtime source:
+
+\`\`\`text
+03cf8efd614bdf3d88e63ab240b1f11a4685c2c3
+\`\`\`
+
+Published evidence:
+
+\`\`\`text
+runtime-logs/combat-post-capture-candidate/20260925T173206Z_03cf8efd614b
+\`\`\`
+
+The mutable-history gate is exact across the complete observed ship-to-ship
+capture continuation population:
+
+\`\`\`text
+ship_capture_observations=8
+observations_seen=8
+status:resolved=8
+factual_opponent_active=8
+factual_opponent_candidate_resolved=8
+factual_opponent_requests_new_owner=8
+factual_opponent_strict_permission_true=8
+requester_rank:1=8
+strict_rank:1=8
+unresolved_foreign_candidates=0
+post_capture_active_membership_gate_passed=true
+\`\`\`
+
+The gate applies only elapsed VCR history through production
+\`apply_ship_terminal_batch\`. Capture owner/race transfer comes from the
+captor in VCR N; VCR N+1 is comparator-only.
+
+The same-site double-capture case remains coherent through two sequential
+mutations:
+
+\`\`\`text
+621896/T25 ship34
+VCR49: captured by owner2
+VCR50: captured by owner6
+post-VCR50 owner=6
+next factual opponent ship67 remains active and strict rank 1
+\`\`\`
+
+No observed ship-capture continuation contains an unresolved earlier
+owner-mutated foreign candidate.
+
+This closes the active-membership boundary for the observed ship capture
+population. Candidate geometry, aggression, strict diplomacy and rank were
+already closed separately.
+
+## Current residual: post-capture pair recomposition and sides
+
+Official Nu documentation explicitly notes that captured ships can fight for
+their new owners and receive an additional combat order set when captured; the
+Host combat documentation also limits any ship pair to at most two engagements.
+
+A new bounded differential therefore keeps these questions separate:
+
+1. new-owner pair eligibility/phase recomposition;
+2. captured-Friendly-Code sensitivity;
+3. elapsed pair-occurrence history;
+4. LEFT/RIGHT rule.
+
+Captured T-1 mission/Primary Enemy are not allowed to initiate the new-owner
+combat. The independently reconstructed factual rank-1 opponent remains the
+attack source.
+
+The diagnostic compares, without promoting any of them in advance:
+
+\`\`\`text
+sticky capture side
+generic opponent-initiator-right
+frozen T-1 combat priority
+neutral captured orders + preserved FC
+neutral captured orders + fresh nonmatching FC
+\`\`\`
+
+Tracked artifact:
+
+\`\`\`text
+artifacts/combat-post-capture-candidate-v3/post-capture-pair-recomposition.json
+\`\`\`
+
+Tracked runner remains:
+
+\`\`\`bash
+bash tools/run-combat-post-capture-candidate-with-evidence.sh
+\`\`\`
+
+The next runtime should identify the side rule discriminator before any new
+production capture-side rule is added.
