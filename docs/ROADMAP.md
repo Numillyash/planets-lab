@@ -11,6 +11,7 @@ Current durable checkpoints:
 - ship battle sequences: [`handoff/2026-09-07-combat-c3-ship-sequence-diff-verified.md`](handoff/2026-09-07-combat-c3-ship-sequence-diff-verified.md);
 - planet/starbase sequences: [`handoff/2026-09-07-combat-c4-planet-sequence-checkpoint.md`](handoff/2026-09-07-combat-c4-planet-sequence-checkpoint.md).
 - external client/plugin mechanics references: [`handoff/2026-09-27-external-planets-tools-mechanics-reference.md`](handoff/2026-09-27-external-planets-tools-mechanics-reference.md).
+- engine-core internet research pass: [`research/2026-09-28-engine-core-internet-research-pass.md`](research/2026-09-28-engine-core-internet-research-pass.md).
 
 ## Evidence policy
 
@@ -61,6 +62,12 @@ combat-order work, without replacing it:
   explicit Feature Index gaps, then ingest through official Planets.nu sources.
 
 These are opportunistic evidence accelerators, not a new top-level milestone.
+
+The 2026-09-28 engine-core search identified c2ng as the strongest currently
+available independent rules implementation and JHOST/JPHost as a high-priority
+server-side PHost-derived source-recovery target. These remain REFERENCE ONLY:
+use them to enumerate candidate rules and discriminators, never to promote NuHost
+mechanics without the normal documentation/corpus/test/differential chain.
 
 ## Planning progress snapshot — 2026-09-11
 
