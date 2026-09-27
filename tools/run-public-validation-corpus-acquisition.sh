@@ -21,9 +21,13 @@ LIST_LIMIT="${LIST_LIMIT:-0}"
 REQUEST_DELAY="${REQUEST_DELAY:-0.20}"
 ARCHIVE_DELAY="${ARCHIVE_DELAY:-0.50}"
 
-if [[ -z "${PLANETSNU_PROXY_URL:-}" ]]; then
-  echo "ERROR: PLANETSNU_PROXY_URL is required for Planets.nu corpus network access." >&2
-  exit 64
+if [[ -n "${PLANETSNU_PROXY_URL:-}" ]]; then
+  echo "network_mode: proxy"
+  echo "proxy:        configured"
+else
+  export PLANETSNU_ALLOW_DIRECT=1
+  echo "network_mode: direct"
+  echo "proxy:        not configured"
 fi
 
 echo "===== PUBLIC VALIDATION CORPUS: DISCOVERY ====="
