@@ -14,6 +14,7 @@ Current movement checkpoints:
 External reference/corpus-discovery policy:
 
 - [`handoff/2026-09-27-external-planets-tools-mechanics-reference.md`](handoff/2026-09-27-external-planets-tools-mechanics-reference.md)
+- [`research/2026-09-28-engine-core-internet-research-pass.md`](research/2026-09-28-engine-core-internet-research-pass.md)
 
 Third-party tools may propose candidate game ids, message signatures, formulas or
 field interpretations, but the compiled corpus accepts evidence only from our
