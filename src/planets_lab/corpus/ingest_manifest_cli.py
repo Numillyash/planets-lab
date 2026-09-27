@@ -39,6 +39,55 @@ def _write_json(path: Path, payload: dict[str, Any]) -> None:
     )
 
 
+
+def _download_game_archive(
+    *,
+    client: PlanetsNuPublicApi,
+    game_id: int,
+    retries: int,
+    retry_delay: float,
+) -> bytes:
+    attempts = retries + 1
+    last_exc: BaseException | None = None
+
+    for attempt in range(1, attempts + 1):
+        try:
+            info = client.load_info(game_id)
+            game = info.get("game", {})
+            if not isinstance(game, dict) or game.get("status") != 3:
+                raise ValueError(
+                    f"game {game_id}: /game/loadall requires finished status=3"
+                )
+            data = client.load_all_archive(game_id)
+            # Validate ZIP structure before anything is written to immutable cache.
+            archive_members(data)
+            return data
+        except (CorpusApiError, OSError) as exc:
+            last_exc = exc
+            if attempt >= attempts:
+                raise
+            print(
+                json.dumps(
+                    {
+                        "game_id": game_id,
+                        "status": "retry",
+                        "attempt": attempt,
+                        "max_attempts": attempts,
+                        "error_type": type(exc).__name__,
+                        "error": str(exc),
+                    },
+                    sort_keys=True,
+                ),
+                file=sys.stderr,
+            )
+            if retry_delay > 0:
+                time.sleep(retry_delay * attempt)
+
+    assert last_exc is not None
+    raise last_exc
+
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
         description=(
@@ -84,6 +133,24 @@ def main() -> int:
         default=0.0,
         help="sleep this many seconds after each network archive download",
     )
+    parser.add_argument(
+        "--network-timeout",
+        type=float,
+        default=180.0,
+        help="per-request timeout in seconds for loadinfo/loadall",
+    )
+    parser.add_argument(
+        "--download-retries",
+        type=int,
+        default=2,
+        help="retry transient network failures this many additional times",
+    )
+    parser.add_argument(
+        "--retry-delay",
+        type=float,
+        default=2.0,
+        help="base delay in seconds between download retries",
+    )
     args = parser.parse_args()
 
     if args.limit is not None and args.limit <= 0:
@@ -94,6 +161,12 @@ def main() -> int:
         return 2
     if args.request_delay < 0:
         print("--request-delay must be non-negative", file=sys.stderr)
+        return 2
+    if args.network_timeout <= 0:
+        print("--network-timeout must be positive", file=sys.stderr)
+        return 2
+    if args.download_retries < 0 or args.retry_delay < 0:
+        print("--download-retries/retry-delay must be non-negative", file=sys.stderr)
         return 2
 
     try:
@@ -120,14 +193,13 @@ def main() -> int:
                 if args.offline:
                     raise FileNotFoundError(f"game {game_id}: cache miss in offline mode")
                 if client is None:
-                    client = PlanetsNuPublicApi()
-                info = client.load_info(game_id)
-                game = info.get("game", {})
-                if not isinstance(game, dict) or game.get("status") != 3:
-                    raise ValueError(f"game {game_id}: /game/loadall requires finished status=3")
-                data = client.load_all_archive(game_id)
-                # Validate before writing anything to the immutable cache.
-                archive_members(data)
+                    client = PlanetsNuPublicApi(timeout=args.network_timeout)
+                data = _download_game_archive(
+                    client=client,
+                    game_id=game_id,
+                    retries=args.download_retries,
+                    retry_delay=args.retry_delay,
+                )
                 cache_path.parent.mkdir(parents=True, exist_ok=True)
                 cache_path.write_bytes(data)
                 source = "network"
