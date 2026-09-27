@@ -19,9 +19,9 @@ class CorpusApiError(RuntimeError):
 class PlanetsNuPublicApi:
     """Small stdlib Planets.nu client for corpus acquisition.
 
-    Server-side Planets.nu access in this project is intentionally proxy-only.
-    There is no silent direct-network fallback: callers must configure
-    PLANETSNU_PROXY_URL or pass an explicit proxy_url.
+    Direct network access is opt-in. Existing server-side callers therefore
+    remain proxy-only unless they explicitly pass allow_direct=True or set
+    PLANETSNU_ALLOW_DIRECT to a truthy value.
     """
 
     def __init__(
@@ -29,6 +29,7 @@ class PlanetsNuPublicApi:
         *,
         base_url: str | None = None,
         proxy_url: str | None = None,
+        allow_direct: bool = False,
         timeout: float = 30.0,
     ) -> None:
         self.base_url = (
@@ -37,28 +38,38 @@ class PlanetsNuPublicApi:
             or DEFAULT_API_BASE_URL
         ).rstrip("/")
         self.proxy_url = proxy_url or os.environ.get("PLANETSNU_PROXY_URL")
+        env_allow_direct = os.environ.get("PLANETSNU_ALLOW_DIRECT", "").strip().lower()
+        self.allow_direct = allow_direct or env_allow_direct in {
+            "1",
+            "true",
+            "yes",
+            "on",
+        }
         self.timeout = timeout
 
-        if not self.proxy_url:
+        if self.proxy_url:
+            proxy_scheme = urlparse(self.proxy_url).scheme.lower()
+            if proxy_scheme not in {"http", "https"}:
+                raise CorpusApiError(
+                    "PLANETSNU_PROXY_URL must be an http:// or https:// proxy URL "
+                    "for the stdlib corpus client"
+                )
+            self._opener = build_opener(
+                ProxyHandler(
+                    {
+                        "http": self.proxy_url,
+                        "https": self.proxy_url,
+                    }
+                )
+            )
+        elif self.allow_direct:
+            # Explicitly disable environment proxy inheritance in direct mode.
+            self._opener = build_opener(ProxyHandler({}))
+        else:
             raise CorpusApiError(
-                "PLANETSNU_PROXY_URL is required for corpus network access"
+                "PLANETSNU_PROXY_URL is required for corpus network access "
+                "unless PLANETSNU_ALLOW_DIRECT=1 or allow_direct=True"
             )
-
-        proxy_scheme = urlparse(self.proxy_url).scheme.lower()
-        if proxy_scheme not in {"http", "https"}:
-            raise CorpusApiError(
-                "PLANETSNU_PROXY_URL must be an http:// or https:// proxy URL "
-                "for the stdlib corpus client"
-            )
-
-        self._opener = build_opener(
-            ProxyHandler(
-                {
-                    "http": self.proxy_url,
-                    "https": self.proxy_url,
-                }
-            )
-        )
 
     def _url(self, path: str, params: dict[str, Any] | None = None) -> str:
         url = f"{self.base_url}/{path.lstrip('/')}"
