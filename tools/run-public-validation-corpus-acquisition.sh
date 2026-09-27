@@ -11,6 +11,7 @@ COMBINED_MANIFEST="${COMBINED_MANIFEST:-validation/corpus/manifests/public-valid
 REPORT="${REPORT:-artifacts/public-validation-corpus/selection-report.json}"
 INDEX_OUTPUT="${INDEX_OUTPUT:-validation/corpus/index/public-validation-games.jsonl}"
 STATS_OUTPUT="${STATS_OUTPUT:-validation/corpus/index/public-validation-stats.json}"
+EVIDENCE_DIR="${EVIDENCE_DIR:-artifacts/public-validation-corpus/evidence}"
 
 MIN_TURN="${MIN_TURN:-55}"
 MIN_SLOTS="${MIN_SLOTS:-8}"
@@ -49,6 +50,15 @@ python -m planets_lab.corpus.ingest_manifest_cli \
   --request-delay "$ARCHIVE_DELAY"
 
 echo
+echo "===== PUBLIC VALIDATION CORPUS: STAGE SAFE EVIDENCE ====="
+rm -rf "$EVIDENCE_DIR"
+mkdir -p "$EVIDENCE_DIR"
+cp "$SELECTED_MANIFEST" "$EVIDENCE_DIR/public-validation-selected.jsonl"
+cp "$COMBINED_MANIFEST" "$EVIDENCE_DIR/public-validation-combined.jsonl"
+cp "$INDEX_OUTPUT" "$EVIDENCE_DIR/public-validation-games.jsonl"
+cp "$STATS_OUTPUT" "$EVIDENCE_DIR/public-validation-stats.json"
+
+echo
 echo "===== PUBLIC VALIDATION CORPUS: COMPLETE ====="
 echo "baseline_manifest: $BASELINE_MANIFEST"
 echo "selected_manifest: $SELECTED_MANIFEST"
@@ -56,4 +66,5 @@ echo "combined_manifest: $COMBINED_MANIFEST"
 echo "selection_report:  $REPORT"
 echo "index_output:      $INDEX_OUTPUT"
 echo "stats_output:      $STATS_OUTPUT"
+echo "evidence_dir:      $EVIDENCE_DIR"
 echo "archive_cache:     validation/corpus/cache/loadall"
