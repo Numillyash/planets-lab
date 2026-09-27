@@ -16,6 +16,7 @@ GAME_METADATA_FIELDS = (
     "statusname",
     "shortdescription",
     "turn",
+    "slots",
     "datecreated",
     "dateended",
     "gametype",
