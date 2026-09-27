@@ -600,3 +600,69 @@ bash tools/run-combat-post-capture-candidate-with-evidence.sh
 
 The next runtime should identify the side rule discriminator before any new
 production capture-side rule is added.
+
+
+## Post-capture pair recomposition runtime
+
+Runtime source:
+
+\`\`\`text
+39bf929f7d9e71535c3ade7e6fd7b25d64dbd707
+\`\`\`
+
+Published evidence:
+
+\`\`\`text
+runtime-logs/combat-post-capture-candidate/20260927T193723Z_39bf929f7d9e
+\`\`\`
+
+Pair recomposition itself is closed across the eight observed ship-capture
+continuations:
+
+\`\`\`text
+observations_seen=8
+status:resolved=8
+pair_phase_fc_invariant=8
+pair_phase:standard=8
+\`\`\`
+
+Therefore the new-owner ship pair is independently eligible and remains
+STANDARD regardless of whether the captured ship retains its T-1 Friendly Code
+or receives a guaranteed nonmatching symbolic Friendly Code. Old captured
+mission/Primary Enemy are not needed to initiate these engagements.
+
+No tested LEFT/RIGHT control is yet universal:
+
+\`\`\`text
+opponent_initiator_right:     7/8 exact
+neutral_orders_fresh_fc:      6/8 exact
+sticky_capture_side:          4/8 exact
+frozen_tminus1_priority:      4/8 exact
+neutral_orders_preserve_fc:   4/8 exact
+\`\`\`
+
+The unique failure of the simple opponent-initiator-right model is:
+
+\`\`\`text
+511506/T26
+captured ship27
+next opponent ship119
+factual captured-ship side=RIGHT
+\`\`\`
+
+The only observation with a prior same-pair occurrence is the second capture
+continuation of ship34 in 621896/T25. Applying ordinary second-occurrence side
+reversal makes the neutral-fresh-order control wrong there, while the factual
+captured ship remains LEFT. This is consistent with the documented fact that a
+captured ship receives an additional combat order set anew when captured: the
+new combat order may have its own side-order cursor even though the global
+ship-pair fight cap still remembers previous engagements. This is a hypothesis,
+not yet a promoted rule.
+
+The current residual is therefore LEFT/RIGHT semantics only. Geometry,
+active membership, new-owner pair eligibility, STANDARD phase, factual
+opponent selection, aggression and strict diplomacy are all separately closed.
+
+Independent public-game expansion is now especially valuable because the
+current capture-side sample contains only eight ship continuations and only one
+RIGHT discriminator.
