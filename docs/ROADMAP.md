@@ -649,19 +649,40 @@ The immediate residual is post-capture candidate-graph reconstruction after
 owner/race transfer; do not reopen the already exact non-capture queue path.
 
 
-### Active capture residual
+### Active capture residual — LEFT/RIGHT only
 
-The exact non-capture predictive queue is closed. The current gate revalidates
-the already production-wired capture state transition and independent
-post-capture initiator population under shared `FeatureScope`.
+The capture path has advanced beyond the earlier reintegration checkpoint.
 
-Tracked runner:
+Closed observed ship-capture layers now include:
 
-```bash
-bash tools/run-combat-capture-reintegration-gate.sh
+```text
+capture continuation identity/state       closed
+special Tow/Intercept geometry             2 / 2 exact
+post-capture candidate graph               8 / 8 exact
+post-capture active membership             8 / 8 exact
+post-capture pair eligibility/phase        8 / 8 resolved
+pair phase                                 8 / 8 STANDARD
+captured-FC phase sensitivity              8 / 8 invariant
 ```
 
-Historical continuity target is 23 capture continuations: 8 ship and 15
-planet/base. Once this is fresh-runtime green, move directly to rebuilding the
-post-capture candidate graph after owner/race mutation; do not infer persistence
-of the captured ship's old mission/PE.
+The remaining bounded ship-to-ship capture blocker is post-capture
+**LEFT/RIGHT side assignment**. Current independent controls are not universal:
+
+```text
+opponent_initiator_right                   7 / 8 exact
+neutral captured orders + fresh FC         6 / 8 exact
+sticky capture side                        4 / 8 exact
+frozen T-1 priority                        4 / 8 exact
+neutral orders + preserved FC              4 / 8 exact
+```
+
+Do not promote a side rule from the current eight observations. The next primary
+mechanics action is to enlarge the independent public archive population, harvest
+additional attributable ship-capture continuations, split them into discovery
+and held-out validation subsets, and only then freeze/test a side rule.
+
+Current checkpoint:
+`docs/handoff/2026-09-28-main-combat-corpus-checkpoint.md`.
+
+Detailed capture runtime:
+`docs/handoff/2026-09-24-combat-capture-runtime.md`.
