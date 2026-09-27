@@ -124,6 +124,41 @@ class PlanetsNuPublicApi:
             )
         return payload
 
+    def games_list(
+        self,
+        *,
+        statuses: tuple[int, ...] = (3,),
+        game_types: tuple[int, ...] = (2, 3, 4, 6),
+        scopes: tuple[int, ...] = (0,),
+        limit: int = 0,
+    ) -> list[dict[str, Any]]:
+        """Return public games matching the documented /games/list filters."""
+        if not statuses or any(value < 0 for value in statuses):
+            raise ValueError("statuses must contain non-negative integers")
+        if not game_types or any(value <= 0 for value in game_types):
+            raise ValueError("game_types must contain positive integers")
+        if not scopes or any(value not in {0, 1} for value in scopes):
+            raise ValueError("scopes must contain only 0/1")
+        if limit < 0:
+            raise ValueError("limit must be non-negative")
+
+        payload = self.get_json(
+            "games/list",
+            params={
+                "status": ",".join(str(value) for value in statuses),
+                "type": ",".join(str(value) for value in game_types),
+                "scope": ",".join(str(value) for value in scopes),
+                "limit": limit,
+            },
+        )
+        if not isinstance(payload, list) or not all(
+            isinstance(record, dict) for record in payload
+        ):
+            raise CorpusApiError(
+                "Planets.nu games/list response is not a list of objects"
+            )
+        return payload
+
     def games_for_username(self, username: str) -> list[dict[str, Any]]:
         """Return the active/current game list exposed by /games/list."""
         payload = self.get_json(
