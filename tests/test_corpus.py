@@ -114,8 +114,19 @@ def _loadall_fixture() -> bytes:
 
 def test_network_client_requires_proxy(monkeypatch) -> None:
     monkeypatch.delenv("PLANETSNU_PROXY_URL", raising=False)
+    monkeypatch.delenv("PLANETSNU_ALLOW_DIRECT", raising=False)
     with pytest.raises(CorpusApiError, match="PLANETSNU_PROXY_URL"):
         PlanetsNuPublicApi()
+
+
+def test_network_client_allows_explicit_direct_mode(monkeypatch) -> None:
+    monkeypatch.delenv("PLANETSNU_PROXY_URL", raising=False)
+    monkeypatch.setenv("PLANETSNU_ALLOW_DIRECT", "1")
+
+    client = PlanetsNuPublicApi()
+
+    assert client.proxy_url is None
+    assert client.allow_direct is True
 
 
 def test_finished_game_discovery_uses_history_filters_and_deduplicates() -> None:
