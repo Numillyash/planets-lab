@@ -21,34 +21,36 @@ LIST_LIMIT="${LIST_LIMIT:-0}"
 REQUEST_DELAY="${REQUEST_DELAY:-0.20}"
 ARCHIVE_DELAY="${ARCHIVE_DELAY:-0.50}"
 
-if [[ -n "${PYTHON_BIN:-}" ]]; then
-  if ! command -v "$PYTHON_BIN" >/dev/null 2>&1; then
-    echo "ERROR: PYTHON_BIN is not executable: $PYTHON_BIN" >&2
-    exit 64
-  fi
-elif command -v python3 >/dev/null 2>&1; then
-  PYTHON_BIN=python3
-elif command -v python >/dev/null 2>&1; then
-  PYTHON_BIN=python
-else
-  echo "ERROR: neither python3 nor python is available" >&2
-  exit 64
-fi
+DOCKER_PREFLIGHT_TIMEOUT="${DOCKER_PREFLIGHT_TIMEOUT:-10}"
 
-export PYTHONPATH="$ROOT/src${PYTHONPATH:+:$PYTHONPATH}"
-echo "python_bin:   $PYTHON_BIN"
+echo "===== PUBLIC VALIDATION CORPUS: PREFLIGHT ====="
+if ! timeout "${DOCKER_PREFLIGHT_TIMEOUT}s" docker info >/dev/null 2>&1; then
+  echo "ERROR: Docker daemon/backend is not responding within ${DOCKER_PREFLIGHT_TIMEOUT}s." >&2
+  exit 69
+fi
+echo "docker:       ready"
+
+echo "===== PUBLIC VALIDATION CORPUS: BUILD LAB IMAGE ====="
+docker compose build lab
+
+lab=(
+  docker compose run --rm -T
+  -e PYTHONPATH=/workspace/src
+)
 
 if [[ -n "${PLANETSNU_PROXY_URL:-}" ]]; then
+  lab+=(-e "PLANETSNU_PROXY_URL=${PLANETSNU_PROXY_URL}")
   echo "network_mode: proxy"
   echo "proxy:        configured"
 else
-  export PLANETSNU_ALLOW_DIRECT=1
+  lab+=(-e PLANETSNU_ALLOW_DIRECT=1)
   echo "network_mode: direct"
   echo "proxy:        not configured"
 fi
 
+lab+=(lab)
 echo "===== PUBLIC VALIDATION CORPUS: DISCOVERY ====="
-"$PYTHON_BIN" -m planets_lab.corpus.public_finished_discover_cli \
+"${lab[@]}" python -m planets_lab.corpus.public_finished_discover_cli \
   --baseline-manifest "$BASELINE_MANIFEST" \
   --min-turn "$MIN_TURN" \
   --min-slots "$MIN_SLOTS" \
@@ -63,7 +65,7 @@ echo "===== PUBLIC VALIDATION CORPUS: DISCOVERY ====="
 
 echo
 echo "===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX ====="
-"$PYTHON_BIN" -m planets_lab.corpus.ingest_manifest_cli \
+"${lab[@]}" python -m planets_lab.corpus.ingest_manifest_cli \
   "$SELECTED_MANIFEST" \
   --cache-dir validation/corpus/cache/loadall \
   --index-output "$INDEX_OUTPUT" \
