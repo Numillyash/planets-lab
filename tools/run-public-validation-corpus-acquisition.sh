@@ -21,6 +21,23 @@ LIST_LIMIT="${LIST_LIMIT:-0}"
 REQUEST_DELAY="${REQUEST_DELAY:-0.20}"
 ARCHIVE_DELAY="${ARCHIVE_DELAY:-0.50}"
 
+if [[ -n "${PYTHON_BIN:-}" ]]; then
+  if ! command -v "$PYTHON_BIN" >/dev/null 2>&1; then
+    echo "ERROR: PYTHON_BIN is not executable: $PYTHON_BIN" >&2
+    exit 64
+  fi
+elif command -v python3 >/dev/null 2>&1; then
+  PYTHON_BIN=python3
+elif command -v python >/dev/null 2>&1; then
+  PYTHON_BIN=python
+else
+  echo "ERROR: neither python3 nor python is available" >&2
+  exit 64
+fi
+
+export PYTHONPATH="$ROOT/src${PYTHONPATH:+:$PYTHONPATH}"
+echo "python_bin:   $PYTHON_BIN"
+
 if [[ -n "${PLANETSNU_PROXY_URL:-}" ]]; then
   echo "network_mode: proxy"
   echo "proxy:        configured"
@@ -31,7 +48,7 @@ else
 fi
 
 echo "===== PUBLIC VALIDATION CORPUS: DISCOVERY ====="
-python -m planets_lab.corpus.public_finished_discover_cli \
+"$PYTHON_BIN" -m planets_lab.corpus.public_finished_discover_cli \
   --baseline-manifest "$BASELINE_MANIFEST" \
   --min-turn "$MIN_TURN" \
   --min-slots "$MIN_SLOTS" \
@@ -46,7 +63,7 @@ python -m planets_lab.corpus.public_finished_discover_cli \
 
 echo
 echo "===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX ====="
-python -m planets_lab.corpus.ingest_manifest_cli \
+"$PYTHON_BIN" -m planets_lab.corpus.ingest_manifest_cli \
   "$SELECTED_MANIFEST" \
   --cache-dir validation/corpus/cache/loadall \
   --index-output "$INDEX_OUTPUT" \
