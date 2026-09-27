@@ -50,27 +50,41 @@ fi
 
 lab+=(lab)
 echo "===== PUBLIC VALIDATION CORPUS: DISCOVERY ====="
-"${lab[@]}" python -m planets_lab.corpus.public_finished_discover_cli \
-  --baseline-manifest "$BASELINE_MANIFEST" \
-  --min-turn "$MIN_TURN" \
-  --min-slots "$MIN_SLOTS" \
-  --probe-limit "$PROBE_LIMIT" \
-  --select-count "$SELECT_COUNT" \
-  --list-limit "$LIST_LIMIT" \
-  --request-delay "$REQUEST_DELAY" \
-  --candidates-output "$CANDIDATES_MANIFEST" \
-  --selected-output "$SELECTED_MANIFEST" \
-  --combined-output "$COMBINED_MANIFEST" \
-  --report-output "$REPORT"
+if [[ "$REUSE_DISCOVERY" == "1" \
+   && -s "$CANDIDATES_MANIFEST" \
+   && -s "$SELECTED_MANIFEST" \
+   && -s "$COMBINED_MANIFEST" \
+   && -s "$REPORT" ]]; then
+  echo "discovery:    reuse existing manifests/report"
+else
+  "${lab[@]}" python -m planets_lab.corpus.public_finished_discover_cli \
+    --baseline-manifest "$BASELINE_MANIFEST" \
+    --min-turn "$MIN_TURN" \
+    --min-slots "$MIN_SLOTS" \
+    --probe-limit "$PROBE_LIMIT" \
+    --select-count "$SELECT_COUNT" \
+    --list-limit "$LIST_LIMIT" \
+    --request-delay "$REQUEST_DELAY" \
+    --candidates-output "$CANDIDATES_MANIFEST" \
+    --selected-output "$SELECTED_MANIFEST" \
+    --combined-output "$COMBINED_MANIFEST" \
+    --report-output "$REPORT"
+fi
 
 echo
 echo "===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX ====="
+set +e
 "${lab[@]}" python -m planets_lab.corpus.ingest_manifest_cli \
   "$SELECTED_MANIFEST" \
   --cache-dir validation/corpus/cache/loadall \
   --index-output "$INDEX_OUTPUT" \
   --stats-output "$STATS_OUTPUT" \
-  --request-delay "$ARCHIVE_DELAY"
+  --request-delay "$ARCHIVE_DELAY" \
+  --network-timeout "$ARCHIVE_TIMEOUT" \
+  --download-retries "$ARCHIVE_RETRIES" \
+  --retry-delay "$ARCHIVE_RETRY_DELAY"
+INGEST_RC=$?
+set -e
 
 echo
 echo "===== PUBLIC VALIDATION CORPUS: STAGE SAFE EVIDENCE ====="
@@ -91,3 +105,6 @@ echo "index_output:      $INDEX_OUTPUT"
 echo "stats_output:      $STATS_OUTPUT"
 echo "evidence_dir:      $EVIDENCE_DIR"
 echo "archive_cache:     validation/corpus/cache/loadall"
+echo "ingest_rc:         $INGEST_RC"
+
+exit "$INGEST_RC"
