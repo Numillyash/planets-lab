@@ -65,7 +65,13 @@ The runner performs:
 3. paced public `loadinfo` probes;
 4. greedy coverage selection against the existing corpus;
 5. immutable `/game/loadall` download/validation for selected games;
-6. per-game index/statistics generation.
+6. per-game index/statistics generation;
+7. copies only the safe selected/combined manifests and index/stat summaries
+   into `artifacts/public-validation-corpus/evidence/` for runtime publication.
+
+The generic runtime-evidence wrapper intentionally accepts only paths under
+`artifacts/`. Raw loadall archives and the canonical validation cache are
+therefore never included in the runtime evidence branch.
 
 Default outputs:
 
@@ -76,6 +82,10 @@ validation/corpus/manifests/public-validation-combined.jsonl
 artifacts/public-validation-corpus/selection-report.json
 validation/corpus/index/public-validation-games.jsonl
 validation/corpus/index/public-validation-stats.json
+artifacts/public-validation-corpus/evidence/public-validation-selected.jsonl
+artifacts/public-validation-corpus/evidence/public-validation-combined.jsonl
+artifacts/public-validation-corpus/evidence/public-validation-games.jsonl
+artifacts/public-validation-corpus/evidence/public-validation-stats.json
 validation/corpus/cache/loadall/game-<id>.zip
 ```
 
