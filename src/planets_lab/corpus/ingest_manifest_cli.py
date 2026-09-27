@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+import time
 from pathlib import Path
 from typing import Any
 
@@ -77,6 +78,12 @@ def main() -> int:
         action="store_true",
         help="stop immediately after the first failed game",
     )
+    parser.add_argument(
+        "--request-delay",
+        type=float,
+        default=0.0,
+        help="sleep this many seconds after each network archive download",
+    )
     args = parser.parse_args()
 
     if args.limit is not None and args.limit <= 0:
@@ -84,6 +91,9 @@ def main() -> int:
         return 2
     if args.offline and args.refresh:
         print("--offline and --refresh cannot be used together", file=sys.stderr)
+        return 2
+    if args.request_delay < 0:
+        print("--request-delay must be non-negative", file=sys.stderr)
         return 2
 
     try:
@@ -121,6 +131,8 @@ def main() -> int:
                 cache_path.parent.mkdir(parents=True, exist_ok=True)
                 cache_path.write_bytes(data)
                 source = "network"
+                if args.request_delay > 0:
+                    time.sleep(args.request_delay)
 
             record = index_game_archive(
                 manifest,
