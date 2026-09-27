@@ -10,6 +10,7 @@ Current durable checkpoints:
 - Classic combat replay coverage: [`handoff/2026-09-07-combat-c2-classic-replay-coverage.md`](handoff/2026-09-07-combat-c2-classic-replay-coverage.md);
 - ship battle sequences: [`handoff/2026-09-07-combat-c3-ship-sequence-diff-verified.md`](handoff/2026-09-07-combat-c3-ship-sequence-diff-verified.md);
 - planet/starbase sequences: [`handoff/2026-09-07-combat-c4-planet-sequence-checkpoint.md`](handoff/2026-09-07-combat-c4-planet-sequence-checkpoint.md).
+- external client/plugin mechanics references: [`handoff/2026-09-27-external-planets-tools-mechanics-reference.md`](handoff/2026-09-27-external-planets-tools-mechanics-reference.md).
 
 ## Evidence policy
 
@@ -22,6 +23,12 @@ Mechanics are promoted only with explicit evidence status:
 - `DIFF_VERIFIED` — matched against clean attributable NuHost transitions.
 
 Unknown mechanics fail closed. Raw facts and evidence-scoped effective interpretations remain separate.
+
+External implementations are candidate generators only. Kecupo VCR Sim,
+nu-replayer, c2nu, nupilot, McNimble plugins, SitRep, T-Continuum Analyser and
+similar projects may identify formulas, edge cases, API fields or public games
+worth testing, but they do not create evidence labels by themselves. See the
+2026-09-27 external reference catalog for the source-by-source boundary.
 
 ## Current focus
 
@@ -41,6 +48,19 @@ The immediate combat work is the missing **Host combat phase around the resolver
 - the documented ship-to-planet phase boundary, including between-phase repair.
 
 Do not reopen bounded movement, ordinary ship-sequence, or plain-planet sequence residual hunting unless a contradiction blocks a larger Host subsystem. The base finite-fuel Tow movement rule is closed; Tow contests/chains/cycles and mine/web/Chunnel/storm interaction ordering remain separately scoped and fail closed where unresolved.
+
+The external-tool survey creates a bounded supporting backlog alongside the
+combat-order work, without replacing it:
+
+- compare Kecupo VCR Sim and nu-replayer against the existing combat resolver to
+  identify concrete disagreements worth historical discrimination;
+- mine immutable archive messages using nuWebBounty/nuSweepFC signatures for
+  Crystal Web and Safe Passage/mine-scan evidence;
+- use c2nu/PMS as parser/API shape cross-checks;
+- use T-Continuum Analyser only to discover candidate public games that fill
+  explicit Feature Index gaps, then ingest through official Planets.nu sources.
+
+These are opportunistic evidence accelerators, not a new top-level milestone.
 
 ## Planning progress snapshot — 2026-09-11
 
