@@ -1,0 +1,4 @@
+network_mode: direct
+proxy:        not configured
+===== PUBLIC VALIDATION CORPUS: DISCOVERY =====
+tools/run-public-validation-corpus-acquisition.sh: line 34: python: command not found

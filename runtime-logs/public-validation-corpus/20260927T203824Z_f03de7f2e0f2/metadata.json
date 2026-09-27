@@ -1,0 +1,24 @@
+{
+  "evidence_branch": "runtime-logs",
+  "exit_code": 127,
+  "finished_at_utc": "2026-09-27T20:38:24Z",
+  "hostname": "GEORGUL-GAMER",
+  "interrupted_signal": null,
+  "log_file": "gate.log",
+  "missing_artifact_paths": [
+    "artifacts/public-validation-corpus"
+  ],
+  "remote": "origin",
+  "requested_artifact_paths": [
+    "artifacts/public-validation-corpus"
+  ],
+  "run_id": "20260927T203824Z_f03de7f2e0f2",
+  "run_name": "public-validation-corpus",
+  "runner": "bash",
+  "schema": "planets-lab.runtime-evidence.v1",
+  "skipped_oversized_artifact_paths": [],
+  "source_branch": "main",
+  "source_commit": "f03de7f2e0f28fd0aa8cdeed51ba7d6bdae73f47",
+  "source_dirty": false,
+  "started_at_utc": "2026-09-27T20:38:24Z"
+}
