@@ -47,11 +47,16 @@ advantages.
 
 ## Runner
 
-On an archive host with `PLANETSNU_PROXY_URL` configured:
+On an archive host with `PLANETSNU_PROXY_URL` configured, use the evidence
+wrapper so the selection/index summary is published without publishing raw
+loadall archives:
 
 ```bash
-bash tools/run-public-validation-corpus-acquisition.sh
+bash tools/run-public-validation-corpus-with-evidence.sh
 ```
+
+The underlying acquisition runner is
+`tools/run-public-validation-corpus-acquisition.sh`.
 
 The runner performs:
 
