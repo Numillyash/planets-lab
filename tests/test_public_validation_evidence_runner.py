@@ -58,3 +58,19 @@ def test_acquisition_runner_passes_direct_mode_only_when_proxy_is_absent() -> No
 
     assert 'lab+=(-e "PLANETSNU_PROXY_URL=${PLANETSNU_PROXY_URL}")' in script
     assert "lab+=(-e PLANETSNU_ALLOW_DIRECT=1)" in script
+
+
+def test_acquisition_runner_reuses_discovery_and_stages_partial_ingest_evidence() -> None:
+    script = (ROOT / "tools/run-public-validation-corpus-acquisition.sh").read_text(
+        encoding="utf-8"
+    )
+
+    assert 'REUSE_DISCOVERY="${REUSE_DISCOVERY:-1}"' in script
+    assert 'discovery:    reuse existing manifests/report' in script
+    assert 'ARCHIVE_TIMEOUT="${ARCHIVE_TIMEOUT:-180}"' in script
+    assert 'ARCHIVE_RETRIES="${ARCHIVE_RETRIES:-2}"' in script
+    assert '--network-timeout "$ARCHIVE_TIMEOUT"' in script
+    assert '--download-retries "$ARCHIVE_RETRIES"' in script
+    assert "set +e" in script
+    assert "INGEST_RC=$?" in script
+    assert 'exit "$INGEST_RC"' in script
