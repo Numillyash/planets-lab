@@ -34,8 +34,15 @@ from combat_host_factual_queue_selection_audit import (
 from combat_host_priority_intercept_audit import PREPARED_DIR, RAW_DIR
 
 
-SCHEMA = "planets-lab.combat-host-post-capture-pair-recomposition-audit.v1"
+SCHEMA = "planets-lab.combat-host-post-capture-pair-recomposition-audit.v2"
 DEFAULT_EXAMPLE_LIMIT = 80
+
+# External reference only: c2ng/THost-derived makeShipShipVcr rejects a ship
+# marked fl_WasCaptured when that ship is supplied as LEFT. With simulator
+# random-left/right disabled, a subsequent captured-ship fight in that audited
+# path therefore requires the captured/prize ship to be RIGHT. This constant is
+# a comparator, not a NuHost mechanics rule.
+EXTERNAL_C2NG_CAPTURED_PRIZE_SIDE = "right"
 
 
 def _priority_from_raw(
@@ -323,6 +330,7 @@ def _pair_recomposition(
     controls = {
         "sticky_capture_side": previous_side,
         "opponent_initiator_right": "left",
+        "external_c2ng_captured_right": EXTERNAL_C2NG_CAPTURED_PRIZE_SIDE,
         "frozen_tminus1_priority": _side_from_priority_keys(
             prize_ship_id=prize_id,
             opponent_ship_id=opponent_id,
@@ -461,6 +469,9 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                     counts["pair_phase_fc_invariant"] += 1
                 phase = result.get("preserved_fc_decision", {}).get("phase")
                 counts[f"pair_phase:{phase}"] += 1
+                factual_side = result.get("factual_post_capture_side")
+                if factual_side in {"left", "right"}:
+                    counts[f"factual_prize_side:{factual_side}"] += 1
                 for name, exact in result.get("side_control_exact", {}).items():
                     if exact is True:
                         counts[f"side:{name}:exact"] += 1
@@ -534,6 +545,9 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         ),
         "sticky_capture_side_exact": control_exact("sticky_capture_side"),
         "opponent_initiator_right_exact": control_exact("opponent_initiator_right"),
+        "external_c2ng_captured_right_exact": control_exact(
+            "external_c2ng_captured_right"
+        ),
         "frozen_tminus1_priority_exact": control_exact("frozen_tminus1_priority"),
         "neutral_orders_preserve_fc_exact": control_exact(
             "neutral_orders_preserve_fc"
@@ -563,10 +577,13 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "permission. Pair eligibility/phase is recomputed through production "
             "decide_ship_combat_pair under two captured-Friendly-Code bounds: the "
             "T-1 FC and a guaranteed nonmatching symbolic FC; phase is accepted "
-            "only if invariant. LEFT/RIGHT is not promoted here. Instead, four "
-            "competing side controls are compared independently: capture-side "
-            "carry, generic opponent-initiator-right, frozen T-1 combat priority, "
-            "and neutral captured orders with preserved/fresh FC. Elapsed factual "
+            "only if invariant. LEFT/RIGHT is not promoted here. Five internal "
+            "side controls are compared independently: capture-side carry, generic "
+            "opponent-initiator-right, frozen T-1 combat priority, and neutral "
+            "captured orders with preserved/fresh FC. A sixth control, "
+            "external_c2ng_captured_right, is an explicitly non-authoritative "
+            "historical comparator for the c2ng/THost captured-LEFT suppression "
+            "behavior and must never be treated as a Nu rule. Elapsed factual "
             "VCRs before N+1 may supply pair occurrence history; N+1 supplies only "
             "the held-out side comparator."
         ),
