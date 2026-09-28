@@ -82,7 +82,7 @@ def test_acquisition_runner_backfills_previous_failures_before_ingest() -> None:
     )
 
     assert 'AUTO_BACKFILL="${AUTO_BACKFILL:-1}"' in script
-    assert "PUBLIC VALIDATION CORPUS: BACKFILL PREVIOUS FAILURES" in script
+    assert "PUBLIC VALIDATION CORPUS: BACKFILL ROUND" in script
     assert (
         '"${lab[@]}" python -m '
         "planets_lab.corpus.public_validation_backfill_cli"
