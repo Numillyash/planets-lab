@@ -194,6 +194,62 @@ def test_external_c2ng_thost_battle_value_isolated_from_canonical_priority() -> 
         raw={"friendlycode": "001", "mission": 0, "enemy": 0, "neutronium": 0},
     ) == (1015, 14)
 
+
+def test_external_c2ng_no_later_prize_continuation_is_explicit_mismatch(monkeypatch) -> None:
+    monkeypatch.setattr(module, "_interference_state", lambda **kwargs: False)
+
+    context = {
+        "game_id": 1,
+        "battle_turn": 33,
+        "before_turn": 32,
+        "start_stacks": {},
+        "predictions": {
+            25: _entry(25, 7, race_id=7, mission=0, enemy=0, friendlycode="125"),
+            174: _entry(174, 8, race_id=8, mission=3, enemy=7, friendlycode="900"),
+            268: _entry(268, 7, race_id=7, mission=7, enemy=8, friendlycode="482"),
+        },
+        "factual_queue": [
+            {"vcr_id": 93, "pair": (25, 174), "left_ship_id": 174, "right_ship_id": 25},
+            {"vcr_id": 94, "pair": (25, 268), "left_ship_id": 25, "right_ship_id": 268},
+        ],
+    }
+    context["site_ship_rows"] = context["predictions"]
+
+    capture = {
+        "ship_id": 25,
+        "captor_ship_id": 174,
+        "captor_owner_id": 8,
+        "race_id_after": 8,
+        "hull_id_after": 20,
+        "current_opponent_ship_id": 268,
+        "from_vcr_id": 93,
+        "to_vcr_id": 94,
+        "current_side": "left",
+    }
+    active_result = {
+        "status": "resolved",
+        "prize_owner_id_after_capture": 8,
+        "candidates": [
+            {"ship_id": 268, "requests_new_owner": True, "strict_permission": True}
+        ],
+        "active_ship_ids": [25, 174, 268],
+        "removed_ship_ids": [],
+        "history_anchored_ship_ids": [25, 174, 268],
+    }
+    appearances = {(1, 33, 93, 25): {"side": "right"}}
+
+    result = _pair_recomposition(
+        context=context,
+        capture=capture,
+        active_result=active_result,
+        appearances=appearances,
+    )
+
+    external = result["external_c2ng_original_order"]
+    assert external["status"] == "resolved"
+    assert external["predicted_prize_continuation"] is None
+    assert external["exact"] is False
+
 def test_pair_recomposition_fails_closed_when_fc_changes_eligibility(monkeypatch) -> None:
     monkeypatch.setattr(module, "_interference_state", lambda **kwargs: False)
 
