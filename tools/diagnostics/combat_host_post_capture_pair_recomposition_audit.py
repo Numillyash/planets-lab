@@ -34,7 +34,7 @@ from combat_host_factual_queue_selection_audit import (
 from combat_host_priority_intercept_audit import PREPARED_DIR, RAW_DIR
 
 
-SCHEMA = "planets-lab.combat-host-post-capture-pair-recomposition-audit.v2"
+SCHEMA = "planets-lab.combat-host-post-capture-pair-recomposition-audit.v3"
 DEFAULT_EXAMPLE_LIMIT = 80
 
 # External reference only: c2ng/THost-derived makeShipShipVcr rejects a ship
@@ -105,6 +105,233 @@ def _side_from_priority_keys(
             return None
 
     return "left" if sides[0] == prize_ship_id else "right"
+
+
+def _c2ng_thost_sim_battle_value(
+    *,
+    ship_id: int,
+    raw: Mapping[str, Any],
+) -> tuple[int, int] | None:
+    """Return the external c2ng THost-simulator ordering key.
+
+    This is a diagnostic transcription of the behavior audited at
+    stefanreuther/c2ng@425d623...; it is intentionally not part of canonical
+    planets_lab.rules. The c2ng simulator collapses Kill aggression such that
+    Kill also counts as having an enemy for its non-numeric battle value.
+
+    None means the minimum raw fields needed for this external comparator are
+    unavailable.
+    """
+
+    friendly_code = raw.get("friendlycode")
+    if not isinstance(friendly_code, str):
+        return None
+
+    code = friendly_code.strip()
+    if code and code.isdigit():
+        value = int(code)
+    else:
+        value = 1000
+
+    mission = _intish(raw.get("mission"))
+    enemy = _intish(raw.get("enemy"))
+    fuel = _intish(raw.get("neutronium"))
+    if fuel is None:
+        return None
+
+    has_kill = mission == 3
+    has_enemy = has_kill or (enemy is not None and enemy > 0)
+    if fuel <= 0:
+        value = 1000
+    if value == 1000:
+        if not has_kill:
+            value += 10
+        if not has_enemy:
+            value += 5
+
+    return value, ship_id
+
+
+def _external_c2ng_original_order_prize_continuation(
+    *,
+    context: Mapping[str, Any],
+    capture: Mapping[str, Any],
+    active_result: Mapping[str, Any],
+    capture_prize_side: str,
+) -> dict[str, Any]:
+    """Test a narrow c2ng original-order continuation candidate.
+
+    This does not simulate the complete external queue. It asks only whether,
+    after the factual capture cursor, the frozen c2ng/THost nested traversal can
+    next encounter the captured prize on RIGHT against an independently
+    reconstructed strict attacker.
+
+    To avoid post-capture future-history leakage, this first version is limited
+    to globally adjacent VCR ids (to_vcr_id == from_vcr_id + 1). It uses the
+    factual capture VCR N to anchor the current cursor, but uses VCR N+1 only for
+    the final pair/side comparator.
+    """
+
+    if capture_prize_side not in {"left", "right"}:
+        return {"status": "unresolved", "reason": "capture_prize_side_missing"}
+
+    from_vcr_id = capture.get("from_vcr_id")
+    to_vcr_id = capture.get("to_vcr_id")
+    prize_id = capture.get("ship_id")
+    captor_id = capture.get("captor_ship_id")
+    factual_opponent_id = capture.get("current_opponent_ship_id")
+    values = (from_vcr_id, to_vcr_id, prize_id, captor_id, factual_opponent_id)
+    if any(isinstance(v, bool) or not isinstance(v, int) or v <= 0 for v in values):
+        return {"status": "unresolved", "reason": "capture_identity_missing"}
+    assert isinstance(from_vcr_id, int)
+    assert isinstance(to_vcr_id, int)
+    assert isinstance(prize_id, int)
+    assert isinstance(captor_id, int)
+    assert isinstance(factual_opponent_id, int)
+
+    if to_vcr_id != from_vcr_id + 1:
+        return {
+            "status": "not_comparable",
+            "reason": "nonadjacent_vcr_requires_intervening_mutation_model",
+            "from_vcr_id": from_vcr_id,
+            "to_vcr_id": to_vcr_id,
+        }
+
+    predictions = context.get("predictions")
+    site_rows = context.get("site_ship_rows")
+    if not isinstance(predictions, Mapping) or not isinstance(site_rows, Mapping):
+        return {"status": "unresolved", "reason": "site_order_context_missing"}
+
+    active_ids_raw = active_result.get("active_ship_ids")
+    removed_ids_raw = active_result.get("removed_ship_ids")
+    anchored_ids_raw = active_result.get("history_anchored_ship_ids")
+    if not isinstance(active_ids_raw, list):
+        return {"status": "unresolved", "reason": "active_membership_missing"}
+
+    initial_ids = {int(x) for x in site_rows}
+    for rows in (active_ids_raw, removed_ids_raw, anchored_ids_raw):
+        if isinstance(rows, list):
+            for value in rows:
+                if isinstance(value, int) and not isinstance(value, bool) and value > 0:
+                    initial_ids.add(int(value))
+    initial_ids.update((prize_id, captor_id))
+
+    ordered: list[tuple[tuple[int, int], int]] = []
+    unresolved_order_ids: list[int] = []
+    for ship_id in sorted(initial_ids):
+        entry = predictions.get(ship_id)
+        raw = entry.get("raw") if isinstance(entry, Mapping) else None
+        if not isinstance(raw, Mapping):
+            unresolved_order_ids.append(ship_id)
+            continue
+        key = _c2ng_thost_sim_battle_value(ship_id=ship_id, raw=raw)
+        if key is None:
+            unresolved_order_ids.append(ship_id)
+            continue
+        ordered.append((key, ship_id))
+
+    if unresolved_order_ids:
+        return {
+            "status": "unresolved",
+            "reason": "external_order_input_missing",
+            "ship_ids": unresolved_order_ids,
+        }
+
+    ordered.sort(key=lambda item: item[0])
+    order = [ship_id for _key, ship_id in ordered]
+    if prize_id not in order or captor_id not in order:
+        return {"status": "unresolved", "reason": "capture_pair_missing_from_external_order"}
+
+    prize_index = order.index(prize_id)
+    captor_index = order.index(captor_id)
+    if capture_prize_side == "right":
+        right_index, left_index = prize_index, captor_index
+    else:
+        right_index, left_index = captor_index, prize_index
+
+    active_ids = {int(x) for x in active_ids_raw}
+    candidate_rows = active_result.get("candidates")
+    candidate_rows = candidate_rows if isinstance(candidate_rows, list) else []
+    strict_attackers = {
+        int(row["ship_id"])
+        for row in candidate_rows
+        if isinstance(row, Mapping)
+        and isinstance(row.get("ship_id"), int)
+        and not isinstance(row.get("ship_id"), bool)
+        and row.get("requests_new_owner") is True
+        and row.get("strict_permission") is True
+    }
+
+    predicted_opponent: int | None = None
+    predicted_cursor: tuple[int, int] | None = None
+    for candidate_right in range(right_index, len(order)):
+        start_left = left_index + 1 if candidate_right == right_index else 0
+        for candidate_left in range(start_left, len(order)):
+            if candidate_left == candidate_right:
+                continue
+            right_ship_id = order[candidate_right]
+            left_ship_id = order[candidate_left]
+
+            # c2ng's audited fl_WasCaptured guard rejects the prize as LEFT.
+            if left_ship_id == prize_id:
+                continue
+            if right_ship_id != prize_id:
+                continue
+
+            other_id = left_ship_id
+            if other_id not in active_ids or other_id not in strict_attackers:
+                continue
+
+            predicted_opponent = other_id
+            predicted_cursor = (candidate_right, candidate_left)
+            break
+        if predicted_opponent is not None:
+            break
+
+    if predicted_opponent is None:
+        return {
+            "status": "resolved",
+            "external_order": order,
+            "capture_cursor": {
+                "right_index": right_index,
+                "left_index": left_index,
+                "right_ship_id": order[right_index],
+                "left_ship_id": order[left_index],
+            },
+            "predicted_prize_continuation": None,
+            "factual_opponent_ship_id": factual_opponent_id,
+            "factual_prize_side": capture.get("current_side"),
+            "pair_exact": False,
+            "side_exact": False,
+            "reason": "no_later_c2ng_captured_right_attacker",
+        }
+
+    factual_side = capture.get("current_side")
+    return {
+        "status": "resolved",
+        "external_order": order,
+        "external_order_keys": {
+            str(ship_id): list(key) for key, ship_id in ordered
+        },
+        "capture_cursor": {
+            "right_index": right_index,
+            "left_index": left_index,
+            "right_ship_id": order[right_index],
+            "left_ship_id": order[left_index],
+        },
+        "predicted_cursor": {
+            "right_index": predicted_cursor[0] if predicted_cursor else None,
+            "left_index": predicted_cursor[1] if predicted_cursor else None,
+        },
+        "predicted_prize_ship_id": prize_id,
+        "predicted_opponent_ship_id": predicted_opponent,
+        "predicted_prize_side": "right",
+        "factual_opponent_ship_id": factual_opponent_id,
+        "factual_prize_side": factual_side,
+        "pair_exact": predicted_opponent == factual_opponent_id,
+        "side_exact": factual_side == "right",
+        "exact": predicted_opponent == factual_opponent_id and factual_side == "right",
+    }
 
 
 def _prior_pair_occurrences(
@@ -359,6 +586,13 @@ def _pair_recomposition(
         for name, value in controls.items()
     }
 
+    external_original_order = _external_c2ng_original_order_prize_continuation(
+        context=context,
+        capture=capture,
+        active_result=active_result,
+        capture_prize_side=previous_side,
+    )
+
     return {
         "status": "resolved" if pair_phase_invariant else "unresolved",
         "reason": None if pair_phase_invariant else "pair_phase_not_fc_invariant",
@@ -386,6 +620,7 @@ def _pair_recomposition(
         "pair_phase_invariant": pair_phase_invariant,
         "side_controls": controls,
         "side_control_exact": exact_controls,
+        "external_c2ng_original_order": external_original_order,
     }
 
 
@@ -479,6 +714,14 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                         counts[f"side:{name}:mismatch"] += 1
                     else:
                         counts[f"side:{name}:unresolved"] += 1
+                external_order = result.get("external_c2ng_original_order")
+                if isinstance(external_order, Mapping):
+                    external_status = str(external_order.get("status", "unknown"))
+                    counts[f"external_c2ng_o_status:{external_status}"] += 1
+                    if external_order.get("exact") is True:
+                        counts["external_c2ng_o_exact"] += 1
+                    elif external_order.get("exact") is False:
+                        counts["external_c2ng_o_mismatch"] += 1
                 if int(result.get("prior_pair_occurrences") or 0) > 0:
                     counts["observations_with_prior_pair_occurrence"] += 1
 
@@ -583,7 +826,12 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "captured orders with preserved/fresh FC. A sixth control, "
             "external_c2ng_captured_right, is an explicitly non-authoritative "
             "historical comparator for the c2ng/THost captured-LEFT suppression "
-            "behavior and must never be treated as a Nu rule. Elapsed factual "
+            "behavior and must never be treated as a Nu rule. A separate "
+            "external_c2ng_original_order field performs a deliberately narrow, "
+            "adjacent-VCR original-order cursor reachability check using only "
+            "capture VCR N plus independently reconstructed active attackers; it "
+            "does not model the full c2ng queue or Nu's capture-generated order. "
+            "Elapsed factual "
             "VCRs before N+1 may supply pair occurrence history; N+1 supplies only "
             "the held-out side comparator."
         ),
