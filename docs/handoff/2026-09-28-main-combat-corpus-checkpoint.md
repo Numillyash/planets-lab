@@ -187,3 +187,49 @@ The main chat remains responsible for:
 - capture-side corpus harvesting;
 - held-out NuHost differentials;
 - final promotion into canonical rules.
+
+
+## Public corpus runtime now available
+
+The second public acquisition pass at source \`628ecd24...\` produced 22
+compatible independent games from the selected 36, totaling 75,787 snapshots,
+75,463 transitions and about 5.95 GB of immutable archives.
+
+All 14 remaining failures are legacy/binary \`.trn\` normalization boundaries;
+the earlier network timeout problem is no longer the blocker.
+
+Current successful bucket counts:
+
+\`\`\`text
+campaign=11
+finite_fuel=8
+championship=3
+sphere=0
+\`\`\`
+
+Current failed bucket counts:
+
+\`\`\`text
+campaign=8
+finite_fuel=1
+championship=3
+sphere=2
+\`\`\`
+
+The acquisition runner now automatically replaces failed games from the
+already-probed candidate pool while preserving the original bucket target and
+maintaining a rejection ledger.
+
+The next main-track mechanics action can proceed in parallel with that backfill:
+run the discovery-only public capture-side harvester over the compatible indexed
+games. The harvester deterministically keeps roughly one quarter of game ids
+sealed as held-out validation before looking at combat outcomes.
+
+Runner:
+
+\`\`\`bash
+bash tools/run-public-capture-side-discovery-with-evidence.sh
+\`\`\`
+
+Do not inspect the held-out partition until a candidate side rule has been
+frozen from discovery observations.
