@@ -681,8 +681,11 @@ mechanics action is to enlarge the independent public archive population, harves
 additional attributable ship-capture continuations, split them into discovery
 and held-out validation subsets, and only then freeze/test a side rule.
 
-Current checkpoint:
-`docs/handoff/2026-09-28-main-combat-corpus-checkpoint.md`.
+Current checkpoints:
+
+`docs/handoff/2026-09-28-main-combat-corpus-checkpoint.md`
+
+`docs/handoff/2026-09-28-main-public-corpus-backfill-inflight.md`.
 
 Detailed capture runtime:
 `docs/handoff/2026-09-24-combat-capture-runtime.md`.
