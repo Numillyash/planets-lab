@@ -39,16 +39,34 @@ frozen pre-combat order
 
 This is not equivalent to a simple `captured ship -> RIGHT` rule.
 
-## Why it matters
+## Why it matters — corrected orientation
 
-Current main control:
+The earlier version of this handoff incorrectly said c2ng produced the same
+directional bias as the 7/8 control.
+
+The planets-lab diagnostic stores the **prize/captured ship side**, and defines:
 
 ```text
-opponent_initiator_right  7 / 8 exact
+opponent_initiator_right -> prize side LEFT
 ```
 
-The external implementation supplies a concrete mechanism that can produce that
-bias and may explain the remaining row differently from pair-local controls.
+Thus the factual population implied by the existing result is:
+
+```text
+captured/prize LEFT   7 / 8
+captured/prize RIGHT  1 / 8
+
+sole RIGHT row:
+511506 / T26 / ship27 -> ship119
+```
+
+c2ng does the opposite for its captured special case: captured LEFT is rejected,
+so the captured ship can continue only on RIGHT in the audited Host path.
+
+Therefore c2ng is already contradicted as a **global NuHost post-capture side
+rule (7/8 mismatches)**. Its remaining value is narrower: T26 is the only
+existing row whose side is compatible with the c2ng/THost original-order
+candidate.
 
 ## Official documentation status
 
@@ -63,7 +81,9 @@ Nu evidence.
 **Yes.**
 
 The existing eight attributable historical ship-capture continuations are
-already sufficient to test the candidate before new corpus acquisition.
+already sufficient to reject captured-RIGHT as a global Nu rule. They also
+isolate T26 as the sole current side-compatible row for a narrower original-order
+cursor test.
 
 The principal known row remains:
 
@@ -76,11 +96,20 @@ factual captured side RIGHT
 
 ## Proposed bounded diagnostic
 
-Reconstruct the candidate pre-combat sorted vector and nested cursor coordinates
-for each existing capture row, then continue the cursor after factual capture
-without re-sort and with `captured LEFT => reject`.
+First expose c2ng's side invariant explicitly in the existing diagnostic:
 
-Compare predicted N+1 pair and side to factual N+1 only at the final comparator.
+```text
+external_c2ng_captured_right = RIGHT
+```
+
+This should make the global rejection measurable in archive runtime.
+
+Then test only the meaningful unresolved question: whether `511506/T26` is
+reachable by continuing the independently reconstructed original battle-order
+cursor without re-sort/reset and with captured-LEFT suppression.
+
+Do not classify T26 as original-order merely because its side is RIGHT; require
+cursor reachability without consulting VCR N+1 until the final comparator.
 
 Do not modify canonical mechanics from this handoff.
 
