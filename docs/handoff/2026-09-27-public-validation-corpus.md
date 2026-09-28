@@ -100,3 +100,130 @@ mechanical rules must not be tuned against every selected archive. Before
 further NuHost promotion, split the enlarged corpus into discovery and held-out
 validation subsets and keep the held-out subset out of rule reconstruction
 until the corresponding rule is frozen.
+
+
+## Runtime checkpoint — 2026-09-28
+
+Second acquisition runtime source:
+
+\`\`\`text
+628ecd24c9df7202407eef3f6cb0ea8153828db0
+\`\`\`
+
+Published evidence:
+
+\`\`\`text
+runtime-logs/public-validation-corpus/20260928T002225Z_628ecd24c9df
+\`\`\`
+
+Network recovery worked. The earlier broad timeout population disappeared:
+one archive required a retry and then indexed successfully. The final failures
+are now all legacy/binary \`.trn\` normalization failures rather than network
+timeouts.
+
+Current compatible public archive population:
+
+\`\`\`text
+selected games             36
+indexed games              22
+failed games               14
+snapshots               75787
+transitions             75463
+archive bytes       5948478285
+settings hashes             22
+\`\`\`
+
+Successful bucket coverage:
+
+\`\`\`text
+campaign        11
+finite_fuel      8
+championship     3
+sphere           0
+\`\`\`
+
+Failed bucket coverage:
+
+\`\`\`text
+campaign         8
+championship     3
+finite_fuel      1
+sphere           2
+\`\`\`
+
+Thus the immediate compatibility gap is not networking; it is replacement of
+legacy/binary archives, especially both selected Sphere games.
+
+The 22 compatible games currently contain no non-empty per-player
+\`activeadvantages\` / \`activehulls\`. Campaign capability coverage therefore
+remains a separate corpus gap even though Campaign-mode coverage is already
+large.
+
+## Automatic failed-game backfill
+
+Current acquisition reruns now backfill previous failures before ingest.
+
+The backfill selector:
+
+\`\`\`text
+src/planets_lab/corpus/public_validation_backfill_cli.py
+\`\`\`
+
+uses the already-probed candidate manifest, preserves the original target bucket
+counts, excludes every accumulated rejected game id, and selects untried
+replacement games by ruleset novelty/size.
+
+Persistent local rejection ledger:
+
+\`\`\`text
+validation/corpus/manifests/public-validation-rejected.json
+\`\`\`
+
+Safe evidence additionally includes the rejection ledger and backfill report.
+
+The same command remains the recovery path:
+
+\`\`\`bash
+bash tools/run-public-validation-corpus-with-evidence.sh
+\`\`\`
+
+If a newly selected replacement is itself legacy/binary, the run may still end
+non-zero; rerunning repeats the bounded backfill with that game added to the
+rejection ledger. No rediscovery is required.
+
+## Capture-side discovery partition
+
+The current C5 blocker should not consume every new archive for fitting.
+
+Discovery runner:
+
+\`\`\`bash
+bash tools/run-public-capture-side-discovery-with-evidence.sh
+\`\`\`
+
+The diagnostic deterministically partitions indexed public games by a stable
+hash before inspecting combat outcomes:
+
+\`\`\`text
+~75% discovery
+~25% held out
+\`\`\`
+
+The discovery runner scans only the discovery partition. Held-out games are
+listed but not opened by the diagnostic.
+
+Tracked output:
+
+\`\`\`text
+artifacts/public-capture-side/discovery-capture-side.json
+\`\`\`
+
+The report inventories attributable ship-capture continuations, factual
+LEFT/RIGHT, capture-side carry, prior same-pair occurrences and relevant
+ruleset metadata. It is explicitly labeled:
+
+\`\`\`text
+DISCOVERY_ONLY_NOT_PROMOTED
+\`\`\`
+
+A side rule must be frozen before the held-out partition is opened.
