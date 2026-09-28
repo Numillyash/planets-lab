@@ -182,3 +182,36 @@ No side rule is promoted by this corpus acquisition checkpoint.
 The external-engine branch remains candidate-only; c2ng's global captured-RIGHT
 model is already rejected by the official eight-row population and may only
 supply the bounded T26 original-order cursor hypothesis.
+
+## Operator rerun guard
+
+A later operator rerun exposed a workflow hazard rather than a new corpus result.
+
+The local checkout was still on `research/external-engine-analysis`. The attempted
+`git pull --ff-only origin main` correctly refused to fast-forward that research
+branch, but the next shell command still launched the corpus runner. Runtime
+evidence was therefore published from:
+
+```text
+runtime-logs/public-validation-corpus/20260928T085529Z_d306edd49845
+source_branch: research/external-engine-analysis
+source_commit: d306edd4984512efbbe29d97f0ad911ebd3285b3
+```
+
+That run is immutable evidence but **not canonical main corpus evidence** and
+does not supersede the 30/36 round-1 checkpoint above. It merely re-indexed the
+same selected population and again observed the same six binary normalization
+failures.
+
+To prevent another expensive accidental non-main run,
+`tools/run-public-validation-corpus-with-evidence.sh` now fails closed unless
+the current branch is literally `main`. Intentional diagnostic execution from
+another branch requires the explicit override:
+
+```bash
+PUBLIC_VALIDATION_ALLOW_NON_MAIN=1 \
+  bash tools/run-public-validation-corpus-with-evidence.sh
+```
+
+Normal canonical acquisition must not use that override.
+

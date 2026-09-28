@@ -104,3 +104,15 @@ def test_public_capture_side_runner_keeps_heldout_games_unscanned() -> None:
     assert "--partition heldout" not in runner
     assert "--include artifacts/public-capture-side" in wrapper
     assert "validation/corpus/cache/loadall" not in wrapper
+
+def test_public_validation_wrapper_fails_closed_off_main_by_default() -> None:
+    script = (ROOT / "tools/run-public-validation-corpus-with-evidence.sh").read_text(
+        encoding="utf-8"
+    )
+
+    assert 'PUBLIC_VALIDATION_ALLOW_NON_MAIN="${PUBLIC_VALIDATION_ALLOW_NON_MAIN:-0}"' in script
+    assert 'git symbolic-ref --quiet --short HEAD' in script
+    assert '"$SOURCE_BRANCH" != "main"' in script
+    assert 'exit 64' in script
+    assert 'PUBLIC_VALIDATION_ALLOW_NON_MAIN=1' in script
+
