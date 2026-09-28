@@ -90,3 +90,17 @@ def test_acquisition_runner_backfills_previous_failures_before_ingest() -> None:
     assert '--rejected "$REJECTED_FILE"' in script
     assert '$EVIDENCE_DIR/public-validation-rejected.json' in script
     assert '$EVIDENCE_DIR/public-validation-backfill-report.json' in script
+
+
+def test_public_capture_side_runner_keeps_heldout_games_unscanned() -> None:
+    runner = (ROOT / "tools/run-public-capture-side-discovery.sh").read_text(
+        encoding="utf-8"
+    )
+    wrapper = (
+        ROOT / "tools/run-public-capture-side-discovery-with-evidence.sh"
+    ).read_text(encoding="utf-8")
+
+    assert "--partition discovery" in runner
+    assert "--partition heldout" not in runner
+    assert "--include artifacts/public-capture-side" in wrapper
+    assert "validation/corpus/cache/loadall" not in wrapper
