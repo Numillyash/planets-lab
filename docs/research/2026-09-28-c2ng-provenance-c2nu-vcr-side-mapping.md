@@ -177,7 +177,7 @@ This means the direct `left -> left`, `right -> right` adapter convention has lo
 
 | category | external location | implementation behavior | planets-lab equivalent/status | candidate difference | discriminator already possible? | next action |
 |---|---|---|---|---|---|---|
-| C | c2ng commit `76b3eed...` + `game/sim/run.cpp` | captured LEFT suppression intentionally models a claimed Host typo checking only opponent | current Nu capture side blocker; 7/8 opponent-right control | provenance shows asymmetry is deliberate historical reconstruction, not incidental loop artifact | yes | run cursor candidate against official Nu rows |
+| C | c2ng commit `76b3eed...` + `game/sim/run.cpp` | captured LEFT suppression intentionally models a claimed Host typo checking only opponent | current Nu population is 7 captured-LEFT / 1 captured-RIGHT | provenance shows asymmetry is deliberate historical reconstruction, but its captured-RIGHT consequence is globally contradicted by Nu | yes | keep only as an O-layer reachability candidate for the unique RIGHT row T26 |
 | A/B | c2ng ordinary order tests | bug #428 regression derives order from external `c2hosttest` cases | ordinary non-capture queue already closed | historical THost provenance only | not needed for current ordinary queue | do not reopen ordinary queue |
 | A | c2nu `rstPackVcrs` | preserves Nu `left` and `right` labels directly | planets-lab factual VCR side fields are comparator inputs | independent adapter agrees with literal side interpretation | yes | compare planets-lab extraction against raw API on known rows |
 | B | c2nu resolver docs | explicitly warns about Nu VCR rounding/balancing uncertainty | not current blocker | uncertainty is resolver-level, not side mapping | no immediate capture discriminator | retain for later combat resolver work |
@@ -199,7 +199,18 @@ This means the direct `left -> left`, `right -> right` adapter convention has lo
 
 ### C. Immediate official-Nu discriminator
 
-The strongest candidate remains:
+The eight-row population already gives the first result:
+
+```text
+c2ng consequence: captured prize RIGHT
+factual Nu:       captured prize LEFT 7/8, RIGHT 1/8
+```
+
+So c2ng is rejected as a global NuHost post-capture side rule.
+
+Its stronger provenance still matters for one narrower question. The unique
+captured-RIGHT row, `511506/T26`, can be tested for **original-order cursor
+reachability** under the THost/c2ng candidate:
 
 ```text
 frozen pre-combat order
@@ -208,9 +219,8 @@ frozen pre-combat order
 + captured LEFT suppression
 ```
 
-Now with stronger external provenance: its asymmetric capture rule was explicitly introduced to reproduce a claimed THost peculiarity.
-
-The correct next mechanics action remains a bounded official-Nu cursor diagnostic over the existing eight capture continuations.
+Only if that independent cursor reconstruction reaches T26's factual pair should
+the model be retained as an O-layer candidate.
 
 ## Adapter-level diagnostic
 
