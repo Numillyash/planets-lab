@@ -1,0 +1,191 @@
+===== PUBLIC VALIDATION CORPUS: PREFLIGHT =====
+docker:       ready
+===== PUBLIC VALIDATION CORPUS: BUILD LAB IMAGE =====
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "default" instance using docker driver
+
+#1 [lab internal] load build definition from Dockerfile
+#1 transferring dockerfile: 373B done
+#1 DONE 0.0s
+
+#2 [lab internal] load metadata for docker.io/library/python:3.12-slim
+#2 DONE 0.0s
+
+#3 [lab internal] load .dockerignore
+#3 transferring context: 184B done
+#3 DONE 0.0s
+
+#4 [lab internal] load build context
+#4 DONE 0.0s
+
+#5 [lab 1/6] FROM docker.io/library/python:3.12-slim@sha256:dd29372629eeba2dd003fd9e9d35a5b8236c44727875a0364254b5127af88e65
+#5 resolve docker.io/library/python:3.12-slim@sha256:dd29372629eeba2dd003fd9e9d35a5b8236c44727875a0364254b5127af88e65
+#5 ...
+
+#6 [lab auth] library/python:pull token for registry-1.docker.io
+#6 DONE 0.0s
+
+#5 [lab 1/6] FROM docker.io/library/python:3.12-slim@sha256:dd29372629eeba2dd003fd9e9d35a5b8236c44727875a0364254b5127af88e65
+#5 resolve docker.io/library/python:3.12-slim@sha256:dd29372629eeba2dd003fd9e9d35a5b8236c44727875a0364254b5127af88e65 1.0s done
+#5 DONE 1.0s
+
+#4 [lab internal] load build context
+#4 transferring context: 27.64kB 0.0s done
+#4 DONE 0.0s
+
+#7 [lab 2/6] WORKDIR /workspace
+#7 CACHED
+
+#8 [lab 3/6] COPY pyproject.toml README.md ./
+#8 CACHED
+
+#9 [lab 4/6] COPY src ./src
+#9 CACHED
+
+#10 [lab 5/6] COPY tests ./tests
+#10 DONE 0.1s
+
+#11 [lab 6/6] RUN python -m pip install --no-cache-dir --upgrade pip     && python -m pip install --no-cache-dir -e '.[dev]'
+#11 1.092 Requirement already satisfied: pip in /usr/local/lib/python3.12/site-packages (25.0.1)
+#11 1.399 Collecting pip
+#11 1.636   Downloading pip-26.2.1-py3-none-any.whl.metadata (4.6 kB)
+#11 1.685 Downloading pip-26.2.1-py3-none-any.whl (1.8 MB)
+#11 1.966    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 12.2 MB/s eta 0:00:00
+#11 1.977 Installing collected packages: pip
+#11 1.977   Attempting uninstall: pip
+#11 1.979     Found existing installation: pip 25.0.1
+#11 2.013     Uninstalling pip-25.0.1:
+#11 5.545       Successfully uninstalled pip-25.0.1
+#11 6.121 Successfully installed pip-26.2.1
+#11 6.121 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#11 6.652 Obtaining file:///workspace
+#11 6.654   Installing build dependencies: started
+#11 8.129   Installing build dependencies: finished with status 'done'
+#11 8.131   Checking if build backend supports build_editable: started
+#11 8.534   Checking if build backend supports build_editable: finished with status 'done'
+#11 8.535   Getting requirements to build editable: started
+#11 9.075   Getting requirements to build editable: finished with status 'done'
+#11 9.076   Preparing editable metadata (pyproject.toml): started
+#11 9.623   Preparing editable metadata (pyproject.toml): finished with status 'done'
+#11 10.17 Collecting duckdb<1.6,>=1.5 (from planets-lab==0.1.0)
+#11 10.35   Downloading duckdb-1.5.5-cp312-cp312-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl.metadata (4.2 kB)
+#11 10.45 Collecting pyarrow<22,>=21 (from planets-lab==0.1.0)
+#11 10.49   Downloading pyarrow-21.0.0-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (3.3 kB)
+#11 10.55 Collecting pytest<9,>=8 (from planets-lab==0.1.0)
+#11 10.59   Downloading pytest-8.4.2-py3-none-any.whl.metadata (7.7 kB)
+#11 10.65 Collecting iniconfig>=1 (from pytest<9,>=8->planets-lab==0.1.0)
+#11 10.69   Downloading iniconfig-2.3.0-py3-none-any.whl.metadata (2.5 kB)
+#11 10.74 Collecting packaging>=20 (from pytest<9,>=8->planets-lab==0.1.0)
+#11 10.78   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+#11 10.83 Collecting pluggy<2,>=1.5 (from pytest<9,>=8->planets-lab==0.1.0)
+#11 10.87   Downloading pluggy-1.6.0-py3-none-any.whl.metadata (4.8 kB)
+#11 10.93 Collecting pygments>=2.7.2 (from pytest<9,>=8->planets-lab==0.1.0)
+#11 10.97   Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+#11 11.03 Downloading duckdb-1.5.5-cp312-cp312-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl (21.5 MB)
+#11 11.77    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 21.5/21.5 MB 35.3 MB/s  0:00:00
+#11 11.81 Downloading pyarrow-21.0.0-cp312-cp312-manylinux_2_28_x86_64.whl (42.8 MB)
+#11 12.56    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 42.8/42.8 MB 57.4 MB/s  0:00:00
+#11 12.60 Downloading pytest-8.4.2-py3-none-any.whl (365 kB)
+#11 12.65 Downloading pluggy-1.6.0-py3-none-any.whl (20 kB)
+#11 12.69 Downloading iniconfig-2.3.0-py3-none-any.whl (7.5 kB)
+#11 12.74 Downloading packaging-26.3-py3-none-any.whl (129 kB)
+#11 12.78 Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+#11 13.09    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 3.3 MB/s  0:00:00
+#11 13.13 Building wheels for collected packages: planets-lab
+#11 13.14   Building editable for planets-lab (pyproject.toml): started
+#11 13.67   Building editable for planets-lab (pyproject.toml): finished with status 'done'
+#11 13.67   Created wheel for planets-lab: filename=planets_lab-0.1.0-0.editable-py3-none-any.whl size=3673 sha256=522a5f7092c9218d72d5af12b7ebe4f081991c1bc63ed0b9286db0bdae1e82c3
+#11 13.67   Stored in directory: /tmp/pip-ephem-wheel-cache-dycm3j2y/wheels/b0/41/ab/4e04a8678980f3355548f1261923479fbf2a713a7393a7dea8
+#11 13.67 Successfully built planets-lab
+#11 13.70 Installing collected packages: pygments, pyarrow, pluggy, packaging, iniconfig, duckdb, pytest, planets-lab
+#11 15.36 
+#11 15.37 Successfully installed duckdb-1.5.5 iniconfig-2.3.0 packaging-26.3 planets-lab-0.1.0 pluggy-1.6.0 pyarrow-21.0.0 pygments-2.21.0 pytest-8.4.2
+#11 15.37 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#11 DONE 15.6s
+
+#12 [lab] exporting to image
+#12 exporting layers
+#12 exporting layers 5.5s done
+#12 exporting manifest sha256:109b261fe4d7ad339ceba94e316d9cd205a2b8c1edc7a01a4e905ffffe165cfe 0.0s done
+#12 exporting config sha256:18da6f7152dd1715ec87c9962d2cc4ef5f33895c4416fe8e77158f83cfa98f5d done
+#12 exporting attestation manifest sha256:d3034859486a7cd24a8a2f274243b7caec56c96191900384b6be6befeace1b6e 0.0s done
+#12 exporting manifest list sha256:52bf7730b7d953cc3086d4dbe9c2cce9e54835cda556bac2126d6f4759391e20 0.0s done
+#12 naming to docker.io/library/planets-lab-lab:latest done
+#12 unpacking to docker.io/library/planets-lab-lab:latest
+#12 unpacking to docker.io/library/planets-lab-lab:latest 1.3s done
+#12 DONE 6.8s
+
+#13 [lab] resolving provenance for metadata file
+#13 DONE 0.0s
+ lab  Built
+network_mode: direct
+proxy:        not configured
+===== PUBLIC VALIDATION CORPUS: DISCOVERY =====
+discovery:    reuse existing manifests/report
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 43082, "position": 1, "status": "failed", "total": 36}
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 68006, "position": 2, "status": "failed", "total": 36}
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 78375, "position": 3, "status": "failed", "total": 36}
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 138269, "position": 4, "status": "failed", "total": 36}
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 190004, "position": 5, "status": "failed", "total": 36}
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 190428, "position": 6, "status": "failed", "total": 36}
+{"canonical_failed": 0, "canonical_ok": 2200, "embedded_consecutive": 2189, "game_id": 224849, "ghost_ship_records": 31, "ionstorm_records": 4356, "minefield_records": 95439, "position": 7, "snapshots": 2200, "source": "cache", "status": "ok", "total": 36, "transitions": 2189}
+{"canonical_failed": 421, "canonical_ok": 2725, "embedded_consecutive": 3135, "game_id": 227887, "ghost_ship_records": 0, "ionstorm_records": 12441, "minefield_records": 643280, "position": 8, "snapshots": 3146, "source": "cache", "status": "ok", "total": 36, "transitions": 3135}
+{"canonical_failed": 236, "canonical_ok": 6474, "embedded_consecutive": 6699, "game_id": 233558, "ghost_ship_records": 0, "ionstorm_records": 26763, "minefield_records": 1699453, "position": 9, "snapshots": 6710, "source": "cache", "status": "ok", "total": 36, "transitions": 6699}
+{"canonical_failed": 5, "canonical_ok": 3713, "embedded_consecutive": 3707, "game_id": 256858, "ghost_ship_records": 99, "ionstorm_records": 67727, "minefield_records": 709998, "position": 10, "snapshots": 3718, "source": "cache", "status": "ok", "total": 36, "transitions": 3707}
+{"canonical_failed": 221, "canonical_ok": 4651, "embedded_consecutive": 4860, "game_id": 257776, "ghost_ship_records": 3662, "ionstorm_records": 88020, "minefield_records": 788760, "position": 11, "snapshots": 4872, "source": "cache", "status": "ok", "total": 36, "transitions": 4860}
+{"canonical_failed": 0, "canonical_ok": 2475, "embedded_consecutive": 2464, "game_id": 266087, "ghost_ship_records": 0, "ionstorm_records": 51722, "minefield_records": 564549, "position": 12, "snapshots": 2475, "source": "cache", "status": "ok", "total": 36, "transitions": 2464}
+{"canonical_failed": 7, "canonical_ok": 2753, "embedded_consecutive": 2724, "game_id": 325434, "ghost_ship_records": 355, "ionstorm_records": 52020, "minefield_records": 439793, "position": 13, "snapshots": 2760, "source": "cache", "status": "ok", "total": 36, "transitions": 2748}
+{"canonical_failed": 0, "canonical_ok": 5880, "embedded_consecutive": 5850, "game_id": 338264, "ghost_ship_records": 37, "ionstorm_records": 108240, "minefield_records": 229124, "position": 14, "snapshots": 5880, "source": "cache", "status": "ok", "total": 36, "transitions": 5850}
+{"canonical_failed": 72, "canonical_ok": 2194, "embedded_consecutive": 2255, "game_id": 342288, "ghost_ship_records": 335, "ionstorm_records": 41316, "minefield_records": 584647, "position": 15, "snapshots": 2266, "source": "cache", "status": "ok", "total": 36, "transitions": 2255}
+{"canonical_failed": 180, "canonical_ok": 2532, "embedded_consecutive": 2700, "game_id": 343550, "ghost_ship_records": 809, "ionstorm_records": 39048, "minefield_records": 729093, "position": 16, "snapshots": 2712, "source": "cache", "status": "ok", "total": 36, "transitions": 2700}
+{"canonical_failed": 0, "canonical_ok": 5370, "embedded_consecutive": 5340, "game_id": 350094, "ghost_ship_records": 0, "ionstorm_records": 94740, "minefield_records": 177810, "position": 17, "snapshots": 5370, "source": "cache", "status": "ok", "total": 36, "transitions": 5340}
+{"canonical_failed": 15, "canonical_ok": 2570, "embedded_consecutive": 2574, "game_id": 364412, "ghost_ship_records": 103, "ionstorm_records": 47179, "minefield_records": 274962, "position": 18, "snapshots": 2585, "source": "cache", "status": "ok", "total": 36, "transitions": 2574}
+{"canonical_failed": 0, "canonical_ok": 6120, "embedded_consecutive": 6090, "game_id": 368767, "ghost_ship_records": 106, "ionstorm_records": 106560, "minefield_records": 145168, "position": 19, "snapshots": 6120, "source": "cache", "status": "ok", "total": 36, "transitions": 6090}
+{"canonical_failed": 1, "canonical_ok": 5789, "embedded_consecutive": 5760, "game_id": 371631, "ghost_ship_records": 54, "ionstorm_records": 126420, "minefield_records": 684913, "position": 20, "snapshots": 5790, "source": "cache", "status": "ok", "total": 36, "transitions": 5760}
+{"canonical_failed": 11, "canonical_ok": 2354, "embedded_consecutive": 2354, "game_id": 396107, "ghost_ship_records": 64, "ionstorm_records": 35893, "minefield_records": 452415, "position": 21, "snapshots": 2365, "source": "cache", "status": "ok", "total": 36, "transitions": 2354}
+{"canonical_failed": 2, "canonical_ok": 2842, "embedded_consecutive": 2808, "game_id": 411645, "ghost_ship_records": 61, "ionstorm_records": 44880, "minefield_records": 153547, "position": 22, "snapshots": 2844, "source": "cache", "status": "ok", "total": 36, "transitions": 2832}
+{"canonical_failed": 0, "canonical_ok": 1606, "embedded_consecutive": 1595, "game_id": 416250, "ghost_ship_records": 0, "ionstorm_records": 31306, "minefield_records": 144372, "position": 23, "snapshots": 1606, "source": "cache", "status": "ok", "total": 36, "transitions": 1595}
+{"canonical_failed": 80, "canonical_ok": 2230, "embedded_consecutive": 2299, "game_id": 425973, "ghost_ship_records": 395, "ionstorm_records": 2299, "minefield_records": 213759, "position": 24, "snapshots": 2310, "source": "cache", "status": "ok", "total": 36, "transitions": 2299}
+{"canonical_failed": 3, "canonical_ok": 7137, "embedded_consecutive": 7110, "game_id": 441148, "ghost_ship_records": 1328, "ionstorm_records": 116790, "minefield_records": 270896, "position": 25, "snapshots": 7140, "source": "cache", "status": "ok", "total": 36, "transitions": 7110}
+{"canonical_failed": 3, "canonical_ok": 2769, "embedded_consecutive": 2761, "game_id": 473010, "ghost_ship_records": 18, "ionstorm_records": 54274, "minefield_records": 260490, "position": 26, "snapshots": 2772, "source": "cache", "status": "ok", "total": 36, "transitions": 2761}
+{"canonical_failed": 13, "canonical_ok": 6047, "embedded_consecutive": 6030, "game_id": 474699, "ghost_ship_records": 81, "ionstorm_records": 108540, "minefield_records": 535419, "position": 27, "snapshots": 6060, "source": "cache", "status": "ok", "total": 36, "transitions": 6030}
+{"canonical_failed": 3, "canonical_ok": 1592, "embedded_consecutive": 1584, "game_id": 476819, "ghost_ship_records": 15, "ionstorm_records": 29348, "minefield_records": 323865, "position": 28, "snapshots": 1595, "source": "cache", "status": "ok", "total": 36, "transitions": 1584}
+{"canonical_failed": 9, "canonical_ok": 2389, "embedded_consecutive": 2387, "game_id": 477725, "ghost_ship_records": 804, "ionstorm_records": 0, "minefield_records": 168107, "position": 29, "snapshots": 2398, "source": "cache", "status": "ok", "total": 36, "transitions": 2387}
+{"canonical_failed": 0, "canonical_ok": 2365, "embedded_consecutive": 2354, "game_id": 486109, "ghost_ship_records": 0, "ionstorm_records": 0, "minefield_records": 289859, "position": 30, "snapshots": 2365, "source": "cache", "status": "ok", "total": 36, "transitions": 2354}
+{"canonical_failed": 5, "canonical_ok": 2613, "embedded_consecutive": 2607, "game_id": 563278, "ghost_ship_records": 39, "ionstorm_records": 49236, "minefield_records": 258938, "position": 31, "snapshots": 2618, "source": "cache", "status": "ok", "total": 36, "transitions": 2607}
+{"canonical_failed": 302, "canonical_ok": 3034, "embedded_consecutive": 3300, "game_id": 597910, "ghost_ship_records": 266, "ionstorm_records": 45096, "minefield_records": 320339, "position": 32, "snapshots": 3336, "source": "cache", "status": "ok", "total": 36, "transitions": 3324}
+{"canonical_failed": 6, "canonical_ok": 2658, "embedded_consecutive": 2628, "game_id": 617883, "ghost_ship_records": 148, "ionstorm_records": 47640, "minefield_records": 441093, "position": 33, "snapshots": 2664, "source": "cache", "status": "ok", "total": 36, "transitions": 2652}
+{"canonical_failed": 40, "canonical_ok": 2432, "embedded_consecutive": 2460, "game_id": 627339, "ghost_ship_records": 195, "ionstorm_records": 41952, "minefield_records": 248290, "position": 34, "snapshots": 2472, "source": "cache", "status": "ok", "total": 36, "transitions": 2460}
+{"canonical_failed": 0, "canonical_ok": 4830, "embedded_consecutive": 4800, "game_id": 653272, "ghost_ship_records": 118, "ionstorm_records": 89580, "minefield_records": 191319, "position": 35, "snapshots": 4830, "source": "cache", "status": "ok", "total": 36, "transitions": 4800}
+{"canonical_failed": 0, "canonical_ok": 4620, "embedded_consecutive": 4590, "game_id": 658427, "ghost_ship_records": 42, "ionstorm_records": 60810, "minefield_records": 182934, "position": 36, "snapshots": 4620, "source": "cache", "status": "ok", "total": 36, "transitions": 4590}
+===== CORPUS INGEST SUMMARY =====
+manifest_games:      36
+games_indexed:       30
+games_failed:        6
+index_output:        validation/corpus/index/public-validation-games.jsonl
+stats_output:        validation/corpus/index/public-validation-stats.json
+snapshots:           108599
+transitions:         108110
+embedded_consecutive:108014
+canonical_ok:        106964
+canonical_failed:    1635
+settings_hashes:     30
+races:               {'1': 43, '2': 34, '3': 36, '4': 34, '5': 39, '6': 31, '7': 43, '8': 31, '9': 35, '10': 27, '11': 37, '12': 22}
+candidate_mechanics: {'ghost_ship_records': 9165, 'hyp_order_candidates': 122907, 'intercept_order_candidates': 39278, 'ionstorm_records': 1624196, 'minefield_records': 12222631, 'snapshots_with_ghost_ships': 5996, 'snapshots_with_hyp_candidates': 28527, 'snapshots_with_intercept_candidates': 15194, 'snapshots_with_ionstorms': 101322, 'snapshots_with_minefields': 79383, 'snapshots_with_tow_candidates': 40346, 'tow_order_candidates': 234586}
+exit status 1
+
+===== PUBLIC VALIDATION CORPUS: STAGE SAFE EVIDENCE =====
+
+===== PUBLIC VALIDATION CORPUS: COMPLETE =====
+baseline_manifest: validation/corpus/manifests/accounts-recent-finished.jsonl
+selected_manifest: validation/corpus/manifests/public-validation-selected.jsonl
+combined_manifest: validation/corpus/manifests/public-validation-combined.jsonl
+selection_report:  artifacts/public-validation-corpus/selection-report.json
+index_output:      validation/corpus/index/public-validation-games.jsonl
+stats_output:      validation/corpus/index/public-validation-stats.json
+evidence_dir:      artifacts/public-validation-corpus/evidence
+archive_cache:     validation/corpus/cache/loadall
+ingest_rc:         1
