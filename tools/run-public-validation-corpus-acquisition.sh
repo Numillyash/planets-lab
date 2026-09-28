@@ -11,6 +11,8 @@ COMBINED_MANIFEST="${COMBINED_MANIFEST:-validation/corpus/manifests/public-valid
 REPORT="${REPORT:-artifacts/public-validation-corpus/selection-report.json}"
 INDEX_OUTPUT="${INDEX_OUTPUT:-validation/corpus/index/public-validation-games.jsonl}"
 STATS_OUTPUT="${STATS_OUTPUT:-validation/corpus/index/public-validation-stats.json}"
+REJECTED_FILE="${REJECTED_FILE:-validation/corpus/manifests/public-validation-rejected.json}"
+BACKFILL_REPORT="${BACKFILL_REPORT:-artifacts/public-validation-corpus/backfill-report.json}"
 EVIDENCE_DIR="${EVIDENCE_DIR:-artifacts/public-validation-corpus/evidence}"
 
 MIN_TURN="${MIN_TURN:-55}"
@@ -24,6 +26,7 @@ ARCHIVE_TIMEOUT="${ARCHIVE_TIMEOUT:-180}"
 ARCHIVE_RETRIES="${ARCHIVE_RETRIES:-2}"
 ARCHIVE_RETRY_DELAY="${ARCHIVE_RETRY_DELAY:-2}"
 REUSE_DISCOVERY="${REUSE_DISCOVERY:-1}"
+AUTO_BACKFILL="${AUTO_BACKFILL:-1}"
 
 DOCKER_PREFLIGHT_TIMEOUT="${DOCKER_PREFLIGHT_TIMEOUT:-10}"
 
@@ -75,6 +78,24 @@ else
     --report-output "$REPORT"
 fi
 
+if [[ "$AUTO_BACKFILL" == "1" \
+   && -s "$CANDIDATES_MANIFEST" \
+   && -s "$SELECTED_MANIFEST" \
+   && -s "$STATS_OUTPUT" \
+   && -s "$REPORT" ]]; then
+  echo
+  echo "===== PUBLIC VALIDATION CORPUS: BACKFILL PREVIOUS FAILURES ====="
+  "${lab[@]}" python -m planets_lab.corpus.public_validation_backfill_cli \
+    --baseline-manifest "$BASELINE_MANIFEST" \
+    --candidates-manifest "$CANDIDATES_MANIFEST" \
+    --selected-manifest "$SELECTED_MANIFEST" \
+    --stats "$STATS_OUTPUT" \
+    --selection-report "$REPORT" \
+    --rejected "$REJECTED_FILE" \
+    --combined-output "$COMBINED_MANIFEST" \
+    --report-output "$BACKFILL_REPORT"
+fi
+
 echo
 echo "===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX ====="
 set +e
@@ -98,6 +119,12 @@ cp "$SELECTED_MANIFEST" "$EVIDENCE_DIR/public-validation-selected.jsonl"
 cp "$COMBINED_MANIFEST" "$EVIDENCE_DIR/public-validation-combined.jsonl"
 cp "$INDEX_OUTPUT" "$EVIDENCE_DIR/public-validation-games.jsonl"
 cp "$STATS_OUTPUT" "$EVIDENCE_DIR/public-validation-stats.json"
+if [[ -s "$REJECTED_FILE" ]]; then
+  cp "$REJECTED_FILE" "$EVIDENCE_DIR/public-validation-rejected.json"
+fi
+if [[ -s "$BACKFILL_REPORT" ]]; then
+  cp "$BACKFILL_REPORT" "$EVIDENCE_DIR/public-validation-backfill-report.json"
+fi
 
 echo
 echo "===== PUBLIC VALIDATION CORPUS: COMPLETE ====="
@@ -107,6 +134,8 @@ echo "combined_manifest: $COMBINED_MANIFEST"
 echo "selection_report:  $REPORT"
 echo "index_output:      $INDEX_OUTPUT"
 echo "stats_output:      $STATS_OUTPUT"
+echo "rejected_file:     $REJECTED_FILE"
+echo "backfill_report:   $BACKFILL_REPORT"
 echo "evidence_dir:      $EVIDENCE_DIR"
 echo "archive_cache:     validation/corpus/cache/loadall"
 echo "ingest_rc:         $INGEST_RC"
