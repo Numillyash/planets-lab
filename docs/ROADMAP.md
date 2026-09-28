@@ -685,7 +685,13 @@ Current checkpoints:
 
 `docs/handoff/2026-09-28-main-combat-corpus-checkpoint.md`
 
-`docs/handoff/2026-09-28-main-public-corpus-backfill-inflight.md`.
+`docs/handoff/2026-09-28-main-public-corpus-backfill-round1-runtime.md`.
+
+The first automatic backfill runtime increased the compatible public corpus from
+22 to 30 indexed games. Six replacement games remain incompatible legacy/binary
+`.trn` cases, so one more bounded rerun of the same acquisition runner is
+required before treating the 36-game selection as stabilized. Do not rediscover
+the 160-game candidate pool.
 
 Detailed capture runtime:
 `docs/handoff/2026-09-24-combat-capture-runtime.md`.

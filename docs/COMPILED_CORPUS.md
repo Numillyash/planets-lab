@@ -530,3 +530,88 @@ capture predecessor exclusions: 7
 
 The factual next VCR remains comparator-only. The next unresolved queue boundary
 is rebuilding pair candidates after a combat capture changes ownership/race.
+
+## Public validation corpus — first automatic backfill runtime
+
+Published evidence:
+
+```text
+runtime-logs/public-validation-corpus/20260928T042502Z_10a08afdde89
+source main 10a08afdde89ad98587970d81441caf8b6855567
+exit_code 1
+```
+
+The first automatic failed-game replacement round improved the compatible
+independent public corpus from 22 to 30 indexed games:
+
+```text
+selected games              36
+indexed games               30
+failed games                 6
+snapshots               108599
+transitions             108110
+archive bytes        7987231325
+settings hashes              30
+```
+
+Eight of the 14 replacement games indexed successfully. Six replacements remain
+legacy/binary normalization failures:
+
+```text
+43082
+68006
+78375
+138269
+190004
+190428
+```
+
+All six fail on non-UTF-8 `.trn` payload normalization rather than networking.
+The published rejection ledger still contains the previous 14 failures because
+the runner updates the rejection set at the start of each round from the prior
+stats; the next rerun will absorb these six IDs before selecting replacements.
+
+The original bucket target is still not fully reproduced:
+
+```text
+target:
+  campaign       19
+  championship    6
+  finite_fuel     9
+  sphere          2
+
+after backfill selection:
+  campaign       19
+  championship    6
+  finite_fuel    11
+
+missing:
+  sphere          2
+```
+
+This bucket-level gap is distinct from the raw setting inventory: the selected
+manifest contains games with `settings.sphere=true`, but none occupies the
+selector's lower-priority `sphere` bucket after campaign/championship
+classification.
+
+Capability metadata remains empty across the selected manifest:
+
+```text
+selected player slots                  594
+non-empty activeadvantages slots         0
+non-empty activehulls slots              0
+```
+
+Recovery remains bounded and resumable:
+
+```bash
+bash tools/run-public-validation-corpus-with-evidence.sh
+```
+
+Do not rediscover the 160-game candidate pool and do not delete immutable local
+loadall cache. After the selected corpus stabilizes, proceed to the sealed
+discovery-only capture-side harvest before opening held-out games.
+
+Detailed checkpoint:
+`docs/handoff/2026-09-28-main-public-corpus-backfill-round1-runtime.md`.
+
