@@ -41,7 +41,7 @@ This is more specific than the existing scalar controls `sticky capture side` or
 |---|---|---|---|---|---|---|
 | A | `game/battleorderrule.cpp`; `game/sim/run.cpp::sortByBattleOrderTHost` | TimHost battle value then ship id sorts Host/NuHost simulator ships | battle-order inputs/FC sensitivity already studied | c2ng hardcodes Host 3.22.48 interpretation for NuHost simulation | partially | use only as input to cursor candidate |
 | C | `game/sim/run.cpp::simulateHost` | `battle_order` sorted once; no re-sort after each VCR | blocker asks whether capture resets/recreates combat order | candidate says **no re-sort/no new order** | yes: existing capture continuations | replay exact nested-loop cursor |
-| C | `game/sim/run.cpp::doCombatOrder` | outer loop `right`, inner loop `left`; pair passed as LEFT/RIGHT directly | best current control `opponent_initiator_right = 7/8` | concrete mechanism for RIGHT bias | yes | test cursor position, not pair-local priority |
+| C | `game/sim/run.cpp::doCombatOrder` | outer loop `right`, inner loop `left`; pair passed as LEFT/RIGHT directly | current `opponent_initiator_right = 7/8` means the **opponent** is RIGHT and therefore the captured prize is LEFT in 7/8 rows | c2ng's captured-LEFT ban predicts the opposite prize orientation for those seven rows; it is compatible only with a captured-RIGHT continuation | yes | reject c2ng as a global post-capture side model; test only original-order reachability of the unique RIGHT row |
 | C | `game/sim/run.cpp::makeShipShipVcr` | Host/NuHost rejects `leftShip.fl_WasCaptured`; no symmetric captured-RIGHT guard | pair eligibility already resolved, side unknown | predicts captured continuation can use captured ship as RIGHT but not LEFT | yes | evaluate all 8 factual sides |
 | A | same | capture sets owner to captor, crew=10, aggression=Passive, `fl_WasCaptured` | capture state transition already closed | mostly equivalent state | already covered | no mechanics change |
 | B/C | same | capture mutation is in-place on object referenced by already-sorted vector | frozen priority and sticky side tested separately | candidate couples frozen position to persistent cursor and LEFT suppression | yes, but exact cursor reconstruction needed | bounded diagnostic |
@@ -84,28 +84,53 @@ A captured ship does not receive a newly calculated vector position. Its pointer
 
 ## Why this matters to the 7/8 control
 
-Main reports:
+The earlier version of this note described c2ng as producing the same directional
+bias as the `opponent_initiator_right` control. That was backwards.
 
-```text
-opponent_initiator_right = 7 / 8 exact
+The canonical diagnostic defines:
+
+```python
+"opponent_initiator_right": "left"
 ```
 
-with principal discriminator:
+where the stored value is the **captured/prize ship side**. Therefore:
 
 ```text
+opponent_initiator_right exact = 7 / 8
+=> captured/prize ship factual LEFT = 7 / 8
+
+unique mismatch:
 511506 / T26
 captured ship27
 next opponent ship119
-factual captured-ship side = RIGHT
+factual captured/prize side = RIGHT
 ```
 
-c2ng independently creates the same directional bias:
+By contrast, c2ng's non-PHost path explicitly rejects a captured ship when that
+ship is passed as LEFT. With simulator random-left/right disabled, the audited
+c2ng path can therefore continue a captured ship only as **RIGHT**.
 
-- RIGHT is the outer cursor;
-- captured LEFT is explicitly rejected;
-- captured RIGHT can still be attacked as opponent.
+So the existing eight Nu observations already falsify the c2ng rule as a global
+post-capture side model:
 
-The remaining 1/8 is therefore especially useful: it can distinguish a simplistic captured->RIGHT rule from the stronger frozen-order/cursor candidate, or falsify c2ng's candidate.
+```text
+c2ng captured-RIGHT side candidate: compatible with 1 / 8
+opponent-initiator-RIGHT / prize-LEFT control: compatible with 7 / 8
+```
+
+This makes the unique T26 row more interesting, not less. Current primary Nu
+documentation says a captured ship can participate both in the existing order
+and in an additional order created at capture. A bounded hypothesis is therefore:
+
+```text
+O layer (original order): c2ng/THost captured-RIGHT behavior may be relevant
+C layer (capture-generated order): c2ng has no implementation for it
+```
+
+The fact that T26 is the only observed captured-RIGHT continuation makes it the
+sole existing candidate for the c2ng-like O layer. **Side orientation alone does
+not prove that classification.** T26 must first be shown reachable by continuing
+the independently reconstructed original-order cursor after the capture.
 
 ## NuHost-specific status inside c2ng
 
@@ -158,52 +183,70 @@ Relevant uncertainty comments include:
 
 ### C — immediately testable against official historical Nu
 
-Combined candidate:
+The existing eight rows already reject this combined c2ng rule as a **global**
+NuHost post-capture model because seven factual prize ships are LEFT whereas
+c2ng suppresses captured LEFT.
+
+The remaining Category C question is narrower:
 
 ```text
-post-capture continuation preserves pre-combat sorted object order and
-current nested combat-order cursors; a captured ship is suppressed as LEFT
-but can continue as RIGHT opponent.
+Can the unique captured-RIGHT row (511506/T26) be generated by continuing the
+pre-capture original-order cursor under the c2ng/THost candidate?
 ```
 
-The existing eight attributable Nu capture continuations already form a bounded discriminator population.
+If yes, c2ng supplies an external candidate for the documented original-order
+portion only. It still says nothing about Nu's separately documented
+capture-generated additional order.
 
 ## Proposed bounded diagnostic for main
 
-Do **not** import c2ng code. Implement a candidate-only diagnostic over existing factual capture rows:
+Do **not** import c2ng code and do not fit the c2ng side rule over all eight
+rows. The global side comparison is already known qualitatively: c2ng predicts
+captured RIGHT while seven of eight factual continuations are captured LEFT.
 
-1. reconstruct pre-combat ship order from already available order inputs;
-2. record RIGHT/LEFT cursor coordinates of the capture VCR under candidate traversal;
-3. mutate only already-established factual capture state;
-4. continue cursors without re-sort;
-5. apply candidate `captured-as-LEFT => reject`;
-6. predict next pair and LEFT/RIGHT orientation;
-7. compare to factual VCR N+1 only at the final comparator.
+The bounded diagnostic should instead:
 
-Per-row output:
+1. expose an explicit external control `external_c2ng_captured_right = RIGHT`
+   in the existing pair-recomposition report, so archive runtime records the
+   expected exact/mismatch counts rather than relying on prose;
+2. for `511506/T26`, reconstruct the pre-combat THost/c2ng candidate order
+   from independent T-1 inputs;
+3. identify the RIGHT/LEFT cursor coordinates of the capture VCR without using
+   VCR N+1;
+4. continue those cursors without re-sort/reset and with captured-LEFT
+   suppression;
+5. determine whether ship119 is the next independently eligible opponent with
+   ship27 on RIGHT;
+6. consult factual VCR N+1 only as the final comparator.
+
+Per-row/global control output:
 
 ```text
-game / turn
-capture VCR
-captured ship
-capture side
-pre-combat sorted indices
-cursor at capture
-next candidate cursor
+external_c2ng_captured_right exact / mismatch
+factual captured LEFT count
+factual captured RIGHT count
+```
+
+T26 original-order output:
+
+```text
+pre-combat order
+capture cursor
+continued cursor
 predicted pair
 predicted captured side
-factual pair
-factual captured side
-exact?
-reason for first divergence
+factual pair/side
+first divergence, if any
 ```
 
 Interpretation:
 
-- **8/8 exact:** freeze candidate, then validate unchanged on newly acquired held-out continuations.
-- **7/8 with same residual:** determine whether residual is initial-sort reconstruction or genuine Nu divergence.
-- **different residual set:** cursor model remains more discriminatory than scalar 7/8 control.
-- **clear contradiction:** reject for NuHost and retain as external historical/reference behavior.
+- if T26 is cursor-reachable exactly, retain a **narrow O-layer candidate** and
+  test it unchanged on newly harvested capture continuations;
+- if T26 is not cursor-reachable, reject c2ng even for the sole captured-RIGHT
+  observation;
+- in either case, do not use c2ng to model the seven captured-LEFT rows or Nu's
+  capture-generated additional order.
 
 ## Handoff summary
 
@@ -225,7 +268,8 @@ official documentation status:
   not established by this audit
 
 official Nu discriminator:
-  YES — existing eight attributable historical capture continuations
+  YES — existing eight rows reject captured-RIGHT as a global rule; T26 is the
+  sole current row for an original-order cursor reachability test
 
 evidence effect:
   NONE until official-Nu diagnostic/differential verification
