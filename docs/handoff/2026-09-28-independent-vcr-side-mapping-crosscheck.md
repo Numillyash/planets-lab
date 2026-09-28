@@ -126,18 +126,27 @@ the current opponent_initiator_right 1/8 residual
 
 If exact, close generic adapter-level LEFT/RIGHT inversion as an explanation.
 
-### 2. c2ng cursor candidate remains the sole external Category C candidate
+### 2. c2ng is not a global capture-side candidate
 
-Still test:
+The canonical diagnostic means the current factual population is:
 
 ```text
-frozen pre-combat order
-+ persistent RIGHT-outer / LEFT-inner cursor
-+ no post-capture re-sort/reset
-+ captured LEFT suppression
+captured/prize LEFT   7 / 8
+captured/prize RIGHT  1 / 8
 ```
 
-against the eight official Nu capture continuations.
+c2ng suppresses captured LEFT, so its captured-RIGHT consequence is already
+contradicted by seven rows.
+
+Retain only the narrower Category C question:
+
+```text
+Can 511506/T26, the sole captured-RIGHT continuation, be reached by continuing
+the original pre-capture c2ng/THost cursor?
+```
+
+This is an original-order candidate only, not a model for Nu's documented
+capture-generated additional order.
 
 ## Evidence effect
 
@@ -151,5 +160,6 @@ The useful effect of this pass is hypothesis reduction:
 do not invent new queue rules from Kecupo/ChallengeSY
 do not pursue vgaphost
 validate raw Nu side mapping
-then test the c2ng cursor candidate
+record c2ng captured-RIGHT as a 1/8 external comparator
+test original-order cursor reachability only for T26
 ```
