@@ -114,6 +114,8 @@ def test_t26_shape_distinguishes_sticky_from_generic_initiator_side(monkeypatch)
             },
         ],
     }
+    context["site_ship_rows"] = context["predictions"]
+
     capture = {
         "ship_id": 27,
         "captor_ship_id": 102,
