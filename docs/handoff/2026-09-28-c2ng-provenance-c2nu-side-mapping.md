@@ -55,9 +55,20 @@ is not supported by this independent adapter.
 
 ## Immediate official-Nu diagnostics
 
-1. Cursor candidate:
+The side orientation is now explicit:
+
+```text
+factual captured LEFT   7 / 8
+factual captured RIGHT  1 / 8 (511506/T26)
+```
+
+c2ng's captured-LEFT suppression implies captured RIGHT, so it is already
+rejected as a global post-capture side rule.
+
+1. Narrow O-layer cursor test:
    reconstruct frozen pre-combat order + RIGHT-outer/LEFT-inner cursor +
-   captured-LEFT suppression over the existing eight capture continuations.
+   captured-LEFT suppression for the unique side-compatible T26 row. Require
+   independent cursor reachability before calling it an original-order case.
 
 2. Adapter invariant:
    on raw official payloads, assert
@@ -65,5 +76,6 @@ is not supported by this independent adapter.
    `vcr.right.objectid == planets-lab factual RIGHT`, especially for
    511506/T26 and the current 1/8 residual.
 
-No canonical mechanics change is justified until those checks pass and the
-candidate survives held-out official Nu validation.
+No canonical mechanics change is justified. Even if T26 is O-reachable, that
+would establish only a bounded original-order candidate; c2ng has no model for
+Nu's documented capture-generated additional order.
