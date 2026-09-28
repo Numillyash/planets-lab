@@ -27,8 +27,14 @@ ARCHIVE_RETRIES="${ARCHIVE_RETRIES:-2}"
 ARCHIVE_RETRY_DELAY="${ARCHIVE_RETRY_DELAY:-2}"
 REUSE_DISCOVERY="${REUSE_DISCOVERY:-1}"
 AUTO_BACKFILL="${AUTO_BACKFILL:-1}"
+MAX_BACKFILL_ROUNDS="${MAX_BACKFILL_ROUNDS:-6}"
 
 DOCKER_PREFLIGHT_TIMEOUT="${DOCKER_PREFLIGHT_TIMEOUT:-10}"
+
+if ! [[ "$MAX_BACKFILL_ROUNDS" =~ ^[1-9][0-9]*$ ]]; then
+  echo "ERROR: MAX_BACKFILL_ROUNDS must be a positive integer." >&2
+  exit 64
+fi
 
 echo "===== PUBLIC VALIDATION CORPUS: PREFLIGHT ====="
 if ! timeout "${DOCKER_PREFLIGHT_TIMEOUT}s" docker info >/dev/null 2>&1; then
@@ -78,38 +84,79 @@ else
     --report-output "$REPORT"
 fi
 
-if [[ "$AUTO_BACKFILL" == "1" \
-   && -s "$CANDIDATES_MANIFEST" \
-   && -s "$SELECTED_MANIFEST" \
-   && -s "$STATS_OUTPUT" \
-   && -s "$REPORT" ]]; then
-  echo
-  echo "===== PUBLIC VALIDATION CORPUS: BACKFILL PREVIOUS FAILURES ====="
-  "${lab[@]}" python -m planets_lab.corpus.public_validation_backfill_cli \
-    --baseline-manifest "$BASELINE_MANIFEST" \
-    --candidates-manifest "$CANDIDATES_MANIFEST" \
-    --selected-manifest "$SELECTED_MANIFEST" \
-    --stats "$STATS_OUTPUT" \
-    --selection-report "$REPORT" \
-    --rejected "$REJECTED_FILE" \
-    --combined-output "$COMBINED_MANIFEST" \
-    --report-output "$BACKFILL_REPORT"
-fi
+BACKFILL_ROUND=0
+INGEST_RC=1
 
-echo
-echo "===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX ====="
-set +e
-"${lab[@]}" python -m planets_lab.corpus.ingest_manifest_cli \
-  "$SELECTED_MANIFEST" \
-  --cache-dir validation/corpus/cache/loadall \
-  --index-output "$INDEX_OUTPUT" \
-  --stats-output "$STATS_OUTPUT" \
-  --request-delay "$ARCHIVE_DELAY" \
-  --network-timeout "$ARCHIVE_TIMEOUT" \
-  --download-retries "$ARCHIVE_RETRIES" \
-  --retry-delay "$ARCHIVE_RETRY_DELAY"
-INGEST_RC=$?
-set -e
+while true; do
+  BACKFILL_RC=0
+  TARGET_SHORTFALL=0
+
+  if [[ "$AUTO_BACKFILL" == "1" \
+     && -s "$CANDIDATES_MANIFEST" \
+     && -s "$SELECTED_MANIFEST" \
+     && -s "$STATS_OUTPUT" \
+     && -s "$REPORT" ]]; then
+    BACKFILL_ROUND=$((BACKFILL_ROUND + 1))
+    echo
+    echo "===== PUBLIC VALIDATION CORPUS: BACKFILL ROUND ${BACKFILL_ROUND}/${MAX_BACKFILL_ROUNDS} ====="
+    set +e
+    "${lab[@]}" python -m planets_lab.corpus.public_validation_backfill_cli \
+      --baseline-manifest "$BASELINE_MANIFEST" \
+      --candidates-manifest "$CANDIDATES_MANIFEST" \
+      --selected-manifest "$SELECTED_MANIFEST" \
+      --stats "$STATS_OUTPUT" \
+      --selection-report "$REPORT" \
+      --rejected "$REJECTED_FILE" \
+      --combined-output "$COMBINED_MANIFEST" \
+      --report-output "$BACKFILL_REPORT"
+    BACKFILL_RC=$?
+    set -e
+
+    if [[ "$BACKFILL_RC" -eq 2 ]]; then
+      echo "ERROR: backfill round ${BACKFILL_ROUND} failed before ingest." >&2
+      INGEST_RC=2
+      break
+    fi
+    if [[ "$BACKFILL_RC" -ne 0 ]]; then
+      TARGET_SHORTFALL=1
+      echo "WARNING: backfill could not restore the full target selection; ingesting the available subset once." >&2
+    fi
+  fi
+
+  echo
+  echo "===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX ====="
+  set +e
+  "${lab[@]}" python -m planets_lab.corpus.ingest_manifest_cli \
+    "$SELECTED_MANIFEST" \
+    --cache-dir validation/corpus/cache/loadall \
+    --index-output "$INDEX_OUTPUT" \
+    --stats-output "$STATS_OUTPUT" \
+    --request-delay "$ARCHIVE_DELAY" \
+    --network-timeout "$ARCHIVE_TIMEOUT" \
+    --download-retries "$ARCHIVE_RETRIES" \
+    --retry-delay "$ARCHIVE_RETRY_DELAY"
+  INGEST_RC=$?
+  set -e
+
+  if [[ "$TARGET_SHORTFALL" -eq 1 ]]; then
+    INGEST_RC=1
+    echo "WARNING: stopping because the target selection could not be fully backfilled." >&2
+    break
+  fi
+  if [[ "$INGEST_RC" -eq 0 ]]; then
+    break
+  fi
+  if [[ "$AUTO_BACKFILL" != "1" ]]; then
+    break
+  fi
+  if [[ "$BACKFILL_ROUND" -ge "$MAX_BACKFILL_ROUNDS" ]]; then
+    echo "WARNING: reached MAX_BACKFILL_ROUNDS=${MAX_BACKFILL_ROUNDS}; preserving partial evidence." >&2
+    break
+  fi
+
+  echo
+  echo "===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS ====="
+done
 
 echo
 echo "===== PUBLIC VALIDATION CORPUS: STAGE SAFE EVIDENCE ====="
@@ -138,6 +185,7 @@ echo "rejected_file:     $REJECTED_FILE"
 echo "backfill_report:   $BACKFILL_REPORT"
 echo "evidence_dir:      $EVIDENCE_DIR"
 echo "archive_cache:     validation/corpus/cache/loadall"
+echo "backfill_rounds:   $BACKFILL_ROUND"
 echo "ingest_rc:         $INGEST_RC"
 
 exit "$INGEST_RC"

@@ -116,3 +116,16 @@ def test_public_validation_wrapper_fails_closed_off_main_by_default() -> None:
     assert 'exit 64' in script
     assert 'PUBLIC_VALIDATION_ALLOW_NON_MAIN=1' in script
 
+def test_acquisition_runner_auto_repeats_bounded_backfill_rounds() -> None:
+    script = (ROOT / "tools/run-public-validation-corpus-acquisition.sh").read_text(
+        encoding="utf-8"
+    )
+
+    assert 'MAX_BACKFILL_ROUNDS="${MAX_BACKFILL_ROUNDS:-6}"' in script
+    assert 'BACKFILL_ROUND=0' in script
+    assert 'while true; do' in script
+    assert 'BACKFILL_ROUND=$((BACKFILL_ROUND + 1))' in script
+    assert 'CONTINUE WITH FRESH FAILURE STATS' in script
+    assert 'reached MAX_BACKFILL_ROUNDS=' in script
+    assert 'backfill_rounds:   $BACKFILL_ROUND' in script
+

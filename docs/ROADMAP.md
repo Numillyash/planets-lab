@@ -687,11 +687,16 @@ Current checkpoints:
 
 `docs/handoff/2026-09-28-main-public-corpus-backfill-round1-runtime.md`.
 
-The first automatic backfill runtime increased the compatible public corpus from
-22 to 30 indexed games. Six replacement games remain incompatible legacy/binary
-`.trn` cases, so one more bounded rerun of the same acquisition runner is
-required before treating the 36-game selection as stabilized. Do not rediscover
-the 160-game candidate pool.
+The second canonical automatic backfill runtime increased the compatible public
+corpus to 32 / 36 indexed games. Four newly selected replacements remain
+legacy/binary `.trn` failures. The acquisition runner now performs bounded
+multi-round backfill within one invocation, reusing the existing 159-game
+loadinfo candidate pool and immutable archive cache until the target converges,
+the candidate supply cannot restore it, or `MAX_BACKFILL_ROUNDS` is reached.
+Do not rediscover the candidate pool.
+
+Current corpus runtime:
+`docs/handoff/2026-09-28-main-public-corpus-backfill-round2-runtime.md`.
 
 Detailed capture runtime:
 `docs/handoff/2026-09-24-combat-capture-runtime.md`.

@@ -615,3 +615,72 @@ discovery-only capture-side harvest before opening held-out games.
 Detailed checkpoint:
 `docs/handoff/2026-09-28-main-public-corpus-backfill-round1-runtime.md`.
 
+## Public validation corpus — second canonical backfill runtime
+
+Published evidence:
+
+```text
+runtime-logs/public-validation-corpus/20260928T164728Z_ec20195891e9
+source main ec20195891e937a65897a991c405de88c439b036
+exit_code 1
+```
+
+The second canonical backfill round started from the 30 compatible games left by
+round 1, rejected those six known binary archives, selected six new candidates,
+and produced:
+
+```text
+selected games              36
+indexed games               32
+failed games                 4
+snapshots               114209
+transitions             113698
+archive bytes        8455277299
+settings hashes              32
+```
+
+Successful round-2 replacements:
+
+```text
+476380
+633855
+```
+
+New binary normalization failures:
+
+```text
+22158
+76301
+124766
+164693
+```
+
+The persisted rejection ledger at the start of this round contains 20 rejected
+game ids. On the next backfill pass the four failures above are added from the
+fresh stats before any replacement is selected.
+
+The explicit selector bucket target still reports `sphere: 2` missing, while
+raw `settings.sphere=true` remains present in selected records classified into
+higher-precedence buckets. `activeadvantages` and `activehulls` are still
+empty in all selected player slots.
+
+Because discovery successfully probed 159 games, repeated manual one-round
+invocations are unnecessary. The acquisition runner now performs up to six
+backfill rounds in one invocation by default:
+
+```text
+ingest
+-> fresh failed_game_ids
+-> rejection ledger update
+-> replacements from existing candidate pool
+-> ingest
+-> repeat, bounded by MAX_BACKFILL_ROUNDS
+```
+
+Successful immutable archives remain cached and are not redownloaded. The loop
+stops on full ingest success, candidate shortfall, fatal backfill error, disabled
+auto-backfill, or the configured round cap.
+
+Detailed checkpoint:
+`docs/handoff/2026-09-28-main-public-corpus-backfill-round2-runtime.md`.
+
