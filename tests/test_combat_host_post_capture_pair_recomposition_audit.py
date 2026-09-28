@@ -9,6 +9,7 @@ if str(TOOLS_DIR) not in sys.path:
 
 import combat_host_post_capture_pair_recomposition_audit as module
 from combat_host_post_capture_pair_recomposition_audit import (
+    _c2ng_thost_sim_battle_value,
     _pair_recomposition,
     _side_from_priority_keys,
 )
@@ -89,6 +90,14 @@ def test_t26_shape_distinguishes_sticky_from_generic_initiator_side(monkeypatch)
                 enemy=5,
                 friendlycode="ona",
             ),
+            102: _entry(
+                102,
+                5,
+                race_id=5,
+                mission=3,
+                enemy=6,
+                friendlycode="500",
+            ),
         },
         "factual_queue": [
             {
@@ -107,6 +116,7 @@ def test_t26_shape_distinguishes_sticky_from_generic_initiator_side(monkeypatch)
     }
     capture = {
         "ship_id": 27,
+        "captor_ship_id": 102,
         "captor_owner_id": 5,
         "race_id_after": 5,
         "hull_id_after": 20,
@@ -121,9 +131,13 @@ def test_t26_shape_distinguishes_sticky_from_generic_initiator_side(monkeypatch)
         "candidates": [
             {
                 "ship_id": 119,
+                "requests_new_owner": True,
                 "strict_permission": True,
             }
         ],
+        "active_ship_ids": [27, 102, 119],
+        "removed_ship_ids": [],
+        "history_anchored_ship_ids": [27, 102, 119],
     }
     appearances = {
         (1, 26, 54, 27): {
@@ -146,7 +160,37 @@ def test_t26_shape_distinguishes_sticky_from_generic_initiator_side(monkeypatch)
     assert result["side_control_exact"]["opponent_initiator_right"] is False
     assert result["side_control_exact"]["external_c2ng_captured_right"] is True
     assert result["side_control_exact"]["frozen_tminus1_priority"] is True
+    external = result["external_c2ng_original_order"]
+    assert external["status"] == "resolved"
+    assert external["external_order"] == [102, 27, 119]
+    assert external["predicted_opponent_ship_id"] == 119
+    assert external["predicted_prize_side"] == "right"
+    assert external["exact"] is True
 
+
+
+
+def test_external_c2ng_thost_battle_value_isolated_from_canonical_priority() -> None:
+    assert _c2ng_thost_sim_battle_value(
+        ship_id=10,
+        raw={"friendlycode": "001", "mission": 0, "enemy": 0, "neutronium": 50},
+    ) == (1, 10)
+    assert _c2ng_thost_sim_battle_value(
+        ship_id=11,
+        raw={"friendlycode": "abc", "mission": 3, "enemy": 0, "neutronium": 50},
+    ) == (1000, 11)
+    assert _c2ng_thost_sim_battle_value(
+        ship_id=12,
+        raw={"friendlycode": "abc", "mission": 2, "enemy": 5, "neutronium": 50},
+    ) == (1010, 12)
+    assert _c2ng_thost_sim_battle_value(
+        ship_id=13,
+        raw={"friendlycode": "abc", "mission": 0, "enemy": 0, "neutronium": 50},
+    ) == (1015, 13)
+    assert _c2ng_thost_sim_battle_value(
+        ship_id=14,
+        raw={"friendlycode": "001", "mission": 0, "enemy": 0, "neutronium": 0},
+    ) == (1015, 14)
 
 def test_pair_recomposition_fails_closed_when_fc_changes_eligibility(monkeypatch) -> None:
     monkeypatch.setattr(module, "_interference_state", lambda **kwargs: False)
