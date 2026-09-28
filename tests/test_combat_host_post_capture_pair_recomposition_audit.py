@@ -144,6 +144,7 @@ def test_t26_shape_distinguishes_sticky_from_generic_initiator_side(monkeypatch)
     assert result["fresh_fc_decision"]["phase"] == "standard"
     assert result["side_control_exact"]["sticky_capture_side"] is True
     assert result["side_control_exact"]["opponent_initiator_right"] is False
+    assert result["side_control_exact"]["external_c2ng_captured_right"] is True
     assert result["side_control_exact"]["frozen_tminus1_priority"] is True
 
 
@@ -214,3 +215,6 @@ def test_pair_recomposition_fails_closed_when_fc_changes_eligibility(monkeypatch
 
     assert result["status"] == "unresolved"
     assert result["reason"] == "pair_phase_not_fc_invariant"
+    assert result["factual_post_capture_side"] == "left"
+    assert result["side_control_exact"]["opponent_initiator_right"] is True
+    assert result["side_control_exact"]["external_c2ng_captured_right"] is False
