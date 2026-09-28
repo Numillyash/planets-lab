@@ -303,6 +303,7 @@ def _external_c2ng_original_order_prize_continuation(
             "factual_prize_side": capture.get("current_side"),
             "pair_exact": False,
             "side_exact": False,
+            "exact": False,
             "reason": "no_later_c2ng_captured_right_attacker",
         }
 
