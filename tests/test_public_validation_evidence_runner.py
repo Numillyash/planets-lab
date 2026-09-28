@@ -74,3 +74,19 @@ def test_acquisition_runner_reuses_discovery_and_stages_partial_ingest_evidence(
     assert "set +e" in script
     assert "INGEST_RC=$?" in script
     assert 'exit "$INGEST_RC"' in script
+
+
+def test_acquisition_runner_backfills_previous_failures_before_ingest() -> None:
+    script = (ROOT / "tools/run-public-validation-corpus-acquisition.sh").read_text(
+        encoding="utf-8"
+    )
+
+    assert 'AUTO_BACKFILL="${AUTO_BACKFILL:-1}"' in script
+    assert "PUBLIC VALIDATION CORPUS: BACKFILL PREVIOUS FAILURES" in script
+    assert (
+        '"${lab[@]}" python -m '
+        "planets_lab.corpus.public_validation_backfill_cli"
+    ) in script
+    assert '--rejected "$REJECTED_FILE"' in script
+    assert '$EVIDENCE_DIR/public-validation-rejected.json' in script
+    assert '$EVIDENCE_DIR/public-validation-backfill-report.json' in script
