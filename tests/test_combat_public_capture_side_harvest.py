@@ -66,3 +66,20 @@ def test_prior_same_pair_occurrences_count_only_earlier_vcrs() -> None:
 
     assert count == 2
     assert vcr_ids == [3, 5]
+
+def test_discovery_wrapper_is_main_guarded_and_heldout_sealed() -> None:
+    root = Path(__file__).resolve().parents[1]
+    wrapper = (
+        root / "tools/run-public-capture-side-discovery-with-evidence.sh"
+    ).read_text(encoding="utf-8")
+    runner = (
+        root / "tools/run-public-capture-side-discovery.sh"
+    ).read_text(encoding="utf-8")
+
+    assert 'PUBLIC_CAPTURE_SIDE_ALLOW_NON_MAIN="${PUBLIC_CAPTURE_SIDE_ALLOW_NON_MAIN:-0}"' in wrapper
+    assert '"$SOURCE_BRANCH" != "main"' in wrapper
+    assert "exit 64" in wrapper
+    assert "--partition discovery" in runner
+    assert "--partition heldout" not in runner
+    assert "--partition all" not in runner
+

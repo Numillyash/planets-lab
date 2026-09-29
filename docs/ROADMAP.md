@@ -723,3 +723,25 @@ archives were independently rejected as legacy/binary and the corpus remained
 `MAX_BACKFILL_ROUNDS` is 24 rather than 6; selection policy itself is
 unchanged.
 
+### Public validation corpus stabilized — 36 / 36
+
+Canonical runtime
+`runtime-logs/public-validation-corpus/20260929T150456Z_253258f5f870`
+closed the acquisition gate on backfill round 15. Game `306971` supplied the
+final compatible slot:
+
+```text
+games indexed        36 / 36
+games failed          0
+snapshots        126418
+transitions      125862
+settings hashes      36
+```
+
+Do not continue public-corpus backfill for the active C5 blocker. The immediate
+next action is the deterministic **discovery-only** public capture-side harvest;
+held-out rows remain sealed until a candidate LEFT/RIGHT rule is frozen.
+
+Checkpoint:
+`docs/handoff/2026-09-29-public-corpus-stabilized-runtime.md`.
+

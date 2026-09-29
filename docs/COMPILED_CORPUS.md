@@ -736,3 +736,41 @@ The acquisition runner therefore keeps a finite bound but raises the default
 `MAX_BACKFILL_ROUNDS` from 6 to 24. No age/game-id heuristic is applied and no
 selection evidence boundary changes.
 
+## Stabilized public validation population
+
+Canonical runtime:
+
+```text
+runtime-logs/public-validation-corpus/20260929T150456Z_253258f5f870
+source main 253258f5f870d095144b45feefb0f06d82b30156
+exit_code 0
+backfill_rounds 15
+```
+
+Final population:
+
+```text
+selected             36
+indexed              36
+failed                0
+snapshots        126418
+transitions      125862
+archive bytes 9456773573
+```
+
+Game `306971` closed the final slot on round 15 with 3817 snapshots and zero
+canonical import failures. Public acquisition is therefore considered stabilized
+for the active post-capture LEFT/RIGHT investigation.
+
+The selector still reports a two-game Sphere bucket gap because raw Sphere games
+are captured by higher-precedence buckets; raw `settings.sphere=true` remains
+present. No selected player slot supplies non-empty `activeadvantages` or
+`activehulls`.
+
+Next action: run only the deterministic discovery partition of the public
+capture-side harvester. Do not inspect held-out output before a candidate rule is
+frozen.
+
+Detailed checkpoint:
+`docs/handoff/2026-09-29-public-corpus-stabilized-runtime.md`.
+
