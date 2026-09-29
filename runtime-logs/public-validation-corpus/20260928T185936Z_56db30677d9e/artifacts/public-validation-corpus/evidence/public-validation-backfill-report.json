@@ -1,0 +1,79 @@
+{
+  "combined_manifest": "validation/corpus/manifests/public-validation-combined.jsonl",
+  "current_failed_game_ids": [
+    54489
+  ],
+  "missing_bucket_counts": {
+    "sphere": 2
+  },
+  "rejected_file": "validation/corpus/manifests/public-validation-rejected.json",
+  "rejected_game_ids": [
+    1462,
+    1680,
+    3232,
+    22158,
+    37424,
+    39193,
+    43082,
+    54489,
+    55835,
+    60116,
+    68006,
+    70052,
+    74393,
+    76301,
+    78375,
+    78898,
+    82265,
+    83474,
+    91080,
+    101633,
+    111321,
+    124766,
+    138269,
+    154673,
+    159087,
+    163473,
+    164693,
+    173022,
+    178697,
+    190004,
+    190428,
+    193993,
+    211467,
+    252525,
+    515688
+  ],
+  "replacement_games": 1,
+  "replacements": [
+    {
+      "bucket": "finite_fuel",
+      "game_id": 41752,
+      "gametype": 4,
+      "name": "Moriak Sector",
+      "novelty": 33.0,
+      "score": 48.5,
+      "slot_bonus": 7.5,
+      "slots": 30,
+      "target_bucket_gap_before": 0,
+      "turn": 160,
+      "turn_bonus": 8.0
+    }
+  ],
+  "schema": "planets-lab.public-validation-backfill.v1",
+  "selected_by_bucket_after_backfill": {
+    "campaign": 19,
+    "championship": 6,
+    "finite_fuel": 11
+  },
+  "selected_games_after_backfill": 36,
+  "selected_manifest": "validation/corpus/manifests/public-validation-selected.jsonl",
+  "successful_games_before_backfill": 35,
+  "target_by_bucket": {
+    "campaign": 19,
+    "championship": 6,
+    "finite_fuel": 9,
+    "sphere": 2
+  },
+  "target_games": 36
+}
