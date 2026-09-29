@@ -4,6 +4,7 @@ import argparse
 import hashlib
 import json
 import sys
+import zipfile
 from collections import Counter, defaultdict
 from collections.abc import Mapping, Sequence
 from pathlib import Path
@@ -15,10 +16,19 @@ for _path in (REPO_ROOT / "src", DIAGNOSTICS_DIR):
     if str(_path) not in sys.path:
         sys.path.insert(0, str(_path))
 
+from planets_lab.corpus.archive import TurnMember
 from planets_lab.corpus.indexer import load_manifest_jsonl
+from planets_lab.corpus.movement_differential import _intish
+from planets_lab.corpus.normalizer import _decode_member_json, mechanics_projection
 from planets_lab.corpus.public_finished_discover_cli import _manifest_bucket
 
 import combat_host_capture_continuation_audit as capture_module
+from combat_host_post_capture_pair_recomposition_audit import (
+    _neutral_prize_raw,
+    _nonmatching_symbolic_fc,
+    _priority_from_raw,
+    _side_from_priority_keys,
+)
 
 
 SCHEMA = "planets-lab.combat-public-capture-side-harvest.v1"
@@ -127,6 +137,261 @@ def _prior_same_pair_occurrences(
         if int(vcr_id) < before_vcr_id
     ]
     return len(previous), previous
+
+
+
+def _targeted_tminus1_ship_raw(
+    archive: zipfile.ZipFile,
+    *,
+    player_id: int,
+    archive_turn: int,
+    ship_id: int,
+    projection_cache: dict[tuple[int, int], Mapping[str, Any] | None],
+) -> Mapping[str, Any] | None:
+    cache_key = (player_id, archive_turn)
+    if cache_key not in projection_cache:
+        member_name = f"player{player_id}-turn{archive_turn}.trn"
+        try:
+            raw = archive.read(member_name)
+        except KeyError:
+            projection_cache[cache_key] = None
+        else:
+            member = TurnMember(
+                player=player_id,
+                turn=archive_turn,
+                name=member_name,
+            )
+            parsed, _decoded = _decode_member_json(raw, member)
+            projection_cache[cache_key] = mechanics_projection(
+                parsed,
+                member=member_name,
+            )
+
+    projection = projection_cache.get(cache_key)
+    if not isinstance(projection, Mapping):
+        return None
+    ships = projection.get("ships")
+    if not isinstance(ships, Sequence) or isinstance(ships, (str, bytes)):
+        return None
+    for raw_ship in ships:
+        if not isinstance(raw_ship, Mapping):
+            continue
+        observed_ship_id = _intish(
+            raw_ship.get("id", raw_ship.get("objectid"))
+        )
+        observed_owner_id = _intish(
+            raw_ship.get("ownerid", raw_ship.get("owner_id"))
+        )
+        if observed_ship_id != ship_id:
+            continue
+        if observed_owner_id is not None and observed_owner_id != player_id:
+            continue
+        return raw_ship
+    return None
+
+
+def _order_projection(
+    *,
+    ship_id: int,
+    raw: Mapping[str, Any],
+) -> dict[str, Any]:
+    priority = _priority_from_raw(ship_id, raw)
+    return {
+        "mission": _intish(raw.get("mission")),
+        "mission_target_id": _intish(raw.get("mission1target")),
+        "primary_enemy": _intish(raw.get("enemy")),
+        "friendlycode": raw.get("friendlycode"),
+        "priority": list(priority) if priority is not None else None,
+    }
+
+
+def _order_side_controls(
+    *,
+    captured_ship_id: int,
+    opponent_ship_id: int,
+    captured_raw: Mapping[str, Any],
+    opponent_raw: Mapping[str, Any],
+    prior_pair_occurrences: int,
+    factual_side: str,
+) -> dict[str, Any]:
+    occurrence_index = prior_pair_occurrences + 1
+    opponent_key = _priority_from_raw(opponent_ship_id, opponent_raw)
+    frozen_prize_key = _priority_from_raw(captured_ship_id, captured_raw)
+
+    old_fc = captured_raw.get("friendlycode")
+    opponent_fc = opponent_raw.get("friendlycode")
+    fresh_fc = _nonmatching_symbolic_fc(opponent_fc)
+    neutral_preserved_raw = _neutral_prize_raw(
+        captured_raw,
+        friendly_code=old_fc,
+    )
+    neutral_fresh_raw = _neutral_prize_raw(
+        captured_raw,
+        friendly_code=fresh_fc,
+    )
+    neutral_preserved_key = _priority_from_raw(
+        captured_ship_id,
+        neutral_preserved_raw,
+    )
+    neutral_fresh_key = _priority_from_raw(
+        captured_ship_id,
+        neutral_fresh_raw,
+    )
+
+    controls = {
+        "frozen_tminus1_priority": _side_from_priority_keys(
+            prize_ship_id=captured_ship_id,
+            opponent_ship_id=opponent_ship_id,
+            prize_key=frozen_prize_key,
+            opponent_key=opponent_key,
+            occurrence_index=occurrence_index,
+        ),
+        "neutral_orders_preserve_fc": _side_from_priority_keys(
+            prize_ship_id=captured_ship_id,
+            opponent_ship_id=opponent_ship_id,
+            prize_key=neutral_preserved_key,
+            opponent_key=opponent_key,
+            occurrence_index=occurrence_index,
+        ),
+        "neutral_orders_fresh_fc": _side_from_priority_keys(
+            prize_ship_id=captured_ship_id,
+            opponent_ship_id=opponent_ship_id,
+            prize_key=neutral_fresh_key,
+            opponent_key=opponent_key,
+            occurrence_index=occurrence_index,
+        ),
+    }
+    exact = {
+        name: value == factual_side if value in {"left", "right"} else None
+        for name, value in controls.items()
+    }
+    return {
+        "occurrence_index": occurrence_index,
+        "captured_tminus1": _order_projection(
+            ship_id=captured_ship_id,
+            raw=captured_raw,
+        ),
+        "opponent_tminus1": _order_projection(
+            ship_id=opponent_ship_id,
+            raw=opponent_raw,
+        ),
+        "neutral_preserved_fc_priority": (
+            list(neutral_preserved_key)
+            if neutral_preserved_key is not None
+            else None
+        ),
+        "neutral_fresh_fc": fresh_fc,
+        "neutral_fresh_fc_priority": (
+            list(neutral_fresh_key)
+            if neutral_fresh_key is not None
+            else None
+        ),
+        "side_controls": controls,
+        "side_control_exact": exact,
+    }
+
+
+def _enrich_tminus1_order_context(
+    *,
+    rows: list[dict[str, Any]],
+    archive_dir: Path,
+) -> Counter[str]:
+    counts: Counter[str] = Counter()
+    by_game: dict[int, list[dict[str, Any]]] = defaultdict(list)
+    for row in rows:
+        by_game[int(row["game_id"])].append(row)
+
+    for game_id, game_rows in sorted(by_game.items()):
+        archive_path = archive_dir / f"game-{game_id}.zip"
+        if not archive_path.is_file():
+            for row in game_rows:
+                row["order_context"] = {
+                    "status": "unresolved",
+                    "reason": "archive_missing",
+                }
+                counts["order_context:unresolved"] += 1
+                counts["order_context:archive_missing"] += 1
+            continue
+
+        projection_cache: dict[
+            tuple[int, int],
+            Mapping[str, Any] | None,
+        ] = {}
+        with zipfile.ZipFile(archive_path) as archive:
+            for row in game_rows:
+                battle_turn = int(row["turn"])
+                before_turn = battle_turn - 1
+                captured_owner = row.get("owner_id_before")
+                opponent_owner = row.get("next_opponent_owner_id")
+                if (
+                    isinstance(captured_owner, bool)
+                    or not isinstance(captured_owner, int)
+                    or captured_owner <= 0
+                    or isinstance(opponent_owner, bool)
+                    or not isinstance(opponent_owner, int)
+                    or opponent_owner <= 0
+                ):
+                    row["order_context"] = {
+                        "status": "unresolved",
+                        "reason": "owner_attribution_missing",
+                    }
+                    counts["order_context:unresolved"] += 1
+                    counts["order_context:owner_attribution_missing"] += 1
+                    continue
+
+                captured_raw = _targeted_tminus1_ship_raw(
+                    archive,
+                    player_id=captured_owner,
+                    archive_turn=before_turn,
+                    ship_id=int(row["captured_ship_id"]),
+                    projection_cache=projection_cache,
+                )
+                opponent_raw = _targeted_tminus1_ship_raw(
+                    archive,
+                    player_id=opponent_owner,
+                    archive_turn=before_turn,
+                    ship_id=int(row["next_opponent_ship_id"]),
+                    projection_cache=projection_cache,
+                )
+                if not isinstance(captured_raw, Mapping):
+                    row["order_context"] = {
+                        "status": "unresolved",
+                        "reason": "captured_ship_tminus1_missing",
+                    }
+                    counts["order_context:unresolved"] += 1
+                    counts["order_context:captured_ship_tminus1_missing"] += 1
+                    continue
+                if not isinstance(opponent_raw, Mapping):
+                    row["order_context"] = {
+                        "status": "unresolved",
+                        "reason": "opponent_ship_tminus1_missing",
+                    }
+                    counts["order_context:unresolved"] += 1
+                    counts["order_context:opponent_ship_tminus1_missing"] += 1
+                    continue
+
+                context = _order_side_controls(
+                    captured_ship_id=int(row["captured_ship_id"]),
+                    opponent_ship_id=int(row["next_opponent_ship_id"]),
+                    captured_raw=captured_raw,
+                    opponent_raw=opponent_raw,
+                    prior_pair_occurrences=int(
+                        row["prior_same_pair_occurrences"]
+                    ),
+                    factual_side=str(row["captured_ship_side_next"]),
+                )
+                context["status"] = "resolved"
+                row["order_context"] = context
+                counts["order_context:resolved"] += 1
+                for name, exact in context["side_control_exact"].items():
+                    if exact is True:
+                        counts[f"side:{name}:exact"] += 1
+                    elif exact is False:
+                        counts[f"side:{name}:mismatch"] += 1
+                    else:
+                        counts[f"side:{name}:unresolved"] += 1
+
+    return counts
 
 
 def _manifest_context(record: Mapping[str, Any]) -> dict[str, Any]:
@@ -273,6 +538,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 "captured_ship_id": captured_ship_id,
                 "captor_ship_id": transition.get("captor_ship_id"),
                 "next_opponent_ship_id": opponent_ship_id,
+                "next_opponent_owner_id": current_opponent.get("owner_id"),
                 "capture_vcr_id": int(transition["from_vcr_id"]),
                 "next_vcr_id": to_vcr_id,
                 "capture_side": capture_side,
@@ -311,6 +577,12 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         )
     )
 
+    order_counts = _enrich_tminus1_order_context(
+        rows=rows,
+        archive_dir=args.archive_dir,
+    )
+    counts.update(order_counts)
+
     partition_counts = Counter(partitions.values())
     report = {
         "schema": SCHEMA,
@@ -343,6 +615,18 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 for row in rows
                 if row["sticky_capture_side_exact"] is True
             ),
+            "order_side_controls": {
+                name: {
+                    "exact": int(counts[f"side:{name}:exact"]),
+                    "mismatch": int(counts[f"side:{name}:mismatch"]),
+                    "unresolved": int(counts[f"side:{name}:unresolved"]),
+                }
+                for name in (
+                    "frozen_tminus1_priority",
+                    "neutral_orders_preserve_fc",
+                    "neutral_orders_fresh_fc",
+                )
+            },
         },
         "observations": rows,
     }
@@ -413,6 +697,14 @@ def main() -> int:
         print(
             "sticky_capture_side_exact:     "
             f"{summary.get('sticky_capture_side_exact', 0)}"
+        )
+        print(
+            "order_context_resolved:        "
+            f"{summary.get('order_context:resolved', 0)}"
+        )
+        print(
+            "order_side_controls:           "
+            f"{summary.get('order_side_controls', {})}"
         )
         print(f"output:                       {args.output}")
         return 0

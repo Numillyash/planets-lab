@@ -8,6 +8,7 @@ if str(TOOLS_DIR) not in sys.path:
     sys.path.insert(0, str(TOOLS_DIR))
 
 from combat_public_capture_side_harvest import (
+    _order_side_controls,
     _pair_occurrence_index,
     _partition_for_game,
     _prior_same_pair_occurrences,
@@ -82,4 +83,44 @@ def test_discovery_wrapper_is_main_guarded_and_heldout_sealed() -> None:
     assert "--partition discovery" in runner
     assert "--partition heldout" not in runner
     assert "--partition all" not in runner
+
+def test_order_side_controls_reuse_c5_priority_hypotheses() -> None:
+    captured = {
+        "mission": 0,
+        "mission1target": 0,
+        "enemy": 0,
+        "friendlycode": "abc",
+    }
+    opponent = {
+        "mission": 0,
+        "mission1target": 0,
+        "enemy": 0,
+        "friendlycode": "001",
+    }
+
+    first = _order_side_controls(
+        captured_ship_id=20,
+        opponent_ship_id=10,
+        captured_raw=captured,
+        opponent_raw=opponent,
+        prior_pair_occurrences=0,
+        factual_side="left",
+    )
+    assert first["occurrence_index"] == 1
+    assert first["side_controls"]["frozen_tminus1_priority"] == "left"
+    assert first["side_control_exact"]["frozen_tminus1_priority"] is True
+    assert first["side_controls"]["neutral_orders_preserve_fc"] == "left"
+    assert first["side_controls"]["neutral_orders_fresh_fc"] == "left"
+
+    repeated = _order_side_controls(
+        captured_ship_id=20,
+        opponent_ship_id=10,
+        captured_raw=captured,
+        opponent_raw=opponent,
+        prior_pair_occurrences=1,
+        factual_side="right",
+    )
+    assert repeated["occurrence_index"] == 2
+    assert repeated["side_controls"]["frozen_tminus1_priority"] == "right"
+    assert repeated["side_control_exact"]["frozen_tminus1_priority"] is True
 

@@ -745,3 +745,24 @@ held-out rows remain sealed until a candidate LEFT/RIGHT rule is frozen.
 Checkpoint:
 `docs/handoff/2026-09-29-public-corpus-stabilized-runtime.md`.
 
+### Public capture-side discovery: 50 ship continuations
+
+Canonical runtime
+`runtime-logs/public-capture-side-discovery/20260929T212837Z_745a7bbe4976`
+scanned only the deterministic discovery partition: 20 games scanned, 16
+held-out games unscanned.
+
+The discovery population contains 61 post-capture continuations, including 50
+ship→ship cases. Factual prize sides are LEFT 37 / RIGHT 13; 46 / 50 are first
+occurrences of the prize/opponent pair. The generic opponent-initiator-right
+control is only 37 / 50 and sticky capture side is only 22 / 50, so neither is
+promoted.
+
+The next discovery pass enriches those same cases with targeted T-1 order/FC
+priority context and re-evaluates the earlier C5 priority controls. It reads only
+the required owner-perspective T-1 members, not full prepared-game caches.
+Held-out remains sealed.
+
+Checkpoint:
+`docs/handoff/2026-09-30-public-capture-side-discovery-runtime.md`.
+

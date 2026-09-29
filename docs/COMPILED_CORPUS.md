@@ -774,3 +774,25 @@ frozen.
 Detailed checkpoint:
 `docs/handoff/2026-09-29-public-corpus-stabilized-runtime.md`.
 
+## Public capture-side discovery population
+
+Discovery-only runtime:
+
+```text
+runtime-logs/public-capture-side-discovery/20260929T212837Z_745a7bbe4976
+indexed games       36
+scanned discovery   20
+sealed held-out     16
+capture continuations 61
+ship continuations     50
+planet continuations   11
+```
+
+Ship prize side population is LEFT 37 / RIGHT 13. The old
+opponent-initiator-right simplification matches 37 / 50; sticky capture side
+matches 22 / 50. No side rule is promoted.
+
+The harvester now adds targeted T-1 mission/PE/FC priority context for the 50
+discovery ship cases so the frozen-priority and neutral-prize controls can be
+tested on the independent public population before held-out is opened.
+
