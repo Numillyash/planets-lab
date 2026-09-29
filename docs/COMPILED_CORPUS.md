@@ -689,11 +689,18 @@ Detailed checkpoint:
 A representative benchmark on game 233558 measured:
 
 ```text
-full ingest       4:07.17
-ZIP read + JSON   1:40.74
-extracted + JSON  1:36.61
-unzip once        0:31.69
+pre-optimization full ingest       4:07.17
+single-pass ZIP forced rebuild      3:27.34
+index-cache reuse                   0:00.87
+ZIP read + JSON                     1:40.74
+extracted + JSON                    1:36.61
+unzip once                          0:31.69
 ```
+
+The single-pass archive path improved the full rebuild by about 16.1%. The
+subsequent immutable per-game index reuse path was about 238x faster than that
+optimized rebuild for this representative game, confirming that eliminating
+repeated derivation is the dominant backfill optimization.
 
 The ~4.1% read+JSON improvement from extracting does not justify the selected
 corpus expanding from 8.69 GiB compressed to about 123.95 GiB block-rounded.

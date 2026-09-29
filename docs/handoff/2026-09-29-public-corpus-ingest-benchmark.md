@@ -111,3 +111,41 @@ to:
 ```
 
 No NuHost mechanic is promoted by this optimization.
+
+## Post-optimization validation
+
+The representative game-233558 benchmark was repeated on the optimized main
+implementation.
+
+Forced rebuild, which disables index reuse:
+
+```text
+old full ingest                 4:07.17  (247.17 s)
+single-pass ZIP full rebuild    3:27.34  (207.34 s)
+absolute improvement              39.83 s
+relative improvement               16.1 %
+speedup                             1.19x
+```
+
+The single-pass ZIP change therefore produces a measurable but secondary gain.
+
+Immediate rerun with the same immutable archive and index output:
+
+```text
+source: index-cache
+elapsed: 0:00.87
+```
+
+Compared with the optimized forced rebuild, per-game index reuse is about
+238x faster for this representative cached game, eliminating about 99.58% of
+the repeated wall-clock work. Relative to the pre-optimization full ingest the
+same reuse path is about 284x faster.
+
+This validates the intended late-backfill behavior: already successful games
+should contribute only compact-record read/aggregation cost, while full
+normalization remains limited to newly selected replacement archives.
+
+These are representative per-game measurements, not a guarantee of an equal
+whole-corpus speedup; replacement archives vary greatly in size and network
+downloads remain outside the reuse benefit.
+
