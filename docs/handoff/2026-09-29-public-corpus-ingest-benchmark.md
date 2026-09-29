@@ -149,3 +149,44 @@ These are representative per-game measurements, not a guarantee of an equal
 whole-corpus speedup; replacement archives vary greatly in size and network
 downloads remain outside the reuse benefit.
 
+## Full-pipeline validation
+
+The next canonical public-validation run published:
+
+```text
+runtime-logs/public-validation-corpus/20260929T145351Z_b62649f47dcb
+source main b62649f47dcba903d570ca82f688b9c7c28420e5
+started 2026-09-29T14:53:51Z
+finished 2026-09-29T14:56:43Z
+elapsed 2m52s
+```
+
+This is the decisive end-to-end performance validation. Across all six bounded
+backfill rounds, the 35 already-compatible games were reused from the compact
+index with `source: index-cache`; only the newly selected replacement archive
+was fully inspected.
+
+All six replacements selected during this run were legacy/binary turn archives:
+
+```text
+57025
+46501
+59938
+42448
+57535
+40773
+```
+
+Each failed immediately at `player1-turn0.trn` with the known non-UTF-8
+normalization boundary. The corpus therefore remained at 35 / 36, but the same
+six-round acquisition that previously implied hours of repeated derivation now
+completed in under three minutes.
+
+This changes the appropriate safety bound. The default
+`MAX_BACKFILL_ROUNDS` is raised from 6 to 24. The bound remains finite, but it
+now reflects the cheap post-reuse runtime and allows the objective
+selection/rejection chain to proceed through clusters of incompatible historical
+archives without repeated operator intervention.
+
+No game-id or age heuristic is introduced. Candidate selection remains unchanged;
+compatibility continues to be established from the actual Planets.nu archive.

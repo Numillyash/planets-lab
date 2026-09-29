@@ -121,7 +121,7 @@ def test_acquisition_runner_auto_repeats_bounded_backfill_rounds() -> None:
         encoding="utf-8"
     )
 
-    assert 'MAX_BACKFILL_ROUNDS="${MAX_BACKFILL_ROUNDS:-6}"' in script
+    assert 'MAX_BACKFILL_ROUNDS="${MAX_BACKFILL_ROUNDS:-24}"' in script
     assert 'BACKFILL_ROUND=0' in script
     assert 'while true; do' in script
     assert 'BACKFILL_ROUND=$((BACKFILL_ROUND + 1))' in script

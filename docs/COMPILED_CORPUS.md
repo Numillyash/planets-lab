@@ -716,3 +716,23 @@ derived work instead:
 Detailed checkpoint:
 `docs/handoff/2026-09-29-public-corpus-ingest-benchmark.md`.
 
+### Full-pipeline reuse validation
+
+Canonical runtime:
+
+```text
+runtime-logs/public-validation-corpus/20260929T145351Z_b62649f47dcb
+elapsed          2m52s
+backfill rounds  6
+games indexed    35 / 36
+```
+
+Every already-successful game used `source: index-cache` on every round. The six
+new replacements (57025, 46501, 59938, 42448, 57535, 40773) all failed at the
+known legacy/binary non-UTF-8 boundary. This confirms that repeated corpus
+derivation is no longer the limiting factor.
+
+The acquisition runner therefore keeps a finite bound but raises the default
+`MAX_BACKFILL_ROUNDS` from 6 to 24. No age/game-id heuristic is applied and no
+selection evidence boundary changes.
+

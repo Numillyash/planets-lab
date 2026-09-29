@@ -716,3 +716,10 @@ remains available with `--no-reuse-index`.
 Checkpoint:
 `docs/handoff/2026-09-29-public-corpus-ingest-benchmark.md`.
 
+The first full-pipeline reuse validation completed six backfill rounds in 2m52s,
+with all 35 successful games served from `index-cache`. Six replacement
+archives were independently rejected as legacy/binary and the corpus remained
+35 / 36. Since replacement failures are now cheap, the default bounded
+`MAX_BACKFILL_ROUNDS` is 24 rather than 6; selection policy itself is
+unchanged.
+
