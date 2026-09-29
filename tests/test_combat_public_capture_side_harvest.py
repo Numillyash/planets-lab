@@ -8,6 +8,7 @@ if str(TOOLS_DIR) not in sys.path:
     sys.path.insert(0, str(TOOLS_DIR))
 
 from combat_public_capture_side_harvest import (
+    _opposite_side,
     _order_side_controls,
     _pair_occurrence_index,
     _partition_for_game,
@@ -141,4 +142,9 @@ def test_public_harvest_requests_progress_output() -> None:
     assert 'getattr(args, "progress", False)' in chain_audit
     assert "status=start" in chain_audit
     assert "status=done" in chain_audit
+
+def test_opposite_side_for_queue_cursor_candidate() -> None:
+    assert _opposite_side("left") == "right"
+    assert _opposite_side("right") == "left"
+    assert _opposite_side(None) is None
 

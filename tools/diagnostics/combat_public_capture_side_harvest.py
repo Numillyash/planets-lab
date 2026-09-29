@@ -118,6 +118,31 @@ def _pair_occurrence_index(
     return result
 
 
+def _previous_ship_appearance(
+    *,
+    chain: Sequence[Mapping[str, Any]],
+    before_vcr_id: int,
+) -> Mapping[str, Any] | None:
+    previous = [
+        row
+        for row in chain
+        if isinstance(row.get("vcr_id"), int)
+        and not isinstance(row.get("vcr_id"), bool)
+        and int(row["vcr_id"]) < before_vcr_id
+    ]
+    if not previous:
+        return None
+    return max(previous, key=lambda row: int(row["vcr_id"]))
+
+
+def _opposite_side(side: Any) -> str | None:
+    if side == "left":
+        return "right"
+    if side == "right":
+        return "left"
+    return None
+
+
 def _prior_same_pair_occurrences(
     *,
     occurrence_index: Mapping[
@@ -498,6 +523,9 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             (int(row["game_id"]), int(row["turn"]), int(row["ship_id"]))
         ].append(row)
 
+    for appearance_chain in by_ship_turn.values():
+        appearance_chain.sort(key=lambda item: int(item["vcr_id"]))
+
     occurrence_index = _pair_occurrence_index(by_vcr)
     counts: Counter[str] = Counter()
     side_counts: Counter[str] = Counter()
@@ -506,7 +534,6 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     rows: list[dict[str, Any]] = []
 
     for chain in by_ship_turn.values():
-        chain.sort(key=lambda item: int(item["vcr_id"]))
         for previous, current in zip(chain, chain[1:]):
             if not capture_module._same_location(previous, current):
                 continue
@@ -550,6 +577,22 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 ship_b=opponent_ship_id,
                 before_vcr_id=to_vcr_id,
             )
+            opponent_previous = _previous_ship_appearance(
+                chain=by_ship_turn.get((game_id, turn, opponent_ship_id), ()),
+                before_vcr_id=to_vcr_id,
+            )
+            opponent_previous_side = (
+                opponent_previous.get("side")
+                if isinstance(opponent_previous, Mapping)
+                else None
+            )
+            opponent_previous_vcr_id = (
+                int(opponent_previous["vcr_id"])
+                if isinstance(opponent_previous, Mapping)
+                and isinstance(opponent_previous.get("vcr_id"), int)
+                and not isinstance(opponent_previous.get("vcr_id"), bool)
+                else None
+            )
 
             captured_side = transition.get("current_side")
             opponent_side = current_opponent.get("side")
@@ -585,6 +628,29 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 "race_id_after": transition.get("race_id_after"),
                 "prior_same_pair_occurrences": prior_count,
                 "prior_same_pair_vcr_ids": prior_vcr_ids,
+                "next_opponent_previous_vcr_id": opponent_previous_vcr_id,
+                "next_opponent_previous_side": opponent_previous_side,
+                "next_opponent_side_carry_exact": (
+                    opponent_side == opponent_previous_side
+                    if opponent_side in {"left", "right"}
+                    and opponent_previous_side in {"left", "right"}
+                    else None
+                ),
+                "opponent_side_cursor_prediction": (
+                    _opposite_side(opponent_previous_side)
+                    if opponent_previous_side in {"left", "right"}
+                    else "left"
+                ),
+                "opponent_side_cursor_exact": (
+                    captured_side
+                    == (
+                        _opposite_side(opponent_previous_side)
+                        if opponent_previous_side in {"left", "right"}
+                        else "left"
+                    )
+                    if captured_side in {"left", "right"}
+                    else None
+                ),
                 "simple_opponent_initiator_right_exact": captured_side == "left",
                 "sticky_capture_side_exact": (
                     captured_side == capture_side
@@ -645,6 +711,26 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 str(game_id): count
                 for game_id, count in sorted(by_game.items())
             },
+            "next_opponent_prior_appearance": sum(
+                1 for row in rows
+                if row["next_opponent_previous_vcr_id"] is not None
+            ),
+            "next_opponent_side_carry_exact": sum(
+                1 for row in rows
+                if row["next_opponent_side_carry_exact"] is True
+            ),
+            "next_opponent_side_carry_mismatch": sum(
+                1 for row in rows
+                if row["next_opponent_side_carry_exact"] is False
+            ),
+            "opponent_side_cursor_exact": sum(
+                1 for row in rows
+                if row["opponent_side_cursor_exact"] is True
+            ),
+            "opponent_side_cursor_mismatch": sum(
+                1 for row in rows
+                if row["opponent_side_cursor_exact"] is False
+            ),
             "simple_opponent_initiator_right_exact": sum(
                 1
                 for row in rows
@@ -729,6 +815,20 @@ def main() -> int:
         print(
             "prior_pair_occurrence_counts:  "
             f"{summary.get('prior_same_pair_occurrence_counts', {})}"
+        )
+        print(
+            "opponent_prior_appearance:     "
+            f"{summary.get('next_opponent_prior_appearance', 0)}"
+        )
+        print(
+            "opponent_side_carry:           "
+            f"{summary.get('next_opponent_side_carry_exact', 0)} exact / "
+            f"{summary.get('next_opponent_side_carry_mismatch', 0)} mismatch"
+        )
+        print(
+            "opponent_side_cursor:          "
+            f"{summary.get('opponent_side_cursor_exact', 0)} exact / "
+            f"{summary.get('opponent_side_cursor_mismatch', 0)} mismatch"
         )
         print(
             "opponent_initiator_right_exact:"
