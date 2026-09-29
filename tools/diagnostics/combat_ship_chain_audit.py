@@ -266,8 +266,15 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     malformed_members: list[dict[str, Any]] = []
     archive_reports: list[dict[str, Any]] = []
 
-    for archive_path in archives:
+    for archive_position, archive_path in enumerate(archives, start=1):
         archive_started = time.perf_counter()
+        if getattr(args, "progress", False):
+            print(
+                "progress: stage=ship_chain "
+                f"archive={archive_position}/{len(archives)} "
+                f"name={archive_path.name} status=start",
+                flush=True,
+            )
         data = archive_path.read_bytes()
         members = turn_members(data)
         raw_members = read_archive_members(data, [member.name for member in members])
@@ -325,15 +332,26 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                     if existing["payload_hash"] != payload_hash:
                         payload_conflict_keys.add(key)
 
+        archive_seconds = round(time.perf_counter() - archive_started, 3)
         archive_reports.append(
             {
                 "archive": archive_path.name,
                 "game_ids": sorted(archive_game_ids),
                 "turn_members": len(members),
                 "vcr_observations": archive_vcr_observations,
-                "seconds": round(time.perf_counter() - archive_started, 3),
+                "seconds": archive_seconds,
             }
         )
+        if getattr(args, "progress", False):
+            print(
+                "progress: stage=ship_chain "
+                f"archive={archive_position}/{len(archives)} "
+                f"name={archive_path.name} status=done "
+                f"turn_members={len(members)} "
+                f"vcr_observations={archive_vcr_observations} "
+                f"seconds={archive_seconds}",
+                flush=True,
+            )
 
     summary["unique_vcrs"] = len(unique_cases)
     summary["payload_conflicts"] = len(payload_conflict_keys)

@@ -301,7 +301,17 @@ def _enrich_tminus1_order_context(
     for row in rows:
         by_game[int(row["game_id"])].append(row)
 
-    for game_id, game_rows in sorted(by_game.items()):
+    ordered_games = sorted(by_game.items())
+    for game_position, (game_id, game_rows) in enumerate(
+        ordered_games,
+        start=1,
+    ):
+        print(
+            "progress: stage=enrich_tminus1_order_context "
+            f"game={game_position}/{len(ordered_games)} "
+            f"game_id={game_id} cases={len(game_rows)} status=start",
+            flush=True,
+        )
         archive_path = archive_dir / f"game-{game_id}.zip"
         if not archive_path.is_file():
             for row in game_rows:
@@ -391,6 +401,13 @@ def _enrich_tminus1_order_context(
                     else:
                         counts[f"side:{name}:unresolved"] += 1
 
+        print(
+            "progress: stage=enrich_tminus1_order_context "
+            f"game={game_position}/{len(ordered_games)} "
+            f"game_id={game_id} status=done",
+            flush=True,
+        )
+
     return counts
 
 
@@ -452,12 +469,23 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             if partition == args.partition
         }
 
+    print(
+        "progress: stage=collect_capture_appearances "
+        f"games={len(scan_ids)} status=start",
+        flush=True,
+    )
     appearances, chain_summary = capture_module._collect_appearances(
         argparse.Namespace(
             archive_dir=args.archive_dir,
             example_limit=args.example_limit,
+            progress=True,
         ),
         selected_ids=scan_ids,
+    )
+    print(
+        "progress: stage=collect_capture_appearances "
+        f"games={len(scan_ids)} appearances={len(appearances)} status=done",
+        flush=True,
     )
 
     by_vcr: dict[tuple[int, int, int], list[dict[str, Any]]] = defaultdict(list)
@@ -577,9 +605,21 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         )
     )
 
+    print(
+        "progress: stage=enrich_tminus1_order_context "
+        f"ship_cases={len(rows)} status=start",
+        flush=True,
+    )
     order_counts = _enrich_tminus1_order_context(
         rows=rows,
         archive_dir=args.archive_dir,
+    )
+    print(
+        "progress: stage=enrich_tminus1_order_context "
+        f"ship_cases={len(rows)} "
+        f"resolved={int(order_counts.get('order_context:resolved', 0))} "
+        "status=done",
+        flush=True,
     )
     counts.update(order_counts)
 

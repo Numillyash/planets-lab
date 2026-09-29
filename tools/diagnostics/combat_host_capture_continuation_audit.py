@@ -489,6 +489,7 @@ def _collect_appearances(
                 archive_dir=args.archive_dir,
                 detail_limit=args.example_limit,
                 sample_limit=min(args.example_limit, 20),
+                progress=bool(getattr(args, "progress", False)),
             )
         )
     finally:

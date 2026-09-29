@@ -124,3 +124,21 @@ def test_order_side_controls_reuse_c5_priority_hypotheses() -> None:
     assert repeated["side_controls"]["frozen_tminus1_priority"] == "right"
     assert repeated["side_control_exact"]["frozen_tminus1_priority"] is True
 
+def test_public_harvest_requests_progress_output() -> None:
+    root = Path(__file__).resolve().parents[1]
+    public_harvest = (
+        root / "tools/diagnostics/combat_public_capture_side_harvest.py"
+    ).read_text(encoding="utf-8")
+    capture_audit = (
+        root / "tools/diagnostics/combat_host_capture_continuation_audit.py"
+    ).read_text(encoding="utf-8")
+    chain_audit = (
+        root / "tools/diagnostics/combat_ship_chain_audit.py"
+    ).read_text(encoding="utf-8")
+
+    assert "progress=True" in public_harvest
+    assert 'progress=bool(getattr(args, "progress", False))' in capture_audit
+    assert 'getattr(args, "progress", False)' in chain_audit
+    assert "status=start" in chain_audit
+    assert "status=done" in chain_audit
+
