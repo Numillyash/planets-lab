@@ -9,12 +9,11 @@ from typing import Any
 
 from planets_lab.data import NuLoadTurnError
 
-from .archive import archive_members
 from .manifest import MANIFEST_SCHEMA
 from .normalizer import (
     ArchiveTurnSnapshot,
     consecutive_archive_transitions,
-    load_archive_snapshots,
+    load_archive_snapshots_with_members,
     summarize_archive_snapshots,
 )
 
@@ -162,8 +161,7 @@ def index_game_archive(
     if isinstance(game_id, bool) or not isinstance(game_id, int) or game_id <= 0:
         raise CorpusIndexError("manifest game_id must be a positive integer")
 
-    members = archive_members(data)
-    snapshots = load_archive_snapshots(data)
+    snapshots, members = load_archive_snapshots_with_members(data)
     if not snapshots:
         raise CorpusIndexError(f"game {game_id} archive has no turn snapshots")
     if {snapshot.game_id for snapshot in snapshots} != {game_id}:

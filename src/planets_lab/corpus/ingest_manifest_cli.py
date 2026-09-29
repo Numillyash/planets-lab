@@ -4,12 +4,14 @@ import argparse
 import json
 import sys
 import time
+from collections.abc import Mapping
 from pathlib import Path
 from typing import Any
 
 from .api import CorpusApiError, PlanetsNuPublicApi
 from .archive import archive_members
 from .indexer import (
+    INDEX_SCHEMA,
     CorpusIndexError,
     aggregate_corpus_index,
     index_game_archive,
@@ -39,6 +41,97 @@ def _write_json(path: Path, payload: dict[str, Any]) -> None:
     )
 
 
+
+def _load_previous_index_records(path: Path) -> dict[int, dict[str, Any]]:
+    if not path.is_file():
+        return {}
+
+    records: dict[int, dict[str, Any]] = {}
+    for line_number, line in enumerate(
+        path.read_text(encoding="utf-8").splitlines(),
+        start=1,
+    ):
+        if not line.strip():
+            continue
+        try:
+            record = json.loads(line)
+        except json.JSONDecodeError as exc:
+            raise CorpusIndexError(
+                f"previous index line {line_number} is not valid JSON"
+            ) from exc
+        if not isinstance(record, dict):
+            raise CorpusIndexError(
+                f"previous index line {line_number} must be an object"
+            )
+        game_id = record.get("game_id")
+        if (
+            record.get("schema") == INDEX_SCHEMA
+            and isinstance(game_id, int)
+            and not isinstance(game_id, bool)
+            and game_id > 0
+        ):
+            records[game_id] = record
+    return records
+
+
+def _record_matches_immutable_cache(
+    record: Mapping[str, Any],
+    manifest: Mapping[str, Any],
+    cache_path: Path,
+) -> bool:
+    if record.get("schema") != INDEX_SCHEMA:
+        return False
+    if record.get("game_id") != manifest.get("game_id"):
+        return False
+    if record.get("settings_hash") != manifest.get("settings_hash"):
+        return False
+    if not cache_path.is_file():
+        return False
+
+    archive = record.get("archive")
+    if not isinstance(archive, Mapping):
+        return False
+    expected_bytes = archive.get("bytes")
+    if (
+        isinstance(expected_bytes, bool)
+        or not isinstance(expected_bytes, int)
+        or expected_bytes != cache_path.stat().st_size
+    ):
+        return False
+    sha256 = archive.get("sha256")
+    if not isinstance(sha256, str) or len(sha256) != 64:
+        return False
+
+    # The loadall cache is immutable by project policy. Matching game/settings
+    # identity plus recorded byte size lets us reuse the derived record without
+    # re-decompressing and re-normalizing the same archive on every backfill.
+    return True
+
+
+def _progress_payload(
+    record: Mapping[str, Any],
+    *,
+    position: int,
+    total: int,
+    source: str,
+) -> dict[str, Any]:
+    canonical = record["canonical_import"]
+    mechanics = record["candidate_mechanics"]
+    return {
+        "game_id": record["game_id"],
+        "position": position,
+        "total": total,
+        "status": "ok",
+        "source": source,
+        "snapshots": record["snapshots"],
+        "transitions": record["transitions"],
+        "embedded_consecutive": record["embedded_consecutive"],
+        "canonical_ok": canonical["ok"],
+        "canonical_failed": canonical["failed"],
+        "ghost_ship_records": mechanics.get("ghost_ship_records", 0),
+        "ionstorm_records": mechanics.get("ionstorm_records", 0),
+        "minefield_records": mechanics.get("minefield_records", 0),
+    }
 
 def _download_game_archive(
     *,
@@ -128,6 +221,14 @@ def main() -> int:
         help="stop immediately after the first failed game",
     )
     parser.add_argument(
+        "--no-reuse-index",
+        action="store_true",
+        help=(
+            "ignore a compatible previous --index-output and rebuild every "
+            "selected game from its archive"
+        ),
+    )
+    parser.add_argument(
         "--request-delay",
         type=float,
         default=0.0,
@@ -178,6 +279,16 @@ def main() -> int:
     if args.limit is not None:
         manifests = manifests[: args.limit]
 
+    previous_records: dict[int, dict[str, Any]] = {}
+    if not args.refresh and not args.no_reuse_index:
+        try:
+            previous_records = _load_previous_index_records(args.index_output)
+        except (OSError, CorpusIndexError) as exc:
+            print(
+                f"WARNING: previous index cannot be reused: {exc}",
+                file=sys.stderr,
+            )
+
     records: list[dict[str, Any]] = []
     failed_game_ids: list[int] = []
     client: PlanetsNuPublicApi | None = None
@@ -187,6 +298,26 @@ def main() -> int:
         cache_path = _default_cache_path(args.cache_dir, game_id)
         source = "cache"
         try:
+            previous = previous_records.get(game_id)
+            if (
+                previous is not None
+                and not args.refresh
+                and _record_matches_immutable_cache(previous, manifest, cache_path)
+            ):
+                records.append(previous)
+                print(
+                    json.dumps(
+                        _progress_payload(
+                            previous,
+                            position=position,
+                            total=len(manifests),
+                            source="index-cache",
+                        ),
+                        sort_keys=True,
+                    )
+                )
+                continue
+
             if cache_path.exists() and not args.refresh:
                 data = cache_path.read_bytes()
             else:
@@ -213,25 +344,14 @@ def main() -> int:
                 acquisition_source=source,
             )
             records.append(record)
-            canonical = record["canonical_import"]
-            mechanics = record["candidate_mechanics"]
             print(
                 json.dumps(
-                    {
-                        "game_id": game_id,
-                        "position": position,
-                        "total": len(manifests),
-                        "status": "ok",
-                        "source": source,
-                        "snapshots": record["snapshots"],
-                        "transitions": record["transitions"],
-                        "embedded_consecutive": record["embedded_consecutive"],
-                        "canonical_ok": canonical["ok"],
-                        "canonical_failed": canonical["failed"],
-                        "ghost_ship_records": mechanics.get("ghost_ship_records", 0),
-                        "ionstorm_records": mechanics.get("ionstorm_records", 0),
-                        "minefield_records": mechanics.get("minefield_records", 0),
-                    },
+                    _progress_payload(
+                        record,
+                        position=position,
+                        total=len(manifests),
+                        source=source,
+                    ),
                     sort_keys=True,
                 )
             )

@@ -11,7 +11,7 @@ from typing import Any
 from planets_lab.core import GameState
 from planets_lab.data.nu_loadturn import import_loadturn
 
-from .archive import TurnMember, read_archive_members, turn_members
+from .archive import TurnMember, visit_archive_turn_members
 
 
 class CorpusNormalizationError(ValueError):
@@ -275,13 +275,13 @@ def ownerless_ship_diagnostics(
     return tuple(result)
 
 
-def load_archive_snapshots(data: bytes) -> tuple[ArchiveTurnSnapshot, ...]:
-    members = turn_members(data)
-    raw_members = read_archive_members(data, [member.name for member in members])
-
+def load_archive_snapshots_with_members(
+    data: bytes,
+) -> tuple[tuple[ArchiveTurnSnapshot, ...], tuple[str, ...]]:
     snapshots: list[ArchiveTurnSnapshot] = []
-    for member in members:
-        parsed, decoded = _decode_member_json(raw_members[member.name], member)
+
+    def add_snapshot(member: TurnMember, raw: bytes) -> None:
+        parsed, decoded = _decode_member_json(raw, member)
         projection = mechanics_projection(parsed, member=member.name)
         game = projection["game"]
         player = projection["player"]
@@ -303,14 +303,24 @@ def load_archive_snapshots(data: bytes) -> tuple[ArchiveTurnSnapshot, ...]:
             )
         )
 
+    member_names = visit_archive_turn_members(data, add_snapshot)
+
     if snapshots:
         game_ids = {snapshot.game_id for snapshot in snapshots}
         if len(game_ids) != 1:
             raise CorpusNormalizationError(
                 f"archive contains multiple game ids: {sorted(game_ids)}"
             )
-    return tuple(sorted(snapshots, key=lambda item: (item.player_id, item.archive_turn)))
 
+    ordered = tuple(
+        sorted(snapshots, key=lambda item: (item.player_id, item.archive_turn))
+    )
+    return ordered, member_names
+
+
+def load_archive_snapshots(data: bytes) -> tuple[ArchiveTurnSnapshot, ...]:
+    snapshots, _ = load_archive_snapshots_with_members(data)
+    return snapshots
 
 def consecutive_archive_transitions(
     snapshots: tuple[ArchiveTurnSnapshot, ...] | list[ArchiveTurnSnapshot],

@@ -684,3 +684,28 @@ auto-backfill, or the configured round cap.
 Detailed checkpoint:
 `docs/handoff/2026-09-28-main-public-corpus-backfill-round2-runtime.md`.
 
+## Public corpus ingest performance
+
+A representative benchmark on game 233558 measured:
+
+```text
+full ingest       4:07.17
+ZIP read + JSON   1:40.74
+extracted + JSON  1:36.61
+unzip once        0:31.69
+```
+
+The ~4.1% read+JSON improvement from extracting does not justify the selected
+corpus expanding from 8.69 GiB compressed to about 123.95 GiB block-rounded.
+
+The acquisition path therefore keeps immutable ZIP archives and optimizes
+derived work instead:
+
+- compatible records already present in the previous index output are reused;
+- only newly selected replacement games require full normalization/indexing;
+- archive normalization reads and CRC-checks members in one pass;
+- `--no-reuse-index` forces a complete rebuild when required.
+
+Detailed checkpoint:
+`docs/handoff/2026-09-29-public-corpus-ingest-benchmark.md`.
+

@@ -700,3 +700,19 @@ Current corpus runtime:
 
 Detailed capture runtime:
 `docs/handoff/2026-09-24-combat-capture-runtime.md`.
+
+### Public corpus ingest performance checkpoint
+
+The 2026-09-29 storage/runtime benchmark rejected full extracted-archive caching
+as a useful optimization: game 233558 improved only from 1:40.74 to 1:36.61 for
+the read+JSON pass while requiring 8.91 GiB extracted from a 0.64 GiB ZIP.
+The selected corpus would require about 123.95 GiB block-rounded.
+
+The primary bottleneck was repeated derivation across backfill rounds. Ingest now
+reuses compatible previous per-game index records for immutable cached archives,
+and the archive normalizer uses one CRC-checking member pass. Full rebuild
+remains available with `--no-reuse-index`.
+
+Checkpoint:
+`docs/handoff/2026-09-29-public-corpus-ingest-benchmark.md`.
+

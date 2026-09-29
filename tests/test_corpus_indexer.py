@@ -6,6 +6,7 @@ import zipfile
 
 import pytest
 
+import planets_lab.corpus.archive as archive_module
 from planets_lab.corpus.indexer import (
     CorpusIndexError,
     aggregate_corpus_index,
@@ -172,3 +173,25 @@ def test_aggregate_corpus_index_is_compact_and_deterministic() -> None:
     assert stats["games_by_ended_year"] == {"2026": 1}
     assert stats["player_slots_by_race"] == {"1": 1, "7": 1}
     assert stats["candidate_mechanics"]["ghost_ship_records"] == 1
+
+
+def test_index_game_archive_opens_archive_once(monkeypatch) -> None:
+    original = archive_module._open_archive
+    calls = 0
+
+    def counted_open(data: bytes, *, validate: bool = True):
+        nonlocal calls
+        calls += 1
+        return original(data, validate=validate)
+
+    monkeypatch.setattr(archive_module, "_open_archive", counted_open)
+
+    record = index_game_archive(
+        _manifest(),
+        _archive(),
+        cache_path="validation/corpus/cache/loadall/game-42.zip",
+        acquisition_source="cache",
+    )
+
+    assert record["snapshots"] == 4
+    assert calls == 1

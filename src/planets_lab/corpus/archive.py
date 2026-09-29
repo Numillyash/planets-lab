@@ -5,6 +5,7 @@ import io
 import json
 import re
 import zipfile
+from collections.abc import Callable, Iterable
 from dataclasses import dataclass
 from typing import Any
 
@@ -19,16 +20,17 @@ class TurnMember:
     name: str
 
 
-def _open_archive(data: bytes) -> zipfile.ZipFile:
+def _open_archive(data: bytes, *, validate: bool = True) -> zipfile.ZipFile:
     buffer = io.BytesIO(data)
     if not zipfile.is_zipfile(buffer):
         raise ValueError("response is not a ZIP archive")
     buffer.seek(0)
     archive = zipfile.ZipFile(buffer)
-    bad = archive.testzip()
-    if bad is not None:
-        archive.close()
-        raise ValueError(f"ZIP CRC failure at {bad!r}")
+    if validate:
+        bad = archive.testzip()
+        if bad is not None:
+            archive.close()
+            raise ValueError(f"ZIP CRC failure at {bad!r}")
     return archive
 
 
@@ -37,9 +39,9 @@ def archive_members(data: bytes) -> tuple[str, ...]:
         return tuple(archive.namelist())
 
 
-def turn_members(data: bytes) -> tuple[TurnMember, ...]:
+def turn_members_from_names(names: Iterable[str]) -> tuple[TurnMember, ...]:
     result: list[TurnMember] = []
-    for name in archive_members(data):
+    for name in names:
         match = TURN_MEMBER_RE.fullmatch(name)
         if match is None:
             continue
@@ -51,6 +53,44 @@ def turn_members(data: bytes) -> tuple[TurnMember, ...]:
             )
         )
     return tuple(sorted(result))
+
+
+def turn_members(data: bytes) -> tuple[TurnMember, ...]:
+    return turn_members_from_names(archive_members(data))
+
+
+def visit_archive_turn_members(
+    data: bytes,
+    visitor: Callable[[TurnMember, bytes], None],
+) -> tuple[str, ...]:
+    """Read and CRC-check an archive in one pass while visiting turn members.
+
+    ``ZipFile.testzip()`` decompresses every member. Calling it before separately
+    reading every ``.trn`` therefore doubles decompression work. This helper opens
+    the ZIP without a preliminary ``testzip`` and relies on ``ZipFile.read`` to
+    perform each member CRC check while its payload is consumed. Non-turn members
+    are also read once so a successful visit validates the complete archive.
+    """
+
+    with _open_archive(data, validate=False) as archive:
+        infos = tuple(archive.infolist())
+        names = tuple(info.filename for info in infos)
+        turns = turn_members_from_names(names)
+        turn_names = {member.name for member in turns}
+
+        for member in turns:
+            try:
+                raw = archive.read(member.name)
+            except KeyError as exc:
+                raise ValueError(f"archive member not found: {member.name}") from exc
+            visitor(member, raw)
+
+        for info in infos:
+            if info.is_dir() or info.filename in turn_names:
+                continue
+            archive.read(info)
+
+    return names
 
 
 def read_archive_member(data: bytes, name: str) -> bytes:
