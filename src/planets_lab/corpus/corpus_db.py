@@ -1525,3 +1525,146 @@ def attribute_storage(
         entity_layout_stages=entity_layout_stages,
         stages=tuple(stages),
     )
+
+
+
+@dataclass(frozen=True, slots=True)
+class PayloadSectionProfile:
+    section_name: str
+    rows: int
+    logical_payload_bytes: int
+    average_payload_bytes: float
+    max_payload_bytes: int
+    approximate_distinct_payloads: int
+
+
+@dataclass(frozen=True, slots=True)
+class PayloadObjectProfile:
+    section_name: str
+    member_id: int
+    source_entity_id: int | None
+    payload_bytes: int
+    keys: tuple[str, ...]
+
+
+@dataclass(frozen=True, slots=True)
+class PayloadProfileResult:
+    database_path: str
+    decoded_json_bytes: int
+    entity_rows: int
+    entity_payload_logical_bytes: int
+    member_field_payload_logical_bytes: int
+    entity_payload_vs_decoded_ratio: float
+    sections: tuple[PayloadSectionProfile, ...]
+    largest_objects: tuple[PayloadObjectProfile, ...]
+    wall_seconds: float
+    peak_rss_bytes: int
+
+
+def profile_payloads(
+    database_path: Path,
+    *,
+    largest_limit: int = 20,
+) -> PayloadProfileResult:
+    """Profile logical lossless payload contents without printing source values."""
+
+    if largest_limit <= 0:
+        raise CorpusDbError("largest_limit must be positive")
+
+    database_path = database_path.expanduser().resolve()
+    started = time.perf_counter()
+    connection = duckdb.connect(str(database_path), read_only=True)
+    try:
+        length_expr = "octet_length(encode(payload_json))"
+        decoded_json_bytes = int(
+            connection.execute(
+                "SELECT coalesce(sum(decoded_json_bytes), 0) FROM source_members"
+            ).fetchone()[0]
+        )
+        entity_rows, entity_payload_bytes = connection.execute(
+            f"""
+            SELECT count(*), coalesce(sum({length_expr}), 0)
+            FROM entity_rows
+            """
+        ).fetchone()
+        member_field_payload_bytes = int(
+            connection.execute(
+                """
+                SELECT coalesce(sum(octet_length(encode(payload_json))), 0)
+                FROM member_fields
+                WHERE payload_json IS NOT NULL
+                """
+            ).fetchone()[0]
+        )
+
+        section_rows = connection.execute(
+            f"""
+            SELECT section_name,
+                   count(*) AS rows,
+                   coalesce(sum({length_expr}), 0) AS payload_bytes,
+                   avg({length_expr}) AS avg_payload_bytes,
+                   max({length_expr}) AS max_payload_bytes,
+                   approx_count_distinct(hash(payload_json)) AS approx_distinct
+            FROM entity_rows
+            GROUP BY section_name
+            ORDER BY payload_bytes DESC, section_name
+            """
+        ).fetchall()
+        sections = tuple(
+            PayloadSectionProfile(
+                section_name=str(row[0]),
+                rows=int(row[1]),
+                logical_payload_bytes=int(row[2]),
+                average_payload_bytes=float(row[3]),
+                max_payload_bytes=int(row[4]),
+                approximate_distinct_payloads=int(row[5]),
+            )
+            for row in section_rows
+        )
+
+        largest_rows = connection.execute(
+            f"""
+            SELECT section_name,
+                   member_id,
+                   source_entity_id,
+                   {length_expr} AS payload_bytes,
+                   payload_json
+            FROM entity_rows
+            ORDER BY payload_bytes DESC
+            LIMIT ?
+            """,
+            [largest_limit],
+        ).fetchall()
+        largest_objects: list[PayloadObjectProfile] = []
+        for section_name, member_id, source_entity_id, payload_bytes, payload_json in largest_rows:
+            parsed = json.loads(str(payload_json))
+            keys = tuple(str(key) for key in parsed.keys()) if isinstance(parsed, dict) else ()
+            largest_objects.append(
+                PayloadObjectProfile(
+                    section_name=str(section_name),
+                    member_id=int(member_id),
+                    source_entity_id=(
+                        None if source_entity_id is None else int(source_entity_id)
+                    ),
+                    payload_bytes=int(payload_bytes),
+                    keys=keys,
+                )
+            )
+    finally:
+        connection.close()
+
+    logical_entity_bytes = int(entity_payload_bytes)
+    return PayloadProfileResult(
+        database_path=str(database_path),
+        decoded_json_bytes=decoded_json_bytes,
+        entity_rows=int(entity_rows),
+        entity_payload_logical_bytes=logical_entity_bytes,
+        member_field_payload_logical_bytes=member_field_payload_bytes,
+        entity_payload_vs_decoded_ratio=(
+            logical_entity_bytes / decoded_json_bytes if decoded_json_bytes else 0.0
+        ),
+        sections=sections,
+        largest_objects=tuple(largest_objects),
+        wall_seconds=time.perf_counter() - started,
+        peak_rss_bytes=_peak_rss_bytes(),
+    )
