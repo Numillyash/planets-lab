@@ -193,6 +193,7 @@ def _learn_entity_specs(
     expected_game_id: int | None,
     sample_members: int = _TYPED_SAMPLE_MEMBERS,
     sample_entities_per_section: int = _TYPED_SAMPLE_ENTITIES_PER_SECTION,
+    normalize: bool = True,
 ) -> dict[str, Any]:
     specs: dict[str, Any] = {}
     section_counts: dict[str, int] = {}
@@ -240,10 +241,16 @@ def _learn_entity_specs(
             if sampled_members >= sample_members:
                 break
 
-    return {
-        section: _normalize_spec(spec)
+    result = {
+        section: spec
         for section, spec in specs.items()
         if isinstance(spec, dict) and spec.get("kind") == "struct"
+    }
+    if not normalize:
+        return result
+    return {
+        section: _normalize_spec(spec)
+        for section, spec in result.items()
     }
 
 
