@@ -182,3 +182,39 @@ member-level fallback.
 This is still a game-233558 prototype. Do not scale to the 36-game corpus until
 the typed generation passes full parity and its size/query/RSS measurements are
 recorded.
+
+
+## Public 36-game typed generation
+
+After the typed game-233558 gate closed, the branch added a corpus-wide builder:
+
+```text
+src/planets_lab/corpus/corpus_db_typed_multi.py
+src/planets_lab/corpus/corpus_db_typed_multi_cli.py
+tools/run-corpus-db-public36-typed.sh
+```
+
+The builder consumes the already stabilized
+`validation/corpus/manifests/public-validation-selected.jsonl` and immutable
+`validation/corpus/cache/loadall/game-<id>.zip` cache.
+
+It creates one DuckDB generation for the whole selected population:
+
+- one `source_archives` row per game;
+- globally unique `member_id` values;
+- archive-local ZIP-member ordinals retained through `archive_id`;
+- one corpus-wide native typed schema rather than 36 incompatible per-game
+  schemas;
+- the schema union is formed from raw type observations sampled from every
+  archive and normalized only after the union, so null-only observations from
+  one game do not force numeric/bool fields from another game into JSON
+  fallback;
+- full ZIP provenance and semantic member parity are checked independently for
+  every source archive before publication;
+- publication remains staging -> immutable generation -> atomic CURRENT.
+
+The tracked runner defaults to exactly 36 selected games and fails before build
+if a selected cached archive is missing.
+
+No network acquisition is performed by this runner. It uses the existing
+stabilized public corpus only.
