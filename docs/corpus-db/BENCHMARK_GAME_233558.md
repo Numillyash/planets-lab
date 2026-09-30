@@ -244,3 +244,79 @@ member-level fallback.
 This is still a game-233558 prototype. Do not scale to the 36-game corpus until
 the typed generation passes full parity and its size/query/RSS measurements are
 recorded.
+
+
+## Canonical typed1 runtime — 2026-09-30
+
+Runtime source HEAD:
+
+```text
+8aebaa3f33a632bffbd430496a9c2b58d804d572
+```
+
+Published generation:
+
+```text
+corpus-v1typed-g233558-20260930T143229Z-8e2e7416675d
+sha256 cd27dffa3871e2f70dfc0d58d9d6547a6b14b40e45fd7793dfc9548377ad7d58
+```
+
+Measurements:
+
+```text
+source ZIP bytes                   691557421
+decoded semantic JSON bytes       9568109828
+typed DuckDB bytes                3058970624
+
+import wall seconds                743.576329482
+import peak RSS bytes              3788349440
+
+TRN parity checked                 6710
+parity failures                    0
+parity wall seconds                452.13253703700013
+parity peak RSS bytes              3788349440
+
+T-1/T wall seconds                 0.021777331000066624
+T-1/T peak RSS bytes               114696192
+
+VCR/site wall seconds              0.05098852099990836
+VCR/site peak RSS bytes            215232512
+
+normal+external concurrent read    PASS
+```
+
+Size comparison:
+
+```text
+typed DB / decoded JSON             0.3197x
+typed reduction vs decoded JSON    68.03%
+typed DB / first v1 DB              0.2577x
+typed reduction vs first v1 DB     74.23%
+typed DB / source ZIP               4.4233x
+```
+
+The size reduction comes from removing per-entity `payload_json VARCHAR`
+copies and writing entity fields through native Arrow/DuckDB scalar,
+STRUCT and LIST types. Full source semantics remain recoverable from one
+compressed member-level fallback BLOB per TRN.
+
+Typed-column check on the real corpus confirmed:
+
+```text
+warp          BIGINT
+damage        BIGINT
+crew          BIGINT
+friendlycode  VARCHAR
+iscloaked     BOOLEAN
+```
+
+The prototype gate is now green for storage, semantic parity, bounded indexed
+queries and shared concurrent read access.
+
+The typed import is slower than the first v1 import because it performs bounded
+schema discovery plus typed conversion, but peak RSS fell from about 10.46 GiB
+to about 3.53 GiB. One-time build cost is acceptable for this gate; normal
+research reads remain the operational optimization target.
+
+Next milestone: build one typed generation for the stabilized 36-game public
+corpus, preserving ZIP as oracle and validating every imported member.
