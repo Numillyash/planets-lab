@@ -1,0 +1,93 @@
+===== PUBLIC CAPTURE O-LAYER DISCOVERY: PREFLIGHT =====
+docker:       ready
+===== PUBLIC CAPTURE O-LAYER DISCOVERY: BUILD LAB IMAGE =====
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "default" instance using docker driver
+
+#1 [lab internal] load build definition from Dockerfile
+#1 transferring dockerfile: 373B done
+#1 DONE 0.0s
+
+#2 [lab internal] load metadata for docker.io/library/python:3.12-slim
+#2 DONE 0.0s
+
+#3 [lab internal] load .dockerignore
+#3 transferring context: 184B done
+#3 DONE 0.0s
+
+#4 [lab internal] load build context
+#4 DONE 0.0s
+
+#5 [lab 1/6] FROM docker.io/library/python:3.12-slim@sha256:dd29372629eeba2dd003fd9e9d35a5b8236c44727875a0364254b5127af88e65
+#5 resolve docker.io/library/python:3.12-slim@sha256:dd29372629eeba2dd003fd9e9d35a5b8236c44727875a0364254b5127af88e65
+#5 ...
+
+#6 [lab auth] library/python:pull token for registry-1.docker.io
+#6 DONE 0.0s
+
+#5 [lab 1/6] FROM docker.io/library/python:3.12-slim@sha256:dd29372629eeba2dd003fd9e9d35a5b8236c44727875a0364254b5127af88e65
+#5 resolve docker.io/library/python:3.12-slim@sha256:dd29372629eeba2dd003fd9e9d35a5b8236c44727875a0364254b5127af88e65 1.3s done
+#5 DONE 1.3s
+
+#4 [lab internal] load build context
+#4 transferring context: 17.50kB 0.0s done
+#4 DONE 0.0s
+
+#7 [lab 3/6] COPY pyproject.toml README.md ./
+#7 CACHED
+
+#8 [lab 4/6] COPY src ./src
+#8 CACHED
+
+#9 [lab 5/6] COPY tests ./tests
+#9 CACHED
+
+#10 [lab 2/6] WORKDIR /workspace
+#10 CACHED
+
+#11 [lab 6/6] RUN python -m pip install --no-cache-dir --upgrade pip     && python -m pip install --no-cache-dir -e '.[dev]'
+#11 CACHED
+
+#12 [lab] exporting to image
+#12 exporting layers done
+#12 exporting manifest sha256:dd45c14a9019e2b0e5c8c62a45c62415caee3a6fa25836e13731dece3e9c607e done
+#12 exporting config sha256:d2c26a3d3446729b8d5246748b1b3f151cd2a70aa30eb920f388d2aa8ef257f4 done
+#12 exporting attestation manifest sha256:2d699c7f1c93e4bdae50d515ee16e14535b591a2fcf31ec1e674460b0bb3a910 0.0s done
+#12 exporting manifest list sha256:58000c56059b0a64c61c1612c5d89f9a173e22ea5a47c8e0031bd0b04519d33c
+#12 exporting manifest list sha256:58000c56059b0a64c61c1612c5d89f9a173e22ea5a47c8e0031bd0b04519d33c 0.0s done
+#12 naming to docker.io/library/planets-lab-lab:latest done
+#12 unpacking to docker.io/library/planets-lab-lab:latest 0.0s done
+#12 DONE 0.1s
+
+#13 [lab] resolving provenance for metadata file
+#13 DONE 0.0s
+ lab  Built
+===== PUBLIC CAPTURE O-LAYER DISCOVERY: PROBE =====
+game_passes:  13
+
+===== O-LAYER GAME 1/13: 224849 =====
+progress: stage=collect_capture_appearances games=20 status=cache-hit appearances=55150 cache=validation/corpus/cache/public-capture-side-v1/discovery-appearances.json.gz
+progress: stage=o_layer_site_context games=1 sites=5 status=start
+progress: stage=site_context game_id=224849 status=start
+progress: stage=site_context game_id=224849 status=done
+progress: stage=o_layer_site_context games=1 sites=5 status=done
+===== PUBLIC CAPTURE O-LAYER DISCOVERY =====
+discovery_ship_rows:  6
+adjacent_rows:        4
+resolved:             4
+not_comparable:       2
+unresolved:           0
+O pair reachable:     0
+  factual LEFT/RIGHT: 0 / 0
+O pair not reachable: 4
+  factual LEFT/RIGHT: 2 / 2
+external O exact:     0
+external O mismatch:  4
+output:               artifacts/public-capture-side/o-layer-parts/game-224849.json
+
+===== O-LAYER GAME 2/13: 233558 =====
+progress: stage=collect_capture_appearances games=20 status=cache-hit appearances=55150 cache=validation/corpus/cache/public-capture-side-v1/discovery-appearances.json.gz
+progress: stage=o_layer_site_context games=1 sites=1 status=start
+progress: stage=site_context game_id=233558 status=start
+exit status 130
