@@ -230,3 +230,33 @@ $HOME/projects/planets-lab-external
 Override with `PLANETS_EXTERNAL_CHECKOUT` when needed.
 
 Do not scale to the 36-game corpus until the runtime measurements in `BENCHMARK_GAME_233558.md` are filled from a green run.
+
+## Storage attribution diagnostic
+
+After the first archive-host runtime showed the direct v1 generation was 24.06%
+larger than decoded semantic JSON, the branch added a bounded physical-layout
+diagnostic rather than immediately scaling to 36 games.
+
+Tracked entry point:
+
+```text
+tools/run-corpus-db-storage-attribution.sh
+```
+
+The diagnostic:
+
+1. resolves the immutable published generation;
+2. creates a fresh scratch DB directly under `/corpus-db/staging`;
+3. attaches the published generation `READ_ONLY`;
+4. copies only the six v1 base tables;
+5. checkpoints and records file size for data-only storage;
+6. adds the current secondary indexes in groups, checkpointing after each;
+7. runs `ANALYZE` and records the final size;
+8. removes the scratch DB by default.
+
+It uses a configurable DuckDB memory limit (default `4GB`) and two threads so
+the attribution pass cannot casually recreate the earlier ~11 GiB peak merely
+because the host has spare RAM.
+
+This is still v1 direct-mirror work. It does not add delta encoding, RLE,
+state-version dedup or cross-perspective dedup.
