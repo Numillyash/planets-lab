@@ -320,3 +320,81 @@ research reads remain the operational optimization target.
 
 Next milestone: build one typed generation for the stabilized 36-game public
 corpus, preserving ZIP as oracle and validating every imported member.
+
+
+## Typed1 storage attribution — 2026-09-30
+
+Attribution on the canonical 3,058,970,624-byte typed1 generation:
+
+```text
+all data, no secondary indexes          1,869,099,008
+source-member indexes                         786,432
+member-field index                          9,699,328
+entity member/order index                 276,824,064
+entity id/turn index                      524,025,856
+entity site index                         330,563,584
+rebuilt total with indexes              3,010,998,272
+canonical source DB                     3,058,970,624
+```
+
+The three generic entity indexes alone contribute 1,131,413,504 bytes
+(~1.079 GiB). All secondary indexes contribute 1,141,899,264 bytes.
+
+The lossless full-member fallback is the second dominant cost:
+
+```text
+source_members with blob                  745,549,824
+source_members without blob                 1,060,864
+blob-only table                            745,025,536
+logical compressed member blob bytes      744,267,100
+```
+
+The generic `entity_rows` table contributes 191,901,696 bytes.
+
+Therefore:
+
+```text
+data without indexes                    1,869,099,008
+minus full member fallback                745,025,536
+                                      ----------------
+                                        1,124,073,472
+
+minus generic entity_rows                 191,901,696
+                                      ----------------
+                                          932,171,776
+```
+
+This is the key physical result: native typed state plus the small metadata
+tables is already approximately 932 MB (0.868 GiB) before introducing any
+temporal delta, RLE, state-version dedup or cross-perspective dedup.
+
+Largest standalone typed tables:
+
+```text
+typed_messages                            308,031,488
+typed_planets                             267,923,456
+typed_ships                               130,297,856
+typed_stock                                90,189,824
+typed_notes                                44,314,624
+typed_hulls                                41,431,040
+typed_minefields                           26,488,832
+typed_starbases                            14,168,064
+typed_advantages                            7,352,320
+```
+
+The next physical layout should therefore not optimize native scalar storage.
+It should:
+
+1. remove global `entity_rows` ART indexes and add only narrowly justified
+   section-specific indexes after query benchmarks;
+2. eliminate the generic `entity_rows` duplication for known typed sections,
+   deriving game/perspective/turn context by joining the tiny
+   `source_members` table;
+3. replace the complete per-TRN `decoded_payload_zlib` fallback with a sparse
+   lossless residual that stores only semantic information not reconstructable
+   from typed columns (unknown fields and absent-vs-null shape information);
+4. retain full member parity against immutable ZIP as the publication gate.
+
+A compact exact generation near 1 GB is therefore a realistic target on
+game-233558 without temporal/cross-perspective dedup. The residual representation
+must be measured before claiming a final ~900 MB target.
