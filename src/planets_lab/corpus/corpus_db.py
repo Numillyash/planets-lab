@@ -1239,3 +1239,162 @@ def database_stats(database_path: Path) -> dict[str, Any]:
         }
     finally:
         connection.close()
+
+
+@dataclass(frozen=True, slots=True)
+class StorageAttributionStage:
+    name: str
+    database_bytes: int
+    delta_bytes: int
+    wall_seconds: float
+    process_peak_rss_bytes: int
+
+
+@dataclass(frozen=True, slots=True)
+class StorageAttributionResult:
+    source_database_path: str
+    source_database_bytes: int
+    scratch_database_path: str
+    memory_limit: str
+    threads: int
+    stages: tuple[StorageAttributionStage, ...]
+
+
+def _sql_literal(value: str) -> str:
+    return "'" + value.replace("'", "''") + "'"
+
+
+def attribute_storage(
+    database_path: Path,
+    scratch_path: Path,
+    *,
+    memory_limit: str = "4GB",
+    threads: int = 2,
+) -> StorageAttributionResult:
+    """Attribute physical DB size to data and successive secondary indexes.
+
+    The source generation is opened only through DuckDB ATTACH READ_ONLY.
+    A disposable database is created from source tables, checkpointed after
+    each index stage, and never published or assigned to CURRENT.
+    """
+
+    source = database_path.expanduser().resolve()
+    scratch = scratch_path.expanduser().resolve()
+    if not source.is_file():
+        raise CorpusDbError(f"source database not found: {source}")
+    if scratch == source:
+        raise CorpusDbError("scratch database must differ from source generation")
+    if scratch.exists():
+        raise CorpusDbError(f"scratch database already exists: {scratch}")
+    if threads <= 0:
+        raise CorpusDbError("threads must be positive")
+
+    scratch.parent.mkdir(parents=True, exist_ok=True)
+    source_bytes = source.stat().st_size
+    connection = duckdb.connect(str(scratch))
+    stages: list[StorageAttributionStage] = []
+    previous_size = 0
+
+    def checkpoint_stage(name: str, started: float) -> None:
+        nonlocal previous_size
+        connection.execute("CHECKPOINT")
+        size = scratch.stat().st_size
+        stages.append(
+            StorageAttributionStage(
+                name=name,
+                database_bytes=size,
+                delta_bytes=size - previous_size,
+                wall_seconds=time.perf_counter() - started,
+                process_peak_rss_bytes=_peak_rss_bytes(),
+            )
+        )
+        previous_size = size
+
+    try:
+        connection.execute(f"SET memory_limit = {_sql_literal(memory_limit)}")
+        connection.execute(f"SET threads = {int(threads)}")
+        connection.execute("SET preserve_insertion_order = false")
+        connection.execute(
+            f"ATTACH {_sql_literal(str(source))} AS source_db (READ_ONLY)"
+        )
+
+        started = time.perf_counter()
+        for table in (
+            "corpus_metadata",
+            "source_archives",
+            "zip_members",
+            "source_members",
+            "member_fields",
+            "entity_rows",
+        ):
+            connection.execute(
+                f"CREATE TABLE {table} AS SELECT * FROM source_db.{table}"
+            )
+        checkpoint_stage("data_only", started)
+
+        index_stages = (
+            (
+                "source_member_indexes",
+                (
+                    "CREATE INDEX idx_source_members_lookup "
+                    "ON source_members(game_id, perspective_player_id, archive_turn)",
+                    "CREATE INDEX idx_source_members_name "
+                    "ON source_members(game_id, source_member_name)",
+                ),
+            ),
+            (
+                "member_field_index",
+                (
+                    "CREATE INDEX idx_member_fields_lookup "
+                    "ON member_fields(member_id, field_name)",
+                ),
+            ),
+            (
+                "entity_member_index",
+                (
+                    "CREATE INDEX idx_entity_member "
+                    "ON entity_rows(member_id, section_name, ordinal)",
+                ),
+            ),
+            (
+                "entity_id_index",
+                (
+                    "CREATE INDEX idx_entity_lookup "
+                    "ON entity_rows(game_id, section_name, archive_turn, source_entity_id)",
+                ),
+            ),
+            (
+                "entity_site_index",
+                (
+                    "CREATE INDEX idx_entity_site "
+                    "ON entity_rows(game_id, section_name, archive_turn, x, y)",
+                ),
+            ),
+        )
+        for name, statements in index_stages:
+            started = time.perf_counter()
+            for statement in statements:
+                connection.execute(statement)
+            checkpoint_stage(name, started)
+
+        started = time.perf_counter()
+        connection.execute("ANALYZE")
+        checkpoint_stage("analyze", started)
+    except BaseException:
+        connection.close()
+        try:
+            scratch.unlink()
+        except FileNotFoundError:
+            pass
+        raise
+    else:
+        connection.close()
+
+    return StorageAttributionResult(
+        source_database_path=str(source),
+        source_database_bytes=source_bytes,
+        scratch_database_path=str(scratch),
+        memory_limit=memory_limit,
+        threads=threads,
+        stages=tuple(stages),
+    )
