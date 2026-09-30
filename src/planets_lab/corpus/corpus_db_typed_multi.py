@@ -73,6 +73,7 @@ def _learn_union_specs(
             expected_game_id=item.game_id,
             sample_members=sample_members_per_archive,
             sample_entities_per_section=sample_entities_per_section,
+            normalize=False,
         )
         for section, spec in specs.items():
             merged[section] = (
