@@ -253,6 +253,23 @@ def test_storage_attribution_uses_disposable_copy(tmp_path: Path) -> None:
     assert scratch.is_file()
     assert database.read_bytes() == before
 
+    table_names = [stage.name for stage in result.table_stages]
+    assert table_names == [
+        "corpus_metadata",
+        "source_archives",
+        "zip_members",
+        "source_members",
+        "member_fields",
+        "entity_rows",
+    ]
+    assert all(stage.database_bytes > 0 for stage in result.table_stages)
+    assert all(stage.delta_bytes >= 0 for stage in result.table_stages)
+
+    layout_names = [stage.name for stage in result.entity_layout_stages]
+    assert layout_names == ["entity_semantic_min", "entity_query_slim"]
+    assert all(stage.database_bytes > 0 for stage in result.entity_layout_stages)
+    assert all(stage.delta_bytes == stage.database_bytes for stage in result.entity_layout_stages)
+
     names = [stage.name for stage in result.stages]
     assert names == [
         "data_only",
@@ -265,8 +282,11 @@ def test_storage_attribution_uses_disposable_copy(tmp_path: Path) -> None:
     ]
     assert all(stage.database_bytes > 0 for stage in result.stages)
     assert all(stage.delta_bytes >= 0 for stage in result.stages)
-    assert all(stage.wall_seconds >= 0 for stage in result.stages)
-    assert all(stage.process_peak_rss_bytes > 0 for stage in result.stages)
+    assert all(stage.wall_seconds >= 0 for stage in result.table_stages + result.entity_layout_stages + result.stages)
+    assert all(stage.process_peak_rss_bytes > 0 for stage in result.table_stages + result.entity_layout_stages + result.stages)
+
+    assert not (tmp_path / "storage-attribution-entity-semantic.duckdb").exists()
+    assert not (tmp_path / "storage-attribution-entity-query-slim.duckdb").exists()
 
     connection = duckdb.connect(str(database), read_only=True)
     try:
