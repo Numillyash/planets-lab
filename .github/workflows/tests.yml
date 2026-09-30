@@ -110,12 +110,14 @@ jobs:
           bash -n tools/run-corpus-db-shared-read-check.sh
           bash -n tools/run-corpus-db-storage-attribution.sh
           bash -n tools/run-corpus-db-game233558-typed-prototype.sh
+          bash -n tools/run-corpus-db-public36-typed.sh
           python -m planets_lab.corpus.corpus_db_cli --help >/dev/null
           python -m planets_lab.corpus.corpus_db_cli build --help >/dev/null
           python -m planets_lab.corpus.corpus_db_cli benchmark --help >/dev/null
           python -m planets_lab.corpus.corpus_db_cli storage-attribution --help >/dev/null
           python -m planets_lab.corpus.corpus_db_typed_cli --help >/dev/null
           python -m planets_lab.corpus.corpus_db_typed_cli build --help >/dev/null
+          python -m planets_lab.corpus.corpus_db_typed_multi_cli --help >/dev/null
 
       - name: Run tests
         run: pytest
