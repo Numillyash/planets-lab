@@ -8,7 +8,20 @@ cd "$repo_root"
 
 database_args=()
 if [[ -n "${CORPUS_DB_ATTRIBUTION_DATABASE:-}" ]]; then
-    database_args=(--database "${CORPUS_DB_ATTRIBUTION_DATABASE}")
+    database_host="$(realpath -m "${CORPUS_DB_ATTRIBUTION_DATABASE}")"
+    root_host="$(realpath -m "${PLANETS_CORPUS_DB_ROOT}")"
+    case "$database_host/" in
+        "$root_host/"*)
+            database_container="/corpus-db/${database_host#"$root_host/"}"
+            ;;
+        *)
+            echo "CORPUS_DB_ATTRIBUTION_DATABASE must be under PLANETS_CORPUS_DB_ROOT" >&2
+            echo "database: $database_host" >&2
+            echo "db_root:  $root_host" >&2
+            exit 2
+            ;;
+    esac
+    database_args=(--database "$database_container")
 fi
 
 memory_limit="${CORPUS_DB_ATTRIBUTION_MEMORY_LIMIT:-4GB}"
