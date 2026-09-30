@@ -103,3 +103,39 @@ copies only the six v1 tables, then checkpoints after each secondary-index
 stage. It deletes the scratch database after printing the result.
 
 The active generation and `CURRENT` are never modified.
+
+
+## Storage attribution result — 2026-09-30
+
+Canonical disposable-copy run:
+
+```text
+source database bytes      11869892608
+data-only bytes            10714361856
+all secondary indexes       1157627904
+final attributed bytes     11871989760
+diagnostic peak RSS          4535009280
+```
+
+The data-only copy is already 11.98% larger than the decoded semantic JSON
+stream, so indexes are not the primary explanation for the storage expansion.
+
+Index contribution:
+
+```text
+source-member indexes        786432
+member-field index          9699328
+entity member/order index  277610496
+entity id/turn index       533200896
+entity site index          336330752
+total                    1157627904
+```
+
+Of total secondary-index bytes, the three entity indexes account for about
+99.1%. The entity-id index alone contributes about 46.1%, site about 29.1%,
+and member/order about 24.0%.
+
+This narrows the next question to the base table representation itself,
+especially `entity_rows`: distinguish semantic payload bytes from repeated
+per-row game/perspective/turn metadata and typed query projections before
+changing the schema.
