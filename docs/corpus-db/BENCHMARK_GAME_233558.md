@@ -139,3 +139,41 @@ This narrows the next question to the base table representation itself,
 especially `entity_rows`: distinguish semantic payload bytes from repeated
 per-row game/perspective/turn metadata and typed query projections before
 changing the schema.
+
+
+## Deep entity-layout attribution result — 2026-09-30
+
+Second disposable-copy run:
+
+```text
+data-only total                 10722488320
+entity_rows incremental         10713563136
+entity_semantic_min             10573328384
+entity_query_slim               10716983296
+```
+
+Interpretation:
+
+- `entity_rows` accounts for 99.92% of the data-only database;
+- even the semantic-minimum entity layout is 10.57 GB;
+- adding the typed query projection to semantic-minimum costs only about
+  143.65 MB (+1.36%);
+- omitting repeated `game_id/perspective/archive_turn/embedded_turn` columns
+  does not yield a material size reduction relative to the current table.
+  The few-megabyte inversion between standalone/cumulative measurements is
+  below the precision of comparing different physical scratch layouts.
+
+Therefore the dominant cost is the per-entity lossless `payload_json`
+representation itself, not provenance/context columns and not secondary
+indexes.
+
+The next attribution pass separates:
+
+- structural entity keys with no payload;
+- typed query projection with no payload;
+- all current typed/context columns with no payload;
+- `payload_json` alone.
+
+That measurement is the final physical-layout discriminator before deciding
+whether v1 should replace per-entity JSON fallback with a member-level
+compressed lossless fallback plus typed query tables.
