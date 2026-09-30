@@ -813,8 +813,10 @@ immutable published generation read-only. Tracked runners also measure fresh-
 process T-1/T and VCR/site query wall time/RSS and concurrent two-container
 reads.
 
-This is an implementation checkpoint only. The game-233558 archive-host runtime
-benchmark is still required before the prototype gate is green or before
-scaling to the 36-game public corpus. See
-`docs/corpus-db/IMPLEMENTATION_V1.md` and
-`docs/corpus-db/BENCHMARK_GAME_233558.md`.
+The canonical game-233558 runtime is now green for provenance, full semantic
+parity (6710 / 6710), bounded indexed queries and simultaneous read-only access
+from both research containers. The first physical layout is not storage-efficient:
+11.87 GB DuckDB versus 9.57 GB decoded JSON (+24.06%). Hold blind 36-game
+scale-out for a bounded data-vs-index storage attribution pass; do not introduce
+temporal or cross-perspective dedup. See
+`docs/handoff/2026-09-30-corpus-db-game233558-runtime.md`.
