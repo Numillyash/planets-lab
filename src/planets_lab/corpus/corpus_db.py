@@ -1062,7 +1062,7 @@ def publish_generation(
         pass
 
     manifest = {
-        "schema": CORPUS_DB_SCHEMA,
+        "schema": import_result.schema,
         "build_id": build_id,
         "published_at_utc": datetime.now(timezone.utc).isoformat(),
         "generation": {
