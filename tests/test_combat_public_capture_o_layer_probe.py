@@ -9,6 +9,7 @@ if str(TOOLS_DIR) not in sys.path:
 
 from combat_public_capture_o_layer_probe import (
     _appearance_mapping,
+    _pseudo_seen_from_appearances,
     _capture_projection,
     _targets_by_site,
 )
@@ -100,4 +101,39 @@ def test_probe_supports_single_game_process_isolation() -> None:
     assert '--game-id "$game_id"' in runner
     assert "o-layer-parts" in runner
     assert "combat_public_capture_o_layer_merge.py" in runner
+
+def test_pseudo_seen_from_appearances_reconstructs_compact_vcr() -> None:
+    appearances = [
+        {
+            "game_id": 42,
+            "turn": 7,
+            "vcr_id": 9,
+            "position": [100, 200],
+            "side": "left",
+            "ship_id": 11,
+            "hull_id": 22,
+            "owner_id": 1,
+        },
+        {
+            "game_id": 42,
+            "turn": 7,
+            "vcr_id": 9,
+            "position": [100, 200],
+            "side": "right",
+            "ship_id": 33,
+            "hull_id": 44,
+            "owner_id": 2,
+        },
+    ]
+    seen = _pseudo_seen_from_appearances(
+        appearances=appearances,
+        game_id=42,
+        battle_turns={7},
+    )
+    _digest, vcr = seen[(42, 7, 9)]
+    assert vcr["left"]["objectid"] == 11
+    assert vcr["right"]["objectid"] == 33
+    assert vcr["leftownerid"] == 1
+    assert vcr["rightownerid"] == 2
+    assert (vcr["x"], vcr["y"]) == (100, 200)
 
