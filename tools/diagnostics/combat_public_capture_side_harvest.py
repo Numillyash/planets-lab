@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import argparse
+import gc
 import gzip
+import time
 import hashlib
 import json
 import sys
@@ -204,14 +206,52 @@ def _collect_appearances_cached(
         f"games={len(scan_ids)} status=cache-miss cache={cache_path}",
         flush=True,
     )
-    appearances, chain_summary = capture_module._collect_appearances(
-        argparse.Namespace(
-            archive_dir=args.archive_dir,
-            example_limit=args.example_limit,
-            progress=True,
-        ),
-        selected_ids=scan_ids,
-    )
+
+    # Bound peak memory by processing one immutable loadall archive at a time.
+    # combat_ship_chain_audit keeps decoded VCR payload state until its run()
+    # returns; invoking it once for the whole discovery partition can retain
+    # tens of GiB. The persisted public appearance cache only needs the emitted
+    # appearance rows plus additive scalar summary counters, so per-game runs
+    # are equivalent for this consumer and let temporary archive/VCR state die
+    # between games.
+    appearances: list[dict[str, Any]] = []
+    chain_summary_counts: Counter[str] = Counter()
+    ordered_game_ids = sorted(scan_ids)
+    stage_started = time.perf_counter()
+    for position, game_id in enumerate(ordered_game_ids, start=1):
+        game_started = time.perf_counter()
+        print(
+            "progress: stage=collect_capture_appearances "
+            f"game={position}/{len(ordered_game_ids)} game_id={game_id} "
+            "status=start",
+            flush=True,
+        )
+        game_appearances, game_summary = capture_module._collect_appearances(
+            argparse.Namespace(
+                archive_dir=args.archive_dir,
+                example_limit=args.example_limit,
+                progress=True,
+            ),
+            selected_ids={game_id},
+        )
+        appearances.extend(game_appearances)
+        for key, value in game_summary.items():
+            if isinstance(value, int) and not isinstance(value, bool):
+                chain_summary_counts[str(key)] += int(value)
+        game_seconds = time.perf_counter() - game_started
+        print(
+            "progress: stage=collect_capture_appearances "
+            f"game={position}/{len(ordered_game_ids)} game_id={game_id} "
+            f"appearances={len(game_appearances)} "
+            f"total_appearances={len(appearances)} "
+            f"seconds={game_seconds:.3f} status=done",
+            flush=True,
+        )
+        del game_appearances
+        del game_summary
+        gc.collect()
+
+    chain_summary: Mapping[str, Any] = dict(chain_summary_counts)
     _write_appearance_cache(
         path=cache_path,
         descriptor=descriptor,
@@ -221,6 +261,7 @@ def _collect_appearances_cached(
     print(
         "progress: stage=collect_capture_appearances "
         f"games={len(scan_ids)} appearances={len(appearances)} "
+        f"seconds={time.perf_counter() - stage_started:.3f} "
         f"status=cache-written cache={cache_path}",
         flush=True,
     )
