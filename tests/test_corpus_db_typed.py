@@ -9,6 +9,8 @@ from pathlib import Path
 
 import duckdb
 
+from planets_lab.corpus.corpus_db_typed_attribution import attribute_typed_storage
+
 from planets_lab.corpus.corpus_db_typed import (
     CORPUS_DB_TYPED_SCHEMA,
     import_archive_to_typed_database,
@@ -225,3 +227,56 @@ def test_typed_views_expose_struct_data_with_generic_provenance(tmp_path: Path) 
         assert row == (10, 1, 17, 9, 1010, 1200)
     finally:
         connection.close()
+
+
+
+def test_typed_storage_attribution_breaks_down_blob_and_indexes(tmp_path: Path) -> None:
+    archive = _archive(tmp_path / "game-233558.zip")
+    database = tmp_path / "typed.duckdb"
+    import_archive_to_typed_database(
+        archive,
+        database,
+        expected_game_id=233558,
+        commit_every_members=1,
+        arrow_batch_rows=10,
+    )
+
+    scratch = tmp_path / "scratch"
+    result = attribute_typed_storage(
+        database,
+        scratch,
+        memory_limit="512MB",
+        threads=1,
+    )
+
+    assert result.source_database_bytes == database.stat().st_size
+    assert result.decoded_json_bytes > 0
+    assert result.compressed_member_blob_logical_bytes > 0
+    assert result.entity_rows > 0
+    assert "entity_rows" in result.base_tables
+    assert "typed_ships" in result.typed_tables
+
+    standalone = {stage.name: stage.database_bytes for stage in result.standalone_tables}
+    assert standalone["source_members"] > 0
+    assert standalone["entity_rows"] > 0
+    assert standalone["typed_ships"] > 0
+
+    variants = {
+        stage.name: stage.database_bytes
+        for stage in result.source_member_variants
+    }
+    assert variants["source_members_without_blob"] > 0
+    assert variants["source_members_blob_only"] > 0
+
+    combined = [stage.name for stage in result.combined_stages]
+    assert combined == [
+        "all_data_no_secondary_indexes",
+        "source_member_indexes",
+        "member_field_index",
+        "entity_member_index",
+        "entity_id_index",
+        "entity_site_index",
+    ]
+    assert all(stage.database_bytes > 0 for stage in result.combined_stages)
+
+    assert not any(scratch.glob("*.duckdb"))
