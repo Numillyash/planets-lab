@@ -1257,11 +1257,58 @@ class StorageAttributionResult:
     scratch_database_path: str
     memory_limit: str
     threads: int
+    table_stages: tuple[StorageAttributionStage, ...]
+    entity_layout_stages: tuple[StorageAttributionStage, ...]
     stages: tuple[StorageAttributionStage, ...]
 
 
 def _sql_literal(value: str) -> str:
     return "'" + value.replace("'", "''") + "'"
+
+
+def _measure_entity_layout_variant(
+    source: Path,
+    scratch: Path,
+    *,
+    name: str,
+    select_list: str,
+    memory_limit: str,
+    threads: int,
+) -> StorageAttributionStage:
+    if scratch.exists():
+        raise CorpusDbError(f"entity-layout scratch database already exists: {scratch}")
+
+    started = time.perf_counter()
+    connection = duckdb.connect(str(scratch))
+    try:
+        connection.execute(f"SET memory_limit = {_sql_literal(memory_limit)}")
+        connection.execute(f"SET threads = {int(threads)}")
+        connection.execute("SET preserve_insertion_order = false")
+        connection.execute(
+            f"ATTACH {_sql_literal(str(source))} AS source_db (READ_ONLY)"
+        )
+        connection.execute(
+            f"CREATE TABLE entity_rows AS "
+            f"SELECT {select_list} FROM source_db.entity_rows"
+        )
+        connection.execute("CHECKPOINT")
+        size = scratch.stat().st_size
+    finally:
+        connection.close()
+
+    try:
+        return StorageAttributionStage(
+            name=name,
+            database_bytes=size,
+            delta_bytes=size,
+            wall_seconds=time.perf_counter() - started,
+            process_peak_rss_bytes=_peak_rss_bytes(),
+        )
+    finally:
+        try:
+            scratch.unlink()
+        except FileNotFoundError:
+            pass
 
 
 def attribute_storage(
@@ -1271,11 +1318,13 @@ def attribute_storage(
     memory_limit: str = "4GB",
     threads: int = 2,
 ) -> StorageAttributionResult:
-    """Attribute physical DB size to data and successive secondary indexes.
+    """Attribute physical DB size to base tables, entity layout and indexes.
 
-    The source generation is opened only through DuckDB ATTACH READ_ONLY.
-    A disposable database is created from source tables, checkpointed after
-    each index stage, and never published or assigned to CURRENT.
+    The source generation is attached READ_ONLY. The main disposable database
+    copies the six v1 base tables one by one, checkpoints after each table, then
+    adds the current secondary indexes in groups. Two additional disposable
+    databases measure alternative entity-row layouts without publishing or
+    changing CURRENT.
     """
 
     source = database_path.expanduser().resolve()
@@ -1292,23 +1341,10 @@ def attribute_storage(
     scratch.parent.mkdir(parents=True, exist_ok=True)
     source_bytes = source.stat().st_size
     connection = duckdb.connect(str(scratch))
+    table_stages: list[StorageAttributionStage] = []
     stages: list[StorageAttributionStage] = []
+    previous_table_size = 0
     previous_size = 0
-
-    def checkpoint_stage(name: str, started: float) -> None:
-        nonlocal previous_size
-        connection.execute("CHECKPOINT")
-        size = scratch.stat().st_size
-        stages.append(
-            StorageAttributionStage(
-                name=name,
-                database_bytes=size,
-                delta_bytes=size - previous_size,
-                wall_seconds=time.perf_counter() - started,
-                process_peak_rss_bytes=_peak_rss_bytes(),
-            )
-        )
-        previous_size = size
 
     try:
         connection.execute(f"SET memory_limit = {_sql_literal(memory_limit)}")
@@ -1318,7 +1354,7 @@ def attribute_storage(
             f"ATTACH {_sql_literal(str(source))} AS source_db (READ_ONLY)"
         )
 
-        started = time.perf_counter()
+        data_started = time.perf_counter()
         for table in (
             "corpus_metadata",
             "source_archives",
@@ -1327,10 +1363,33 @@ def attribute_storage(
             "member_fields",
             "entity_rows",
         ):
+            started = time.perf_counter()
             connection.execute(
                 f"CREATE TABLE {table} AS SELECT * FROM source_db.{table}"
             )
-        checkpoint_stage("data_only", started)
+            connection.execute("CHECKPOINT")
+            size = scratch.stat().st_size
+            table_stages.append(
+                StorageAttributionStage(
+                    name=table,
+                    database_bytes=size,
+                    delta_bytes=size - previous_table_size,
+                    wall_seconds=time.perf_counter() - started,
+                    process_peak_rss_bytes=_peak_rss_bytes(),
+                )
+            )
+            previous_table_size = size
+
+        previous_size = scratch.stat().st_size
+        stages.append(
+            StorageAttributionStage(
+                name="data_only",
+                database_bytes=previous_size,
+                delta_bytes=previous_size,
+                wall_seconds=time.perf_counter() - data_started,
+                process_peak_rss_bytes=_peak_rss_bytes(),
+            )
+        )
 
         index_stages = (
             (
@@ -1375,11 +1434,32 @@ def attribute_storage(
             started = time.perf_counter()
             for statement in statements:
                 connection.execute(statement)
-            checkpoint_stage(name, started)
+            connection.execute("CHECKPOINT")
+            size = scratch.stat().st_size
+            stages.append(
+                StorageAttributionStage(
+                    name=name,
+                    database_bytes=size,
+                    delta_bytes=size - previous_size,
+                    wall_seconds=time.perf_counter() - started,
+                    process_peak_rss_bytes=_peak_rss_bytes(),
+                )
+            )
+            previous_size = size
 
         started = time.perf_counter()
         connection.execute("ANALYZE")
-        checkpoint_stage("analyze", started)
+        connection.execute("CHECKPOINT")
+        size = scratch.stat().st_size
+        stages.append(
+            StorageAttributionStage(
+                name="analyze",
+                database_bytes=size,
+                delta_bytes=size - previous_size,
+                wall_seconds=time.perf_counter() - started,
+                process_peak_rss_bytes=_peak_rss_bytes(),
+            )
+        )
     except BaseException:
         connection.close()
         try:
@@ -1390,11 +1470,41 @@ def attribute_storage(
     else:
         connection.close()
 
+    semantic_scratch = scratch.with_name(
+        f"{scratch.stem}-entity-semantic.duckdb"
+    )
+    query_slim_scratch = scratch.with_name(
+        f"{scratch.stem}-entity-query-slim.duckdb"
+    )
+    entity_layout_stages = (
+        _measure_entity_layout_variant(
+            source,
+            semantic_scratch,
+            name="entity_semantic_min",
+            select_list="member_id, section_name, ordinal, payload_json",
+            memory_limit=memory_limit,
+            threads=threads,
+        ),
+        _measure_entity_layout_variant(
+            source,
+            query_slim_scratch,
+            name="entity_query_slim",
+            select_list=(
+                "member_id, section_name, ordinal, source_entity_id, owner_id, "
+                "player_id, x, y, payload_json"
+            ),
+            memory_limit=memory_limit,
+            threads=threads,
+        ),
+    )
+
     return StorageAttributionResult(
         source_database_path=str(source),
         source_database_bytes=source_bytes,
         scratch_database_path=str(scratch),
         memory_limit=memory_limit,
         threads=threads,
+        table_stages=tuple(table_stages),
+        entity_layout_stages=entity_layout_stages,
         stages=tuple(stages),
     )
