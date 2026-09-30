@@ -21,6 +21,7 @@ from .corpus_db_typed import (
     import_archive_to_typed_database,
     validate_typed_semantic_parity,
 )
+from .corpus_db_typed_attribution import attribute_typed_storage
 from .normalizer import CorpusNormalizationError
 
 
@@ -138,6 +139,28 @@ def _benchmark(args: argparse.Namespace) -> int:
     return 0
 
 
+def _storage_attribution(args: argparse.Namespace) -> int:
+    try:
+        root = ensure_external_db_root(_db_root(args.db_root))
+        database = (
+            args.database.resolve()
+            if args.database
+            else resolve_current_generation(root)
+        )
+        scratch_dir = (root / "staging").resolve()
+        result = attribute_typed_storage(
+            database,
+            scratch_dir,
+            memory_limit=args.memory_limit,
+            threads=args.threads,
+        )
+        _json(asdict(result))
+    except (OSError, ValueError, CorpusDbError) as exc:
+        print(str(exc), file=sys.stderr)
+        return 2
+    return 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
         description="Typed Planets.nu corpus DB v1 prototype"
@@ -176,6 +199,16 @@ def main() -> int:
     benchmark.add_argument("--database", type=Path)
     benchmark.add_argument("--db-root")
     benchmark.set_defaults(func=_benchmark)
+
+    attribution = sub.add_parser(
+        "storage-attribution",
+        help="attribute typed-generation storage to tables, member fallback and indexes",
+    )
+    attribution.add_argument("--database", type=Path)
+    attribution.add_argument("--db-root")
+    attribution.add_argument("--memory-limit", default="4GB")
+    attribution.add_argument("--threads", type=int, default=2)
+    attribution.set_defaults(func=_storage_attribution)
 
     args = parser.parse_args()
     return int(args.func(args))
