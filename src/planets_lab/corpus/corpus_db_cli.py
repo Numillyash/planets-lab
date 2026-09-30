@@ -15,6 +15,7 @@ from .corpus_db import (
     default_build_id,
     ensure_external_db_root,
     import_archive_to_database,
+    profile_payloads,
     publish_generation,
     resolve_current_generation,
     validate_semantic_parity,
@@ -168,6 +169,24 @@ def _storage_attribution(args: argparse.Namespace) -> int:
     return 0
 
 
+def _payload_profile(args: argparse.Namespace) -> int:
+    try:
+        database = (
+            args.database.resolve()
+            if args.database
+            else resolve_current_generation(_db_root(args.db_root))
+        )
+        result = profile_payloads(
+            database,
+            largest_limit=args.largest_limit,
+        )
+        _json(asdict(result))
+    except (OSError, ValueError, CorpusDbError) as exc:
+        print(str(exc), file=sys.stderr)
+        return 2
+    return 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Lossless Planets.nu TRN -> DuckDB corpus DB v1 tooling")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -214,6 +233,15 @@ def main() -> int:
     storage.add_argument("--threads", type=int, default=2)
     storage.add_argument("--keep", action="store_true")
     storage.set_defaults(func=_storage_attribution)
+
+    payload = sub.add_parser(
+        "payload-profile",
+        help="profile logical entity payload sizes/cardinality without printing source values",
+    )
+    payload.add_argument("--database", type=Path)
+    payload.add_argument("--db-root")
+    payload.add_argument("--largest-limit", type=int, default=20)
+    payload.set_defaults(func=_payload_profile)
 
     args = parser.parse_args()
     return int(args.func(args))
