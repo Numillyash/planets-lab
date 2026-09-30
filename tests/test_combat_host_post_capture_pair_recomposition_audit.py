@@ -282,16 +282,12 @@ def test_external_c2ng_no_later_prize_continuation_is_explicit_mismatch(monkeypa
         "removed_ship_ids": [],
         "history_anchored_ship_ids": [25, 174, 268],
     }
-    appearances = {(1, 33, 93, 25): {"side": "right"}}
-
-    result = _pair_recomposition(
+    external = _external_c2ng_original_order_prize_continuation(
         context=context,
         capture=capture,
         active_result=active_result,
-        appearances=appearances,
+        capture_prize_side="right",
     )
-
-    external = result["external_c2ng_original_order"]
     assert external["status"] == "resolved"
     assert external["predicted_prize_continuation"] is None
     assert external["exact"] is False
