@@ -1293,10 +1293,6 @@ def _measure_entity_layout_variant(
         )
         connection.execute("CHECKPOINT")
         size = scratch.stat().st_size
-    finally:
-        connection.close()
-
-    try:
         return StorageAttributionStage(
             name=name,
             database_bytes=size,
@@ -1305,6 +1301,7 @@ def _measure_entity_layout_variant(
             process_peak_rss_bytes=_peak_rss_bytes(),
         )
     finally:
+        connection.close()
         try:
             scratch.unlink()
         except FileNotFoundError:
