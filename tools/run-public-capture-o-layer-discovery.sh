@@ -35,7 +35,52 @@ lab=(
 )
 
 echo "===== PUBLIC CAPTURE O-LAYER DISCOVERY: PROBE ====="
-"${lab[@]}" python tools/diagnostics/combat_public_capture_o_layer_probe.py   --discovery "$DISCOVERY"   --archive-dir "$ARCHIVE_DIR"   --appearance-cache-dir "$APPEARANCE_CACHE_DIR"   --prepared-dir "$PREPARED_DIR"   --output "$OUTPUT"
+rm -rf "$PARTS_DIR"
+mkdir -p "$PARTS_DIR"
+
+mapfile -t GAME_IDS < <(
+  "${lab[@]}" python - "$DISCOVERY" <<'PY'
+import json
+import sys
+from pathlib import Path
+
+payload = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
+ids = sorted({
+    int(row["game_id"])
+    for row in payload.get("observations", [])
+    if isinstance(row, dict) and isinstance(row.get("game_id"), int)
+})
+for game_id in ids:
+    print(game_id)
+PY
+)
+
+if [[ "${#GAME_IDS[@]}" -eq 0 ]]; then
+  echo "ERROR: no discovery ship-capture game ids found." >&2
+  exit 65
+fi
+
+echo "game_passes:  ${#GAME_IDS[@]}"
+position=0
+for game_id in "${GAME_IDS[@]}"; do
+  position=$((position + 1))
+  part="$PARTS_DIR/game-${game_id}.json"
+  echo
+  echo "===== O-LAYER GAME ${position}/${#GAME_IDS[@]}: ${game_id} ====="
+  "${lab[@]}" python tools/diagnostics/combat_public_capture_o_layer_probe.py \
+    --discovery "$DISCOVERY" \
+    --archive-dir "$ARCHIVE_DIR" \
+    --appearance-cache-dir "$APPEARANCE_CACHE_DIR" \
+    --prepared-dir "$PREPARED_DIR" \
+    --game-id "$game_id" \
+    --output "$part"
+done
+
+echo
+echo "===== PUBLIC CAPTURE O-LAYER DISCOVERY: MERGE ====="
+"${lab[@]}" python tools/diagnostics/combat_public_capture_o_layer_merge.py \
+  --parts-dir "$PARTS_DIR" \
+  --output "$OUTPUT"
 
 echo
 echo "===== PUBLIC CAPTURE O-LAYER DISCOVERY: COMPLETE ====="
@@ -43,4 +88,5 @@ echo "discovery:    $DISCOVERY"
 echo "archive_dir:  $ARCHIVE_DIR"
 echo "cache_dir:    $APPEARANCE_CACHE_DIR"
 echo "prepared_dir: $PREPARED_DIR"
+echo "parts_dir:    $PARTS_DIR"
 echo "output:       $OUTPUT"
