@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import argparse
 import sys
 from pathlib import Path
 
@@ -7,9 +8,11 @@ TOOLS_DIR = Path(__file__).resolve().parents[1] / "tools" / "diagnostics"
 if str(TOOLS_DIR) not in sys.path:
     sys.path.insert(0, str(TOOLS_DIR))
 
+import combat_public_capture_side_harvest as module
 from combat_public_capture_side_harvest import (
     APPEARANCE_CACHE_SCHEMA,
     _appearance_cache_descriptor,
+    _collect_appearances_cached,
     _load_appearance_cache,
     _opposite_side,
     _write_appearance_cache,
@@ -202,3 +205,52 @@ def test_appearance_cache_roundtrip_and_descriptor_invalidation(
         descriptor=changed,
     ) is None
 
+
+
+
+def test_appearance_cache_build_processes_games_individually(
+    tmp_path: Path,
+    monkeypatch,
+) -> None:
+    archive_dir = tmp_path / "archives"
+    archive_dir.mkdir()
+    for game_id in (10, 20):
+        (archive_dir / f"game-{game_id}.zip").write_bytes(
+            f"archive-{game_id}".encode("ascii")
+        )
+
+    calls: list[set[int]] = []
+
+    def fake_collect(args, *, selected_ids):
+        calls.append(set(selected_ids))
+        game_id = next(iter(selected_ids))
+        return (
+            [{"game_id": game_id, "turn": 1, "vcr_id": 1, "ship_id": game_id}],
+            {"archives": 1, "ship_appearances": 1},
+        )
+
+    monkeypatch.setattr(module.capture_module, "_collect_appearances", fake_collect)
+    args = argparse.Namespace(
+        archive_dir=archive_dir,
+        appearance_cache_dir=tmp_path / "cache",
+        partition="discovery",
+        example_limit=5,
+    )
+
+    appearances, summary = _collect_appearances_cached(
+        args=args,
+        scan_ids={20, 10},
+    )
+
+    assert calls == [{10}, {20}]
+    assert [row["game_id"] for row in appearances] == [10, 20]
+    assert summary["archives"] == 2
+    assert summary["ship_appearances"] == 2
+
+    cached_appearances, cached_summary = _collect_appearances_cached(
+        args=args,
+        scan_ids={20, 10},
+    )
+    assert calls == [{10}, {20}]
+    assert cached_appearances == appearances
+    assert cached_summary == summary
