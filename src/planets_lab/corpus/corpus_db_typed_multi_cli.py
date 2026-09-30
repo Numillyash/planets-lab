@@ -1,10 +1,10 @@
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
 import os
 import sys
+import uuid
 from dataclasses import asdict
 from datetime import datetime, timezone
 from pathlib import Path
@@ -76,7 +76,8 @@ def _build(args: argparse.Namespace) -> int:
             )
 
         staging = root / "staging" / (
-            f"typed-corpus-{os.getpid()}-{hashlib.sha256(str(manifest).encode()).hexdigest()[:8]}.duckdb"
+            f"typed-corpus-{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}-"
+            f"{uuid.uuid4().hex[:12]}.duckdb"
         )
         imported = import_archives_to_typed_database(
             archives,
