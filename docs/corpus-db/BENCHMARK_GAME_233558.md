@@ -177,3 +177,30 @@ The next attribution pass separates:
 That measurement is the final physical-layout discriminator before deciding
 whether v1 should replace per-entity JSON fallback with a member-level
 compressed lossless fallback plus typed query tables.
+
+
+## Payload-vs-projection discriminator — 2026-09-30
+
+Third disposable-layout run:
+
+```text
+entity_keys_only                  47984640
+entity_query_projection_only     192163840
+entity_all_context_no_payload    192163840
+entity_payload_only            10535317504
+entity_semantic_min            10576474112
+entity_query_slim              10721177600
+```
+
+This rejects the hypothesis that typed numeric/context columns are responsible
+for the multi-gigabyte expansion. All current typed query and repeated context
+columns together fit in about 192 MB, while `payload_json` alone occupies
+10.535 GB.
+
+The next bounded diagnostic profiles the logical contents of `payload_json`:
+per-section row counts and UTF-8 bytes, average/max object size, approximate
+payload cardinality/repetition, and the key sets of the largest objects. It also
+compares logical entity/member-field payload bytes against the original decoded
+JSON byte total.
+
+No source payload values are printed by default.
