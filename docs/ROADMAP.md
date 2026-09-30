@@ -766,3 +766,19 @@ Held-out remains sealed.
 Checkpoint:
 `docs/handoff/2026-09-30-public-capture-side-discovery-runtime.md`.
 
+## Corpus DB v1 infrastructure workstream
+
+Branch feature/corpus-db-v1 owns a separate storage migration prototype.
+
+The objective is to retain ZIP/TRN as immutable evidence while mirroring the
+same player/perspective/entity semantics into a shared DuckDB generation stored
+outside both research checkouts and readable concurrently by both normal and
+external-reference containers.
+
+The first gate is game-233558 only: direct mirror, no deltas or semantic dedup.
+It must pass full member-level semantic parity and disk/runtime/RSS/concurrent
+reader benchmarks before scaling to the 36-game public corpus.
+
+See docs/corpus-db/ARCHITECTURE.md, SHARED_ACCESS.md, WORKSTREAM.md and
+NEW_CHAT_START.md.
+
