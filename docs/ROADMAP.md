@@ -782,3 +782,25 @@ reader benchmarks before scaling to the 36-game public corpus.
 See docs/corpus-db/ARCHITECTURE.md, SHARED_ACCESS.md, WORKSTREAM.md and
 NEW_CHAT_START.md.
 
+
+
+### Corpus DB v1 prototype implementation checkpoint — 2026-09-30
+
+The dedicated `feature/corpus-db-v1` branch now contains the first direct
+ZIP/TRN -> DuckDB implementation for the game-233558 gate. The importer is
+member-streaming rather than whole-game snapshot based, preserves full source
+semantics through lossless JSON fallback rows, records archive/member provenance,
+and refuses publication unless archive integrity plus type-sensitive full-member
+round-trip parity are green.
+
+Shared storage is exposed through `PLANETS_CORPUS_DB_ROOT` mounted at
+`/corpus-db`; the normal and external research containers use the same
+immutable published generation read-only. Tracked runners also measure fresh-
+process T-1/T and VCR/site query wall time/RSS and concurrent two-container
+reads.
+
+This is an implementation checkpoint only. The game-233558 archive-host runtime
+benchmark is still required before the prototype gate is green or before
+scaling to the 36-game public corpus. See
+`docs/corpus-db/IMPLEMENTATION_V1.md` and
+`docs/corpus-db/BENCHMARK_GAME_233558.md`.

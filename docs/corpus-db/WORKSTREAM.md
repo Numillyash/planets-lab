@@ -42,3 +42,21 @@ Do not add deltas/dedup in this milestone.
 Only then scale to the 36-game public corpus.
 
 Keep ZIP backend available as an oracle during migration.
+
+
+## Implementation checkpoint
+
+The first v1 prototype implementation is now tracked in:
+
+- `src/planets_lab/corpus/corpus_db.py`;
+- `src/planets_lab/corpus/corpus_db_cli.py`;
+- `compose.corpus-db.yaml`;
+- `tools/run-corpus-db-game233558-prototype.sh`;
+- `tools/run-corpus-db-shared-read-check.sh`;
+- `tests/test_corpus_db.py`;
+- `docs/corpus-db/IMPLEMENTATION_V1.md`;
+- `docs/corpus-db/BENCHMARK_GAME_233558.md`.
+
+This does not close the milestone. The canonical archive-host game-233558 run
+must still produce zero semantic-parity failures and the required size/time/RSS
+and concurrent-reader measurements before any 36-game scale-out.
