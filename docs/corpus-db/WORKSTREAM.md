@@ -57,6 +57,12 @@ The first v1 prototype implementation is now tracked in:
 - `docs/corpus-db/IMPLEMENTATION_V1.md`;
 - `docs/corpus-db/BENCHMARK_GAME_233558.md`.
 
-This does not close the milestone. The canonical archive-host game-233558 run
-must still produce zero semantic-parity failures and the required size/time/RSS
-and concurrent-reader measurements before any 36-game scale-out.
+The canonical archive-host game-233558 run is now complete: 6710 / 6710 TRN
+members passed full semantic parity, both containers concurrently opened the
+same immutable generation read-only, and bounded indexed queries completed in
+25 ms / ~109 MiB RSS and 58 ms / ~208 MiB RSS.
+
+The correctness/query gate is green, but the first physical layout produced an
+11.87 GB DuckDB from 9.57 GB decoded JSON (+24.06%). Blind 36-game scale-out is
+therefore held for one bounded storage-attribution pass. See
+`docs/handoff/2026-09-30-corpus-db-game233558-runtime.md`.
