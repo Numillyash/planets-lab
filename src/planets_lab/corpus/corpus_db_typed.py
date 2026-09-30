@@ -76,7 +76,11 @@ def _merge_spec(left: Any, right: Any) -> Any:
         return left
     if left == right:
         return left
-    if {left, right} == {"int", "float"}:
+    if (
+        isinstance(left, str)
+        and isinstance(right, str)
+        and {left, right} == {"int", "float"}
+    ):
         return "float"
     if isinstance(left, dict) and isinstance(right, dict):
         if left.get("kind") == "struct" and right.get("kind") == "struct":
