@@ -11,6 +11,7 @@ import pytest
 
 from planets_lab.corpus.corpus_db import (
     CORPUS_DB_SCHEMA,
+    attribute_storage,
     benchmark_query,
     connect_current_read_only,
     import_archive_to_database,
@@ -230,3 +231,45 @@ def test_bounded_query_benchmarks_use_indexed_member_and_site_keys(tmp_path: Pat
     assert site.target["y"] == 1200.0
     assert site.result_rows >= 1
     assert site.peak_rss_bytes > 0
+
+
+def test_storage_attribution_uses_disposable_copy(tmp_path: Path) -> None:
+    archive = _write_archive(tmp_path / "game-233558.zip")
+    database = tmp_path / "prototype.duckdb"
+    scratch = tmp_path / "storage-attribution.duckdb"
+    import_archive_to_database(archive, database, expected_game_id=233558)
+    before = database.read_bytes()
+
+    result = attribute_storage(
+        database,
+        scratch,
+        memory_limit="512MB",
+        threads=1,
+    )
+
+    assert result.source_database_path == str(database.resolve())
+    assert result.source_database_bytes == len(before)
+    assert result.scratch_database_path == str(scratch.resolve())
+    assert scratch.is_file()
+    assert database.read_bytes() == before
+
+    names = [stage.name for stage in result.stages]
+    assert names == [
+        "data_only",
+        "source_member_indexes",
+        "member_field_index",
+        "entity_member_index",
+        "entity_id_index",
+        "entity_site_index",
+        "analyze",
+    ]
+    assert all(stage.database_bytes > 0 for stage in result.stages)
+    assert all(stage.delta_bytes >= 0 for stage in result.stages)
+    assert all(stage.wall_seconds >= 0 for stage in result.stages)
+    assert all(stage.process_peak_rss_bytes > 0 for stage in result.stages)
+
+    connection = duckdb.connect(str(database), read_only=True)
+    try:
+        assert connection.execute("SELECT count(*) FROM source_members").fetchone()[0] == 3
+    finally:
+        connection.close()
