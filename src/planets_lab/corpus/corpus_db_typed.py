@@ -129,7 +129,7 @@ def _pa_type(spec: Any) -> pa.DataType:
         return pa.int64()
     if spec == "float":
         return pa.float64()
-    if spec in {"string", "json"}:
+    if isinstance(spec, str) and spec in {"string", "json"}:
         return pa.string()
     if isinstance(spec, dict) and spec.get("kind") == "struct":
         return pa.struct(
