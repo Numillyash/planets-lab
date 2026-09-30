@@ -9,6 +9,7 @@ from pathlib import Path
 
 from .corpus_db import (
     CorpusDbError,
+    attribute_storage,
     benchmark_query,
     database_stats,
     default_build_id,
@@ -130,6 +131,43 @@ def _benchmark(args: argparse.Namespace) -> int:
     return 0
 
 
+def _storage_attribution(args: argparse.Namespace) -> int:
+    root = ensure_external_db_root(_db_root(args.db_root))
+    try:
+        database = (
+            args.database.resolve()
+            if args.database
+            else resolve_current_generation(root)
+        )
+        scratch = (
+            args.scratch.resolve()
+            if args.scratch
+            else root / "staging" / f"storage-attribution-{os.getpid()}.duckdb"
+        )
+        staging = (root / "staging").resolve()
+        if scratch.parent.resolve() != staging:
+            raise CorpusDbError(
+                f"storage-attribution scratch DB must live directly under {staging}"
+            )
+        result = attribute_storage(
+            database,
+            scratch,
+            memory_limit=args.memory_limit,
+            threads=args.threads,
+        )
+        _json(asdict(result))
+    except (OSError, ValueError, CorpusDbError) as exc:
+        print(str(exc), file=sys.stderr)
+        return 2
+    finally:
+        if "scratch" in locals() and not args.keep:
+            try:
+                scratch.unlink()
+            except FileNotFoundError:
+                pass
+    return 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Lossless Planets.nu TRN -> DuckDB corpus DB v1 tooling")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -164,6 +202,18 @@ def main() -> int:
     benchmark.add_argument("--database", type=Path)
     benchmark.add_argument("--db-root")
     benchmark.set_defaults(func=_benchmark)
+
+    storage = sub.add_parser(
+        "storage-attribution",
+        help="copy CURRENT into staging and attribute physical size to data/index stages",
+    )
+    storage.add_argument("--database", type=Path)
+    storage.add_argument("--db-root")
+    storage.add_argument("--scratch", type=Path)
+    storage.add_argument("--memory-limit", default="4GB")
+    storage.add_argument("--threads", type=int, default=2)
+    storage.add_argument("--keep", action="store_true")
+    storage.set_defaults(func=_storage_attribution)
 
     args = parser.parse_args()
     return int(args.func(args))
