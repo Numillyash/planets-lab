@@ -57,15 +57,17 @@ The first v1 prototype implementation is now tracked in:
 - `docs/corpus-db/IMPLEMENTATION_V1.md`;
 - `docs/corpus-db/BENCHMARK_GAME_233558.md`.
 
-The canonical archive-host game-233558 run is now complete: 6710 / 6710 TRN
-members passed full semantic parity, both containers concurrently opened the
-same immutable generation read-only, and bounded indexed queries completed in
-25 ms / ~109 MiB RSS and 58 ms / ~208 MiB RSS.
+The corrected typed1 archive-host game-233558 run is complete:
+6710 / 6710 TRN members passed full semantic parity; the entity layer uses
+native DuckDB/Arrow scalar, STRUCT and LIST types; the same immutable generation
+opened concurrently from both containers; and bounded indexed queries completed
+in 21.8 ms / ~109 MiB RSS and 51.0 ms / ~205 MiB RSS.
 
-The correctness/query gate is green, but the first physical layout produced an
-11.87 GB DuckDB from 9.57 GB decoded JSON (+24.06%). Blind 36-game scale-out is
-therefore held for one bounded storage-attribution pass. See
-`docs/handoff/2026-09-30-corpus-db-game233558-runtime.md`.
+The typed generation is 3.06 GB versus 9.57 GB decoded JSON and 11.87 GB for the
+rejected first layout. The game-233558 acceptance gate is closed. Proceed to a
+single typed 36-game public-corpus generation with the ZIP cache retained as
+oracle. See
+`docs/handoff/2026-09-30-corpus-db-typed-game233558-runtime.md`.
 
 
 ## Storage attribution result — 2026-09-30
