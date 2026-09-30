@@ -997,7 +997,7 @@ def _find_checkout_root() -> Path | None:
 
 def ensure_external_db_root(root: Path) -> Path:
     resolved = root.expanduser().resolve()
-    checkout = _find_checkout_root()    if checkout is not None and (resolved == checkout or checkout in resolved.parents):
+    checkout = _find_checkout_root()\n    if checkout is not None and (resolved == checkout or checkout in resolved.parents):
         raise CorpusDbError(
             f"PLANETS_CORPUS_DB_ROOT must be outside the planets-lab checkout: {resolved}"
         )
