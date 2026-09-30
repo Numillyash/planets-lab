@@ -1,8 +1,8 @@
 # Corpus DB v1 — game-233558 prototype benchmark
 
-Status: runner and measurement hooks implemented; canonical archive-host runtime pending.
+Status: canonical game-233558 archive-host runtime green for semantic parity, bounded indexed queries and concurrent shared readers; storage attribution is the next gate before 36-game scale-out.
 
-This file is intentionally not pre-filled with guessed values. The first accepted result must come from the immutable cached `game-233558.zip` on the archive host and a published v1 generation produced by the tracked runner.
+The first accepted runtime was produced from the immutable cached `game-233558.zip` on the archive host using the tracked runner at branch HEAD `66c8ef8e3a97bbffde4ee4bfe773aad8145407df`.
 
 ## Required runtime
 
@@ -24,20 +24,22 @@ The corpus DB itself remains outside Git/runtime-evidence branches. The evidence
 
 Record from the canonical run:
 
-```text
-source ZIP bytes:                  PENDING
-unpacked decoded JSON bytes:       PENDING
-published DuckDB bytes:            PENDING
-one-time import wall seconds:      PENDING
-one-time importer peak RSS bytes:  PENDING
-TRN members parity checked:        PENDING
-parity failures:                   PENDING
-T-1/T query wall seconds:          PENDING
-T-1/T query peak RSS bytes:        PENDING
-VCR/site query wall seconds:       PENDING
-VCR/site query peak RSS bytes:     PENDING
-normal+external concurrent read:   PENDING
-```
+\`\`\`text
+source ZIP bytes:                  691557421
+unpacked decoded JSON bytes:       9568109828
+published DuckDB bytes:            11869892608
+one-time import wall seconds:      506.67934049799806
+one-time importer peak RSS bytes:  11229298688
+TRN members parity checked:        6710
+parity failures:                   0
+parity wall seconds:               829.8552294809997
+parity peak RSS bytes:             11811893248
+T-1/T query wall seconds:          0.02508335300080944
+T-1/T query peak RSS bytes:        114585600
+VCR/site query wall seconds:       0.058298714000557084
+VCR/site query peak RSS bytes:     217964544
+normal+external concurrent read:   PASS
+\`\`\`
 
 ## Green gate
 
@@ -55,4 +57,30 @@ both readers overlap while opening the same generation
 
 Size/time/RSS are measurements, not pass/fail thresholds for v1. They are used to decide whether the direct mirror is already sufficient or whether a later storage format iteration is justified.
 
-Until this file contains a canonical green runtime, do not import the 36-game corpus and do not migrate mechanics diagnostics to the DB backend.
+## Interpretation
+
+The correctness and reader gate is green:
+
+- 6710 / 6710 canonical TRN members passed full semantic parity;
+- no mismatch was bypassed;
+- the same immutable generation opened concurrently from both research containers;
+- bounded T-1/T and VCR/site reads completed without whole-game materialization.
+
+The direct physical schema did **not** produce a disk-space win:
+
+\`\`\`text
+decoded JSON / ZIP       13.8356x
+DuckDB / ZIP             17.1640x
+DuckDB / decoded JSON     1.2406x
+DuckDB overhead vs JSON  +24.06%
+\`\`\`
+
+The published database is therefore excellent as a query backend but not yet
+acceptable for blind 36-game scale-out. The next bounded action is storage
+attribution on a disposable copy of CURRENT to separate table payload size from
+ART-index overhead and repeated physical metadata. No temporal/cross-perspective
+deduplication is introduced by that diagnostic.
+
+Do not migrate mechanics diagnostics wholesale or build the full 36-game DB
+until the storage attribution result is recorded and the v1 physical layout is
+either accepted explicitly or tightened without changing semantic parity.
