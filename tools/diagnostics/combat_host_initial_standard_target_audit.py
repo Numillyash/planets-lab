@@ -406,11 +406,21 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         profile=getattr(args, "scope_profile", "combat-planar-no-horwasp"),
     )
     selection = feature_scope.to_dict() if feature_scope is not None else None
+    selected_game_ids_raw = getattr(args, "selected_game_ids", None)
+    selected_game_ids = (
+        {int(value) for value in selected_game_ids_raw}
+        if selected_game_ids_raw is not None
+        else None
+    )
+    site_filter = getattr(args, "site_filter", None)
+    progress = bool(getattr(args, "progress", False))
 
     for archive_path in sorted(args.archive_dir.glob("game-*.zip")):
         try:
             game_id = int(archive_path.stem.split("-")[-1])
         except ValueError:
+            continue
+        if selected_game_ids is not None and game_id not in selected_game_ids:
             continue
         if feature_scope is not None:
             scope_class = feature_scope.classify(game_id)
@@ -418,6 +428,12 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 totals[f"scope_{scope_class}"] += 1
                 continue
         totals["archives_considered"] += 1
+        if progress:
+            print(
+                "progress: stage=site_context "
+                f"game_id={game_id} status=start",
+                flush=True,
+            )
 
         archive_data = archive_path.read_bytes()
         prepared, _ = load_or_build_prepared_game_cache(
@@ -466,6 +482,13 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
 
         for site_key, factual in sorted(sites.items()):
             battle_turn, x, y = site_key
+            if callable(site_filter) and not site_filter(
+                game_id,
+                battle_turn,
+                x,
+                y,
+            ):
+                continue
             totals["sites"] += 1
             before_turn = battle_turn - 1
             factual_queue = factual_queues.get(site_key, [])
@@ -750,6 +773,13 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                             "analysis": analysis,
                         }
                     )
+
+        if progress:
+            print(
+                "progress: stage=site_context "
+                f"game_id={game_id} status=done",
+                flush=True,
+            )
 
     summary = {
         "archives_considered": int(totals["archives_considered"]),
