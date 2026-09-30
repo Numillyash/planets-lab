@@ -1219,15 +1219,24 @@ def database_stats(database_path: Path) -> dict[str, Any]:
         game_ids = [row[0] for row in connection.execute(
             "SELECT DISTINCT game_id FROM source_members ORDER BY game_id"
         ).fetchall()]
-        archive = connection.execute(
-            "SELECT archive_sha256, archive_bytes FROM source_archives"
-        ).fetchone()
+        archive_rows = connection.execute(
+            """
+            SELECT archive_sha256, archive_bytes
+            FROM source_archives
+            ORDER BY archive_id
+            """
+        ).fetchall()
+        archive_count = len(archive_rows)
+        archive_bytes_total = sum(int(row[1]) for row in archive_rows)
+        single_archive = archive_rows[0] if archive_count == 1 else None
         return {
             "database_path": str(database_path),
             "database_bytes": database_path.stat().st_size,
             "game_ids": game_ids,
-            "source_archive_sha256": archive[0] if archive else None,
-            "source_archive_bytes": int(archive[1]) if archive else None,
+            "source_archive_count": archive_count,
+            "source_archive_bytes_total": archive_bytes_total,
+            "source_archive_sha256": single_archive[0] if single_archive else None,
+            "source_archive_bytes": int(single_archive[1]) if single_archive else None,
             "decoded_json_bytes": int(
                 connection.execute(
                     "SELECT coalesce(sum(decoded_json_bytes), 0) FROM source_members"
