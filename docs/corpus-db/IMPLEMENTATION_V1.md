@@ -260,3 +260,21 @@ because the host has spare RAM.
 
 This is still v1 direct-mirror work. It does not add delta encoding, RLE,
 state-version dedup or cross-perspective dedup.
+
+
+### Deep attribution after the first physical-size run
+
+The first attribution proved that secondary indexes account for about 1.16 GB,
+while the data-only copy is already 10.71 GB. The same tracked command now also
+reports:
+
+- cumulative and incremental bytes after each base table is copied;
+- a disposable `entity_semantic_min` layout containing only
+  `member_id, section_name, ordinal, payload_json`;
+- a disposable `entity_query_slim` layout that adds only the typed query
+  projection (`source_entity_id, owner_id, player_id, x, y`) and deliberately
+  omits repeated game/perspective/archive/embedded-turn columns.
+
+The two entity-layout databases are deleted inside the diagnostic itself. This
+lets the next runtime distinguish lossless JSON payload cost, typed projection
+cost and repeated per-entity context cost before any physical-schema change.
