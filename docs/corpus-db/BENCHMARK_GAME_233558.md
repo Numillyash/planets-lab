@@ -204,3 +204,43 @@ compares logical entity/member-field payload bytes against the original decoded
 JSON byte total.
 
 No source payload values are printed by default.
+
+
+## Typed-layout correction
+
+The first direct-mirror prototype exposed a physical-model error: each entity was
+stored almost entirely as a complete `payload_json VARCHAR`, with only a small
+set of typed locator/query columns beside it. Real game-233558 samples confirm
+that numeric/boolean ship, planet, VCR, minefield and ion-storm fields therefore
+remained characters inside JSON rather than native database values.
+
+The correction is implemented as a separate `typed1` prototype path before
+replacing the published v1 layout:
+
+```text
+src/planets_lab/corpus/corpus_db_typed.py
+src/planets_lab/corpus/corpus_db_typed_cli.py
+tools/run-corpus-db-game233558-typed-prototype.sh
+```
+
+Physical rule:
+
+- `entity_rows` keeps only member/perspective/turn identity and generic query
+  locators; it has no per-entity JSON payload;
+- known entity sections are written to `typed_<section>` tables using native
+  Arrow/DuckDB STRUCT/LIST/scalar types;
+- nested structures such as VCR `left`/`right` are typed recursively;
+- the full semantic source member is retained exactly once per TRN as a
+  compressed `decoded_payload_zlib BLOB`;
+- full semantic reconstruction/parity uses that member-level lossless fallback,
+  so unknown/late fields are not discarded even if they are not in the learned
+  typed projection.
+
+The typed schema is learned from a bounded early source sample and the full
+archive import then fails closed on incompatible values for projected fields.
+Fields not present in the learned projection remain preserved by the compressed
+member-level fallback.
+
+This is still a game-233558 prototype. Do not scale to the 36-game corpus until
+the typed generation passes full parity and its size/query/RSS measurements are
+recorded.
