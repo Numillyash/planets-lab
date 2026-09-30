@@ -129,13 +129,27 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         or isinstance(scan_ids_raw, (str, bytes))
     ):
         raise ValueError("discovery scanned_game_ids missing")
-    scan_ids = {
+    full_scan_ids = {
         int(value)
         for value in scan_ids_raw
         if isinstance(value, int) and not isinstance(value, bool)
     }
-    if not scan_ids:
+    if not full_scan_ids:
         raise ValueError("discovery game population is empty")
+
+    requested_game_id = getattr(args, "game_id", None)
+    if requested_game_id is not None:
+        if requested_game_id not in full_scan_ids:
+            raise ValueError(
+                f"game {requested_game_id} is not in the discovery partition"
+            )
+        observations = [
+            row for row in observations
+            if int(row["game_id"]) == int(requested_game_id)
+        ]
+        scan_ids = {int(requested_game_id)}
+    else:
+        scan_ids = set(full_scan_ids)
 
     cache_args = argparse.Namespace(
         archive_dir=args.archive_dir,
@@ -145,8 +159,13 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     )
     appearances, chain_summary = _collect_appearances_cached(
         args=cache_args,
-        scan_ids=scan_ids,
+        scan_ids=full_scan_ids,
     )
+    if requested_game_id is not None:
+        appearances = [
+            row for row in appearances
+            if int(row.get("game_id", -1)) == int(requested_game_id)
+        ]
     appearances_by_key = _appearance_mapping(appearances)
 
     targets = _targets_by_site(observations)
@@ -298,7 +317,8 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "schema": SCHEMA,
         "evidence_status": "DISCOVERY_ONLY_EXTERNAL_REFERENCE_NOT_PROMOTED",
         "source_discovery": str(args.discovery),
-        "scanned_game_ids": sorted(scan_ids),
+        "scanned_game_ids": sorted(full_scan_ids),
+        "probe_game_ids": sorted(scan_ids),
         "summary": {
             "counts": dict(sorted(counts.items())),
             "chain_audit_summary": dict(chain_summary),
@@ -334,6 +354,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--prepared-dir", type=Path, default=PREPARED_DIR)
     parser.add_argument("--example-limit", type=int, default=80)
+    parser.add_argument("--game-id", type=int)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     return parser.parse_args()
 

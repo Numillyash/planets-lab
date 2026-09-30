@@ -9,6 +9,7 @@ ARCHIVE_DIR="${ARCHIVE_DIR:-validation/corpus/cache/loadall}"
 APPEARANCE_CACHE_DIR="${APPEARANCE_CACHE_DIR:-validation/corpus/cache/public-capture-side-v1}"
 PREPARED_DIR="${PREPARED_DIR:-validation/corpus/cache/prepared-v1}"
 OUTPUT="${OUTPUT:-artifacts/public-capture-side/discovery-o-layer-probe.json}"
+PARTS_DIR="${PARTS_DIR:-artifacts/public-capture-side/o-layer-parts}"
 DOCKER_PREFLIGHT_TIMEOUT="${DOCKER_PREFLIGHT_TIMEOUT:-10}"
 
 if [[ ! -s "$DISCOVERY" ]]; then

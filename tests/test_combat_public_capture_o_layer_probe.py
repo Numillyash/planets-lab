@@ -84,3 +84,20 @@ def test_o_layer_wrapper_is_main_guarded_and_discovery_only() -> None:
     assert "discovery-capture-side.json" in runner
     assert "heldout" not in runner
     assert "--partition all" not in runner
+
+def test_probe_supports_single_game_process_isolation() -> None:
+    root = Path(__file__).resolve().parents[1]
+    probe = (
+        root / "tools/diagnostics/combat_public_capture_o_layer_probe.py"
+    ).read_text(encoding="utf-8")
+    runner = (
+        root / "tools/run-public-capture-o-layer-discovery.sh"
+    ).read_text(encoding="utf-8")
+
+    assert 'parser.add_argument("--game-id", type=int)' in probe
+    assert "full_scan_ids" in probe
+    assert "probe_game_ids" in probe
+    assert '--game-id "$game_id"' in runner
+    assert "o-layer-parts" in runner
+    assert "combat_public_capture_o_layer_merge.py" in runner
+

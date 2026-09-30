@@ -1,0 +1,50 @@
+from __future__ import annotations
+
+import sys
+from pathlib import Path
+
+TOOLS_DIR = Path(__file__).resolve().parents[1] / "tools" / "diagnostics"
+if str(TOOLS_DIR) not in sys.path:
+    sys.path.insert(0, str(TOOLS_DIR))
+
+from combat_public_capture_o_layer_merge import merge_parts
+from combat_public_capture_o_layer_probe import SCHEMA
+
+
+def _part(game_id: int, *, left: int, right: int) -> dict[str, object]:
+    return {
+        "schema": SCHEMA,
+        "scanned_game_ids": [1, 2],
+        "probe_game_ids": [game_id],
+        "summary": {
+            "counts": {
+                "discovery_ship_rows": left + right,
+                "o_pair_reachable": left + right,
+                "o_pair_reachable:left": left,
+                "o_pair_reachable:right": right,
+            }
+        },
+        "observations": [
+            {
+                "game_id": game_id,
+                "turn": 10,
+                "capture_vcr_id": game_id,
+                "captured_ship_id": 100 + game_id,
+            }
+        ],
+    }
+
+
+def test_merge_parts_sums_counts_and_preserves_game_isolation() -> None:
+    report = merge_parts([
+        _part(1, left=2, right=1),
+        _part(2, left=3, right=4),
+    ])
+    counts = report["summary"]["counts"]
+    assert report["summary"]["game_passes"] == 2
+    assert counts["discovery_ship_rows"] == 10
+    assert counts["o_pair_reachable"] == 10
+    assert counts["o_pair_reachable:left"] == 5
+    assert counts["o_pair_reachable:right"] == 5
+    assert report["scanned_game_ids"] == [1, 2]
+    assert [row["probe_game_ids"] for row in report["summary"]["per_game"]] == [[1], [2]]
