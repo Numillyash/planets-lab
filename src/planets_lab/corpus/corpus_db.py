@@ -1467,32 +1467,52 @@ def attribute_storage(
     else:
         connection.close()
 
-    semantic_scratch = scratch.with_name(
-        f"{scratch.stem}-entity-semantic.duckdb"
-    )
-    query_slim_scratch = scratch.with_name(
-        f"{scratch.stem}-entity-query-slim.duckdb"
-    )
-    entity_layout_stages = (
-        _measure_entity_layout_variant(
-            source,
-            semantic_scratch,
-            name="entity_semantic_min",
-            select_list="member_id, section_name, ordinal, payload_json",
-            memory_limit=memory_limit,
-            threads=threads,
+    entity_variants = (
+        (
+            "entity_keys_only",
+            "member_id, section_name, ordinal",
         ),
-        _measure_entity_layout_variant(
-            source,
-            query_slim_scratch,
-            name="entity_query_slim",
-            select_list=(
+        (
+            "entity_query_projection_only",
+            (
+                "member_id, section_name, ordinal, source_entity_id, owner_id, "
+                "player_id, x, y"
+            ),
+        ),
+        (
+            "entity_all_context_no_payload",
+            (
+                "member_id, game_id, perspective_player_id, archive_turn, "
+                "embedded_turn, section_name, ordinal, source_entity_id, "
+                "owner_id, player_id, x, y"
+            ),
+        ),
+        (
+            "entity_payload_only",
+            "payload_json",
+        ),
+        (
+            "entity_semantic_min",
+            "member_id, section_name, ordinal, payload_json",
+        ),
+        (
+            "entity_query_slim",
+            (
                 "member_id, section_name, ordinal, source_entity_id, owner_id, "
                 "player_id, x, y, payload_json"
             ),
+        ),
+    )
+    entity_layout_stages = tuple(
+        _measure_entity_layout_variant(
+            source,
+            scratch.with_name(f"{scratch.stem}-{name}.duckdb"),
+            name=name,
+            select_list=select_list,
             memory_limit=memory_limit,
             threads=threads,
-        ),
+        )
+        for name, select_list in entity_variants
     )
 
     return StorageAttributionResult(
