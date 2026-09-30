@@ -266,7 +266,14 @@ def test_storage_attribution_uses_disposable_copy(tmp_path: Path) -> None:
     assert all(stage.delta_bytes >= 0 for stage in result.table_stages)
 
     layout_names = [stage.name for stage in result.entity_layout_stages]
-    assert layout_names == ["entity_semantic_min", "entity_query_slim"]
+    assert layout_names == [
+        "entity_keys_only",
+        "entity_query_projection_only",
+        "entity_all_context_no_payload",
+        "entity_payload_only",
+        "entity_semantic_min",
+        "entity_query_slim",
+    ]
     assert all(stage.database_bytes > 0 for stage in result.entity_layout_stages)
     assert all(stage.delta_bytes == stage.database_bytes for stage in result.entity_layout_stages)
 
@@ -285,8 +292,8 @@ def test_storage_attribution_uses_disposable_copy(tmp_path: Path) -> None:
     assert all(stage.wall_seconds >= 0 for stage in result.table_stages + result.entity_layout_stages + result.stages)
     assert all(stage.process_peak_rss_bytes > 0 for stage in result.table_stages + result.entity_layout_stages + result.stages)
 
-    assert not (tmp_path / "storage-attribution-entity-semantic.duckdb").exists()
-    assert not (tmp_path / "storage-attribution-entity-query-slim.duckdb").exists()
+    for name in layout_names:
+        assert not (tmp_path / f"storage-attribution-{name}.duckdb").exists()
 
     connection = duckdb.connect(str(database), read_only=True)
     try:
