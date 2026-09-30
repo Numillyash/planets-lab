@@ -84,3 +84,22 @@ deduplication is introduced by that diagnostic.
 Do not migrate mechanics diagnostics wholesale or build the full 36-game DB
 until the storage attribution result is recorded and the v1 physical layout is
 either accepted explicitly or tightened without changing semantic parity.
+
+## Storage attribution follow-up
+
+Run against the already published immutable generation:
+
+```bash
+cd ~/projects/planets-lab
+git switch feature/corpus-db-v1
+git pull --ff-only origin feature/corpus-db-v1
+
+export PLANETS_CORPUS_DB_ROOT=/root/projects/planets-corpus-db
+bash tools/run-corpus-db-storage-attribution.sh
+```
+
+The runner creates a disposable staging DuckDB, attaches CURRENT read-only,
+copies only the six v1 tables, then checkpoints after each secondary-index
+stage. It deletes the scratch database after printing the result.
+
+The active generation and `CURRENT` are never modified.
