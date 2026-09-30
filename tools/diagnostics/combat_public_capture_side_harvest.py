@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import gzip
 import hashlib
 import json
 import sys
@@ -42,6 +43,10 @@ DEFAULT_OUTPUT = Path(
 )
 DEFAULT_PARTITION_SALT = "planets-lab-public-capture-side-v1"
 DEFAULT_HOLDOUT_MODULUS = 4
+APPEARANCE_CACHE_SCHEMA = "planets-lab.combat-public-capture-appearance-cache.v1"
+DEFAULT_APPEARANCE_CACHE_DIR = Path(
+    "validation/corpus/cache/public-capture-side-v1"
+)
 
 SETTING_KEYS = (
     "campaignmode",
@@ -95,6 +100,131 @@ def _partition_for_game(
     digest = hashlib.sha256(f"{salt}:{game_id}".encode("utf-8")).digest()
     value = int.from_bytes(digest[:8], "big")
     return "heldout" if value % holdout_modulus == 0 else "discovery"
+
+
+def _appearance_cache_descriptor(
+    *,
+    scan_ids: set[int],
+    archive_dir: Path,
+) -> dict[str, Any]:
+    archives: list[dict[str, Any]] = []
+    for game_id in sorted(scan_ids):
+        path = archive_dir / f"game-{game_id}.zip"
+        if not path.is_file():
+            raise ValueError(f"missing archive for appearance cache: {path}")
+        archives.append(
+            {
+                "game_id": game_id,
+                "bytes": path.stat().st_size,
+            }
+        )
+    return {
+        "schema": APPEARANCE_CACHE_SCHEMA,
+        "game_ids": sorted(scan_ids),
+        "archives": archives,
+    }
+
+
+def _load_appearance_cache(
+    *,
+    path: Path,
+    descriptor: Mapping[str, Any],
+) -> tuple[list[dict[str, Any]], Mapping[str, Any]] | None:
+    if not path.is_file():
+        return None
+    try:
+        with gzip.open(path, "rt", encoding="utf-8") as handle:
+            payload = json.load(handle)
+    except (OSError, json.JSONDecodeError):
+        return None
+    if not isinstance(payload, Mapping):
+        return None
+    if payload.get("descriptor") != descriptor:
+        return None
+    appearances = payload.get("appearances")
+    chain_summary = payload.get("chain_summary")
+    if (
+        not isinstance(appearances, list)
+        or not all(isinstance(row, Mapping) for row in appearances)
+        or not isinstance(chain_summary, Mapping)
+    ):
+        return None
+    return [dict(row) for row in appearances], dict(chain_summary)
+
+
+def _write_appearance_cache(
+    *,
+    path: Path,
+    descriptor: Mapping[str, Any],
+    appearances: Sequence[Mapping[str, Any]],
+    chain_summary: Mapping[str, Any],
+) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    payload = {
+        "descriptor": dict(descriptor),
+        "appearances": [dict(row) for row in appearances],
+        "chain_summary": dict(chain_summary),
+    }
+    with gzip.open(path, "wt", encoding="utf-8", compresslevel=6) as handle:
+        json.dump(
+            payload,
+            handle,
+            sort_keys=True,
+            separators=(",", ":"),
+            ensure_ascii=False,
+        )
+
+
+def _collect_appearances_cached(
+    *,
+    args: argparse.Namespace,
+    scan_ids: set[int],
+) -> tuple[list[dict[str, Any]], Mapping[str, Any]]:
+    cache_path = args.appearance_cache_dir / f"{args.partition}-appearances.json.gz"
+    descriptor = _appearance_cache_descriptor(
+        scan_ids=scan_ids,
+        archive_dir=args.archive_dir,
+    )
+    cached = _load_appearance_cache(
+        path=cache_path,
+        descriptor=descriptor,
+    )
+    if cached is not None:
+        appearances, chain_summary = cached
+        print(
+            "progress: stage=collect_capture_appearances "
+            f"games={len(scan_ids)} status=cache-hit "
+            f"appearances={len(appearances)} cache={cache_path}",
+            flush=True,
+        )
+        return appearances, chain_summary
+
+    print(
+        "progress: stage=collect_capture_appearances "
+        f"games={len(scan_ids)} status=cache-miss cache={cache_path}",
+        flush=True,
+    )
+    appearances, chain_summary = capture_module._collect_appearances(
+        argparse.Namespace(
+            archive_dir=args.archive_dir,
+            example_limit=args.example_limit,
+            progress=True,
+        ),
+        selected_ids=scan_ids,
+    )
+    _write_appearance_cache(
+        path=cache_path,
+        descriptor=descriptor,
+        appearances=appearances,
+        chain_summary=chain_summary,
+    )
+    print(
+        "progress: stage=collect_capture_appearances "
+        f"games={len(scan_ids)} appearances={len(appearances)} "
+        f"status=cache-written cache={cache_path}",
+        flush=True,
+    )
+    return appearances, chain_summary
 
 
 def _pair_occurrence_index(
@@ -494,23 +624,9 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             if partition == args.partition
         }
 
-    print(
-        "progress: stage=collect_capture_appearances "
-        f"games={len(scan_ids)} status=start",
-        flush=True,
-    )
-    appearances, chain_summary = capture_module._collect_appearances(
-        argparse.Namespace(
-            archive_dir=args.archive_dir,
-            example_limit=args.example_limit,
-            progress=True,
-        ),
-        selected_ids=scan_ids,
-    )
-    print(
-        "progress: stage=collect_capture_appearances "
-        f"games={len(scan_ids)} appearances={len(appearances)} status=done",
-        flush=True,
+    appearances, chain_summary = _collect_appearances_cached(
+        args=args,
+        scan_ids=scan_ids,
     )
 
     by_vcr: dict[tuple[int, int, int], list[dict[str, Any]]] = defaultdict(list)
@@ -769,6 +885,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--manifest", type=Path, default=DEFAULT_MANIFEST)
     parser.add_argument("--index", type=Path, default=DEFAULT_INDEX)
     parser.add_argument("--archive-dir", type=Path, default=DEFAULT_ARCHIVE_DIR)
+    parser.add_argument(
+        "--appearance-cache-dir",
+        type=Path,
+        default=DEFAULT_APPEARANCE_CACHE_DIR,
+    )
     parser.add_argument(
         "--partition",
         choices=("discovery", "heldout", "all"),

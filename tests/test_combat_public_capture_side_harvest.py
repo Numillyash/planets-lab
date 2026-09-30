@@ -8,7 +8,11 @@ if str(TOOLS_DIR) not in sys.path:
     sys.path.insert(0, str(TOOLS_DIR))
 
 from combat_public_capture_side_harvest import (
+    APPEARANCE_CACHE_SCHEMA,
+    _appearance_cache_descriptor,
+    _load_appearance_cache,
     _opposite_side,
+    _write_appearance_cache,
     _order_side_controls,
     _pair_occurrence_index,
     _partition_for_game,
@@ -147,4 +151,54 @@ def test_opposite_side_for_queue_cursor_candidate() -> None:
     assert _opposite_side("left") == "right"
     assert _opposite_side("right") == "left"
     assert _opposite_side(None) is None
+
+def test_appearance_cache_roundtrip_and_descriptor_invalidation(
+    tmp_path: Path,
+) -> None:
+    archive_dir = tmp_path / "archives"
+    archive_dir.mkdir()
+    (archive_dir / "game-42.zip").write_bytes(b"immutable-archive")
+    descriptor = _appearance_cache_descriptor(
+        scan_ids={42},
+        archive_dir=archive_dir,
+    )
+    assert descriptor["schema"] == APPEARANCE_CACHE_SCHEMA
+
+    cache_path = tmp_path / "cache.json.gz"
+    appearances = [
+        {
+            "game_id": 42,
+            "turn": 7,
+            "vcr_id": 9,
+            "ship_id": 11,
+            "side": "left",
+        }
+    ]
+    summary = {"archives": 1, "unique_vcrs": 1}
+    _write_appearance_cache(
+        path=cache_path,
+        descriptor=descriptor,
+        appearances=appearances,
+        chain_summary=summary,
+    )
+
+    loaded = _load_appearance_cache(
+        path=cache_path,
+        descriptor=descriptor,
+    )
+    assert loaded is not None
+    loaded_appearances, loaded_summary = loaded
+    assert loaded_appearances == appearances
+    assert loaded_summary == summary
+
+    (archive_dir / "game-42.zip").write_bytes(b"immutable-archive-changed")
+    changed = _appearance_cache_descriptor(
+        scan_ids={42},
+        archive_dir=archive_dir,
+    )
+    assert changed != descriptor
+    assert _load_appearance_cache(
+        path=cache_path,
+        descriptor=changed,
+    ) is None
 
