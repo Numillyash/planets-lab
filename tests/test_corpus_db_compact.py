@@ -75,6 +75,11 @@ def _payload(
         "unknown_zero": 0,
         "unknown_false": False,
         "unknown_array": [False, 0, "", None, [2, 1]],
+        "scores": (
+            [{"id": 1, "score": 10}]
+            if variant == 1
+            else ({"summary": 10} if variant == 2 else [])
+        ),
     }
 
 
@@ -124,6 +129,9 @@ def test_compact_roundtrip_uses_typed_state_plus_sparse_presence(tmp_path: Path)
         }
         assert "entity_rows" not in tables
         assert "typed_ships" in tables
+        # scores looks entity-like in one member but changes top-level shape
+        # elsewhere, so compact discovery must keep the whole field inline.
+        assert "typed_scores" not in tables
 
         source_columns = {
             row[0]
