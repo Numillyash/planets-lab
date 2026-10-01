@@ -23,6 +23,22 @@ case "$archive_real/" in
 esac
 
 mkdir -p "$PLANETS_CORPUS_DB_ROOT"/{generations,manifests,staging}
+
+min_free_gib="${CORPUS_DB_COMPACT_MIN_FREE_GIB:-4}"
+if ! [[ "$min_free_gib" =~ ^[1-9][0-9]*$ ]]; then
+    echo "CORPUS_DB_COMPACT_MIN_FREE_GIB must be a positive integer" >&2
+    exit 2
+fi
+available_bytes="$(df -PB1 "$PLANETS_CORPUS_DB_ROOT" | awk 'NR==2 {print $4}')"
+required_bytes="$((min_free_gib * 1024 * 1024 * 1024))"
+if (( available_bytes < required_bytes )); then
+    echo "insufficient free space for compact prototype" >&2
+    echo "available_bytes=$available_bytes" >&2
+    echo "required_bytes=$required_bytes (${min_free_gib} GiB)" >&2
+    echo "free or relocate superseded derived DB generations before retrying" >&2
+    exit 2
+fi
+
 before_current=""
 if [[ -f "$PLANETS_CORPUS_DB_ROOT/CURRENT" ]]; then
     before_current="$(cat "$PLANETS_CORPUS_DB_ROOT/CURRENT")"
