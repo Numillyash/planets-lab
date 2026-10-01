@@ -80,6 +80,11 @@ def _payload(
             if variant == 1
             else ({"summary": 10} if variant == 2 else [])
         ),
+        "ephemeral": (
+            [{"id": variant, "value": 10}]
+            if variant != 2
+            else []
+        ),
     }
 
 
@@ -132,6 +137,9 @@ def test_compact_roundtrip_uses_typed_state_plus_sparse_presence(tmp_path: Path)
         # scores looks entity-like in one member but changes top-level shape
         # elsewhere, so compact discovery must keep the whole field inline.
         assert "typed_scores" not in tables
+        # Empty arrays remain valid for a field proven to be an entity array
+        # by non-empty members elsewhere in the archive.
+        assert "typed_ephemeral" in tables
 
         source_columns = {
             row[0]
