@@ -398,3 +398,59 @@ It should:
 A compact exact generation near 1 GB is therefore a realistic target on
 game-233558 without temporal/cross-perspective dedup. The residual representation
 must be measured before claiming a final ~900 MB target.
+
+
+## Compact typed2 runtime — 2026-10-01
+
+Canonical compact generation:
+
+```text
+corpus-v2compact-g233558-20261001T091509Z-8e2e7416675d
+sha256 05d083cea27a5108af9b2428adf3af766193d77a89f3d4ee402e200067678340
+```
+
+Measurements:
+
+```text
+database bytes                       1058811904
+decoded JSON bytes                   9568109828
+source ZIP bytes                      691557421
+import wall seconds                  1317.9859595710004
+import peak RSS bytes                3068178432
+parity checked                       6710
+parity failed                        0
+parity wall seconds                  791.5095686369968
+inline JSON bytes                    34445452
+missing residual rows                102971
+missing residual bytes               2442748
+T-1/T wall seconds                   0.0382018589953077
+T-1/T peak RSS bytes                 114999296
+VCR/site wall seconds                0.02191187000425998
+VCR/site peak RSS bytes              112336896
+shared concurrent read               PASS
+CURRENT preserved                    PASS
+```
+
+Physical validation:
+
+```text
+entity_rows                          absent
+decoded_payload_zlib                 absent
+secondary indexes                    0
+```
+
+Comparison with typed1:
+
+```text
+typed1 bytes                         3058970624
+compact bytes                        1058811904
+compact / typed1                     34.61%
+reduction vs typed1                  65.39%
+compact / decoded JSON               11.07%
+reduction vs decoded JSON            88.93%
+compact / ZIP                        1.531x
+```
+
+This closes the bounded compact storage gate. The next storage task is a
+crash-resumable corpus-wide compact builder and a 36-game validation run without
+changing CURRENT until the result is reviewed.
