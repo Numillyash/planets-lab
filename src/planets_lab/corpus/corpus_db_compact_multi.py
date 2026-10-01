@@ -784,6 +784,8 @@ def validate_compact_corpus_parity(
     *,
     max_mismatches: int = 100,
     progress: ProgressFn | None = None,
+    validated_games: Mapping[int, int] | None = None,
+    on_archive_validated: Callable[[int, int], None] | None = None,
 ) -> ParityResult:
     if max_mismatches <= 0:
         raise CorpusDbError("max_mismatches must be positive")
@@ -791,7 +793,8 @@ def validate_compact_corpus_parity(
     database_path = database_path.expanduser().resolve()
 
     started = time.perf_counter()
-    checked = 0
+    validated_games = dict(validated_games or {})
+    checked = sum(int(value) for value in validated_games.values())
     mismatches: list[ParityMismatch] = []
 
     def add(member: str, path: str, reason: str) -> bool:
@@ -827,6 +830,18 @@ def validate_compact_corpus_parity(
         specs = _load_specs(connection)
 
         for item in normalized:
+            if item.game_id in validated_games:
+                if progress is not None:
+                    progress(
+                        {
+                            "phase": "parity",
+                            "status": "reused",
+                            "game_id": item.game_id,
+                            "checked": int(validated_games[item.game_id]),
+                        }
+                    )
+                continue
+            checked_before_game = checked
             if progress is not None:
                 progress(
                     {
@@ -1031,12 +1046,16 @@ def validate_compact_corpus_parity(
                     break
             if len(mismatches) >= max_mismatches:
                 break
+            checked_this_game = checked - checked_before_game
+            if on_archive_validated is not None:
+                on_archive_validated(item.game_id, checked_this_game)
             if progress is not None:
                 progress(
                     {
                         "phase": "parity",
                         "status": "archive-complete",
                         "game_id": item.game_id,
+                        "checked": checked_this_game,
                     }
                 )
     finally:
