@@ -110,11 +110,11 @@ def _is_entity_array(field_name: str, value: Any) -> bool:
     return bool(value) and all(isinstance(item, Mapping) for item in value)
 
 
-def _learn_full_entity_specs(
+def _observe_archive_entity_schema(
     archive_path: Path,
     *,
     expected_game_id: int | None,
-) -> dict[str, Any]:
+) -> tuple[dict[str, Any], set[str], set[str]]:
     specs: dict[str, Any] = {}
     entity_candidates: set[str] = set()
     non_entity_seen: set[str] = set()
@@ -154,9 +154,6 @@ def _learn_full_entity_specs(
                     if nonempty_object_array:
                         entity_candidates.add(field_name)
                     elif not (is_list and not value):
-                        # Empty arrays are shape-neutral for unknown fields:
-                        # they may later prove to be an entity array. Any other
-                        # observed shape makes the whole top-level field inline.
                         non_entity_seen.add(field_name)
                         continue
 
@@ -171,6 +168,18 @@ def _learn_full_entity_specs(
                         else _compact_merge_spec(specs[field_name], observed)
                     )
 
+    return specs, entity_candidates, non_entity_seen
+
+
+def _learn_full_entity_specs(
+    archive_path: Path,
+    *,
+    expected_game_id: int | None,
+) -> dict[str, Any]:
+    specs, entity_candidates, non_entity_seen = _observe_archive_entity_schema(
+        archive_path,
+        expected_game_id=expected_game_id,
+    )
     typed_fields = entity_candidates - non_entity_seen
     return {
         section: _normalize_spec(spec)
