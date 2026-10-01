@@ -116,6 +116,9 @@ def _learn_full_entity_specs(
     expected_game_id: int | None,
 ) -> dict[str, Any]:
     specs: dict[str, Any] = {}
+    entity_candidates: set[str] = set()
+    non_entity_seen: set[str] = set()
+
     with zipfile.ZipFile(archive_path, mode="r") as archive:
         for info in archive.infolist():
             match = TURN_MEMBER_RE.fullmatch(info.filename)
@@ -134,8 +137,30 @@ def _learn_full_entity_specs(
                 raise CorpusDbError(
                     f"{member.name}: expected game {expected_game_id}, got {game_id}"
                 )
+
             for field_name, value in parsed.items():
-                if not _is_entity_array(field_name, value) or not value:
+                is_list = isinstance(value, list)
+                all_objects = is_list and all(
+                    isinstance(item, Mapping) for item in value
+                )
+                nonempty_object_array = bool(value) and all_objects
+
+                if field_name in KNOWN_ENTITY_SECTIONS:
+                    if not all_objects:
+                        non_entity_seen.add(field_name)
+                        continue
+                    entity_candidates.add(field_name)
+                else:
+                    if nonempty_object_array:
+                        entity_candidates.add(field_name)
+                    elif not (is_list and not value):
+                        # Empty arrays are shape-neutral for unknown fields:
+                        # they may later prove to be an entity array. Any other
+                        # observed shape makes the whole top-level field inline.
+                        non_entity_seen.add(field_name)
+                        continue
+
+                if not nonempty_object_array:
                     continue
                 for item in value:
                     assert isinstance(item, Mapping)
@@ -146,10 +171,13 @@ def _learn_full_entity_specs(
                         else _compact_merge_spec(specs[field_name], observed)
                     )
 
+    typed_fields = entity_candidates - non_entity_seen
     return {
         section: _normalize_spec(spec)
         for section, spec in specs.items()
-        if isinstance(spec, dict) and spec.get("kind") == "struct"
+        if section in typed_fields
+        and isinstance(spec, dict)
+        and spec.get("kind") == "struct"
     }
 
 
