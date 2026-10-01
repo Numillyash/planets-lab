@@ -1086,7 +1086,7 @@ def compact_database_stats(database_path: Path) -> dict[str, Any]:
                 f"""
                 SELECT count(*),
                        count(*) FILTER (WHERE missing_json IS NOT NULL),
-                       coalesce(sum(octet_length(missing_json)), 0)
+                       coalesce(sum(octet_length(encode(missing_json))), 0)
                 FROM {table}
                 """
             ).fetchone()
@@ -1124,7 +1124,7 @@ def compact_database_stats(database_path: Path) -> dict[str, Any]:
             ),
             "inline_json_bytes": int(
                 connection.execute(
-                    "SELECT coalesce(sum(octet_length(value_json)),0) "
+                    "SELECT coalesce(sum(octet_length(encode(value_json))),0) "
                     "FROM member_fields WHERE value_json IS NOT NULL"
                 ).fetchone()[0]
             ),
