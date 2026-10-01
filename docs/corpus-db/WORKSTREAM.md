@@ -218,3 +218,24 @@ if a selected cached archive is missing.
 
 No network acquisition is performed by this runner. It uses the existing
 stabilized public corpus only.
+
+
+## Compact typed2 prototype
+
+The typed1 36-game baseline is closed. The next bounded storage iteration is
+defined in `docs/corpus-db/COMPACT_V2.md`.
+
+compact1 removes the three dominant typed1 overheads measured on game-233558:
+
+- full `decoded_payload_zlib` member copies;
+- generic `entity_rows` duplication;
+- global entity ART indexes.
+
+Exact reconstruction is instead based on native typed section tables plus
+top-level inline values and sparse missing-field presence residuals. Full archive
+schema discovery prevents late fields from being silently omitted, and
+type-conflicting fields fall back locally to JSON rather than being coerced.
+
+The first runtime remains game-233558 only. It publishes an immutable compact
+generation without switching `CURRENT`, so the canonical public36 typed1
+generation remains active until compact1 passes its own runtime gate.
