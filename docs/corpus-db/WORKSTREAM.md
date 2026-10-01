@@ -239,3 +239,23 @@ type-conflicting fields fall back locally to JSON rather than being coerced.
 The first runtime remains game-233558 only. It publishes an immutable compact
 generation without switching `CURRENT`, so the canonical public36 typed1
 generation remains active until compact1 passes its own runtime gate.
+
+
+The bounded compact gate is now closed on game-233558:
+
+```text
+compact DB bytes         1058811904
+typed1 DB bytes          3058970624
+reduction vs typed1      65.39%
+full parity              6710 / 6710
+entity_rows              absent
+member fallback blob     absent
+secondary indexes        0
+shared read              PASS
+CURRENT preserved        PASS
+```
+
+The next implementation milestone is a corpus-wide compact builder. It must be
+resumable at completed-game boundaries, preserve the exact compact semantic
+model, bound memory, and validate all 36 public archives before any activation
+decision.
