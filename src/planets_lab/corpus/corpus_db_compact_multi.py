@@ -13,6 +13,7 @@ import duckdb
 
 from .archive import TURN_MEMBER_RE, TurnMember
 from .corpus_db import (
+    KNOWN_ENTITY_SECTIONS,
     CorpusDbError,
     ParityMismatch,
     ParityResult,
@@ -674,11 +675,24 @@ def import_archives_to_compact_database(
             connection.execute("SELECT count(*) FROM source_archives").fetchone()[0]
         )
         if completed_count == len(normalized):
-            for section in specs:
-                connection.execute(
-                    f"DROP VIEW IF EXISTS {_quote_ident(section)}"
-                )
-            _create_views(connection, specs)
+            expected_views = {
+                section
+                for section in KNOWN_ENTITY_SECTIONS
+                if section in specs
+            }
+            existing_views = {
+                str(row[0])
+                for row in connection.execute(
+                    "SELECT table_name FROM information_schema.views "
+                    "WHERE table_schema = 'main'"
+                ).fetchall()
+            }
+            if not expected_views.issubset(existing_views):
+                for section in expected_views:
+                    connection.execute(
+                        f"DROP VIEW IF EXISTS {_quote_ident(section)}"
+                    )
+                _create_views(connection, specs)
     except BaseException:
         try:
             connection.execute("ROLLBACK")
