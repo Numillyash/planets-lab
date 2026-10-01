@@ -258,7 +258,7 @@ def _restore_compact_value(value: Any, spec: Any) -> Any:
                 f"JSON fallback expected VARCHAR, got {type(value).__name__}"
             )
         return json.loads(value)
-    if spec in {"bool", "int", "float", "string"}:
+    if isinstance(spec, str) and spec in {"bool", "int", "float", "string"}:
         return value
     if isinstance(spec, dict) and spec.get("kind") == "struct":
         if not isinstance(value, Mapping):
