@@ -245,3 +245,51 @@ The next step is a corpus-wide compact builder with:
 The game-233558 result makes a substantially smaller public36 generation
 plausible, but the single-game size ratio must not be extrapolated as a
 guarantee.
+
+
+## Public36 resumable builder
+
+The next gate is implemented in:
+
+```text
+src/planets_lab/corpus/corpus_db_compact_multi.py
+src/planets_lab/corpus/corpus_db_compact_multi_cli.py
+tools/run-corpus-db-public36-compact.sh
+tests/test_corpus_db_compact_multi.py
+```
+
+The corpus-wide builder uses one global compact schema learned from every
+selected archive. Per-game schema observations are checkpointed under the
+external corpus DB staging root and reused after restart.
+
+The import staging database also has a stable resume identity. A completed game
+is marked by its committed `source_archives` row. On restart:
+
+- completed archives are provenance-checked and reused;
+- any touched archive lacking a completed `source_archives` row is considered
+  partial;
+- typed rows, member fields, source members and ZIP provenance for that partial
+  archive are deleted;
+- import resumes from the next game with globally unique member IDs.
+
+Full semantic parity is checkpointed at completed-game boundaries as well. The
+parity checkpoint is accepted only for the same corpus fingerprint, staging DB
+size and source-member count.
+
+The public36 runner requires free-space headroom, publishes the compact
+generation without switching CURRENT, benchmarks game-233558 against the
+corpus-wide generation and performs the two-container read-only check.
+
+Synthetic CI covers:
+
+- global type union across games;
+- int/float exact fallback;
+- top-level shape conflicts;
+- empty typed arrays;
+- late fields and missing/null semantics;
+- partial-archive cleanup;
+- completed-game import resume;
+- completed-game parity resume;
+- no generic `entity_rows`;
+- no member fallback blob;
+- zero secondary indexes.
