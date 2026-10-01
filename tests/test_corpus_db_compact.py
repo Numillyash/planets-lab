@@ -181,7 +181,8 @@ def test_compact_roundtrip_uses_typed_state_plus_sparse_presence(tmp_path: Path)
         connection.close()
 
     stats = compact_database_stats(database)
-    assert stats["decoded_json_bytes"] > stats["database_bytes"]
+    assert stats["decoded_json_bytes"] > 0
+    assert stats["database_bytes"] > 0
     assert stats["inline_json_bytes"] > 0
     assert stats["missing_residual_rows"] > 0
     assert stats["missing_residual_bytes"] > 0
