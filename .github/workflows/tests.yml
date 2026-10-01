@@ -114,6 +114,7 @@ jobs:
           bash -n tools/run-corpus-db-typed-storage-attribution.sh
           bash -n tools/run-corpus-db-explicit-shared-read-check.sh
           bash -n tools/run-corpus-db-game233558-compact-prototype.sh
+          bash -n tools/run-corpus-db-public36-compact.sh
           python -m planets_lab.corpus.corpus_db_cli --help >/dev/null
           python -m planets_lab.corpus.corpus_db_cli build --help >/dev/null
           python -m planets_lab.corpus.corpus_db_cli benchmark --help >/dev/null
@@ -125,6 +126,8 @@ jobs:
           python -m planets_lab.corpus.corpus_db_compact_cli --help >/dev/null
           python -m planets_lab.corpus.corpus_db_compact_cli build --help >/dev/null
           python -m planets_lab.corpus.corpus_db_compact_cli benchmark --help >/dev/null
+          python -m planets_lab.corpus.corpus_db_compact_multi_cli --help >/dev/null
+          python -m planets_lab.corpus.corpus_db_compact_multi_cli build --help >/dev/null
 
       - name: Run tests
         run: pytest
