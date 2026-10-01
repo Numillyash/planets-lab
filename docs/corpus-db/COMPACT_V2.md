@@ -1,6 +1,6 @@
 # Corpus DB v2 compact prototype
 
-Status: implementation green in CI; real game-233558 runtime pending.
+Status: game-233558 runtime green; exact compact storage gate closed.
 
 Branch: `feature/corpus-db-v1`
 
@@ -138,3 +138,110 @@ Record:
 Target is not a hard byte threshold. The working hypothesis from typed1
 attribution is approximately 1.0-1.2 GB for game-233558 while retaining exact
 semantic parity.
+
+
+## Canonical game-233558 runtime
+
+Runtime source HEAD:
+
+```text
+0936a95dae97a5a81bfbfb80b3c3d43c7f5b81bd
+```
+
+Published immutable generation:
+
+```text
+corpus-v2compact-g233558-20261001T091509Z-8e2e7416675d
+sha256 05d083cea27a5108af9b2428adf3af766193d77a89f3d4ee402e200067678340
+```
+
+Measurements:
+
+```text
+source ZIP bytes                    691557421
+decoded semantic JSON bytes        9568109828
+compact DuckDB bytes               1058811904
+
+import wall seconds                 1317.9859595710004
+import peak RSS bytes               3068178432
+
+TRN parity checked                  6710
+parity failures                     0
+parity wall seconds                 791.5095686369968
+parity peak RSS bytes               3068178432
+
+inline top-level JSON bytes         34445452
+missing residual rows               102971
+missing residual bytes              2442748
+
+T-1/T wall seconds                  0.0382018589953077
+T-1/T peak RSS bytes                114999296
+
+VCR/site wall seconds               0.02191187000425998
+VCR/site peak RSS bytes             112336896
+
+normal+external concurrent read     PASS
+CURRENT preserved                   PASS
+```
+
+Physical checks:
+
+```text
+entity_rows table                   absent
+decoded_payload_zlib column         absent
+secondary indexes                   0
+typed ship warp/damage/crew         BIGINT
+typed ship friendlycode             VARCHAR
+typed ship iscloaked                BOOLEAN
+```
+
+Size comparison:
+
+```text
+compact / typed1                     0.3461x
+reduction vs typed1                 65.39%
+
+compact / decoded JSON              0.1107x
+reduction vs decoded JSON           88.93%
+
+compact / source ZIP                1.5311x
+compact size                        0.986 GiB
+```
+
+The sparse exact-semantic overhead is small:
+
+```text
+inline top-level JSON / DB           3.25%
+missing residual / DB                0.23%
+rows with missing residual /
+  all entity rows                    0.36%
+```
+
+The measured result validates the physical-layout hypothesis: the dominant
+typed1 overhead came from broad entity ART indexes, the complete member fallback
+and generic entity-row duplication rather than native typed state.
+
+The compact build is slower than typed1 because it performs complete-archive
+schema discovery and exact reconstruction without the member-blob shortcut.
+Peak importer RSS nevertheless fell by about 19% relative to typed1.
+
+No temporal delta encoding, state-version dedup, RLE or cross-perspective dedup
+was used.
+
+## Next gate
+
+Do not replace the active public36 typed1 generation yet.
+
+The next step is a corpus-wide compact builder with:
+
+- one full corpus schema union rather than incompatible per-game schemas;
+- the same exact missing/null and type-preserving semantics;
+- resumable per-game checkpoints so a crash does not discard hours of work;
+- bounded-memory schema discovery/import;
+- full 36-game ZIP parity before publication;
+- publication without switching CURRENT until size/query/shared-read results
+  are reviewed.
+
+The game-233558 result makes a substantially smaller public36 generation
+plausible, but the single-game size ratio must not be extrapolated as a
+guarantee.
