@@ -96,6 +96,7 @@ def _load_or_observe_archive(
             payload = None
         if (
             isinstance(payload, dict)
+            and payload.get("checkpoint_version") == 1
             and payload.get("game_id") == item.game_id
             and payload.get("archive_sha256") == archive_sha
             and payload.get("archive_bytes") == archive_bytes
@@ -126,6 +127,7 @@ def _load_or_observe_archive(
         expected_game_id=item.game_id,
     )
     payload = {
+        "checkpoint_version": 1,
         "game_id": item.game_id,
         "archive_path": str(archive_path),
         "archive_sha256": archive_sha,
