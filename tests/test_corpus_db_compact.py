@@ -198,14 +198,9 @@ def test_compact_benchmarks_without_generic_entity_indexes(tmp_path: Path) -> No
 
     connection = duckdb.connect(str(database), read_only=True)
     try:
-        indexes = connection.execute(
-            """
-            SELECT index_name
-            FROM duckdb_indexes()
-            WHERE database_name = current_database()
-            """
-        ).fetchall()
-        assert indexes == []
+        assert connection.execute(
+            "SELECT count(*) FROM duckdb_indexes()"
+        ).fetchone()[0] == 0
     finally:
         connection.close()
 
