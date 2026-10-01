@@ -656,7 +656,10 @@ def import_archive_to_compact_database(
 
                 for field_ordinal, (field_name, value) in enumerate(parsed.items()):
                     if field_name in specs:
-                        if not _is_entity_array(field_name, value):
+                        if not (
+                            isinstance(value, list)
+                            and all(isinstance(item, Mapping) for item in value)
+                        ):
                             raise CorpusDbError(
                                 f"{member.name}.{field_name}: typed entity field changed shape"
                             )
