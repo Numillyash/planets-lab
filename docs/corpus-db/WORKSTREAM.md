@@ -259,3 +259,28 @@ The next implementation milestone is a corpus-wide compact builder. It must be
 resumable at completed-game boundaries, preserve the exact compact semantic
 model, bound memory, and validate all 36 public archives before any activation
 decision.
+
+
+The public36 compact gate is closed:
+
+```text
+archives                 36
+full parity              126418 / 126418
+compact DB               13189001216 bytes (~12.283 GiB)
+typed1 DB                38931017728 bytes
+reduction vs typed1      66.12%
+reduction vs decoded     90.14%
+import peak RSS          13938348032 bytes
+entity_rows              absent
+member fallback blob     absent
+secondary indexes        0
+shared read              PASS
+CURRENT preserved        PASS
+```
+
+The next physical optimization target is the 1.567 GB global-schema missing
+residual, concentrated in planets, scores, minefields, players and torpedos.
+Replace JSON missing-path lists with a compact presence/schema-variant encoding
+while retaining exact absent-vs-null parity. The current compact generation is
+already suitable as the next active read backend once CURRENT is deliberately
+switched after checkpointing.
