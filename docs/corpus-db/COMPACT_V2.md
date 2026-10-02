@@ -410,3 +410,49 @@ metadata, not typed values. A compact schema-variant/presence-mask
 representation can replace repeated JSON missing-path arrays while retaining
 exact absent-vs-null reconstruction. Temporal/cross-perspective dedup remains
 out of scope for this optimization.
+
+
+## Accepted backend / optimization stop
+
+The canonical public36 compact runtime closes the current physical-storage
+optimization milestone.
+
+The schema is accepted for normal research use because it combines:
+
+- complete-corpus schema discovery;
+- native typed scalar/STRUCT/LIST entity state;
+- exact absent-vs-null reconstruction;
+- exact JSON fallback for incompatible type/shape cases;
+- immutable archive/member provenance;
+- 126418 / 126418 source-member semantic parity;
+- bounded query behavior with no broad secondary indexes;
+- simultaneous read-only access from both research containers.
+
+This is sufficient generality for the active corpus. It does not imply that a
+future unseen Nu payload can be appended without schema refresh; any expanded
+corpus must still be rebuilt/validated against immutable ZIP evidence.
+
+Further storage optimization is intentionally deferred. See
+`docs/corpus-db/FUTURE_OPTIMIZATIONS.md`.
+
+### Activation
+
+Canonical generation:
+
+```text
+generations/corpus-v2compact-public36-20261002T083138Z-11cd75fa918d.duckdb
+sha256 e1c0adc0a699d9d776f1fddb7dfc37c5a6714dfd9262f911a5939fda41cc7004
+```
+
+Activate only through:
+
+```bash
+export PLANETS_CORPUS_DB_ROOT=/root/projects/planets-corpus-db
+bash tools/activate-corpus-db-compact-public36.sh
+```
+
+The activation runner validates SHA256, schema, corpus fingerprint, archive and
+member counts and compact physical invariants before atomically replacing
+`CURRENT`. It then runs the normal + external shared-read gate. A failed
+post-switch gate automatically restores the previous CURRENT and verifies the
+rollback backend.
