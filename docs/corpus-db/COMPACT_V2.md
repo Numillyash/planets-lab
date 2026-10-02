@@ -293,3 +293,120 @@ Synthetic CI covers:
 - no generic `entity_rows`;
 - no member fallback blob;
 - zero secondary indexes.
+
+
+## Canonical public36 compact runtime
+
+Runtime source HEAD:
+
+```text
+3739274b797ed6b2e346436e837c4c27849632de
+```
+
+Published immutable generation:
+
+```text
+corpus-v2compact-public36-20261002T083138Z-11cd75fa918d
+sha256 e1c0adc0a699d9d776f1fddb7dfc37c5a6714dfd9262f911a5939fda41cc7004
+```
+
+Corpus:
+
+```text
+archives                            36
+source ZIP bytes                    9456773573
+turn members                        126418
+entity rows                         314311240
+decoded JSON bytes                  133808928311
+corpus fingerprint                  11cd75fa918dec3d6839f6dbdcb3537bcb66d6f4c9d935f1866003998aab9e42
+```
+
+Build and parity:
+
+```text
+import wall seconds                 21398.347268733996
+import wall time                    ~5h56m38s
+import peak RSS bytes               13938348032
+
+parity checked                      126418
+parity failed                       0
+parity wall seconds                 12541.871932070993
+parity wall time                    ~3h29m02s
+parity process peak RSS bytes       14095867904
+```
+
+Published size and semantic residual:
+
+```text
+database bytes                      13189001216
+database size                       ~12.283 GiB
+inline top-level JSON bytes         765900754
+missing residual rows               62285221
+missing residual bytes              1566825204
+```
+
+Physical gate:
+
+```text
+entity_rows                         absent
+decoded_payload_zlib                absent
+secondary indexes                   0
+normal+external shared read         PASS
+CURRENT preserved                   PASS
+```
+
+Bounded game-233558 queries against the corpus-wide compact generation:
+
+```text
+T-1/T wall seconds                  0.07014746399363503
+T-1/T peak RSS bytes                142249984
+VCR/site wall seconds               0.025252373015973717
+VCR/site peak RSS bytes             117559296
+```
+
+Comparison with the canonical public36 typed1 generation:
+
+```text
+typed1 bytes                        38931017728
+compact bytes                       13189001216
+compact / typed1                    33.88%
+reduction vs typed1                 66.12%
+
+compact / decoded JSON               9.86%
+reduction vs decoded JSON           90.14%
+
+compact / source ZIP                 1.395x
+
+typed1 import peak RSS              26944557056
+compact import peak RSS             13938348032
+RSS reduction vs typed1             48.27%
+```
+
+The compact result closes the public36 storage/correctness/shared-reader gate.
+
+### Residual attribution
+
+The global schema makes absence metadata materially larger than in the
+single-game prototype. Missing residual accounts for about 11.88% of the final
+DB and appears on about 19.82% of entity rows.
+
+All missing-residual bytes are concentrated in five sections:
+
+```text
+planets        1023708422   65.34%
+scores          269002122   17.17%
+minefields      160337422   10.23%
+players          97257374    6.21%
+torpedos         16519864    1.05%
+total          1566825204  100.00%
+```
+
+This is expected from a single union schema: fields present in one game/version
+become schema fields whose absence must be represented for entities originating
+from games/versions without those fields.
+
+The next bounded physical optimization should therefore target presence
+metadata, not typed values. A compact schema-variant/presence-mask
+representation can replace repeated JSON missing-path arrays while retaining
+exact absent-vs-null reconstruction. Temporal/cross-perspective dedup remains
+out of scope for this optimization.
