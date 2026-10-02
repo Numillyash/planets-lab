@@ -158,3 +158,48 @@ Only after this gate passes should the workstream scale to the stabilized
 
 Possible later layers include exact-state dedup, temporal spans/deltas, Parquet
 exports and cold-storage relocation. None belong in the initial direct mirror.
+
+
+## Accepted compact physical implementation
+
+The original v1 direct-mirror layout and typed1 layout are historical design
+steps. The accepted public36 physical backend is now:
+
+```text
+schema: planets-lab.corpus-db.v2.compact1
+generation:
+  corpus-v2compact-public36-20261002T083138Z-11cd75fa918d
+```
+
+It keeps the architectural evidence/provenance contract above but changes the
+physical representation:
+
+- one `source_members` row per TRN with provenance and hashes, not a complete
+  decoded member blob;
+- native `typed_<section>` Arrow/DuckDB scalar, STRUCT and LIST data;
+- top-level irregular fields in exact inline JSON fallback;
+- sparse missing-field metadata to preserve absent vs explicit NULL;
+- no generic `entity_rows` duplication;
+- no broad secondary ART indexes in the accepted baseline.
+
+The schema is learned from the complete selected corpus and fails back to exact
+JSON representation where a native typed projection would lose scalar type or
+shape semantics.
+
+Canonical public36 validation:
+
+```text
+36 source archives
+126418 / 126418 exact semantic parity
+13189001216 bytes (~12.283 GiB)
+normal + external concurrent read PASS
+```
+
+The immutable ZIP/TRN corpus remains the semantic oracle. Expanding the selected
+corpus with previously unseen payload shapes requires a new generation and full
+parity validation; consumers must never assume that CURRENT is writable or
+schema-evolves in place.
+
+Further compression is not part of the active milestone. Deferred physical
+ideas and explicit reopen conditions live in
+`docs/corpus-db/FUTURE_OPTIMIZATIONS.md`.
