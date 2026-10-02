@@ -278,9 +278,20 @@ shared read              PASS
 CURRENT preserved        PASS
 ```
 
-The next physical optimization target is the 1.567 GB global-schema missing
-residual, concentrated in planets, scores, minefields, players and torpedos.
-Replace JSON missing-path lists with a compact presence/schema-variant encoding
-while retaining exact absent-vs-null parity. The current compact generation is
-already suitable as the next active read backend once CURRENT is deliberately
-switched after checkpointing.
+The compact public36 backend is accepted as the end of the current storage
+optimization milestone. It is sufficiently compact and general for the active
+research corpus, and further compression is deferred rather than blocking Host
+reconstruction work.
+
+The largest known remaining physical optimization is the 1.567 GB global-schema
+missing residual, concentrated in planets, scores, minefields, players and
+torpedos. A compact presence/schema-variant encoding is recorded as future work,
+together with top-level typing, targeted query acceleration, incremental schema
+evolution, build-time optimization and later temporal/state compression.
+
+See `docs/corpus-db/FUTURE_OPTIMIZATIONS.md`.
+
+Operational next step: deliberately activate the canonical compact public36
+generation through the guarded activation runner, retain typed1 as rollback, and
+then leave storage optimization closed unless a documented reopen criterion is
+met.
