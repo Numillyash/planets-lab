@@ -1,4 +1,4 @@
-# New chat start — Corpus DB v1
+# New chat start — Corpus DB compact backend
 
 Continue the dedicated Planets.nu corpus-database infrastructure workstream in
 Numillyash/planets-lab.
@@ -12,63 +12,82 @@ Work only on:
 
     feature/corpus-db-v1
 
-It was originally cut from:
-
-    main
-    2cc98e3cab3cc0ce0dbdb48f032e9650029f8273
-
-Do not mix current C5/O-layer mechanics development into this branch except when
-strictly required for storage compatibility.
+Do not mix current mechanics development into this branch except when strictly
+required for storage compatibility.
 
 ## Read first
 
 1. docs/corpus-db/ARCHITECTURE.md
 2. docs/corpus-db/SHARED_ACCESS.md
 3. docs/corpus-db/WORKSTREAM.md
-4. docs/COMPILED_CORPUS.md
-5. docs/ARCHITECTURE.md
-6. docs/WORKFLOW.md
+4. docs/corpus-db/COMPACT_V2.md
+5. docs/corpus-db/FUTURE_OPTIMIZATIONS.md
+6. docs/handoff/2026-10-02-corpus-db-compact-public36-runtime.md
+7. docs/COMPILED_CORPUS.md
+8. docs/ROADMAP.md
 
-Then inspect the live archive/normalizer/prepared-cache code before implementing.
+## Accepted storage backend
+
+Canonical public36 compact generation:
+
+    corpus-v2compact-public36-20261002T083138Z-11cd75fa918d
+    sha256 e1c0adc0a699d9d776f1fddb7dfc37c5a6714dfd9262f911a5939fda41cc7004
+
+Runtime gate:
+
+    36 archives
+    126418 / 126418 exact semantic parity
+    13189001216 bytes (~12.283 GiB)
+    shared normal/external read PASS
+
+Physical invariants:
+
+    no entity_rows
+    no decoded_payload_zlib
+    no secondary indexes
+    immutable published generation
+    original ZIP/TRN retained as oracle
+
+The compact generation is the accepted read backend. The previous public36
+typed1 generation should be retained temporarily as rollback after activation.
+
+## Operational activation
+
+Use the guarded activation runner:
+
+    export PLANETS_CORPUS_DB_ROOT=/root/projects/planets-corpus-db
+    bash tools/activate-corpus-db-compact-public36.sh
+
+The runner validates the canonical SHA256, schema, corpus fingerprint, archive
+and member counts, compact physical invariants, then atomically switches CURRENT.
+It runs the normal + external concurrent read check after the switch and
+automatically restores the previous CURRENT if that verification fails.
+
+## Storage optimization status
+
+Current storage optimization is CLOSED.
+
+The compact schema is considered sufficiently general for the active corpus:
+complete-corpus schema discovery, exact absent-vs-null preservation, native
+typed sections, and JSON fallback for values/shapes that cannot be represented
+without loss.
+
+Do not implement further compression merely because opportunities exist.
+Possible improvements and explicit reopen criteria are preserved in:
+
+    docs/corpus-db/FUTURE_OPTIMIZATIONS.md
+
+Highest-value deferred item is replacing repeated JSON missing-path residuals
+with presence masks/schema-variant IDs. Temporal deltas, RLE and
+cross-perspective/state dedup remain later options only.
 
 ## Non-negotiable requirements
 
-- DB is a third separate entity, not owned by either research container.
-- Both normal planets-lab and research/external-engine-analysis containers read
-  the same published DB concurrently.
-- One host PLANETS_CORPUS_DB_ROOT is mounted as /corpus-db in both.
-- Published generations are immutable; writer builds only new staging
-  generations.
-- Original ZIP/TRN files remain immutable evidence.
-- v1 preserves players, perspective, archive/embedded turn, all source fields,
-  scalar types, null-vs-absent and array order.
-- Unknown fields are preserved losslessly.
-- No temporal deltas, state dedup, RLE spans or redesigned game model in v1.
-- Existing held-out mechanics boundaries remain sealed.
-
-## First target
-
-Prototype only:
-
-    game-233558
-
-## First deliverable
-
-Implement and benchmark:
-
-    original game-233558.zip
-      -> one-time DuckDB import
-      -> semantic parity validator
-      -> indexed read-only queries
-      -> concurrent access from both containers
-
-Record ZIP/raw-JSON/DB sizes, import time and peak RSS, parity counts, targeted
-T-1/T query time/RSS, capture/VCR query time/RSS, and a two-container concurrent
-read test.
-
-Do not scale to all 36 games until the game-233558 parity/benchmark gate is
-green.
-
-Commit completed work to feature/corpus-db-v1 with tests and documentation.
-If a design decision could alter source semantics, validate it against raw TRN
-before proceeding.
+- DB remains a third separate entity outside both research checkouts.
+- Both normal planets-lab and external research containers read the same
+  immutable CURRENT generation.
+- PLANETS_CORPUS_DB_ROOT is mounted at /corpus-db.
+- Original ZIP/TRN remains immutable evidence and parity oracle.
+- Published generations are immutable.
+- Unknown/conflicting fields remain lossless.
+- Storage work must not alter mechanics conclusions or held-out boundaries.
