@@ -806,7 +806,26 @@ access from both research containers. This is a 74.23% reduction versus the
 first 11.87 GB v1 physical layout and removes the per-entity JSON duplication
 that caused the earlier regression.
 
-The game-233558 gate is closed. The next storage milestone is one typed
-generation for the stabilized 36-game public corpus using the existing immutable
-loadall cache, with full member parity retained. See
-`docs/handoff/2026-09-30-corpus-db-typed-game233558-runtime.md`.
+The storage workstream has since advanced through typed1 to the accepted compact
+public36 backend. Canonical compact runtime:
+
+```text
+36 archives
+126418 / 126418 exact semantic parity
+13189001216-byte DuckDB (~12.283 GiB)
+66.12% smaller than public36 typed1
+90.14% smaller than decoded JSON
+no entity_rows
+no decoded member fallback blob
+no secondary indexes
+shared normal/external read PASS
+```
+
+The current storage optimization milestone is complete. Activate the compact
+generation through the guarded CURRENT switch and retain typed1 as rollback.
+Further physical improvements are deferred in
+`docs/corpus-db/FUTURE_OPTIMIZATIONS.md`; do not spend mechanics time on
+additional compression unless a documented reopen criterion is met.
+
+Canonical runtime:
+`docs/handoff/2026-10-02-corpus-db-compact-public36-runtime.md`.
