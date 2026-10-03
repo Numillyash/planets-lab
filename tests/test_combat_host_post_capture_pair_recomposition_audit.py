@@ -291,3 +291,15 @@ def test_external_c2ng_no_later_prize_continuation_is_explicit_mismatch(monkeypa
     assert external["status"] == "resolved"
     assert external["predicted_prize_continuation"] is None
     assert external["exact"] is False
+
+def test_external_original_order_reports_cursor_trace() -> None:
+    root = Path(__file__).resolve().parents[1]
+    source = (
+        root
+        / "tools/diagnostics/combat_host_post_capture_pair_recomposition_audit.py"
+    ).read_text(encoding="utf-8")
+    assert '"cursor_trace": cursor_trace' in source
+    assert '"other_active": other_id in active_ids' in source
+    assert '"other_strict_attacker": other_id in strict_attackers' in source
+    assert 'trace_row["accepted"] = True' in source
+

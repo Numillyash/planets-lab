@@ -260,6 +260,7 @@ def _external_c2ng_original_order_prize_continuation(
 
     predicted_opponent: int | None = None
     predicted_cursor: tuple[int, int] | None = None
+    cursor_trace: list[dict[str, Any]] = []
     for candidate_right in range(right_index, len(order)):
         start_left = left_index + 1 if candidate_right == right_index else 0
         for candidate_left in range(start_left, len(order)):
@@ -275,9 +276,20 @@ def _external_c2ng_original_order_prize_continuation(
                 continue
 
             other_id = left_ship_id
+            trace_row = {
+                "right_index": candidate_right,
+                "left_index": candidate_left,
+                "right_ship_id": right_ship_id,
+                "left_ship_id": left_ship_id,
+                "other_active": other_id in active_ids,
+                "other_strict_attacker": other_id in strict_attackers,
+            }
+            cursor_trace.append(trace_row)
             if other_id not in active_ids or other_id not in strict_attackers:
+                trace_row["accepted"] = False
                 continue
 
+            trace_row["accepted"] = True
             predicted_opponent = other_id
             predicted_cursor = (candidate_right, candidate_left)
             break
@@ -301,6 +313,7 @@ def _external_c2ng_original_order_prize_continuation(
             "side_exact": False,
             "exact": False,
             "reason": "no_later_c2ng_captured_right_attacker",
+            "cursor_trace": cursor_trace,
         }
 
     factual_side = capture.get("current_side")
@@ -323,6 +336,7 @@ def _external_c2ng_original_order_prize_continuation(
         "predicted_prize_ship_id": prize_id,
         "predicted_opponent_ship_id": predicted_opponent,
         "predicted_prize_side": "right",
+        "cursor_trace": cursor_trace,
         "factual_opponent_ship_id": factual_opponent_id,
         "factual_prize_side": factual_side,
         "pair_exact": predicted_opponent == factual_opponent_id,

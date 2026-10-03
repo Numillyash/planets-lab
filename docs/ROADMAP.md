@@ -844,3 +844,24 @@ shared normal/external read PASS
 The previous typed1 public36 generation remains available as rollback. The corpus
 DB storage milestone is closed; resume NuHost mechanics work on main. Deferred
 storage ideas remain in `docs/corpus-db/FUTURE_OPTIMIZATIONS.md`.
+
+## Public capture side held-out result
+
+The pre-heldout capture-side candidate was frozen at
+`cd87f9505472e5e396db28a7d6f7c67c561f9c64` and independently tested against
+the sealed public held-out partition.
+
+Result: **FAILED** — 27/29 exact, 1 mismatch, 1 unresolved.
+
+The mismatch is game 476380 turn 223: a reachable captured-LEFT prize flips to
+RIGHT. The unresolved row is a same-turn repeated-capture chain in game 257776
+turn 230, where the intermediate owner has no valid T-1 source state; mutable
+post-capture order state must be carried from the prior capture.
+
+Do not change the old frozen rule and call the gate passed. Any replacement
+candidate is held-out-informed and requires a new independent evidence
+population before promotion.
+
+See
+`docs/handoff/2026-10-03-public-capture-side-heldout-result.md`.
+
