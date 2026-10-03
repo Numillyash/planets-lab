@@ -615,3 +615,80 @@ python3 tools/research/audit-afsim-result-handler.py \
 ```
 
 Do not use any v1 result-handler disassembly as evidence.
+
+
+## Result-handler locator v2 result
+
+The corrected v2 locator established the true Turbo-Pascal short-string
+addresses:
+
+```text
+MZ load image base: 0x18a0
+initial CS:         0
+
+Both ships blew up   CS+0x3554
+ won                 CS+0x3567
+ captured            CS+0x356d
+The battle timed out CS+0x3578
+```
+
+The four literals form one compact Pascal short-string pool at file range:
+
+```text
+0x4df4 .. 0x4e2d
+```
+
+and a new `55 89 e5` procedure prologue starts immediately at:
+
+```text
+0x4e2d
+```
+
+No immediate references were found **before** the string pool.
+
+That is not a negative result for the outcome decoder because v2 searched only
+the pre-pool range. The adjacency makes the post-pool procedure a high-priority
+candidate: compilers can place a procedure's string constants directly before
+its generated code.
+
+The preceding procedure begins at:
+
+```text
+0x4c4c
+```
+
+and remains a secondary candidate for a result formatter/table producer.
+
+No semantic claim about owner, crew, OOB mutation or capture re-entry is made
+from v2.
+
+## Result-handler locator v3
+
+Commit:
+
+```text
+1879af088b3cec2b6b351348b57b2ac2476bf71b
+research: scan AFSim result pool across full load image
+```
+
+V3 keeps the fixed MZ/CS model but removes the accidental pre-pool search
+restriction. It now:
+
+1. scans the complete MZ load image for the four true 16-bit CS offsets;
+2. excludes the literal pool itself from hits;
+3. classifies strong Turbo-Pascal address materialization patterns;
+4. disassembles both procedures adjacent to the pool;
+5. searches the entire load image for near CALL/JMP references to those
+   procedures;
+6. prints the adjacent procedure disassemblies directly into the audit report
+   while preserving full local copies.
+
+Next run:
+
+```bash
+python3 tools/research/audit-afsim-result-handler.py \
+  2>&1 | tee /tmp/afsim-result-handler-v3.log
+```
+
+The preferred discriminator is a post-pool procedure or its caller which
+references multiple outcome strings and then mutates simulation state.
