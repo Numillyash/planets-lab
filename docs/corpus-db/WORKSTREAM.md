@@ -295,3 +295,38 @@ Operational next step: deliberately activate the canonical compact public36
 generation through the guarded activation runner, retain typed1 as rollback, and
 then leave storage optimization closed unless a documented reopen criterion is
 met.
+
+
+## Compact CURRENT activated — 2026-10-03
+
+The guarded activation completed successfully.
+
+```text
+CURRENT
+generations/corpus-v2compact-public36-20261002T083138Z-11cd75fa918d.duckdb
+
+schema
+planets-lab.corpus-db.v2.compact1
+
+source archives
+36
+
+source members
+126418
+
+shared normal/external read
+PASS
+```
+
+Rollback generation retained:
+
+```text
+generations/corpus-v1typed-public36-20260930T211714Z-11cd75fa918d.duckdb
+```
+
+The storage workstream is operationally complete. The compact generation is now
+the normal shared read backend. Further compression remains deferred in
+`docs/corpus-db/FUTURE_OPTIMIZATIONS.md`.
+
+Activation checkpoint:
+`docs/handoff/2026-10-03-corpus-db-compact-current-activation.md`.
