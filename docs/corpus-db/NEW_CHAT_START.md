@@ -94,3 +94,37 @@ cross-perspective/state dedup remain later options only.
 - Published generations are immutable.
 - Unknown/conflicting fields remain lossless.
 - Storage work must not alter mechanics conclusions or held-out boundaries.
+
+
+## Current expansion gate — 2026-10-04
+
+A second independent public acquisition has now completed:
+
+```text
+new usable games                    32
+combined unique games               68
+new raw ZIP bytes                   3198603411
+new snapshots                       43151
+runtime evidence
+runtime-logs/public-short-expansion/20261003T203033Z_8e46159f20be
+```
+
+The active backend is still the accepted public36 compact generation. Do not
+change `CURRENT` merely because acquisition completed.
+
+The next storage action is only to build and validate the combined public68
+generation:
+
+```bash
+export PLANETS_CORPUS_DB_ROOT=/root/projects/planets-corpus-db
+bash tools/run-corpus-db-public68-compact.sh
+```
+
+This runner builds from
+`validation/corpus/manifests/public-short-expansion-with-public36.jsonl`,
+requires 68 archives, preserves `CURRENT`, and prints the exact generation
+path, SHA256, member count and corpus fingerprint required for a later guarded
+activation.
+
+Storage-model optimization remains closed; this rebuild is required solely
+because the corpus itself expanded.
