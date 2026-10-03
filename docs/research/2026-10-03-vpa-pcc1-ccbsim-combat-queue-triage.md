@@ -555,3 +555,125 @@ Expected interpretation:
 
 The extracted local binary slices are research artifacts only and must not be
 committed.
+
+
+## 11. Exact overlay-byte audit: 1.1.21 -> 1.1.22 differs, but pattern is dominated by address/layout churn
+
+The exact Turbo/Borland overlay extractor successfully located the `ccSim`
+overlay image in all three builds using the MAP segment selector plus the
+resident overlay control block in `CC.EXE`.
+
+Recovered metadata:
+
+```text
+1.1.20:
+  map segment 2A68
+  EXE control block 0x31D20
+  OVR offset 0x83603
+  code bytes 0xDBAD
+  relocation bytes 0x0C0E
+  entry count 42
+
+1.1.21:
+  map segment 2A8E
+  EXE control block 0x31F90
+  OVR offset 0x8432E
+  code bytes 0xCC0D
+  relocation bytes 0x0ABA
+  entry count 37
+
+1.1.22:
+  map segment 2A92
+  EXE control block 0x32000
+  OVR offset 0x8526C
+  code bytes 0xCC0D
+  relocation bytes 0x0ABA
+  entry count 37
+```
+
+This confirms again that the 1.1.21 and 1.1.22 `ccSim` units have identical
+overall code size, relocation-table size and entry-point count.
+
+However, exact bytes are not identical:
+
+```text
+1.1.21 -> 1.1.22:
+  raw changed bytes              3091
+  relocation-normalized changed  2232
+```
+
+Capture-relevant routine byte deltas after the first relocation normalization:
+
+```text
+SetShipOwner                 1
+SortFCBO                    26
+CalcBattleOrder             20
+Attacking                   25
+KeepVCR                     17
+MakeVCR                     60
+MakePlanetVCR              208
+FillInPlanetAggressiveness   6
+SimulateOnce                82
+Simulate                    35
+```
+
+These counts do **not** by themselves imply that all of those routines changed
+semantically. The distribution is the opposite of what a localized
+captured-state patch would normally look like: one- and two-byte deltas are
+spread throughout essentially every routine, including UI/formatting helpers.
+The MAP also shows that unrelated units changed size and shifted later segment
+selectors between the two program builds. This strongly suggests that many
+remaining byte changes are link-layout/global-symbol address changes which are
+not represented by the overlay relocation table we normalized.
+
+Therefore the previous "exact bytes" discriminator needs one more level:
+instruction/operand classification.
+
+### Instruction-level semantic triage
+
+Tracked helper:
+
+```text
+tools/research/audit-pcc1-simulator-semantic-diff.py
+```
+
+It uses GNU `objdump` in i8086 mode and the 1.1.21/1.1.22 MAP symbol tables to
+compare only the capture-relevant routines.
+
+For each instruction it distinguishes:
+
+```text
+equal
+mapped_symbol_relocation
+operand_value_change
+operand_shape_change
+mnemonic_change
+instruction_size_change
+instruction_boundary_change
+```
+
+A changed numeric operand is classified as `mapped_symbol_relocation` when
+the old/new operand values resolve to the same named MAP symbol across the two
+builds. This is intended to strip out the exact class of program-layout churn
+visible in the byte audit without masking opcode/control-flow changes.
+
+The helper prints all unresolved numeric changes and every instruction-shape /
+mnemonic / boundary change, while keeping the full machine-readable record in
+JSON.
+
+Interpretation:
+
+```text
+capture routines:
+  only equal + mapped_symbol_relocation
+    -> no generated-code evidence of a PCC1 capture backport
+
+unresolved operand-only changes in unrelated formulas/UI
+    -> still no capture backport
+
+mnemonic / operand-shape / boundary changes in
+CalcBattleOrder / Attacking / KeepVCR / MakeVCR
+    -> bounded disassembly of only those exact instructions/routines
+```
+
+This pass is preferable to blind disassembly of the full 50-KiB overlay.
