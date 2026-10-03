@@ -911,3 +911,46 @@ post-capture restart/recomposition failure
 ```
 
 before any new engine-level candidate is frozen.
+
+
+### Nu strict-attacker rank is strong but not yet universal
+
+Cross-analysis of the 31 adjacent discovery rows gives:
+
+```text
+strict rank 1:       13
+strict rank >1:       2
+strict rank missing: 16
+
+requester rank 1:       13
+requester rank >1:       2
+requester rank missing: 16
+
+dependency qualified:     15
+dependency not qualified: 16
+```
+
+Among the 15 rows whose post-capture candidate dependency is currently
+qualified, the factual next opponent is rank 1 in 13 and rank >1 in 2.
+
+Therefore a simple replacement for AFSim's selector:
+
+```text
+restart/recompose -> choose strict rank 1
+```
+
+is not yet sufficient as a complete queue rule.
+
+The two rank>1 rows are now the highest-value queue residuals. The 16 missing
+rows must remain dependency failures until their movement/position reasons are
+confirmed rather than counted as queue mismatches.
+
+Tracked residual reporter:
+
+```text
+tools/research/report-postcapture-strict-rank-residuals.py
+```
+
+It prints the exact rank>1 cases and classifies missing-rank rows by active
+dependency status and position source, without a new Corpus DB scan and without
+reading held-out.
