@@ -2,7 +2,9 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
+import tempfile
 import time
 from collections.abc import Mapping
 from pathlib import Path
@@ -24,21 +26,49 @@ def _default_cache_path(cache_dir: Path, game_id: int) -> Path:
     return cache_dir / f"game-{game_id}.zip"
 
 
-def _write_jsonl(path: Path, records: list[dict[str, Any]]) -> None:
+def _atomic_write_text(path: Path, text: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
+    fd, tmp_name = tempfile.mkstemp(
+        dir=path.parent,
+        prefix=f".{path.name}.",
+        suffix=".tmp",
+    )
+    tmp_path = Path(tmp_name)
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as handle:
+            handle.write(text)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(tmp_path, path)
+    finally:
+        tmp_path.unlink(missing_ok=True)
+
+
+def _write_jsonl(path: Path, records: list[dict[str, Any]]) -> None:
     text = "".join(
         json.dumps(record, sort_keys=True, ensure_ascii=False) + "\n"
         for record in records
     )
-    path.write_text(text, encoding="utf-8")
+    _atomic_write_text(path, text)
 
 
 def _write_json(path: Path, payload: dict[str, Any]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(
+    _atomic_write_text(
+        path,
         json.dumps(payload, sort_keys=True, ensure_ascii=False, indent=2) + "\n",
-        encoding="utf-8",
     )
+
+
+def _checkpoint_outputs(
+    index_output: Path,
+    stats_output: Path,
+    records: list[dict[str, Any]],
+    failed_game_ids: list[int],
+) -> dict[str, Any]:
+    stats = aggregate_corpus_index(records, failed_game_ids=failed_game_ids)
+    _write_jsonl(index_output, records)
+    _write_json(stats_output, stats)
+    return stats
 
 
 
@@ -316,6 +346,12 @@ def main() -> int:
                         sort_keys=True,
                     )
                 )
+                _checkpoint_outputs(
+                    args.index_output,
+                    args.stats_output,
+                    records,
+                    failed_game_ids,
+                )
                 continue
 
             if cache_path.exists() and not args.refresh:
@@ -355,6 +391,12 @@ def main() -> int:
                     sort_keys=True,
                 )
             )
+            _checkpoint_outputs(
+                args.index_output,
+                args.stats_output,
+                records,
+                failed_game_ids,
+            )
         except (
             CorpusApiError,
             CorpusIndexError,
@@ -377,12 +419,21 @@ def main() -> int:
                 ),
                 file=sys.stderr,
             )
+            _checkpoint_outputs(
+                args.index_output,
+                args.stats_output,
+                records,
+                failed_game_ids,
+            )
             if args.fail_fast:
                 break
 
-    _write_jsonl(args.index_output, records)
-    stats = aggregate_corpus_index(records, failed_game_ids=failed_game_ids)
-    _write_json(args.stats_output, stats)
+    stats = _checkpoint_outputs(
+        args.index_output,
+        args.stats_output,
+        records,
+        failed_game_ids,
+    )
 
     print("===== CORPUS INGEST SUMMARY =====")
     print(f"manifest_games:      {len(manifests)}")
