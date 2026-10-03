@@ -1,0 +1,542 @@
+{
+  "baseline_manifest": "validation/corpus/manifests/public-validation-selected.jsonl",
+  "bounds": {
+    "max_slots": 16,
+    "max_turn": 140,
+    "min_slots": 8,
+    "min_turn": 55
+  },
+  "combined_games": 68,
+  "eligible_games": 5025,
+  "failed_loadinfo": [],
+  "listed_games": 8680,
+  "outputs": {
+    "candidates": "validation/corpus/manifests/public-short-expansion-candidates.jsonl",
+    "combined": "validation/corpus/manifests/public-short-expansion-with-public36.jsonl",
+    "selected": "validation/corpus/manifests/public-short-expansion-selected.jsonl"
+  },
+  "probed_games": 240,
+  "schema": "planets-lab.public-validation-selection.v1",
+  "selected": [
+    {
+      "bucket": "sphere",
+      "game_id": 499284,
+      "gametype": 2,
+      "name": "8 slots, 300 pl., Lone Wolf & stealth & FOW, PLS, increased fof (#3)",
+      "reasons": [
+        "bucket=sphere",
+        "bucket_bonus=30.0",
+        "novelty=48.0",
+        "turn_bonus=6.5",
+        "slot_bonus=2.0"
+      ],
+      "score": 86.45,
+      "slots": 8,
+      "turn": 129
+    },
+    {
+      "bucket": "campaign",
+      "game_id": 347236,
+      "gametype": 2,
+      "name": "Ultramax 9999 Campaign",
+      "reasons": [
+        "bucket=campaign",
+        "bucket_bonus=30.0",
+        "novelty=38.0",
+        "turn_bonus=7.0",
+        "slot_bonus=2.8"
+      ],
+      "score": 77.7,
+      "slots": 11,
+      "turn": 139
+    },
+    {
+      "bucket": "campaign",
+      "game_id": 645077,
+      "gametype": 2,
+      "name": "Chaos II",
+      "reasons": [
+        "bucket=campaign",
+        "bucket_bonus=30.0",
+        "novelty=37.0",
+        "turn_bonus=6.3",
+        "slot_bonus=2.8"
+      ],
+      "score": 76.05,
+      "slots": 11,
+      "turn": 126
+    },
+    {
+      "bucket": "campaign",
+      "game_id": 49055,
+      "gametype": 2,
+      "name": "Taulus Sector",
+      "reasons": [
+        "bucket=campaign",
+        "bucket_bonus=30.0",
+        "novelty=35.0",
+        "turn_bonus=6.8",
+        "slot_bonus=2.8"
+      ],
+      "score": 74.6,
+      "slots": 11,
+      "turn": 137
+    },
+    {
+      "bucket": "finite_fuel",
+      "game_id": 674696,
+      "gametype": 2,
+      "name": "Kura Sector",
+      "reasons": [
+        "bucket=finite_fuel",
+        "bucket_bonus=30.0",
+        "novelty=33.0",
+        "turn_bonus=6.8",
+        "slot_bonus=2.8"
+      ],
+      "score": 72.5,
+      "slots": 11,
+      "turn": 135
+    },
+    {
+      "bucket": "campaign",
+      "game_id": 310054,
+      "gametype": 2,
+      "name": "Debris Campaign game",
+      "reasons": [
+        "bucket=campaign",
+        "bucket_bonus=30.0",
+        "novelty=29.0",
+        "turn_bonus=6.5",
+        "slot_bonus=2.8"
+      ],
+      "score": 68.25,
+      "slots": 11,
+      "turn": 130
+    },
+    {
+      "bucket": "campaign",
+      "game_id": 632527,
+      "gametype": 3,
+      "name": "The Briar Patch VIII",
+      "reasons": [
+        "bucket=campaign",
+        "bucket_bonus=30.0",
+        "novelty=27.0",
+        "turn_bonus=6.0",
+        "slot_bonus=2.2"
+      ],
+      "score": 65.2,
+      "slots": 9,
+      "turn": 119
+    },
+    {
+      "bucket": "finite_fuel",
+      "game_id": 96616,
+      "gametype": 2,
+      "name": "Zol Sector",
+      "reasons": [
+        "bucket=finite_fuel",
+        "bucket_bonus=30.0",
+        "novelty=25.0",
+        "turn_bonus=6.9",
+        "slot_bonus=2.8"
+      ],
+      "score": 64.65,
+      "slots": 11,
+      "turn": 138
+    },
+    {
+      "bucket": "finite_fuel",
+      "game_id": 407599,
+      "gametype": 3,
+      "name": "THE LAST STAND!!!",
+      "reasons": [
+        "bucket=finite_fuel",
+        "bucket_bonus=30.0",
+        "novelty=26.0",
+        "turn_bonus=6.5",
+        "slot_bonus=2.0"
+      ],
+      "score": 64.5,
+      "slots": 8,
+      "turn": 130
+    },
+    {
+      "bucket": "campaign",
+      "game_id": 245693,
+      "gametype": 2,
+      "name": "Phoenix Odyssey.",
+      "reasons": [
+        "bucket=campaign",
+        "bucket_bonus=30.0",
+        "novelty=25.0",
+        "turn_bonus=6.1",
+        "slot_bonus=2.0"
+      ],
+      "score": 63.1,
+      "slots": 8,
+      "turn": 122
+    },
+    {
+      "bucket": "finite_fuel",
+      "game_id": 521834,
+      "gametype": 2,
+      "name": "Planets Magazine Classic Invitational III",
+      "reasons": [
+        "bucket=finite_fuel",
+        "bucket_bonus=30.0",
+        "novelty=22.0",
+        "turn_bonus=6.5",
+        "slot_bonus=2.8"
+      ],
+      "score": 61.3,
+      "slots": 11,
+      "turn": 131
+    },
+    {
+      "bucket": "finite_fuel",
+      "game_id": 421276,
+      "gametype": 2,
+      "name": "Endonians Sector",
+      "reasons": [
+        "bucket=finite_fuel",
+        "bucket_bonus=30.0",
+        "novelty=20.0",
+        "turn_bonus=6.7",
+        "slot_bonus=2.8"
+      ],
+      "score": 59.45,
+      "slots": 11,
+      "turn": 134
+    },
+    {
+      "bucket": "finite_fuel",
+      "game_id": 245123,
+      "gametype": 3,
+      "name": "A Fist Full of Megacredits - Two of Five ",
+      "reasons": [
+        "bucket=finite_fuel",
+        "bucket_bonus=30.0",
+        "novelty=21.0",
+        "turn_bonus=5.7",
+        "slot_bonus=2.5"
+      ],
+      "score": 59.15,
+      "slots": 10,
+      "turn": 113
+    },
+    {
+      "bucket": "sphere",
+      "game_id": 172010,
+      "gametype": 2,
+      "name": "Slow and sneaky",
+      "reasons": [
+        "bucket=sphere",
+        "bucket_bonus=30.0",
+        "novelty=15.0",
+        "turn_bonus=6.5",
+        "slot_bonus=2.8"
+      ],
+      "score": 54.3,
+      "slots": 11,
+      "turn": 131
+    },
+    {
+      "bucket": "championship",
+      "game_id": 530633,
+      "gametype": 6,
+      "name": "The Nectaris War",
+      "reasons": [
+        "bucket=championship",
+        "bucket_bonus=30.0",
+        "novelty=14.0",
+        "turn_bonus=7.0",
+        "slot_bonus=2.8"
+      ],
+      "score": 53.75,
+      "slots": 11,
+      "turn": 140
+    },
+    {
+      "bucket": "championship",
+      "game_id": 600044,
+      "gametype": 6,
+      "name": "The Timoris Conflict",
+      "reasons": [
+        "bucket=championship",
+        "bucket_bonus=30.0",
+        "novelty=14.0",
+        "turn_bonus=6.8",
+        "slot_bonus=2.8"
+      ],
+      "score": 53.55,
+      "slots": 11,
+      "turn": 136
+    },
+    {
+      "bucket": "championship",
+      "game_id": 663317,
+      "gametype": 6,
+      "name": "The Valles Conflict",
+      "reasons": [
+        "bucket=championship",
+        "bucket_bonus=30.0",
+        "novelty=16.0",
+        "turn_bonus=4.0",
+        "slot_bonus=2.8"
+      ],
+      "score": 52.8,
+      "slots": 11,
+      "turn": 81
+    },
+    {
+      "bucket": "championship",
+      "game_id": 633837,
+      "gametype": 6,
+      "name": "The Aestuum War",
+      "reasons": [
+        "bucket=championship",
+        "bucket_bonus=30.0",
+        "novelty=13.0",
+        "turn_bonus=6.9",
+        "slot_bonus=2.8"
+      ],
+      "score": 52.65,
+      "slots": 11,
+      "turn": 138
+    },
+    {
+      "bucket": "sphere",
+      "game_id": 281994,
+      "gametype": 2,
+      "name": "Star Trek Classic",
+      "reasons": [
+        "bucket=sphere",
+        "bucket_bonus=30.0",
+        "novelty=14.0",
+        "turn_bonus=6.4",
+        "slot_bonus=2.0"
+      ],
+      "score": 52.4,
+      "slots": 8,
+      "turn": 128
+    },
+    {
+      "bucket": "campaign",
+      "game_id": 469931,
+      "gametype": 2,
+      "name": "Hansa Galactica",
+      "reasons": [
+        "bucket=campaign",
+        "bucket_bonus=0.0",
+        "novelty=23.0",
+        "turn_bonus=6.0",
+        "slot_bonus=3.0"
+      ],
+      "score": 32.0,
+      "slots": 12,
+      "turn": 120
+    },
+    {
+      "bucket": "campaign",
+      "game_id": 277134,
+      "gametype": 2,
+      "name": "Planets 209: \"A Deadly Wandering thru Dirty Space\"",
+      "reasons": [
+        "bucket=campaign",
+        "bucket_bonus=0.0",
+        "novelty=21.0",
+        "turn_bonus=6.2",
+        "slot_bonus=2.5"
+      ],
+      "score": 29.75,
+      "slots": 10,
+      "turn": 125
+    },
+    {
+      "bucket": "campaign",
+      "game_id": 199300,
+      "gametype": 2,
+      "name": "p360 Campaign: with Horwasp!",
+      "reasons": [
+        "bucket=campaign",
+        "bucket_bonus=0.0",
+        "novelty=19.0",
+        "turn_bonus=6.5",
+        "slot_bonus=3.0"
+      ],
+      "score": 28.55,
+      "slots": 12,
+      "turn": 131
+    },
+    {
+      "bucket": "campaign",
+      "game_id": 225391,
+      "gametype": 2,
+      "name": "Mineral Bash III",
+      "reasons": [
+        "bucket=campaign",
+        "bucket_bonus=0.0",
+        "novelty=19.0",
+        "turn_bonus=6.0",
+        "slot_bonus=2.8"
+      ],
+      "score": 27.75,
+      "slots": 11,
+      "turn": 120
+    },
+    {
+      "bucket": "finite_fuel",
+      "game_id": 5324,
+      "gametype": 2,
+      "name": "Grus Sector",
+      "reasons": [
+        "bucket=finite_fuel",
+        "bucket_bonus=0.0",
+        "novelty=16.0",
+        "turn_bonus=7.0",
+        "slot_bonus=2.8"
+      ],
+      "score": 25.75,
+      "slots": 11,
+      "turn": 140
+    },
+    {
+      "bucket": "finite_fuel",
+      "game_id": 69075,
+      "gametype": 2,
+      "name": "Tyre Sector",
+      "reasons": [
+        "bucket=finite_fuel",
+        "bucket_bonus=0.0",
+        "novelty=16.0",
+        "turn_bonus=6.8",
+        "slot_bonus=2.8"
+      ],
+      "score": 25.6,
+      "slots": 11,
+      "turn": 137
+    },
+    {
+      "bucket": "campaign",
+      "game_id": 655827,
+      "gametype": 2,
+      "name": "PLS - CAMPAIGN",
+      "reasons": [
+        "bucket=campaign",
+        "bucket_bonus=0.0",
+        "novelty=16.0",
+        "turn_bonus=6.8",
+        "slot_bonus=2.8"
+      ],
+      "score": 25.55,
+      "slots": 11,
+      "turn": 136
+    },
+    {
+      "bucket": "finite_fuel",
+      "game_id": 355526,
+      "gametype": 2,
+      "name": "euro planet   spanish",
+      "reasons": [
+        "bucket=finite_fuel",
+        "bucket_bonus=0.0",
+        "novelty=16.0",
+        "turn_bonus=6.7",
+        "slot_bonus=2.8"
+      ],
+      "score": 25.4,
+      "slots": 11,
+      "turn": 133
+    },
+    {
+      "bucket": "campaign",
+      "game_id": 235762,
+      "gametype": 2,
+      "name": "Planets 209: \"Damn the Torpedos, Full Speed Ahead!\"",
+      "reasons": [
+        "bucket=campaign",
+        "bucket_bonus=0.0",
+        "novelty=17.0",
+        "turn_bonus=6.4",
+        "slot_bonus=2.0"
+      ],
+      "score": 25.4,
+      "slots": 8,
+      "turn": 128
+    },
+    {
+      "bucket": "campaign",
+      "game_id": 181660,
+      "gametype": 2,
+      "name": "125 Turns limit stellar cartography Campaign",
+      "reasons": [
+        "bucket=campaign",
+        "bucket_bonus=0.0",
+        "novelty=16.0",
+        "turn_bonus=6.2",
+        "slot_bonus=3.0"
+      ],
+      "score": 25.25,
+      "slots": 12,
+      "turn": 125
+    },
+    {
+      "bucket": "campaign",
+      "game_id": 338810,
+      "gametype": 2,
+      "name": "PLS Lone Wolf Campaign Fast III",
+      "reasons": [
+        "bucket=campaign",
+        "bucket_bonus=0.0",
+        "novelty=16.0",
+        "turn_bonus=6.5",
+        "slot_bonus=2.5"
+      ],
+      "score": 25.05,
+      "slots": 10,
+      "turn": 131
+    },
+    {
+      "bucket": "campaign",
+      "game_id": 243165,
+      "gametype": 2,
+      "name": "Slow Game",
+      "reasons": [
+        "bucket=campaign",
+        "bucket_bonus=0.0",
+        "novelty=16.0",
+        "turn_bonus=6.3",
+        "slot_bonus=2.8"
+      ],
+      "score": 25.05,
+      "slots": 11,
+      "turn": 126
+    },
+    {
+      "bucket": "campaign",
+      "game_id": 494635,
+      "gametype": 2,
+      "name": "600 Campaign Points - 650 Planets - Extra Stellar Cart - No Bugs - 2x week",
+      "reasons": [
+        "bucket=campaign",
+        "bucket_bonus=0.0",
+        "novelty=16.0",
+        "turn_bonus=6.1",
+        "slot_bonus=2.8"
+      ],
+      "score": 24.85,
+      "slots": 11,
+      "turn": 122
+    }
+  ],
+  "selected_by_bucket": {
+    "campaign": 16,
+    "championship": 4,
+    "finite_fuel": 9,
+    "sphere": 3
+  },
+  "selected_games": 32,
+  "successful_loadinfo": 240
+}

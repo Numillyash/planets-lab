@@ -1,0 +1,1540 @@
+===== PUBLIC SHORT EXPANSION PROFILE =====
+turns:        55..140
+slots:        8..16
+probe_limit:  240
+select_count: 32
+baseline:     validation/corpus/manifests/public-validation-selected.jsonl
+selected:     validation/corpus/manifests/public-short-expansion-selected.jsonl
+index:        validation/corpus/index/public-short-expansion-games.jsonl
+===== PUBLIC VALIDATION CORPUS: PREFLIGHT =====
+docker:       ready
+===== PUBLIC VALIDATION CORPUS: BUILD LAB IMAGE =====
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "default" instance using docker driver
+
+#1 [lab internal] load build definition from Dockerfile
+#1 transferring dockerfile: 373B done
+#1 DONE 0.0s
+
+#2 [lab internal] load metadata for docker.io/library/python:3.12-slim
+#2 DONE 0.0s
+
+#3 [lab internal] load .dockerignore
+#3 transferring context: 184B done
+#3 DONE 0.0s
+
+#4 [lab internal] load build context
+#4 DONE 0.0s
+
+#5 [lab 1/6] FROM docker.io/library/python:3.12-slim@sha256:dd29372629eeba2dd003fd9e9d35a5b8236c44727875a0364254b5127af88e65
+#5 resolve docker.io/library/python:3.12-slim@sha256:dd29372629eeba2dd003fd9e9d35a5b8236c44727875a0364254b5127af88e65
+#5 ...
+
+#6 [lab auth] library/python:pull token for registry-1.docker.io
+#6 DONE 0.0s
+
+#5 [lab 1/6] FROM docker.io/library/python:3.12-slim@sha256:dd29372629eeba2dd003fd9e9d35a5b8236c44727875a0364254b5127af88e65
+#5 resolve docker.io/library/python:3.12-slim@sha256:dd29372629eeba2dd003fd9e9d35a5b8236c44727875a0364254b5127af88e65 1.2s done
+#5 DONE 1.2s
+
+#4 [lab internal] load build context
+#4 transferring context: 57.62kB 0.0s done
+#4 DONE 0.0s
+
+#7 [lab 2/6] WORKDIR /workspace
+#7 CACHED
+
+#8 [lab 3/6] COPY pyproject.toml README.md ./
+#8 CACHED
+
+#9 [lab 4/6] COPY src ./src
+#9 DONE 0.1s
+
+#10 [lab 5/6] COPY tests ./tests
+#10 DONE 0.1s
+
+#11 [lab 6/6] RUN python -m pip install --no-cache-dir --upgrade pip     && python -m pip install --no-cache-dir -e '.[dev]'
+#11 1.694 Requirement already satisfied: pip in /usr/local/lib/python3.12/site-packages (25.0.1)
+#11 6.508 Collecting pip
+#11 7.099   Downloading pip-26.2.1-py3-none-any.whl.metadata (4.6 kB)
+#11 7.168 Downloading pip-26.2.1-py3-none-any.whl (1.8 MB)
+#11 14.84    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 378.7 kB/s eta 0:00:00
+#11 14.86 Installing collected packages: pip
+#11 14.86   Attempting uninstall: pip
+#11 14.86     Found existing installation: pip 25.0.1
+#11 14.91     Uninstalling pip-25.0.1:
+#11 15.15       Successfully uninstalled pip-25.0.1
+#11 15.99 Successfully installed pip-26.2.1
+#11 15.99 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#11 16.74 Obtaining file:///workspace
+#11 16.74   Installing build dependencies: started
+#11 21.75   Installing build dependencies: finished with status 'done'
+#11 21.75   Checking if build backend supports build_editable: started
+#11 22.34   Checking if build backend supports build_editable: finished with status 'done'
+#11 22.34   Getting requirements to build editable: started
+#11 23.10   Getting requirements to build editable: finished with status 'done'
+#11 23.11   Preparing editable metadata (pyproject.toml): started
+#11 23.85   Preparing editable metadata (pyproject.toml): finished with status 'done'
+#11 24.53 Collecting duckdb<1.6,>=1.5 (from planets-lab==0.1.0)
+#11 25.05   Downloading duckdb-1.5.6-cp312-cp312-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl.metadata (4.2 kB)
+#11 25.23 Collecting pyarrow<22,>=21 (from planets-lab==0.1.0)
+#11 25.29   Downloading pyarrow-21.0.0-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (3.3 kB)
+#11 25.37 Collecting pytest<9,>=8 (from planets-lab==0.1.0)
+#11 25.43   Downloading pytest-8.4.2-py3-none-any.whl.metadata (7.7 kB)
+#11 25.49 Collecting iniconfig>=1 (from pytest<9,>=8->planets-lab==0.1.0)
+#11 25.55   Downloading iniconfig-2.3.0-py3-none-any.whl.metadata (2.5 kB)
+#11 25.62 Collecting packaging>=20 (from pytest<9,>=8->planets-lab==0.1.0)
+#11 25.68   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+#11 25.74 Collecting pluggy<2,>=1.5 (from pytest<9,>=8->planets-lab==0.1.0)
+#11 25.81   Downloading pluggy-1.6.0-py3-none-any.whl.metadata (4.8 kB)
+#11 25.87 Collecting pygments>=2.7.2 (from pytest<9,>=8->planets-lab==0.1.0)
+#11 25.93   Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+#11 26.00 Downloading duckdb-1.5.6-cp312-cp312-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl (21.6 MB)
+#11 45.01    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 21.6/21.6 MB 1.4 MB/s  0:00:15
+#11 45.07 Downloading pyarrow-21.0.0-cp312-cp312-manylinux_2_28_x86_64.whl (42.8 MB)
+#11 103.6    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 42.8/42.8 MB 621.0 kB/s  0:00:55
+#11 103.6 Downloading pytest-8.4.2-py3-none-any.whl (365 kB)
+#11 104.5 Downloading pluggy-1.6.0-py3-none-any.whl (20 kB)
+#11 104.6 Downloading iniconfig-2.3.0-py3-none-any.whl (7.5 kB)
+#11 104.7 Downloading packaging-26.3-py3-none-any.whl (129 kB)
+#11 105.0 Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+#11 114.3    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 206.9 kB/s  0:00:05
+#11 114.4 Building wheels for collected packages: planets-lab
+#11 114.4   Building editable for planets-lab (pyproject.toml): started
+#11 115.2   Building editable for planets-lab (pyproject.toml): finished with status 'done'
+#11 115.2   Created wheel for planets-lab: filename=planets_lab-0.1.0-0.editable-py3-none-any.whl size=3673 sha256=ef79fa03abe8b80843a468c83af9715053192c54d12821fdb6cced750caca899
+#11 115.2   Stored in directory: /tmp/pip-ephem-wheel-cache-1lsp2gxs/wheels/b0/41/ab/4e04a8678980f3355548f1261923479fbf2a713a7393a7dea8
+#11 115.2 Successfully built planets-lab
+#11 115.2 Installing collected packages: pygments, pyarrow, pluggy, packaging, iniconfig, duckdb, pytest, planets-lab
+#11 117.8 
+#11 117.8 Successfully installed duckdb-1.5.6 iniconfig-2.3.0 packaging-26.3 planets-lab-0.1.0 pluggy-1.6.0 pyarrow-21.0.0 pygments-2.21.0 pytest-8.4.2
+#11 117.8 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#11 DONE 118.1s
+
+#12 [lab] exporting to image
+#12 exporting layers
+#12 exporting layers 7.6s done
+#12 exporting manifest sha256:e08417de3e5b0a1f5db9ce4ec3d54ad47c762dd22823a677f594b08e6ae5e260 0.0s done
+#12 exporting config sha256:e33d857f249dd872720e1f5d646149fb692032b26c00e6e2d542f00b0e5af7c8 0.0s done
+#12 exporting attestation manifest sha256:03b09d2136398b2ef57c8b608fcb78667228d3b6649ca14464210e3d1b07feb3 0.0s done
+#12 exporting manifest list sha256:f5fdf1545bf0807fc5761b15d74fbec50063f838a0fd96a595fa3fd43359e74f 0.0s done
+#12 naming to docker.io/library/planets-lab-lab:latest done
+#12 unpacking to docker.io/library/planets-lab-lab:latest
+#12 unpacking to docker.io/library/planets-lab-lab:latest 1.8s done
+#12 DONE 9.5s
+
+#13 [lab] resolving provenance for metadata file
+#13 DONE 0.0s
+ lab  Built
+network_mode: direct
+proxy:        not configured
+===== PUBLIC VALIDATION CORPUS: DISCOVERY =====
+{"bucket": "campaign", "game_id": 427351, "position": 1, "slots": 12, "status": "ok", "total": 240, "turn": 140}
+{"bucket": "championship", "game_id": 600032, "position": 2, "slots": 11, "status": "ok", "total": 240, "turn": 140}
+{"bucket": "classic", "game_id": 583859, "position": 3, "slots": 11, "status": "ok", "total": 240, "turn": 140}
+{"bucket": "standard_or_other", "game_id": 656448, "position": 4, "slots": 11, "status": "ok", "total": 240, "turn": 140}
+{"bucket": "custom", "game_id": 454504, "position": 5, "slots": 11, "status": "ok", "total": 240, "turn": 140}
+{"bucket": "team_or_mvm", "game_id": 40708, "position": 6, "slots": 12, "status": "ok", "total": 240, "turn": 140}
+{"bucket": "campaign", "game_id": 134091, "position": 7, "slots": 11, "status": "ok", "total": 240, "turn": 140}
+{"bucket": "championship", "game_id": 530633, "position": 8, "slots": 11, "status": "ok", "total": 240, "turn": 140}
+{"bucket": "classic", "game_id": 349053, "position": 9, "slots": 11, "status": "ok", "total": 240, "turn": 140}
+{"bucket": "standard_or_other", "game_id": 550974, "position": 10, "slots": 11, "status": "ok", "total": 240, "turn": 140}
+{"bucket": "custom", "game_id": 347236, "position": 11, "slots": 11, "status": "ok", "total": 240, "turn": 139}
+{"bucket": "team_or_mvm", "game_id": 151661, "position": 12, "slots": 12, "status": "ok", "total": 240, "turn": 138}
+{"bucket": "campaign", "game_id": 87845, "position": 13, "slots": 11, "status": "ok", "total": 240, "turn": 140}
+{"bucket": "championship", "game_id": 633837, "position": 14, "slots": 11, "status": "ok", "total": 240, "turn": 138}
+{"bucket": "classic", "game_id": 348073, "position": 15, "slots": 11, "status": "ok", "total": 240, "turn": 140}
+{"bucket": "standard_or_other", "game_id": 390432, "position": 16, "slots": 11, "status": "ok", "total": 240, "turn": 140}
+{"bucket": "custom", "game_id": 314897, "position": 17, "slots": 8, "status": "ok", "total": 240, "turn": 138}
+{"bucket": "team_or_mvm", "game_id": 226775, "position": 18, "slots": 12, "status": "ok", "total": 240, "turn": 137}
+{"bucket": "campaign", "game_id": 78128, "position": 19, "slots": 11, "status": "ok", "total": 240, "turn": 140}
+{"bucket": "championship", "game_id": 600044, "position": 20, "slots": 11, "status": "ok", "total": 240, "turn": 136}
+{"bucket": "classic", "game_id": 291632, "position": 21, "slots": 11, "status": "ok", "total": 240, "turn": 140}
+{"bucket": "standard_or_other", "game_id": 263417, "position": 22, "slots": 11, "status": "ok", "total": 240, "turn": 140}
+{"bucket": "custom", "game_id": 200015, "position": 23, "slots": 11, "status": "ok", "total": 240, "turn": 137}
+{"bucket": "team_or_mvm", "game_id": 195441, "position": 24, "slots": 12, "status": "ok", "total": 240, "turn": 136}
+{"bucket": "campaign", "game_id": 524547, "position": 25, "slots": 12, "status": "ok", "total": 240, "turn": 139}
+{"bucket": "championship", "game_id": 38553, "position": 26, "slots": 11, "status": "ok", "total": 240, "turn": 110}
+{"bucket": "classic", "game_id": 179497, "position": 27, "slots": 11, "status": "ok", "total": 240, "turn": 140}
+{"bucket": "standard_or_other", "game_id": 206957, "position": 28, "slots": 11, "status": "ok", "total": 240, "turn": 140}
+{"bucket": "custom", "game_id": 655827, "position": 29, "slots": 11, "status": "ok", "total": 240, "turn": 136}
+{"bucket": "team_or_mvm", "game_id": 421949, "position": 30, "slots": 12, "status": "ok", "total": 240, "turn": 132}
+{"bucket": "campaign", "game_id": 312518, "position": 31, "slots": 12, "status": "ok", "total": 240, "turn": 139}
+{"bucket": "championship", "game_id": 663317, "position": 32, "slots": 11, "status": "ok", "total": 240, "turn": 81}
+{"bucket": "classic", "game_id": 629796, "position": 33, "slots": 11, "status": "ok", "total": 240, "turn": 139}
+{"bucket": "standard_or_other", "game_id": 139421, "position": 34, "slots": 11, "status": "ok", "total": 240, "turn": 140}
+{"bucket": "custom", "game_id": 221008, "position": 35, "slots": 11, "status": "ok", "total": 240, "turn": 134}
+{"bucket": "team_or_mvm", "game_id": 70253, "position": 36, "slots": 12, "status": "ok", "total": 240, "turn": 132}
+{"bucket": "campaign", "game_id": 522154, "position": 37, "slots": 12, "status": "ok", "total": 240, "turn": 138}
+{"bucket": "championship", "game_id": 530635, "position": 38, "slots": 11, "status": "ok", "total": 240, "turn": 81}
+{"bucket": "classic", "game_id": 625682, "position": 39, "slots": 11, "status": "ok", "total": 240, "turn": 139}
+{"bucket": "standard_or_other", "game_id": 81827, "position": 40, "slots": 11, "status": "ok", "total": 240, "turn": 140}
+{"bucket": "custom", "game_id": 355526, "position": 41, "slots": 11, "status": "ok", "total": 240, "turn": 133}
+{"bucket": "team_or_mvm", "game_id": 105186, "position": 42, "slots": 10, "status": "ok", "total": 240, "turn": 132}
+{"bucket": "campaign", "game_id": 406930, "position": 43, "slots": 12, "status": "ok", "total": 240, "turn": 138}
+{"bucket": "classic", "game_id": 350901, "position": 44, "slots": 11, "status": "ok", "total": 240, "turn": 139}
+{"bucket": "standard_or_other", "game_id": 5324, "position": 45, "slots": 11, "status": "ok", "total": 240, "turn": 140}
+{"bucket": "custom", "game_id": 517222, "position": 46, "slots": 11, "status": "ok", "total": 240, "turn": 132}
+{"bucket": "team_or_mvm", "game_id": 237646, "position": 47, "slots": 12, "status": "ok", "total": 240, "turn": 131}
+{"bucket": "campaign", "game_id": 399722, "position": 48, "slots": 12, "status": "ok", "total": 240, "turn": 138}
+{"bucket": "classic", "game_id": 276857, "position": 49, "slots": 11, "status": "ok", "total": 240, "turn": 139}
+{"bucket": "standard_or_other", "game_id": 573780, "position": 50, "slots": 11, "status": "ok", "total": 240, "turn": 139}
+{"bucket": "custom", "game_id": 199300, "position": 51, "slots": 12, "status": "ok", "total": 240, "turn": 131}
+{"bucket": "team_or_mvm", "game_id": 82000, "position": 52, "slots": 12, "status": "ok", "total": 240, "turn": 131}
+{"bucket": "campaign", "game_id": 226056, "position": 53, "slots": 12, "status": "ok", "total": 240, "turn": 138}
+{"bucket": "classic", "game_id": 101975, "position": 54, "slots": 11, "status": "ok", "total": 240, "turn": 139}
+{"bucket": "standard_or_other", "game_id": 504464, "position": 55, "slots": 11, "status": "ok", "total": 240, "turn": 139}
+{"bucket": "custom", "game_id": 521834, "position": 56, "slots": 11, "status": "ok", "total": 240, "turn": 131}
+{"bucket": "team_or_mvm", "game_id": 282883, "position": 57, "slots": 12, "status": "ok", "total": 240, "turn": 130}
+{"bucket": "campaign", "game_id": 216017, "position": 58, "slots": 12, "status": "ok", "total": 240, "turn": 138}
+{"bucket": "classic", "game_id": 660249, "position": 59, "slots": 11, "status": "ok", "total": 240, "turn": 138}
+{"bucket": "standard_or_other", "game_id": 368900, "position": 60, "slots": 11, "status": "ok", "total": 240, "turn": 139}
+{"bucket": "custom", "game_id": 330273, "position": 61, "slots": 11, "status": "ok", "total": 240, "turn": 131}
+{"bucket": "team_or_mvm", "game_id": 270544, "position": 62, "slots": 12, "status": "ok", "total": 240, "turn": 130}
+{"bucket": "campaign", "game_id": 467047, "position": 63, "slots": 12, "status": "ok", "total": 240, "turn": 137}
+{"bucket": "classic", "game_id": 619552, "position": 64, "slots": 11, "status": "ok", "total": 240, "turn": 138}
+{"bucket": "standard_or_other", "game_id": 255810, "position": 65, "slots": 11, "status": "ok", "total": 240, "turn": 139}
+{"bucket": "custom", "game_id": 172010, "position": 66, "slots": 11, "status": "ok", "total": 240, "turn": 131}
+{"bucket": "team_or_mvm", "game_id": 150411, "position": 67, "slots": 12, "status": "ok", "total": 240, "turn": 130}
+{"bucket": "campaign", "game_id": 465672, "position": 68, "slots": 12, "status": "ok", "total": 240, "turn": 137}
+{"bucket": "classic", "game_id": 614130, "position": 69, "slots": 11, "status": "ok", "total": 240, "turn": 138}
+{"bucket": "standard_or_other", "game_id": 136077, "position": 70, "slots": 11, "status": "ok", "total": 240, "turn": 139}
+{"bucket": "custom", "game_id": 66342, "position": 71, "slots": 11, "status": "ok", "total": 240, "turn": 131}
+{"bucket": "team_or_mvm", "game_id": 407599, "position": 72, "slots": 8, "status": "ok", "total": 240, "turn": 130}
+{"bucket": "campaign", "game_id": 332564, "position": 73, "slots": 12, "status": "ok", "total": 240, "turn": 137}
+{"bucket": "classic", "game_id": 520875, "position": 74, "slots": 11, "status": "ok", "total": 240, "turn": 138}
+{"bucket": "standard_or_other", "game_id": 72490, "position": 75, "slots": 11, "status": "ok", "total": 240, "turn": 139}
+{"bucket": "custom", "game_id": 338810, "position": 76, "slots": 10, "status": "ok", "total": 240, "turn": 131}
+{"bucket": "team_or_mvm", "game_id": 506926, "position": 77, "slots": 12, "status": "ok", "total": 240, "turn": 128}
+{"bucket": "campaign", "game_id": 256565, "position": 78, "slots": 12, "status": "ok", "total": 240, "turn": 137}
+{"bucket": "classic", "game_id": 490569, "position": 79, "slots": 11, "status": "ok", "total": 240, "turn": 138}
+{"bucket": "standard_or_other", "game_id": 28089, "position": 80, "slots": 11, "status": "ok", "total": 240, "turn": 139}
+{"bucket": "custom", "game_id": 310054, "position": 81, "slots": 11, "status": "ok", "total": 240, "turn": 130}
+{"bucket": "team_or_mvm", "game_id": 162549, "position": 82, "slots": 12, "status": "ok", "total": 240, "turn": 128}
+{"bucket": "campaign", "game_id": 49055, "position": 83, "slots": 11, "status": "ok", "total": 240, "turn": 137}
+{"bucket": "classic", "game_id": 301074, "position": 84, "slots": 11, "status": "ok", "total": 240, "turn": 138}
+{"bucket": "standard_or_other", "game_id": 608293, "position": 85, "slots": 11, "status": "ok", "total": 240, "turn": 138}
+{"bucket": "custom", "game_id": 296151, "position": 86, "slots": 11, "status": "ok", "total": 240, "turn": 129}
+{"bucket": "team_or_mvm", "game_id": 239598, "position": 87, "slots": 12, "status": "ok", "total": 240, "turn": 126}
+{"bucket": "campaign", "game_id": 399914, "position": 88, "slots": 12, "status": "ok", "total": 240, "turn": 136}
+{"bucket": "classic", "game_id": 231807, "position": 89, "slots": 11, "status": "ok", "total": 240, "turn": 138}
+{"bucket": "standard_or_other", "game_id": 407702, "position": 90, "slots": 11, "status": "ok", "total": 240, "turn": 138}
+{"bucket": "custom", "game_id": 63203, "position": 91, "slots": 11, "status": "ok", "total": 240, "turn": 129}
+{"bucket": "team_or_mvm", "game_id": 46374, "position": 92, "slots": 12, "status": "ok", "total": 240, "turn": 126}
+{"bucket": "campaign", "game_id": 320261, "position": 93, "slots": 12, "status": "ok", "total": 240, "turn": 135}
+{"bucket": "classic", "game_id": 87846, "position": 94, "slots": 11, "status": "ok", "total": 240, "turn": 138}
+{"bucket": "standard_or_other", "game_id": 165634, "position": 95, "slots": 11, "status": "ok", "total": 240, "turn": 138}
+{"bucket": "custom", "game_id": 54512, "position": 96, "slots": 11, "status": "ok", "total": 240, "turn": 129}
+{"bucket": "team_or_mvm", "game_id": 20771, "position": 97, "slots": 12, "status": "ok", "total": 240, "turn": 126}
+{"bucket": "campaign", "game_id": 294624, "position": 98, "slots": 12, "status": "ok", "total": 240, "turn": 135}
+{"bucket": "classic", "game_id": 638564, "position": 99, "slots": 11, "status": "ok", "total": 240, "turn": 137}
+{"bucket": "standard_or_other", "game_id": 96616, "position": 100, "slots": 11, "status": "ok", "total": 240, "turn": 138}
+{"bucket": "custom", "game_id": 499284, "position": 101, "slots": 8, "status": "ok", "total": 240, "turn": 129}
+{"bucket": "team_or_mvm", "game_id": 653412, "position": 102, "slots": 12, "status": "ok", "total": 240, "turn": 125}
+{"bucket": "campaign", "game_id": 98036, "position": 103, "slots": 11, "status": "ok", "total": 240, "turn": 135}
+{"bucket": "classic", "game_id": 616394, "position": 104, "slots": 11, "status": "ok", "total": 240, "turn": 137}
+{"bucket": "standard_or_other", "game_id": 643798, "position": 105, "slots": 11, "status": "ok", "total": 240, "turn": 137}
+{"bucket": "custom", "game_id": 281994, "position": 106, "slots": 8, "status": "ok", "total": 240, "turn": 128}
+{"bucket": "team_or_mvm", "game_id": 128334, "position": 107, "slots": 12, "status": "ok", "total": 240, "turn": 124}
+{"bucket": "campaign", "game_id": 75084, "position": 108, "slots": 11, "status": "ok", "total": 240, "turn": 135}
+{"bucket": "classic", "game_id": 597217, "position": 109, "slots": 11, "status": "ok", "total": 240, "turn": 137}
+{"bucket": "standard_or_other", "game_id": 441856, "position": 110, "slots": 11, "status": "ok", "total": 240, "turn": 137}
+{"bucket": "custom", "game_id": 235762, "position": 111, "slots": 8, "status": "ok", "total": 240, "turn": 128}
+{"bucket": "team_or_mvm", "game_id": 96764, "position": 112, "slots": 12, "status": "ok", "total": 240, "turn": 123}
+{"bucket": "campaign", "game_id": 642976, "position": 113, "slots": 12, "status": "ok", "total": 240, "turn": 133}
+{"bucket": "classic", "game_id": 575333, "position": 114, "slots": 11, "status": "ok", "total": 240, "turn": 137}
+{"bucket": "standard_or_other", "game_id": 297450, "position": 115, "slots": 11, "status": "ok", "total": 240, "turn": 137}
+{"bucket": "custom", "game_id": 645077, "position": 116, "slots": 11, "status": "ok", "total": 240, "turn": 126}
+{"bucket": "team_or_mvm", "game_id": 45561, "position": 117, "slots": 12, "status": "ok", "total": 240, "turn": 123}
+{"bucket": "campaign", "game_id": 512655, "position": 118, "slots": 12, "status": "ok", "total": 240, "turn": 133}
+{"bucket": "classic", "game_id": 491117, "position": 119, "slots": 11, "status": "ok", "total": 240, "turn": 137}
+{"bucket": "standard_or_other", "game_id": 208746, "position": 120, "slots": 11, "status": "ok", "total": 240, "turn": 137}
+{"bucket": "custom", "game_id": 605174, "position": 121, "slots": 11, "status": "ok", "total": 240, "turn": 126}
+{"bucket": "team_or_mvm", "game_id": 323802, "position": 122, "slots": 8, "status": "ok", "total": 240, "turn": 122}
+{"bucket": "campaign", "game_id": 73971, "position": 123, "slots": 11, "status": "ok", "total": 240, "turn": 133}
+{"bucket": "classic", "game_id": 346186, "position": 124, "slots": 11, "status": "ok", "total": 240, "turn": 137}
+{"bucket": "standard_or_other", "game_id": 130144, "position": 125, "slots": 11, "status": "ok", "total": 240, "turn": 137}
+{"bucket": "custom", "game_id": 243165, "position": 126, "slots": 11, "status": "ok", "total": 240, "turn": 126}
+{"bucket": "team_or_mvm", "game_id": 157947, "position": 127, "slots": 12, "status": "ok", "total": 240, "turn": 121}
+{"bucket": "campaign", "game_id": 361318, "position": 128, "slots": 12, "status": "ok", "total": 240, "turn": 132}
+{"bucket": "classic", "game_id": 218843, "position": 129, "slots": 11, "status": "ok", "total": 240, "turn": 137}
+{"bucket": "standard_or_other", "game_id": 110148, "position": 130, "slots": 11, "status": "ok", "total": 240, "turn": 137}
+{"bucket": "custom", "game_id": 220698, "position": 131, "slots": 11, "status": "ok", "total": 240, "turn": 126}
+{"bucket": "team_or_mvm", "game_id": 137611, "position": 132, "slots": 12, "status": "ok", "total": 240, "turn": 121}
+{"bucket": "campaign", "game_id": 573744, "position": 133, "slots": 12, "status": "ok", "total": 240, "turn": 131}
+{"bucket": "classic", "game_id": 218338, "position": 134, "slots": 11, "status": "ok", "total": 240, "turn": 137}
+{"bucket": "standard_or_other", "game_id": 71868, "position": 135, "slots": 11, "status": "ok", "total": 240, "turn": 137}
+{"bucket": "custom", "game_id": 651280, "position": 136, "slots": 8, "status": "ok", "total": 240, "turn": 126}
+{"bucket": "team_or_mvm", "game_id": 357770, "position": 137, "slots": 12, "status": "ok", "total": 240, "turn": 120}
+{"bucket": "campaign", "game_id": 86014, "position": 138, "slots": 11, "status": "ok", "total": 240, "turn": 131}
+{"bucket": "classic", "game_id": 196949, "position": 139, "slots": 11, "status": "ok", "total": 240, "turn": 137}
+{"bucket": "standard_or_other", "game_id": 69075, "position": 140, "slots": 11, "status": "ok", "total": 240, "turn": 137}
+{"bucket": "custom", "game_id": 467011, "position": 141, "slots": 12, "status": "ok", "total": 240, "turn": 125}
+{"bucket": "team_or_mvm", "game_id": 91630, "position": 142, "slots": 12, "status": "ok", "total": 240, "turn": 120}
+{"bucket": "campaign", "game_id": 401760, "position": 143, "slots": 12, "status": "ok", "total": 240, "turn": 130}
+{"bucket": "classic", "game_id": 133762, "position": 144, "slots": 11, "status": "ok", "total": 240, "turn": 137}
+{"bucket": "standard_or_other", "game_id": 66888, "position": 145, "slots": 11, "status": "ok", "total": 240, "turn": 137}
+{"bucket": "custom", "game_id": 181660, "position": 146, "slots": 12, "status": "ok", "total": 240, "turn": 125}
+{"bucket": "team_or_mvm", "game_id": 66901, "position": 147, "slots": 12, "status": "ok", "total": 240, "turn": 120}
+{"bucket": "campaign", "game_id": 69099, "position": 148, "slots": 11, "status": "ok", "total": 240, "turn": 129}
+{"bucket": "classic", "game_id": 128302, "position": 149, "slots": 11, "status": "ok", "total": 240, "turn": 137}
+{"bucket": "standard_or_other", "game_id": 61410, "position": 150, "slots": 11, "status": "ok", "total": 240, "turn": 137}
+{"bucket": "custom", "game_id": 287127, "position": 151, "slots": 11, "status": "ok", "total": 240, "turn": 125}
+{"bucket": "team_or_mvm", "game_id": 632527, "position": 152, "slots": 9, "status": "ok", "total": 240, "turn": 119}
+{"bucket": "campaign", "game_id": 53490, "position": 153, "slots": 11, "status": "ok", "total": 240, "turn": 129}
+{"bucket": "classic", "game_id": 656926, "position": 154, "slots": 11, "status": "ok", "total": 240, "turn": 136}
+{"bucket": "standard_or_other", "game_id": 634659, "position": 155, "slots": 11, "status": "ok", "total": 240, "turn": 136}
+{"bucket": "custom", "game_id": 267496, "position": 156, "slots": 11, "status": "ok", "total": 240, "turn": 125}
+{"bucket": "team_or_mvm", "game_id": 84401, "position": 157, "slots": 12, "status": "ok", "total": 240, "turn": 118}
+{"bucket": "campaign", "game_id": 554204, "position": 158, "slots": 12, "status": "ok", "total": 240, "turn": 128}
+{"bucket": "classic", "game_id": 568485, "position": 159, "slots": 11, "status": "ok", "total": 240, "turn": 136}
+{"bucket": "standard_or_other", "game_id": 315935, "position": 160, "slots": 11, "status": "ok", "total": 240, "turn": 136}
+{"bucket": "custom", "game_id": 264095, "position": 161, "slots": 11, "status": "ok", "total": 240, "turn": 125}
+{"bucket": "team_or_mvm", "game_id": 42421, "position": 162, "slots": 12, "status": "ok", "total": 240, "turn": 118}
+{"bucket": "campaign", "game_id": 449250, "position": 163, "slots": 12, "status": "ok", "total": 240, "turn": 128}
+{"bucket": "classic", "game_id": 259151, "position": 164, "slots": 11, "status": "ok", "total": 240, "turn": 136}
+{"bucket": "standard_or_other", "game_id": 232467, "position": 165, "slots": 11, "status": "ok", "total": 240, "turn": 136}
+{"bucket": "custom", "game_id": 237406, "position": 166, "slots": 11, "status": "ok", "total": 240, "turn": 125}
+{"bucket": "team_or_mvm", "game_id": 292181, "position": 167, "slots": 9, "status": "ok", "total": 240, "turn": 118}
+{"bucket": "campaign", "game_id": 297511, "position": 168, "slots": 12, "status": "ok", "total": 240, "turn": 128}
+{"bucket": "classic", "game_id": 321193, "position": 169, "slots": 11, "status": "ok", "total": 240, "turn": 135}
+{"bucket": "standard_or_other", "game_id": 225638, "position": 170, "slots": 11, "status": "ok", "total": 240, "turn": 136}
+{"bucket": "custom", "game_id": 190062, "position": 171, "slots": 11, "status": "ok", "total": 240, "turn": 125}
+{"bucket": "team_or_mvm", "game_id": 380878, "position": 172, "slots": 12, "status": "ok", "total": 240, "turn": 117}
+{"bucket": "campaign", "game_id": 169683, "position": 173, "slots": 11, "status": "ok", "total": 240, "turn": 128}
+{"bucket": "classic", "game_id": 260909, "position": 174, "slots": 11, "status": "ok", "total": 240, "turn": 135}
+{"bucket": "standard_or_other", "game_id": 223160, "position": 175, "slots": 11, "status": "ok", "total": 240, "turn": 136}
+{"bucket": "custom", "game_id": 157358, "position": 176, "slots": 11, "status": "ok", "total": 240, "turn": 125}
+{"bucket": "team_or_mvm", "game_id": 227342, "position": 177, "slots": 12, "status": "ok", "total": 240, "turn": 116}
+{"bucket": "campaign", "game_id": 388743, "position": 178, "slots": 12, "status": "ok", "total": 240, "turn": 127}
+{"bucket": "classic", "game_id": 204826, "position": 179, "slots": 11, "status": "ok", "total": 240, "turn": 135}
+{"bucket": "standard_or_other", "game_id": 161505, "position": 180, "slots": 11, "status": "ok", "total": 240, "turn": 136}
+{"bucket": "custom", "game_id": 339708, "position": 181, "slots": 10, "status": "ok", "total": 240, "turn": 125}
+{"bucket": "team_or_mvm", "game_id": 371057, "position": 182, "slots": 12, "status": "ok", "total": 240, "turn": 115}
+{"bucket": "campaign", "game_id": 660565, "position": 183, "slots": 11, "status": "ok", "total": 240, "turn": 127}
+{"bucket": "classic", "game_id": 91858, "position": 184, "slots": 11, "status": "ok", "total": 240, "turn": 135}
+{"bucket": "standard_or_other", "game_id": 159960, "position": 185, "slots": 11, "status": "ok", "total": 240, "turn": 136}
+{"bucket": "custom", "game_id": 336677, "position": 186, "slots": 10, "status": "ok", "total": 240, "turn": 125}
+{"bucket": "team_or_mvm", "game_id": 318723, "position": 187, "slots": 12, "status": "ok", "total": 240, "turn": 115}
+{"bucket": "campaign", "game_id": 321561, "position": 188, "slots": 12, "status": "ok", "total": 240, "turn": 126}
+{"bucket": "classic", "game_id": 447614, "position": 189, "slots": 11, "status": "ok", "total": 240, "turn": 134}
+{"bucket": "standard_or_other", "game_id": 54847, "position": 190, "slots": 11, "status": "ok", "total": 240, "turn": 136}
+{"bucket": "custom", "game_id": 277134, "position": 191, "slots": 10, "status": "ok", "total": 240, "turn": 125}
+{"bucket": "team_or_mvm", "game_id": 341336, "position": 192, "slots": 10, "status": "ok", "total": 240, "turn": 115}
+{"bucket": "campaign", "game_id": 148884, "position": 193, "slots": 11, "status": "ok", "total": 240, "turn": 126}
+{"bucket": "classic", "game_id": 256587, "position": 194, "slots": 11, "status": "ok", "total": 240, "turn": 134}
+{"bucket": "standard_or_other", "game_id": 40311, "position": 195, "slots": 11, "status": "ok", "total": 240, "turn": 136}
+{"bucket": "custom", "game_id": 474043, "position": 196, "slots": 11, "status": "ok", "total": 240, "turn": 124}
+{"bucket": "team_or_mvm", "game_id": 160278, "position": 197, "slots": 12, "status": "ok", "total": 240, "turn": 114}
+{"bucket": "campaign", "game_id": 636699, "position": 198, "slots": 11, "status": "ok", "total": 240, "turn": 125}
+{"bucket": "classic", "game_id": 179099, "position": 199, "slots": 11, "status": "ok", "total": 240, "turn": 134}
+{"bucket": "standard_or_other", "game_id": 674696, "position": 200, "slots": 11, "status": "ok", "total": 240, "turn": 135}
+{"bucket": "custom", "game_id": 494635, "position": 201, "slots": 11, "status": "ok", "total": 240, "turn": 122}
+{"bucket": "team_or_mvm", "game_id": 72849, "position": 202, "slots": 12, "status": "ok", "total": 240, "turn": 114}
+{"bucket": "campaign", "game_id": 120606, "position": 203, "slots": 11, "status": "ok", "total": 240, "turn": 125}
+{"bucket": "classic", "game_id": 62178, "position": 204, "slots": 11, "status": "ok", "total": 240, "turn": 134}
+{"bucket": "standard_or_other", "game_id": 430947, "position": 205, "slots": 11, "status": "ok", "total": 240, "turn": 135}
+{"bucket": "custom", "game_id": 492731, "position": 206, "slots": 11, "status": "ok", "total": 240, "turn": 122}
+{"bucket": "team_or_mvm", "game_id": 43452, "position": 207, "slots": 12, "status": "ok", "total": 240, "turn": 114}
+{"bucket": "campaign", "game_id": 526245, "position": 208, "slots": 12, "status": "ok", "total": 240, "turn": 123}
+{"bucket": "classic", "game_id": 592489, "position": 209, "slots": 11, "status": "ok", "total": 240, "turn": 133}
+{"bucket": "standard_or_other", "game_id": 397401, "position": 210, "slots": 11, "status": "ok", "total": 240, "turn": 135}
+{"bucket": "custom", "game_id": 245693, "position": 211, "slots": 8, "status": "ok", "total": 240, "turn": 122}
+{"bucket": "team_or_mvm", "game_id": 26220, "position": 212, "slots": 12, "status": "ok", "total": 240, "turn": 114}
+{"bucket": "campaign", "game_id": 486742, "position": 213, "slots": 12, "status": "ok", "total": 240, "turn": 122}
+{"bucket": "classic", "game_id": 408829, "position": 214, "slots": 11, "status": "ok", "total": 240, "turn": 133}
+{"bucket": "standard_or_other", "game_id": 217174, "position": 215, "slots": 11, "status": "ok", "total": 240, "turn": 135}
+{"bucket": "custom", "game_id": 469931, "position": 216, "slots": 12, "status": "ok", "total": 240, "turn": 120}
+{"bucket": "team_or_mvm", "game_id": 96190, "position": 217, "slots": 12, "status": "ok", "total": 240, "turn": 113}
+{"bucket": "campaign", "game_id": 95209, "position": 218, "slots": 11, "status": "ok", "total": 240, "turn": 122}
+{"bucket": "classic", "game_id": 345508, "position": 219, "slots": 11, "status": "ok", "total": 240, "turn": 133}
+{"bucket": "standard_or_other", "game_id": 208762, "position": 220, "slots": 11, "status": "ok", "total": 240, "turn": 135}
+{"bucket": "custom", "game_id": 225391, "position": 221, "slots": 11, "status": "ok", "total": 240, "turn": 120}
+{"bucket": "team_or_mvm", "game_id": 38591, "position": 222, "slots": 12, "status": "ok", "total": 240, "turn": 113}
+{"bucket": "campaign", "game_id": 72388, "position": 223, "slots": 11, "status": "ok", "total": 240, "turn": 122}
+{"bucket": "classic", "game_id": 284865, "position": 224, "slots": 11, "status": "ok", "total": 240, "turn": 133}
+{"bucket": "standard_or_other", "game_id": 112611, "position": 225, "slots": 11, "status": "ok", "total": 240, "turn": 135}
+{"bucket": "custom", "game_id": 46352, "position": 226, "slots": 10, "status": "ok", "total": 240, "turn": 120}
+{"bucket": "team_or_mvm", "game_id": 245123, "position": 227, "slots": 10, "status": "ok", "total": 240, "turn": 113}
+{"bucket": "campaign", "game_id": 349337, "position": 228, "slots": 12, "status": "ok", "total": 240, "turn": 121}
+{"bucket": "classic", "game_id": 193711, "position": 229, "slots": 11, "status": "ok", "total": 240, "turn": 133}
+{"bucket": "standard_or_other", "game_id": 34589, "position": 230, "slots": 11, "status": "ok", "total": 240, "turn": 135}
+{"bucket": "custom", "game_id": 299146, "position": 231, "slots": 11, "status": "ok", "total": 240, "turn": 118}
+{"bucket": "team_or_mvm", "game_id": 406653, "position": 232, "slots": 12, "status": "ok", "total": 240, "turn": 112}
+{"bucket": "campaign", "game_id": 189400, "position": 233, "slots": 11, "status": "ok", "total": 240, "turn": 120}
+{"bucket": "classic", "game_id": 110353, "position": 234, "slots": 11, "status": "ok", "total": 240, "turn": 133}
+{"bucket": "standard_or_other", "game_id": 421276, "position": 235, "slots": 11, "status": "ok", "total": 240, "turn": 134}
+{"bucket": "custom", "game_id": 147504, "position": 236, "slots": 11, "status": "ok", "total": 240, "turn": 118}
+{"bucket": "team_or_mvm", "game_id": 347923, "position": 237, "slots": 12, "status": "ok", "total": 240, "turn": 112}
+{"bucket": "campaign", "game_id": 94432, "position": 238, "slots": 11, "status": "ok", "total": 240, "turn": 120}
+{"bucket": "classic", "game_id": 81093, "position": 239, "slots": 11, "status": "ok", "total": 240, "turn": 133}
+{"bucket": "standard_or_other", "game_id": 214538, "position": 240, "slots": 11, "status": "ok", "total": 240, "turn": 134}
+===== PUBLIC VALIDATION CORPUS DISCOVERY =====
+listed_games:       8680
+eligible_games:     5025
+probed_games:       240
+loadinfo_ok:        240
+loadinfo_failed:    0
+selected_games:     32
+combined_games:     68
+selected_by_bucket: {'campaign': 16, 'championship': 4, 'finite_fuel': 9, 'sphere': 3}
+selected_manifest:  validation/corpus/manifests/public-short-expansion-selected.jsonl
+combined_manifest:  validation/corpus/manifests/public-short-expansion-with-public36.jsonl
+report:             artifacts/public-short-expansion/selection-report.json
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+{"attempt": 1, "error": "timed out", "error_type": "TimeoutError", "game_id": 499284, "max_attempts": 3, "status": "retry"}
+{"canonical_failed": 0, "canonical_ok": 1032, "embedded_consecutive": 1024, "game_id": 499284, "ghost_ship_records": 0, "ionstorm_records": 0, "minefield_records": 65738, "position": 1, "snapshots": 1032, "source": "network", "status": "ok", "total": 32, "transitions": 1024}
+{"attempt": 1, "error": "timed out", "error_type": "TimeoutError", "game_id": 347236, "max_attempts": 3, "status": "retry"}
+{"attempt": 2, "error": "timed out", "error_type": "TimeoutError", "game_id": 347236, "max_attempts": 3, "status": "retry"}
+{"error": "Planets.nu returned HTTP 500 for game/loadall", "error_type": "CorpusApiError", "game_id": 347236, "position": 2, "status": "failed", "total": 32}
+{"attempt": 1, "error": "Planets.nu returned HTTP 500 for game/loadinfo", "error_type": "CorpusApiError", "game_id": 645077, "max_attempts": 3, "status": "retry"}
+{"attempt": 2, "error": "Planets.nu returned HTTP 500 for game/loadinfo", "error_type": "CorpusApiError", "game_id": 645077, "max_attempts": 3, "status": "retry"}
+{"error": "Planets.nu returned HTTP 503 for game/loadall", "error_type": "CorpusApiError", "game_id": 645077, "position": 3, "status": "failed", "total": 32}
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 49055, "position": 4, "status": "failed", "total": 32}
+{"attempt": 1, "error": "Planets.nu returned HTTP 503 for game/loadall", "error_type": "CorpusApiError", "game_id": 674696, "max_attempts": 3, "status": "retry"}
+{"attempt": 2, "error": "timed out", "error_type": "TimeoutError", "game_id": 674696, "max_attempts": 3, "status": "retry"}
+{"canonical_failed": 11, "canonical_ok": 1474, "embedded_consecutive": 1452, "game_id": 674696, "ghost_ship_records": 30, "ionstorm_records": 22429, "minefield_records": 53502, "position": 5, "snapshots": 1485, "source": "network", "status": "ok", "total": 32, "transitions": 1474}
+{"attempt": 1, "error": "Planets.nu returned HTTP 503 for game/loadinfo", "error_type": "CorpusApiError", "game_id": 310054, "max_attempts": 3, "status": "retry"}
+{"attempt": 2, "error": "Planets.nu returned HTTP 503 for game/loadinfo", "error_type": "CorpusApiError", "game_id": 310054, "max_attempts": 3, "status": "retry"}
+{"canonical_failed": 0, "canonical_ok": 1430, "embedded_consecutive": 1419, "game_id": 310054, "ghost_ship_records": 0, "ionstorm_records": 25971, "minefield_records": 52028, "position": 6, "snapshots": 1430, "source": "network", "status": "ok", "total": 32, "transitions": 1419}
+{"attempt": 1, "error": "Planets.nu returned HTTP 503 for game/loadinfo", "error_type": "CorpusApiError", "game_id": 632527, "max_attempts": 3, "status": "retry"}
+{"attempt": 2, "error": "Planets.nu returned HTTP 503 for game/loadinfo", "error_type": "CorpusApiError", "game_id": 632527, "max_attempts": 3, "status": "retry"}
+{"error": "Planets.nu returned HTTP 503 for game/loadall", "error_type": "CorpusApiError", "game_id": 632527, "position": 7, "status": "failed", "total": 32}
+{"attempt": 1, "error": "Planets.nu returned HTTP 503 for game/loadall", "error_type": "CorpusApiError", "game_id": 96616, "max_attempts": 3, "status": "retry"}
+{"attempt": 2, "error": "Planets.nu returned HTTP 503 for game/loadall", "error_type": "CorpusApiError", "game_id": 96616, "max_attempts": 3, "status": "retry"}
+{"error": "Planets.nu returned HTTP 503 for game/loadinfo", "error_type": "CorpusApiError", "game_id": 96616, "position": 8, "status": "failed", "total": 32}
+{"attempt": 1, "error": "Planets.nu returned HTTP 503 for game/loadinfo", "error_type": "CorpusApiError", "game_id": 407599, "max_attempts": 3, "status": "retry"}
+{"attempt": 2, "error": "Planets.nu returned HTTP 503 for game/loadinfo", "error_type": "CorpusApiError", "game_id": 407599, "max_attempts": 3, "status": "retry"}
+{"canonical_failed": 0, "canonical_ok": 1040, "embedded_consecutive": 1032, "game_id": 407599, "ghost_ship_records": 0, "ionstorm_records": 9656, "minefield_records": 5966, "position": 9, "snapshots": 1040, "source": "network", "status": "ok", "total": 32, "transitions": 1032}
+{"attempt": 1, "error": "timed out", "error_type": "TimeoutError", "game_id": 245693, "max_attempts": 3, "status": "retry"}
+{"attempt": 2, "error": "Planets.nu returned HTTP 503 for game/loadinfo", "error_type": "CorpusApiError", "game_id": 245693, "max_attempts": 3, "status": "retry"}
+{"error": "Planets.nu returned HTTP 503 for game/loadinfo", "error_type": "CorpusApiError", "game_id": 245693, "position": 10, "status": "failed", "total": 32}
+{"attempt": 1, "error": "Planets.nu returned HTTP 503 for game/loadall", "error_type": "CorpusApiError", "game_id": 521834, "max_attempts": 3, "status": "retry"}
+{"canonical_failed": 0, "canonical_ok": 1441, "embedded_consecutive": 1430, "game_id": 521834, "ghost_ship_records": 0, "ionstorm_records": 5676, "minefield_records": 160138, "position": 11, "snapshots": 1441, "source": "network", "status": "ok", "total": 32, "transitions": 1430}
+{"canonical_failed": 1, "canonical_ok": 1473, "embedded_consecutive": 1441, "game_id": 421276, "ghost_ship_records": 6, "ionstorm_records": 20262, "minefield_records": 144531, "position": 12, "snapshots": 1474, "source": "network", "status": "ok", "total": 32, "transitions": 1463}
+{"attempt": 1, "error": "Planets.nu returned HTTP 503 for game/loadinfo", "error_type": "CorpusApiError", "game_id": 245123, "max_attempts": 3, "status": "retry"}
+{"attempt": 2, "error": "Planets.nu returned HTTP 503 for game/loadinfo", "error_type": "CorpusApiError", "game_id": 245123, "max_attempts": 3, "status": "retry"}
+{"error": "Planets.nu returned HTTP 503 for game/loadinfo", "error_type": "CorpusApiError", "game_id": 245123, "position": 13, "status": "failed", "total": 32}
+{"attempt": 1, "error": "Planets.nu returned HTTP 503 for game/loadinfo", "error_type": "CorpusApiError", "game_id": 172010, "max_attempts": 3, "status": "retry"}
+{"attempt": 2, "error": "Planets.nu returned HTTP 503 for game/loadinfo", "error_type": "CorpusApiError", "game_id": 172010, "max_attempts": 3, "status": "retry"}
+{"error": "Planets.nu returned HTTP 503 for game/loadall", "error_type": "CorpusApiError", "game_id": 172010, "position": 14, "status": "failed", "total": 32}
+{"canonical_failed": 181, "canonical_ok": 1359, "embedded_consecutive": 1529, "game_id": 530633, "ghost_ship_records": 148, "ionstorm_records": 28875, "minefield_records": 201355, "position": 15, "snapshots": 1540, "source": "network", "status": "ok", "total": 32, "transitions": 1529}
+{"canonical_failed": 5, "canonical_ok": 1491, "embedded_consecutive": 1485, "game_id": 600044, "ghost_ship_records": 160, "ionstorm_records": 22704, "minefield_records": 249336, "position": 16, "snapshots": 1496, "source": "network", "status": "ok", "total": 32, "transitions": 1485}
+exit status 130
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+exit status 130
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+exit status 130
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+exit status 130
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+exit status 130
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+exit status 130
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+exit status 130
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+exit status 130
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+exit status 130
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+got 3 SIGTERM/SIGINTs, forcefully exiting
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+unknown flag: --rm
+
+Usage:  docker [OPTIONS] COMMAND [ARG...]
+
+Run 'docker --help' for more information
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+unknown flag: --rm
+
+Usage:  docker [OPTIONS] COMMAND [ARG...]
+
+Run 'docker --help' for more information
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+unknown flag: --rm
+
+Usage:  docker [OPTIONS] COMMAND [ARG...]
+
+Run 'docker --help' for more information
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+unknown flag: --rm
+
+Usage:  docker [OPTIONS] COMMAND [ARG...]
+
+Run 'docker --help' for more information
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+unknown flag: --rm
+
+Usage:  docker [OPTIONS] COMMAND [ARG...]
+
+Run 'docker --help' for more information
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+unknown flag: --rm
+
+Usage:  docker [OPTIONS] COMMAND [ARG...]
+
+Run 'docker --help' for more information
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+unknown flag: --rm
+
+Usage:  docker [OPTIONS] COMMAND [ARG...]
+
+Run 'docker --help' for more information
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+unknown flag: --rm
+
+Usage:  docker [OPTIONS] COMMAND [ARG...]
+
+Run 'docker --help' for more information
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+exit status 130
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+unknown flag: --rm
+
+Usage:  docker [OPTIONS] COMMAND [ARG...]
+
+Run 'docker --help' for more information
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+got 3 SIGTERM/SIGINTs, forcefully exiting
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+unknown flag: --rm
+
+Usage:  docker [OPTIONS] COMMAND [ARG...]
+
+Run 'docker --help' for more information
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+unknown flag: --rm
+
+Usage:  docker [OPTIONS] COMMAND [ARG...]
+
+Run 'docker --help' for more information
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+unknown flag: --rm
+
+Usage:  docker [OPTIONS] COMMAND [ARG...]
+
+Run 'docker --help' for more information
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+unknown flag: --rm
+
+Usage:  docker [OPTIONS] COMMAND [ARG...]
+
+Run 'docker --help' for more information
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+unknown flag: --rm
+
+Usage:  docker [OPTIONS] COMMAND [ARG...]
+
+Run 'docker --help' for more information
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+unknown flag: --rm
+
+Usage:  docker [OPTIONS] COMMAND [ARG...]
+
+Run 'docker --help' for more information
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+unknown flag: --rm
+
+Usage:  docker [OPTIONS] COMMAND [ARG...]
+
+Run 'docker --help' for more information
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+unknown flag: --rm
+
+Usage:  docker [OPTIONS] COMMAND [ARG...]
+
+Run 'docker --help' for more information
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+exit status 130
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+exit status 130
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+exit status 130
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+{"canonical_failed": 0, "canonical_ok": 1032, "embedded_consecutive": 1024, "game_id": 499284, "ghost_ship_records": 0, "ionstorm_records": 0, "minefield_records": 65738, "position": 1, "snapshots": 1032, "source": "cache", "status": "ok", "total": 32, "transitions": 1024}
+exit status 130
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+exit status 130
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+{"canonical_failed": 0, "canonical_ok": 1032, "embedded_consecutive": 1024, "game_id": 499284, "ghost_ship_records": 0, "ionstorm_records": 0, "minefield_records": 65738, "position": 1, "snapshots": 1032, "source": "cache", "status": "ok", "total": 32, "transitions": 1024}
+{"canonical_failed": 0, "canonical_ok": 1529, "embedded_consecutive": 1518, "game_id": 347236, "ghost_ship_records": 21, "ionstorm_records": 8712, "minefield_records": 148968, "position": 2, "snapshots": 1529, "source": "network", "status": "ok", "total": 32, "transitions": 1518}
+{"canonical_failed": 0, "canonical_ok": 1386, "embedded_consecutive": 1375, "game_id": 645077, "ghost_ship_records": 0, "ionstorm_records": 6864, "minefield_records": 31617, "position": 3, "snapshots": 1386, "source": "network", "status": "ok", "total": 32, "transitions": 1375}
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 49055, "position": 4, "status": "failed", "total": 32}
+{"canonical_failed": 11, "canonical_ok": 1474, "embedded_consecutive": 1452, "game_id": 674696, "ghost_ship_records": 30, "ionstorm_records": 22429, "minefield_records": 53502, "position": 5, "snapshots": 1485, "source": "cache", "status": "ok", "total": 32, "transitions": 1474}
+{"canonical_failed": 0, "canonical_ok": 1430, "embedded_consecutive": 1419, "game_id": 310054, "ghost_ship_records": 0, "ionstorm_records": 25971, "minefield_records": 52028, "position": 6, "snapshots": 1430, "source": "cache", "status": "ok", "total": 32, "transitions": 1419}
+{"canonical_failed": 72, "canonical_ok": 999, "embedded_consecutive": 1062, "game_id": 632527, "ghost_ship_records": 87, "ionstorm_records": 4158, "minefield_records": 187744, "position": 7, "snapshots": 1071, "source": "network", "status": "ok", "total": 32, "transitions": 1062}
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 96616, "position": 8, "status": "failed", "total": 32}
+{"canonical_failed": 0, "canonical_ok": 1040, "embedded_consecutive": 1032, "game_id": 407599, "ghost_ship_records": 0, "ionstorm_records": 9656, "minefield_records": 5966, "position": 9, "snapshots": 1040, "source": "cache", "status": "ok", "total": 32, "transitions": 1032}
+{"canonical_failed": 12, "canonical_ok": 964, "embedded_consecutive": 968, "game_id": 245693, "ghost_ship_records": 0, "ionstorm_records": 3440, "minefield_records": 105450, "position": 10, "snapshots": 976, "source": "network", "status": "ok", "total": 32, "transitions": 968}
+{"canonical_failed": 0, "canonical_ok": 1441, "embedded_consecutive": 1430, "game_id": 521834, "ghost_ship_records": 0, "ionstorm_records": 5676, "minefield_records": 160138, "position": 11, "snapshots": 1441, "source": "cache", "status": "ok", "total": 32, "transitions": 1430}
+{"canonical_failed": 1, "canonical_ok": 1473, "embedded_consecutive": 1441, "game_id": 421276, "ghost_ship_records": 6, "ionstorm_records": 20262, "minefield_records": 144531, "position": 12, "snapshots": 1474, "source": "cache", "status": "ok", "total": 32, "transitions": 1463}
+{"attempt": 1, "error": "Planets.nu returned HTTP 503 for game/loadall", "error_type": "CorpusApiError", "game_id": 245123, "max_attempts": 3, "status": "retry"}
+{"canonical_failed": 0, "canonical_ok": 1130, "embedded_consecutive": 1120, "game_id": 245123, "ghost_ship_records": 0, "ionstorm_records": 6990, "minefield_records": 138927, "position": 13, "snapshots": 1130, "source": "network", "status": "ok", "total": 32, "transitions": 1120}
+{"attempt": 1, "error": "Planets.nu returned HTTP 503 for game/loadall", "error_type": "CorpusApiError", "game_id": 172010, "max_attempts": 3, "status": "retry"}
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 172010, "position": 14, "status": "failed", "total": 32}
+{"canonical_failed": 181, "canonical_ok": 1359, "embedded_consecutive": 1529, "game_id": 530633, "ghost_ship_records": 148, "ionstorm_records": 28875, "minefield_records": 201355, "position": 15, "snapshots": 1540, "source": "cache", "status": "ok", "total": 32, "transitions": 1529}
+exit status 137
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+exit status 130
