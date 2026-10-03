@@ -326,3 +326,77 @@ It:
 5. never reads held-out.
 
 No strict-rank result existed before this correction.
+
+
+## Nu-derived requester/strict-rank cross-analysis
+
+The discovery-only strict-rank analysis completed without reading held-out.
+
+Population:
+
+```text
+adjacent rows:                   31
+
+strict rank 1:                   13
+strict rank >1:                   2
+strict rank missing:             16
+
+requester rank 1:                13
+requester rank >1:                2
+requester rank missing:          16
+
+dependency qualified:            15
+dependency not qualified:        16
+```
+
+The 16 missing-rank rows align in count with the previously documented
+discovery movement-position fail-closed population. They must not be treated as
+queue-selection mismatches until their dependency class is confirmed row by
+row.
+
+On the 15 dependency-qualified rows:
+
+```text
+factual next opponent strict rank 1 = 13 / 15
+factual next opponent strict rank >1 = 2 / 15
+```
+
+Therefore the naive candidate:
+
+```text
+post-capture recomposition
+-> choose rank-1 strict attacker
+```
+
+is not yet universal even inside the currently qualified subset.
+
+The two rank>1 rows are now the highest-value queue residuals. They may indicate
+an elapsed-pair/history exclusion, already-consumed combat order, pair-cap
+effect, or another mutable queue constraint that is not represented by the
+static requester rank.
+
+### Cross-tabulation against AFSim failure modes
+
+AFSim categories with factual opponent strict-rank 1:
+
+```text
+AFSim exact                          6 / 6
+prize_with_wrong_opponent            0 / 4
+factual_opponent_without_prize       5 / 5
+unrelated_pair                       2 / 3
+no_pair                              0 / 13
+```
+
+Thus seven of AFSim's 25 pair failures occur even where the independently
+reconstructed Nu-derived factual opponent is rank 1:
+
+```text
+AFSim nonexact + factual strict-rank 1 = 7 / 25
+```
+
+This is strong evidence that AFSim's KILL/PE pair selector is the wrong selector
+for Nu. It does not, by itself, prove a complete Nu restart queue.
+
+The next bounded step is to print the exact two rank>1 rows and classify the 16
+rank-missing rows by dependency reason/source before any new queue candidate is
+frozen.
