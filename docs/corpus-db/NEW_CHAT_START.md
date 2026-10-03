@@ -48,12 +48,15 @@ Physical invariants:
     immutable published generation
     original ZIP/TRN retained as oracle
 
-The compact generation is the accepted read backend. The previous public36
-typed1 generation should be retained temporarily as rollback after activation.
+The compact generation is the accepted and ACTIVE read backend. CURRENT was
+successfully switched on 2026-10-03 and both normal/external readers passed the
+post-switch shared-read gate. The previous public36 typed1 generation remains a
+temporary rollback generation.
 
 ## Operational activation
 
-Use the guarded activation runner:
+Activation has already completed successfully. For re-verification or a future
+controlled re-activation, use the guarded activation runner:
 
     export PLANETS_CORPUS_DB_ROOT=/root/projects/planets-corpus-db
     bash tools/activate-corpus-db-compact-public36.sh
