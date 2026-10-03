@@ -129,7 +129,38 @@ Run it from the external checkout. It keeps recovered GPL source under ignored
 `artifacts/external-sources/`, validates the snapshot, attempts CVS checkout,
 then inventories/searches the tree.
 
-## Next action if snapshot succeeds
+## JPHost snapshot recovery succeeded
+
+The legacy CVS snapshot was fetched and validated:
+
+```text
+SHA256:
+a9b1ac89ded3604350cdfde33eefea28c29348a60b3ce54a19b44145b93dd6ae
+
+module:
+jhost
+
+checkout:
+artifacts/external-sources/jphost-cvs/checkout/jhost
+```
+
+The source tree is real and includes `src/jhost`, `src/jhostcore`, tests,
+configuration, historical Attic material, and an old `Jhost.jar`.
+
+The initial grep only exposes the named `Combat` stage in `JHost.java` plus
+generic combat fields in `Ship.java`; it does not yet expose an implementation
+class. Treat that as provisional until the deep source/Attic audit completes.
+
+Tracked next-stage helper:
+
+```text
+tools/research/audit-jphost-cvs-checkout.sh
+```
+
+It checks the full source inventory, pipeline/config wiring, CVS history, deleted
+Attic content, and historical JAR classes.
+
+## Next action on the recovered snapshot
 
 Do not read the whole tree randomly. First search:
 
