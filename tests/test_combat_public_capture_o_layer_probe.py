@@ -164,7 +164,8 @@ def test_probe_classifies_dependency_qualified_subset() -> None:
 
     assert '"resolved_dependency:qualified"' in probe
     assert '"resolved_dependency:blocked"' in probe
-    assert '"split_candidate_exact:qualified"' in probe
+    assert '"split_candidate_exact:"' in probe
+    assert '"qualified" if dependency_qualified else "blocked"' in probe
     assert '"factual_opponent_site_predicted"' in probe
     assert '"factual_opponent_history_anchored"' in probe
     assert '"factual_opponent_removed_before_next"' in probe
