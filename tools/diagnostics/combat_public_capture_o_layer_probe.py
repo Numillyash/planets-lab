@@ -685,6 +685,62 @@ def _capture_projection(row: Mapping[str, Any]) -> dict[str, Any]:
     }
 
 
+def _identity_anchor_factual_opponent(
+    *,
+    active_result: Mapping[str, Any],
+    factual_opponent_id: int,
+) -> dict[str, Any]:
+    """Condition the external cursor on the factual N+1 opponent identity only.
+
+    The observed N+1 VCR proves that this ship is active and strictly eligible
+    for that combat step. This helper intentionally injects only that identity /
+    eligibility fact. It does not read or inject the factual LEFT/RIGHT side.
+    The result is therefore a side-only discriminator, not an independent queue
+    predictor.
+    """
+
+    anchored = dict(active_result)
+    active_ids_raw = active_result.get("active_ship_ids")
+    active_ids = [
+        int(value)
+        for value in active_ids_raw
+        if isinstance(value, int) and not isinstance(value, bool)
+    ] if isinstance(active_ids_raw, list) else []
+    if factual_opponent_id not in active_ids:
+        active_ids.append(factual_opponent_id)
+    anchored["active_ship_ids"] = active_ids
+
+    candidate_rows_raw = active_result.get("candidates")
+    candidate_rows = [
+        dict(row)
+        for row in candidate_rows_raw
+        if isinstance(row, Mapping)
+    ] if isinstance(candidate_rows_raw, list) else []
+    factual_row = next(
+        (
+            row
+            for row in candidate_rows
+            if row.get("ship_id") == factual_opponent_id
+        ),
+        None,
+    )
+    if factual_row is None:
+        candidate_rows.append(
+            {
+                "ship_id": factual_opponent_id,
+                "requests_new_owner": True,
+                "strict_permission": True,
+                "identity_anchored_from_factual_nplus1": True,
+            }
+        )
+    else:
+        factual_row["requests_new_owner"] = True
+        factual_row["strict_permission"] = True
+        factual_row["identity_anchored_from_factual_nplus1"] = True
+    anchored["candidates"] = candidate_rows
+    return anchored
+
+
 def run(args: argparse.Namespace) -> dict[str, Any]:
     discovery = _load_discovery(args.discovery)
     observations = [
@@ -889,6 +945,10 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                         "active_status": active_result.get("status"),
                         "active_reason": active_result.get("reason"),
                     }
+                    identity_anchored_result = {
+                        "status": "unresolved",
+                        "reason": "active_membership_dependency_unresolved",
+                    }
                 else:
                     result = _external_c2ng_original_order_prize_continuation(
                         context=context,
@@ -896,12 +956,70 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                         active_result=active_result,
                         capture_prize_side=str(row.get("capture_side")),
                     )
+                    identity_anchored_result = (
+                        _external_c2ng_original_order_prize_continuation(
+                            context=context,
+                            capture=capture,
+                            active_result=_identity_anchor_factual_opponent(
+                                active_result=active_result,
+                                factual_opponent_id=int(factual_opponent_id),
+                            ),
+                            capture_prize_side=str(row.get("capture_side")),
+                        )
+                    )
 
                 status = str(result.get("status", "unknown"))
                 counts[f"status:{status}"] += 1
                 factual_side = row.get("captured_ship_side_next")
                 if factual_side in {"left", "right"}:
                     counts[f"factual_side:{factual_side}"] += 1
+
+                identity_anchored_split: dict[str, Any] | None = None
+                if identity_anchored_result.get("status") == "resolved":
+                    anchored_pair_exact = identity_anchored_result.get("pair_exact")
+                    order_context = row.get("order_context")
+                    order_context = (
+                        order_context if isinstance(order_context, Mapping) else {}
+                    )
+                    anchored_side_controls = order_context.get("side_controls")
+                    anchored_side_controls = (
+                        anchored_side_controls
+                        if isinstance(anchored_side_controls, Mapping)
+                        else {}
+                    )
+                    if anchored_pair_exact is True:
+                        anchored_side = row.get("capture_side")
+                        anchored_source = "identity_anchored_o_reachable_sticky_capture_side"
+                    elif anchored_pair_exact is False:
+                        anchored_side = anchored_side_controls.get(
+                            "neutral_orders_fresh_fc"
+                        )
+                        anchored_source = "identity_anchored_o_not_reachable_neutral_fresh_fc"
+                    else:
+                        anchored_side = None
+                        anchored_source = "identity_anchored_pair_unresolved"
+                    identity_anchored_split = {
+                        "source": anchored_source,
+                        "predicted_side": anchored_side,
+                        "factual_side": factual_side,
+                        "pair_exact": anchored_pair_exact,
+                        "exact": (
+                            anchored_side == factual_side
+                            if anchored_side in {"left", "right"}
+                            and factual_side in {"left", "right"}
+                            else None
+                        ),
+                    }
+                    if identity_anchored_split["exact"] is True:
+                        counts["identity_anchored_split_exact"] += 1
+                    elif identity_anchored_split["exact"] is False:
+                        counts["identity_anchored_split_mismatch"] += 1
+                    else:
+                        counts["identity_anchored_split_unresolved"] += 1
+                    if anchored_pair_exact is True:
+                        counts["identity_anchored_o_pair_reachable"] += 1
+                    elif anchored_pair_exact is False:
+                        counts["identity_anchored_o_pair_not_reachable"] += 1
 
                 split_candidate: dict[str, Any] | None = None
                 if status == "resolved":
@@ -1014,6 +1132,8 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                             "capture_side": row.get("capture_side"),
                             "factual_prize_side": factual_side,
                             "active_dependency": active_dependency,
+                            "identity_anchored_result": identity_anchored_result,
+                            "identity_anchored_split": identity_anchored_split,
                             "split_candidate": split_candidate,
                             "result": result,
                         }
@@ -1094,8 +1214,11 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 "The split side candidate is discovery-only: reachable original-"
                 "order pairs retain the factual capture side, while non-reachable "
                 "pairs use the independently computed neutral/fresh-FC priority "
-                "control. Dependency fields are reported explicitly so candidate-"
-                "graph failures cannot be misclassified as a side rule. Held-out "
+                "control. A second identity-anchored comparator conditions only "
+                "on the factual N+1 opponent identity/eligibility, never its side, "
+                "so side assignment can be tested separately from fail-closed "
+                "special-movement position reconstruction. It is not an independent "
+                "queue predictor. Dependency fields remain explicit. Held-out "
                 "games are not included."
             ),
         }
@@ -1181,6 +1304,17 @@ def main() -> int:
             "split mismatch qualified/blocked: "
             f"{counts.get('split_candidate_mismatch:qualified', 0)} / "
             f"{counts.get('split_candidate_mismatch:blocked', 0)}"
+        )
+        print(
+            "identity-anchored O reachable/not: "
+            f"{counts.get('identity_anchored_o_pair_reachable', 0)} / "
+            f"{counts.get('identity_anchored_o_pair_not_reachable', 0)}"
+        )
+        print(
+            "identity-anchored split exact/mismatch/unresolved: "
+            f"{counts.get('identity_anchored_split_exact', 0)} / "
+            f"{counts.get('identity_anchored_split_mismatch', 0)} / "
+            f"{counts.get('identity_anchored_split_unresolved', 0)}"
         )
         for label, key in (
             ("blocked site predicted T/F/U", "factual_opponent_site_predicted"),

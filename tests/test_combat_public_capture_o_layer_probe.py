@@ -11,6 +11,7 @@ from combat_public_capture_o_layer_probe import (
     _appearance_mapping,
     _pseudo_seen_from_appearances,
     _capture_projection,
+    _identity_anchor_factual_opponent,
     _targets_by_site,
 )
 
@@ -171,3 +172,31 @@ def test_probe_classifies_dependency_qualified_subset() -> None:
     assert '"factual_opponent_removed_before_next"' in probe
     assert '"factual_opponent_owner_changed_before_next"' in probe
     assert "blocked_dependency" in probe
+
+def test_identity_anchor_injects_only_factual_opponent_eligibility() -> None:
+    active = {
+        "active_ship_ids": [10],
+        "candidates": [
+            {
+                "ship_id": 10,
+                "requests_new_owner": True,
+                "strict_permission": True,
+            }
+        ],
+        "status": "resolved",
+    }
+    anchored = _identity_anchor_factual_opponent(
+        active_result=active,
+        factual_opponent_id=20,
+    )
+
+    assert anchored["active_ship_ids"] == [10, 20]
+    factual = next(
+        row for row in anchored["candidates"] if row["ship_id"] == 20
+    )
+    assert factual["requests_new_owner"] is True
+    assert factual["strict_permission"] is True
+    assert factual["identity_anchored_from_factual_nplus1"] is True
+    assert "side" not in factual
+    assert active["active_ship_ids"] == [10]
+

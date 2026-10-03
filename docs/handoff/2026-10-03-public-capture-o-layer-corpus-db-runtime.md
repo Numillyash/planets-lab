@@ -123,3 +123,31 @@ owner-changed. Held-out remains sealed.
 
 No NuHost side mechanic is promoted by this checkpoint.
 
+## Side-only identity-anchored discriminator
+
+The 16 dependency-blocked adjacent rows all fail before active membership because
+the conservative movement predictor intentionally returns no exact position.
+Observed sources are:
+
+    pre_move_mkt_mass_change        5
+    intercept_movement              3
+    hyperjump_movement              3
+    normal_mine_route_risk          2
+    tow_target                      2
+    potential_chunnel_source_stack  1
+
+All 16 have predicted_position=None. None are history-anchored, mutation-removed,
+or owner-changed by the current replay.
+
+This is a heterogeneous special-movement/risk uncertainty population, not a
+coherent post-capture side residual.
+
+The next discovery comparator therefore conditions on one additional factual
+input already proven by VCR N+1: the next opponent identity is active and
+strictly eligible at that step. It injects only that identity/eligibility into
+the external frozen-order diagnostic. It never uses the factual LEFT/RIGHT side.
+
+This comparator is explicitly a conditional side discriminator, not an
+independent queue predictor. Held-out remains sealed until its discovery result
+is frozen.
+
