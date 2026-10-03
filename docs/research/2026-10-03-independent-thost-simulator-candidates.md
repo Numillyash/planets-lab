@@ -222,3 +222,99 @@ neither useful:
 
 Any external rule still has to be turned into a frozen discriminator and tested
 against the Nu discovery Corpus DB before it has relevance to NuHost.
+
+
+## Web pre-recovery triage after Apajalista timeout
+
+The first local recovery run established an operational problem rather than a
+negative source result: Apajalista's detail page for ID 41859 transferred only
+part of its small HTML response over several minutes and had to be interrupted.
+The old helper used `curl -fL` without a total transfer deadline, so a slow
+detail page could block the whole archaeology pass indefinitely.
+
+A live web pass found a direct AFSIM archive candidate behind the Apajalista
+download link:
+
+```text
+https://www.apajalista.net/tiedostot/Pelit/Purkkipelit/VGA_Planets/AFSIM.ZIP
+```
+
+This is a **recovery locator only** until the archive is fetched locally and
+validated as ZIP with a recorded SHA256. Do not treat URL discovery as package
+verification.
+
+Independent historical documentation also sharpens the source priorities.
+
+PlanetsCentral's technical file list identifies:
+
+```text
+AFSIM.SAV   AFSim: Saved simulation setup
+AFSREPL.EXE AFSim: helper program
+```
+
+Source:
+
+```text
+https://planetscentral.com/doc.cgi/filefmt/file-list
+```
+
+This confirms AFSim maintains a multi-object simulation setup of its own, but
+the surviving indexed page available in this pass does not by itself prove
+whether fight sequence is derived automatically or can be prescribed by the
+user. The package/manual remains the gating evidence for that distinction.
+
+For BSim, the historical alt.games.vga-planets FAQ preserved by Donovan's says
+the simulator supports battle order and describes the workflow as entering a
+series of ships and then configuring the battle order for optimum results.
+
+Source:
+
+```text
+https://www.donovansvgap.com/info/faq.htm
+section 7.5.1 BSIM
+```
+
+This materially lowers BSim's priority for Host-queue reconstruction because it
+is consistent with a user-prescribed optimization workflow. It is **not yet a
+closure**: the package/manual still has to establish whether BSim also contains
+an automatic THost-order mode.
+
+The recovery helper was therefore hardened in commit:
+
+```text
+0f90ae0f914fa5cab3ad01ae72bf00502f4b424e
+research: make independent simulator recovery fail-fast
+```
+
+Current behavior:
+
+```text
+AFSim:
+  try the direct archive candidate first
+  if that fails, use bounded detail-page discovery
+
+BSim 2.2:
+  use bounded detail-page discovery
+
+if BSim 2.2 cannot be recovered:
+  optionally inspect indexed BSim 2.00 only as a version-scoped architecture
+  fallback; never report it as BSim 2.2 evidence
+
+all page/download operations:
+  have explicit max-time bounds
+```
+
+Next runtime remains:
+
+```bash
+cd ~/projects/planets-lab-external
+git fetch origin
+git pull --ff-only origin research/external-engine-analysis
+
+bash tools/research/recover-independent-thost-simulators.sh \
+  2>&1 | tee /tmp/independent-thost-simulators.log
+```
+
+Interpret the result with the existing decision rule. In particular, do not
+close AFSim from secondary descriptions alone: inspect the recovered manual,
+saved-setup semantics and executable strings/debug/source material first.
