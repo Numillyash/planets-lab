@@ -116,9 +116,12 @@ def test_kill_phase_uses_first_sorted_ship_and_first_valid_opponent() -> None:
     assert pair is not None
     assert pair.phase == "kill"
     assert pair.initiator_id == 10
-    assert pair.opponent_id == 20
+    # The opponent scan walks the fully sorted array.  Ship 40 (owner 2)
+    # precedes ship 20 (owner 3), so it is the first foreign eligible target
+    # even though ship 20 has the lower ship ID.
+    assert pair.opponent_id == 40
     assert pair.left_id == 10
-    assert pair.right_id == 20
+    assert pair.right_id == 40
 
 
 def test_primary_enemy_phase_after_no_kill_pair() -> None:
