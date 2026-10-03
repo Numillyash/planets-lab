@@ -484,3 +484,93 @@ JPHost:
 Nu O + C distinction:
   primary documented constraint remains active
 ```
+
+
+## 9. JPHost source audit result: current checkout has no combat engine
+
+The recovered CVS working tree was audited in full.
+
+Inventory:
+
+```text
+Java source files:       169
+Java test files:          70
+Java source bytes:    429951
+```
+
+The server-side tree contains implemented infrastructure and planetary stages,
+including:
+
+```text
+jhost.JHost
+jhost.commands.ProcessTurn
+jhost.commands.CreateResults
+jhost.ship.Ship
+jhost.stages.BuildStarbase
+jhost.stages.PlanetaryProduction
+jhost.stages.PlanetaryHappiness
+jhost.stages.PlanetaryTaxation
+jhost.stages.PlanetaryGrowth
+jhost.stages.PlanetaryLosses
+jhost.stages.Assimilation
+jhost.stages.GhostedPlanetFixup
+```
+
+But the complete source/test inventory contains no combat-, battle-, capture- or
+VCR-named implementation class.
+
+More importantly, `JHost.turn()` shows that the long host-order block is still
+a roadmap made of comments. `Combat` appears only in that commented sequence:
+
+```text
+// BoardingParties ...
+// Movement ...
+// ...
+// Combat            Ship-to-ship and ship-to-planet combat
+// SupplyRepair_3 ...
+```
+
+while actual execution jumps from the already implemented early stages to the
+implemented planetary stages and result generation.
+
+The broad symbol search likewise finds no ship-to-ship combat implementation:
+outside the roadmap comment, the ship model only exposes generic combat state
+such as crew, owner, hull/weapon fields.
+
+`Changes.txt` also says ship tests had been commented out and the project was
+still building out messaging/build infrastructure. `notas.txt` continues to
+list host acceptance testing and major mechanics work as objectives.
+
+Therefore the **current 2004 CVS HEAD cannot supply a combat-order algorithm**.
+JPHost is a genuine historical PHost3-port project, but its checked-out milestone
+did not reach the Combat host stage.
+
+### Historical-source caveat still open
+
+The first deep audit attempted to inspect CVS history and the deleted
+`Jhost.jar`, but those commands used `cvs log` as if it were repository-side
+`rlog`, and addressed the physical `Attic/` directory directly. CVS rejected
+those paths.
+
+That failure is tooling-only. It does not weaken the HEAD-source negative, but it
+leaves two bounded historical questions:
+
+1. did an earlier/deleted Java source file contain combat code?
+2. did the historical `Jhost.jar` contain classes not present in the final
+   source checkout?
+
+A focused follow-up helper is now tracked:
+
+```text
+tools/research/audit-jphost-cvs-history.sh
+```
+
+It uses repository-side `cvs rlog`, treats Attic files by their logical
+(non-Attic) CVS paths, inventories every deleted Java RCS file, searches raw RCS
+history, recovers the newest live revisions, restores the historical
+`Jhost.jar`, compares JAR classes to current source, and runs targeted
+`javap` when available.
+
+If that pass finds no historical combat implementation either, JPHost should be
+closed as a mechanics source for the active blocker while retained as historical
+project/provenance evidence.
