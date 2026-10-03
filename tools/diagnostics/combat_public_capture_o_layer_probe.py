@@ -782,6 +782,49 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                     capture=capture,
                     appearances=appearances_by_key,
                 )
+                active_dependency = {
+                    "status": active_result.get("status"),
+                    "reason": active_result.get("reason"),
+                    "factual_opponent_active": active_result.get(
+                        "factual_opponent_active"
+                    ),
+                    "factual_opponent_candidate_resolved": active_result.get(
+                        "factual_opponent_candidate_resolved"
+                    ),
+                    "factual_opponent_requests_new_owner": active_result.get(
+                        "factual_opponent_requests_new_owner"
+                    ),
+                    "factual_opponent_strict_permission": active_result.get(
+                        "factual_opponent_strict_permission"
+                    ),
+                    "factual_opponent_requester_rank": active_result.get(
+                        "factual_opponent_requester_rank"
+                    ),
+                    "factual_opponent_strict_rank": active_result.get(
+                        "factual_opponent_strict_rank"
+                    ),
+                }
+                for name in (
+                    "factual_opponent_active",
+                    "factual_opponent_candidate_resolved",
+                    "factual_opponent_requests_new_owner",
+                    "factual_opponent_strict_permission",
+                ):
+                    value = active_dependency.get(name)
+                    if value is True:
+                        counts[f"active_dependency:{name}:true"] += 1
+                    elif value is False:
+                        counts[f"active_dependency:{name}:false"] += 1
+                    else:
+                        counts[f"active_dependency:{name}:unknown"] += 1
+                if active_dependency.get("factual_opponent_requester_rank") is not None:
+                    counts["active_dependency:requester_rank_present"] += 1
+                else:
+                    counts["active_dependency:requester_rank_missing"] += 1
+                if active_dependency.get("factual_opponent_strict_rank") is not None:
+                    counts["active_dependency:strict_rank_present"] += 1
+                else:
+                    counts["active_dependency:strict_rank_missing"] += 1
                 if active_result.get("status") != "resolved":
                     result = {
                         "status": "unresolved",
@@ -803,8 +846,47 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 if factual_side in {"left", "right"}:
                     counts[f"factual_side:{factual_side}"] += 1
 
+                split_candidate: dict[str, Any] | None = None
                 if status == "resolved":
                     pair_exact = result.get("pair_exact")
+                    order_context = row.get("order_context")
+                    order_context = (
+                        order_context if isinstance(order_context, Mapping) else {}
+                    )
+                    side_controls = order_context.get("side_controls")
+                    side_controls = (
+                        side_controls if isinstance(side_controls, Mapping) else {}
+                    )
+                    if pair_exact is True:
+                        candidate_side = row.get("capture_side")
+                        candidate_source = "o_reachable_sticky_capture_side"
+                    elif pair_exact is False:
+                        candidate_side = side_controls.get(
+                            "neutral_orders_fresh_fc"
+                        )
+                        candidate_source = "o_not_reachable_neutral_fresh_fc"
+                    else:
+                        candidate_side = None
+                        candidate_source = "pair_reachability_unresolved"
+
+                    split_candidate = {
+                        "source": candidate_source,
+                        "predicted_side": candidate_side,
+                        "factual_side": factual_side,
+                        "exact": (
+                            candidate_side == factual_side
+                            if candidate_side in {"left", "right"}
+                            and factual_side in {"left", "right"}
+                            else None
+                        ),
+                    }
+                    if split_candidate["exact"] is True:
+                        counts["split_candidate_exact"] += 1
+                    elif split_candidate["exact"] is False:
+                        counts["split_candidate_mismatch"] += 1
+                    else:
+                        counts["split_candidate_unresolved"] += 1
+
                     exact = result.get("exact")
                     if pair_exact is True:
                         counts["o_pair_reachable"] += 1
@@ -834,6 +916,8 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                             ),
                             "capture_side": row.get("capture_side"),
                             "factual_prize_side": factual_side,
+                            "active_dependency": active_dependency,
+                            "split_candidate": split_candidate,
                             "result": result,
                         }
                     )
@@ -910,7 +994,12 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 "only required T-1/T members of the active exact-parity Corpus "
                 "DB, strict post-capture attackers determine reachability, and "
                 "factual N+1 supplies only the final opponent/side comparator. "
-                "Held-out games are not included."
+                "The split side candidate is discovery-only: reachable original-"
+                "order pairs retain the factual capture side, while non-reachable "
+                "pairs use the independently computed neutral/fresh-FC priority "
+                "control. Dependency fields are reported explicitly so candidate-"
+                "graph failures cannot be misclassified as a side rule. Held-out "
+                "games are not included."
             ),
         }
     finally:
@@ -967,6 +1056,20 @@ def main() -> int:
         )
         print(f"external O exact:     {counts.get('external_o_exact', 0)}")
         print(f"external O mismatch:  {counts.get('external_o_mismatch', 0)}")
+        print(f"split candidate exact:{counts.get('split_candidate_exact', 0):>4}")
+        print(f"split candidate mismatch:{counts.get('split_candidate_mismatch', 0):>2}")
+        print(
+            "factual opponent active T/F/U: "
+            f"{counts.get('active_dependency:factual_opponent_active:true', 0)} / "
+            f"{counts.get('active_dependency:factual_opponent_active:false', 0)} / "
+            f"{counts.get('active_dependency:factual_opponent_active:unknown', 0)}"
+        )
+        print(
+            "strict permission T/F/U: "
+            f"{counts.get('active_dependency:factual_opponent_strict_permission:true', 0)} / "
+            f"{counts.get('active_dependency:factual_opponent_strict_permission:false', 0)} / "
+            f"{counts.get('active_dependency:factual_opponent_strict_permission:unknown', 0)}"
+        )
         print(f"output:               {args.output}")
         return 0
     except (OSError, ValueError, json.JSONDecodeError) as exc:

@@ -143,3 +143,16 @@ def test_pseudo_seen_from_appearances_reconstructs_compact_vcr() -> None:
     assert vcr["rightownerid"] == 2
     assert (vcr["x"], vcr["y"]) == (100, 200)
 
+def test_probe_reports_split_candidate_and_dependency_audit() -> None:
+    root = Path(__file__).resolve().parents[1]
+    probe = (
+        root / "tools/diagnostics/combat_public_capture_o_layer_probe.py"
+    ).read_text(encoding="utf-8")
+
+    assert '"active_dependency"' in probe
+    assert '"factual_opponent_active"' in probe
+    assert '"factual_opponent_strict_permission"' in probe
+    assert '"split_candidate"' in probe
+    assert '"o_reachable_sticky_capture_side"' in probe
+    assert '"o_not_reachable_neutral_fresh_fc"' in probe
+
