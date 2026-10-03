@@ -443,3 +443,115 @@ delta narrow the exact old Pascal routine that changed?
 ```
 
 If the answer is yes, only that routine needs a bounded binary pass.
+
+
+## 10. Runtime lineage comparison: 1.1.21 -> 1.1.22 is structurally unchanged
+
+The three-version runtime audit completed successfully.
+
+Important structural result:
+
+```text
+PCC 1.1.21 ccSim:
+  simulator_symbols = 145
+
+PCC 1.1.22 ccSim:
+  simulator_symbols = 145
+```
+
+For the complete ccSim symbol table, every routine offset from 1.1.21 to
+1.1.22 is identical after accounting for the changed segment selector:
+
+```text
+1.1.21 segment = 2A8E
+1.1.22 segment = 2A92
+```
+
+In particular:
+
+```text
+SetShipOwner                  5DF8
+SortFCBO                      5FFA
+CalcBattleOrder               8114
+FreeVCRList                   8290
+Attacking                     84D6
+KeepVCR                       86E5
+MakeVCR                       8F37
+MakePlanetVCR                 91EF
+FillInPlanetAggressiveness    9DFD
+SimulateOnce                  9FA0
+Simulate                      C87E
+```
+
+The derived target sizes are also exactly unchanged:
+
+```text
+SetShipOwner                  0x4A
+SortFCBO                      0xFD
+CalcBattleOrder               0x17C
+FreeVCRList                   0x42
+KeepVCR                       0x89
+MakeVCR                       0x292
+MakePlanetVCR                 0x8D8
+NoFightWarning                0x88
+FillInPlanetAggressiveness    0x6D
+SortResult                    0x179
+```
+
+The bundled CCBSim 1.1.22 changelog only describes the release as fixing
+formula errors, especially PList 3. It does not mention battle order, captured
+ships, or active/passive handling.
+
+This is strong negative evidence against the idea that the 2021 c2ng
+captured-LEFT correction was later backported into the PCC1 DOS simulator by
+adding a structurally new state/check. It is **not yet byte-level proof**:
+same-size replacement instructions remain theoretically possible.
+
+The earlier 1.1.20 -> 1.1.21 transition is different. There:
+
+```text
+CalcBattleOrder 0x14C -> 0x17C
+SortFCBO        0xFB  -> 0xFD
+```
+
+while `MakeVCR`, `KeepVCR`, and `MakePlanetVCR` retain their target
+sizes. That transition predates the c2ng captured-LEFT fix and therefore cannot
+be the June-2021 fix itself.
+
+### Exact byte audit
+
+Tracked helper:
+
+```text
+tools/research/audit-pcc1-simulator-overlay-bytes.py
+```
+
+The helper uses the PCC MAP selector plus the resident Turbo/Borland overlay
+control header in `CC.EXE` to locate the exact `ccSim` code image in
+`CC.OVR`. It then:
+
+1. extracts the complete overlaid ccSim code image;
+2. reads its relocation table;
+3. zeros 16-bit relocation patch words to create a relocation-normalized image;
+4. hashes the raw and normalized unit;
+5. compares exact per-routine slices using MAP symbol boundaries;
+6. reports every normalized changed byte range and the routine(s) containing it.
+
+This is the required discriminator before spending time in a disassembler.
+
+Expected interpretation:
+
+```text
+1121 == 1122 after relocation normalization
+    -> PCC1 DOS simulator did not receive a code change in ccSim;
+       c2ng captured-LEFT fix belongs to the later PCC2/c2ng lineage.
+
+1121 != 1122 only in unrelated routines
+    -> same conclusion for capture-state purposes.
+
+1121 != 1122 in MakeVCR / Attacking / CalcBattleOrder
+    -> perform a bounded disassembly only for changed routine(s).
+```
+
+The extracted local binary slices are research artifacts only and must not be
+committed.
