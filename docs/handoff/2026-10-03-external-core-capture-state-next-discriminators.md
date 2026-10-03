@@ -663,3 +663,60 @@ addition.
 Next work in this branch should return to genuinely independent external-core
 candidates or historical documentation of capture-generated/restarted combat
 order.
+
+
+## Next independent source family after PCC1 closure
+
+PCC1 1.1.21 -> 1.1.22 is now closed as a captured-state backport path.
+
+Instruction-level audit of the target routines produced no changed opcode,
+branch structure, instruction boundary or operand shape. Every numeric delta is
+one of the uniform linker/layout shifts `+138`, `-138`, `+4`, or the packed
+`138 << 16` form.
+
+The next external search therefore moves outside the PCC/PCC2/c2ng family.
+
+Priority:
+
+```text
+1. AFSim (Sean Martens)
+2. BSim 2.2 (Thomas Voigt)
+3. Tanascius
+```
+
+AFSim is the strongest candidate because historical independent documentation
+describes it as a **multi-ship** simulator that delegates pairwise combat to
+Tim's VCR. Thus, if it automatically determines battle sequence, its queue
+orchestrator is independent from PCC.
+
+Surviving package indexes:
+
+```text
+AFSIM.ZIP
+Apajalista ID 41859
+indexed size 41757
+
+BSIM22.ZIP
+Apajalista ID 61688
+indexed size 187333
+```
+
+Tracked recovery/audit helper:
+
+```text
+tools/research/recover-independent-thost-simulators.sh
+```
+
+Detailed rationale:
+
+```text
+docs/research/2026-10-03-independent-thost-simulator-candidates.md
+```
+
+The helper dynamically resolves the download links from the indexed detail
+pages, validates archives, records hashes, inventories docs/binaries/debug
+material, and searches only queue/capture-relevant terms.
+
+If AFSim exposes automatic battle-order logic, it becomes the next independent
+THost comparator. If AFSim merely executes a user-specified sequence, close it
+and continue with BSim.
