@@ -245,3 +245,107 @@ This pass is the closure criterion for JPHost:
 
 If no combat implementation appears there, mark JPHost CLOSED for the active
 capture-order blocker and move external archaeology to the next engine/source.
+
+
+## JPHost closure
+
+The corrected CVS history / Attic pass has now been run against the recovered
+snapshot.
+
+Recovered historical material includes:
+
+```text
+71 deleted/Attic Java files
+jhost/Attic/Jhost.jar,v
+```
+
+The raw RCS search, restored deleted Java revisions, current source tree, and
+historical binary inventory all converge on the same result: there is no
+ship-to-ship combat-order engine in the recovered JPHost history.
+
+Historical JAR:
+
+```text
+revision: 1.1
+date:     2002-12-27
+SHA256:   fecfc0dd9b09f5c2a54580ecd21185e450df7be26ae16f6c3bb102b2b084b1fc
+size:     130331 bytes
+ZIP/JAR:  valid
+```
+
+Its complete class inventory contains the early object model, GUI, ship/planet
+classes and utilities, but no combat/battle/capture/VCR orchestration class.
+
+The audit stopped after the complete class inventory because the final
+source-vs-JAR comparison had a malformed `sed` expression. That helper bug is
+fixed in:
+
+```text
+662080dacb8c871f8232762505268f496856d7df
+research: fix JPHost historical JAR source comparison
+```
+
+A rerun can finish bookkeeping, but it is not gating. Final disposition:
+
+```text
+JPHost / JHOST:
+  CLOSED as a source for the active capture-order blocker
+  retained as historical provenance / architecture evidence
+```
+
+## VPA triage and PCC1 / CCBSim target
+
+A separate historical client path was checked next.
+
+Pinned VPA-Linux:
+
+```text
+promano7/vpa-linux
+a8774eaba8b457ec065ae7a7218fbc80a9d083db
+```
+
+VPA's `VCS.PAS` simulator is strictly pairwise:
+
+```text
+state: array [Left..Right] of one combatant each
+THost: Combat(...)
+PHost: CombatPHost(...)
+```
+
+So VPA does not contain the missing multi-ship queue.
+
+`VPA2.PAS` has a player-facing "Sort by battle order" key, but that path sorts
+starchart/object-list rows and assigns icons/colors. It is not a combat
+orchestrator and has no post-capture state mutation.
+
+By contrast, surviving PCC documentation explicitly identifies PCC1's simulator
+as **multi-ship THost + PHost**, and CCBSim as the standalone form of the same
+PCC battle engine. This makes PCC1/CCBSim the next high-value archaeology target.
+
+Detailed note:
+
+```text
+docs/research/2026-10-03-vpa-pcc1-ccbsim-combat-queue-triage.md
+```
+
+Tracked package-audit helper:
+
+```text
+tools/research/audit-pcc1-ccbsim-packages.sh
+```
+
+Default packages:
+
+```text
+cc1122.zip
+cc1122db.zip
+ccbsim1122.zip
+```
+
+The helper pins URL/hash/size, inventories package contents, searches debug/MAP
+material, identifies any source-like files, and performs bounded binary strings
+searches for queue/capture routine names. Recovered binaries remain under
+ignored `artifacts/external-sources/pcc1/`.
+
+If MAP/debug data yields useful routine names, the next pass should target those
+routines rather than blind-disassemble the full DOS binaries.
