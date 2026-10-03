@@ -1,0 +1,98 @@
+{
+  "database_path": "/corpus-db/generations/corpus-v2compact-public36-20261002T083138Z-11cd75fa918d.duckdb",
+  "evidence_boundary": "Discovery-only bounded O-layer comparator. The frozen-order cursor is transcribed from the separately audited external c2ng/THost path and is not NuHost authority. Only globally adjacent capture->next VCR rows are comparable; nonadjacent rows fail closed. Capture VCR N anchors the existing cursor, independently reconstructed movement/site state comes from only required T-1/T members of the active exact-parity Corpus DB, strict post-capture attackers determine reachability, and factual N+1 supplies only the final opponent/side comparator. The split side candidate is discovery-only: reachable original-order pairs retain the factual capture side, while non-reachable pairs use the independently computed neutral/fresh-FC priority control. Dependency fields are reported explicitly so candidate-graph failures cannot be misclassified as a side rule. Held-out games are not included.",
+  "evidence_status": "DISCOVERY_ONLY_EXTERNAL_REFERENCE_NOT_PROMOTED",
+  "observations": [
+    {
+      "active_dependency": {
+        "factual_opponent_active": false,
+        "factual_opponent_candidate_resolved": false,
+        "factual_opponent_requester_rank": null,
+        "factual_opponent_requests_new_owner": null,
+        "factual_opponent_strict_permission": null,
+        "factual_opponent_strict_rank": null,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "left",
+      "capture_vcr_id": 973,
+      "captured_ship_id": 9,
+      "factual_prize_side": "left",
+      "game_id": 233558,
+      "next_opponent_ship_id": 191,
+      "next_vcr_id": 976,
+      "result": {
+        "from_vcr_id": 973,
+        "reason": "nonadjacent_vcr_requires_intervening_mutation_model",
+        "status": "not_comparable",
+        "to_vcr_id": 976
+      },
+      "split_candidate": null,
+      "turn": 337,
+      "x": 2762,
+      "y": 1724
+    }
+  ],
+  "probe_game_ids": [
+    233558
+  ],
+  "scanned_game_ids": [
+    224849,
+    233558,
+    267580,
+    306971,
+    338264,
+    342288,
+    343550,
+    350094,
+    371631,
+    396107,
+    425973,
+    441148,
+    467386,
+    473010,
+    477725,
+    486109,
+    597910,
+    617883,
+    627339,
+    653272
+  ],
+  "schema": "planets-lab.combat-public-capture-o-layer-probe.v2.db1",
+  "source_discovery": "artifacts/public-capture-side/discovery-capture-side.json",
+  "summary": {
+    "appearance_summary": {
+      "payload_conflicts": 0,
+      "raw_vcr_observations": 16,
+      "replay_supported": 4,
+      "ship_appearances": 8,
+      "source_members": 11,
+      "unique_vcrs": 4
+    },
+    "counts": {
+      "active_dependency:factual_opponent_active:false": 1,
+      "active_dependency:factual_opponent_candidate_resolved:false": 1,
+      "active_dependency:factual_opponent_requests_new_owner:unknown": 1,
+      "active_dependency:factual_opponent_strict_permission:unknown": 1,
+      "active_dependency:requester_rank_missing": 1,
+      "active_dependency:strict_rank_missing": 1,
+      "adjacent_rows": 0,
+      "discovery_ship_rows": 1,
+      "factual_side:left": 1,
+      "observations_seen": 1,
+      "status:not_comparable": 1
+    },
+    "targeted_site_context": [
+      {
+        "game_id": 233558,
+        "pseudo_vcr_count": 4,
+        "targeted_archive_turns": [
+          336,
+          337
+        ],
+        "targeted_snapshot_count": 22,
+        "visited_sites": 1
+      }
+    ]
+  }
+}
