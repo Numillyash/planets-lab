@@ -1,0 +1,101 @@
+{
+  "database_path": "/corpus-db/generations/corpus-v2compact-public36-20261002T083138Z-11cd75fa918d.duckdb",
+  "evidence_boundary": "Discovery-only bounded O-layer comparator. The frozen-order cursor is transcribed from the separately audited external c2ng/THost path and is not NuHost authority. Only globally adjacent capture->next VCR rows are comparable; nonadjacent rows fail closed. Capture VCR N anchors the existing cursor, independently reconstructed movement/site state comes from only required T-1/T members of the active exact-parity Corpus DB, strict post-capture attackers determine reachability, and factual N+1 supplies only the final opponent/side comparator. Held-out games are not included.",
+  "evidence_status": "DISCOVERY_ONLY_EXTERNAL_REFERENCE_NOT_PROMOTED",
+  "observations": [
+    {
+      "capture_side": "right",
+      "capture_vcr_id": 90,
+      "captured_ship_id": 236,
+      "factual_prize_side": "left",
+      "game_id": 627339,
+      "next_opponent_ship_id": 305,
+      "next_vcr_id": 91,
+      "result": {
+        "capture_cursor": {
+          "left_index": 3,
+          "left_ship_id": 292,
+          "right_index": 0,
+          "right_ship_id": 236
+        },
+        "exact": false,
+        "external_order": [
+          236,
+          305,
+          310,
+          292,
+          374
+        ],
+        "factual_opponent_ship_id": 305,
+        "factual_prize_side": "left",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "turn": 38,
+      "x": 2340,
+      "y": 2526
+    }
+  ],
+  "probe_game_ids": [
+    627339
+  ],
+  "scanned_game_ids": [
+    224849,
+    233558,
+    267580,
+    306971,
+    338264,
+    342288,
+    343550,
+    350094,
+    371631,
+    396107,
+    425973,
+    441148,
+    467386,
+    473010,
+    477725,
+    486109,
+    597910,
+    617883,
+    627339,
+    653272
+  ],
+  "schema": "planets-lab.combat-public-capture-o-layer-probe.v2.db1",
+  "source_discovery": "artifacts/public-capture-side/discovery-capture-side.json",
+  "summary": {
+    "appearance_summary": {
+      "payload_conflicts": 0,
+      "raw_vcr_observations": 84,
+      "replay_supported": 14,
+      "ship_appearances": 24,
+      "source_members": 12,
+      "unique_vcrs": 14
+    },
+    "counts": {
+      "adjacent_rows": 1,
+      "discovery_ship_rows": 1,
+      "external_o_mismatch": 1,
+      "factual_side:left": 1,
+      "o_pair_not_reachable": 1,
+      "o_pair_not_reachable:left": 1,
+      "observations_seen": 1,
+      "status:resolved": 1
+    },
+    "targeted_site_context": [
+      {
+        "game_id": 627339,
+        "pseudo_vcr_count": 10,
+        "targeted_archive_turns": [
+          37,
+          38
+        ],
+        "targeted_snapshot_count": 24,
+        "visited_sites": 1
+      }
+    ]
+  }
+}

@@ -1,0 +1,383 @@
+===== PUBLIC CAPTURE O-LAYER DISCOVERY: PREFLIGHT =====
+docker:       ready
+corpus_db:    generations/corpus-v2compact-public36-20261002T083138Z-11cd75fa918d.duckdb
+===== PUBLIC CAPTURE O-LAYER DISCOVERY: BUILD LAB IMAGE =====
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "default" instance using docker driver
+
+#1 [lab internal] load build definition from Dockerfile
+#1 transferring dockerfile: 373B done
+#1 DONE 0.0s
+
+#2 [lab internal] load metadata for docker.io/library/python:3.12-slim
+#2 DONE 0.0s
+
+#3 [lab internal] load .dockerignore
+#3 transferring context: 184B done
+#3 DONE 0.0s
+
+#4 [lab 1/6] FROM docker.io/library/python:3.12-slim@sha256:dd29372629eeba2dd003fd9e9d35a5b8236c44727875a0364254b5127af88e65
+#4 resolve docker.io/library/python:3.12-slim@sha256:dd29372629eeba2dd003fd9e9d35a5b8236c44727875a0364254b5127af88e65 0.0s done
+#4 DONE 0.0s
+
+#5 [lab internal] load build context
+#5 transferring context: 414.12kB 0.0s done
+#5 DONE 0.0s
+
+#6 [lab 2/6] WORKDIR /workspace
+#6 CACHED
+
+#7 [lab 3/6] COPY pyproject.toml README.md ./
+#7 CACHED
+
+#8 [lab 4/6] COPY src ./src
+#8 DONE 0.1s
+
+#9 [lab 5/6] COPY tests ./tests
+#9 DONE 0.1s
+
+#10 [lab 6/6] RUN python -m pip install --no-cache-dir --upgrade pip     && python -m pip install --no-cache-dir -e '.[dev]'
+#10 1.209 Requirement already satisfied: pip in /usr/local/lib/python3.12/site-packages (25.0.1)
+#10 1.579 Collecting pip
+#10 1.850   Downloading pip-26.2.1-py3-none-any.whl.metadata (4.6 kB)
+#10 1.899 Downloading pip-26.2.1-py3-none-any.whl (1.8 MB)
+#10 2.274    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 7.3 MB/s eta 0:00:00
+#10 2.288 Installing collected packages: pip
+#10 2.288   Attempting uninstall: pip
+#10 2.291     Found existing installation: pip 25.0.1
+#10 2.322     Uninstalling pip-25.0.1:
+#10 2.482       Successfully uninstalled pip-25.0.1
+#10 3.161 Successfully installed pip-26.2.1
+#10 3.161 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#10 3.874 Obtaining file:///workspace
+#10 3.876   Installing build dependencies: started
+#10 5.510   Installing build dependencies: finished with status 'done'
+#10 5.511   Checking if build backend supports build_editable: started
+#10 5.989   Checking if build backend supports build_editable: finished with status 'done'
+#10 5.990   Getting requirements to build editable: started
+#10 6.655   Getting requirements to build editable: finished with status 'done'
+#10 6.657   Preparing editable metadata (pyproject.toml): started
+#10 7.306   Preparing editable metadata (pyproject.toml): finished with status 'done'
+#10 7.937 Collecting duckdb<1.6,>=1.5 (from planets-lab==0.1.0)
+#10 8.134   Downloading duckdb-1.5.6-cp312-cp312-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl.metadata (4.2 kB)
+#10 8.277 Collecting pyarrow<22,>=21 (from planets-lab==0.1.0)
+#10 8.325   Downloading pyarrow-21.0.0-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (3.3 kB)
+#10 8.386 Collecting pytest<9,>=8 (from planets-lab==0.1.0)
+#10 9.797   Downloading pytest-8.4.2-py3-none-any.whl.metadata (7.7 kB)
+#10 11.73 Collecting iniconfig>=1 (from pytest<9,>=8->planets-lab==0.1.0)
+#10 11.78   Downloading iniconfig-2.3.0-py3-none-any.whl.metadata (2.5 kB)
+#10 11.83 Collecting packaging>=20 (from pytest<9,>=8->planets-lab==0.1.0)
+#10 11.88   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+#10 11.93 Collecting pluggy<2,>=1.5 (from pytest<9,>=8->planets-lab==0.1.0)
+#10 11.98   Downloading pluggy-1.6.0-py3-none-any.whl.metadata (4.8 kB)
+#10 12.04 Collecting pygments>=2.7.2 (from pytest<9,>=8->planets-lab==0.1.0)
+#10 12.09   Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+#10 12.14 Downloading duckdb-1.5.6-cp312-cp312-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl (21.6 MB)
+#10 14.95    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 21.6/21.6 MB 7.9 MB/s  0:00:02
+#10 15.01 Downloading pyarrow-21.0.0-cp312-cp312-manylinux_2_28_x86_64.whl (42.8 MB)
+#10 20.76    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 42.8/42.8 MB 7.4 MB/s  0:00:05
+#10 20.81 Downloading pytest-8.4.2-py3-none-any.whl (365 kB)
+#10 20.92 Downloading pluggy-1.6.0-py3-none-any.whl (20 kB)
+#10 20.98 Downloading iniconfig-2.3.0-py3-none-any.whl (7.5 kB)
+#10 21.03 Downloading packaging-26.3-py3-none-any.whl (129 kB)
+#10 21.07 Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+#10 21.33    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 6.1 MB/s  0:00:00
+#10 21.38 Building wheels for collected packages: planets-lab
+#10 21.38   Building editable for planets-lab (pyproject.toml): started
+#10 22.08   Building editable for planets-lab (pyproject.toml): finished with status 'done'
+#10 22.08   Created wheel for planets-lab: filename=planets_lab-0.1.0-0.editable-py3-none-any.whl size=3673 sha256=3953bc115702bf66acfa85a8efeda029d2347c488c28754e058ecb079cc188a4
+#10 22.08   Stored in directory: /tmp/pip-ephem-wheel-cache-1nizn_78/wheels/b0/41/ab/4e04a8678980f3355548f1261923479fbf2a713a7393a7dea8
+#10 22.08 Successfully built planets-lab
+#10 22.12 Installing collected packages: pygments, pyarrow, pluggy, packaging, iniconfig, duckdb, pytest, planets-lab
+#10 24.25 
+#10 24.25 Successfully installed duckdb-1.5.6 iniconfig-2.3.0 packaging-26.3 planets-lab-0.1.0 pluggy-1.6.0 pyarrow-21.0.0 pygments-2.21.0 pytest-8.4.2
+#10 24.25 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#10 DONE 24.5s
+
+#11 [lab] exporting to image
+#11 exporting layers
+#11 exporting layers 6.5s done
+#11 exporting manifest sha256:d8dd1a7e3b85ba2944c00bc678b77bbd0b4645a6d6b87aefada5312a78bc003b 0.0s done
+#11 exporting config sha256:01fcab2043659d933e189ea4b5b40adb46f91d22319675e342b2f3285004437f done
+#11 exporting attestation manifest sha256:7f657025b5d0c6bff4123a5b48edc69cc4e625b3ee95e64f51b608129e2812b5 0.0s done
+#11 exporting manifest list sha256:f8080fc5c9ac0f8e49ba291e58a1235c45240ff0615cb73a8d46f64a6461087e done
+#11 naming to docker.io/library/planets-lab-external-lab:latest done
+#11 unpacking to docker.io/library/planets-lab-external-lab:latest
+#11 unpacking to docker.io/library/planets-lab-external-lab:latest 1.5s done
+#11 DONE 8.1s
+
+#12 [lab] resolving provenance for metadata file
+#12 DONE 0.0s
+ lab  Built
+===== PUBLIC CAPTURE O-LAYER DISCOVERY: PROBE =====
+game_passes:  13
+
+===== O-LAYER GAME 1/13: 224849 =====
+progress: stage=o_layer_site_context games=1 sites=5 backend=corpus-db status=start
+progress: stage=site_context game_id=224849 mode=corpus-db-targeted status=start
+progress: stage=site_context game_id=224849 mode=corpus-db-targeted snapshots=99 sites=5 status=done
+progress: stage=o_layer_site_context games=1 sites=5 backend=corpus-db status=done
+===== PUBLIC CAPTURE O-LAYER DISCOVERY =====
+discovery_ship_rows:  6
+adjacent_rows:        4
+resolved:             4
+not_comparable:       2
+unresolved:           0
+O pair reachable:     0
+  factual LEFT/RIGHT: 0 / 0
+O pair not reachable: 4
+  factual LEFT/RIGHT: 2 / 2
+external O exact:     0
+external O mismatch:  4
+output:               artifacts/public-capture-side/o-layer-parts/game-224849.json
+
+===== O-LAYER GAME 2/13: 233558 =====
+progress: stage=o_layer_site_context games=1 sites=1 backend=corpus-db status=start
+progress: stage=site_context game_id=233558 mode=corpus-db-targeted status=start
+progress: stage=site_context game_id=233558 mode=corpus-db-targeted snapshots=22 sites=1 status=done
+progress: stage=o_layer_site_context games=1 sites=1 backend=corpus-db status=done
+===== PUBLIC CAPTURE O-LAYER DISCOVERY =====
+discovery_ship_rows:  1
+adjacent_rows:        0
+resolved:             0
+not_comparable:       1
+unresolved:           0
+O pair reachable:     0
+  factual LEFT/RIGHT: 0 / 0
+O pair not reachable: 0
+  factual LEFT/RIGHT: 0 / 0
+external O exact:     0
+external O mismatch:  0
+output:               artifacts/public-capture-side/o-layer-parts/game-233558.json
+
+===== O-LAYER GAME 3/13: 267580 =====
+progress: stage=o_layer_site_context games=1 sites=1 backend=corpus-db status=start
+progress: stage=site_context game_id=267580 mode=corpus-db-targeted status=start
+progress: stage=site_context game_id=267580 mode=corpus-db-targeted snapshots=22 sites=1 status=done
+progress: stage=o_layer_site_context games=1 sites=1 backend=corpus-db status=done
+===== PUBLIC CAPTURE O-LAYER DISCOVERY =====
+discovery_ship_rows:  1
+adjacent_rows:        0
+resolved:             0
+not_comparable:       1
+unresolved:           0
+O pair reachable:     0
+  factual LEFT/RIGHT: 0 / 0
+O pair not reachable: 0
+  factual LEFT/RIGHT: 0 / 0
+external O exact:     0
+external O mismatch:  0
+output:               artifacts/public-capture-side/o-layer-parts/game-267580.json
+
+===== O-LAYER GAME 4/13: 306971 =====
+progress: stage=o_layer_site_context games=1 sites=4 backend=corpus-db status=start
+progress: stage=site_context game_id=306971 mode=corpus-db-targeted status=start
+progress: stage=site_context game_id=306971 mode=corpus-db-targeted snapshots=77 sites=4 status=done
+progress: stage=o_layer_site_context games=1 sites=4 backend=corpus-db status=done
+===== PUBLIC CAPTURE O-LAYER DISCOVERY =====
+discovery_ship_rows:  4
+adjacent_rows:        4
+resolved:             4
+not_comparable:       0
+unresolved:           0
+O pair reachable:     0
+  factual LEFT/RIGHT: 0 / 0
+O pair not reachable: 4
+  factual LEFT/RIGHT: 4 / 0
+external O exact:     0
+external O mismatch:  4
+output:               artifacts/public-capture-side/o-layer-parts/game-306971.json
+
+===== O-LAYER GAME 5/13: 338264 =====
+progress: stage=o_layer_site_context games=1 sites=2 backend=corpus-db status=start
+progress: stage=site_context game_id=338264 mode=corpus-db-targeted status=start
+progress: stage=site_context game_id=338264 mode=corpus-db-targeted snapshots=120 sites=2 status=done
+progress: stage=o_layer_site_context games=1 sites=2 backend=corpus-db status=done
+===== PUBLIC CAPTURE O-LAYER DISCOVERY =====
+discovery_ship_rows:  3
+adjacent_rows:        0
+resolved:             0
+not_comparable:       3
+unresolved:           0
+O pair reachable:     0
+  factual LEFT/RIGHT: 0 / 0
+O pair not reachable: 0
+  factual LEFT/RIGHT: 0 / 0
+external O exact:     0
+external O mismatch:  0
+output:               artifacts/public-capture-side/o-layer-parts/game-338264.json
+
+===== O-LAYER GAME 6/13: 342288 =====
+progress: stage=o_layer_site_context games=1 sites=1 backend=corpus-db status=start
+progress: stage=site_context game_id=342288 mode=corpus-db-targeted status=start
+progress: stage=site_context game_id=342288 mode=corpus-db-targeted snapshots=22 sites=1 status=done
+progress: stage=o_layer_site_context games=1 sites=1 backend=corpus-db status=done
+===== PUBLIC CAPTURE O-LAYER DISCOVERY =====
+discovery_ship_rows:  1
+adjacent_rows:        1
+resolved:             1
+not_comparable:       0
+unresolved:           0
+O pair reachable:     0
+  factual LEFT/RIGHT: 0 / 0
+O pair not reachable: 1
+  factual LEFT/RIGHT: 1 / 0
+external O exact:     0
+external O mismatch:  1
+output:               artifacts/public-capture-side/o-layer-parts/game-342288.json
+
+===== O-LAYER GAME 7/13: 396107 =====
+progress: stage=o_layer_site_context games=1 sites=3 backend=corpus-db status=start
+progress: stage=site_context game_id=396107 mode=corpus-db-targeted status=start
+progress: stage=site_context game_id=396107 mode=corpus-db-targeted snapshots=66 sites=3 status=done
+progress: stage=o_layer_site_context games=1 sites=3 backend=corpus-db status=done
+===== PUBLIC CAPTURE O-LAYER DISCOVERY =====
+discovery_ship_rows:  3
+adjacent_rows:        1
+resolved:             1
+not_comparable:       2
+unresolved:           0
+O pair reachable:     1
+  factual LEFT/RIGHT: 1 / 0
+O pair not reachable: 0
+  factual LEFT/RIGHT: 0 / 0
+external O exact:     0
+external O mismatch:  1
+output:               artifacts/public-capture-side/o-layer-parts/game-396107.json
+
+===== O-LAYER GAME 8/13: 425973 =====
+progress: stage=o_layer_site_context games=1 sites=5 backend=corpus-db status=start
+progress: stage=site_context game_id=425973 mode=corpus-db-targeted status=start
+progress: stage=site_context game_id=425973 mode=corpus-db-targeted snapshots=110 sites=5 status=done
+progress: stage=o_layer_site_context games=1 sites=5 backend=corpus-db status=done
+===== PUBLIC CAPTURE O-LAYER DISCOVERY =====
+discovery_ship_rows:  5
+adjacent_rows:        4
+resolved:             4
+not_comparable:       1
+unresolved:           0
+O pair reachable:     0
+  factual LEFT/RIGHT: 0 / 0
+O pair not reachable: 4
+  factual LEFT/RIGHT: 4 / 0
+external O exact:     0
+external O mismatch:  4
+output:               artifacts/public-capture-side/o-layer-parts/game-425973.json
+
+===== O-LAYER GAME 9/13: 477725 =====
+progress: stage=o_layer_site_context games=1 sites=6 backend=corpus-db status=start
+progress: stage=site_context game_id=477725 mode=corpus-db-targeted status=start
+progress: stage=site_context game_id=477725 mode=corpus-db-targeted snapshots=132 sites=6 status=done
+progress: stage=o_layer_site_context games=1 sites=6 backend=corpus-db status=done
+===== PUBLIC CAPTURE O-LAYER DISCOVERY =====
+discovery_ship_rows:  9
+adjacent_rows:        4
+resolved:             4
+not_comparable:       5
+unresolved:           0
+O pair reachable:     1
+  factual LEFT/RIGHT: 0 / 1
+O pair not reachable: 3
+  factual LEFT/RIGHT: 3 / 0
+external O exact:     1
+external O mismatch:  3
+output:               artifacts/public-capture-side/o-layer-parts/game-477725.json
+
+===== O-LAYER GAME 10/13: 486109 =====
+progress: stage=o_layer_site_context games=1 sites=4 backend=corpus-db status=start
+progress: stage=site_context game_id=486109 mode=corpus-db-targeted status=start
+progress: stage=site_context game_id=486109 mode=corpus-db-targeted snapshots=88 sites=4 status=done
+progress: stage=o_layer_site_context games=1 sites=4 backend=corpus-db status=done
+===== PUBLIC CAPTURE O-LAYER DISCOVERY =====
+discovery_ship_rows:  6
+adjacent_rows:        5
+resolved:             5
+not_comparable:       1
+unresolved:           0
+O pair reachable:     2
+  factual LEFT/RIGHT: 0 / 2
+O pair not reachable: 3
+  factual LEFT/RIGHT: 3 / 0
+external O exact:     2
+external O mismatch:  3
+output:               artifacts/public-capture-side/o-layer-parts/game-486109.json
+
+===== O-LAYER GAME 11/13: 597910 =====
+progress: stage=o_layer_site_context games=1 sites=6 backend=corpus-db status=start
+progress: stage=site_context game_id=597910 mode=corpus-db-targeted status=start
+progress: stage=site_context game_id=597910 mode=corpus-db-targeted snapshots=144 sites=6 status=done
+progress: stage=o_layer_site_context games=1 sites=6 backend=corpus-db status=done
+===== PUBLIC CAPTURE O-LAYER DISCOVERY =====
+discovery_ship_rows:  6
+adjacent_rows:        5
+resolved:             5
+not_comparable:       1
+unresolved:           0
+O pair reachable:     1
+  factual LEFT/RIGHT: 1 / 0
+O pair not reachable: 4
+  factual LEFT/RIGHT: 3 / 1
+external O exact:     0
+external O mismatch:  5
+output:               artifacts/public-capture-side/o-layer-parts/game-597910.json
+
+===== O-LAYER GAME 12/13: 617883 =====
+progress: stage=o_layer_site_context games=1 sites=3 backend=corpus-db status=start
+progress: stage=site_context game_id=617883 mode=corpus-db-targeted status=start
+progress: stage=site_context game_id=617883 mode=corpus-db-targeted snapshots=48 sites=3 status=done
+progress: stage=o_layer_site_context games=1 sites=3 backend=corpus-db status=done
+===== PUBLIC CAPTURE O-LAYER DISCOVERY =====
+discovery_ship_rows:  4
+adjacent_rows:        2
+resolved:             2
+not_comparable:       2
+unresolved:           0
+O pair reachable:     0
+  factual LEFT/RIGHT: 0 / 0
+O pair not reachable: 2
+  factual LEFT/RIGHT: 2 / 0
+external O exact:     0
+external O mismatch:  2
+output:               artifacts/public-capture-side/o-layer-parts/game-617883.json
+
+===== O-LAYER GAME 13/13: 627339 =====
+progress: stage=o_layer_site_context games=1 sites=1 backend=corpus-db status=start
+progress: stage=site_context game_id=627339 mode=corpus-db-targeted status=start
+progress: stage=site_context game_id=627339 mode=corpus-db-targeted snapshots=24 sites=1 status=done
+progress: stage=o_layer_site_context games=1 sites=1 backend=corpus-db status=done
+===== PUBLIC CAPTURE O-LAYER DISCOVERY =====
+discovery_ship_rows:  1
+adjacent_rows:        1
+resolved:             1
+not_comparable:       0
+unresolved:           0
+O pair reachable:     0
+  factual LEFT/RIGHT: 0 / 0
+O pair not reachable: 1
+  factual LEFT/RIGHT: 1 / 0
+external O exact:     0
+external O mismatch:  1
+output:               artifacts/public-capture-side/o-layer-parts/game-627339.json
+
+===== PUBLIC CAPTURE O-LAYER DISCOVERY: MERGE =====
+===== PUBLIC CAPTURE O-LAYER DISCOVERY: MERGED =====
+game_passes:          13
+discovery_ship_rows:  50
+adjacent_rows:        31
+resolved:             31
+not_comparable:       19
+unresolved:           0
+O pair reachable:     5
+  factual LEFT/RIGHT: 2 / 3
+O pair not reachable: 26
+  factual LEFT/RIGHT: 23 / 3
+external O exact:     3
+external O mismatch:  28
+output:               artifacts/public-capture-side/discovery-o-layer-probe.json
+
+===== PUBLIC CAPTURE O-LAYER DISCOVERY: COMPLETE =====
+discovery:    artifacts/public-capture-side/discovery-capture-side.json
+corpus_db:    generations/corpus-v2compact-public36-20261002T083138Z-11cd75fa918d.duckdb
+parts_dir:    artifacts/public-capture-side/o-layer-parts
+output:       artifacts/public-capture-side/discovery-o-layer-probe.json
