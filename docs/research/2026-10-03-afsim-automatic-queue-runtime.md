@@ -323,3 +323,211 @@ NuHost post-capture algorithm:
 Any AFSim rule extracted next must be frozen as an external candidate before
 testing it against the Nu discovery Corpus DB. Held-out Nu data remains sealed
 until that candidate is fixed.
+
+
+## Focused queue/capture audit result
+
+The bounded manual/string audit was run against the pinned recovered package.
+
+Artifact hashes:
+
+```text
+AFSIM.ZIP
+  778dde575b8293b6cb266ea62a456b972ddf5d4d33de526e3c5700825f5ed3e2
+
+AFSIM.DOC
+  f394cfd9f9147b4efb627d48ccad3524a30e7fb7655f0d7fdfcf8a65e3195490
+
+AFSIM.EXE
+  a5f4bd1f4679585b30ea47057201d4a656f346c9defcb087a04443a0d142bd53
+```
+
+### Version identity
+
+The documentation header says:
+
+```text
+AFSIM v1.3
+Sean Martens, 1994
+```
+
+but the executable itself contains both:
+
+```text
+Version 1.31
+AFSIM version 1.31
+```
+
+Contemporary 1995/1996 Usenet software inventories also distribute:
+
+```text
+Afsim131.zip
+```
+
+Therefore the executable can be pinned as **AFSim 1.31**. The bundled manual
+header is stale at 1.3 and must not be used as the executable version.
+
+### Automatic ordering confirmed more strongly
+
+The manual states:
+
+```text
+battle order determined by:
+  ship ID
+  friendly code
+  mission
+  primary enemy
+
+result of one battle becomes input to the next
+```
+
+The setup schema ranks the OOB determinants explicitly:
+
+```text
+mission Kill?     most important
+primary enemy     number 2 determinant
+friendly code     number 3 determinant
+ship ID           least important
+```
+
+The OOB display is recalculated whenever it is displayed.
+
+The appendix reproduces the HOST 3.15 ordering description:
+Kill ships first, then Primary Enemy ships, then passive defenders, with attack
+value and ship ID resolving order inside groups.
+
+This appendix is a quoted historical HOST document, not independent proof of
+AFSim's internal implementation. The package's automatic OOB behavior and
+result-chaining independently show that AFSim implements an orchestrator, while
+the exact binary equivalence to every HOST 3.15 detail remains a reverse target.
+
+### Capture semantics: documentation boundary
+
+The manual contains one important capture-order statement:
+
+```text
+passive ships are protected by Kill/Primary-Enemy ships
+until those ships are destroyed or captured
+```
+
+This proves that capture is queue-relevant in AFSim: a captured protector no
+longer protects the old owner's passive ships.
+
+However the manual does **not** state:
+
+```text
+whether the captured ship remains in the current OOB traversal
+whether OOB is re-sorted immediately
+whether mission is reset
+whether primary enemy is reset
+whether friendly code is preserved
+which side/role the prize receives
+whether capture creates a fresh order
+whether the prize can fight again immediately
+```
+
+So AFSim has not yet yielded a frozen O/C candidate.
+
+### Repeat-pair warning
+
+The manual defines:
+
+```text
+Combat = one pairwise fight
+Battle = one or more combats
+```
+
+and gives an explicit example in which the same two Outrider scouts time out
+twice and then one wins on the third combat.
+
+This means AFSim can schedule at least three combats for the same pair in one
+simulated battle.
+
+That behavior must **not** be conflated with Nu's documented same-pair maximum
+of two. It also warns against assuming AFSim is simply the same fixed nested
+cursor as c2ng/Donovan without inspecting its repeat logic.
+
+### Executable result surface
+
+The executable contains a compact result-string family:
+
+```text
+Both ships blew up
+ won
+ captured
+The battle timed out
+```
+
+along with the VCR integration state:
+
+```text
+vcr.exe
+afsvcr.exe
+vcr11.dat
+vcrinit.tmp
+afsim.tmp
+afsim.log
+```
+
+The executable text explicitly says AFSim reads the completed VCR result from
+the screen, then simulates keystrokes to exit VCR.
+
+That makes the code referencing the four result strings the best narrow static
+entry point for post-result state mutation.
+
+### Configuration is not the missing variable
+
+Recovered `AFSIM.CFG` contains only:
+
+```text
+BOOST
+SCOTTY
+QUICK
+APPEND
+REB_ATT
+FAC_ATT
+```
+
+No battle-order mode, capture mode, queue policy or repeat-limit switch is
+exposed in configuration.
+
+## Next bounded binary locator
+
+Tracked helper:
+
+```text
+tools/research/audit-afsim-result-handler.py
+```
+
+The helper avoids whole-program disassembly. It:
+
+1. validates and fingerprints the MZ executable;
+2. locates the exact Pascal-style result strings;
+3. checks length-byte prefixes;
+4. searches paragraph-aligned segment-base candidates;
+5. finds strong immediate xrefs from generated 16-bit code;
+6. clusters xrefs to the four result outcomes;
+7. disassembles forward only from instruction-boundary anchors;
+8. preserves raw slices under ignored artifacts.
+
+Run:
+
+```bash
+cd ~/projects/planets-lab-external
+git fetch origin
+git pull --ff-only origin research/external-engine-analysis
+
+python3 tools/research/audit-afsim-result-handler.py \
+  2>&1 | tee /tmp/afsim-result-handler.log
+```
+
+The desired result is one compact routine/cluster referencing several of:
+
+```text
+won
+captured
+both destroyed
+timed out
+```
+
+Only that cluster should receive the next semantic reverse pass.
