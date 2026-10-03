@@ -305,9 +305,52 @@ tree with `src`, `test`, `game`, configuration, global data, historical
 Attic content, and a 2004 `Jhost.jar`.
 
 The first checkout attempt exposed a helper bug: the relative repository path
-was interpreted by CVS as an rsh target (`hostname artifacts`). The helper is
-now corrected to use an absolute `:local:` CVSROOT and to discover top-level
+was interpreted by CVS as an rsh target (`hostname artifacts`). The helper was
+corrected to use an absolute `:local:` CVSROOT and to discover top-level
 modules directly from the repository when `CVSROOT/modules` is empty.
+
+The corrected checkout is now confirmed:
+
+```text
+module: jhost
+checkout: artifacts/external-sources/jphost-cvs/checkout/jhost
+status: success
+```
+
+The working tree includes real server-side Java sources such as:
+
+```text
+src/jhost/JHost.java
+src/jhost/commands/ProcessTurn.java
+src/jhost/commands/CreateResults.java
+src/jhost/ship/Ship.java
+src/jhostcore/...
+```
+
+The initial broad combat grep is notable: it sees the `Combat` stage name in
+`JHost.java` and combat state fields in `Ship.java`, but it does not surface a
+concrete combat/capture implementation class. This is only a **provisional
+negative** because the first helper intentionally truncated the inventory and
+did not inspect deleted Attic source or compare the historical JAR class list.
+
+A second tracked helper now performs that deeper audit:
+
+```text
+tools/research/audit-jphost-cvs-checkout.sh
+```
+
+It inventories all server-side Java, dumps pipeline/config entry points, records
+CVS logs/history, recovers the historical Attic `Jhost.jar` revision, and
+compares JAR classes against the checked-out source tree. This is specifically
+intended to distinguish:
+
+```text
+combat never implemented
+vs.
+combat implemented then deleted / only present in historical binary
+vs.
+combat implemented under an unexpected class/package name
+```
 
 A reproducible helper is now tracked:
 
