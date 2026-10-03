@@ -11,13 +11,21 @@ from combat_public_capture_o_layer_merge import merge_parts
 from combat_public_capture_o_layer_probe import SCHEMA
 
 
-def _part(game_id: int, *, left: int, right: int) -> dict[str, object]:
+def _part(
+    game_id: int,
+    *,
+    left: int,
+    right: int,
+    partition: str = "discovery",
+) -> dict[str, object]:
     return {
         "schema": SCHEMA,
+        "partition": partition,
         "scanned_game_ids": [1, 2],
         "probe_game_ids": [game_id],
         "summary": {
             "counts": {
+                "capture_ship_rows": left + right,
                 "discovery_ship_rows": left + right,
                 "o_pair_reachable": left + right,
                 "o_pair_reachable:left": left,
@@ -49,7 +57,9 @@ def test_merge_parts_sums_counts_and_preserves_game_isolation() -> None:
         _part(2, left=3, right=4),
     ])
     counts = report["summary"]["counts"]
+    assert report["partition"] == "discovery"
     assert report["summary"]["game_passes"] == 2
+    assert counts["capture_ship_rows"] == 10
     assert counts["discovery_ship_rows"] == 10
     assert counts["o_pair_reachable"] == 10
     assert counts["o_pair_reachable:left"] == 5
@@ -64,3 +74,12 @@ def test_merge_parts_sums_counts_and_preserves_game_isolation() -> None:
     assert counts["identity_anchored_split_exact"] == 10
     assert report["scanned_game_ids"] == [1, 2]
     assert [row["probe_game_ids"] for row in report["summary"]["per_game"]] == [[1], [2]]
+
+def test_merge_parts_preserves_heldout_partition() -> None:
+    report = merge_parts([
+        _part(7, left=1, right=2, partition="heldout"),
+        _part(8, left=2, right=1, partition="heldout"),
+    ])
+    assert report["partition"] == "heldout"
+    assert report["evidence_status"] == "HELDOUT_VALIDATION_FROZEN_SIDE_CANDIDATE"
+

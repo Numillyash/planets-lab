@@ -22,6 +22,9 @@ from combat_host_post_capture_pair_recomposition_audit import (
     _external_c2ng_original_order_prize_continuation,
 )
 from combat_host_post_mutation_next_pair_audit import _appearance_key
+from combat_public_capture_side_frozen_candidate import (
+    predict_frozen_capture_side,
+)
 from planets_lab.corpus.archive import TurnMember
 from planets_lab.corpus.corpus_db_compact import reconstruct_compact_member
 from planets_lab.corpus.corpus_db_runtime import (
@@ -83,19 +86,26 @@ DEFAULT_OUTPUT = Path(
 )
 
 
-def _load_discovery(path: Path) -> Mapping[str, Any]:
+def _load_capture_side_report(
+    path: Path,
+    *,
+    expected_partition: str,
+) -> Mapping[str, Any]:
     payload = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(payload, Mapping):
-        raise ValueError("discovery artifact must be a JSON object")
-    if payload.get("partition") != "discovery":
-        raise ValueError("O-layer probe requires partition=discovery")
+        raise ValueError("capture-side artifact must be a JSON object")
+    if payload.get("partition") != expected_partition:
+        raise ValueError(
+            "O-layer probe partition mismatch: "
+            f"expected {expected_partition!r}, got {payload.get('partition')!r}"
+        )
     observations = payload.get("observations")
     if (
         not isinstance(observations, Sequence)
         or isinstance(observations, (str, bytes))
         or not all(isinstance(row, Mapping) for row in observations)
     ):
-        raise ValueError("discovery observations are missing or malformed")
+        raise ValueError("capture-side observations are missing or malformed")
     return payload
 
 
@@ -742,31 +752,35 @@ def _identity_anchor_factual_opponent(
 
 
 def run(args: argparse.Namespace) -> dict[str, Any]:
-    discovery = _load_discovery(args.discovery)
+    partition = str(getattr(args, "partition", "discovery"))
+    capture_side_report = _load_capture_side_report(
+        args.capture_side_report,
+        expected_partition=partition,
+    )
     observations = [
         dict(row)
-        for row in discovery["observations"]
+        for row in capture_side_report["observations"]
         if isinstance(row, Mapping)
     ]
-    scan_ids_raw = discovery.get("scanned_game_ids")
+    scan_ids_raw = capture_side_report.get("scanned_game_ids")
     if (
         not isinstance(scan_ids_raw, Sequence)
         or isinstance(scan_ids_raw, (str, bytes))
     ):
-        raise ValueError("discovery scanned_game_ids missing")
+        raise ValueError("capture-side scanned_game_ids missing")
     full_scan_ids = {
         int(value)
         for value in scan_ids_raw
         if isinstance(value, int) and not isinstance(value, bool)
     }
     if not full_scan_ids:
-        raise ValueError("discovery game population is empty")
+        raise ValueError("capture-side game population is empty")
 
     requested_game_id = getattr(args, "game_id", None)
     if requested_game_id is not None:
         if requested_game_id not in full_scan_ids:
             raise ValueError(
-                f"game {requested_game_id} is not in the discovery partition"
+                f"game {requested_game_id} is not in the {partition} partition"
             )
         observations = [
             row
@@ -987,17 +1001,19 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                         if isinstance(anchored_side_controls, Mapping)
                         else {}
                     )
-                    if anchored_pair_exact is True:
-                        anchored_side = row.get("capture_side")
-                        anchored_source = "identity_anchored_o_reachable_sticky_capture_side"
-                    elif anchored_pair_exact is False:
-                        anchored_side = anchored_side_controls.get(
+                    anchored_side = predict_frozen_capture_side(
+                        identity_anchored_o_pair_reachable=anchored_pair_exact,
+                        capture_side=row.get("capture_side"),
+                        neutral_fresh_fc_side=anchored_side_controls.get(
                             "neutral_orders_fresh_fc"
-                        )
-                        anchored_source = "identity_anchored_o_not_reachable_neutral_fresh_fc"
+                        ),
+                    )
+                    if anchored_pair_exact is True:
+                        anchored_source = "frozen_identity_anchored_o_reachable_sticky_capture_side"
+                    elif anchored_pair_exact is False:
+                        anchored_source = "frozen_identity_anchored_o_not_reachable_neutral_fresh_fc"
                     else:
-                        anchored_side = None
-                        anchored_source = "identity_anchored_pair_unresolved"
+                        anchored_source = "frozen_identity_anchored_pair_unresolved"
                     identity_anchored_split = {
                         "source": anchored_source,
                         "predicted_side": anchored_side,
@@ -1176,6 +1192,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             flush=True,
         )
 
+        counts["capture_ship_rows"] = len(observations)
         counts["discovery_ship_rows"] = len(observations)
         counts["observations_seen"] = len(seen)
         counts["adjacent_rows"] = sum(
@@ -1190,8 +1207,13 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
 
         return {
             "schema": SCHEMA,
-            "evidence_status": "DISCOVERY_ONLY_EXTERNAL_REFERENCE_NOT_PROMOTED",
-            "source_discovery": str(args.discovery),
+            "evidence_status": (
+                "DISCOVERY_ONLY_FROZEN_SIDE_CANDIDATE"
+                if partition == "discovery"
+                else "HELDOUT_VALIDATION_FROZEN_SIDE_CANDIDATE"
+            ),
+            "partition": partition,
+            "source_capture_side_report": str(args.capture_side_report),
             "database_path": str(database_path),
             "scanned_game_ids": sorted(full_scan_ids),
             "probe_game_ids": sorted(scan_ids),
@@ -1202,7 +1224,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             },
             "observations": examples,
             "evidence_boundary": (
-                "Discovery-only bounded O-layer comparator. The frozen-order "
+                f"{partition.capitalize()} bounded O-layer comparator. The frozen-order "
                 "cursor is transcribed from the separately audited external "
                 "c2ng/THost path and is not NuHost authority. Only globally "
                 "adjacent capture->next VCR rows are comparable; nonadjacent "
@@ -1219,7 +1241,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 "so side assignment can be tested separately from fail-closed "
                 "special-movement position reconstruction. It is not an independent "
                 "queue predictor. Dependency fields remain explicit. Held-out "
-                "games are not included."
+                "games are included only when the selected partition is heldout."
             ),
         }
     finally:
@@ -1230,10 +1252,21 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description=(
             "Test a bounded external original-order cursor against the sealed "
-            "public discovery capture population."
+            "selected public capture partition."
         )
     )
-    parser.add_argument("--discovery", type=Path, default=DEFAULT_DISCOVERY)
+    parser.add_argument(
+        "--capture-side-report",
+        "--discovery",
+        dest="capture_side_report",
+        type=Path,
+        default=DEFAULT_DISCOVERY,
+    )
+    parser.add_argument(
+        "--partition",
+        choices=("discovery", "heldout"),
+        default="discovery",
+    )
     parser.add_argument(
         "--corpus-db-root",
         type=Path,
@@ -1256,8 +1289,11 @@ def main() -> int:
             encoding="utf-8",
         )
         counts = report["summary"]["counts"]
-        print("===== PUBLIC CAPTURE O-LAYER DISCOVERY =====")
-        print(f"discovery_ship_rows:  {counts.get('discovery_ship_rows', 0)}")
+        print(
+            "===== PUBLIC CAPTURE O-LAYER "
+            f"{str(report.get('partition', 'discovery')).upper()} ====="
+        )
+        print(f"capture_ship_rows:    {counts.get('capture_ship_rows', 0)}")
         print(f"adjacent_rows:        {counts.get('adjacent_rows', 0)}")
         print(f"resolved:             {counts.get('status:resolved', 0)}")
         print(f"not_comparable:       {counts.get('status:not_comparable', 0)}")

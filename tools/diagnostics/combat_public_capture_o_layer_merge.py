@@ -21,10 +21,15 @@ def merge_parts(parts: list[Mapping[str, Any]]) -> dict[str, Any]:
     observations: list[dict[str, Any]] = []
     per_game: list[dict[str, Any]] = []
     scanned_game_ids: set[int] = set()
+    partitions: set[str] = set()
 
     for part in parts:
         if part.get("schema") != SCHEMA:
             raise ValueError(f"unexpected part schema: {part.get('schema')!r}")
+        partition = part.get("partition")
+        if partition not in {"discovery", "heldout"}:
+            raise ValueError(f"unexpected part partition: {partition!r}")
+        partitions.add(str(partition))
         part_summary = part.get("summary")
         if not isinstance(part_summary, Mapping):
             raise ValueError("part summary missing")
@@ -61,6 +66,10 @@ def merge_parts(parts: list[Mapping[str, Any]]) -> dict[str, Any]:
             }
         )
 
+    if len(partitions) != 1:
+        raise ValueError(f"mixed O-layer partitions: {sorted(partitions)}")
+    partition = next(iter(partitions))
+
     observations.sort(
         key=lambda row: (
             int(row.get("game_id", 0)),
@@ -73,7 +82,12 @@ def merge_parts(parts: list[Mapping[str, Any]]) -> dict[str, Any]:
 
     return {
         "schema": MERGED_SCHEMA,
-        "evidence_status": "DISCOVERY_ONLY_EXTERNAL_REFERENCE_NOT_PROMOTED",
+        "evidence_status": (
+            "DISCOVERY_ONLY_FROZEN_SIDE_CANDIDATE"
+            if partition == "discovery"
+            else "HELDOUT_VALIDATION_FROZEN_SIDE_CANDIDATE"
+        ),
+        "partition": partition,
         "scanned_game_ids": sorted(scanned_game_ids),
         "summary": {
             "counts": dict(sorted(counts.items())),
@@ -82,10 +96,10 @@ def merge_parts(parts: list[Mapping[str, Any]]) -> dict[str, Any]:
         },
         "observations": observations,
         "evidence_boundary": (
-            "Merged from process-isolated discovery-only per-game O-layer "
+            f"Merged from process-isolated {partition} per-game O-layer "
             "reports. Each game is evaluated in a fresh Python/container process "
-            "to bound peak memory. The external cursor remains reference-only; "
-            "held-out games are not included."
+            "to bound peak memory. The external cursor remains reference-only. "
+            "The held-out path validates the already frozen side candidate."
         ),
     }
 
@@ -116,9 +130,12 @@ def main() -> int:
         encoding="utf-8",
     )
     counts = report["summary"]["counts"]
-    print("===== PUBLIC CAPTURE O-LAYER DISCOVERY: MERGED =====")
+    print(
+        "===== PUBLIC CAPTURE O-LAYER "
+        f"{str(report['partition']).upper()}: MERGED ====="
+    )
     print(f"game_passes:          {report['summary']['game_passes']}")
-    print(f"discovery_ship_rows:  {counts.get('discovery_ship_rows', 0)}")
+    print(f"capture_ship_rows:    {counts.get('capture_ship_rows', 0)}")
     print(f"adjacent_rows:        {counts.get('adjacent_rows', 0)}")
     print(f"resolved:             {counts.get('status:resolved', 0)}")
     print(f"not_comparable:       {counts.get('status:not_comparable', 0)}")

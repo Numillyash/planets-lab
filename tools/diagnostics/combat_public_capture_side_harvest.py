@@ -18,12 +18,22 @@ for _path in (REPO_ROOT / "src", DIAGNOSTICS_DIR):
         sys.path.insert(0, str(_path))
 
 from planets_lab.corpus.archive import TurnMember
+from planets_lab.corpus.corpus_db_compact import (
+    _load_specs,
+    reconstruct_compact_member,
+)
+from planets_lab.corpus.corpus_db_runtime import (
+    CompactMemberRef,
+    connect_current_compact_read_only,
+    reconstruct_members,
+)
 from planets_lab.corpus.indexer import load_manifest_jsonl
 from planets_lab.corpus.movement_differential import _intish
 from planets_lab.corpus.normalizer import _decode_member_json, mechanics_projection
 from planets_lab.corpus.public_finished_discover_cli import _manifest_bucket
 
 import combat_host_capture_continuation_audit as capture_module
+import combat_ship_chain_audit as chain_module
 from combat_host_post_capture_pair_recomposition_audit import (
     _neutral_prize_raw,
     _nonmatching_symbolic_fc,
@@ -225,6 +235,354 @@ def _collect_appearances_cached(
         flush=True,
     )
     return appearances, chain_summary
+
+
+
+def _db_vcr_member_refs(
+    connection: Any,
+    *,
+    scan_ids: set[int],
+) -> list[CompactMemberRef]:
+    if not scan_ids:
+        return []
+    ordered = sorted(scan_ids)
+    placeholders = ",".join("?" for _ in ordered)
+    rows = connection.execute(
+        f"""
+        SELECT DISTINCT
+               sm.member_id,
+               sm.game_id,
+               sm.source_member_name,
+               sm.perspective_player_id,
+               sm.archive_turn,
+               sm.embedded_turn,
+               sm.decoded_payload_sha256,
+               sm.member_ordinal
+        FROM source_members sm
+        JOIN typed_vcrs tv USING (member_id)
+        WHERE sm.game_id IN ({placeholders})
+        ORDER BY sm.game_id,
+                 sm.archive_turn,
+                 sm.perspective_player_id,
+                 sm.member_ordinal
+        """,
+        ordered,
+    ).fetchall()
+    return [
+        CompactMemberRef(
+            member_id=int(row[0]),
+            game_id=int(row[1]),
+            source_member_name=str(row[2]),
+            perspective_player_id=int(row[3]),
+            archive_turn=int(row[4]),
+            embedded_turn=int(row[5]),
+            decoded_payload_sha256=str(row[6]),
+        )
+        for row in rows
+    ]
+
+
+def _collect_appearances_db(
+    *,
+    connection: Any,
+    scan_ids: set[int],
+    progress: bool,
+) -> tuple[list[dict[str, Any]], Mapping[str, Any]]:
+    refs = _db_vcr_member_refs(connection, scan_ids=scan_ids)
+    summary: Counter[str] = Counter()
+    summary["source_members_with_vcrs"] = len(refs)
+
+    unique_cases: dict[tuple[int, int, int], dict[str, Any]] = {}
+    conflict_keys: set[tuple[int, int, int]] = set()
+
+    current_game: int | None = None
+    current_members = 0
+    current_vcr_observations = 0
+
+    for ref, payload in reconstruct_members(connection, refs):
+        if progress and current_game != ref.game_id:
+            if current_game is not None:
+                print(
+                    "progress: stage=collect_capture_appearances_db "
+                    f"game_id={current_game} members={current_members} "
+                    f"vcr_observations={current_vcr_observations} status=done",
+                    flush=True,
+                )
+            current_game = ref.game_id
+            current_members = 0
+            current_vcr_observations = 0
+            print(
+                "progress: stage=collect_capture_appearances_db "
+                f"game_id={current_game} status=start",
+                flush=True,
+            )
+
+        current_members += 1
+        game = payload.get("game")
+        if not isinstance(game, Mapping):
+            continue
+        game_id = chain_module._int(game, "id")
+        game_turn = chain_module._int(game, "turn")
+        if game_id not in scan_ids or game_turn is None:
+            continue
+
+        beams = chain_module._objects(payload, "beams")
+        torpedoes = chain_module._objects(payload, "torpedos")
+        settings = payload.get("settings")
+        settings = dict(settings) if isinstance(settings, Mapping) else {}
+
+        for raw_vcr in chain_module._objects(payload, "vcrs"):
+            vcr_id = chain_module._int(raw_vcr, "id")
+            battle_turn = chain_module._int(raw_vcr, "turn") or game_turn
+            if vcr_id is None:
+                continue
+            current_vcr_observations += 1
+            summary["raw_vcr_observations"] += 1
+            key = (int(game_id), int(battle_turn), int(vcr_id))
+            payload_hash = chain_module._canonical_hash(raw_vcr)
+            existing = unique_cases.get(key)
+            if existing is None:
+                unique_cases[key] = {
+                    "payload": dict(raw_vcr),
+                    "payload_hash": payload_hash,
+                    "beams": beams,
+                    "torpedoes": torpedoes,
+                    "settings": settings,
+                }
+            elif existing["payload_hash"] != payload_hash:
+                conflict_keys.add(key)
+
+    if progress and current_game is not None:
+        print(
+            "progress: stage=collect_capture_appearances_db "
+            f"game_id={current_game} members={current_members} "
+            f"vcr_observations={current_vcr_observations} status=done",
+            flush=True,
+        )
+
+    summary["unique_vcrs"] = len(unique_cases)
+    summary["payload_conflicts"] = len(conflict_keys)
+
+    appearances: list[dict[str, Any]] = []
+    for key, case in sorted(unique_cases.items()):
+        if key in conflict_keys:
+            continue
+        game_id, turn, vcr_id = key
+        try:
+            replay = chain_module.replay_nuhost_from_nu_catalog(
+                case["payload"],
+                beams=case["beams"],
+                torpedoes=case["torpedoes"],
+                settings=case["settings"],
+            )
+        except chain_module.ReplayUnsupported:
+            summary["replay_unsupported"] += 1
+            continue
+
+        summary["replay_supported"] += 1
+        position = chain_module._position(case["payload"])
+        for side_name in ("left", "right"):
+            raw_side = case["payload"].get(side_name)
+            replay_side = replay.get(side_name)
+            if (
+                not isinstance(raw_side, Mapping)
+                or not isinstance(replay_side, Mapping)
+            ):
+                continue
+            appearance = chain_module._appearance(
+                game_id=game_id,
+                turn=turn,
+                vcr_id=vcr_id,
+                position=position,
+                side_name=side_name,
+                raw_side=raw_side,
+                replay_side=replay_side,
+            )
+            if appearance is not None:
+                appearances.append(appearance)
+                summary["ship_appearances"] += 1
+
+    return appearances, {
+        "backend": "corpus-db",
+        **dict(sorted(summary.items())),
+    }
+
+
+def _targeted_tminus1_ship_raw_db(
+    connection: Any,
+    *,
+    specs: Mapping[str, Any],
+    game_id: int,
+    player_id: int,
+    archive_turn: int,
+    ship_id: int,
+    projection_cache: dict[
+        tuple[int, int, int],
+        Mapping[str, Any] | None,
+    ],
+) -> Mapping[str, Any] | None:
+    cache_key = (game_id, player_id, archive_turn)
+    if cache_key not in projection_cache:
+        row = connection.execute(
+            """
+            SELECT member_id, source_member_name
+            FROM source_members
+            WHERE game_id = ?
+              AND perspective_player_id = ?
+              AND archive_turn = ?
+            ORDER BY member_ordinal
+            LIMIT 1
+            """,
+            [game_id, player_id, archive_turn],
+        ).fetchone()
+        if row is None:
+            projection_cache[cache_key] = None
+        else:
+            payload = reconstruct_compact_member(
+                connection,
+                int(row[0]),
+                specs=specs,
+            )
+            projection_cache[cache_key] = mechanics_projection(
+                payload,
+                member=str(row[1]),
+            )
+
+    projection = projection_cache.get(cache_key)
+    if not isinstance(projection, Mapping):
+        return None
+    ships = projection.get("ships")
+    if not isinstance(ships, Sequence) or isinstance(ships, (str, bytes)):
+        return None
+    for raw_ship in ships:
+        if not isinstance(raw_ship, Mapping):
+            continue
+        observed_ship_id = _intish(
+            raw_ship.get("id", raw_ship.get("objectid"))
+        )
+        observed_owner_id = _intish(
+            raw_ship.get("ownerid", raw_ship.get("owner_id"))
+        )
+        if observed_ship_id != ship_id:
+            continue
+        if observed_owner_id is not None and observed_owner_id != player_id:
+            continue
+        return raw_ship
+    return None
+
+
+def _enrich_tminus1_order_context_db(
+    *,
+    rows: list[dict[str, Any]],
+    connection: Any,
+) -> Counter[str]:
+    counts: Counter[str] = Counter()
+    specs = _load_specs(connection)
+    projection_cache: dict[
+        tuple[int, int, int],
+        Mapping[str, Any] | None,
+    ] = {}
+
+    by_game: dict[int, list[dict[str, Any]]] = defaultdict(list)
+    for row in rows:
+        by_game[int(row["game_id"])].append(row)
+
+    ordered_games = sorted(by_game.items())
+    for game_position, (game_id, game_rows) in enumerate(
+        ordered_games,
+        start=1,
+    ):
+        print(
+            "progress: stage=enrich_tminus1_order_context_db "
+            f"game={game_position}/{len(ordered_games)} "
+            f"game_id={game_id} cases={len(game_rows)} status=start",
+            flush=True,
+        )
+        for row in game_rows:
+            battle_turn = int(row["turn"])
+            before_turn = battle_turn - 1
+            captured_owner = row.get("owner_id_before")
+            opponent_owner = row.get("next_opponent_owner_id")
+            if (
+                isinstance(captured_owner, bool)
+                or not isinstance(captured_owner, int)
+                or captured_owner <= 0
+                or isinstance(opponent_owner, bool)
+                or not isinstance(opponent_owner, int)
+                or opponent_owner <= 0
+            ):
+                row["order_context"] = {
+                    "status": "unresolved",
+                    "reason": "owner_attribution_missing",
+                }
+                counts["order_context:unresolved"] += 1
+                counts["order_context:owner_attribution_missing"] += 1
+                continue
+
+            captured_raw = _targeted_tminus1_ship_raw_db(
+                connection,
+                specs=specs,
+                game_id=game_id,
+                player_id=captured_owner,
+                archive_turn=before_turn,
+                ship_id=int(row["captured_ship_id"]),
+                projection_cache=projection_cache,
+            )
+            opponent_raw = _targeted_tminus1_ship_raw_db(
+                connection,
+                specs=specs,
+                game_id=game_id,
+                player_id=opponent_owner,
+                archive_turn=before_turn,
+                ship_id=int(row["next_opponent_ship_id"]),
+                projection_cache=projection_cache,
+            )
+            if not isinstance(captured_raw, Mapping):
+                row["order_context"] = {
+                    "status": "unresolved",
+                    "reason": "captured_ship_tminus1_missing",
+                }
+                counts["order_context:unresolved"] += 1
+                counts["order_context:captured_ship_tminus1_missing"] += 1
+                continue
+            if not isinstance(opponent_raw, Mapping):
+                row["order_context"] = {
+                    "status": "unresolved",
+                    "reason": "opponent_ship_tminus1_missing",
+                }
+                counts["order_context:unresolved"] += 1
+                counts["order_context:opponent_ship_tminus1_missing"] += 1
+                continue
+
+            context = _order_side_controls(
+                captured_ship_id=int(row["captured_ship_id"]),
+                opponent_ship_id=int(row["next_opponent_ship_id"]),
+                captured_raw=captured_raw,
+                opponent_raw=opponent_raw,
+                prior_pair_occurrences=int(
+                    row["prior_same_pair_occurrences"]
+                ),
+                factual_side=str(row["captured_ship_side_next"]),
+            )
+            context["status"] = "resolved"
+            row["order_context"] = context
+            counts["order_context:resolved"] += 1
+            for name, exact in context["side_control_exact"].items():
+                if exact is True:
+                    counts[f"side:{name}:exact"] += 1
+                elif exact is False:
+                    counts[f"side:{name}:mismatch"] += 1
+                else:
+                    counts[f"side:{name}:unresolved"] += 1
+
+        print(
+            "progress: stage=enrich_tminus1_order_context_db "
+            f"game={game_position}/{len(ordered_games)} "
+            f"game_id={game_id} status=done",
+            flush=True,
+        )
+
+    return counts
 
 
 def _pair_occurrence_index(
@@ -624,10 +982,22 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             if partition == args.partition
         }
 
-    appearances, chain_summary = _collect_appearances_cached(
-        args=args,
-        scan_ids=scan_ids,
-    )
+    db_connection = None
+    database_path: Path | None = None
+    if args.corpus_db_root is not None:
+        db_connection, database_path = connect_current_compact_read_only(
+            args.corpus_db_root
+        )
+        appearances, chain_summary = _collect_appearances_db(
+            connection=db_connection,
+            scan_ids=scan_ids,
+            progress=True,
+        )
+    else:
+        appearances, chain_summary = _collect_appearances_cached(
+            args=args,
+            scan_ids=scan_ids,
+        )
 
     by_vcr: dict[tuple[int, int, int], list[dict[str, Any]]] = defaultdict(list)
     by_ship_turn: dict[tuple[int, int, int], list[dict[str, Any]]] = defaultdict(list)
@@ -792,10 +1162,18 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         f"ship_cases={len(rows)} status=start",
         flush=True,
     )
-    order_counts = _enrich_tminus1_order_context(
-        rows=rows,
-        archive_dir=args.archive_dir,
-    )
+    if db_connection is not None:
+        order_counts = _enrich_tminus1_order_context_db(
+            rows=rows,
+            connection=db_connection,
+        )
+        db_connection.close()
+        db_connection = None
+    else:
+        order_counts = _enrich_tminus1_order_context(
+            rows=rows,
+            archive_dir=args.archive_dir,
+        )
     print(
         "progress: stage=enrich_tminus1_order_context "
         f"ship_cases={len(rows)} "
@@ -810,6 +1188,12 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "schema": SCHEMA,
         "evidence_status": "DISCOVERY_ONLY_NOT_PROMOTED",
         "partition": args.partition,
+        "storage_backend": (
+            "corpus-db" if database_path is not None else "archive"
+        ),
+        "database_path": (
+            str(database_path) if database_path is not None else None
+        ),
         "partition_salt": args.partition_salt,
         "holdout_modulus": args.holdout_modulus,
         "indexed_game_ids": sorted(indexed_ids),
@@ -886,6 +1270,15 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--index", type=Path, default=DEFAULT_INDEX)
     parser.add_argument("--archive-dir", type=Path, default=DEFAULT_ARCHIVE_DIR)
     parser.add_argument(
+        "--corpus-db-root",
+        type=Path,
+        default=None,
+        help=(
+            "Read source members from the shared compact Corpus DB instead of "
+            "ZIP archives. The DB is opened read-only."
+        ),
+    )
+    parser.add_argument(
         "--appearance-cache-dir",
         type=Path,
         default=DEFAULT_APPEARANCE_CACHE_DIR,
@@ -914,6 +1307,7 @@ def main() -> int:
         summary = report["summary"]
         print("===== PUBLIC CAPTURE-SIDE HARVEST =====")
         print(f"partition:                    {report['partition']}")
+        print(f"storage_backend:              {report['storage_backend']}")
         print(f"indexed_games:                {len(report['indexed_game_ids'])}")
         print(f"scanned_games:                {len(report['scanned_game_ids'])}")
         print(f"unscanned_games:              {len(report['unscanned_game_ids'])}")

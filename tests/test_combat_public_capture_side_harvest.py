@@ -202,3 +202,25 @@ def test_appearance_cache_roundtrip_and_descriptor_invalidation(
         descriptor=changed,
     ) is None
 
+def test_heldout_validation_is_separate_db_backed_and_frozen() -> None:
+    root = Path(__file__).resolve().parents[1]
+    runner = (
+        root / "tools/run-public-capture-side-heldout-validation.sh"
+    ).read_text(encoding="utf-8")
+    wrapper = (
+        root / "tools/run-public-capture-side-heldout-validation-with-evidence.sh"
+    ).read_text(encoding="utf-8")
+    harvester = (
+        root / "tools/diagnostics/combat_public_capture_side_harvest.py"
+    ).read_text(encoding="utf-8")
+
+    assert "--partition heldout" in runner
+    assert "--corpus-db-root /corpus-db" in runner
+    assert "compose.corpus-db.yaml" in runner
+    assert "--archive-dir" not in runner
+    assert "heldout_frozen_gate_passed" in runner
+    assert "FROZEN_CANDIDATE_COMMIT" in wrapper
+    assert "git merge-base --is-ancestor" in wrapper
+    assert "_collect_appearances_db" in harvester
+    assert "_enrich_tminus1_order_context_db" in harvester
+
