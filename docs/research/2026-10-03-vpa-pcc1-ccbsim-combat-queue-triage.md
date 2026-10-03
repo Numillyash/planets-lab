@@ -231,3 +231,215 @@ PCC1/CCBSim NuHost behavior:
 NuHost rule:
   must still be established from primary Nu docs + factual Nu corpus
 ```
+
+
+## 6. Runtime result: PCC 1.1.22 debug symbols expose the complete simulator unit
+
+The package audit was run successfully against the 1.1.22 release family.
+
+Pinned packages:
+
+```text
+cc1122.zip
+SHA256 e8fda19768c8c96d4a4813017121d450ff00e598593a338267403fb5c3914704
+size   1225177
+
+cc1122db.zip
+SHA256 199056dfc9838eb055b7e5bce322f9b0d0470acef5f2c2ad09da852a2143dbcc
+size   76572
+
+ccbsim1122.zip
+SHA256 2080e502f098a029fee73b00465d490bac9a52264d4f79a94bdfa9fd31694c1e
+size   330224
+```
+
+The debugger package is much more valuable than expected. `CC1122.MAP`
+contains private/public Pascal symbols for the battle simulator.
+
+The simulator code lives in segment `2A92`. Relevant symbols include:
+
+```text
+2A92:5DF8  SetShipOwner
+2A92:5E42  SetDefaultOwner
+2A92:5F0A  SortId
+2A92:5F21  SortOwner
+2A92:5F49  SortHull
+2A92:5F71  SortThings
+2A92:5FFA  SortFCBO
+2A92:60F7  SortMenu
+2A92:672E  AddFighters
+
+2A92:8114  CalcBattleOrder
+2A92:8290  FreeVCRList
+2A92:86E5  KeepVCR
+2A92:8F37  MakeVCR
+2A92:91EF  MakePlanetVCR
+2A92:9C62  NoFightWarning
+2A92:9DFD  FillInPlanetAggressiveness
+2A92:A677  SortResult
+2A92:AD9A  CSimResultList.Resort
+```
+
+This is the first recovered historical binary in this stream where the exact
+multi-ship orchestration routines are named.
+
+The standalone `CCBSIM.EXE` also contains strings proving that the same program
+models:
+
+```text
+ship id affects battle order
+aggressiveness / Kill / PE
+random LEFT/RIGHT
+captured result
+captured back / captured by
+multi-fight result aggregation
+```
+
+The bundled documentation explicitly says that THost non-numeric friendly-code
+ordering is refined by Kill/PE aggressiveness and that Host simulation uses the
+Host 3.2 battle-order rules.
+
+## 7. Critical provenance correction: PCC1 is not an independent comparator to c2ng
+
+The symbol names above allow a direct lineage match against the pinned c2ng
+source.
+
+Pinned c2ng:
+
+```text
+425d623e5d44b017abea50bae4dc9c668870398d
+```
+
+Its source explicitly names the old PCC1 Pascal routines:
+
+```text
+game/sim/sort.cpp:
+  ccsim.pas:SortId
+  ccsim.pas:SortOwner
+  ccsim.pas:SortFCBO
+
+game/sim/run.cpp:
+  ccsim.pas:IsAttacking
+  ccsim.pas:Attacking
+  ccsim.pas:MakeVCR
+  ccsim.pas:MakePlanetVCR
+
+game/sim/fleetcost.cpp:
+  ccsim.pas:AddFighters
+```
+
+Those names match the recovered PCC 1.1.22 MAP symbols exactly.
+
+There is also an explicit c2ng history commit:
+
+```text
+bf6d27e440a8ea2ea61f33dc6e8d99ef02a30dab
+PCC1 alignment: document relation to PCC1, port some minor functions
+```
+
+and the pre-fix simulator source states that `game/sim/run.cpp` was a close
+port of PCC2. Thus the implementation family is:
+
+```text
+PCC1 ccsim.pas
+   -> PCC2 simulator rewrite/port
+      -> c2ng game/sim
+```
+
+Therefore **PCC1/CCBSim cannot be counted as independent corroboration** of the
+c2ng THost queue. It is an ancestor/sibling implementation from the same author
+and code lineage.
+
+It remains useful for a different question: reconstructing how that lineage
+changed over time.
+
+## 8. Historical delta around c2ng bug #428
+
+The c2ng parent immediately before the battle-order fix is:
+
+```text
+475b6c5b329ef77df8cbb657f12da8a76296f8fa
+```
+
+In that version the Host/PHost orchestration already has the familiar fixed
+battle-order vector and nested traversal:
+
+```text
+outer loop = RIGHT
+inner loop = LEFT
+```
+
+After a capture, `MakeVCR`/its C++ descendant immediately mutates:
+
+```text
+owner          -> captor
+crew           -> 10
+aggressiveness -> passive
+```
+
+but there is no dedicated captured-this-turn flag. The captured ship remains
+in the same fixed vector and later pair eligibility is tested symmetrically.
+
+Commit:
+
+```text
+76b3eed65bee4506758c258b6fc33e10d1a031ee
+Simulator: implement battle order peculiarities
+```
+
+adds:
+
+```text
+fl_WasCaptured
+```
+
+and, for non-PHost simulation, rejects a captured ship specifically when it is
+supplied as the LEFT/inner combatant.
+
+The commit attributes that asymmetry to a reverse-engineered Tim-Host typo
+(`youship` vs `you`). This remains external reverse-engineering evidence, not
+NuHost evidence.
+
+This history means that the recovered PCC1 binary is most valuable if we can
+date whether the same capture-state correction was backported into the DOS
+`ccsim.pas` line.
+
+## 9. Next bounded archaeology: PCC 1.1.20 -> 1.1.21 -> 1.1.22
+
+This comparison has an unusually useful natural boundary:
+
+```text
+PCC / CCBSim 1.1.21:
+  released 2021-05-31
+
+c2ng captured-LEFT fix:
+  2021-06-05 / 2021-06-06 history
+
+PCC / CCBSim 1.1.22:
+  released 2024-04-28
+```
+
+So 1.1.21 is a clean pre-fix snapshot of the PCC1 branch, while 1.1.22 is a
+later build that may or may not contain an equivalent backport.
+
+Tracked helper:
+
+```text
+tools/research/audit-pcc1-simulator-lineage.sh
+```
+
+The helper compares 1.1.20, 1.1.21 and 1.1.22 package/debug/simulator families,
+extracts the complete simulator MAP segment containing `CalcBattleOrder`,
+computes target-routine spacing, searches `CC.DM` for source/unit metadata,
+compares simulator symbols across releases, and records the relevant
+`CCBSIM.DOC` changelog text.
+
+The goal is **not** to prove Nu mechanics. The goal is to answer:
+
+```text
+Did the historical PCC1 ccsim.pas lineage acquire a captured-this-turn /
+role-asymmetric THost correction after 1.1.21, and if so can its binary/debug
+delta narrow the exact old Pascal routine that changed?
+```
+
+If the answer is yes, only that routine needs a bounded binary pass.
