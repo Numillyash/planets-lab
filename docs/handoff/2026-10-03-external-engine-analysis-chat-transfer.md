@@ -20,19 +20,22 @@ Do not switch this workstream to `main`, merge it, or modify canonical mechanics
 without a separate evidence chain. GitHub is the source of truth: verify current
 remote HEADs before doing any work.
 
-Observed immediately before this transfer document was created:
+Latest remote-head observation during transfer finalization:
 
 ```text
 research/external-engine-analysis:
-  c5e084bee152b86d5441f6e67a09e09c748467cd
-  handoff: move external queue search to AFSim and BSim
+  eebe1ca5a7bf2e81ef407eaf422613ebd3ace722
+  handoff: add external engine analysis chat transfer
 
 main:
-  370156ab21fb8faf5083436dff697dff200369e4
-  research: record capture side heldout residuals
+  32422c4c9dd4d5f379cac4401a8105472488ac82
+  research: add capture side residual reporter
 ```
 
-These are only handoff observations, not trusted startup state.
+The research SHA above is the transfer document's previous revision and will be
+superseded by the commit that records this finalization. These values are
+handoff observations only; the next chat must fetch and verify actual remote
+HEADs before doing any work.
 
 ## Read first
 
