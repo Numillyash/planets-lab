@@ -369,3 +369,46 @@ tools/research/audit-afsim-queue-semantics.sh
 The next pass must extract capture/re-entry semantics from the manual first and
 only then, if needed, reverse the smallest executable region around VCR result
 ingestion. Do not spend time on Tim VCR pairwise physics.
+
+
+### AFSim capture-boundary refinement
+
+The focused AFSim 1.31 manual/string audit is complete.
+
+New bounded conclusions:
+
+```text
+automatic OOB/result chaining:
+  confirmed
+
+capture affects old-owner protection grouping:
+  confirmed by manual
+
+exact captured-ship re-entry / re-sort / side role:
+  not documented
+
+same-pair repeat behavior:
+  AFSim can run >=3 combats after repeated timeouts
+  therefore not safe to equate with Nu max-two or c2ng cursor semantics
+
+configuration switch for queue/capture policy:
+  none found
+```
+
+The active target is now the smallest executable result-handler region around
+the Pascal strings:
+
+```text
+Both ships blew up
+ won
+ captured
+The battle timed out
+```
+
+Tracked locator:
+
+```text
+tools/research/audit-afsim-result-handler.py
+```
+
+BSim remains deferred until this AFSim path is exhausted.
