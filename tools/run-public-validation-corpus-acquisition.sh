@@ -33,6 +33,11 @@ MAX_BACKFILL_ROUNDS="${MAX_BACKFILL_ROUNDS:-24}"
 
 DOCKER_PREFLIGHT_TIMEOUT="${DOCKER_PREFLIGHT_TIMEOUT:-10}"
 
+is_interrupt_rc() {
+  local rc="$1"
+  [[ "$rc" -eq 130 || "$rc" -eq 143 ]]
+}
+
 if ! [[ "$MAX_BACKFILL_ROUNDS" =~ ^[1-9][0-9]*$ ]]; then
   echo "ERROR: MAX_BACKFILL_ROUNDS must be a positive integer." >&2
   exit 64
@@ -116,6 +121,11 @@ while true; do
     BACKFILL_RC=$?
     set -e
 
+    if is_interrupt_rc "$BACKFILL_RC"; then
+      echo "WARNING: backfill interrupted (rc=$BACKFILL_RC); stopping immediately." >&2
+      INGEST_RC="$BACKFILL_RC"
+      break
+    fi
     if [[ "$BACKFILL_RC" -eq 2 ]]; then
       echo "ERROR: backfill round ${BACKFILL_ROUND} failed before ingest." >&2
       INGEST_RC=2
@@ -142,6 +152,10 @@ while true; do
   INGEST_RC=$?
   set -e
 
+  if is_interrupt_rc "$INGEST_RC"; then
+    echo "WARNING: download/index interrupted (rc=$INGEST_RC); stopping immediately." >&2
+    break
+  fi
   if [[ "$TARGET_SHORTFALL" -eq 1 ]]; then
     INGEST_RC=1
     echo "WARNING: stopping because the target selection could not be fully backfilled." >&2
