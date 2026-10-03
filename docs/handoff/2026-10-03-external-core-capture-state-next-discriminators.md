@@ -349,3 +349,116 @@ ignored `artifacts/external-sources/pcc1/`.
 
 If MAP/debug data yields useful routine names, the next pass should target those
 routines rather than blind-disassemble the full DOS binaries.
+
+
+## PCC1/CCBSim runtime result: exact simulator symbols recovered
+
+The first PCC1 package audit succeeded.
+
+Pinned 1.1.22 artifacts:
+
+```text
+cc1122.zip
+e8fda19768c8c96d4a4813017121d450ff00e598593a338267403fb5c3914704
+
+cc1122db.zip
+199056dfc9838eb055b7e5bce322f9b0d0470acef5f2c2ad09da852a2143dbcc
+
+ccbsim1122.zip
+2080e502f098a029fee73b00465d490bac9a52264d4f79a94bdfa9fd31694c1e
+```
+
+The debugger archive contains `CC1122.MAP`, and it exposes the historical
+Pascal battle-simulator unit directly. Simulator segment `2A92` contains:
+
+```text
+SetShipOwner
+SortFCBO
+CalcBattleOrder
+FreeVCRList
+KeepVCR
+MakeVCR
+MakePlanetVCR
+NoFightWarning
+FillInPlanetAggressiveness
+SortResult
+```
+
+This is a high-value source-recovery result, but it changes the provenance
+interpretation.
+
+### PCC1 is not independent from c2ng
+
+Pinned c2ng source explicitly labels modern routines with their PCC1 ancestry:
+
+```text
+ccsim.pas:SortFCBO
+ccsim.pas:MakeVCR
+ccsim.pas:MakePlanetVCR
+ccsim.pas:IsAttacking
+ccsim.pas:Attacking
+ccsim.pas:AddFighters
+```
+
+Those names line up with the recovered PCC1 MAP. c2ng history also has:
+
+```text
+bf6d27e440a8ea2ea61f33dc6e8d99ef02a30dab
+PCC1 alignment: document relation to PCC1, port some minor functions
+```
+
+and the pre-fix `game/sim/run.cpp` identifies itself as a close PCC2 port.
+
+Treat the family as:
+
+```text
+PCC1 ccsim.pas
+ -> PCC2 simulator
+ -> c2ng game/sim
+```
+
+So PCC1 cannot be counted as independent corroboration for the c2ng THost queue.
+
+### Why the recovered binary still matters
+
+Immediately before c2ng commit
+
+```text
+76b3eed65bee4506758c258b6fc33e10d1a031ee
+Simulator: implement battle order peculiarities
+```
+
+the descendant queue already used a fixed battle-order vector with outer RIGHT /
+inner LEFT traversal. Capture changed owner, crew=10 and aggressiveness=passive,
+but had no captured-this-turn flag.
+
+That commit added `fl_WasCaptured` and rejected a captured ship specifically
+when supplied as LEFT/inner in Host simulation.
+
+PCC/CCBSim 1.1.21 was released 2021-05-31, only days before that c2ng fix;
+PCC/CCBSim 1.1.22 is from 2024. Therefore the DOS lineage gives us a clean
+pre/post historical comparison opportunity.
+
+Tracked helper:
+
+```text
+tools/research/audit-pcc1-simulator-lineage.sh
+```
+
+Default comparison:
+
+```text
+1.1.20
+1.1.21
+1.1.22
+```
+
+It downloads each PCC/debug/CCBSim family, extracts the simulator MAP segment
+containing `CalcBattleOrder`, computes target routine spacing, searches
+`CC.DM`, records CCBSim rule/changelog text, fingerprints the binaries, and
+diffs simulator symbols across releases.
+
+This is now the next bounded external-core action. Do not perform a blind full
+binary disassembly yet. If the 1.1.21 -> 1.1.22 delta isolates
+`CalcBattleOrder` and/or `MakeVCR`, only those routines should receive a
+targeted binary pass.
