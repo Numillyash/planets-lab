@@ -865,3 +865,29 @@ population before promotion.
 See
 `docs/handoff/2026-10-03-public-capture-side-heldout-result.md`.
 
+## Post-heldout capture-side candidate
+
+The frozen pre-heldout capture-side rule failed independently at 27/29 exact
+with one real mismatch and one repeated-capture unresolved row.
+
+After opening the former held-out population, a new research-only candidate
+fits all 60 adjacent rows:
+
+```text
+reachable sticky                    20/20
+nonreachable neutral/fresh-FC       38/38
+second-occurrence reversal           1/1
+reachable numeric-opponent override  1/1
+                                     -----
+                                     60/60
+```
+
+This is not validation. The new numeric-opponent and repeated-capture branches
+are heldout-informed. Canonical promotion now requires a new independent
+population, preferably prospective private game 686764 and/or public games not
+present in public36.
+
+See:
+
+`docs/handoff/2026-10-03-postheldout-capture-side-candidate.md`.
+
