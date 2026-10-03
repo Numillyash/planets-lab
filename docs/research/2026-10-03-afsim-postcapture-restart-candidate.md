@@ -549,3 +549,203 @@ Primary enemy
 ```
 
 Once those two booleans are named directly, AFSIM-R1 can be frozen as executable pseudocode and evaluated against the discovery Corpus DB.
+
+
+## Ship-editor argument mapping closed
+
+The `0x2f14` editor pass closes the last metadata naming ambiguity.
+
+### Caller stack mapping
+
+Caller `0x5883` pushes arguments in this order:
+
+```text
+persistent entry
+&A
+&B
+&C
+call 0x2f14
+```
+
+with initialized values:
+
+```text
+A = 1
+B = 1
+C = 0
+```
+
+Because these are far pointers, the callee receives:
+
+```text
+bp+0x04 -> C
+bp+0x08 -> B
+bp+0x0c -> A
+bp+0x10 -> persistent entry
+```
+
+After a successful edit, the caller stores:
+
+```text
+A -> 0x3d9d[index]
+B -> 0x3dcf[index]
+C -> 0x3e01[index]
+```
+
+### Form-field dispatch inside 0x2f14
+
+The visible form labels are emitted in this exact order:
+
+```text
+field 1  Race of owner
+field 2  Ship id
+field 3  Ship mission kill
+field 4  Fuel on board
+field 5  Primary enemy
+field 6  Friendly code value
+...
+```
+
+The editor dispatch maps:
+
+```text
+field 3 -> bp+0x08
+field 4 -> bp+0x0c
+field 5 -> value loaded from bp+0x04
+```
+
+Therefore the metadata identities are now direct binary facts:
+
+```text
+0x3d9d[index] = fuel-present / combat-availability flag
+0x3dcf[index] = KILL-mission flag
+0x3e01[index] = Primary Enemy owner id
+```
+
+No behavioral naming inference remains for these fields.
+
+### Executable AFSIM-R1 state normalization
+
+Before each sort/select cycle, `0x5627` normalizes metadata:
+
+```text
+attack_value := numeric friendly-code prefix if valid and nonzero
+                else 1000
+
+if fuel == 0:
+    kill = 0
+
+if primary_enemy == owner:
+    primary_enemy = 0
+```
+
+Destroyed/sentinel records are assigned sort-last values and excluded from the
+active boundary.
+
+### Executable AFSIM-R1 sort key
+
+For active ships, the persistent array is sorted lexicographically by:
+
+```text
+(
+    0 if kill else 1,   # KILL first
+    owner,              # ascending
+    attack_value,       # ascending
+    ship_id,            # ascending
+)
+```
+
+The KILL flag used here is the normalized flag after the fuel gate above.
+
+### Executable AFSIM-R1 selector
+
+After every sort, the ship selector resets its pair indices to `1/1`.
+
+Phase 1 — KILL:
+
+```text
+initiator := first sorted ship
+
+if initiator.kill and initiator.fuel:
+    target := first sorted ship satisfying:
+        target.owner != initiator.owner
+        target.fuel
+        target is not the same record
+        initiator.can_fight or target.can_fight
+```
+
+If a target is found, that pair is selected.
+
+Phase 2 — Primary Enemy:
+
+```text
+for initiator in sorted ships from the beginning:
+    if initiator.primary_enemy != 0 and initiator.fuel:
+        target := first sorted ship satisfying:
+            target.owner == initiator.primary_enemy
+            target.fuel
+            target is not the same record
+            initiator.can_fight or target.can_fight
+
+        if target exists:
+            select pair and stop
+```
+
+Weapon capability is exactly:
+
+```text
+can_fight =
+    beam_count > 0
+    or (torpedo_tubes > 0 and torpedoes > 0)
+    or (fighter_bays > 0 and fighters > 0)
+```
+
+There is no captured-state exception in this predicate.
+
+### Selected-pair side assignment
+
+Before VCR setup, AFSim canonicalizes the selected pair by ship ID:
+
+```text
+lower ship ID  -> VCR LEFT
+higher ship ID -> VCR RIGHT
+```
+
+### Final frozen executable candidate
+
+AFSIM-R1 is now frozen as an executable external candidate:
+
+```text
+post-combat VCR state
+  -> capture owner/crew mutation if applicable
+  -> persistent writeback
+  -> metadata/result normalization
+  -> full persistent-array re-sort
+  -> selector reset to beginning
+  -> KILL phase, else Primary Enemy phase
+  -> selected pair canonicalized by ship ID
+  -> lower ID LEFT / higher ID RIGHT
+```
+
+Capture-specific persistent semantics:
+
+```text
+captured.owner := captor.owner
+captured.crew  := 10
+
+captured fuel/KILL/PE/friendly-code metadata are not rewritten by the
+capture handler itself; ordinary pre-sort normalization still applies
+after the owner change.
+```
+
+Authority remains:
+
+```text
+EXTERNAL_IMPLEMENTATION / AFSim 1.31 reverse engineering
+```
+
+No NuHost equivalence is implied.
+
+The next stage is no longer binary archaeology. It is a discovery-only
+differential test of this frozen executable candidate against the canonical
+Corpus DB. Held-out remains closed.
