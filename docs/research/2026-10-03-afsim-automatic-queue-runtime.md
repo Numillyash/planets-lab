@@ -859,3 +859,180 @@ python3 tools/research/audit-afsim-capture-state-flow.py \
 
 Only after the +6 and +2 fields are independently identified should the
 external candidate be frozen as an explicit AFSim capture rule.
+
+
+## Exact VCR-record field mapping and queue-bridge correction
+
+The capture-state-flow pass plus independent VCR file-format documentation close
+the field-identity ambiguity.
+
+PlanetsCentral's documented THost VCR record is exactly 100 bytes:
+
+```text
+record +12   left object, 42 bytes
+record +54   right object, 42 bytes
+record +96   left shield WORD
+record +98   right shield WORD
+
+within each 42-byte object:
+  +20 damage WORD
+  +22 crew WORD
+  +24 ship id WORD
+  +26 owner BYTE (+27 zero/race byte; THost commonly addresses +26 as WORD)
+  +28 picture
+  +30 beam type
+  +32 beam count
+  +34 fighter bays
+  +36 torpedo type
+  +38 fighters/torpedoes
+  +40 torpedo tubes
+```
+
+Source:
+
+```text
+https://www.planetscentral.com/doc.cgi/filefmt/vcrx-dat
+```
+
+AFSim's live memory layout matches this structure exactly:
+
+```text
+VCR record base      0x323e
+left object          0x324a = base + 12
+right object         0x3274 = base + 54
+object stride        0x2a = 42 bytes
+left shield          0x329e = base + 96
+right shield         0x32a0 = base + 98
+```
+
+Therefore the previously anonymous result slots can now be named:
+
+```text
+left:
+  0x325e damage
+  0x3260 crew
+  0x3262 ship id
+  0x3264 owner word
+  0x3270 fighters/torpedoes
+
+right:
+  0x3288 damage
+  0x328a crew
+  0x328c ship id
+  0x328e owner word
+  0x329a fighters/torpedoes
+
+shields:
+  0x329e left
+  0x32a0 right
+```
+
+This exact structural match removes the earlier field-name uncertainty.
+
+### AFSim 1.31 capture mutation — external implementation behavior
+
+The outcome handler's symmetric branches are now identified exactly:
+
+```text
+if left.crew == 0:
+    left.owner = right.owner
+    left.crew = 10
+
+if right.crew == 0:
+    right.owner = left.owner
+    right.crew = 10
+```
+
+So AFSim 1.31 implements the historical combat-capture state transition:
+
+```text
+captured ship owner := captor owner
+captured ship crew  := 10
+```
+
+This is an **EXTERNAL_IMPLEMENTATION** result for AFSim only. It is not NuHost
+evidence and must not be promoted into canonical mechanics from this match.
+
+The result is independently consistent with the ordinary VGA Planets rule that a
+combat-captured ship changes owner and receives ten crew, but the queue behavior
+after this mutation remains unresolved.
+
+### Battle-end control-flow correction
+
+The previous note described `0x4f8b` too broadly as the shared caller.
+
+The full disassembly shows:
+
+```text
+0x4f8b .. 0x50cd
+  ordinary procedure
+  battle-end / screen-state detector
+  returns with RET
+
+0x50ce .. 0x513c
+  separate interrupt-style routine
+  saves registers
+  uses ENTER
+  invokes an existing interrupt handler
+  periodically calls 0x4f8b
+  conditionally calls:
+    0x4c4c result parser
+    0x4e2d outcome handler
+  returns with IRET
+```
+
+Therefore the parser/outcome pair is called by the **0x50ce interrupt handler**,
+not directly by the ordinary `0x4f8b` procedure.
+
+That distinction matters for queue reconstruction: the capture mutation is
+performed asynchronously during VCR completion handling, and the actual OOB
+continuation/re-sort is likely outside this ISR after control returns to AFSim's
+main battle loop.
+
+### New active target: VCR -> OOB bridge
+
+The next bounded helper is:
+
+```text
+tools/research/audit-afsim-vcr-queue-bridge.py
+```
+
+Commit:
+
+```text
+03c51067c069abd1dc978db81c20c0f7d620700a
+research: trace AFSim VCR state into queue
+```
+
+It treats `0x323e` as the now-identified live VCR record and searches for the
+bridge back into persistent AFSim battle state.
+
+It specifically:
+
+1. emits the exact VCR record/object field map;
+2. searches references to the record base, both 42-byte objects, owner/crew and
+   shield fields;
+3. separates the `0x4f8b` detector from ISR `0x50ce`;
+4. disassembles the full `0x402d` builder that initializes the right-side VCR
+   object;
+5. disassembles `0x675a`, which independently references post-combat VCR
+   shields/results and is currently the strongest queue-continuation candidate;
+6. enumerates callers and other functions touching multiple VCR fields.
+
+Run:
+
+```bash
+python3 tools/research/audit-afsim-vcr-queue-bridge.py \
+  2>&1 | tee /tmp/afsim-vcr-queue-bridge.log
+```
+
+The next desired evidence is one of:
+
+```text
+VCR 42-byte object -> persistent AFSim ship copy
+post-capture OOB re-sort call
+battle cursor restart
+battle cursor continuation using the mutated owner
+```
+
+Only after that bridge is recovered should an AFSim O/C candidate be frozen.
