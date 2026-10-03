@@ -145,6 +145,21 @@ try_download() {
 
   echo "===== DOWNLOAD RESOLUTION: $slug ====="
 
+  if [[ -f "$dst" ]]; then
+    if unzip -t "$dst" >/dev/null 2>&1; then
+      echo "status: EXISTING-ZIP-OK"
+      echo -n "sha256: "
+      sha256sum "$dst" | awk '{print $1}'
+      echo -n "size:   "
+      stat -c '%s' "$dst"
+      return 0
+    fi
+
+    echo "status: existing-file-invalid"
+    file "$dst" || true
+    mv "$dst" "$dst.invalid-$(date -u +%Y%m%dT%H%M%SZ)"
+  fi
+
   local -a urls=()
   if [[ -n "$direct_url" ]]; then
     urls+=("$direct_url")
