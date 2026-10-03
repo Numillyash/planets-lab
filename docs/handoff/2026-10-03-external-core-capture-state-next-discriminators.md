@@ -614,3 +614,52 @@ If those routines contain no unresolved instruction-shape/control-flow delta,
 close the PCC1 1.1.22 backport hypothesis and return to the external-core
 candidate search / Nu corpus discriminator instead of spending more time on
 the DOS binary lineage.
+
+
+## PCC1 semantic-diff closure
+
+The instruction-level 1.1.21 -> 1.1.22 audit is now complete.
+
+Across all selected queue/capture routines:
+
+```text
+equal                         1459
+mapped_symbol_relocation        67
+operand_value_change           237
+
+mnemonic_change                  0
+operand_shape_change             0
+instruction_size_change          0
+instruction_boundary_change      0
+```
+
+Every changed numeric operand falls into a uniform linker/layout family:
+
+```text
++138
+-138
++4
++0x8A0000 == 138 << 16
+```
+
+No changed mechanics constant, branch shape, opcode, instruction boundary or
+new/removed condition remains in `CalcBattleOrder`, `Attacking`,
+`KeepVCR`, or `MakeVCR`.
+
+Final disposition:
+
+```text
+PCC1 1.1.22 captured-state backport hypothesis:
+  REJECTED
+
+Further PCC1 disassembly for this blocker:
+  NOT WARRANTED
+```
+
+The c2ng `fl_WasCaptured`/captured-LEFT asymmetry is therefore not supported
+as an older PCC1 rule. Treat it as a later PCC2/c2ng-lineage reverse-engineering
+addition.
+
+Next work in this branch should return to genuinely independent external-core
+candidates or historical documentation of capture-generated/restarted combat
+order.
