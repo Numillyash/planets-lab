@@ -1036,3 +1036,199 @@ battle cursor continuation using the mutated owner
 ```
 
 Only after that bridge is recovered should an AFSim O/C candidate be frozen.
+
+
+## VCR -> persistent battle-state bridge recovered
+
+The `audit-afsim-vcr-queue-bridge.py` runtime closes the next structural gap.
+
+### Persistent AFSim combat-entry layout
+
+The main battle loop addresses persistent combatants with:
+
+```text
+entry[index] = 0x32dc + index * 0x36
+stride       = 0x36 = 54 bytes
+```
+
+Inside each 54-byte entry:
+
+```text
++0x06 shield
++0x0c embedded 42-byte VCR object
++0x24 ship ID
+```
+
+The identities follow directly from the standard VCR object offsets:
+
+```text
+entry + 0x0c + 0x18 = entry + 0x24 = ship ID
+```
+
+and from the code which accesses:
+
+```text
+0x32e2 + index*0x36  shield
+0x32e8 + index*0x36  42-byte VCR object
+0x3300 + index*0x36  ship ID
+```
+
+### Capture mutation is written back before the next pair selection
+
+After VCR completion, `0x675a` copies both complete 42-byte VCR combatant
+objects back into the persistent 54-byte entries selected by indices
+`0x313a` and `0x313c`.
+
+The code immediately then copies:
+
+```text
+VCR left shield  0x329e -> entry[0x313a] + 0x06
+VCR right shield 0x32a0 -> entry[0x313c] + 0x06
+```
+
+The explicit shield stores establish the direction of the adjacent 42-byte
+block copies as **VCR -> persistent entry**, not the reverse.
+
+Therefore the already-proven capture mutation:
+
+```text
+captured.owner := captor.owner
+captured.crew  := 10
+```
+
+is persisted into AFSim's mutable battle-state array before the simulator
+chooses another fight.
+
+This is the first recovered concrete bridge:
+
+```text
+VCR result
+  -> capture owner/crew mutation
+  -> persistent AFSim combatant entry
+  -> next battle-selection loop
+```
+
+### Post-writeback normalization hook
+
+Immediately after both combatants and shields are written back, `0x675a`
+invokes:
+
+```text
+0x2c68(entry[0x313a])
+0x2c68(entry[0x313c])
+```
+
+The exact role of `0x2c68` is not yet named. It is the highest-value candidate
+for per-entry attack-value/OOB-key recalculation or result normalization.
+
+Do not call this a re-sort until `0x2c68` is decoded.
+
+### Pair canonicalization by ship ID
+
+Before invoking battle setup for a two-ship combat, `0x675a` compares:
+
+```text
+entry[index_a].ship_id
+entry[index_b].ship_id
+```
+
+through:
+
+```text
+0x3300 + index * 0x36
+```
+
+If `index_a` has the greater ship ID, the two selected indices are swapped.
+
+Thus AFSim canonicalizes the already-selected ship pair by ascending ship ID
+before calling `0x497e`.
+
+This does not yet prove which VCR side is LEFT/RIGHT because `0x497e` still
+needs to be decoded, but the ordering step itself is now explicit.
+
+### Main loop returns to selector after result processing
+
+The two-ship path loops back through the block beginning at `0x68ad`.
+
+That block calls:
+
+```text
+0x5627
+0x51c6
+```
+
+before reading/comparing the current pair indices again.
+
+The planet path similarly uses:
+
+```text
+0x5627
+0x53c6
+```
+
+This makes the next uncertainty narrowly bounded:
+
+```text
+0x2c68  per-entry post-result normalization
+0x5627  common pre-selection/OOB refresh candidate
+0x51c6  ship-vs-ship selector
+0x53c6  ship-vs-planet selector
+```
+
+At this point AFSim is known to use **mutable persistent combat state between
+combats**. What remains unknown is whether the next ship pair is obtained by a
+full OOB rebuild/re-sort, a restarted traversal, or continuation of a saved
+cursor over entries whose owner/order keys have been updated.
+
+## Post-capture selector audit
+
+Tracked helper:
+
+```text
+tools/research/audit-afsim-postcapture-selector.py
+```
+
+Commit:
+
+```text
+98e5c1753e2262a9136e19952d2e3138e587d301
+research: audit AFSim postcapture selector path
+```
+
+The helper disassembles and relates only:
+
+```text
+0x2c68 entry normalization
+0x5627 common pre-selection/OOB refresh
+0x51c6 ship pair selector
+0x53c6 planet selector
+0x497e battle setup
+0x7225 caller of the main battle loop
+```
+
+It also inventories uses of the persistent entry bases and current-pair indices
+`0x313a/0x313c`.
+
+Run:
+
+```bash
+python3 tools/research/audit-afsim-postcapture-selector.py \
+  2>&1 | tee /tmp/afsim-postcapture-selector.log
+```
+
+The desired discriminator is now exact:
+
+```text
+capture writeback
+  -> 0x2c68
+  -> 0x5627 / 0x51c6
+  -> next pair
+
+Does that path:
+  rebuild/sort from the mutated entry?
+  restart a traversal?
+  or advance a preserved cursor?
+```
+
+Only after that distinction is recovered should an AFSim O/C candidate be
+frozen for Nu discovery-corpus testing.
