@@ -64,9 +64,19 @@ def _checkpoint_outputs(
     stats_output: Path,
     records: list[dict[str, Any]],
     failed_game_ids: list[int],
+    manifests: list[dict[str, Any]],
 ) -> dict[str, Any]:
-    stats = aggregate_corpus_index(records, failed_game_ids=failed_game_ids)
-    _write_jsonl(index_output, records)
+    records_by_game = {int(record["game_id"]): record for record in records}
+    ordered_records = [
+        records_by_game[int(manifest["game_id"])]
+        for manifest in manifests
+        if int(manifest["game_id"]) in records_by_game
+    ]
+    stats = aggregate_corpus_index(
+        ordered_records,
+        failed_game_ids=failed_game_ids,
+    )
+    _write_jsonl(index_output, ordered_records)
     _write_json(stats_output, stats)
     return stats
 
@@ -320,6 +330,17 @@ def main() -> int:
             )
 
     records: list[dict[str, Any]] = []
+    if previous_records:
+        for manifest in manifests:
+            game_id = int(manifest["game_id"])
+            previous = previous_records.get(game_id)
+            cache_path = _default_cache_path(args.cache_dir, game_id)
+            if (
+                previous is not None
+                and _record_matches_immutable_cache(previous, manifest, cache_path)
+            ):
+                records.append(previous)
+
     failed_game_ids: list[int] = []
     client: PlanetsNuPublicApi | None = None
 
@@ -334,7 +355,6 @@ def main() -> int:
                 and not args.refresh
                 and _record_matches_immutable_cache(previous, manifest, cache_path)
             ):
-                records.append(previous)
                 print(
                     json.dumps(
                         _progress_payload(
@@ -351,6 +371,7 @@ def main() -> int:
                     args.stats_output,
                     records,
                     failed_game_ids,
+                    manifests,
                 )
                 continue
 
@@ -433,6 +454,7 @@ def main() -> int:
         args.stats_output,
         records,
         failed_game_ids,
+        manifests,
     )
 
     print("===== CORPUS INGEST SUMMARY =====")
