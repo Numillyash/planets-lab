@@ -677,3 +677,115 @@ CalcBattleOrder / Attacking / KeepVCR / MakeVCR
 ```
 
 This pass is preferable to blind disassembly of the full 50-KiB overlay.
+
+
+## 12. Instruction-level semantic triage: PCC1 1.1.22 did not receive a capture-order backport
+
+The instruction-level comparison of the exact `ccSim` overlay between
+PCC 1.1.21 and 1.1.22 completed successfully.
+
+Across the selected capture/order routines the generated instruction stream is
+structurally identical:
+
+```text
+equal                         1459
+mapped_symbol_relocation        67
+operand_value_change           237
+
+mnemonic_change                  0
+operand_shape_change             0
+instruction_size_change          0
+instruction_boundary_change      0
+```
+
+That means the old and new builds have the same instruction boundaries,
+mnemonics and operand shapes in every audited target routine. All residual
+differences are numeric operand values only.
+
+A direct audit of every numeric delta in the runtime report yields exactly four
+delta families:
+
+```text
++138        186 occurrences
+-138         41 occurrences
++4           61 occurrences
++0x8A0000     1 occurrence
+```
+
+The exceptional `+0x8A0000` value is `138 << 16` and comes from objdump
+printing a 32-bit immediate that embeds the same +138 address shift in its upper
+word.
+
+The other three families are also build-layout changes:
+
+- `+138` / `-138` is the uniform 1.1.21 -> 1.1.22 data/global-layout shift
+  visible throughout unrelated UI, config, VCR and simulator data references;
+- `+4` is the uniform far-call segment shift caused by program segment layout
+  moving between the two linked builds.
+
+Examples in the actual queue/capture routines follow exactly those families:
+
+```text
+CalcBattleOrder:
+  global/data refs   +/-138
+  far call segment   +4
+
+Attacking:
+  global/data refs   +/-138
+  far call segment   +4
+
+KeepVCR:
+  SimVCR/VCR/global refs +138
+  far call segment       +4
+
+MakeVCR:
+  VCR/global refs        +138
+  combat-unit far calls  +4
+```
+
+There is no changed branch structure, no new check, no removed check, no changed
+opcode, and no changed immediate mechanics constant in those routines.
+
+### Final disposition of the PCC1 backport hypothesis
+
+```text
+Hypothesis:
+  the 2021 c2ng fl_WasCaptured / captured-LEFT correction was later
+  backported into PCC1/CCBSim by 1.1.22
+
+Result:
+  REJECTED
+
+Evidence:
+  same ccSim symbol topology
+  same target routine sizes
+  same instruction count
+  same instruction boundaries
+  same mnemonics
+  same operand shapes
+  every changed numeric operand explained by uniform link/layout shifts
+```
+
+Therefore the asymmetric captured-LEFT rule belongs to the later PCC2/c2ng
+lineage (or at minimum is not present in the audited PCC1 1.1.22 generated
+code). PCC1 1.1.21 -> 1.1.22 no longer warrants disassembly for this blocker.
+
+This also strengthens the provenance boundary around the earlier c2ng result:
+
+```text
+PCC1 multi-ship queue:
+  historical ancestor / same family
+
+c2ng fl_WasCaptured asymmetry:
+  later family-specific reverse-engineering addition
+
+independent THost corroboration:
+  Donovan documented nested initiator traversal only
+
+independent NuHost capture-order evidence:
+  still absent from external engines
+```
+
+The next external-core search should therefore prioritize genuinely independent
+implementations or documentation of capture-generated/restarted combat order,
+not further binary archaeology of PCC1.
