@@ -531,3 +531,53 @@ tools/research/audit-afsim-postcapture-selector.py
 ```
 
 No NuHost mechanic is promoted by this result.
+
+
+### AFSim structural queue candidate frozen: AFSIM-R1
+
+The post-capture selector path is now resolved at the structural level.
+
+After every completed ship-vs-ship combat AFSim:
+
+```text
+1. writes the mutated VCR combatant state back into persistent 54-byte entries;
+2. runs per-entry post-result normalization;
+3. fully re-sorts/rebuilds the persistent combatant array;
+4. resets ship-pair selector indices to 1/1;
+5. scans again from the beginning of the newly sorted array.
+```
+
+The re-sort is explicit: `0x5627` runs a nested pair loop and swaps complete
+54-byte entries plus their parallel state arrays according to comparator
+`0x5572`.
+
+The restart is explicit: every `0x51c6` invocation initializes
+`0x313a = 1` and `0x313c = 1`.
+
+Frozen candidate:
+
+```text
+AFSIM-R1:
+post-combat mutable state -> full re-sort -> traversal restart
+```
+
+This independently differs from the c2ng/PCC2 frozen-cursor model and is
+therefore a useful Nu discovery-corpus discriminator.
+
+It remains third-party evidence only.
+
+Candidate freeze document:
+
+```text
+docs/research/2026-10-03-afsim-postcapture-restart-candidate.md
+```
+
+Next helper:
+
+```text
+tools/research/audit-afsim-sort-eligibility-sides.py
+```
+
+The helper recovers comparator `0x5572`, ship eligibility `0x513d`, VCR side
+builder `0x3eb9`, and removal path `0x46be` before any discovery-corpus
+comparison is implemented.
