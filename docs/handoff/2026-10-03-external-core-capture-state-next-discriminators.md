@@ -462,3 +462,74 @@ This is now the next bounded external-core action. Do not perform a blind full
 binary disassembly yet. If the 1.1.21 -> 1.1.22 delta isolates
 `CalcBattleOrder` and/or `MakeVCR`, only those routines should receive a
 targeted binary pass.
+
+
+## PCC1 lineage runtime: 1.1.21 -> 1.1.22 structural no-change
+
+The requested 1.1.20 / 1.1.21 / 1.1.22 lineage audit completed.
+
+The decisive structural result is:
+
+```text
+1.1.21 ccSim: 145 symbols
+1.1.22 ccSim: 145 symbols
+```
+
+and every ccSim symbol keeps the same routine offset in 1.1.22 after only the
+segment selector changes from `2A8E` to `2A92`.
+
+Capture-relevant routine boundaries are therefore identical:
+
+```text
+CalcBattleOrder             0x8114, size 0x17C
+Attacking                   0x84D6
+KeepVCR                     0x86E5, size 0x89
+MakeVCR                     0x8F37, size 0x292
+MakePlanetVCR               0x91EF, size 0x8D8
+FillInPlanetAggressiveness  0x9DFD, size 0x6D
+SimulateOnce                0x9FA0
+Simulate                    0xC87E
+```
+
+The 1.1.22 CCBSim changelog says only:
+
+```text
+fixed formula errors, in particular related to PList 3
+```
+
+No battle-order/capture change is documented.
+
+Interpretation: there is no structural evidence that the June-2021 c2ng
+captured-LEFT correction was backported into PCC1 by 1.1.22. This is strong
+negative source-lineage evidence, but not byte-level proof because same-size
+instruction replacement is still possible.
+
+The 1.1.20 -> 1.1.21 change is real but earlier than the c2ng fix:
+`CalcBattleOrder` grows from `0x14C` to `0x17C`; `SortFCBO` grows by two
+bytes. `MakeVCR`, `KeepVCR`, and `MakePlanetVCR` keep their lengths.
+
+Next tracked discriminator:
+
+```text
+tools/research/audit-pcc1-simulator-overlay-bytes.py
+```
+
+It parses the Turbo/Borland overlay thunk/control header from `CC.EXE`, uses
+its OVR file offset/code size/relocation table to extract the exact ccSim image
+from `CC.OVR`, relocation-normalizes it, then compares both whole-unit bytes
+and exact MAP-bounded routines.
+
+Run:
+
+```bash
+cd ~/projects/planets-lab-external
+git pull --ff-only origin research/external-engine-analysis
+
+python3 tools/research/audit-pcc1-simulator-overlay-bytes.py \
+  | tee /tmp/pcc1-simulator-overlay-byte-audit.log
+```
+
+Do not start a broad disassembly before this result. If 1.1.21 and 1.1.22 are
+byte-identical after relocation normalization, close this PCC1 backport line.
+If only specific capture-relevant routines differ, disassemble those routines
+only.
