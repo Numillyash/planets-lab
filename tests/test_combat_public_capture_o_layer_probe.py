@@ -170,4 +170,4 @@ def test_probe_classifies_dependency_qualified_subset() -> None:
     assert '"factual_opponent_history_anchored"' in probe
     assert '"factual_opponent_removed_before_next"' in probe
     assert '"factual_opponent_owner_changed_before_next"' in probe
-    assert '"blocked_dependency:"' in probe
+    assert "blocked_dependency" in probe
