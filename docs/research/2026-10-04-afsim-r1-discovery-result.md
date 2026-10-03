@@ -281,3 +281,48 @@ Nu-derived strict attacker ranking
 rather than continuing to refine AFSim's KILL/PE logic.
 
 Held-out remains closed.
+
+
+## Strict-rank analyzer compatibility correction
+
+The first strict-rank post-analysis attempt stopped before reading row evidence:
+
+```text
+ERROR: O-layer artifact must be partition=discovery
+```
+
+This was a schema-compatibility guard failure.
+
+Legacy discovery O-layer artifacts used:
+
+```text
+evidence_status = DISCOVERY_...
+source_discovery = ...discovery...
+```
+
+without an explicit top-level:
+
+```text
+partition = discovery
+```
+
+The analyzer now accepts both current and legacy discovery-only markers.
+
+Because older artifacts may also predate the enriched
+`active_dependency` rank context, a compatibility runner was added:
+
+```text
+tools/research/run-postcapture-strict-rank-discovery.sh
+```
+
+It:
+
+1. checks the existing discovery O-layer artifact;
+2. reuses it directly if every adjacent row already contains requester/strict
+   rank context;
+3. otherwise regenerates the discovery-only O-layer through the current
+   canonical `main` runner and read-only Corpus DB;
+4. runs the research strict-rank cross-analysis;
+5. never reads held-out.
+
+No strict-rank result existed before this correction.
