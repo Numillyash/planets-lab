@@ -400,3 +400,99 @@ for Nu. It does not, by itself, prove a complete Nu restart queue.
 The next bounded step is to print the exact two rank>1 rows and classify the 16
 rank-missing rows by dependency reason/source before any new queue candidate is
 frozen.
+
+
+## Residual split closed to two qualified queue cases
+
+The residual reporter confirms that the 16 missing-rank rows are exactly the
+previously known movement-position fail-closed population:
+
+```text
+pre_move_mkt_mass_change        5
+intercept_movement              3
+hyperjump_movement              3
+normal_mine_route_risk          2
+tow_target                      2
+potential_chunnel_source_stack  1
+                               --
+                               16
+```
+
+Every one of those rows has:
+
+```text
+factual_opponent_site_predicted = false
+```
+
+so they remain movement/position dependency cases and are not evidence against
+the post-capture queue ranking itself.
+
+This leaves exactly two currently qualified strict-rank residuals:
+
+```text
+486109 / T55
+VCR 191 -> 192
+captured ship 450
+factual opponent 467
+strict rank = 2
+requester rank = 2
+factual prize side = LEFT
+
+486109 / T88
+VCR 518 -> 519
+captured ship 296
+factual opponent 454
+strict rank = 2
+requester rank = 2
+factual prize side = RIGHT
+```
+
+Both have fully reconstructed ordinary stationary geometry:
+
+```text
+status            resolved
+site_predicted    true
+position source   stationary_effective_warp_zero
+active            true
+candidate         true
+requests combat   true
+strict permission true
+```
+
+Therefore they are genuine queue-order residuals rather than movement,
+membership, diplomacy, or candidate-resolution failures.
+
+Both occur in the same public game, 486109, at different turns.
+
+AFSim behavior on the two cases differs:
+
+```text
+T55: unrelated_pair / primary_enemy
+T88: prize_with_wrong_opponent / primary_enemy
+```
+
+The next targeted diagnostic reconstructs only these two sites and exposes:
+
+```text
+- the rank-1 competitor
+- full requester / strict requester order
+- static priorities and T-1 orders for rank1 and factual rank2
+- elapsed local VCR history through the capture VCR
+- prior prize/rank1 and prize/factual pair occurrence counts
+- prior appearances of rank1/factual/prize
+- post-combat mutation trace
+- c2ng identity-anchored cursor context
+```
+
+Tracked tools:
+
+```text
+tools/research/probe-postcapture-rank2-residuals.py
+tools/research/run-postcapture-rank2-targeted.sh
+```
+
+The immediate discriminator is whether the static rank-1 competitor is already
+ineligible due to elapsed mutable combat history (for example a prior
+prize/rank1 pair occurrence or another consumed-order constraint).
+
+Held-out remains unread.
