@@ -209,3 +209,39 @@ same pair can fight at most twice
 
 External code is useful only if it predicts an independently testable
 discriminator against the discovery Corpus DB population.
+
+
+## JPHost current-source verdict
+
+The complete checked-out CVS HEAD has now been audited:
+
+```text
+169 Java source files
+70 Java test files
+no combat/battle/capture/VCR implementation class
+```
+
+`jhost.JHost.turn()` contains the PHost-like host order as comments, including
+`Combat`, but that stage is not instantiated or executed. The actual executable
+pipeline only contains the subset of stages already implemented in the project.
+
+So JPHost HEAD is **not** a usable external combat engine.
+
+Do not discard the project yet: the first history/JAR portion of the audit had a
+CVS addressing bug. A focused final historical pass is ready:
+
+```text
+tools/research/audit-jphost-cvs-history.sh
+```
+
+This pass is the closure criterion for JPHost:
+
+- inspect every raw Attic Java RCS file;
+- use `cvs rlog` rather than working-copy `cvs log`;
+- recover deleted source using logical non-Attic paths;
+- recover the historical `Jhost.jar`;
+- compare binary class inventory with final source;
+- use `javap` on any combat/capture-related or otherwise missing class.
+
+If no combat implementation appears there, mark JPHost CLOSED for the active
+capture-order blocker and move external archaeology to the next engine/source.
