@@ -84,7 +84,7 @@ echo "===== DISCOVERY-ONLY CORPUS DB PROBE ====="
 mkdir -p "$(dirname "$OUTPUT_HOST")"
 (
   cd "$MAIN_ROOT"
-  "${lab[@]}" python /research/tools/research/probe_afsim_r1_discovery_db.py     --main-root /workspace     --corpus-db-root /corpus-db     --discovery /workspace/artifacts/public-capture-side/discovery-capture-side.json     --output "$OUTPUT_CONTAINER"
+  "${lab[@]}" python /research/tools/research/probe_afsim_r1_discovery_db.py     --main-root /workspace     --verified-main-head "$main_head"     --corpus-db-root /corpus-db     --discovery /workspace/artifacts/public-capture-side/discovery-capture-side.json     --output "$OUTPUT_CONTAINER"
 )
 
 echo
