@@ -21,6 +21,9 @@ def merge_parts(parts: list[Mapping[str, Any]]) -> dict[str, Any]:
     observations: list[dict[str, Any]] = []
     per_game: list[dict[str, Any]] = []
     scanned_game_ids: set[int] = set()
+    backends: set[str] = set()
+    database_schemas: set[str] = set()
+    database_paths: set[str] = set()
 
     for part in parts:
         if part.get("schema") != SCHEMA:
@@ -45,6 +48,16 @@ def merge_parts(parts: list[Mapping[str, Any]]) -> dict[str, Any]:
         for value in part.get("scanned_game_ids", []):
             if isinstance(value, int) and not isinstance(value, bool):
                 scanned_game_ids.add(int(value))
+        backend = part.get("backend")
+        if isinstance(backend, str) and backend:
+            backends.add(backend)
+        database_schema = part.get("database_schema")
+        if isinstance(database_schema, str) and database_schema:
+            database_schemas.add(database_schema)
+        database_path = part.get("database_path")
+        if isinstance(database_path, str) and database_path:
+            database_paths.add(database_path)
+
         probe_ids = [
             int(value)
             for value in part.get("probe_game_ids", [])
@@ -53,12 +66,27 @@ def merge_parts(parts: list[Mapping[str, Any]]) -> dict[str, Any]:
         per_game.append(
             {
                 "probe_game_ids": probe_ids,
+                "backend": backend if isinstance(backend, str) else None,
+                "database_schema": (
+                    database_schema if isinstance(database_schema, str) else None
+                ),
                 "counts": dict(sorted(
                     (str(key), int(value))
                     for key, value in part_counts.items()
                     if isinstance(value, int) and not isinstance(value, bool)
                 )),
             }
+        )
+
+    if len(backends) > 1:
+        raise ValueError(f"mixed O-layer backends: {sorted(backends)}")
+    if len(database_schemas) > 1:
+        raise ValueError(
+            f"mixed Corpus DB schemas: {sorted(database_schemas)}"
+        )
+    if len(database_paths) > 1:
+        raise ValueError(
+            f"mixed Corpus DB generations: {sorted(database_paths)}"
         )
 
     observations.sort(
@@ -71,8 +99,17 @@ def merge_parts(parts: list[Mapping[str, Any]]) -> dict[str, Any]:
     )
     per_game.sort(key=lambda row: tuple(row["probe_game_ids"]))
 
+    backend_value = next(iter(backends)) if backends else None
+    database_schema_value = (
+        next(iter(database_schemas)) if database_schemas else None
+    )
+    database_path_value = next(iter(database_paths)) if database_paths else None
+
     return {
         "schema": MERGED_SCHEMA,
+        "backend": backend_value,
+        "database_schema": database_schema_value,
+        "database_path": database_path_value,
         "evidence_status": "DISCOVERY_ONLY_EXTERNAL_REFERENCE_NOT_PROMOTED",
         "scanned_game_ids": sorted(scanned_game_ids),
         "summary": {
@@ -84,8 +121,9 @@ def merge_parts(parts: list[Mapping[str, Any]]) -> dict[str, Any]:
         "evidence_boundary": (
             "Merged from process-isolated discovery-only per-game O-layer "
             "reports. Each game is evaluated in a fresh Python/container process "
-            "to bound peak memory. The external cursor remains reference-only; "
-            "held-out games are not included."
+            "to bound peak memory. When backend=corpus-db, every part must name "
+            "one identical read-only CURRENT generation/schema. The external "
+            "cursor remains reference-only; held-out games are not included."
         ),
     }
 
@@ -118,6 +156,10 @@ def main() -> int:
     counts = report["summary"]["counts"]
     print("===== PUBLIC CAPTURE O-LAYER DISCOVERY: MERGED =====")
     print(f"game_passes:          {report['summary']['game_passes']}")
+    if report.get("backend"):
+        print(f"backend:              {report['backend']}")
+    if report.get("database_path"):
+        print(f"database:             {report['database_path']}")
     print(f"discovery_ship_rows:  {counts.get('discovery_ship_rows', 0)}")
     print(f"adjacent_rows:        {counts.get('adjacent_rows', 0)}")
     print(f"resolved:             {counts.get('status:resolved', 0)}")
