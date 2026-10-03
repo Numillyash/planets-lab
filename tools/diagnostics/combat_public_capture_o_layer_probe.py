@@ -1,10 +1,8 @@
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
 import sys
-import zipfile
 from collections import Counter, defaultdict
 from collections.abc import Mapping, Sequence
 from pathlib import Path
@@ -18,12 +16,20 @@ for _path in (REPO_ROOT / "src", DIAGNOSTICS_DIR):
 
 import combat_host_initial_standard_target_audit as baseline_module
 import combat_host_post_capture_active_membership_audit as active_module
+import combat_ship_chain_audit as chain_module
 import combat_host_post_capture_special_movement_audit as special_movement_module
 from combat_host_post_capture_pair_recomposition_audit import (
     _external_c2ng_original_order_prize_continuation,
 )
 from combat_host_post_mutation_next_pair_audit import _appearance_key
-from planets_lab.corpus.archive import TurnMember, turn_members_from_names
+from planets_lab.corpus.archive import TurnMember
+from planets_lab.corpus.corpus_db_compact import reconstruct_compact_member
+from planets_lab.corpus.corpus_db_runtime import (
+    connect_current_compact_read_only,
+    first_last_member_refs,
+    member_refs_for_turns,
+    reconstruct_members,
+)
 from planets_lab.corpus.movement_differential import (
     _entity_map,
     _intish,
@@ -44,7 +50,6 @@ from planets_lab.corpus.movement_topology_diagnostics import (
 )
 from planets_lab.corpus.normalizer import (
     ArchiveTurnSnapshot,
-    _decode_member_json,
     mechanics_projection,
 )
 from planets_lab.corpus.reconstruction import group_perspective_records
@@ -67,15 +72,9 @@ from combat_host_normal_movement_position_audit import (
     _inbound_transfer_targets,
     _normal_position_prediction,
 )
-from combat_host_priority_intercept_audit import PREPARED_DIR
-from combat_public_capture_side_harvest import (
-    DEFAULT_APPEARANCE_CACHE_DIR,
-    DEFAULT_ARCHIVE_DIR,
-    _collect_appearances_cached,
-)
 
 
-SCHEMA = "planets-lab.combat-public-capture-o-layer-probe.v1"
+SCHEMA = "planets-lab.combat-public-capture-o-layer-probe.v2.db1"
 DEFAULT_DISCOVERY = Path(
     "artifacts/public-capture-side/discovery-capture-side.json"
 )
@@ -266,101 +265,188 @@ def _nuionstorms_from_payloads(
     return next(iter(parsed)) if len(parsed) == 1 else None
 
 
-def _targeted_archive_context(
+def _collect_targeted_appearances_from_db(
     *,
-    archive_path: Path,
+    connection: Any,
+    game_id: int,
+    battle_turns: set[int],
+) -> tuple[list[dict[str, Any]], Mapping[str, Any]]:
+    refs = member_refs_for_turns(
+        connection,
+        game_id=game_id,
+        turns=battle_turns,
+        include_embedded_turn=True,
+    )
+    unique_cases: dict[tuple[int, int, int], dict[str, Any]] = {}
+    conflicts: set[tuple[int, int, int]] = set()
+    summary: Counter[str] = Counter()
+    summary["source_members"] = len(refs)
+
+    for _ref, payload in reconstruct_members(connection, refs):
+        game = payload.get("game")
+        if not isinstance(game, Mapping):
+            continue
+        observed_game_id = chain_module._int(game, "id")
+        game_turn = chain_module._int(game, "turn")
+        if observed_game_id != game_id or game_turn is None:
+            continue
+        beams = chain_module._objects(payload, "beams")
+        torpedoes = chain_module._objects(payload, "torpedos")
+        settings = payload.get("settings")
+        settings = dict(settings) if isinstance(settings, Mapping) else {}
+
+        for raw_vcr in chain_module._objects(payload, "vcrs"):
+            vcr_id = chain_module._int(raw_vcr, "id")
+            battle_turn = chain_module._int(raw_vcr, "turn") or game_turn
+            if vcr_id is None or battle_turn not in battle_turns:
+                continue
+            summary["raw_vcr_observations"] += 1
+            key = (game_id, battle_turn, vcr_id)
+            payload_hash = chain_module._canonical_hash(raw_vcr)
+            existing = unique_cases.get(key)
+            if existing is None:
+                unique_cases[key] = {
+                    "payload": dict(raw_vcr),
+                    "payload_hash": payload_hash,
+                    "beams": beams,
+                    "torpedoes": torpedoes,
+                    "settings": settings,
+                }
+            elif existing["payload_hash"] != payload_hash:
+                conflicts.add(key)
+
+    summary["unique_vcrs"] = len(unique_cases)
+    summary["payload_conflicts"] = len(conflicts)
+
+    appearances: list[dict[str, Any]] = []
+    for key, case in sorted(unique_cases.items()):
+        if key in conflicts:
+            continue
+        _game, turn, vcr_id = key
+        try:
+            replay = chain_module.replay_nuhost_from_nu_catalog(
+                case["payload"],
+                beams=case["beams"],
+                torpedoes=case["torpedoes"],
+                settings=case["settings"],
+            )
+        except chain_module.ReplayUnsupported:
+            summary["replay_unsupported"] += 1
+            continue
+
+        summary["replay_supported"] += 1
+        position = chain_module._position(case["payload"])
+        for side_name in ("left", "right"):
+            raw_side = case["payload"].get(side_name)
+            replay_side = replay.get(side_name)
+            if not isinstance(raw_side, Mapping) or not isinstance(replay_side, Mapping):
+                continue
+            appearance = chain_module._appearance(
+                game_id=game_id,
+                turn=turn,
+                vcr_id=vcr_id,
+                position=position,
+                side_name=side_name,
+                raw_side=raw_side,
+                replay_side=replay_side,
+            )
+            if appearance is not None:
+                appearances.append(appearance)
+                summary["ship_appearances"] += 1
+
+    return appearances, dict(summary)
+
+
+def _targeted_db_context(
+    *,
+    connection: Any,
     game_id: int,
     battle_turns: set[int],
 ) -> dict[str, Any]:
     before_turns = {turn - 1 for turn in battle_turns}
     wanted_turns = before_turns | battle_turns
     snapshots: list[ArchiveTurnSnapshot] = []
-    relations: dict[int, dict[tuple[int, int], set[tuple[int | None, int | None, int | None]]]] = defaultdict(
-        lambda: defaultdict(set)
+    relations: dict[
+        int,
+        dict[tuple[int, int], set[tuple[int | None, int | None, int | None]]],
+    ] = defaultdict(lambda: defaultdict(set))
+
+    first_ref, last_ref = first_last_member_refs(connection, game_id=game_id)
+    first_payload = reconstruct_compact_member(connection, first_ref.member_id)
+    if last_ref.member_id == first_ref.member_id:
+        last_payload = first_payload
+    else:
+        last_payload = reconstruct_compact_member(connection, last_ref.member_id)
+
+    specs = NuStaticSpecs.from_catalog(import_static_all(first_payload))
+    topology = effective_sphere_topology(
+        game_id=game_id,
+        topology=_topology_from_payloads(
+            first_member=first_ref.turn_member,
+            first_payload=first_payload,
+            last_member=last_ref.turn_member,
+            last_payload=last_payload,
+        ),
     )
+    nuionstorms = _nuionstorms_from_payloads(first_payload, last_payload)
 
-    with zipfile.ZipFile(archive_path) as archive:
-        members = turn_members_from_names(archive.namelist())
-        if not members:
-            raise ValueError(f"{archive_path}: no .trn members")
-        first_member = members[0]
-        last_member = members[-1]
+    refs = member_refs_for_turns(
+        connection,
+        game_id=game_id,
+        turns=wanted_turns,
+        include_embedded_turn=False,
+    )
+    for ref, parsed in reconstruct_members(connection, refs):
+        member = ref.turn_member
+        projection = mechanics_projection(parsed, member=member.name)
+        projection_game = projection["game"]
+        projection_player = projection["player"]
+        observed_game_id = projection_game.get("id")
+        observed_player_id = projection_player.get("id")
+        observed_turn = projection_game.get("turn")
+        if (
+            observed_game_id != game_id
+            or isinstance(observed_player_id, bool)
+            or not isinstance(observed_player_id, int)
+            or isinstance(observed_turn, bool)
+            or not isinstance(observed_turn, int)
+        ):
+            raise ValueError(f"{member.name}: targeted DB snapshot identity mismatch")
 
-        first_raw = archive.read(first_member.name)
-        first_payload, first_decoded = _decode_member_json(first_raw, first_member)
-        if last_member.name == first_member.name:
-            last_payload = first_payload
-        else:
-            last_raw = archive.read(last_member.name)
-            last_payload, _last_decoded = _decode_member_json(last_raw, last_member)
-
-        specs = NuStaticSpecs.from_catalog(import_static_all(first_payload))
-        topology = effective_sphere_topology(
-            game_id=game_id,
-            topology=_topology_from_payloads(
-                first_member=first_member,
-                first_payload=first_payload,
-                last_member=last_member,
-                last_payload=last_payload,
-            ),
-        )
-        nuionstorms = _nuionstorms_from_payloads(first_payload, last_payload)
-        del first_raw, first_decoded, first_payload, last_payload
-
-        for member in members:
-            if member.turn not in wanted_turns:
-                continue
-            raw = archive.read(member.name)
-            parsed, decoded = _decode_member_json(raw, member)
-            projection = mechanics_projection(parsed, member=member.name)
-            projection_game = projection["game"]
-            projection_player = projection["player"]
-            observed_game_id = projection_game.get("id")
-            observed_player_id = projection_player.get("id")
-            observed_turn = projection_game.get("turn")
-            if (
-                observed_game_id != game_id
-                or isinstance(observed_player_id, bool)
-                or not isinstance(observed_player_id, int)
-                or isinstance(observed_turn, bool)
-                or not isinstance(observed_turn, int)
-            ):
-                raise ValueError(f"{member.name}: targeted snapshot identity mismatch")
-            snapshots.append(
-                ArchiveTurnSnapshot(
-                    member=member,
-                    game_id=game_id,
-                    player_id=int(observed_player_id),
-                    embedded_turn=int(observed_turn),
-                    snapshot_hash=hashlib.sha256(decoded).hexdigest(),
-                    mechanics_payload=projection,
-                )
+        snapshots.append(
+            ArchiveTurnSnapshot(
+                member=member,
+                game_id=game_id,
+                player_id=int(observed_player_id),
+                embedded_turn=int(observed_turn),
+                snapshot_hash=ref.decoded_payload_sha256,
+                mechanics_payload=projection,
             )
+        )
 
-            if member.turn in before_turns:
-                raw_relations = parsed.get("relations")
-                if isinstance(raw_relations, list):
-                    for relation in raw_relations:
-                        if not isinstance(relation, Mapping):
-                            continue
-                        source = _intish(relation.get("playerid"))
-                        target = _intish(relation.get("playertoid"))
-                        if (
-                            source is None
-                            or source <= 0
-                            or target is None
-                            or target <= 0
-                            or source == target
-                        ):
-                            continue
-                        relations[member.turn][(source, target)].add(
-                            (
-                                _intish(relation.get("relationto")),
-                                _intish(relation.get("relationfrom")),
-                                _intish(relation.get("conflictlevel")),
-                            )
+        if member.turn in before_turns:
+            raw_relations = parsed.get("relations")
+            if isinstance(raw_relations, list):
+                for relation in raw_relations:
+                    if not isinstance(relation, Mapping):
+                        continue
+                    source = _intish(relation.get("playerid"))
+                    target = _intish(relation.get("playertoid"))
+                    if (
+                        source is None
+                        or source <= 0
+                        or target is None
+                        or target <= 0
+                        or source == target
+                    ):
+                        continue
+                    relations[member.turn][(source, target)].add(
+                        (
+                            _intish(relation.get("relationto")),
+                            _intish(relation.get("relationfrom")),
+                            _intish(relation.get("conflictlevel")),
                         )
-            del raw, parsed, decoded, projection
+                    )
 
     ordered = tuple(
         sorted(snapshots, key=lambda item: (item.player_id, item.archive_turn))
@@ -379,7 +465,7 @@ def _targeted_archive_context(
 
 def _visit_targeted_site_contexts(
     *,
-    archive_path: Path,
+    connection: Any,
     game_id: int,
     targets: Mapping[tuple[int, int, int, int], Sequence[Mapping[str, Any]]],
     appearances: Sequence[Mapping[str, Any]],
@@ -390,8 +476,8 @@ def _visit_targeted_site_contexts(
         for target_game, turn, _x, _y in targets
         if int(target_game) == game_id
     }
-    targeted = _targeted_archive_context(
-        archive_path=archive_path,
+    targeted = _targeted_db_context(
+        connection=connection,
         game_id=game_id,
         battle_turns=battle_turns,
     )
@@ -627,198 +713,208 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 f"game {requested_game_id} is not in the discovery partition"
             )
         observations = [
-            row for row in observations
+            row
+            for row in observations
             if int(row["game_id"]) == int(requested_game_id)
         ]
         scan_ids = {int(requested_game_id)}
     else:
         scan_ids = set(full_scan_ids)
 
-    cache_args = argparse.Namespace(
-        archive_dir=args.archive_dir,
-        appearance_cache_dir=args.appearance_cache_dir,
-        partition="discovery",
-        example_limit=args.example_limit,
-    )
-    appearances, chain_summary = _collect_appearances_cached(
-        args=cache_args,
-        scan_ids=full_scan_ids,
-    )
-    if requested_game_id is not None:
-        appearances = [
-            row for row in appearances
-            if int(row.get("game_id", -1)) == int(requested_game_id)
-        ]
-    appearances_by_key = _appearance_mapping(appearances)
-
     targets = _targets_by_site(observations)
+    battle_turns_by_game: dict[int, set[int]] = defaultdict(set)
+    for game_id, battle_turn, _x, _y in targets:
+        battle_turns_by_game[int(game_id)].add(int(battle_turn))
 
-    counts: Counter[str] = Counter()
-    examples: list[dict[str, Any]] = []
-    seen: set[tuple[int, int, int, int]] = set()
+    connection, database_path = connect_current_compact_read_only(
+        args.corpus_db_root
+    )
+    try:
+        appearances: list[dict[str, Any]] = []
+        appearance_summary: Counter[str] = Counter()
+        for game_id in sorted(scan_ids):
+            game_appearances, game_summary = _collect_targeted_appearances_from_db(
+                connection=connection,
+                game_id=game_id,
+                battle_turns=battle_turns_by_game.get(game_id, set()),
+            )
+            appearances.extend(game_appearances)
+            for key, value in game_summary.items():
+                if isinstance(value, int) and not isinstance(value, bool):
+                    appearance_summary[str(key)] += int(value)
+        appearances_by_key = _appearance_mapping(appearances)
 
-    def observer(context: Mapping[str, Any]) -> None:
-        site_key = (
-            int(context["game_id"]),
-            int(context["battle_turn"]),
-            int(context["x"]),
-            int(context["y"]),
-        )
-        rows = targets.get(site_key, ())
-        for row in rows:
-            capture = _capture_projection(row)
-            from_vcr_id = capture.get("from_vcr_id")
-            prize_id = capture.get("ship_id")
-            if (
-                isinstance(from_vcr_id, bool)
-                or not isinstance(from_vcr_id, int)
-                or isinstance(prize_id, bool)
-                or not isinstance(prize_id, int)
-            ):
-                counts["status:unresolved"] += 1
-                continue
-            seen.add(
-                (
-                    site_key[0],
-                    site_key[1],
-                    int(from_vcr_id),
-                    int(prize_id),
+        counts: Counter[str] = Counter()
+        examples: list[dict[str, Any]] = []
+        seen: set[tuple[int, int, int, int]] = set()
+
+        def observer(context: Mapping[str, Any]) -> None:
+            site_key = (
+                int(context["game_id"]),
+                int(context["battle_turn"]),
+                int(context["x"]),
+                int(context["y"]),
+            )
+            rows = targets.get(site_key, ())
+            for row in rows:
+                capture = _capture_projection(row)
+                from_vcr_id = capture.get("from_vcr_id")
+                prize_id = capture.get("ship_id")
+                if (
+                    isinstance(from_vcr_id, bool)
+                    or not isinstance(from_vcr_id, int)
+                    or isinstance(prize_id, bool)
+                    or not isinstance(prize_id, int)
+                ):
+                    counts["status:unresolved"] += 1
+                    continue
+                seen.add(
+                    (
+                        site_key[0],
+                        site_key[1],
+                        int(from_vcr_id),
+                        int(prize_id),
+                    )
                 )
-            )
 
-            active_result = active_module._simulate_capture(
-                context=context,
-                capture=capture,
-                appearances=appearances_by_key,
-            )
-            if active_result.get("status") != "resolved":
-                result = {
-                    "status": "unresolved",
-                    "reason": "active_membership_dependency_unresolved",
-                    "active_status": active_result.get("status"),
-                    "active_reason": active_result.get("reason"),
-                }
-            else:
-                result = _external_c2ng_original_order_prize_continuation(
+                active_result = active_module._simulate_capture(
                     context=context,
                     capture=capture,
-                    active_result=active_result,
-                    capture_prize_side=str(row.get("capture_side")),
+                    appearances=appearances_by_key,
                 )
-
-            status = str(result.get("status", "unknown"))
-            counts[f"status:{status}"] += 1
-            factual_side = row.get("captured_ship_side_next")
-            if factual_side in {"left", "right"}:
-                counts[f"factual_side:{factual_side}"] += 1
-
-            if status == "resolved":
-                pair_exact = result.get("pair_exact")
-                exact = result.get("exact")
-                if pair_exact is True:
-                    counts["o_pair_reachable"] += 1
-                    if factual_side in {"left", "right"}:
-                        counts[f"o_pair_reachable:{factual_side}"] += 1
-                elif pair_exact is False:
-                    counts["o_pair_not_reachable"] += 1
-                    if factual_side in {"left", "right"}:
-                        counts[f"o_pair_not_reachable:{factual_side}"] += 1
-                if exact is True:
-                    counts["external_o_exact"] += 1
-                elif exact is False:
-                    counts["external_o_mismatch"] += 1
-
-            if len(examples) < args.example_limit:
-                examples.append(
-                    {
-                        "game_id": site_key[0],
-                        "turn": site_key[1],
-                        "x": site_key[2],
-                        "y": site_key[3],
-                        "capture_vcr_id": row.get("capture_vcr_id"),
-                        "next_vcr_id": row.get("next_vcr_id"),
-                        "captured_ship_id": row.get("captured_ship_id"),
-                        "next_opponent_ship_id": row.get("next_opponent_ship_id"),
-                        "capture_side": row.get("capture_side"),
-                        "factual_prize_side": factual_side,
-                        "result": result,
+                if active_result.get("status") != "resolved":
+                    result = {
+                        "status": "unresolved",
+                        "reason": "active_membership_dependency_unresolved",
+                        "active_status": active_result.get("status"),
+                        "active_reason": active_result.get("reason"),
                     }
-                )
+                else:
+                    result = _external_c2ng_original_order_prize_continuation(
+                        context=context,
+                        capture=capture,
+                        active_result=active_result,
+                        capture_prize_side=str(row.get("capture_side")),
+                    )
 
-    print(
-        "progress: stage=o_layer_site_context "
-        f"games={len(scan_ids)} sites={len(targets)} status=start",
-        flush=True,
-    )
-    targeted_summaries: list[dict[str, Any]] = []
-    for game_id in sorted(scan_ids):
-        archive_path = args.archive_dir / f"game-{game_id}.zip"
-        if not archive_path.is_file():
-            raise ValueError(f"missing archive: {archive_path}")
+                status = str(result.get("status", "unknown"))
+                counts[f"status:{status}"] += 1
+                factual_side = row.get("captured_ship_side_next")
+                if factual_side in {"left", "right"}:
+                    counts[f"factual_side:{factual_side}"] += 1
+
+                if status == "resolved":
+                    pair_exact = result.get("pair_exact")
+                    exact = result.get("exact")
+                    if pair_exact is True:
+                        counts["o_pair_reachable"] += 1
+                        if factual_side in {"left", "right"}:
+                            counts[f"o_pair_reachable:{factual_side}"] += 1
+                    elif pair_exact is False:
+                        counts["o_pair_not_reachable"] += 1
+                        if factual_side in {"left", "right"}:
+                            counts[f"o_pair_not_reachable:{factual_side}"] += 1
+                    if exact is True:
+                        counts["external_o_exact"] += 1
+                    elif exact is False:
+                        counts["external_o_mismatch"] += 1
+
+                if len(examples) < args.example_limit:
+                    examples.append(
+                        {
+                            "game_id": site_key[0],
+                            "turn": site_key[1],
+                            "x": site_key[2],
+                            "y": site_key[3],
+                            "capture_vcr_id": row.get("capture_vcr_id"),
+                            "next_vcr_id": row.get("next_vcr_id"),
+                            "captured_ship_id": row.get("captured_ship_id"),
+                            "next_opponent_ship_id": row.get(
+                                "next_opponent_ship_id"
+                            ),
+                            "capture_side": row.get("capture_side"),
+                            "factual_prize_side": factual_side,
+                            "result": result,
+                        }
+                    )
+
         print(
-            "progress: stage=site_context "
-            f"game_id={game_id} mode=targeted status=start",
+            "progress: stage=o_layer_site_context "
+            f"games={len(scan_ids)} sites={len(targets)} "
+            "backend=corpus-db status=start",
             flush=True,
         )
-        targeted_summary = _visit_targeted_site_contexts(
-            archive_path=archive_path,
-            game_id=game_id,
-            targets=targets,
-            appearances=appearances,
-            observer=observer,
-        )
-        targeted_summaries.append(
-            {"game_id": game_id, **targeted_summary}
-        )
+        targeted_summaries: list[dict[str, Any]] = []
+        for game_id in sorted(scan_ids):
+            print(
+                "progress: stage=site_context "
+                f"game_id={game_id} mode=corpus-db-targeted status=start",
+                flush=True,
+            )
+            targeted_summary = _visit_targeted_site_contexts(
+                connection=connection,
+                game_id=game_id,
+                targets=targets,
+                appearances=appearances,
+                observer=observer,
+            )
+            targeted_summaries.append(
+                {"game_id": game_id, **targeted_summary}
+            )
+            print(
+                "progress: stage=site_context "
+                f"game_id={game_id} mode=corpus-db-targeted "
+                f"snapshots={targeted_summary['targeted_snapshot_count']} "
+                f"sites={targeted_summary['visited_sites']} status=done",
+                flush=True,
+            )
         print(
-            "progress: stage=site_context "
-            f"game_id={game_id} mode=targeted "
-            f"snapshots={targeted_summary['targeted_snapshot_count']} "
-            f"sites={targeted_summary['visited_sites']} status=done",
+            "progress: stage=o_layer_site_context "
+            f"games={len(scan_ids)} sites={len(targets)} "
+            "backend=corpus-db status=done",
             flush=True,
         )
-    print(
-        "progress: stage=o_layer_site_context "
-        f"games={len(scan_ids)} sites={len(targets)} status=done",
-        flush=True,
-    )
 
-    counts["discovery_ship_rows"] = len(observations)
-    counts["observations_seen"] = len(seen)
-    counts["adjacent_rows"] = sum(
-        1
-        for row in observations
-        if isinstance(row.get("capture_vcr_id"), int)
-        and isinstance(row.get("next_vcr_id"), int)
-        and not isinstance(row.get("capture_vcr_id"), bool)
-        and not isinstance(row.get("next_vcr_id"), bool)
-        and int(row["next_vcr_id"]) == int(row["capture_vcr_id"]) + 1
-    )
+        counts["discovery_ship_rows"] = len(observations)
+        counts["observations_seen"] = len(seen)
+        counts["adjacent_rows"] = sum(
+            1
+            for row in observations
+            if isinstance(row.get("capture_vcr_id"), int)
+            and isinstance(row.get("next_vcr_id"), int)
+            and not isinstance(row.get("capture_vcr_id"), bool)
+            and not isinstance(row.get("next_vcr_id"), bool)
+            and int(row["next_vcr_id"]) == int(row["capture_vcr_id"]) + 1
+        )
 
-    return {
-        "schema": SCHEMA,
-        "evidence_status": "DISCOVERY_ONLY_EXTERNAL_REFERENCE_NOT_PROMOTED",
-        "source_discovery": str(args.discovery),
-        "scanned_game_ids": sorted(full_scan_ids),
-        "probe_game_ids": sorted(scan_ids),
-        "summary": {
-            "counts": dict(sorted(counts.items())),
-            "chain_audit_summary": dict(chain_summary),
-            "targeted_site_context": targeted_summaries,
-        },
-        "observations": examples,
-        "evidence_boundary": (
-            "Discovery-only bounded O-layer comparator. The frozen-order cursor "
-            "is transcribed from the separately audited external c2ng/THost path "
-            "and is not NuHost authority. Only globally adjacent capture->next "
-            "VCR rows are comparable; nonadjacent rows fail closed. Capture VCR N "
-            "anchors the existing cursor, independently reconstructed movement/"
-            "site state is reconstructed from only the required T-1/T archive "
-            "turns and strict post-capture attackers determine reachability, "
-            "and factual N+1 supplies only the final opponent/side comparator. "
-            "Held-out games are not included."
-        ),
-    }
+        return {
+            "schema": SCHEMA,
+            "evidence_status": "DISCOVERY_ONLY_EXTERNAL_REFERENCE_NOT_PROMOTED",
+            "source_discovery": str(args.discovery),
+            "database_path": str(database_path),
+            "scanned_game_ids": sorted(full_scan_ids),
+            "probe_game_ids": sorted(scan_ids),
+            "summary": {
+                "counts": dict(sorted(counts.items())),
+                "appearance_summary": dict(sorted(appearance_summary.items())),
+                "targeted_site_context": targeted_summaries,
+            },
+            "observations": examples,
+            "evidence_boundary": (
+                "Discovery-only bounded O-layer comparator. The frozen-order "
+                "cursor is transcribed from the separately audited external "
+                "c2ng/THost path and is not NuHost authority. Only globally "
+                "adjacent capture->next VCR rows are comparable; nonadjacent "
+                "rows fail closed. Capture VCR N anchors the existing cursor, "
+                "independently reconstructed movement/site state comes from "
+                "only required T-1/T members of the active exact-parity Corpus "
+                "DB, strict post-capture attackers determine reachability, and "
+                "factual N+1 supplies only the final opponent/side comparator. "
+                "Held-out games are not included."
+            ),
+        }
+    finally:
+        connection.close()
 
 
 def parse_args() -> argparse.Namespace:
@@ -829,13 +925,12 @@ def parse_args() -> argparse.Namespace:
         )
     )
     parser.add_argument("--discovery", type=Path, default=DEFAULT_DISCOVERY)
-    parser.add_argument("--archive-dir", type=Path, default=DEFAULT_ARCHIVE_DIR)
     parser.add_argument(
-        "--appearance-cache-dir",
+        "--corpus-db-root",
         type=Path,
-        default=DEFAULT_APPEARANCE_CACHE_DIR,
+        default=None,
+        help="Shared corpus DB root; defaults to PLANETS_CORPUS_DB_ROOT.",
     )
-    parser.add_argument("--prepared-dir", type=Path, default=PREPARED_DIR)
     parser.add_argument("--example-limit", type=int, default=80)
     parser.add_argument("--game-id", type=int)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)

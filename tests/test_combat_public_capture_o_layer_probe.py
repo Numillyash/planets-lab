@@ -101,6 +101,12 @@ def test_probe_supports_single_game_process_isolation() -> None:
     assert '--game-id "$game_id"' in runner
     assert "o-layer-parts" in runner
     assert "combat_public_capture_o_layer_merge.py" in runner
+    assert "compose.corpus-db.yaml" in runner
+    assert "--corpus-db-root /corpus-db" in runner
+    assert "--archive-dir" not in runner
+    assert "--appearance-cache-dir" not in runner
+    assert "_targeted_db_context" in probe
+    assert "zipfile.ZipFile" not in probe
 
 def test_pseudo_seen_from_appearances_reconstructs_compact_vcr() -> None:
     appearances = [

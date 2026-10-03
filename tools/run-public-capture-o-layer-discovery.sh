@@ -5,16 +5,20 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
 DISCOVERY="${DISCOVERY:-artifacts/public-capture-side/discovery-capture-side.json}"
-ARCHIVE_DIR="${ARCHIVE_DIR:-validation/corpus/cache/loadall}"
-APPEARANCE_CACHE_DIR="${APPEARANCE_CACHE_DIR:-validation/corpus/cache/public-capture-side-v1}"
-PREPARED_DIR="${PREPARED_DIR:-validation/corpus/cache/prepared-v1}"
 OUTPUT="${OUTPUT:-artifacts/public-capture-side/discovery-o-layer-probe.json}"
 PARTS_DIR="${PARTS_DIR:-artifacts/public-capture-side/o-layer-parts}"
 DOCKER_PREFLIGHT_TIMEOUT="${DOCKER_PREFLIGHT_TIMEOUT:-10}"
+PLANETS_CORPUS_DB_ROOT="${PLANETS_CORPUS_DB_ROOT:-/root/projects/planets-corpus-db}"
+export PLANETS_CORPUS_DB_ROOT
 
 if [[ ! -s "$DISCOVERY" ]]; then
   echo "ERROR: discovery artifact missing or empty: $DISCOVERY" >&2
   echo "Run tools/run-public-capture-side-discovery-with-evidence.sh first." >&2
+  exit 66
+fi
+
+if [[ ! -s "$PLANETS_CORPUS_DB_ROOT/CURRENT" ]]; then
+  echo "ERROR: Corpus DB CURRENT missing: $PLANETS_CORPUS_DB_ROOT/CURRENT" >&2
   exit 66
 fi
 
@@ -24,12 +28,19 @@ if ! timeout "${DOCKER_PREFLIGHT_TIMEOUT}s" docker info >/dev/null 2>&1; then
   exit 69
 fi
 echo "docker:       ready"
+echo "corpus_db:    $(cat "$PLANETS_CORPUS_DB_ROOT/CURRENT")"
+
+compose=(
+  docker compose
+  -f compose.yaml
+  -f compose.corpus-db.yaml
+)
 
 echo "===== PUBLIC CAPTURE O-LAYER DISCOVERY: BUILD LAB IMAGE ====="
-docker compose build lab
+"${compose[@]}" build lab
 
 lab=(
-  docker compose run --rm -T
+  "${compose[@]}" run --rm -T
   -e PYTHONPATH=/workspace/src
   lab
 )
@@ -69,9 +80,7 @@ for game_id in "${GAME_IDS[@]}"; do
   echo "===== O-LAYER GAME ${position}/${#GAME_IDS[@]}: ${game_id} ====="
   "${lab[@]}" python tools/diagnostics/combat_public_capture_o_layer_probe.py \
     --discovery "$DISCOVERY" \
-    --archive-dir "$ARCHIVE_DIR" \
-    --appearance-cache-dir "$APPEARANCE_CACHE_DIR" \
-    --prepared-dir "$PREPARED_DIR" \
+    --corpus-db-root /corpus-db \
     --game-id "$game_id" \
     --output "$part"
 done
@@ -85,8 +94,6 @@ echo "===== PUBLIC CAPTURE O-LAYER DISCOVERY: MERGE ====="
 echo
 echo "===== PUBLIC CAPTURE O-LAYER DISCOVERY: COMPLETE ====="
 echo "discovery:    $DISCOVERY"
-echo "archive_dir:  $ARCHIVE_DIR"
-echo "cache_dir:    $APPEARANCE_CACHE_DIR"
-echo "prepared_dir: $PREPARED_DIR"
+echo "corpus_db:    $(cat "$PLANETS_CORPUS_DB_ROOT/CURRENT")"
 echo "parts_dir:    $PARTS_DIR"
 echo "output:       $OUTPUT"
