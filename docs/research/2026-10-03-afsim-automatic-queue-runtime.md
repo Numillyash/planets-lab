@@ -692,3 +692,170 @@ python3 tools/research/audit-afsim-result-handler.py \
 
 The preferred discriminator is a post-pool procedure or its caller which
 references multiple outcome strings and then mutates simulation state.
+
+
+## Result-handler locator v3: confirmed outcome decoder and capture mutation
+
+V3 resolved the string-pool ambiguity completely.
+
+All four true CS-relative offsets have strong Turbo-Pascal literal xrefs inside
+one procedure:
+
+```text
+procedure file range:
+  0x4e2d .. 0x4f8a
+
+Both ships blew up:
+  mov di,0x3554 ; push cs ; push di
+
+ won :
+  two literal xrefs
+
+ captured :
+  two literal xrefs
+
+The battle timed out:
+  mov di,0x3578 ; push cs ; push di
+```
+
+So `0x4e2d` is the actual outcome formatter / result-state handler.
+
+The immediately preceding procedure `0x4c4c` parses battle-end screen values
+into temporary globals. Both procedures are called consecutively from the same
+caller beginning at:
+
+```text
+0x4f8b
+```
+
+### Proven symmetric capture mutation
+
+The handler contains two symmetric capture branches.
+
+First branch:
+
+```asm
+cmp  WORD PTR ds:0x32,0
+jne  ...
+
+; format "<A> captured <B>"
+
+mov  ax,ds:0x328e
+mov  ds:0x3264,ax
+mov  WORD PTR ds:0x32,0x000a
+```
+
+Second branch:
+
+```asm
+cmp  WORD PTR ds:0x34,0
+jne  ...
+
+; format "<B> captured <A>"
+
+mov  ax,ds:0x3264
+mov  ds:0x328e,ax
+mov  WORD PTR ds:0x34,0x000a
+```
+
+The result slots are then copied into two paired state blocks:
+
+```text
+A:
+  0x325e <- 0x2e
+  0x3260 <- 0x32
+  0x3264 <- capture-mutated paired field
+  0x3270 <- 0x36
+
+B:
+  0x3288 <- 0x30
+  0x328a <- 0x34
+  0x328e <- capture-mutated paired field
+  0x329a <- 0x38
+```
+
+The paired structures have exact stride:
+
+```text
+0x2A bytes
+```
+
+This is strong structural evidence that capture modifies one field in the
+captured combatant by copying the corresponding field from the captor and
+forces another result field to decimal 10.
+
+The obvious historical interpretation is:
+
+```text
+owner/race := captor owner/race
+crew       := 10
+```
+
+but those field names are **not promoted yet**. They must be independently
+identified from initialization/use sites in the executable.
+
+### Outcome predicates
+
+The same procedure establishes the result classifier structure:
+
+```text
+0x2e == -1 and 0x30 == -1:
+  both destroyed
+
+0x2e == -1:
+  one side won
+
+0x30 == -1:
+  the opposite side won
+
+0x32 == 0:
+  capture branch A
+
+0x34 == 0:
+  capture branch B
+
+otherwise:
+  timed out
+```
+
+Again, the exact semantic names of the numeric slots remain pending field
+mapping.
+
+### Next bounded state-flow pass
+
+Tracked helper:
+
+```text
+tools/research/audit-afsim-capture-state-flow.py
+```
+
+It targets only:
+
+```text
+shared caller 0x4f8b
+screen parser 0x4c4c
+outcome handler 0x4e2d
+
+paired state:
+  0x325e / 0x3260 / 0x3264 / 0x3270
+  0x3288 / 0x328a / 0x328e / 0x329a
+```
+
+The pass:
+
+1. disassembles the complete shared caller;
+2. identifies the calls to parser/outcome;
+3. enumerates direct uses of the paired post-result state;
+4. groups uses by owning procedure;
+5. focuses on the two capture-mutated fields and the adjacent result fields;
+6. tests whether the mutated state is fed back into OOB construction or sorting.
+
+Run:
+
+```bash
+python3 tools/research/audit-afsim-capture-state-flow.py \
+  2>&1 | tee /tmp/afsim-capture-state-flow.log
+```
+
+Only after the +6 and +2 fields are independently identified should the
+external candidate be frozen as an explicit AFSim capture rule.
