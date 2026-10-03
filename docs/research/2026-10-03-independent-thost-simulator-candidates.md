@@ -737,3 +737,45 @@ fuel-robust. This prevents a fuel-mapping ambiguity from being silently counted
 as evidence for or against the queue model.
 
 Held-out remains closed until the discovery result is recorded.
+
+
+### AFSim discovery gate runtime correction
+
+The first Dockerized discovery attempt established:
+
+```text
+AFSIM-R1 model unit tests: 8/8 PASS
+canonical main image:      built successfully
+duckdb/pyarrow runtime:    available inside canonical lab image
+```
+
+The probe then stopped before reading corpus evidence because the research
+wrapper attempted to invoke the `git` executable inside the canonical
+`python:3.12-slim` image. That image intentionally contains the Python
+dependencies but not Git.
+
+This was an infrastructure-only failure; no discovery rows were evaluated.
+
+The gate now performs branch / `HEAD == origin/main` verification on the
+host before Docker launch and passes the verified 40-hex main SHA into the
+container:
+
+```text
+--verified-main-head <sha>
+```
+
+The Python probe accepts that host-verified SHA and skips redundant Git
+subprocess calls inside the slim image.
+
+Commits:
+
+```text
+4dd94024e5366fbc959a6ce49204578a5e4becf0
+research: accept host-verified main SHA in AFSim probe
+
+ce75e560d0697ddc71a50109c35c35126346e297
+research: pass verified main SHA into Docker probe
+```
+
+Evidence status remains unchanged: no Nu discovery result exists yet and
+held-out remains closed.
