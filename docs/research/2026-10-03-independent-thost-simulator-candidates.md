@@ -779,3 +779,81 @@ research: pass verified main SHA into Docker probe
 
 Evidence status remains unchanged: no Nu discovery result exists yet and
 held-out remains closed.
+
+
+### AFSIM-R1 rejected as a general Nu next-pair model on discovery
+
+The frozen executable AFSIM-R1 model was evaluated against the canonical
+discovery Corpus DB population.
+
+Runtime provenance:
+
+```text
+research HEAD:
+  796b78d218ca0da306cc4fde4350ffeed5c0a3d4
+
+main HEAD:
+  6c976da1e3db9ac3ee1a970cc7721023489e1e7f
+
+Corpus DB:
+  generations/corpus-v2compact-public36-20261002T083138Z-11cd75fa918d.duckdb
+```
+
+Result:
+
+```text
+capture rows:                    50
+adjacent rows:                   31
+resolved adjacent:               31
+unresolved active state:          0
+unresolved metadata:              0
+
+fuel robust:                     31
+fuel sensitive:                   0
+
+pair exact:                       6
+pair mismatch:                   25
+
+conditional side exact:           5
+conditional side mismatch:        1
+```
+
+Both fuel mappings produced exactly the same next-pair predictions on all 31
+adjacent rows.
+
+Therefore the complete AFSim architecture:
+
+```text
+capture mutation
+-> persistent writeback
+-> full re-sort
+-> traversal restart
+-> AFSim KILL/PE selector
+-> lower-ID LEFT
+```
+
+is rejected as a general Nu post-capture next-pair model on discovery.
+
+This is an important independent negative result: both the c2ng/PCC2
+frozen-cursor model and the independently reconstructed AFSim full-restart
+model fail on most of the same Nu blocker population.
+
+AFSim components must now be tested separately rather than promoted as one
+engine-level candidate.
+
+The first isolated component is the AFSim side canonicalization rule:
+
+```text
+lower ship ID = LEFT
+higher ship ID = RIGHT
+```
+
+Tracked post-analysis:
+
+```text
+tools/research/analyze-afsim-r1-discovery.py
+```
+
+It conditions only on the factual next-pair identity and tests side assignment
+across all resolved adjacent discovery rows. This is not an independent queue
+predictor. Held-out remains closed.
