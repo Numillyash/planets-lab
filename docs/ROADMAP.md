@@ -829,3 +829,18 @@ additional compression unless a documented reopen criterion is met.
 
 Canonical runtime:
 `docs/handoff/2026-10-02-corpus-db-compact-public36-runtime.md`.
+
+
+### Compact CURRENT activation completed — 2026-10-03
+
+The accepted compact public36 generation is now active through `CURRENT`:
+
+```text
+corpus-v2compact-public36-20261002T083138Z-11cd75fa918d
+126418 / 126418 exact parity
+shared normal/external read PASS
+```
+
+The previous typed1 public36 generation remains available as rollback. The corpus
+DB storage milestone is closed; resume NuHost mechanics work on main. Deferred
+storage ideas remain in `docs/corpus-db/FUTURE_OPTIMIZATIONS.md`.
