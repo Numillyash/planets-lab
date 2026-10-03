@@ -417,6 +417,7 @@ def main() -> int:
                 args.stats_output,
                 records,
                 failed_game_ids,
+                manifests,
             )
         except (
             CorpusApiError,
