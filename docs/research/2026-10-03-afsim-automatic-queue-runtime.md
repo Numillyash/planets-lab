@@ -1232,3 +1232,110 @@ Does that path:
 
 Only after that distinction is recovered should an AFSim O/C candidate be
 frozen for Nu discovery-corpus testing.
+
+
+## Post-capture selector resolved: full re-sort + traversal restart
+
+The `audit-afsim-postcapture-selector.py` runtime resolves the structural
+queue discriminator.
+
+### 0x5627 materially reorders the persistent combat array
+
+`0x5627` is not UI-only and is not a cursor-advance helper.
+
+It first walks entries `1..50` and refreshes per-entry auxiliary state.
+
+It then performs an explicit nested pair loop over the persistent 54-byte
+entries:
+
+```text
+for i = 1 .. 49:
+    for j = i+1 .. 50:
+        if comparator_0x5572(i,j):
+            swap entry[i], entry[j]     # complete 54-byte records
+            swap parallel state arrays
+```
+
+The swap is implemented by three 54-byte copies using a local temporary.
+Associated byte arrays rooted at `0x3d9d`, `0x3dcf`, and `0x3e01` are
+swapped in lockstep.
+
+Afterward `0x5627` scans the now-reordered array from index 1 and recomputes
+the active ship-entry boundary/count in `0x3e34`.
+
+Therefore `0x5627` is a full persistent-array rebuild/re-sort step.
+
+The exact comparator key remains pending `0x5572`.
+
+### 0x51c6 restarts from index 1 on every call
+
+The ship-pair selector begins:
+
+```asm
+mov WORD PTR [bp-0x2],0x0001
+mov WORD PTR ds:0x313a,0x0001
+mov WORD PTR ds:0x313c,0x0001
+```
+
+and scans forward from those values.
+
+If no pair is found, the selector again writes both current indices to
+`1` before returning.
+
+There is no preserved inter-battle cursor entering `0x51c6`.
+
+### Resolved AFSim structural behavior
+
+Combined with the previously proven post-result writeback:
+
+```text
+battle result
+  -> captured owner/crew mutation in VCR state
+  -> write both VCR objects back to persistent entries
+  -> per-entry 0x2c68 normalization
+  -> full persistent-array 0x5627 re-sort/rebuild
+  -> 0x51c6 resets selection state to 1/1
+  -> full ship-pair scan from the beginning
+```
+
+Thus AFSim 1.31 does **not** continue a frozen pre-capture traversal cursor.
+
+This result has been frozen separately as AFSIM-R1 in:
+
+```text
+docs/research/2026-10-03-afsim-postcapture-restart-candidate.md
+```
+
+Authority remains:
+
+```text
+EXTERNAL_IMPLEMENTATION
+```
+
+It is not NuHost evidence.
+
+## Remaining deterministic details
+
+Before implementing AFSIM-R1 as a discovery-corpus comparator, recover:
+
+```text
+0x5572 sort comparator
+0x513d ship eligibility
+0x3eb9 VCR side builder
+0x46be destroyed-entry removal
+```
+
+Tracked helper:
+
+```text
+tools/research/audit-afsim-sort-eligibility-sides.py
+```
+
+The next pass must determine:
+
+1. sort field(s), direction and tie-breaks;
+2. exact pair eligibility, including owner/relation/mission state;
+3. lower-ID selected-pair mapping to actual VCR LEFT/RIGHT;
+4. whether removal/compaction changes any restart semantics.
+
+Held-out remains closed.
