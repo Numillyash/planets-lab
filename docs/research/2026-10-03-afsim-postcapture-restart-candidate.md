@@ -220,3 +220,226 @@ Required outputs:
    Corpus DB rows.
 
 Held-out must remain closed until that candidate is frozen in executable form.
+
+
+## Deterministic refinement from comparator / selector / side-builder pass
+
+The post-freeze audit of `0x5572`, `0x513d`, `0x3eb9`, and `0x46be`
+does not contradict AFSIM-R1. It materially refines it.
+
+### Exact sort comparator 0x5572
+
+`0x5627` calls `0x5572(i,j)` from the nested sort loop and swaps the two
+complete 54-byte entries when the comparator returns true.
+
+With the actual call order:
+
+```text
+bp+6 = outer/current i
+bp+4 = inner/candidate j
+```
+
+the comparator is lexicographic:
+
+```text
+1. parallel byte 0x3dcf[index]:
+     nonzero sorts before zero
+
+2. entry.owner:
+     ascending
+
+3. entry.attack_value at +0x04:
+     ascending
+
+4. entry.ship_id:
+     ascending
+```
+
+The first field behaves as a boolean class: if the two values differ, `j`
+is moved before `i` exactly when `j` is nonzero.
+
+The owner and ship-id fields are exact because they reside inside the already
+mapped embedded VCR object:
+
+```text
+entry +0x26 = VCR owner
+entry +0x24 = VCR ship ID
+```
+
+The `+0x04` field is recomputed by `0x5627` from the leading numeric content
+of the entry's 3-character code field; invalid/zero values are assigned a
+large sentinel. Together with the AFSim manual, this identifies it as the
+friendly-code attack-value sort key.
+
+Thus the concrete persistent sort shape is:
+
+```text
+aggressive-class first,
+then owner,
+then friendly-code attack value,
+then ship ID
+```
+
+The exact external-input identity of parallel byte `0x3dcf[index]` is still
+being proven from write sites. Its use in the selector is consistent with the
+AFSim Kill-mission class.
+
+### Exact weapon-capability predicate 0x513d
+
+`0x513d(index)` returns true iff the persistent ship can participate in a VCR
+fight through at least one weapon system:
+
+```text
+beam_count > 0
+OR
+(torp_tubes > 0 AND ammo > 0)
+OR
+(fighter_bays > 0 AND ammo > 0)
+```
+
+Mapped offsets:
+
+```text
+entry +0x2c beam_count
+entry +0x2e fighter_bays
+entry +0x32 fighters/torpedoes
+entry +0x34 torpedo_tubes
+```
+
+The predicate contains no owner, mission, PE, capture or WasCaptured check.
+
+Therefore AFSim has no captured-state special case at this eligibility layer.
+
+### Exact VCR LEFT/RIGHT builder mapping
+
+`0x3eb9(entry_index, side_number)` copies the persistent 42-byte embedded VCR
+object to:
+
+```text
+0x3220 + side_number * 0x2a
+```
+
+Hence:
+
+```text
+side_number 1 -> 0x324a -> VCR LEFT
+side_number 2 -> 0x3274 -> VCR RIGHT
+```
+
+`0x497e` invokes:
+
+```text
+side 1 with its bp+6 ship argument
+side 2 with its bp+4 ship argument
+```
+
+Immediately before `0x497e`, the main battle loop compares the selected
+persistent ship IDs and swaps `0x313a/0x313c` if necessary so that:
+
+```text
+ship_id[0x313a] <= ship_id[0x313c]
+```
+
+It then pushes:
+
+```asm
+push 0x313a
+push 0x313c
+call 0x497e
+```
+
+With the Pascal stack layout this means:
+
+```text
+0x313a (lower ship ID) -> bp+6 -> side 1 -> VCR LEFT
+0x313c (higher ship ID)-> bp+4 -> side 2 -> VCR RIGHT
+```
+
+Therefore AFSim 1.31 canonicalizes every selected ship-vs-ship pair as:
+
+```text
+LEFT  = lower ship ID
+RIGHT = higher ship ID
+```
+
+This is independent of which member originally caused the pair to be selected.
+
+### 0x46be correction
+
+The routine previously given the provisional label
+`persistent_remove_or_kill` is not an array-removal/compaction routine.
+
+Its disassembly is output/report formatting: it reads persistent/VCR result
+fields and writes battle result text.
+
+Destruction handling is instead already visible in `0x2c68` and `0x5627`:
+
+```text
+damage == -1:
+  normalize entry to destroyed/sentinel state
+
+0x5627:
+  detects destroyed entry
+  fills record with sentinel data
+  assigns sort-last values
+  clears associated aggressive-class state
+```
+
+No compaction step has been observed.
+
+### Selector structure now recoverable
+
+`0x51c6` consists of two selection phases.
+
+The first phase begins only when the first sorted entry has a nonzero
+`0x3dcf` class and the corresponding parallel state permits combat. It scans
+for the first different-owner opponent with usable state and accepts the pair
+if at least one member passes `0x513d`.
+
+The fallback phase scans candidate initiators from the start and uses the
+parallel byte array rooted at `0x3e01` as a target-owner selector:
+
+```text
+parallel_0x3e01[initiator] == candidate.owner
+```
+
+This behavior, together with the manual's Kill / Primary Enemy ordering, is
+consistent with:
+
+```text
+0x3dcf[index] = Kill/aggressive class
+0x3e01[index] = Primary Enemy
+```
+
+and `0x3d9d[index]` behaves as the per-ship availability/fuel gate.
+
+Those three human-readable names are not yet promoted solely from this
+behavioral match; the next pass targets their concrete write sites/input
+prompts.
+
+## Remaining pre-corpus proof obligation
+
+AFSIM-R1 is now deterministic except for naming the three parallel metadata
+arrays from their input/write sites.
+
+Next bounded target:
+
+```text
+0x3d9d[1..50]
+0x3dcf[1..50]
+0x3e01[1..50]
+entry +0x00 3-character friendly code
+entry +0x04 parsed attack value
+```
+
+The next pass must map setup/edit/import writes into these fields and confirm:
+
+```text
+fuel
+Kill mission
+Primary Enemy
+friendly code
+```
+
+After that, freeze an executable AFSim queue model and only then run it against
+the Nu discovery Corpus DB. Held-out remains closed.
