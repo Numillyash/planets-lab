@@ -55,6 +55,28 @@ def _load(path: Path) -> Mapping[str, Any]:
     return payload
 
 
+def _discovery_artifact(payload: Mapping[str, Any]) -> bool:
+    """Accept both current and legacy discovery-only O-layer schemas."""
+
+    partition = payload.get("partition")
+    if partition == "discovery":
+        return True
+    if partition is not None:
+        return False
+
+    evidence_status = payload.get("evidence_status")
+    if isinstance(evidence_status, str) and evidence_status.startswith("DISCOVERY_"):
+        return True
+
+    # Legacy v1 O-layer artifacts were discovery-only by construction and
+    # carried source_discovery/evidence_status instead of an explicit partition.
+    return (
+        payload.get("schema") == "planets-lab.combat-public-capture-o-layer-probe.v1"
+        and isinstance(payload.get("source_discovery"), str)
+        and "discovery" in str(payload.get("source_discovery")).lower()
+    )
+
+
 def _afsim_index(payload: Mapping[str, Any]) -> dict[
     tuple[int, int, int, int, int, int],
     Mapping[str, Any],
@@ -78,8 +100,11 @@ def run(
     o_layer: Mapping[str, Any],
     afsim: Mapping[str, Any],
 ) -> dict[str, Any]:
-    if o_layer.get("partition") != "discovery":
-        raise ValueError("O-layer artifact must be partition=discovery")
+    if not _discovery_artifact(o_layer):
+        raise ValueError(
+            "O-layer artifact is not recognizable as discovery-only "
+            "(expected partition=discovery or legacy DISCOVERY_* evidence)"
+        )
     if afsim.get("partition") != "discovery":
         raise ValueError("AFSim analysis must be partition=discovery")
 
@@ -198,6 +223,12 @@ def run(
         raise ValueError(
             "O-layer observation examples do not cover all adjacent rows: "
             f"examples={counts['adjacent_rows']} summary={expected_adjacent}"
+        )
+
+    if counts["adjacent_rows"] > 0 and counts["active_dependency_missing"] == counts["adjacent_rows"]:
+        raise ValueError(
+            "legacy O-layer artifact has no active_dependency rank context; "
+            "refresh it with current main before strict-rank analysis"
         )
 
     return {
