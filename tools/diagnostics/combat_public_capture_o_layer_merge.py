@@ -155,6 +155,17 @@ def main() -> int:
         f"{counts.get('split_candidate_mismatch:blocked', 0)}"
     )
     print(
+        "identity-anchored O reachable/not: "
+        f"{counts.get('identity_anchored_o_pair_reachable', 0)} / "
+        f"{counts.get('identity_anchored_o_pair_not_reachable', 0)}"
+    )
+    print(
+        "identity-anchored split exact/mismatch/unresolved: "
+        f"{counts.get('identity_anchored_split_exact', 0)} / "
+        f"{counts.get('identity_anchored_split_mismatch', 0)} / "
+        f"{counts.get('identity_anchored_split_unresolved', 0)}"
+    )
+    print(
         "factual opponent active T/F/U: "
         f"{counts.get('active_dependency:factual_opponent_active:true', 0)} / "
         f"{counts.get('active_dependency:factual_opponent_active:false', 0)} / "

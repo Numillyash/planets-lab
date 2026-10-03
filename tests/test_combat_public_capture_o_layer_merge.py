@@ -27,6 +27,9 @@ def _part(game_id: int, *, left: int, right: int) -> dict[str, object]:
                 "resolved_dependency:blocked": right,
                 "split_candidate_exact:qualified": left,
                 "split_candidate_exact:blocked": right,
+                "identity_anchored_o_pair_reachable": left,
+                "identity_anchored_o_pair_not_reachable": right,
+                "identity_anchored_split_exact": left + right,
             }
         },
         "observations": [
@@ -56,5 +59,8 @@ def test_merge_parts_sums_counts_and_preserves_game_isolation() -> None:
     assert counts["resolved_dependency:blocked"] == 5
     assert counts["split_candidate_exact:qualified"] == 5
     assert counts["split_candidate_exact:blocked"] == 5
+    assert counts["identity_anchored_o_pair_reachable"] == 5
+    assert counts["identity_anchored_o_pair_not_reachable"] == 5
+    assert counts["identity_anchored_split_exact"] == 10
     assert report["scanned_game_ids"] == [1, 2]
     assert [row["probe_game_ids"] for row in report["summary"]["per_game"]] == [[1], [2]]
