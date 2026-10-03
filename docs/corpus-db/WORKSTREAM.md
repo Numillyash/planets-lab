@@ -330,3 +330,65 @@ the normal shared read backend. Further compression remains deferred in
 
 Activation checkpoint:
 `docs/handoff/2026-10-03-corpus-db-compact-current-activation.md`.
+
+
+## Public68 expansion gate — 2026-10-04
+
+The independent short public-corpus expansion completed successfully against
+source commit `8e46159f20be54a724c7ff960fab8450ed3a6e93`.
+
+Canonical runtime evidence:
+
+```text
+runtime-logs/public-short-expansion/20261003T203033Z_8e46159f20be
+```
+
+Acquisition result:
+
+```text
+new selected games                  32 / 32
+new raw ZIP bytes                   3198603411
+new snapshots                       43151
+new transitions                     42815
+new canonical_ok                    41957
+new canonical_failed                1194
+backfill rounds                     23
+rejected candidates                 46
+combined manifest games             68 unique
+```
+
+The final short-expansion bucket mix is availability-limited:
+
+```text
+campaign                            18
+championship                         4
+finite_fuel                          9
+sphere                               1
+```
+
+The requested sphere target was 3, so the combined corpus must not be described
+as sphere-balanced. The acquisition nevertheless reached the independent
+32-game usable target after exhausting/rejecting many candidates.
+
+This corpus expansion reopens generation construction, not storage-model
+optimization. compact1 remains the accepted physical model.
+
+The next gate is a new immutable compact generation over:
+
+```text
+validation/corpus/manifests/public-short-expansion-with-public36.jsonl
+```
+
+using:
+
+```text
+tools/run-corpus-db-public68-compact.sh
+```
+
+The runner requires 68 manifest entries, uses a stable resumable
+`compact-public68-resume` staging identity, requires 40 GiB free-space
+headroom by default, performs exact full-corpus parity and shared-reader gates,
+and does not switch `CURRENT`.
+
+The active public36 compact generation remains canonical until the public68
+runtime output is reviewed and a separate guarded activation decision is made.
