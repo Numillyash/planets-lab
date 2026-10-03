@@ -446,6 +446,7 @@ def main() -> int:
                 args.stats_output,
                 records,
                 failed_game_ids,
+                manifests,
             )
             if args.fail_fast:
                 break
