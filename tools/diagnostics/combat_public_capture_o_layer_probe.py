@@ -782,9 +782,66 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                     capture=capture,
                     appearances=appearances_by_key,
                 )
+                factual_opponent_id = row.get("next_opponent_ship_id")
+                site_ship_rows = context.get("site_ship_rows")
+                site_ship_rows = (
+                    site_ship_rows if isinstance(site_ship_rows, Mapping) else {}
+                )
+                predictions = context.get("predictions")
+                predictions = (
+                    predictions if isinstance(predictions, Mapping) else {}
+                )
+                factual_prediction = (
+                    predictions.get(factual_opponent_id)
+                    if isinstance(factual_opponent_id, int)
+                    and not isinstance(factual_opponent_id, bool)
+                    else None
+                )
+                factual_prediction = (
+                    factual_prediction
+                    if isinstance(factual_prediction, Mapping)
+                    else {}
+                )
+                active_ids = active_result.get("active_ship_ids")
+                removed_ids = active_result.get("removed_ship_ids")
+                owner_changed_ids = active_result.get("owner_changed_ship_ids")
+                anchored_ids = active_result.get("history_anchored_ship_ids")
                 active_dependency = {
                     "status": active_result.get("status"),
                     "reason": active_result.get("reason"),
+                    "factual_opponent_site_predicted": (
+                        factual_opponent_id in site_ship_rows
+                        if isinstance(factual_opponent_id, int)
+                        and not isinstance(factual_opponent_id, bool)
+                        else None
+                    ),
+                    "factual_opponent_prediction_position": factual_prediction.get(
+                        "position"
+                    ),
+                    "factual_opponent_position_source": factual_prediction.get(
+                        "source"
+                    ),
+                    "factual_opponent_history_anchored": (
+                        factual_opponent_id in anchored_ids
+                        if isinstance(anchored_ids, list)
+                        and isinstance(factual_opponent_id, int)
+                        and not isinstance(factual_opponent_id, bool)
+                        else None
+                    ),
+                    "factual_opponent_removed_before_next": (
+                        factual_opponent_id in removed_ids
+                        if isinstance(removed_ids, list)
+                        and isinstance(factual_opponent_id, int)
+                        and not isinstance(factual_opponent_id, bool)
+                        else None
+                    ),
+                    "factual_opponent_owner_changed_before_next": (
+                        factual_opponent_id in owner_changed_ids
+                        if isinstance(owner_changed_ids, list)
+                        and isinstance(factual_opponent_id, int)
+                        and not isinstance(factual_opponent_id, bool)
+                        else None
+                    ),
                     "factual_opponent_active": active_result.get(
                         "factual_opponent_active"
                     ),
@@ -848,6 +905,20 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
 
                 split_candidate: dict[str, Any] | None = None
                 if status == "resolved":
+                    dependency_qualified = all(
+                        active_dependency.get(name) is True
+                        for name in (
+                            "factual_opponent_active",
+                            "factual_opponent_candidate_resolved",
+                            "factual_opponent_requests_new_owner",
+                            "factual_opponent_strict_permission",
+                        )
+                    )
+                    if dependency_qualified:
+                        counts["resolved_dependency:qualified"] += 1
+                    else:
+                        counts["resolved_dependency:blocked"] += 1
+
                     pair_exact = result.get("pair_exact")
                     order_context = row.get("order_context")
                     order_context = (
@@ -882,10 +953,22 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                     }
                     if split_candidate["exact"] is True:
                         counts["split_candidate_exact"] += 1
+                        counts[
+                            "split_candidate_exact:"
+                            + ("qualified" if dependency_qualified else "blocked")
+                        ] += 1
                     elif split_candidate["exact"] is False:
                         counts["split_candidate_mismatch"] += 1
+                        counts[
+                            "split_candidate_mismatch:"
+                            + ("qualified" if dependency_qualified else "blocked")
+                        ] += 1
                     else:
                         counts["split_candidate_unresolved"] += 1
+                        counts[
+                            "split_candidate_unresolved:"
+                            + ("qualified" if dependency_qualified else "blocked")
+                        ] += 1
 
                     exact = result.get("exact")
                     if pair_exact is True:
@@ -1069,6 +1152,21 @@ def main() -> int:
             f"{counts.get('active_dependency:factual_opponent_strict_permission:true', 0)} / "
             f"{counts.get('active_dependency:factual_opponent_strict_permission:false', 0)} / "
             f"{counts.get('active_dependency:factual_opponent_strict_permission:unknown', 0)}"
+        )
+        print(
+            "resolved dependency qualified/blocked: "
+            f"{counts.get('resolved_dependency:qualified', 0)} / "
+            f"{counts.get('resolved_dependency:blocked', 0)}"
+        )
+        print(
+            "split exact qualified/blocked: "
+            f"{counts.get('split_candidate_exact:qualified', 0)} / "
+            f"{counts.get('split_candidate_exact:blocked', 0)}"
+        )
+        print(
+            "split mismatch qualified/blocked: "
+            f"{counts.get('split_candidate_mismatch:qualified', 0)} / "
+            f"{counts.get('split_candidate_mismatch:blocked', 0)}"
         )
         print(f"output:               {args.output}")
         return 0

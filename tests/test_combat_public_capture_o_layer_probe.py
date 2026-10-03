@@ -156,3 +156,16 @@ def test_probe_reports_split_candidate_and_dependency_audit() -> None:
     assert '"o_reachable_sticky_capture_side"' in probe
     assert '"o_not_reachable_neutral_fresh_fc"' in probe
 
+def test_probe_classifies_dependency_qualified_subset() -> None:
+    root = Path(__file__).resolve().parents[1]
+    probe = (
+        root / "tools/diagnostics/combat_public_capture_o_layer_probe.py"
+    ).read_text(encoding="utf-8")
+
+    assert '"resolved_dependency:qualified"' in probe
+    assert '"resolved_dependency:blocked"' in probe
+    assert '"split_candidate_exact:qualified"' in probe
+    assert '"factual_opponent_site_predicted"' in probe
+    assert '"factual_opponent_history_anchored"' in probe
+    assert '"factual_opponent_removed_before_next"' in probe
+    assert '"factual_opponent_owner_changed_before_next"' in probe

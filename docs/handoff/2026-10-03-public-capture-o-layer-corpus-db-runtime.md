@@ -84,3 +84,42 @@ Immediate next gate:
    frozen.
 
 No NuHost side mechanic is promoted by this checkpoint.
+
+## Dependency-qualified discovery checkpoint
+
+Runtime evidence:
+
+    runtime-logs/public-capture-o-layer-discovery/20261003T154738Z_94186008f694
+
+The dependency audit separates the 31 adjacent rows into:
+
+    factual N+1 opponent active/candidate/request/strict resolved   15
+    factual N+1 opponent absent from reconstructed active graph     16
+
+On the dependency-qualified subset, the provisional split side candidate is:
+
+    exact       15 / 15
+    mismatch     0 / 15
+
+On the dependency-blocked subset:
+
+    exact       13 / 16
+    mismatch     3 / 16
+
+All three discovery mismatches are dependency-blocked:
+
+    game 224849 turn 141 capture VCR 311 ship 533 -> factual RIGHT
+    game 224849 turn 162 capture VCR 473 ship 258 -> factual RIGHT
+    game 597910 turn 189 capture VCR 1176 ship 510 -> factual RIGHT
+
+Therefore the current blocker is upstream of side assignment for these rows.
+The factual ship really fights next, so a reconstructed active=false /
+candidate=false result is evidence of an incomplete active/movement/history
+model, not evidence that the ship is actually inactive.
+
+The next discovery gate records whether each missing factual opponent was
+predicted at the site, history-anchored, removed by mutation replay, or
+owner-changed. Held-out remains sealed.
+
+No NuHost side mechanic is promoted by this checkpoint.
+

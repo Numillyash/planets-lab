@@ -137,6 +137,35 @@ def main() -> int:
     )
     print(f"external O exact:     {counts.get('external_o_exact', 0)}")
     print(f"external O mismatch:  {counts.get('external_o_mismatch', 0)}")
+    print(f"split candidate exact:{counts.get('split_candidate_exact', 0):>4}")
+    print(f"split candidate mismatch:{counts.get('split_candidate_mismatch', 0):>2}")
+    print(
+        "resolved dependency qualified/blocked: "
+        f"{counts.get('resolved_dependency:qualified', 0)} / "
+        f"{counts.get('resolved_dependency:blocked', 0)}"
+    )
+    print(
+        "split exact qualified/blocked: "
+        f"{counts.get('split_candidate_exact:qualified', 0)} / "
+        f"{counts.get('split_candidate_exact:blocked', 0)}"
+    )
+    print(
+        "split mismatch qualified/blocked: "
+        f"{counts.get('split_candidate_mismatch:qualified', 0)} / "
+        f"{counts.get('split_candidate_mismatch:blocked', 0)}"
+    )
+    print(
+        "factual opponent active T/F/U: "
+        f"{counts.get('active_dependency:factual_opponent_active:true', 0)} / "
+        f"{counts.get('active_dependency:factual_opponent_active:false', 0)} / "
+        f"{counts.get('active_dependency:factual_opponent_active:unknown', 0)}"
+    )
+    print(
+        "strict permission T/F/U: "
+        f"{counts.get('active_dependency:factual_opponent_strict_permission:true', 0)} / "
+        f"{counts.get('active_dependency:factual_opponent_strict_permission:false', 0)} / "
+        f"{counts.get('active_dependency:factual_opponent_strict_permission:unknown', 0)}"
+    )
     print(f"output:               {args.output}")
     return 0
 
