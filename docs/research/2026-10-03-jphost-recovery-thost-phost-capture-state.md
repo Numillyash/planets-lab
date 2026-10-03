@@ -286,8 +286,28 @@ For project slug `jphost`, the derived snapshot URL is:
 https://sourceforge.net/code-snapshots/cvs/j/jp/jphost.zip
 ```
 
-The current web environment cannot fetch this binary endpoint directly, so the
-snapshot has **not yet been validated**.
+The snapshot has now been independently fetched from WSL and validated as a
+real legacy CVS repository:
+
+```text
+URL:
+https://sourceforge.net/code-snapshots/cvs/j/jp/jphost.zip
+
+size:
+~1.7 MiB
+
+SHA256:
+a9b1ac89ded3604350cdfde33eefea28c29348a60b3ce54a19b44145b93dd6ae
+```
+
+The archive contains a full `CVSROOT` plus a top-level `jhost` repository
+tree with `src`, `test`, `game`, configuration, global data, historical
+Attic content, and a 2004 `Jhost.jar`.
+
+The first checkout attempt exposed a helper bug: the relative repository path
+was interpreted by CVS as an rsh target (`hostname artifacts`). The helper is
+now corrected to use an absolute `:local:` CVSROOT and to discover top-level
+modules directly from the repository when `CVSROOT/modules` is empty.
 
 A reproducible helper is now tracked:
 
