@@ -42,30 +42,49 @@ def _git_text(root: Path, *args: str) -> str:
     return completed.stdout.strip()
 
 
-def _load_main_modules(main_root: Path):
-    if not (main_root / ".git").exists():
-        raise ValueError(f"main checkout missing: {main_root}")
+def _load_main_modules(
+    main_root: Path,
+    *,
+    verified_main_head: str | None = None,
+):
+    """Load canonical modules from the separately mounted main checkout.
 
-    branch = _git_text(main_root, "branch", "--show-current")
-    if branch != "main":
-        raise ValueError(
-            f"canonical checkout must be on main, got {branch!r}: {main_root}"
-        )
-    head = _git_text(main_root, "rev-parse", "HEAD")
-    try:
-        origin_head = _git_text(main_root, "rev-parse", "origin/main")
-    except subprocess.CalledProcessError:
-        origin_head = ""
-    if origin_head and head != origin_head:
-        raise ValueError(
-            "main checkout is not at origin/main; run git fetch/pull before probe: "
-            f"HEAD={head} origin/main={origin_head}"
-        )
+    When the Docker runner supplies verified_main_head, the host-side gate has
+    already proved main branch and HEAD == origin/main before container launch.
+    The slim canonical image intentionally does not install the git executable,
+    so do not re-run git inside that container.
+    """
 
     diagnostics = main_root / "tools" / "diagnostics"
     source = main_root / "src"
     if not diagnostics.is_dir() or not source.is_dir():
         raise ValueError(f"main checkout lacks diagnostics/src: {main_root}")
+
+    if verified_main_head is not None:
+        head = verified_main_head.strip().lower()
+        if len(head) != 40 or any(ch not in "0123456789abcdef" for ch in head):
+            raise ValueError(
+                f"invalid --verified-main-head value: {verified_main_head!r}"
+            )
+    else:
+        # Non-Docker fallback for direct local execution where git is present.
+        if not (main_root / ".git").exists():
+            raise ValueError(f"main checkout missing: {main_root}")
+        branch = _git_text(main_root, "branch", "--show-current")
+        if branch != "main":
+            raise ValueError(
+                f"canonical checkout must be on main, got {branch!r}: {main_root}"
+            )
+        head = _git_text(main_root, "rev-parse", "HEAD")
+        try:
+            origin_head = _git_text(main_root, "rev-parse", "origin/main")
+        except subprocess.CalledProcessError:
+            origin_head = ""
+        if origin_head and head != origin_head:
+            raise ValueError(
+                "main checkout is not at origin/main; run git fetch/pull before probe: "
+                f"HEAD={head} origin/main={origin_head}"
+            )
 
     # Put canonical main code ahead of the research checkout.
     sys.path.insert(0, str(diagnostics))
@@ -290,7 +309,10 @@ def _same_pair(prediction: Mapping[str, Any], expected: set[int]) -> bool | None
 
 
 def run(args: argparse.Namespace) -> dict[str, Any]:
-    main_head, oprobe, active_module = _load_main_modules(args.main_root)
+    main_head, oprobe, active_module = _load_main_modules(
+        args.main_root,
+        verified_main_head=args.verified_main_head,
+    )
 
     discovery_path = (
         args.discovery
@@ -589,6 +611,13 @@ def parse_args() -> argparse.Namespace:
         description="Run frozen AFSIM-R1 against discovery capture rows via Corpus DB."
     )
     parser.add_argument("--main-root", type=Path, default=DEFAULT_MAIN_ROOT)
+    parser.add_argument(
+        "--verified-main-head",
+        help=(
+            "Host-verified 40-hex main HEAD. When supplied, skip git subprocess "
+            "checks inside slim Docker images."
+        ),
+    )
     parser.add_argument("--corpus-db-root", type=Path, default=DEFAULT_CORPUS_DB_ROOT)
     parser.add_argument("--discovery", type=Path)
     parser.add_argument("--example-limit", type=int, default=200)
