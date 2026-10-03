@@ -471,3 +471,63 @@ tools/research/audit-afsim-vcr-queue-bridge.py
 
 The goal is now strictly the bridge from the capture-mutated VCR object back to
 persistent AFSim OOB state: re-sort vs cursor continuation vs restart.
+
+
+### AFSim VCR -> persistent state bridge confirmed
+
+The AFSim 1.31 battle loop has now been traced one step beyond the VCR outcome
+handler.
+
+Persistent combatants use 54-byte entries:
+
+```text
+entry = 0x32dc + index*0x36
++0x06 shield
++0x0c embedded 42-byte VCR object
++0x24 ship ID
+```
+
+After each ship-vs-ship VCR result, AFSim writes both mutated 42-byte VCR
+objects and both shields back into those persistent entries, then invokes a
+per-entry routine at `0x2c68` on each combatant.
+
+Therefore captured owner/crew state is persisted before the next fight is
+selected.
+
+The next-pair loop then passes through:
+
+```text
+0x5627
+0x51c6
+```
+
+before a new ship-vs-ship pair is used.
+
+Before battle setup the selected pair is canonicalized by ascending persistent
+ship ID.
+
+The remaining AFSim queue discriminator is now bounded to:
+
+```text
+0x2c68
+0x5627
+0x51c6
+```
+
+and is specifically:
+
+```text
+full OOB rebuild/re-sort
+vs
+traversal restart
+vs
+saved-cursor continuation
+```
+
+Tracked helper:
+
+```text
+tools/research/audit-afsim-postcapture-selector.py
+```
+
+No NuHost mechanic is promoted by this result.
