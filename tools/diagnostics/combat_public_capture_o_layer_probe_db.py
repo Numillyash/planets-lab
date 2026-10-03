@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import sys
 from collections import Counter, defaultdict
 from collections.abc import Mapping, Sequence
 from pathlib import Path
@@ -16,7 +17,6 @@ for _path in (REPO_ROOT / "src", DIAGNOSTICS_DIR):
     if str(_path) not in sys.path:
         sys.path.insert(0, str(_path))
 
-import sys
 
 import combat_host_initial_standard_target_audit as baseline_module
 import combat_host_post_capture_active_membership_audit as active_module
