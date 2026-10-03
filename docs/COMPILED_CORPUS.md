@@ -796,3 +796,31 @@ The harvester now adds targeted T-1 mission/PE/FC priority context for the 50
 discovery ship cases so the frozen-priority and neutral-prize controls can be
 tested on the independent public population before held-out is opened.
 
+
+
+### Corpus DB v1 prototype implementation checkpoint — 2026-09-30
+
+The dedicated `feature/corpus-db-v1` branch now contains the first direct
+ZIP/TRN -> DuckDB implementation for the game-233558 gate. The importer is
+member-streaming rather than whole-game snapshot based, preserves full source
+semantics through lossless JSON fallback rows, records archive/member provenance,
+and refuses publication unless archive integrity plus type-sensitive full-member
+round-trip parity are green.
+
+Shared storage is exposed through `PLANETS_CORPUS_DB_ROOT` mounted at
+`/corpus-db`; the normal and external research containers use the same
+immutable published generation read-only. Tracked runners also measure fresh-
+process T-1/T and VCR/site query wall time/RSS and concurrent two-container
+reads.
+
+The corrected typed1 game-233558 runtime is now green end-to-end:
+6710 / 6710 full semantic parity, native typed entity storage, 3.06 GB DuckDB
+from 9.57 GB decoded JSON, bounded indexed queries, and simultaneous read-only
+access from both research containers. This is a 74.23% reduction versus the
+first 11.87 GB v1 physical layout and removes the per-entity JSON duplication
+that caused the earlier regression.
+
+The game-233558 gate is closed. The next storage milestone is one typed
+generation for the stabilized 36-game public corpus using the existing immutable
+loadall cache, with full member parity retained. See
+`docs/handoff/2026-09-30-corpus-db-typed-game233558-runtime.md`.

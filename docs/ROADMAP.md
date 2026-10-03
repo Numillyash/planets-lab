@@ -766,3 +766,81 @@ Held-out remains sealed.
 Checkpoint:
 `docs/handoff/2026-09-30-public-capture-side-discovery-runtime.md`.
 
+## Corpus DB v1 infrastructure workstream
+
+Branch feature/corpus-db-v1 owns a separate storage migration prototype.
+
+The objective is to retain ZIP/TRN as immutable evidence while mirroring the
+same player/perspective/entity semantics into a shared DuckDB generation stored
+outside both research checkouts and readable concurrently by both normal and
+external-reference containers.
+
+The first gate is game-233558 only: direct mirror, no deltas or semantic dedup.
+It must pass full member-level semantic parity and disk/runtime/RSS/concurrent
+reader benchmarks before scaling to the 36-game public corpus.
+
+See docs/corpus-db/ARCHITECTURE.md, SHARED_ACCESS.md, WORKSTREAM.md and
+NEW_CHAT_START.md.
+
+
+
+### Corpus DB v1 prototype implementation checkpoint — 2026-09-30
+
+The dedicated `feature/corpus-db-v1` branch now contains the first direct
+ZIP/TRN -> DuckDB implementation for the game-233558 gate. The importer is
+member-streaming rather than whole-game snapshot based, preserves full source
+semantics through lossless JSON fallback rows, records archive/member provenance,
+and refuses publication unless archive integrity plus type-sensitive full-member
+round-trip parity are green.
+
+Shared storage is exposed through `PLANETS_CORPUS_DB_ROOT` mounted at
+`/corpus-db`; the normal and external research containers use the same
+immutable published generation read-only. Tracked runners also measure fresh-
+process T-1/T and VCR/site query wall time/RSS and concurrent two-container
+reads.
+
+The corrected typed1 game-233558 runtime is now green end-to-end:
+6710 / 6710 full semantic parity, native typed entity storage, 3.06 GB DuckDB
+from 9.57 GB decoded JSON, bounded indexed queries, and simultaneous read-only
+access from both research containers. This is a 74.23% reduction versus the
+first 11.87 GB v1 physical layout and removes the per-entity JSON duplication
+that caused the earlier regression.
+
+The storage workstream has since advanced through typed1 to the accepted compact
+public36 backend. Canonical compact runtime:
+
+```text
+36 archives
+126418 / 126418 exact semantic parity
+13189001216-byte DuckDB (~12.283 GiB)
+66.12% smaller than public36 typed1
+90.14% smaller than decoded JSON
+no entity_rows
+no decoded member fallback blob
+no secondary indexes
+shared normal/external read PASS
+```
+
+The current storage optimization milestone is complete. Activate the compact
+generation through the guarded CURRENT switch and retain typed1 as rollback.
+Further physical improvements are deferred in
+`docs/corpus-db/FUTURE_OPTIMIZATIONS.md`; do not spend mechanics time on
+additional compression unless a documented reopen criterion is met.
+
+Canonical runtime:
+`docs/handoff/2026-10-02-corpus-db-compact-public36-runtime.md`.
+
+
+### Compact CURRENT activation completed — 2026-10-03
+
+The accepted compact public36 generation is now active through `CURRENT`:
+
+```text
+corpus-v2compact-public36-20261002T083138Z-11cd75fa918d
+126418 / 126418 exact parity
+shared normal/external read PASS
+```
+
+The previous typed1 public36 generation remains available as rollback. The corpus
+DB storage milestone is closed; resume NuHost mechanics work on main. Deferred
+storage ideas remain in `docs/corpus-db/FUTURE_OPTIMIZATIONS.md`.

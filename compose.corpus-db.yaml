@@ -1,0 +1,19 @@
+services:
+  lab:
+    environment:
+      PLANETS_CORPUS_DB_ROOT: /corpus-db
+    volumes:
+      - ${PLANETS_CORPUS_DB_ROOT:?Set PLANETS_CORPUS_DB_ROOT to the shared host corpus DB directory}:/corpus-db:ro
+
+  corpus-db-importer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /workspace
+    environment:
+      PLANETS_CORPUS_DB_ROOT: /corpus-db
+    volumes:
+      - .:/workspace
+      - ${PLANETS_CORPUS_DB_ROOT:?Set PLANETS_CORPUS_DB_ROOT to the shared host corpus DB directory}:/corpus-db:rw
+    profiles: ["corpus-db-writer"]
+    command: python -m planets_lab.corpus.corpus_db_cli --help
