@@ -166,6 +166,18 @@ def main() -> int:
         f"{counts.get('active_dependency:factual_opponent_strict_permission:false', 0)} / "
         f"{counts.get('active_dependency:factual_opponent_strict_permission:unknown', 0)}"
     )
+    for label, key in (
+        ("blocked site predicted T/F/U", "factual_opponent_site_predicted"),
+        ("blocked history anchored T/F/U", "factual_opponent_history_anchored"),
+        ("blocked removed before next T/F/U", "factual_opponent_removed_before_next"),
+        ("blocked owner changed T/F/U", "factual_opponent_owner_changed_before_next"),
+    ):
+        print(
+            f"{label}: "
+            f"{counts.get(f'blocked_dependency:{key}:true', 0)} / "
+            f"{counts.get(f'blocked_dependency:{key}:false', 0)} / "
+            f"{counts.get(f'blocked_dependency:{key}:unknown', 0)}"
+        )
     print(f"output:               {args.output}")
     return 0
 

@@ -918,6 +918,20 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                         counts["resolved_dependency:qualified"] += 1
                     else:
                         counts["resolved_dependency:blocked"] += 1
+                        for name in (
+                            "factual_opponent_site_predicted",
+                            "factual_opponent_history_anchored",
+                            "factual_opponent_removed_before_next",
+                            "factual_opponent_owner_changed_before_next",
+                        ):
+                            value = active_dependency.get(name)
+                            if value is True:
+                                suffix = "true"
+                            elif value is False:
+                                suffix = "false"
+                            else:
+                                suffix = "unknown"
+                            counts[f"blocked_dependency:{name}:{suffix}"] += 1
 
                     pair_exact = result.get("pair_exact")
                     order_context = row.get("order_context")
@@ -1168,6 +1182,18 @@ def main() -> int:
             f"{counts.get('split_candidate_mismatch:qualified', 0)} / "
             f"{counts.get('split_candidate_mismatch:blocked', 0)}"
         )
+        for label, key in (
+            ("blocked site predicted T/F/U", "factual_opponent_site_predicted"),
+            ("blocked history anchored T/F/U", "factual_opponent_history_anchored"),
+            ("blocked removed before next T/F/U", "factual_opponent_removed_before_next"),
+            ("blocked owner changed T/F/U", "factual_opponent_owner_changed_before_next"),
+        ):
+            print(
+                f"{label}: "
+                f"{counts.get(f'blocked_dependency:{key}:true', 0)} / "
+                f"{counts.get(f'blocked_dependency:{key}:false', 0)} / "
+                f"{counts.get(f'blocked_dependency:{key}:unknown', 0)}"
+            )
         print(f"output:               {args.output}")
         return 0
     except (OSError, ValueError, json.JSONDecodeError) as exc:
