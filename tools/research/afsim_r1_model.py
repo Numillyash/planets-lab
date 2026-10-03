@@ -12,6 +12,7 @@ from __future__ import annotations
 import argparse
 from dataclasses import asdict, dataclass, replace
 import json
+import sys
 from pathlib import Path
 from typing import Any, Iterable, Mapping, Sequence
 
@@ -316,5 +317,4 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    import sys
     raise SystemExit(main())
