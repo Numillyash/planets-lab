@@ -200,7 +200,7 @@ else
             print
           }'         | sort -u > "$tmp_classes"
 
-      find "$CHECKOUT_ABS/src" -type f -name '*.java' -print         | sed "s#^$CHECKOUT_ABS/src/##; s#\.java$##; s#/#.#g"         | sort -u > "$tmp_sources"
+      find "$CHECKOUT_ABS/src" -type f -name '*.java' -printf '%P\\n'         | sed -e 's/\\.java$//' -e 's#/#.#g'         | sort -u > "$tmp_sources"
 
       comm -23 "$tmp_classes" "$tmp_sources" || true
 
