@@ -645,3 +645,32 @@ tools/research/audit-afsim-oob-metadata.py
 
 It inventories write sites and prompt-string xrefs for Kill, fuel, Primary
 Enemy and friendly code. Held-out remains closed.
+
+
+### AFSim OOB metadata persistence recovered
+
+The latest pass shows that the three parallel per-ship metadata arrays are persistent state, not transient selector scratch.
+
+`0x5c9b` decodes a packed per-entry metadata byte into:
+
+```text
+0x3d9d[index] = inverse of bit 0x80
+0x3dcf[index] = inverse of bit 0x40
+0x3e01[index] = low nibble
+```
+
+`0x5d0b` performs the exact inverse encoding.
+
+New-ship creation `0x5883` initializes three editor values to `1,1,0`, passes their addresses to ship editor `0x2f14`, and on success writes them respectively to `0x3d9d`, `0x3dcf`, and `0x3e01`.
+
+Selector `0x51c6` proves `0x3e01` is a target-owner value: its second phase accepts a candidate exactly when `0x3e01[initiator] == candidate.owner`. This maps it to AFSim Primary Enemy semantics.
+
+The remaining two booleans are behaviorally identified as Fuel/availability and KILL mission, but their direct editor argument order is the final binary proof obligation.
+
+Tracked helper:
+
+```text
+tools/research/audit-afsim-ship-editor-metadata.py
+```
+
+It disassembles `0x2f14`, inventories the far-pointer arguments, and maps the visible `Ship mission kill`, `Fuel on board`, and `Primary enemy` form fields back to caller locals. After that mapping, freeze executable AFSIM-R1 and proceed to discovery Corpus DB only; held-out remains closed.
