@@ -110,6 +110,8 @@ def _eligible_metadata(
     existing_ids: frozenset[int],
     min_turn: int,
     min_slots: int,
+    max_turn: int | None = None,
+    max_slots: int | None = None,
 ) -> bool:
     game_id = _int_value(game, "id")
     return (
@@ -119,6 +121,14 @@ def _eligible_metadata(
         and game.get("isprivate") is not True
         and _int_value(game, "turn") >= min_turn
         and _int_value(game, "slots") >= min_slots
+        and (
+            max_turn is None
+            or _int_value(game, "turn") <= max_turn
+        )
+        and (
+            max_slots is None
+            or _int_value(game, "slots") <= max_slots
+        )
     )
 
 
@@ -404,7 +414,19 @@ def parse_args() -> argparse.Namespace:
         default=DEFAULT_BASELINE,
     )
     parser.add_argument("--min-turn", type=int, default=55)
+    parser.add_argument(
+        "--max-turn",
+        type=int,
+        default=0,
+        help="maximum final turn; 0 disables the upper bound",
+    )
     parser.add_argument("--min-slots", type=int, default=8)
+    parser.add_argument(
+        "--max-slots",
+        type=int,
+        default=0,
+        help="maximum game slots; 0 disables the upper bound",
+    )
     parser.add_argument("--probe-limit", type=int, default=160)
     parser.add_argument("--select-count", type=int, default=36)
     parser.add_argument("--list-limit", type=int, default=0)
@@ -420,6 +442,15 @@ def main() -> int:
     args = parse_args()
     if args.min_turn <= 0 or args.min_slots <= 0:
         print("--min-turn and --min-slots must be positive", file=sys.stderr)
+        return 2
+    if args.max_turn < 0 or args.max_slots < 0:
+        print("--max-turn/--max-slots must be non-negative", file=sys.stderr)
+        return 2
+    if args.max_turn and args.max_turn < args.min_turn:
+        print("--max-turn cannot be smaller than --min-turn", file=sys.stderr)
+        return 2
+    if args.max_slots and args.max_slots < args.min_slots:
+        print("--max-slots cannot be smaller than --min-slots", file=sys.stderr)
         return 2
     if args.probe_limit <= 0 or args.select_count <= 0:
         print("--probe-limit and --select-count must be positive", file=sys.stderr)
@@ -452,6 +483,8 @@ def main() -> int:
                 existing_ids=existing_ids,
                 min_turn=args.min_turn,
                 min_slots=args.min_slots,
+                max_turn=(args.max_turn or None),
+                max_slots=(args.max_slots or None),
             )
         ]
         shortlist = _round_robin_shortlist(
@@ -520,6 +553,12 @@ def main() -> int:
             "baseline_manifest": str(args.baseline_manifest),
             "listed_games": len(listed),
             "eligible_games": len(eligible),
+            "bounds": {
+                "min_turn": args.min_turn,
+                "max_turn": args.max_turn or None,
+                "min_slots": args.min_slots,
+                "max_slots": args.max_slots or None,
+            },
             "probed_games": len(shortlist),
             "successful_loadinfo": len(candidates),
             "failed_loadinfo": failures,

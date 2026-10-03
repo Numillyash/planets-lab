@@ -92,6 +92,29 @@ def test_metadata_filter_rejects_existing_small_or_private_games() -> None:
         min_turn=55,
         min_slots=8,
     )
+    assert not _eligible_metadata(
+        _game(14, turn=141),
+        existing_ids=existing,
+        min_turn=55,
+        min_slots=8,
+        max_turn=140,
+    )
+    assert _eligible_metadata(
+        _game(15, turn=140, slots=16),
+        existing_ids=existing,
+        min_turn=55,
+        min_slots=8,
+        max_turn=140,
+        max_slots=16,
+    )
+    assert not _eligible_metadata(
+        _game(16, turn=100, slots=17),
+        existing_ids=existing,
+        min_turn=55,
+        min_slots=8,
+        max_turn=140,
+        max_slots=16,
+    )
 
 
 def test_shortlist_round_robins_ruleset_categories() -> None:

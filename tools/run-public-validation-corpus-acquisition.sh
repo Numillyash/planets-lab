@@ -16,7 +16,9 @@ BACKFILL_REPORT="${BACKFILL_REPORT:-artifacts/public-validation-corpus/backfill-
 EVIDENCE_DIR="${EVIDENCE_DIR:-artifacts/public-validation-corpus/evidence}"
 
 MIN_TURN="${MIN_TURN:-55}"
+MAX_TURN="${MAX_TURN:-0}"
 MIN_SLOTS="${MIN_SLOTS:-8}"
+MAX_SLOTS="${MAX_SLOTS:-0}"
 PROBE_LIMIT="${PROBE_LIMIT:-160}"
 SELECT_COUNT="${SELECT_COUNT:-36}"
 LIST_LIMIT="${LIST_LIMIT:-0}"
@@ -73,7 +75,9 @@ else
   "${lab[@]}" python -m planets_lab.corpus.public_finished_discover_cli \
     --baseline-manifest "$BASELINE_MANIFEST" \
     --min-turn "$MIN_TURN" \
+    --max-turn "$MAX_TURN" \
     --min-slots "$MIN_SLOTS" \
+    --max-slots "$MAX_SLOTS" \
     --probe-limit "$PROBE_LIMIT" \
     --select-count "$SELECT_COUNT" \
     --list-limit "$LIST_LIMIT" \
