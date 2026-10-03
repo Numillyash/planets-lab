@@ -1,0 +1,22 @@
+{
+  "evidence_branch": "runtime-logs",
+  "exit_code": 0,
+  "finished_at_utc": "2026-10-03T16:18:35Z",
+  "hostname": "GEORGUL-GAMER",
+  "interrupted_signal": null,
+  "log_file": "gate.log",
+  "missing_artifact_paths": [],
+  "remote": "origin",
+  "requested_artifact_paths": [
+    "artifacts/public-capture-side"
+  ],
+  "run_id": "20261003T161257Z_099397c3a226",
+  "run_name": "public-capture-o-layer-discovery",
+  "runner": "bash",
+  "schema": "planets-lab.runtime-evidence.v1",
+  "skipped_oversized_artifact_paths": [],
+  "source_branch": "main",
+  "source_commit": "099397c3a2264b0a2690ccf363c9aa5ae5cfbd2e",
+  "source_dirty": false,
+  "started_at_utc": "2026-10-03T16:12:57Z"
+}
