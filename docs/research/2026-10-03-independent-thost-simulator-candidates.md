@@ -412,3 +412,62 @@ tools/research/audit-afsim-result-handler.py
 ```
 
 BSim remains deferred until this AFSim path is exhausted.
+
+
+### AFSim exact VCR capture-state mapping
+
+The AFSim 1.31 result handler has now been mapped onto the standard 100-byte
+THost VCR record layout.
+
+Independent VCR format documentation:
+
+```text
+https://www.planetscentral.com/doc.cgi/filefmt/vcrx-dat
+```
+
+AFSim live record:
+
+```text
+record base       0x323e
+left object       0x324a
+right object      0x3274
+object stride     42 bytes
+left shield       0x329e
+right shield      0x32a0
+```
+
+This identifies the capture-mutated fields exactly:
+
+```text
+0x3260 left crew
+0x3264 left owner
+0x328a right crew
+0x328e right owner
+```
+
+AFSim external behavior is therefore:
+
+```text
+left crew == 0:
+  left.owner = right.owner
+  left.crew = 10
+
+right crew == 0:
+  right.owner = left.owner
+  right.crew = 10
+```
+
+This remains third-party implementation evidence only.
+
+Control-flow was also corrected: `0x4f8b` is a battle-end detector that
+returns normally; the parser/outcome calls occur in a distinct interrupt-style
+routine at `0x50ce`.
+
+Active next target:
+
+```text
+tools/research/audit-afsim-vcr-queue-bridge.py
+```
+
+The goal is now strictly the bridge from the capture-mutated VCR object back to
+persistent AFSim OOB state: re-sort vs cursor continuation vs restart.
