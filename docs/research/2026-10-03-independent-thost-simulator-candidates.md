@@ -318,3 +318,54 @@ bash tools/research/recover-independent-thost-simulators.sh \
 Interpret the result with the existing decision rule. In particular, do not
 close AFSim from secondary descriptions alone: inspect the recovered manual,
 saved-setup semantics and executable strings/debug/source material first.
+
+
+## AFSim runtime promotion to active deep-audit target
+
+The recovered package has now crossed the decision gate.
+
+Pinned recovered archive:
+
+```text
+AFSIM.ZIP
+size   41844 bytes
+SHA256 778dde575b8293b6cb266ea62a456b972ddf5d4d33de526e3c5700825f5ed3e2
+ZIP    valid
+```
+
+Package documentation explicitly says AFSim determines battle order from ship
+ID, friendly code, mission and primary enemy. The executable integrates Tim's
+VCR, reads the result of each pairwise battle back into AFSim, and contains
+capture-result handling strings.
+
+Therefore:
+
+```text
+AFSim automatic battle-order/orchestration:
+  CONFIRMED as external implementation behavior
+
+AFSim user-prescribed-sequence-only hypothesis:
+  REJECTED
+
+AFSim:
+  ACTIVE deep-audit target
+
+BSim:
+  DEFER until AFSim capture/order semantics are exhausted
+```
+
+Detailed runtime note:
+
+```text
+docs/research/2026-10-03-afsim-automatic-queue-runtime.md
+```
+
+Focused next helper:
+
+```text
+tools/research/audit-afsim-queue-semantics.sh
+```
+
+The next pass must extract capture/re-entry semantics from the manual first and
+only then, if needed, reverse the smallest executable region around VCR result
+ingestion. Do not spend time on Tim VCR pairwise physics.
