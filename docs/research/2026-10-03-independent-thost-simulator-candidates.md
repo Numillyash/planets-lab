@@ -857,3 +857,57 @@ tools/research/analyze-afsim-r1-discovery.py
 It conditions only on the factual next-pair identity and tests side assignment
 across all resolved adjacent discovery rows. This is not an independent queue
 predictor. Held-out remains closed.
+
+
+### AFSim side rule rejected; next discriminator isolates Nu requester ranking
+
+The identity-anchored AFSim side-only post-analysis on all 31 adjacent discovery
+rows produced:
+
+```text
+lower-ID LEFT exact:     21
+lower-ID LEFT mismatch:  10
+```
+
+Therefore the AFSim post-selection side canonicalization is also rejected as a
+general Nu capture-side rule.
+
+The pair-failure decomposition is:
+
+```text
+exact                           6
+prize_with_wrong_opponent       4
+factual_opponent_without_prize  5
+unrelated_pair                  3
+no_pair                        13
+```
+
+The 13 no-pair rows are especially informative: AFSim's KILL/PE selector often
+does not even create a combat where Nu factually does. This points away from
+AFSim aggression selection and toward the already reconstructed Nu requester /
+strict-permission candidate graph.
+
+The next discovery-only discriminator therefore tests whether the factual
+post-capture opponent is rank 1 in that independently reconstructed Nu-derived
+candidate set, conditional on the captured prize being the recomposed target.
+
+Tracked analyzer:
+
+```text
+tools/research/analyze-postcapture-strict-rank-discovery.py
+```
+
+It reads the already-produced public discovery O-layer artifact plus the AFSim
+post-analysis and reports requester/strict ranks together with AFSim mismatch
+categories. It performs no new Corpus DB scan and does not read held-out.
+
+This test is not a complete global queue predictor and does not assign
+LEFT/RIGHT. Its purpose is to distinguish:
+
+```text
+AFSim selector failure
+vs
+post-capture restart/recomposition failure
+```
+
+before any new engine-level candidate is frozen.
