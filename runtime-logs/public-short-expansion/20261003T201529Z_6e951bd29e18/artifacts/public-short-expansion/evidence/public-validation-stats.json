@@ -1,0 +1,90 @@
+{
+  "candidate_mechanics": {
+    "ghost_ship_records": 1238,
+    "hyp_order_candidates": 36266,
+    "intercept_order_candidates": 13674,
+    "ionstorm_records": 286573,
+    "minefield_records": 2635251,
+    "snapshots_with_ghost_ships": 1100,
+    "snapshots_with_hyp_candidates": 10186,
+    "snapshots_with_intercept_candidates": 4738,
+    "snapshots_with_ionstorms": 25197,
+    "snapshots_with_minefields": 24176,
+    "snapshots_with_tow_candidates": 16475,
+    "tow_order_candidates": 78540
+  },
+  "failed_game_ids": [
+    61410,
+    75084,
+    81827,
+    87846,
+    110148,
+    130144,
+    216017,
+    223160,
+    526245
+  ],
+  "games_by_ended_year": {
+    "2018": 2,
+    "2019": 2,
+    "2020": 3,
+    "2021": 4,
+    "2023": 4,
+    "2024": 2,
+    "2025": 1,
+    "2026": 5
+  },
+  "games_by_settings_hash": {
+    "015d7205135dae2d2b9acc7d249e08276b54a321f82d4a1aeb2b46b603ae5749": 1,
+    "021e6e411fd9b84ff55ad0481beaa7f0ac51bf8230371f7988196c75eced23dd": 1,
+    "05c83cdcec4464e4837a172d152525bd7f1dd5ef9ed3ecb3dc2e0196f46cf500": 1,
+    "0a34c74e0c7355deed867860b81c50aff74bee087ae61f83a7e522ceeede10a3": 1,
+    "0db443878abd90d3625369e31e10e943d6919b0580c71f067160ac626679baf5": 1,
+    "19395c9148434a33b6865eb1cb5a7cabf44d39691db9ab47a6e86fed2641eb7e": 1,
+    "1b2a1ea63411032a397cbc0dd7de38ee4b5f14258cc40e686705d146ddd433d0": 1,
+    "222b37f0b65112a8d08b13a2a7eaf03a6c39ac64d085a73bbe8e91a1f793c43c": 1,
+    "2b9c45ca6ebb810677b6f23090c51a9fe877c8169a3e498ae06779e90e410cd2": 1,
+    "2dd66db0037bca32a0a7e2d5727278bd3f3f9d36985879cb8d7150120aae821f": 1,
+    "4db6e6babb3c405e9496ce4f2d6fcb7e55f744d7d95d81222db35623ca83c37d": 1,
+    "56d2815dc1eb7fe229b2dedcf03ec4dd89b71084a8237d9fd66f4b54e2152e3e": 1,
+    "68811f41c5a0966ec850e2a2cc83d5b596e577280604eaa159367ff214816b21": 1,
+    "6994e63ce82d16e341fd2d0074914a3a356fe2b38609a9d76de3a7d345d4e0c3": 1,
+    "8586d8bd82d83c07b264c6d031502e0dba62d2b09f0a26c99dee0a252768b7a9": 1,
+    "8dfba7000d4cef42452a30f595e4cbae01729e267e0b5283f9897b13b9cfefad": 1,
+    "9d55c389b23a2c561cd13256450acdbcbc0b859dbdcedcfe6ac0ad35afe2c433": 1,
+    "a64c4f6c6f2a4e4661bbb4482bca71d0ac5974b0ff7c0f4c157023959a97f40d": 1,
+    "cf529a0119c53c56a93b2801070b73c9d8f68b0146980b8ebb34c17aca911718": 1,
+    "d305416dbc963541480e5d6031e4f086df07fbb1450a51d28a29d732f9b24e16": 1,
+    "dc7c5d065b86a6ac4f1a7910046ed5a8aa5a4d3c3f05446b2cff84da0a366b3e": 1,
+    "face5de1aed85740a479b1415e5a431cd4d8ce3780c48394b4ccd2b30216c1d3": 1,
+    "fd79122278c73e3e15b2d382a7aaaefa94baeb7d6a37141eb36731d8fe7ce29a": 1
+  },
+  "games_by_tier": {
+    "B": 23
+  },
+  "games_failed": 9,
+  "games_indexed": 23,
+  "player_slots_by_race": {
+    "1": 23,
+    "10": 17,
+    "11": 22,
+    "12": 1,
+    "2": 24,
+    "3": 24,
+    "4": 20,
+    "5": 21,
+    "6": 22,
+    "7": 22,
+    "8": 17,
+    "9": 23
+  },
+  "schema": "planets-lab.corpus-stats.v1",
+  "totals": {
+    "archive_bytes": 2243649496,
+    "canonical_failed": 477,
+    "canonical_ok": 29746,
+    "embedded_consecutive": 29917,
+    "snapshots": 30223,
+    "transitions": 29985
+  }
+}
