@@ -581,3 +581,67 @@ tools/research/audit-afsim-sort-eligibility-sides.py
 The helper recovers comparator `0x5572`, ship eligibility `0x513d`, VCR side
 builder `0x3eb9`, and removal path `0x46be` before any discovery-corpus
 comparison is implemented.
+
+
+### AFSim comparator, eligibility, and LEFT/RIGHT mapping recovered
+
+The post-freeze deterministic pass refines AFSIM-R1 without contradicting it.
+
+Recovered comparator `0x5572` orders the persistent array by:
+
+```text
+1. parallel 0x3dcf class: nonzero before zero
+2. owner: ascending
+3. parsed friendly-code attack value: ascending
+4. ship ID: ascending
+```
+
+The weapon-capability helper `0x513d` is exactly:
+
+```text
+beam_count > 0
+OR (torp_tubes > 0 AND ammo > 0)
+OR (fighter_bays > 0 AND ammo > 0)
+```
+
+It contains no captured-state special case.
+
+The VCR side builder `0x3eb9` maps:
+
+```text
+side 1 -> VCR LEFT
+side 2 -> VCR RIGHT
+```
+
+The battle loop canonicalizes the selected pair by ascending ship ID before
+calling battle setup. The call/stack mapping proves:
+
+```text
+LEFT  = lower ship ID
+RIGHT = higher ship ID
+```
+
+for AFSim ship-vs-ship combats.
+
+The earlier provisional label for `0x46be` as a removal routine was wrong.
+It is report/output formatting. Destroyed-entry sentinel handling is performed
+through `0x2c68` and the subsequent `0x5627` rebuild; no array compaction
+has been observed.
+
+The final pre-corpus proof obligation is to map the three parallel metadata
+arrays to their setup/input fields. Behavioral evidence currently identifies:
+
+```text
+0x3d9d[index]  fuel/availability candidate
+0x3dcf[index]  Kill/aggressive-class candidate
+0x3e01[index]  Primary Enemy candidate
+```
+
+Tracked helper:
+
+```text
+tools/research/audit-afsim-oob-metadata.py
+```
+
+It inventories write sites and prompt-string xrefs for Kill, fuel, Primary
+Enemy and friendly code. Held-out remains closed.
