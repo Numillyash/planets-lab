@@ -531,3 +531,87 @@ timed out
 ```
 
 Only that cluster should receive the next semantic reverse pass.
+
+
+## Result-handler locator v1 correction
+
+The first run of `tools/research/audit-afsim-result-handler.py` did **not**
+produce valid semantic xrefs.
+
+It ranked arbitrary paragraph-aligned bases and therefore matched unrelated
+small immediates:
+
+```text
+captured  -> 0x001e
+timed_out -> 0x0028
+both_destroyed -> 0x0004
+```
+
+The resulting disassembly windows contained instructions such as:
+
+```text
+add ax,0x1e
+add ax,0x28
+cmp ax,0x4
+```
+
+Those are not references to the string literals. No owner/crew/OOB inference may
+be drawn from that v1 output.
+
+The raw string pool itself exposed the correct addressing model. The MZ header
+has:
+
+```text
+load_image_offset = 0x18a0
+initial_cs        = 0
+```
+
+and the adjacent Turbo-Pascal short strings are at file offsets:
+
+```text
+Both ships blew up   pointer 0x4df4
+ won                 pointer 0x4e07
+ captured            pointer 0x4e0d
+The battle timed out pointer 0x4e18
+```
+
+Therefore their actual initial-CS-relative offsets are:
+
+```text
+Both ships blew up   0x3554
+ won                 0x3567
+ captured            0x356d
+The battle timed out 0x3578
+```
+
+The pool is immediately adjacent to generated code; a new procedure prologue
+starts directly after it. This is consistent with Turbo Pascal code-segment
+short-string literals and gives a much tighter static-recovery path.
+
+Commit:
+
+```text
+2005dd1d4b9cabaa22cb7f552eb148e6f319df4f
+research: fix AFSim result handler xref model
+```
+
+The corrected helper now:
+
+1. fixes the address base to the actual MZ load image plus initial CS;
+2. validates full Pascal short-string lengths, including trailing spaces in
+   `" won "` and `" captured "`;
+3. searches only for the true 16-bit offsets;
+4. gives special weight to the Turbo-Pascal
+   `mov di,offset; push cs; push di` literal-address pattern;
+5. finds the nearest real procedure prologue for each xref;
+6. separately disassembles the procedure immediately preceding the string pool;
+7. explicitly records that the previous v1 result is invalid for semantics.
+
+Run the same command again after pulling the branch:
+
+```bash
+python3 tools/research/audit-afsim-result-handler.py \
+  2>&1 | tee /tmp/afsim-result-handler-v2.log
+```
+
+Do not use any v1 result-handler disassembly as evidence.
