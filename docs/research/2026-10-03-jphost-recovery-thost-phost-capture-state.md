@@ -574,3 +574,119 @@ history, recovers the newest live revisions, restores the historical
 If that pass finds no historical combat implementation either, JPHost should be
 closed as a mechanics source for the active blocker while retained as historical
 project/provenance evidence.
+
+
+## 10. Final CVS history / Attic audit: JPHost CLOSED for combat-order recovery
+
+The corrected repository-side history pass was run against the recovered CVS
+snapshot:
+
+```text
+snapshot SHA256:
+a9b1ac89ded3604350cdfde33eefea28c29348a60b3ce54a19b44145b93dd6ae
+```
+
+The repository contains substantial deleted material, including:
+
+```text
+71 deleted/Attic Java files
+historical Jhost.jar,v
+historical compiled class/dependency material
+```
+
+However, the high-recall raw RCS search across current and deleted source does
+not expose a ship-to-ship combat-order implementation. The only relevant hits
+are structural or generic state:
+
+```text
+JHost.java:
+  commented host-order roadmap entries
+  BoardingParties
+  Combat
+
+Ship.java:
+  a "Combat" section marker
+  owner / crew accessors
+
+planet/stage code:
+  colonist/native fighting
+  ownership changes
+
+ship-part code:
+  fighter/torpedo terminology
+```
+
+There is no historical queue, battle-order traversal, captured-ship eligibility
+routine, VCR generation stage, or capture-generated combat-order implementation
+in the recovered RCS text.
+
+The active pipeline history is consistent with that result. The latest
+`JHost.java`, `ProcessTurn.java`, and `CreateResults.java` revisions are from
+the 2004 milestone work on messaging/build infrastructure; their revision logs
+do not show a combat-stage implementation being added and later removed.
+
+All recoverable deleted Java revisions were also enumerated and restored. Their
+targeted combat/capture searches did not reveal a deleted combat engine.
+
+### Historical JAR result
+
+The deleted binary archive was successfully restored through its logical CVS
+path:
+
+```text
+RCS:
+jhost/Attic/Jhost.jar,v
+
+live revision:
+1.1
+
+revision date:
+2002-12-27
+
+recovered SHA256:
+fecfc0dd9b09f5c2a54580ecd21185e450df7be26ae16f6c3bb102b2b084b1fc
+
+size:
+130331 bytes
+
+ZIP/JAR validation:
+ok
+```
+
+Its complete class inventory contains the early object model, GUI, ship-part,
+planet and utility classes, but **no class whose name indicates combat, battle,
+capture, VCR, aggressor, opponent, or fight orchestration**. It is also an older
+2002 build, predating the later 2004 `JHost` pipeline milestone, so it is not a
+hidden later combat implementation.
+
+The audit helper terminated after that inventory while constructing the
+source-vs-JAR comparison because of a malformed `sed` expression. That
+post-inventory reproducibility bug is fixed in:
+
+```text
+662080dacb8c871f8232762505268f496856d7df
+research: fix JPHost historical JAR source comparison
+```
+
+The failure does **not** reopen JPHost for the active blocker: the raw RCS corpus,
+deleted Java recovery, current source, and complete historical JAR class-name
+inventory all independently fail to expose a combat-order engine. A rerun of the
+fixed helper can complete the bookkeeping/class-diff and `javap` output, but it
+is no longer a gating research dependency.
+
+### Final disposition
+
+For the active NuHost capture-order problem:
+
+```text
+JPHost / JHOST:
+  CLOSED as a mechanics source
+  KEEP as historical provenance / architecture evidence
+```
+
+JPHost confirms that a real Java PHost3-port project existed and preserves a
+useful host-order roadmap, but it cannot provide the missing post-capture
+LEFT/RIGHT / O-vs-C queue algorithm.
+
+External archaeology should now move to an implementation that actually
+contains a multi-ship THost queue rather than another incomplete host port.
