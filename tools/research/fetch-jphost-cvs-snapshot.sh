@@ -45,7 +45,10 @@ if [[ -z "$cvsroot" ]]; then
   exit 65
 fi
 repo_root="$(dirname "$cvsroot")"
-echo "cvs_repository_root: $repo_root"
+repo_root_abs="$(readlink -f "$repo_root")"
+cvs_local_root=":local:$repo_root_abs"
+echo "cvs_repository_root: $repo_root_abs"
+echo "cvs_local_root:      $cvs_local_root"
 
 echo
 echo "===== JPHOST CVS SNAPSHOT: MODULES ====="
@@ -59,7 +62,7 @@ if ! command -v cvs >/dev/null 2>&1; then
   echo
   echo "CVS client is not installed."
   echo "Install it with: apt-get update && apt-get install -y cvs"
-  echo "The raw CVS repository is preserved at: $repo_root"
+  echo "The raw CVS repository is preserved at: $repo_root_abs"
   exit 0
 fi
 
@@ -74,7 +77,16 @@ mapfile -t candidates < <(
         $1 !~ /^-/ { print $1 }
       ' "$cvsroot/modules"
     fi
-    printf '%s\n' jphost
+
+    # Legacy SourceForge CVS repositories often have an untouched modules
+    # file. Discover real top-level repository modules directly, excluding
+    # CVSROOT. A directory containing RCS files (*.v) or subdirectories is a
+    # viable checkout candidate.
+    find "$repo_root_abs" -mindepth 1 -maxdepth 1 -type d \
+      ! -name CVSROOT -printf '%f\n' | sort
+
+    # Known historical project/module spellings as final fallbacks.
+    printf '%s\n' jhost jphost
   } | awk 'NF && !seen[$0]++'
 )
 
@@ -85,7 +97,7 @@ for module in "${candidates[@]}"; do
   echo "trying module: $module"
   if (
     cd "$CHECKOUT_DIR"
-    cvs -Q -d "$repo_root" checkout -P "$module"
+    cvs -Q -d "$cvs_local_root" checkout -P "$module"
   ); then
     checked=1
     echo "checked_out_module: $module"
@@ -95,7 +107,7 @@ done
 
 if [[ "$checked" -ne 1 ]]; then
   echo "ERROR: could not checkout any discovered CVS module." >&2
-  echo "Inspect repository manually under: $repo_root" >&2
+  echo "Inspect repository manually under: $repo_root_abs" >&2
   exit 66
 fi
 
