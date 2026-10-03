@@ -1,0 +1,91 @@
+{
+  "combined_manifest": "validation/corpus/manifests/public-short-expansion-with-public36.jsonl",
+  "current_failed_game_ids": [
+    91630
+  ],
+  "missing_bucket_counts": {
+    "sphere": 2
+  },
+  "rejected_file": "validation/corpus/manifests/public-short-expansion-rejected.json",
+  "rejected_game_ids": [
+    5324,
+    20771,
+    26220,
+    28089,
+    34589,
+    38591,
+    40311,
+    40708,
+    42421,
+    43452,
+    45561,
+    46352,
+    46374,
+    49055,
+    54512,
+    54847,
+    61410,
+    62178,
+    63203,
+    66888,
+    66901,
+    69075,
+    70253,
+    71868,
+    72490,
+    72849,
+    75084,
+    81827,
+    87846,
+    91630,
+    96616,
+    110148,
+    112611,
+    130144,
+    139421,
+    157947,
+    172010,
+    181660,
+    199300,
+    216017,
+    223160,
+    225391,
+    281994,
+    355526,
+    469931,
+    526245
+  ],
+  "replacement_games": 1,
+  "replacements": [
+    {
+      "bucket": "finite_fuel",
+      "game_id": 660249,
+      "gametype": 2,
+      "name": "Vor Sector",
+      "novelty": 14.0,
+      "score": 1023.65,
+      "slot_bonus": 2.75,
+      "slots": 11,
+      "target_bucket_gap_before": 1,
+      "turn": 138,
+      "turn_bonus": 6.9
+    }
+  ],
+  "schema": "planets-lab.public-validation-backfill.v1",
+  "selected_by_bucket_after_backfill": {
+    "campaign": 18,
+    "championship": 4,
+    "finite_fuel": 9,
+    "sphere": 1
+  },
+  "selected_games_after_backfill": 32,
+  "selected_manifest": "validation/corpus/manifests/public-short-expansion-selected.jsonl",
+  "successful_games_before_backfill": 31,
+  "target_by_bucket": {
+    "campaign": 16,
+    "championship": 4,
+    "finite_fuel": 9,
+    "sphere": 3
+  },
+  "target_games": 32
+}
