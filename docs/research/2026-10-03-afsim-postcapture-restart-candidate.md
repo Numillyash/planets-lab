@@ -443,3 +443,109 @@ friendly code
 
 After that, freeze an executable AFSim queue model and only then run it against
 the Nu discovery Corpus DB. Held-out remains closed.
+
+
+## Metadata storage / selector refinement
+
+The OOB metadata pass materially strengthens the remaining field mapping.
+
+### Parallel-array persistence format
+
+AFSim maintains three byte arrays in lockstep with the persistent 54-byte ship entries:
+
+```text
+0x3d9d[index]
+0x3dcf[index]
+0x3e01[index]
+```
+
+Routine `0x5c9b` decodes them from the high byte of the packed word at persistent entry offset `+0x08` / byte `+0x09`:
+
+```text
+parallel_3d9d = 1 iff packed bit 0x80 is clear
+parallel_3dcf = 1 iff packed bit 0x40 is clear
+parallel_3e01 = packed & 0x0f
+```
+
+Routine `0x5d0b` is the exact inverse encoder:
+
+```text
+packed_high = 0
+
+if parallel_3d9d == 0:
+    packed_high |= 0x80
+
+if parallel_3dcf == 0:
+    packed_high |= 0x40
+
+packed_high |= parallel_3e01 & 0x0f
+```
+
+Thus these three values are not transient UI state; they are persisted with the ship record.
+
+### New-ship setup bridge
+
+Routine `0x5883` initializes three locals before invoking the ship-entry editor `0x2f14`:
+
+```text
+local_A = 1
+local_B = 1
+local_C = 0
+```
+
+On successful entry creation it copies those exact locals to:
+
+```text
+local_A -> 0x3d9d[new_index]
+local_B -> 0x3dcf[new_index]
+local_C -> 0x3e01[new_index]
+```
+
+The AFSim ship-entry UI/manual exposes exactly three corresponding OOB metadata fields beyond owner/ID/friendly code:
+
+```text
+Mission set to KILL?  Y/N
+Fuel on board          Y/N
+Primary enemy          0..11
+```
+
+Behavioral use already distinguishes the low-nibble field: `0x3e01[index]` is compared directly to opponent owner in the second ship-selection phase, therefore it is the Primary Enemy value.
+
+The remaining two booleans are now reduced to proving their exact editor argument order in `0x2f14`; behavioral use strongly identifies:
+
+```text
+0x3d9d = fuel/availability
+0x3dcf = KILL mission
+```
+
+but that name assignment remains pending the direct editor write path.
+
+### Exact ship selector shape
+
+`0x51c6` has two ordered phases after reset to `1/1`.
+
+Phase 1 considers the first sorted ship as the active aggressive ship when its `0x3dcf` flag is nonzero and it has availability. It scans entries in sorted order and chooses the first different-owner, different-record candidate with availability for which at least one side is weapon-capable.
+
+Phase 2 iterates active ships from the beginning. For an initiator with a nonzero `0x3e01` value and availability, it scans from index 1 for the first candidate whose owner equals that byte and which satisfies the same availability / weapon-capability conditions.
+
+This directly establishes `0x3e01` as a target-owner / Primary Enemy field.
+
+### Destroyed-entry handling
+
+`0x5627` recognizes entries whose result/damage sentinel is `-1`, overwrites the complete 54-byte record with sentinel data, assigns sort-last values (owner 15, ship ID 1500, attack value 2000), and clears `0x3dcf`.
+
+It then runs the normal full sort and recomputes the active-entry boundary. There is no observed physical compaction of the persistent array.
+
+## Final binary proof before executable freeze
+
+The only unresolved naming edge is the ordering of the two boolean arguments to ship editor `0x2f14`.
+
+Next bounded pass must disassemble `0x2f14` and trace its three caller-provided metadata pointers to the visible form fields:
+
+```text
+Mission set to KILL?
+Fuel on board
+Primary enemy
+```
+
+Once those two booleans are named directly, AFSIM-R1 can be frozen as executable pseudocode and evaluated against the discovery Corpus DB.
