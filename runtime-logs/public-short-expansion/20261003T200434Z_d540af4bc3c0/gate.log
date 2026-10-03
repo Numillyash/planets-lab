@@ -1,0 +1,506 @@
+===== PUBLIC SHORT EXPANSION PROFILE =====
+turns:        55..140
+slots:        8..16
+probe_limit:  240
+select_count: 32
+baseline:     validation/corpus/manifests/public-validation-selected.jsonl
+selected:     validation/corpus/manifests/public-short-expansion-selected.jsonl
+index:        validation/corpus/index/public-short-expansion-games.jsonl
+===== PUBLIC VALIDATION CORPUS: PREFLIGHT =====
+docker:       ready
+===== PUBLIC VALIDATION CORPUS: BUILD LAB IMAGE =====
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "default" instance using docker driver
+
+#1 [lab internal] load build definition from Dockerfile
+#1 transferring dockerfile: 373B done
+#1 DONE 0.0s
+
+#2 [lab internal] load metadata for docker.io/library/python:3.12-slim
+#2 DONE 0.0s
+
+#3 [lab internal] load .dockerignore
+#3 transferring context: 184B done
+#3 DONE 0.0s
+
+#4 [lab internal] load build context
+#4 DONE 0.0s
+
+#5 [lab 1/6] FROM docker.io/library/python:3.12-slim@sha256:dd29372629eeba2dd003fd9e9d35a5b8236c44727875a0364254b5127af88e65
+#5 resolve docker.io/library/python:3.12-slim@sha256:dd29372629eeba2dd003fd9e9d35a5b8236c44727875a0364254b5127af88e65
+#5 ...
+
+#6 [lab auth] library/python:pull token for registry-1.docker.io
+#6 DONE 0.0s
+
+#5 [lab 1/6] FROM docker.io/library/python:3.12-slim@sha256:dd29372629eeba2dd003fd9e9d35a5b8236c44727875a0364254b5127af88e65
+#5 resolve docker.io/library/python:3.12-slim@sha256:dd29372629eeba2dd003fd9e9d35a5b8236c44727875a0364254b5127af88e65 2.1s done
+#5 DONE 2.1s
+
+#4 [lab internal] load build context
+#4 transferring context: 18.83kB 0.0s done
+#4 DONE 0.0s
+
+#7 [lab 2/6] WORKDIR /workspace
+#7 CACHED
+
+#8 [lab 3/6] COPY pyproject.toml README.md ./
+#8 CACHED
+
+#9 [lab 4/6] COPY src ./src
+#9 CACHED
+
+#10 [lab 5/6] COPY tests ./tests
+#10 CACHED
+
+#11 [lab 6/6] RUN python -m pip install --no-cache-dir --upgrade pip     && python -m pip install --no-cache-dir -e '.[dev]'
+#11 CACHED
+
+#12 [lab] exporting to image
+#12 exporting layers done
+#12 exporting manifest sha256:e08417de3e5b0a1f5db9ce4ec3d54ad47c762dd22823a677f594b08e6ae5e260 done
+#12 exporting config sha256:e33d857f249dd872720e1f5d646149fb692032b26c00e6e2d542f00b0e5af7c8 done
+#12 exporting attestation manifest sha256:15d39be45377de40c8b98bb6fbde8a6686be2706ec5310f8ea5778b5ab6ae897 0.0s done
+#12 exporting manifest list sha256:e7780e4affa018826bca76f6975116647f81c47de63ccf2e0a54b6f16c421f3e
+#12 exporting manifest list sha256:e7780e4affa018826bca76f6975116647f81c47de63ccf2e0a54b6f16c421f3e 0.0s done
+#12 naming to docker.io/library/planets-lab-lab:latest done
+#12 unpacking to docker.io/library/planets-lab-lab:latest 0.0s done
+#12 DONE 0.1s
+
+#13 [lab] resolving provenance for metadata file
+#13 DONE 0.0s
+ lab  Built
+network_mode: direct
+proxy:        not configured
+===== PUBLIC VALIDATION CORPUS: DISCOVERY =====
+discovery:    reuse existing manifests/report
+
+===== PUBLIC VALIDATION CORPUS: BACKFILL ROUND 1/24 =====
+===== PUBLIC VALIDATION CORPUS BACKFILL =====
+target_games:                  32
+failed_this_round:             11
+rejected_total:                11
+successful_before_backfill:    21
+replacements_selected:         11
+selected_after_backfill:       32
+target_by_bucket:              {'campaign': 16, 'championship': 4, 'finite_fuel': 9, 'sphere': 3}
+selected_by_bucket_after:      {'campaign': 16, 'championship': 4, 'finite_fuel': 11, 'sphere': 1}
+missing_bucket_counts:         {'sphere': 2}
+replacement_game_ids:          [61410, 130144, 526245, 216017, 399914, 81827, 87846, 347923, 75084, 110148, 223160]
+report:                        artifacts/public-short-expansion/backfill-report.json
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+{"attempt": 1, "error": "Planets.nu returned HTTP 503 for game/loadinfo", "error_type": "CorpusApiError", "game_id": 61410, "max_attempts": 3, "status": "retry"}
+{"attempt": 2, "error": "Planets.nu returned HTTP 503 for game/loadall", "error_type": "CorpusApiError", "game_id": 61410, "max_attempts": 3, "status": "retry"}
+{"error": "Planets.nu returned HTTP 503 for game/loadinfo", "error_type": "CorpusApiError", "game_id": 61410, "position": 1, "status": "failed", "total": 32}
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 75084, "position": 2, "status": "failed", "total": 32}
+{"attempt": 1, "error": "Planets.nu returned HTTP 503 for game/loadinfo", "error_type": "CorpusApiError", "game_id": 81827, "max_attempts": 3, "status": "retry"}
+exit status 130
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: BACKFILL ROUND 2/24 =====
+===== PUBLIC VALIDATION CORPUS BACKFILL =====
+target_games:                  32
+failed_this_round:             11
+rejected_total:                11
+successful_before_backfill:    32
+replacements_selected:         0
+selected_after_backfill:       32
+target_by_bucket:              {'campaign': 16, 'championship': 4, 'finite_fuel': 9, 'sphere': 3}
+selected_by_bucket_after:      {'campaign': 16, 'championship': 4, 'finite_fuel': 11, 'sphere': 1}
+missing_bucket_counts:         {'sphere': 2}
+replacement_game_ids:          []
+report:                        artifacts/public-short-expansion/backfill-report.json
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 61410, "position": 1, "status": "failed", "total": 32}
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 75084, "position": 2, "status": "failed", "total": 32}
+{"attempt": 1, "error": "Planets.nu returned HTTP 503 for game/loadinfo", "error_type": "CorpusApiError", "game_id": 81827, "max_attempts": 3, "status": "retry"}
+{"attempt": 2, "error": "Planets.nu returned HTTP 503 for game/loadinfo", "error_type": "CorpusApiError", "game_id": 81827, "max_attempts": 3, "status": "retry"}
+{"error": "Planets.nu returned HTTP 503 for game/loadinfo", "error_type": "CorpusApiError", "game_id": 81827, "position": 3, "status": "failed", "total": 32}
+{"attempt": 1, "error": "Planets.nu returned HTTP 503 for game/loadinfo", "error_type": "CorpusApiError", "game_id": 87846, "max_attempts": 3, "status": "retry"}
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 87846, "position": 4, "status": "failed", "total": 32}
+{"attempt": 1, "error": "Planets.nu returned HTTP 503 for game/loadinfo", "error_type": "CorpusApiError", "game_id": 110148, "max_attempts": 3, "status": "retry"}
+{"attempt": 2, "error": "Planets.nu returned HTTP 503 for game/loadinfo", "error_type": "CorpusApiError", "game_id": 110148, "max_attempts": 3, "status": "retry"}
+{"error": "Planets.nu returned HTTP 503 for game/loadinfo", "error_type": "CorpusApiError", "game_id": 110148, "position": 5, "status": "failed", "total": 32}
+exit status 130
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: BACKFILL ROUND 3/24 =====
+===== PUBLIC VALIDATION CORPUS BACKFILL =====
+target_games:                  32
+failed_this_round:             11
+rejected_total:                11
+successful_before_backfill:    32
+replacements_selected:         0
+selected_after_backfill:       32
+target_by_bucket:              {'campaign': 16, 'championship': 4, 'finite_fuel': 9, 'sphere': 3}
+selected_by_bucket_after:      {'campaign': 16, 'championship': 4, 'finite_fuel': 11, 'sphere': 1}
+missing_bucket_counts:         {'sphere': 2}
+replacement_game_ids:          []
+report:                        artifacts/public-short-expansion/backfill-report.json
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 61410, "position": 1, "status": "failed", "total": 32}
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 75084, "position": 2, "status": "failed", "total": 32}
+{"attempt": 1, "error": "Planets.nu returned HTTP 503 for game/loadinfo", "error_type": "CorpusApiError", "game_id": 81827, "max_attempts": 3, "status": "retry"}
+exit status 130
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: BACKFILL ROUND 4/24 =====
+===== PUBLIC VALIDATION CORPUS BACKFILL =====
+target_games:                  32
+failed_this_round:             11
+rejected_total:                11
+successful_before_backfill:    32
+replacements_selected:         0
+selected_after_backfill:       32
+target_by_bucket:              {'campaign': 16, 'championship': 4, 'finite_fuel': 9, 'sphere': 3}
+selected_by_bucket_after:      {'campaign': 16, 'championship': 4, 'finite_fuel': 11, 'sphere': 1}
+missing_bucket_counts:         {'sphere': 2}
+replacement_game_ids:          []
+report:                        artifacts/public-short-expansion/backfill-report.json
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 61410, "position": 1, "status": "failed", "total": 32}
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 75084, "position": 2, "status": "failed", "total": 32}
+exit status 130
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: BACKFILL ROUND 5/24 =====
+===== PUBLIC VALIDATION CORPUS BACKFILL =====
+target_games:                  32
+failed_this_round:             11
+rejected_total:                11
+successful_before_backfill:    32
+replacements_selected:         0
+selected_after_backfill:       32
+target_by_bucket:              {'campaign': 16, 'championship': 4, 'finite_fuel': 9, 'sphere': 3}
+selected_by_bucket_after:      {'campaign': 16, 'championship': 4, 'finite_fuel': 11, 'sphere': 1}
+missing_bucket_counts:         {'sphere': 2}
+replacement_game_ids:          []
+report:                        artifacts/public-short-expansion/backfill-report.json
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 61410, "position": 1, "status": "failed", "total": 32}
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 75084, "position": 2, "status": "failed", "total": 32}
+exit status 130
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: BACKFILL ROUND 6/24 =====
+===== PUBLIC VALIDATION CORPUS BACKFILL =====
+target_games:                  32
+failed_this_round:             11
+rejected_total:                11
+successful_before_backfill:    32
+replacements_selected:         0
+selected_after_backfill:       32
+target_by_bucket:              {'campaign': 16, 'championship': 4, 'finite_fuel': 9, 'sphere': 3}
+selected_by_bucket_after:      {'campaign': 16, 'championship': 4, 'finite_fuel': 11, 'sphere': 1}
+missing_bucket_counts:         {'sphere': 2}
+replacement_game_ids:          []
+report:                        artifacts/public-short-expansion/backfill-report.json
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 61410, "position": 1, "status": "failed", "total": 32}
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 75084, "position": 2, "status": "failed", "total": 32}
+exit status 130
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: BACKFILL ROUND 7/24 =====
+===== PUBLIC VALIDATION CORPUS BACKFILL =====
+target_games:                  32
+failed_this_round:             11
+rejected_total:                11
+successful_before_backfill:    32
+replacements_selected:         0
+selected_after_backfill:       32
+target_by_bucket:              {'campaign': 16, 'championship': 4, 'finite_fuel': 9, 'sphere': 3}
+selected_by_bucket_after:      {'campaign': 16, 'championship': 4, 'finite_fuel': 11, 'sphere': 1}
+missing_bucket_counts:         {'sphere': 2}
+replacement_game_ids:          []
+report:                        artifacts/public-short-expansion/backfill-report.json
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 61410, "position": 1, "status": "failed", "total": 32}
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 75084, "position": 2, "status": "failed", "total": 32}
+exit status 130
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: BACKFILL ROUND 8/24 =====
+===== PUBLIC VALIDATION CORPUS BACKFILL =====
+target_games:                  32
+failed_this_round:             11
+rejected_total:                11
+successful_before_backfill:    32
+replacements_selected:         0
+selected_after_backfill:       32
+target_by_bucket:              {'campaign': 16, 'championship': 4, 'finite_fuel': 9, 'sphere': 3}
+selected_by_bucket_after:      {'campaign': 16, 'championship': 4, 'finite_fuel': 11, 'sphere': 1}
+missing_bucket_counts:         {'sphere': 2}
+replacement_game_ids:          []
+report:                        artifacts/public-short-expansion/backfill-report.json
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 61410, "position": 1, "status": "failed", "total": 32}
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 75084, "position": 2, "status": "failed", "total": 32}
+exit status 130
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: BACKFILL ROUND 9/24 =====
+===== PUBLIC VALIDATION CORPUS BACKFILL =====
+target_games:                  32
+failed_this_round:             11
+rejected_total:                11
+successful_before_backfill:    32
+replacements_selected:         0
+selected_after_backfill:       32
+target_by_bucket:              {'campaign': 16, 'championship': 4, 'finite_fuel': 9, 'sphere': 3}
+selected_by_bucket_after:      {'campaign': 16, 'championship': 4, 'finite_fuel': 11, 'sphere': 1}
+missing_bucket_counts:         {'sphere': 2}
+replacement_game_ids:          []
+report:                        artifacts/public-short-expansion/backfill-report.json
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 61410, "position": 1, "status": "failed", "total": 32}
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 75084, "position": 2, "status": "failed", "total": 32}
+exit status 130
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: BACKFILL ROUND 10/24 =====
+===== PUBLIC VALIDATION CORPUS BACKFILL =====
+target_games:                  32
+failed_this_round:             11
+rejected_total:                11
+successful_before_backfill:    32
+replacements_selected:         0
+selected_after_backfill:       32
+target_by_bucket:              {'campaign': 16, 'championship': 4, 'finite_fuel': 9, 'sphere': 3}
+selected_by_bucket_after:      {'campaign': 16, 'championship': 4, 'finite_fuel': 11, 'sphere': 1}
+missing_bucket_counts:         {'sphere': 2}
+replacement_game_ids:          []
+report:                        artifacts/public-short-expansion/backfill-report.json
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 61410, "position": 1, "status": "failed", "total": 32}
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 75084, "position": 2, "status": "failed", "total": 32}
+exit status 130
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: BACKFILL ROUND 11/24 =====
+===== PUBLIC VALIDATION CORPUS BACKFILL =====
+target_games:                  32
+failed_this_round:             11
+rejected_total:                11
+successful_before_backfill:    32
+replacements_selected:         0
+selected_after_backfill:       32
+target_by_bucket:              {'campaign': 16, 'championship': 4, 'finite_fuel': 9, 'sphere': 3}
+selected_by_bucket_after:      {'campaign': 16, 'championship': 4, 'finite_fuel': 11, 'sphere': 1}
+missing_bucket_counts:         {'sphere': 2}
+replacement_game_ids:          []
+report:                        artifacts/public-short-expansion/backfill-report.json
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 61410, "position": 1, "status": "failed", "total": 32}
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 75084, "position": 2, "status": "failed", "total": 32}
+exit status 130
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: BACKFILL ROUND 12/24 =====
+===== PUBLIC VALIDATION CORPUS BACKFILL =====
+target_games:                  32
+failed_this_round:             11
+rejected_total:                11
+successful_before_backfill:    32
+replacements_selected:         0
+selected_after_backfill:       32
+target_by_bucket:              {'campaign': 16, 'championship': 4, 'finite_fuel': 9, 'sphere': 3}
+selected_by_bucket_after:      {'campaign': 16, 'championship': 4, 'finite_fuel': 11, 'sphere': 1}
+missing_bucket_counts:         {'sphere': 2}
+replacement_game_ids:          []
+report:                        artifacts/public-short-expansion/backfill-report.json
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 61410, "position": 1, "status": "failed", "total": 32}
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 75084, "position": 2, "status": "failed", "total": 32}
+exit status 130
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: BACKFILL ROUND 13/24 =====
+===== PUBLIC VALIDATION CORPUS BACKFILL =====
+target_games:                  32
+failed_this_round:             11
+rejected_total:                11
+successful_before_backfill:    32
+replacements_selected:         0
+selected_after_backfill:       32
+target_by_bucket:              {'campaign': 16, 'championship': 4, 'finite_fuel': 9, 'sphere': 3}
+selected_by_bucket_after:      {'campaign': 16, 'championship': 4, 'finite_fuel': 11, 'sphere': 1}
+missing_bucket_counts:         {'sphere': 2}
+replacement_game_ids:          []
+report:                        artifacts/public-short-expansion/backfill-report.json
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 61410, "position": 1, "status": "failed", "total": 32}
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 75084, "position": 2, "status": "failed", "total": 32}
+exit status 130
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: BACKFILL ROUND 14/24 =====
+===== PUBLIC VALIDATION CORPUS BACKFILL =====
+target_games:                  32
+failed_this_round:             11
+rejected_total:                11
+successful_before_backfill:    32
+replacements_selected:         0
+selected_after_backfill:       32
+target_by_bucket:              {'campaign': 16, 'championship': 4, 'finite_fuel': 9, 'sphere': 3}
+selected_by_bucket_after:      {'campaign': 16, 'championship': 4, 'finite_fuel': 11, 'sphere': 1}
+missing_bucket_counts:         {'sphere': 2}
+replacement_game_ids:          []
+report:                        artifacts/public-short-expansion/backfill-report.json
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 61410, "position": 1, "status": "failed", "total": 32}
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 75084, "position": 2, "status": "failed", "total": 32}
+exit status 130
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: BACKFILL ROUND 15/24 =====
+===== PUBLIC VALIDATION CORPUS BACKFILL =====
+target_games:                  32
+failed_this_round:             11
+rejected_total:                11
+successful_before_backfill:    32
+replacements_selected:         0
+selected_after_backfill:       32
+target_by_bucket:              {'campaign': 16, 'championship': 4, 'finite_fuel': 9, 'sphere': 3}
+selected_by_bucket_after:      {'campaign': 16, 'championship': 4, 'finite_fuel': 11, 'sphere': 1}
+missing_bucket_counts:         {'sphere': 2}
+replacement_game_ids:          []
+report:                        artifacts/public-short-expansion/backfill-report.json
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 61410, "position": 1, "status": "failed", "total": 32}
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 75084, "position": 2, "status": "failed", "total": 32}
+exit status 130
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: BACKFILL ROUND 16/24 =====
+===== PUBLIC VALIDATION CORPUS BACKFILL =====
+target_games:                  32
+failed_this_round:             11
+rejected_total:                11
+successful_before_backfill:    32
+replacements_selected:         0
+selected_after_backfill:       32
+target_by_bucket:              {'campaign': 16, 'championship': 4, 'finite_fuel': 9, 'sphere': 3}
+selected_by_bucket_after:      {'campaign': 16, 'championship': 4, 'finite_fuel': 11, 'sphere': 1}
+missing_bucket_counts:         {'sphere': 2}
+replacement_game_ids:          []
+report:                        artifacts/public-short-expansion/backfill-report.json
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 61410, "position": 1, "status": "failed", "total": 32}
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 75084, "position": 2, "status": "failed", "total": 32}
+exit status 130
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: BACKFILL ROUND 17/24 =====
+===== PUBLIC VALIDATION CORPUS BACKFILL =====
+target_games:                  32
+failed_this_round:             11
+rejected_total:                11
+successful_before_backfill:    32
+replacements_selected:         0
+selected_after_backfill:       32
+target_by_bucket:              {'campaign': 16, 'championship': 4, 'finite_fuel': 9, 'sphere': 3}
+selected_by_bucket_after:      {'campaign': 16, 'championship': 4, 'finite_fuel': 11, 'sphere': 1}
+missing_bucket_counts:         {'sphere': 2}
+replacement_game_ids:          []
+report:                        artifacts/public-short-expansion/backfill-report.json
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+exit status 130
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: BACKFILL ROUND 18/24 =====
+===== PUBLIC VALIDATION CORPUS BACKFILL =====
+target_games:                  32
+failed_this_round:             11
+rejected_total:                11
+successful_before_backfill:    32
+replacements_selected:         0
+selected_after_backfill:       32
+target_by_bucket:              {'campaign': 16, 'championship': 4, 'finite_fuel': 9, 'sphere': 3}
+selected_by_bucket_after:      {'campaign': 16, 'championship': 4, 'finite_fuel': 11, 'sphere': 1}
+missing_bucket_counts:         {'sphere': 2}
+replacement_game_ids:          []
+report:                        artifacts/public-short-expansion/backfill-report.json
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+exit status 130
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: BACKFILL ROUND 19/24 =====
+===== PUBLIC VALIDATION CORPUS BACKFILL =====
+target_games:                  32
+failed_this_round:             11
+rejected_total:                11
+successful_before_backfill:    32
+replacements_selected:         0
+selected_after_backfill:       32
+target_by_bucket:              {'campaign': 16, 'championship': 4, 'finite_fuel': 9, 'sphere': 3}
+selected_by_bucket_after:      {'campaign': 16, 'championship': 4, 'finite_fuel': 11, 'sphere': 1}
+missing_bucket_counts:         {'sphere': 2}
+replacement_game_ids:          []
+report:                        artifacts/public-short-expansion/backfill-report.json
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+exit status 130
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: BACKFILL ROUND 20/24 =====
+exit status 130
+WARNING: backfill could not restore the full target selection; ingesting the available subset once.
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+exit status 130
+WARNING: stopping because the target selection could not be fully backfilled.
+
+===== PUBLIC VALIDATION CORPUS: STAGE SAFE EVIDENCE =====
+
+===== PUBLIC VALIDATION CORPUS: COMPLETE =====
+baseline_manifest: validation/corpus/manifests/public-validation-selected.jsonl
+selected_manifest: validation/corpus/manifests/public-short-expansion-selected.jsonl
+combined_manifest: validation/corpus/manifests/public-short-expansion-with-public36.jsonl
+selection_report:  artifacts/public-short-expansion/selection-report.json
+index_output:      validation/corpus/index/public-short-expansion-games.jsonl
+stats_output:      validation/corpus/index/public-short-expansion-stats.json
+rejected_file:     validation/corpus/manifests/public-short-expansion-rejected.json
+backfill_report:   artifacts/public-short-expansion/backfill-report.json
+evidence_dir:      artifacts/public-short-expansion/evidence
+archive_cache:     validation/corpus/cache/loadall
+backfill_rounds:   20
+ingest_rc:         1

@@ -1,0 +1,52 @@
+{
+  "combined_manifest": "validation/corpus/manifests/public-short-expansion-with-public36.jsonl",
+  "current_failed_game_ids": [
+    5324,
+    49055,
+    69075,
+    96616,
+    172010,
+    181660,
+    199300,
+    225391,
+    281994,
+    355526,
+    469931
+  ],
+  "missing_bucket_counts": {
+    "sphere": 2
+  },
+  "rejected_file": "validation/corpus/manifests/public-short-expansion-rejected.json",
+  "rejected_game_ids": [
+    5324,
+    49055,
+    69075,
+    96616,
+    172010,
+    181660,
+    199300,
+    225391,
+    281994,
+    355526,
+    469931
+  ],
+  "replacement_games": 0,
+  "replacements": [],
+  "schema": "planets-lab.public-validation-backfill.v1",
+  "selected_by_bucket_after_backfill": {
+    "campaign": 16,
+    "championship": 4,
+    "finite_fuel": 11,
+    "sphere": 1
+  },
+  "selected_games_after_backfill": 32,
+  "selected_manifest": "validation/corpus/manifests/public-short-expansion-selected.jsonl",
+  "successful_games_before_backfill": 32,
+  "target_by_bucket": {
+    "campaign": 16,
+    "championship": 4,
+    "finite_fuel": 9,
+    "sphere": 3
+  },
+  "target_games": 32
+}
