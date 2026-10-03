@@ -4,6 +4,8 @@ import io
 import json
 import sys
 import zipfile
+
+import pytest
 from pathlib import Path
 
 import planets_lab.corpus.ingest_manifest_cli as ingest_cli
@@ -147,3 +149,98 @@ def test_no_reuse_index_forces_rebuild(
         extra=["--no-reuse-index"],
     ) == 0
     assert calls == 1
+
+
+
+def test_ingest_checkpoints_success_before_interrupt(
+    tmp_path: Path,
+    monkeypatch,
+) -> None:
+    cache_dir = tmp_path / "cache"
+    cache_dir.mkdir()
+    (cache_dir / "game-42.zip").write_bytes(_archive(42))
+    (cache_dir / "game-43.zip").write_bytes(_archive(43))
+
+    manifest = tmp_path / "manifest.jsonl"
+    manifest.write_text(
+        json.dumps(_manifest(42)) + "\n" + json.dumps(_manifest(43)) + "\n",
+        encoding="utf-8",
+    )
+    index_output = tmp_path / "games.jsonl"
+    stats_output = tmp_path / "stats.json"
+
+    original = ingest_cli.index_game_archive
+    calls = 0
+
+    def interrupt_second(*args, **kwargs):
+        nonlocal calls
+        calls += 1
+        if calls == 2:
+            raise KeyboardInterrupt
+        return original(*args, **kwargs)
+
+    monkeypatch.setattr(ingest_cli, "index_game_archive", interrupt_second)
+
+    with pytest.raises(KeyboardInterrupt):
+        _run_ingest(
+            monkeypatch,
+            manifest=manifest,
+            cache_dir=cache_dir,
+            index_output=index_output,
+            stats_output=stats_output,
+        )
+
+    records = [
+        json.loads(line)
+        for line in index_output.read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
+    stats = json.loads(stats_output.read_text(encoding="utf-8"))
+
+    assert [record["game_id"] for record in records] == [42]
+    assert stats["games_indexed"] == 1
+    assert stats["games_failed"] == 0
+
+
+def test_ingest_checkpoints_failure_before_interrupt(
+    tmp_path: Path,
+    monkeypatch,
+) -> None:
+    cache_dir = tmp_path / "cache"
+    cache_dir.mkdir()
+    (cache_dir / "game-42.zip").write_bytes(_archive(42))
+    (cache_dir / "game-43.zip").write_bytes(_archive(43))
+
+    manifest = tmp_path / "manifest.jsonl"
+    manifest.write_text(
+        json.dumps(_manifest(42)) + "\n" + json.dumps(_manifest(43)) + "\n",
+        encoding="utf-8",
+    )
+    index_output = tmp_path / "games.jsonl"
+    stats_output = tmp_path / "stats.json"
+
+    calls = 0
+
+    def fail_then_interrupt(*args, **kwargs):
+        nonlocal calls
+        calls += 1
+        if calls == 1:
+            raise ValueError("synthetic normalization failure")
+        raise KeyboardInterrupt
+
+    monkeypatch.setattr(ingest_cli, "index_game_archive", fail_then_interrupt)
+
+    with pytest.raises(KeyboardInterrupt):
+        _run_ingest(
+            monkeypatch,
+            manifest=manifest,
+            cache_dir=cache_dir,
+            index_output=index_output,
+            stats_output=stats_output,
+        )
+
+    stats = json.loads(stats_output.read_text(encoding="utf-8"))
+
+    assert stats["games_indexed"] == 0
+    assert stats["games_failed"] == 1
+    assert stats["failed_game_ids"] == [42]
