@@ -674,3 +674,66 @@ tools/research/audit-afsim-ship-editor-metadata.py
 ```
 
 It disassembles `0x2f14`, inventories the far-pointer arguments, and maps the visible `Ship mission kill`, `Fuel on board`, and `Primary enemy` form fields back to caller locals. After that mapping, freeze executable AFSIM-R1 and proceed to discovery Corpus DB only; held-out remains closed.
+
+
+### AFSim metadata mapping closed; executable R1 frozen
+
+The ship editor at `0x2f14` closes the final parallel-array naming ambiguity.
+
+Caller `0x5883` passes three metadata pointers whose values are persisted as
+`0x3d9d`, `0x3dcf`, and `0x3e01`. The editor's visible field order and
+dispatch prove:
+
+```text
+0x3d9d[index] = fuel-present flag
+0x3dcf[index] = KILL-mission flag
+0x3e01[index] = Primary Enemy owner
+```
+
+The mapping is now direct binary evidence rather than behavioral inference.
+
+AFSIM-R1 is therefore frozen as an executable external model:
+
+```text
+capture/result writeback
+-> normalize metadata
+-> full persistent-array re-sort
+-> restart selector at index 1
+-> KILL phase
+-> Primary Enemy phase
+-> canonicalize selected pair by ship ID
+-> lower ID LEFT / higher ID RIGHT
+```
+
+Tracked executable transcription:
+
+```text
+tools/research/afsim_r1_model.py
+tests/test_afsim_r1_model.py
+```
+
+Discovery-only Corpus DB gate:
+
+```text
+tools/research/probe_afsim_r1_discovery_db.py
+tools/research/run-afsim-r1-discovery-db.sh
+```
+
+The gate deliberately imports canonical reconstruction from a separate current
+`main` checkout and reads the shared Corpus DB read-only. It does not merge
+main into the research branch.
+
+Only globally adjacent capture -> next-VCR rows are compared. The AFSim
+fuel-present input does not map perfectly onto post-movement Nu state, so the
+probe computes two mappings:
+
+```text
+tminus1   = T-1 neutronium > 0
+all_active = every post-history active ship has fuel
+```
+
+Rows whose predicted pair is identical under both mappings are reported as
+fuel-robust. This prevents a fuel-mapping ambiguity from being silently counted
+as evidence for or against the queue model.
+
+Held-out remains closed until the discovery result is recorded.
