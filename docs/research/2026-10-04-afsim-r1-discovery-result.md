@@ -189,3 +189,95 @@ not as the whole engine:
 ```
 
 Held-out remains closed.
+
+
+## Discovery post-analysis: AFSim side canonicalization also rejected globally
+
+The post-analysis of all 31 resolved adjacent discovery rows tested the recovered
+AFSim side rule independently of AFSim's failed queue selector.
+
+Conditioning only on the factual next-pair identity:
+
+```text
+lower ship ID  -> LEFT
+higher ship ID -> RIGHT
+```
+
+produced:
+
+```text
+ID-canonical side exact:     21
+ID-canonical side mismatch:  10
+
+factual LEFT:
+  exact    18
+  mismatch  7
+
+factual RIGHT:
+  exact     3
+  mismatch  3
+```
+
+Thus the AFSim ID-canonical LEFT/RIGHT rule is also rejected as a general Nu
+post-capture side rule on discovery:
+
+```text
+21 / 31 ~= 67.74%
+```
+
+The earlier conditional 5/6 result was therefore selection-biased: it looked
+strong only inside the six rows where the complete AFSim queue happened to pick
+the factual pair.
+
+### Pair-mismatch decomposition
+
+Both fuel variants remain identical and decompose as:
+
+```text
+exact                           6
+prize_with_wrong_opponent       4
+factual_opponent_without_prize  5
+unrelated_pair                  3
+no_pair                        13
+                              ----
+                               31
+```
+
+AFSim phase use:
+
+```text
+KILL            8
+Primary Enemy  10
+none           13
+```
+
+This is diagnostically important.
+
+The dominant failure is not LEFT/RIGHT assignment. In 13/31 adjacent rows the
+AFSim selector produces no ship-vs-ship pair at all, and in another 12/31 it
+selects a different pair. Therefore AFSim's historical KILL/Primary-Enemy
+selection policy is the primary incompatibility with Nu, not merely its
+post-selection side canonicalization.
+
+### Consequence
+
+AFSim contributes a useful independent architectural counterexample, but none
+of these AFSim components can currently be promoted as general Nu rules:
+
+```text
+full AFSim queue                  rejected  6/31 pair exact
+lower-ID LEFT canonicalization    rejected 21/31 side exact
+```
+
+The next discriminator should therefore isolate the structural question from
+AFSim's selector:
+
+```text
+post-capture mutable-state restart/recomposition
++
+Nu-derived strict attacker ranking
+```
+
+rather than continuing to refine AFSim's KILL/PE logic.
+
+Held-out remains closed.
