@@ -322,3 +322,123 @@ SECONDARY_HELDOUT_DISCRIMINATOR
 ```
 
 not pristine independent validation.
+
+
+## Secondary held-out result
+
+The frozen queue-history candidates were evaluated on the public held-out
+partition after the protocol above was committed.
+
+Unit tests:
+
+```text
+6 passed
+```
+
+Population:
+
+```text
+adjacent rows:             29
+qualified rows:            12
+dependency not qualified:  17
+```
+
+Result:
+
+```text
+STATIC_PRIORITY             7 / 12 exact
+STATIC_CAP2                 7 / 12 exact
+PAIR_OCCURRENCE_ROUND       8 / 12 exact
+FRESH_ATTACKER_BOOLEAN      8 / 12 exact
+ATTACKER_APPEARANCE_COUNT   8 / 12 exact
+```
+
+Candidate divergence:
+
+```text
+PAIR_OCCURRENCE_ROUND vs FRESH_ATTACKER_BOOLEAN:
+  divergent selections = 0
+
+PAIR_OCCURRENCE_ROUND vs ATTACKER_APPEARANCE_COUNT:
+  divergent selections = 0
+
+informative divergence rows = 0
+```
+
+Thus the held-out population still does not distinguish pair-level occurrence
+rounds from attacker-level freshness.
+
+One held-out row independently supports the need for elapsed history over static
+priority:
+
+```text
+227887 / T25 / VCR 33 -> 34
+prize=284
+factual=237
+
+STATIC_PRIORITY        -> 166  mismatch
+STATIC_CAP2            -> 166  mismatch
+all history-aware      -> 237  exact
+```
+
+However four qualified rows remain mismatches for every frozen selector:
+
+```text
+227887/T183 VCR 714->715 prize=240 factual=397 predicted=261
+
+257776/T52  VCR 96->97   prize=76  factual=264 predicted=257
+
+257776/T251 VCR 1724->1725 prize=325 factual=66  predicted=411
+
+257776/T251 VCR 1739->1740 prize=388 factual=495 predicted=31
+```
+
+Therefore all three elapsed-history candidates are rejected as complete general
+post-capture opponent selectors on this secondary held-out population.
+
+They remain useful partial discriminators:
+
+```text
+STATIC baseline: 7/12
+history-aware:   8/12
+```
+
+but no history-aware candidate is promoted.
+
+## Important qualification-boundary correction
+
+The current `dependency qualified` predicate proves that the *factual N+1
+opponent* is:
+
+```text
+active
+candidate-resolved
+requesting the prize's new owner
+strict-diplomacy permitted
+rankable
+```
+
+It does **not** prove that every higher-ranked competing requester remains a
+fully eligible post-capture pair under the complete production pair predicate.
+
+In particular, a competing requester can still differ through pair-specific
+mechanics such as:
+
+```text
+matching Friendly Code / HWM
+pre-standard phase classification
+captured-prize FC sensitivity
+special side/phase state
+other pair-composition blockers already represented by decide_ship_combat_pair
+```
+
+Accordingly, the four remaining rows must not yet be interpreted as proof of an
+additional mutable queue cursor/order rule.
+
+The next diagnostic is competitor-pair recomposition: for each wrong selected
+competitor, reconstruct its pair with the prize under exactly the same
+preserved-FC and guaranteed-nonmatching fresh-FC bounds already used by the
+canonical post-capture pair-recomposition audit.
+
+Only competitors that remain eligible and phase-resolved under those bounds are
+true queue-order residuals.
