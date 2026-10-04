@@ -25,8 +25,8 @@ from combat_host_post_mutation_next_pair_audit import _appearance_key
 from combat_public_capture_side_frozen_candidate import (
     predict_frozen_capture_side,
 )
-from combat_public_capture_side_postheldout_candidate import (
-    evaluate_postheldout_capture_side,
+from combat_public_capture_side_postheldout_validation import (
+    evaluate_frozen_postheldout_candidate,
 )
 from planets_lab.corpus.archive import TurnMember
 from planets_lab.corpus.corpus_db_compact import reconstruct_compact_member
@@ -1097,7 +1097,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                             else -1
                         )
                         postheldout_candidate_validation = (
-                            evaluate_postheldout_capture_side(
+                            evaluate_frozen_postheldout_candidate(
                                 prior_same_pair_occurrences=prior_same_pair,
                                 next_opponent_previous_side=row.get(
                                     "next_opponent_previous_side"
