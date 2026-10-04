@@ -194,3 +194,29 @@ A later predictive C selector must independently reconstruct:
 ```
 
 before canonical promotion.
+
+
+## Tracked census implementation
+
+The topology definition above was committed before the full public census tool.
+
+Tracked files:
+
+```text
+tools/research/analyze-postcapture-o-c-topology.py
+tools/research/run-postcapture-o-c-topology-census.sh
+```
+
+The runner consumes only already-produced O-layer artifacts:
+
+```text
+artifacts/public-capture-side/discovery-o-layer-probe.json
+artifacts/public-capture-side/heldout-o-layer-validation.json
+```
+
+It does not rescan Corpus DB and does not rebuild either partition.
+
+The census is deliberately position-only. A successful forward-union result
+would justify implementing a later full O-then-C pair selector; it would not
+itself establish C eligibility, C priority, side assignment, or canonical Nu
+order values.
