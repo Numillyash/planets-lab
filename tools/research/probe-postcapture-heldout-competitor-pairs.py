@@ -180,6 +180,8 @@ def _int_positive(value: Any) -> int | None:
 def _compose_candidate_pair(
     *,
     pair_module: Any,
+    active_module: Any,
+    appearances: Mapping[tuple[int, int, int, int], Mapping[str, Any]],
     context: Mapping[str, Any],
     capture: Mapping[str, Any],
     active_result: Mapping[str, Any],
@@ -209,14 +211,55 @@ def _compose_candidate_pair(
         return {"status": "unresolved", "reason": "opponent_orders_missing"}
 
     prize_owner = _int_positive(active_result.get("prize_owner_id_after_capture"))
-    prize_race = _int_positive(capture.get("race_id_after"))
-    prize_hull = _int_positive(capture.get("hull_id_after"))
+    prize_hull = _int_positive(prize_entry.get("hull_id"))
     opponent_owner = _int_positive(opponent_entry.get("owner_id"))
     opponent_hull = _int_positive(opponent_entry.get("hull_id"))
     opponent_race = _int_positive(opponent_entry.get("race_id"))
 
-    if any(value is None for value in (prize_owner, prize_race, prize_hull, opponent_owner, opponent_hull)):
-        return {"status": "unresolved", "reason": "identity_or_hull_unresolved"}
+    captor_id = _int_positive(capture.get("captor_ship_id"))
+    capture_vcr_id = _int_positive(capture.get("from_vcr_id"))
+    if captor_id is None or capture_vcr_id is None:
+        return {
+            "status": "unresolved",
+            "reason": "capture_identity_missing_for_postcapture_race",
+        }
+
+    captor_appearance = active_module._appearance_index(
+        appearances,
+        game_id=game_id,
+        battle_turn=int(context["battle_turn"]),
+        vcr_id=capture_vcr_id,
+        ship_id=captor_id,
+    )
+    if not isinstance(captor_appearance, Mapping):
+        return {
+            "status": "unresolved",
+            "reason": "captor_appearance_missing_for_postcapture_race",
+            "captor_ship_id": captor_id,
+            "capture_vcr_id": capture_vcr_id,
+        }
+    prize_race = _int_positive(captor_appearance.get("race_id"))
+
+    if any(
+        value is None
+        for value in (
+            prize_owner,
+            prize_race,
+            prize_hull,
+            opponent_owner,
+            opponent_hull,
+        )
+    ):
+        return {
+            "status": "unresolved",
+            "reason": "identity_or_hull_unresolved",
+            "prize_owner": prize_owner,
+            "prize_race_from_captor": prize_race,
+            "prize_hull": prize_hull,
+            "opponent_owner": opponent_owner,
+            "opponent_race": opponent_race,
+            "opponent_hull": opponent_hull,
+        }
 
     assert prize_owner is not None
     assert prize_race is not None
@@ -317,6 +360,13 @@ def _compose_candidate_pair(
 
     return {
         "status": "resolved",
+        "postcapture_identity": {
+            "prize_owner_id": prize_owner,
+            "prize_race_id_from_captor_vcr": prize_race,
+            "prize_hull_id_preserved": prize_hull,
+            "captor_ship_id": captor_id,
+            "capture_vcr_id": capture_vcr_id,
+        },
         "candidate": {
             "ship_id": opponent_id,
             "requests_new_owner": candidate.get("requests_new_owner"),
@@ -484,6 +534,8 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
 
                 competitor_pair = _compose_candidate_pair(
                     pair_module=pair_module,
+                    active_module=active_module,
+                    appearances=appearances_by_key,
                     context=context,
                     capture=capture,
                     active_result=active_result,
@@ -491,6 +543,8 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 )
                 factual_pair = _compose_candidate_pair(
                     pair_module=pair_module,
+                    active_module=active_module,
+                    appearances=appearances_by_key,
                     context=context,
                     capture=capture,
                     active_result=active_result,
@@ -505,14 +559,18 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                     factual_id=factual_id,
                 )
 
-                if competitor_pair.get("definitely_eligible") is True:
+                if competitor_pair.get("status") != "resolved":
+                    counts["competitor:predecision_unresolved"] += 1
+                elif competitor_pair.get("definitely_eligible") is True:
                     counts["competitor:definitely_eligible"] += 1
                 elif competitor_pair.get("definitely_blocked") is True:
                     counts["competitor:definitely_blocked"] += 1
                 else:
                     counts["competitor:fc_sensitive_or_unresolved"] += 1
 
-                if factual_pair.get("definitely_eligible") is True:
+                if factual_pair.get("status") != "resolved":
+                    counts["factual:predecision_unresolved"] += 1
+                elif factual_pair.get("definitely_eligible") is True:
                     counts["factual:definitely_eligible"] += 1
                 elif factual_pair.get("definitely_blocked") is True:
                     counts["factual:definitely_blocked"] += 1
@@ -650,6 +708,8 @@ def main() -> int:
             )
             print(
                 "  predicted pair: "
+                f"status={comp.get('status')} "
+                f"reason={comp.get('reason')} "
                 f"eligible={comp.get('definitely_eligible')} "
                 f"blocked={comp.get('definitely_blocked')} "
                 f"fc_sensitive={comp.get('fc_sensitive_or_unresolved')}"
@@ -668,6 +728,8 @@ def main() -> int:
             )
             print(
                 "  factual pair: "
+                f"status={fact.get('status')} "
+                f"reason={fact.get('reason')} "
                 f"eligible={fact.get('definitely_eligible')} "
                 f"blocked={fact.get('definitely_blocked')} "
                 f"fc_sensitive={fact.get('fc_sensitive_or_unresolved')}"
