@@ -7,6 +7,7 @@ CORPUS_DB_ROOT="${PLANETS_CORPUS_DB_ROOT:-/root/projects/planets-corpus-db}"
 export PLANETS_CORPUS_DB_ROOT="$CORPUS_DB_ROOT"
 
 O_LAYER="$MAIN_ROOT/artifacts/public-capture-side/discovery-o-layer-probe.json"
+CAPTURE_SIDE="$MAIN_ROOT/artifacts/public-capture-side/discovery-capture-side.json"
 RESIDUALS="$RESEARCH_ROOT/artifacts/external-sources/afsim-r1/discovery-strict-rank-residuals.json"
 OUTPUT="$RESEARCH_ROOT/artifacts/external-sources/afsim-r1/discovery-rank2-targeted.json"
 DOCKER_PREFLIGHT_TIMEOUT="${DOCKER_PREFLIGHT_TIMEOUT:-10}"
@@ -16,6 +17,7 @@ echo "research_root: $RESEARCH_ROOT"
 echo "main_root:     $MAIN_ROOT"
 echo "corpus_db:     $CORPUS_DB_ROOT"
 echo "o_layer:       $O_LAYER"
+echo "capture_side:  $CAPTURE_SIDE"
 echo "residuals:     $RESIDUALS"
 echo "output:        $OUTPUT"
 echo
@@ -46,6 +48,10 @@ if [[ ! -s "$CORPUS_DB_ROOT/CURRENT" ]]; then
 fi
 if [[ ! -s "$O_LAYER" ]]; then
   echo "ERROR: discovery O-layer artifact missing: $O_LAYER" >&2
+  exit 66
+fi
+if [[ ! -s "$CAPTURE_SIDE" ]]; then
+  echo "ERROR: discovery capture-side artifact missing: $CAPTURE_SIDE" >&2
   exit 66
 fi
 if [[ ! -s "$RESIDUALS" ]]; then
