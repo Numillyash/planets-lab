@@ -101,7 +101,7 @@ def test_postheldout_candidate_fails_closed() -> None:
 
 
 
-def test_postheldout_candidate_reachable_unknown_priority_fails_closed() -> None:
+def test_independent_adapter_fails_closed_without_changing_frozen_predictor() -> None:
     assert (
         predict_postheldout_capture_side(
             prior_same_pair_occurrences=0,
@@ -111,7 +111,7 @@ def test_postheldout_candidate_reachable_unknown_priority_fails_closed() -> None
             opponent_priority_group=None,
             neutral_fresh_fc_side="right",
         )
-        is None
+        == "left"
     )
 
     result = evaluate_postheldout_capture_side(
