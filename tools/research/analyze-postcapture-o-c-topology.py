@@ -46,6 +46,42 @@ def _is_int(value: Any) -> bool:
     return isinstance(value, int) and not isinstance(value, bool)
 
 
+def _matches_partition(
+    payload: Mapping[str, Any],
+    *,
+    expected: str,
+) -> bool:
+    """Accept current and legacy O-layer artifacts for a known partition."""
+
+    partition = payload.get("partition")
+    if partition is not None:
+        return partition == expected
+
+    evidence_status = payload.get("evidence_status")
+    if isinstance(evidence_status, str):
+        upper = evidence_status.upper()
+        if expected == "discovery" and upper.startswith("DISCOVERY_"):
+            return True
+        if expected == "heldout" and "HELDOUT" in upper:
+            return True
+
+    # Legacy v1 reports predate the explicit top-level partition field.
+    # Their source path/name still records which sealed public partition
+    # produced the artifact. The runner passes the expected partition
+    # explicitly, so this is only a compatibility bridge, not inference.
+    if payload.get("schema") == "planets-lab.combat-public-capture-o-layer-probe.v1":
+        for key in (
+            "source_discovery",
+            "source_heldout",
+            "source_capture_side_report",
+        ):
+            value = payload.get(key)
+            if isinstance(value, str) and expected in value.lower():
+                return True
+
+    return False
+
+
 def _index(order: Sequence[Any], ship_id: int) -> int | None:
     values = [int(v) for v in order if _is_int(v)]
     try:
@@ -76,9 +112,12 @@ def _partition_rows(
     *,
     partition: str,
 ) -> tuple[Counter[str], list[dict[str, Any]]]:
-    if payload.get("partition") != partition:
+    if not _matches_partition(payload, expected=partition):
         raise ValueError(
-            f"expected partition={partition}, got {payload.get('partition')!r}"
+            "O-layer artifact is not recognizable as "
+            f"{partition}-only; partition={payload.get('partition')!r}, "
+            f"evidence_status={payload.get('evidence_status')!r}, "
+            f"schema={payload.get('schema')!r}"
         )
 
     rows = payload.get("observations")
