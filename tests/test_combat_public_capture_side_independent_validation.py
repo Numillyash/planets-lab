@@ -38,5 +38,7 @@ def test_independent_capture_side_runner_syntax_and_frozen_boundaries() -> None:
     assert 'SOURCE_BRANCH" != "main"' in wrapper
     assert "592607b07efa0f857521da05fe0651127ed8be2d" in wrapper
     assert "git merge-base --is-ancestor" in wrapper
+    assert "git diff --quiet" in wrapper
+    assert "combat_public_capture_side_postheldout_candidate.py" in wrapper
     assert "public-capture-side-independent-validation" in wrapper
     assert "--include artifacts/public-capture-side" in wrapper
