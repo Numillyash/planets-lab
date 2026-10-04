@@ -89,3 +89,38 @@ def test_topology_classes() -> None:
         )
         == "BEFORE_OR_AT_PRIZE"
     )
+
+
+def test_dependency_projection_qualified() -> None:
+    row = {
+        "active_dependency": {
+            "status": "resolved",
+            "factual_opponent_site_predicted": True,
+            "factual_opponent_position_source": "stationary_effective_warp_zero",
+            "factual_opponent_active": True,
+            "factual_opponent_candidate_resolved": True,
+            "factual_opponent_requests_new_owner": True,
+            "factual_opponent_strict_permission": True,
+        }
+    }
+    result = MODULE._dependency_projection(row)
+    assert result["qualified"] is True
+    assert result["site_predicted"] is True
+
+
+def test_dependency_projection_fail_closed_movement() -> None:
+    row = {
+        "active_dependency": {
+            "status": "resolved",
+            "factual_opponent_site_predicted": False,
+            "factual_opponent_position_source": "intercept_movement",
+            "factual_opponent_active": None,
+            "factual_opponent_candidate_resolved": None,
+            "factual_opponent_requests_new_owner": None,
+            "factual_opponent_strict_permission": None,
+        }
+    }
+    result = MODULE._dependency_projection(row)
+    assert result["qualified"] is False
+    assert result["site_predicted"] is False
+    assert result["prediction_source"] == "intercept_movement"
