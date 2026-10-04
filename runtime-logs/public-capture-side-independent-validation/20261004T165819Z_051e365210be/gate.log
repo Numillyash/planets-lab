@@ -1,0 +1,812 @@
+===== PUBLIC CAPTURE-SIDE INDEPENDENT SHORT32: PREFLIGHT =====
+docker:       ready
+corpus_db:    generations/corpus-v2compact-public68-20261004T095236Z-09f71721b77c.duckdb
+candidate:    592607b07efa0f857521da05fe0651127ed8be2d
+===== PUBLIC CAPTURE-SIDE INDEPENDENT SHORT32: BUILD LAB IMAGE =====
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "default" instance using docker driver
+
+#1 [lab internal] load build definition from Dockerfile
+#1 transferring dockerfile: 373B done
+#1 DONE 0.0s
+
+#2 [lab internal] load metadata for docker.io/library/python:3.12-slim
+#2 DONE 0.0s
+
+#3 [lab internal] load .dockerignore
+#3 transferring context: 184B done
+#3 DONE 0.0s
+
+#4 [lab internal] load build context
+#4 DONE 0.0s
+
+#5 [lab 1/6] FROM docker.io/library/python:3.12-slim@sha256:dd29372629eeba2dd003fd9e9d35a5b8236c44727875a0364254b5127af88e65
+#5 resolve docker.io/library/python:3.12-slim@sha256:dd29372629eeba2dd003fd9e9d35a5b8236c44727875a0364254b5127af88e65
+#5 resolve docker.io/library/python:3.12-slim@sha256:dd29372629eeba2dd003fd9e9d35a5b8236c44727875a0364254b5127af88e65 1.0s done
+#5 DONE 1.0s
+
+#4 [lab internal] load build context
+#4 transferring context: 35.12kB 0.0s done
+#4 DONE 0.0s
+
+#6 [lab 2/6] WORKDIR /workspace
+#6 CACHED
+
+#7 [lab 3/6] COPY pyproject.toml README.md ./
+#7 CACHED
+
+#8 [lab 4/6] COPY src ./src
+#8 CACHED
+
+#9 [lab 5/6] COPY tests ./tests
+#9 DONE 0.1s
+
+#10 [lab 6/6] RUN python -m pip install --no-cache-dir --upgrade pip     && python -m pip install --no-cache-dir -e '.[dev]'
+#10 1.293 Requirement already satisfied: pip in /usr/local/lib/python3.12/site-packages (25.0.1)
+#10 1.824 Collecting pip
+#10 2.387   Downloading pip-26.2.1-py3-none-any.whl.metadata (4.6 kB)
+#10 2.434 Downloading pip-26.2.1-py3-none-any.whl (1.8 MB)
+#10 2.865    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 5.3 MB/s eta 0:00:00
+#10 2.876 Installing collected packages: pip
+#10 2.876   Attempting uninstall: pip
+#10 2.878     Found existing installation: pip 25.0.1
+#10 2.909     Uninstalling pip-25.0.1:
+#10 3.075       Successfully uninstalled pip-25.0.1
+#10 3.697 Successfully installed pip-26.2.1
+#10 3.697 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#10 4.264 Obtaining file:///workspace
+#10 4.267   Installing build dependencies: started
+#10 7.437   Installing build dependencies: finished with status 'done'
+#10 7.438   Checking if build backend supports build_editable: started
+#10 7.867   Checking if build backend supports build_editable: finished with status 'done'
+#10 7.868   Getting requirements to build editable: started
+#10 8.434   Getting requirements to build editable: finished with status 'done'
+#10 8.436   Preparing editable metadata (pyproject.toml): started
+#10 8.995   Preparing editable metadata (pyproject.toml): finished with status 'done'
+#10 10.32 Collecting duckdb<1.6,>=1.5 (from planets-lab==0.1.0)
+#10 10.59   Downloading duckdb-1.5.6-cp312-cp312-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl.metadata (4.2 kB)
+#10 10.83 Collecting pyarrow<22,>=21 (from planets-lab==0.1.0)
+#10 10.89   Downloading pyarrow-21.0.0-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (3.3 kB)
+#10 10.99 Collecting pytest<9,>=8 (from planets-lab==0.1.0)
+#10 11.05   Downloading pytest-8.4.2-py3-none-any.whl.metadata (7.7 kB)
+#10 11.12 Collecting iniconfig>=1 (from pytest<9,>=8->planets-lab==0.1.0)
+#10 11.18   Downloading iniconfig-2.3.0-py3-none-any.whl.metadata (2.5 kB)
+#10 11.27 Collecting packaging>=20 (from pytest<9,>=8->planets-lab==0.1.0)
+#10 11.33   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+#10 11.39 Collecting pluggy<2,>=1.5 (from pytest<9,>=8->planets-lab==0.1.0)
+#10 11.45   Downloading pluggy-1.6.0-py3-none-any.whl.metadata (4.8 kB)
+#10 11.57 Collecting pygments>=2.7.2 (from pytest<9,>=8->planets-lab==0.1.0)
+#10 11.69   Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+#10 11.78 Downloading duckdb-1.5.6-cp312-cp312-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl (21.6 MB)
+#10 97.39    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 21.6/21.6 MB 273.2 kB/s  0:01:15
+#10 97.45 Downloading pyarrow-21.0.0-cp312-cp312-manylinux_2_28_x86_64.whl (42.8 MB)
+#10 130.8    ━━━━━━                                   6.7/42.8 MB 222.1 kB/s eta 0:02:43
+#10 130.8 WARNING: Connection interrupted while downloading.
+#10 130.8 WARNING: Attempting to resume incomplete download (6.7 MB/42.8 MB, attempt 1)
+#10 130.9 WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)'))': /packages/ad/90/2660332eeb31303c13b653ea566a9918484b6e4d6b9d2d46879a33ab0622/pyarrow-21.0.0-cp312-cp312-manylinux_2_28_x86_64.whl
+#10 131.4 WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)'))': /packages/ad/90/2660332eeb31303c13b653ea566a9918484b6e4d6b9d2d46879a33ab0622/pyarrow-21.0.0-cp312-cp312-manylinux_2_28_x86_64.whl
+#10 132.4 WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)'))': /packages/ad/90/2660332eeb31303c13b653ea566a9918484b6e4d6b9d2d46879a33ab0622/pyarrow-21.0.0-cp312-cp312-manylinux_2_28_x86_64.whl
+#10 132.7 Resuming download pyarrow-21.0.0-cp312-cp312-manylinux_2_28_x86_64.whl (6.7 MB/42.8 MB)
+#10 133.9    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 42.8/42.8 MB 28.6 MB/s  0:00:01
+#10 134.0 Downloading pytest-8.4.2-py3-none-any.whl (365 kB)
+#10 134.1 Downloading pluggy-1.6.0-py3-none-any.whl (20 kB)
+#10 134.2 Downloading iniconfig-2.3.0-py3-none-any.whl (7.5 kB)
+#10 134.2 Downloading packaging-26.3-py3-none-any.whl (129 kB)
+#10 134.3 Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+#10 134.4    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 39.8 MB/s  0:00:00
+#10 134.4 Building wheels for collected packages: planets-lab
+#10 134.4   Building editable for planets-lab (pyproject.toml): started
+#10 135.2   Building editable for planets-lab (pyproject.toml): finished with status 'done'
+#10 135.2   Created wheel for planets-lab: filename=planets_lab-0.1.0-0.editable-py3-none-any.whl size=3673 sha256=29025b973c22f260d26539e2f7b0a45b0ab59f4c7542f0493ec4247be97e1297
+#10 135.2   Stored in directory: /tmp/pip-ephem-wheel-cache-r8u_ighb/wheels/b0/41/ab/4e04a8678980f3355548f1261923479fbf2a713a7393a7dea8
+#10 135.2 Successfully built planets-lab
+#10 135.3 Installing collected packages: pygments, pyarrow, pluggy, packaging, iniconfig, duckdb, pytest, planets-lab
+#10 137.8 
+#10 137.8 Successfully installed duckdb-1.5.6 iniconfig-2.3.0 packaging-26.3 planets-lab-0.1.0 pluggy-1.6.0 pyarrow-21.0.0 pygments-2.21.0 pytest-8.4.2
+#10 137.8 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#10 DONE 138.0s
+
+#11 [lab] exporting to image
+#11 exporting layers
+#11 exporting layers 7.6s done
+#11 exporting manifest sha256:06194559a4e8fa988bfd052fd0ed63cc7a2f311be97df155835ddc5d99df76a6
+#11 exporting manifest sha256:06194559a4e8fa988bfd052fd0ed63cc7a2f311be97df155835ddc5d99df76a6 0.8s done
+#11 exporting config sha256:65741113c7b733a5f20ac79dc5c922e81571d181178fb83872dafe84ae3fbf98
+#11 exporting config sha256:65741113c7b733a5f20ac79dc5c922e81571d181178fb83872dafe84ae3fbf98 0.0s done
+#11 exporting attestation manifest sha256:c453a98351bfd086f79983ce884fbf9a6943d325aaa06a3c669ab353fcfbaaef 0.0s done
+#11 exporting manifest list sha256:7de75f086b78cdd4b1da3378441f26232044a305b684008be093616a9c89b0b3 0.0s done
+#11 naming to docker.io/library/planets-lab-lab:latest done
+#11 unpacking to docker.io/library/planets-lab-lab:latest
+#11 unpacking to docker.io/library/planets-lab-lab:latest 1.7s done
+#11 DONE 10.3s
+
+#12 [lab] resolving provenance for metadata file
+#12 DONE 0.0s
+ lab  Built
+===== PUBLIC CAPTURE-SIDE INDEPENDENT SHORT32: POPULATION BOUNDARY =====
+short_manifest_games: 32
+short_index_games:    32
+baseline_games:       36
+baseline_overlap:     0
+===== PUBLIC CAPTURE-SIDE INDEPENDENT SHORT32: DB HARVEST =====
+progress: stage=collect_capture_appearances_db game_id=220698 status=start
+progress: stage=collect_capture_appearances_db game_id=220698 members=845 vcr_observations=4981 status=done
+progress: stage=collect_capture_appearances_db game_id=221008 status=start
+progress: stage=collect_capture_appearances_db game_id=221008 members=737 vcr_observations=2183 status=done
+progress: stage=collect_capture_appearances_db game_id=226056 status=start
+progress: stage=collect_capture_appearances_db game_id=226056 members=833 vcr_observations=13824 status=done
+progress: stage=collect_capture_appearances_db game_id=235762 status=start
+progress: stage=collect_capture_appearances_db game_id=235762 members=436 vcr_observations=1310 status=done
+progress: stage=collect_capture_appearances_db game_id=243165 status=start
+progress: stage=collect_capture_appearances_db game_id=243165 members=738 vcr_observations=4691 status=done
+progress: stage=collect_capture_appearances_db game_id=245123 status=start
+progress: stage=collect_capture_appearances_db game_id=245123 members=940 vcr_observations=5940 status=done
+progress: stage=collect_capture_appearances_db game_id=245693 status=start
+progress: stage=collect_capture_appearances_db game_id=245693 members=623 vcr_observations=5797 status=done
+progress: stage=collect_capture_appearances_db game_id=277134 status=start
+progress: stage=collect_capture_appearances_db game_id=277134 members=752 vcr_observations=5777 status=done
+progress: stage=collect_capture_appearances_db game_id=310054 status=start
+progress: stage=collect_capture_appearances_db game_id=310054 members=592 vcr_observations=2419 status=done
+progress: stage=collect_capture_appearances_db game_id=323802 status=start
+progress: stage=collect_capture_appearances_db game_id=323802 members=776 vcr_observations=5072 status=done
+progress: stage=collect_capture_appearances_db game_id=338810 status=start
+progress: stage=collect_capture_appearances_db game_id=338810 members=612 vcr_observations=2528 status=done
+progress: stage=collect_capture_appearances_db game_id=341336 status=start
+progress: stage=collect_capture_appearances_db game_id=341336 members=802 vcr_observations=2520 status=done
+progress: stage=collect_capture_appearances_db game_id=347236 status=start
+progress: stage=collect_capture_appearances_db game_id=347236 members=745 vcr_observations=4276 status=done
+progress: stage=collect_capture_appearances_db game_id=347923 status=start
+progress: stage=collect_capture_appearances_db game_id=347923 members=731 vcr_observations=2526 status=done
+progress: stage=collect_capture_appearances_db game_id=399914 status=start
+progress: stage=collect_capture_appearances_db game_id=399914 members=948 vcr_observations=3902 status=done
+progress: stage=collect_capture_appearances_db game_id=407599 status=start
+progress: stage=collect_capture_appearances_db game_id=407599 members=278 vcr_observations=792 status=done
+progress: stage=collect_capture_appearances_db game_id=421276 status=start
+progress: stage=collect_capture_appearances_db game_id=421276 members=870 vcr_observations=3375 status=done
+progress: stage=collect_capture_appearances_db game_id=421949 status=start
+progress: stage=collect_capture_appearances_db game_id=421949 members=1023 vcr_observations=3906 status=done
+progress: stage=collect_capture_appearances_db game_id=454504 status=start
+progress: stage=collect_capture_appearances_db game_id=454504 members=729 vcr_observations=3458 status=done
+progress: stage=collect_capture_appearances_db game_id=467047 status=start
+progress: stage=collect_capture_appearances_db game_id=467047 members=802 vcr_observations=3881 status=done
+progress: stage=collect_capture_appearances_db game_id=494635 status=start
+progress: stage=collect_capture_appearances_db game_id=494635 members=763 vcr_observations=4170 status=done
+progress: stage=collect_capture_appearances_db game_id=499284 status=start
+progress: stage=collect_capture_appearances_db game_id=499284 members=464 vcr_observations=1536 status=done
+progress: stage=collect_capture_appearances_db game_id=521834 status=start
+progress: stage=collect_capture_appearances_db game_id=521834 members=604 vcr_observations=1569 status=done
+progress: stage=collect_capture_appearances_db game_id=530633 status=start
+progress: stage=collect_capture_appearances_db game_id=530633 members=712 vcr_observations=2061 status=done
+progress: stage=collect_capture_appearances_db game_id=600044 status=start
+progress: stage=collect_capture_appearances_db game_id=600044 members=743 vcr_observations=3245 status=done
+progress: stage=collect_capture_appearances_db game_id=632527 status=start
+progress: stage=collect_capture_appearances_db game_id=632527 members=872 vcr_observations=8281 status=done
+progress: stage=collect_capture_appearances_db game_id=633837 status=start
+progress: stage=collect_capture_appearances_db game_id=633837 members=520 vcr_observations=2052 status=done
+progress: stage=collect_capture_appearances_db game_id=645077 status=start
+progress: stage=collect_capture_appearances_db game_id=645077 members=488 vcr_observations=2903 status=done
+progress: stage=collect_capture_appearances_db game_id=655827 status=start
+progress: stage=collect_capture_appearances_db game_id=655827 members=886 vcr_observations=8833 status=done
+progress: stage=collect_capture_appearances_db game_id=660249 status=start
+progress: stage=collect_capture_appearances_db game_id=660249 members=953 vcr_observations=3959 status=done
+progress: stage=collect_capture_appearances_db game_id=663317 status=start
+progress: stage=collect_capture_appearances_db game_id=663317 members=424 vcr_observations=1639 status=done
+progress: stage=collect_capture_appearances_db game_id=674696 status=start
+progress: stage=collect_capture_appearances_db game_id=674696 members=617 vcr_observations=1783 status=done
+progress: stage=enrich_tminus1_order_context ship_cases=37 status=start
+progress: stage=enrich_tminus1_order_context_db game=1/14 game_id=235762 cases=1 status=start
+progress: stage=enrich_tminus1_order_context_db game=1/14 game_id=235762 status=done
+progress: stage=enrich_tminus1_order_context_db game=2/14 game_id=243165 cases=9 status=start
+progress: stage=enrich_tminus1_order_context_db game=2/14 game_id=243165 status=done
+progress: stage=enrich_tminus1_order_context_db game=3/14 game_id=245693 cases=1 status=start
+progress: stage=enrich_tminus1_order_context_db game=3/14 game_id=245693 status=done
+progress: stage=enrich_tminus1_order_context_db game=4/14 game_id=323802 cases=1 status=start
+progress: stage=enrich_tminus1_order_context_db game=4/14 game_id=323802 status=done
+progress: stage=enrich_tminus1_order_context_db game=5/14 game_id=341336 cases=3 status=start
+progress: stage=enrich_tminus1_order_context_db game=5/14 game_id=341336 status=done
+progress: stage=enrich_tminus1_order_context_db game=6/14 game_id=399914 cases=2 status=start
+progress: stage=enrich_tminus1_order_context_db game=6/14 game_id=399914 status=done
+progress: stage=enrich_tminus1_order_context_db game=7/14 game_id=421276 cases=2 status=start
+progress: stage=enrich_tminus1_order_context_db game=7/14 game_id=421276 status=done
+progress: stage=enrich_tminus1_order_context_db game=8/14 game_id=421949 cases=1 status=start
+progress: stage=enrich_tminus1_order_context_db game=8/14 game_id=421949 status=done
+progress: stage=enrich_tminus1_order_context_db game=9/14 game_id=494635 cases=2 status=start
+progress: stage=enrich_tminus1_order_context_db game=9/14 game_id=494635 status=done
+progress: stage=enrich_tminus1_order_context_db game=10/14 game_id=600044 cases=4 status=start
+progress: stage=enrich_tminus1_order_context_db game=10/14 game_id=600044 status=done
+progress: stage=enrich_tminus1_order_context_db game=11/14 game_id=645077 cases=2 status=start
+progress: stage=enrich_tminus1_order_context_db game=11/14 game_id=645077 status=done
+progress: stage=enrich_tminus1_order_context_db game=12/14 game_id=655827 cases=3 status=start
+progress: stage=enrich_tminus1_order_context_db game=12/14 game_id=655827 status=done
+progress: stage=enrich_tminus1_order_context_db game=13/14 game_id=663317 cases=1 status=start
+progress: stage=enrich_tminus1_order_context_db game=13/14 game_id=663317 status=done
+progress: stage=enrich_tminus1_order_context_db game=14/14 game_id=674696 cases=5 status=start
+progress: stage=enrich_tminus1_order_context_db game=14/14 game_id=674696 status=done
+progress: stage=enrich_tminus1_order_context ship_cases=37 resolved=35 status=done
+===== PUBLIC CAPTURE-SIDE HARVEST =====
+partition:                    all
+storage_backend:              corpus-db
+indexed_games:                32
+scanned_games:                32
+unscanned_games:              0
+capture_continuations:         62
+next_combat_ship:              37
+next_combat_planet:            25
+ship_capture_side_counts:      {'captured:left': 23, 'captured:right': 14, 'opponent:left': 14, 'opponent:right': 23}
+prior_pair_occurrence_counts:  {'0': 35, '1': 2}
+opponent_prior_appearance:     10
+opponent_side_carry:           8 exact / 2 mismatch
+opponent_side_cursor:          25 exact / 12 mismatch
+opponent_initiator_right_exact: 23
+sticky_capture_side_exact:     23
+order_context_resolved:        35
+order_side_controls:           {'frozen_tminus1_priority': {'exact': 21, 'mismatch': 7, 'unresolved': 7}, 'neutral_orders_preserve_fc': {'exact': 22, 'mismatch': 6, 'unresolved': 7}, 'neutral_orders_fresh_fc': {'exact': 20, 'mismatch': 14, 'unresolved': 1}}
+output:                       artifacts/public-capture-side/independent-short32-capture-side.json
+
+===== PUBLIC CAPTURE O-LAYER INDEPENDENT SHORT32: PROBE =====
+game_passes:  14
+
+===== INDEPENDENT O-LAYER GAME 1/14: 235762 =====
+progress: stage=o_layer_site_context games=1 sites=1 backend=corpus-db status=start
+progress: stage=site_context game_id=235762 mode=corpus-db-targeted status=start
+progress: stage=site_context game_id=235762 mode=corpus-db-targeted snapshots=16 sites=1 status=done
+progress: stage=o_layer_site_context games=1 sites=1 backend=corpus-db status=done
+===== PUBLIC CAPTURE O-LAYER INDEPENDENT =====
+capture_ship_rows:    1
+adjacent_rows:        1
+resolved:             1
+not_comparable:       0
+unresolved:           0
+O pair reachable:     0
+  factual LEFT/RIGHT: 0 / 0
+O pair not reachable: 1
+  factual LEFT/RIGHT: 1 / 0
+external O exact:     0
+external O mismatch:  1
+split candidate exact:   1
+split candidate mismatch: 0
+factual opponent active T/F/U: 0 / 1 / 0
+strict permission T/F/U: 0 / 0 / 1
+resolved dependency qualified/blocked: 0 / 1
+split exact qualified/blocked: 0 / 1
+split mismatch qualified/blocked: 0 / 0
+identity-anchored O reachable/not: 0 / 1
+identity-anchored split exact/mismatch/unresolved: 1 / 0 / 0
+postheldout candidate exact/mismatch/unresolved: 1 / 0 / 0
+postheldout branch reachable_sticky: 0
+postheldout branch nonreachable_neutral_fresh_fc: 1
+postheldout branch second_occurrence_reversal: 0
+postheldout branch reachable_numeric_opponent_override: 0
+blocked site predicted T/F/U: 0 / 1 / 0
+blocked history anchored T/F/U: 0 / 1 / 0
+blocked removed before next T/F/U: 0 / 1 / 0
+blocked owner changed T/F/U: 0 / 1 / 0
+output:               artifacts/public-capture-side/o-layer-independent-short32-parts/game-235762.json
+
+===== INDEPENDENT O-LAYER GAME 2/14: 243165 =====
+progress: stage=o_layer_site_context games=1 sites=8 backend=corpus-db status=start
+progress: stage=site_context game_id=243165 mode=corpus-db-targeted status=start
+progress: stage=site_context game_id=243165 mode=corpus-db-targeted snapshots=154 sites=8 status=done
+progress: stage=o_layer_site_context games=1 sites=8 backend=corpus-db status=done
+===== PUBLIC CAPTURE O-LAYER INDEPENDENT =====
+capture_ship_rows:    9
+adjacent_rows:        7
+resolved:             7
+not_comparable:       2
+unresolved:           0
+O pair reachable:     0
+  factual LEFT/RIGHT: 0 / 0
+O pair not reachable: 7
+  factual LEFT/RIGHT: 2 / 5
+external O exact:     0
+external O mismatch:  7
+split candidate exact:   1
+split candidate mismatch: 5
+factual opponent active T/F/U: 1 / 8 / 0
+strict permission T/F/U: 1 / 0 / 8
+resolved dependency qualified/blocked: 1 / 6
+split exact qualified/blocked: 0 / 1
+split mismatch qualified/blocked: 0 / 5
+identity-anchored O reachable/not: 5 / 2
+identity-anchored split exact/mismatch/unresolved: 6 / 0 / 1
+postheldout candidate exact/mismatch/unresolved: 7 / 0 / 0
+postheldout branch reachable_sticky: 1
+postheldout branch nonreachable_neutral_fresh_fc: 1
+postheldout branch second_occurrence_reversal: 1
+postheldout branch reachable_numeric_opponent_override: 4
+blocked site predicted T/F/U: 0 / 6 / 0
+blocked history anchored T/F/U: 0 / 6 / 0
+blocked removed before next T/F/U: 0 / 6 / 0
+blocked owner changed T/F/U: 0 / 6 / 0
+output:               artifacts/public-capture-side/o-layer-independent-short32-parts/game-243165.json
+
+===== INDEPENDENT O-LAYER GAME 3/14: 245693 =====
+progress: stage=o_layer_site_context games=1 sites=1 backend=corpus-db status=start
+progress: stage=site_context game_id=245693 mode=corpus-db-targeted status=start
+progress: stage=site_context game_id=245693 mode=corpus-db-targeted snapshots=16 sites=1 status=done
+progress: stage=o_layer_site_context games=1 sites=1 backend=corpus-db status=done
+===== PUBLIC CAPTURE O-LAYER INDEPENDENT =====
+capture_ship_rows:    1
+adjacent_rows:        0
+resolved:             0
+not_comparable:       1
+unresolved:           0
+O pair reachable:     0
+  factual LEFT/RIGHT: 0 / 0
+O pair not reachable: 0
+  factual LEFT/RIGHT: 0 / 0
+external O exact:     0
+external O mismatch:  0
+split candidate exact:   0
+split candidate mismatch: 0
+factual opponent active T/F/U: 1 / 0 / 0
+strict permission T/F/U: 1 / 0 / 0
+resolved dependency qualified/blocked: 0 / 0
+split exact qualified/blocked: 0 / 0
+split mismatch qualified/blocked: 0 / 0
+identity-anchored O reachable/not: 0 / 0
+identity-anchored split exact/mismatch/unresolved: 0 / 0 / 0
+postheldout candidate exact/mismatch/unresolved: 0 / 0 / 0
+postheldout branch reachable_sticky: 0
+postheldout branch nonreachable_neutral_fresh_fc: 0
+postheldout branch second_occurrence_reversal: 0
+postheldout branch reachable_numeric_opponent_override: 0
+blocked site predicted T/F/U: 0 / 0 / 0
+blocked history anchored T/F/U: 0 / 0 / 0
+blocked removed before next T/F/U: 0 / 0 / 0
+blocked owner changed T/F/U: 0 / 0 / 0
+output:               artifacts/public-capture-side/o-layer-independent-short32-parts/game-245693.json
+
+===== INDEPENDENT O-LAYER GAME 4/14: 323802 =====
+progress: stage=o_layer_site_context games=1 sites=1 backend=corpus-db status=start
+progress: stage=site_context game_id=323802 mode=corpus-db-targeted status=start
+progress: stage=site_context game_id=323802 mode=corpus-db-targeted snapshots=16 sites=1 status=done
+progress: stage=o_layer_site_context games=1 sites=1 backend=corpus-db status=done
+===== PUBLIC CAPTURE O-LAYER INDEPENDENT =====
+capture_ship_rows:    1
+adjacent_rows:        0
+resolved:             0
+not_comparable:       1
+unresolved:           0
+O pair reachable:     0
+  factual LEFT/RIGHT: 0 / 0
+O pair not reachable: 0
+  factual LEFT/RIGHT: 0 / 0
+external O exact:     0
+external O mismatch:  0
+split candidate exact:   0
+split candidate mismatch: 0
+factual opponent active T/F/U: 1 / 0 / 0
+strict permission T/F/U: 0 / 0 / 1
+resolved dependency qualified/blocked: 0 / 0
+split exact qualified/blocked: 0 / 0
+split mismatch qualified/blocked: 0 / 0
+identity-anchored O reachable/not: 0 / 0
+identity-anchored split exact/mismatch/unresolved: 0 / 0 / 0
+postheldout candidate exact/mismatch/unresolved: 0 / 0 / 0
+postheldout branch reachable_sticky: 0
+postheldout branch nonreachable_neutral_fresh_fc: 0
+postheldout branch second_occurrence_reversal: 0
+postheldout branch reachable_numeric_opponent_override: 0
+blocked site predicted T/F/U: 0 / 0 / 0
+blocked history anchored T/F/U: 0 / 0 / 0
+blocked removed before next T/F/U: 0 / 0 / 0
+blocked owner changed T/F/U: 0 / 0 / 0
+output:               artifacts/public-capture-side/o-layer-independent-short32-parts/game-323802.json
+
+===== INDEPENDENT O-LAYER GAME 5/14: 341336 =====
+progress: stage=o_layer_site_context games=1 sites=3 backend=corpus-db status=start
+progress: stage=site_context game_id=341336 mode=corpus-db-targeted status=start
+progress: stage=site_context game_id=341336 mode=corpus-db-targeted snapshots=60 sites=3 status=done
+progress: stage=o_layer_site_context games=1 sites=3 backend=corpus-db status=done
+===== PUBLIC CAPTURE O-LAYER INDEPENDENT =====
+capture_ship_rows:    3
+adjacent_rows:        2
+resolved:             2
+not_comparable:       1
+unresolved:           0
+O pair reachable:     0
+  factual LEFT/RIGHT: 0 / 0
+O pair not reachable: 2
+  factual LEFT/RIGHT: 1 / 1
+external O exact:     0
+external O mismatch:  2
+split candidate exact:   1
+split candidate mismatch: 1
+factual opponent active T/F/U: 0 / 3 / 0
+strict permission T/F/U: 0 / 0 / 3
+resolved dependency qualified/blocked: 0 / 2
+split exact qualified/blocked: 0 / 1
+split mismatch qualified/blocked: 0 / 1
+identity-anchored O reachable/not: 2 / 0
+identity-anchored split exact/mismatch/unresolved: 2 / 0 / 0
+postheldout candidate exact/mismatch/unresolved: 1 / 1 / 0
+postheldout branch reachable_sticky: 1
+postheldout branch nonreachable_neutral_fresh_fc: 0
+postheldout branch second_occurrence_reversal: 0
+postheldout branch reachable_numeric_opponent_override: 1
+blocked site predicted T/F/U: 0 / 2 / 0
+blocked history anchored T/F/U: 0 / 2 / 0
+blocked removed before next T/F/U: 0 / 2 / 0
+blocked owner changed T/F/U: 0 / 2 / 0
+output:               artifacts/public-capture-side/o-layer-independent-short32-parts/game-341336.json
+
+===== INDEPENDENT O-LAYER GAME 6/14: 399914 =====
+progress: stage=o_layer_site_context games=1 sites=2 backend=corpus-db status=start
+progress: stage=site_context game_id=399914 mode=corpus-db-targeted status=start
+progress: stage=site_context game_id=399914 mode=corpus-db-targeted snapshots=48 sites=2 status=done
+progress: stage=o_layer_site_context games=1 sites=2 backend=corpus-db status=done
+===== PUBLIC CAPTURE O-LAYER INDEPENDENT =====
+capture_ship_rows:    2
+adjacent_rows:        0
+resolved:             0
+not_comparable:       2
+unresolved:           0
+O pair reachable:     0
+  factual LEFT/RIGHT: 0 / 0
+O pair not reachable: 0
+  factual LEFT/RIGHT: 0 / 0
+external O exact:     0
+external O mismatch:  0
+split candidate exact:   0
+split candidate mismatch: 0
+factual opponent active T/F/U: 0 / 2 / 0
+strict permission T/F/U: 0 / 0 / 2
+resolved dependency qualified/blocked: 0 / 0
+split exact qualified/blocked: 0 / 0
+split mismatch qualified/blocked: 0 / 0
+identity-anchored O reachable/not: 0 / 0
+identity-anchored split exact/mismatch/unresolved: 0 / 0 / 0
+postheldout candidate exact/mismatch/unresolved: 0 / 0 / 0
+postheldout branch reachable_sticky: 0
+postheldout branch nonreachable_neutral_fresh_fc: 0
+postheldout branch second_occurrence_reversal: 0
+postheldout branch reachable_numeric_opponent_override: 0
+blocked site predicted T/F/U: 0 / 0 / 0
+blocked history anchored T/F/U: 0 / 0 / 0
+blocked removed before next T/F/U: 0 / 0 / 0
+blocked owner changed T/F/U: 0 / 0 / 0
+output:               artifacts/public-capture-side/o-layer-independent-short32-parts/game-399914.json
+
+===== INDEPENDENT O-LAYER GAME 7/14: 421276 =====
+progress: stage=o_layer_site_context games=1 sites=2 backend=corpus-db status=start
+progress: stage=site_context game_id=421276 mode=corpus-db-targeted status=start
+progress: stage=site_context game_id=421276 mode=corpus-db-targeted snapshots=44 sites=2 status=done
+progress: stage=o_layer_site_context games=1 sites=2 backend=corpus-db status=done
+===== PUBLIC CAPTURE O-LAYER INDEPENDENT =====
+capture_ship_rows:    2
+adjacent_rows:        2
+resolved:             2
+not_comparable:       0
+unresolved:           0
+O pair reachable:     0
+  factual LEFT/RIGHT: 0 / 0
+O pair not reachable: 2
+  factual LEFT/RIGHT: 1 / 1
+external O exact:     0
+external O mismatch:  2
+split candidate exact:   1
+split candidate mismatch: 1
+factual opponent active T/F/U: 0 / 2 / 0
+strict permission T/F/U: 0 / 0 / 2
+resolved dependency qualified/blocked: 0 / 2
+split exact qualified/blocked: 0 / 1
+split mismatch qualified/blocked: 0 / 1
+identity-anchored O reachable/not: 1 / 1
+identity-anchored split exact/mismatch/unresolved: 2 / 0 / 0
+postheldout candidate exact/mismatch/unresolved: 2 / 0 / 0
+postheldout branch reachable_sticky: 1
+postheldout branch nonreachable_neutral_fresh_fc: 1
+postheldout branch second_occurrence_reversal: 0
+postheldout branch reachable_numeric_opponent_override: 0
+blocked site predicted T/F/U: 0 / 2 / 0
+blocked history anchored T/F/U: 0 / 2 / 0
+blocked removed before next T/F/U: 0 / 2 / 0
+blocked owner changed T/F/U: 0 / 2 / 0
+output:               artifacts/public-capture-side/o-layer-independent-short32-parts/game-421276.json
+
+===== INDEPENDENT O-LAYER GAME 8/14: 421949 =====
+progress: stage=o_layer_site_context games=1 sites=1 backend=corpus-db status=start
+progress: stage=site_context game_id=421949 mode=corpus-db-targeted status=start
+progress: stage=site_context game_id=421949 mode=corpus-db-targeted snapshots=24 sites=1 status=done
+progress: stage=o_layer_site_context games=1 sites=1 backend=corpus-db status=done
+===== PUBLIC CAPTURE O-LAYER INDEPENDENT =====
+capture_ship_rows:    1
+adjacent_rows:        1
+resolved:             1
+not_comparable:       0
+unresolved:           0
+O pair reachable:     0
+  factual LEFT/RIGHT: 0 / 0
+O pair not reachable: 1
+  factual LEFT/RIGHT: 0 / 1
+external O exact:     0
+external O mismatch:  1
+split candidate exact:   0
+split candidate mismatch: 1
+factual opponent active T/F/U: 0 / 1 / 0
+strict permission T/F/U: 0 / 0 / 1
+resolved dependency qualified/blocked: 0 / 1
+split exact qualified/blocked: 0 / 0
+split mismatch qualified/blocked: 0 / 1
+identity-anchored O reachable/not: 1 / 0
+identity-anchored split exact/mismatch/unresolved: 0 / 1 / 0
+postheldout candidate exact/mismatch/unresolved: 1 / 0 / 0
+postheldout branch reachable_sticky: 0
+postheldout branch nonreachable_neutral_fresh_fc: 0
+postheldout branch second_occurrence_reversal: 0
+postheldout branch reachable_numeric_opponent_override: 1
+blocked site predicted T/F/U: 0 / 1 / 0
+blocked history anchored T/F/U: 0 / 1 / 0
+blocked removed before next T/F/U: 0 / 1 / 0
+blocked owner changed T/F/U: 0 / 1 / 0
+output:               artifacts/public-capture-side/o-layer-independent-short32-parts/game-421949.json
+
+===== INDEPENDENT O-LAYER GAME 9/14: 494635 =====
+progress: stage=o_layer_site_context games=1 sites=2 backend=corpus-db status=start
+progress: stage=site_context game_id=494635 mode=corpus-db-targeted status=start
+progress: stage=site_context game_id=494635 mode=corpus-db-targeted snapshots=44 sites=2 status=done
+progress: stage=o_layer_site_context games=1 sites=2 backend=corpus-db status=done
+===== PUBLIC CAPTURE O-LAYER INDEPENDENT =====
+capture_ship_rows:    2
+adjacent_rows:        1
+resolved:             1
+not_comparable:       1
+unresolved:           0
+O pair reachable:     0
+  factual LEFT/RIGHT: 0 / 0
+O pair not reachable: 1
+  factual LEFT/RIGHT: 1 / 0
+external O exact:     0
+external O mismatch:  1
+split candidate exact:   1
+split candidate mismatch: 0
+factual opponent active T/F/U: 0 / 2 / 0
+strict permission T/F/U: 0 / 0 / 2
+resolved dependency qualified/blocked: 0 / 1
+split exact qualified/blocked: 0 / 1
+split mismatch qualified/blocked: 0 / 0
+identity-anchored O reachable/not: 0 / 1
+identity-anchored split exact/mismatch/unresolved: 1 / 0 / 0
+postheldout candidate exact/mismatch/unresolved: 1 / 0 / 0
+postheldout branch reachable_sticky: 0
+postheldout branch nonreachable_neutral_fresh_fc: 1
+postheldout branch second_occurrence_reversal: 0
+postheldout branch reachable_numeric_opponent_override: 0
+blocked site predicted T/F/U: 0 / 1 / 0
+blocked history anchored T/F/U: 0 / 1 / 0
+blocked removed before next T/F/U: 0 / 1 / 0
+blocked owner changed T/F/U: 0 / 1 / 0
+output:               artifacts/public-capture-side/o-layer-independent-short32-parts/game-494635.json
+
+===== INDEPENDENT O-LAYER GAME 10/14: 600044 =====
+progress: stage=o_layer_site_context games=1 sites=4 backend=corpus-db status=start
+progress: stage=site_context game_id=600044 mode=corpus-db-targeted status=start
+progress: stage=site_context game_id=600044 mode=corpus-db-targeted snapshots=88 sites=4 status=done
+progress: stage=o_layer_site_context games=1 sites=4 backend=corpus-db status=done
+===== PUBLIC CAPTURE O-LAYER INDEPENDENT =====
+capture_ship_rows:    4
+adjacent_rows:        3
+resolved:             3
+not_comparable:       1
+unresolved:           0
+O pair reachable:     1
+  factual LEFT/RIGHT: 0 / 1
+O pair not reachable: 2
+  factual LEFT/RIGHT: 2 / 0
+external O exact:     1
+external O mismatch:  2
+split candidate exact:   3
+split candidate mismatch: 0
+factual opponent active T/F/U: 4 / 0 / 0
+strict permission T/F/U: 2 / 0 / 2
+resolved dependency qualified/blocked: 1 / 2
+split exact qualified/blocked: 1 / 2
+split mismatch qualified/blocked: 0 / 0
+identity-anchored O reachable/not: 3 / 0
+identity-anchored split exact/mismatch/unresolved: 3 / 0 / 0
+postheldout candidate exact/mismatch/unresolved: 3 / 0 / 0
+postheldout branch reachable_sticky: 3
+postheldout branch nonreachable_neutral_fresh_fc: 0
+postheldout branch second_occurrence_reversal: 0
+postheldout branch reachable_numeric_opponent_override: 0
+blocked site predicted T/F/U: 2 / 0 / 0
+blocked history anchored T/F/U: 0 / 2 / 0
+blocked removed before next T/F/U: 0 / 2 / 0
+blocked owner changed T/F/U: 0 / 2 / 0
+output:               artifacts/public-capture-side/o-layer-independent-short32-parts/game-600044.json
+
+===== INDEPENDENT O-LAYER GAME 11/14: 645077 =====
+progress: stage=o_layer_site_context games=1 sites=2 backend=corpus-db status=start
+progress: stage=site_context game_id=645077 mode=corpus-db-targeted status=start
+progress: stage=site_context game_id=645077 mode=corpus-db-targeted snapshots=44 sites=2 status=done
+progress: stage=o_layer_site_context games=1 sites=2 backend=corpus-db status=done
+===== PUBLIC CAPTURE O-LAYER INDEPENDENT =====
+capture_ship_rows:    2
+adjacent_rows:        1
+resolved:             1
+not_comparable:       1
+unresolved:           0
+O pair reachable:     0
+  factual LEFT/RIGHT: 0 / 0
+O pair not reachable: 1
+  factual LEFT/RIGHT: 1 / 0
+external O exact:     0
+external O mismatch:  1
+split candidate exact:   1
+split candidate mismatch: 0
+factual opponent active T/F/U: 1 / 1 / 0
+strict permission T/F/U: 1 / 0 / 1
+resolved dependency qualified/blocked: 0 / 1
+split exact qualified/blocked: 0 / 1
+split mismatch qualified/blocked: 0 / 0
+identity-anchored O reachable/not: 0 / 1
+identity-anchored split exact/mismatch/unresolved: 1 / 0 / 0
+postheldout candidate exact/mismatch/unresolved: 1 / 0 / 0
+postheldout branch reachable_sticky: 0
+postheldout branch nonreachable_neutral_fresh_fc: 1
+postheldout branch second_occurrence_reversal: 0
+postheldout branch reachable_numeric_opponent_override: 0
+blocked site predicted T/F/U: 0 / 1 / 0
+blocked history anchored T/F/U: 0 / 1 / 0
+blocked removed before next T/F/U: 0 / 1 / 0
+blocked owner changed T/F/U: 0 / 1 / 0
+output:               artifacts/public-capture-side/o-layer-independent-short32-parts/game-645077.json
+
+===== INDEPENDENT O-LAYER GAME 12/14: 655827 =====
+progress: stage=o_layer_site_context games=1 sites=2 backend=corpus-db status=start
+progress: stage=site_context game_id=655827 mode=corpus-db-targeted status=start
+progress: stage=site_context game_id=655827 mode=corpus-db-targeted snapshots=44 sites=2 status=done
+progress: stage=o_layer_site_context games=1 sites=2 backend=corpus-db status=done
+===== PUBLIC CAPTURE O-LAYER INDEPENDENT =====
+capture_ship_rows:    3
+adjacent_rows:        1
+resolved:             1
+not_comparable:       2
+unresolved:           0
+O pair reachable:     0
+  factual LEFT/RIGHT: 0 / 0
+O pair not reachable: 1
+  factual LEFT/RIGHT: 1 / 0
+external O exact:     0
+external O mismatch:  1
+split candidate exact:   1
+split candidate mismatch: 0
+factual opponent active T/F/U: 2 / 1 / 0
+strict permission T/F/U: 2 / 0 / 1
+resolved dependency qualified/blocked: 1 / 0
+split exact qualified/blocked: 1 / 0
+split mismatch qualified/blocked: 0 / 0
+identity-anchored O reachable/not: 0 / 1
+identity-anchored split exact/mismatch/unresolved: 1 / 0 / 0
+postheldout candidate exact/mismatch/unresolved: 1 / 0 / 0
+postheldout branch reachable_sticky: 0
+postheldout branch nonreachable_neutral_fresh_fc: 1
+postheldout branch second_occurrence_reversal: 0
+postheldout branch reachable_numeric_opponent_override: 0
+blocked site predicted T/F/U: 0 / 0 / 0
+blocked history anchored T/F/U: 0 / 0 / 0
+blocked removed before next T/F/U: 0 / 0 / 0
+blocked owner changed T/F/U: 0 / 0 / 0
+output:               artifacts/public-capture-side/o-layer-independent-short32-parts/game-655827.json
+
+===== INDEPENDENT O-LAYER GAME 13/14: 663317 =====
+progress: stage=o_layer_site_context games=1 sites=1 backend=corpus-db status=start
+progress: stage=site_context game_id=663317 mode=corpus-db-targeted status=start
+progress: stage=site_context game_id=663317 mode=corpus-db-targeted snapshots=22 sites=1 status=done
+progress: stage=o_layer_site_context games=1 sites=1 backend=corpus-db status=done
+===== PUBLIC CAPTURE O-LAYER INDEPENDENT =====
+capture_ship_rows:    1
+adjacent_rows:        0
+resolved:             0
+not_comparable:       1
+unresolved:           0
+O pair reachable:     0
+  factual LEFT/RIGHT: 0 / 0
+O pair not reachable: 0
+  factual LEFT/RIGHT: 0 / 0
+external O exact:     0
+external O mismatch:  0
+split candidate exact:   0
+split candidate mismatch: 0
+factual opponent active T/F/U: 0 / 1 / 0
+strict permission T/F/U: 0 / 0 / 1
+resolved dependency qualified/blocked: 0 / 0
+split exact qualified/blocked: 0 / 0
+split mismatch qualified/blocked: 0 / 0
+identity-anchored O reachable/not: 0 / 0
+identity-anchored split exact/mismatch/unresolved: 0 / 0 / 0
+postheldout candidate exact/mismatch/unresolved: 0 / 0 / 0
+postheldout branch reachable_sticky: 0
+postheldout branch nonreachable_neutral_fresh_fc: 0
+postheldout branch second_occurrence_reversal: 0
+postheldout branch reachable_numeric_opponent_override: 0
+blocked site predicted T/F/U: 0 / 0 / 0
+blocked history anchored T/F/U: 0 / 0 / 0
+blocked removed before next T/F/U: 0 / 0 / 0
+blocked owner changed T/F/U: 0 / 0 / 0
+output:               artifacts/public-capture-side/o-layer-independent-short32-parts/game-663317.json
+
+===== INDEPENDENT O-LAYER GAME 14/14: 674696 =====
+progress: stage=o_layer_site_context games=1 sites=5 backend=corpus-db status=start
+progress: stage=site_context game_id=674696 mode=corpus-db-targeted status=start
+progress: stage=site_context game_id=674696 mode=corpus-db-targeted snapshots=99 sites=5 status=done
+progress: stage=o_layer_site_context games=1 sites=5 backend=corpus-db status=done
+===== PUBLIC CAPTURE O-LAYER INDEPENDENT =====
+capture_ship_rows:    5
+adjacent_rows:        3
+resolved:             3
+not_comparable:       2
+unresolved:           0
+O pair reachable:     3
+  factual LEFT/RIGHT: 3 / 0
+O pair not reachable: 0
+  factual LEFT/RIGHT: 0 / 0
+external O exact:     0
+external O mismatch:  3
+split candidate exact:   3
+split candidate mismatch: 0
+factual opponent active T/F/U: 5 / 0 / 0
+strict permission T/F/U: 3 / 0 / 2
+resolved dependency qualified/blocked: 3 / 0
+split exact qualified/blocked: 3 / 0
+split mismatch qualified/blocked: 0 / 0
+identity-anchored O reachable/not: 3 / 0
+identity-anchored split exact/mismatch/unresolved: 3 / 0 / 0
+postheldout candidate exact/mismatch/unresolved: 3 / 0 / 0
+postheldout branch reachable_sticky: 3
+postheldout branch nonreachable_neutral_fresh_fc: 0
+postheldout branch second_occurrence_reversal: 0
+postheldout branch reachable_numeric_opponent_override: 0
+blocked site predicted T/F/U: 0 / 0 / 0
+blocked history anchored T/F/U: 0 / 0 / 0
+blocked removed before next T/F/U: 0 / 0 / 0
+blocked owner changed T/F/U: 0 / 0 / 0
+output:               artifacts/public-capture-side/o-layer-independent-short32-parts/game-674696.json
+
+===== PUBLIC CAPTURE O-LAYER INDEPENDENT SHORT32: MERGE =====
+===== PUBLIC CAPTURE O-LAYER INDEPENDENT: MERGED =====
+game_passes:          14
+capture_ship_rows:    37
+adjacent_rows:        22
+resolved:             22
+not_comparable:       15
+unresolved:           0
+O pair reachable:     4
+  factual LEFT/RIGHT: 3 / 1
+O pair not reachable: 18
+  factual LEFT/RIGHT: 10 / 8
+external O exact:     1
+external O mismatch:  21
+split candidate exact:  13
+split candidate mismatch: 8
+resolved dependency qualified/blocked: 6 / 16
+split exact qualified/blocked: 5 / 8
+split mismatch qualified/blocked: 0 / 8
+identity-anchored O reachable/not: 15 / 7
+identity-anchored split exact/mismatch/unresolved: 20 / 1 / 1
+factual opponent active T/F/U: 15 / 22 / 0
+strict permission T/F/U: 10 / 0 / 27
+blocked site predicted T/F/U: 2 / 14 / 0
+blocked history anchored T/F/U: 0 / 16 / 0
+blocked removed before next T/F/U: 0 / 16 / 0
+blocked owner changed T/F/U: 0 / 16 / 0
+output:               artifacts/public-capture-side/independent-short32-postheldout-validation.json
+
+===== PUBLIC CAPTURE-SIDE INDEPENDENT SHORT32: POSTHELDOUT GATE =====
+independent_adjacent:          22
+candidate_rows:                22
+candidate_exact:               21
+candidate_mismatch:            1
+candidate_unresolved:          0
+branch_reachable_sticky: 9
+branch_nonreachable_neutral_fresh_fc: 6
+branch_second_occurrence_reversal: 1
+branch_reachable_numeric_opponent_override: 6
+branch_coverage_complete:      true
+candidate_gate_passed:         false
+promotion_ready:               false
+independent_validation_status: FAILED_MISMATCH
+gate_report:                   artifacts/public-capture-side/independent-short32-postheldout-gate.json
+exit status 3
