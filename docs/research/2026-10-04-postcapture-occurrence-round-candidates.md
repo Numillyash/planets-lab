@@ -898,3 +898,64 @@ already-advanced queue cursor across capture rather than a post-capture global
 restart/re-sort.
 
 It still does not promote c2ng ordering itself as NuHost behavior.
+
+
+## Cursor-geometry unification gate
+
+The held-out cursor output shows that the only raw external mismatch is caused
+by strict-attacker calibration, not cursor position:
+
+```text
+227887/T183
+external order = 240,261,370,397
+capture cursor = prize240 RIGHT / captor370 LEFT
+next cursor slot = ship397
+```
+
+The separate pair-recomposition diagnostic already proves both:
+
+```text
+240 <-> 261  eligible STANDARD
+240 <-> 397  eligible STANDARD
+```
+
+under both captured-FC bounds.
+
+A second frozen pass therefore conditions the cursor only on those independently
+proven pair-eligibility facts. This isolates cursor geometry from diplomacy /
+strict-permission calibration without fitting a new queue rule.
+
+The same gate also evaluates the frozen external cursor against the two
+discovery strict-rank>1 residuals that originally motivated the elapsed-history
+candidate:
+
+```text
+486109/T55 prize450 rank1=198 factual=467
+486109/T88 prize296 rank1=214 factual=454
+```
+
+Tracked gate:
+
+```text
+tools/research/run-postcapture-residual-cursor-unification.sh
+```
+
+It produces:
+
+```text
+heldout-genuine-queue-cursor-diagnostic.json
+discovery-rank2-cursor-diagnostic.json
+```
+
+Interpretation is structural only:
+
+```text
+- held-out eligibility-anchored exactness tests whether the already-frozen
+  cursor geometry explains all three genuine queue residuals once pair
+  eligibility is held fixed;
+
+- discovery factual-identity-anchored exactness tests whether that same frozen
+  cursor geometry also explains the two earlier discovery rank>1 residuals;
+
+- neither result promotes c2ng battle-value ordering itself as NuHost truth.
+```
