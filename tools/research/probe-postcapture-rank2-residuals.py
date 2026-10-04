@@ -26,6 +26,9 @@ DEFAULT_CORPUS_DB_ROOT = Path("/corpus-db")
 DEFAULT_O_LAYER = Path(
     "/workspace/artifacts/public-capture-side/discovery-o-layer-probe.json"
 )
+DEFAULT_CAPTURE_SIDE = Path(
+    "/workspace/artifacts/public-capture-side/discovery-capture-side.json"
+)
 DEFAULT_RESIDUALS = Path(
     "/research/artifacts/external-sources/afsim-r1/"
     "discovery-strict-rank-residuals.json"
@@ -191,12 +194,28 @@ def _candidate_projection(
 def run(args: argparse.Namespace) -> dict[str, Any]:
     oprobe, active_module = _load_main_modules(args.main_root)
     o_layer = _load(args.o_layer)
+    capture_side = _load(args.capture_side)
     residuals = _load(args.residuals)
 
     if o_layer.get("partition") not in {None, "discovery"}:
         raise ValueError("O-layer artifact is not discovery")
+    if capture_side.get("partition") != "discovery":
+        raise ValueError("capture-side artifact is not discovery")
     if residuals.get("partition") != "discovery":
         raise ValueError("residual artifact is not discovery")
+
+    capture_rows = capture_side.get("observations")
+    if (
+        not isinstance(capture_rows, Sequence)
+        or isinstance(capture_rows, (str, bytes))
+        or not all(isinstance(row, Mapping) for row in capture_rows)
+    ):
+        raise ValueError("capture-side observations missing or malformed")
+    capture_by_key = {
+        key: row
+        for row in capture_rows
+        if (key := _key(row)) is not None
+    }
 
     raw_rank2 = residuals.get("rank_gt1")
     if (
@@ -270,7 +289,17 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 int(context["y"]),
             )
             for row in targets.get(site_key, ()):
-                capture = oprobe._capture_projection(row)
+                row_key = _key(row)
+                source_capture = (
+                    capture_by_key.get(row_key)
+                    if row_key is not None
+                    else None
+                )
+                if not isinstance(source_capture, Mapping):
+                    raise ValueError(
+                        "full capture-side transition missing for targeted row"
+                    )
+                capture = oprobe._capture_projection(source_capture)
                 active_result = active_module._simulate_capture(
                     context=context,
                     capture=capture,
@@ -351,6 +380,10 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                         "capture_vcr_id": int(row["capture_vcr_id"]),
                         "next_vcr_id": int(row["next_vcr_id"]),
                         "captured_ship_id": prize_id,
+                        "captor_ship_id": source_capture.get("captor_ship_id"),
+                        "captor_owner_id": source_capture.get("captor_owner_id"),
+                        "owner_id_before": source_capture.get("owner_id_before"),
+                        "owner_id_after": source_capture.get("owner_id_after"),
                         "factual_next_opponent_id": factual_id,
                         "factual_prize_side": row.get("factual_prize_side"),
                         "requester_order": requester_order,
@@ -428,6 +461,11 @@ def parse_args() -> argparse.Namespace:
         default=DEFAULT_CORPUS_DB_ROOT,
     )
     parser.add_argument("--o-layer", type=Path, default=DEFAULT_O_LAYER)
+    parser.add_argument(
+        "--capture-side",
+        type=Path,
+        default=DEFAULT_CAPTURE_SIDE,
+    )
     parser.add_argument("--residuals", type=Path, default=DEFAULT_RESIDUALS)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     return parser.parse_args()
