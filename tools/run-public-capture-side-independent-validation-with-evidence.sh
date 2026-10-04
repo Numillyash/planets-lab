@@ -20,4 +20,12 @@ if ! git merge-base --is-ancestor "$FROZEN_CANDIDATE_COMMIT" HEAD; then
   exit 65
 fi
 
+FROZEN_CANDIDATE_PATH="tools/diagnostics/combat_public_capture_side_postheldout_candidate.py"
+if ! git diff --quiet "$FROZEN_CANDIDATE_COMMIT" -- "$FROZEN_CANDIDATE_PATH"; then
+  echo "ERROR: frozen post-heldout candidate changed after freeze." >&2
+  echo "candidate: $FROZEN_CANDIDATE_PATH" >&2
+  echo "frozen:    $FROZEN_CANDIDATE_COMMIT" >&2
+  exit 66
+fi
+
 exec bash tools/run-with-runtime-evidence.sh   public-capture-side-independent-validation   --include artifacts/public-capture-side   --   bash tools/run-public-capture-side-independent-validation.sh
