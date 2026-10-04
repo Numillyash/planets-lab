@@ -27,7 +27,7 @@ def merge_parts(parts: list[Mapping[str, Any]]) -> dict[str, Any]:
         if part.get("schema") != SCHEMA:
             raise ValueError(f"unexpected part schema: {part.get('schema')!r}")
         partition = part.get("partition")
-        if partition not in {"discovery", "heldout"}:
+        if partition not in {"discovery", "heldout", "independent"}:
             raise ValueError(f"unexpected part partition: {partition!r}")
         partitions.add(str(partition))
         part_summary = part.get("summary")
@@ -82,11 +82,11 @@ def merge_parts(parts: list[Mapping[str, Any]]) -> dict[str, Any]:
 
     return {
         "schema": MERGED_SCHEMA,
-        "evidence_status": (
-            "DISCOVERY_ONLY_FROZEN_SIDE_CANDIDATE"
-            if partition == "discovery"
-            else "HELDOUT_VALIDATION_FROZEN_SIDE_CANDIDATE"
-        ),
+        "evidence_status": {
+            "discovery": "DISCOVERY_ONLY_FROZEN_SIDE_CANDIDATE",
+            "heldout": "HELDOUT_VALIDATION_FROZEN_SIDE_CANDIDATE",
+            "independent": "INDEPENDENT_VALIDATION_POSTHELDOUT_CANDIDATE",
+        }[partition],
         "partition": partition,
         "scanned_game_ids": sorted(scanned_game_ids),
         "summary": {
@@ -99,7 +99,12 @@ def merge_parts(parts: list[Mapping[str, Any]]) -> dict[str, Any]:
             f"Merged from process-isolated {partition} per-game O-layer "
             "reports. Each game is evaluated in a fresh Python/container process "
             "to bound peak memory. The external cursor remains reference-only. "
-            "The held-out path validates the already frozen side candidate."
+            + (
+                "The independent path evaluates the frozen post-heldout candidate "
+                "against the new short32 population without fitting."
+                if partition == "independent"
+                else "The historical discovery/heldout evidence boundary is preserved."
+            )
         ),
     }
 
