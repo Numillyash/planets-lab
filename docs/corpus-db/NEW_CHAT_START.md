@@ -28,17 +28,21 @@ required for storage compatibility.
 
 ## Accepted storage backend
 
-Canonical public36 compact generation:
+Canonical ACTIVE public68 compact generation:
 
-    corpus-v2compact-public36-20261002T083138Z-11cd75fa918d
-    sha256 e1c0adc0a699d9d776f1fddb7dfc37c5a6714dfd9262f911a5939fda41cc7004
+    corpus-v2compact-public68-20261004T095236Z-09f71721b77c
+    sha256 5ae0d6fe1190d5f7cd4a90895f3c5ebf995280ad0b716e0960273a8a55e8f43a
 
 Runtime gate:
 
-    36 archives
-    126418 / 126418 exact semantic parity
-    13189001216 bytes (~12.283 GiB)
+    68 archives
+    169569 / 169569 exact semantic parity
+    17847300096 bytes (~16.622 GiB)
     shared normal/external read PASS
+
+Corpus fingerprint:
+
+    09f71721b77cd1875932f75ed515636d9b79720bcc520aff72d6f9dd51f8fbf7
 
 Physical invariants:
 
@@ -48,21 +52,21 @@ Physical invariants:
     immutable published generation
     original ZIP/TRN retained as oracle
 
-The compact generation is the accepted and ACTIVE read backend. CURRENT was
-successfully switched on 2026-10-03 and both normal/external readers passed the
-post-switch shared-read gate. The previous public36 typed1 generation remains a
-temporary rollback generation.
+The public68 compact generation is the accepted and ACTIVE read backend.
+CURRENT was successfully switched on 2026-10-04 and both normal/external
+readers passed the post-switch shared-read gate. The previous compact public36
+generation is retained as the first rollback backend.
 
 ## Operational activation
 
-Activation has already completed successfully. For re-verification or a future
-controlled re-activation, use the guarded activation runner:
+Activation completed successfully. For re-verification or a future controlled
+re-activation of this exact generation, use:
 
     export PLANETS_CORPUS_DB_ROOT=/root/projects/planets-corpus-db
-    bash tools/activate-corpus-db-compact-public36.sh
+    bash tools/activate-corpus-db-compact-public68.sh
 
-The runner validates the canonical SHA256, schema, corpus fingerprint, archive
-and member counts, compact physical invariants, then atomically switches CURRENT.
+The runner validates the exact SHA256, schema, corpus fingerprint, archive and
+member counts, compact physical invariants, then atomically switches CURRENT.
 It runs the normal + external concurrent read check after the switch and
 automatically restores the previous CURRENT if that verification fails.
 
@@ -130,7 +134,7 @@ Storage-model optimization remains closed; this rebuild is required solely
 because the corpus itself expanded.
 
 
-## Public68 compact runtime — activation pending
+## Public68 compact runtime — activated
 
 The combined public68 compact gate is now green.
 
@@ -156,9 +160,10 @@ Physical invariants remain compact1:
     no decoded_payload_zlib
     no secondary indexes
 
-CURRENT is intentionally still public36 until guarded activation completes.
+CURRENT now points to this public68 generation after a successful guarded
+activation on 2026-10-04. Public36 is retained as rollback.
 
-Activate public68 only through:
+Re-activate or re-verify public68 only through:
 
     export PLANETS_CORPUS_DB_ROOT=/root/projects/planets-corpus-db
     bash tools/activate-corpus-db-compact-public68.sh
@@ -167,3 +172,29 @@ Retain public36 as rollback after activation.
 
 Canonical runtime details:
 docs/handoff/2026-10-04-corpus-db-public68-runtime.md
+
+
+## Public68 CURRENT activation — closed
+
+The guarded activation completed successfully:
+
+    CURRENT
+    generations/corpus-v2compact-public68-20261004T095236Z-09f71721b77c.duckdb
+
+    source archives
+    68
+
+    source members
+    169569
+
+    normal + external shared read
+    PASS
+
+    rollback
+    generations/corpus-v2compact-public36-20261002T083138Z-11cd75fa918d.duckdb
+
+Canonical activation checkpoint:
+docs/handoff/2026-10-04-corpus-db-public68-current-activation.md
+
+The next project action is mechanics validation on the new independent
+short-public population, not further storage work.
