@@ -496,3 +496,59 @@ ineligible due to elapsed mutable combat history (for example a prior
 prize/rank1 pair occurrence or another consumed-order constraint).
 
 Held-out remains unread.
+
+
+## Targeted rank>1 replay input correction
+
+The first targeted replay stopped with:
+
+```text
+ERROR: targeted active replay unresolved: prize_owner_not_captor
+```
+
+This was not a corpus or queue residual.
+
+Cause: the saved O-layer observation intentionally contains the compact
+post-analysis projection but does not preserve the full capture transition
+identity, including:
+
+```text
+captor_ship_id
+captor_owner_id
+owner_id_before
+owner_id_after
+```
+
+The targeted probe incorrectly rebuilt `_capture_projection()` from that
+compact O-layer row. The mutable replay correctly transferred the prize to the
+captor's owner, but the final consistency check compared that owner against a
+missing `captor_owner_id=None`, producing the false
+`prize_owner_not_captor` result.
+
+The targeted probe now joins each residual to the canonical discovery
+capture-side artifact by:
+
+```text
+(game_id,
+ turn,
+ capture_vcr_id,
+ next_vcr_id,
+ captured_ship_id,
+ next_opponent_ship_id)
+```
+
+and uses the full capture-side row for mutable capture replay. O-layer remains
+the source of the already-computed queue/cursor context.
+
+Tracked correction:
+
+```text
+35c5f4783838ae7e87b1b2ae2a5b6c08186e342d
+research: join full capture transition in rank2 probe
+
+dd0bd13d9255f9f93a01754308e5a2a27d0ee364
+research: pass capture-side source into rank2 gate
+```
+
+No targeted rank>1 evidence was produced by the failed run. Held-out remained
+unread.
