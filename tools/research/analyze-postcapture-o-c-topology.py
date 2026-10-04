@@ -107,6 +107,48 @@ def _classify(
     return "OTHER_GEOMETRY"
 
 
+def _dependency_projection(
+    row: Mapping[str, Any],
+) -> dict[str, Any]:
+    active = row.get("active_dependency")
+    if not isinstance(active, Mapping):
+        return {
+            "qualified": None,
+            "status": None,
+            "reason": None,
+            "site_predicted": None,
+            "prediction_source": None,
+            "active": None,
+            "candidate_resolved": None,
+            "requests_new_owner": None,
+            "strict_permission": None,
+        }
+
+    fields = {
+        "active": active.get("factual_opponent_active"),
+        "candidate_resolved": active.get(
+            "factual_opponent_candidate_resolved"
+        ),
+        "requests_new_owner": active.get(
+            "factual_opponent_requests_new_owner"
+        ),
+        "strict_permission": active.get(
+            "factual_opponent_strict_permission"
+        ),
+    }
+    qualified = all(value is True for value in fields.values())
+    return {
+        "qualified": qualified,
+        "status": active.get("status"),
+        "reason": active.get("reason"),
+        "site_predicted": active.get("factual_opponent_site_predicted"),
+        "prediction_source": active.get(
+            "factual_opponent_position_source"
+        ),
+        **fields,
+    }
+
+
 def _partition_rows(
     payload: Mapping[str, Any],
     *,
@@ -211,13 +253,35 @@ def _partition_rows(
         counts[f"right:class:{classification}"] += 1
         counts["right:classified"] += 1
 
+        dependency = _dependency_projection(row)
+        dependency_qualified = dependency.get("qualified")
+        dependency_label = (
+            "qualified"
+            if dependency_qualified is True
+            else (
+                "not_qualified"
+                if dependency_qualified is False
+                else "unknown"
+            )
+        )
+        counts[f"right:dependency:{dependency_label}"] += 1
+        counts[
+            f"right:dependency:{dependency_label}:class:{classification}"
+        ] += 1
+
         if classification in {
             "O_AFTER_CAPTOR",
             "C_BETWEEN_PRIZE_AND_CAPTOR",
         }:
             counts["right:forward_union_covered"] += 1
+            counts[
+                f"right:dependency:{dependency_label}:forward_union_covered"
+            ] += 1
         if classification == "BEFORE_OR_AT_PRIZE":
             counts["right:requires_before_prize"] += 1
+            counts[
+                f"right:dependency:{dependency_label}:requires_before_prize"
+            ] += 1
 
         cases.append(
             {
@@ -233,6 +297,7 @@ def _partition_rows(
                 "factual_opponent_ship_id": int(factual_id),
                 "factual_prize_side": row.get("factual_prize_side"),
                 "identity_anchored_o_pair_exact": anchored.get("pair_exact"),
+                "dependency": dependency,
                 "classification": classification,
                 "positions": {
                     "prize": prize_pos,
@@ -269,6 +334,13 @@ def run(
     classified = int(total_counts["all:right:classified"])
     covered = int(total_counts["all:right:forward_union_covered"])
     before = int(total_counts["all:right:requires_before_prize"])
+    qualified = int(total_counts["all:right:dependency:qualified"])
+    qualified_covered = int(
+        total_counts["all:right:dependency:qualified:forward_union_covered"]
+    )
+    qualified_before = int(
+        total_counts["all:right:dependency:qualified:requires_before_prize"]
+    )
 
     return {
         "schema": "planets-lab.postcapture-o-c-topology-census.v1",
@@ -286,6 +358,14 @@ def run(
                 }
             ),
             "right_requires_before_prize": before,
+            "qualified_right_forward_union_coverage": {
+                "covered": qualified_covered,
+                "classified": qualified,
+                "exact_fraction": (
+                    qualified_covered / qualified if qualified else None
+                ),
+            },
+            "qualified_right_requires_before_prize": qualified_before,
         },
         "cases": sorted(
             all_cases,
@@ -375,6 +455,26 @@ def main() -> int:
                 "  forward union covered:        "
                 f"{counts.get(partition + ':right:forward_union_covered', 0)}"
             )
+            print(
+                "  dependency qualified:         "
+                f"{counts.get(partition + ':right:dependency:qualified', 0)}"
+            )
+            print(
+                "    qualified O after captor:    "
+                f"{counts.get(partition + ':right:dependency:qualified:class:O_AFTER_CAPTOR', 0)}"
+            )
+            print(
+                "    qualified C between:         "
+                f"{counts.get(partition + ':right:dependency:qualified:class:C_BETWEEN_PRIZE_AND_CAPTOR', 0)}"
+            )
+            print(
+                "    qualified before/at prize:   "
+                f"{counts.get(partition + ':right:dependency:qualified:class:BEFORE_OR_AT_PRIZE', 0)}"
+            )
+            print(
+                "    qualified forward covered:   "
+                f"{counts.get(partition + ':right:dependency:qualified:forward_union_covered', 0)}"
+            )
             print()
 
         print("RIGHT-SIDE NON-O CASES:")
@@ -392,7 +492,10 @@ def main() -> int:
                     f"captor={row.get('captor_ship_id')} "
                     f"factual={row.get('factual_opponent_ship_id')} "
                     f"class={row.get('classification')} "
-                    f"positions={row.get('positions')}"
+                    f"positions={row.get('positions')} "
+                    f"qualified={row.get('dependency', {}).get('qualified')} "
+                    f"site={row.get('dependency', {}).get('site_predicted')} "
+                    f"source={row.get('dependency', {}).get('prediction_source')}"
                 )
 
         print()
