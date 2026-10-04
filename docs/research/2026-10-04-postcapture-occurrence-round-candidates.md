@@ -779,3 +779,122 @@ Evidence label:
 ```text
 SECONDARY_HELDOUT_EXTERNAL_CURSOR_DIAGNOSTIC
 ```
+
+
+## Frozen external cursor result on the three genuine residuals
+
+The targeted frozen c2ng/THost cursor completed on the three held-out
+queue-order residuals:
+
+```text
+genuine residuals:       3
+external c2ng exact:     2
+external c2ng mismatch:  1
+external c2ng unresolved:0
+```
+
+### 257776 / T52
+
+```text
+external order:
+  76, 257, 134, 61, 151, 264
+
+capture:
+  prize=76 RIGHT
+  captor=151 LEFT
+  cursor=(right index 0, left index 4)
+
+static/history competitor=257
+factual opponent=264
+
+continuation:
+  next left index = 5
+  ship264 is active + strict
+  external predicted opponent = 264
+  exact
+```
+
+The higher-ranked competitors 257 and 134 occur *before* the already consumed
+capture-left cursor position.
+
+### 257776 / T251 / VCR 1724 -> 1725
+
+```text
+external order:
+  134, 40, 325, 411, 26, 71, 69, 1, 108, 66, ...
+
+capture:
+  prize=325 RIGHT
+  captor=71 LEFT
+  cursor=(right index 2, left index 5)
+
+static/history competitor=411
+factual opponent=66
+
+continuation after captor:
+  69   active but not strict attacker
+  1    active but not strict attacker
+  108  active but not strict attacker
+  66   active + strict attacker
+
+external predicted opponent = 66
+exact
+```
+
+Again, the static higher-priority competitor 411 lies before the consumed
+capture-left cursor position.
+
+### 227887 / T183
+
+```text
+external order:
+  240, 261, 370, 397
+
+capture:
+  prize=240 RIGHT
+  captor=370 LEFT
+  cursor=(right index 0, left index 2)
+
+static/history competitor=261
+factual opponent=397
+```
+
+Geometrically, cursor continuation reaches ship397 immediately:
+
+```text
+next left index = 3
+ship397
+```
+
+but the external comparator rejects it because the current independent strict
+attacker set reports:
+
+```text
+other_active=true
+other_strict_attacker=false
+```
+
+and therefore returns no pair.
+
+This is a cross-layer eligibility discrepancy, not a cursor-position mismatch:
+the separate production pair-recomposition diagnostic already established that
+397 <-> prize240 is eligible STANDARD under both captured-FC bounds.
+
+### Structural observation
+
+All three residuals share the same cursor geometry:
+
+```text
+higher static/history competitor lies before the capture-left cursor
+factual opponent lies after the capture-left cursor
+```
+
+The two rows whose external strict-attacker set is sufficient are exact.  The
+sole external mismatch is positionally consistent and fails only at the
+independent strict-attacker filter.
+
+This materially strengthens the hypothesis that the missing state is an
+already-advanced queue cursor across capture rather than a post-capture global
+restart/re-sort.
+
+It still does not promote c2ng ordering itself as NuHost behavior.
