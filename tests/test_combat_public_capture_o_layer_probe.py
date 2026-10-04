@@ -217,4 +217,4 @@ def test_probe_has_separate_independent_postheldout_mode() -> None:
     assert '"postheldout_candidate_exact"' in source
     assert '"postheldout_candidate_mismatch"' in source
     assert '"postheldout_candidate_unresolved"' in source
-    assert "evaluate_postheldout_capture_side" in source
+    assert "evaluate_frozen_postheldout_candidate" in source
