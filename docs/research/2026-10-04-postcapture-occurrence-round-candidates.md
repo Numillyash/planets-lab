@@ -717,3 +717,65 @@ than restarting selection from the global static minimum.
 The already-audited external c2ng original-order cursor is useful here only as
 a frozen comparator; it remains EXTERNAL_IMPLEMENTATION evidence and was
 already rejected as a general Nu model.
+
+
+## Next discriminator: queue cursor after capture
+
+After pair recomposition, three held-out rows remain genuine queue-order
+residuals. In all three:
+
+```text
+- predicted higher-ranked competitor is definitely eligible STANDARD
+  under both captured-FC bounds;
+- factual opponent is definitely eligible STANDARD under both bounds;
+- both prize/competitor and prize/factual pairs have zero prior occurrences;
+- predicted competitor and factual opponent both have zero prior VCR appearances.
+```
+
+Therefore the residual is downstream of:
+
+```text
+active membership
+request direction
+strict diplomacy
+static priority reconstruction
+pair cap
+pair occurrence round
+attacker freshness
+production pair eligibility / phase under current capture-FC bounds
+```
+
+The immediate structural discriminator is whether capture preserves an already
+advanced queue cursor rather than restarting from the global static minimum.
+
+A targeted diagnostic now applies the previously audited frozen external
+c2ng/THost original-order cursor to only those three genuine residuals:
+
+```text
+tools/research/probe-postcapture-heldout-cursor-residuals.py
+tools/research/run-postcapture-heldout-cursor-residuals.sh
+```
+
+This is not a new fitted candidate. The c2ng cursor was reconstructed and frozen
+before these held-out residuals were isolated, and it has already been rejected
+as a general Nu model on the wider discovery population.
+
+The diagnostic asks only whether that already-frozen cursor happens to explain
+the remaining residual pair identities and prints:
+
+```text
+external order
+capture cursor
+predicted cursor
+cursor trace
+predicted opponent
+pair exact
+```
+
+LEFT/RIGHT is not evaluated.
+
+Evidence label:
+
+```text
+SECONDARY_HELDOUT_EXTERNAL_CURSOR_DIAGNOSTIC
+```
