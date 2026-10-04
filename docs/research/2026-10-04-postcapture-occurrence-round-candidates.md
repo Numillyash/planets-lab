@@ -493,3 +493,71 @@ competitor definitely eligible under both bounds
 ```
 
 No selector is changed or fitted by this diagnostic.
+
+
+## Competitor-pair probe schema correction
+
+The first targeted competitor-pair run did **not** reach
+`decide_ship_combat_pair` for any of the four residual rows.
+
+Observed shape:
+
+```text
+competitor:fc_sensitive_or_unresolved = 4
+factual:fc_sensitive_or_unresolved    = 4
+
+eligible=None
+phase=None
+reasons=None
+```
+
+That combination indicates a pre-decision schema bridge failure rather than an
+actual unresolved pair decision.
+
+Cause: the public capture projection contains:
+
+```text
+ship_id
+captor_ship_id
+captor_owner_id
+current_opponent_ship_id
+from_vcr_id
+to_vcr_id
+current_side
+```
+
+but intentionally does not carry the older archive diagnostic fields:
+
+```text
+race_id_after
+hull_id_after
+```
+
+The targeted probe incorrectly attempted to read those absent fields.
+
+Correction:
+
+```text
+captured prize hull after capture
+    := prize hull from independently reconstructed ship entry
+
+captured prize race after capture
+    := captor race from factual captor appearance in capture VCR
+```
+
+The latter is the same factual source used by the canonical capture-transfer
+replay to construct `ShipCaptureTransfer`.
+
+The probe now also distinguishes:
+
+```text
+predecision_unresolved
+fc_sensitive_or_unresolved
+definitely_blocked
+definitely_eligible
+```
+
+and prints explicit pre-decision `status/reason`.
+
+The failed run produced no pair-eligibility evidence and does not alter any
+selector conclusion.
