@@ -200,3 +200,21 @@ def test_identity_anchor_injects_only_factual_opponent_eligibility() -> None:
     assert "side" not in factual
     assert active["active_ship_ids"] == [10]
 
+
+
+
+def test_probe_has_separate_independent_postheldout_mode() -> None:
+    root = Path(__file__).resolve().parents[1]
+    source = (
+        root / "tools/diagnostics/combat_public_capture_o_layer_probe.py"
+    ).read_text(encoding="utf-8")
+
+    assert 'choices=("discovery", "heldout", "independent")' in source
+    assert 'capture_partition = "all" if partition == "independent"' in source
+    assert '"INDEPENDENT_VALIDATION_POSTHELDOUT_CANDIDATE"' in source
+    assert '"postheldout_candidate_validation"' in source
+    assert '"postheldout_candidate_rows"' in source
+    assert '"postheldout_candidate_exact"' in source
+    assert '"postheldout_candidate_mismatch"' in source
+    assert '"postheldout_candidate_unresolved"' in source
+    assert "evaluate_postheldout_capture_side" in source
