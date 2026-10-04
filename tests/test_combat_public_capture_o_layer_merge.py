@@ -83,3 +83,16 @@ def test_merge_parts_preserves_heldout_partition() -> None:
     assert report["partition"] == "heldout"
     assert report["evidence_status"] == "HELDOUT_VALIDATION_FROZEN_SIDE_CANDIDATE"
 
+
+
+
+def test_merge_parts_preserves_independent_partition() -> None:
+    report = merge_parts([
+        _part(21, left=2, right=1, partition="independent"),
+        _part(22, left=1, right=2, partition="independent"),
+    ])
+    assert report["partition"] == "independent"
+    assert (
+        report["evidence_status"]
+        == "INDEPENDENT_VALIDATION_POSTHELDOUT_CANDIDATE"
+    )
