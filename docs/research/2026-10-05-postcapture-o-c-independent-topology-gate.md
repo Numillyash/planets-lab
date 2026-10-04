@@ -186,3 +186,28 @@ It does not establish:
 - LEFT/RIGHT assignment;
 - full mutable queue semantics.
 ```
+
+
+## Tracked implementation
+
+After the gate semantics above were frozen, the implementation was added:
+
+```text
+tools/research/analyze-postcapture-o-c-independent.py
+tests/test_postcapture_o_c_independent.py
+tools/research/run-postcapture-o-c-independent-topology.sh
+```
+
+The runner additionally verifies before evaluation:
+
+```text
+- canonical main checkout is at origin/main;
+- research checkout contains the frozen topology candidate commit;
+- research checkout contains the frozen independent-gate protocol commit;
+- short32 contains exactly 32 game ids;
+- short32 has zero game-id overlap with public36;
+- the already-produced independent merged O-layer artifact exists.
+```
+
+The runner does not rebuild short32, rescan Corpus DB, or modify the frozen
+topology classes.
