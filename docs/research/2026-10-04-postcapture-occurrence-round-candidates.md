@@ -442,3 +442,54 @@ canonical post-capture pair-recomposition audit.
 
 Only competitors that remain eligible and phase-resolved under those bounds are
 true queue-order residuals.
+
+
+## Targeted residual pair-recomposition diagnostic
+
+After the 8/12 secondary-heldout result, a new diagnostic was added without
+changing any selector:
+
+```text
+tools/research/probe-postcapture-heldout-competitor-pairs.py
+tools/research/run-postcapture-heldout-competitor-pairs.sh
+```
+
+It targets exactly the four rows where all three frozen history-aware selectors
+still disagree with factual N+1.
+
+For each row it compares:
+
+```text
+predicted higher-ranked competitor vs captured prize
+factual N+1 opponent          vs captured prize
+```
+
+through production `decide_ship_combat_pair`, using the same captured-prize
+order treatment as the established pair-recomposition audit:
+
+```text
+captured mission/PE neutralized
+captured diplomacy attack direction false
+opponent strict attack direction true
+preserved captured FC bound
+guaranteed-nonmatching fresh symbolic FC bound
+production HWM / PIA / C&I / Galactic Power / matching-FC composition
+```
+
+The probe also prints elapsed local VCR history through the capture VCR.
+
+Interpretation:
+
+```text
+competitor definitely blocked
+    -> previous requester ranking over-admitted the competitor;
+       not a queue-order residual
+
+competitor FC-sensitive / unresolved
+    -> cannot infer queue ordering from this row yet
+
+competitor definitely eligible under both bounds
+    -> genuine remaining queue-order residual
+```
+
+No selector is changed or fitted by this diagnostic.
