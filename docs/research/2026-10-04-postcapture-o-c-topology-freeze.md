@@ -220,3 +220,47 @@ The census is deliberately position-only. A successful forward-union result
 would justify implementing a later full O-then-C pair selector; it would not
 itself establish C eligibility, C priority, side assignment, or canonical Nu
 order values.
+
+
+## Legacy O-layer artifact compatibility correction
+
+The first census run stopped before reading any observation:
+
+```text
+ERROR: expected partition=discovery, got None
+```
+
+This was an artifact-schema compatibility failure, not a topology result.
+
+The existing discovery O-layer artifact was produced by the earlier v1 probe
+schema. That schema is discovery-only by construction but predates the explicit
+top-level:
+
+```text
+partition = discovery
+```
+
+field. It instead carries discovery provenance through fields such as:
+
+```text
+evidence_status = DISCOVERY_...
+source_discovery = .../discovery-capture-side.json
+```
+
+The strict-rank discovery tooling had already required the same compatibility
+bridge.
+
+The topology census now accepts both:
+
+```text
+current explicit partition metadata
+legacy v1 discovery/heldout provenance metadata
+```
+
+and rejects conflicting explicit partitions.
+
+A deterministic compatibility test suite is run by the census gate before
+analysis.
+
+No observation was classified by the failed run and no candidate conclusion
+changed.
