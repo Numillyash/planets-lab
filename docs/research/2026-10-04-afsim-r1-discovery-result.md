@@ -552,3 +552,111 @@ research: pass capture-side source into rank2 gate
 
 No targeted rank>1 evidence was produced by the failed run. Held-out remained
 unread.
+
+
+## Rank>1 targeted reconstruction: common prior-pair signature
+
+The corrected targeted replay resolved both qualified rank>1 cases.
+
+### 486109 / T55
+
+```text
+capture continuation:
+  VCR 191 -> 192
+  prize 450
+  static rank1 198
+  factual rank2 467
+
+strict order:
+  198, 467
+
+priority:
+  ship198 [3, 198, 0]
+  ship467 [3, 467, 0]
+
+prior pair occurrences through capture VCR:
+  prize450 / rank1-198   = 1
+  prize450 / factual467 = 0
+
+prior ship appearances:
+  prize450 = 2
+  rank1-198 = 2
+  factual467 = 0
+
+elapsed local VCRs:
+  189: 198 vs 448
+  190: 198 vs 450
+  191: 448 vs 450   <- capture
+```
+
+### 486109 / T88
+
+```text
+capture continuation:
+  VCR 518 -> 519
+  prize 296
+  static rank1 214
+  factual rank2 454
+
+strict order:
+  214, 454
+
+priority:
+  ship214 [3, 214, 0]
+  ship454 [3, 454, 0]
+
+prior pair occurrences through capture VCR:
+  prize296 / rank1-214   = 1
+  prize296 / factual454 = 0
+
+prior ship appearances:
+  prize296 = 2
+  rank1-214 = 3
+  factual454 = 0
+
+elapsed local VCRs:
+  512: 73 vs 123
+  513: 123 vs 494
+  514: 412 vs 494
+  515: 214 vs 412
+  516: 213 vs 214
+  517: 214 vs 296
+  518: 296 vs 374   <- capture
+```
+
+The two static rank failures therefore share an exact pair-history feature:
+
+```text
+static rank1 would create a second occurrence of prize/rank1
+factual rank2 creates a first occurrence of prize/factual
+```
+
+They also share a broader ship-history feature:
+
+```text
+static rank1 attacker has prior VCR appearances
+factual rank2 attacker has none
+```
+
+These observations do not yet distinguish a pair-occurrence round from a more
+general attacker-freshness rule.
+
+The competing hypotheses were therefore frozen before testing the complete
+15-row dependency-qualified discovery population in:
+
+```text
+docs/research/2026-10-04-postcapture-occurrence-round-candidates.md
+```
+
+Frozen comparison set:
+
+```text
+STATIC_PRIORITY
+STATIC_CAP2
+PAIR_OCCURRENCE_ROUND
+FRESH_ATTACKER_BOOLEAN
+ATTACKER_APPEARANCE_COUNT
+```
+
+A successful full-discovery fit is still fitting evidence, not independent
+validation.
