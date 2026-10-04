@@ -4,7 +4,7 @@ Date: 2026-10-04
 
 Status:
 
-    RUNTIME_PENDING
+    RUNTIME_COMPLETE_FAILED_MISMATCH
 
 ## Evidence boundary
 
@@ -97,3 +97,29 @@ This adapter can fail closed on missing discriminator inputs without changing
 the frozen candidate formula.
 
 No independent runtime result is claimed by this checkpoint.
+
+
+## Runtime completion
+
+Runtime evidence:
+
+    runtime-logs/public-capture-side-independent-validation/
+    20261004T165819Z_051e365210be
+
+Result:
+
+    adjacent rows                22
+    exact                        21
+    mismatch                      1
+    unresolved                    0
+    branch coverage complete   true
+    candidate gate passed      false
+    promotion ready            false
+    status              FAILED_MISMATCH
+
+The gate behaved as intended: the new short32 population covered all four frozen
+candidate branches and exposed one real mismatch rather than an unresolved
+dependency.
+
+Canonical result analysis:
+docs/handoff/2026-10-05-public68-capture-side-independent-result.md
