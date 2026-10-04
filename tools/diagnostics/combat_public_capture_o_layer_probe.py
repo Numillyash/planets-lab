@@ -25,6 +25,9 @@ from combat_host_post_mutation_next_pair_audit import _appearance_key
 from combat_public_capture_side_frozen_candidate import (
     predict_frozen_capture_side,
 )
+from combat_public_capture_side_postheldout_candidate import (
+    evaluate_postheldout_capture_side,
+)
 from planets_lab.corpus.archive import TurnMember
 from planets_lab.corpus.corpus_db_compact import reconstruct_compact_member
 from planets_lab.corpus.corpus_db_runtime import (
@@ -753,9 +756,10 @@ def _identity_anchor_factual_opponent(
 
 def run(args: argparse.Namespace) -> dict[str, Any]:
     partition = str(getattr(args, "partition", "discovery"))
+    capture_partition = "all" if partition == "independent" else partition
     capture_side_report = _load_capture_side_report(
         args.capture_side_report,
-        expected_partition=partition,
+        expected_partition=capture_partition,
     )
     observations = [
         dict(row)
@@ -1037,6 +1041,97 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                     elif anchored_pair_exact is False:
                         counts["identity_anchored_o_pair_not_reachable"] += 1
 
+                postheldout_candidate_validation: dict[str, Any] | None = None
+                capture_vcr_id = row.get("capture_vcr_id")
+                next_vcr_id = row.get("next_vcr_id")
+                adjacent_row = (
+                    isinstance(capture_vcr_id, int)
+                    and not isinstance(capture_vcr_id, bool)
+                    and isinstance(next_vcr_id, int)
+                    and not isinstance(next_vcr_id, bool)
+                    and int(next_vcr_id) == int(capture_vcr_id) + 1
+                )
+                if partition == "independent":
+                    if not adjacent_row:
+                        counts["postheldout_candidate_not_comparable"] += 1
+                    else:
+                        counts["postheldout_candidate_rows"] += 1
+                        anchored_pair_exact = (
+                            identity_anchored_result.get("pair_exact")
+                            if identity_anchored_result.get("status") == "resolved"
+                            else None
+                        )
+                        order_context = row.get("order_context")
+                        order_context = (
+                            order_context
+                            if isinstance(order_context, Mapping)
+                            else {}
+                        )
+                        opponent_tminus1 = order_context.get("opponent_tminus1")
+                        opponent_tminus1 = (
+                            opponent_tminus1
+                            if isinstance(opponent_tminus1, Mapping)
+                            else {}
+                        )
+                        opponent_priority = opponent_tminus1.get("priority")
+                        opponent_priority_group = (
+                            int(opponent_priority[0])
+                            if isinstance(opponent_priority, Sequence)
+                            and not isinstance(opponent_priority, (str, bytes))
+                            and len(opponent_priority) >= 1
+                            and isinstance(opponent_priority[0], int)
+                            and not isinstance(opponent_priority[0], bool)
+                            else None
+                        )
+                        side_controls = order_context.get("side_controls")
+                        side_controls = (
+                            side_controls
+                            if isinstance(side_controls, Mapping)
+                            else {}
+                        )
+                        prior_same_pair = row.get("prior_same_pair_occurrences")
+                        prior_same_pair = (
+                            int(prior_same_pair)
+                            if isinstance(prior_same_pair, int)
+                            and not isinstance(prior_same_pair, bool)
+                            else -1
+                        )
+                        postheldout_candidate_validation = (
+                            evaluate_postheldout_capture_side(
+                                prior_same_pair_occurrences=prior_same_pair,
+                                next_opponent_previous_side=row.get(
+                                    "next_opponent_previous_side"
+                                ),
+                                identity_anchored_o_pair_reachable=(
+                                    anchored_pair_exact
+                                    if isinstance(anchored_pair_exact, bool)
+                                    else None
+                                ),
+                                capture_side=row.get("capture_side"),
+                                opponent_priority_group=opponent_priority_group,
+                                neutral_fresh_fc_side=side_controls.get(
+                                    "neutral_orders_fresh_fc"
+                                ),
+                                factual_side=factual_side,
+                            )
+                        )
+                        branch_name = str(
+                            postheldout_candidate_validation.get(
+                                "branch",
+                                "unknown",
+                            )
+                        )
+                        counts[f"postheldout_branch:{branch_name}"] += 1
+                        candidate_exact = postheldout_candidate_validation.get(
+                            "exact"
+                        )
+                        if candidate_exact is True:
+                            counts["postheldout_candidate_exact"] += 1
+                        elif candidate_exact is False:
+                            counts["postheldout_candidate_mismatch"] += 1
+                        else:
+                            counts["postheldout_candidate_unresolved"] += 1
+
                 split_candidate: dict[str, Any] | None = None
                 if status == "resolved":
                     dependency_qualified = all(
@@ -1150,6 +1245,9 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                             "active_dependency": active_dependency,
                             "identity_anchored_result": identity_anchored_result,
                             "identity_anchored_split": identity_anchored_split,
+                            "postheldout_candidate_validation": (
+                                postheldout_candidate_validation
+                            ),
                             "split_candidate": split_candidate,
                             "result": result,
                         }
@@ -1193,7 +1291,12 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         )
 
         counts["capture_ship_rows"] = len(observations)
-        counts["discovery_ship_rows"] = len(observations)
+        if partition == "discovery":
+            counts["discovery_ship_rows"] = len(observations)
+        elif partition == "heldout":
+            counts["heldout_ship_rows"] = len(observations)
+        elif partition == "independent":
+            counts["independent_ship_rows"] = len(observations)
         counts["observations_seen"] = len(seen)
         counts["adjacent_rows"] = sum(
             1
@@ -1207,11 +1310,11 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
 
         return {
             "schema": SCHEMA,
-            "evidence_status": (
-                "DISCOVERY_ONLY_FROZEN_SIDE_CANDIDATE"
-                if partition == "discovery"
-                else "HELDOUT_VALIDATION_FROZEN_SIDE_CANDIDATE"
-            ),
+            "evidence_status": {
+                "discovery": "DISCOVERY_ONLY_FROZEN_SIDE_CANDIDATE",
+                "heldout": "HELDOUT_VALIDATION_FROZEN_SIDE_CANDIDATE",
+                "independent": "INDEPENDENT_VALIDATION_POSTHELDOUT_CANDIDATE",
+            }[partition],
             "partition": partition,
             "source_capture_side_report": str(args.capture_side_report),
             "database_path": str(database_path),
@@ -1224,24 +1327,33 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             },
             "observations": examples,
             "evidence_boundary": (
-                f"{partition.capitalize()} bounded O-layer comparator. The frozen-order "
-                "cursor is transcribed from the separately audited external "
-                "c2ng/THost path and is not NuHost authority. Only globally "
-                "adjacent capture->next VCR rows are comparable; nonadjacent "
-                "rows fail closed. Capture VCR N anchors the existing cursor, "
-                "independently reconstructed movement/site state comes from "
-                "only required T-1/T members of the active exact-parity Corpus "
-                "DB, strict post-capture attackers determine reachability, and "
-                "factual N+1 supplies only the final opponent/side comparator. "
-                "The split side candidate is discovery-only: reachable original-"
-                "order pairs retain the factual capture side, while non-reachable "
-                "pairs use the independently computed neutral/fresh-FC priority "
-                "control. A second identity-anchored comparator conditions only "
-                "on the factual N+1 opponent identity/eligibility, never its side, "
-                "so side assignment can be tested separately from fail-closed "
-                "special-movement position reconstruction. It is not an independent "
-                "queue predictor. Dependency fields remain explicit. Held-out "
-                "games are included only when the selected partition is heldout."
+                (
+                    "Independent short-public validation of the already frozen "
+                    "post-heldout capture-side candidate. The source capture report "
+                    "contains all indexed games from the independent short32 "
+                    "manifest. Only globally adjacent capture->next VCR rows enter "
+                    "the candidate gate. Pair reachability is identity-anchored on "
+                    "the factual N+1 opponent identity/eligibility but never its "
+                    "side. Repeated-pair reversal is evaluated before O-layer "
+                    "reachability, matching the frozen candidate branch order. "
+                    "Unknown opponent priority on a reachable first-occurrence row "
+                    "fails closed. No candidate parameter is fitted from this "
+                    "population."
+                )
+                if partition == "independent"
+                else (
+                    f"{partition.capitalize()} bounded O-layer comparator. The "
+                    "frozen-order cursor is transcribed from the separately audited "
+                    "external c2ng/THost path and is not NuHost authority. Only "
+                    "globally adjacent capture->next VCR rows are comparable; "
+                    "nonadjacent rows fail closed. Capture VCR N anchors the "
+                    "existing cursor, independently reconstructed movement/site "
+                    "state comes from only required T-1/T members of the active "
+                    "exact-parity Corpus DB, strict post-capture attackers determine "
+                    "reachability, and factual N+1 supplies only the final "
+                    "opponent/side comparator. The split side candidate retains its "
+                    "original discovery/heldout evidence boundary."
+                )
             ),
         }
     finally:
@@ -1264,7 +1376,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--partition",
-        choices=("discovery", "heldout"),
+        choices=("discovery", "heldout", "independent"),
         default="discovery",
     )
     parser.add_argument(
@@ -1352,6 +1464,23 @@ def main() -> int:
             f"{counts.get('identity_anchored_split_mismatch', 0)} / "
             f"{counts.get('identity_anchored_split_unresolved', 0)}"
         )
+        if report.get("partition") == "independent":
+            print(
+                "postheldout candidate exact/mismatch/unresolved: "
+                f"{counts.get('postheldout_candidate_exact', 0)} / "
+                f"{counts.get('postheldout_candidate_mismatch', 0)} / "
+                f"{counts.get('postheldout_candidate_unresolved', 0)}"
+            )
+            for branch_name in (
+                "reachable_sticky",
+                "nonreachable_neutral_fresh_fc",
+                "second_occurrence_reversal",
+                "reachable_numeric_opponent_override",
+            ):
+                print(
+                    f"postheldout branch {branch_name}: "
+                    f"{counts.get('postheldout_branch:' + branch_name, 0)}"
+                )
         for label, key in (
             ("blocked site predicted T/F/U", "factual_opponent_site_predicted"),
             ("blocked history anchored T/F/U", "factual_opponent_history_anchored"),
