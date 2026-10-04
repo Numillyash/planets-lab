@@ -110,3 +110,24 @@ The most valuable prospective discriminators are:
 - captured RIGHT + numeric-FC opponent controls.
 
 Do not modify the canonical combat rules from this document alone.
+
+
+## Subsequent independent result — 2026-10-05
+
+This candidate has now been independently tested on the new short32 population
+and **failed**:
+
+    adjacent rows       22
+    exact               21
+    mismatch             1
+    unresolved           0
+
+The counterexample is game 341336, turn 75, VCR338 -> 339. Captured ship211
+remains LEFT against numeric-priority opponent369 (FC 004, group 0) because the
+opponent is on mission 3 / Kill. The candidate predicted RIGHT.
+
+This historical document remains the record of how the post-heldout candidate
+was derived. It is no longer the active research candidate.
+
+See:
+docs/handoff/2026-10-05-public68-capture-side-independent-result.md
