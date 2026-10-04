@@ -431,3 +431,38 @@ fails.
 
 Runtime handoff:
 docs/handoff/2026-10-04-corpus-db-public68-runtime.md
+
+
+## Public68 CURRENT activated — 2026-10-04
+
+The guarded public68 activation completed successfully.
+
+```text
+CURRENT
+generations/corpus-v2compact-public68-20261004T095236Z-09f71721b77c.duckdb
+
+source archives
+68
+
+source members
+169569
+
+corpus fingerprint
+09f71721b77cd1875932f75ed515636d9b79720bcc520aff72d6f9dd51f8fbf7
+
+shared normal/external read
+PASS
+
+rollback
+generations/corpus-v2compact-public36-20261002T083138Z-11cd75fa918d.duckdb
+```
+
+No rollback was required. compact1 remains the accepted physical model and
+storage optimization remains closed.
+
+The independent short-public evidence is now reachable through canonical
+`CURRENT`. Return immediately to mechanics and independently validate the
+post-heldout capture-side candidate on the new population before promotion.
+
+Activation checkpoint:
+`docs/handoff/2026-10-04-corpus-db-public68-current-activation.md`.
