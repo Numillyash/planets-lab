@@ -264,3 +264,92 @@ analysis.
 
 No observation was classified by the failed run and no candidate conclusion
 changed.
+
+
+## Full public topology census result
+
+The first successful census completed on the already-open public discovery and
+held-out O-layer artifacts.
+
+Population:
+
+```text
+all adjacent captures:       60
+capture RIGHT:               54
+classified RIGHT:            54
+```
+
+Topology:
+
+```text
+O_AFTER_CAPTOR:               15
+C_BETWEEN_PRIZE_AND_CAPTOR:   38
+BEFORE_OR_AT_PRIZE:            1
+OTHER_GEOMETRY:                0
+
+forward union covered:        53 / 54
+```
+
+Partition split:
+
+```text
+discovery:
+  RIGHT classified            27
+  O after captor               6
+  C between prize/captor      20
+  before/at prize              1
+
+heldout:
+  RIGHT classified            27
+  O after captor               9
+  C between prize/captor      18
+  before/at prize              0
+```
+
+This strongly rejects the idea that post-capture continuation is usually a
+global restart from the best static requester. Most factual continuations lie
+inside the already-passed interval between the prize and its capture target.
+
+The single positional counterexample is:
+
+```text
+discovery 597910/T94
+VCR 672 -> 673
+prize=197
+captor=14
+factual=244
+positions:
+  factual=0
+  prize=1
+  captor=2
+classification:
+  BEFORE_OR_AT_PRIZE
+```
+
+This exact row was already isolated earlier by the strict-rank residual
+diagnostic as a movement-position fail-closed case:
+
+```text
+prediction_source = intercept_movement
+site_predicted    = false
+```
+
+Therefore it must not be treated as a clean queue-topology counterexample until
+the movement dependency is separated.
+
+The census tool is now extended to stratify every topology class by the same
+post-capture dependency qualification used by the strict-rank analysis.
+
+The next decisive check is:
+
+```text
+qualified RIGHT rows
+qualified O_AFTER_CAPTOR
+qualified C_BETWEEN_PRIZE_AND_CAPTOR
+qualified BEFORE_OR_AT_PRIZE
+qualified forward-union coverage
+```
+
+If the only BEFORE_OR_AT_PRIZE row remains dependency-blocked, then the current
+public corpus supports the forward O/C topology on every dependency-qualified
+RIGHT capture continuation.
