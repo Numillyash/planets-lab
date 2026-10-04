@@ -1,0 +1,542 @@
+{
+  "baseline_manifest": "validation/corpus/manifests/public-short-expansion-with-public36.jsonl",
+  "bounds": {
+    "max_slots": 16,
+    "max_turn": 180,
+    "min_slots": 8,
+    "min_turn": 80
+  },
+  "combined_games": 100,
+  "eligible_games": 3167,
+  "failed_loadinfo": [],
+  "listed_games": 8681,
+  "outputs": {
+    "candidates": "validation/corpus/manifests/public-postindependent-validation-candidates.jsonl",
+    "combined": "validation/corpus/manifests/public-postindependent-validation-with-public68.jsonl",
+    "selected": "validation/corpus/manifests/public-postindependent-validation-selected.jsonl"
+  },
+  "probed_games": 320,
+  "schema": "planets-lab.public-validation-selection.v1",
+  "selected": [
+    {
+      "bucket": "finite_fuel",
+      "game_id": 2466,
+      "gametype": 2,
+      "name": "Alioth Sector",
+      "reasons": [
+        "bucket=finite_fuel",
+        "bucket_bonus=30.0",
+        "novelty=37.0",
+        "turn_bonus=8.2",
+        "slot_bonus=2.8"
+      ],
+      "score": 77.9,
+      "slots": 11,
+      "turn": 163
+    },
+    {
+      "bucket": "campaign",
+      "game_id": 449095,
+      "gametype": 2,
+      "name": "Yukindo IV (v5): A New Hopeful",
+      "reasons": [
+        "bucket=campaign",
+        "bucket_bonus=30.0",
+        "novelty=31.0",
+        "turn_bonus=7.8",
+        "slot_bonus=2.8"
+      ],
+      "score": 71.55,
+      "slots": 11,
+      "turn": 156
+    },
+    {
+      "bucket": "campaign",
+      "game_id": 217591,
+      "gametype": 2,
+      "name": "Xiombarg Sector",
+      "reasons": [
+        "bucket=campaign",
+        "bucket_bonus=30.0",
+        "novelty=30.0",
+        "turn_bonus=7.5",
+        "slot_bonus=3.0"
+      ],
+      "score": 70.5,
+      "slots": 12,
+      "turn": 150
+    },
+    {
+      "bucket": "finite_fuel",
+      "game_id": 228199,
+      "gametype": 2,
+      "name": "Delphi Sector",
+      "reasons": [
+        "bucket=finite_fuel",
+        "bucket_bonus=30.0",
+        "novelty=27.0",
+        "turn_bonus=8.6",
+        "slot_bonus=2.8"
+      ],
+      "score": 68.35,
+      "slots": 11,
+      "turn": 172
+    },
+    {
+      "bucket": "campaign",
+      "game_id": 644013,
+      "gametype": 3,
+      "name": "Campaign Teams of Two, Lone Wolf",
+      "reasons": [
+        "bucket=campaign",
+        "bucket_bonus=30.0",
+        "novelty=28.0",
+        "turn_bonus=7.2",
+        "slot_bonus=2.5"
+      ],
+      "score": 67.75,
+      "slots": 10,
+      "turn": 145
+    },
+    {
+      "bucket": "campaign",
+      "game_id": 467183,
+      "gametype": 2,
+      "name": "Diplomacy Rules",
+      "reasons": [
+        "bucket=campaign",
+        "bucket_bonus=30.0",
+        "novelty=27.0",
+        "turn_bonus=7.8",
+        "slot_bonus=2.8"
+      ],
+      "score": 67.55,
+      "slots": 11,
+      "turn": 156
+    },
+    {
+      "bucket": "finite_fuel",
+      "game_id": 134382,
+      "gametype": 2,
+      "name": "The Misty Challenge",
+      "reasons": [
+        "bucket=finite_fuel",
+        "bucket_bonus=30.0",
+        "novelty=22.0",
+        "turn_bonus=7.7",
+        "slot_bonus=3.2"
+      ],
+      "score": 62.9,
+      "slots": 13,
+      "turn": 153
+    },
+    {
+      "bucket": "finite_fuel",
+      "game_id": 470320,
+      "gametype": 2,
+      "name": "Planets Magazine Classic Invitational II",
+      "reasons": [
+        "bucket=finite_fuel",
+        "bucket_bonus=30.0",
+        "novelty=19.0",
+        "turn_bonus=8.6",
+        "slot_bonus=2.8"
+      ],
+      "score": 60.3,
+      "slots": 11,
+      "turn": 171
+    },
+    {
+      "bucket": "campaign",
+      "game_id": 629488,
+      "gametype": 3,
+      "name": "Griffin's Lion & Eagle Team Game",
+      "reasons": [
+        "bucket=campaign",
+        "bucket_bonus=30.0",
+        "novelty=19.0",
+        "turn_bonus=8.3",
+        "slot_bonus=2.5"
+      ],
+      "score": 59.85,
+      "slots": 10,
+      "turn": 167
+    },
+    {
+      "bucket": "sphere",
+      "game_id": 138322,
+      "gametype": 2,
+      "name": "START HARD | Round 1 | Sector 1",
+      "reasons": [
+        "bucket=sphere",
+        "bucket_bonus=30.0",
+        "novelty=18.0",
+        "turn_bonus=7.5",
+        "slot_bonus=2.8"
+      ],
+      "score": 58.25,
+      "slots": 11,
+      "turn": 150
+    },
+    {
+      "bucket": "finite_fuel",
+      "game_id": 423531,
+      "gametype": 2,
+      "name": "Planets Magazine Classic Invitational",
+      "reasons": [
+        "bucket=finite_fuel",
+        "bucket_bonus=30.0",
+        "novelty=18.0",
+        "turn_bonus=7.5",
+        "slot_bonus=2.8"
+      ],
+      "score": 58.2,
+      "slots": 11,
+      "turn": 149
+    },
+    {
+      "bucket": "campaign",
+      "game_id": 199300,
+      "gametype": 2,
+      "name": "p360 Campaign: with Horwasp!",
+      "reasons": [
+        "bucket=campaign",
+        "bucket_bonus=30.0",
+        "novelty=18.0",
+        "turn_bonus=6.5",
+        "slot_bonus=3.0"
+      ],
+      "score": 57.55,
+      "slots": 12,
+      "turn": 131
+    },
+    {
+      "bucket": "finite_fuel",
+      "game_id": 347358,
+      "gametype": 2,
+      "name": "Casual Classic",
+      "reasons": [
+        "bucket=finite_fuel",
+        "bucket_bonus=30.0",
+        "novelty=16.0",
+        "turn_bonus=8.5",
+        "slot_bonus=2.8"
+      ],
+      "score": 57.25,
+      "slots": 11,
+      "turn": 170
+    },
+    {
+      "bucket": "sphere",
+      "game_id": 264889,
+      "gametype": 2,
+      "name": "Kameon Sector",
+      "reasons": [
+        "bucket=sphere",
+        "bucket_bonus=30.0",
+        "novelty=16.0",
+        "turn_bonus=8.4",
+        "slot_bonus=2.8"
+      ],
+      "score": 57.2,
+      "slots": 11,
+      "turn": 169
+    },
+    {
+      "bucket": "sphere",
+      "game_id": 171253,
+      "gametype": 2,
+      "name": "PARTIDA DE CULO",
+      "reasons": [
+        "bucket=sphere",
+        "bucket_bonus=30.0",
+        "novelty=16.0",
+        "turn_bonus=7.3",
+        "slot_bonus=3.2"
+      ],
+      "score": 56.6,
+      "slots": 13,
+      "turn": 147
+    },
+    {
+      "bucket": "championship",
+      "game_id": 476826,
+      "gametype": 6,
+      "name": "The Imbrium Conflict",
+      "reasons": [
+        "bucket=championship",
+        "bucket_bonus=30.0",
+        "novelty=16.0",
+        "turn_bonus=7.2",
+        "slot_bonus=2.8"
+      ],
+      "score": 55.95,
+      "slots": 11,
+      "turn": 144
+    },
+    {
+      "bucket": "championship",
+      "game_id": 416233,
+      "gametype": 6,
+      "name": "The Cognitum War",
+      "reasons": [
+        "bucket=championship",
+        "bucket_bonus=30.0",
+        "novelty=16.0",
+        "turn_bonus=7.1",
+        "slot_bonus=2.8"
+      ],
+      "score": 55.85,
+      "slots": 11,
+      "turn": 142
+    },
+    {
+      "bucket": "championship",
+      "game_id": 164693,
+      "gametype": 6,
+      "name": "The Aquarius War",
+      "reasons": [
+        "bucket=championship",
+        "bucket_bonus=30.0",
+        "novelty=14.0",
+        "turn_bonus=8.0",
+        "slot_bonus=2.8"
+      ],
+      "score": 54.75,
+      "slots": 11,
+      "turn": 160
+    },
+    {
+      "bucket": "championship",
+      "game_id": 51327,
+      "gametype": 6,
+      "name": "The Sagittarius War",
+      "reasons": [
+        "bucket=championship",
+        "bucket_bonus=30.0",
+        "novelty=14.0",
+        "turn_bonus=7.9",
+        "slot_bonus=2.8"
+      ],
+      "score": 54.65,
+      "slots": 11,
+      "turn": 158
+    },
+    {
+      "bucket": "campaign",
+      "game_id": 373830,
+      "gametype": 2,
+      "name": "8 Player PLS Campaign ",
+      "reasons": [
+        "bucket=campaign",
+        "bucket_bonus=0.0",
+        "novelty=18.0",
+        "turn_bonus=7.4",
+        "slot_bonus=2.0"
+      ],
+      "score": 27.4,
+      "slots": 8,
+      "turn": 148
+    },
+    {
+      "bucket": "campaign",
+      "game_id": 477364,
+      "gametype": 2,
+      "name": "Unlimited Ships Campaign Lone Wolf II",
+      "reasons": [
+        "bucket=campaign",
+        "bucket_bonus=0.0",
+        "novelty=16.0",
+        "turn_bonus=8.2",
+        "slot_bonus=2.8"
+      ],
+      "score": 26.95,
+      "slots": 11,
+      "turn": 164
+    },
+    {
+      "bucket": "campaign",
+      "game_id": 550972,
+      "gametype": 3,
+      "name": "Sector 550972: Teams of 2 Campaign ",
+      "reasons": [
+        "bucket=campaign",
+        "bucket_bonus=0.0",
+        "novelty=17.0",
+        "turn_bonus=7.8",
+        "slot_bonus=2.0"
+      ],
+      "score": 26.8,
+      "slots": 8,
+      "turn": 156
+    },
+    {
+      "bucket": "finite_fuel",
+      "game_id": 202362,
+      "gametype": 2,
+      "name": "Football Sector",
+      "reasons": [
+        "bucket=finite_fuel",
+        "bucket_bonus=0.0",
+        "novelty=15.0",
+        "turn_bonus=9.0",
+        "slot_bonus=2.8"
+      ],
+      "score": 26.75,
+      "slots": 11,
+      "turn": 180
+    },
+    {
+      "bucket": "finite_fuel",
+      "game_id": 185114,
+      "gametype": 3,
+      "name": "Kobol Sector",
+      "reasons": [
+        "bucket=finite_fuel",
+        "bucket_bonus=0.0",
+        "novelty=15.0",
+        "turn_bonus=8.7",
+        "slot_bonus=3.0"
+      ],
+      "score": 26.7,
+      "slots": 12,
+      "turn": 174
+    },
+    {
+      "bucket": "campaign",
+      "game_id": 253449,
+      "gametype": 2,
+      "name": "Smith's World Sector",
+      "reasons": [
+        "bucket=campaign",
+        "bucket_bonus=0.0",
+        "novelty=15.0",
+        "turn_bonus=8.6",
+        "slot_bonus=3.0"
+      ],
+      "score": 26.55,
+      "slots": 12,
+      "turn": 171
+    },
+    {
+      "bucket": "finite_fuel",
+      "game_id": 89497,
+      "gametype": 2,
+      "name": "Arkham Sector",
+      "reasons": [
+        "bucket=finite_fuel",
+        "bucket_bonus=0.0",
+        "novelty=15.0",
+        "turn_bonus=8.4",
+        "slot_bonus=2.8"
+      ],
+      "score": 26.2,
+      "slots": 11,
+      "turn": 169
+    },
+    {
+      "bucket": "finite_fuel",
+      "game_id": 85894,
+      "gametype": 3,
+      "name": "Gathonia Sector",
+      "reasons": [
+        "bucket=finite_fuel",
+        "bucket_bonus=0.0",
+        "novelty=15.0",
+        "turn_bonus=8.1",
+        "slot_bonus=3.0"
+      ],
+      "score": 26.05,
+      "slots": 12,
+      "turn": 161
+    },
+    {
+      "bucket": "finite_fuel",
+      "game_id": 190434,
+      "gametype": 2,
+      "name": "Ftokteek Sector",
+      "reasons": [
+        "bucket=finite_fuel",
+        "bucket_bonus=0.0",
+        "novelty=15.0",
+        "turn_bonus=8.3",
+        "slot_bonus=2.8"
+      ],
+      "score": 26.05,
+      "slots": 11,
+      "turn": 166
+    },
+    {
+      "bucket": "campaign",
+      "game_id": 385906,
+      "gametype": 2,
+      "name": "Campaign Slow, no Horwasp",
+      "reasons": [
+        "bucket=campaign",
+        "bucket_bonus=0.0",
+        "novelty=15.0",
+        "turn_bonus=8.1",
+        "slot_bonus=2.8"
+      ],
+      "score": 25.85,
+      "slots": 11,
+      "turn": 162
+    },
+    {
+      "bucket": "campaign",
+      "game_id": 497195,
+      "gametype": 3,
+      "name": "Limball Sector",
+      "reasons": [
+        "bucket=campaign",
+        "bucket_bonus=0.0",
+        "novelty=15.0",
+        "turn_bonus=7.8",
+        "slot_bonus=3.0"
+      ],
+      "score": 25.85,
+      "slots": 12,
+      "turn": 157
+    },
+    {
+      "bucket": "campaign",
+      "game_id": 80058,
+      "gametype": 3,
+      "name": "YouTwo Sector",
+      "reasons": [
+        "bucket=campaign",
+        "bucket_bonus=0.0",
+        "novelty=14.0",
+        "turn_bonus=8.8",
+        "slot_bonus=3.0"
+      ],
+      "score": 25.75,
+      "slots": 12,
+      "turn": 175
+    },
+    {
+      "bucket": "campaign",
+      "game_id": 142157,
+      "gametype": 2,
+      "name": "VCS#1 - Veterans Campaign Supremacy #1",
+      "reasons": [
+        "bucket=campaign",
+        "bucket_bonus=0.0",
+        "novelty=15.0",
+        "turn_bonus=8.0",
+        "slot_bonus=2.8"
+      ],
+      "score": 25.7,
+      "slots": 11,
+      "turn": 159
+    }
+  ],
+  "selected_by_bucket": {
+    "campaign": 14,
+    "championship": 4,
+    "finite_fuel": 11,
+    "sphere": 3
+  },
+  "selected_games": 32,
+  "successful_loadinfo": 320
+}

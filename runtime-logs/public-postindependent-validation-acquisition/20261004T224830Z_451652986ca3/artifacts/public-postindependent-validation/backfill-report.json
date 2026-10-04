@@ -1,0 +1,85 @@
+{
+  "combined_manifest": "validation/corpus/manifests/public-postindependent-validation-with-public68.jsonl",
+  "current_failed_game_ids": [
+    27068,
+    158042
+  ],
+  "missing_bucket_counts": {},
+  "rejected_file": "validation/corpus/manifests/public-postindependent-validation-rejected.json",
+  "rejected_game_ids": [
+    23864,
+    27068,
+    38553,
+    51327,
+    52579,
+    62882,
+    78459,
+    79765,
+    80058,
+    85894,
+    89497,
+    94061,
+    117234,
+    134382,
+    138322,
+    142157,
+    158042,
+    164693,
+    169417,
+    171253,
+    172010,
+    172898,
+    181660,
+    185114,
+    190434,
+    195002,
+    199300,
+    202362
+  ],
+  "replacement_games": 2,
+  "replacements": [
+    {
+      "bucket": "finite_fuel",
+      "game_id": 597079,
+      "gametype": 2,
+      "name": "Mann Sector",
+      "novelty": 14.0,
+      "score": 1025.15,
+      "slot_bonus": 2.75,
+      "slots": 11,
+      "target_bucket_gap_before": 1,
+      "turn": 168,
+      "turn_bonus": 8.4
+    },
+    {
+      "bucket": "campaign",
+      "game_id": 490865,
+      "gametype": 2,
+      "name": "Captain's Playground Lone Wolf",
+      "novelty": 14.0,
+      "score": 1025.0,
+      "slot_bonus": 2.75,
+      "slots": 11,
+      "target_bucket_gap_before": 1,
+      "turn": 165,
+      "turn_bonus": 8.25
+    }
+  ],
+  "schema": "planets-lab.public-validation-backfill.v1",
+  "selected_by_bucket_after_backfill": {
+    "campaign": 14,
+    "championship": 4,
+    "finite_fuel": 11,
+    "sphere": 3
+  },
+  "selected_games_after_backfill": 32,
+  "selected_manifest": "validation/corpus/manifests/public-postindependent-validation-selected.jsonl",
+  "successful_games_before_backfill": 30,
+  "target_by_bucket": {
+    "campaign": 14,
+    "championship": 4,
+    "finite_fuel": 11,
+    "sphere": 3
+  },
+  "target_games": 32
+}
