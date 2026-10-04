@@ -43,9 +43,9 @@ def predict_postheldout_capture_side(
     3. If the original-order pair is not reachable, use the neutral captured
        orders + fresh nonmatching symbolic FC side control.
 
-    Unknown discriminator inputs fail closed. In particular, a reachable row
-    with unknown opponent priority cannot safely take the sticky branch because
-    group 0 is the candidate's explicit exception.
+    The prediction logic is intentionally preserved from the frozen research
+    candidate. Independent-validation adapters may fail closed on missing
+    discriminator inputs without changing this formula.
     """
 
     if isinstance(prior_same_pair_occurrences, bool):
@@ -61,11 +61,6 @@ def predict_postheldout_capture_side(
 
     if identity_anchored_o_pair_reachable is True:
         if capture_side not in {"left", "right"}:
-            return None
-        if (
-            isinstance(opponent_priority_group, bool)
-            or not isinstance(opponent_priority_group, int)
-        ):
             return None
         if opponent_priority_group == 0:
             return "right"
@@ -123,14 +118,21 @@ def evaluate_postheldout_capture_side(
         identity_anchored_o_pair_reachable=identity_anchored_o_pair_reachable,
         opponent_priority_group=opponent_priority_group,
     )
-    predicted = predict_postheldout_capture_side(
-        prior_same_pair_occurrences=prior_same_pair_occurrences,
-        next_opponent_previous_side=next_opponent_previous_side,
-        identity_anchored_o_pair_reachable=identity_anchored_o_pair_reachable,
-        capture_side=capture_side,
-        opponent_priority_group=opponent_priority_group,
-        neutral_fresh_fc_side=neutral_fresh_fc_side,
-    )
+    if branch in {
+        BRANCH_UNSUPPORTED_OCCURRENCE,
+        BRANCH_REACHABILITY_UNRESOLVED,
+        BRANCH_PRIORITY_UNRESOLVED,
+    }:
+        predicted = None
+    else:
+        predicted = predict_postheldout_capture_side(
+            prior_same_pair_occurrences=prior_same_pair_occurrences,
+            next_opponent_previous_side=next_opponent_previous_side,
+            identity_anchored_o_pair_reachable=identity_anchored_o_pair_reachable,
+            capture_side=capture_side,
+            opponent_priority_group=opponent_priority_group,
+            neutral_fresh_fc_side=neutral_fresh_fc_side,
+        )
     exact = (
         predicted == factual_side
         if predicted in {"left", "right"} and factual_side in {"left", "right"}
