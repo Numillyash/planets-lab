@@ -283,3 +283,42 @@ PRISTINE_INDEPENDENT_VALIDATION
 The held-out comparison must preserve the exact frozen selectors above.  A
 mismatch is recorded as a mismatch; candidate definitions must not be altered
 after seeing held-out and then called validated.
+
+
+## Frozen secondary held-out implementation
+
+The queue-specific held-out implementation was added only after the discovery
+result above was committed.
+
+Tracked tools:
+
+```text
+tools/research/probe-postcapture-occurrence-round-heldout.py
+tools/research/run-postcapture-occurrence-round-heldout.sh
+```
+
+The runner reuses the existing canonical held-out capture-side artifact when
+present. If it is absent, it rebuilds only that artifact from the canonical
+public manifest/index and read-only Corpus DB before evaluation.
+
+The held-out probe:
+
+```text
+- re-runs the same six deterministic candidate-selector tests;
+- reconstructs post-capture mutable state with canonical main code;
+- evaluates only globally adjacent held-out rows;
+- qualifies rows using the factual opponent only as a comparability condition;
+- predicts opponent identity without using factual N+1 LEFT/RIGHT;
+- compares the exact frozen five selectors;
+- prints all rows where pair-history and attacker-history selectors diverge;
+- prints all selector mismatches;
+- does not alter candidate definitions.
+```
+
+Evidence label is fixed in advance as:
+
+```text
+SECONDARY_HELDOUT_DISCRIMINATOR
+```
+
+not pristine independent validation.
