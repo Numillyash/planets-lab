@@ -959,3 +959,132 @@ Interpretation is structural only:
 
 - neither result promotes c2ng battle-value ordering itself as NuHost truth.
 ```
+
+
+## Residual cursor unification result
+
+The frozen cursor-unification gate completed against:
+
+```text
+research HEAD 5ab9c2f1ac0080a9b592773cc36b6210dc0e11e7
+main HEAD     051e365210befc458471a42daf596784fc8b8503
+```
+
+### Held-out genuine queue residuals
+
+After conditioning only on the pair eligibility already proved independently by
+the production pair-recomposition diagnostic:
+
+```text
+cases:                              3
+eligibility-anchored cursor exact:  3
+mismatch:                           0
+unresolved:                         0
+```
+
+Exact geometry:
+
+```text
+227887/T183
+order positions:
+  prize=0 competitor=1 captor=2 factual=3
+
+257776/T52
+order positions:
+  prize=0 competitor=1 captor=4 factual=5
+
+257776/T251 VCR1724->1725
+order positions:
+  prize=2 competitor=3 captor=5 factual=9
+```
+
+In all three rows:
+
+```text
+static/history competitor lies before the already consumed capture-target cursor
+factual opponent lies after it
+```
+
+The frozen continuation cursor therefore skips the globally better competitor
+and reaches the factual opponent.
+
+### Discovery rank>1 residuals
+
+The same frozen external cursor gives:
+
+```text
+raw external exact/mismatch/unresolved:       1 / 1 / 0
+factual-identity anchored exact/mismatch:      1 / 1 / 0
+```
+
+The exact row is:
+
+```text
+486109/T88
+external order positions:
+  prize=4
+  rank1 competitor=6
+  captor=7
+  factual=8
+```
+
+Again the higher static competitor is behind the already consumed target cursor
+while the factual opponent is immediately after it.
+
+The remaining row is structurally different:
+
+```text
+486109/T55
+external order:
+  198, 450, 467, 448
+
+positions:
+  rank1 competitor=0
+  prize=1
+  factual=2
+  captor=3
+```
+
+The original-order continuation is exhausted after the capture target and
+therefore cannot reach ship467.
+
+However ship467 lies **after the captured ship's own order position but before
+the capture target**.
+
+This is exactly the shape expected if the documented additional capture order
+(C) can restart a newly created target scan after original-order continuation
+(O) is exhausted.
+
+### Primary-documentation connection
+
+Current official Planets.nu Help, `Order Of Battle`, states that:
+
+```text
+- every ship proceeds through its target list while alive and uncaptured;
+- captured ships can fight for the new owner;
+- they fight within the existing order and then in an additional order
+  set anew when captured.
+```
+
+Source:
+
+```text
+https://help.planets.nu/battle-order
+retrieved again: 2026-10-04
+```
+
+This is DOCUMENTED architecture. It does not specify the exact C target-list
+cursor/reset semantics.
+
+The residual split is therefore now naturally expressed as:
+
+```text
+O continuation:
+  4/5 isolated rank/cursor residuals positionally explained
+
+C-required:
+  1/5 isolated residuals (486109/T55)
+  O exhausted; factual target lies between prize position and capture target
+```
+
+Do not infer a complete C algorithm from the single T55 row.
