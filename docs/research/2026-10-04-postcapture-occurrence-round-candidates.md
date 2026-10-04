@@ -196,3 +196,90 @@ post-capture mutable recomposition
 ```
 
 It would not by itself establish LEFT/RIGHT behavior.
+
+
+## Full dependency-qualified discovery differential
+
+The frozen candidate set was evaluated across all currently
+dependency-qualified adjacent discovery rows.
+
+Unit tests:
+
+```text
+6 passed
+```
+
+Population:
+
+```text
+adjacent rows:             31
+qualified rows:            15
+dependency not qualified:  16
+```
+
+Result:
+
+```text
+STATIC_PRIORITY             13 / 15 exact
+STATIC_CAP2                 13 / 15 exact
+PAIR_OCCURRENCE_ROUND       15 / 15 exact
+FRESH_ATTACKER_BOOLEAN      15 / 15 exact
+ATTACKER_APPEARANCE_COUNT   15 / 15 exact
+```
+
+Candidate divergence:
+
+```text
+PAIR_OCCURRENCE_ROUND vs FRESH_ATTACKER_BOOLEAN:
+  divergent selections = 0
+
+PAIR_OCCURRENCE_ROUND vs ATTACKER_APPEARANCE_COUNT:
+  divergent selections = 0
+```
+
+### Interpretation
+
+The already-supported pair cap alone does not repair the two static-rank
+residuals:
+
+```text
+STATIC_PRIORITY  13/15
+STATIC_CAP2      13/15
+```
+
+Therefore the missing factor is ordering among still-available candidates, not
+merely exhaustion of pairs that already fought twice.
+
+All three elapsed-history candidates fit the full qualified discovery population
+exactly:
+
+```text
+15 / 15
+```
+
+but discovery contains no row that distinguishes pair-level occurrence history
+from broader attacker-level freshness.
+
+Consequently no one of these three mechanics is promoted.
+
+### Next evidence gate
+
+The candidate definitions are now frozen before queue-specific evaluation of
+the public held-out partition.
+
+That partition is not pristine at project level because it was previously
+opened for LEFT/RIGHT capture-side validation.  However, the present
+pair/opponent history selector was derived solely from discovery rows and has
+not been fitted to held-out requester ranks or elapsed pair history.
+
+Therefore the next result is classified as:
+
+```text
+SECONDARY_HELDOUT_DISCRIMINATOR
+not
+PRISTINE_INDEPENDENT_VALIDATION
+```
+
+The held-out comparison must preserve the exact frozen selectors above.  A
+mismatch is recorded as a mismatch; candidate definitions must not be altered
+after seeing held-out and then called validated.
