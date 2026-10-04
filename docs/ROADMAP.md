@@ -894,3 +894,51 @@ See:
 
 `docs/handoff/2026-10-03-postheldout-capture-side-candidate.md`.
 
+### Public68 independent capture-side validation — failed candidate
+
+The frozen post-heldout candidate was independently tested against the new
+short32 population after public68 activation.
+
+Independent gate:
+
+```text
+short32 games                         32
+overlap with public36                  0
+adjacent capture continuations        22
+candidate exact                       21
+candidate mismatch                     1
+candidate unresolved                   0
+
+reachable sticky                       9
+nonreachable neutral/fresh-FC          6
+second-occurrence reversal             1
+reachable numeric-opponent override    6
+
+status                       FAILED_MISMATCH
+promotion_ready                        false
+```
+
+The counterexample is game `341336`, turn `75`, VCR `338 -> 339`:
+captured ship `211` remains LEFT against ship `369`, despite opponent
+numeric priority `[0, 4, 369]`. The opponent has mission `3` (Kill).
+
+The previous numeric-group-0 override is therefore rejected as universal.
+
+After opening short32, a Kill-sensitive research candidate fits the combined
+82 / 82 adjacent rows: reachable numeric group-0 opponents preserve LEFT when
+the opponent is Kill, while the two observed numeric LEFT -> RIGHT flips are
+non-Kill mission-1 cases. This new candidate is post-independent-informed and
+is explicitly NOT canonical.
+
+Implementation:
+
+`tools/diagnostics/combat_public_capture_side_postindependent_candidate.py`
+
+Checkpoint:
+
+`docs/handoff/2026-10-05-public68-capture-side-independent-result.md`
+
+Immediate mechanics priority is new prospective/independent discrimination of
+numeric group-0 Kill versus non-Kill post-capture side behavior. Do not reuse
+public68/short32 as validation for the new candidate.
+
