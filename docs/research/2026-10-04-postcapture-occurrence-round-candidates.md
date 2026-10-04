@@ -561,3 +561,159 @@ and prints explicit pre-decision `status/reason`.
 
 The failed run produced no pair-eligibility evidence and does not alter any
 selector conclusion.
+
+
+## Corrected competitor-pair residual result
+
+After the post-capture identity bridge was corrected, the targeted held-out
+pair recomposition reached production `decide_ship_combat_pair`.
+
+Summary:
+
+```text
+competitor definitely eligible       3
+competitor FC-sensitive/unresolved    1
+factual definitely eligible           4
+```
+
+Three rows are now genuine queue-order residuals under the currently
+reconstructed pair mechanics.
+
+### Genuine residual 1
+
+```text
+227887 / T183 / VCR 714 -> 715
+prize=240
+static/history predicted competitor=261
+factual opponent=397
+
+prior prize/261 pair occurrences = 0
+prior prize/397 pair occurrences = 0
+prior appearances 261 / 397       = 0 / 0
+
+261 <-> prize:
+  preserved captured FC: eligible STANDARD
+  fresh captured FC:     eligible STANDARD
+
+397 <-> prize:
+  preserved captured FC: eligible STANDARD
+  fresh captured FC:     eligible STANDARD
+```
+
+### Genuine residual 2
+
+```text
+257776 / T52 / VCR 96 -> 97
+prize=76
+static/history predicted competitor=257
+factual opponent=264
+
+prior prize/257 pair occurrences = 0
+prior prize/264 pair occurrences = 0
+prior appearances 257 / 264       = 0 / 0
+
+257 <-> prize:
+  preserved captured FC: eligible STANDARD
+  fresh captured FC:     eligible STANDARD
+
+264 <-> prize:
+  preserved captured FC: eligible STANDARD
+  fresh captured FC:     eligible STANDARD
+```
+
+The reconstructed strict requester order is:
+
+```text
+257, 134, 264
+```
+
+so factual opponent 264 is static rank 3 in this row.
+
+### Genuine residual 3
+
+```text
+257776 / T251 / VCR 1724 -> 1725
+prize=325
+static/history predicted competitor=411
+factual opponent=66
+
+prior prize/411 pair occurrences = 0
+prior prize/66 pair occurrences  = 0
+prior appearances 411 / 66       = 0 / 0
+
+411 <-> prize:
+  preserved captured FC: eligible STANDARD
+  fresh captured FC:     eligible STANDARD
+
+66 <-> prize:
+  preserved captured FC: eligible STANDARD
+  fresh captured FC:     eligible STANDARD
+```
+
+The reconstructed strict requester order is:
+
+```text
+411, 66, 175, 181, 265, 317, 581
+```
+
+### Not yet a queue-order residual
+
+```text
+257776 / T251 / VCR 1739 -> 1740
+prize=388
+predicted competitor=31
+factual opponent=495
+```
+
+Factual pair:
+
+```text
+eligible STANDARD under both captured-FC bounds
+```
+
+Competitor pair:
+
+```text
+preserved captured FC:
+  engagement unresolved
+  reason = right_fuel_unknown
+
+fresh captured FC:
+  engagement unresolved
+  reason = right_fuel_unknown
+```
+
+Therefore this row remains pair-input/fuel unresolved and must not be used to
+infer queue ordering.
+
+## Consequence for history hypotheses
+
+The three genuine residuals have:
+
+```text
+prior prize/competitor pair occurrences = 0
+prior prize/factual pair occurrences    = 0
+competitor prior VCR appearances        = 0
+factual prior VCR appearances           = 0
+```
+
+Hence none of the frozen elapsed-history keys can distinguish the predicted
+competitor from the factual opponent.
+
+The remaining blocker is therefore not explained by:
+
+```text
+pair cap
+pair occurrence round
+fresh-attacker boolean
+attacker appearance count
+full pair eligibility under the current preserved/fresh captured-FC bounds
+```
+
+The next bounded discriminator is cursor/continuation state across capture.
+A capture may preserve an already advanced queue cursor/order position rather
+than restarting selection from the global static minimum.
+
+The already-audited external c2ng original-order cursor is useful here only as
+a frozen comparator; it remains EXTERNAL_IMPLEMENTATION evidence and was
+already rejected as a general Nu model.
