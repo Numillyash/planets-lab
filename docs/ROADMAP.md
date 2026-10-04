@@ -806,23 +806,21 @@ access from both research containers. This is a 74.23% reduction versus the
 first 11.87 GB v1 physical layout and removes the per-entity JSON duplication
 that caused the earlier regression.
 
-The storage workstream has since advanced through typed1 to the accepted compact
-public36 backend. Canonical compact runtime:
+The storage workstream has since advanced through typed1 and compact public36
+to the ACTIVE compact public68 backend. Canonical active runtime:
 
 ```text
-36 archives
-126418 / 126418 exact semantic parity
-13189001216-byte DuckDB (~12.283 GiB)
-66.12% smaller than public36 typed1
-90.14% smaller than decoded JSON
+68 archives
+169569 / 169569 exact semantic parity
+17847300096-byte DuckDB (~16.622 GiB)
 no entity_rows
 no decoded member fallback blob
 no secondary indexes
 shared normal/external read PASS
 ```
 
-The current storage optimization milestone is complete. Activate the compact
-generation through the guarded CURRENT switch and retain typed1 as rollback.
+The current storage optimization milestone is complete. The guarded CURRENT
+switch has activated public68; retain compact public36 as the first rollback.
 Further physical improvements are deferred in
 `docs/corpus-db/FUTURE_OPTIMIZATIONS.md`; do not spend mechanics time on
 additional compression unless a documented reopen criterion is met.
@@ -831,19 +829,24 @@ Canonical runtime:
 `docs/handoff/2026-10-02-corpus-db-compact-public36-runtime.md`.
 
 
-### Compact CURRENT activation completed — 2026-10-03
+### Compact CURRENT activation completed — public68 active 2026-10-04
 
-The accepted compact public36 generation is now active through `CURRENT`:
+The accepted combined compact public68 generation is now active through
+`CURRENT`:
 
 ```text
-corpus-v2compact-public36-20261002T083138Z-11cd75fa918d
-126418 / 126418 exact parity
+corpus-v2compact-public68-20261004T095236Z-09f71721b77c
+169569 / 169569 exact parity
 shared normal/external read PASS
 ```
 
-The previous typed1 public36 generation remains available as rollback. The corpus
-DB storage milestone is closed; resume NuHost mechanics work on main. Deferred
-storage ideas remain in `docs/corpus-db/FUTURE_OPTIMIZATIONS.md`.
+The previous compact public36 generation remains available as the first
+rollback. The corpus DB storage milestone is closed; resume NuHost mechanics on
+the new independent population. Deferred storage ideas remain in
+`docs/corpus-db/FUTURE_OPTIMIZATIONS.md`.
+
+Activation checkpoint:
+`docs/handoff/2026-10-04-corpus-db-public68-current-activation.md`.
 
 ## Public capture side held-out result
 
