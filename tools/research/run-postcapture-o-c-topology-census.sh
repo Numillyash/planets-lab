@@ -50,7 +50,15 @@ echo "main HEAD:     $main_head"
 echo
 
 cd "$RESEARCH_ROOT"
-python3 tools/research/analyze-postcapture-o-c-topology.py   --discovery "$DISCOVERY"   --heldout "$HELDOUT"   --output "$OUTPUT"
+
+echo "===== TOPOLOGY ANALYZER UNIT TESTS ====="
+python3 -m pytest -q tests/test_postcapture_o_c_topology.py
+echo
+
+python3 tools/research/analyze-postcapture-o-c-topology.py \
+  --discovery "$DISCOVERY" \
+  --heldout "$HELDOUT" \
+  --output "$OUTPUT"
 
 echo
 echo "===== COMPLETE ====="
