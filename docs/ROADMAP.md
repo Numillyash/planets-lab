@@ -936,7 +936,39 @@ Implementation:
 
 Checkpoint:
 
-`docs/handoff/2026-10-05-public68-capture-side-independent-result.md`
+`docs/handoff/2026-10-05-public68-capture-side-independent-result.md`.
+
+### Prospective post-independent validation corpus
+
+The replacement Kill-sensitive capture-side candidate is frozen at
+`46bcb08c2f0d3f0449b97921edb03ab6647f7d3b`.
+
+The next validation population is a second independent public short corpus that
+excludes all 68 games already open in public68. Acquisition is predeclared as:
+
+```text
+final turn         80..180
+slots               8..16
+loadinfo probes       320
+selected games         32
+baseline games         68
+```
+
+Runner:
+
+`tools/run-public-postindependent-validation-acquisition-with-evidence.sh`
+
+The future validation gate must not claim promotion merely from zero mismatches.
+It requires fresh independent coverage of both changed numeric-LEFT
+discriminators: group-0 Kill and group-0 non-Kill. Missing either yields
+`INSUFFICIENT_DISCRIMINATOR_COVERAGE`.
+
+The new games will be built into a separate exact-parity compact generation;
+canonical public68 `CURRENT` remains unchanged during validation.
+
+Handoff:
+
+`docs/handoff/2026-10-05-postindependent-validation-acquisition-ready.md`
 
 Immediate mechanics priority is new prospective/independent discrimination of
 numeric group-0 Kill versus non-Kill post-capture side behavior. Do not reuse
