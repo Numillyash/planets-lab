@@ -1186,7 +1186,11 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     partition_counts = Counter(partitions.values())
     report = {
         "schema": SCHEMA,
-        "evidence_status": "DISCOVERY_ONLY_NOT_PROMOTED",
+        "evidence_status": {
+            "discovery": "DISCOVERY_ONLY_NOT_PROMOTED",
+            "heldout": "HELDOUT_INPUTS_FROZEN_VALIDATION",
+            "all": "ALL_INDEXED_NOT_PROMOTED",
+        }[args.partition],
         "partition": args.partition,
         "storage_backend": (
             "corpus-db" if database_path is not None else "archive"
