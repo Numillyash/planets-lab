@@ -392,3 +392,42 @@ and does not switch `CURRENT`.
 
 The active public36 compact generation remains canonical until the public68
 runtime output is reviewed and a separate guarded activation decision is made.
+
+
+## Public68 compact runtime gate — 2026-10-04
+
+The 68-game combined generation has passed the complete compact1 gate.
+
+    generation
+    corpus-v2compact-public68-20261004T095236Z-09f71721b77c
+
+    sha256
+    5ae0d6fe1190d5f7cd4a90895f3c5ebf995280ad0b716e0960273a8a55e8f43a
+
+    corpus fingerprint
+    09f71721b77cd1875932f75ed515636d9b79720bcc520aff72d6f9dd51f8fbf7
+
+    archives                         68
+    source members                   169569
+    full parity                      169569 / 169569
+    database bytes                   17847300096
+    source ZIP bytes                 12655376984
+    decoded JSON bytes               179227392513
+    import peak RSS                  18496663552
+    shared read                      PASS
+
+The physical model remains accepted compact1; this is a corpus-size expansion,
+not a new compression milestone.
+
+CURRENT was preserved on public36 by the build gate. The next operational step
+is guarded activation through:
+
+    tools/activate-corpus-db-compact-public68.sh
+
+The activation script fails closed on SHA/schema/archive/member/fingerprint or
+physical-invariant mismatch, runs the shared-read gate after the atomic switch,
+and automatically restores the previous CURRENT if post-switch verification
+fails.
+
+Runtime handoff:
+docs/handoff/2026-10-04-corpus-db-public68-runtime.md

@@ -128,3 +128,42 @@ activation.
 
 Storage-model optimization remains closed; this rebuild is required solely
 because the corpus itself expanded.
+
+
+## Public68 compact runtime — activation pending
+
+The combined public68 compact gate is now green.
+
+Published immutable generation:
+
+    corpus-v2compact-public68-20261004T095236Z-09f71721b77c
+    sha256 5ae0d6fe1190d5f7cd4a90895f3c5ebf995280ad0b716e0960273a8a55e8f43a
+
+Runtime gate:
+
+    68 archives
+    169569 / 169569 exact semantic parity
+    17847300096 bytes (~16.622 GiB)
+    shared normal/external read PASS
+
+Corpus fingerprint:
+
+    09f71721b77cd1875932f75ed515636d9b79720bcc520aff72d6f9dd51f8fbf7
+
+Physical invariants remain compact1:
+
+    no entity_rows
+    no decoded_payload_zlib
+    no secondary indexes
+
+CURRENT is intentionally still public36 until guarded activation completes.
+
+Activate public68 only through:
+
+    export PLANETS_CORPUS_DB_ROOT=/root/projects/planets-corpus-db
+    bash tools/activate-corpus-db-compact-public68.sh
+
+Retain public36 as rollback after activation.
+
+Canonical runtime details:
+docs/handoff/2026-10-04-corpus-db-public68-runtime.md
