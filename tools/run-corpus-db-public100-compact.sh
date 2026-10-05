@@ -14,7 +14,7 @@ expected_baseline_count="${CORPUS_DB_PUBLIC100_BASELINE_COUNT:-68}"
 expected_selected_count="${CORPUS_DB_PUBLIC100_SELECTED_COUNT:-32}"
 expected_count="${CORPUS_DB_PUBLIC100_EXPECTED_COUNT:-100}"
 state_name="${CORPUS_DB_PUBLIC100_STATE_NAME:-compact-public100-resume}"
-min_free_gib="${CORPUS_DB_PUBLIC100_MIN_FREE_GIB:-55}"
+min_free_gib="${CORPUS_DB_PUBLIC100_MIN_FREE_GIB:-30}"
 
 for required in "$baseline_manifest" "$selected_manifest" "$manifest"; do
     if [[ ! -f "$required" ]]; then
