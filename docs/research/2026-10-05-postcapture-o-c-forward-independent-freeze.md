@@ -224,3 +224,45 @@ before and after the run and is never changed.
 Fresh32 capture and O-layer artifacts are created only during this prospective
 gate. If the gate fails, those outcomes are considered opened and cannot be
 reused as independent validation for a modified selector.
+
+
+## Public100 runtime now available
+
+Canonical main has completed the public100 compact build and published the
+immutable prospective-validation generation:
+
+```text
+generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb
+```
+
+SHA256:
+
+```text
+3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c
+```
+
+Runtime facts recorded on main:
+
+```text
+source archives:     100
+source members:      224014
+semantic parity:     224014 / 224014 exact
+parity failures:     0
+database bytes:      28616175616
+schema:              planets-lab.corpus-db.v2.compact1
+```
+
+Canonical CURRENT remains intentionally on public68:
+
+```text
+generations/corpus-v2compact-public68-20261004T095236Z-09f71721b77c.duckdb
+```
+
+The prospective O/C-forward runner is now pinned to the exact public100
+generation path and SHA256 above. It no longer searches for an arbitrary latest
+public100 file.
+
+Main also added explicit-generation readers for the canonical prospective
+capture-side workflow. The research selector implementation itself remains
+frozen and is still exposed to public100 through the read-only validation view,
+so no selector-critical file is changed after the freeze.
