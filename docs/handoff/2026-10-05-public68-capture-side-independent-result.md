@@ -188,3 +188,34 @@ separate work item.
 
 Do not reuse the now-open short32 population as validation for the
 post-independent candidate.
+
+
+## Subsequent public100 prospective result
+
+The Kill-sensitive post-independent candidate was later frozen and tested
+prospectively against a second fresh 32-game public population using the exact
+public100 compact generation.
+
+Result:
+
+    adjacent rows                 20
+    exact                         19
+    mismatch                       1
+    unresolved                     0
+    numeric Kill discriminator     1
+    numeric non-Kill discriminator 1
+    status           FAILED_MISMATCH
+
+Both Kill/non-Kill discriminator branches passed. The failure was instead the
+first observed LEFT-oriented O-not-reachable/C-order case:
+
+    game 597079 T19 VCR17 -> 18
+    captured ship14
+    capture LEFT -> factual RIGHT
+
+This demonstrates that the earlier neutral+fresh-FC nonreachable branch was a
+proxy caused by one-sided evidence, not the underlying side mechanism.
+
+See:
+
+    docs/handoff/2026-10-05-public100-capture-side-prospective-result.md
