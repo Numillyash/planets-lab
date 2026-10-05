@@ -24,6 +24,7 @@ from planets_lab.corpus.corpus_db_compact import (
 )
 from planets_lab.corpus.corpus_db_runtime import (
     CompactMemberRef,
+    connect_compact_generation_read_only,
     connect_current_compact_read_only,
     reconstruct_members,
 )
@@ -984,10 +985,16 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
 
     db_connection = None
     database_path: Path | None = None
-    if args.corpus_db_root is not None:
-        db_connection, database_path = connect_current_compact_read_only(
-            args.corpus_db_root
-        )
+    if args.corpus_db_root is not None or args.corpus_db_generation is not None:
+        if args.corpus_db_generation is not None:
+            db_connection, database_path = connect_compact_generation_read_only(
+                args.corpus_db_generation,
+                args.corpus_db_root,
+            )
+        else:
+            db_connection, database_path = connect_current_compact_read_only(
+                args.corpus_db_root
+            )
         appearances, chain_summary = _collect_appearances_db(
             connection=db_connection,
             scan_ids=scan_ids,
@@ -1280,6 +1287,14 @@ def parse_args() -> argparse.Namespace:
         help=(
             "Read source members from the shared compact Corpus DB instead of "
             "ZIP archives. The DB is opened read-only."
+        ),
+    )
+    parser.add_argument(
+        "--corpus-db-generation",
+        default=None,
+        help=(
+            "Explicit generation path relative to the corpus DB root. "
+            "When set, CURRENT is not consulted."
         ),
     )
     parser.add_argument(
