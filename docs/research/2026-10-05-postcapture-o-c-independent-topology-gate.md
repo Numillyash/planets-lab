@@ -211,3 +211,126 @@ The runner additionally verifies before evaluation:
 
 The runner does not rebuild short32, rescan Corpus DB, or modify the frozen
 topology classes.
+
+
+## Runtime result
+
+The frozen short32 O/C topology gate completed against:
+
+```text
+research HEAD 25a240d491b5d7f5f2cefcc3c68b216c9064d56b
+main HEAD     451652986ca32483db6b25beab2ada1f801f2dab
+```
+
+Population boundary:
+
+```text
+public36 games: 36
+short32 games:  32
+overlap:         0
+```
+
+Unit tests:
+
+```text
+9 passed
+```
+
+Independent short32 RIGHT-capture result:
+
+```text
+RIGHT rows:                    15
+classified RIGHT:              15
+dependency qualified:           3
+
+qualified O_AFTER_CAPTOR:       1
+qualified C_BETWEEN:            2
+qualified BEFORE_OR_AT_PRIZE:   0
+qualified OTHER_GEOMETRY:       0
+qualified forward covered:      3 / 3
+full branch coverage:           true
+```
+
+Gate status:
+
+```text
+PASS_FULL_BRANCH_COVERAGE
+```
+
+Therefore the independently selected zero-overlap short32 population supports
+both frozen topology branches and exposes no dependency-qualified positional
+counterexample.
+
+## Combined structural evidence
+
+The clean public36 population had:
+
+```text
+qualified RIGHT:               25
+O_AFTER_CAPTOR:                 8
+C_BETWEEN:                     17
+BEFORE_OR_AT_PRIZE:             0
+OTHER_GEOMETRY:                 0
+forward covered:               25 / 25
+```
+
+The independent short32 topology gate adds:
+
+```text
+qualified RIGHT:                3
+O_AFTER_CAPTOR:                 1
+C_BETWEEN:                      2
+BEFORE_OR_AT_PRIZE:             0
+OTHER_GEOMETRY:                 0
+forward covered:                3 / 3
+```
+
+Open clean total:
+
+```text
+qualified RIGHT:               28
+O_AFTER_CAPTOR:                 9
+C_BETWEEN:                     19
+BEFORE_OR_AT_PRIZE:             0
+OTHER_GEOMETRY:                 0
+forward covered:               28 / 28
+```
+
+This is sufficient to promote the *structural topology statement* from a fitted
+public36 candidate to independently supported architecture:
+
+```text
+DEPENDENCY-QUALIFIED CAPTURE-ON-RIGHT CONTINUATIONS OBSERVED SO FAR ARE
+POSITIONALLY COMPATIBLE WITH:
+
+O = forward continuation after the consumed capture-target cursor
+
+plus
+
+C = a capture-generated forward target scan that can reach positions after the
+    captured prize's own frozen order position which O has already passed
+```
+
+This does **not** promote a full NuHost queue rule.
+
+Still unresolved:
+
+```text
+- whether the c2ng/THost order key itself equals Nu's hidden order key;
+- exact C restart cursor and insertion time;
+- whether C scans the full suffix after the prize or only a bounded segment;
+- exact pair eligibility while scanning;
+- mutation/occurrence interaction;
+- LEFT/RIGHT assignment;
+- capture-on-LEFT topology.
+```
+
+## Next frozen candidate boundary
+
+The next implementation step may now use the independently supported topology
+as a structural prior, but any concrete predictive O->C selector tested on
+public36 + short32 becomes an open-population fitted candidate.
+
+Such a selector must be frozen before evaluation and must fail closed whenever
+an earlier order position has unresolved activity, request, diplomacy or pair
+eligibility.
