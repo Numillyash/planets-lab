@@ -5,6 +5,7 @@ RESEARCH_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 MAIN_ROOT="${PLANETS_MAIN_ROOT:-/root/projects/planets-lab}"
 CORPUS_DB_ROOT="${PLANETS_CORPUS_DB_ROOT:-/root/projects/planets-corpus-db}"
 EXPECTED_CURRENT="${EXPECTED_CURRENT:-generations/corpus-v2compact-public68-20261004T095236Z-09f71721b77c.duckdb}"
+FROZEN_SELECTOR_IMPL_COMMIT="d6f80a12c9d6fbf3eaa1d7dfeb1cc39839d147ad"
 export PLANETS_CORPUS_DB_ROOT="$CORPUS_DB_ROOT"
 
 DISCOVERY_CAPTURE="$MAIN_ROOT/artifacts/public-capture-side/discovery-capture-side.json"
@@ -48,6 +49,25 @@ if [[ "$main_head" != "$main_origin" ]]; then
   exit 2
 fi
 
+if ! git -C "$RESEARCH_ROOT" merge-base --is-ancestor \
+  "$FROZEN_SELECTOR_IMPL_COMMIT" "$research_head"; then
+  echo "ERROR: research HEAD does not contain frozen selector implementation." >&2
+  exit 3
+fi
+
+for frozen_path in \
+  tools/research/postcapture_o_c_forward_selector.py \
+  tools/research/postcapture_pair_bounds.py \
+  tools/research/probe-postcapture-o-c-forward-open.py; do
+  if ! git -C "$RESEARCH_ROOT" diff --quiet \
+    "$FROZEN_SELECTOR_IMPL_COMMIT" -- "$frozen_path"; then
+    echo "ERROR: frozen selector implementation changed after freeze." >&2
+    echo "path:   $frozen_path" >&2
+    echo "frozen: $FROZEN_SELECTOR_IMPL_COMMIT" >&2
+    exit 4
+  fi
+done
+
 if [[ ! -s "$CORPUS_DB_ROOT/CURRENT" ]]; then
   echo "ERROR: Corpus DB CURRENT missing: $CORPUS_DB_ROOT/CURRENT" >&2
   exit 66
@@ -76,6 +96,7 @@ fi
 echo "research HEAD:  $research_head"
 echo "main HEAD:      $main_head"
 echo "corpus CURRENT: $actual_current"
+echo "selector impl:  $FROZEN_SELECTOR_IMPL_COMMIT"
 echo
 
 compose=(
