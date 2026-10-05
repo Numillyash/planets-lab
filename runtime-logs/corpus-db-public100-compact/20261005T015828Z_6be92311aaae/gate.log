@@ -1,0 +1,9 @@
+===== PUBLIC100 MANIFEST BOUNDARY =====
+baseline_games=68
+selected_games=32
+combined_games=100
+baseline_selected_overlap=0
+public100_manifest_boundary: PASS
+insufficient free space for public100 compact build
+available_bytes=19421515776
+required_bytes=59055800320 (55 GiB)
