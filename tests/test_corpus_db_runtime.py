@@ -12,6 +12,7 @@ import pytest
 from planets_lab.corpus.corpus_db import CorpusDbError
 from planets_lab.corpus.corpus_db_compact import import_archive_to_compact_database
 from planets_lab.corpus.corpus_db_runtime import (
+    connect_compact_generation_read_only,
     connect_current_compact_read_only,
     first_last_member_refs,
     member_refs_for_turns,
@@ -96,3 +97,33 @@ def test_current_compact_reader_rejects_wrong_schema(tmp_path: Path) -> None:
 
     with pytest.raises(CorpusDbError, match="active corpus DB schema"):
         connect_current_compact_read_only(root)
+
+
+
+def test_explicit_compact_reader_does_not_consult_current(tmp_path: Path) -> None:
+    root, database = _build_db(tmp_path)
+    other = root / "generations" / "other.duckdb"
+    other.write_bytes(database.read_bytes())
+
+    (root / "CURRENT").write_text("generations/fixture.duckdb\n")
+    connection, explicit = connect_compact_generation_read_only(
+        "generations/other.duckdb",
+        root,
+    )
+    try:
+        assert explicit == other.resolve()
+        assert connection.execute(
+            "SELECT count(*) FROM source_members"
+        ).fetchone()[0] == 3
+    finally:
+        connection.close()
+
+    assert (root / "CURRENT").read_text(encoding="utf-8").strip() == (
+        "generations/fixture.duckdb"
+    )
+
+
+def test_explicit_compact_reader_rejects_escape(tmp_path: Path) -> None:
+    root, _database = _build_db(tmp_path)
+    with pytest.raises(CorpusDbError, match="outside generations"):
+        connect_compact_generation_read_only("../escape.duckdb", root)
