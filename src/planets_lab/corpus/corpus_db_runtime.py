@@ -42,22 +42,69 @@ def corpus_db_root_from_env() -> Path:
     return Path(value)
 
 
+def _validate_compact_connection(
+    connection: duckdb.DuckDBPyConnection,
+    *,
+    label: str,
+) -> None:
+    row = connection.execute(
+        "SELECT schema_version FROM corpus_metadata LIMIT 1"
+    ).fetchone()
+    if row is None or str(row[0]) != CORPUS_DB_COMPACT_SCHEMA:
+        observed = None if row is None else str(row[0])
+        raise CorpusDbError(
+            f"{label} corpus DB schema {observed!r} != "
+            f"{CORPUS_DB_COMPACT_SCHEMA!r}"
+        )
+
+
 def connect_current_compact_read_only(
     root: Path | None = None,
 ) -> tuple[duckdb.DuckDBPyConnection, Path]:
     resolved_root = root if root is not None else corpus_db_root_from_env()
     generation = resolve_current_generation(resolved_root)
     connection = connect_current_read_only(resolved_root)
-    row = connection.execute(
-        "SELECT schema_version FROM corpus_metadata LIMIT 1"
-    ).fetchone()
-    if row is None or str(row[0]) != CORPUS_DB_COMPACT_SCHEMA:
+    try:
+        _validate_compact_connection(connection, label="active")
+    except Exception:
         connection.close()
-        observed = None if row is None else str(row[0])
+        raise
+    return connection, generation
+
+
+def connect_compact_generation_read_only(
+    generation_relative: str | Path,
+    root: Path | None = None,
+) -> tuple[duckdb.DuckDBPyConnection, Path]:
+    """Open one explicit immutable compact generation without consulting CURRENT."""
+
+    resolved_root = (
+        root.expanduser().resolve()
+        if root is not None
+        else corpus_db_root_from_env().expanduser().resolve()
+    )
+    relative = Path(generation_relative)
+    if relative.is_absolute():
+        raise CorpusDbError("explicit corpus generation must be relative to DB root")
+
+    generation = (resolved_root / relative).resolve()
+    generations_root = (resolved_root / "generations").resolve()
+    if generation.parent != generations_root or generation.suffix != ".duckdb":
         raise CorpusDbError(
-            f"active corpus DB schema {observed!r} != "
-            f"{CORPUS_DB_COMPACT_SCHEMA!r}"
+            f"explicit corpus generation points outside generations: "
+            f"{str(generation_relative)!r}"
         )
+    if not generation.is_file():
+        raise CorpusDbError(
+            f"explicit corpus generation does not exist: {generation}"
+        )
+
+    connection = duckdb.connect(str(generation), read_only=True)
+    try:
+        _validate_compact_connection(connection, label="explicit")
+    except Exception:
+        connection.close()
+        raise
     return connection, generation
 
 
