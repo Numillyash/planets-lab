@@ -28,6 +28,9 @@ from combat_public_capture_side_frozen_candidate import (
 from combat_public_capture_side_postheldout_validation import (
     evaluate_frozen_postheldout_candidate,
 )
+from combat_public_capture_side_postindependent_validation import (
+    evaluate_frozen_postindependent_candidate,
+)
 from planets_lab.corpus.archive import TurnMember
 from planets_lab.corpus.corpus_db_compact import reconstruct_compact_member
 from planets_lab.corpus.corpus_db_runtime import (
@@ -757,7 +760,9 @@ def _identity_anchor_factual_opponent(
 
 def run(args: argparse.Namespace) -> dict[str, Any]:
     partition = str(getattr(args, "partition", "discovery"))
-    capture_partition = "all" if partition == "independent" else partition
+    capture_partition = (
+        "all" if partition in {"independent", "prospective"} else partition
+    )
     capture_side_report = _load_capture_side_report(
         args.capture_side_report,
         expected_partition=capture_partition,
@@ -1049,6 +1054,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                         counts["identity_anchored_o_pair_not_reachable"] += 1
 
                 postheldout_candidate_validation: dict[str, Any] | None = None
+                postindependent_candidate_validation: dict[str, Any] | None = None
                 capture_vcr_id = row.get("capture_vcr_id")
                 next_vcr_id = row.get("next_vcr_id")
                 adjacent_row = (
@@ -1058,86 +1064,133 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                     and not isinstance(next_vcr_id, bool)
                     and int(next_vcr_id) == int(capture_vcr_id) + 1
                 )
-                if partition == "independent":
-                    if not adjacent_row:
-                        counts["postheldout_candidate_not_comparable"] += 1
-                    else:
-                        counts["postheldout_candidate_rows"] += 1
-                        anchored_pair_exact = (
-                            identity_anchored_result.get("pair_exact")
-                            if identity_anchored_result.get("status") == "resolved"
-                            else None
-                        )
-                        order_context = row.get("order_context")
-                        order_context = (
-                            order_context
-                            if isinstance(order_context, Mapping)
-                            else {}
-                        )
-                        opponent_tminus1 = order_context.get("opponent_tminus1")
-                        opponent_tminus1 = (
-                            opponent_tminus1
-                            if isinstance(opponent_tminus1, Mapping)
-                            else {}
-                        )
-                        opponent_priority = opponent_tminus1.get("priority")
-                        opponent_priority_group = (
-                            int(opponent_priority[0])
-                            if isinstance(opponent_priority, Sequence)
-                            and not isinstance(opponent_priority, (str, bytes))
-                            and len(opponent_priority) >= 1
-                            and isinstance(opponent_priority[0], int)
-                            and not isinstance(opponent_priority[0], bool)
-                            else None
-                        )
-                        side_controls = order_context.get("side_controls")
-                        side_controls = (
-                            side_controls
-                            if isinstance(side_controls, Mapping)
-                            else {}
-                        )
-                        prior_same_pair = row.get("prior_same_pair_occurrences")
-                        prior_same_pair = (
-                            int(prior_same_pair)
-                            if isinstance(prior_same_pair, int)
-                            and not isinstance(prior_same_pair, bool)
-                            else -1
-                        )
-                        postheldout_candidate_validation = (
-                            evaluate_frozen_postheldout_candidate(
-                                prior_same_pair_occurrences=prior_same_pair,
-                                next_opponent_previous_side=row.get(
-                                    "next_opponent_previous_side"
-                                ),
-                                identity_anchored_o_pair_reachable=(
-                                    anchored_pair_exact
-                                    if isinstance(anchored_pair_exact, bool)
-                                    else None
-                                ),
-                                capture_side=row.get("capture_side"),
-                                opponent_priority_group=opponent_priority_group,
-                                neutral_fresh_fc_side=side_controls.get(
-                                    "neutral_orders_fresh_fc"
-                                ),
-                                factual_side=factual_side,
-                            )
-                        )
-                        branch_name = str(
-                            postheldout_candidate_validation.get(
-                                "branch",
-                                "unknown",
-                            )
-                        )
-                        counts[f"postheldout_branch:{branch_name}"] += 1
-                        candidate_exact = postheldout_candidate_validation.get(
-                            "exact"
-                        )
-                        if candidate_exact is True:
-                            counts["postheldout_candidate_exact"] += 1
-                        elif candidate_exact is False:
-                            counts["postheldout_candidate_mismatch"] += 1
+                if partition in {"independent", "prospective"}:
+                    anchored_pair_exact = (
+                        identity_anchored_result.get("pair_exact")
+                        if identity_anchored_result.get("status") == "resolved"
+                        else None
+                    )
+                    order_context = row.get("order_context")
+                    order_context = (
+                        order_context if isinstance(order_context, Mapping) else {}
+                    )
+                    opponent_tminus1 = order_context.get("opponent_tminus1")
+                    opponent_tminus1 = (
+                        opponent_tminus1
+                        if isinstance(opponent_tminus1, Mapping)
+                        else {}
+                    )
+                    opponent_priority = opponent_tminus1.get("priority")
+                    opponent_priority_group = (
+                        int(opponent_priority[0])
+                        if isinstance(opponent_priority, Sequence)
+                        and not isinstance(opponent_priority, (str, bytes))
+                        and len(opponent_priority) >= 1
+                        and isinstance(opponent_priority[0], int)
+                        and not isinstance(opponent_priority[0], bool)
+                        else None
+                    )
+                    opponent_mission_raw = opponent_tminus1.get("mission")
+                    opponent_mission = (
+                        int(opponent_mission_raw)
+                        if isinstance(opponent_mission_raw, int)
+                        and not isinstance(opponent_mission_raw, bool)
+                        else None
+                    )
+                    side_controls = order_context.get("side_controls")
+                    side_controls = (
+                        side_controls if isinstance(side_controls, Mapping) else {}
+                    )
+                    prior_same_pair = row.get("prior_same_pair_occurrences")
+                    prior_same_pair = (
+                        int(prior_same_pair)
+                        if isinstance(prior_same_pair, int)
+                        and not isinstance(prior_same_pair, bool)
+                        else -1
+                    )
+
+                    if partition == "independent":
+                        if not adjacent_row:
+                            counts["postheldout_candidate_not_comparable"] += 1
                         else:
-                            counts["postheldout_candidate_unresolved"] += 1
+                            counts["postheldout_candidate_rows"] += 1
+                            postheldout_candidate_validation = (
+                                evaluate_frozen_postheldout_candidate(
+                                    prior_same_pair_occurrences=prior_same_pair,
+                                    next_opponent_previous_side=row.get(
+                                        "next_opponent_previous_side"
+                                    ),
+                                    identity_anchored_o_pair_reachable=(
+                                        anchored_pair_exact
+                                        if isinstance(anchored_pair_exact, bool)
+                                        else None
+                                    ),
+                                    capture_side=row.get("capture_side"),
+                                    opponent_priority_group=opponent_priority_group,
+                                    neutral_fresh_fc_side=side_controls.get(
+                                        "neutral_orders_fresh_fc"
+                                    ),
+                                    factual_side=factual_side,
+                                )
+                            )
+                            branch_name = str(
+                                postheldout_candidate_validation.get(
+                                    "branch",
+                                    "unknown",
+                                )
+                            )
+                            counts[f"postheldout_branch:{branch_name}"] += 1
+                            candidate_exact = postheldout_candidate_validation.get(
+                                "exact"
+                            )
+                            if candidate_exact is True:
+                                counts["postheldout_candidate_exact"] += 1
+                            elif candidate_exact is False:
+                                counts["postheldout_candidate_mismatch"] += 1
+                            else:
+                                counts["postheldout_candidate_unresolved"] += 1
+
+                    if partition == "prospective":
+                        if not adjacent_row:
+                            counts["postindependent_candidate_not_comparable"] += 1
+                        else:
+                            counts["postindependent_candidate_rows"] += 1
+                            postindependent_candidate_validation = (
+                                evaluate_frozen_postindependent_candidate(
+                                    prior_same_pair_occurrences=prior_same_pair,
+                                    next_opponent_previous_side=row.get(
+                                        "next_opponent_previous_side"
+                                    ),
+                                    identity_anchored_o_pair_reachable=(
+                                        anchored_pair_exact
+                                        if isinstance(anchored_pair_exact, bool)
+                                        else None
+                                    ),
+                                    capture_side=row.get("capture_side"),
+                                    opponent_priority_group=opponent_priority_group,
+                                    opponent_mission=opponent_mission,
+                                    neutral_fresh_fc_side=side_controls.get(
+                                        "neutral_orders_fresh_fc"
+                                    ),
+                                    factual_side=factual_side,
+                                )
+                            )
+                            branch_name = str(
+                                postindependent_candidate_validation.get(
+                                    "branch",
+                                    "unknown",
+                                )
+                            )
+                            counts[f"postindependent_branch:{branch_name}"] += 1
+                            candidate_exact = (
+                                postindependent_candidate_validation.get("exact")
+                            )
+                            if candidate_exact is True:
+                                counts["postindependent_candidate_exact"] += 1
+                            elif candidate_exact is False:
+                                counts["postindependent_candidate_mismatch"] += 1
+                            else:
+                                counts["postindependent_candidate_unresolved"] += 1
 
                 split_candidate: dict[str, Any] | None = None
                 if status == "resolved":
@@ -1255,6 +1308,9 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                             "postheldout_candidate_validation": (
                                 postheldout_candidate_validation
                             ),
+                            "postindependent_candidate_validation": (
+                                postindependent_candidate_validation
+                            ),
                             "split_candidate": split_candidate,
                             "result": result,
                         }
@@ -1304,6 +1360,8 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             counts["heldout_ship_rows"] = len(observations)
         elif partition == "independent":
             counts["independent_ship_rows"] = len(observations)
+        elif partition == "prospective":
+            counts["prospective_ship_rows"] = len(observations)
         counts["observations_seen"] = len(seen)
         counts["adjacent_rows"] = sum(
             1
@@ -1321,6 +1379,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 "discovery": "DISCOVERY_ONLY_FROZEN_SIDE_CANDIDATE",
                 "heldout": "HELDOUT_VALIDATION_FROZEN_SIDE_CANDIDATE",
                 "independent": "INDEPENDENT_VALIDATION_POSTHELDOUT_CANDIDATE",
+                "prospective": "PROSPECTIVE_VALIDATION_POSTINDEPENDENT_CANDIDATE",
             }[partition],
             "partition": partition,
             "source_capture_side_report": str(args.capture_side_report),
@@ -1349,6 +1408,15 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 )
                 if partition == "independent"
                 else (
+                    "Prospective validation of the frozen post-independent "
+                    "Kill-sensitive capture-side candidate against a fresh "
+                    "32-game population selected before outcomes were opened. "
+                    "Only globally adjacent rows are candidate-comparable. "
+                    "The immutable public100 generation is read explicitly; "
+                    "CURRENT is not consulted. No candidate parameter is fitted "
+                    "from this population."
+                    if partition == "prospective"
+                    else (
                     f"{partition.capitalize()} bounded O-layer comparator. The "
                     "frozen-order cursor is transcribed from the separately audited "
                     "external c2ng/THost path and is not NuHost authority. Only "
@@ -1360,6 +1428,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                     "reachability, and factual N+1 supplies only the final "
                     "opponent/side comparator. The split side candidate retains its "
                     "original discovery/heldout evidence boundary."
+                )
                 )
             ),
         }
@@ -1383,7 +1452,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--partition",
-        choices=("discovery", "heldout", "independent"),
+        choices=("discovery", "heldout", "independent", "prospective"),
         default="discovery",
     )
     parser.add_argument(
