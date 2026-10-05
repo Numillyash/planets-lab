@@ -185,8 +185,10 @@ The runner checks before the expensive import:
     baseline/selected game-ID overlap     0
     combined == baseline union selected
 
-It requires at least 55 GiB free in the shared corpus root by default. This is a
-safety floor for staging + publication, not a predicted final database size.
+It requires at least 30 GiB free in the shared corpus root by default. This is a
+conservative safety floor around the projected ~22.27 GiB public100 staging DB.
+Publication uses os.replace() within the same filesystem, so it does not require
+a second full-size database copy.
 
 The build uses:
 
@@ -245,3 +247,32 @@ checks, shared-read status and confirmation that CURRENT stayed on public68.
 Only then freeze/run the prospective capture-side validation against the
 fresh32 population. Do not inspect its capture outcomes before the validation
 protocol is fixed.
+
+
+## Free-space floor correction
+
+The first public100 runtime on commit 6be92311aaae18d634e8d02e1d26731778841f73
+stopped before import because the runner's initial 55 GiB floor was overly
+conservative:
+
+    available_bytes = 19421515776  (~18.09 GiB)
+    required_bytes  = 59055800320  (55 GiB)
+
+No database import started and no corpus state changed.
+
+Code review confirmed that publication moves the completed staging database into
+generations/ with os.replace(). It does not copy the full database. Therefore
+55 GiB was not a physical-size prediction and was not required by the publish
+path.
+
+The corrected default floor is 30 GiB:
+
+    projected public100 compact DB  ~22.27 GiB
+    default free-space floor         30.00 GiB
+    nominal headroom                 ~7.73 GiB
+
+The existing ~18.09 GiB free space is still insufficient for the projected
+public100 build, so local cleanup is required before rerunning. The old typed1
+public36 generation is the primary cleanup candidate because it is ~36.26 GiB,
+is not CURRENT, and has been superseded operationally by compact1. Keep the
+compact public36 rollback generation and the active compact public68 generation.
