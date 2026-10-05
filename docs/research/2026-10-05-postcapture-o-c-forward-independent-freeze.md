@@ -266,3 +266,23 @@ Main also added explicit-generation readers for the canonical prospective
 capture-side workflow. The research selector implementation itself remains
 frozen and is still exposed to public100 through the read-only validation view,
 so no selector-critical file is changed after the freeze.
+
+
+## Runtime evidence wrapper
+
+The prospective selector implementation and validation protocol remain frozen.
+
+For the actual runtime, use:
+
+```bash
+bash tools/research/run-postcapture-o-c-forward-independent-with-evidence.sh
+```
+
+The wrapper publishes:
+
+```text
+runtime-logs/postcapture-o-c-forward-independent/<run-id>
+```
+
+including the gate log and the bounded fresh32 selector artifacts. The wrapper
+does not modify selector-critical files.
