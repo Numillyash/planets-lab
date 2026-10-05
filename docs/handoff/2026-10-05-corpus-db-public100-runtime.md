@@ -151,3 +151,21 @@ index metadata.
 This intentionally accepts loss of local rebuild-from-ZIP capability. Public
 games can be reacquired later if a future storage migration requires a new raw
 oracle.
+
+
+## Source archive cleanup completion
+
+After full 224014 / 224014 exact semantic parity was recorded, the exact
+100-game source ZIP set was removed locally through the guarded cleanup:
+
+    manifest games             100
+    cached archives present    100
+    removed archives           100
+    removed bytes      16820204641
+    removed GiB             15.665
+    source_cleanup             PASS
+
+The validated public100 generation remained present with its canonical SHA256.
+
+This intentionally removes the local raw rebuild oracle for these 100 games.
+Small manifest/index metadata and the exact-parity public100 DuckDB remain.
