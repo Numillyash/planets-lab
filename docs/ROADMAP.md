@@ -968,7 +968,79 @@ canonical public68 `CURRENT` remains unchanged during validation.
 
 Handoff:
 
-`docs/handoff/2026-10-05-postindependent-validation-acquisition-ready.md`
+`docs/handoff/2026-10-05-postindependent-validation-acquisition-ready.md`.
+
+### Public100 prospective capture-side validation — failed C proxy
+
+The frozen Kill-sensitive post-independent candidate was tested against the
+second fresh 32-game population using the explicit exact-parity public100
+generation.
+
+```text
+fresh games                         32
+adjacent capture rows               20
+candidate exact                     19
+candidate mismatch                   1
+candidate unresolved                 0
+
+fresh numeric Kill LEFT              1
+fresh numeric non-Kill LEFT          1
+
+status                  FAILED_MISMATCH
+promotion_ready                   false
+```
+
+Both numeric Kill/non-Kill discriminators passed. The failure is instead the
+first LEFT-oriented O-not-reachable row:
+
+```text
+game 597079 T19 VCR17 -> 18
+captured ship14
+capture LEFT
+factual next side RIGHT
+identity-anchored order [14, 172, 185]
+prize < factual opponent < capture target
+```
+
+This demonstrates that the old
+`O-not-reachable -> neutral orders + fresh symbolic FC` branch was a proxy.
+All earlier such cases were RIGHT -> LEFT, so the proxy never saw the opposite
+orientation.
+
+Across the now-open 102 adjacent rows, the minimal structural replacement is:
+
+```text
+O reachable:
+    retain the existing post-independent O-side rules
+
+O not reachable / capture-created C order:
+    prize side = opposite(capture side)
+```
+
+The C-order side flip fits 58 / 58 open C rows:
+
+```text
+RIGHT -> LEFT  57
+LEFT  -> RIGHT  1
+```
+
+The complete post-prospective bounded candidate fits 102 / 102 open adjacent
+rows but is explicitly NOT canonical because public100 prospective evidence
+informed the replacement rule.
+
+Implementation:
+
+`tools/diagnostics/combat_public_capture_side_postprospective_candidate.py`
+
+Checkpoint:
+
+`docs/handoff/2026-10-05-public100-capture-side-prospective-result.md`
+
+Next validation should be controlled rather than another broad random public
+corpus. Private game `686764` is the preferred prospective oracle: force a
+LEFT capture followed by a C-forward continuation, freeze the candidate first,
+and validate the predicted RIGHT side. Private/live data must remain separate
+from immutable public100.
 
 Immediate mechanics priority is new prospective/independent discrimination of
 numeric group-0 Kill versus non-Kill post-capture side behavior. Do not reuse
