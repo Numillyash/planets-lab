@@ -209,7 +209,7 @@ def test_probe_has_separate_independent_postheldout_mode() -> None:
         root / "tools/diagnostics/combat_public_capture_o_layer_probe.py"
     ).read_text(encoding="utf-8")
 
-    assert 'choices=("discovery", "heldout", "independent")' in source
+    assert 'choices=("discovery", "heldout", "independent", "prospective")' in source
     assert 'capture_partition = "all" if partition == "independent"' in source
     assert '"INDEPENDENT_VALIDATION_POSTHELDOUT_CANDIDATE"' in source
     assert '"postheldout_candidate_validation"' in source
