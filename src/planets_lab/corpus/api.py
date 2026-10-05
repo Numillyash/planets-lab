@@ -135,6 +135,107 @@ class PlanetsNuPublicApi:
             )
         return payload
 
+
+    def post_form_json(
+        self,
+        path: str,
+        *,
+        data: dict[str, Any],
+        headers: dict[str, str] | None = None,
+    ) -> Any:
+        encoded = urlencode(data).encode("utf-8")
+        request_headers = {
+            "Accept-Encoding": "gzip",
+            "Content-Type": "application/x-www-form-urlencoded",
+            "User-Agent": "planets-lab-corpus/0.1",
+        }
+        if headers:
+            request_headers.update(headers)
+
+        request = Request(
+            self._url(path),
+            data=encoded,
+            headers=request_headers,
+            method="POST",
+        )
+
+        try:
+            with self._opener.open(request, timeout=self.timeout) as response:
+                payload_bytes = response.read()
+                content_encoding = response.headers.get("Content-Encoding", "")
+        except HTTPError as exc:
+            raise CorpusApiError(
+                f"Planets.nu returned HTTP {exc.code} for {path}"
+            ) from exc
+        except URLError as exc:
+            raise CorpusApiError(
+                f"Planets.nu request failed for {path}: {exc.reason}"
+            ) from exc
+
+        if content_encoding.lower() == "gzip" or payload_bytes[:2] == b"\x1f\x8b":
+            try:
+                payload_bytes = gzip.decompress(payload_bytes)
+            except OSError as exc:
+                raise CorpusApiError(
+                    f"Planets.nu returned invalid gzip data for {path}"
+                ) from exc
+
+        try:
+            payload = json.loads(payload_bytes.decode("utf-8-sig"))
+        except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+            raise CorpusApiError(
+                f"Planets.nu returned invalid JSON for {path}"
+            ) from exc
+
+        if isinstance(payload, dict) and payload.get("success") is False:
+            raise CorpusApiError(
+                str(payload.get("error", f"Planets.nu {path} failed"))
+            )
+        return payload
+
+    def load_turn(
+        self,
+        game_id: int,
+        api_key: str,
+        *,
+        turn: int | None = None,
+        for_save: bool = True,
+    ) -> dict[str, Any]:
+        if game_id <= 0:
+            raise ValueError("game_id must be positive")
+        if not isinstance(api_key, str) or not api_key:
+            raise ValueError("api_key must be a non-empty string")
+        if turn is not None and turn <= 0:
+            raise ValueError("turn must be positive when supplied")
+
+        data: dict[str, Any] = {
+            "gameid": game_id,
+            "apikey": api_key,
+            "forsave": "true" if for_save else "false",
+            "activity": "true",
+        }
+        if turn is not None:
+            data["turn"] = turn
+
+        payload = self.post_form_json(
+            "game/loadturn",
+            data=data,
+            headers={
+                "Origin": "https://planets.nu",
+                "Referer": "https://planets.nu/",
+                "User-Agent": "Mozilla/5.0",
+            },
+        )
+        if not isinstance(payload, dict):
+            raise CorpusApiError(
+                "Planets.nu loadturn response is not an object"
+            )
+        if not isinstance(payload.get("rst"), dict):
+            raise CorpusApiError(
+                "Planets.nu loadturn response has no rst object"
+            )
+        return payload
+
     def games_list(
         self,
         *,
