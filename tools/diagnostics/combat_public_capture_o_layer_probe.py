@@ -31,6 +31,7 @@ from combat_public_capture_side_postheldout_validation import (
 from planets_lab.corpus.archive import TurnMember
 from planets_lab.corpus.corpus_db_compact import reconstruct_compact_member
 from planets_lab.corpus.corpus_db_runtime import (
+    connect_compact_generation_read_only,
     connect_current_compact_read_only,
     first_last_member_refs,
     member_refs_for_turns,
@@ -800,9 +801,15 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     for game_id, battle_turn, _x, _y in targets:
         battle_turns_by_game[int(game_id)].add(int(battle_turn))
 
-    connection, database_path = connect_current_compact_read_only(
-        args.corpus_db_root
-    )
+    if args.corpus_db_generation is not None:
+        connection, database_path = connect_compact_generation_read_only(
+            args.corpus_db_generation,
+            args.corpus_db_root,
+        )
+    else:
+        connection, database_path = connect_current_compact_read_only(
+            args.corpus_db_root
+        )
     try:
         appearances: list[dict[str, Any]] = []
         appearance_summary: Counter[str] = Counter()
@@ -1384,6 +1391,14 @@ def parse_args() -> argparse.Namespace:
         type=Path,
         default=None,
         help="Shared corpus DB root; defaults to PLANETS_CORPUS_DB_ROOT.",
+    )
+    parser.add_argument(
+        "--corpus-db-generation",
+        default=None,
+        help=(
+            "Explicit generation path relative to the corpus DB root. "
+            "When set, CURRENT is not consulted."
+        ),
     )
     parser.add_argument("--example-limit", type=int, default=80)
     parser.add_argument("--game-id", type=int)
