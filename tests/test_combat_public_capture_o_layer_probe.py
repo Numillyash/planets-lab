@@ -210,7 +210,7 @@ def test_probe_has_separate_independent_postheldout_mode() -> None:
     ).read_text(encoding="utf-8")
 
     assert 'choices=("discovery", "heldout", "independent", "prospective")' in source
-    assert 'capture_partition = "all" if partition == "independent"' in source
+    assert '"all" if partition in {"independent", "prospective"} else partition' in source
     assert '"INDEPENDENT_VALIDATION_POSTHELDOUT_CANDIDATE"' in source
     assert '"postheldout_candidate_validation"' in source
     assert '"postheldout_candidate_rows"' in source
