@@ -190,3 +190,37 @@ be reused as independent validation after modifying the selector.
 
 Any post-failure candidate must be labeled post-validation/open-population and
 validated on another newly selected zero-overlap population.
+
+
+## Tracked prospective validator
+
+After the protocol above was frozen, the validator implementation was added:
+
+```text
+tools/research/probe-postcapture-o-c-forward-independent.py
+tests/test_postcapture_o_c_forward_independent.py
+tools/research/run-postcapture-o-c-forward-independent.sh
+```
+
+The runner refuses to evaluate unless the selector-critical files remain
+byte-identical to the frozen implementation commit.
+
+It also verifies before opening fresh32 mechanics:
+
+```text
+public68 baseline count = 68
+fresh selected count    = 32
+fresh index count       = 32
+baseline/fresh overlap  = 0
+canonical CURRENT       = frozen public68
+public100 source archives = 100
+all fresh32 game IDs exist in public100
+```
+
+The public100 generation is exposed to the diagnostic tools through a temporary
+hard-link validation view under the corpus root. Canonical CURRENT is checked
+before and after the run and is never changed.
+
+Fresh32 capture and O-layer artifacts are created only during this prospective
+gate. If the gate fails, those outcomes are considered opened and cannot be
+reused as independent validation for a modified selector.
