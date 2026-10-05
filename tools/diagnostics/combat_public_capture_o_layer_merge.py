@@ -27,7 +27,7 @@ def merge_parts(parts: list[Mapping[str, Any]]) -> dict[str, Any]:
         if part.get("schema") != SCHEMA:
             raise ValueError(f"unexpected part schema: {part.get('schema')!r}")
         partition = part.get("partition")
-        if partition not in {"discovery", "heldout", "independent"}:
+        if partition not in {"discovery", "heldout", "independent", "prospective"}:
             raise ValueError(f"unexpected part partition: {partition!r}")
         partitions.add(str(partition))
         part_summary = part.get("summary")
@@ -86,6 +86,7 @@ def merge_parts(parts: list[Mapping[str, Any]]) -> dict[str, Any]:
             "discovery": "DISCOVERY_ONLY_FROZEN_SIDE_CANDIDATE",
             "heldout": "HELDOUT_VALIDATION_FROZEN_SIDE_CANDIDATE",
             "independent": "INDEPENDENT_VALIDATION_POSTHELDOUT_CANDIDATE",
+            "prospective": "PROSPECTIVE_VALIDATION_POSTINDEPENDENT_CANDIDATE",
         }[partition],
         "partition": partition,
         "scanned_game_ids": sorted(scanned_game_ids),
@@ -103,7 +104,12 @@ def merge_parts(parts: list[Mapping[str, Any]]) -> dict[str, Any]:
                 "The independent path evaluates the frozen post-heldout candidate "
                 "against the new short32 population without fitting."
                 if partition == "independent"
-                else "The historical discovery/heldout evidence boundary is preserved."
+                else (
+                    "The prospective path evaluates the frozen post-independent "
+                    "candidate on the fresh validation population."
+                    if partition == "prospective"
+                    else "The historical discovery/heldout evidence boundary is preserved."
+                )
             )
         ),
     }
