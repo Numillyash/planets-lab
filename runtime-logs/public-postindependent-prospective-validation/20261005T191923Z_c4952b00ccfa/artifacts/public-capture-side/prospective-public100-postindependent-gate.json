@@ -1,0 +1,17 @@
+{
+  "adjacent_rows": 20,
+  "candidate_exact_gate": false,
+  "candidate_rows": 20,
+  "discriminator_coverage": true,
+  "evidence_status": "PROSPECTIVE_VALIDATION",
+  "exact": 19,
+  "fresh_numeric_kill_left": 1,
+  "fresh_numeric_nonkill_left": 1,
+  "frozen_candidate_commit": "46bcb08c2f0d3f0449b97921edb03ab6647f7d3b",
+  "mismatch": 1,
+  "promotion_ready": false,
+  "schema": "planets-lab.combat-public-capture-side-prospective-gate.v1",
+  "source_report": "artifacts/public-capture-side/prospective-public100-postindependent-validation.json",
+  "status": "FAILED_MISMATCH",
+  "unresolved": 0
+}

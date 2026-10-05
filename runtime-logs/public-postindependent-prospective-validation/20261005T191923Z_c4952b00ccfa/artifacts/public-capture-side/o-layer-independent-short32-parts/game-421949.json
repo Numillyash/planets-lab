@@ -1,0 +1,252 @@
+{
+  "database_path": "/corpus-db/generations/corpus-v2compact-public68-20261004T095236Z-09f71721b77c.duckdb",
+  "evidence_boundary": "Independent short-public validation of the already frozen post-heldout capture-side candidate. The source capture report contains all indexed games from the independent short32 manifest. Only globally adjacent capture->next VCR rows enter the candidate gate. Pair reachability is identity-anchored on the factual N+1 opponent identity/eligibility but never its side. Repeated-pair reversal is evaluated before O-layer reachability, matching the frozen candidate branch order. Unknown opponent priority on a reachable first-occurrence row fails closed. No candidate parameter is fitted from this population.",
+  "evidence_status": "INDEPENDENT_VALIDATION_POSTHELDOUT_CANDIDATE",
+  "observations": [
+    {
+      "active_dependency": {
+        "factual_opponent_active": false,
+        "factual_opponent_candidate_resolved": false,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "tow_target",
+        "factual_opponent_prediction_position": null,
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": null,
+        "factual_opponent_requests_new_owner": null,
+        "factual_opponent_site_predicted": false,
+        "factual_opponent_strict_permission": null,
+        "factual_opponent_strict_rank": null,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "left",
+      "capture_vcr_id": 91,
+      "captured_ship_id": 185,
+      "factual_prize_side": "right",
+      "game_id": 421949,
+      "identity_anchored_result": {
+        "capture_cursor": {
+          "left_index": 3,
+          "left_ship_id": 185,
+          "right_index": 1,
+          "right_ship_id": 131
+        },
+        "cursor_trace": [
+          {
+            "accepted": true,
+            "left_index": 0,
+            "left_ship_id": 451,
+            "other_active": true,
+            "other_strict_attacker": true,
+            "right_index": 3,
+            "right_ship_id": 185
+          }
+        ],
+        "exact": true,
+        "external_order": [
+          451,
+          131,
+          63,
+          185
+        ],
+        "external_order_keys": {
+          "131": [
+            1010,
+            131
+          ],
+          "185": [
+            1015,
+            185
+          ],
+          "451": [
+            870,
+            451
+          ],
+          "63": [
+            1015,
+            63
+          ]
+        },
+        "factual_opponent_ship_id": 451,
+        "factual_prize_side": "right",
+        "pair_exact": true,
+        "predicted_cursor": {
+          "left_index": 0,
+          "right_index": 3
+        },
+        "predicted_opponent_ship_id": 451,
+        "predicted_prize_ship_id": 185,
+        "predicted_prize_side": "right",
+        "side_exact": true,
+        "status": "resolved"
+      },
+      "identity_anchored_split": {
+        "exact": false,
+        "factual_side": "right",
+        "pair_exact": true,
+        "predicted_side": "left",
+        "source": "frozen_identity_anchored_o_reachable_sticky_capture_side"
+      },
+      "next_opponent_ship_id": 451,
+      "next_vcr_id": 92,
+      "postheldout_candidate_validation": {
+        "branch": "reachable_numeric_opponent_override",
+        "exact": true,
+        "factual_side": "right",
+        "inputs": {
+          "capture_side": "left",
+          "identity_anchored_o_pair_reachable": true,
+          "neutral_fresh_fc_side": "left",
+          "next_opponent_previous_side": null,
+          "opponent_priority_group": 0,
+          "prior_same_pair_occurrences": 0
+        },
+        "predicted_side": "right",
+        "schema": "planets-lab.combat-public-capture-side-postheldout-validation-adapter.v1",
+        "status": "resolved"
+      },
+      "result": {
+        "capture_cursor": {
+          "left_index": 2,
+          "left_ship_id": 185,
+          "right_index": 0,
+          "right_ship_id": 131
+        },
+        "cursor_trace": [
+          {
+            "accepted": false,
+            "left_index": 0,
+            "left_ship_id": 131,
+            "other_active": true,
+            "other_strict_attacker": false,
+            "right_index": 2,
+            "right_ship_id": 185
+          },
+          {
+            "accepted": false,
+            "left_index": 1,
+            "left_ship_id": 63,
+            "other_active": true,
+            "other_strict_attacker": false,
+            "right_index": 2,
+            "right_ship_id": 185
+          }
+        ],
+        "exact": false,
+        "external_order": [
+          131,
+          63,
+          185
+        ],
+        "factual_opponent_ship_id": 451,
+        "factual_prize_side": "right",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "split_candidate": {
+        "exact": false,
+        "factual_side": "right",
+        "predicted_side": "left",
+        "source": "o_not_reachable_neutral_fresh_fc"
+      },
+      "turn": 49,
+      "x": 1358,
+      "y": 2717
+    }
+  ],
+  "partition": "independent",
+  "probe_game_ids": [
+    421949
+  ],
+  "scanned_game_ids": [
+    220698,
+    221008,
+    226056,
+    235762,
+    243165,
+    245123,
+    245693,
+    277134,
+    310054,
+    323802,
+    338810,
+    341336,
+    347236,
+    347923,
+    399914,
+    407599,
+    421276,
+    421949,
+    454504,
+    467047,
+    494635,
+    499284,
+    521834,
+    530633,
+    600044,
+    632527,
+    633837,
+    645077,
+    655827,
+    660249,
+    663317,
+    674696
+  ],
+  "schema": "planets-lab.combat-public-capture-o-layer-probe.v2.db1",
+  "source_capture_side_report": "artifacts/public-capture-side/independent-short32-capture-side.json",
+  "summary": {
+    "appearance_summary": {
+      "payload_conflicts": 0,
+      "raw_vcr_observations": 38,
+      "replay_supported": 6,
+      "ship_appearances": 8,
+      "source_members": 12,
+      "unique_vcrs": 6
+    },
+    "counts": {
+      "active_dependency:factual_opponent_active:false": 1,
+      "active_dependency:factual_opponent_candidate_resolved:false": 1,
+      "active_dependency:factual_opponent_requests_new_owner:unknown": 1,
+      "active_dependency:factual_opponent_strict_permission:unknown": 1,
+      "active_dependency:requester_rank_missing": 1,
+      "active_dependency:strict_rank_missing": 1,
+      "adjacent_rows": 1,
+      "blocked_dependency:factual_opponent_history_anchored:false": 1,
+      "blocked_dependency:factual_opponent_owner_changed_before_next:false": 1,
+      "blocked_dependency:factual_opponent_removed_before_next:false": 1,
+      "blocked_dependency:factual_opponent_site_predicted:false": 1,
+      "capture_ship_rows": 1,
+      "external_o_mismatch": 1,
+      "factual_side:right": 1,
+      "identity_anchored_o_pair_reachable": 1,
+      "identity_anchored_split_mismatch": 1,
+      "independent_ship_rows": 1,
+      "o_pair_not_reachable": 1,
+      "o_pair_not_reachable:right": 1,
+      "observations_seen": 1,
+      "postheldout_branch:reachable_numeric_opponent_override": 1,
+      "postheldout_candidate_exact": 1,
+      "postheldout_candidate_rows": 1,
+      "resolved_dependency:blocked": 1,
+      "split_candidate_mismatch": 1,
+      "split_candidate_mismatch:blocked": 1,
+      "status:resolved": 1
+    },
+    "targeted_site_context": [
+      {
+        "game_id": 421949,
+        "pseudo_vcr_count": 2,
+        "targeted_archive_turns": [
+          48,
+          49
+        ],
+        "targeted_snapshot_count": 24,
+        "visited_sites": 1
+      }
+    ]
+  }
+}

@@ -1,0 +1,157 @@
+{
+  "database_path": "/corpus-db/generations/corpus-v2compact-public36-20261002T083138Z-11cd75fa918d.duckdb",
+  "evidence_boundary": "Heldout bounded O-layer comparator. The frozen-order cursor is transcribed from the separately audited external c2ng/THost path and is not NuHost authority. Only globally adjacent capture->next VCR rows are comparable; nonadjacent rows fail closed. Capture VCR N anchors the existing cursor, independently reconstructed movement/site state comes from only required T-1/T members of the active exact-parity Corpus DB, strict post-capture attackers determine reachability, and factual N+1 supplies only the final opponent/side comparator. The split side candidate is discovery-only: reachable original-order pairs retain the factual capture side, while non-reachable pairs use the independently computed neutral/fresh-FC priority control. A second identity-anchored comparator conditions only on the factual N+1 opponent identity/eligibility, never its side, so side assignment can be tested separately from fail-closed special-movement position reconstruction. It is not an independent queue predictor. Dependency fields remain explicit. Held-out games are included only when the selected partition is heldout.",
+  "evidence_status": "HELDOUT_VALIDATION_FROZEN_SIDE_CANDIDATE",
+  "observations": [
+    {
+      "active_dependency": {
+        "factual_opponent_active": true,
+        "factual_opponent_candidate_resolved": true,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "normal_move",
+        "factual_opponent_prediction_position": [
+          2487,
+          1846
+        ],
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": 4,
+        "factual_opponent_requests_new_owner": true,
+        "factual_opponent_site_predicted": true,
+        "factual_opponent_strict_permission": true,
+        "factual_opponent_strict_rank": 4,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "left",
+      "capture_vcr_id": 1098,
+      "captured_ship_id": 281,
+      "factual_prize_side": "right",
+      "game_id": 218619,
+      "identity_anchored_result": {
+        "from_vcr_id": 1098,
+        "reason": "nonadjacent_vcr_requires_intervening_mutation_model",
+        "status": "not_comparable",
+        "to_vcr_id": 1109
+      },
+      "identity_anchored_split": null,
+      "next_opponent_ship_id": 254,
+      "next_vcr_id": 1109,
+      "result": {
+        "from_vcr_id": 1098,
+        "reason": "nonadjacent_vcr_requires_intervening_mutation_model",
+        "status": "not_comparable",
+        "to_vcr_id": 1109
+      },
+      "split_candidate": null,
+      "turn": 211,
+      "x": 2487,
+      "y": 1846
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": true,
+        "factual_opponent_candidate_resolved": true,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "normal_move",
+        "factual_opponent_prediction_position": [
+          2487,
+          1846
+        ],
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": 4,
+        "factual_opponent_requests_new_owner": true,
+        "factual_opponent_site_predicted": true,
+        "factual_opponent_strict_permission": true,
+        "factual_opponent_strict_rank": 4,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "left",
+      "capture_vcr_id": 1100,
+      "captured_ship_id": 424,
+      "factual_prize_side": "right",
+      "game_id": 218619,
+      "identity_anchored_result": {
+        "from_vcr_id": 1100,
+        "reason": "nonadjacent_vcr_requires_intervening_mutation_model",
+        "status": "not_comparable",
+        "to_vcr_id": 1110
+      },
+      "identity_anchored_split": null,
+      "next_opponent_ship_id": 254,
+      "next_vcr_id": 1110,
+      "result": {
+        "from_vcr_id": 1100,
+        "reason": "nonadjacent_vcr_requires_intervening_mutation_model",
+        "status": "not_comparable",
+        "to_vcr_id": 1110
+      },
+      "split_candidate": null,
+      "turn": 211,
+      "x": 2487,
+      "y": 1846
+    }
+  ],
+  "partition": "heldout",
+  "probe_game_ids": [
+    218619
+  ],
+  "scanned_game_ids": [
+    218619,
+    227887,
+    256858,
+    257776,
+    266087,
+    325434,
+    364412,
+    368767,
+    411645,
+    416250,
+    474699,
+    476380,
+    476819,
+    563278,
+    633855,
+    658427
+  ],
+  "schema": "planets-lab.combat-public-capture-o-layer-probe.v2.db1",
+  "source_capture_side_report": "artifacts/public-capture-side/heldout-capture-side.json",
+  "summary": {
+    "appearance_summary": {
+      "payload_conflicts": 0,
+      "raw_vcr_observations": 140,
+      "replay_supported": 28,
+      "ship_appearances": 54,
+      "source_members": 11,
+      "unique_vcrs": 28
+    },
+    "counts": {
+      "active_dependency:factual_opponent_active:true": 2,
+      "active_dependency:factual_opponent_candidate_resolved:true": 2,
+      "active_dependency:factual_opponent_requests_new_owner:true": 2,
+      "active_dependency:factual_opponent_strict_permission:true": 2,
+      "active_dependency:requester_rank_present": 2,
+      "active_dependency:strict_rank_present": 2,
+      "adjacent_rows": 0,
+      "capture_ship_rows": 2,
+      "discovery_ship_rows": 2,
+      "factual_side:right": 2,
+      "observations_seen": 2,
+      "status:not_comparable": 2
+    },
+    "targeted_site_context": [
+      {
+        "game_id": 218619,
+        "pseudo_vcr_count": 26,
+        "targeted_archive_turns": [
+          210,
+          211
+        ],
+        "targeted_snapshot_count": 22,
+        "visited_sites": 1
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "adjacent_rows": 22,
+  "branch_counts": {
+    "nonreachable_neutral_fresh_fc": 6,
+    "reachable_numeric_opponent_override": 6,
+    "reachable_sticky": 9,
+    "second_occurrence_reversal": 1
+  },
+  "branch_coverage_complete": true,
+  "candidate_gate_passed": false,
+  "candidate_rows": 22,
+  "evidence_status": "INDEPENDENT_VALIDATION",
+  "exact": 21,
+  "frozen_candidate_commit": "592607b07efa0f857521da05fe0651127ed8be2d",
+  "mismatch": 1,
+  "promotion_ready": false,
+  "schema": "planets-lab.combat-public-capture-side-independent-gate.v1",
+  "source_report": "artifacts/public-capture-side/independent-short32-postheldout-validation.json",
+  "status": "FAILED_MISMATCH",
+  "unresolved": 0
+}

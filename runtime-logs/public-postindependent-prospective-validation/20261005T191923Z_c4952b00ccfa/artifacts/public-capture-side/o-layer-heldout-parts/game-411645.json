@@ -1,0 +1,165 @@
+{
+  "database_path": "/corpus-db/generations/corpus-v2compact-public36-20261002T083138Z-11cd75fa918d.duckdb",
+  "evidence_boundary": "Heldout bounded O-layer comparator. The frozen-order cursor is transcribed from the separately audited external c2ng/THost path and is not NuHost authority. Only globally adjacent capture->next VCR rows are comparable; nonadjacent rows fail closed. Capture VCR N anchors the existing cursor, independently reconstructed movement/site state comes from only required T-1/T members of the active exact-parity Corpus DB, strict post-capture attackers determine reachability, and factual N+1 supplies only the final opponent/side comparator. The split side candidate is discovery-only: reachable original-order pairs retain the factual capture side, while non-reachable pairs use the independently computed neutral/fresh-FC priority control. A second identity-anchored comparator conditions only on the factual N+1 opponent identity/eligibility, never its side, so side assignment can be tested separately from fail-closed special-movement position reconstruction. It is not an independent queue predictor. Dependency fields remain explicit. Held-out games are included only when the selected partition is heldout.",
+  "evidence_status": "HELDOUT_VALIDATION_FROZEN_SIDE_CANDIDATE",
+  "observations": [
+    {
+      "active_dependency": {
+        "factual_opponent_active": false,
+        "factual_opponent_candidate_resolved": false,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "pre_move_mkt_mass_change",
+        "factual_opponent_prediction_position": null,
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": null,
+        "factual_opponent_requests_new_owner": null,
+        "factual_opponent_site_predicted": false,
+        "factual_opponent_strict_permission": null,
+        "factual_opponent_strict_rank": null,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "right",
+      "capture_vcr_id": 1298,
+      "captured_ship_id": 37,
+      "factual_prize_side": "left",
+      "game_id": 411645,
+      "identity_anchored_result": {
+        "capture_cursor": {
+          "left_index": 4,
+          "left_ship_id": 483,
+          "right_index": 0,
+          "right_ship_id": 37
+        },
+        "exact": false,
+        "external_order": [
+          37,
+          84,
+          139,
+          210,
+          483
+        ],
+        "factual_opponent_ship_id": 84,
+        "factual_prize_side": "left",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "identity_anchored_split": {
+        "exact": true,
+        "factual_side": "left",
+        "pair_exact": false,
+        "predicted_side": "left",
+        "source": "frozen_identity_anchored_o_not_reachable_neutral_fresh_fc"
+      },
+      "next_opponent_ship_id": 84,
+      "next_vcr_id": 1299,
+      "result": {
+        "capture_cursor": {
+          "left_index": 3,
+          "left_ship_id": 483,
+          "right_index": 0,
+          "right_ship_id": 37
+        },
+        "exact": false,
+        "external_order": [
+          37,
+          139,
+          210,
+          483
+        ],
+        "factual_opponent_ship_id": 84,
+        "factual_prize_side": "left",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "split_candidate": {
+        "exact": true,
+        "factual_side": "left",
+        "predicted_side": "left",
+        "source": "o_not_reachable_neutral_fresh_fc"
+      },
+      "turn": 114,
+      "x": 1463,
+      "y": 2416
+    }
+  ],
+  "partition": "heldout",
+  "probe_game_ids": [
+    411645
+  ],
+  "scanned_game_ids": [
+    218619,
+    227887,
+    256858,
+    257776,
+    266087,
+    325434,
+    364412,
+    368767,
+    411645,
+    416250,
+    474699,
+    476380,
+    476819,
+    563278,
+    633855,
+    658427
+  ],
+  "schema": "planets-lab.combat-public-capture-o-layer-probe.v2.db1",
+  "source_capture_side_report": "artifacts/public-capture-side/heldout-capture-side.json",
+  "summary": {
+    "appearance_summary": {
+      "payload_conflicts": 0,
+      "raw_vcr_observations": 87,
+      "replay_supported": 23,
+      "ship_appearances": 42,
+      "source_members": 12,
+      "unique_vcrs": 23
+    },
+    "counts": {
+      "active_dependency:factual_opponent_active:false": 1,
+      "active_dependency:factual_opponent_candidate_resolved:false": 1,
+      "active_dependency:factual_opponent_requests_new_owner:unknown": 1,
+      "active_dependency:factual_opponent_strict_permission:unknown": 1,
+      "active_dependency:requester_rank_missing": 1,
+      "active_dependency:strict_rank_missing": 1,
+      "adjacent_rows": 1,
+      "blocked_dependency:factual_opponent_history_anchored:false": 1,
+      "blocked_dependency:factual_opponent_owner_changed_before_next:false": 1,
+      "blocked_dependency:factual_opponent_removed_before_next:false": 1,
+      "blocked_dependency:factual_opponent_site_predicted:false": 1,
+      "capture_ship_rows": 1,
+      "discovery_ship_rows": 1,
+      "external_o_mismatch": 1,
+      "factual_side:left": 1,
+      "identity_anchored_o_pair_not_reachable": 1,
+      "identity_anchored_split_exact": 1,
+      "o_pair_not_reachable": 1,
+      "o_pair_not_reachable:left": 1,
+      "observations_seen": 1,
+      "resolved_dependency:blocked": 1,
+      "split_candidate_exact": 1,
+      "split_candidate_exact:blocked": 1,
+      "status:resolved": 1
+    },
+    "targeted_site_context": [
+      {
+        "game_id": 411645,
+        "pseudo_vcr_count": 19,
+        "targeted_archive_turns": [
+          113,
+          114
+        ],
+        "targeted_snapshot_count": 24,
+        "visited_sites": 1
+      }
+    ]
+  }
+}

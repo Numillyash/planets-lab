@@ -1,0 +1,4103 @@
+{
+  "evidence_boundary": "Merged from process-isolated heldout per-game O-layer reports. Each game is evaluated in a fresh Python/container process to bound peak memory. The external cursor remains reference-only. The held-out path validates the already frozen side candidate.",
+  "evidence_status": "HELDOUT_VALIDATION_FROZEN_SIDE_CANDIDATE",
+  "observations": [
+    {
+      "active_dependency": {
+        "factual_opponent_active": true,
+        "factual_opponent_candidate_resolved": true,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "normal_move",
+        "factual_opponent_prediction_position": [
+          2487,
+          1846
+        ],
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": 4,
+        "factual_opponent_requests_new_owner": true,
+        "factual_opponent_site_predicted": true,
+        "factual_opponent_strict_permission": true,
+        "factual_opponent_strict_rank": 4,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "left",
+      "capture_vcr_id": 1098,
+      "captured_ship_id": 281,
+      "factual_prize_side": "right",
+      "game_id": 218619,
+      "identity_anchored_result": {
+        "from_vcr_id": 1098,
+        "reason": "nonadjacent_vcr_requires_intervening_mutation_model",
+        "status": "not_comparable",
+        "to_vcr_id": 1109
+      },
+      "identity_anchored_split": null,
+      "next_opponent_ship_id": 254,
+      "next_vcr_id": 1109,
+      "result": {
+        "from_vcr_id": 1098,
+        "reason": "nonadjacent_vcr_requires_intervening_mutation_model",
+        "status": "not_comparable",
+        "to_vcr_id": 1109
+      },
+      "split_candidate": null,
+      "turn": 211,
+      "x": 2487,
+      "y": 1846
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": true,
+        "factual_opponent_candidate_resolved": true,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "normal_move",
+        "factual_opponent_prediction_position": [
+          2487,
+          1846
+        ],
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": 4,
+        "factual_opponent_requests_new_owner": true,
+        "factual_opponent_site_predicted": true,
+        "factual_opponent_strict_permission": true,
+        "factual_opponent_strict_rank": 4,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "left",
+      "capture_vcr_id": 1100,
+      "captured_ship_id": 424,
+      "factual_prize_side": "right",
+      "game_id": 218619,
+      "identity_anchored_result": {
+        "from_vcr_id": 1100,
+        "reason": "nonadjacent_vcr_requires_intervening_mutation_model",
+        "status": "not_comparable",
+        "to_vcr_id": 1110
+      },
+      "identity_anchored_split": null,
+      "next_opponent_ship_id": 254,
+      "next_vcr_id": 1110,
+      "result": {
+        "from_vcr_id": 1100,
+        "reason": "nonadjacent_vcr_requires_intervening_mutation_model",
+        "status": "not_comparable",
+        "to_vcr_id": 1110
+      },
+      "split_candidate": null,
+      "turn": 211,
+      "x": 2487,
+      "y": 1846
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": false,
+        "factual_opponent_candidate_resolved": false,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "tow_target",
+        "factual_opponent_prediction_position": null,
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": null,
+        "factual_opponent_requests_new_owner": null,
+        "factual_opponent_site_predicted": false,
+        "factual_opponent_strict_permission": null,
+        "factual_opponent_strict_rank": null,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "right",
+      "capture_vcr_id": 30,
+      "captured_ship_id": 166,
+      "factual_prize_side": "left",
+      "game_id": 227887,
+      "identity_anchored_result": {
+        "capture_cursor": {
+          "left_index": 3,
+          "left_ship_id": 260,
+          "right_index": 0,
+          "right_ship_id": 166
+        },
+        "exact": false,
+        "external_order": [
+          166,
+          284,
+          237,
+          260,
+          102,
+          199
+        ],
+        "factual_opponent_ship_id": 284,
+        "factual_prize_side": "left",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "identity_anchored_split": {
+        "exact": true,
+        "factual_side": "left",
+        "pair_exact": false,
+        "predicted_side": "left",
+        "source": "frozen_identity_anchored_o_not_reachable_neutral_fresh_fc"
+      },
+      "next_opponent_ship_id": 284,
+      "next_vcr_id": 31,
+      "result": {
+        "capture_cursor": {
+          "left_index": 2,
+          "left_ship_id": 260,
+          "right_index": 0,
+          "right_ship_id": 166
+        },
+        "exact": false,
+        "external_order": [
+          166,
+          237,
+          260,
+          102,
+          199
+        ],
+        "factual_opponent_ship_id": 284,
+        "factual_prize_side": "left",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "split_candidate": {
+        "exact": true,
+        "factual_side": "left",
+        "predicted_side": "left",
+        "source": "o_not_reachable_neutral_fresh_fc"
+      },
+      "turn": 25,
+      "x": 2749,
+      "y": 2216
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": false,
+        "factual_opponent_candidate_resolved": false,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "pre_move_mkt_mass_change",
+        "factual_opponent_prediction_position": null,
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": null,
+        "factual_opponent_requests_new_owner": null,
+        "factual_opponent_site_predicted": false,
+        "factual_opponent_strict_permission": null,
+        "factual_opponent_strict_rank": null,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "left",
+      "capture_vcr_id": 31,
+      "captured_ship_id": 166,
+      "factual_prize_side": "left",
+      "game_id": 227887,
+      "identity_anchored_result": {
+        "from_vcr_id": 31,
+        "reason": "nonadjacent_vcr_requires_intervening_mutation_model",
+        "status": "not_comparable",
+        "to_vcr_id": 37
+      },
+      "identity_anchored_split": null,
+      "next_opponent_ship_id": 264,
+      "next_vcr_id": 37,
+      "result": {
+        "from_vcr_id": 31,
+        "reason": "nonadjacent_vcr_requires_intervening_mutation_model",
+        "status": "not_comparable",
+        "to_vcr_id": 37
+      },
+      "split_candidate": null,
+      "turn": 25,
+      "x": 2749,
+      "y": 2216
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": true,
+        "factual_opponent_candidate_resolved": true,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "stationary_effective_warp_zero",
+        "factual_opponent_prediction_position": [
+          2749,
+          2216
+        ],
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": 2,
+        "factual_opponent_requests_new_owner": true,
+        "factual_opponent_site_predicted": true,
+        "factual_opponent_strict_permission": true,
+        "factual_opponent_strict_rank": 2,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "right",
+      "capture_vcr_id": 33,
+      "captured_ship_id": 284,
+      "factual_prize_side": "left",
+      "game_id": 227887,
+      "identity_anchored_result": {
+        "capture_cursor": {
+          "left_index": 4,
+          "left_ship_id": 264,
+          "right_index": 1,
+          "right_ship_id": 284
+        },
+        "exact": false,
+        "external_order": [
+          166,
+          284,
+          237,
+          260,
+          264,
+          102,
+          199
+        ],
+        "factual_opponent_ship_id": 237,
+        "factual_prize_side": "left",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "identity_anchored_split": {
+        "exact": true,
+        "factual_side": "left",
+        "pair_exact": false,
+        "predicted_side": "left",
+        "source": "frozen_identity_anchored_o_not_reachable_neutral_fresh_fc"
+      },
+      "next_opponent_ship_id": 237,
+      "next_vcr_id": 34,
+      "result": {
+        "capture_cursor": {
+          "left_index": 4,
+          "left_ship_id": 264,
+          "right_index": 1,
+          "right_ship_id": 284
+        },
+        "exact": false,
+        "external_order": [
+          166,
+          284,
+          237,
+          260,
+          264,
+          102,
+          199
+        ],
+        "factual_opponent_ship_id": 237,
+        "factual_prize_side": "left",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "split_candidate": {
+        "exact": true,
+        "factual_side": "left",
+        "predicted_side": "left",
+        "source": "o_not_reachable_neutral_fresh_fc"
+      },
+      "turn": 25,
+      "x": 2749,
+      "y": 2216
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": true,
+        "factual_opponent_candidate_resolved": true,
+        "factual_opponent_history_anchored": true,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "pre_move_mkt_mass_change",
+        "factual_opponent_prediction_position": null,
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": 1,
+        "factual_opponent_requests_new_owner": true,
+        "factual_opponent_site_predicted": false,
+        "factual_opponent_strict_permission": true,
+        "factual_opponent_strict_rank": 1,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "left",
+      "capture_vcr_id": 34,
+      "captured_ship_id": 284,
+      "factual_prize_side": "left",
+      "game_id": 227887,
+      "identity_anchored_result": {
+        "from_vcr_id": 34,
+        "reason": "nonadjacent_vcr_requires_intervening_mutation_model",
+        "status": "not_comparable",
+        "to_vcr_id": 38
+      },
+      "identity_anchored_split": null,
+      "next_opponent_ship_id": 264,
+      "next_vcr_id": 38,
+      "result": {
+        "from_vcr_id": 34,
+        "reason": "nonadjacent_vcr_requires_intervening_mutation_model",
+        "status": "not_comparable",
+        "to_vcr_id": 38
+      },
+      "split_candidate": null,
+      "turn": 25,
+      "x": 2749,
+      "y": 2216
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": false,
+        "factual_opponent_candidate_resolved": false,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "web_mine_route_risk",
+        "factual_opponent_prediction_position": null,
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": null,
+        "factual_opponent_requests_new_owner": null,
+        "factual_opponent_site_predicted": false,
+        "factual_opponent_strict_permission": null,
+        "factual_opponent_strict_rank": null,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "right",
+      "capture_vcr_id": 663,
+      "captured_ship_id": 487,
+      "factual_prize_side": "left",
+      "game_id": 227887,
+      "identity_anchored_result": {
+        "capture_cursor": {
+          "left_index": 2,
+          "left_ship_id": 457,
+          "right_index": 0,
+          "right_ship_id": 487
+        },
+        "exact": false,
+        "external_order": [
+          487,
+          256,
+          457
+        ],
+        "factual_opponent_ship_id": 256,
+        "factual_prize_side": "left",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "identity_anchored_split": {
+        "exact": true,
+        "factual_side": "left",
+        "pair_exact": false,
+        "predicted_side": "left",
+        "source": "frozen_identity_anchored_o_not_reachable_neutral_fresh_fc"
+      },
+      "next_opponent_ship_id": 256,
+      "next_vcr_id": 664,
+      "result": {
+        "capture_cursor": {
+          "left_index": 1,
+          "left_ship_id": 457,
+          "right_index": 0,
+          "right_ship_id": 487
+        },
+        "exact": false,
+        "external_order": [
+          487,
+          457
+        ],
+        "factual_opponent_ship_id": 256,
+        "factual_prize_side": "left",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "split_candidate": {
+        "exact": true,
+        "factual_side": "left",
+        "predicted_side": "left",
+        "source": "o_not_reachable_neutral_fresh_fc"
+      },
+      "turn": 172,
+      "x": 2494,
+      "y": 1770
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": true,
+        "factual_opponent_candidate_resolved": true,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "normal_move_warp_well",
+        "factual_opponent_prediction_position": [
+          2856,
+          1807
+        ],
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": 1,
+        "factual_opponent_requests_new_owner": true,
+        "factual_opponent_site_predicted": true,
+        "factual_opponent_strict_permission": true,
+        "factual_opponent_strict_rank": 1,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "right",
+      "capture_vcr_id": 674,
+      "captured_ship_id": 103,
+      "factual_prize_side": "left",
+      "game_id": 227887,
+      "identity_anchored_result": {
+        "capture_cursor": {
+          "left_index": 3,
+          "left_ship_id": 68,
+          "right_index": 0,
+          "right_ship_id": 103
+        },
+        "exact": false,
+        "external_order": [
+          103,
+          397,
+          8,
+          68
+        ],
+        "factual_opponent_ship_id": 397,
+        "factual_prize_side": "left",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "identity_anchored_split": {
+        "exact": true,
+        "factual_side": "left",
+        "pair_exact": false,
+        "predicted_side": "left",
+        "source": "frozen_identity_anchored_o_not_reachable_neutral_fresh_fc"
+      },
+      "next_opponent_ship_id": 397,
+      "next_vcr_id": 675,
+      "result": {
+        "capture_cursor": {
+          "left_index": 3,
+          "left_ship_id": 68,
+          "right_index": 0,
+          "right_ship_id": 103
+        },
+        "exact": false,
+        "external_order": [
+          103,
+          397,
+          8,
+          68
+        ],
+        "factual_opponent_ship_id": 397,
+        "factual_prize_side": "left",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "split_candidate": {
+        "exact": true,
+        "factual_side": "left",
+        "predicted_side": "left",
+        "source": "o_not_reachable_neutral_fresh_fc"
+      },
+      "turn": 174,
+      "x": 2856,
+      "y": 1807
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": false,
+        "factual_opponent_candidate_resolved": false,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "normal_plan_insufficient_fuel",
+        "factual_opponent_prediction_position": null,
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": null,
+        "factual_opponent_requests_new_owner": null,
+        "factual_opponent_site_predicted": false,
+        "factual_opponent_strict_permission": null,
+        "factual_opponent_strict_rank": null,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "right",
+      "capture_vcr_id": 677,
+      "captured_ship_id": 504,
+      "factual_prize_side": "left",
+      "game_id": 227887,
+      "identity_anchored_result": {
+        "capture_cursor": {
+          "left_index": 2,
+          "left_ship_id": 385,
+          "right_index": 0,
+          "right_ship_id": 504
+        },
+        "exact": false,
+        "external_order": [
+          504,
+          170,
+          385
+        ],
+        "factual_opponent_ship_id": 170,
+        "factual_prize_side": "left",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "identity_anchored_split": {
+        "exact": true,
+        "factual_side": "left",
+        "pair_exact": false,
+        "predicted_side": "left",
+        "source": "frozen_identity_anchored_o_not_reachable_neutral_fresh_fc"
+      },
+      "next_opponent_ship_id": 170,
+      "next_vcr_id": 678,
+      "result": {
+        "capture_cursor": {
+          "left_index": 1,
+          "left_ship_id": 385,
+          "right_index": 0,
+          "right_ship_id": 504
+        },
+        "exact": false,
+        "external_order": [
+          504,
+          385
+        ],
+        "factual_opponent_ship_id": 170,
+        "factual_prize_side": "left",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "split_candidate": {
+        "exact": true,
+        "factual_side": "left",
+        "predicted_side": "left",
+        "source": "o_not_reachable_neutral_fresh_fc"
+      },
+      "turn": 174,
+      "x": 2559,
+      "y": 1771
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": true,
+        "factual_opponent_candidate_resolved": true,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "normal_move_warp_well",
+        "factual_opponent_prediction_position": [
+          2789,
+          1841
+        ],
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": 2,
+        "factual_opponent_requests_new_owner": true,
+        "factual_opponent_site_predicted": true,
+        "factual_opponent_strict_permission": true,
+        "factual_opponent_strict_rank": 2,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "right",
+      "capture_vcr_id": 714,
+      "captured_ship_id": 240,
+      "factual_prize_side": "right",
+      "game_id": 227887,
+      "identity_anchored_result": {
+        "capture_cursor": {
+          "left_index": 2,
+          "left_ship_id": 370,
+          "right_index": 0,
+          "right_ship_id": 240
+        },
+        "exact": true,
+        "external_order": [
+          240,
+          261,
+          370,
+          397
+        ],
+        "external_order_keys": {
+          "240": [
+            1010,
+            240
+          ],
+          "261": [
+            1010,
+            261
+          ],
+          "370": [
+            1010,
+            370
+          ],
+          "397": [
+            1010,
+            397
+          ]
+        },
+        "factual_opponent_ship_id": 397,
+        "factual_prize_side": "right",
+        "pair_exact": true,
+        "predicted_cursor": {
+          "left_index": 3,
+          "right_index": 0
+        },
+        "predicted_opponent_ship_id": 397,
+        "predicted_prize_ship_id": 240,
+        "predicted_prize_side": "right",
+        "side_exact": true,
+        "status": "resolved"
+      },
+      "identity_anchored_split": {
+        "exact": true,
+        "factual_side": "right",
+        "pair_exact": true,
+        "predicted_side": "right",
+        "source": "frozen_identity_anchored_o_reachable_sticky_capture_side"
+      },
+      "next_opponent_ship_id": 397,
+      "next_vcr_id": 715,
+      "result": {
+        "capture_cursor": {
+          "left_index": 2,
+          "left_ship_id": 370,
+          "right_index": 0,
+          "right_ship_id": 240
+        },
+        "exact": true,
+        "external_order": [
+          240,
+          261,
+          370,
+          397
+        ],
+        "external_order_keys": {
+          "240": [
+            1010,
+            240
+          ],
+          "261": [
+            1010,
+            261
+          ],
+          "370": [
+            1010,
+            370
+          ],
+          "397": [
+            1010,
+            397
+          ]
+        },
+        "factual_opponent_ship_id": 397,
+        "factual_prize_side": "right",
+        "pair_exact": true,
+        "predicted_cursor": {
+          "left_index": 3,
+          "right_index": 0
+        },
+        "predicted_opponent_ship_id": 397,
+        "predicted_prize_ship_id": 240,
+        "predicted_prize_side": "right",
+        "side_exact": true,
+        "status": "resolved"
+      },
+      "split_candidate": {
+        "exact": true,
+        "factual_side": "right",
+        "predicted_side": "right",
+        "source": "o_reachable_sticky_capture_side"
+      },
+      "turn": 183,
+      "x": 2789,
+      "y": 1841
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": false,
+        "factual_opponent_candidate_resolved": false,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "pre_move_mkt_mass_change",
+        "factual_opponent_prediction_position": null,
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": null,
+        "factual_opponent_requests_new_owner": null,
+        "factual_opponent_site_predicted": false,
+        "factual_opponent_strict_permission": null,
+        "factual_opponent_strict_rank": null,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "right",
+      "capture_vcr_id": 309,
+      "captured_ship_id": 37,
+      "factual_prize_side": "left",
+      "game_id": 256858,
+      "identity_anchored_result": {
+        "capture_cursor": {
+          "left_index": 2,
+          "left_ship_id": 228,
+          "right_index": 0,
+          "right_ship_id": 37
+        },
+        "exact": false,
+        "external_order": [
+          37,
+          544,
+          228
+        ],
+        "factual_opponent_ship_id": 544,
+        "factual_prize_side": "left",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "identity_anchored_split": {
+        "exact": true,
+        "factual_side": "left",
+        "pair_exact": false,
+        "predicted_side": "left",
+        "source": "frozen_identity_anchored_o_not_reachable_neutral_fresh_fc"
+      },
+      "next_opponent_ship_id": 544,
+      "next_vcr_id": 310,
+      "result": {
+        "capture_cursor": {
+          "left_index": 1,
+          "left_ship_id": 228,
+          "right_index": 0,
+          "right_ship_id": 37
+        },
+        "exact": false,
+        "external_order": [
+          37,
+          228
+        ],
+        "factual_opponent_ship_id": 544,
+        "factual_prize_side": "left",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "split_candidate": {
+        "exact": true,
+        "factual_side": "left",
+        "predicted_side": "left",
+        "source": "o_not_reachable_neutral_fresh_fc"
+      },
+      "turn": 76,
+      "x": 1829,
+      "y": 1613
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": false,
+        "factual_opponent_candidate_resolved": false,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "normal_mine_route_risk",
+        "factual_opponent_prediction_position": null,
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": null,
+        "factual_opponent_requests_new_owner": null,
+        "factual_opponent_site_predicted": false,
+        "factual_opponent_strict_permission": null,
+        "factual_opponent_strict_rank": null,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "left",
+      "capture_vcr_id": 857,
+      "captured_ship_id": 181,
+      "factual_prize_side": "left",
+      "game_id": 256858,
+      "identity_anchored_result": {
+        "capture_cursor": {
+          "left_index": 2,
+          "left_ship_id": 181,
+          "right_index": 0,
+          "right_ship_id": 112
+        },
+        "exact": false,
+        "external_order": [
+          112,
+          505,
+          181
+        ],
+        "external_order_keys": {
+          "112": [
+            1010,
+            112
+          ],
+          "181": [
+            1015,
+            181
+          ],
+          "505": [
+            1010,
+            505
+          ]
+        },
+        "factual_opponent_ship_id": 505,
+        "factual_prize_side": "left",
+        "pair_exact": true,
+        "predicted_cursor": {
+          "left_index": 1,
+          "right_index": 2
+        },
+        "predicted_opponent_ship_id": 505,
+        "predicted_prize_ship_id": 181,
+        "predicted_prize_side": "right",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "identity_anchored_split": {
+        "exact": true,
+        "factual_side": "left",
+        "pair_exact": true,
+        "predicted_side": "left",
+        "source": "frozen_identity_anchored_o_reachable_sticky_capture_side"
+      },
+      "next_opponent_ship_id": 505,
+      "next_vcr_id": 858,
+      "result": {
+        "capture_cursor": {
+          "left_index": 1,
+          "left_ship_id": 181,
+          "right_index": 0,
+          "right_ship_id": 112
+        },
+        "exact": false,
+        "external_order": [
+          112,
+          181
+        ],
+        "factual_opponent_ship_id": 505,
+        "factual_prize_side": "left",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "split_candidate": {
+        "exact": true,
+        "factual_side": "left",
+        "predicted_side": "left",
+        "source": "o_not_reachable_neutral_fresh_fc"
+      },
+      "turn": 300,
+      "x": 2748,
+      "y": 1447
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": true,
+        "factual_opponent_candidate_resolved": true,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "normal_move",
+        "factual_opponent_prediction_position": [
+          2670,
+          2202
+        ],
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": 1,
+        "factual_opponent_requests_new_owner": true,
+        "factual_opponent_site_predicted": true,
+        "factual_opponent_strict_permission": true,
+        "factual_opponent_strict_rank": 1,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "right",
+      "capture_vcr_id": 43,
+      "captured_ship_id": 53,
+      "factual_prize_side": "left",
+      "game_id": 257776,
+      "identity_anchored_result": {
+        "capture_cursor": {
+          "left_index": 2,
+          "left_ship_id": 127,
+          "right_index": 0,
+          "right_ship_id": 53
+        },
+        "exact": false,
+        "external_order": [
+          53,
+          183,
+          127
+        ],
+        "factual_opponent_ship_id": 183,
+        "factual_prize_side": "left",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "identity_anchored_split": {
+        "exact": true,
+        "factual_side": "left",
+        "pair_exact": false,
+        "predicted_side": "left",
+        "source": "frozen_identity_anchored_o_not_reachable_neutral_fresh_fc"
+      },
+      "next_opponent_ship_id": 183,
+      "next_vcr_id": 44,
+      "result": {
+        "capture_cursor": {
+          "left_index": 2,
+          "left_ship_id": 127,
+          "right_index": 0,
+          "right_ship_id": 53
+        },
+        "exact": false,
+        "external_order": [
+          53,
+          183,
+          127
+        ],
+        "factual_opponent_ship_id": 183,
+        "factual_prize_side": "left",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "split_candidate": {
+        "exact": true,
+        "factual_side": "left",
+        "predicted_side": "left",
+        "source": "o_not_reachable_neutral_fresh_fc"
+      },
+      "turn": 39,
+      "x": 2670,
+      "y": 2202
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": true,
+        "factual_opponent_candidate_resolved": true,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "normal_move_warp_well",
+        "factual_opponent_prediction_position": [
+          2595,
+          2254
+        ],
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": 3,
+        "factual_opponent_requests_new_owner": true,
+        "factual_opponent_site_predicted": true,
+        "factual_opponent_strict_permission": true,
+        "factual_opponent_strict_rank": 3,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "right",
+      "capture_vcr_id": 96,
+      "captured_ship_id": 76,
+      "factual_prize_side": "right",
+      "game_id": 257776,
+      "identity_anchored_result": {
+        "capture_cursor": {
+          "left_index": 4,
+          "left_ship_id": 151,
+          "right_index": 0,
+          "right_ship_id": 76
+        },
+        "exact": true,
+        "external_order": [
+          76,
+          257,
+          134,
+          61,
+          151,
+          264
+        ],
+        "external_order_keys": {
+          "134": [
+            105,
+            134
+          ],
+          "151": [
+            1010,
+            151
+          ],
+          "257": [
+            103,
+            257
+          ],
+          "264": [
+            1010,
+            264
+          ],
+          "61": [
+            999,
+            61
+          ],
+          "76": [
+            101,
+            76
+          ]
+        },
+        "factual_opponent_ship_id": 264,
+        "factual_prize_side": "right",
+        "pair_exact": true,
+        "predicted_cursor": {
+          "left_index": 5,
+          "right_index": 0
+        },
+        "predicted_opponent_ship_id": 264,
+        "predicted_prize_ship_id": 76,
+        "predicted_prize_side": "right",
+        "side_exact": true,
+        "status": "resolved"
+      },
+      "identity_anchored_split": {
+        "exact": true,
+        "factual_side": "right",
+        "pair_exact": true,
+        "predicted_side": "right",
+        "source": "frozen_identity_anchored_o_reachable_sticky_capture_side"
+      },
+      "next_opponent_ship_id": 264,
+      "next_vcr_id": 97,
+      "result": {
+        "capture_cursor": {
+          "left_index": 4,
+          "left_ship_id": 151,
+          "right_index": 0,
+          "right_ship_id": 76
+        },
+        "exact": true,
+        "external_order": [
+          76,
+          257,
+          134,
+          61,
+          151,
+          264
+        ],
+        "external_order_keys": {
+          "134": [
+            105,
+            134
+          ],
+          "151": [
+            1010,
+            151
+          ],
+          "257": [
+            103,
+            257
+          ],
+          "264": [
+            1010,
+            264
+          ],
+          "61": [
+            999,
+            61
+          ],
+          "76": [
+            101,
+            76
+          ]
+        },
+        "factual_opponent_ship_id": 264,
+        "factual_prize_side": "right",
+        "pair_exact": true,
+        "predicted_cursor": {
+          "left_index": 5,
+          "right_index": 0
+        },
+        "predicted_opponent_ship_id": 264,
+        "predicted_prize_ship_id": 76,
+        "predicted_prize_side": "right",
+        "side_exact": true,
+        "status": "resolved"
+      },
+      "split_candidate": {
+        "exact": true,
+        "factual_side": "right",
+        "predicted_side": "right",
+        "source": "o_reachable_sticky_capture_side"
+      },
+      "turn": 52,
+      "x": 2595,
+      "y": 2254
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": true,
+        "factual_opponent_candidate_resolved": true,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "special_intercept_movement_phase",
+        "factual_opponent_prediction_position": [
+          1803,
+          1566
+        ],
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": 1,
+        "factual_opponent_requests_new_owner": true,
+        "factual_opponent_site_predicted": true,
+        "factual_opponent_strict_permission": true,
+        "factual_opponent_strict_rank": 1,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "right",
+      "capture_vcr_id": 178,
+      "captured_ship_id": 125,
+      "factual_prize_side": "left",
+      "game_id": 257776,
+      "identity_anchored_result": {
+        "capture_cursor": {
+          "left_index": 3,
+          "left_ship_id": 148,
+          "right_index": 0,
+          "right_ship_id": 125
+        },
+        "exact": false,
+        "external_order": [
+          125,
+          129,
+          136,
+          148
+        ],
+        "factual_opponent_ship_id": 129,
+        "factual_prize_side": "left",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "identity_anchored_split": {
+        "exact": true,
+        "factual_side": "left",
+        "pair_exact": false,
+        "predicted_side": "left",
+        "source": "frozen_identity_anchored_o_not_reachable_neutral_fresh_fc"
+      },
+      "next_opponent_ship_id": 129,
+      "next_vcr_id": 179,
+      "result": {
+        "capture_cursor": {
+          "left_index": 3,
+          "left_ship_id": 148,
+          "right_index": 0,
+          "right_ship_id": 125
+        },
+        "exact": false,
+        "external_order": [
+          125,
+          129,
+          136,
+          148
+        ],
+        "factual_opponent_ship_id": 129,
+        "factual_prize_side": "left",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "split_candidate": {
+        "exact": true,
+        "factual_side": "left",
+        "predicted_side": "left",
+        "source": "o_not_reachable_neutral_fresh_fc"
+      },
+      "turn": 66,
+      "x": 1803,
+      "y": 1566
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": true,
+        "factual_opponent_candidate_resolved": true,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "normal_move",
+        "factual_opponent_prediction_position": [
+          1960,
+          1364
+        ],
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": 1,
+        "factual_opponent_requests_new_owner": true,
+        "factual_opponent_site_predicted": true,
+        "factual_opponent_strict_permission": true,
+        "factual_opponent_strict_rank": 1,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "left",
+      "capture_vcr_id": 246,
+      "captured_ship_id": 107,
+      "factual_prize_side": "right",
+      "game_id": 257776,
+      "identity_anchored_result": {
+        "from_vcr_id": 246,
+        "reason": "nonadjacent_vcr_requires_intervening_mutation_model",
+        "status": "not_comparable",
+        "to_vcr_id": 249
+      },
+      "identity_anchored_split": null,
+      "next_opponent_ship_id": 156,
+      "next_vcr_id": 249,
+      "result": {
+        "from_vcr_id": 246,
+        "reason": "nonadjacent_vcr_requires_intervening_mutation_model",
+        "status": "not_comparable",
+        "to_vcr_id": 249
+      },
+      "split_candidate": null,
+      "turn": 78,
+      "x": 1960,
+      "y": 1364
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": false,
+        "factual_opponent_candidate_resolved": false,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "pre_move_mkt_mass_change",
+        "factual_opponent_prediction_position": null,
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": null,
+        "factual_opponent_requests_new_owner": null,
+        "factual_opponent_site_predicted": false,
+        "factual_opponent_strict_permission": null,
+        "factual_opponent_strict_rank": null,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "left",
+      "capture_vcr_id": 290,
+      "captured_ship_id": 107,
+      "factual_prize_side": "right",
+      "game_id": 257776,
+      "identity_anchored_result": {
+        "from_vcr_id": 290,
+        "reason": "nonadjacent_vcr_requires_intervening_mutation_model",
+        "status": "not_comparable",
+        "to_vcr_id": 293
+      },
+      "identity_anchored_split": null,
+      "next_opponent_ship_id": 163,
+      "next_vcr_id": 293,
+      "result": {
+        "from_vcr_id": 290,
+        "reason": "nonadjacent_vcr_requires_intervening_mutation_model",
+        "status": "not_comparable",
+        "to_vcr_id": 293
+      },
+      "split_candidate": null,
+      "turn": 85,
+      "x": 1914,
+      "y": 1323
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": true,
+        "factual_opponent_candidate_resolved": true,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "normal_move",
+        "factual_opponent_prediction_position": [
+          1807,
+          1974
+        ],
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": 1,
+        "factual_opponent_requests_new_owner": true,
+        "factual_opponent_site_predicted": true,
+        "factual_opponent_strict_permission": true,
+        "factual_opponent_strict_rank": 1,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "left",
+      "capture_vcr_id": 563,
+      "captured_ship_id": 98,
+      "factual_prize_side": "right",
+      "game_id": 257776,
+      "identity_anchored_result": {
+        "from_vcr_id": 563,
+        "reason": "nonadjacent_vcr_requires_intervening_mutation_model",
+        "status": "not_comparable",
+        "to_vcr_id": 565
+      },
+      "identity_anchored_split": null,
+      "next_opponent_ship_id": 494,
+      "next_vcr_id": 565,
+      "result": {
+        "from_vcr_id": 563,
+        "reason": "nonadjacent_vcr_requires_intervening_mutation_model",
+        "status": "not_comparable",
+        "to_vcr_id": 565
+      },
+      "split_candidate": null,
+      "turn": 118,
+      "x": 1807,
+      "y": 1974
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": false,
+        "factual_opponent_candidate_resolved": false,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "tow_attempt",
+        "factual_opponent_prediction_position": null,
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": null,
+        "factual_opponent_requests_new_owner": null,
+        "factual_opponent_site_predicted": false,
+        "factual_opponent_strict_permission": null,
+        "factual_opponent_strict_rank": null,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "right",
+      "capture_vcr_id": 861,
+      "captured_ship_id": 63,
+      "factual_prize_side": "right",
+      "game_id": 257776,
+      "identity_anchored_result": {
+        "capture_cursor": {
+          "left_index": 1,
+          "left_ship_id": 191,
+          "right_index": 0,
+          "right_ship_id": 63
+        },
+        "exact": true,
+        "external_order": [
+          63,
+          191,
+          248
+        ],
+        "external_order_keys": {
+          "191": [
+            1000,
+            191
+          ],
+          "248": [
+            1010,
+            248
+          ],
+          "63": [
+            106,
+            63
+          ]
+        },
+        "factual_opponent_ship_id": 248,
+        "factual_prize_side": "right",
+        "pair_exact": true,
+        "predicted_cursor": {
+          "left_index": 2,
+          "right_index": 0
+        },
+        "predicted_opponent_ship_id": 248,
+        "predicted_prize_ship_id": 63,
+        "predicted_prize_side": "right",
+        "side_exact": true,
+        "status": "resolved"
+      },
+      "identity_anchored_split": {
+        "exact": true,
+        "factual_side": "right",
+        "pair_exact": true,
+        "predicted_side": "right",
+        "source": "frozen_identity_anchored_o_reachable_sticky_capture_side"
+      },
+      "next_opponent_ship_id": 248,
+      "next_vcr_id": 862,
+      "result": {
+        "capture_cursor": {
+          "left_index": 1,
+          "left_ship_id": 191,
+          "right_index": 0,
+          "right_ship_id": 63
+        },
+        "exact": false,
+        "external_order": [
+          63,
+          191
+        ],
+        "factual_opponent_ship_id": 248,
+        "factual_prize_side": "right",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "split_candidate": {
+        "exact": false,
+        "factual_side": "right",
+        "predicted_side": "left",
+        "source": "o_not_reachable_neutral_fresh_fc"
+      },
+      "turn": 143,
+      "x": 2098,
+      "y": 2334
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": false,
+        "factual_opponent_candidate_resolved": false,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "inbound_transfer",
+        "factual_opponent_prediction_position": null,
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": null,
+        "factual_opponent_requests_new_owner": null,
+        "factual_opponent_site_predicted": false,
+        "factual_opponent_strict_permission": null,
+        "factual_opponent_strict_rank": null,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "right",
+      "capture_vcr_id": 959,
+      "captured_ship_id": 312,
+      "factual_prize_side": "left",
+      "game_id": 257776,
+      "identity_anchored_result": {
+        "capture_cursor": {
+          "left_index": 3,
+          "left_ship_id": 428,
+          "right_index": 0,
+          "right_ship_id": 312
+        },
+        "exact": false,
+        "external_order": [
+          312,
+          242,
+          298,
+          428,
+          318
+        ],
+        "factual_opponent_ship_id": 298,
+        "factual_prize_side": "left",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "identity_anchored_split": {
+        "exact": true,
+        "factual_side": "left",
+        "pair_exact": false,
+        "predicted_side": "left",
+        "source": "frozen_identity_anchored_o_not_reachable_neutral_fresh_fc"
+      },
+      "next_opponent_ship_id": 298,
+      "next_vcr_id": 960,
+      "result": {
+        "capture_cursor": {
+          "left_index": 2,
+          "left_ship_id": 428,
+          "right_index": 0,
+          "right_ship_id": 312
+        },
+        "exact": false,
+        "external_order": [
+          312,
+          242,
+          428,
+          318
+        ],
+        "factual_opponent_ship_id": 298,
+        "factual_prize_side": "left",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "split_candidate": {
+        "exact": true,
+        "factual_side": "left",
+        "predicted_side": "left",
+        "source": "o_not_reachable_neutral_fresh_fc"
+      },
+      "turn": 151,
+      "x": 1615,
+      "y": 1070
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": true,
+        "factual_opponent_candidate_resolved": true,
+        "factual_opponent_history_anchored": true,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "pre_move_mkt_mass_change",
+        "factual_opponent_prediction_position": null,
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": 1,
+        "factual_opponent_requests_new_owner": true,
+        "factual_opponent_site_predicted": false,
+        "factual_opponent_strict_permission": true,
+        "factual_opponent_strict_rank": 1,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "left",
+      "capture_vcr_id": 960,
+      "captured_ship_id": 312,
+      "factual_prize_side": "left",
+      "game_id": 257776,
+      "identity_anchored_result": {
+        "from_vcr_id": 960,
+        "reason": "nonadjacent_vcr_requires_intervening_mutation_model",
+        "status": "not_comparable",
+        "to_vcr_id": 963
+      },
+      "identity_anchored_split": null,
+      "next_opponent_ship_id": 428,
+      "next_vcr_id": 963,
+      "result": {
+        "from_vcr_id": 960,
+        "reason": "nonadjacent_vcr_requires_intervening_mutation_model",
+        "status": "not_comparable",
+        "to_vcr_id": 963
+      },
+      "split_candidate": null,
+      "turn": 151,
+      "x": 1615,
+      "y": 1070
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": true,
+        "factual_opponent_candidate_resolved": true,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "normal_move",
+        "factual_opponent_prediction_position": [
+          1675,
+          1251
+        ],
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": 1,
+        "factual_opponent_requests_new_owner": true,
+        "factual_opponent_site_predicted": true,
+        "factual_opponent_strict_permission": true,
+        "factual_opponent_strict_rank": 1,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "right",
+      "capture_vcr_id": 1115,
+      "captured_ship_id": 103,
+      "factual_prize_side": "right",
+      "game_id": 257776,
+      "identity_anchored_result": {
+        "capture_cursor": {
+          "left_index": 1,
+          "left_ship_id": 191,
+          "right_index": 0,
+          "right_ship_id": 103
+        },
+        "exact": true,
+        "external_order": [
+          103,
+          191,
+          367,
+          452,
+          488,
+          522,
+          571
+        ],
+        "external_order_keys": {
+          "103": [
+            1010,
+            103
+          ],
+          "191": [
+            1010,
+            191
+          ],
+          "367": [
+            1010,
+            367
+          ],
+          "452": [
+            1010,
+            452
+          ],
+          "488": [
+            1010,
+            488
+          ],
+          "522": [
+            1010,
+            522
+          ],
+          "571": [
+            1010,
+            571
+          ]
+        },
+        "factual_opponent_ship_id": 367,
+        "factual_prize_side": "right",
+        "pair_exact": true,
+        "predicted_cursor": {
+          "left_index": 2,
+          "right_index": 0
+        },
+        "predicted_opponent_ship_id": 367,
+        "predicted_prize_ship_id": 103,
+        "predicted_prize_side": "right",
+        "side_exact": true,
+        "status": "resolved"
+      },
+      "identity_anchored_split": {
+        "exact": true,
+        "factual_side": "right",
+        "pair_exact": true,
+        "predicted_side": "right",
+        "source": "frozen_identity_anchored_o_reachable_sticky_capture_side"
+      },
+      "next_opponent_ship_id": 367,
+      "next_vcr_id": 1116,
+      "result": {
+        "capture_cursor": {
+          "left_index": 1,
+          "left_ship_id": 191,
+          "right_index": 0,
+          "right_ship_id": 103
+        },
+        "exact": true,
+        "external_order": [
+          103,
+          191,
+          367,
+          452,
+          488,
+          522,
+          571
+        ],
+        "external_order_keys": {
+          "103": [
+            1010,
+            103
+          ],
+          "191": [
+            1010,
+            191
+          ],
+          "367": [
+            1010,
+            367
+          ],
+          "452": [
+            1010,
+            452
+          ],
+          "488": [
+            1010,
+            488
+          ],
+          "522": [
+            1010,
+            522
+          ],
+          "571": [
+            1010,
+            571
+          ]
+        },
+        "factual_opponent_ship_id": 367,
+        "factual_prize_side": "right",
+        "pair_exact": true,
+        "predicted_cursor": {
+          "left_index": 2,
+          "right_index": 0
+        },
+        "predicted_opponent_ship_id": 367,
+        "predicted_prize_ship_id": 103,
+        "predicted_prize_side": "right",
+        "side_exact": true,
+        "status": "resolved"
+      },
+      "split_candidate": {
+        "exact": true,
+        "factual_side": "right",
+        "predicted_side": "right",
+        "source": "o_reachable_sticky_capture_side"
+      },
+      "turn": 163,
+      "x": 1675,
+      "y": 1251
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": true,
+        "factual_opponent_candidate_resolved": true,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "normal_move",
+        "factual_opponent_prediction_position": [
+          2537,
+          2551
+        ],
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": 1,
+        "factual_opponent_requests_new_owner": true,
+        "factual_opponent_site_predicted": true,
+        "factual_opponent_strict_permission": true,
+        "factual_opponent_strict_rank": 1,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "right",
+      "capture_vcr_id": 1644,
+      "captured_ship_id": 71,
+      "factual_prize_side": "right",
+      "game_id": 257776,
+      "identity_anchored_result": {
+        "capture_cursor": {
+          "left_index": 1,
+          "left_ship_id": 153,
+          "right_index": 0,
+          "right_ship_id": 71
+        },
+        "exact": true,
+        "external_order": [
+          71,
+          153,
+          485
+        ],
+        "external_order_keys": {
+          "153": [
+            1000,
+            153
+          ],
+          "485": [
+            1000,
+            485
+          ],
+          "71": [
+            1000,
+            71
+          ]
+        },
+        "factual_opponent_ship_id": 485,
+        "factual_prize_side": "right",
+        "pair_exact": true,
+        "predicted_cursor": {
+          "left_index": 2,
+          "right_index": 0
+        },
+        "predicted_opponent_ship_id": 485,
+        "predicted_prize_ship_id": 71,
+        "predicted_prize_side": "right",
+        "side_exact": true,
+        "status": "resolved"
+      },
+      "identity_anchored_split": {
+        "exact": true,
+        "factual_side": "right",
+        "pair_exact": true,
+        "predicted_side": "right",
+        "source": "frozen_identity_anchored_o_reachable_sticky_capture_side"
+      },
+      "next_opponent_ship_id": 485,
+      "next_vcr_id": 1645,
+      "result": {
+        "capture_cursor": {
+          "left_index": 1,
+          "left_ship_id": 153,
+          "right_index": 0,
+          "right_ship_id": 71
+        },
+        "exact": true,
+        "external_order": [
+          71,
+          153,
+          485
+        ],
+        "external_order_keys": {
+          "153": [
+            1000,
+            153
+          ],
+          "485": [
+            1000,
+            485
+          ],
+          "71": [
+            1000,
+            71
+          ]
+        },
+        "factual_opponent_ship_id": 485,
+        "factual_prize_side": "right",
+        "pair_exact": true,
+        "predicted_cursor": {
+          "left_index": 2,
+          "right_index": 0
+        },
+        "predicted_opponent_ship_id": 485,
+        "predicted_prize_ship_id": 71,
+        "predicted_prize_side": "right",
+        "side_exact": true,
+        "status": "resolved"
+      },
+      "split_candidate": {
+        "exact": true,
+        "factual_side": "right",
+        "predicted_side": "right",
+        "source": "o_reachable_sticky_capture_side"
+      },
+      "turn": 230,
+      "x": 2537,
+      "y": 2551
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": true,
+        "factual_opponent_candidate_resolved": true,
+        "factual_opponent_history_anchored": true,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "tow_target",
+        "factual_opponent_prediction_position": null,
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": 1,
+        "factual_opponent_requests_new_owner": true,
+        "factual_opponent_site_predicted": false,
+        "factual_opponent_strict_permission": true,
+        "factual_opponent_strict_rank": 1,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "right",
+      "capture_vcr_id": 1645,
+      "captured_ship_id": 71,
+      "factual_prize_side": "left",
+      "game_id": 257776,
+      "identity_anchored_result": {
+        "capture_cursor": {
+          "left_index": 2,
+          "left_ship_id": 485,
+          "right_index": 0,
+          "right_ship_id": 71
+        },
+        "exact": false,
+        "external_order": [
+          71,
+          153,
+          485
+        ],
+        "factual_opponent_ship_id": 153,
+        "factual_prize_side": "left",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "identity_anchored_split": {
+        "exact": null,
+        "factual_side": "left",
+        "pair_exact": false,
+        "predicted_side": null,
+        "source": "frozen_identity_anchored_o_not_reachable_neutral_fresh_fc"
+      },
+      "next_opponent_ship_id": 153,
+      "next_vcr_id": 1646,
+      "result": {
+        "capture_cursor": {
+          "left_index": 2,
+          "left_ship_id": 485,
+          "right_index": 0,
+          "right_ship_id": 71
+        },
+        "exact": false,
+        "external_order": [
+          71,
+          153,
+          485
+        ],
+        "factual_opponent_ship_id": 153,
+        "factual_prize_side": "left",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "split_candidate": {
+        "exact": null,
+        "factual_side": "left",
+        "predicted_side": null,
+        "source": "o_not_reachable_neutral_fresh_fc"
+      },
+      "turn": 230,
+      "x": 2537,
+      "y": 2551
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": true,
+        "factual_opponent_candidate_resolved": true,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "special_intercept_movement_phase",
+        "factual_opponent_prediction_position": [
+          1611,
+          1280
+        ],
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": 2,
+        "factual_opponent_requests_new_owner": true,
+        "factual_opponent_site_predicted": true,
+        "factual_opponent_strict_permission": true,
+        "factual_opponent_strict_rank": 2,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "right",
+      "capture_vcr_id": 1724,
+      "captured_ship_id": 325,
+      "factual_prize_side": "right",
+      "game_id": 257776,
+      "identity_anchored_result": {
+        "capture_cursor": {
+          "left_index": 5,
+          "left_ship_id": 71,
+          "right_index": 2,
+          "right_ship_id": 325
+        },
+        "exact": true,
+        "external_order": [
+          134,
+          40,
+          325,
+          411,
+          26,
+          71,
+          69,
+          1,
+          108,
+          66,
+          86,
+          175,
+          181,
+          265,
+          317,
+          581,
+          187,
+          224,
+          405
+        ],
+        "external_order_keys": {
+          "1": [
+            509,
+            1
+          ],
+          "108": [
+            568,
+            108
+          ],
+          "134": [
+            0,
+            134
+          ],
+          "175": [
+            1010,
+            175
+          ],
+          "181": [
+            1010,
+            181
+          ],
+          "187": [
+            1015,
+            187
+          ],
+          "224": [
+            1015,
+            224
+          ],
+          "26": [
+            189,
+            26
+          ],
+          "265": [
+            1010,
+            265
+          ],
+          "317": [
+            1010,
+            317
+          ],
+          "325": [
+            2,
+            325
+          ],
+          "40": [
+            1,
+            40
+          ],
+          "405": [
+            1015,
+            405
+          ],
+          "411": [
+            4,
+            411
+          ],
+          "581": [
+            1010,
+            581
+          ],
+          "66": [
+            1010,
+            66
+          ],
+          "69": [
+            401,
+            69
+          ],
+          "71": [
+            205,
+            71
+          ],
+          "86": [
+            1010,
+            86
+          ]
+        },
+        "factual_opponent_ship_id": 66,
+        "factual_prize_side": "right",
+        "pair_exact": true,
+        "predicted_cursor": {
+          "left_index": 9,
+          "right_index": 2
+        },
+        "predicted_opponent_ship_id": 66,
+        "predicted_prize_ship_id": 325,
+        "predicted_prize_side": "right",
+        "side_exact": true,
+        "status": "resolved"
+      },
+      "identity_anchored_split": {
+        "exact": true,
+        "factual_side": "right",
+        "pair_exact": true,
+        "predicted_side": "right",
+        "source": "frozen_identity_anchored_o_reachable_sticky_capture_side"
+      },
+      "next_opponent_ship_id": 66,
+      "next_vcr_id": 1725,
+      "result": {
+        "capture_cursor": {
+          "left_index": 5,
+          "left_ship_id": 71,
+          "right_index": 2,
+          "right_ship_id": 325
+        },
+        "exact": true,
+        "external_order": [
+          134,
+          40,
+          325,
+          411,
+          26,
+          71,
+          69,
+          1,
+          108,
+          66,
+          86,
+          175,
+          181,
+          265,
+          317,
+          581,
+          187,
+          224,
+          405
+        ],
+        "external_order_keys": {
+          "1": [
+            509,
+            1
+          ],
+          "108": [
+            568,
+            108
+          ],
+          "134": [
+            0,
+            134
+          ],
+          "175": [
+            1010,
+            175
+          ],
+          "181": [
+            1010,
+            181
+          ],
+          "187": [
+            1015,
+            187
+          ],
+          "224": [
+            1015,
+            224
+          ],
+          "26": [
+            189,
+            26
+          ],
+          "265": [
+            1010,
+            265
+          ],
+          "317": [
+            1010,
+            317
+          ],
+          "325": [
+            2,
+            325
+          ],
+          "40": [
+            1,
+            40
+          ],
+          "405": [
+            1015,
+            405
+          ],
+          "411": [
+            4,
+            411
+          ],
+          "581": [
+            1010,
+            581
+          ],
+          "66": [
+            1010,
+            66
+          ],
+          "69": [
+            401,
+            69
+          ],
+          "71": [
+            205,
+            71
+          ],
+          "86": [
+            1010,
+            86
+          ]
+        },
+        "factual_opponent_ship_id": 66,
+        "factual_prize_side": "right",
+        "pair_exact": true,
+        "predicted_cursor": {
+          "left_index": 9,
+          "right_index": 2
+        },
+        "predicted_opponent_ship_id": 66,
+        "predicted_prize_ship_id": 325,
+        "predicted_prize_side": "right",
+        "side_exact": true,
+        "status": "resolved"
+      },
+      "split_candidate": {
+        "exact": true,
+        "factual_side": "right",
+        "predicted_side": "right",
+        "source": "o_reachable_sticky_capture_side"
+      },
+      "turn": 251,
+      "x": 1611,
+      "y": 1280
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": true,
+        "factual_opponent_candidate_resolved": true,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "normal_move",
+        "factual_opponent_prediction_position": [
+          1774,
+          1179
+        ],
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": 3,
+        "factual_opponent_requests_new_owner": true,
+        "factual_opponent_site_predicted": true,
+        "factual_opponent_strict_permission": true,
+        "factual_opponent_strict_rank": 3,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "right",
+      "capture_vcr_id": 1739,
+      "captured_ship_id": 388,
+      "factual_prize_side": "left",
+      "game_id": 257776,
+      "identity_anchored_result": {
+        "capture_cursor": {
+          "left_index": 4,
+          "left_ship_id": 635,
+          "right_index": 2,
+          "right_ship_id": 388
+        },
+        "exact": false,
+        "external_order": [
+          31,
+          601,
+          388,
+          495,
+          635
+        ],
+        "factual_opponent_ship_id": 495,
+        "factual_prize_side": "left",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "identity_anchored_split": {
+        "exact": true,
+        "factual_side": "left",
+        "pair_exact": false,
+        "predicted_side": "left",
+        "source": "frozen_identity_anchored_o_not_reachable_neutral_fresh_fc"
+      },
+      "next_opponent_ship_id": 495,
+      "next_vcr_id": 1740,
+      "result": {
+        "capture_cursor": {
+          "left_index": 4,
+          "left_ship_id": 635,
+          "right_index": 2,
+          "right_ship_id": 388
+        },
+        "exact": false,
+        "external_order": [
+          31,
+          601,
+          388,
+          495,
+          635
+        ],
+        "factual_opponent_ship_id": 495,
+        "factual_prize_side": "left",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "split_candidate": {
+        "exact": true,
+        "factual_side": "left",
+        "predicted_side": "left",
+        "source": "o_not_reachable_neutral_fresh_fc"
+      },
+      "turn": 251,
+      "x": 1774,
+      "y": 1179
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": false,
+        "factual_opponent_candidate_resolved": false,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "tow_attempt",
+        "factual_opponent_prediction_position": null,
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": null,
+        "factual_opponent_requests_new_owner": null,
+        "factual_opponent_site_predicted": false,
+        "factual_opponent_strict_permission": null,
+        "factual_opponent_strict_rank": null,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "right",
+      "capture_vcr_id": 223,
+      "captured_ship_id": 225,
+      "factual_prize_side": "left",
+      "game_id": 266087,
+      "identity_anchored_result": {
+        "capture_cursor": {
+          "left_index": 2,
+          "left_ship_id": 473,
+          "right_index": 0,
+          "right_ship_id": 225
+        },
+        "exact": false,
+        "external_order": [
+          225,
+          93,
+          473,
+          585
+        ],
+        "factual_opponent_ship_id": 93,
+        "factual_prize_side": "left",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "identity_anchored_split": {
+        "exact": true,
+        "factual_side": "left",
+        "pair_exact": false,
+        "predicted_side": "left",
+        "source": "frozen_identity_anchored_o_not_reachable_neutral_fresh_fc"
+      },
+      "next_opponent_ship_id": 93,
+      "next_vcr_id": 224,
+      "result": {
+        "capture_cursor": {
+          "left_index": 1,
+          "left_ship_id": 473,
+          "right_index": 0,
+          "right_ship_id": 225
+        },
+        "exact": false,
+        "external_order": [
+          225,
+          473,
+          585
+        ],
+        "factual_opponent_ship_id": 93,
+        "factual_prize_side": "left",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "split_candidate": {
+        "exact": true,
+        "factual_side": "left",
+        "predicted_side": "left",
+        "source": "o_not_reachable_neutral_fresh_fc"
+      },
+      "turn": 55,
+      "x": 2459,
+      "y": 3239
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": true,
+        "factual_opponent_candidate_resolved": true,
+        "factual_opponent_history_anchored": true,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "intercept_movement",
+        "factual_opponent_prediction_position": null,
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": 1,
+        "factual_opponent_requests_new_owner": true,
+        "factual_opponent_site_predicted": false,
+        "factual_opponent_strict_permission": true,
+        "factual_opponent_strict_rank": 1,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "left",
+      "capture_vcr_id": 224,
+      "captured_ship_id": 225,
+      "factual_prize_side": "left",
+      "game_id": 266087,
+      "identity_anchored_result": {
+        "from_vcr_id": 224,
+        "reason": "nonadjacent_vcr_requires_intervening_mutation_model",
+        "status": "not_comparable",
+        "to_vcr_id": 226
+      },
+      "identity_anchored_split": null,
+      "next_opponent_ship_id": 473,
+      "next_vcr_id": 226,
+      "result": {
+        "from_vcr_id": 224,
+        "reason": "nonadjacent_vcr_requires_intervening_mutation_model",
+        "status": "not_comparable",
+        "to_vcr_id": 226
+      },
+      "split_candidate": null,
+      "turn": 55,
+      "x": 2459,
+      "y": 3239
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": false,
+        "factual_opponent_candidate_resolved": false,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "potential_chunnel_source_stack",
+        "factual_opponent_prediction_position": null,
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": null,
+        "factual_opponent_requests_new_owner": null,
+        "factual_opponent_site_predicted": false,
+        "factual_opponent_strict_permission": null,
+        "factual_opponent_strict_rank": null,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "right",
+      "capture_vcr_id": 999,
+      "captured_ship_id": 606,
+      "factual_prize_side": "right",
+      "game_id": 266087,
+      "identity_anchored_result": {
+        "capture_cursor": {
+          "left_index": 3,
+          "left_ship_id": 458,
+          "right_index": 1,
+          "right_ship_id": 606
+        },
+        "exact": true,
+        "external_order": [
+          412,
+          606,
+          597,
+          458,
+          691,
+          495
+        ],
+        "external_order_keys": {
+          "412": [
+            517,
+            412
+          ],
+          "458": [
+            1010,
+            458
+          ],
+          "495": [
+            1015,
+            495
+          ],
+          "597": [
+            1000,
+            597
+          ],
+          "606": [
+            517,
+            606
+          ],
+          "691": [
+            1010,
+            691
+          ]
+        },
+        "factual_opponent_ship_id": 691,
+        "factual_prize_side": "right",
+        "pair_exact": true,
+        "predicted_cursor": {
+          "left_index": 4,
+          "right_index": 1
+        },
+        "predicted_opponent_ship_id": 691,
+        "predicted_prize_ship_id": 606,
+        "predicted_prize_side": "right",
+        "side_exact": true,
+        "status": "resolved"
+      },
+      "identity_anchored_split": {
+        "exact": true,
+        "factual_side": "right",
+        "pair_exact": true,
+        "predicted_side": "right",
+        "source": "frozen_identity_anchored_o_reachable_sticky_capture_side"
+      },
+      "next_opponent_ship_id": 691,
+      "next_vcr_id": 1000,
+      "result": {
+        "capture_cursor": {
+          "left_index": 3,
+          "left_ship_id": 458,
+          "right_index": 1,
+          "right_ship_id": 606
+        },
+        "exact": false,
+        "external_order": [
+          412,
+          606,
+          597,
+          458,
+          495
+        ],
+        "factual_opponent_ship_id": 691,
+        "factual_prize_side": "right",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "split_candidate": {
+        "exact": false,
+        "factual_side": "right",
+        "predicted_side": "left",
+        "source": "o_not_reachable_neutral_fresh_fc"
+      },
+      "turn": 110,
+      "x": 2604,
+      "y": 869
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": false,
+        "factual_opponent_candidate_resolved": false,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "potential_chunnel_source_stack",
+        "factual_opponent_prediction_position": null,
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": null,
+        "factual_opponent_requests_new_owner": null,
+        "factual_opponent_site_predicted": false,
+        "factual_opponent_strict_permission": null,
+        "factual_opponent_strict_rank": null,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "right",
+      "capture_vcr_id": 1574,
+      "captured_ship_id": 125,
+      "factual_prize_side": "left",
+      "game_id": 266087,
+      "identity_anchored_result": {
+        "capture_cursor": {
+          "left_index": 2,
+          "left_ship_id": 133,
+          "right_index": 0,
+          "right_ship_id": 125
+        },
+        "exact": false,
+        "external_order": [
+          125,
+          32,
+          133
+        ],
+        "factual_opponent_ship_id": 32,
+        "factual_prize_side": "left",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "identity_anchored_split": {
+        "exact": true,
+        "factual_side": "left",
+        "pair_exact": false,
+        "predicted_side": "left",
+        "source": "frozen_identity_anchored_o_not_reachable_neutral_fresh_fc"
+      },
+      "next_opponent_ship_id": 32,
+      "next_vcr_id": 1575,
+      "result": {
+        "capture_cursor": {
+          "left_index": 1,
+          "left_ship_id": 133,
+          "right_index": 0,
+          "right_ship_id": 125
+        },
+        "exact": false,
+        "external_order": [
+          125,
+          133
+        ],
+        "factual_opponent_ship_id": 32,
+        "factual_prize_side": "left",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "split_candidate": {
+        "exact": true,
+        "factual_side": "left",
+        "predicted_side": "left",
+        "source": "o_not_reachable_neutral_fresh_fc"
+      },
+      "turn": 143,
+      "x": 1009,
+      "y": 1947
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": true,
+        "factual_opponent_candidate_resolved": true,
+        "factual_opponent_history_anchored": true,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "normal_mine_route_risk",
+        "factual_opponent_prediction_position": null,
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": 1,
+        "factual_opponent_requests_new_owner": true,
+        "factual_opponent_site_predicted": false,
+        "factual_opponent_strict_permission": true,
+        "factual_opponent_strict_rank": 1,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "left",
+      "capture_vcr_id": 1575,
+      "captured_ship_id": 125,
+      "factual_prize_side": "left",
+      "game_id": 266087,
+      "identity_anchored_result": {
+        "from_vcr_id": 1575,
+        "reason": "nonadjacent_vcr_requires_intervening_mutation_model",
+        "status": "not_comparable",
+        "to_vcr_id": 1578
+      },
+      "identity_anchored_split": null,
+      "next_opponent_ship_id": 133,
+      "next_vcr_id": 1578,
+      "result": {
+        "from_vcr_id": 1575,
+        "reason": "nonadjacent_vcr_requires_intervening_mutation_model",
+        "status": "not_comparable",
+        "to_vcr_id": 1578
+      },
+      "split_candidate": null,
+      "turn": 143,
+      "x": 1009,
+      "y": 1947
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": false,
+        "factual_opponent_candidate_resolved": false,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "pre_move_mkt_mass_change",
+        "factual_opponent_prediction_position": null,
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": null,
+        "factual_opponent_requests_new_owner": null,
+        "factual_opponent_site_predicted": false,
+        "factual_opponent_strict_permission": null,
+        "factual_opponent_strict_rank": null,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "right",
+      "capture_vcr_id": 1922,
+      "captured_ship_id": 95,
+      "factual_prize_side": "left",
+      "game_id": 266087,
+      "identity_anchored_result": {
+        "capture_cursor": {
+          "left_index": 3,
+          "left_ship_id": 706,
+          "right_index": 0,
+          "right_ship_id": 95
+        },
+        "exact": false,
+        "external_order": [
+          95,
+          669,
+          689,
+          706
+        ],
+        "factual_opponent_ship_id": 689,
+        "factual_prize_side": "left",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "identity_anchored_split": {
+        "exact": true,
+        "factual_side": "left",
+        "pair_exact": false,
+        "predicted_side": "left",
+        "source": "frozen_identity_anchored_o_not_reachable_neutral_fresh_fc"
+      },
+      "next_opponent_ship_id": 689,
+      "next_vcr_id": 1923,
+      "result": {
+        "capture_cursor": {
+          "left_index": 2,
+          "left_ship_id": 706,
+          "right_index": 0,
+          "right_ship_id": 95
+        },
+        "exact": false,
+        "external_order": [
+          95,
+          669,
+          706
+        ],
+        "factual_opponent_ship_id": 689,
+        "factual_prize_side": "left",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "split_candidate": {
+        "exact": true,
+        "factual_side": "left",
+        "predicted_side": "left",
+        "source": "o_not_reachable_neutral_fresh_fc"
+      },
+      "turn": 159,
+      "x": 1075,
+      "y": 1975
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": false,
+        "factual_opponent_candidate_resolved": false,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "pre_move_mkt_mass_change",
+        "factual_opponent_prediction_position": null,
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": null,
+        "factual_opponent_requests_new_owner": null,
+        "factual_opponent_site_predicted": false,
+        "factual_opponent_strict_permission": null,
+        "factual_opponent_strict_rank": null,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "right",
+      "capture_vcr_id": 1298,
+      "captured_ship_id": 37,
+      "factual_prize_side": "left",
+      "game_id": 411645,
+      "identity_anchored_result": {
+        "capture_cursor": {
+          "left_index": 4,
+          "left_ship_id": 483,
+          "right_index": 0,
+          "right_ship_id": 37
+        },
+        "exact": false,
+        "external_order": [
+          37,
+          84,
+          139,
+          210,
+          483
+        ],
+        "factual_opponent_ship_id": 84,
+        "factual_prize_side": "left",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "identity_anchored_split": {
+        "exact": true,
+        "factual_side": "left",
+        "pair_exact": false,
+        "predicted_side": "left",
+        "source": "frozen_identity_anchored_o_not_reachable_neutral_fresh_fc"
+      },
+      "next_opponent_ship_id": 84,
+      "next_vcr_id": 1299,
+      "result": {
+        "capture_cursor": {
+          "left_index": 3,
+          "left_ship_id": 483,
+          "right_index": 0,
+          "right_ship_id": 37
+        },
+        "exact": false,
+        "external_order": [
+          37,
+          139,
+          210,
+          483
+        ],
+        "factual_opponent_ship_id": 84,
+        "factual_prize_side": "left",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "split_candidate": {
+        "exact": true,
+        "factual_side": "left",
+        "predicted_side": "left",
+        "source": "o_not_reachable_neutral_fresh_fc"
+      },
+      "turn": 114,
+      "x": 1463,
+      "y": 2416
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": true,
+        "factual_opponent_candidate_resolved": true,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "normal_move",
+        "factual_opponent_prediction_position": [
+          2558,
+          1837
+        ],
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": 1,
+        "factual_opponent_requests_new_owner": true,
+        "factual_opponent_site_predicted": true,
+        "factual_opponent_strict_permission": true,
+        "factual_opponent_strict_rank": 1,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "left",
+      "capture_vcr_id": 438,
+      "captured_ship_id": 323,
+      "factual_prize_side": "right",
+      "game_id": 416250,
+      "identity_anchored_result": {
+        "from_vcr_id": 438,
+        "reason": "nonadjacent_vcr_requires_intervening_mutation_model",
+        "status": "not_comparable",
+        "to_vcr_id": 440
+      },
+      "identity_anchored_split": null,
+      "next_opponent_ship_id": 379,
+      "next_vcr_id": 440,
+      "result": {
+        "from_vcr_id": 438,
+        "reason": "nonadjacent_vcr_requires_intervening_mutation_model",
+        "status": "not_comparable",
+        "to_vcr_id": 440
+      },
+      "split_candidate": null,
+      "turn": 81,
+      "x": 2558,
+      "y": 1837
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": false,
+        "factual_opponent_candidate_resolved": false,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "intercept_movement",
+        "factual_opponent_prediction_position": null,
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": null,
+        "factual_opponent_requests_new_owner": null,
+        "factual_opponent_site_predicted": false,
+        "factual_opponent_strict_permission": null,
+        "factual_opponent_strict_rank": null,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "right",
+      "capture_vcr_id": 884,
+      "captured_ship_id": 197,
+      "factual_prize_side": "left",
+      "game_id": 416250,
+      "identity_anchored_result": {
+        "capture_cursor": {
+          "left_index": 6,
+          "left_ship_id": 372,
+          "right_index": 1,
+          "right_ship_id": 197
+        },
+        "exact": false,
+        "external_order": [
+          115,
+          197,
+          268,
+          38,
+          70,
+          109,
+          372
+        ],
+        "factual_opponent_ship_id": 268,
+        "factual_prize_side": "left",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "identity_anchored_split": {
+        "exact": true,
+        "factual_side": "left",
+        "pair_exact": false,
+        "predicted_side": "left",
+        "source": "frozen_identity_anchored_o_not_reachable_neutral_fresh_fc"
+      },
+      "next_opponent_ship_id": 268,
+      "next_vcr_id": 885,
+      "result": {
+        "capture_cursor": {
+          "left_index": 5,
+          "left_ship_id": 372,
+          "right_index": 1,
+          "right_ship_id": 197
+        },
+        "exact": false,
+        "external_order": [
+          115,
+          197,
+          38,
+          70,
+          109,
+          372
+        ],
+        "factual_opponent_ship_id": 268,
+        "factual_prize_side": "left",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "split_candidate": {
+        "exact": true,
+        "factual_side": "left",
+        "predicted_side": "left",
+        "source": "o_not_reachable_neutral_fresh_fc"
+      },
+      "turn": 135,
+      "x": 1846,
+      "y": 1425
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": false,
+        "factual_opponent_candidate_resolved": false,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "sphere_topology_not_integrated",
+        "factual_opponent_prediction_position": null,
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": null,
+        "factual_opponent_requests_new_owner": null,
+        "factual_opponent_site_predicted": false,
+        "factual_opponent_strict_permission": null,
+        "factual_opponent_strict_rank": null,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "right",
+      "capture_vcr_id": 14,
+      "captured_ship_id": 124,
+      "factual_prize_side": "right",
+      "game_id": 474699,
+      "identity_anchored_result": {
+        "capture_cursor": {
+          "left_index": 1,
+          "left_ship_id": 61,
+          "right_index": 0,
+          "right_ship_id": 124
+        },
+        "exact": true,
+        "external_order": [
+          124,
+          61,
+          192
+        ],
+        "external_order_keys": {
+          "124": [
+            60,
+            124
+          ],
+          "192": [
+            1010,
+            192
+          ],
+          "61": [
+            1010,
+            61
+          ]
+        },
+        "factual_opponent_ship_id": 192,
+        "factual_prize_side": "right",
+        "pair_exact": true,
+        "predicted_cursor": {
+          "left_index": 2,
+          "right_index": 0
+        },
+        "predicted_opponent_ship_id": 192,
+        "predicted_prize_ship_id": 124,
+        "predicted_prize_side": "right",
+        "side_exact": true,
+        "status": "resolved"
+      },
+      "identity_anchored_split": {
+        "exact": true,
+        "factual_side": "right",
+        "pair_exact": true,
+        "predicted_side": "right",
+        "source": "frozen_identity_anchored_o_reachable_sticky_capture_side"
+      },
+      "next_opponent_ship_id": 192,
+      "next_vcr_id": 15,
+      "result": {
+        "capture_cursor": {
+          "left_index": 1,
+          "left_ship_id": 61,
+          "right_index": 0,
+          "right_ship_id": 124
+        },
+        "exact": false,
+        "external_order": [
+          124,
+          61
+        ],
+        "factual_opponent_ship_id": 192,
+        "factual_prize_side": "right",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "split_candidate": {
+        "exact": false,
+        "factual_side": "right",
+        "predicted_side": "left",
+        "source": "o_not_reachable_neutral_fresh_fc"
+      },
+      "turn": 14,
+      "x": 2747,
+      "y": 1229
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": true,
+        "factual_opponent_candidate_resolved": true,
+        "factual_opponent_history_anchored": true,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "sphere_topology_not_integrated",
+        "factual_opponent_prediction_position": null,
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": 1,
+        "factual_opponent_requests_new_owner": true,
+        "factual_opponent_site_predicted": false,
+        "factual_opponent_strict_permission": true,
+        "factual_opponent_strict_rank": 1,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "right",
+      "capture_vcr_id": 15,
+      "captured_ship_id": 124,
+      "factual_prize_side": "left",
+      "game_id": 474699,
+      "identity_anchored_result": {
+        "from_vcr_id": 15,
+        "reason": "nonadjacent_vcr_requires_intervening_mutation_model",
+        "status": "not_comparable",
+        "to_vcr_id": 18
+      },
+      "identity_anchored_split": null,
+      "next_opponent_ship_id": 61,
+      "next_vcr_id": 18,
+      "result": {
+        "from_vcr_id": 15,
+        "reason": "nonadjacent_vcr_requires_intervening_mutation_model",
+        "status": "not_comparable",
+        "to_vcr_id": 18
+      },
+      "split_candidate": null,
+      "turn": 14,
+      "x": 2747,
+      "y": 1229
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": true,
+        "factual_opponent_candidate_resolved": true,
+        "factual_opponent_history_anchored": true,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "sphere_topology_not_integrated",
+        "factual_opponent_prediction_position": null,
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": 1,
+        "factual_opponent_requests_new_owner": true,
+        "factual_opponent_site_predicted": false,
+        "factual_opponent_strict_permission": true,
+        "factual_opponent_strict_rank": 1,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "left",
+      "capture_vcr_id": 18,
+      "captured_ship_id": 124,
+      "factual_prize_side": "left",
+      "game_id": 474699,
+      "identity_anchored_result": {
+        "from_vcr_id": 18,
+        "reason": "nonadjacent_vcr_requires_intervening_mutation_model",
+        "status": "not_comparable",
+        "to_vcr_id": 20
+      },
+      "identity_anchored_split": null,
+      "next_opponent_ship_id": 192,
+      "next_vcr_id": 20,
+      "result": {
+        "from_vcr_id": 18,
+        "reason": "nonadjacent_vcr_requires_intervening_mutation_model",
+        "status": "not_comparable",
+        "to_vcr_id": 20
+      },
+      "split_candidate": null,
+      "turn": 14,
+      "x": 2747,
+      "y": 1229
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": true,
+        "factual_opponent_candidate_resolved": true,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "stationary_effective_warp_zero",
+        "factual_opponent_prediction_position": [
+          1032,
+          2059
+        ],
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": 1,
+        "factual_opponent_requests_new_owner": true,
+        "factual_opponent_site_predicted": true,
+        "factual_opponent_strict_permission": null,
+        "factual_opponent_strict_rank": null,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "left",
+      "capture_vcr_id": 285,
+      "captured_ship_id": 172,
+      "factual_prize_side": "right",
+      "game_id": 476380,
+      "identity_anchored_result": {
+        "from_vcr_id": 285,
+        "reason": "nonadjacent_vcr_requires_intervening_mutation_model",
+        "status": "not_comparable",
+        "to_vcr_id": 287
+      },
+      "identity_anchored_split": null,
+      "next_opponent_ship_id": 97,
+      "next_vcr_id": 287,
+      "result": {
+        "from_vcr_id": 285,
+        "reason": "nonadjacent_vcr_requires_intervening_mutation_model",
+        "status": "not_comparable",
+        "to_vcr_id": 287
+      },
+      "split_candidate": null,
+      "turn": 76,
+      "x": 1032,
+      "y": 2059
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": true,
+        "factual_opponent_candidate_resolved": true,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "normal_move",
+        "factual_opponent_prediction_position": [
+          1550,
+          1841
+        ],
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": 1,
+        "factual_opponent_requests_new_owner": true,
+        "factual_opponent_site_predicted": true,
+        "factual_opponent_strict_permission": null,
+        "factual_opponent_strict_rank": null,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "left",
+      "capture_vcr_id": 903,
+      "captured_ship_id": 157,
+      "factual_prize_side": "right",
+      "game_id": 476380,
+      "identity_anchored_result": {
+        "capture_cursor": {
+          "left_index": 3,
+          "left_ship_id": 157,
+          "right_index": 2,
+          "right_ship_id": 97
+        },
+        "exact": true,
+        "external_order": [
+          514,
+          15,
+          97,
+          157
+        ],
+        "external_order_keys": {
+          "15": [
+            26,
+            15
+          ],
+          "157": [
+            1015,
+            157
+          ],
+          "514": [
+            24,
+            514
+          ],
+          "97": [
+            1010,
+            97
+          ]
+        },
+        "factual_opponent_ship_id": 514,
+        "factual_prize_side": "right",
+        "pair_exact": true,
+        "predicted_cursor": {
+          "left_index": 0,
+          "right_index": 3
+        },
+        "predicted_opponent_ship_id": 514,
+        "predicted_prize_ship_id": 157,
+        "predicted_prize_side": "right",
+        "side_exact": true,
+        "status": "resolved"
+      },
+      "identity_anchored_split": {
+        "exact": false,
+        "factual_side": "right",
+        "pair_exact": true,
+        "predicted_side": "left",
+        "source": "frozen_identity_anchored_o_reachable_sticky_capture_side"
+      },
+      "next_opponent_ship_id": 514,
+      "next_vcr_id": 904,
+      "result": {
+        "capture_cursor": {
+          "left_index": 3,
+          "left_ship_id": 157,
+          "right_index": 2,
+          "right_ship_id": 97
+        },
+        "exact": false,
+        "external_order": [
+          514,
+          15,
+          97,
+          157
+        ],
+        "factual_opponent_ship_id": 514,
+        "factual_prize_side": "right",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "split_candidate": {
+        "exact": false,
+        "factual_side": "right",
+        "predicted_side": "left",
+        "source": "o_not_reachable_neutral_fresh_fc"
+      },
+      "turn": 223,
+      "x": 1550,
+      "y": 1841
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": false,
+        "factual_opponent_candidate_resolved": false,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "intercept_movement",
+        "factual_opponent_prediction_position": null,
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": null,
+        "factual_opponent_requests_new_owner": null,
+        "factual_opponent_site_predicted": false,
+        "factual_opponent_strict_permission": null,
+        "factual_opponent_strict_rank": null,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "right",
+      "capture_vcr_id": 363,
+      "captured_ship_id": 51,
+      "factual_prize_side": "right",
+      "game_id": 476819,
+      "identity_anchored_result": {
+        "capture_cursor": {
+          "left_index": 1,
+          "left_ship_id": 357,
+          "right_index": 0,
+          "right_ship_id": 51
+        },
+        "exact": true,
+        "external_order": [
+          51,
+          357,
+          223
+        ],
+        "external_order_keys": {
+          "223": [
+            998,
+            223
+          ],
+          "357": [
+            459,
+            357
+          ],
+          "51": [
+            1,
+            51
+          ]
+        },
+        "factual_opponent_ship_id": 223,
+        "factual_prize_side": "right",
+        "pair_exact": true,
+        "predicted_cursor": {
+          "left_index": 2,
+          "right_index": 0
+        },
+        "predicted_opponent_ship_id": 223,
+        "predicted_prize_ship_id": 51,
+        "predicted_prize_side": "right",
+        "side_exact": true,
+        "status": "resolved"
+      },
+      "identity_anchored_split": {
+        "exact": true,
+        "factual_side": "right",
+        "pair_exact": true,
+        "predicted_side": "right",
+        "source": "frozen_identity_anchored_o_reachable_sticky_capture_side"
+      },
+      "next_opponent_ship_id": 223,
+      "next_vcr_id": 364,
+      "result": {
+        "capture_cursor": {
+          "left_index": 1,
+          "left_ship_id": 357,
+          "right_index": 0,
+          "right_ship_id": 51
+        },
+        "exact": false,
+        "external_order": [
+          51,
+          357
+        ],
+        "factual_opponent_ship_id": 223,
+        "factual_prize_side": "right",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "split_candidate": {
+        "exact": false,
+        "factual_side": "right",
+        "predicted_side": "left",
+        "source": "o_not_reachable_neutral_fresh_fc"
+      },
+      "turn": 104,
+      "x": 1880,
+      "y": 1502
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": false,
+        "factual_opponent_candidate_resolved": false,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "intercept_movement",
+        "factual_opponent_prediction_position": null,
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": null,
+        "factual_opponent_requests_new_owner": null,
+        "factual_opponent_site_predicted": false,
+        "factual_opponent_strict_permission": null,
+        "factual_opponent_strict_rank": null,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "right",
+      "capture_vcr_id": 595,
+      "captured_ship_id": 236,
+      "factual_prize_side": "left",
+      "game_id": 476819,
+      "identity_anchored_result": {
+        "capture_cursor": {
+          "left_index": 3,
+          "left_ship_id": 357,
+          "right_index": 0,
+          "right_ship_id": 236
+        },
+        "exact": false,
+        "external_order": [
+          236,
+          281,
+          402,
+          357
+        ],
+        "factual_opponent_ship_id": 281,
+        "factual_prize_side": "left",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "identity_anchored_split": {
+        "exact": true,
+        "factual_side": "left",
+        "pair_exact": false,
+        "predicted_side": "left",
+        "source": "frozen_identity_anchored_o_not_reachable_neutral_fresh_fc"
+      },
+      "next_opponent_ship_id": 281,
+      "next_vcr_id": 596,
+      "result": {
+        "capture_cursor": {
+          "left_index": 2,
+          "left_ship_id": 357,
+          "right_index": 0,
+          "right_ship_id": 236
+        },
+        "exact": false,
+        "external_order": [
+          236,
+          402,
+          357
+        ],
+        "factual_opponent_ship_id": 281,
+        "factual_prize_side": "left",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "split_candidate": {
+        "exact": true,
+        "factual_side": "left",
+        "predicted_side": "left",
+        "source": "o_not_reachable_neutral_fresh_fc"
+      },
+      "turn": 131,
+      "x": 1494,
+      "y": 2443
+    },
+    {
+      "active_dependency": {
+        "factual_opponent_active": true,
+        "factual_opponent_candidate_resolved": true,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "stationary_effective_warp_zero",
+        "factual_opponent_prediction_position": [
+          1362,
+          2352
+        ],
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": 1,
+        "factual_opponent_requests_new_owner": true,
+        "factual_opponent_site_predicted": true,
+        "factual_opponent_strict_permission": true,
+        "factual_opponent_strict_rank": 1,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "right",
+      "capture_vcr_id": 724,
+      "captured_ship_id": 114,
+      "factual_prize_side": "left",
+      "game_id": 476819,
+      "identity_anchored_result": {
+        "capture_cursor": {
+          "left_index": 4,
+          "left_ship_id": 416,
+          "right_index": 0,
+          "right_ship_id": 114
+        },
+        "exact": false,
+        "external_order": [
+          114,
+          119,
+          293,
+          465,
+          416
+        ],
+        "factual_opponent_ship_id": 119,
+        "factual_prize_side": "left",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "identity_anchored_split": {
+        "exact": true,
+        "factual_side": "left",
+        "pair_exact": false,
+        "predicted_side": "left",
+        "source": "frozen_identity_anchored_o_not_reachable_neutral_fresh_fc"
+      },
+      "next_opponent_ship_id": 119,
+      "next_vcr_id": 725,
+      "result": {
+        "capture_cursor": {
+          "left_index": 4,
+          "left_ship_id": 416,
+          "right_index": 0,
+          "right_ship_id": 114
+        },
+        "exact": false,
+        "external_order": [
+          114,
+          119,
+          293,
+          465,
+          416
+        ],
+        "factual_opponent_ship_id": 119,
+        "factual_prize_side": "left",
+        "pair_exact": false,
+        "predicted_prize_continuation": null,
+        "reason": "no_later_c2ng_captured_right_attacker",
+        "side_exact": false,
+        "status": "resolved"
+      },
+      "split_candidate": {
+        "exact": true,
+        "factual_side": "left",
+        "predicted_side": "left",
+        "source": "o_not_reachable_neutral_fresh_fc"
+      },
+      "turn": 137,
+      "x": 1362,
+      "y": 2352
+    }
+  ],
+  "partition": "heldout",
+  "scanned_game_ids": [
+    218619,
+    227887,
+    256858,
+    257776,
+    266087,
+    325434,
+    364412,
+    368767,
+    411645,
+    416250,
+    474699,
+    476380,
+    476819,
+    563278,
+    633855,
+    658427
+  ],
+  "schema": "planets-lab.combat-public-capture-o-layer-probe-merged.v1",
+  "summary": {
+    "counts": {
+      "active_dependency:factual_opponent_active:false": 18,
+      "active_dependency:factual_opponent_active:true": 25,
+      "active_dependency:factual_opponent_candidate_resolved:false": 18,
+      "active_dependency:factual_opponent_candidate_resolved:true": 25,
+      "active_dependency:factual_opponent_requests_new_owner:true": 25,
+      "active_dependency:factual_opponent_requests_new_owner:unknown": 18,
+      "active_dependency:factual_opponent_strict_permission:true": 23,
+      "active_dependency:factual_opponent_strict_permission:unknown": 20,
+      "active_dependency:requester_rank_missing": 18,
+      "active_dependency:requester_rank_present": 25,
+      "active_dependency:strict_rank_missing": 20,
+      "active_dependency:strict_rank_present": 23,
+      "adjacent_rows": 29,
+      "blocked_dependency:factual_opponent_history_anchored:false": 17,
+      "blocked_dependency:factual_opponent_owner_changed_before_next:false": 17,
+      "blocked_dependency:factual_opponent_removed_before_next:false": 17,
+      "blocked_dependency:factual_opponent_site_predicted:false": 16,
+      "blocked_dependency:factual_opponent_site_predicted:true": 1,
+      "capture_ship_rows": 43,
+      "discovery_ship_rows": 43,
+      "external_o_exact": 5,
+      "external_o_mismatch": 24,
+      "factual_side:left": 26,
+      "factual_side:right": 17,
+      "identity_anchored_o_pair_not_reachable": 18,
+      "identity_anchored_o_pair_reachable": 11,
+      "identity_anchored_split_exact": 27,
+      "identity_anchored_split_mismatch": 1,
+      "identity_anchored_split_unresolved": 1,
+      "o_pair_not_reachable": 24,
+      "o_pair_not_reachable:left": 19,
+      "o_pair_not_reachable:right": 5,
+      "o_pair_reachable": 5,
+      "o_pair_reachable:right": 5,
+      "observations_seen": 43,
+      "resolved_dependency:blocked": 17,
+      "resolved_dependency:qualified": 12,
+      "split_candidate_exact": 23,
+      "split_candidate_exact:blocked": 12,
+      "split_candidate_exact:qualified": 11,
+      "split_candidate_mismatch": 5,
+      "split_candidate_mismatch:blocked": 5,
+      "split_candidate_unresolved": 1,
+      "split_candidate_unresolved:qualified": 1,
+      "status:not_comparable": 14,
+      "status:resolved": 29
+    },
+    "game_passes": 10,
+    "per_game": [
+      {
+        "counts": {
+          "active_dependency:factual_opponent_active:true": 2,
+          "active_dependency:factual_opponent_candidate_resolved:true": 2,
+          "active_dependency:factual_opponent_requests_new_owner:true": 2,
+          "active_dependency:factual_opponent_strict_permission:true": 2,
+          "active_dependency:requester_rank_present": 2,
+          "active_dependency:strict_rank_present": 2,
+          "adjacent_rows": 0,
+          "capture_ship_rows": 2,
+          "discovery_ship_rows": 2,
+          "factual_side:right": 2,
+          "observations_seen": 2,
+          "status:not_comparable": 2
+        },
+        "probe_game_ids": [
+          218619
+        ]
+      },
+      {
+        "counts": {
+          "active_dependency:factual_opponent_active:false": 4,
+          "active_dependency:factual_opponent_active:true": 4,
+          "active_dependency:factual_opponent_candidate_resolved:false": 4,
+          "active_dependency:factual_opponent_candidate_resolved:true": 4,
+          "active_dependency:factual_opponent_requests_new_owner:true": 4,
+          "active_dependency:factual_opponent_requests_new_owner:unknown": 4,
+          "active_dependency:factual_opponent_strict_permission:true": 4,
+          "active_dependency:factual_opponent_strict_permission:unknown": 4,
+          "active_dependency:requester_rank_missing": 4,
+          "active_dependency:requester_rank_present": 4,
+          "active_dependency:strict_rank_missing": 4,
+          "active_dependency:strict_rank_present": 4,
+          "adjacent_rows": 6,
+          "blocked_dependency:factual_opponent_history_anchored:false": 3,
+          "blocked_dependency:factual_opponent_owner_changed_before_next:false": 3,
+          "blocked_dependency:factual_opponent_removed_before_next:false": 3,
+          "blocked_dependency:factual_opponent_site_predicted:false": 3,
+          "capture_ship_rows": 8,
+          "discovery_ship_rows": 8,
+          "external_o_exact": 1,
+          "external_o_mismatch": 5,
+          "factual_side:left": 7,
+          "factual_side:right": 1,
+          "identity_anchored_o_pair_not_reachable": 5,
+          "identity_anchored_o_pair_reachable": 1,
+          "identity_anchored_split_exact": 6,
+          "o_pair_not_reachable": 5,
+          "o_pair_not_reachable:left": 5,
+          "o_pair_reachable": 1,
+          "o_pair_reachable:right": 1,
+          "observations_seen": 8,
+          "resolved_dependency:blocked": 3,
+          "resolved_dependency:qualified": 3,
+          "split_candidate_exact": 6,
+          "split_candidate_exact:blocked": 3,
+          "split_candidate_exact:qualified": 3,
+          "status:not_comparable": 2,
+          "status:resolved": 6
+        },
+        "probe_game_ids": [
+          227887
+        ]
+      },
+      {
+        "counts": {
+          "active_dependency:factual_opponent_active:false": 2,
+          "active_dependency:factual_opponent_candidate_resolved:false": 2,
+          "active_dependency:factual_opponent_requests_new_owner:unknown": 2,
+          "active_dependency:factual_opponent_strict_permission:unknown": 2,
+          "active_dependency:requester_rank_missing": 2,
+          "active_dependency:strict_rank_missing": 2,
+          "adjacent_rows": 2,
+          "blocked_dependency:factual_opponent_history_anchored:false": 2,
+          "blocked_dependency:factual_opponent_owner_changed_before_next:false": 2,
+          "blocked_dependency:factual_opponent_removed_before_next:false": 2,
+          "blocked_dependency:factual_opponent_site_predicted:false": 2,
+          "capture_ship_rows": 2,
+          "discovery_ship_rows": 2,
+          "external_o_mismatch": 2,
+          "factual_side:left": 2,
+          "identity_anchored_o_pair_not_reachable": 1,
+          "identity_anchored_o_pair_reachable": 1,
+          "identity_anchored_split_exact": 2,
+          "o_pair_not_reachable": 2,
+          "o_pair_not_reachable:left": 2,
+          "observations_seen": 2,
+          "resolved_dependency:blocked": 2,
+          "split_candidate_exact": 2,
+          "split_candidate_exact:blocked": 2,
+          "status:resolved": 2
+        },
+        "probe_game_ids": [
+          256858
+        ]
+      },
+      {
+        "counts": {
+          "active_dependency:factual_opponent_active:false": 3,
+          "active_dependency:factual_opponent_active:true": 11,
+          "active_dependency:factual_opponent_candidate_resolved:false": 3,
+          "active_dependency:factual_opponent_candidate_resolved:true": 11,
+          "active_dependency:factual_opponent_requests_new_owner:true": 11,
+          "active_dependency:factual_opponent_requests_new_owner:unknown": 3,
+          "active_dependency:factual_opponent_strict_permission:true": 11,
+          "active_dependency:factual_opponent_strict_permission:unknown": 3,
+          "active_dependency:requester_rank_missing": 3,
+          "active_dependency:requester_rank_present": 11,
+          "active_dependency:strict_rank_missing": 3,
+          "active_dependency:strict_rank_present": 11,
+          "adjacent_rows": 10,
+          "blocked_dependency:factual_opponent_history_anchored:false": 2,
+          "blocked_dependency:factual_opponent_owner_changed_before_next:false": 2,
+          "blocked_dependency:factual_opponent_removed_before_next:false": 2,
+          "blocked_dependency:factual_opponent_site_predicted:false": 2,
+          "capture_ship_rows": 14,
+          "discovery_ship_rows": 14,
+          "external_o_exact": 4,
+          "external_o_mismatch": 6,
+          "factual_side:left": 6,
+          "factual_side:right": 8,
+          "identity_anchored_o_pair_not_reachable": 5,
+          "identity_anchored_o_pair_reachable": 5,
+          "identity_anchored_split_exact": 9,
+          "identity_anchored_split_unresolved": 1,
+          "o_pair_not_reachable": 6,
+          "o_pair_not_reachable:left": 5,
+          "o_pair_not_reachable:right": 1,
+          "o_pair_reachable": 4,
+          "o_pair_reachable:right": 4,
+          "observations_seen": 14,
+          "resolved_dependency:blocked": 2,
+          "resolved_dependency:qualified": 8,
+          "split_candidate_exact": 8,
+          "split_candidate_exact:blocked": 1,
+          "split_candidate_exact:qualified": 7,
+          "split_candidate_mismatch": 1,
+          "split_candidate_mismatch:blocked": 1,
+          "split_candidate_unresolved": 1,
+          "split_candidate_unresolved:qualified": 1,
+          "status:not_comparable": 4,
+          "status:resolved": 10
+        },
+        "probe_game_ids": [
+          257776
+        ]
+      },
+      {
+        "counts": {
+          "active_dependency:factual_opponent_active:false": 4,
+          "active_dependency:factual_opponent_active:true": 2,
+          "active_dependency:factual_opponent_candidate_resolved:false": 4,
+          "active_dependency:factual_opponent_candidate_resolved:true": 2,
+          "active_dependency:factual_opponent_requests_new_owner:true": 2,
+          "active_dependency:factual_opponent_requests_new_owner:unknown": 4,
+          "active_dependency:factual_opponent_strict_permission:true": 2,
+          "active_dependency:factual_opponent_strict_permission:unknown": 4,
+          "active_dependency:requester_rank_missing": 4,
+          "active_dependency:requester_rank_present": 2,
+          "active_dependency:strict_rank_missing": 4,
+          "active_dependency:strict_rank_present": 2,
+          "adjacent_rows": 4,
+          "blocked_dependency:factual_opponent_history_anchored:false": 4,
+          "blocked_dependency:factual_opponent_owner_changed_before_next:false": 4,
+          "blocked_dependency:factual_opponent_removed_before_next:false": 4,
+          "blocked_dependency:factual_opponent_site_predicted:false": 4,
+          "capture_ship_rows": 6,
+          "discovery_ship_rows": 6,
+          "external_o_mismatch": 4,
+          "factual_side:left": 5,
+          "factual_side:right": 1,
+          "identity_anchored_o_pair_not_reachable": 3,
+          "identity_anchored_o_pair_reachable": 1,
+          "identity_anchored_split_exact": 4,
+          "o_pair_not_reachable": 4,
+          "o_pair_not_reachable:left": 3,
+          "o_pair_not_reachable:right": 1,
+          "observations_seen": 6,
+          "resolved_dependency:blocked": 4,
+          "split_candidate_exact": 3,
+          "split_candidate_exact:blocked": 3,
+          "split_candidate_mismatch": 1,
+          "split_candidate_mismatch:blocked": 1,
+          "status:not_comparable": 2,
+          "status:resolved": 4
+        },
+        "probe_game_ids": [
+          266087
+        ]
+      },
+      {
+        "counts": {
+          "active_dependency:factual_opponent_active:false": 1,
+          "active_dependency:factual_opponent_candidate_resolved:false": 1,
+          "active_dependency:factual_opponent_requests_new_owner:unknown": 1,
+          "active_dependency:factual_opponent_strict_permission:unknown": 1,
+          "active_dependency:requester_rank_missing": 1,
+          "active_dependency:strict_rank_missing": 1,
+          "adjacent_rows": 1,
+          "blocked_dependency:factual_opponent_history_anchored:false": 1,
+          "blocked_dependency:factual_opponent_owner_changed_before_next:false": 1,
+          "blocked_dependency:factual_opponent_removed_before_next:false": 1,
+          "blocked_dependency:factual_opponent_site_predicted:false": 1,
+          "capture_ship_rows": 1,
+          "discovery_ship_rows": 1,
+          "external_o_mismatch": 1,
+          "factual_side:left": 1,
+          "identity_anchored_o_pair_not_reachable": 1,
+          "identity_anchored_split_exact": 1,
+          "o_pair_not_reachable": 1,
+          "o_pair_not_reachable:left": 1,
+          "observations_seen": 1,
+          "resolved_dependency:blocked": 1,
+          "split_candidate_exact": 1,
+          "split_candidate_exact:blocked": 1,
+          "status:resolved": 1
+        },
+        "probe_game_ids": [
+          411645
+        ]
+      },
+      {
+        "counts": {
+          "active_dependency:factual_opponent_active:false": 1,
+          "active_dependency:factual_opponent_active:true": 1,
+          "active_dependency:factual_opponent_candidate_resolved:false": 1,
+          "active_dependency:factual_opponent_candidate_resolved:true": 1,
+          "active_dependency:factual_opponent_requests_new_owner:true": 1,
+          "active_dependency:factual_opponent_requests_new_owner:unknown": 1,
+          "active_dependency:factual_opponent_strict_permission:true": 1,
+          "active_dependency:factual_opponent_strict_permission:unknown": 1,
+          "active_dependency:requester_rank_missing": 1,
+          "active_dependency:requester_rank_present": 1,
+          "active_dependency:strict_rank_missing": 1,
+          "active_dependency:strict_rank_present": 1,
+          "adjacent_rows": 1,
+          "blocked_dependency:factual_opponent_history_anchored:false": 1,
+          "blocked_dependency:factual_opponent_owner_changed_before_next:false": 1,
+          "blocked_dependency:factual_opponent_removed_before_next:false": 1,
+          "blocked_dependency:factual_opponent_site_predicted:false": 1,
+          "capture_ship_rows": 2,
+          "discovery_ship_rows": 2,
+          "external_o_mismatch": 1,
+          "factual_side:left": 1,
+          "factual_side:right": 1,
+          "identity_anchored_o_pair_not_reachable": 1,
+          "identity_anchored_split_exact": 1,
+          "o_pair_not_reachable": 1,
+          "o_pair_not_reachable:left": 1,
+          "observations_seen": 2,
+          "resolved_dependency:blocked": 1,
+          "split_candidate_exact": 1,
+          "split_candidate_exact:blocked": 1,
+          "status:not_comparable": 1,
+          "status:resolved": 1
+        },
+        "probe_game_ids": [
+          416250
+        ]
+      },
+      {
+        "counts": {
+          "active_dependency:factual_opponent_active:false": 1,
+          "active_dependency:factual_opponent_active:true": 2,
+          "active_dependency:factual_opponent_candidate_resolved:false": 1,
+          "active_dependency:factual_opponent_candidate_resolved:true": 2,
+          "active_dependency:factual_opponent_requests_new_owner:true": 2,
+          "active_dependency:factual_opponent_requests_new_owner:unknown": 1,
+          "active_dependency:factual_opponent_strict_permission:true": 2,
+          "active_dependency:factual_opponent_strict_permission:unknown": 1,
+          "active_dependency:requester_rank_missing": 1,
+          "active_dependency:requester_rank_present": 2,
+          "active_dependency:strict_rank_missing": 1,
+          "active_dependency:strict_rank_present": 2,
+          "adjacent_rows": 1,
+          "blocked_dependency:factual_opponent_history_anchored:false": 1,
+          "blocked_dependency:factual_opponent_owner_changed_before_next:false": 1,
+          "blocked_dependency:factual_opponent_removed_before_next:false": 1,
+          "blocked_dependency:factual_opponent_site_predicted:false": 1,
+          "capture_ship_rows": 3,
+          "discovery_ship_rows": 3,
+          "external_o_mismatch": 1,
+          "factual_side:left": 2,
+          "factual_side:right": 1,
+          "identity_anchored_o_pair_reachable": 1,
+          "identity_anchored_split_exact": 1,
+          "o_pair_not_reachable": 1,
+          "o_pair_not_reachable:right": 1,
+          "observations_seen": 3,
+          "resolved_dependency:blocked": 1,
+          "split_candidate_mismatch": 1,
+          "split_candidate_mismatch:blocked": 1,
+          "status:not_comparable": 2,
+          "status:resolved": 1
+        },
+        "probe_game_ids": [
+          474699
+        ]
+      },
+      {
+        "counts": {
+          "active_dependency:factual_opponent_active:true": 2,
+          "active_dependency:factual_opponent_candidate_resolved:true": 2,
+          "active_dependency:factual_opponent_requests_new_owner:true": 2,
+          "active_dependency:factual_opponent_strict_permission:unknown": 2,
+          "active_dependency:requester_rank_present": 2,
+          "active_dependency:strict_rank_missing": 2,
+          "adjacent_rows": 1,
+          "blocked_dependency:factual_opponent_history_anchored:false": 1,
+          "blocked_dependency:factual_opponent_owner_changed_before_next:false": 1,
+          "blocked_dependency:factual_opponent_removed_before_next:false": 1,
+          "blocked_dependency:factual_opponent_site_predicted:true": 1,
+          "capture_ship_rows": 2,
+          "discovery_ship_rows": 2,
+          "external_o_mismatch": 1,
+          "factual_side:right": 2,
+          "identity_anchored_o_pair_reachable": 1,
+          "identity_anchored_split_mismatch": 1,
+          "o_pair_not_reachable": 1,
+          "o_pair_not_reachable:right": 1,
+          "observations_seen": 2,
+          "resolved_dependency:blocked": 1,
+          "split_candidate_mismatch": 1,
+          "split_candidate_mismatch:blocked": 1,
+          "status:not_comparable": 1,
+          "status:resolved": 1
+        },
+        "probe_game_ids": [
+          476380
+        ]
+      },
+      {
+        "counts": {
+          "active_dependency:factual_opponent_active:false": 2,
+          "active_dependency:factual_opponent_active:true": 1,
+          "active_dependency:factual_opponent_candidate_resolved:false": 2,
+          "active_dependency:factual_opponent_candidate_resolved:true": 1,
+          "active_dependency:factual_opponent_requests_new_owner:true": 1,
+          "active_dependency:factual_opponent_requests_new_owner:unknown": 2,
+          "active_dependency:factual_opponent_strict_permission:true": 1,
+          "active_dependency:factual_opponent_strict_permission:unknown": 2,
+          "active_dependency:requester_rank_missing": 2,
+          "active_dependency:requester_rank_present": 1,
+          "active_dependency:strict_rank_missing": 2,
+          "active_dependency:strict_rank_present": 1,
+          "adjacent_rows": 3,
+          "blocked_dependency:factual_opponent_history_anchored:false": 2,
+          "blocked_dependency:factual_opponent_owner_changed_before_next:false": 2,
+          "blocked_dependency:factual_opponent_removed_before_next:false": 2,
+          "blocked_dependency:factual_opponent_site_predicted:false": 2,
+          "capture_ship_rows": 3,
+          "discovery_ship_rows": 3,
+          "external_o_mismatch": 3,
+          "factual_side:left": 2,
+          "factual_side:right": 1,
+          "identity_anchored_o_pair_not_reachable": 2,
+          "identity_anchored_o_pair_reachable": 1,
+          "identity_anchored_split_exact": 3,
+          "o_pair_not_reachable": 3,
+          "o_pair_not_reachable:left": 2,
+          "o_pair_not_reachable:right": 1,
+          "observations_seen": 3,
+          "resolved_dependency:blocked": 2,
+          "resolved_dependency:qualified": 1,
+          "split_candidate_exact": 2,
+          "split_candidate_exact:blocked": 1,
+          "split_candidate_exact:qualified": 1,
+          "split_candidate_mismatch": 1,
+          "split_candidate_mismatch:blocked": 1,
+          "status:resolved": 3
+        },
+        "probe_game_ids": [
+          476819
+        ]
+      }
+    ]
+  }
+}

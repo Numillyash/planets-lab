@@ -1,0 +1,4197 @@
+{
+  "chain_summary": {
+    "backend": "corpus-db",
+    "payload_conflicts": 0,
+    "raw_vcr_observations": 120839,
+    "replay_supported": 26767,
+    "replay_unsupported": 4620,
+    "ship_appearances": 39695,
+    "source_members_with_vcrs": 22194,
+    "unique_vcrs": 31387
+  },
+  "database_path": "/corpus-db/generations/corpus-v2compact-public36-20261002T083138Z-11cd75fa918d.duckdb",
+  "evidence_status": "DISCOVERY_ONLY_NOT_PROMOTED",
+  "holdout_modulus": 4,
+  "indexed_game_ids": [
+    218619,
+    224849,
+    227887,
+    233558,
+    256858,
+    257776,
+    266087,
+    267580,
+    306971,
+    325434,
+    338264,
+    342288,
+    343550,
+    350094,
+    364412,
+    368767,
+    371631,
+    396107,
+    411645,
+    416250,
+    425973,
+    441148,
+    467386,
+    473010,
+    474699,
+    476380,
+    476819,
+    477725,
+    486109,
+    563278,
+    597910,
+    617883,
+    627339,
+    633855,
+    653272,
+    658427
+  ],
+  "observations": [
+    {
+      "captor_owner_id": 1,
+      "captor_race_id": 1,
+      "captor_ship_id": 252,
+      "captor_side": "right",
+      "capture_side": "left",
+      "capture_vcr_id": 1098,
+      "captured_ship_id": 281,
+      "captured_ship_side_next": "right",
+      "game_id": 218619,
+      "next_opponent_owner_id": 10,
+      "next_opponent_previous_side": "left",
+      "next_opponent_previous_vcr_id": 1108,
+      "next_opponent_ship_id": 254,
+      "next_opponent_side": "left",
+      "next_opponent_side_carry_exact": true,
+      "next_vcr_id": 1109,
+      "opponent_side_cursor_exact": true,
+      "opponent_side_cursor_prediction": "right",
+      "order_context": {
+        "captured_tminus1": {
+          "friendlycode": "211",
+          "mission": 1,
+          "mission_target_id": 0,
+          "primary_enemy": 1,
+          "priority": [
+            0,
+            211,
+            281
+          ]
+        },
+        "neutral_fresh_fc": "c@p",
+        "neutral_fresh_fc_priority": [
+          4,
+          281,
+          0
+        ],
+        "neutral_preserved_fc_priority": [
+          0,
+          211,
+          281
+        ],
+        "occurrence_index": 1,
+        "opponent_tminus1": {
+          "friendlycode": "WZq",
+          "mission": 1,
+          "mission_target_id": 0,
+          "primary_enemy": 1,
+          "priority": [
+            3,
+            254,
+            0
+          ]
+        },
+        "side_control_exact": {
+          "frozen_tminus1_priority": true,
+          "neutral_orders_fresh_fc": false,
+          "neutral_orders_preserve_fc": true
+        },
+        "side_controls": {
+          "frozen_tminus1_priority": "right",
+          "neutral_orders_fresh_fc": "left",
+          "neutral_orders_preserve_fc": "right"
+        },
+        "status": "resolved"
+      },
+      "owner_id_after": 1,
+      "owner_id_before": 10,
+      "position": [
+        2487,
+        1846
+      ],
+      "prior_same_pair_occurrences": 0,
+      "prior_same_pair_vcr_ids": [],
+      "race_id_after": 1,
+      "race_id_before": 10,
+      "ruleset": {
+        "bucket": "finite_fuel",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": false,
+          "chainedintercept": false,
+          "cloakandintercept": false,
+          "combatrng": 0,
+          "galacticpower": false,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": false,
+          "sphere": false,
+          "sscruiserinterceptinterference": false,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "1f4aaf013ec822a5aac1ffc95ea29f269990201a60fd71c0d3c4310a1472a949"
+      },
+      "simple_opponent_initiator_right_exact": false,
+      "sticky_capture_side_exact": false,
+      "turn": 211
+    },
+    {
+      "captor_owner_id": 1,
+      "captor_race_id": 1,
+      "captor_ship_id": 252,
+      "captor_side": "right",
+      "capture_side": "left",
+      "capture_vcr_id": 1100,
+      "captured_ship_id": 424,
+      "captured_ship_side_next": "right",
+      "game_id": 218619,
+      "next_opponent_owner_id": 10,
+      "next_opponent_previous_side": "left",
+      "next_opponent_previous_vcr_id": 1109,
+      "next_opponent_ship_id": 254,
+      "next_opponent_side": "left",
+      "next_opponent_side_carry_exact": true,
+      "next_vcr_id": 1110,
+      "opponent_side_cursor_exact": true,
+      "opponent_side_cursor_prediction": "right",
+      "order_context": {
+        "captured_tminus1": {
+          "friendlycode": "241",
+          "mission": 1,
+          "mission_target_id": 0,
+          "primary_enemy": 1,
+          "priority": [
+            0,
+            241,
+            424
+          ]
+        },
+        "neutral_fresh_fc": "c@p",
+        "neutral_fresh_fc_priority": [
+          4,
+          424,
+          0
+        ],
+        "neutral_preserved_fc_priority": [
+          0,
+          241,
+          424
+        ],
+        "occurrence_index": 1,
+        "opponent_tminus1": {
+          "friendlycode": "WZq",
+          "mission": 1,
+          "mission_target_id": 0,
+          "primary_enemy": 1,
+          "priority": [
+            3,
+            254,
+            0
+          ]
+        },
+        "side_control_exact": {
+          "frozen_tminus1_priority": true,
+          "neutral_orders_fresh_fc": false,
+          "neutral_orders_preserve_fc": true
+        },
+        "side_controls": {
+          "frozen_tminus1_priority": "right",
+          "neutral_orders_fresh_fc": "left",
+          "neutral_orders_preserve_fc": "right"
+        },
+        "status": "resolved"
+      },
+      "owner_id_after": 1,
+      "owner_id_before": 10,
+      "position": [
+        2487,
+        1846
+      ],
+      "prior_same_pair_occurrences": 0,
+      "prior_same_pair_vcr_ids": [],
+      "race_id_after": 1,
+      "race_id_before": 10,
+      "ruleset": {
+        "bucket": "finite_fuel",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": false,
+          "chainedintercept": false,
+          "cloakandintercept": false,
+          "combatrng": 0,
+          "galacticpower": false,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": false,
+          "sphere": false,
+          "sscruiserinterceptinterference": false,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "1f4aaf013ec822a5aac1ffc95ea29f269990201a60fd71c0d3c4310a1472a949"
+      },
+      "simple_opponent_initiator_right_exact": false,
+      "sticky_capture_side_exact": false,
+      "turn": 211
+    },
+    {
+      "captor_owner_id": 2,
+      "captor_race_id": 2,
+      "captor_ship_id": 260,
+      "captor_side": "left",
+      "capture_side": "right",
+      "capture_vcr_id": 30,
+      "captured_ship_id": 166,
+      "captured_ship_side_next": "left",
+      "game_id": 227887,
+      "next_opponent_owner_id": 5,
+      "next_opponent_previous_side": null,
+      "next_opponent_previous_vcr_id": null,
+      "next_opponent_ship_id": 284,
+      "next_opponent_side": "right",
+      "next_opponent_side_carry_exact": null,
+      "next_vcr_id": 31,
+      "opponent_side_cursor_exact": true,
+      "opponent_side_cursor_prediction": "left",
+      "order_context": {
+        "captured_tminus1": {
+          "friendlycode": "152",
+          "mission": 3,
+          "mission_target_id": 0,
+          "primary_enemy": 0,
+          "priority": [
+            0,
+            152,
+            166
+          ]
+        },
+        "neutral_fresh_fc": "c@p",
+        "neutral_fresh_fc_priority": [
+          4,
+          166,
+          0
+        ],
+        "neutral_preserved_fc_priority": [
+          0,
+          152,
+          166
+        ],
+        "occurrence_index": 1,
+        "opponent_tminus1": {
+          "friendlycode": "165",
+          "mission": 3,
+          "mission_target_id": 0,
+          "primary_enemy": 0,
+          "priority": [
+            0,
+            165,
+            284
+          ]
+        },
+        "side_control_exact": {
+          "frozen_tminus1_priority": false,
+          "neutral_orders_fresh_fc": true,
+          "neutral_orders_preserve_fc": false
+        },
+        "side_controls": {
+          "frozen_tminus1_priority": "right",
+          "neutral_orders_fresh_fc": "left",
+          "neutral_orders_preserve_fc": "right"
+        },
+        "status": "resolved"
+      },
+      "owner_id_after": 2,
+      "owner_id_before": 5,
+      "position": [
+        2749,
+        2216
+      ],
+      "prior_same_pair_occurrences": 0,
+      "prior_same_pair_vcr_ids": [],
+      "race_id_after": 2,
+      "race_id_before": 5,
+      "ruleset": {
+        "bucket": "finite_fuel",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": false,
+          "chainedintercept": false,
+          "cloakandintercept": false,
+          "combatrng": 0,
+          "galacticpower": false,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": false,
+          "sphere": false,
+          "sscruiserinterceptinterference": false,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "4b69fc07011008d187c1b32cbce2e9d5b2921b06ecffcdcb658e595f8ba7fb1a"
+      },
+      "simple_opponent_initiator_right_exact": true,
+      "sticky_capture_side_exact": false,
+      "turn": 25
+    },
+    {
+      "captor_owner_id": 2,
+      "captor_race_id": 2,
+      "captor_ship_id": 264,
+      "captor_side": "left",
+      "capture_side": "right",
+      "capture_vcr_id": 33,
+      "captured_ship_id": 284,
+      "captured_ship_side_next": "left",
+      "game_id": 227887,
+      "next_opponent_owner_id": 5,
+      "next_opponent_previous_side": null,
+      "next_opponent_previous_vcr_id": null,
+      "next_opponent_ship_id": 237,
+      "next_opponent_side": "right",
+      "next_opponent_side_carry_exact": null,
+      "next_vcr_id": 34,
+      "opponent_side_cursor_exact": true,
+      "opponent_side_cursor_prediction": "left",
+      "order_context": {
+        "captured_tminus1": {
+          "friendlycode": "165",
+          "mission": 3,
+          "mission_target_id": 0,
+          "primary_enemy": 0,
+          "priority": [
+            0,
+            165,
+            284
+          ]
+        },
+        "neutral_fresh_fc": "c@p",
+        "neutral_fresh_fc_priority": [
+          4,
+          284,
+          0
+        ],
+        "neutral_preserved_fc_priority": [
+          0,
+          165,
+          284
+        ],
+        "occurrence_index": 1,
+        "opponent_tminus1": {
+          "friendlycode": "646",
+          "mission": 8,
+          "mission_target_id": 0,
+          "primary_enemy": 2,
+          "priority": [
+            0,
+            646,
+            237
+          ]
+        },
+        "side_control_exact": {
+          "frozen_tminus1_priority": false,
+          "neutral_orders_fresh_fc": true,
+          "neutral_orders_preserve_fc": false
+        },
+        "side_controls": {
+          "frozen_tminus1_priority": "right",
+          "neutral_orders_fresh_fc": "left",
+          "neutral_orders_preserve_fc": "right"
+        },
+        "status": "resolved"
+      },
+      "owner_id_after": 2,
+      "owner_id_before": 5,
+      "position": [
+        2749,
+        2216
+      ],
+      "prior_same_pair_occurrences": 0,
+      "prior_same_pair_vcr_ids": [],
+      "race_id_after": 2,
+      "race_id_before": 5,
+      "ruleset": {
+        "bucket": "finite_fuel",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": false,
+          "chainedintercept": false,
+          "cloakandintercept": false,
+          "combatrng": 0,
+          "galacticpower": false,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": false,
+          "sphere": false,
+          "sscruiserinterceptinterference": false,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "4b69fc07011008d187c1b32cbce2e9d5b2921b06ecffcdcb658e595f8ba7fb1a"
+      },
+      "simple_opponent_initiator_right_exact": true,
+      "sticky_capture_side_exact": false,
+      "turn": 25
+    },
+    {
+      "captor_owner_id": 5,
+      "captor_race_id": 5,
+      "captor_ship_id": 284,
+      "captor_side": "right",
+      "capture_side": "left",
+      "capture_vcr_id": 31,
+      "captured_ship_id": 166,
+      "captured_ship_side_next": "left",
+      "game_id": 227887,
+      "next_opponent_owner_id": 2,
+      "next_opponent_previous_side": "left",
+      "next_opponent_previous_vcr_id": 36,
+      "next_opponent_ship_id": 264,
+      "next_opponent_side": "right",
+      "next_opponent_side_carry_exact": false,
+      "next_vcr_id": 37,
+      "opponent_side_cursor_exact": false,
+      "opponent_side_cursor_prediction": "right",
+      "order_context": {
+        "reason": "captured_ship_tminus1_missing",
+        "status": "unresolved"
+      },
+      "owner_id_after": 5,
+      "owner_id_before": 2,
+      "position": [
+        2749,
+        2216
+      ],
+      "prior_same_pair_occurrences": 0,
+      "prior_same_pair_vcr_ids": [],
+      "race_id_after": 5,
+      "race_id_before": 2,
+      "ruleset": {
+        "bucket": "finite_fuel",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": false,
+          "chainedintercept": false,
+          "cloakandintercept": false,
+          "combatrng": 0,
+          "galacticpower": false,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": false,
+          "sphere": false,
+          "sscruiserinterceptinterference": false,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "4b69fc07011008d187c1b32cbce2e9d5b2921b06ecffcdcb658e595f8ba7fb1a"
+      },
+      "simple_opponent_initiator_right_exact": true,
+      "sticky_capture_side_exact": true,
+      "turn": 25
+    },
+    {
+      "captor_owner_id": 5,
+      "captor_race_id": 5,
+      "captor_ship_id": 237,
+      "captor_side": "right",
+      "capture_side": "left",
+      "capture_vcr_id": 34,
+      "captured_ship_id": 284,
+      "captured_ship_side_next": "left",
+      "game_id": 227887,
+      "next_opponent_owner_id": 2,
+      "next_opponent_previous_side": "right",
+      "next_opponent_previous_vcr_id": 37,
+      "next_opponent_ship_id": 264,
+      "next_opponent_side": "right",
+      "next_opponent_side_carry_exact": true,
+      "next_vcr_id": 38,
+      "opponent_side_cursor_exact": true,
+      "opponent_side_cursor_prediction": "left",
+      "order_context": {
+        "reason": "captured_ship_tminus1_missing",
+        "status": "unresolved"
+      },
+      "owner_id_after": 5,
+      "owner_id_before": 2,
+      "position": [
+        2749,
+        2216
+      ],
+      "prior_same_pair_occurrences": 1,
+      "prior_same_pair_vcr_ids": [
+        33
+      ],
+      "race_id_after": 5,
+      "race_id_before": 2,
+      "ruleset": {
+        "bucket": "finite_fuel",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": false,
+          "chainedintercept": false,
+          "cloakandintercept": false,
+          "combatrng": 0,
+          "galacticpower": false,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": false,
+          "sphere": false,
+          "sscruiserinterceptinterference": false,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "4b69fc07011008d187c1b32cbce2e9d5b2921b06ecffcdcb658e595f8ba7fb1a"
+      },
+      "simple_opponent_initiator_right_exact": true,
+      "sticky_capture_side_exact": true,
+      "turn": 25
+    },
+    {
+      "captor_owner_id": 2,
+      "captor_race_id": 2,
+      "captor_ship_id": 457,
+      "captor_side": "left",
+      "capture_side": "right",
+      "capture_vcr_id": 663,
+      "captured_ship_id": 487,
+      "captured_ship_side_next": "left",
+      "game_id": 227887,
+      "next_opponent_owner_id": 11,
+      "next_opponent_previous_side": null,
+      "next_opponent_previous_vcr_id": null,
+      "next_opponent_ship_id": 256,
+      "next_opponent_side": "right",
+      "next_opponent_side_carry_exact": null,
+      "next_vcr_id": 664,
+      "opponent_side_cursor_exact": true,
+      "opponent_side_cursor_prediction": "left",
+      "order_context": {
+        "captured_tminus1": {
+          "friendlycode": "998",
+          "mission": 1,
+          "mission_target_id": 0,
+          "primary_enemy": 2,
+          "priority": [
+            0,
+            998,
+            487
+          ]
+        },
+        "neutral_fresh_fc": "c@p",
+        "neutral_fresh_fc_priority": [
+          4,
+          487,
+          0
+        ],
+        "neutral_preserved_fc_priority": [
+          0,
+          998,
+          487
+        ],
+        "occurrence_index": 1,
+        "opponent_tminus1": {
+          "friendlycode": "999",
+          "mission": 1,
+          "mission_target_id": 0,
+          "primary_enemy": 2,
+          "priority": [
+            0,
+            999,
+            256
+          ]
+        },
+        "side_control_exact": {
+          "frozen_tminus1_priority": false,
+          "neutral_orders_fresh_fc": true,
+          "neutral_orders_preserve_fc": false
+        },
+        "side_controls": {
+          "frozen_tminus1_priority": "right",
+          "neutral_orders_fresh_fc": "left",
+          "neutral_orders_preserve_fc": "right"
+        },
+        "status": "resolved"
+      },
+      "owner_id_after": 2,
+      "owner_id_before": 11,
+      "position": [
+        2494,
+        1770
+      ],
+      "prior_same_pair_occurrences": 0,
+      "prior_same_pair_vcr_ids": [],
+      "race_id_after": 2,
+      "race_id_before": 11,
+      "ruleset": {
+        "bucket": "finite_fuel",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": false,
+          "chainedintercept": false,
+          "cloakandintercept": false,
+          "combatrng": 0,
+          "galacticpower": false,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": false,
+          "sphere": false,
+          "sscruiserinterceptinterference": false,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "4b69fc07011008d187c1b32cbce2e9d5b2921b06ecffcdcb658e595f8ba7fb1a"
+      },
+      "simple_opponent_initiator_right_exact": true,
+      "sticky_capture_side_exact": false,
+      "turn": 172
+    },
+    {
+      "captor_owner_id": 2,
+      "captor_race_id": 2,
+      "captor_ship_id": 68,
+      "captor_side": "left",
+      "capture_side": "right",
+      "capture_vcr_id": 674,
+      "captured_ship_id": 103,
+      "captured_ship_side_next": "left",
+      "game_id": 227887,
+      "next_opponent_owner_id": 11,
+      "next_opponent_previous_side": null,
+      "next_opponent_previous_vcr_id": null,
+      "next_opponent_ship_id": 397,
+      "next_opponent_side": "right",
+      "next_opponent_side_carry_exact": null,
+      "next_vcr_id": 675,
+      "opponent_side_cursor_exact": true,
+      "opponent_side_cursor_prediction": "left",
+      "order_context": {
+        "captured_tminus1": {
+          "friendlycode": "222",
+          "mission": 0,
+          "mission_target_id": 0,
+          "primary_enemy": 2,
+          "priority": [
+            0,
+            222,
+            103
+          ]
+        },
+        "neutral_fresh_fc": "c@p",
+        "neutral_fresh_fc_priority": [
+          4,
+          103,
+          0
+        ],
+        "neutral_preserved_fc_priority": [
+          0,
+          222,
+          103
+        ],
+        "occurrence_index": 1,
+        "opponent_tminus1": {
+          "friendlycode": "999",
+          "mission": 1,
+          "mission_target_id": 0,
+          "primary_enemy": 2,
+          "priority": [
+            0,
+            999,
+            397
+          ]
+        },
+        "side_control_exact": {
+          "frozen_tminus1_priority": false,
+          "neutral_orders_fresh_fc": true,
+          "neutral_orders_preserve_fc": false
+        },
+        "side_controls": {
+          "frozen_tminus1_priority": "right",
+          "neutral_orders_fresh_fc": "left",
+          "neutral_orders_preserve_fc": "right"
+        },
+        "status": "resolved"
+      },
+      "owner_id_after": 2,
+      "owner_id_before": 11,
+      "position": [
+        2856,
+        1807
+      ],
+      "prior_same_pair_occurrences": 0,
+      "prior_same_pair_vcr_ids": [],
+      "race_id_after": 2,
+      "race_id_before": 11,
+      "ruleset": {
+        "bucket": "finite_fuel",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": false,
+          "chainedintercept": false,
+          "cloakandintercept": false,
+          "combatrng": 0,
+          "galacticpower": false,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": false,
+          "sphere": false,
+          "sscruiserinterceptinterference": false,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "4b69fc07011008d187c1b32cbce2e9d5b2921b06ecffcdcb658e595f8ba7fb1a"
+      },
+      "simple_opponent_initiator_right_exact": true,
+      "sticky_capture_side_exact": false,
+      "turn": 174
+    },
+    {
+      "captor_owner_id": 2,
+      "captor_race_id": 2,
+      "captor_ship_id": 385,
+      "captor_side": "left",
+      "capture_side": "right",
+      "capture_vcr_id": 677,
+      "captured_ship_id": 504,
+      "captured_ship_side_next": "left",
+      "game_id": 227887,
+      "next_opponent_owner_id": 11,
+      "next_opponent_previous_side": null,
+      "next_opponent_previous_vcr_id": null,
+      "next_opponent_ship_id": 170,
+      "next_opponent_side": "right",
+      "next_opponent_side_carry_exact": null,
+      "next_vcr_id": 678,
+      "opponent_side_cursor_exact": true,
+      "opponent_side_cursor_prediction": "left",
+      "order_context": {
+        "captured_tminus1": {
+          "friendlycode": "222",
+          "mission": 1,
+          "mission_target_id": 0,
+          "primary_enemy": 2,
+          "priority": [
+            0,
+            222,
+            504
+          ]
+        },
+        "neutral_fresh_fc": "c@p",
+        "neutral_fresh_fc_priority": [
+          4,
+          504,
+          0
+        ],
+        "neutral_preserved_fc_priority": [
+          0,
+          222,
+          504
+        ],
+        "occurrence_index": 1,
+        "opponent_tminus1": {
+          "friendlycode": "999",
+          "mission": 0,
+          "mission_target_id": 0,
+          "primary_enemy": 2,
+          "priority": [
+            0,
+            999,
+            170
+          ]
+        },
+        "side_control_exact": {
+          "frozen_tminus1_priority": false,
+          "neutral_orders_fresh_fc": true,
+          "neutral_orders_preserve_fc": false
+        },
+        "side_controls": {
+          "frozen_tminus1_priority": "right",
+          "neutral_orders_fresh_fc": "left",
+          "neutral_orders_preserve_fc": "right"
+        },
+        "status": "resolved"
+      },
+      "owner_id_after": 2,
+      "owner_id_before": 11,
+      "position": [
+        2559,
+        1771
+      ],
+      "prior_same_pair_occurrences": 0,
+      "prior_same_pair_vcr_ids": [],
+      "race_id_after": 2,
+      "race_id_before": 11,
+      "ruleset": {
+        "bucket": "finite_fuel",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": false,
+          "chainedintercept": false,
+          "cloakandintercept": false,
+          "combatrng": 0,
+          "galacticpower": false,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": false,
+          "sphere": false,
+          "sscruiserinterceptinterference": false,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "4b69fc07011008d187c1b32cbce2e9d5b2921b06ecffcdcb658e595f8ba7fb1a"
+      },
+      "simple_opponent_initiator_right_exact": true,
+      "sticky_capture_side_exact": false,
+      "turn": 174
+    },
+    {
+      "captor_owner_id": 2,
+      "captor_race_id": 2,
+      "captor_ship_id": 370,
+      "captor_side": "left",
+      "capture_side": "right",
+      "capture_vcr_id": 714,
+      "captured_ship_id": 240,
+      "captured_ship_side_next": "right",
+      "game_id": 227887,
+      "next_opponent_owner_id": 11,
+      "next_opponent_previous_side": null,
+      "next_opponent_previous_vcr_id": null,
+      "next_opponent_ship_id": 397,
+      "next_opponent_side": "left",
+      "next_opponent_side_carry_exact": null,
+      "next_vcr_id": 715,
+      "opponent_side_cursor_exact": false,
+      "opponent_side_cursor_prediction": "left",
+      "order_context": {
+        "captured_tminus1": {
+          "friendlycode": "mqt",
+          "mission": 0,
+          "mission_target_id": 0,
+          "primary_enemy": 2,
+          "priority": [
+            3,
+            240,
+            0
+          ]
+        },
+        "neutral_fresh_fc": "c@p",
+        "neutral_fresh_fc_priority": [
+          4,
+          240,
+          0
+        ],
+        "neutral_preserved_fc_priority": [
+          4,
+          240,
+          0
+        ],
+        "occurrence_index": 1,
+        "opponent_tminus1": {
+          "friendlycode": "lfm",
+          "mission": 1,
+          "mission_target_id": 0,
+          "primary_enemy": 2,
+          "priority": [
+            3,
+            397,
+            0
+          ]
+        },
+        "side_control_exact": {
+          "frozen_tminus1_priority": true,
+          "neutral_orders_fresh_fc": false,
+          "neutral_orders_preserve_fc": false
+        },
+        "side_controls": {
+          "frozen_tminus1_priority": "right",
+          "neutral_orders_fresh_fc": "left",
+          "neutral_orders_preserve_fc": "left"
+        },
+        "status": "resolved"
+      },
+      "owner_id_after": 2,
+      "owner_id_before": 11,
+      "position": [
+        2789,
+        1841
+      ],
+      "prior_same_pair_occurrences": 0,
+      "prior_same_pair_vcr_ids": [],
+      "race_id_after": 2,
+      "race_id_before": 11,
+      "ruleset": {
+        "bucket": "finite_fuel",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": false,
+          "chainedintercept": false,
+          "cloakandintercept": false,
+          "combatrng": 0,
+          "galacticpower": false,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": false,
+          "sphere": false,
+          "sscruiserinterceptinterference": false,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "4b69fc07011008d187c1b32cbce2e9d5b2921b06ecffcdcb658e595f8ba7fb1a"
+      },
+      "simple_opponent_initiator_right_exact": false,
+      "sticky_capture_side_exact": true,
+      "turn": 183
+    },
+    {
+      "captor_owner_id": 5,
+      "captor_race_id": 5,
+      "captor_ship_id": 228,
+      "captor_side": "left",
+      "capture_side": "right",
+      "capture_vcr_id": 309,
+      "captured_ship_id": 37,
+      "captured_ship_side_next": "left",
+      "game_id": 256858,
+      "next_opponent_owner_id": 10,
+      "next_opponent_previous_side": null,
+      "next_opponent_previous_vcr_id": null,
+      "next_opponent_ship_id": 544,
+      "next_opponent_side": "right",
+      "next_opponent_side_carry_exact": null,
+      "next_vcr_id": 310,
+      "opponent_side_cursor_exact": true,
+      "opponent_side_cursor_prediction": "left",
+      "order_context": {
+        "captured_tminus1": {
+          "friendlycode": "Fmp",
+          "mission": 1,
+          "mission_target_id": 0,
+          "primary_enemy": 5,
+          "priority": [
+            3,
+            37,
+            0
+          ]
+        },
+        "neutral_fresh_fc": "c@p",
+        "neutral_fresh_fc_priority": [
+          4,
+          37,
+          0
+        ],
+        "neutral_preserved_fc_priority": [
+          4,
+          37,
+          0
+        ],
+        "occurrence_index": 1,
+        "opponent_tminus1": {
+          "friendlycode": "mkt",
+          "mission": 2,
+          "mission_target_id": 0,
+          "primary_enemy": 5,
+          "priority": [
+            3,
+            544,
+            0
+          ]
+        },
+        "side_control_exact": {
+          "frozen_tminus1_priority": false,
+          "neutral_orders_fresh_fc": true,
+          "neutral_orders_preserve_fc": true
+        },
+        "side_controls": {
+          "frozen_tminus1_priority": "right",
+          "neutral_orders_fresh_fc": "left",
+          "neutral_orders_preserve_fc": "left"
+        },
+        "status": "resolved"
+      },
+      "owner_id_after": 5,
+      "owner_id_before": 10,
+      "position": [
+        1829,
+        1613
+      ],
+      "prior_same_pair_occurrences": 0,
+      "prior_same_pair_vcr_ids": [],
+      "race_id_after": 5,
+      "race_id_before": 10,
+      "ruleset": {
+        "bucket": "finite_fuel",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": false,
+          "chainedintercept": false,
+          "cloakandintercept": true,
+          "combatrng": 0,
+          "galacticpower": false,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": false,
+          "sphere": false,
+          "sscruiserinterceptinterference": false,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "31ff7e040a6faf56a39051f4a08e768aed6f0879d486ffa84a549ff70b07d2bb"
+      },
+      "simple_opponent_initiator_right_exact": true,
+      "sticky_capture_side_exact": false,
+      "turn": 76
+    },
+    {
+      "captor_owner_id": 3,
+      "captor_race_id": 3,
+      "captor_ship_id": 112,
+      "captor_side": "right",
+      "capture_side": "left",
+      "capture_vcr_id": 857,
+      "captured_ship_id": 181,
+      "captured_ship_side_next": "left",
+      "game_id": 256858,
+      "next_opponent_owner_id": 1,
+      "next_opponent_previous_side": null,
+      "next_opponent_previous_vcr_id": null,
+      "next_opponent_ship_id": 505,
+      "next_opponent_side": "right",
+      "next_opponent_side_carry_exact": null,
+      "next_vcr_id": 858,
+      "opponent_side_cursor_exact": true,
+      "opponent_side_cursor_prediction": "left",
+      "order_context": {
+        "captured_tminus1": {
+          "friendlycode": "cqx",
+          "mission": 0,
+          "mission_target_id": 0,
+          "primary_enemy": 0,
+          "priority": [
+            4,
+            181,
+            0
+          ]
+        },
+        "neutral_fresh_fc": "c@p",
+        "neutral_fresh_fc_priority": [
+          4,
+          181,
+          0
+        ],
+        "neutral_preserved_fc_priority": [
+          4,
+          181,
+          0
+        ],
+        "occurrence_index": 1,
+        "opponent_tminus1": {
+          "friendlycode": "md1",
+          "mission": 1,
+          "mission_target_id": 0,
+          "primary_enemy": 3,
+          "priority": [
+            3,
+            505,
+            0
+          ]
+        },
+        "side_control_exact": {
+          "frozen_tminus1_priority": true,
+          "neutral_orders_fresh_fc": true,
+          "neutral_orders_preserve_fc": true
+        },
+        "side_controls": {
+          "frozen_tminus1_priority": "left",
+          "neutral_orders_fresh_fc": "left",
+          "neutral_orders_preserve_fc": "left"
+        },
+        "status": "resolved"
+      },
+      "owner_id_after": 3,
+      "owner_id_before": 1,
+      "position": [
+        2748,
+        1447
+      ],
+      "prior_same_pair_occurrences": 0,
+      "prior_same_pair_vcr_ids": [],
+      "race_id_after": 3,
+      "race_id_before": 1,
+      "ruleset": {
+        "bucket": "finite_fuel",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": false,
+          "chainedintercept": false,
+          "cloakandintercept": true,
+          "combatrng": 0,
+          "galacticpower": false,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": false,
+          "sphere": false,
+          "sscruiserinterceptinterference": false,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "31ff7e040a6faf56a39051f4a08e768aed6f0879d486ffa84a549ff70b07d2bb"
+      },
+      "simple_opponent_initiator_right_exact": true,
+      "sticky_capture_side_exact": true,
+      "turn": 300
+    },
+    {
+      "captor_owner_id": 2,
+      "captor_race_id": 8,
+      "captor_ship_id": 127,
+      "captor_side": "left",
+      "capture_side": "right",
+      "capture_vcr_id": 43,
+      "captured_ship_id": 53,
+      "captured_ship_side_next": "left",
+      "game_id": 257776,
+      "next_opponent_owner_id": 9,
+      "next_opponent_previous_side": null,
+      "next_opponent_previous_vcr_id": null,
+      "next_opponent_ship_id": 183,
+      "next_opponent_side": "right",
+      "next_opponent_side_carry_exact": null,
+      "next_vcr_id": 44,
+      "opponent_side_cursor_exact": true,
+      "opponent_side_cursor_prediction": "left",
+      "order_context": {
+        "captured_tminus1": {
+          "friendlycode": "101",
+          "mission": 4,
+          "mission_target_id": 0,
+          "primary_enemy": 2,
+          "priority": [
+            0,
+            101,
+            53
+          ]
+        },
+        "neutral_fresh_fc": "c@p",
+        "neutral_fresh_fc_priority": [
+          4,
+          53,
+          0
+        ],
+        "neutral_preserved_fc_priority": [
+          0,
+          101,
+          53
+        ],
+        "occurrence_index": 1,
+        "opponent_tminus1": {
+          "friendlycode": "103",
+          "mission": 1,
+          "mission_target_id": 0,
+          "primary_enemy": 2,
+          "priority": [
+            0,
+            103,
+            183
+          ]
+        },
+        "side_control_exact": {
+          "frozen_tminus1_priority": false,
+          "neutral_orders_fresh_fc": true,
+          "neutral_orders_preserve_fc": false
+        },
+        "side_controls": {
+          "frozen_tminus1_priority": "right",
+          "neutral_orders_fresh_fc": "left",
+          "neutral_orders_preserve_fc": "right"
+        },
+        "status": "resolved"
+      },
+      "owner_id_after": 2,
+      "owner_id_before": 9,
+      "position": [
+        2670,
+        2202
+      ],
+      "prior_same_pair_occurrences": 0,
+      "prior_same_pair_vcr_ids": [],
+      "race_id_after": 8,
+      "race_id_before": 7,
+      "ruleset": {
+        "bucket": "finite_fuel",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": false,
+          "chainedintercept": false,
+          "cloakandintercept": true,
+          "combatrng": 0,
+          "galacticpower": false,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": false,
+          "sphere": false,
+          "sscruiserinterceptinterference": false,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "6bf057f3191b4455921963780748fe117c080c5d52bfe11a5c5edce503979120"
+      },
+      "simple_opponent_initiator_right_exact": true,
+      "sticky_capture_side_exact": false,
+      "turn": 39
+    },
+    {
+      "captor_owner_id": 3,
+      "captor_race_id": 6,
+      "captor_ship_id": 151,
+      "captor_side": "left",
+      "capture_side": "right",
+      "capture_vcr_id": 96,
+      "captured_ship_id": 76,
+      "captured_ship_side_next": "right",
+      "game_id": 257776,
+      "next_opponent_owner_id": 9,
+      "next_opponent_previous_side": null,
+      "next_opponent_previous_vcr_id": null,
+      "next_opponent_ship_id": 264,
+      "next_opponent_side": "left",
+      "next_opponent_side_carry_exact": null,
+      "next_vcr_id": 97,
+      "opponent_side_cursor_exact": false,
+      "opponent_side_cursor_prediction": "left",
+      "order_context": {
+        "captured_tminus1": {
+          "friendlycode": "101",
+          "mission": 4,
+          "mission_target_id": 0,
+          "primary_enemy": 2,
+          "priority": [
+            0,
+            101,
+            76
+          ]
+        },
+        "neutral_fresh_fc": "c@p",
+        "neutral_fresh_fc_priority": [
+          4,
+          76,
+          0
+        ],
+        "neutral_preserved_fc_priority": [
+          0,
+          101,
+          76
+        ],
+        "occurrence_index": 1,
+        "opponent_tminus1": {
+          "friendlycode": "nbr",
+          "mission": 1,
+          "mission_target_id": 0,
+          "primary_enemy": 3,
+          "priority": [
+            3,
+            264,
+            0
+          ]
+        },
+        "side_control_exact": {
+          "frozen_tminus1_priority": true,
+          "neutral_orders_fresh_fc": false,
+          "neutral_orders_preserve_fc": true
+        },
+        "side_controls": {
+          "frozen_tminus1_priority": "right",
+          "neutral_orders_fresh_fc": "left",
+          "neutral_orders_preserve_fc": "right"
+        },
+        "status": "resolved"
+      },
+      "owner_id_after": 3,
+      "owner_id_before": 9,
+      "position": [
+        2595,
+        2254
+      ],
+      "prior_same_pair_occurrences": 0,
+      "prior_same_pair_vcr_ids": [],
+      "race_id_after": 6,
+      "race_id_before": 7,
+      "ruleset": {
+        "bucket": "finite_fuel",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": false,
+          "chainedintercept": false,
+          "cloakandintercept": true,
+          "combatrng": 0,
+          "galacticpower": false,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": false,
+          "sphere": false,
+          "sscruiserinterceptinterference": false,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "6bf057f3191b4455921963780748fe117c080c5d52bfe11a5c5edce503979120"
+      },
+      "simple_opponent_initiator_right_exact": false,
+      "sticky_capture_side_exact": true,
+      "turn": 52
+    },
+    {
+      "captor_owner_id": 6,
+      "captor_race_id": 10,
+      "captor_ship_id": 148,
+      "captor_side": "left",
+      "capture_side": "right",
+      "capture_vcr_id": 178,
+      "captured_ship_id": 125,
+      "captured_ship_side_next": "left",
+      "game_id": 257776,
+      "next_opponent_owner_id": 1,
+      "next_opponent_previous_side": null,
+      "next_opponent_previous_vcr_id": null,
+      "next_opponent_ship_id": 129,
+      "next_opponent_side": "right",
+      "next_opponent_side_carry_exact": null,
+      "next_vcr_id": 179,
+      "opponent_side_cursor_exact": true,
+      "opponent_side_cursor_prediction": "left",
+      "order_context": {
+        "captured_tminus1": {
+          "friendlycode": "mkt",
+          "mission": 7,
+          "mission_target_id": 201,
+          "primary_enemy": 6,
+          "priority": [
+            3,
+            125,
+            0
+          ]
+        },
+        "neutral_fresh_fc": "c@p",
+        "neutral_fresh_fc_priority": [
+          4,
+          125,
+          0
+        ],
+        "neutral_preserved_fc_priority": [
+          4,
+          125,
+          0
+        ],
+        "occurrence_index": 1,
+        "opponent_tminus1": {
+          "friendlycode": "iC6",
+          "mission": 7,
+          "mission_target_id": 201,
+          "primary_enemy": 6,
+          "priority": [
+            3,
+            129,
+            0
+          ]
+        },
+        "side_control_exact": {
+          "frozen_tminus1_priority": false,
+          "neutral_orders_fresh_fc": true,
+          "neutral_orders_preserve_fc": true
+        },
+        "side_controls": {
+          "frozen_tminus1_priority": "right",
+          "neutral_orders_fresh_fc": "left",
+          "neutral_orders_preserve_fc": "left"
+        },
+        "status": "resolved"
+      },
+      "owner_id_after": 6,
+      "owner_id_before": 1,
+      "position": [
+        1803,
+        1566
+      ],
+      "prior_same_pair_occurrences": 0,
+      "prior_same_pair_vcr_ids": [],
+      "race_id_after": 10,
+      "race_id_before": 7,
+      "ruleset": {
+        "bucket": "finite_fuel",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": false,
+          "chainedintercept": false,
+          "cloakandintercept": true,
+          "combatrng": 0,
+          "galacticpower": false,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": false,
+          "sphere": false,
+          "sscruiserinterceptinterference": false,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "6bf057f3191b4455921963780748fe117c080c5d52bfe11a5c5edce503979120"
+      },
+      "simple_opponent_initiator_right_exact": true,
+      "sticky_capture_side_exact": false,
+      "turn": 66
+    },
+    {
+      "captor_owner_id": 5,
+      "captor_race_id": 4,
+      "captor_ship_id": 59,
+      "captor_side": "right",
+      "capture_side": "left",
+      "capture_vcr_id": 246,
+      "captured_ship_id": 107,
+      "captured_ship_side_next": "right",
+      "game_id": 257776,
+      "next_opponent_owner_id": 1,
+      "next_opponent_previous_side": "left",
+      "next_opponent_previous_vcr_id": 248,
+      "next_opponent_ship_id": 156,
+      "next_opponent_side": "left",
+      "next_opponent_side_carry_exact": true,
+      "next_vcr_id": 249,
+      "opponent_side_cursor_exact": true,
+      "opponent_side_cursor_prediction": "right",
+      "order_context": {
+        "captured_tminus1": {
+          "friendlycode": "mkt",
+          "mission": 1,
+          "mission_target_id": 0,
+          "primary_enemy": 4,
+          "priority": [
+            3,
+            107,
+            0
+          ]
+        },
+        "neutral_fresh_fc": "c@p",
+        "neutral_fresh_fc_priority": [
+          4,
+          107,
+          0
+        ],
+        "neutral_preserved_fc_priority": [
+          4,
+          107,
+          0
+        ],
+        "occurrence_index": 1,
+        "opponent_tminus1": {
+          "friendlycode": "mda",
+          "mission": 1,
+          "mission_target_id": 0,
+          "primary_enemy": 5,
+          "priority": [
+            3,
+            156,
+            0
+          ]
+        },
+        "side_control_exact": {
+          "frozen_tminus1_priority": true,
+          "neutral_orders_fresh_fc": false,
+          "neutral_orders_preserve_fc": false
+        },
+        "side_controls": {
+          "frozen_tminus1_priority": "right",
+          "neutral_orders_fresh_fc": "left",
+          "neutral_orders_preserve_fc": "left"
+        },
+        "status": "resolved"
+      },
+      "owner_id_after": 5,
+      "owner_id_before": 1,
+      "position": [
+        1960,
+        1364
+      ],
+      "prior_same_pair_occurrences": 0,
+      "prior_same_pair_vcr_ids": [],
+      "race_id_after": 4,
+      "race_id_before": 7,
+      "ruleset": {
+        "bucket": "finite_fuel",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": false,
+          "chainedintercept": false,
+          "cloakandintercept": true,
+          "combatrng": 0,
+          "galacticpower": false,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": false,
+          "sphere": false,
+          "sscruiserinterceptinterference": false,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "6bf057f3191b4455921963780748fe117c080c5d52bfe11a5c5edce503979120"
+      },
+      "simple_opponent_initiator_right_exact": false,
+      "sticky_capture_side_exact": false,
+      "turn": 78
+    },
+    {
+      "captor_owner_id": 5,
+      "captor_race_id": 4,
+      "captor_ship_id": 293,
+      "captor_side": "right",
+      "capture_side": "left",
+      "capture_vcr_id": 290,
+      "captured_ship_id": 107,
+      "captured_ship_side_next": "right",
+      "game_id": 257776,
+      "next_opponent_owner_id": 1,
+      "next_opponent_previous_side": "left",
+      "next_opponent_previous_vcr_id": 292,
+      "next_opponent_ship_id": 163,
+      "next_opponent_side": "left",
+      "next_opponent_side_carry_exact": true,
+      "next_vcr_id": 293,
+      "opponent_side_cursor_exact": true,
+      "opponent_side_cursor_prediction": "right",
+      "order_context": {
+        "captured_tminus1": {
+          "friendlycode": "mkt",
+          "mission": 1,
+          "mission_target_id": 0,
+          "primary_enemy": 5,
+          "priority": [
+            3,
+            107,
+            0
+          ]
+        },
+        "neutral_fresh_fc": "c@p",
+        "neutral_fresh_fc_priority": [
+          4,
+          107,
+          0
+        ],
+        "neutral_preserved_fc_priority": [
+          4,
+          107,
+          0
+        ],
+        "occurrence_index": 1,
+        "opponent_tminus1": {
+          "friendlycode": "mkt",
+          "mission": 1,
+          "mission_target_id": 0,
+          "primary_enemy": 5,
+          "priority": [
+            3,
+            163,
+            0
+          ]
+        },
+        "side_control_exact": {
+          "frozen_tminus1_priority": true,
+          "neutral_orders_fresh_fc": false,
+          "neutral_orders_preserve_fc": false
+        },
+        "side_controls": {
+          "frozen_tminus1_priority": "right",
+          "neutral_orders_fresh_fc": "left",
+          "neutral_orders_preserve_fc": "left"
+        },
+        "status": "resolved"
+      },
+      "owner_id_after": 5,
+      "owner_id_before": 1,
+      "position": [
+        1914,
+        1323
+      ],
+      "prior_same_pair_occurrences": 0,
+      "prior_same_pair_vcr_ids": [],
+      "race_id_after": 4,
+      "race_id_before": 7,
+      "ruleset": {
+        "bucket": "finite_fuel",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": false,
+          "chainedintercept": false,
+          "cloakandintercept": true,
+          "combatrng": 0,
+          "galacticpower": false,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": false,
+          "sphere": false,
+          "sscruiserinterceptinterference": false,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "6bf057f3191b4455921963780748fe117c080c5d52bfe11a5c5edce503979120"
+      },
+      "simple_opponent_initiator_right_exact": false,
+      "sticky_capture_side_exact": false,
+      "turn": 85
+    },
+    {
+      "captor_owner_id": 2,
+      "captor_race_id": 8,
+      "captor_ship_id": 429,
+      "captor_side": "right",
+      "capture_side": "left",
+      "capture_vcr_id": 563,
+      "captured_ship_id": 98,
+      "captured_ship_side_next": "right",
+      "game_id": 257776,
+      "next_opponent_owner_id": 6,
+      "next_opponent_previous_side": "left",
+      "next_opponent_previous_vcr_id": 564,
+      "next_opponent_ship_id": 494,
+      "next_opponent_side": "left",
+      "next_opponent_side_carry_exact": true,
+      "next_vcr_id": 565,
+      "opponent_side_cursor_exact": true,
+      "opponent_side_cursor_prediction": "right",
+      "order_context": {
+        "captured_tminus1": {
+          "friendlycode": "370",
+          "mission": 4,
+          "mission_target_id": 0,
+          "primary_enemy": 0,
+          "priority": [
+            0,
+            370,
+            98
+          ]
+        },
+        "neutral_fresh_fc": "c@p",
+        "neutral_fresh_fc_priority": [
+          4,
+          98,
+          0
+        ],
+        "neutral_preserved_fc_priority": [
+          0,
+          370,
+          98
+        ],
+        "occurrence_index": 1,
+        "opponent_tminus1": {
+          "friendlycode": "741",
+          "mission": 3,
+          "mission_target_id": 0,
+          "primary_enemy": 2,
+          "priority": [
+            0,
+            741,
+            494
+          ]
+        },
+        "side_control_exact": {
+          "frozen_tminus1_priority": true,
+          "neutral_orders_fresh_fc": false,
+          "neutral_orders_preserve_fc": true
+        },
+        "side_controls": {
+          "frozen_tminus1_priority": "right",
+          "neutral_orders_fresh_fc": "left",
+          "neutral_orders_preserve_fc": "right"
+        },
+        "status": "resolved"
+      },
+      "owner_id_after": 2,
+      "owner_id_before": 6,
+      "position": [
+        1807,
+        1974
+      ],
+      "prior_same_pair_occurrences": 0,
+      "prior_same_pair_vcr_ids": [],
+      "race_id_after": 8,
+      "race_id_before": 10,
+      "ruleset": {
+        "bucket": "finite_fuel",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": false,
+          "chainedintercept": false,
+          "cloakandintercept": true,
+          "combatrng": 0,
+          "galacticpower": false,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": false,
+          "sphere": false,
+          "sscruiserinterceptinterference": false,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "6bf057f3191b4455921963780748fe117c080c5d52bfe11a5c5edce503979120"
+      },
+      "simple_opponent_initiator_right_exact": false,
+      "sticky_capture_side_exact": false,
+      "turn": 118
+    },
+    {
+      "captor_owner_id": 3,
+      "captor_race_id": 6,
+      "captor_ship_id": 191,
+      "captor_side": "left",
+      "capture_side": "right",
+      "capture_vcr_id": 861,
+      "captured_ship_id": 63,
+      "captured_ship_side_next": "right",
+      "game_id": 257776,
+      "next_opponent_owner_id": 8,
+      "next_opponent_previous_side": null,
+      "next_opponent_previous_vcr_id": null,
+      "next_opponent_ship_id": 248,
+      "next_opponent_side": "left",
+      "next_opponent_side_carry_exact": null,
+      "next_vcr_id": 862,
+      "opponent_side_cursor_exact": false,
+      "opponent_side_cursor_prediction": "left",
+      "order_context": {
+        "captured_tminus1": {
+          "friendlycode": "106",
+          "mission": 1,
+          "mission_target_id": 0,
+          "primary_enemy": 3,
+          "priority": [
+            0,
+            106,
+            63
+          ]
+        },
+        "neutral_fresh_fc": "c@p",
+        "neutral_fresh_fc_priority": [
+          4,
+          63,
+          0
+        ],
+        "neutral_preserved_fc_priority": [
+          0,
+          106,
+          63
+        ],
+        "occurrence_index": 1,
+        "opponent_tminus1": {
+          "friendlycode": "mkt",
+          "mission": 6,
+          "mission_target_id": 191,
+          "primary_enemy": 3,
+          "priority": [
+            3,
+            248,
+            0
+          ]
+        },
+        "side_control_exact": {
+          "frozen_tminus1_priority": true,
+          "neutral_orders_fresh_fc": false,
+          "neutral_orders_preserve_fc": true
+        },
+        "side_controls": {
+          "frozen_tminus1_priority": "right",
+          "neutral_orders_fresh_fc": "left",
+          "neutral_orders_preserve_fc": "right"
+        },
+        "status": "resolved"
+      },
+      "owner_id_after": 3,
+      "owner_id_before": 7,
+      "position": [
+        2098,
+        2334
+      ],
+      "prior_same_pair_occurrences": 0,
+      "prior_same_pair_vcr_ids": [],
+      "race_id_after": 6,
+      "race_id_before": 1,
+      "ruleset": {
+        "bucket": "finite_fuel",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": false,
+          "chainedintercept": false,
+          "cloakandintercept": true,
+          "combatrng": 0,
+          "galacticpower": false,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": false,
+          "sphere": false,
+          "sscruiserinterceptinterference": false,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "6bf057f3191b4455921963780748fe117c080c5d52bfe11a5c5edce503979120"
+      },
+      "simple_opponent_initiator_right_exact": false,
+      "sticky_capture_side_exact": true,
+      "turn": 143
+    },
+    {
+      "captor_owner_id": 5,
+      "captor_race_id": 4,
+      "captor_ship_id": 428,
+      "captor_side": "left",
+      "capture_side": "right",
+      "capture_vcr_id": 959,
+      "captured_ship_id": 312,
+      "captured_ship_side_next": "left",
+      "game_id": 257776,
+      "next_opponent_owner_id": 1,
+      "next_opponent_previous_side": null,
+      "next_opponent_previous_vcr_id": null,
+      "next_opponent_ship_id": 298,
+      "next_opponent_side": "right",
+      "next_opponent_side_carry_exact": null,
+      "next_vcr_id": 960,
+      "opponent_side_cursor_exact": true,
+      "opponent_side_cursor_prediction": "left",
+      "order_context": {
+        "captured_tminus1": {
+          "friendlycode": "000",
+          "mission": 1,
+          "mission_target_id": 0,
+          "primary_enemy": 5,
+          "priority": null
+        },
+        "neutral_fresh_fc": "c@p",
+        "neutral_fresh_fc_priority": [
+          4,
+          312,
+          0
+        ],
+        "neutral_preserved_fc_priority": null,
+        "occurrence_index": 1,
+        "opponent_tminus1": {
+          "friendlycode": "mkt",
+          "mission": 1,
+          "mission_target_id": 10,
+          "primary_enemy": 5,
+          "priority": [
+            3,
+            298,
+            0
+          ]
+        },
+        "side_control_exact": {
+          "frozen_tminus1_priority": null,
+          "neutral_orders_fresh_fc": true,
+          "neutral_orders_preserve_fc": null
+        },
+        "side_controls": {
+          "frozen_tminus1_priority": null,
+          "neutral_orders_fresh_fc": "left",
+          "neutral_orders_preserve_fc": null
+        },
+        "status": "resolved"
+      },
+      "owner_id_after": 5,
+      "owner_id_before": 1,
+      "position": [
+        1615,
+        1070
+      ],
+      "prior_same_pair_occurrences": 0,
+      "prior_same_pair_vcr_ids": [],
+      "race_id_after": 4,
+      "race_id_before": 7,
+      "ruleset": {
+        "bucket": "finite_fuel",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": false,
+          "chainedintercept": false,
+          "cloakandintercept": true,
+          "combatrng": 0,
+          "galacticpower": false,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": false,
+          "sphere": false,
+          "sscruiserinterceptinterference": false,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "6bf057f3191b4455921963780748fe117c080c5d52bfe11a5c5edce503979120"
+      },
+      "simple_opponent_initiator_right_exact": true,
+      "sticky_capture_side_exact": false,
+      "turn": 151
+    },
+    {
+      "captor_owner_id": 1,
+      "captor_race_id": 7,
+      "captor_ship_id": 298,
+      "captor_side": "right",
+      "capture_side": "left",
+      "capture_vcr_id": 960,
+      "captured_ship_id": 312,
+      "captured_ship_side_next": "left",
+      "game_id": 257776,
+      "next_opponent_owner_id": 5,
+      "next_opponent_previous_side": "left",
+      "next_opponent_previous_vcr_id": 962,
+      "next_opponent_ship_id": 428,
+      "next_opponent_side": "right",
+      "next_opponent_side_carry_exact": false,
+      "next_vcr_id": 963,
+      "opponent_side_cursor_exact": false,
+      "opponent_side_cursor_prediction": "right",
+      "order_context": {
+        "reason": "captured_ship_tminus1_missing",
+        "status": "unresolved"
+      },
+      "owner_id_after": 1,
+      "owner_id_before": 5,
+      "position": [
+        1615,
+        1070
+      ],
+      "prior_same_pair_occurrences": 1,
+      "prior_same_pair_vcr_ids": [
+        959
+      ],
+      "race_id_after": 7,
+      "race_id_before": 4,
+      "ruleset": {
+        "bucket": "finite_fuel",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": false,
+          "chainedintercept": false,
+          "cloakandintercept": true,
+          "combatrng": 0,
+          "galacticpower": false,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": false,
+          "sphere": false,
+          "sscruiserinterceptinterference": false,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "6bf057f3191b4455921963780748fe117c080c5d52bfe11a5c5edce503979120"
+      },
+      "simple_opponent_initiator_right_exact": true,
+      "sticky_capture_side_exact": true,
+      "turn": 151
+    },
+    {
+      "captor_owner_id": 5,
+      "captor_race_id": 4,
+      "captor_ship_id": 191,
+      "captor_side": "left",
+      "capture_side": "right",
+      "capture_vcr_id": 1115,
+      "captured_ship_id": 103,
+      "captured_ship_side_next": "right",
+      "game_id": 257776,
+      "next_opponent_owner_id": 1,
+      "next_opponent_previous_side": null,
+      "next_opponent_previous_vcr_id": null,
+      "next_opponent_ship_id": 367,
+      "next_opponent_side": "left",
+      "next_opponent_side_carry_exact": null,
+      "next_vcr_id": 1116,
+      "opponent_side_cursor_exact": false,
+      "opponent_side_cursor_prediction": "left",
+      "order_context": {
+        "captured_tminus1": {
+          "friendlycode": "mda",
+          "mission": 1,
+          "mission_target_id": 0,
+          "primary_enemy": 5,
+          "priority": [
+            3,
+            103,
+            0
+          ]
+        },
+        "neutral_fresh_fc": "c@p",
+        "neutral_fresh_fc_priority": [
+          4,
+          103,
+          0
+        ],
+        "neutral_preserved_fc_priority": [
+          4,
+          103,
+          0
+        ],
+        "occurrence_index": 1,
+        "opponent_tminus1": {
+          "friendlycode": "md4",
+          "mission": 8,
+          "mission_target_id": 0,
+          "primary_enemy": 5,
+          "priority": [
+            3,
+            367,
+            0
+          ]
+        },
+        "side_control_exact": {
+          "frozen_tminus1_priority": true,
+          "neutral_orders_fresh_fc": false,
+          "neutral_orders_preserve_fc": false
+        },
+        "side_controls": {
+          "frozen_tminus1_priority": "right",
+          "neutral_orders_fresh_fc": "left",
+          "neutral_orders_preserve_fc": "left"
+        },
+        "status": "resolved"
+      },
+      "owner_id_after": 5,
+      "owner_id_before": 1,
+      "position": [
+        1675,
+        1251
+      ],
+      "prior_same_pair_occurrences": 0,
+      "prior_same_pair_vcr_ids": [],
+      "race_id_after": 4,
+      "race_id_before": 7,
+      "ruleset": {
+        "bucket": "finite_fuel",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": false,
+          "chainedintercept": false,
+          "cloakandintercept": true,
+          "combatrng": 0,
+          "galacticpower": false,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": false,
+          "sphere": false,
+          "sscruiserinterceptinterference": false,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "6bf057f3191b4455921963780748fe117c080c5d52bfe11a5c5edce503979120"
+      },
+      "simple_opponent_initiator_right_exact": false,
+      "sticky_capture_side_exact": true,
+      "turn": 163
+    },
+    {
+      "captor_owner_id": 8,
+      "captor_race_id": 5,
+      "captor_ship_id": 153,
+      "captor_side": "left",
+      "capture_side": "right",
+      "capture_vcr_id": 1644,
+      "captured_ship_id": 71,
+      "captured_ship_side_next": "right",
+      "game_id": 257776,
+      "next_opponent_owner_id": 2,
+      "next_opponent_previous_side": null,
+      "next_opponent_previous_vcr_id": null,
+      "next_opponent_ship_id": 485,
+      "next_opponent_side": "left",
+      "next_opponent_side_carry_exact": null,
+      "next_vcr_id": 1645,
+      "opponent_side_cursor_exact": false,
+      "opponent_side_cursor_prediction": "left",
+      "order_context": {
+        "captured_tminus1": {
+          "friendlycode": "qCx",
+          "mission": 3,
+          "mission_target_id": 0,
+          "primary_enemy": 7,
+          "priority": [
+            1,
+            71,
+            0
+          ]
+        },
+        "neutral_fresh_fc": "c@p",
+        "neutral_fresh_fc_priority": [
+          4,
+          71,
+          0
+        ],
+        "neutral_preserved_fc_priority": [
+          4,
+          71,
+          0
+        ],
+        "occurrence_index": 1,
+        "opponent_tminus1": {
+          "friendlycode": "cpp",
+          "mission": 3,
+          "mission_target_id": 0,
+          "primary_enemy": 8,
+          "priority": [
+            1,
+            485,
+            0
+          ]
+        },
+        "side_control_exact": {
+          "frozen_tminus1_priority": true,
+          "neutral_orders_fresh_fc": false,
+          "neutral_orders_preserve_fc": false
+        },
+        "side_controls": {
+          "frozen_tminus1_priority": "right",
+          "neutral_orders_fresh_fc": "left",
+          "neutral_orders_preserve_fc": "left"
+        },
+        "status": "resolved"
+      },
+      "owner_id_after": 8,
+      "owner_id_before": 2,
+      "position": [
+        2537,
+        2551
+      ],
+      "prior_same_pair_occurrences": 0,
+      "prior_same_pair_vcr_ids": [],
+      "race_id_after": 5,
+      "race_id_before": 8,
+      "ruleset": {
+        "bucket": "finite_fuel",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": false,
+          "chainedintercept": false,
+          "cloakandintercept": true,
+          "combatrng": 0,
+          "galacticpower": false,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": false,
+          "sphere": false,
+          "sscruiserinterceptinterference": false,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "6bf057f3191b4455921963780748fe117c080c5d52bfe11a5c5edce503979120"
+      },
+      "simple_opponent_initiator_right_exact": false,
+      "sticky_capture_side_exact": true,
+      "turn": 230
+    },
+    {
+      "captor_owner_id": 2,
+      "captor_race_id": 8,
+      "captor_ship_id": 485,
+      "captor_side": "left",
+      "capture_side": "right",
+      "capture_vcr_id": 1645,
+      "captured_ship_id": 71,
+      "captured_ship_side_next": "left",
+      "game_id": 257776,
+      "next_opponent_owner_id": 8,
+      "next_opponent_previous_side": "left",
+      "next_opponent_previous_vcr_id": 1644,
+      "next_opponent_ship_id": 153,
+      "next_opponent_side": "right",
+      "next_opponent_side_carry_exact": false,
+      "next_vcr_id": 1646,
+      "opponent_side_cursor_exact": false,
+      "opponent_side_cursor_prediction": "right",
+      "order_context": {
+        "reason": "captured_ship_tminus1_missing",
+        "status": "unresolved"
+      },
+      "owner_id_after": 2,
+      "owner_id_before": 8,
+      "position": [
+        2537,
+        2551
+      ],
+      "prior_same_pair_occurrences": 1,
+      "prior_same_pair_vcr_ids": [
+        1644
+      ],
+      "race_id_after": 8,
+      "race_id_before": 5,
+      "ruleset": {
+        "bucket": "finite_fuel",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": false,
+          "chainedintercept": false,
+          "cloakandintercept": true,
+          "combatrng": 0,
+          "galacticpower": false,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": false,
+          "sphere": false,
+          "sscruiserinterceptinterference": false,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "6bf057f3191b4455921963780748fe117c080c5d52bfe11a5c5edce503979120"
+      },
+      "simple_opponent_initiator_right_exact": true,
+      "sticky_capture_side_exact": false,
+      "turn": 230
+    },
+    {
+      "captor_owner_id": 6,
+      "captor_race_id": 10,
+      "captor_ship_id": 71,
+      "captor_side": "left",
+      "capture_side": "right",
+      "capture_vcr_id": 1724,
+      "captured_ship_id": 325,
+      "captured_ship_side_next": "right",
+      "game_id": 257776,
+      "next_opponent_owner_id": 3,
+      "next_opponent_previous_side": null,
+      "next_opponent_previous_vcr_id": null,
+      "next_opponent_ship_id": 66,
+      "next_opponent_side": "left",
+      "next_opponent_side_carry_exact": null,
+      "next_vcr_id": 1725,
+      "opponent_side_cursor_exact": false,
+      "opponent_side_cursor_prediction": "left",
+      "order_context": {
+        "captured_tminus1": {
+          "friendlycode": "002",
+          "mission": 7,
+          "mission_target_id": 1,
+          "primary_enemy": 6,
+          "priority": [
+            0,
+            2,
+            325
+          ]
+        },
+        "neutral_fresh_fc": "c@p",
+        "neutral_fresh_fc_priority": [
+          4,
+          325,
+          0
+        ],
+        "neutral_preserved_fc_priority": [
+          0,
+          2,
+          325
+        ],
+        "occurrence_index": 1,
+        "opponent_tminus1": {
+          "friendlycode": "tiw",
+          "mission": 7,
+          "mission_target_id": 1,
+          "primary_enemy": 6,
+          "priority": [
+            3,
+            66,
+            0
+          ]
+        },
+        "side_control_exact": {
+          "frozen_tminus1_priority": true,
+          "neutral_orders_fresh_fc": false,
+          "neutral_orders_preserve_fc": true
+        },
+        "side_controls": {
+          "frozen_tminus1_priority": "right",
+          "neutral_orders_fresh_fc": "left",
+          "neutral_orders_preserve_fc": "right"
+        },
+        "status": "resolved"
+      },
+      "owner_id_after": 6,
+      "owner_id_before": 1,
+      "position": [
+        1611,
+        1280
+      ],
+      "prior_same_pair_occurrences": 0,
+      "prior_same_pair_vcr_ids": [],
+      "race_id_after": 10,
+      "race_id_before": 7,
+      "ruleset": {
+        "bucket": "finite_fuel",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": false,
+          "chainedintercept": false,
+          "cloakandintercept": true,
+          "combatrng": 0,
+          "galacticpower": false,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": false,
+          "sphere": false,
+          "sscruiserinterceptinterference": false,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "6bf057f3191b4455921963780748fe117c080c5d52bfe11a5c5edce503979120"
+      },
+      "simple_opponent_initiator_right_exact": false,
+      "sticky_capture_side_exact": true,
+      "turn": 251
+    },
+    {
+      "captor_owner_id": 5,
+      "captor_race_id": 4,
+      "captor_ship_id": 635,
+      "captor_side": "left",
+      "capture_side": "right",
+      "capture_vcr_id": 1739,
+      "captured_ship_id": 388,
+      "captured_ship_side_next": "left",
+      "game_id": 257776,
+      "next_opponent_owner_id": 2,
+      "next_opponent_previous_side": null,
+      "next_opponent_previous_vcr_id": null,
+      "next_opponent_ship_id": 495,
+      "next_opponent_side": "right",
+      "next_opponent_side_carry_exact": null,
+      "next_vcr_id": 1740,
+      "opponent_side_cursor_exact": true,
+      "opponent_side_cursor_prediction": "left",
+      "order_context": {
+        "captured_tminus1": {
+          "friendlycode": "RSL",
+          "mission": 2,
+          "mission_target_id": 0,
+          "primary_enemy": 5,
+          "priority": [
+            3,
+            388,
+            0
+          ]
+        },
+        "neutral_fresh_fc": "c@p",
+        "neutral_fresh_fc_priority": [
+          4,
+          388,
+          0
+        ],
+        "neutral_preserved_fc_priority": [
+          4,
+          388,
+          0
+        ],
+        "occurrence_index": 1,
+        "opponent_tminus1": {
+          "friendlycode": "btf",
+          "mission": 8,
+          "mission_target_id": 0,
+          "primary_enemy": 5,
+          "priority": [
+            3,
+            495,
+            0
+          ]
+        },
+        "side_control_exact": {
+          "frozen_tminus1_priority": false,
+          "neutral_orders_fresh_fc": true,
+          "neutral_orders_preserve_fc": true
+        },
+        "side_controls": {
+          "frozen_tminus1_priority": "right",
+          "neutral_orders_fresh_fc": "left",
+          "neutral_orders_preserve_fc": "left"
+        },
+        "status": "resolved"
+      },
+      "owner_id_after": 5,
+      "owner_id_before": 2,
+      "position": [
+        1774,
+        1179
+      ],
+      "prior_same_pair_occurrences": 0,
+      "prior_same_pair_vcr_ids": [],
+      "race_id_after": 4,
+      "race_id_before": 8,
+      "ruleset": {
+        "bucket": "finite_fuel",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": false,
+          "chainedintercept": false,
+          "cloakandintercept": true,
+          "combatrng": 0,
+          "galacticpower": false,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": false,
+          "sphere": false,
+          "sscruiserinterceptinterference": false,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "6bf057f3191b4455921963780748fe117c080c5d52bfe11a5c5edce503979120"
+      },
+      "simple_opponent_initiator_right_exact": true,
+      "sticky_capture_side_exact": false,
+      "turn": 251
+    },
+    {
+      "captor_owner_id": 2,
+      "captor_race_id": 6,
+      "captor_ship_id": 473,
+      "captor_side": "left",
+      "capture_side": "right",
+      "capture_vcr_id": 223,
+      "captured_ship_id": 225,
+      "captured_ship_side_next": "left",
+      "game_id": 266087,
+      "next_opponent_owner_id": 4,
+      "next_opponent_previous_side": null,
+      "next_opponent_previous_vcr_id": null,
+      "next_opponent_ship_id": 93,
+      "next_opponent_side": "right",
+      "next_opponent_side_carry_exact": null,
+      "next_vcr_id": 224,
+      "opponent_side_cursor_exact": true,
+      "opponent_side_cursor_prediction": "left",
+      "order_context": {
+        "captured_tminus1": {
+          "friendlycode": "sof",
+          "mission": 3,
+          "mission_target_id": 0,
+          "primary_enemy": 2,
+          "priority": [
+            1,
+            225,
+            0
+          ]
+        },
+        "neutral_fresh_fc": "c@p",
+        "neutral_fresh_fc_priority": [
+          4,
+          225,
+          0
+        ],
+        "neutral_preserved_fc_priority": [
+          4,
+          225,
+          0
+        ],
+        "occurrence_index": 1,
+        "opponent_tminus1": {
+          "friendlycode": "mkt",
+          "mission": 6,
+          "mission_target_id": 225,
+          "primary_enemy": 2,
+          "priority": [
+            3,
+            93,
+            0
+          ]
+        },
+        "side_control_exact": {
+          "frozen_tminus1_priority": false,
+          "neutral_orders_fresh_fc": true,
+          "neutral_orders_preserve_fc": true
+        },
+        "side_controls": {
+          "frozen_tminus1_priority": "right",
+          "neutral_orders_fresh_fc": "left",
+          "neutral_orders_preserve_fc": "left"
+        },
+        "status": "resolved"
+      },
+      "owner_id_after": 2,
+      "owner_id_before": 4,
+      "position": [
+        2459,
+        3239
+      ],
+      "prior_same_pair_occurrences": 0,
+      "prior_same_pair_vcr_ids": [],
+      "race_id_after": 6,
+      "race_id_before": 3,
+      "ruleset": {
+        "bucket": "finite_fuel",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": false,
+          "chainedintercept": false,
+          "cloakandintercept": true,
+          "combatrng": 0,
+          "galacticpower": false,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": false,
+          "sphere": false,
+          "sscruiserinterceptinterference": false,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "255253b5c79ee3ecb4b7913bc1e56fb108ea000f8f5264276bc623d68b4d1100"
+      },
+      "simple_opponent_initiator_right_exact": true,
+      "sticky_capture_side_exact": false,
+      "turn": 55
+    },
+    {
+      "captor_owner_id": 4,
+      "captor_race_id": 3,
+      "captor_ship_id": 93,
+      "captor_side": "right",
+      "capture_side": "left",
+      "capture_vcr_id": 224,
+      "captured_ship_id": 225,
+      "captured_ship_side_next": "left",
+      "game_id": 266087,
+      "next_opponent_owner_id": 2,
+      "next_opponent_previous_side": "left",
+      "next_opponent_previous_vcr_id": 225,
+      "next_opponent_ship_id": 473,
+      "next_opponent_side": "right",
+      "next_opponent_side_carry_exact": false,
+      "next_vcr_id": 226,
+      "opponent_side_cursor_exact": false,
+      "opponent_side_cursor_prediction": "right",
+      "order_context": {
+        "reason": "captured_ship_tminus1_missing",
+        "status": "unresolved"
+      },
+      "owner_id_after": 4,
+      "owner_id_before": 2,
+      "position": [
+        2459,
+        3239
+      ],
+      "prior_same_pair_occurrences": 1,
+      "prior_same_pair_vcr_ids": [
+        223
+      ],
+      "race_id_after": 3,
+      "race_id_before": 6,
+      "ruleset": {
+        "bucket": "finite_fuel",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": false,
+          "chainedintercept": false,
+          "cloakandintercept": true,
+          "combatrng": 0,
+          "galacticpower": false,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": false,
+          "sphere": false,
+          "sscruiserinterceptinterference": false,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "255253b5c79ee3ecb4b7913bc1e56fb108ea000f8f5264276bc623d68b4d1100"
+      },
+      "simple_opponent_initiator_right_exact": true,
+      "sticky_capture_side_exact": true,
+      "turn": 55
+    },
+    {
+      "captor_owner_id": 7,
+      "captor_race_id": 5,
+      "captor_ship_id": 458,
+      "captor_side": "left",
+      "capture_side": "right",
+      "capture_vcr_id": 999,
+      "captured_ship_id": 606,
+      "captured_ship_side_next": "right",
+      "game_id": 266087,
+      "next_opponent_owner_id": 2,
+      "next_opponent_previous_side": null,
+      "next_opponent_previous_vcr_id": null,
+      "next_opponent_ship_id": 691,
+      "next_opponent_side": "left",
+      "next_opponent_side_carry_exact": null,
+      "next_vcr_id": 1000,
+      "opponent_side_cursor_exact": false,
+      "opponent_side_cursor_prediction": "left",
+      "order_context": {
+        "captured_tminus1": {
+          "friendlycode": "517",
+          "mission": 2,
+          "mission_target_id": 0,
+          "primary_enemy": 0,
+          "priority": [
+            0,
+            517,
+            606
+          ]
+        },
+        "neutral_fresh_fc": "c@p",
+        "neutral_fresh_fc_priority": [
+          4,
+          606,
+          0
+        ],
+        "neutral_preserved_fc_priority": [
+          0,
+          517,
+          606
+        ],
+        "occurrence_index": 1,
+        "opponent_tminus1": {
+          "friendlycode": "gs1",
+          "mission": 1,
+          "mission_target_id": 0,
+          "primary_enemy": 7,
+          "priority": [
+            3,
+            691,
+            0
+          ]
+        },
+        "side_control_exact": {
+          "frozen_tminus1_priority": true,
+          "neutral_orders_fresh_fc": false,
+          "neutral_orders_preserve_fc": true
+        },
+        "side_controls": {
+          "frozen_tminus1_priority": "right",
+          "neutral_orders_fresh_fc": "left",
+          "neutral_orders_preserve_fc": "right"
+        },
+        "status": "resolved"
+      },
+      "owner_id_after": 7,
+      "owner_id_before": 2,
+      "position": [
+        2604,
+        869
+      ],
+      "prior_same_pair_occurrences": 0,
+      "prior_same_pair_vcr_ids": [],
+      "race_id_after": 5,
+      "race_id_before": 6,
+      "ruleset": {
+        "bucket": "finite_fuel",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": false,
+          "chainedintercept": false,
+          "cloakandintercept": true,
+          "combatrng": 0,
+          "galacticpower": false,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": false,
+          "sphere": false,
+          "sscruiserinterceptinterference": false,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "255253b5c79ee3ecb4b7913bc1e56fb108ea000f8f5264276bc623d68b4d1100"
+      },
+      "simple_opponent_initiator_right_exact": false,
+      "sticky_capture_side_exact": true,
+      "turn": 110
+    },
+    {
+      "captor_owner_id": 1,
+      "captor_race_id": 2,
+      "captor_ship_id": 133,
+      "captor_side": "left",
+      "capture_side": "right",
+      "capture_vcr_id": 1574,
+      "captured_ship_id": 125,
+      "captured_ship_side_next": "left",
+      "game_id": 266087,
+      "next_opponent_owner_id": 2,
+      "next_opponent_previous_side": null,
+      "next_opponent_previous_vcr_id": null,
+      "next_opponent_ship_id": 32,
+      "next_opponent_side": "right",
+      "next_opponent_side_carry_exact": null,
+      "next_vcr_id": 1575,
+      "opponent_side_cursor_exact": true,
+      "opponent_side_cursor_prediction": "left",
+      "order_context": {
+        "captured_tminus1": {
+          "friendlycode": "002",
+          "mission": 1,
+          "mission_target_id": 0,
+          "primary_enemy": 0,
+          "priority": [
+            0,
+            2,
+            125
+          ]
+        },
+        "neutral_fresh_fc": "c@p",
+        "neutral_fresh_fc_priority": [
+          4,
+          125,
+          0
+        ],
+        "neutral_preserved_fc_priority": [
+          0,
+          2,
+          125
+        ],
+        "occurrence_index": 1,
+        "opponent_tminus1": {
+          "friendlycode": "003",
+          "mission": 2,
+          "mission_target_id": 0,
+          "primary_enemy": 1,
+          "priority": [
+            0,
+            3,
+            32
+          ]
+        },
+        "side_control_exact": {
+          "frozen_tminus1_priority": false,
+          "neutral_orders_fresh_fc": true,
+          "neutral_orders_preserve_fc": false
+        },
+        "side_controls": {
+          "frozen_tminus1_priority": "right",
+          "neutral_orders_fresh_fc": "left",
+          "neutral_orders_preserve_fc": "right"
+        },
+        "status": "resolved"
+      },
+      "owner_id_after": 1,
+      "owner_id_before": 2,
+      "position": [
+        1009,
+        1947
+      ],
+      "prior_same_pair_occurrences": 0,
+      "prior_same_pair_vcr_ids": [],
+      "race_id_after": 2,
+      "race_id_before": 6,
+      "ruleset": {
+        "bucket": "finite_fuel",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": false,
+          "chainedintercept": false,
+          "cloakandintercept": true,
+          "combatrng": 0,
+          "galacticpower": false,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": false,
+          "sphere": false,
+          "sscruiserinterceptinterference": false,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "255253b5c79ee3ecb4b7913bc1e56fb108ea000f8f5264276bc623d68b4d1100"
+      },
+      "simple_opponent_initiator_right_exact": true,
+      "sticky_capture_side_exact": false,
+      "turn": 143
+    },
+    {
+      "captor_owner_id": 2,
+      "captor_race_id": 6,
+      "captor_ship_id": 32,
+      "captor_side": "right",
+      "capture_side": "left",
+      "capture_vcr_id": 1575,
+      "captured_ship_id": 125,
+      "captured_ship_side_next": "left",
+      "game_id": 266087,
+      "next_opponent_owner_id": 1,
+      "next_opponent_previous_side": "left",
+      "next_opponent_previous_vcr_id": 1577,
+      "next_opponent_ship_id": 133,
+      "next_opponent_side": "right",
+      "next_opponent_side_carry_exact": false,
+      "next_vcr_id": 1578,
+      "opponent_side_cursor_exact": false,
+      "opponent_side_cursor_prediction": "right",
+      "order_context": {
+        "reason": "captured_ship_tminus1_missing",
+        "status": "unresolved"
+      },
+      "owner_id_after": 2,
+      "owner_id_before": 1,
+      "position": [
+        1009,
+        1947
+      ],
+      "prior_same_pair_occurrences": 1,
+      "prior_same_pair_vcr_ids": [
+        1574
+      ],
+      "race_id_after": 6,
+      "race_id_before": 2,
+      "ruleset": {
+        "bucket": "finite_fuel",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": false,
+          "chainedintercept": false,
+          "cloakandintercept": true,
+          "combatrng": 0,
+          "galacticpower": false,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": false,
+          "sphere": false,
+          "sscruiserinterceptinterference": false,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "255253b5c79ee3ecb4b7913bc1e56fb108ea000f8f5264276bc623d68b4d1100"
+      },
+      "simple_opponent_initiator_right_exact": true,
+      "sticky_capture_side_exact": true,
+      "turn": 143
+    },
+    {
+      "captor_owner_id": 7,
+      "captor_race_id": 5,
+      "captor_ship_id": 706,
+      "captor_side": "left",
+      "capture_side": "right",
+      "capture_vcr_id": 1922,
+      "captured_ship_id": 95,
+      "captured_ship_side_next": "left",
+      "game_id": 266087,
+      "next_opponent_owner_id": 2,
+      "next_opponent_previous_side": null,
+      "next_opponent_previous_vcr_id": null,
+      "next_opponent_ship_id": 689,
+      "next_opponent_side": "right",
+      "next_opponent_side_carry_exact": null,
+      "next_vcr_id": 1923,
+      "opponent_side_cursor_exact": true,
+      "opponent_side_cursor_prediction": "left",
+      "order_context": {
+        "captured_tminus1": {
+          "friendlycode": "mkt",
+          "mission": 1,
+          "mission_target_id": 0,
+          "primary_enemy": 7,
+          "priority": [
+            3,
+            95,
+            0
+          ]
+        },
+        "neutral_fresh_fc": "c@p",
+        "neutral_fresh_fc_priority": [
+          4,
+          95,
+          0
+        ],
+        "neutral_preserved_fc_priority": [
+          4,
+          95,
+          0
+        ],
+        "occurrence_index": 1,
+        "opponent_tminus1": {
+          "friendlycode": "mkt",
+          "mission": 1,
+          "mission_target_id": 0,
+          "primary_enemy": 7,
+          "priority": [
+            3,
+            689,
+            0
+          ]
+        },
+        "side_control_exact": {
+          "frozen_tminus1_priority": false,
+          "neutral_orders_fresh_fc": true,
+          "neutral_orders_preserve_fc": true
+        },
+        "side_controls": {
+          "frozen_tminus1_priority": "right",
+          "neutral_orders_fresh_fc": "left",
+          "neutral_orders_preserve_fc": "left"
+        },
+        "status": "resolved"
+      },
+      "owner_id_after": 7,
+      "owner_id_before": 2,
+      "position": [
+        1075,
+        1975
+      ],
+      "prior_same_pair_occurrences": 0,
+      "prior_same_pair_vcr_ids": [],
+      "race_id_after": 5,
+      "race_id_before": 6,
+      "ruleset": {
+        "bucket": "finite_fuel",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": false,
+          "chainedintercept": false,
+          "cloakandintercept": true,
+          "combatrng": 0,
+          "galacticpower": false,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": false,
+          "sphere": false,
+          "sscruiserinterceptinterference": false,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "255253b5c79ee3ecb4b7913bc1e56fb108ea000f8f5264276bc623d68b4d1100"
+      },
+      "simple_opponent_initiator_right_exact": true,
+      "sticky_capture_side_exact": false,
+      "turn": 159
+    },
+    {
+      "captor_owner_id": 3,
+      "captor_race_id": 3,
+      "captor_ship_id": 483,
+      "captor_side": "left",
+      "capture_side": "right",
+      "capture_vcr_id": 1298,
+      "captured_ship_id": 37,
+      "captured_ship_side_next": "left",
+      "game_id": 411645,
+      "next_opponent_owner_id": 2,
+      "next_opponent_previous_side": null,
+      "next_opponent_previous_vcr_id": null,
+      "next_opponent_ship_id": 84,
+      "next_opponent_side": "right",
+      "next_opponent_side_carry_exact": null,
+      "next_vcr_id": 1299,
+      "opponent_side_cursor_exact": true,
+      "opponent_side_cursor_prediction": "left",
+      "order_context": {
+        "captured_tminus1": {
+          "friendlycode": "ald",
+          "mission": 1,
+          "mission_target_id": 0,
+          "primary_enemy": 3,
+          "priority": [
+            3,
+            37,
+            0
+          ]
+        },
+        "neutral_fresh_fc": "c@p",
+        "neutral_fresh_fc_priority": [
+          4,
+          37,
+          0
+        ],
+        "neutral_preserved_fc_priority": [
+          4,
+          37,
+          0
+        ],
+        "occurrence_index": 1,
+        "opponent_tminus1": {
+          "friendlycode": "mkt",
+          "mission": 1,
+          "mission_target_id": 0,
+          "primary_enemy": 3,
+          "priority": [
+            3,
+            84,
+            0
+          ]
+        },
+        "side_control_exact": {
+          "frozen_tminus1_priority": false,
+          "neutral_orders_fresh_fc": true,
+          "neutral_orders_preserve_fc": true
+        },
+        "side_controls": {
+          "frozen_tminus1_priority": "right",
+          "neutral_orders_fresh_fc": "left",
+          "neutral_orders_preserve_fc": "left"
+        },
+        "status": "resolved"
+      },
+      "owner_id_after": 3,
+      "owner_id_before": 2,
+      "position": [
+        1463,
+        2416
+      ],
+      "prior_same_pair_occurrences": 0,
+      "prior_same_pair_vcr_ids": [],
+      "race_id_after": 3,
+      "race_id_before": 2,
+      "ruleset": {
+        "bucket": "campaign",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": true,
+          "chainedintercept": false,
+          "cloakandintercept": false,
+          "combatrng": 0,
+          "galacticpower": false,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": false,
+          "sphere": false,
+          "sscruiserinterceptinterference": false,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "c59e42d405863710b65d5734d92808fc5282c45bfc0fa4231f316bfd68f9167a"
+      },
+      "simple_opponent_initiator_right_exact": true,
+      "sticky_capture_side_exact": false,
+      "turn": 114
+    },
+    {
+      "captor_owner_id": 2,
+      "captor_race_id": 2,
+      "captor_ship_id": 131,
+      "captor_side": "right",
+      "capture_side": "left",
+      "capture_vcr_id": 438,
+      "captured_ship_id": 323,
+      "captured_ship_side_next": "right",
+      "game_id": 416250,
+      "next_opponent_owner_id": 10,
+      "next_opponent_previous_side": null,
+      "next_opponent_previous_vcr_id": null,
+      "next_opponent_ship_id": 379,
+      "next_opponent_side": "left",
+      "next_opponent_side_carry_exact": null,
+      "next_vcr_id": 440,
+      "opponent_side_cursor_exact": false,
+      "opponent_side_cursor_prediction": "left",
+      "order_context": {
+        "captured_tminus1": {
+          "friendlycode": "Xn6",
+          "mission": 1,
+          "mission_target_id": 0,
+          "primary_enemy": 0,
+          "priority": [
+            4,
+            323,
+            0
+          ]
+        },
+        "neutral_fresh_fc": "c@p",
+        "neutral_fresh_fc_priority": [
+          4,
+          323,
+          0
+        ],
+        "neutral_preserved_fc_priority": [
+          4,
+          323,
+          0
+        ],
+        "occurrence_index": 1,
+        "opponent_tminus1": {
+          "friendlycode": "100",
+          "mission": 1,
+          "mission_target_id": 0,
+          "primary_enemy": 2,
+          "priority": [
+            0,
+            100,
+            379
+          ]
+        },
+        "side_control_exact": {
+          "frozen_tminus1_priority": false,
+          "neutral_orders_fresh_fc": false,
+          "neutral_orders_preserve_fc": false
+        },
+        "side_controls": {
+          "frozen_tminus1_priority": "left",
+          "neutral_orders_fresh_fc": "left",
+          "neutral_orders_preserve_fc": "left"
+        },
+        "status": "resolved"
+      },
+      "owner_id_after": 2,
+      "owner_id_before": 5,
+      "position": [
+        2558,
+        1837
+      ],
+      "prior_same_pair_occurrences": 0,
+      "prior_same_pair_vcr_ids": [],
+      "race_id_after": 2,
+      "race_id_before": 5,
+      "ruleset": {
+        "bucket": "championship",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": false,
+          "chainedintercept": true,
+          "cloakandintercept": true,
+          "combatrng": 0,
+          "galacticpower": true,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": true,
+          "sphere": false,
+          "sscruiserinterceptinterference": true,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "725855132c294874efe5058c8dca42d687781220463afdc079cd86304e0415c3"
+      },
+      "simple_opponent_initiator_right_exact": false,
+      "sticky_capture_side_exact": false,
+      "turn": 81
+    },
+    {
+      "captor_owner_id": 11,
+      "captor_race_id": 11,
+      "captor_ship_id": 372,
+      "captor_side": "left",
+      "capture_side": "right",
+      "capture_vcr_id": 884,
+      "captured_ship_id": 197,
+      "captured_ship_side_next": "left",
+      "game_id": 416250,
+      "next_opponent_owner_id": 7,
+      "next_opponent_previous_side": null,
+      "next_opponent_previous_vcr_id": null,
+      "next_opponent_ship_id": 268,
+      "next_opponent_side": "right",
+      "next_opponent_side_carry_exact": null,
+      "next_vcr_id": 885,
+      "opponent_side_cursor_exact": true,
+      "opponent_side_cursor_prediction": "left",
+      "order_context": {
+        "captured_tminus1": {
+          "friendlycode": "K0Z",
+          "mission": 7,
+          "mission_target_id": 109,
+          "primary_enemy": 11,
+          "priority": [
+            3,
+            197,
+            0
+          ]
+        },
+        "neutral_fresh_fc": "c@p",
+        "neutral_fresh_fc_priority": [
+          4,
+          197,
+          0
+        ],
+        "neutral_preserved_fc_priority": [
+          4,
+          197,
+          0
+        ],
+        "occurrence_index": 1,
+        "opponent_tminus1": {
+          "friendlycode": "KmY",
+          "mission": 7,
+          "mission_target_id": 38,
+          "primary_enemy": 11,
+          "priority": [
+            3,
+            268,
+            0
+          ]
+        },
+        "side_control_exact": {
+          "frozen_tminus1_priority": false,
+          "neutral_orders_fresh_fc": true,
+          "neutral_orders_preserve_fc": true
+        },
+        "side_controls": {
+          "frozen_tminus1_priority": "right",
+          "neutral_orders_fresh_fc": "left",
+          "neutral_orders_preserve_fc": "left"
+        },
+        "status": "resolved"
+      },
+      "owner_id_after": 11,
+      "owner_id_before": 7,
+      "position": [
+        1846,
+        1425
+      ],
+      "prior_same_pair_occurrences": 0,
+      "prior_same_pair_vcr_ids": [],
+      "race_id_after": 11,
+      "race_id_before": 7,
+      "ruleset": {
+        "bucket": "championship",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": false,
+          "chainedintercept": true,
+          "cloakandintercept": true,
+          "combatrng": 0,
+          "galacticpower": true,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": true,
+          "sphere": false,
+          "sscruiserinterceptinterference": true,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "725855132c294874efe5058c8dca42d687781220463afdc079cd86304e0415c3"
+      },
+      "simple_opponent_initiator_right_exact": true,
+      "sticky_capture_side_exact": false,
+      "turn": 135
+    },
+    {
+      "captor_owner_id": 16,
+      "captor_race_id": 4,
+      "captor_ship_id": 61,
+      "captor_side": "left",
+      "capture_side": "right",
+      "capture_vcr_id": 14,
+      "captured_ship_id": 124,
+      "captured_ship_side_next": "right",
+      "game_id": 474699,
+      "next_opponent_owner_id": 14,
+      "next_opponent_previous_side": null,
+      "next_opponent_previous_vcr_id": null,
+      "next_opponent_ship_id": 192,
+      "next_opponent_side": "left",
+      "next_opponent_side_carry_exact": null,
+      "next_vcr_id": 15,
+      "opponent_side_cursor_exact": false,
+      "opponent_side_cursor_prediction": "left",
+      "order_context": {
+        "captured_tminus1": {
+          "friendlycode": "60",
+          "mission": 8,
+          "mission_target_id": 0,
+          "primary_enemy": 0,
+          "priority": null
+        },
+        "neutral_fresh_fc": "c@p",
+        "neutral_fresh_fc_priority": [
+          4,
+          124,
+          0
+        ],
+        "neutral_preserved_fc_priority": null,
+        "occurrence_index": 1,
+        "opponent_tminus1": {
+          "friendlycode": "igy",
+          "mission": 8,
+          "mission_target_id": 0,
+          "primary_enemy": 16,
+          "priority": [
+            3,
+            192,
+            0
+          ]
+        },
+        "side_control_exact": {
+          "frozen_tminus1_priority": null,
+          "neutral_orders_fresh_fc": false,
+          "neutral_orders_preserve_fc": null
+        },
+        "side_controls": {
+          "frozen_tminus1_priority": null,
+          "neutral_orders_fresh_fc": "left",
+          "neutral_orders_preserve_fc": null
+        },
+        "status": "resolved"
+      },
+      "owner_id_after": 16,
+      "owner_id_before": 14,
+      "position": [
+        2747,
+        1229
+      ],
+      "prior_same_pair_occurrences": 0,
+      "prior_same_pair_vcr_ids": [],
+      "race_id_after": 4,
+      "race_id_before": 9,
+      "ruleset": {
+        "bucket": "campaign",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": true,
+          "chainedintercept": true,
+          "cloakandintercept": true,
+          "combatrng": 0,
+          "galacticpower": true,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": true,
+          "sphere": true,
+          "sscruiserinterceptinterference": true,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "8ef10026de16a4ee5bdc2085841a298220b232c21804dcbdb444570ef6787ecd"
+      },
+      "simple_opponent_initiator_right_exact": false,
+      "sticky_capture_side_exact": true,
+      "turn": 14
+    },
+    {
+      "captor_owner_id": 14,
+      "captor_race_id": 9,
+      "captor_ship_id": 192,
+      "captor_side": "left",
+      "capture_side": "right",
+      "capture_vcr_id": 15,
+      "captured_ship_id": 124,
+      "captured_ship_side_next": "left",
+      "game_id": 474699,
+      "next_opponent_owner_id": 16,
+      "next_opponent_previous_side": "left",
+      "next_opponent_previous_vcr_id": 17,
+      "next_opponent_ship_id": 61,
+      "next_opponent_side": "right",
+      "next_opponent_side_carry_exact": false,
+      "next_vcr_id": 18,
+      "opponent_side_cursor_exact": false,
+      "opponent_side_cursor_prediction": "right",
+      "order_context": {
+        "reason": "captured_ship_tminus1_missing",
+        "status": "unresolved"
+      },
+      "owner_id_after": 14,
+      "owner_id_before": 16,
+      "position": [
+        2747,
+        1229
+      ],
+      "prior_same_pair_occurrences": 1,
+      "prior_same_pair_vcr_ids": [
+        14
+      ],
+      "race_id_after": 9,
+      "race_id_before": 4,
+      "ruleset": {
+        "bucket": "campaign",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": true,
+          "chainedintercept": true,
+          "cloakandintercept": true,
+          "combatrng": 0,
+          "galacticpower": true,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": true,
+          "sphere": true,
+          "sscruiserinterceptinterference": true,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "8ef10026de16a4ee5bdc2085841a298220b232c21804dcbdb444570ef6787ecd"
+      },
+      "simple_opponent_initiator_right_exact": true,
+      "sticky_capture_side_exact": false,
+      "turn": 14
+    },
+    {
+      "captor_owner_id": 16,
+      "captor_race_id": 4,
+      "captor_ship_id": 61,
+      "captor_side": "right",
+      "capture_side": "left",
+      "capture_vcr_id": 18,
+      "captured_ship_id": 124,
+      "captured_ship_side_next": "left",
+      "game_id": 474699,
+      "next_opponent_owner_id": 14,
+      "next_opponent_previous_side": "left",
+      "next_opponent_previous_vcr_id": 19,
+      "next_opponent_ship_id": 192,
+      "next_opponent_side": "right",
+      "next_opponent_side_carry_exact": false,
+      "next_vcr_id": 20,
+      "opponent_side_cursor_exact": false,
+      "opponent_side_cursor_prediction": "right",
+      "order_context": {
+        "captured_tminus1": {
+          "friendlycode": "60",
+          "mission": 8,
+          "mission_target_id": 0,
+          "primary_enemy": 0,
+          "priority": null
+        },
+        "neutral_fresh_fc": "c@p",
+        "neutral_fresh_fc_priority": [
+          4,
+          124,
+          0
+        ],
+        "neutral_preserved_fc_priority": null,
+        "occurrence_index": 2,
+        "opponent_tminus1": {
+          "friendlycode": "igy",
+          "mission": 8,
+          "mission_target_id": 0,
+          "primary_enemy": 16,
+          "priority": [
+            3,
+            192,
+            0
+          ]
+        },
+        "side_control_exact": {
+          "frozen_tminus1_priority": null,
+          "neutral_orders_fresh_fc": false,
+          "neutral_orders_preserve_fc": null
+        },
+        "side_controls": {
+          "frozen_tminus1_priority": null,
+          "neutral_orders_fresh_fc": "right",
+          "neutral_orders_preserve_fc": null
+        },
+        "status": "resolved"
+      },
+      "owner_id_after": 16,
+      "owner_id_before": 14,
+      "position": [
+        2747,
+        1229
+      ],
+      "prior_same_pair_occurrences": 1,
+      "prior_same_pair_vcr_ids": [
+        15
+      ],
+      "race_id_after": 4,
+      "race_id_before": 9,
+      "ruleset": {
+        "bucket": "campaign",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": true,
+          "chainedintercept": true,
+          "cloakandintercept": true,
+          "combatrng": 0,
+          "galacticpower": true,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": true,
+          "sphere": true,
+          "sscruiserinterceptinterference": true,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "8ef10026de16a4ee5bdc2085841a298220b232c21804dcbdb444570ef6787ecd"
+      },
+      "simple_opponent_initiator_right_exact": true,
+      "sticky_capture_side_exact": true,
+      "turn": 14
+    },
+    {
+      "captor_owner_id": 3,
+      "captor_race_id": 3,
+      "captor_ship_id": 497,
+      "captor_side": "right",
+      "capture_side": "left",
+      "capture_vcr_id": 285,
+      "captured_ship_id": 172,
+      "captured_ship_side_next": "right",
+      "game_id": 476380,
+      "next_opponent_owner_id": 8,
+      "next_opponent_previous_side": "left",
+      "next_opponent_previous_vcr_id": 286,
+      "next_opponent_ship_id": 97,
+      "next_opponent_side": "left",
+      "next_opponent_side_carry_exact": true,
+      "next_vcr_id": 287,
+      "opponent_side_cursor_exact": true,
+      "opponent_side_cursor_prediction": "right",
+      "order_context": {
+        "captured_tminus1": {
+          "friendlycode": "nal",
+          "mission": 1,
+          "mission_target_id": 0,
+          "primary_enemy": 0,
+          "priority": [
+            4,
+            172,
+            0
+          ]
+        },
+        "neutral_fresh_fc": "c@p",
+        "neutral_fresh_fc_priority": [
+          4,
+          172,
+          0
+        ],
+        "neutral_preserved_fc_priority": [
+          4,
+          172,
+          0
+        ],
+        "occurrence_index": 1,
+        "opponent_tminus1": {
+          "friendlycode": "whx",
+          "mission": 8,
+          "mission_target_id": 0,
+          "primary_enemy": 3,
+          "priority": [
+            3,
+            97,
+            0
+          ]
+        },
+        "side_control_exact": {
+          "frozen_tminus1_priority": false,
+          "neutral_orders_fresh_fc": false,
+          "neutral_orders_preserve_fc": false
+        },
+        "side_controls": {
+          "frozen_tminus1_priority": "left",
+          "neutral_orders_fresh_fc": "left",
+          "neutral_orders_preserve_fc": "left"
+        },
+        "status": "resolved"
+      },
+      "owner_id_after": 3,
+      "owner_id_before": 8,
+      "position": [
+        1032,
+        2059
+      ],
+      "prior_same_pair_occurrences": 0,
+      "prior_same_pair_vcr_ids": [],
+      "race_id_after": 3,
+      "race_id_before": 8,
+      "ruleset": {
+        "bucket": "finite_fuel",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": false,
+          "chainedintercept": true,
+          "cloakandintercept": true,
+          "combatrng": 0,
+          "galacticpower": true,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": true,
+          "sphere": false,
+          "sscruiserinterceptinterference": true,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "9bf2d35d3940d4126cc77e9b50821942ddfdf5a143d2befe8e4976fe6a057ca7"
+      },
+      "simple_opponent_initiator_right_exact": false,
+      "sticky_capture_side_exact": false,
+      "turn": 76
+    },
+    {
+      "captor_owner_id": 3,
+      "captor_race_id": 3,
+      "captor_ship_id": 97,
+      "captor_side": "right",
+      "capture_side": "left",
+      "capture_vcr_id": 903,
+      "captured_ship_id": 157,
+      "captured_ship_side_next": "right",
+      "game_id": 476380,
+      "next_opponent_owner_id": 11,
+      "next_opponent_previous_side": null,
+      "next_opponent_previous_vcr_id": null,
+      "next_opponent_ship_id": 514,
+      "next_opponent_side": "left",
+      "next_opponent_side_carry_exact": null,
+      "next_vcr_id": 904,
+      "opponent_side_cursor_exact": false,
+      "opponent_side_cursor_prediction": "left",
+      "order_context": {
+        "captured_tminus1": {
+          "friendlycode": "Rky",
+          "mission": 6,
+          "mission_target_id": 97,
+          "primary_enemy": 0,
+          "priority": [
+            4,
+            157,
+            0
+          ]
+        },
+        "neutral_fresh_fc": "c@p",
+        "neutral_fresh_fc_priority": [
+          4,
+          157,
+          0
+        ],
+        "neutral_preserved_fc_priority": [
+          4,
+          157,
+          0
+        ],
+        "occurrence_index": 1,
+        "opponent_tminus1": {
+          "friendlycode": "024",
+          "mission": 1,
+          "mission_target_id": 0,
+          "primary_enemy": 3,
+          "priority": [
+            0,
+            24,
+            514
+          ]
+        },
+        "side_control_exact": {
+          "frozen_tminus1_priority": false,
+          "neutral_orders_fresh_fc": false,
+          "neutral_orders_preserve_fc": false
+        },
+        "side_controls": {
+          "frozen_tminus1_priority": "left",
+          "neutral_orders_fresh_fc": "left",
+          "neutral_orders_preserve_fc": "left"
+        },
+        "status": "resolved"
+      },
+      "owner_id_after": 3,
+      "owner_id_before": 5,
+      "position": [
+        1550,
+        1841
+      ],
+      "prior_same_pair_occurrences": 0,
+      "prior_same_pair_vcr_ids": [],
+      "race_id_after": 3,
+      "race_id_before": 5,
+      "ruleset": {
+        "bucket": "finite_fuel",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": false,
+          "chainedintercept": true,
+          "cloakandintercept": true,
+          "combatrng": 0,
+          "galacticpower": true,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": true,
+          "sphere": false,
+          "sscruiserinterceptinterference": true,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "9bf2d35d3940d4126cc77e9b50821942ddfdf5a143d2befe8e4976fe6a057ca7"
+      },
+      "simple_opponent_initiator_right_exact": false,
+      "sticky_capture_side_exact": false,
+      "turn": 223
+    },
+    {
+      "captor_owner_id": 2,
+      "captor_race_id": 2,
+      "captor_ship_id": 357,
+      "captor_side": "left",
+      "capture_side": "right",
+      "capture_vcr_id": 363,
+      "captured_ship_id": 51,
+      "captured_ship_side_next": "right",
+      "game_id": 476819,
+      "next_opponent_owner_id": 7,
+      "next_opponent_previous_side": null,
+      "next_opponent_previous_vcr_id": null,
+      "next_opponent_ship_id": 223,
+      "next_opponent_side": "left",
+      "next_opponent_side_carry_exact": null,
+      "next_vcr_id": 364,
+      "opponent_side_cursor_exact": false,
+      "opponent_side_cursor_prediction": "left",
+      "order_context": {
+        "captured_tminus1": {
+          "friendlycode": "001",
+          "mission": 7,
+          "mission_target_id": 357,
+          "primary_enemy": 2,
+          "priority": [
+            0,
+            1,
+            51
+          ]
+        },
+        "neutral_fresh_fc": "c@p",
+        "neutral_fresh_fc_priority": [
+          4,
+          51,
+          0
+        ],
+        "neutral_preserved_fc_priority": [
+          0,
+          1,
+          51
+        ],
+        "occurrence_index": 1,
+        "opponent_tminus1": {
+          "friendlycode": "998",
+          "mission": 7,
+          "mission_target_id": 357,
+          "primary_enemy": 2,
+          "priority": [
+            0,
+            998,
+            223
+          ]
+        },
+        "side_control_exact": {
+          "frozen_tminus1_priority": true,
+          "neutral_orders_fresh_fc": false,
+          "neutral_orders_preserve_fc": true
+        },
+        "side_controls": {
+          "frozen_tminus1_priority": "right",
+          "neutral_orders_fresh_fc": "left",
+          "neutral_orders_preserve_fc": "right"
+        },
+        "status": "resolved"
+      },
+      "owner_id_after": 2,
+      "owner_id_before": 7,
+      "position": [
+        1880,
+        1502
+      ],
+      "prior_same_pair_occurrences": 0,
+      "prior_same_pair_vcr_ids": [],
+      "race_id_after": 2,
+      "race_id_before": 7,
+      "ruleset": {
+        "bucket": "championship",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": false,
+          "chainedintercept": true,
+          "cloakandintercept": true,
+          "combatrng": 0,
+          "galacticpower": true,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": true,
+          "sphere": false,
+          "sscruiserinterceptinterference": true,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "0f8829847abcd3d582d76b4ea588390abae4d3f59869330f752a86db764c542b"
+      },
+      "simple_opponent_initiator_right_exact": false,
+      "sticky_capture_side_exact": true,
+      "turn": 104
+    },
+    {
+      "captor_owner_id": 5,
+      "captor_race_id": 5,
+      "captor_ship_id": 357,
+      "captor_side": "left",
+      "capture_side": "right",
+      "capture_vcr_id": 595,
+      "captured_ship_id": 236,
+      "captured_ship_side_next": "left",
+      "game_id": 476819,
+      "next_opponent_owner_id": 7,
+      "next_opponent_previous_side": null,
+      "next_opponent_previous_vcr_id": null,
+      "next_opponent_ship_id": 281,
+      "next_opponent_side": "right",
+      "next_opponent_side_carry_exact": null,
+      "next_vcr_id": 596,
+      "opponent_side_cursor_exact": true,
+      "opponent_side_cursor_prediction": "left",
+      "order_context": {
+        "captured_tminus1": {
+          "friendlycode": "ald",
+          "mission": 1,
+          "mission_target_id": 0,
+          "primary_enemy": 5,
+          "priority": [
+            3,
+            236,
+            0
+          ]
+        },
+        "neutral_fresh_fc": "c@p",
+        "neutral_fresh_fc_priority": [
+          4,
+          236,
+          0
+        ],
+        "neutral_preserved_fc_priority": [
+          4,
+          236,
+          0
+        ],
+        "occurrence_index": 1,
+        "opponent_tminus1": {
+          "friendlycode": "feu",
+          "mission": 7,
+          "mission_target_id": 592,
+          "primary_enemy": 5,
+          "priority": [
+            3,
+            281,
+            0
+          ]
+        },
+        "side_control_exact": {
+          "frozen_tminus1_priority": false,
+          "neutral_orders_fresh_fc": true,
+          "neutral_orders_preserve_fc": true
+        },
+        "side_controls": {
+          "frozen_tminus1_priority": "right",
+          "neutral_orders_fresh_fc": "left",
+          "neutral_orders_preserve_fc": "left"
+        },
+        "status": "resolved"
+      },
+      "owner_id_after": 5,
+      "owner_id_before": 7,
+      "position": [
+        1494,
+        2443
+      ],
+      "prior_same_pair_occurrences": 0,
+      "prior_same_pair_vcr_ids": [],
+      "race_id_after": 5,
+      "race_id_before": 7,
+      "ruleset": {
+        "bucket": "championship",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": false,
+          "chainedintercept": true,
+          "cloakandintercept": true,
+          "combatrng": 0,
+          "galacticpower": true,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": true,
+          "sphere": false,
+          "sscruiserinterceptinterference": true,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "0f8829847abcd3d582d76b4ea588390abae4d3f59869330f752a86db764c542b"
+      },
+      "simple_opponent_initiator_right_exact": true,
+      "sticky_capture_side_exact": false,
+      "turn": 131
+    },
+    {
+      "captor_owner_id": 5,
+      "captor_race_id": 5,
+      "captor_ship_id": 416,
+      "captor_side": "left",
+      "capture_side": "right",
+      "capture_vcr_id": 724,
+      "captured_ship_id": 114,
+      "captured_ship_side_next": "left",
+      "game_id": 476819,
+      "next_opponent_owner_id": 7,
+      "next_opponent_previous_side": null,
+      "next_opponent_previous_vcr_id": null,
+      "next_opponent_ship_id": 119,
+      "next_opponent_side": "right",
+      "next_opponent_side_carry_exact": null,
+      "next_vcr_id": 725,
+      "opponent_side_cursor_exact": true,
+      "opponent_side_cursor_prediction": "left",
+      "order_context": {
+        "captured_tminus1": {
+          "friendlycode": "001",
+          "mission": 3,
+          "mission_target_id": 0,
+          "primary_enemy": 5,
+          "priority": [
+            0,
+            1,
+            114
+          ]
+        },
+        "neutral_fresh_fc": "c@p",
+        "neutral_fresh_fc_priority": [
+          4,
+          114,
+          0
+        ],
+        "neutral_preserved_fc_priority": [
+          0,
+          1,
+          114
+        ],
+        "occurrence_index": 1,
+        "opponent_tminus1": {
+          "friendlycode": "ald",
+          "mission": 1,
+          "mission_target_id": 0,
+          "primary_enemy": 5,
+          "priority": [
+            3,
+            119,
+            0
+          ]
+        },
+        "side_control_exact": {
+          "frozen_tminus1_priority": false,
+          "neutral_orders_fresh_fc": true,
+          "neutral_orders_preserve_fc": false
+        },
+        "side_controls": {
+          "frozen_tminus1_priority": "right",
+          "neutral_orders_fresh_fc": "left",
+          "neutral_orders_preserve_fc": "right"
+        },
+        "status": "resolved"
+      },
+      "owner_id_after": 5,
+      "owner_id_before": 7,
+      "position": [
+        1362,
+        2352
+      ],
+      "prior_same_pair_occurrences": 0,
+      "prior_same_pair_vcr_ids": [],
+      "race_id_after": 5,
+      "race_id_before": 7,
+      "ruleset": {
+        "bucket": "championship",
+        "players_with_activeadvantages": 0,
+        "players_with_activehulls": 0,
+        "settings": {
+          "campaignmode": false,
+          "chainedintercept": true,
+          "cloakandintercept": true,
+          "combatrng": 0,
+          "galacticpower": true,
+          "hrossfightertransfer": false,
+          "moscowinterceptinterference": false,
+          "nominefields": false,
+          "nowarpwells": false,
+          "quantumtorpedos": true,
+          "sphere": false,
+          "sscruiserinterceptinterference": true,
+          "unlimitedfuel": false
+        },
+        "settings_hash": "0f8829847abcd3d582d76b4ea588390abae4d3f59869330f752a86db764c542b"
+      },
+      "simple_opponent_initiator_right_exact": true,
+      "sticky_capture_side_exact": false,
+      "turn": 137
+    }
+  ],
+  "partition": "heldout",
+  "partition_counts": {
+    "discovery": 20,
+    "heldout": 16
+  },
+  "partition_salt": "planets-lab-public-capture-side-v1",
+  "scanned_game_ids": [
+    218619,
+    227887,
+    256858,
+    257776,
+    266087,
+    325434,
+    364412,
+    368767,
+    411645,
+    416250,
+    474699,
+    476380,
+    476819,
+    563278,
+    633855,
+    658427
+  ],
+  "schema": "planets-lab.combat-public-capture-side-harvest.v1",
+  "storage_backend": "corpus-db",
+  "summary": {
+    "capture_continuations": 55,
+    "next_combat_planet": 12,
+    "next_combat_ship": 43,
+    "next_opponent_prior_appearance": 14,
+    "next_opponent_side_carry_exact": 7,
+    "next_opponent_side_carry_mismatch": 7,
+    "opponent_side_cursor_exact": 25,
+    "opponent_side_cursor_mismatch": 18,
+    "order_context:captured_ship_tminus1_missing": 7,
+    "order_context:resolved": 36,
+    "order_context:unresolved": 7,
+    "order_side_controls": {
+      "frozen_tminus1_priority": {
+        "exact": 14,
+        "mismatch": 19,
+        "unresolved": 3
+      },
+      "neutral_orders_fresh_fc": {
+        "exact": 18,
+        "mismatch": 18,
+        "unresolved": 0
+      },
+      "neutral_orders_preserve_fc": {
+        "exact": 17,
+        "mismatch": 16,
+        "unresolved": 3
+      }
+    },
+    "prior_same_pair_occurrence_counts": {
+      "0": 36,
+      "1": 7
+    },
+    "ship_capture_continuations_by_game": {
+      "218619": 2,
+      "227887": 8,
+      "256858": 2,
+      "257776": 14,
+      "266087": 6,
+      "411645": 1,
+      "416250": 2,
+      "474699": 3,
+      "476380": 2,
+      "476819": 3
+    },
+    "ship_capture_side_counts": {
+      "captured:left": 26,
+      "captured:right": 17,
+      "opponent:left": 17,
+      "opponent:right": 26
+    },
+    "side:frozen_tminus1_priority:exact": 14,
+    "side:frozen_tminus1_priority:mismatch": 19,
+    "side:frozen_tminus1_priority:unresolved": 3,
+    "side:neutral_orders_fresh_fc:exact": 18,
+    "side:neutral_orders_fresh_fc:mismatch": 18,
+    "side:neutral_orders_preserve_fc:exact": 17,
+    "side:neutral_orders_preserve_fc:mismatch": 16,
+    "side:neutral_orders_preserve_fc:unresolved": 3,
+    "simple_opponent_initiator_right_exact": 26,
+    "sticky_capture_side_exact": 16
+  },
+  "unscanned_game_ids": [
+    224849,
+    233558,
+    267580,
+    306971,
+    338264,
+    342288,
+    343550,
+    350094,
+    371631,
+    396107,
+    425973,
+    441148,
+    467386,
+    473010,
+    477725,
+    486109,
+    597910,
+    617883,
+    627339,
+    653272
+  ]
+}

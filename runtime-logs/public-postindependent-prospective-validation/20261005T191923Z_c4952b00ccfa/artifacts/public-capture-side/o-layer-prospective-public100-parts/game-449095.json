@@ -1,0 +1,131 @@
+{
+  "database_path": "/corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "evidence_boundary": "Prospective validation of the frozen post-independent Kill-sensitive capture-side candidate against a fresh 32-game population selected before outcomes were opened. Only globally adjacent rows are candidate-comparable. The immutable public100 generation is read explicitly; CURRENT is not consulted. No candidate parameter is fitted from this population.",
+  "evidence_status": "PROSPECTIVE_VALIDATION_POSTINDEPENDENT_CANDIDATE",
+  "observations": [
+    {
+      "active_dependency": {
+        "factual_opponent_active": true,
+        "factual_opponent_candidate_resolved": true,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "stationary_effective_warp_zero",
+        "factual_opponent_prediction_position": [
+          2642,
+          2311
+        ],
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": 1,
+        "factual_opponent_requests_new_owner": true,
+        "factual_opponent_site_predicted": true,
+        "factual_opponent_strict_permission": true,
+        "factual_opponent_strict_rank": 1,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "left",
+      "capture_vcr_id": 1628,
+      "captured_ship_id": 122,
+      "factual_prize_side": "left",
+      "game_id": 449095,
+      "identity_anchored_result": {
+        "from_vcr_id": 1628,
+        "reason": "nonadjacent_vcr_requires_intervening_mutation_model",
+        "status": "not_comparable",
+        "to_vcr_id": 1643
+      },
+      "identity_anchored_split": null,
+      "next_opponent_ship_id": 75,
+      "next_vcr_id": 1643,
+      "postheldout_candidate_validation": null,
+      "postindependent_candidate_validation": null,
+      "result": {
+        "from_vcr_id": 1628,
+        "reason": "nonadjacent_vcr_requires_intervening_mutation_model",
+        "status": "not_comparable",
+        "to_vcr_id": 1643
+      },
+      "split_candidate": null,
+      "turn": 132,
+      "x": 2642,
+      "y": 2311
+    }
+  ],
+  "partition": "prospective",
+  "probe_game_ids": [
+    449095
+  ],
+  "scanned_game_ids": [
+    2466,
+    217591,
+    228199,
+    230354,
+    247785,
+    253449,
+    257908,
+    264889,
+    281994,
+    283648,
+    290067,
+    296210,
+    326221,
+    347358,
+    373830,
+    385906,
+    400330,
+    416233,
+    423531,
+    449095,
+    467183,
+    470320,
+    476826,
+    477364,
+    490865,
+    497195,
+    530635,
+    550972,
+    597079,
+    600032,
+    629488,
+    644013
+  ],
+  "schema": "planets-lab.combat-public-capture-o-layer-probe.v2.db1",
+  "source_capture_side_report": "artifacts/public-capture-side/prospective-public100-capture-side.json",
+  "summary": {
+    "appearance_summary": {
+      "payload_conflicts": 0,
+      "raw_vcr_observations": 127,
+      "replay_supported": 35,
+      "ship_appearances": 57,
+      "source_members": 11,
+      "unique_vcrs": 35
+    },
+    "counts": {
+      "active_dependency:factual_opponent_active:true": 1,
+      "active_dependency:factual_opponent_candidate_resolved:true": 1,
+      "active_dependency:factual_opponent_requests_new_owner:true": 1,
+      "active_dependency:factual_opponent_strict_permission:true": 1,
+      "active_dependency:requester_rank_present": 1,
+      "active_dependency:strict_rank_present": 1,
+      "adjacent_rows": 0,
+      "capture_ship_rows": 1,
+      "factual_side:left": 1,
+      "observations_seen": 1,
+      "postindependent_candidate_not_comparable": 1,
+      "prospective_ship_rows": 1,
+      "status:not_comparable": 1
+    },
+    "targeted_site_context": [
+      {
+        "game_id": 449095,
+        "pseudo_vcr_count": 22,
+        "targeted_archive_turns": [
+          131,
+          132
+        ],
+        "targeted_snapshot_count": 22,
+        "visited_sites": 1
+      }
+    ]
+  }
+}
