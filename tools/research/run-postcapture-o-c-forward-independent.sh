@@ -5,6 +5,8 @@ RESEARCH_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 MAIN_ROOT="${PLANETS_MAIN_ROOT:-/root/projects/planets-lab}"
 CANONICAL_CORPUS_ROOT="${PLANETS_CORPUS_DB_ROOT:-/root/projects/planets-corpus-db}"
 EXPECTED_CURRENT="${EXPECTED_CURRENT:-generations/corpus-v2compact-public68-20261004T095236Z-09f71721b77c.duckdb}"
+PUBLIC100_REL="${PUBLIC100_REL:-generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb}"
+PUBLIC100_SHA="${PUBLIC100_SHA:-3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c}"
 FROZEN_SELECTOR_IMPL_COMMIT="d6f80a12c9d6fbf3eaa1d7dfeb1cc39839d147ad"
 FROZEN_PROTOCOL_COMMIT="16b5a10e6bda7ebd8e98e1cee3a8ca16508727de"
 
@@ -130,33 +132,17 @@ if overlap:
 PY
 echo
 
-public100_db="${PUBLIC100_GENERATION:-}"
-if [[ -n "$public100_db" ]]; then
-  if [[ "$public100_db" != /* ]]; then
-    public100_db="$CANONICAL_CORPUS_ROOT/$public100_db"
-  fi
-  if [[ ! -f "$public100_db" ]]; then
-    echo "ERROR: PUBLIC100_GENERATION does not exist: $public100_db" >&2
-    exit 68
-  fi
-else
-  mapfile -t public100_candidates < <(
-    find "$CANONICAL_CORPUS_ROOT/generations" -maxdepth 1 -type f \
-      -name 'corpus-v2compact-public100-*.duckdb' -printf '%T@ %p\n' \
-      | sort -nr | cut -d' ' -f2-
-  )
-  if [[ "${#public100_candidates[@]}" -eq 0 ]]; then
-    echo "ERROR: no published public100 compact generation found." >&2
-    echo "Build it first with canonical main:" >&2
-    echo "  bash tools/run-corpus-db-public100-compact-with-evidence.sh" >&2
-    exit 68
-  fi
-  if [[ "${#public100_candidates[@]}" -gt 1 ]]; then
-    echo "ERROR: multiple public100 generations found; set PUBLIC100_GENERATION explicitly." >&2
-    printf '  %s\n' "${public100_candidates[@]}" >&2
-    exit 68
-  fi
-  public100_db="${public100_candidates[0]}"
+public100_db="$CANONICAL_CORPUS_ROOT/$PUBLIC100_REL"
+if [[ ! -f "$public100_db" ]]; then
+  echo "ERROR: pinned public100 generation does not exist: $public100_db" >&2
+  exit 68
+fi
+actual_public100_sha="$(sha256sum "$public100_db" | awk '{print $1}')"
+if [[ "$actual_public100_sha" != "$PUBLIC100_SHA" ]]; then
+  echo "ERROR: pinned public100 SHA256 mismatch." >&2
+  echo "expected: $PUBLIC100_SHA" >&2
+  echo "actual:   $actual_public100_sha" >&2
+  exit 68
 fi
 
 public100_name="$(basename "$public100_db")"
@@ -178,6 +164,7 @@ echo "research HEAD:  $research_head"
 echo "main HEAD:      $main_head"
 echo "canonical CURRENT: $actual_current"
 echo "public100 DB:   $public100_db"
+echo "public100 SHA:  $actual_public100_sha"
 echo "validation view:$view_root"
 echo
 
