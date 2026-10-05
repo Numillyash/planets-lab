@@ -236,3 +236,117 @@ Factual N+1 LEFT/RIGHT is not used.
 The frozen c2ng/THost order key remains EXTERNAL_IMPLEMENTATION evidence; this
 selector tests whether the independently supported O/C topology plus current
 production eligibility machinery is sufficient on the open corpus.
+
+
+## Open-population runtime result
+
+The frozen implementation was evaluated without modification against the
+already-open public68 population and the already-open short32 population.
+
+Runtime source:
+
+```text
+research HEAD 34c76283faf58f605d5c5577071c1aa397866ccf
+main HEAD     6be92311aaae18d634e8d02e1d26731778841f73
+```
+
+All selector/topology unit tests passed:
+
+```text
+16 passed
+```
+
+### Discovery
+
+```text
+frozen qualified RIGHT rows: 13
+
+primary resolved:             13
+primary exact:                13
+primary mismatch:              0
+primary unresolved:            0
+primary no_pair:               0
+
+predicted O:                    3
+predicted C:                   10
+```
+
+### Former held-out
+
+```text
+frozen qualified RIGHT rows: 12
+
+primary resolved:             12
+primary exact:                12
+primary mismatch:              0
+primary unresolved:            0
+primary no_pair:               0
+
+predicted O:                    5
+predicted C:                    7
+```
+
+### Independent short32, now open for this exact-selector differential
+
+```text
+frozen qualified RIGHT rows: 3
+
+primary resolved:              3
+primary exact:                 3
+primary mismatch:              0
+primary unresolved:            0
+primary no_pair:               0
+
+predicted O:                    1
+predicted C:                    2
+```
+
+The request-anchored diagnostic is identical to the strict primary predictor on
+all 28 rows. No strict-permission relaxation was needed.
+
+### Combined open-population exactness
+
+```text
+qualified RIGHT rows:         28
+resolved:                     28
+exact:                        28
+mismatch:                      0
+unresolved:                    0
+no_pair:                       0
+
+O branch:                      9
+C branch:                     19
+```
+
+This is an exact open-population differential, not independent validation of
+the full selector.
+
+The short32 topology was read before the concrete predictive selector was
+frozen. Therefore short32 independently validates the O/C *topology*, but its
+3/3 exact full-selector result is classified only as post-independent
+open-population support.
+
+## Consequence
+
+Within every currently dependency-qualified capture-on-RIGHT continuation in
+the open corpus, the combination:
+
+```text
+frozen external order topology
++ O continuation after captor cursor
++ C forward scan after prize position
++ mutable active membership
++ strict request/diplomacy
++ pair occurrence cap
++ production pair composition
++ captured-FC two-bound check
+```
+
+selects the factual N+1 opponent exactly.
+
+This removes the previously observed post-capture next-opponent residuals from
+the clean RIGHT-capture population.
+
+It does not yet justify canonical promotion because the complete selector still
+needs a population that was not used to formulate either its exact scanning
+semantics or pair-screening protocol.
