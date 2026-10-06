@@ -29,11 +29,16 @@ for path in (REPO_ROOT, DIAGNOSTICS):
         sys.path.insert(0, str(path))
 
 from planets_lab.corpus.corpus_db_runtime import connect_compact_generation_read_only
-from planets_lab.rules.combat.host_queue import select_next_plain_standard
+from planets_lab.rules.combat.capture_queue import (
+    CaptureCandidateState as CandidateState,
+)
+from planets_lab.rules.combat.site_executor import (
+    select_parent_resume,
+    select_temporary_capture_continuation,
+)
 from planets_lab.rules.combat.site_state import (
     SiteCombatState,
     apply_site_terminal_batch,
-    clear_temporary_capture_order,
     open_temporary_capture_order,
     parent_queue_active_ship_ids,
     record_factual_site_pair,
@@ -48,10 +53,6 @@ from combat_host_candidate_set_audit import (
     _independent_permission,
     _relation_signature,
     _requests_combat,
-)
-from combat_postcapture_o_c_forward_selector import (
-    CandidateState,
-    select_o_then_c_forward,
 )
 
 
@@ -462,29 +463,28 @@ def _predict_capture_continuation(
         prize_ship_id=prize_ship_id,
         through_vcr_id=through_vcr_id,
     )
-    selection = select_o_then_c_forward(
-        order=temporary.order,
-        prize_ship_id=temporary.prize_ship_id,
-        captor_ship_id=temporary.captor_ship_id,
-        states=candidate_states,
+    step = select_temporary_capture_continuation(
+        state,
+        candidate_states=candidate_states,
     )
 
-    if selection.status == "unresolved":
+    if step.status == "unresolved":
         raise ValueError(
             f"VCR {through_vcr_id}: immediate continuation unresolved: "
-            f"{selection.reason}"
+            f"{step.reason}"
         )
-    if selection.status == "no_pair":
-        return None, clear_temporary_capture_order(
-            state,
-            expected_prize_ship_id=prize_ship_id,
-        )
-    if selection.branch != "C" or selection.predicted_ship_id is None:
+    if step.status == "parent_resume_required":
+        return None, step.state
+    if (
+        step.branch != "C"
+        or step.opponent_ship_id is None
+        or step.pair is None
+    ):
         raise ValueError(
-            "site-state v1 supports independently covered C branch only"
+            "site-state v1 capture continuation resolved without covered C pair"
         )
 
-    opponent = int(selection.predicted_ship_id)
+    opponent = int(step.opponent_ship_id)
     capture_side = _capture_side(current, prize_ship_id=prize_ship_id)
     prize_next_side = "right" if capture_side == "left" else "left"
     if prize_next_side == "left":
@@ -664,27 +664,26 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 target_battle_turn=args.battle_turn,
                 through_vcr_id=current_vcr_id,
             )
-            selected = select_next_plain_standard(
+            parent_step = select_parent_resume(
+                state,
                 pair_inputs=pair_inputs,
-                active_ship_ids=active_parent,
-                state=state.standard_queue_state,
             )
             if (
-                selected.engagement_available is not True
-                or selected.pair is None
-                or selected.left_ship_id is None
-                or selected.right_ship_id is None
+                parent_step.status != "resolved"
+                or parent_step.pair is None
+                or parent_step.left_ship_id is None
+                or parent_step.right_ship_id is None
             ):
                 raise ValueError(
                     f"VCR {current_vcr_id}: parent resume unresolved: "
-                    f"{selected.unresolved_reasons}"
+                    f"{parent_step.reason}"
                 )
             prediction = {
                 "mode": "capture_parent_resume",
-                "pair": list(selected.pair),
-                "left_ship_id": selected.left_ship_id,
-                "right_ship_id": selected.right_ship_id,
-                "occurrence_index": selected.occurrence_index,
+                "pair": list(parent_step.pair),
+                "left_ship_id": parent_step.left_ship_id,
+                "right_ship_id": parent_step.right_ship_id,
+                "occurrence_index": parent_step.occurrence_index,
                 "pair_input_count": len(pair_inputs),
                 "diplomacy_cutoff_vcr_id": diagnostics[
                     "diplomacy_controls_through_vcr_id"
@@ -748,8 +747,10 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "Site history before the target window is reconstructed once. "
             "From V592 onward, physical membership, capture exclusions, "
             "temporary capture-order lifecycle and pair history are carried in "
-            "SiteCombatState. Factual terminal outcomes remain injected after "
-            "each observed VCR. N+1 pair/sides are opened only after selection."
+            "SiteCombatState. Temporary capture lifecycle and parent selection "
+            "are delegated to the reusable site_executor module. Factual "
+            "terminal outcomes remain injected after each observed VCR. N+1 "
+            "pair/sides are opened only after selection."
         ),
     }
 
