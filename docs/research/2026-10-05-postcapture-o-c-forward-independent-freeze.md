@@ -286,3 +286,48 @@ runtime-logs/postcapture-o-c-forward-independent/<run-id>
 
 including the gate log and the bounded fresh32 selector artifacts. The wrapper
 does not modify selector-critical files.
+
+
+## First runtime attempt: infrastructure-only failure
+
+Runtime evidence:
+
+```text
+runtime-logs/postcapture-o-c-forward-independent/
+20261006T004015Z_1d36df3a4f69
+```
+
+The run stopped during the validation-DB boundary check before any fresh32
+capture harvest, O-layer probe or selector evaluation.
+
+Failure:
+
+```text
+FileNotFoundError:
+  /root/projects/planets-lab/validation/corpus/manifests/
+  public-postindependent-validation-selected.jsonl
+```
+
+Cause:
+
+The validation command was already running inside the canonical lab container,
+but the runner passed the host checkout path instead of its mounted
+`/workspace/...` path.
+
+Evidence consequence:
+
+```text
+fresh32 mechanics opened by this attempt: NO
+selector evaluated:                  NO
+prospective evidence boundary intact: YES
+```
+
+The runner was corrected to pass:
+
+```text
+/workspace/validation/corpus/manifests/
+public-postindependent-validation-selected.jsonl
+```
+
+Selector-critical files remain byte-identical to the frozen implementation.
+A rerun is therefore still a valid prospective evaluation.
