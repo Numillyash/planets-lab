@@ -1,0 +1,381 @@
+{
+  "schema": "planets-lab.postcapture-o-c-forward-independent-fixture.v1",
+  "evidence_status": "INDEPENDENT_C_BRANCH_VALIDATION",
+  "provenance": {
+    "runtime_evidence": "runtime-logs/postcapture-o-c-forward-independent/20261006T024237Z_bbc0b467ae0a",
+    "source_commit": "bbc0b467ae0ab9ef107b7877a4970a05f04fb059",
+    "frozen_selector_commit": "d6f80a12c9d6fbf3eaa1d7dfeb1cc39839d147ad",
+    "validation_protocol_commit": "16b5a10e6bda7ebd8e98e1cee3a8ca16508727de",
+    "runtime_status": "PASS_PARTIAL_BRANCH_COVERAGE",
+    "qualified_rows": 6,
+    "exact": 6,
+    "mismatch": 0,
+    "unresolved": 0,
+    "branch_counts": {
+      "O": 0,
+      "C": 6
+    }
+  },
+  "cases": [
+    {
+      "game_id": 326221,
+      "turn": 40,
+      "capture_vcr_id": 268,
+      "next_vcr_id": 269,
+      "captured_ship_id": 155,
+      "captor_ship_id": 145,
+      "factual_opponent_ship_id": 303,
+      "external_order": [
+        155,
+        303,
+        145
+      ],
+      "positions": {
+        "captor": 2,
+        "factual": 1,
+        "prize": 0
+      },
+      "primary": {
+        "branch": "C",
+        "predicted_ship_id": 303,
+        "exact": true,
+        "candidate_states": {
+          "145": {
+            "disposition": "same_owner",
+            "reason": null,
+            "prior_pair_occurrences": 1
+          },
+          "303": {
+            "disposition": "eligible",
+            "reason": null,
+            "prior_pair_occurrences": 0
+          }
+        }
+      }
+    },
+    {
+      "game_id": 326221,
+      "turn": 161,
+      "capture_vcr_id": 1584,
+      "next_vcr_id": 1585,
+      "captured_ship_id": 2,
+      "captor_ship_id": 297,
+      "factual_opponent_ship_id": 128,
+      "external_order": [
+        2,
+        128,
+        297
+      ],
+      "positions": {
+        "captor": 2,
+        "factual": 1,
+        "prize": 0
+      },
+      "primary": {
+        "branch": "C",
+        "predicted_ship_id": 128,
+        "exact": true,
+        "candidate_states": {
+          "128": {
+            "disposition": "eligible",
+            "reason": null,
+            "prior_pair_occurrences": 1
+          },
+          "297": {
+            "disposition": "same_owner",
+            "reason": null,
+            "prior_pair_occurrences": 1
+          }
+        }
+      }
+    },
+    {
+      "game_id": 347358,
+      "turn": 52,
+      "capture_vcr_id": 176,
+      "next_vcr_id": 177,
+      "captured_ship_id": 351,
+      "captor_ship_id": 432,
+      "factual_opponent_ship_id": 361,
+      "external_order": [
+        104,
+        351,
+        361,
+        432,
+        460,
+        2,
+        310
+      ],
+      "positions": {
+        "captor": 3,
+        "factual": 2,
+        "prize": 1
+      },
+      "primary": {
+        "branch": "C",
+        "predicted_ship_id": 361,
+        "exact": true,
+        "candidate_states": {
+          "2": {
+            "disposition": "same_owner",
+            "reason": "tminus1_owner_matches_prize_owner",
+            "prior_pair_occurrences": 0
+          },
+          "104": {
+            "disposition": "inactive",
+            "reason": null,
+            "prior_pair_occurrences": 0
+          },
+          "310": {
+            "disposition": "same_owner",
+            "reason": "tminus1_owner_matches_prize_owner",
+            "prior_pair_occurrences": 0
+          },
+          "361": {
+            "disposition": "eligible",
+            "reason": null,
+            "prior_pair_occurrences": 0
+          },
+          "432": {
+            "disposition": "same_owner",
+            "reason": null,
+            "prior_pair_occurrences": 1
+          },
+          "460": {
+            "disposition": "same_owner",
+            "reason": "tminus1_owner_matches_prize_owner",
+            "prior_pair_occurrences": 0
+          }
+        }
+      }
+    },
+    {
+      "game_id": 400330,
+      "turn": 141,
+      "capture_vcr_id": 592,
+      "next_vcr_id": 593,
+      "captured_ship_id": 140,
+      "captor_ship_id": 184,
+      "factual_opponent_ship_id": 170,
+      "external_order": [
+        421,
+        296,
+        216,
+        140,
+        170,
+        382,
+        471,
+        134,
+        184,
+        195,
+        280,
+        285,
+        330
+      ],
+      "positions": {
+        "captor": 8,
+        "factual": 4,
+        "prize": 3
+      },
+      "primary": {
+        "branch": "C",
+        "predicted_ship_id": 170,
+        "exact": true,
+        "candidate_states": {
+          "134": {
+            "disposition": "inactive",
+            "reason": null,
+            "prior_pair_occurrences": 0
+          },
+          "170": {
+            "disposition": "eligible",
+            "reason": null,
+            "prior_pair_occurrences": 0
+          },
+          "184": {
+            "disposition": "same_owner",
+            "reason": null,
+            "prior_pair_occurrences": 1
+          },
+          "195": {
+            "disposition": "same_owner",
+            "reason": "tminus1_owner_matches_prize_owner",
+            "prior_pair_occurrences": 0
+          },
+          "216": {
+            "disposition": "inactive",
+            "reason": null,
+            "prior_pair_occurrences": 0
+          },
+          "280": {
+            "disposition": "same_owner",
+            "reason": "tminus1_owner_matches_prize_owner",
+            "prior_pair_occurrences": 0
+          },
+          "285": {
+            "disposition": "same_owner",
+            "reason": "tminus1_owner_matches_prize_owner",
+            "prior_pair_occurrences": 0
+          },
+          "296": {
+            "disposition": "inactive",
+            "reason": null,
+            "prior_pair_occurrences": 0
+          },
+          "330": {
+            "disposition": "same_owner",
+            "reason": "tminus1_owner_matches_prize_owner",
+            "prior_pair_occurrences": 0
+          },
+          "382": {
+            "disposition": "eligible",
+            "reason": null,
+            "prior_pair_occurrences": 0
+          },
+          "421": {
+            "disposition": "inactive",
+            "reason": null,
+            "prior_pair_occurrences": 0
+          },
+          "471": {
+            "disposition": "no_request",
+            "reason": null,
+            "prior_pair_occurrences": 0
+          }
+        }
+      }
+    },
+    {
+      "game_id": 400330,
+      "turn": 141,
+      "capture_vcr_id": 594,
+      "next_vcr_id": 595,
+      "captured_ship_id": 170,
+      "captor_ship_id": 184,
+      "factual_opponent_ship_id": 382,
+      "external_order": [
+        421,
+        296,
+        216,
+        140,
+        170,
+        382,
+        471,
+        134,
+        184,
+        195,
+        280,
+        285,
+        330
+      ],
+      "positions": {
+        "captor": 8,
+        "factual": 5,
+        "prize": 4
+      },
+      "primary": {
+        "branch": "C",
+        "predicted_ship_id": 382,
+        "exact": true,
+        "candidate_states": {
+          "134": {
+            "disposition": "inactive",
+            "reason": null,
+            "prior_pair_occurrences": 0
+          },
+          "140": {
+            "disposition": "eligible",
+            "reason": null,
+            "prior_pair_occurrences": 1
+          },
+          "184": {
+            "disposition": "same_owner",
+            "reason": null,
+            "prior_pair_occurrences": 1
+          },
+          "195": {
+            "disposition": "same_owner",
+            "reason": "tminus1_owner_matches_prize_owner",
+            "prior_pair_occurrences": 0
+          },
+          "216": {
+            "disposition": "inactive",
+            "reason": null,
+            "prior_pair_occurrences": 0
+          },
+          "280": {
+            "disposition": "same_owner",
+            "reason": "tminus1_owner_matches_prize_owner",
+            "prior_pair_occurrences": 0
+          },
+          "285": {
+            "disposition": "same_owner",
+            "reason": "tminus1_owner_matches_prize_owner",
+            "prior_pair_occurrences": 0
+          },
+          "296": {
+            "disposition": "inactive",
+            "reason": null,
+            "prior_pair_occurrences": 0
+          },
+          "330": {
+            "disposition": "same_owner",
+            "reason": "tminus1_owner_matches_prize_owner",
+            "prior_pair_occurrences": 0
+          },
+          "382": {
+            "disposition": "eligible",
+            "reason": null,
+            "prior_pair_occurrences": 0
+          },
+          "421": {
+            "disposition": "inactive",
+            "reason": null,
+            "prior_pair_occurrences": 0
+          },
+          "471": {
+            "disposition": "no_request",
+            "reason": null,
+            "prior_pair_occurrences": 0
+          }
+        }
+      }
+    },
+    {
+      "game_id": 497195,
+      "turn": 18,
+      "capture_vcr_id": 8,
+      "next_vcr_id": 9,
+      "captured_ship_id": 98,
+      "captor_ship_id": 60,
+      "factual_opponent_ship_id": 243,
+      "external_order": [
+        98,
+        243,
+        60
+      ],
+      "positions": {
+        "captor": 2,
+        "factual": 1,
+        "prize": 0
+      },
+      "primary": {
+        "branch": "C",
+        "predicted_ship_id": 243,
+        "exact": true,
+        "candidate_states": {
+          "60": {
+            "disposition": "same_owner",
+            "reason": null,
+            "prior_pair_occurrences": 1
+          },
+          "243": {
+            "disposition": "eligible",
+            "reason": null,
+            "prior_pair_occurrences": 0
+          }
+        }
+      }
+    }
+  ]
+}
