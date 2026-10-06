@@ -138,3 +138,47 @@ mutable-queue chain in Nu evidence.
 
 If V594 mismatches, the residual is specifically parent-resume cursor/state,
 not capture side or immediate C-forward selection.
+
+
+## First runtime attempt: diplomacy calibration overconstrained
+
+Runtime evidence:
+
+    runtime-logs/capture-parent-resume-v594/
+    20261006T175133Z_4a55cf2c16f8
+
+Result:
+
+    PARENT_RESUME_UNRESOLVED
+
+The parent selector did not choose a pair. Ten pair decisions were unresolved.
+
+All ten unresolved decisions reduce to the same missing directed diplomacy
+permission between owners 10 and 5:
+
+    owner10 -> owner5
+
+The first runner version removed every diplomacy calibration row from battle
+turn 141. That boundary was unnecessarily strict.
+
+The immediately preceding factual V593 is already elapsed evidence before the
+held-out V594 comparator and supplies an admissible owner10 -> owner5 combat
+control. Using it cannot leak V594.
+
+The corrected calibration boundary is therefore:
+
+    all other battle turns:
+        allowed
+
+    target turn 141:
+        VCR <= 593 allowed
+        VCR > 593 excluded
+
+This is stricter than the normal pair-specific exclusion because the held-out
+V594 pair and every later same-turn engagement are absent before parent queue
+selection.
+
+Pair history remains truncated through V593 as before.
+
+This runtime was therefore inconclusive due to an overconstrained evidence
+filter, not a parent-queue mechanics mismatch.
