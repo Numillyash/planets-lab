@@ -73,6 +73,7 @@ def test_stateful_differential_uses_carried_state_for_parent_selection() -> None
     assert "apply_site_terminal_batch" in source
     assert "record_factual_site_pair" in source
     assert "parent_queue_active_ship_ids(state)" in source
-    assert "state=state.standard_queue_state" in source
+    assert "select_temporary_capture_continuation" in source
+    assert "select_parent_resume" in source
     assert "CARRIED_STATE_HISTORY_ANCHORED" in source
     assert "Factual terminal outcomes remain injected" in source
