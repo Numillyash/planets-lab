@@ -1,0 +1,250 @@
+{
+  "active_after_capture": [
+    140,
+    170,
+    184,
+    195,
+    280,
+    285,
+    330,
+    382,
+    471
+  ],
+  "appearance_summary": {
+    "payload_conflicts": 0,
+    "raw_vcr_observations": 60,
+    "replay_supported": 12,
+    "ship_appearances": 23,
+    "source_members": 11,
+    "unique_vcrs": 12
+  },
+  "candidate_states": {
+    "134": {
+      "disposition": "inactive",
+      "prior_pair_occurrences": 0,
+      "reason": null
+    },
+    "170": {
+      "disposition": "same_owner",
+      "prior_pair_occurrences": 1,
+      "reason": null
+    },
+    "184": {
+      "disposition": "no_request",
+      "prior_pair_occurrences": 1,
+      "reason": null
+    },
+    "195": {
+      "disposition": "no_request",
+      "prior_pair_occurrences": 0,
+      "reason": null
+    },
+    "216": {
+      "disposition": "inactive",
+      "prior_pair_occurrences": 0,
+      "reason": null
+    },
+    "280": {
+      "disposition": "no_request",
+      "prior_pair_occurrences": 0,
+      "reason": null
+    },
+    "285": {
+      "disposition": "no_request",
+      "prior_pair_occurrences": 0,
+      "reason": null
+    },
+    "296": {
+      "disposition": "inactive",
+      "prior_pair_occurrences": 0,
+      "reason": null
+    },
+    "330": {
+      "disposition": "no_request",
+      "prior_pair_occurrences": 0,
+      "reason": null
+    },
+    "382": {
+      "disposition": "same_owner",
+      "prior_pair_occurrences": 0,
+      "reason": null
+    },
+    "421": {
+      "disposition": "inactive",
+      "prior_pair_occurrences": 0,
+      "reason": null
+    },
+    "471": {
+      "disposition": "same_owner",
+      "prior_pair_occurrences": 0,
+      "reason": null
+    }
+  },
+  "capture": {
+    "captor_ship_id": 170,
+    "new_owner_id": 10,
+    "new_race_id": 10,
+    "prize_hull_id": 89,
+    "prize_ship_id": 140
+  },
+  "database_path": "/corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "evidence_status": "HELD_OUT_NEXT_PAIR_NOT_USED",
+  "frozen_order": [
+    421,
+    296,
+    216,
+    140,
+    170,
+    382,
+    471,
+    134,
+    184,
+    195,
+    280,
+    285,
+    330
+  ],
+  "held_out_boundary": "No VCR N+1 ship id, pair, side or terminal state is consumed by the capture mutation, candidate-state reconstruction, or O/C selector. The active-membership helper receives a sentinel comparator id only to satisfy its historical report shape.",
+  "mutation_trace": [
+    {
+      "active_ship_ids": [
+        134,
+        140,
+        170,
+        184,
+        195,
+        216,
+        280,
+        285,
+        296,
+        330,
+        382,
+        471
+      ],
+      "captured_ship_ids": [],
+      "removed_ship_ids": [
+        421
+      ],
+      "vcr_id": 588
+    },
+    {
+      "active_ship_ids": [
+        134,
+        140,
+        170,
+        184,
+        195,
+        216,
+        280,
+        285,
+        330,
+        382,
+        471
+      ],
+      "captured_ship_ids": [],
+      "removed_ship_ids": [
+        296
+      ],
+      "vcr_id": 589
+    },
+    {
+      "active_ship_ids": [
+        140,
+        170,
+        184,
+        195,
+        216,
+        280,
+        285,
+        330,
+        382,
+        471
+      ],
+      "captured_ship_ids": [],
+      "removed_ship_ids": [
+        134
+      ],
+      "vcr_id": 590
+    },
+    {
+      "active_ship_ids": [
+        140,
+        170,
+        184,
+        195,
+        280,
+        285,
+        330,
+        382,
+        471
+      ],
+      "captured_ship_ids": [],
+      "removed_ship_ids": [
+        216
+      ],
+      "vcr_id": 591
+    },
+    {
+      "active_ship_ids": [
+        140,
+        170,
+        184,
+        195,
+        280,
+        285,
+        330,
+        382,
+        471
+      ],
+      "captured_ship_ids": [
+        140
+      ],
+      "removed_ship_ids": [],
+      "vcr_id": 592
+    },
+    {
+      "active_ship_ids": [
+        140,
+        170,
+        184,
+        195,
+        280,
+        285,
+        330,
+        382,
+        471
+      ],
+      "captured_ship_ids": [
+        140
+      ],
+      "removed_ship_ids": [],
+      "vcr_id": 593
+    }
+  ],
+  "schema": "planets-lab.capture-immediate-continuation-gate.v1",
+  "selection": {
+    "branch": null,
+    "predicted_ship_id": null,
+    "reason": "o_and_c_forward_exhausted",
+    "status": "no_pair",
+    "trace": [],
+    "unresolved_ship_id": null
+  },
+  "status": "NO_IMMEDIATE_CONTINUATION_PARENT_RESUME_REQUIRED",
+  "target": {
+    "battle_turn": 141,
+    "capture_vcr_id": 593,
+    "game_id": 400330,
+    "x": 1674,
+    "y": 2363
+  },
+  "visit_summary": {
+    "pseudo_vcr_count": 11,
+    "targeted_archive_turns": [
+      140,
+      141
+    ],
+    "targeted_snapshot_count": 22,
+    "visited_sites": 1
+  }
+}

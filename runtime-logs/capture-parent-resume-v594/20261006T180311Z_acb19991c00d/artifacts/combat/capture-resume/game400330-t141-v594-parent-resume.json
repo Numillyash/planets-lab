@@ -1,0 +1,437 @@
+{
+  "appearance_summary": {
+    "payload_conflicts": 0,
+    "raw_vcr_observations": 60,
+    "replay_supported": 12,
+    "ship_appearances": 23,
+    "source_members": 11,
+    "unique_vcrs": 12
+  },
+  "capture_prize_ship_id": 140,
+  "database_path": "/corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "evidence_status": "HELD_OUT_V594_COMPARATOR",
+  "exact": true,
+  "held_out_boundary": "Diplomacy controls from the target battle turn are truncated at V593: already elapsed rows through V593 may contribute, while V594 and every later same-turn row are removed before candidate evaluation. Pair history likewise consumes factual VCRs only through V593. The V594 pair and sides are read only after select_next_plain_standard returns, solely for comparison.",
+  "held_out_comparator": {
+    "left_ship_id": 184,
+    "pair": [
+      170,
+      184
+    ],
+    "right_ship_id": 170
+  },
+  "immediate_continuation_status": "NO_IMMEDIATE_CONTINUATION_PARENT_RESUME_REQUIRED",
+  "pair_exact": true,
+  "pair_input_diagnostics": {
+    "diplomacy_controls_through_vcr_id": 593,
+    "diplomacy_future_same_turn_rows_excluded": true,
+    "diplomacy_target_turn": 141,
+    "pair_rows": [
+      {
+        "engagement_eligible": true,
+        "owners": [
+          10,
+          5
+        ],
+        "pair": [
+          170,
+          184
+        ],
+        "permissions": [
+          true,
+          false
+        ],
+        "phase": "standard",
+        "prestandard_kind": null,
+        "requests": [
+          true,
+          false
+        ]
+      },
+      {
+        "engagement_eligible": true,
+        "owners": [
+          10,
+          5
+        ],
+        "pair": [
+          170,
+          195
+        ],
+        "permissions": [
+          true,
+          false
+        ],
+        "phase": "standard",
+        "prestandard_kind": null,
+        "requests": [
+          true,
+          false
+        ]
+      },
+      {
+        "engagement_eligible": true,
+        "owners": [
+          10,
+          5
+        ],
+        "pair": [
+          170,
+          280
+        ],
+        "permissions": [
+          true,
+          false
+        ],
+        "phase": "standard",
+        "prestandard_kind": null,
+        "requests": [
+          true,
+          false
+        ]
+      },
+      {
+        "engagement_eligible": true,
+        "owners": [
+          10,
+          5
+        ],
+        "pair": [
+          170,
+          285
+        ],
+        "permissions": [
+          true,
+          false
+        ],
+        "phase": "standard",
+        "prestandard_kind": null,
+        "requests": [
+          true,
+          false
+        ]
+      },
+      {
+        "engagement_eligible": true,
+        "owners": [
+          10,
+          5
+        ],
+        "pair": [
+          170,
+          330
+        ],
+        "permissions": [
+          true,
+          false
+        ],
+        "phase": "standard",
+        "prestandard_kind": null,
+        "requests": [
+          true,
+          false
+        ]
+      },
+      {
+        "engagement_eligible": true,
+        "owners": [
+          5,
+          10
+        ],
+        "pair": [
+          184,
+          382
+        ],
+        "permissions": [
+          false,
+          true
+        ],
+        "phase": "standard",
+        "prestandard_kind": null,
+        "requests": [
+          false,
+          true
+        ]
+      },
+      {
+        "engagement_eligible": false,
+        "owners": [
+          5,
+          10
+        ],
+        "pair": [
+          184,
+          471
+        ],
+        "permissions": [
+          false,
+          false
+        ],
+        "phase": null,
+        "prestandard_kind": null,
+        "requests": [
+          false,
+          false
+        ]
+      },
+      {
+        "engagement_eligible": true,
+        "owners": [
+          5,
+          10
+        ],
+        "pair": [
+          195,
+          382
+        ],
+        "permissions": [
+          false,
+          true
+        ],
+        "phase": "standard",
+        "prestandard_kind": null,
+        "requests": [
+          false,
+          true
+        ]
+      },
+      {
+        "engagement_eligible": false,
+        "owners": [
+          5,
+          10
+        ],
+        "pair": [
+          195,
+          471
+        ],
+        "permissions": [
+          false,
+          false
+        ],
+        "phase": null,
+        "prestandard_kind": null,
+        "requests": [
+          false,
+          false
+        ]
+      },
+      {
+        "engagement_eligible": true,
+        "owners": [
+          5,
+          10
+        ],
+        "pair": [
+          280,
+          382
+        ],
+        "permissions": [
+          false,
+          true
+        ],
+        "phase": "standard",
+        "prestandard_kind": null,
+        "requests": [
+          false,
+          true
+        ]
+      },
+      {
+        "engagement_eligible": false,
+        "owners": [
+          5,
+          10
+        ],
+        "pair": [
+          280,
+          471
+        ],
+        "permissions": [
+          false,
+          false
+        ],
+        "phase": null,
+        "prestandard_kind": null,
+        "requests": [
+          false,
+          false
+        ]
+      },
+      {
+        "engagement_eligible": true,
+        "owners": [
+          5,
+          10
+        ],
+        "pair": [
+          285,
+          382
+        ],
+        "permissions": [
+          false,
+          true
+        ],
+        "phase": "standard",
+        "prestandard_kind": null,
+        "requests": [
+          false,
+          true
+        ]
+      },
+      {
+        "engagement_eligible": false,
+        "owners": [
+          5,
+          10
+        ],
+        "pair": [
+          285,
+          471
+        ],
+        "permissions": [
+          false,
+          false
+        ],
+        "phase": null,
+        "prestandard_kind": null,
+        "requests": [
+          false,
+          false
+        ]
+      },
+      {
+        "engagement_eligible": true,
+        "owners": [
+          5,
+          10
+        ],
+        "pair": [
+          330,
+          382
+        ],
+        "permissions": [
+          false,
+          true
+        ],
+        "phase": "standard",
+        "prestandard_kind": null,
+        "requests": [
+          false,
+          true
+        ]
+      },
+      {
+        "engagement_eligible": false,
+        "owners": [
+          5,
+          10
+        ],
+        "pair": [
+          330,
+          471
+        ],
+        "permissions": [
+          false,
+          false
+        ],
+        "phase": null,
+        "prestandard_kind": null,
+        "requests": [
+          false,
+          false
+        ]
+      }
+    ]
+  },
+  "parent_queue_active_ship_ids": [
+    170,
+    184,
+    195,
+    280,
+    285,
+    330,
+    382,
+    471
+  ],
+  "physical_active_after_v593": [
+    140,
+    170,
+    184,
+    195,
+    280,
+    285,
+    330,
+    382,
+    471
+  ],
+  "prediction": {
+    "engagement_available": true,
+    "exhausted_pair_count": 0,
+    "inactive_pair_count": 0,
+    "left_ship_id": 184,
+    "occurrence_index": 1,
+    "pair": [
+      170,
+      184
+    ],
+    "right_ship_id": 170,
+    "unresolved_reasons": []
+  },
+  "queue_state": {
+    "first_pass_sides": {
+      "134-216": [
+        134,
+        216
+      ],
+      "134-296": [
+        134,
+        296
+      ],
+      "134-421": [
+        134,
+        421
+      ],
+      "140-170": [
+        140,
+        170
+      ],
+      "140-184": [
+        184,
+        140
+      ],
+      "184-216": [
+        184,
+        216
+      ]
+    },
+    "pair_occurrences": {
+      "134-216": 1,
+      "134-296": 1,
+      "134-421": 1,
+      "140-170": 1,
+      "140-184": 1,
+      "184-216": 1
+    }
+  },
+  "schema": "planets-lab.capture-parent-resume-v594-gate.v1",
+  "side_exact": true,
+  "status": "PARENT_RESUME_EXACT",
+  "target": {
+    "battle_turn": 141,
+    "game_id": 400330,
+    "held_out_vcr_id": 594,
+    "through_vcr_id": 593,
+    "x": 1674,
+    "y": 2363
+  },
+  "visit_summary": {
+    "pseudo_vcr_count": 11,
+    "targeted_archive_turns": [
+      140,
+      141
+    ],
+    "targeted_snapshot_count": 22,
+    "visited_sites": 1
+  }
+}
