@@ -11,8 +11,8 @@ Evidence boundary:
 * the V593 immediate-continuation gate is evaluated first and must return
   NO_IMMEDIATE_CONTINUATION_PARENT_RESUME_REQUIRED;
 * T-1 site inputs and relations are used for non-prize ships;
-* every diplomacy calibration row from battle turn 141 is removed before
-  candidate evaluation;
+* diplomacy calibration may use already elapsed factual VCRs through V593,
+  but every row after V593 is removed before candidate evaluation;
 * factual queue history is consumed only through V593 when building pair
   occurrence and first-pass side history;
 * the captured prize's temporary capture order is removed from parent
@@ -66,28 +66,37 @@ def _pair(a: int, b: int) -> tuple[int, int]:
 def _filtered_controls(
     controls: Mapping[Any, Any],
     *,
-    excluded_battle_turn: int,
+    target_battle_turn: int,
+    through_vcr_id: int,
 ) -> dict[Any, set[Any]]:
-    """Remove every calibration row from the target battle turn.
+    """Keep only diplomacy controls available before the held-out comparator.
 
-    This is intentionally broader than pair-specific held-out exclusion.  The
-    held-out V594 pair is therefore not needed even negatively to prepare
-    diplomacy permission.
+    Other battle turns are unchanged. Within the target turn, only factual
+    VCR rows with id <= through_vcr_id may contribute. The held-out V594 pair
+    and every later same-turn engagement are therefore absent from diplomacy
+    calibration, while already elapsed V593 remains admissible evidence.
     """
 
     filtered: dict[Any, set[Any]] = {}
     for key, rows in controls.items():
         if not isinstance(rows, set):
             rows = set(rows)
-        filtered[key] = {
-            row
-            for row in rows
+
+        kept: set[Any] = set()
+        for row in rows:
             if (
-                not isinstance(row, tuple)
-                or not row
-                or row[0] != excluded_battle_turn
-            )
-        }
+                isinstance(row, tuple)
+                and len(row) >= 2
+                and isinstance(row[0], int)
+                and not isinstance(row[0], bool)
+                and isinstance(row[1], int)
+                and not isinstance(row[1], bool)
+                and row[0] == target_battle_turn
+                and row[1] > through_vcr_id
+            ):
+                continue
+            kept.add(row)
+        filtered[key] = kept
     return filtered
 
 
@@ -156,7 +165,8 @@ def _pair_inputs_for_parent(
     *,
     context: Mapping[str, Any],
     active_parent_ids: set[int],
-    excluded_battle_turn: int,
+    target_battle_turn: int,
+    through_vcr_id: int,
 ) -> tuple[list[InitialStandardPairInput], dict[str, Any]]:
     predictions = context.get("predictions")
     relations = context.get("relations")
@@ -179,7 +189,8 @@ def _pair_inputs_for_parent(
 
     controls = _filtered_controls(
         controls_raw,
-        excluded_battle_turn=excluded_battle_turn,
+        target_battle_turn=target_battle_turn,
+        through_vcr_id=through_vcr_id,
     )
 
     rows: dict[int, Mapping[str, Any]] = {}
@@ -201,7 +212,9 @@ def _pair_inputs_for_parent(
     inputs: list[InitialStandardPairInput] = []
     diagnostics: dict[str, Any] = {
         "pair_rows": [],
-        "diplomacy_target_turn_excluded": excluded_battle_turn,
+        "diplomacy_target_turn": target_battle_turn,
+        "diplomacy_controls_through_vcr_id": through_vcr_id,
+        "diplomacy_future_same_turn_rows_excluded": True,
     }
 
     for a_id, b_id in combinations(sorted(rows), 2):
@@ -416,7 +429,8 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     pair_inputs, pair_diagnostics = _pair_inputs_for_parent(
         context=context,
         active_parent_ids=active_parent_ids,
-        excluded_battle_turn=args.battle_turn,
+        target_battle_turn=args.battle_turn,
+        through_vcr_id=args.capture_vcr_id,
     )
 
     selection = select_next_plain_standard(
@@ -514,8 +528,10 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "appearance_summary": appearance_summary,
         "visit_summary": visit_summary,
         "held_out_boundary": (
-            "All diplomacy controls from battle turn 141 are removed before "
-            "candidate evaluation. Pair history consumes factual VCRs only "
+            "Diplomacy controls from the target battle turn are truncated at "
+            "V593: already elapsed rows through V593 may contribute, while V594 "
+            "and every later same-turn row are removed before candidate "
+            "evaluation. Pair history likewise consumes factual VCRs only "
             "through V593. The V594 pair and sides are read only after "
             "select_next_plain_standard returns, solely for comparison."
         ),
