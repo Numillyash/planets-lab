@@ -76,4 +76,5 @@ def test_stateful_differential_uses_carried_state_for_parent_selection() -> None
     assert "select_temporary_capture_continuation" in source
     assert "select_parent_resume" in source
     assert "CARRIED_STATE_HISTORY_ANCHORED" in source
-    assert "Factual terminal outcomes remain injected" in source
+    assert "site_executor module" in source
+    assert "terminal outcomes remain injected" in source
