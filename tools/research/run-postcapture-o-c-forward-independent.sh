@@ -191,7 +191,7 @@ lab=(
 echo "===== VALIDATION DB BOUNDARY ====="
 (
   cd "$MAIN_ROOT"
-  "${lab[@]}" python - "$FRESH_MANIFEST" <<'PY'
+  "${lab[@]}" python - /workspace/validation/corpus/manifests/public-postindependent-validation-selected.jsonl <<'PY'
 import json
 import sys
 from pathlib import Path
