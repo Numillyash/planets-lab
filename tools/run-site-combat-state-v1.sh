@@ -51,7 +51,7 @@ prepare_local_python() {
   local python_bin="${PLANETS_SITE_STATE_RUNTIME_PYTHON:-python3}"
 
   if "$python_bin" - <<'PY' >/dev/null 2>&1
-import duckdb
+import duckdb, pyarrow
 PY
   then
     printf '%s\n' "$python_bin"
@@ -65,10 +65,10 @@ PY
   fi
 
   if ! "$RUNTIME_VENV/bin/python" - <<'PY' >/dev/null 2>&1
-import duckdb
+import duckdb, pyarrow
 PY
   then
-    "$RUNTIME_VENV/bin/python" -m pip install --disable-pip-version-check -e "$ROOT"
+    "$RUNTIME_VENV/bin/python" -m pip install --disable-pip-version-check -e "$ROOT" 1>&2
   fi
 
   printf '%s\n' "$RUNTIME_VENV/bin/python"
@@ -103,7 +103,7 @@ case "$RUNTIME_MODE" in
     run_local_gate
     ;;
   auto)
-    if docker info >/dev/null 2>&1 \
+    if timeout 20s docker info >/dev/null 2>&1 \
       && docker compose -f compose.yaml -f compose.corpus-db.yaml build lab
     then
       echo "runtime_selected: docker"
