@@ -29,12 +29,13 @@ for path in (REPO_ROOT, DIAGNOSTICS):
         sys.path.insert(0, str(path))
 
 from planets_lab.corpus.corpus_db_runtime import connect_compact_generation_read_only
-from planets_lab.rules.combat.capture_queue import (
-    CaptureCandidateState as CandidateState,
-)
 from planets_lab.rules.combat.site_executor import (
     select_parent_resume,
     select_temporary_capture_continuation,
+)
+from planets_lab.rules.combat.site_input_adapter import (
+    build_parent_standard_pair_inputs,
+    build_post_capture_candidate_states,
 )
 from planets_lab.rules.combat.site_state import (
     SiteCombatState,
@@ -45,7 +46,7 @@ from planets_lab.rules.combat.site_state import (
 )
 
 import combat_capture_immediate_continuation_gate as immediate_gate
-import combat_capture_parent_resume_v594_gate as parent_resume_gate
+import combat_host_initial_standard_target_audit as baseline_module
 import combat_host_post_capture_active_membership_audit as active_module
 import combat_host_post_mutation_next_pair_audit as mutation_module
 import combat_public_capture_o_layer_probe as o_layer_module
@@ -271,180 +272,6 @@ def _capture_side(
     raise ValueError("captured prize missing from factual sides")
 
 
-def _immediate_candidate_states(
-    *,
-    state: SiteCombatState,
-    context: Mapping[str, Any],
-    prize_ship_id: int,
-    through_vcr_id: int,
-) -> dict[int, CandidateState]:
-    predictions = context.get("predictions")
-    relations = context.get("relations")
-    controls_raw = context.get("controls")
-    start_stacks = context.get("start_stacks")
-    before_turn = context.get("before_turn")
-    game_id = context.get("game_id")
-    battle_turn = context.get("battle_turn")
-    if (
-        not isinstance(predictions, Mapping)
-        or not isinstance(relations, Mapping)
-        or not isinstance(controls_raw, Mapping)
-        or not isinstance(start_stacks, Mapping)
-        or isinstance(before_turn, bool)
-        or not isinstance(before_turn, int)
-        or isinstance(game_id, bool)
-        or not isinstance(game_id, int)
-        or isinstance(battle_turn, bool)
-        or not isinstance(battle_turn, int)
-    ):
-        raise ValueError("candidate context incomplete")
-
-    prize = state.active_ships.get(prize_ship_id)
-    if not isinstance(prize, Mapping):
-        raise ValueError("captured prize not physically active")
-    prize_owner = prize.get("owner_id")
-    prize_race = prize.get("race_id")
-    prize_hull = prize.get("hull_id")
-    if (
-        isinstance(prize_owner, bool)
-        or not isinstance(prize_owner, int)
-        or prize_owner <= 0
-        or isinstance(prize_race, bool)
-        or not isinstance(prize_race, int)
-        or prize_race <= 0
-        or isinstance(prize_hull, bool)
-        or not isinstance(prize_hull, int)
-        or prize_hull <= 0
-    ):
-        raise ValueError("captured prize identity unresolved")
-
-    controls = immediate_gate._controls_through_vcr(
-        controls_raw,
-        target_battle_turn=int(battle_turn),
-        through_vcr_id=through_vcr_id,
-    )
-    order = state.temporary_capture_order
-    if order is None or order.prize_ship_id != prize_ship_id:
-        raise ValueError("temporary capture order missing")
-
-    states: dict[int, CandidateState] = {}
-    for ship_id in order.order:
-        if ship_id == prize_ship_id:
-            continue
-
-        pair = _pair(prize_ship_id, ship_id)
-        prior = int(state.standard_queue_state.pair_occurrences.get(pair, 0))
-
-        if ship_id not in state.active_ships:
-            states[ship_id] = CandidateState(ship_id, "inactive")
-            continue
-        if prior >= 2:
-            states[ship_id] = CandidateState(ship_id, "pair_exhausted")
-            continue
-
-        current = state.active_ships[ship_id]
-        current_owner = current.get("owner_id")
-        if (
-            isinstance(current_owner, bool)
-            or not isinstance(current_owner, int)
-            or current_owner <= 0
-        ):
-            states[ship_id] = CandidateState(
-                ship_id,
-                "unresolved",
-                "current_owner_unresolved",
-            )
-            continue
-        if current_owner == prize_owner:
-            states[ship_id] = CandidateState(ship_id, "same_owner")
-            continue
-
-        entry = predictions.get(ship_id)
-        if not isinstance(entry, Mapping):
-            states[ship_id] = CandidateState(
-                ship_id,
-                "unresolved",
-                "tminus1_prediction_missing",
-            )
-            continue
-        tminus1_owner = entry.get("owner_id")
-        raw = entry.get("raw")
-        if (
-            isinstance(tminus1_owner, bool)
-            or not isinstance(tminus1_owner, int)
-            or not isinstance(raw, Mapping)
-        ):
-            states[ship_id] = CandidateState(
-                ship_id,
-                "unresolved",
-                "tminus1_order_state_missing",
-            )
-            continue
-        if int(tminus1_owner) != int(current_owner):
-            states[ship_id] = CandidateState(
-                ship_id,
-                "unresolved",
-                "candidate_owner_changed_before_capture",
-            )
-            continue
-
-        request = _requests_combat(raw, int(prize_owner))
-        if request is False:
-            states[ship_id] = CandidateState(ship_id, "no_request")
-            continue
-        if request is not True:
-            states[ship_id] = CandidateState(
-                ship_id,
-                "unresolved",
-                "combat_request_unresolved",
-            )
-            continue
-
-        signature = _relation_signature(
-            relations.get(int(before_turn), {}),
-            int(current_owner),
-            int(prize_owner),
-        )
-        permission = _independent_permission(
-            request=request,
-            owner_id=int(current_owner),
-            opponent_owner_id=int(prize_owner),
-            signature=signature,
-            controls=controls,
-            excluded_rows=frozenset(),
-        )
-        if permission is False:
-            states[ship_id] = CandidateState(ship_id, "permission_denied")
-            continue
-        if permission is not True:
-            states[ship_id] = CandidateState(
-                ship_id,
-                "unresolved",
-                "strict_permission_unresolved",
-            )
-            continue
-
-        disposition, reason = immediate_gate._pair_disposition(
-            game_id=int(game_id),
-            before_turn=int(before_turn),
-            prize_id=prize_ship_id,
-            prize_owner=int(prize_owner),
-            prize_race=int(prize_race),
-            prize_hull=int(prize_hull),
-            candidate_id=ship_id,
-            candidate_row={"strict_permission": True},
-            predictions=predictions,
-            start_stacks=start_stacks,
-        )
-        states[ship_id] = CandidateState(
-            ship_id=ship_id,
-            disposition=disposition,
-            reason=reason,
-        )
-
-    return states
-
-
 def _predict_capture_continuation(
     *,
     state: SiteCombatState,
@@ -457,15 +284,19 @@ def _predict_capture_continuation(
     if temporary is None:
         raise ValueError("temporary capture order missing")
 
-    candidate_states = _immediate_candidate_states(
+    adapted = build_post_capture_candidate_states(
         state=state,
         context=context,
         prize_ship_id=prize_ship_id,
         through_vcr_id=through_vcr_id,
+        requests_combat=_requests_combat,
+        relation_signature=_relation_signature,
+        independent_permission=_independent_permission,
+        pair_disposition=immediate_gate._pair_disposition,
     )
     step = select_temporary_capture_continuation(
         state,
-        candidate_states=candidate_states,
+        candidate_states=adapted.candidate_states,
     )
 
     if step.status == "unresolved":
@@ -657,13 +488,19 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         )
 
         if prediction is None:
-            active_parent = set(parent_queue_active_ship_ids(state))
-            pair_inputs, diagnostics = parent_resume_gate._pair_inputs_for_parent(
+            adapted_parent = build_parent_standard_pair_inputs(
+                state=state,
                 context=context,
-                active_parent_ids=active_parent,
                 target_battle_turn=args.battle_turn,
                 through_vcr_id=current_vcr_id,
+                requests_combat=_requests_combat,
+                relation_signature=_relation_signature,
+                independent_permission=_independent_permission,
+                interference_state=baseline_module._interference_state,
+                candidate_input=baseline_module._candidate_input,
             )
+            pair_inputs = adapted_parent.pair_inputs
+            diagnostics = adapted_parent.diagnostics
             parent_step = select_parent_resume(
                 state,
                 pair_inputs=pair_inputs,
@@ -747,10 +584,12 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "Site history before the target window is reconstructed once. "
             "From V592 onward, physical membership, capture exclusions, "
             "temporary capture-order lifecycle and pair history are carried in "
-            "SiteCombatState. Temporary capture lifecycle and parent selection "
-            "are delegated to the reusable site_executor module. Factual "
-            "terminal outcomes remain injected after each observed VCR. N+1 "
-            "pair/sides are opened only after selection."
+            "SiteCombatState. Candidate-state recomposition, temporal diplomacy "
+            "cutoff and parent STANDARD pair-input assembly are delegated to the "
+            "reusable evidence-scoped site_input_adapter; temporary capture "
+            "lifecycle and parent selection are delegated to site_executor. "
+            "Factual terminal outcomes remain injected after each observed VCR. "
+            "N+1 pair/sides are opened only after selection."
         ),
     }
 
