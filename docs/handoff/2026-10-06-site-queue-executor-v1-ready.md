@@ -130,3 +130,77 @@ diagnostic becomes only:
 
 After that, factual terminal outcomes are the principal remaining injected
 dependency before a genuinely generative site executor.
+
+
+## Runtime infrastructure failures after merge
+
+Two post-merge regression attempts failed before the differential executed.
+
+First attempt:
+
+    runtime-logs/site-combat-state-v1/
+    20261006T190923Z_07e19bd01d03
+
+Docker completed package installation but containerd died while exporting the
+image:
+
+    dial unix /run/containerd/containerd.sock: connect: connection refused
+    failed to solve: Unavailable: error reading from server: EOF
+
+Second attempt:
+
+    runtime-logs/site-combat-state-v1/
+    20261006T191604Z_07e19bd01d03
+
+The Docker compose build process itself terminated with segmentation fault
+before the diagnostic started.
+
+These are infrastructure-only failures:
+
+    differential executed: NO
+    mechanics comparator opened: NO
+    SITE_STATE result: NONE
+
+They must not be counted as queue/executor mismatches.
+
+## Docker-independent runtime fallback
+
+The site-state runner now supports:
+
+    PLANETS_SITE_STATE_RUNTIME_MODE=auto
+    PLANETS_SITE_STATE_RUNTIME_MODE=docker
+    PLANETS_SITE_STATE_RUNTIME_MODE=local
+
+Default:
+
+    auto
+
+In auto mode:
+
+1. Docker daemon preflight is bounded;
+2. Docker image build is attempted;
+3. only if preflight/build fails, execution falls back to host Python;
+4. if Docker build succeeds, any nonzero exit from the actual differential is
+   propagated and is not hidden by a local fallback.
+
+Host mode reads the exact same immutable public100 generation directly from:
+
+    PLANETS_CORPUS_DB_ROOT
+
+and verifies the same SHA before execution.
+
+If the host Python lacks project runtime dependencies, a cached venv is created
+under:
+
+    ~/.cache/planets-lab/site-state-v1
+
+The repository itself remains clean.
+
+For a currently unhealthy Docker/containerd installation, prefer the explicit
+one-shot regression:
+
+    export PLANETS_SITE_STATE_RUNTIME_MODE=local
+    bash tools/run-site-combat-state-v1-with-evidence.sh
+
+This bypasses Docker entirely while preserving the same diagnostic code,
+database generation, held-out comparator, and runtime-evidence wrapper.
