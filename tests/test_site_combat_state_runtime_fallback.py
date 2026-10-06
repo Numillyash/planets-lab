@@ -134,3 +134,146 @@ exit 0
     )
 
     assert not marker.exists()
+
+
+
+def test_local_runtime_rejects_configured_python_310(tmp_path: Path) -> None:
+    corpus_root = tmp_path / "corpus"
+    generations = corpus_root / "generations"
+    generations.mkdir(parents=True)
+    db = generations / "fake.duckdb"
+    db.write_bytes(b"fixture-db")
+    sha = hashlib.sha256(db.read_bytes()).hexdigest()
+
+    bin_dir = tmp_path / "bin"
+    bin_dir.mkdir()
+    fake_python = bin_dir / "python3.10"
+    _write_executable(
+        fake_python,
+        """#!/usr/bin/env bash
+set -euo pipefail
+if [[ "${1:-}" == "-c" ]]; then
+  exit 1
+fi
+exit 0
+""",
+    )
+
+    env = os.environ.copy()
+    env.update(
+        {
+            "PATH": f"{bin_dir}:{env['PATH']}",
+            "PLANETS_CORPUS_DB_ROOT": str(corpus_root),
+            "PUBLIC100_REL": "generations/fake.duckdb",
+            "PUBLIC100_SHA": sha,
+            "PLANETS_SITE_STATE_RUNTIME_MODE": "local",
+            "PLANETS_SITE_STATE_RUNTIME_PYTHON": str(fake_python),
+            "PLANETS_SITE_STATE_RUNTIME_VENV": str(tmp_path / "venv"),
+            "OUTPUT": str(tmp_path / "out.json"),
+        }
+    )
+
+    completed = subprocess.run(
+        ["bash", str(RUNNER)],
+        cwd=REPO_ROOT,
+        env=env,
+        text=True,
+        capture_output=True,
+    )
+
+    assert completed.returncode != 0
+    combined = completed.stdout + completed.stderr
+    assert "requires Python >=3.11" in combined
+
+
+def test_incompatible_cached_venv_is_rebuilt(tmp_path: Path) -> None:
+    corpus_root = tmp_path / "corpus"
+    generations = corpus_root / "generations"
+    generations.mkdir(parents=True)
+    db = generations / "fake.duckdb"
+    db.write_bytes(b"fixture-db")
+    sha = hashlib.sha256(db.read_bytes()).hexdigest()
+
+    bin_dir = tmp_path / "bin"
+    bin_dir.mkdir()
+    marker = tmp_path / "venv-created"
+
+    fake_python = bin_dir / "python3.11"
+    _write_executable(
+        fake_python,
+        f"""#!/usr/bin/env bash
+set -euo pipefail
+if [[ "${{1:-}}" == "-c" ]]; then
+  exit 0
+fi
+if [[ "${{1:-}}" == "-" ]]; then
+  cat >/dev/null
+  exit 1
+fi
+if [[ "${{1:-}}" == "-m" && "${{2:-}}" == "venv" ]]; then
+  target="${{3}}"
+  mkdir -p "$target/bin"
+  cat >"$target/bin/python" <<'PY'
+#!/usr/bin/env bash
+set -euo pipefail
+if [[ "${1:-}" == "-c" ]]; then
+  exit 0
+fi
+if [[ "${1:-}" == "-" ]]; then
+  cat >/dev/null
+  exit 0
+fi
+if [[ "${1:-}" == "-m" && "${2:-}" == "pip" ]]; then
+  exit 0
+fi
+printf 'FAKE_REBUILT_GATE %s\n' "$*"
+exit 0
+PY
+  chmod +x "$target/bin/python"
+  touch {marker}
+  exit 0
+fi
+exit 0
+""",
+    )
+
+    venv = tmp_path / "venv"
+    (venv / "bin").mkdir(parents=True)
+    _write_executable(
+        venv / "bin" / "python",
+        """#!/usr/bin/env bash
+set -euo pipefail
+if [[ "${1:-}" == "-c" ]]; then
+  exit 1
+fi
+exit 1
+""",
+    )
+
+    env = os.environ.copy()
+    env.update(
+        {
+            "PATH": f"{bin_dir}:{env['PATH']}",
+            "PLANETS_CORPUS_DB_ROOT": str(corpus_root),
+            "PUBLIC100_REL": "generations/fake.duckdb",
+            "PUBLIC100_SHA": sha,
+            "PLANETS_SITE_STATE_RUNTIME_MODE": "local",
+            "PLANETS_SITE_STATE_RUNTIME_PYTHON": str(fake_python),
+            "PLANETS_SITE_STATE_RUNTIME_VENV": str(venv),
+            "OUTPUT": str(tmp_path / "out.json"),
+        }
+    )
+
+    completed = subprocess.run(
+        ["bash", str(RUNNER)],
+        cwd=REPO_ROOT,
+        env=env,
+        text=True,
+        capture_output=True,
+        check=True,
+    )
+
+    combined = completed.stdout + completed.stderr
+    assert "cached venv uses incompatible Python; rebuilding" in combined
+    assert marker.exists()
+    assert "FAKE_REBUILT_GATE" in combined
