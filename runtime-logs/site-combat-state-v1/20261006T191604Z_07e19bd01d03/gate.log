@@ -1,0 +1,5 @@
+===== SITE COMBAT STATE DIFFERENTIAL V1 =====
+HEAD:      07e19bd01d03be827b7c67b0e639e0ed7e1b70ca
+public100: generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb
+sha256:    3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c
+tools/run-site-combat-state-v1.sh: line 31: 225788 Segmentation fault      docker compose -f compose.yaml -f compose.corpus-db.yaml build lab
