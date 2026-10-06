@@ -1,19 +1,15 @@
 from __future__ import annotations
 
 import json
-import sys
 from pathlib import Path
+
+from planets_lab.rules.combat.capture_queue import (
+    CaptureCandidateState as CandidateState,
+    select_o_then_c_forward,
+)
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-DIAGNOSTICS = REPO_ROOT / "tools" / "diagnostics"
-if str(DIAGNOSTICS) not in sys.path:
-    sys.path.insert(0, str(DIAGNOSTICS))
-
-from combat_postcapture_o_c_forward_selector import (
-    CandidateState,
-    select_o_then_c_forward,
-)
 
 
 FIXTURE = (
