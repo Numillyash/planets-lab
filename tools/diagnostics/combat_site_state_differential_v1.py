@@ -587,7 +587,8 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "SiteCombatState. Candidate-state recomposition, temporal diplomacy "
             "cutoff and parent STANDARD pair-input assembly are delegated to the "
             "reusable evidence-scoped site_input_adapter; temporary capture "
-            "lifecycle and parent selection are delegated to site_executor. "
+            "lifecycle and parent selection are delegated to the reusable "
+            "site_executor module. "
             "Factual terminal outcomes remain injected after each observed VCR. "
             "N+1 pair/sides are opened only after selection."
         ),
