@@ -27,6 +27,11 @@ def test_probe_keeps_main_runtime_dependency_explicit() -> None:
     text = PROBE.read_text(encoding="utf-8")
     assert "connect_compact_generation_read_only" in text
     assert 'MAIN_DIAGNOSTICS = Path("/workspace/tools/diagnostics")' in text
+    assert "while str(MAIN_DIAGNOSTICS) in sys.path:" in text
+    assert "sys.path.remove(str(MAIN_DIAGNOSTICS))" in text
+    assert "sys.path.insert(0, str(MAIN_DIAGNOSTICS))" in text
+    assert "_assert_main_diagnostic" in text
+    assert "expected main diagnostic under" in text
     assert "combat_public_capture_o_layer_probe" in text
     assert "postcapture_site_transition_executor" in text
 
