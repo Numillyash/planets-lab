@@ -1,0 +1,129 @@
+===== CAPTURE RESUME GATE =====
+HEAD:       2de3567c3e768bc3c93755d9dcdf19787bbc32cb
+public100:  generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb
+sha256:     3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "default" instance using docker driver
+
+#1 [lab internal] load build definition from Dockerfile
+#1 transferring dockerfile: 373B done
+#1 DONE 0.0s
+
+#2 [lab internal] load metadata for docker.io/library/python:3.12-slim
+#2 DONE 0.0s
+
+#3 [lab internal] load .dockerignore
+#3 transferring context: 184B done
+#3 DONE 0.0s
+
+#4 [lab internal] load build context
+#4 DONE 0.0s
+
+#5 [lab 1/6] FROM docker.io/library/python:3.12-slim@sha256:dd29372629eeba2dd003fd9e9d35a5b8236c44727875a0364254b5127af88e65
+#5 resolve docker.io/library/python:3.12-slim@sha256:dd29372629eeba2dd003fd9e9d35a5b8236c44727875a0364254b5127af88e65
+#5 ...
+
+#6 [lab auth] library/python:pull token for registry-1.docker.io
+#6 DONE 0.0s
+
+#5 [lab 1/6] FROM docker.io/library/python:3.12-slim@sha256:dd29372629eeba2dd003fd9e9d35a5b8236c44727875a0364254b5127af88e65
+#5 resolve docker.io/library/python:3.12-slim@sha256:dd29372629eeba2dd003fd9e9d35a5b8236c44727875a0364254b5127af88e65 1.0s done
+#5 DONE 1.0s
+
+#4 [lab internal] load build context
+#4 transferring context: 26.08kB 0.0s done
+#4 DONE 0.0s
+
+#7 [lab 2/6] WORKDIR /workspace
+#7 CACHED
+
+#8 [lab 3/6] COPY pyproject.toml README.md ./
+#8 CACHED
+
+#9 [lab 4/6] COPY src ./src
+#9 CACHED
+
+#10 [lab 5/6] COPY tests ./tests
+#10 DONE 0.1s
+
+#11 [lab 6/6] RUN python -m pip install --no-cache-dir --upgrade pip     && python -m pip install --no-cache-dir -e '.[dev]'
+#11 1.316 Requirement already satisfied: pip in /usr/local/lib/python3.12/site-packages (25.0.1)
+#11 1.652 Collecting pip
+#11 1.905   Downloading pip-26.2.1-py3-none-any.whl.metadata (4.6 kB)
+#11 1.951 Downloading pip-26.2.1-py3-none-any.whl (1.8 MB)
+#11 2.197    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 15.0 MB/s eta 0:00:00
+#11 2.210 Installing collected packages: pip
+#11 2.210   Attempting uninstall: pip
+#11 2.212     Found existing installation: pip 25.0.1
+#11 2.246     Uninstalling pip-25.0.1:
+#11 2.421       Successfully uninstalled pip-25.0.1
+#11 3.019 Successfully installed pip-26.2.1
+#11 3.019 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#11 3.535 Obtaining file:///workspace
+#11 3.538   Installing build dependencies: started
+#11 4.981   Installing build dependencies: finished with status 'done'
+#11 4.982   Checking if build backend supports build_editable: started
+#11 5.397   Checking if build backend supports build_editable: finished with status 'done'
+#11 5.398   Getting requirements to build editable: started
+#11 5.921   Getting requirements to build editable: finished with status 'done'
+#11 5.923   Preparing editable metadata (pyproject.toml): started
+#11 6.454   Preparing editable metadata (pyproject.toml): finished with status 'done'
+#11 6.997 Collecting duckdb<1.6,>=1.5 (from planets-lab==0.1.0)
+#11 7.202   Downloading duckdb-1.5.6-cp312-cp312-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl.metadata (4.2 kB)
+#11 7.298 Collecting pyarrow<22,>=21 (from planets-lab==0.1.0)
+#11 7.342   Downloading pyarrow-21.0.0-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (3.3 kB)
+#11 7.400 Collecting pytest<9,>=8 (from planets-lab==0.1.0)
+#11 7.442   Downloading pytest-8.4.2-py3-none-any.whl.metadata (7.7 kB)
+#11 7.494 Collecting iniconfig>=1 (from pytest<9,>=8->planets-lab==0.1.0)
+#11 7.537   Downloading iniconfig-2.3.0-py3-none-any.whl.metadata (2.5 kB)
+#11 7.585 Collecting packaging>=20 (from pytest<9,>=8->planets-lab==0.1.0)
+#11 7.630   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+#11 7.677 Collecting pluggy<2,>=1.5 (from pytest<9,>=8->planets-lab==0.1.0)
+#11 7.720   Downloading pluggy-1.6.0-py3-none-any.whl.metadata (4.8 kB)
+#11 7.773 Collecting pygments>=2.7.2 (from pytest<9,>=8->planets-lab==0.1.0)
+#11 7.816   Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+#11 7.862 Downloading duckdb-1.5.6-cp312-cp312-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl (21.6 MB)
+#11 8.698    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 21.6/21.6 MB 30.5 MB/s  0:00:00
+#11 8.742 Downloading pyarrow-21.0.0-cp312-cp312-manylinux_2_28_x86_64.whl (42.8 MB)
+#11 9.669    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 42.8/42.8 MB 46.3 MB/s  0:00:00
+#11 9.714 Downloading pytest-8.4.2-py3-none-any.whl (365 kB)
+#11 9.769 Downloading pluggy-1.6.0-py3-none-any.whl (20 kB)
+#11 9.812 Downloading iniconfig-2.3.0-py3-none-any.whl (7.5 kB)
+#11 9.854 Downloading packaging-26.3-py3-none-any.whl (129 kB)
+#11 9.907 Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+#11 9.971    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 17.4 MB/s  0:00:00
+#11 10.02 Building wheels for collected packages: planets-lab
+#11 10.02   Building editable for planets-lab (pyproject.toml): started
+#11 10.60   Building editable for planets-lab (pyproject.toml): finished with status 'done'
+#11 10.60   Created wheel for planets-lab: filename=planets_lab-0.1.0-0.editable-py3-none-any.whl size=3673 sha256=38bfb6f1c6ffa6eb2b25416924f47767ce09466e60f387a1a8de77599cc5b037
+#11 10.60   Stored in directory: /tmp/pip-ephem-wheel-cache-gd3uguq9/wheels/b0/41/ab/4e04a8678980f3355548f1261923479fbf2a713a7393a7dea8
+#11 10.60 Successfully built planets-lab
+#11 10.63 Installing collected packages: pygments, pyarrow, pluggy, packaging, iniconfig, duckdb, pytest, planets-lab
+#11 15.52 
+#11 15.52 Successfully installed duckdb-1.5.6 iniconfig-2.3.0 packaging-26.3 planets-lab-0.1.0 pluggy-1.6.0 pyarrow-21.0.0 pygments-2.21.0 pytest-8.4.2
+#11 15.53 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#11 DONE 15.8s
+
+#12 [lab] exporting to image
+#12 exporting layers
+#12 exporting layers 5.9s done
+#12 exporting manifest sha256:f582ec31ff9fd96ef4e7feeccf769eebc602728f531d00af2d7a8a1fb6a8a49f done
+#12 exporting config sha256:236e5094b6bf8a861b4d025f64eae3501421fbf60bcf89bdf258eeccfe872e27 done
+#12 exporting attestation manifest sha256:01dda582f6d012bc2cc0db76cd6eff79069e26121a752182eede5d39493df182 0.0s done
+#12 exporting manifest list sha256:eeb8ef038abcb2dd7e73007a7c6b27e6265b8b4a418d4370101e1ae770062de4 done
+#12 naming to docker.io/library/planets-lab-lab:latest done
+#12 unpacking to docker.io/library/planets-lab-lab:latest
+#12 unpacking to docker.io/library/planets-lab-lab:latest 1.4s done
+#12 DONE 7.4s
+
+#13 [lab] resolving provenance for metadata file
+#13 DONE 0.0s
+ lab  Built
+===== CAPTURE IMMEDIATE CONTINUATION GATE =====
+target:    {'game_id': 400330, 'battle_turn': 141, 'x': 1674, 'y': 2363, 'capture_vcr_id': 593}
+capture:   {'prize_ship_id': 140, 'captor_ship_id': 170, 'new_owner_id': 10, 'new_race_id': 10, 'prize_hull_id': 89}
+status:    NO_IMMEDIATE_CONTINUATION_PARENT_RESUME_REQUIRED
+selection: {'status': 'no_pair', 'branch': None, 'predicted_ship_id': None, 'unresolved_ship_id': None, 'reason': 'o_and_c_forward_exhausted', 'trace': []}
+output:    artifacts/combat/capture-resume/game400330-t141-v593-immediate-continuation.json
+output: artifacts/combat/capture-resume/game400330-t141-v593-immediate-continuation.json
