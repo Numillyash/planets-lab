@@ -165,10 +165,10 @@ def test_parent_resume_propagates_unresolved_selection() -> None:
         }
     )
     unresolved = InitialStandardPairInput(
-        left=_side(20, 2),
+        left=_side(20, 2, mission=3),
         right=_side(30, 3),
         decision=decide_ship_combat_pair(
-            left=_side(20, 2),
+            left=_side(20, 2, mission=3),
             right=_side(
                 30,
                 3,
