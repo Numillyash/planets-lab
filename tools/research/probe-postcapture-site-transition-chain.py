@@ -21,8 +21,14 @@ from typing import Any, Mapping, Sequence
 
 RESEARCH_ROOT = Path(__file__).resolve().parents[2]
 RESEARCH_TOOLS = Path(__file__).resolve().parent
+LOCAL_DIAGNOSTICS = RESEARCH_ROOT / "tools" / "diagnostics"
 MAIN_DIAGNOSTICS = Path("/workspace/tools/diagnostics")
-for path in (RESEARCH_ROOT, RESEARCH_TOOLS, MAIN_DIAGNOSTICS):
+for path in (
+    RESEARCH_ROOT,
+    RESEARCH_TOOLS,
+    LOCAL_DIAGNOSTICS,
+    MAIN_DIAGNOSTICS,
+):
     if str(path) not in sys.path:
         sys.path.insert(0, str(path))
 
