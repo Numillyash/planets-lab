@@ -1,0 +1,93 @@
+{
+  "appearance_summary": {
+    "payload_conflicts": 0,
+    "raw_vcr_observations": 60,
+    "replay_supported": 12,
+    "ship_appearances": 23,
+    "source_members": 11,
+    "unique_vcrs": 12
+  },
+  "database_path": "/corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "evidence_boundary": "Open-population integration differential. Factual VCR N supplies only terminal replay state and elapsed pair history. Capture predecessors use the previously frozen O/C selector state from the independent selector report. Ordinary predecessors use production STANDARD post-mutation selection over T-1 pair inputs filtered by the mutated active set. A surviving ship whose owner changed after T-1 fails closed on the ordinary path. Factual VCR N+1 is used only after selection as the pair comparator. This integration run is not new independent evidence for already-open cases.",
+  "evidence_status": "OPEN_POPULATION_INTEGRATION",
+  "schema": "planets-lab.postcapture-site-transition-integration.v1",
+  "summary": {
+    "all_pair_exact": false,
+    "capture_cursor_transitions": 1,
+    "expected_transitions": 3,
+    "ordinary_queue_transitions": 0,
+    "pair_exact": 1,
+    "pair_mismatch_or_unresolved": 1,
+    "transitions_evaluated": 2
+  },
+  "target": {
+    "battle_turn": 141,
+    "end_vcr": 595,
+    "game_id": 400330,
+    "start_vcr": 592,
+    "x": 1674,
+    "y": 2363
+  },
+  "transitions": [
+    {
+      "active_after_mutation": [
+        134,
+        140,
+        170,
+        184,
+        195,
+        280,
+        285,
+        296,
+        330,
+        382,
+        421,
+        471
+      ],
+      "capture_branch": "C",
+      "captured_ship_ids": [
+        140
+      ],
+      "expected_source": "capture_cursor",
+      "factual_pair": [
+        140,
+        170
+      ],
+      "from_vcr": 592,
+      "ordinary_side_exact": null,
+      "pair_exact": true,
+      "predecessor_terminal": "capture",
+      "predicted_ordinary_occurrence": null,
+      "predicted_pair": [
+        140,
+        170
+      ],
+      "reason": null,
+      "removed_ship_ids": [],
+      "selection_source": "capture_cursor",
+      "status": "resolved",
+      "to_vcr": 593
+    },
+    {
+      "exact": null,
+      "from_vcr": 593,
+      "status": "capture_selector_case_missing",
+      "to_vcr": 594
+    }
+  ],
+  "visit_summary": {
+    "pseudo_vcr_count": 11,
+    "targeted_archive_turns": [
+      140,
+      141
+    ],
+    "targeted_snapshot_count": 22,
+    "visited_sites": 1
+  },
+  "window_vcr_ids": [
+    592,
+    593,
+    594,
+    595
+  ]
+}

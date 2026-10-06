@@ -1,0 +1,87 @@
+===== MUTABLE SITE TRANSITION INTEGRATION =====
+research_root: /root/projects/planets-lab-external
+main_root:     /root/projects/planets-lab
+corpus_root:   /root/projects/planets-corpus-db
+selector:      /root/projects/planets-lab-external/artifacts/external-sources/postcapture-occurrence/fresh32-independent/fresh32-o-c-forward-independent.json
+
+research HEAD: 38de692dcc1c1b3683540a01332d32eb9d5e790d
+main HEAD:     fe709f92f4e082ed8b36a3f13b3df784a157da3e
+public100:     generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb
+public100 SHA: 3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c
+
+===== BUILD/REUSE MAIN LAB IMAGE =====
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "default" instance using docker driver
+
+#1 [lab internal] load build definition from Dockerfile
+#1 transferring dockerfile: 373B done
+#1 DONE 0.0s
+
+#2 [lab internal] load metadata for docker.io/library/python:3.12-slim
+#2 DONE 0.0s
+
+#3 [lab internal] load .dockerignore
+#3 transferring context: 184B done
+#3 DONE 0.0s
+
+#4 [lab internal] load build context
+#4 DONE 0.0s
+
+#5 [lab 1/6] FROM docker.io/library/python:3.12-slim@sha256:dd29372629eeba2dd003fd9e9d35a5b8236c44727875a0364254b5127af88e65
+#5 resolve docker.io/library/python:3.12-slim@sha256:dd29372629eeba2dd003fd9e9d35a5b8236c44727875a0364254b5127af88e65
+#5 ...
+
+#6 [lab auth] library/python:pull token for registry-1.docker.io
+#6 DONE 0.0s
+
+#5 [lab 1/6] FROM docker.io/library/python:3.12-slim@sha256:dd29372629eeba2dd003fd9e9d35a5b8236c44727875a0364254b5127af88e65
+#5 resolve docker.io/library/python:3.12-slim@sha256:dd29372629eeba2dd003fd9e9d35a5b8236c44727875a0364254b5127af88e65 1.0s done
+#5 DONE 1.0s
+
+#4 [lab internal] load build context
+#4 transferring context: 20.32kB 0.0s done
+#4 DONE 0.0s
+
+#7 [lab 2/6] WORKDIR /workspace
+#7 CACHED
+
+#8 [lab 3/6] COPY pyproject.toml README.md ./
+#8 CACHED
+
+#9 [lab 4/6] COPY src ./src
+#9 CACHED
+
+#10 [lab 5/6] COPY tests ./tests
+#10 CACHED
+
+#11 [lab 6/6] RUN python -m pip install --no-cache-dir --upgrade pip     && python -m pip install --no-cache-dir -e '.[dev]'
+#11 CACHED
+
+#12 [lab] exporting to image
+#12 exporting layers done
+#12 exporting manifest sha256:56b7a1521ad27a01fa70c726fd9402b72c8f986718b22d0db9d5de00be2dac6d done
+#12 exporting config sha256:33a16614b32ab06c0162d90aa58b26063edcc2adab053c809175587b058cbefe done
+#12 exporting attestation manifest sha256:a3b5171300dbd6bc19d13d11bcf7d9ffb4b50b91cdf1d56839e17e79a670819c 0.0s done
+#12 exporting manifest list sha256:15396fb04e9e3389d02eca3c022ddce94fb9ef68d8b0d07274e068d7b0db9ea3
+#12 exporting manifest list sha256:15396fb04e9e3389d02eca3c022ddce94fb9ef68d8b0d07274e068d7b0db9ea3 done
+#12 naming to docker.io/library/planets-lab-lab:latest done
+#12 unpacking to docker.io/library/planets-lab-lab:latest 0.0s done
+#12 DONE 0.1s
+
+#13 [lab] resolving provenance for metadata file
+#13 DONE 0.0s
+ lab  Built
+
+===== TARGETED TESTS =====
+.............                                                            [100%]
+
+===== GAME 400330 T141 V592->595 =====
+===== POSTCAPTURE SITE TRANSITION INTEGRATION =====
+target:             {'game_id': 400330, 'battle_turn': 141, 'x': 1674, 'y': 2363, 'start_vcr': 592, 'end_vcr': 595}
+window_vcr_ids:     [592, 593, 594, 595]
+summary:            {'expected_transitions': 3, 'transitions_evaluated': 2, 'pair_exact': 1, 'pair_mismatch_or_unresolved': 1, 'capture_cursor_transitions': 1, 'ordinary_queue_transitions': 0, 'all_pair_exact': False}
+V592->V593 source=capture_cursor branch=C predicted=[140, 170] factual=[140, 170] exact=True status=resolved
+V593->V594 source=None branch=None predicted=None factual=None exact=None status=capture_selector_case_missing
+output:             /research/artifacts/external-sources/postcapture-site-transition/game400330-t141-v592-595.json
+exit status 3
