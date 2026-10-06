@@ -21,22 +21,27 @@ sys.modules[SPEC.name] = MODULE
 SPEC.loader.exec_module(MODULE)
 
 
-def test_filtered_controls_drop_whole_target_turn() -> None:
+def test_filtered_controls_keep_elapsed_target_turn_and_drop_future() -> None:
     controls = {
         ("sig", "dir"): {
             (140, 1, (10, 20)),
-            (141, 2, (20, 30)),
-            (141, 3, (30, 40)),
-            (142, 4, (40, 50)),
+            (141, 592, (20, 30)),
+            (141, 593, (30, 40)),
+            (141, 594, (40, 50)),
+            (141, 595, (50, 60)),
+            (142, 1, (60, 70)),
         }
     }
     filtered = MODULE._filtered_controls(
         controls,
-        excluded_battle_turn=141,
+        target_battle_turn=141,
+        through_vcr_id=593,
     )
     assert filtered[("sig", "dir")] == {
         (140, 1, (10, 20)),
-        (142, 4, (40, 50)),
+        (141, 592, (20, 30)),
+        (141, 593, (30, 40)),
+        (142, 1, (60, 70)),
     }
 
 
@@ -93,6 +98,7 @@ def test_source_keeps_v594_as_post_selection_comparator() -> None:
     select_index = source.index("selection = select_next_plain_standard(")
     comparator_index = source.index("# Held-out comparator is opened only after selection")
     assert select_index < comparator_index
-    assert "All diplomacy controls from battle turn 141 are removed" in source
+    assert "Diplomacy controls from the target battle turn are truncated" in source
+    assert "V594 and every later same-turn row are removed" in source
     assert "through V593" in source
     assert "solely for comparison" in source
