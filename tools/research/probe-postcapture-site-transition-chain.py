@@ -23,14 +23,18 @@ RESEARCH_ROOT = Path(__file__).resolve().parents[2]
 RESEARCH_TOOLS = Path(__file__).resolve().parent
 LOCAL_DIAGNOSTICS = RESEARCH_ROOT / "tools" / "diagnostics"
 MAIN_DIAGNOSTICS = Path("/workspace/tools/diagnostics")
-for path in (
-    RESEARCH_ROOT,
-    RESEARCH_TOOLS,
-    LOCAL_DIAGNOSTICS,
-    MAIN_DIAGNOSTICS,
-):
+
+for path in (RESEARCH_ROOT, RESEARCH_TOOLS, LOCAL_DIAGNOSTICS):
     if str(path) not in sys.path:
         sys.path.insert(0, str(path))
+
+# The runner injects /workspace/tools/diagnostics through PYTHONPATH.  Merely
+# checking membership before insert(0) is insufficient because the research
+# checkout also contains older diagnostics with the same module names.
+# Force the canonical main diagnostics path to absolute precedence.
+while str(MAIN_DIAGNOSTICS) in sys.path:
+    sys.path.remove(str(MAIN_DIAGNOSTICS))
+sys.path.insert(0, str(MAIN_DIAGNOSTICS))
 
 from planets_lab.corpus.corpus_db_runtime import connect_compact_generation_read_only
 from planets_lab.rules.combat.host_queue import StandardQueueState
@@ -44,6 +48,26 @@ from planets_lab.rules.combat.selection import decide_ship_combat_pair
 import combat_host_initial_standard_target_audit as baseline_module
 import combat_host_post_mutation_next_pair_audit as postmutation_module
 import combat_public_capture_o_layer_probe as o_layer_module
+
+
+def _assert_main_diagnostic(module: Any, name: str) -> None:
+    raw = getattr(module, "__file__", None)
+    if raw is None:
+        raise RuntimeError(f"{name}: diagnostic module has no __file__")
+    resolved = Path(raw).resolve()
+    expected_root = MAIN_DIAGNOSTICS.resolve()
+    if expected_root not in resolved.parents:
+        raise RuntimeError(
+            f"{name}: expected main diagnostic under {expected_root}, got {resolved}"
+        )
+
+
+for _module, _name in (
+    (baseline_module, "combat_host_initial_standard_target_audit"),
+    (postmutation_module, "combat_host_post_mutation_next_pair_audit"),
+    (o_layer_module, "combat_public_capture_o_layer_probe"),
+):
+    _assert_main_diagnostic(_module, _name)
 
 from postcapture_o_c_forward_selector import CandidateState
 from postcapture_site_transition_executor import (
