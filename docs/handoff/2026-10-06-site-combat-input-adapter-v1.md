@@ -82,3 +82,40 @@ paths are absent.
 
 GitHub PR/CI and the public100 runtime regression are to be recorded after this
 implementation commit is exercised.
+
+
+## Runtime regression gate
+
+Added dedicated server-side entrypoints:
+
+    tools/run-site-combat-input-adapter-v1.sh
+    tools/run-site-combat-input-adapter-v1-with-evidence.sh
+
+The adapter gate deliberately reuses the canonical carried-state differential
+instead of creating another one-off VCR diagnostic. It defaults to local runtime
+selection so a broken Docker/containerd daemon does not mask mechanics:
+
+    PLANETS_SITE_INPUT_ADAPTER_RUNTIME_MODE=local
+
+The underlying site-state runner still enforces Python >=3.11 and prepares its
+cached host venv when required.
+
+After the differential completes, the adapter gate additionally requires:
+
+    SITE_STATE_EXACT
+    expected_transitions 3
+    evaluated_transitions 3
+    exact_transitions 3
+
+and the mode sequence:
+
+    capture_immediate_C
+    capture_parent_resume
+    capture_immediate_C
+
+It also verifies that the generated report evidence boundary names
+site_input_adapter, proving the extracted path was the path under regression.
+
+The with-evidence wrapper publishes under:
+
+    runtime-logs/site-combat-input-adapter-v1/
