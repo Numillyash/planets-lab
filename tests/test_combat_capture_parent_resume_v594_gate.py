@@ -99,6 +99,7 @@ def test_source_keeps_v594_as_post_selection_comparator() -> None:
     comparator_index = source.index("# Held-out comparator is opened only after selection")
     assert select_index < comparator_index
     assert "Diplomacy controls from the target battle turn are truncated" in source
-    assert "V594 and every later same-turn row are removed" in source
+    assert "and row[0] == target_battle_turn" in source
+    assert "and row[1] > through_vcr_id" in source
     assert "through V593" in source
     assert "solely for comparison" in source
