@@ -9,6 +9,8 @@ cd "$ROOT"
 PUBLIC100_REL="${PUBLIC100_REL:-generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb}"
 PUBLIC100_SHA="${PUBLIC100_SHA:-3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c}"
 OUTPUT="${OUTPUT:-artifacts/combat/site-state/game400330-t141-v592-595.json}"
+RUNTIME_MODE="${PLANETS_SITE_STATE_RUNTIME_MODE:-auto}"
+RUNTIME_VENV="${PLANETS_SITE_STATE_RUNTIME_VENV:-${XDG_CACHE_HOME:-$HOME/.cache}/planets-lab/site-state-v1}"
 
 db="$PLANETS_CORPUS_DB_ROOT/$PUBLIC100_REL"
 if [[ ! -f "$db" ]]; then
@@ -27,9 +29,94 @@ echo "===== SITE COMBAT STATE DIFFERENTIAL V1 ====="
 echo "HEAD:      $(git rev-parse HEAD)"
 echo "public100: $PUBLIC100_REL"
 echo "sha256:    $actual_sha"
+echo "runtime:   $RUNTIME_MODE"
 
-docker compose -f compose.yaml -f compose.corpus-db.yaml build lab
+run_docker_gate() {
+  docker compose -f compose.yaml -f compose.corpus-db.yaml run --rm -T \
+    -e PYTHONPATH=/workspace/src:/workspace/tools/diagnostics \
+    lab \
+    python tools/diagnostics/combat_site_state_differential_v1.py \
+      --corpus-db-root /corpus-db \
+      --corpus-db-generation "$PUBLIC100_REL" \
+      --game-id 400330 \
+      --battle-turn 141 \
+      --x 1674 \
+      --y 2363 \
+      --start-vcr-id 592 \
+      --end-vcr-id 595 \
+      --output "$OUTPUT"
+}
 
-docker compose -f compose.yaml -f compose.corpus-db.yaml run --rm -T   -e PYTHONPATH=/workspace/src:/workspace/tools/diagnostics   lab   python tools/diagnostics/combat_site_state_differential_v1.py     --corpus-db-root /corpus-db     --corpus-db-generation "$PUBLIC100_REL"     --game-id 400330     --battle-turn 141     --x 1674     --y 2363     --start-vcr-id 592     --end-vcr-id 595     --output "$OUTPUT"
+prepare_local_python() {
+  local python_bin="${PLANETS_SITE_STATE_RUNTIME_PYTHON:-python3}"
+
+  if "$python_bin" - <<'PY' >/dev/null 2>&1
+import duckdb
+PY
+  then
+    printf '%s\n' "$python_bin"
+    return 0
+  fi
+
+  echo "host python is missing runtime dependencies; preparing cached venv: $RUNTIME_VENV" >&2
+  if [[ ! -x "$RUNTIME_VENV/bin/python" ]]; then
+    mkdir -p "$(dirname "$RUNTIME_VENV")"
+    "$python_bin" -m venv "$RUNTIME_VENV"
+  fi
+
+  if ! "$RUNTIME_VENV/bin/python" - <<'PY' >/dev/null 2>&1
+import duckdb
+PY
+  then
+    "$RUNTIME_VENV/bin/python" -m pip install --disable-pip-version-check -e "$ROOT"
+  fi
+
+  printf '%s\n' "$RUNTIME_VENV/bin/python"
+}
+
+run_local_gate() {
+  local python_bin
+  python_bin="$(prepare_local_python)"
+  echo "runtime_selected: host-python"
+  echo "runtime_python:   $python_bin"
+  PYTHONPATH="$ROOT/src:$ROOT/tools/diagnostics" \
+    "$python_bin" tools/diagnostics/combat_site_state_differential_v1.py \
+      --corpus-db-root "$PLANETS_CORPUS_DB_ROOT" \
+      --corpus-db-generation "$PUBLIC100_REL" \
+      --game-id 400330 \
+      --battle-turn 141 \
+      --x 1674 \
+      --y 2363 \
+      --start-vcr-id 592 \
+      --end-vcr-id 595 \
+      --output "$OUTPUT"
+}
+
+case "$RUNTIME_MODE" in
+  docker)
+    echo "runtime_selected: docker"
+    docker info >/dev/null
+    docker compose -f compose.yaml -f compose.corpus-db.yaml build lab
+    run_docker_gate
+    ;;
+  local)
+    run_local_gate
+    ;;
+  auto)
+    if docker info >/dev/null 2>&1 \
+      && docker compose -f compose.yaml -f compose.corpus-db.yaml build lab
+    then
+      echo "runtime_selected: docker"
+      run_docker_gate
+    else
+      echo "WARNING: Docker/containerd preflight or build failed; falling back to host Python." >&2
+      run_local_gate
+    fi
+    ;;
+  *)
+    echo "ERROR: unsupported PLANETS_SITE_STATE_RUNTIME_MODE=$RUNTIME_MODE (expected auto|docker|local)" >&2
+    exit 64
+    ;;
+esac
 
 echo "output: $OUTPUT"
