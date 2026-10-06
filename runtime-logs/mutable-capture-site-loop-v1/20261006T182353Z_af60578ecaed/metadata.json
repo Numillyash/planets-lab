@@ -1,0 +1,22 @@
+{
+  "evidence_branch": "runtime-logs",
+  "exit_code": 0,
+  "finished_at_utc": "2026-10-06T18:27:12Z",
+  "hostname": "GEORGUL-GAMER",
+  "interrupted_signal": null,
+  "log_file": "gate.log",
+  "missing_artifact_paths": [],
+  "remote": "origin",
+  "requested_artifact_paths": [
+    "artifacts/combat/mutable-site-loop"
+  ],
+  "run_id": "20261006T182353Z_af60578ecaed",
+  "run_name": "mutable-capture-site-loop-v1",
+  "runner": "bash",
+  "schema": "planets-lab.runtime-evidence.v1",
+  "skipped_oversized_artifact_paths": [],
+  "source_branch": "main",
+  "source_commit": "af60578ecaedfaa95343721d660cd0623be5c2d5",
+  "source_dirty": false,
+  "started_at_utc": "2026-10-06T18:23:53Z"
+}
