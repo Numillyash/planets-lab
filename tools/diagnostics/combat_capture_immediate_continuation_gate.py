@@ -26,13 +26,16 @@ for path in (REPO_ROOT, DIAGNOSTICS):
         sys.path.insert(0, str(path))
 
 from planets_lab.corpus.corpus_db_runtime import connect_compact_generation_read_only
+from planets_lab.rules.combat.capture_queue import (
+    CaptureCandidateState as CandidateState,
+    select_o_then_c_forward,
+)
 from planets_lab.rules.combat.selection import decide_ship_combat_pair
 
 import combat_host_post_capture_active_membership_audit as active_module
 import combat_host_post_capture_pair_recomposition_audit as pair_module
 import combat_public_capture_o_layer_probe as o_layer_module
 from combat_host_candidate_set_audit import _candidate_input
-from combat_postcapture_o_c_forward_selector import CandidateState, select_o_then_c_forward
 
 
 SCHEMA = "planets-lab.capture-immediate-continuation-gate.v1"
