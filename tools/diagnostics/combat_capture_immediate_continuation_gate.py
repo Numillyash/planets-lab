@@ -283,6 +283,34 @@ def _pair_disposition(
     return "unresolved", "pair_eligibility_fc_sensitive_or_unknown"
 
 
+def _controls_through_vcr(
+    controls: Mapping[Any, Any],
+    *,
+    target_battle_turn: int,
+    through_vcr_id: int,
+) -> dict[Any, set[Any]]:
+    """Exclude future same-turn diplomacy controls from held-out selection."""
+
+    filtered: dict[Any, set[Any]] = {}
+    for key, rows in controls.items():
+        kept: set[Any] = set()
+        for row in set(rows):
+            if (
+                isinstance(row, tuple)
+                and len(row) >= 2
+                and isinstance(row[0], int)
+                and not isinstance(row[0], bool)
+                and isinstance(row[1], int)
+                and not isinstance(row[1], bool)
+                and row[0] == target_battle_turn
+                and row[1] > through_vcr_id
+            ):
+                continue
+            kept.add(row)
+        filtered[key] = kept
+    return filtered
+
+
 def run(args: argparse.Namespace) -> dict[str, Any]:
     connection, database_path = connect_compact_generation_read_only(
         args.corpus_db_generation,
@@ -354,8 +382,19 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "captor_owner_id": int(identity["new_owner_id"]),
         "current_opponent_ship_id": SENTINEL_HELDOUT_OPPONENT_ID,
     }
+
+    bounded_context = dict(captured_context)
+    controls = captured_context.get("controls")
+    if not isinstance(controls, Mapping):
+        raise ValueError("diplomacy controls missing")
+    bounded_context["controls"] = _controls_through_vcr(
+        controls,
+        target_battle_turn=args.battle_turn,
+        through_vcr_id=args.capture_vcr_id,
+    )
+
     active_result = active_module._simulate_capture(
-        context=captured_context,
+        context=bounded_context,
         capture=capture,
         appearances=appearances,
     )
@@ -505,8 +544,10 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "held_out_boundary": (
             "No VCR N+1 ship id, pair, side or terminal state is consumed by the "
             "capture mutation, candidate-state reconstruction, or O/C selector. "
-            "The active-membership helper receives a sentinel comparator id only "
-            "to satisfy its historical report shape."
+            "Within the target battle turn, diplomacy calibration is truncated "
+            "through the capture VCR before candidate reconstruction. The "
+            "active-membership helper receives a sentinel comparator id only to "
+            "satisfy its historical report shape."
         ),
     }
 
