@@ -178,3 +178,44 @@ The research composition layer is:
 It deliberately fails closed if a capture cursor is exhausted instead of
 guessing how Host resumes the parent/global queue. That resumption boundary is
 the next orchestration question.
+
+
+## Research-branch CI note
+
+PR #119 was intentionally based on `research/external-engine-analysis`, not
+`main`, because the external evidence branch contains frozen reverse-
+engineering history that should not be rebased or bulk-merged merely to satisfy
+modern production-branch tests.
+
+The current PR head CI result is:
+
+```text
+613 passed
+3 failed
+```
+
+All newly added mutable-site executor tests pass.
+
+The three remaining failures are inherited branch drift unrelated to this
+change:
+
+```text
+test_o_layer_wrapper_is_main_guarded_and_discovery_only
+    old external branch lacks the later main discovery evidence wrapper
+
+test_discovery_wrapper_is_main_guarded_and_heldout_sealed
+    old external branch lacks the later main discovery evidence wrapper
+
+test_public_harvest_requests_progress_output
+    old external capture continuation diagnostic predates the later main
+    progress-output contract
+```
+
+The real integration runner deliberately executes against the current canonical
+`main` checkout mounted as `/workspace`, while importing only the frozen
+research cursor and new composition layer from `/research`. Therefore the
+three inherited external-branch failures are not runtime dependencies of the
+site-transition gate.
+
+Do not merge the hundreds of divergent main commits into the frozen external
+evidence branch solely to turn this historical branch's global pytest green.
