@@ -1,0 +1,469 @@
+{
+  "appearance_summary": {
+    "payload_conflicts": 0,
+    "raw_vcr_observations": 60,
+    "replay_supported": 12,
+    "ship_appearances": 23,
+    "source_members": 11,
+    "unique_vcrs": 12
+  },
+  "database_path": "/corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "evidence_boundary": "Site history before the target window is reconstructed once. From V592 onward, physical membership, capture exclusions, temporary capture-order lifecycle and pair history are carried in SiteCombatState. Factual terminal outcomes remain injected after each observed VCR. N+1 pair/sides are opened only after selection.",
+  "evidence_status": "CARRIED_STATE_HISTORY_ANCHORED",
+  "final_state": {
+    "active_ship_ids": [
+      140,
+      170,
+      184,
+      195,
+      280,
+      285,
+      330,
+      382,
+      471
+    ],
+    "first_pass_sides": {
+      "134-216": [
+        134,
+        216
+      ],
+      "134-296": [
+        134,
+        296
+      ],
+      "134-421": [
+        134,
+        421
+      ],
+      "140-170": [
+        140,
+        170
+      ],
+      "140-184": [
+        184,
+        140
+      ],
+      "170-184": [
+        184,
+        170
+      ],
+      "184-216": [
+        184,
+        216
+      ]
+    },
+    "pair_occurrences": {
+      "134-216": 1,
+      "134-296": 1,
+      "134-421": 1,
+      "140-170": 1,
+      "140-184": 1,
+      "170-184": 1,
+      "184-216": 1
+    },
+    "parent_queue_active_ship_ids": [
+      184,
+      195,
+      280,
+      285,
+      330,
+      382,
+      471
+    ],
+    "parent_queue_excluded_ship_ids": [
+      140,
+      170
+    ],
+    "temporary_capture_order": {
+      "captor_ship_id": 184,
+      "order": [
+        421,
+        296,
+        216,
+        140,
+        170,
+        382,
+        471,
+        134,
+        184,
+        195,
+        280,
+        285,
+        330
+      ],
+      "prize_ship_id": 170
+    }
+  },
+  "initial_state": {
+    "active_ship_ids": [
+      140,
+      170,
+      184,
+      195,
+      280,
+      285,
+      330,
+      382,
+      471
+    ],
+    "first_pass_sides": {
+      "134-216": [
+        134,
+        216
+      ],
+      "134-296": [
+        134,
+        296
+      ],
+      "134-421": [
+        134,
+        421
+      ],
+      "184-216": [
+        184,
+        216
+      ]
+    },
+    "pair_occurrences": {
+      "134-216": 1,
+      "134-296": 1,
+      "134-421": 1,
+      "184-216": 1
+    },
+    "parent_queue_active_ship_ids": [
+      140,
+      170,
+      184,
+      195,
+      280,
+      285,
+      330,
+      382,
+      471
+    ],
+    "parent_queue_excluded_ship_ids": [],
+    "temporary_capture_order": null
+  },
+  "schema": "planets-lab.site-combat-state-differential.v1",
+  "status": "SITE_STATE_EXACT",
+  "summary": {
+    "all_exact": true,
+    "evaluated_transitions": 3,
+    "exact_transitions": 3,
+    "expected_transitions": 3,
+    "modes": [
+      "capture_immediate_C",
+      "capture_parent_resume",
+      "capture_immediate_C"
+    ]
+  },
+  "target": {
+    "battle_turn": 141,
+    "end_vcr_id": 595,
+    "game_id": 400330,
+    "start_vcr_id": 592,
+    "x": 1674,
+    "y": 2363
+  },
+  "transitions": [
+    {
+      "exact": true,
+      "factual_left_ship_id": 140,
+      "factual_pair": [
+        140,
+        170
+      ],
+      "factual_right_ship_id": 170,
+      "from_vcr_id": 592,
+      "pair_exact": true,
+      "prediction": {
+        "capture_branch": "C",
+        "left_ship_id": 140,
+        "mode": "capture_immediate_C",
+        "pair": [
+          140,
+          170
+        ],
+        "right_ship_id": 170
+      },
+      "side_exact": true,
+      "state_after_prediction": {
+        "active_ship_ids": [
+          140,
+          170,
+          184,
+          195,
+          280,
+          285,
+          330,
+          382,
+          471
+        ],
+        "first_pass_sides": {
+          "134-216": [
+            134,
+            216
+          ],
+          "134-296": [
+            134,
+            296
+          ],
+          "134-421": [
+            134,
+            421
+          ],
+          "140-184": [
+            184,
+            140
+          ],
+          "184-216": [
+            184,
+            216
+          ]
+        },
+        "pair_occurrences": {
+          "134-216": 1,
+          "134-296": 1,
+          "134-421": 1,
+          "140-184": 1,
+          "184-216": 1
+        },
+        "parent_queue_active_ship_ids": [
+          170,
+          184,
+          195,
+          280,
+          285,
+          330,
+          382,
+          471
+        ],
+        "parent_queue_excluded_ship_ids": [
+          140
+        ],
+        "temporary_capture_order": {
+          "captor_ship_id": 184,
+          "order": [
+            421,
+            296,
+            216,
+            140,
+            170,
+            382,
+            471,
+            134,
+            184,
+            195,
+            280,
+            285,
+            330
+          ],
+          "prize_ship_id": 140
+        }
+      },
+      "to_vcr_id": 593
+    },
+    {
+      "exact": true,
+      "factual_left_ship_id": 184,
+      "factual_pair": [
+        170,
+        184
+      ],
+      "factual_right_ship_id": 170,
+      "from_vcr_id": 593,
+      "pair_exact": true,
+      "prediction": {
+        "diplomacy_cutoff_vcr_id": 593,
+        "left_ship_id": 184,
+        "mode": "capture_parent_resume",
+        "occurrence_index": 1,
+        "pair": [
+          170,
+          184
+        ],
+        "pair_input_count": 15,
+        "right_ship_id": 170
+      },
+      "side_exact": true,
+      "state_after_prediction": {
+        "active_ship_ids": [
+          140,
+          170,
+          184,
+          195,
+          280,
+          285,
+          330,
+          382,
+          471
+        ],
+        "first_pass_sides": {
+          "134-216": [
+            134,
+            216
+          ],
+          "134-296": [
+            134,
+            296
+          ],
+          "134-421": [
+            134,
+            421
+          ],
+          "140-170": [
+            140,
+            170
+          ],
+          "140-184": [
+            184,
+            140
+          ],
+          "184-216": [
+            184,
+            216
+          ]
+        },
+        "pair_occurrences": {
+          "134-216": 1,
+          "134-296": 1,
+          "134-421": 1,
+          "140-170": 1,
+          "140-184": 1,
+          "184-216": 1
+        },
+        "parent_queue_active_ship_ids": [
+          170,
+          184,
+          195,
+          280,
+          285,
+          330,
+          382,
+          471
+        ],
+        "parent_queue_excluded_ship_ids": [
+          140
+        ],
+        "temporary_capture_order": null
+      },
+      "to_vcr_id": 594
+    },
+    {
+      "exact": true,
+      "factual_left_ship_id": 170,
+      "factual_pair": [
+        170,
+        382
+      ],
+      "factual_right_ship_id": 382,
+      "from_vcr_id": 594,
+      "pair_exact": true,
+      "prediction": {
+        "capture_branch": "C",
+        "left_ship_id": 170,
+        "mode": "capture_immediate_C",
+        "pair": [
+          170,
+          382
+        ],
+        "right_ship_id": 382
+      },
+      "side_exact": true,
+      "state_after_prediction": {
+        "active_ship_ids": [
+          140,
+          170,
+          184,
+          195,
+          280,
+          285,
+          330,
+          382,
+          471
+        ],
+        "first_pass_sides": {
+          "134-216": [
+            134,
+            216
+          ],
+          "134-296": [
+            134,
+            296
+          ],
+          "134-421": [
+            134,
+            421
+          ],
+          "140-170": [
+            140,
+            170
+          ],
+          "140-184": [
+            184,
+            140
+          ],
+          "170-184": [
+            184,
+            170
+          ],
+          "184-216": [
+            184,
+            216
+          ]
+        },
+        "pair_occurrences": {
+          "134-216": 1,
+          "134-296": 1,
+          "134-421": 1,
+          "140-170": 1,
+          "140-184": 1,
+          "170-184": 1,
+          "184-216": 1
+        },
+        "parent_queue_active_ship_ids": [
+          184,
+          195,
+          280,
+          285,
+          330,
+          382,
+          471
+        ],
+        "parent_queue_excluded_ship_ids": [
+          140,
+          170
+        ],
+        "temporary_capture_order": {
+          "captor_ship_id": 184,
+          "order": [
+            421,
+            296,
+            216,
+            140,
+            170,
+            382,
+            471,
+            134,
+            184,
+            195,
+            280,
+            285,
+            330
+          ],
+          "prize_ship_id": 170
+        }
+      },
+      "to_vcr_id": 595
+    }
+  ],
+  "visit_summary": {
+    "pseudo_vcr_count": 11,
+    "targeted_archive_turns": [
+      140,
+      141
+    ],
+    "targeted_snapshot_count": 22,
+    "visited_sites": 1
+  }
+}
