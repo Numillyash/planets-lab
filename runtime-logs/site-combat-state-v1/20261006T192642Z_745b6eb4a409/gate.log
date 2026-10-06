@@ -1,0 +1,34 @@
+===== SITE COMBAT STATE DIFFERENTIAL V1 =====
+HEAD:      745b6eb4a409ded32a657284311c706587786df4
+public100: generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb
+sha256:    3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c
+runtime:   local
+host python is missing runtime dependencies; preparing cached venv: /root/.cache/planets-lab/site-state-v1
+Obtaining file:///root/projects/planets-lab
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Collecting pyarrow<22,>=21
+  Downloading pyarrow-21.0.0-cp310-cp310-manylinux_2_28_x86_64.whl (42.7 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 42.7/42.7 MB 1.1 MB/s eta 0:00:00
+Collecting duckdb<1.6,>=1.5
+  Downloading duckdb-1.5.6-cp310-cp310-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl (21.5 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 21.5/21.5 MB 4.6 MB/s eta 0:00:00
+ERROR: Package 'planets-lab' requires a different Python: 3.10.12 not in '>=3.11'
+runtime_selected: host-python
+runtime_python:   /root/.cache/planets-lab/site-state-v1/bin/python
+Traceback (most recent call last):
+  File "/root/projects/planets-lab/tools/diagnostics/combat_site_state_differential_v1.py", line 31, in <module>
+    from planets_lab.corpus.corpus_db_runtime import connect_compact_generation_read_only
+  File "/root/projects/planets-lab/src/planets_lab/corpus/__init__.py", line 4, in <module>
+    from .feature_scope import (
+  File "/root/projects/planets-lab/src/planets_lab/corpus/feature_scope.py", line 7, in <module>
+    from .feature_index import load_feature_rows, profile_selection_summary
+  File "/root/projects/planets-lab/src/planets_lab/corpus/feature_index.py", line 13, in <module>
+    import duckdb
+ModuleNotFoundError: No module named 'duckdb'
