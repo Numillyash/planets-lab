@@ -47,8 +47,43 @@ run_docker_gate() {
       --output "$OUTPUT"
 }
 
+python_is_compatible() {
+  local python_bin="$1"
+  "$python_bin" -c 'import sys; raise SystemExit(0 if sys.version_info >= (3, 11) else 1)' >/dev/null 2>&1
+}
+
+select_local_python() {
+  local configured="${PLANETS_SITE_STATE_RUNTIME_PYTHON:-}"
+
+  if [[ -n "$configured" ]]; then
+    if ! command -v "$configured" >/dev/null 2>&1; then
+      echo "ERROR: configured host Python not found: $configured" >&2
+      return 69
+    fi
+    if ! python_is_compatible "$configured"; then
+      echo "ERROR: configured host Python is too old; planets-lab requires Python >=3.11: $configured" >&2
+      return 69
+    fi
+    printf '%s\n' "$configured"
+    return 0
+  fi
+
+  local candidate
+  for candidate in python3.12 python3.11 python3; do
+    if command -v "$candidate" >/dev/null 2>&1 && python_is_compatible "$candidate"; then
+      printf '%s\n' "$candidate"
+      return 0
+    fi
+  done
+
+  echo "ERROR: no compatible host Python found; planets-lab requires Python >=3.11." >&2
+  echo "Install python3.11+ or restore Docker/containerd, then rerun." >&2
+  return 69
+}
+
 prepare_local_python() {
-  local python_bin="${PLANETS_SITE_STATE_RUNTIME_PYTHON:-python3}"
+  local python_bin
+  python_bin="$(select_local_python)"
 
   if "$python_bin" - <<'PY' >/dev/null 2>&1
 import duckdb, pyarrow
@@ -59,6 +94,12 @@ PY
   fi
 
   echo "host python is missing runtime dependencies; preparing cached venv: $RUNTIME_VENV" >&2
+
+  if [[ -x "$RUNTIME_VENV/bin/python" ]] && ! python_is_compatible "$RUNTIME_VENV/bin/python"; then
+    echo "cached venv uses incompatible Python; rebuilding: $RUNTIME_VENV" >&2
+    rm -rf "$RUNTIME_VENV"
+  fi
+
   if [[ ! -x "$RUNTIME_VENV/bin/python" ]]; then
     mkdir -p "$(dirname "$RUNTIME_VENV")"
     "$python_bin" -m venv "$RUNTIME_VENV"
@@ -69,6 +110,14 @@ import duckdb, pyarrow
 PY
   then
     "$RUNTIME_VENV/bin/python" -m pip install --disable-pip-version-check -e "$ROOT" 1>&2
+  fi
+
+  if ! "$RUNTIME_VENV/bin/python" - <<'PY' >/dev/null 2>&1
+import duckdb, pyarrow
+PY
+  then
+    echo "ERROR: cached host runtime still lacks duckdb/pyarrow after installation: $RUNTIME_VENV" >&2
+    return 70
   fi
 
   printf '%s\n' "$RUNTIME_VENV/bin/python"
