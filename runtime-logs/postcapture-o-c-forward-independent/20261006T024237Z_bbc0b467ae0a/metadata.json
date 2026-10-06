@@ -1,0 +1,22 @@
+{
+  "evidence_branch": "runtime-logs",
+  "exit_code": 0,
+  "finished_at_utc": "2026-10-06T03:29:23Z",
+  "hostname": "GEORGUL-GAMER",
+  "interrupted_signal": null,
+  "log_file": "gate.log",
+  "missing_artifact_paths": [],
+  "remote": "origin",
+  "requested_artifact_paths": [
+    "artifacts/external-sources/postcapture-occurrence/fresh32-independent"
+  ],
+  "run_id": "20261006T024237Z_bbc0b467ae0a",
+  "run_name": "postcapture-o-c-forward-independent",
+  "runner": "bash",
+  "schema": "planets-lab.runtime-evidence.v1",
+  "skipped_oversized_artifact_paths": [],
+  "source_branch": "research/external-engine-analysis",
+  "source_commit": "bbc0b467ae0ab9ef107b7877a4970a05f04fb059",
+  "source_dirty": false,
+  "started_at_utc": "2026-10-06T02:42:37Z"
+}

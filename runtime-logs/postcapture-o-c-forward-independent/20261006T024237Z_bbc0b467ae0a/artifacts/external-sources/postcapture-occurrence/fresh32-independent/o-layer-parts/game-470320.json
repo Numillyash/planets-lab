@@ -1,0 +1,131 @@
+{
+  "database_path": "/corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "evidence_boundary": "Independent short-public validation of the already frozen post-heldout capture-side candidate. The source capture report contains all indexed games from the independent short32 manifest. Only globally adjacent capture->next VCR rows enter the candidate gate. Pair reachability is identity-anchored on the factual N+1 opponent identity/eligibility but never its side. Repeated-pair reversal is evaluated before O-layer reachability, matching the frozen candidate branch order. Unknown opponent priority on a reachable first-occurrence row fails closed. No candidate parameter is fitted from this population.",
+  "evidence_status": "INDEPENDENT_VALIDATION_POSTHELDOUT_CANDIDATE",
+  "observations": [
+    {
+      "active_dependency": {
+        "factual_opponent_active": true,
+        "factual_opponent_candidate_resolved": true,
+        "factual_opponent_history_anchored": false,
+        "factual_opponent_owner_changed_before_next": false,
+        "factual_opponent_position_source": "normal_move",
+        "factual_opponent_prediction_position": [
+          1946,
+          2995
+        ],
+        "factual_opponent_removed_before_next": false,
+        "factual_opponent_requester_rank": 2,
+        "factual_opponent_requests_new_owner": true,
+        "factual_opponent_site_predicted": true,
+        "factual_opponent_strict_permission": true,
+        "factual_opponent_strict_rank": 2,
+        "reason": null,
+        "status": "resolved"
+      },
+      "capture_side": "left",
+      "capture_vcr_id": 388,
+      "captured_ship_id": 296,
+      "factual_prize_side": "right",
+      "game_id": 470320,
+      "identity_anchored_result": {
+        "from_vcr_id": 388,
+        "reason": "nonadjacent_vcr_requires_intervening_mutation_model",
+        "status": "not_comparable",
+        "to_vcr_id": 393
+      },
+      "identity_anchored_split": null,
+      "next_opponent_ship_id": 442,
+      "next_vcr_id": 393,
+      "postheldout_candidate_validation": null,
+      "postindependent_candidate_validation": null,
+      "result": {
+        "from_vcr_id": 388,
+        "reason": "nonadjacent_vcr_requires_intervening_mutation_model",
+        "status": "not_comparable",
+        "to_vcr_id": 393
+      },
+      "split_candidate": null,
+      "turn": 145,
+      "x": 1946,
+      "y": 2995
+    }
+  ],
+  "partition": "independent",
+  "probe_game_ids": [
+    470320
+  ],
+  "scanned_game_ids": [
+    2466,
+    217591,
+    228199,
+    230354,
+    247785,
+    253449,
+    257908,
+    264889,
+    281994,
+    283648,
+    290067,
+    296210,
+    326221,
+    347358,
+    373830,
+    385906,
+    400330,
+    416233,
+    423531,
+    449095,
+    467183,
+    470320,
+    476826,
+    477364,
+    490865,
+    497195,
+    530635,
+    550972,
+    597079,
+    600032,
+    629488,
+    644013
+  ],
+  "schema": "planets-lab.combat-public-capture-o-layer-probe.v2.db1",
+  "source_capture_side_report": "/research/artifacts/external-sources/postcapture-occurrence/fresh32-independent/fresh32-capture-side.json",
+  "summary": {
+    "appearance_summary": {
+      "payload_conflicts": 0,
+      "raw_vcr_observations": 79,
+      "replay_supported": 12,
+      "ship_appearances": 24,
+      "source_members": 11,
+      "unique_vcrs": 12
+    },
+    "counts": {
+      "active_dependency:factual_opponent_active:true": 1,
+      "active_dependency:factual_opponent_candidate_resolved:true": 1,
+      "active_dependency:factual_opponent_requests_new_owner:true": 1,
+      "active_dependency:factual_opponent_strict_permission:true": 1,
+      "active_dependency:requester_rank_present": 1,
+      "active_dependency:strict_rank_present": 1,
+      "adjacent_rows": 0,
+      "capture_ship_rows": 1,
+      "factual_side:right": 1,
+      "independent_ship_rows": 1,
+      "observations_seen": 1,
+      "postheldout_candidate_not_comparable": 1,
+      "status:not_comparable": 1
+    },
+    "targeted_site_context": [
+      {
+        "game_id": 470320,
+        "pseudo_vcr_count": 12,
+        "targeted_archive_turns": [
+          144,
+          145
+        ],
+        "targeted_snapshot_count": 22,
+        "visited_sites": 1
+      }
+    ]
+  }
+}

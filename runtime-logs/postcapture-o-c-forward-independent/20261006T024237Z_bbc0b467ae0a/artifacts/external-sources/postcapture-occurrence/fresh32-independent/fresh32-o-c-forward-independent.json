@@ -1,0 +1,2203 @@
+{
+  "capture_partition": "all",
+  "cases": [
+    {
+      "captor_ship_id": 145,
+      "capture_vcr_id": 268,
+      "captured_ship_id": 155,
+      "current_active_factual_dependency": {
+        "active": true,
+        "candidate_resolved": true,
+        "requests_new_owner": true,
+        "strict_permission": true
+      },
+      "external_order": [
+        155,
+        303,
+        145
+      ],
+      "external_order_keys": {
+        "145": [
+          1015,
+          145
+        ],
+        "155": [
+          1010,
+          155
+        ],
+        "303": [
+          1010,
+          303
+        ]
+      },
+      "factual_opponent_ship_id": 303,
+      "game_id": 326221,
+      "next_vcr_id": 269,
+      "positions": {
+        "captor": 2,
+        "factual": 1,
+        "prize": 0
+      },
+      "primary": {
+        "branch": "C",
+        "candidate_details": {
+          "145": {
+            "disposition": "same_owner",
+            "prior_pair_occurrences": 1
+          },
+          "303": {
+            "candidate": {
+              "is_factual_next_opponent": true,
+              "owner_id": 8,
+              "position_source": "special_intercept_movement_phase",
+              "priority": [
+                3,
+                303,
+                0
+              ],
+              "requests_new_owner": true,
+              "ship_id": 303,
+              "strict_permission": true
+            },
+            "disposition": "eligible",
+            "pair_result": {
+              "candidate": {
+                "position_source": "special_intercept_movement_phase",
+                "priority": [
+                  3,
+                  303,
+                  0
+                ],
+                "requests_new_owner": true,
+                "ship_id": 303,
+                "strict_permission": true
+              },
+              "definitely_blocked": false,
+              "definitely_eligible": true,
+              "fc_sensitive_or_unresolved": false,
+              "fresh_fc_decision": {
+                "engagement_eligible": true,
+                "left_hwm_applies": false,
+                "left_ship_id": null,
+                "matching_fc_blocks": false,
+                "phase": "standard",
+                "phase_attacker_ship_id": null,
+                "prestandard_kind": null,
+                "right_hwm_applies": false,
+                "right_ship_id": null,
+                "unresolved_reasons": [
+                  "galactic_power_state_unknown"
+                ]
+              },
+              "fresh_prize_friendly_code": "c@p",
+              "opponent_orders": {
+                "enemy": 5,
+                "friendlycode": "txf",
+                "mission": 7,
+                "mission1target": 145,
+                "neutronium": 950,
+                "warp": 9
+              },
+              "phase_invariant": true,
+              "postcapture_identity": {
+                "captor_ship_id": 145,
+                "capture_vcr_id": 268,
+                "prize_hull_id_preserved": 75,
+                "prize_owner_id": 5,
+                "prize_race_id_from_captor_vcr": 5
+              },
+              "preserved_fc_decision": {
+                "engagement_eligible": true,
+                "left_hwm_applies": false,
+                "left_ship_id": null,
+                "matching_fc_blocks": false,
+                "phase": "standard",
+                "phase_attacker_ship_id": null,
+                "prestandard_kind": null,
+                "right_hwm_applies": false,
+                "right_ship_id": null,
+                "unresolved_reasons": [
+                  "galactic_power_state_unknown"
+                ]
+              },
+              "prize_old_friendly_code": "mkt",
+              "status": "resolved"
+            },
+            "permission_anchored": false,
+            "permission_mode": "strict",
+            "prior_pair_occurrences": 0,
+            "reason": null
+          }
+        },
+        "exact": true,
+        "predicted_ship_id": 303,
+        "reason": null,
+        "status": "resolved",
+        "trace": [
+          {
+            "branch": "C",
+            "disposition": "eligible",
+            "index": 1,
+            "reason": null,
+            "ship_id": 303
+          }
+        ],
+        "unresolved_ship_id": null
+      },
+      "request_anchored_diagnostic": {
+        "branch": "C",
+        "candidate_details": {
+          "145": {
+            "disposition": "same_owner",
+            "prior_pair_occurrences": 1
+          },
+          "303": {
+            "candidate": {
+              "is_factual_next_opponent": true,
+              "owner_id": 8,
+              "position_source": "special_intercept_movement_phase",
+              "priority": [
+                3,
+                303,
+                0
+              ],
+              "requests_new_owner": true,
+              "ship_id": 303,
+              "strict_permission": true
+            },
+            "disposition": "eligible",
+            "pair_result": {
+              "candidate": {
+                "position_source": "special_intercept_movement_phase",
+                "priority": [
+                  3,
+                  303,
+                  0
+                ],
+                "requests_new_owner": true,
+                "ship_id": 303,
+                "strict_permission": true
+              },
+              "definitely_blocked": false,
+              "definitely_eligible": true,
+              "fc_sensitive_or_unresolved": false,
+              "fresh_fc_decision": {
+                "engagement_eligible": true,
+                "left_hwm_applies": false,
+                "left_ship_id": null,
+                "matching_fc_blocks": false,
+                "phase": "standard",
+                "phase_attacker_ship_id": null,
+                "prestandard_kind": null,
+                "right_hwm_applies": false,
+                "right_ship_id": null,
+                "unresolved_reasons": [
+                  "galactic_power_state_unknown"
+                ]
+              },
+              "fresh_prize_friendly_code": "c@p",
+              "opponent_orders": {
+                "enemy": 5,
+                "friendlycode": "txf",
+                "mission": 7,
+                "mission1target": 145,
+                "neutronium": 950,
+                "warp": 9
+              },
+              "phase_invariant": true,
+              "postcapture_identity": {
+                "captor_ship_id": 145,
+                "capture_vcr_id": 268,
+                "prize_hull_id_preserved": 75,
+                "prize_owner_id": 5,
+                "prize_race_id_from_captor_vcr": 5
+              },
+              "preserved_fc_decision": {
+                "engagement_eligible": true,
+                "left_hwm_applies": false,
+                "left_ship_id": null,
+                "matching_fc_blocks": false,
+                "phase": "standard",
+                "phase_attacker_ship_id": null,
+                "prestandard_kind": null,
+                "right_hwm_applies": false,
+                "right_ship_id": null,
+                "unresolved_reasons": [
+                  "galactic_power_state_unknown"
+                ]
+              },
+              "prize_old_friendly_code": "mkt",
+              "status": "resolved"
+            },
+            "permission_anchored": false,
+            "permission_mode": "request_anchored",
+            "prior_pair_occurrences": 0,
+            "reason": null
+          }
+        },
+        "exact": true,
+        "predicted_ship_id": 303,
+        "reason": null,
+        "status": "resolved",
+        "trace": [
+          {
+            "branch": "C",
+            "disposition": "eligible",
+            "index": 1,
+            "reason": null,
+            "ship_id": 303
+          }
+        ],
+        "unresolved_ship_id": null
+      },
+      "turn": 40,
+      "x": null,
+      "y": null
+    },
+    {
+      "captor_ship_id": 297,
+      "capture_vcr_id": 1584,
+      "captured_ship_id": 2,
+      "current_active_factual_dependency": {
+        "active": true,
+        "candidate_resolved": true,
+        "requests_new_owner": true,
+        "strict_permission": true
+      },
+      "external_order": [
+        2,
+        128,
+        297
+      ],
+      "external_order_keys": {
+        "128": [
+          1010,
+          128
+        ],
+        "2": [
+          1010,
+          2
+        ],
+        "297": [
+          1010,
+          297
+        ]
+      },
+      "factual_opponent_ship_id": 128,
+      "game_id": 326221,
+      "next_vcr_id": 1585,
+      "positions": {
+        "captor": 2,
+        "factual": 1,
+        "prize": 0
+      },
+      "primary": {
+        "branch": "C",
+        "candidate_details": {
+          "128": {
+            "candidate": {
+              "is_factual_next_opponent": true,
+              "owner_id": 7,
+              "position_source": "pre_move_mkt_mass_change",
+              "priority": [
+                3,
+                128,
+                0
+              ],
+              "requests_new_owner": true,
+              "ship_id": 128,
+              "strict_permission": true
+            },
+            "disposition": "eligible",
+            "pair_result": {
+              "candidate": {
+                "position_source": "pre_move_mkt_mass_change",
+                "priority": [
+                  3,
+                  128,
+                  0
+                ],
+                "requests_new_owner": true,
+                "ship_id": 128,
+                "strict_permission": true
+              },
+              "definitely_blocked": false,
+              "definitely_eligible": true,
+              "fc_sensitive_or_unresolved": false,
+              "fresh_fc_decision": {
+                "engagement_eligible": true,
+                "left_hwm_applies": false,
+                "left_ship_id": 2,
+                "matching_fc_blocks": false,
+                "phase": "standard",
+                "phase_attacker_ship_id": null,
+                "prestandard_kind": null,
+                "right_hwm_applies": false,
+                "right_ship_id": 128,
+                "unresolved_reasons": []
+              },
+              "fresh_prize_friendly_code": "c@p",
+              "opponent_orders": {
+                "enemy": 4,
+                "friendlycode": "mkt",
+                "mission": 1,
+                "mission1target": 0,
+                "neutronium": 120,
+                "warp": 9
+              },
+              "phase_invariant": true,
+              "postcapture_identity": {
+                "captor_ship_id": 297,
+                "capture_vcr_id": 1584,
+                "prize_hull_id_preserved": 23,
+                "prize_owner_id": 4,
+                "prize_race_id_from_captor_vcr": 4
+              },
+              "preserved_fc_decision": {
+                "engagement_eligible": true,
+                "left_hwm_applies": false,
+                "left_ship_id": 2,
+                "matching_fc_blocks": false,
+                "phase": "standard",
+                "phase_attacker_ship_id": null,
+                "prestandard_kind": null,
+                "right_hwm_applies": false,
+                "right_ship_id": 128,
+                "unresolved_reasons": []
+              },
+              "prize_old_friendly_code": "mda",
+              "status": "resolved"
+            },
+            "permission_anchored": false,
+            "permission_mode": "strict",
+            "prior_pair_occurrences": 1,
+            "reason": null
+          },
+          "297": {
+            "disposition": "same_owner",
+            "prior_pair_occurrences": 1
+          }
+        },
+        "exact": true,
+        "predicted_ship_id": 128,
+        "reason": null,
+        "status": "resolved",
+        "trace": [
+          {
+            "branch": "C",
+            "disposition": "eligible",
+            "index": 1,
+            "reason": null,
+            "ship_id": 128
+          }
+        ],
+        "unresolved_ship_id": null
+      },
+      "request_anchored_diagnostic": {
+        "branch": "C",
+        "candidate_details": {
+          "128": {
+            "candidate": {
+              "is_factual_next_opponent": true,
+              "owner_id": 7,
+              "position_source": "pre_move_mkt_mass_change",
+              "priority": [
+                3,
+                128,
+                0
+              ],
+              "requests_new_owner": true,
+              "ship_id": 128,
+              "strict_permission": true
+            },
+            "disposition": "eligible",
+            "pair_result": {
+              "candidate": {
+                "position_source": "pre_move_mkt_mass_change",
+                "priority": [
+                  3,
+                  128,
+                  0
+                ],
+                "requests_new_owner": true,
+                "ship_id": 128,
+                "strict_permission": true
+              },
+              "definitely_blocked": false,
+              "definitely_eligible": true,
+              "fc_sensitive_or_unresolved": false,
+              "fresh_fc_decision": {
+                "engagement_eligible": true,
+                "left_hwm_applies": false,
+                "left_ship_id": 2,
+                "matching_fc_blocks": false,
+                "phase": "standard",
+                "phase_attacker_ship_id": null,
+                "prestandard_kind": null,
+                "right_hwm_applies": false,
+                "right_ship_id": 128,
+                "unresolved_reasons": []
+              },
+              "fresh_prize_friendly_code": "c@p",
+              "opponent_orders": {
+                "enemy": 4,
+                "friendlycode": "mkt",
+                "mission": 1,
+                "mission1target": 0,
+                "neutronium": 120,
+                "warp": 9
+              },
+              "phase_invariant": true,
+              "postcapture_identity": {
+                "captor_ship_id": 297,
+                "capture_vcr_id": 1584,
+                "prize_hull_id_preserved": 23,
+                "prize_owner_id": 4,
+                "prize_race_id_from_captor_vcr": 4
+              },
+              "preserved_fc_decision": {
+                "engagement_eligible": true,
+                "left_hwm_applies": false,
+                "left_ship_id": 2,
+                "matching_fc_blocks": false,
+                "phase": "standard",
+                "phase_attacker_ship_id": null,
+                "prestandard_kind": null,
+                "right_hwm_applies": false,
+                "right_ship_id": 128,
+                "unresolved_reasons": []
+              },
+              "prize_old_friendly_code": "mda",
+              "status": "resolved"
+            },
+            "permission_anchored": false,
+            "permission_mode": "request_anchored",
+            "prior_pair_occurrences": 1,
+            "reason": null
+          },
+          "297": {
+            "disposition": "same_owner",
+            "prior_pair_occurrences": 1
+          }
+        },
+        "exact": true,
+        "predicted_ship_id": 128,
+        "reason": null,
+        "status": "resolved",
+        "trace": [
+          {
+            "branch": "C",
+            "disposition": "eligible",
+            "index": 1,
+            "reason": null,
+            "ship_id": 128
+          }
+        ],
+        "unresolved_ship_id": null
+      },
+      "turn": 161,
+      "x": null,
+      "y": null
+    },
+    {
+      "captor_ship_id": 432,
+      "capture_vcr_id": 176,
+      "captured_ship_id": 351,
+      "current_active_factual_dependency": {
+        "active": true,
+        "candidate_resolved": true,
+        "requests_new_owner": true,
+        "strict_permission": true
+      },
+      "external_order": [
+        104,
+        351,
+        361,
+        432,
+        460,
+        2,
+        310
+      ],
+      "external_order_keys": {
+        "104": [
+          1000,
+          104
+        ],
+        "2": [
+          1015,
+          2
+        ],
+        "310": [
+          1015,
+          310
+        ],
+        "351": [
+          1000,
+          351
+        ],
+        "361": [
+          1000,
+          361
+        ],
+        "432": [
+          1000,
+          432
+        ],
+        "460": [
+          1000,
+          460
+        ]
+      },
+      "factual_opponent_ship_id": 361,
+      "game_id": 347358,
+      "next_vcr_id": 177,
+      "positions": {
+        "captor": 3,
+        "factual": 2,
+        "prize": 1
+      },
+      "primary": {
+        "branch": "C",
+        "candidate_details": {
+          "104": {
+            "disposition": "inactive",
+            "prior_pair_occurrences": 0
+          },
+          "2": {
+            "disposition": "same_owner",
+            "prior_pair_occurrences": 0,
+            "reason": "tminus1_owner_matches_prize_owner"
+          },
+          "310": {
+            "disposition": "same_owner",
+            "prior_pair_occurrences": 0,
+            "reason": "tminus1_owner_matches_prize_owner"
+          },
+          "361": {
+            "candidate": {
+              "is_factual_next_opponent": true,
+              "owner_id": 8,
+              "position_source": "stationary_effective_warp_zero",
+              "priority": [
+                2,
+                361,
+                0
+              ],
+              "requests_new_owner": true,
+              "ship_id": 361,
+              "strict_permission": true
+            },
+            "disposition": "eligible",
+            "pair_result": {
+              "candidate": {
+                "position_source": "stationary_effective_warp_zero",
+                "priority": [
+                  2,
+                  361,
+                  0
+                ],
+                "requests_new_owner": true,
+                "ship_id": 361,
+                "strict_permission": true
+              },
+              "definitely_blocked": false,
+              "definitely_eligible": true,
+              "fc_sensitive_or_unresolved": false,
+              "fresh_fc_decision": {
+                "engagement_eligible": true,
+                "left_hwm_applies": false,
+                "left_ship_id": 351,
+                "matching_fc_blocks": false,
+                "phase": "standard",
+                "phase_attacker_ship_id": null,
+                "prestandard_kind": null,
+                "right_hwm_applies": false,
+                "right_ship_id": 361,
+                "unresolved_reasons": []
+              },
+              "fresh_prize_friendly_code": "c@p",
+              "opponent_orders": {
+                "enemy": 0,
+                "friendlycode": "iss",
+                "mission": 3,
+                "mission1target": 0,
+                "neutronium": 10,
+                "warp": 0
+              },
+              "phase_invariant": true,
+              "postcapture_identity": {
+                "captor_ship_id": 432,
+                "capture_vcr_id": 176,
+                "prize_hull_id_preserved": 96,
+                "prize_owner_id": 11,
+                "prize_race_id_from_captor_vcr": 11
+              },
+              "preserved_fc_decision": {
+                "engagement_eligible": true,
+                "left_hwm_applies": false,
+                "left_ship_id": 351,
+                "matching_fc_blocks": false,
+                "phase": "standard",
+                "phase_attacker_ship_id": null,
+                "prestandard_kind": null,
+                "right_hwm_applies": false,
+                "right_ship_id": 361,
+                "unresolved_reasons": []
+              },
+              "prize_old_friendly_code": "mkt",
+              "status": "resolved"
+            },
+            "permission_anchored": false,
+            "permission_mode": "strict",
+            "prior_pair_occurrences": 0,
+            "reason": null
+          },
+          "432": {
+            "disposition": "same_owner",
+            "prior_pair_occurrences": 1
+          },
+          "460": {
+            "disposition": "same_owner",
+            "prior_pair_occurrences": 0,
+            "reason": "tminus1_owner_matches_prize_owner"
+          }
+        },
+        "exact": true,
+        "predicted_ship_id": 361,
+        "reason": null,
+        "status": "resolved",
+        "trace": [
+          {
+            "branch": "C",
+            "disposition": "eligible",
+            "index": 2,
+            "reason": null,
+            "ship_id": 361
+          }
+        ],
+        "unresolved_ship_id": null
+      },
+      "request_anchored_diagnostic": {
+        "branch": "C",
+        "candidate_details": {
+          "104": {
+            "disposition": "inactive",
+            "prior_pair_occurrences": 0
+          },
+          "2": {
+            "disposition": "same_owner",
+            "prior_pair_occurrences": 0,
+            "reason": "tminus1_owner_matches_prize_owner"
+          },
+          "310": {
+            "disposition": "same_owner",
+            "prior_pair_occurrences": 0,
+            "reason": "tminus1_owner_matches_prize_owner"
+          },
+          "361": {
+            "candidate": {
+              "is_factual_next_opponent": true,
+              "owner_id": 8,
+              "position_source": "stationary_effective_warp_zero",
+              "priority": [
+                2,
+                361,
+                0
+              ],
+              "requests_new_owner": true,
+              "ship_id": 361,
+              "strict_permission": true
+            },
+            "disposition": "eligible",
+            "pair_result": {
+              "candidate": {
+                "position_source": "stationary_effective_warp_zero",
+                "priority": [
+                  2,
+                  361,
+                  0
+                ],
+                "requests_new_owner": true,
+                "ship_id": 361,
+                "strict_permission": true
+              },
+              "definitely_blocked": false,
+              "definitely_eligible": true,
+              "fc_sensitive_or_unresolved": false,
+              "fresh_fc_decision": {
+                "engagement_eligible": true,
+                "left_hwm_applies": false,
+                "left_ship_id": 351,
+                "matching_fc_blocks": false,
+                "phase": "standard",
+                "phase_attacker_ship_id": null,
+                "prestandard_kind": null,
+                "right_hwm_applies": false,
+                "right_ship_id": 361,
+                "unresolved_reasons": []
+              },
+              "fresh_prize_friendly_code": "c@p",
+              "opponent_orders": {
+                "enemy": 0,
+                "friendlycode": "iss",
+                "mission": 3,
+                "mission1target": 0,
+                "neutronium": 10,
+                "warp": 0
+              },
+              "phase_invariant": true,
+              "postcapture_identity": {
+                "captor_ship_id": 432,
+                "capture_vcr_id": 176,
+                "prize_hull_id_preserved": 96,
+                "prize_owner_id": 11,
+                "prize_race_id_from_captor_vcr": 11
+              },
+              "preserved_fc_decision": {
+                "engagement_eligible": true,
+                "left_hwm_applies": false,
+                "left_ship_id": 351,
+                "matching_fc_blocks": false,
+                "phase": "standard",
+                "phase_attacker_ship_id": null,
+                "prestandard_kind": null,
+                "right_hwm_applies": false,
+                "right_ship_id": 361,
+                "unresolved_reasons": []
+              },
+              "prize_old_friendly_code": "mkt",
+              "status": "resolved"
+            },
+            "permission_anchored": false,
+            "permission_mode": "request_anchored",
+            "prior_pair_occurrences": 0,
+            "reason": null
+          },
+          "432": {
+            "disposition": "same_owner",
+            "prior_pair_occurrences": 1
+          },
+          "460": {
+            "disposition": "same_owner",
+            "prior_pair_occurrences": 0,
+            "reason": "tminus1_owner_matches_prize_owner"
+          }
+        },
+        "exact": true,
+        "predicted_ship_id": 361,
+        "reason": null,
+        "status": "resolved",
+        "trace": [
+          {
+            "branch": "C",
+            "disposition": "eligible",
+            "index": 2,
+            "reason": null,
+            "ship_id": 361
+          }
+        ],
+        "unresolved_ship_id": null
+      },
+      "turn": 52,
+      "x": null,
+      "y": null
+    },
+    {
+      "captor_ship_id": 184,
+      "capture_vcr_id": 592,
+      "captured_ship_id": 140,
+      "current_active_factual_dependency": {
+        "active": true,
+        "candidate_resolved": true,
+        "requests_new_owner": true,
+        "strict_permission": true
+      },
+      "external_order": [
+        421,
+        296,
+        216,
+        140,
+        170,
+        382,
+        471,
+        134,
+        184,
+        195,
+        280,
+        285,
+        330
+      ],
+      "external_order_keys": {
+        "134": [
+          1015,
+          134
+        ],
+        "140": [
+          1010,
+          140
+        ],
+        "170": [
+          1010,
+          170
+        ],
+        "184": [
+          1015,
+          184
+        ],
+        "195": [
+          1015,
+          195
+        ],
+        "216": [
+          532,
+          216
+        ],
+        "280": [
+          1015,
+          280
+        ],
+        "285": [
+          1015,
+          285
+        ],
+        "296": [
+          311,
+          296
+        ],
+        "330": [
+          1015,
+          330
+        ],
+        "382": [
+          1010,
+          382
+        ],
+        "421": [
+          115,
+          421
+        ],
+        "471": [
+          1010,
+          471
+        ]
+      },
+      "factual_opponent_ship_id": 170,
+      "game_id": 400330,
+      "next_vcr_id": 593,
+      "positions": {
+        "captor": 8,
+        "factual": 4,
+        "prize": 3
+      },
+      "primary": {
+        "branch": "C",
+        "candidate_details": {
+          "134": {
+            "disposition": "inactive",
+            "prior_pair_occurrences": 0
+          },
+          "170": {
+            "candidate": {
+              "is_factual_next_opponent": true,
+              "owner_id": 10,
+              "position_source": "normal_move",
+              "priority": [
+                3,
+                170,
+                0
+              ],
+              "requests_new_owner": true,
+              "ship_id": 170,
+              "strict_permission": true
+            },
+            "disposition": "eligible",
+            "pair_result": {
+              "candidate": {
+                "position_source": "normal_move",
+                "priority": [
+                  3,
+                  170,
+                  0
+                ],
+                "requests_new_owner": true,
+                "ship_id": 170,
+                "strict_permission": true
+              },
+              "definitely_blocked": false,
+              "definitely_eligible": true,
+              "fc_sensitive_or_unresolved": false,
+              "fresh_fc_decision": {
+                "engagement_eligible": true,
+                "left_hwm_applies": false,
+                "left_ship_id": 140,
+                "matching_fc_blocks": false,
+                "phase": "standard",
+                "phase_attacker_ship_id": null,
+                "prestandard_kind": null,
+                "right_hwm_applies": false,
+                "right_ship_id": 170,
+                "unresolved_reasons": []
+              },
+              "fresh_prize_friendly_code": "c@p",
+              "opponent_orders": {
+                "enemy": 5,
+                "friendlycode": "fxc",
+                "mission": 1,
+                "mission1target": 0,
+                "neutronium": 11,
+                "warp": 9
+              },
+              "phase_invariant": true,
+              "postcapture_identity": {
+                "captor_ship_id": 184,
+                "capture_vcr_id": 592,
+                "prize_hull_id_preserved": 89,
+                "prize_owner_id": 5,
+                "prize_race_id_from_captor_vcr": 5
+              },
+              "preserved_fc_decision": {
+                "engagement_eligible": true,
+                "left_hwm_applies": false,
+                "left_ship_id": 140,
+                "matching_fc_blocks": false,
+                "phase": "standard",
+                "phase_attacker_ship_id": null,
+                "prestandard_kind": null,
+                "right_hwm_applies": false,
+                "right_ship_id": 170,
+                "unresolved_reasons": []
+              },
+              "prize_old_friendly_code": "XfV",
+              "status": "resolved"
+            },
+            "permission_anchored": false,
+            "permission_mode": "strict",
+            "prior_pair_occurrences": 0,
+            "reason": null
+          },
+          "184": {
+            "disposition": "same_owner",
+            "prior_pair_occurrences": 1
+          },
+          "195": {
+            "disposition": "same_owner",
+            "prior_pair_occurrences": 0,
+            "reason": "tminus1_owner_matches_prize_owner"
+          },
+          "216": {
+            "disposition": "inactive",
+            "prior_pair_occurrences": 0
+          },
+          "280": {
+            "disposition": "same_owner",
+            "prior_pair_occurrences": 0,
+            "reason": "tminus1_owner_matches_prize_owner"
+          },
+          "285": {
+            "disposition": "same_owner",
+            "prior_pair_occurrences": 0,
+            "reason": "tminus1_owner_matches_prize_owner"
+          },
+          "296": {
+            "disposition": "inactive",
+            "prior_pair_occurrences": 0
+          },
+          "330": {
+            "disposition": "same_owner",
+            "prior_pair_occurrences": 0,
+            "reason": "tminus1_owner_matches_prize_owner"
+          },
+          "382": {
+            "candidate": {
+              "is_factual_next_opponent": false,
+              "owner_id": 10,
+              "position_source": "special_tow_movement_phase",
+              "priority": [
+                3,
+                382,
+                0
+              ],
+              "requests_new_owner": true,
+              "ship_id": 382,
+              "strict_permission": true
+            },
+            "disposition": "eligible",
+            "pair_result": {
+              "candidate": {
+                "position_source": "special_tow_movement_phase",
+                "priority": [
+                  3,
+                  382,
+                  0
+                ],
+                "requests_new_owner": true,
+                "ship_id": 382,
+                "strict_permission": true
+              },
+              "definitely_blocked": false,
+              "definitely_eligible": true,
+              "fc_sensitive_or_unresolved": false,
+              "fresh_fc_decision": {
+                "engagement_eligible": true,
+                "left_hwm_applies": false,
+                "left_ship_id": 140,
+                "matching_fc_blocks": false,
+                "phase": "standard",
+                "phase_attacker_ship_id": null,
+                "prestandard_kind": null,
+                "right_hwm_applies": false,
+                "right_ship_id": 382,
+                "unresolved_reasons": []
+              },
+              "fresh_prize_friendly_code": "c@p",
+              "opponent_orders": {
+                "enemy": 5,
+                "friendlycode": "xgw",
+                "mission": 6,
+                "mission1target": 216,
+                "neutronium": 9,
+                "warp": 9
+              },
+              "phase_invariant": true,
+              "postcapture_identity": {
+                "captor_ship_id": 184,
+                "capture_vcr_id": 592,
+                "prize_hull_id_preserved": 89,
+                "prize_owner_id": 5,
+                "prize_race_id_from_captor_vcr": 5
+              },
+              "preserved_fc_decision": {
+                "engagement_eligible": true,
+                "left_hwm_applies": false,
+                "left_ship_id": 140,
+                "matching_fc_blocks": false,
+                "phase": "standard",
+                "phase_attacker_ship_id": null,
+                "prestandard_kind": null,
+                "right_hwm_applies": false,
+                "right_ship_id": 382,
+                "unresolved_reasons": []
+              },
+              "prize_old_friendly_code": "XfV",
+              "status": "resolved"
+            },
+            "permission_anchored": false,
+            "permission_mode": "strict",
+            "prior_pair_occurrences": 0,
+            "reason": null
+          },
+          "421": {
+            "disposition": "inactive",
+            "prior_pair_occurrences": 0
+          },
+          "471": {
+            "candidate": {
+              "is_factual_next_opponent": false,
+              "owner_id": 10,
+              "position_source": "normal_move",
+              "priority": [
+                3,
+                471,
+                0
+              ],
+              "requests_new_owner": false,
+              "ship_id": 471,
+              "strict_permission": false
+            },
+            "disposition": "no_request",
+            "prior_pair_occurrences": 0
+          }
+        },
+        "exact": true,
+        "predicted_ship_id": 170,
+        "reason": null,
+        "status": "resolved",
+        "trace": [
+          {
+            "branch": "C",
+            "disposition": "eligible",
+            "index": 4,
+            "reason": null,
+            "ship_id": 170
+          }
+        ],
+        "unresolved_ship_id": null
+      },
+      "request_anchored_diagnostic": {
+        "branch": "C",
+        "candidate_details": {
+          "134": {
+            "disposition": "inactive",
+            "prior_pair_occurrences": 0
+          },
+          "170": {
+            "candidate": {
+              "is_factual_next_opponent": true,
+              "owner_id": 10,
+              "position_source": "normal_move",
+              "priority": [
+                3,
+                170,
+                0
+              ],
+              "requests_new_owner": true,
+              "ship_id": 170,
+              "strict_permission": true
+            },
+            "disposition": "eligible",
+            "pair_result": {
+              "candidate": {
+                "position_source": "normal_move",
+                "priority": [
+                  3,
+                  170,
+                  0
+                ],
+                "requests_new_owner": true,
+                "ship_id": 170,
+                "strict_permission": true
+              },
+              "definitely_blocked": false,
+              "definitely_eligible": true,
+              "fc_sensitive_or_unresolved": false,
+              "fresh_fc_decision": {
+                "engagement_eligible": true,
+                "left_hwm_applies": false,
+                "left_ship_id": 140,
+                "matching_fc_blocks": false,
+                "phase": "standard",
+                "phase_attacker_ship_id": null,
+                "prestandard_kind": null,
+                "right_hwm_applies": false,
+                "right_ship_id": 170,
+                "unresolved_reasons": []
+              },
+              "fresh_prize_friendly_code": "c@p",
+              "opponent_orders": {
+                "enemy": 5,
+                "friendlycode": "fxc",
+                "mission": 1,
+                "mission1target": 0,
+                "neutronium": 11,
+                "warp": 9
+              },
+              "phase_invariant": true,
+              "postcapture_identity": {
+                "captor_ship_id": 184,
+                "capture_vcr_id": 592,
+                "prize_hull_id_preserved": 89,
+                "prize_owner_id": 5,
+                "prize_race_id_from_captor_vcr": 5
+              },
+              "preserved_fc_decision": {
+                "engagement_eligible": true,
+                "left_hwm_applies": false,
+                "left_ship_id": 140,
+                "matching_fc_blocks": false,
+                "phase": "standard",
+                "phase_attacker_ship_id": null,
+                "prestandard_kind": null,
+                "right_hwm_applies": false,
+                "right_ship_id": 170,
+                "unresolved_reasons": []
+              },
+              "prize_old_friendly_code": "XfV",
+              "status": "resolved"
+            },
+            "permission_anchored": false,
+            "permission_mode": "request_anchored",
+            "prior_pair_occurrences": 0,
+            "reason": null
+          },
+          "184": {
+            "disposition": "same_owner",
+            "prior_pair_occurrences": 1
+          },
+          "195": {
+            "disposition": "same_owner",
+            "prior_pair_occurrences": 0,
+            "reason": "tminus1_owner_matches_prize_owner"
+          },
+          "216": {
+            "disposition": "inactive",
+            "prior_pair_occurrences": 0
+          },
+          "280": {
+            "disposition": "same_owner",
+            "prior_pair_occurrences": 0,
+            "reason": "tminus1_owner_matches_prize_owner"
+          },
+          "285": {
+            "disposition": "same_owner",
+            "prior_pair_occurrences": 0,
+            "reason": "tminus1_owner_matches_prize_owner"
+          },
+          "296": {
+            "disposition": "inactive",
+            "prior_pair_occurrences": 0
+          },
+          "330": {
+            "disposition": "same_owner",
+            "prior_pair_occurrences": 0,
+            "reason": "tminus1_owner_matches_prize_owner"
+          },
+          "382": {
+            "candidate": {
+              "is_factual_next_opponent": false,
+              "owner_id": 10,
+              "position_source": "special_tow_movement_phase",
+              "priority": [
+                3,
+                382,
+                0
+              ],
+              "requests_new_owner": true,
+              "ship_id": 382,
+              "strict_permission": true
+            },
+            "disposition": "eligible",
+            "pair_result": {
+              "candidate": {
+                "position_source": "special_tow_movement_phase",
+                "priority": [
+                  3,
+                  382,
+                  0
+                ],
+                "requests_new_owner": true,
+                "ship_id": 382,
+                "strict_permission": true
+              },
+              "definitely_blocked": false,
+              "definitely_eligible": true,
+              "fc_sensitive_or_unresolved": false,
+              "fresh_fc_decision": {
+                "engagement_eligible": true,
+                "left_hwm_applies": false,
+                "left_ship_id": 140,
+                "matching_fc_blocks": false,
+                "phase": "standard",
+                "phase_attacker_ship_id": null,
+                "prestandard_kind": null,
+                "right_hwm_applies": false,
+                "right_ship_id": 382,
+                "unresolved_reasons": []
+              },
+              "fresh_prize_friendly_code": "c@p",
+              "opponent_orders": {
+                "enemy": 5,
+                "friendlycode": "xgw",
+                "mission": 6,
+                "mission1target": 216,
+                "neutronium": 9,
+                "warp": 9
+              },
+              "phase_invariant": true,
+              "postcapture_identity": {
+                "captor_ship_id": 184,
+                "capture_vcr_id": 592,
+                "prize_hull_id_preserved": 89,
+                "prize_owner_id": 5,
+                "prize_race_id_from_captor_vcr": 5
+              },
+              "preserved_fc_decision": {
+                "engagement_eligible": true,
+                "left_hwm_applies": false,
+                "left_ship_id": 140,
+                "matching_fc_blocks": false,
+                "phase": "standard",
+                "phase_attacker_ship_id": null,
+                "prestandard_kind": null,
+                "right_hwm_applies": false,
+                "right_ship_id": 382,
+                "unresolved_reasons": []
+              },
+              "prize_old_friendly_code": "XfV",
+              "status": "resolved"
+            },
+            "permission_anchored": false,
+            "permission_mode": "request_anchored",
+            "prior_pair_occurrences": 0,
+            "reason": null
+          },
+          "421": {
+            "disposition": "inactive",
+            "prior_pair_occurrences": 0
+          },
+          "471": {
+            "candidate": {
+              "is_factual_next_opponent": false,
+              "owner_id": 10,
+              "position_source": "normal_move",
+              "priority": [
+                3,
+                471,
+                0
+              ],
+              "requests_new_owner": false,
+              "ship_id": 471,
+              "strict_permission": false
+            },
+            "disposition": "no_request",
+            "prior_pair_occurrences": 0
+          }
+        },
+        "exact": true,
+        "predicted_ship_id": 170,
+        "reason": null,
+        "status": "resolved",
+        "trace": [
+          {
+            "branch": "C",
+            "disposition": "eligible",
+            "index": 4,
+            "reason": null,
+            "ship_id": 170
+          }
+        ],
+        "unresolved_ship_id": null
+      },
+      "turn": 141,
+      "x": null,
+      "y": null
+    },
+    {
+      "captor_ship_id": 184,
+      "capture_vcr_id": 594,
+      "captured_ship_id": 170,
+      "current_active_factual_dependency": {
+        "active": true,
+        "candidate_resolved": true,
+        "requests_new_owner": true,
+        "strict_permission": true
+      },
+      "external_order": [
+        421,
+        296,
+        216,
+        140,
+        170,
+        382,
+        471,
+        134,
+        184,
+        195,
+        280,
+        285,
+        330
+      ],
+      "external_order_keys": {
+        "134": [
+          1015,
+          134
+        ],
+        "140": [
+          1010,
+          140
+        ],
+        "170": [
+          1010,
+          170
+        ],
+        "184": [
+          1015,
+          184
+        ],
+        "195": [
+          1015,
+          195
+        ],
+        "216": [
+          532,
+          216
+        ],
+        "280": [
+          1015,
+          280
+        ],
+        "285": [
+          1015,
+          285
+        ],
+        "296": [
+          311,
+          296
+        ],
+        "330": [
+          1015,
+          330
+        ],
+        "382": [
+          1010,
+          382
+        ],
+        "421": [
+          115,
+          421
+        ],
+        "471": [
+          1010,
+          471
+        ]
+      },
+      "factual_opponent_ship_id": 382,
+      "game_id": 400330,
+      "next_vcr_id": 595,
+      "positions": {
+        "captor": 8,
+        "factual": 5,
+        "prize": 4
+      },
+      "primary": {
+        "branch": "C",
+        "candidate_details": {
+          "134": {
+            "disposition": "inactive",
+            "prior_pair_occurrences": 0
+          },
+          "140": {
+            "candidate": {
+              "is_factual_next_opponent": false,
+              "owner_id": 10,
+              "position_source": "normal_move",
+              "priority": [
+                3,
+                140,
+                0
+              ],
+              "requests_new_owner": true,
+              "ship_id": 140,
+              "strict_permission": true
+            },
+            "disposition": "eligible",
+            "pair_result": {
+              "candidate": {
+                "position_source": "normal_move",
+                "priority": [
+                  3,
+                  140,
+                  0
+                ],
+                "requests_new_owner": true,
+                "ship_id": 140,
+                "strict_permission": true
+              },
+              "definitely_blocked": false,
+              "definitely_eligible": true,
+              "fc_sensitive_or_unresolved": false,
+              "fresh_fc_decision": {
+                "engagement_eligible": true,
+                "left_hwm_applies": false,
+                "left_ship_id": 170,
+                "matching_fc_blocks": false,
+                "phase": "standard",
+                "phase_attacker_ship_id": null,
+                "prestandard_kind": null,
+                "right_hwm_applies": false,
+                "right_ship_id": 140,
+                "unresolved_reasons": []
+              },
+              "fresh_prize_friendly_code": "c@p",
+              "opponent_orders": {
+                "enemy": 5,
+                "friendlycode": "XfV",
+                "mission": 1,
+                "mission1target": 0,
+                "neutronium": 7,
+                "warp": 9
+              },
+              "phase_invariant": true,
+              "postcapture_identity": {
+                "captor_ship_id": 184,
+                "capture_vcr_id": 594,
+                "prize_hull_id_preserved": 89,
+                "prize_owner_id": 5,
+                "prize_race_id_from_captor_vcr": 5
+              },
+              "preserved_fc_decision": {
+                "engagement_eligible": true,
+                "left_hwm_applies": false,
+                "left_ship_id": 170,
+                "matching_fc_blocks": false,
+                "phase": "standard",
+                "phase_attacker_ship_id": null,
+                "prestandard_kind": null,
+                "right_hwm_applies": false,
+                "right_ship_id": 140,
+                "unresolved_reasons": []
+              },
+              "prize_old_friendly_code": "fxc",
+              "status": "resolved"
+            },
+            "permission_anchored": false,
+            "permission_mode": "strict",
+            "prior_pair_occurrences": 1,
+            "reason": null
+          },
+          "184": {
+            "disposition": "same_owner",
+            "prior_pair_occurrences": 1
+          },
+          "195": {
+            "disposition": "same_owner",
+            "prior_pair_occurrences": 0,
+            "reason": "tminus1_owner_matches_prize_owner"
+          },
+          "216": {
+            "disposition": "inactive",
+            "prior_pair_occurrences": 0
+          },
+          "280": {
+            "disposition": "same_owner",
+            "prior_pair_occurrences": 0,
+            "reason": "tminus1_owner_matches_prize_owner"
+          },
+          "285": {
+            "disposition": "same_owner",
+            "prior_pair_occurrences": 0,
+            "reason": "tminus1_owner_matches_prize_owner"
+          },
+          "296": {
+            "disposition": "inactive",
+            "prior_pair_occurrences": 0
+          },
+          "330": {
+            "disposition": "same_owner",
+            "prior_pair_occurrences": 0,
+            "reason": "tminus1_owner_matches_prize_owner"
+          },
+          "382": {
+            "candidate": {
+              "is_factual_next_opponent": true,
+              "owner_id": 10,
+              "position_source": "special_tow_movement_phase",
+              "priority": [
+                3,
+                382,
+                0
+              ],
+              "requests_new_owner": true,
+              "ship_id": 382,
+              "strict_permission": true
+            },
+            "disposition": "eligible",
+            "pair_result": {
+              "candidate": {
+                "position_source": "special_tow_movement_phase",
+                "priority": [
+                  3,
+                  382,
+                  0
+                ],
+                "requests_new_owner": true,
+                "ship_id": 382,
+                "strict_permission": true
+              },
+              "definitely_blocked": false,
+              "definitely_eligible": true,
+              "fc_sensitive_or_unresolved": false,
+              "fresh_fc_decision": {
+                "engagement_eligible": true,
+                "left_hwm_applies": false,
+                "left_ship_id": 170,
+                "matching_fc_blocks": false,
+                "phase": "standard",
+                "phase_attacker_ship_id": null,
+                "prestandard_kind": null,
+                "right_hwm_applies": false,
+                "right_ship_id": 382,
+                "unresolved_reasons": []
+              },
+              "fresh_prize_friendly_code": "c@p",
+              "opponent_orders": {
+                "enemy": 5,
+                "friendlycode": "xgw",
+                "mission": 6,
+                "mission1target": 216,
+                "neutronium": 9,
+                "warp": 9
+              },
+              "phase_invariant": true,
+              "postcapture_identity": {
+                "captor_ship_id": 184,
+                "capture_vcr_id": 594,
+                "prize_hull_id_preserved": 89,
+                "prize_owner_id": 5,
+                "prize_race_id_from_captor_vcr": 5
+              },
+              "preserved_fc_decision": {
+                "engagement_eligible": true,
+                "left_hwm_applies": false,
+                "left_ship_id": 170,
+                "matching_fc_blocks": false,
+                "phase": "standard",
+                "phase_attacker_ship_id": null,
+                "prestandard_kind": null,
+                "right_hwm_applies": false,
+                "right_ship_id": 382,
+                "unresolved_reasons": []
+              },
+              "prize_old_friendly_code": "fxc",
+              "status": "resolved"
+            },
+            "permission_anchored": false,
+            "permission_mode": "strict",
+            "prior_pair_occurrences": 0,
+            "reason": null
+          },
+          "421": {
+            "disposition": "inactive",
+            "prior_pair_occurrences": 0
+          },
+          "471": {
+            "candidate": {
+              "is_factual_next_opponent": false,
+              "owner_id": 10,
+              "position_source": "normal_move",
+              "priority": [
+                3,
+                471,
+                0
+              ],
+              "requests_new_owner": false,
+              "ship_id": 471,
+              "strict_permission": false
+            },
+            "disposition": "no_request",
+            "prior_pair_occurrences": 0
+          }
+        },
+        "exact": true,
+        "predicted_ship_id": 382,
+        "reason": null,
+        "status": "resolved",
+        "trace": [
+          {
+            "branch": "C",
+            "disposition": "eligible",
+            "index": 5,
+            "reason": null,
+            "ship_id": 382
+          }
+        ],
+        "unresolved_ship_id": null
+      },
+      "request_anchored_diagnostic": {
+        "branch": "C",
+        "candidate_details": {
+          "134": {
+            "disposition": "inactive",
+            "prior_pair_occurrences": 0
+          },
+          "140": {
+            "candidate": {
+              "is_factual_next_opponent": false,
+              "owner_id": 10,
+              "position_source": "normal_move",
+              "priority": [
+                3,
+                140,
+                0
+              ],
+              "requests_new_owner": true,
+              "ship_id": 140,
+              "strict_permission": true
+            },
+            "disposition": "eligible",
+            "pair_result": {
+              "candidate": {
+                "position_source": "normal_move",
+                "priority": [
+                  3,
+                  140,
+                  0
+                ],
+                "requests_new_owner": true,
+                "ship_id": 140,
+                "strict_permission": true
+              },
+              "definitely_blocked": false,
+              "definitely_eligible": true,
+              "fc_sensitive_or_unresolved": false,
+              "fresh_fc_decision": {
+                "engagement_eligible": true,
+                "left_hwm_applies": false,
+                "left_ship_id": 170,
+                "matching_fc_blocks": false,
+                "phase": "standard",
+                "phase_attacker_ship_id": null,
+                "prestandard_kind": null,
+                "right_hwm_applies": false,
+                "right_ship_id": 140,
+                "unresolved_reasons": []
+              },
+              "fresh_prize_friendly_code": "c@p",
+              "opponent_orders": {
+                "enemy": 5,
+                "friendlycode": "XfV",
+                "mission": 1,
+                "mission1target": 0,
+                "neutronium": 7,
+                "warp": 9
+              },
+              "phase_invariant": true,
+              "postcapture_identity": {
+                "captor_ship_id": 184,
+                "capture_vcr_id": 594,
+                "prize_hull_id_preserved": 89,
+                "prize_owner_id": 5,
+                "prize_race_id_from_captor_vcr": 5
+              },
+              "preserved_fc_decision": {
+                "engagement_eligible": true,
+                "left_hwm_applies": false,
+                "left_ship_id": 170,
+                "matching_fc_blocks": false,
+                "phase": "standard",
+                "phase_attacker_ship_id": null,
+                "prestandard_kind": null,
+                "right_hwm_applies": false,
+                "right_ship_id": 140,
+                "unresolved_reasons": []
+              },
+              "prize_old_friendly_code": "fxc",
+              "status": "resolved"
+            },
+            "permission_anchored": false,
+            "permission_mode": "request_anchored",
+            "prior_pair_occurrences": 1,
+            "reason": null
+          },
+          "184": {
+            "disposition": "same_owner",
+            "prior_pair_occurrences": 1
+          },
+          "195": {
+            "disposition": "same_owner",
+            "prior_pair_occurrences": 0,
+            "reason": "tminus1_owner_matches_prize_owner"
+          },
+          "216": {
+            "disposition": "inactive",
+            "prior_pair_occurrences": 0
+          },
+          "280": {
+            "disposition": "same_owner",
+            "prior_pair_occurrences": 0,
+            "reason": "tminus1_owner_matches_prize_owner"
+          },
+          "285": {
+            "disposition": "same_owner",
+            "prior_pair_occurrences": 0,
+            "reason": "tminus1_owner_matches_prize_owner"
+          },
+          "296": {
+            "disposition": "inactive",
+            "prior_pair_occurrences": 0
+          },
+          "330": {
+            "disposition": "same_owner",
+            "prior_pair_occurrences": 0,
+            "reason": "tminus1_owner_matches_prize_owner"
+          },
+          "382": {
+            "candidate": {
+              "is_factual_next_opponent": true,
+              "owner_id": 10,
+              "position_source": "special_tow_movement_phase",
+              "priority": [
+                3,
+                382,
+                0
+              ],
+              "requests_new_owner": true,
+              "ship_id": 382,
+              "strict_permission": true
+            },
+            "disposition": "eligible",
+            "pair_result": {
+              "candidate": {
+                "position_source": "special_tow_movement_phase",
+                "priority": [
+                  3,
+                  382,
+                  0
+                ],
+                "requests_new_owner": true,
+                "ship_id": 382,
+                "strict_permission": true
+              },
+              "definitely_blocked": false,
+              "definitely_eligible": true,
+              "fc_sensitive_or_unresolved": false,
+              "fresh_fc_decision": {
+                "engagement_eligible": true,
+                "left_hwm_applies": false,
+                "left_ship_id": 170,
+                "matching_fc_blocks": false,
+                "phase": "standard",
+                "phase_attacker_ship_id": null,
+                "prestandard_kind": null,
+                "right_hwm_applies": false,
+                "right_ship_id": 382,
+                "unresolved_reasons": []
+              },
+              "fresh_prize_friendly_code": "c@p",
+              "opponent_orders": {
+                "enemy": 5,
+                "friendlycode": "xgw",
+                "mission": 6,
+                "mission1target": 216,
+                "neutronium": 9,
+                "warp": 9
+              },
+              "phase_invariant": true,
+              "postcapture_identity": {
+                "captor_ship_id": 184,
+                "capture_vcr_id": 594,
+                "prize_hull_id_preserved": 89,
+                "prize_owner_id": 5,
+                "prize_race_id_from_captor_vcr": 5
+              },
+              "preserved_fc_decision": {
+                "engagement_eligible": true,
+                "left_hwm_applies": false,
+                "left_ship_id": 170,
+                "matching_fc_blocks": false,
+                "phase": "standard",
+                "phase_attacker_ship_id": null,
+                "prestandard_kind": null,
+                "right_hwm_applies": false,
+                "right_ship_id": 382,
+                "unresolved_reasons": []
+              },
+              "prize_old_friendly_code": "fxc",
+              "status": "resolved"
+            },
+            "permission_anchored": false,
+            "permission_mode": "request_anchored",
+            "prior_pair_occurrences": 0,
+            "reason": null
+          },
+          "421": {
+            "disposition": "inactive",
+            "prior_pair_occurrences": 0
+          },
+          "471": {
+            "candidate": {
+              "is_factual_next_opponent": false,
+              "owner_id": 10,
+              "position_source": "normal_move",
+              "priority": [
+                3,
+                471,
+                0
+              ],
+              "requests_new_owner": false,
+              "ship_id": 471,
+              "strict_permission": false
+            },
+            "disposition": "no_request",
+            "prior_pair_occurrences": 0
+          }
+        },
+        "exact": true,
+        "predicted_ship_id": 382,
+        "reason": null,
+        "status": "resolved",
+        "trace": [
+          {
+            "branch": "C",
+            "disposition": "eligible",
+            "index": 5,
+            "reason": null,
+            "ship_id": 382
+          }
+        ],
+        "unresolved_ship_id": null
+      },
+      "turn": 141,
+      "x": null,
+      "y": null
+    },
+    {
+      "captor_ship_id": 60,
+      "capture_vcr_id": 8,
+      "captured_ship_id": 98,
+      "current_active_factual_dependency": {
+        "active": true,
+        "candidate_resolved": true,
+        "requests_new_owner": true,
+        "strict_permission": true
+      },
+      "external_order": [
+        98,
+        243,
+        60
+      ],
+      "external_order_keys": {
+        "243": [
+          1010,
+          243
+        ],
+        "60": [
+          1015,
+          60
+        ],
+        "98": [
+          1000,
+          98
+        ]
+      },
+      "factual_opponent_ship_id": 243,
+      "game_id": 497195,
+      "next_vcr_id": 9,
+      "positions": {
+        "captor": 2,
+        "factual": 1,
+        "prize": 0
+      },
+      "primary": {
+        "branch": "C",
+        "candidate_details": {
+          "243": {
+            "candidate": {
+              "is_factual_next_opponent": true,
+              "owner_id": 3,
+              "position_source": "special_tow_movement_phase",
+              "priority": [
+                3,
+                243,
+                0
+              ],
+              "requests_new_owner": true,
+              "ship_id": 243,
+              "strict_permission": true
+            },
+            "disposition": "eligible",
+            "pair_result": {
+              "candidate": {
+                "position_source": "special_tow_movement_phase",
+                "priority": [
+                  3,
+                  243,
+                  0
+                ],
+                "requests_new_owner": true,
+                "ship_id": 243,
+                "strict_permission": true
+              },
+              "definitely_blocked": false,
+              "definitely_eligible": true,
+              "fc_sensitive_or_unresolved": false,
+              "fresh_fc_decision": {
+                "engagement_eligible": true,
+                "left_hwm_applies": false,
+                "left_ship_id": 98,
+                "matching_fc_blocks": false,
+                "phase": "standard",
+                "phase_attacker_ship_id": null,
+                "prestandard_kind": null,
+                "right_hwm_applies": false,
+                "right_ship_id": 243,
+                "unresolved_reasons": []
+              },
+              "fresh_prize_friendly_code": "c@p",
+              "opponent_orders": {
+                "enemy": 9,
+                "friendlycode": "jgg",
+                "mission": 6,
+                "mission1target": 190,
+                "neutronium": 259,
+                "warp": 9
+              },
+              "phase_invariant": true,
+              "postcapture_identity": {
+                "captor_ship_id": 60,
+                "capture_vcr_id": 8,
+                "prize_hull_id_preserved": 107,
+                "prize_owner_id": 9,
+                "prize_race_id_from_captor_vcr": 2
+              },
+              "preserved_fc_decision": {
+                "engagement_eligible": true,
+                "left_hwm_applies": false,
+                "left_ship_id": 98,
+                "matching_fc_blocks": false,
+                "phase": "standard",
+                "phase_attacker_ship_id": null,
+                "prestandard_kind": null,
+                "right_hwm_applies": false,
+                "right_ship_id": 243,
+                "unresolved_reasons": []
+              },
+              "prize_old_friendly_code": "qme",
+              "status": "resolved"
+            },
+            "permission_anchored": false,
+            "permission_mode": "strict",
+            "prior_pair_occurrences": 0,
+            "reason": null
+          },
+          "60": {
+            "disposition": "same_owner",
+            "prior_pair_occurrences": 1
+          }
+        },
+        "exact": true,
+        "predicted_ship_id": 243,
+        "reason": null,
+        "status": "resolved",
+        "trace": [
+          {
+            "branch": "C",
+            "disposition": "eligible",
+            "index": 1,
+            "reason": null,
+            "ship_id": 243
+          }
+        ],
+        "unresolved_ship_id": null
+      },
+      "request_anchored_diagnostic": {
+        "branch": "C",
+        "candidate_details": {
+          "243": {
+            "candidate": {
+              "is_factual_next_opponent": true,
+              "owner_id": 3,
+              "position_source": "special_tow_movement_phase",
+              "priority": [
+                3,
+                243,
+                0
+              ],
+              "requests_new_owner": true,
+              "ship_id": 243,
+              "strict_permission": true
+            },
+            "disposition": "eligible",
+            "pair_result": {
+              "candidate": {
+                "position_source": "special_tow_movement_phase",
+                "priority": [
+                  3,
+                  243,
+                  0
+                ],
+                "requests_new_owner": true,
+                "ship_id": 243,
+                "strict_permission": true
+              },
+              "definitely_blocked": false,
+              "definitely_eligible": true,
+              "fc_sensitive_or_unresolved": false,
+              "fresh_fc_decision": {
+                "engagement_eligible": true,
+                "left_hwm_applies": false,
+                "left_ship_id": 98,
+                "matching_fc_blocks": false,
+                "phase": "standard",
+                "phase_attacker_ship_id": null,
+                "prestandard_kind": null,
+                "right_hwm_applies": false,
+                "right_ship_id": 243,
+                "unresolved_reasons": []
+              },
+              "fresh_prize_friendly_code": "c@p",
+              "opponent_orders": {
+                "enemy": 9,
+                "friendlycode": "jgg",
+                "mission": 6,
+                "mission1target": 190,
+                "neutronium": 259,
+                "warp": 9
+              },
+              "phase_invariant": true,
+              "postcapture_identity": {
+                "captor_ship_id": 60,
+                "capture_vcr_id": 8,
+                "prize_hull_id_preserved": 107,
+                "prize_owner_id": 9,
+                "prize_race_id_from_captor_vcr": 2
+              },
+              "preserved_fc_decision": {
+                "engagement_eligible": true,
+                "left_hwm_applies": false,
+                "left_ship_id": 98,
+                "matching_fc_blocks": false,
+                "phase": "standard",
+                "phase_attacker_ship_id": null,
+                "prestandard_kind": null,
+                "right_hwm_applies": false,
+                "right_ship_id": 243,
+                "unresolved_reasons": []
+              },
+              "prize_old_friendly_code": "qme",
+              "status": "resolved"
+            },
+            "permission_anchored": false,
+            "permission_mode": "request_anchored",
+            "prior_pair_occurrences": 0,
+            "reason": null
+          },
+          "60": {
+            "disposition": "same_owner",
+            "prior_pair_occurrences": 1
+          }
+        },
+        "exact": true,
+        "predicted_ship_id": 243,
+        "reason": null,
+        "status": "resolved",
+        "trace": [
+          {
+            "branch": "C",
+            "disposition": "eligible",
+            "index": 1,
+            "reason": null,
+            "ship_id": 243
+          }
+        ],
+        "unresolved_ship_id": null
+      },
+      "turn": 18,
+      "x": null,
+      "y": null
+    }
+  ],
+  "database_path": "/corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "evidence_boundary": "Prospective independent validation on the fresh post-public68 32-game population selected before the O/C-forward exact selector was formulated. The population has zero game-id overlap with public68. Factual N+1 opponent identity is comparator-only; LEFT/RIGHT is not used by this gate. Public100 is opened through a temporary read-only validation view while canonical CURRENT remains public68.",
+  "evidence_status": "INDEPENDENT_VALIDATION",
+  "frozen_qualified_rows": 6,
+  "frozen_selector_implementation_commit": "d6f80a12c9d6fbf3eaa1d7dfeb1cc39839d147ad",
+  "frozen_validation_protocol_commit": "16b5a10e6bda7ebd8e98e1cee3a8ca16508727de",
+  "label": "fresh32-independent",
+  "o_layer_partition": "independent",
+  "schema": "planets-lab.postcapture-o-c-forward-independent-validation.v1",
+  "summary": {
+    "counts": {
+      "diagnostic:branch:C": 6,
+      "diagnostic:exact": 6,
+      "diagnostic:status:resolved": 6,
+      "primary:branch:C": 6,
+      "primary:exact": 6,
+      "primary:status:resolved": 6
+    }
+  },
+  "validation_gate": {
+    "active_replay_unresolved": 0,
+    "all_exact": true,
+    "c_branch": 6,
+    "exact": 6,
+    "full_branch_coverage": false,
+    "mismatch": 0,
+    "no_pair": 0,
+    "o_branch": 0,
+    "order_unresolved": 0,
+    "qualified_rows": 6,
+    "resolved": 6,
+    "unresolved": 0
+  },
+  "validation_status": "PASS_PARTIAL_BRANCH_COVERAGE"
+}
