@@ -69,3 +69,34 @@ def test_gate_has_parent_resume_terminal_status() -> None:
     assert "NO_IMMEDIATE_CONTINUATION_PARENT_RESUME_REQUIRED" in source
     assert "IMMEDIATE_CONTINUATION_RESOLVED" in source
     assert "IMMEDIATE_CONTINUATION_UNRESOLVED" in source
+
+
+
+def test_controls_through_vcr_keep_elapsed_and_drop_future_same_turn() -> None:
+    controls = {
+        ("sig", "dir"): {
+            (140, 1, (10, 20)),
+            (141, 592, (20, 30)),
+            (141, 593, (30, 40)),
+            (141, 594, (40, 50)),
+            (142, 1, (50, 60)),
+        }
+    }
+    filtered = MODULE._controls_through_vcr(
+        controls,
+        target_battle_turn=141,
+        through_vcr_id=593,
+    )
+    assert filtered[("sig", "dir")] == {
+        (140, 1, (10, 20)),
+        (141, 592, (20, 30)),
+        (141, 593, (30, 40)),
+        (142, 1, (50, 60)),
+    }
+
+
+def test_gate_evidence_mentions_temporal_diplomacy_cutoff() -> None:
+    source = MODULE_PATH.read_text(encoding="utf-8")
+    assert "_controls_through_vcr" in source
+    assert "row[1] > through_vcr_id" in source
+    assert "diplomacy calibration is truncated" in source
