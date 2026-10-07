@@ -1,0 +1,8 @@
+===== SITE PRECOMBAT DYNAMIC PROBE V1 =====
+HEAD:      0dcc86d265db2393f896521d7fa8711b52f7cb69
+public100: generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb
+sha256:    3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c
+runtime:   local
+output:    artifacts/combat/site-precombat-dynamic-probe/game400330-t141-v592.json
+
+ERROR: explicit corpus generation must be relative to DB root
