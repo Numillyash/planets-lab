@@ -1,0 +1,17 @@
+===== SITE COMBAT INPUT ADAPTER V1 REGRESSION =====
+HEAD:      9f639f07b32993970a4042830281cdd85b9b78ca
+runtime:   local
+output:    artifacts/combat/site-input-adapter/game400330-t141-v592-595.json
+
+===== SITE COMBAT STATE DIFFERENTIAL V1 =====
+HEAD:      9f639f07b32993970a4042830281cdd85b9b78ca
+public100: generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb
+sha256:    3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c
+runtime:   local
+ERROR: no compatible host Python found; planets-lab requires Python >=3.11.
+Install python3.11+ or restore Docker/containerd, then rerun.
+host python is missing runtime dependencies; preparing cached venv: /root/.cache/planets-lab/site-state-v1
+cached venv uses incompatible Python; rebuilding: /root/.cache/planets-lab/site-state-v1
+tools/run-site-combat-state-v1.sh: line 105: : command not found
+tools/run-site-combat-state-v1.sh: line 112: /root/.cache/planets-lab/site-state-v1/bin/python: No such file or directory
+ERROR: cached host runtime still lacks duckdb/pyarrow after installation: /root/.cache/planets-lab/site-state-v1
