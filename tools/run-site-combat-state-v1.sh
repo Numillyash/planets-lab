@@ -157,8 +157,12 @@ prepare_local_python() {
     if [[ -n "${PLANETS_SITE_STATE_RUNTIME_PYTHON:-}" ]]; then
       return "$select_rc"
     fi
-    if ! python_bin="$(bootstrap_managed_python)"; then
-      return $?
+    local bootstrap_rc=0
+    if python_bin="$(bootstrap_managed_python)"; then
+      :
+    else
+      bootstrap_rc=$?
+      return "$bootstrap_rc"
     fi
   fi
 
