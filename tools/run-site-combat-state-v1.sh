@@ -10,7 +10,10 @@ PUBLIC100_REL="${PUBLIC100_REL:-generations/corpus-v2compact-public100-20261005T
 PUBLIC100_SHA="${PUBLIC100_SHA:-3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c}"
 OUTPUT="${OUTPUT:-artifacts/combat/site-state/game400330-t141-v592-595.json}"
 RUNTIME_MODE="${PLANETS_SITE_STATE_RUNTIME_MODE:-auto}"
-RUNTIME_VENV="${PLANETS_SITE_STATE_RUNTIME_VENV:-${XDG_CACHE_HOME:-$HOME/.cache}/planets-lab/site-state-v1}"
+RUNTIME_CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/planets-lab"
+RUNTIME_VENV="${PLANETS_SITE_STATE_RUNTIME_VENV:-$RUNTIME_CACHE/site-state-v1}"
+BOOTSTRAP_VENV="${PLANETS_SITE_STATE_BOOTSTRAP_VENV:-$RUNTIME_CACHE/site-state-bootstrap-uv}"
+MANAGED_PYTHON_DIR="${PLANETS_SITE_STATE_MANAGED_PYTHON_DIR:-$RUNTIME_CACHE/python}"
 
 db="$PLANETS_CORPUS_DB_ROOT/$PUBLIC100_REL"
 if [[ ! -f "$db" ]]; then
@@ -76,14 +79,93 @@ select_local_python() {
     fi
   done
 
-  echo "ERROR: no compatible host Python found; planets-lab requires Python >=3.11." >&2
-  echo "Install python3.11+ or restore Docker/containerd, then rerun." >&2
-  return 69
+  echo "WARNING: no compatible host Python found; planets-lab requires Python >=3.11." >&2
+  return 68
+}
+
+bootstrap_managed_python() {
+  local bootstrap_python=""
+  local candidate
+  for candidate in python3 python; do
+    if command -v "$candidate" >/dev/null 2>&1; then
+      bootstrap_python="$(command -v "$candidate")"
+      break
+    fi
+  done
+
+  if [[ -z "$bootstrap_python" ]]; then
+    echo "ERROR: cannot bootstrap Python 3.12 because no bootstrap Python is available." >&2
+    return 69
+  fi
+
+  echo "bootstrapping isolated Python 3.12 via uv" >&2
+  echo "bootstrap_python: $bootstrap_python" >&2
+  echo "bootstrap_venv:   $BOOTSTRAP_VENV" >&2
+  echo "managed_python:   $MANAGED_PYTHON_DIR" >&2
+
+  if [[ -x "$BOOTSTRAP_VENV/bin/uv" ]] && ! "$BOOTSTRAP_VENV/bin/uv" --version >/dev/null 2>&1; then
+    echo "cached uv bootstrap is invalid; rebuilding: $BOOTSTRAP_VENV" >&2
+    rm -rf "$BOOTSTRAP_VENV"
+  fi
+
+  if [[ ! -x "$BOOTSTRAP_VENV/bin/uv" ]]; then
+    rm -rf "$BOOTSTRAP_VENV"
+    mkdir -p "$(dirname "$BOOTSTRAP_VENV")"
+    if ! "$bootstrap_python" -m venv "$BOOTSTRAP_VENV"; then
+      echo "ERROR: bootstrap Python cannot create a venv: $bootstrap_python" >&2
+      return 69
+    fi
+    if ! "$BOOTSTRAP_VENV/bin/python" -m pip install --disable-pip-version-check "uv>=0.8" 1>&2; then
+      echo "ERROR: failed to install uv into isolated bootstrap venv." >&2
+      return 69
+    fi
+  fi
+
+  mkdir -p "$MANAGED_PYTHON_DIR"
+  if ! UV_PYTHON_INSTALL_DIR="$MANAGED_PYTHON_DIR" \
+      "$BOOTSTRAP_VENV/bin/uv" python install 3.12 1>&2; then
+    echo "ERROR: uv failed to install managed Python 3.12." >&2
+    return 69
+  fi
+
+  local managed_python
+  if ! managed_python="$(
+    UV_PYTHON_INSTALL_DIR="$MANAGED_PYTHON_DIR" \
+      "$BOOTSTRAP_VENV/bin/uv" python find 3.12
+  )"; then
+    echo "ERROR: uv installed Python 3.12 but could not resolve its executable." >&2
+    return 69
+  fi
+
+  if [[ -z "$managed_python" || ! -x "$managed_python" ]] || ! python_is_compatible "$managed_python"; then
+    echo "ERROR: managed Python 3.12 bootstrap produced no compatible executable." >&2
+    echo "resolved: ${managed_python:-<empty>}" >&2
+    return 69
+  fi
+
+  printf '%s\n' "$managed_python"
 }
 
 prepare_local_python() {
-  local python_bin
-  python_bin="$(select_local_python)"
+  local python_bin=""
+  local select_rc=0
+
+  if python_bin="$(select_local_python)"; then
+    :
+  else
+    select_rc=$?
+    if [[ -n "${PLANETS_SITE_STATE_RUNTIME_PYTHON:-}" ]]; then
+      return "$select_rc"
+    fi
+    if ! python_bin="$(bootstrap_managed_python)"; then
+      return $?
+    fi
+  fi
+
+  if [[ -z "$python_bin" ]]; then
+    echo "ERROR: local Python selection returned an empty executable." >&2
+    return 69
+  fi
 
   if "$python_bin" - <<'PY' >/dev/null 2>&1
 import duckdb, pyarrow
