@@ -1,0 +1,67 @@
+===== SITE COMBAT INPUT ADAPTER V1 REGRESSION =====
+HEAD:      4278c0a8caa9cb3a041bf9d66a5a5d68a15c0c53
+runtime:   local
+output:    artifacts/combat/site-input-adapter/game400330-t141-v592-595.json
+
+===== SITE COMBAT STATE DIFFERENTIAL V1 =====
+HEAD:      4278c0a8caa9cb3a041bf9d66a5a5d68a15c0c53
+public100: generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb
+sha256:    3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c
+runtime:   local
+WARNING: no compatible host Python found; planets-lab requires Python >=3.11.
+bootstrapping isolated Python 3.12 via uv
+bootstrap_python: /usr/bin/python3
+bootstrap_venv:   /root/.cache/planets-lab/site-state-bootstrap-uv
+managed_python:   /root/.cache/planets-lab/python
+Collecting uv>=0.8
+  Downloading uv-0.12.23-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (20.6 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 20.6/20.6 MB 14.5 MB/s eta 0:00:00
+Installing collected packages: uv
+Successfully installed uv-0.12.23
+Downloading cpython-3.12.15-linux-x86_64-gnu (download) (32.7MiB)
+ Downloaded cpython-3.12.15-linux-x86_64-gnu (download)
+Installed Python 3.12.15 in 2.68s
+ + cpython-3.12.15-linux-x86_64-gnu (python3.12)
+warning: `/root/.local/bin` is not on your PATH. To use installed Python executables, run `export PATH="/root/.local/bin:$PATH"` or `uv python update-shell`.
+host python is missing runtime dependencies; preparing cached venv: /root/.cache/planets-lab/site-state-v1
+Obtaining file:///root/projects/planets-lab
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Collecting duckdb<1.6,>=1.5 (from planets-lab==0.1.0)
+  Downloading duckdb-1.5.6-cp312-cp312-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl.metadata (4.2 kB)
+Collecting pyarrow<22,>=21 (from planets-lab==0.1.0)
+  Downloading pyarrow-21.0.0-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (3.3 kB)
+Downloading duckdb-1.5.6-cp312-cp312-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl (21.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 21.6/21.6 MB 26.3 MB/s eta 0:00:00
+Downloading pyarrow-21.0.0-cp312-cp312-manylinux_2_28_x86_64.whl (42.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 42.8/42.8 MB 28.4 MB/s eta 0:00:00
+Building wheels for collected packages: planets-lab
+  Building editable for planets-lab (pyproject.toml): started
+  Building editable for planets-lab (pyproject.toml): finished with status 'done'
+  Created wheel for planets-lab: filename=planets_lab-0.1.0-0.editable-py3-none-any.whl size=3690 sha256=912e171fa4bdb672a4b0a936d6eb5fa916f7f7fba533d6e9a011d67a0ba218a5
+  Stored in directory: /tmp/pip-ephem-wheel-cache-1724xvwz/wheels/ed/ff/1d/e074ef4ccc1ee054377bb0038ae80a0c29be750d62d4504528
+Successfully built planets-lab
+Installing collected packages: pyarrow, duckdb, planets-lab
+Successfully installed duckdb-1.5.6 planets-lab-0.1.0 pyarrow-21.0.0
+runtime_selected: host-python
+runtime_python:   /root/.cache/planets-lab/site-state-v1/bin/python
+===== SITE COMBAT STATE DIFFERENTIAL V1 =====
+status:  SITE_STATE_EXACT
+summary: {'expected_transitions': 3, 'evaluated_transitions': 3, 'exact_transitions': 3, 'all_exact': True, 'modes': ['capture_immediate_C', 'capture_parent_resume', 'capture_immediate_C']}
+V592->V593 mode=capture_immediate_C predicted=[140, 170] factual=[140, 170] pair_exact=True side_exact=True
+V593->V594 mode=capture_parent_resume predicted=[170, 184] factual=[170, 184] pair_exact=True side_exact=True
+V594->V595 mode=capture_immediate_C predicted=[170, 382] factual=[170, 382] pair_exact=True side_exact=True
+output:  artifacts/combat/site-input-adapter/game400330-t141-v592-595.json
+output: artifacts/combat/site-input-adapter/game400330-t141-v592-595.json
+SITE_INPUT_ADAPTER_EXACT
+expected_transitions: 3
+evaluated_transitions: 3
+exact_transitions: 3
+modes: ['capture_immediate_C', 'capture_parent_resume', 'capture_immediate_C']
+adapter_boundary: yes
