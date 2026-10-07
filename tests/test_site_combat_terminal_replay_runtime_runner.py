@@ -33,3 +33,12 @@ def test_terminal_replay_wrapper_publishes_named_runtime_evidence() -> None:
     assert "site-combat-terminal-replay-v1" in source
     assert "artifacts/combat/site-terminal-replay" in source
     assert "tools/run-site-combat-terminal-replay-v1.sh" in source
+
+
+def test_terminal_replay_scripts_do_not_escape_shell_parameter_expansion() -> None:
+    runner = RUNNER.read_text(encoding="utf-8")
+    wrapper = WRAPPER.read_text(encoding="utf-8")
+    assert r"\\${" not in runner
+    assert r"\\${" not in wrapper
+    assert 'dirname "${BASH_SOURCE[0]}"' in runner
+    assert 'dirname "${BASH_SOURCE[0]}"' in wrapper

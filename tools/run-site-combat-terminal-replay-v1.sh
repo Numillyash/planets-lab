@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "\${BASH_SOURCE[0]}")/.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
-: "\${PLANETS_CORPUS_DB_ROOT:?Set PLANETS_CORPUS_DB_ROOT to the shared corpus DB root}"
+: "${PLANETS_CORPUS_DB_ROOT:?Set PLANETS_CORPUS_DB_ROOT to the shared corpus DB root}"
 
-OUTPUT="\${OUTPUT:-artifacts/combat/site-terminal-replay/game400330-t141-v592-595.json}"
-RUNTIME_MODE="\${PLANETS_SITE_TERMINAL_RUNTIME_MODE:-local}"
+OUTPUT="${OUTPUT:-artifacts/combat/site-terminal-replay/game400330-t141-v592-595.json}"
+RUNTIME_MODE="${PLANETS_SITE_TERMINAL_RUNTIME_MODE:-local}"
 
 mkdir -p "$(dirname "$OUTPUT")"
 
