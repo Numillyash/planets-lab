@@ -1,0 +1,22 @@
+{
+  "evidence_branch": "runtime-logs",
+  "exit_code": 2,
+  "finished_at_utc": "2026-10-07T07:21:20Z",
+  "hostname": "GEORGUL-GAMER",
+  "interrupted_signal": null,
+  "log_file": "gate.log",
+  "missing_artifact_paths": [],
+  "remote": "origin",
+  "requested_artifact_paths": [
+    "artifacts/combat/site-terminal-replay"
+  ],
+  "run_id": "20261007T071745Z_568d96a38821",
+  "run_name": "site-combat-terminal-replay-v1",
+  "runner": "bash",
+  "schema": "planets-lab.runtime-evidence.v1",
+  "skipped_oversized_artifact_paths": [],
+  "source_branch": "main",
+  "source_commit": "568d96a3882118fb23cdb6c0324626a71473ba17",
+  "source_dirty": false,
+  "started_at_utc": "2026-10-07T07:17:45Z"
+}

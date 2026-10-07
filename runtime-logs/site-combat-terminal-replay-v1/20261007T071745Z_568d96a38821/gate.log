@@ -1,0 +1,21 @@
+===== SITE COMBAT TERMINAL REPLAY V1 =====
+HEAD:      568d96a3882118fb23cdb6c0324626a71473ba17
+runtime:   local
+output:    artifacts/combat/site-terminal-replay/game400330-t141-v592-595.json
+
+===== SITE COMBAT STATE DIFFERENTIAL V1 =====
+HEAD:      568d96a3882118fb23cdb6c0324626a71473ba17
+public100: generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb
+sha256:    3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c
+runtime:   local
+terminal:  replay
+WARNING: no compatible host Python found; planets-lab requires Python >=3.11.
+bootstrapping isolated Python 3.12 via uv
+bootstrap_python: /usr/bin/python3
+bootstrap_venv:   /root/.cache/planets-lab/site-state-bootstrap-uv
+managed_python:   /root/.cache/planets-lab/python
+Python 3.12 is already installed
+host python is missing runtime dependencies; preparing cached venv: /root/.cache/planets-lab/site-state-v1
+runtime_selected: host-python
+runtime_python:   /root/.cache/planets-lab/site-state-v1/bin/python
+ERROR: VCR 592: replay terminal unresolved: carried_start_differs_from_current_vcr
