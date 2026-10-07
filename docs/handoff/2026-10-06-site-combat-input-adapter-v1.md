@@ -80,8 +80,52 @@ paths are absent.
 
 ## Validation status
 
-GitHub PR/CI and the public100 runtime regression are to be recorded after this
-implementation commit is exercised.
+Implementation:
+
+    main source commit
+    a55fa042715cc060676a110a6c9be02289f75d00
+
+Dedicated runtime-gate integration:
+
+    9f639f07b32993970a4042830281cdd85b9b78ca
+
+The first server run exposed an infrastructure-only Python-selection bug and did
+not enter mechanics. That runner bug was fixed at:
+
+    4278c0a8caa9cb3a041bf9d66a5a5d68a15c0c53
+
+Canonical successful public100 runtime evidence:
+
+    runtime-logs/site-combat-input-adapter-v1/
+    20261007T001314Z_4278c0a8caa9
+
+Runtime source:
+
+    4278c0a8caa9cb3a041bf9d66a5a5d68a15c0c53
+    source branch main
+    source dirty false
+    exit code 0
+
+Result:
+
+    SITE_STATE_EXACT
+    expected_transitions 3
+    evaluated_transitions 3
+    exact_transitions 3
+    all_exact true
+
+and adapter-specific assertion:
+
+    SITE_INPUT_ADAPTER_EXACT
+    adapter_boundary yes
+
+Exact sequence:
+
+    V592 -> V593  capture_immediate_C    [140,170] exact pair + sides
+    V593 -> V594  capture_parent_resume  [170,184] exact pair + sides
+    V594 -> V595  capture_immediate_C    [170,382] exact pair + sides
+
+This closes the input-adapter extraction regression on explicit public100.
 
 
 ## Runtime regression gate
