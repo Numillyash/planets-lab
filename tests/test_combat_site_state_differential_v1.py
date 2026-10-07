@@ -77,7 +77,8 @@ def test_stateful_differential_uses_carried_state_for_parent_selection() -> None
     assert "select_parent_resume" in source
     assert "CARRIED_STATE_HISTORY_ANCHORED" in source
     assert "site_executor module" in source
-    assert "terminal outcomes remain injected" in source
+    assert "precomputed_replay_appearance" in source
+    assert "current_vcr_replay_carried_overlay" in source
 
 
 def test_stateful_differential_delegates_input_assembly_to_reusable_adapter() -> None:
@@ -89,3 +90,24 @@ def test_stateful_differential_delegates_input_assembly_to_reusable_adapter() ->
     assert "_immediate_candidate_states" not in source
     assert "_pair_inputs_for_parent" not in source
     assert "reusable evidence-scoped site_input_adapter" in source
+
+
+def test_replay_terminal_mode_keeps_next_vcr_comparator_only() -> None:
+    source = MODULE_PATH.read_text(encoding="utf-8")
+    replay_branch = source.index('if args.terminal_source == "replay":')
+    current_lookup = source.index(
+        "vcr_id=current_vcr_id,",
+        replay_branch,
+    )
+    prediction = source.index(
+        "prediction, state = _predict_capture_continuation(",
+        current_lookup,
+    )
+    next_lookup = source.index(
+        "vcr_id=current_vcr_id + 1,",
+        prediction,
+    )
+    assert current_lookup < prediction < next_lookup
+    assert "build_site_terminal_replay_batch" in source
+    assert "compare_site_state_to_vcr_start" in source
+    assert "site_terminal_adapter" in source
