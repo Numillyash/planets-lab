@@ -10,6 +10,7 @@ PUBLIC100_REL="${PUBLIC100_REL:-generations/corpus-v2compact-public100-20261005T
 PUBLIC100_SHA="${PUBLIC100_SHA:-3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c}"
 OUTPUT="${OUTPUT:-artifacts/combat/site-state/game400330-t141-v592-595.json}"
 RUNTIME_MODE="${PLANETS_SITE_STATE_RUNTIME_MODE:-auto}"
+TERMINAL_SOURCE="${PLANETS_SITE_STATE_TERMINAL_SOURCE:-appearance}"
 RUNTIME_CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/planets-lab"
 RUNTIME_VENV="${PLANETS_SITE_STATE_RUNTIME_VENV:-$RUNTIME_CACHE/site-state-v1}"
 BOOTSTRAP_VENV="${PLANETS_SITE_STATE_BOOTSTRAP_VENV:-$RUNTIME_CACHE/site-state-bootstrap-uv}"
@@ -33,6 +34,7 @@ echo "HEAD:      $(git rev-parse HEAD)"
 echo "public100: $PUBLIC100_REL"
 echo "sha256:    $actual_sha"
 echo "runtime:   $RUNTIME_MODE"
+echo "terminal:  $TERMINAL_SOURCE"
 
 run_docker_gate() {
   docker compose -f compose.yaml -f compose.corpus-db.yaml run --rm -T \
@@ -47,6 +49,7 @@ run_docker_gate() {
       --y 2363 \
       --start-vcr-id 592 \
       --end-vcr-id 595 \
+      --terminal-source "$TERMINAL_SOURCE" \
       --output "$OUTPUT"
 }
 
@@ -224,6 +227,7 @@ run_local_gate() {
       --y 2363 \
       --start-vcr-id 592 \
       --end-vcr-id 595 \
+      --terminal-source "$TERMINAL_SOURCE" \
       --output "$OUTPUT"
 }
 
