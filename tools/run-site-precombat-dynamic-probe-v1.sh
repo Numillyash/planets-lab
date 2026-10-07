@@ -43,4 +43,12 @@ if [[ ! -x "$PYTHON" ]]; then
   exit 69
 fi
 
-"$PYTHON" tools/diagnostics/combat_site_precombat_dynamic_probe.py   --corpus-db-root "$PLANETS_CORPUS_DB_ROOT"   --corpus-db-generation "$DB"   --game-id 400330   --battle-turn 141   --x 1674   --y 2363   --vcr-id 592   --output "$OUTPUT"
+"$PYTHON" tools/diagnostics/combat_site_precombat_dynamic_probe.py \
+  --corpus-db-root "$PLANETS_CORPUS_DB_ROOT" \
+  --corpus-db-generation "$PUBLIC100_REL" \
+  --game-id 400330 \
+  --battle-turn 141 \
+  --x 1674 \
+  --y 2363 \
+  --vcr-id 592 \
+  --output "$OUTPUT"

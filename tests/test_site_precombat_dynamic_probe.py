@@ -57,3 +57,11 @@ def test_probe_is_read_only_and_tracks_initial_provenance() -> None:
     assert "inbound_transfer_candidates" in source
     assert "friendly_code_mkt" in source
     assert "No rule is promoted" in source
+
+
+
+def test_probe_runner_passes_relative_generation_to_runtime() -> None:
+    source = RUNNER.read_text(encoding="utf-8")
+    assert '--corpus-db-generation "$PUBLIC100_REL"' in source
+    assert '--corpus-db-generation "$DB"' not in source
+    assert 'DB="$PLANETS_CORPUS_DB_ROOT/$PUBLIC100_REL"' in source
