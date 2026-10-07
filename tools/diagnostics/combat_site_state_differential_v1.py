@@ -2,7 +2,7 @@
 """Carried-state differential for the mutable capture site.
 
 Unlike mutable-site-loop v1, this diagnostic reconstructs site history only
-once. From the start window onward it carries SiteCombatState across factual
+once. From the start window onward it carries SiteCombatState across resolved
 terminal outcomes and uses that carried state for:
 
 * physical active membership;
@@ -10,7 +10,10 @@ terminal outcomes and uses that carried state for:
 * pair occurrence / first-pass side history;
 * temporary capture-order lifecycle.
 
-Combat terminal outcomes remain factual inputs in this validation phase.
+Terminal source is selectable. The historical appearance mode preserves the
+previous checkpoint. Replay mode generates target-window terminal batches from
+carried state plus the current factual VCR seed/static combat setup; N+1 remains
+comparator-only.
 """
 
 from __future__ import annotations
@@ -28,6 +31,10 @@ for path in (REPO_ROOT, DIAGNOSTICS):
     if str(path) not in sys.path:
         sys.path.insert(0, str(path))
 
+from planets_lab.corpus.combat_vcr_runtime import (
+    CompactCombatVcrCase,
+    combat_vcr_cases_for_turns,
+)
 from planets_lab.corpus.corpus_db_runtime import connect_compact_generation_read_only
 from planets_lab.rules.combat.site_executor import (
     select_parent_resume,
@@ -43,6 +50,10 @@ from planets_lab.rules.combat.site_state import (
     open_temporary_capture_order,
     parent_queue_active_ship_ids,
     record_factual_site_pair,
+)
+from planets_lab.rules.combat.site_terminal_adapter import (
+    build_site_terminal_replay_batch,
+    compare_site_state_to_vcr_start,
 )
 
 import combat_capture_immediate_continuation_gate as immediate_gate
@@ -139,6 +150,20 @@ def _row_by_vcr(
     if not isinstance(row, Mapping):
         raise ValueError(f"VCR {vcr_id} missing from factual queue")
     return row
+
+
+def _replay_case(
+    cases: Mapping[tuple[int, int], CompactCombatVcrCase],
+    *,
+    battle_turn: int,
+    vcr_id: int,
+) -> CompactCombatVcrCase:
+    case = cases.get((battle_turn, vcr_id))
+    if case is None:
+        raise ValueError(
+            f"VCR {vcr_id}: current-VCR replay input missing for turn {battle_turn}"
+        )
+    return case
 
 
 def _initial_state_before_window(
@@ -407,6 +432,15 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             x=args.x,
             y=args.y,
         )
+        replay_cases = (
+            combat_vcr_cases_for_turns(
+                connection,
+                game_id=args.game_id,
+                battle_turns={args.battle_turn},
+            )
+            if args.terminal_source == "replay"
+            else {}
+        )
     finally:
         connection.close()
 
@@ -438,17 +472,46 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             left_ship_id=int(current["left_ship_id"]),
             right_ship_id=int(current["right_ship_id"]),
         )
-        terminals, transfers, issue = active_module._terminal_batch_with_transfer(
-            game_id=args.game_id,
-            battle_turn=args.battle_turn,
-            factual_vcr=current,
-            appearances=appearances,
-        )
-        if issue is not None or terminals is None or transfers is None:
-            raise ValueError(
-                f"VCR {current_vcr_id}: terminal batch unresolved: "
-                f"{issue or 'unknown'}"
+        terminal_start_exact: bool | None = None
+        terminal_start_comparisons: list[Mapping[str, Any]] = []
+        if args.terminal_source == "replay":
+            current_case = _replay_case(
+                replay_cases,
+                battle_turn=args.battle_turn,
+                vcr_id=current_vcr_id,
             )
+            replay_batch = build_site_terminal_replay_batch(
+                state,
+                vcr_payload=current_case.payload,
+                beams=current_case.beams,
+                torpedoes=current_case.torpedoes,
+                settings=current_case.settings,
+            )
+            if replay_batch.resolved is not True:
+                raise ValueError(
+                    f"VCR {current_vcr_id}: replay terminal unresolved: "
+                    f"{replay_batch.reason or 'unknown'}"
+                )
+            terminals = replay_batch.terminals_by_ship_id
+            transfers = replay_batch.capture_transfers_by_ship_id
+            if replay_batch.start_comparison is not None:
+                terminal_start_exact = replay_batch.start_comparison.exact
+                terminal_start_comparisons = [
+                    dict(row)
+                    for row in replay_batch.start_comparison.comparisons
+                ]
+        else:
+            terminals, transfers, issue = active_module._terminal_batch_with_transfer(
+                game_id=args.game_id,
+                battle_turn=args.battle_turn,
+                factual_vcr=current,
+                appearances=appearances,
+            )
+            if issue is not None or terminals is None or transfers is None:
+                raise ValueError(
+                    f"VCR {current_vcr_id}: terminal batch unresolved: "
+                    f"{issue or 'unknown'}"
+                )
 
         transition = apply_site_terminal_batch(
             state,
@@ -532,16 +595,49 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         # Factual N+1 is opened only after the carried state has produced N+1.
         factual_next = _row_by_vcr(factual_queue, current_vcr_id + 1)
         comparison = _compare(prediction, factual_next)
+
+        next_start_exact: bool | None = None
+        next_start_comparisons: list[Mapping[str, Any]] = []
+        if args.terminal_source == "replay":
+            # The N+1 raw VCR start vector is comparator-only and is not opened
+            # until after N+1 pair/sides have already been predicted.
+            next_case = _replay_case(
+                replay_cases,
+                battle_turn=args.battle_turn,
+                vcr_id=current_vcr_id + 1,
+            )
+            next_start = compare_site_state_to_vcr_start(
+                state,
+                vcr_payload=next_case.payload,
+            )
+            next_start_exact = next_start.exact
+            next_start_comparisons = [
+                dict(row) for row in next_start.comparisons
+            ]
+
+        transition_exact = bool(
+            comparison["exact"]
+            and (
+                next_start_exact is True
+                if args.terminal_source == "replay"
+                else True
+            )
+        )
         transitions.append(
             {
                 "from_vcr_id": current_vcr_id,
                 "to_vcr_id": current_vcr_id + 1,
                 "prediction": prediction,
                 **comparison,
+                "exact": transition_exact,
+                "terminal_start_exact": terminal_start_exact,
+                "terminal_start_comparisons": terminal_start_comparisons,
+                "next_vcr_start_exact": next_start_exact,
+                "next_vcr_start_comparisons": next_start_comparisons,
                 "state_after_prediction": snapshot_after_prediction,
             }
         )
-        if not comparison["exact"]:
+        if not transition_exact:
             break
 
     expected = args.end_vcr_id - args.start_vcr_id
@@ -556,6 +652,11 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "schema": SCHEMA,
         "status": status,
         "evidence_status": "CARRIED_STATE_HISTORY_ANCHORED",
+        "terminal_source": (
+            "current_vcr_replay_carried_overlay"
+            if args.terminal_source == "replay"
+            else "precomputed_replay_appearance"
+        ),
         "database_path": str(database_path),
         "target": {
             "game_id": args.game_id,
@@ -572,6 +673,14 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "expected_transitions": expected,
             "evaluated_transitions": len(transitions),
             "exact_transitions": exact_count,
+            "current_vcr_start_exact_transitions": sum(
+                row["terminal_start_exact"] is True
+                for row in transitions
+            ),
+            "next_vcr_start_exact_transitions": sum(
+                row["next_vcr_start_exact"] is True
+                for row in transitions
+            ),
             "all_exact": status == "SITE_STATE_EXACT",
             "modes": [
                 row["prediction"]["mode"]
@@ -581,16 +690,33 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "appearance_summary": appearance_summary,
         "visit_summary": visit_summary,
         "evidence_boundary": (
-            "Site history before the target window is reconstructed once. "
-            "From V592 onward, physical membership, capture exclusions, "
-            "temporary capture-order lifecycle and pair history are carried in "
-            "SiteCombatState. Candidate-state recomposition, temporal diplomacy "
-            "cutoff and parent STANDARD pair-input assembly are delegated to the "
-            "reusable evidence-scoped site_input_adapter; temporary capture "
-            "lifecycle and parent selection are delegated to the reusable "
-            "site_executor module. "
-            "Factual terminal outcomes remain injected after each observed VCR. "
-            "N+1 pair/sides are opened only after selection."
+            (
+                "Site history before the target window is reconstructed once. "
+                "From V592 onward, physical membership, capture exclusions, "
+                "temporary capture-order lifecycle and pair history are carried "
+                "in SiteCombatState. Candidate-state recomposition, temporal "
+                "diplomacy cutoff and parent STANDARD pair-input assembly are "
+                "delegated to the reusable evidence-scoped site_input_adapter; "
+                "temporary capture lifecycle and parent selection are delegated "
+                "to the reusable site_executor module. Target-window terminal "
+                "batches are generated by site_terminal_adapter from carried "
+                "mutable state overlaid onto the current factual VCR seed/static "
+                "combat setup. N+1 pair/sides and N+1 start vectors are opened "
+                "only after selection and used only as comparators."
+            )
+            if args.terminal_source == "replay"
+            else (
+                "Site history before the target window is reconstructed once. "
+                "From V592 onward, physical membership, capture exclusions, "
+                "temporary capture-order lifecycle and pair history are carried "
+                "in SiteCombatState. Candidate-state recomposition, temporal "
+                "diplomacy cutoff and parent STANDARD pair-input assembly are "
+                "delegated to the reusable evidence-scoped site_input_adapter; "
+                "temporary capture lifecycle and parent selection are delegated "
+                "to the reusable site_executor module. Precomputed replay "
+                "appearances remain injected after each observed VCR. N+1 "
+                "pair/sides are opened only after selection."
+            )
         ),
     }
 
@@ -605,6 +731,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--y", type=int, default=2363)
     parser.add_argument("--start-vcr-id", type=int, default=592)
     parser.add_argument("--end-vcr-id", type=int, default=595)
+    parser.add_argument(
+        "--terminal-source",
+        choices=("appearance", "replay"),
+        default="appearance",
+    )
     parser.add_argument("--output", type=Path, required=True)
     return parser.parse_args()
 
@@ -625,6 +756,7 @@ def main() -> int:
 
     print("===== SITE COMBAT STATE DIFFERENTIAL V1 =====")
     print(f"status:  {report['status']}")
+    print(f"terminal_source: {report['terminal_source']}")
     print(f"summary: {report['summary']}")
     for row in report["transitions"]:
         prediction = row["prediction"]
