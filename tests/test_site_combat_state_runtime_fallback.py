@@ -26,7 +26,6 @@ def test_site_state_runner_shell_valid() -> None:
     assert "pip install --disable-pip-version-check -e" in source
     assert "bootstrap_managed_python" in source
     assert "uv>=0.8" in source
-    assert "uv\" python install 3.12" not in source
     assert "\"$BOOTSTRAP_VENV/bin/uv\" python install 3.12" in source
     assert "local Python selection returned an empty executable" in source
 
