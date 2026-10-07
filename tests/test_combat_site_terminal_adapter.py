@@ -7,6 +7,8 @@ from planets_lab.rules.combat.site_state import SiteCombatState
 from planets_lab.rules.combat.site_terminal_adapter import (
     build_site_terminal_replay_batch,
     compare_site_state_to_vcr_start,
+    format_start_comparison_mismatches,
+    start_comparison_mismatches,
 )
 
 
@@ -195,3 +197,22 @@ def test_replay_fails_closed_when_carried_start_drifted() -> None:
     assert result.resolved is None
     assert result.reason == "carried_start_differs_from_current_vcr"
     assert called is False
+
+
+
+def test_start_mismatch_diagnostic_reports_exact_fields() -> None:
+    state = SiteCombatState(
+        active_ships={
+            100: _ship(1, 1, shield=99, beam_count=1),
+            200: _ship(3, 3),
+        }
+    )
+    comparison = compare_site_state_to_vcr_start(state, vcr_payload=_vcr())
+    rows = start_comparison_mismatches(comparison)
+    assert {(row["ship_id"], row["field"]) for row in rows} == {
+        (100, "shield"),
+        (100, "beam_count"),
+    }
+    rendered = format_start_comparison_mismatches(comparison)
+    assert "ship=100 side=left field=shield carried=99 factual=100" in rendered
+    assert "ship=100 side=left field=beam_count carried=1 factual=2" in rendered

@@ -54,6 +54,7 @@ from planets_lab.rules.combat.site_state import (
 from planets_lab.rules.combat.site_terminal_adapter import (
     build_site_terminal_replay_batch,
     compare_site_state_to_vcr_start,
+    format_start_comparison_mismatches,
 )
 
 import combat_capture_immediate_continuation_gate as immediate_gate
@@ -488,9 +489,17 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 settings=current_case.settings,
             )
             if replay_batch.resolved is not True:
+                detail = (
+                    format_start_comparison_mismatches(
+                        replay_batch.start_comparison
+                    )
+                    if replay_batch.start_comparison is not None
+                    else "n/a"
+                )
                 raise ValueError(
                     f"VCR {current_vcr_id}: replay terminal unresolved: "
-                    f"{replay_batch.reason or 'unknown'}"
+                    f"{replay_batch.reason or 'unknown'}; "
+                    f"start_mismatches=[{detail}]"
                 )
             terminals = replay_batch.terminals_by_ship_id
             transfers = replay_batch.capture_transfers_by_ship_id

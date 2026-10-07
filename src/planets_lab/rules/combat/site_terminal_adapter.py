@@ -173,6 +173,34 @@ def compare_site_state_to_vcr_start(
     )
 
 
+def start_comparison_mismatches(
+    comparison: SiteVcrStartComparison,
+) -> tuple[Mapping[str, Any], ...]:
+    """Return only non-exact carried-vs-current-VCR start fields."""
+
+    return tuple(
+        row for row in comparison.comparisons if row.get("exact") is False
+    )
+
+
+def format_start_comparison_mismatches(
+    comparison: SiteVcrStartComparison,
+) -> str:
+    """Compact deterministic diagnostic string for fail-closed runtime logs."""
+
+    rows = start_comparison_mismatches(comparison)
+    if not rows:
+        return "none"
+    return "; ".join(
+        (
+            f"ship={row.get('ship_id')} side={row.get('side')} "
+            f"field={row.get('field')} carried={row.get('carried')!r} "
+            f"factual={row.get('factual')!r}"
+        )
+        for row in rows
+    )
+
+
 def _overlay_carried_start(
     state: SiteCombatState,
     *,
