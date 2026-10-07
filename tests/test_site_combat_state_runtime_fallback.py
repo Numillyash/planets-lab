@@ -24,6 +24,11 @@ def test_site_state_runner_shell_valid() -> None:
     assert "runtime_selected: host-python" in source
     assert "timeout 20s docker info" in source
     assert "pip install --disable-pip-version-check -e" in source
+    assert "bootstrap_managed_python" in source
+    assert "uv>=0.8" in source
+    assert "uv\" python install 3.12" not in source
+    assert "\"$BOOTSTRAP_VENV/bin/uv\" python install 3.12" in source
+    assert "local Python selection returned an empty executable" in source
 
 
 def test_auto_runtime_falls_back_when_docker_preflight_fails(tmp_path: Path) -> None:
@@ -277,3 +282,105 @@ exit 1
     assert "cached venv uses incompatible Python; rebuilding" in combined
     assert marker.exists()
     assert "FAKE_REBUILT_GATE" in combined
+
+
+
+def test_missing_python_311_bootstraps_managed_python_312(tmp_path: Path) -> None:
+    corpus_root = tmp_path / "corpus"
+    generations = corpus_root / "generations"
+    generations.mkdir(parents=True)
+    db = generations / "fake.duckdb"
+    db.write_bytes(b"fixture-db")
+    sha = hashlib.sha256(db.read_bytes()).hexdigest()
+
+    bin_dir = tmp_path / "bin"
+    bin_dir.mkdir()
+
+    fake_bootstrap = """#!/usr/bin/env bash
+set -euo pipefail
+if [[ "${1:-}" == "-c" ]]; then
+  exit 1
+fi
+if [[ "${1:-}" == "-m" && "${2:-}" == "venv" ]]; then
+  target="${3}"
+  mkdir -p "$target/bin"
+  cat >"$target/bin/python" <<'BOOTPY'
+#!/usr/bin/env bash
+set -euo pipefail
+if [[ "${1:-}" == "-m" && "${2:-}" == "pip" ]]; then
+  cat >"$(dirname "$0")/uv" <<'UV'
+#!/usr/bin/env bash
+set -euo pipefail
+if [[ "${1:-}" == "--version" ]]; then
+  echo "uv 0.9.0"
+  exit 0
+fi
+if [[ "${1:-}" == "python" && "${2:-}" == "install" ]]; then
+  target="${UV_PYTHON_INSTALL_DIR}/fake-python/bin"
+  mkdir -p "$target"
+  cat >"$target/python3.12" <<'MANAGED'
+#!/usr/bin/env bash
+set -euo pipefail
+if [[ "${1:-}" == "-c" ]]; then
+  exit 0
+fi
+if [[ "${1:-}" == "-" ]]; then
+  cat >/dev/null
+  exit 0
+fi
+printf 'FAKE_BOOTSTRAPPED_GATE %s\n' "$*"
+exit 0
+MANAGED
+  chmod +x "$target/python3.12"
+  exit 0
+fi
+if [[ "${1:-}" == "python" && "${2:-}" == "find" ]]; then
+  echo "${UV_PYTHON_INSTALL_DIR}/fake-python/bin/python3.12"
+  exit 0
+fi
+exit 1
+UV
+  chmod +x "$(dirname "$0")/uv"
+  exit 0
+fi
+exit 0
+BOOTPY
+  chmod +x "$target/bin/python"
+  exit 0
+fi
+exit 0
+"""
+    for name in ("python3.12", "python3.11", "python3"):
+        _write_executable(bin_dir / name, fake_bootstrap)
+
+    env = os.environ.copy()
+    env.update(
+        {
+            "PATH": f"{bin_dir}:{env['PATH']}",
+            "PLANETS_CORPUS_DB_ROOT": str(corpus_root),
+            "PUBLIC100_REL": "generations/fake.duckdb",
+            "PUBLIC100_SHA": sha,
+            "PLANETS_SITE_STATE_RUNTIME_MODE": "local",
+            "PLANETS_SITE_STATE_BOOTSTRAP_VENV": str(tmp_path / "bootstrap-uv"),
+            "PLANETS_SITE_STATE_MANAGED_PYTHON_DIR": str(tmp_path / "managed-python"),
+            "PLANETS_SITE_STATE_RUNTIME_VENV": str(tmp_path / "runtime-venv"),
+            "OUTPUT": str(tmp_path / "out.json"),
+        }
+    )
+
+    completed = subprocess.run(
+        ["bash", str(RUNNER)],
+        cwd=REPO_ROOT,
+        env=env,
+        text=True,
+        capture_output=True,
+        check=True,
+    )
+
+    combined = completed.stdout + completed.stderr
+    assert "no compatible host Python found" in combined
+    assert "bootstrapping isolated Python 3.12 via uv" in combined
+    assert "runtime_selected: host-python" in combined
+    assert "FAKE_BOOTSTRAPPED_GATE" in combined
+    assert ": command not found" not in combined
+    assert "No such file or directory" not in combined
