@@ -1,0 +1,19 @@
+===== SITE PRECOMBAT DYNAMIC PROBE V1 =====
+HEAD:      0d08f881927162a459a89f863e41cad220f36cf4
+public100: generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb
+sha256:    3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c
+runtime:   local
+output:    artifacts/combat/site-precombat-dynamic-probe/game400330-t141-v592.json
+
+===== SITE PRECOMBAT DYNAMIC PROBE V1 =====
+ship=184 side=left source=prewindow_vcr_appearance carried_torps=0 vcr_torps=0 delta=0 fc_mkt=False
+  tminus1_source: special_intercept_movement_phase
+  tminus1_raw: {'ammo': 200, 'duranium': 0, 'enemy': 0, 'friendlycode': '1kM', 'hullid': 70, 'id': 184, 'mass': 1391, 'megacredits': 0, 'mission': 7, 'mission1target': 170, 'molybdenum': 0, 'neutronium': 121, 'ownerid': 5, 'supplies': 50, 'targetx': 1673, 'targety': 2361, 'torpedoid': 0, 'torps': 0, 'transferammo': 0, 'transferclans': 0, 'transferduranium': 0, 'transfermegacredits': 0, 'transfermolybdenum': 0, 'transferneutronium': 0, 'transfersupplies': 0, 'transfertargetid': 0, 'transfertargettype': 0, 'transfertritanium': 0, 'tritanium': 0, 'warp': 5, 'x': 1686, 'y': 2368}
+  prewindow_appearances: [{'vcr_id': 591, 'side': 'left', 'start_torpedoes': 0, 'terminal_torpedoes': 0, 'captured': False, 'destroyed': False}]
+  inbound_transfer_candidates: []
+ship=140 side=right source=tminus1_prediction carried_torps=0 vcr_torps=20 delta=20 fc_mkt=False
+  tminus1_source: normal_move
+  tminus1_raw: {'ammo': 20, 'duranium': 0, 'enemy': 5, 'friendlycode': 'XfV', 'hullid': 89, 'id': 140, 'mass': 231, 'megacredits': 0, 'mission': 1, 'mission1target': 0, 'molybdenum': 0, 'neutronium': 7, 'ownerid': 10, 'supplies': 0, 'targetx': 1674, 'targety': 2363, 'torpedoid': 10, 'torps': 2, 'transferammo': 0, 'transferclans': 0, 'transferduranium': 0, 'transfermegacredits': 0, 'transfermolybdenum': 0, 'transferneutronium': 0, 'transfersupplies': 0, 'transfertargetid': 0, 'transfertargettype': 0, 'transfertritanium': 0, 'tritanium': 0, 'warp': 9, 'x': 1673, 'y': 2361}
+  prewindow_appearances: []
+  inbound_transfer_candidates: []
+output: artifacts/combat/site-precombat-dynamic-probe/game400330-t141-v592.json
