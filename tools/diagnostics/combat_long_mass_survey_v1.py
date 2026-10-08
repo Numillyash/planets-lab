@@ -400,8 +400,8 @@ def analyze_turn(*,conn:Any,game:int,turn:int,specs:Any,
         if len(timeline_examples)<max_examples:
             timeline_examples.append({
                 "game_id":game,"turn":turn,"ship_id":ship_id,
-                "appearances":seq[:120],"transitions":transitions[:119],
-                "truncated":len(seq)>120,
+                "appearances":seq[:40],"transitions":transitions[:39],
+                "truncated":len(seq)>40,
             })
     return {
         "game_id":game,"turn":turn,
