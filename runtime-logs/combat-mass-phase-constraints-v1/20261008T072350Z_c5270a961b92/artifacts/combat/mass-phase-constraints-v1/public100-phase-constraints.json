@@ -1,0 +1,1201 @@
+{
+  "evidence_boundary": "Horwasp mass inversion uses each observed VCR mass and an explicitly UNVERIFIED linear clan interpolation. Consecutive VCRs do not expose exact fighter losses or postbattle clans. Generator T-1 start/waypoint is historical order data, NOT verified combat-phase position. No extrapolation into generative mass or RNG rules is permitted.",
+  "horwasp_sequences": [
+    {
+      "events": [
+        {
+          "candidate_intervals": [
+            {
+              "base_assumed": 200,
+              "base_source": "game_static_catalog",
+              "boundary": "UNVERIFIED_LINEAR_CLAN_INTERPOLATION_AND_BONUS_RNG",
+              "carrier_plus360_branch": 360,
+              "possible_clans": [
+                300,
+                300
+              ]
+            }
+          ],
+          "cargo_capacity": 300,
+          "catalog_hull_mass": 200,
+          "hull_id": 118,
+          "observed_left_bays": 10,
+          "observed_mass": 760,
+          "observed_start_bays": 0,
+          "observed_start_damage": 0,
+          "observed_start_fighters": 0,
+          "side": "right",
+          "site": [
+            957,
+            1024
+          ],
+          "vcr_id": 2402
+        }
+      ],
+      "game_id": 217591,
+      "owner_tminus1_clans": 300,
+      "ship_id": 93,
+      "transitions": [],
+      "turn": 149
+    },
+    {
+      "events": [
+        {
+          "candidate_intervals": [
+            {
+              "base_assumed": 145,
+              "base_source": "EXTERNAL_BROOD_145_UNVERIFIED",
+              "boundary": "UNVERIFIED_LINEAR_CLAN_INTERPOLATION_AND_BONUS_RNG",
+              "carrier_plus360_branch": 0,
+              "possible_clans": [
+                900,
+                900
+              ]
+            }
+          ],
+          "cargo_capacity": 900,
+          "catalog_hull_mass": 125,
+          "hull_id": 117,
+          "observed_left_bays": 6,
+          "observed_mass": 290,
+          "observed_start_bays": 6,
+          "observed_start_damage": 0,
+          "observed_start_fighters": 70,
+          "side": "left",
+          "site": [
+            1224,
+            2911
+          ],
+          "vcr_id": 2405
+        },
+        {
+          "candidate_intervals": [
+            {
+              "base_assumed": 145,
+              "base_source": "EXTERNAL_BROOD_145_UNVERIFIED",
+              "boundary": "UNVERIFIED_LINEAR_CLAN_INTERPOLATION_AND_BONUS_RNG",
+              "carrier_plus360_branch": 0,
+              "possible_clans": [
+                900,
+                900
+              ]
+            }
+          ],
+          "cargo_capacity": 900,
+          "catalog_hull_mass": 125,
+          "hull_id": 117,
+          "observed_left_bays": 10,
+          "observed_mass": 290,
+          "observed_start_bays": 6,
+          "observed_start_damage": 0,
+          "observed_start_fighters": 70,
+          "side": "right",
+          "site": [
+            1224,
+            2911
+          ],
+          "vcr_id": 2406
+        }
+      ],
+      "game_id": 217591,
+      "owner_tminus1_clans": 900,
+      "ship_id": 119,
+      "transitions": [
+        {
+          "boundary": "Observed VCR starts constrain, not predict, mutable clan losses",
+          "from": 2405,
+          "observed_fighter_start_delta": 0,
+          "possible_clan_loss_ranges": [
+            {
+              "base_source": "EXTERNAL_BROOD_145_UNVERIFIED",
+              "branch_after": 0,
+              "branch_before": 0,
+              "loss_nonnegative_possible": true,
+              "possible_clan_loss_max": 0,
+              "possible_clan_loss_min": 0
+            }
+          ],
+          "same_site": true,
+          "to": 2406,
+          "vcr_id_gap": 1
+        }
+      ],
+      "turn": 149
+    },
+    {
+      "events": [
+        {
+          "candidate_intervals": [
+            {
+              "base_assumed": 145,
+              "base_source": "EXTERNAL_BROOD_145_UNVERIFIED",
+              "boundary": "UNVERIFIED_LINEAR_CLAN_INTERPOLATION_AND_BONUS_RNG",
+              "carrier_plus360_branch": 360,
+              "possible_clans": [
+                900,
+                900
+              ]
+            }
+          ],
+          "cargo_capacity": 900,
+          "catalog_hull_mass": 125,
+          "hull_id": 117,
+          "observed_left_bays": 10,
+          "observed_mass": 650,
+          "observed_start_bays": 6,
+          "observed_start_damage": 0,
+          "observed_start_fighters": 70,
+          "side": "right",
+          "site": [
+            2257,
+            930
+          ],
+          "vcr_id": 2421
+        }
+      ],
+      "game_id": 217591,
+      "owner_tminus1_clans": null,
+      "ship_id": 253,
+      "transitions": [],
+      "turn": 149
+    },
+    {
+      "events": [
+        {
+          "candidate_intervals": [
+            {
+              "base_assumed": 145,
+              "base_source": "EXTERNAL_BROOD_145_UNVERIFIED",
+              "boundary": "UNVERIFIED_LINEAR_CLAN_INTERPOLATION_AND_BONUS_RNG",
+              "carrier_plus360_branch": 0,
+              "possible_clans": [
+                900,
+                900
+              ]
+            }
+          ],
+          "cargo_capacity": 900,
+          "catalog_hull_mass": 125,
+          "hull_id": 117,
+          "observed_left_bays": 10,
+          "observed_mass": 290,
+          "observed_start_bays": 6,
+          "observed_start_damage": 0,
+          "observed_start_fighters": 70,
+          "side": "right",
+          "site": [
+            2257,
+            930
+          ],
+          "vcr_id": 2422
+        },
+        {
+          "candidate_intervals": [
+            {
+              "base_assumed": 145,
+              "base_source": "EXTERNAL_BROOD_145_UNVERIFIED",
+              "boundary": "UNVERIFIED_LINEAR_CLAN_INTERPOLATION_AND_BONUS_RNG",
+              "carrier_plus360_branch": 0,
+              "possible_clans": [
+                900,
+                900
+              ]
+            }
+          ],
+          "cargo_capacity": 900,
+          "catalog_hull_mass": 125,
+          "hull_id": 117,
+          "observed_left_bays": 0,
+          "observed_mass": 290,
+          "observed_start_bays": 6,
+          "observed_start_damage": 0,
+          "observed_start_fighters": 70,
+          "side": "right",
+          "site": [
+            2257,
+            930
+          ],
+          "vcr_id": 2423
+        }
+      ],
+      "game_id": 217591,
+      "owner_tminus1_clans": 900,
+      "ship_id": 517,
+      "transitions": [
+        {
+          "boundary": "Observed VCR starts constrain, not predict, mutable clan losses",
+          "from": 2422,
+          "observed_fighter_start_delta": 0,
+          "possible_clan_loss_ranges": [
+            {
+              "base_source": "EXTERNAL_BROOD_145_UNVERIFIED",
+              "branch_after": 0,
+              "branch_before": 0,
+              "loss_nonnegative_possible": true,
+              "possible_clan_loss_max": 0,
+              "possible_clan_loss_min": 0
+            }
+          ],
+          "same_site": true,
+          "to": 2423,
+          "vcr_id_gap": 1
+        }
+      ],
+      "turn": 149
+    },
+    {
+      "events": [
+        {
+          "candidate_intervals": [
+            {
+              "base_assumed": 475,
+              "base_source": "game_static_catalog",
+              "boundary": "UNVERIFIED_LINEAR_CLAN_INTERPOLATION_AND_BONUS_RNG",
+              "carrier_plus360_branch": 0,
+              "possible_clans": [
+                7731,
+                7781
+              ]
+            }
+          ],
+          "cargo_capacity": 24000,
+          "catalog_hull_mass": 475,
+          "hull_id": 115,
+          "observed_left_bays": 6,
+          "observed_mass": 628,
+          "observed_start_bays": 6,
+          "observed_start_damage": 0,
+          "observed_start_fighters": 29,
+          "side": "left",
+          "site": [
+            2209,
+            1024
+          ],
+          "vcr_id": 2428
+        }
+      ],
+      "game_id": 217591,
+      "owner_tminus1_clans": 7752,
+      "ship_id": 768,
+      "transitions": [],
+      "turn": 149
+    },
+    {
+      "events": [
+        {
+          "candidate_intervals": [
+            {
+              "base_assumed": 145,
+              "base_source": "game_static_catalog",
+              "boundary": "UNVERIFIED_LINEAR_CLAN_INTERPOLATION_AND_BONUS_RNG",
+              "carrier_plus360_branch": 0,
+              "possible_clans": [
+                900,
+                900
+              ]
+            }
+          ],
+          "cargo_capacity": 900,
+          "catalog_hull_mass": 145,
+          "hull_id": 117,
+          "observed_left_bays": 2,
+          "observed_mass": 290,
+          "observed_start_bays": 6,
+          "observed_start_damage": 0,
+          "observed_start_fighters": 70,
+          "side": "right",
+          "site": [
+            1681,
+            2721
+          ],
+          "vcr_id": 611
+        },
+        {
+          "candidate_intervals": [
+            {
+              "base_assumed": 145,
+              "base_source": "game_static_catalog",
+              "boundary": "UNVERIFIED_LINEAR_CLAN_INTERPOLATION_AND_BONUS_RNG",
+              "carrier_plus360_branch": 360,
+              "possible_clans": [
+                900,
+                900
+              ]
+            }
+          ],
+          "cargo_capacity": 900,
+          "catalog_hull_mass": 145,
+          "hull_id": 117,
+          "observed_left_bays": 3,
+          "observed_mass": 650,
+          "observed_start_bays": 6,
+          "observed_start_damage": 0,
+          "observed_start_fighters": 70,
+          "side": "right",
+          "site": [
+            1681,
+            2721
+          ],
+          "vcr_id": 612
+        },
+        {
+          "candidate_intervals": [
+            {
+              "base_assumed": 145,
+              "base_source": "game_static_catalog",
+              "boundary": "UNVERIFIED_LINEAR_CLAN_INTERPOLATION_AND_BONUS_RNG",
+              "carrier_plus360_branch": 360,
+              "possible_clans": [
+                900,
+                900
+              ]
+            }
+          ],
+          "cargo_capacity": 900,
+          "catalog_hull_mass": 145,
+          "hull_id": 117,
+          "observed_left_bays": 3,
+          "observed_mass": 650,
+          "observed_start_bays": 6,
+          "observed_start_damage": 0,
+          "observed_start_fighters": 70,
+          "side": "right",
+          "site": [
+            1681,
+            2721
+          ],
+          "vcr_id": 613
+        },
+        {
+          "candidate_intervals": [
+            {
+              "base_assumed": 145,
+              "base_source": "game_static_catalog",
+              "boundary": "UNVERIFIED_LINEAR_CLAN_INTERPOLATION_AND_BONUS_RNG",
+              "carrier_plus360_branch": 0,
+              "possible_clans": [
+                900,
+                900
+              ]
+            }
+          ],
+          "cargo_capacity": 900,
+          "catalog_hull_mass": 145,
+          "hull_id": 117,
+          "observed_left_bays": 0,
+          "observed_mass": 290,
+          "observed_start_bays": 6,
+          "observed_start_damage": 0,
+          "observed_start_fighters": 70,
+          "side": "right",
+          "site": [
+            1681,
+            2721
+          ],
+          "vcr_id": 614
+        },
+        {
+          "candidate_intervals": [
+            {
+              "base_assumed": 145,
+              "base_source": "game_static_catalog",
+              "boundary": "UNVERIFIED_LINEAR_CLAN_INTERPOLATION_AND_BONUS_RNG",
+              "carrier_plus360_branch": 0,
+              "possible_clans": [
+                900,
+                900
+              ]
+            }
+          ],
+          "cargo_capacity": 900,
+          "catalog_hull_mass": 145,
+          "hull_id": 117,
+          "observed_left_bays": 0,
+          "observed_mass": 290,
+          "observed_start_bays": 6,
+          "observed_start_damage": 0,
+          "observed_start_fighters": 70,
+          "side": "right",
+          "site": [
+            1681,
+            2721
+          ],
+          "vcr_id": 615
+        },
+        {
+          "candidate_intervals": [
+            {
+              "base_assumed": 145,
+              "base_source": "game_static_catalog",
+              "boundary": "UNVERIFIED_LINEAR_CLAN_INTERPOLATION_AND_BONUS_RNG",
+              "carrier_plus360_branch": 0,
+              "possible_clans": [
+                900,
+                900
+              ]
+            }
+          ],
+          "cargo_capacity": 900,
+          "catalog_hull_mass": 145,
+          "hull_id": 117,
+          "observed_left_bays": 0,
+          "observed_mass": 290,
+          "observed_start_bays": 6,
+          "observed_start_damage": 0,
+          "observed_start_fighters": 70,
+          "side": "right",
+          "site": [
+            1681,
+            2721
+          ],
+          "vcr_id": 616
+        },
+        {
+          "candidate_intervals": [
+            {
+              "base_assumed": 145,
+              "base_source": "game_static_catalog",
+              "boundary": "UNVERIFIED_LINEAR_CLAN_INTERPOLATION_AND_BONUS_RNG",
+              "carrier_plus360_branch": 0,
+              "possible_clans": [
+                900,
+                900
+              ]
+            }
+          ],
+          "cargo_capacity": 900,
+          "catalog_hull_mass": 145,
+          "hull_id": 117,
+          "observed_left_bays": 0,
+          "observed_mass": 290,
+          "observed_start_bays": 6,
+          "observed_start_damage": 0,
+          "observed_start_fighters": 70,
+          "side": "right",
+          "site": [
+            1681,
+            2721
+          ],
+          "vcr_id": 617
+        },
+        {
+          "candidate_intervals": [
+            {
+              "base_assumed": 145,
+              "base_source": "game_static_catalog",
+              "boundary": "UNVERIFIED_LINEAR_CLAN_INTERPOLATION_AND_BONUS_RNG",
+              "carrier_plus360_branch": 0,
+              "possible_clans": [
+                882,
+                887
+              ]
+            }
+          ],
+          "cargo_capacity": 900,
+          "catalog_hull_mass": 145,
+          "hull_id": 117,
+          "observed_left_bays": 0,
+          "observed_mass": 287,
+          "observed_start_bays": 6,
+          "observed_start_damage": 0,
+          "observed_start_fighters": 68,
+          "side": "right",
+          "site": [
+            1681,
+            2721
+          ],
+          "vcr_id": 618
+        },
+        {
+          "candidate_intervals": [
+            {
+              "base_assumed": 145,
+              "base_source": "game_static_catalog",
+              "boundary": "UNVERIFIED_LINEAR_CLAN_INTERPOLATION_AND_BONUS_RNG",
+              "carrier_plus360_branch": 0,
+              "possible_clans": [
+                882,
+                887
+              ]
+            }
+          ],
+          "cargo_capacity": 900,
+          "catalog_hull_mass": 145,
+          "hull_id": 117,
+          "observed_left_bays": 0,
+          "observed_mass": 287,
+          "observed_start_bays": 6,
+          "observed_start_damage": 0,
+          "observed_start_fighters": 68,
+          "side": "right",
+          "site": [
+            1681,
+            2721
+          ],
+          "vcr_id": 619
+        }
+      ],
+      "game_id": 253449,
+      "owner_tminus1_clans": 900,
+      "ship_id": 48,
+      "transitions": [
+        {
+          "boundary": "Observed VCR starts constrain, not predict, mutable clan losses",
+          "from": 611,
+          "observed_fighter_start_delta": 0,
+          "possible_clan_loss_ranges": [
+            {
+              "base_source": "game_static_catalog",
+              "branch_after": 360,
+              "branch_before": 0,
+              "loss_nonnegative_possible": true,
+              "possible_clan_loss_max": 0,
+              "possible_clan_loss_min": 0
+            }
+          ],
+          "same_site": true,
+          "to": 612,
+          "vcr_id_gap": 1
+        },
+        {
+          "boundary": "Observed VCR starts constrain, not predict, mutable clan losses",
+          "from": 612,
+          "observed_fighter_start_delta": 0,
+          "possible_clan_loss_ranges": [
+            {
+              "base_source": "game_static_catalog",
+              "branch_after": 360,
+              "branch_before": 360,
+              "loss_nonnegative_possible": true,
+              "possible_clan_loss_max": 0,
+              "possible_clan_loss_min": 0
+            }
+          ],
+          "same_site": true,
+          "to": 613,
+          "vcr_id_gap": 1
+        },
+        {
+          "boundary": "Observed VCR starts constrain, not predict, mutable clan losses",
+          "from": 613,
+          "observed_fighter_start_delta": 0,
+          "possible_clan_loss_ranges": [
+            {
+              "base_source": "game_static_catalog",
+              "branch_after": 0,
+              "branch_before": 360,
+              "loss_nonnegative_possible": true,
+              "possible_clan_loss_max": 0,
+              "possible_clan_loss_min": 0
+            }
+          ],
+          "same_site": true,
+          "to": 614,
+          "vcr_id_gap": 1
+        },
+        {
+          "boundary": "Observed VCR starts constrain, not predict, mutable clan losses",
+          "from": 614,
+          "observed_fighter_start_delta": 0,
+          "possible_clan_loss_ranges": [
+            {
+              "base_source": "game_static_catalog",
+              "branch_after": 0,
+              "branch_before": 0,
+              "loss_nonnegative_possible": true,
+              "possible_clan_loss_max": 0,
+              "possible_clan_loss_min": 0
+            }
+          ],
+          "same_site": true,
+          "to": 615,
+          "vcr_id_gap": 1
+        },
+        {
+          "boundary": "Observed VCR starts constrain, not predict, mutable clan losses",
+          "from": 615,
+          "observed_fighter_start_delta": 0,
+          "possible_clan_loss_ranges": [
+            {
+              "base_source": "game_static_catalog",
+              "branch_after": 0,
+              "branch_before": 0,
+              "loss_nonnegative_possible": true,
+              "possible_clan_loss_max": 0,
+              "possible_clan_loss_min": 0
+            }
+          ],
+          "same_site": true,
+          "to": 616,
+          "vcr_id_gap": 1
+        },
+        {
+          "boundary": "Observed VCR starts constrain, not predict, mutable clan losses",
+          "from": 616,
+          "observed_fighter_start_delta": 0,
+          "possible_clan_loss_ranges": [
+            {
+              "base_source": "game_static_catalog",
+              "branch_after": 0,
+              "branch_before": 0,
+              "loss_nonnegative_possible": true,
+              "possible_clan_loss_max": 0,
+              "possible_clan_loss_min": 0
+            }
+          ],
+          "same_site": true,
+          "to": 617,
+          "vcr_id_gap": 1
+        },
+        {
+          "boundary": "Observed VCR starts constrain, not predict, mutable clan losses",
+          "from": 617,
+          "observed_fighter_start_delta": -2,
+          "possible_clan_loss_ranges": [
+            {
+              "base_source": "game_static_catalog",
+              "branch_after": 0,
+              "branch_before": 0,
+              "loss_nonnegative_possible": true,
+              "possible_clan_loss_max": 18,
+              "possible_clan_loss_min": 13
+            }
+          ],
+          "same_site": true,
+          "to": 618,
+          "vcr_id_gap": 1
+        },
+        {
+          "boundary": "Observed VCR starts constrain, not predict, mutable clan losses",
+          "from": 618,
+          "observed_fighter_start_delta": 0,
+          "possible_clan_loss_ranges": [
+            {
+              "base_source": "game_static_catalog",
+              "branch_after": 0,
+              "branch_before": 0,
+              "loss_nonnegative_possible": true,
+              "possible_clan_loss_max": 5,
+              "possible_clan_loss_min": -5
+            }
+          ],
+          "same_site": true,
+          "to": 619,
+          "vcr_id_gap": 1
+        }
+      ],
+      "turn": 82
+    }
+  ],
+  "schema": "planets-lab.combat-mass-phase-constraints.v1",
+  "shield_owner_waypoints": [
+    {
+      "game_id": 217591,
+      "owner_id": 1,
+      "owner_tminus1": [
+        {
+          "archive_turn": 148,
+          "at_site_tminus1": 0,
+          "boundary": "Waypoint/order is NOT resolved combat-phase movement",
+          "combat_ships": [
+            {
+              "at_site_in_snapshot": true,
+              "damage": 0,
+              "hull_id": 2006,
+              "hull_name": "Wild Banshee Class Destroyer",
+              "mission": 2,
+              "neutronium": 122,
+              "ordered_waypoint": [
+                913,
+                1299
+              ],
+              "ship_id": 220,
+              "snapshot_xy": [
+                913,
+                1299
+              ],
+              "warp": 9,
+              "waypoint_is_site": true
+            }
+          ],
+          "owner_generators": [
+            {
+              "at_site_in_snapshot": false,
+              "damage": 0,
+              "hull_id": 1041,
+              "hull_name": "Saber Class Shield Generator",
+              "mission": 7,
+              "neutronium": 150,
+              "ordered_waypoint": [
+                2900,
+                2326
+              ],
+              "ship_id": 274,
+              "snapshot_xy": [
+                2887,
+                2301
+              ],
+              "warp": 7,
+              "waypoint_is_site": false
+            },
+            {
+              "at_site_in_snapshot": false,
+              "damage": 0,
+              "hull_id": 1041,
+              "hull_name": "Saber Class Shield Generator",
+              "mission": 1,
+              "neutronium": 45,
+              "ordered_waypoint": [
+                1259,
+                1573
+              ],
+              "ship_id": 381,
+              "snapshot_xy": [
+                1259,
+                1573
+              ],
+              "warp": 2,
+              "waypoint_is_site": false
+            },
+            {
+              "at_site_in_snapshot": false,
+              "damage": 0,
+              "hull_id": 1041,
+              "hull_name": "Saber Class Shield Generator",
+              "mission": 1,
+              "neutronium": 90,
+              "ordered_waypoint": [
+                3011,
+                1435
+              ],
+              "ship_id": 524,
+              "snapshot_xy": [
+                3007,
+                1486
+              ],
+              "warp": 9,
+              "waypoint_is_site": false
+            },
+            {
+              "at_site_in_snapshot": false,
+              "damage": 0,
+              "hull_id": 1041,
+              "hull_name": "Saber Class Shield Generator",
+              "mission": 1,
+              "neutronium": 128,
+              "ordered_waypoint": [
+                1161,
+                1600
+              ],
+              "ship_id": 563,
+              "snapshot_xy": [
+                1161,
+                1600
+              ],
+              "warp": 9,
+              "waypoint_is_site": false
+            }
+          ],
+          "perspective_player_id": 1,
+          "total_generators": 4,
+          "waypoint_to_site": 0
+        }
+      ],
+      "selected_combat_ship_ids": [
+        220
+      ],
+      "site": [
+        913,
+        1299
+      ],
+      "turn": 149
+    },
+    {
+      "game_id": 217591,
+      "owner_id": 1,
+      "owner_tminus1": [
+        {
+          "archive_turn": 148,
+          "at_site_tminus1": 0,
+          "boundary": "Waypoint/order is NOT resolved combat-phase movement",
+          "combat_ships": [
+            {
+              "at_site_in_snapshot": false,
+              "damage": 0,
+              "hull_id": 19,
+              "hull_name": "Kittyhawk Class Carrier",
+              "mission": 1,
+              "neutronium": 191,
+              "ordered_waypoint": [
+                3011,
+                1435
+              ],
+              "ship_id": 60,
+              "snapshot_xy": [
+                3007,
+                1486
+              ],
+              "warp": 9,
+              "waypoint_is_site": false
+            },
+            {
+              "at_site_in_snapshot": false,
+              "damage": 0,
+              "hull_id": 20,
+              "hull_name": "Nova Class Super-dreadnought",
+              "mission": 1,
+              "neutronium": 332,
+              "ordered_waypoint": [
+                3011,
+                1435
+              ],
+              "ship_id": 828,
+              "snapshot_xy": [
+                3007,
+                1486
+              ],
+              "warp": 9,
+              "waypoint_is_site": false
+            }
+          ],
+          "owner_generators": [
+            {
+              "at_site_in_snapshot": false,
+              "damage": 0,
+              "hull_id": 1041,
+              "hull_name": "Saber Class Shield Generator",
+              "mission": 7,
+              "neutronium": 150,
+              "ordered_waypoint": [
+                2900,
+                2326
+              ],
+              "ship_id": 274,
+              "snapshot_xy": [
+                2887,
+                2301
+              ],
+              "warp": 7,
+              "waypoint_is_site": false
+            },
+            {
+              "at_site_in_snapshot": false,
+              "damage": 0,
+              "hull_id": 1041,
+              "hull_name": "Saber Class Shield Generator",
+              "mission": 1,
+              "neutronium": 45,
+              "ordered_waypoint": [
+                1259,
+                1573
+              ],
+              "ship_id": 381,
+              "snapshot_xy": [
+                1259,
+                1573
+              ],
+              "warp": 2,
+              "waypoint_is_site": false
+            },
+            {
+              "at_site_in_snapshot": false,
+              "damage": 0,
+              "hull_id": 1041,
+              "hull_name": "Saber Class Shield Generator",
+              "mission": 1,
+              "neutronium": 90,
+              "ordered_waypoint": [
+                3011,
+                1435
+              ],
+              "ship_id": 524,
+              "snapshot_xy": [
+                3007,
+                1486
+              ],
+              "warp": 9,
+              "waypoint_is_site": false
+            },
+            {
+              "at_site_in_snapshot": false,
+              "damage": 0,
+              "hull_id": 1041,
+              "hull_name": "Saber Class Shield Generator",
+              "mission": 1,
+              "neutronium": 128,
+              "ordered_waypoint": [
+                1161,
+                1600
+              ],
+              "ship_id": 563,
+              "snapshot_xy": [
+                1161,
+                1600
+              ],
+              "warp": 9,
+              "waypoint_is_site": false
+            }
+          ],
+          "perspective_player_id": 1,
+          "total_generators": 4,
+          "waypoint_to_site": 0
+        }
+      ],
+      "selected_combat_ship_ids": [
+        60,
+        828
+      ],
+      "site": [
+        3011,
+        1432
+      ],
+      "turn": 149
+    },
+    {
+      "game_id": 371631,
+      "owner_id": 4,
+      "owner_tminus1": [
+        {
+          "archive_turn": 155,
+          "at_site_tminus1": 2,
+          "boundary": "Waypoint/order is NOT resolved combat-phase movement",
+          "combat_ships": [
+            {
+              "at_site_in_snapshot": true,
+              "damage": 0,
+              "hull_id": 39,
+              "hull_name": "D19b Nefarious Class Destroyer",
+              "mission": 1,
+              "neutronium": 60,
+              "ordered_waypoint": [
+                1833,
+                1586
+              ],
+              "ship_id": 262,
+              "snapshot_xy": [
+                1833,
+                1586
+              ],
+              "warp": 0,
+              "waypoint_is_site": true
+            },
+            {
+              "at_site_in_snapshot": true,
+              "damage": 0,
+              "hull_id": 35,
+              "hull_name": "Victorious Class Battleship",
+              "mission": 1,
+              "neutronium": 290,
+              "ordered_waypoint": [
+                1833,
+                1586
+              ],
+              "ship_id": 461,
+              "snapshot_xy": [
+                1833,
+                1586
+              ],
+              "warp": 9,
+              "waypoint_is_site": true
+            },
+            {
+              "at_site_in_snapshot": true,
+              "damage": 0,
+              "hull_id": 35,
+              "hull_name": "Victorious Class Battleship",
+              "mission": 1,
+              "neutronium": 100,
+              "ordered_waypoint": [
+                1833,
+                1586
+              ],
+              "ship_id": 463,
+              "snapshot_xy": [
+                1833,
+                1586
+              ],
+              "warp": 9,
+              "waypoint_is_site": true
+            }
+          ],
+          "owner_generators": [
+            {
+              "at_site_in_snapshot": true,
+              "damage": 0,
+              "hull_id": 1041,
+              "hull_name": "Saber Class Shield Generator",
+              "mission": 1,
+              "neutronium": 150,
+              "ordered_waypoint": [
+                1833,
+                1586
+              ],
+              "ship_id": 6,
+              "snapshot_xy": [
+                1833,
+                1586
+              ],
+              "warp": 9,
+              "waypoint_is_site": true
+            },
+            {
+              "at_site_in_snapshot": false,
+              "damage": 0,
+              "hull_id": 1041,
+              "hull_name": "Saber Class Shield Generator",
+              "mission": 1,
+              "neutronium": 150,
+              "ordered_waypoint": [
+                2298,
+                2006
+              ],
+              "ship_id": 17,
+              "snapshot_xy": [
+                2298,
+                2006
+              ],
+              "warp": 9,
+              "waypoint_is_site": false
+            },
+            {
+              "at_site_in_snapshot": false,
+              "damage": 0,
+              "hull_id": 1041,
+              "hull_name": "Saber Class Shield Generator",
+              "mission": 1,
+              "neutronium": 150,
+              "ordered_waypoint": [
+                2537,
+                2395
+              ],
+              "ship_id": 165,
+              "snapshot_xy": [
+                2537,
+                2395
+              ],
+              "warp": 9,
+              "waypoint_is_site": false
+            },
+            {
+              "at_site_in_snapshot": false,
+              "damage": 0,
+              "hull_id": 1041,
+              "hull_name": "Saber Class Shield Generator",
+              "mission": 1,
+              "neutronium": 150,
+              "ordered_waypoint": [
+                1628,
+                1555
+              ],
+              "ship_id": 177,
+              "snapshot_xy": [
+                1628,
+                1555
+              ],
+              "warp": 9,
+              "waypoint_is_site": false
+            },
+            {
+              "at_site_in_snapshot": false,
+              "damage": 0,
+              "hull_id": 1041,
+              "hull_name": "Saber Class Shield Generator",
+              "mission": 1,
+              "neutronium": 150,
+              "ordered_waypoint": [
+                1277,
+                1520
+              ],
+              "ship_id": 331,
+              "snapshot_xy": [
+                1306,
+                1579
+              ],
+              "warp": 9,
+              "waypoint_is_site": false
+            },
+            {
+              "at_site_in_snapshot": false,
+              "damage": 0,
+              "hull_id": 1041,
+              "hull_name": "Saber Class Shield Generator",
+              "mission": 1,
+              "neutronium": 150,
+              "ordered_waypoint": [
+                2539,
+                2443
+              ],
+              "ship_id": 379,
+              "snapshot_xy": [
+                2539,
+                2443
+              ],
+              "warp": 9,
+              "waypoint_is_site": false
+            },
+            {
+              "at_site_in_snapshot": true,
+              "damage": 0,
+              "hull_id": 1041,
+              "hull_name": "Saber Class Shield Generator",
+              "mission": 1,
+              "neutronium": 150,
+              "ordered_waypoint": [
+                1833,
+                1586
+              ],
+              "ship_id": 386,
+              "snapshot_xy": [
+                1833,
+                1586
+              ],
+              "warp": 9,
+              "waypoint_is_site": true
+            },
+            {
+              "at_site_in_snapshot": false,
+              "damage": 0,
+              "hull_id": 1041,
+              "hull_name": "Saber Class Shield Generator",
+              "mission": 1,
+              "neutronium": 150,
+              "ordered_waypoint": [
+                1277,
+                1520
+              ],
+              "ship_id": 478,
+              "snapshot_xy": [
+                1306,
+                1579
+              ],
+              "warp": 9,
+              "waypoint_is_site": false
+            }
+          ],
+          "perspective_player_id": 4,
+          "total_generators": 8,
+          "waypoint_to_site": 2
+        }
+      ],
+      "selected_combat_ship_ids": [
+        262,
+        461,
+        463
+      ],
+      "site": [
+        1833,
+        1586
+      ],
+      "turn": 156
+    }
+  ],
+  "source_db": "/root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "status": "OBSERVATIONAL_CLAN_INTERVALS_AND_GENERATOR_ROUTES_NOT_PROMOTED",
+  "summary": {
+    "horwasp_invertible_observations": 16,
+    "horwasp_same_ship_transitions": 10,
+    "horwasp_ship_game_turn_groups": 6,
+    "horwasp_vcr_appearances": 16,
+    "shield_owner_site_groups": 3
+  }
+}
