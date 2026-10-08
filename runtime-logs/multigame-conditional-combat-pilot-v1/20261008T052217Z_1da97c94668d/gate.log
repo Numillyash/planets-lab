@@ -1,0 +1,24 @@
+===== MULTIGAME CONDITIONAL CLASSIC PILOT V1 =====
+HEAD: 1da97c94668da64c9e18264dd77a973d21a5e7c3
+public100: generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb
+sha256: 3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c
+runtime: /root/.cache/planets-lab/site-state-v1/bin/python
+games: 5
+cases_per_game: 2
+candidate_game_scan_limit: 24
+output: artifacts/combat/multigame-conditional-ensemble/public100-pilot-v1.json
+===== MULTIGAME CONDITIONAL CLASSIC PILOT V1 =====
+status: CONDITIONAL_MULTIGAME_PILOT_COMPLETE
+summary: {'games_selected': 5, 'different_game_ids': [400330, 230354, 233558, 235762, 245123], 'cases_evaluated': 6, 'scenario_replays': 826, 'observed_mass_inside_scenarios': 6, 'observed_mass_outside_scenarios': 0, 'candidate_games_attempted': 15, 'games_rejected': 10}
+game=400330 turn=141 cases=2 skipped={}
+  V587 pair=[219, 40] scenarios=118 carrier_eligible=False observed_mass_inside_scenarios=True outcome_probabilities={'left_destroyed': 1.0}
+  V588 pair=[134, 421] scenarios=236 carrier_eligible=True observed_mass_inside_scenarios=True outcome_probabilities={'left_destroyed': 0.0847457627, 'left_destroyed+right_destroyed': 0.0254237288, 'right_destroyed': 0.8898305085}
+game=230354 turn=8 cases=1 skipped={}
+  V1 pair=[14, 37] scenarios=118 carrier_eligible=False observed_mass_inside_scenarios=True outcome_probabilities={'left_captured': 1.0}
+game=233558 turn=9 cases=1 skipped={}
+  V1 pair=[73, 66] scenarios=118 carrier_eligible=False observed_mass_inside_scenarios=True outcome_probabilities={'left_captured': 1.0}
+game=235762 turn=10 cases=1 skipped={}
+  V5 pair=[53, 41] scenarios=118 carrier_eligible=False observed_mass_inside_scenarios=True outcome_probabilities={'right_destroyed': 1.0}
+game=245123 turn=12 cases=1 skipped={}
+  V1 pair=[3, 12] scenarios=118 carrier_eligible=False observed_mass_inside_scenarios=True outcome_probabilities={'left_captured': 0.0762711864, 'left_destroyed': 0.9237288136}
+output: artifacts/combat/multigame-conditional-ensemble/public100-pilot-v1.json
