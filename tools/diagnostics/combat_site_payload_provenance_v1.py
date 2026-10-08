@@ -118,6 +118,10 @@ def side_provenance(
         prior_torpedoes = None
         prior_fighters = None
         ammo_status = "missing_tminus1_ammo"
+    elif _integer(raw.get("ammo")) is None or _integer(raw.get("ammo")) < 0:
+        prior_torpedoes = None
+        prior_fighters = None
+        ammo_status = "invalid_tminus1_ammo"
     else:
         _, _, _, fighters, torpedoes, unresolved = _ship_ammo(raw)
         if unresolved > 0:
