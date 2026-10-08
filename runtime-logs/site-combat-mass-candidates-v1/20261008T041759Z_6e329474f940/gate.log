@@ -1,0 +1,43 @@
+===== SITE COMBAT MASS CANDIDATE AUDIT V1 =====
+HEAD:      6e329474f940def9d202391a657cd57b85a5940c
+public100: generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb
+sha256:    3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c
+runtime:   /root/.cache/planets-lab/site-state-v1/bin/python
+output:    artifacts/combat/site-mass-candidates/game400330-t141.json
+===== DOCUMENTED COMBAT MASS CANDIDATES V1 =====
+status: OBSERVATIONAL_NOT_PROMOTED
+summary: {'documented_candidate_match': 22, 'non_ship_vs_ship': 1, 'right_carrier_bonus_eligible': 8, 'right_carrier_bonus_observed': 5, 'ship_vs_ship_vcrs': 11}
+V587 pair=[219, 40]
+  left ship=219 hullmass=120 observed=120 bonus_eligible=False match=base_hull_mass_plus_documented_fed_if_applicable status=documented_candidate_match
+  right ship=40 hullmass=160 observed=160 bonus_eligible=False match=base_hull_mass_plus_documented_fed_if_applicable status=documented_candidate_match
+V588 pair=[134, 421]
+  left ship=134 hullmass=980 observed=980 bonus_eligible=False match=base_hull_mass_plus_documented_fed_if_applicable status=documented_candidate_match
+  right ship=421 hullmass=645 observed=1005 bonus_eligible=True match=right_vs_left_carrier_random_plus_360 status=documented_candidate_match
+V589 pair=[134, 296]
+  left ship=134 hullmass=980 observed=980 bonus_eligible=False match=base_hull_mass_plus_documented_fed_if_applicable status=documented_candidate_match
+  right ship=296 hullmass=645 observed=1005 bonus_eligible=True match=right_vs_left_carrier_random_plus_360 status=documented_candidate_match
+V590 pair=[134, 216]
+  left ship=134 hullmass=980 observed=980 bonus_eligible=False match=base_hull_mass_plus_documented_fed_if_applicable status=documented_candidate_match
+  right ship=216 hullmass=645 observed=1005 bonus_eligible=True match=right_vs_left_carrier_random_plus_360 status=documented_candidate_match
+V591 pair=[184, 216]
+  left ship=184 hullmass=980 observed=980 bonus_eligible=False match=base_hull_mass_plus_documented_fed_if_applicable status=documented_candidate_match
+  right ship=216 hullmass=645 observed=645 bonus_eligible=True match=base_hull_mass_plus_documented_fed_if_applicable status=documented_candidate_match
+V592 pair=[184, 140]
+  left ship=184 hullmass=980 observed=980 bonus_eligible=False match=base_hull_mass_plus_documented_fed_if_applicable status=documented_candidate_match
+  right ship=140 hullmass=150 observed=510 bonus_eligible=True match=right_vs_left_carrier_random_plus_360 status=documented_candidate_match
+V593 pair=[140, 170]
+  left ship=140 hullmass=150 observed=150 bonus_eligible=False match=base_hull_mass_plus_documented_fed_if_applicable status=documented_candidate_match
+  right ship=170 hullmass=150 observed=150 bonus_eligible=False match=base_hull_mass_plus_documented_fed_if_applicable status=documented_candidate_match
+V594 pair=[184, 170]
+  left ship=184 hullmass=980 observed=980 bonus_eligible=False match=base_hull_mass_plus_documented_fed_if_applicable status=documented_candidate_match
+  right ship=170 hullmass=150 observed=510 bonus_eligible=True match=right_vs_left_carrier_random_plus_360 status=documented_candidate_match
+V595 pair=[170, 382]
+  left ship=170 hullmass=150 observed=150 bonus_eligible=False match=base_hull_mass_plus_documented_fed_if_applicable status=documented_candidate_match
+  right ship=382 hullmass=645 observed=645 bonus_eligible=False match=base_hull_mass_plus_documented_fed_if_applicable status=documented_candidate_match
+V596 pair=[184, 382]
+  left ship=184 hullmass=980 observed=980 bonus_eligible=False match=base_hull_mass_plus_documented_fed_if_applicable status=documented_candidate_match
+  right ship=382 hullmass=645 observed=645 bonus_eligible=True match=base_hull_mass_plus_documented_fed_if_applicable status=documented_candidate_match
+V597 pair=[195, 382]
+  left ship=195 hullmass=980 observed=980 bonus_eligible=False match=base_hull_mass_plus_documented_fed_if_applicable status=documented_candidate_match
+  right ship=382 hullmass=645 observed=645 bonus_eligible=True match=base_hull_mass_plus_documented_fed_if_applicable status=documented_candidate_match
+output: artifacts/combat/site-mass-candidates/game400330-t141.json

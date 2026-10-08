@@ -1,0 +1,593 @@
+{
+  "database_path": "/root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "documented_rules_considered": {
+    "federation_bonus": "+50 (candidate if current VCR raceid=1)",
+    "right_vs_left_carrier": "right hull mass >=140, left effective bays >0, possible +360, documented 60% chance",
+    "ship_combat_mass": "hull catalog base mass"
+  },
+  "evidence_boundary": "Read-only documented candidate SET checked against factual VCR mass. Hull mass comes from independent static ship catalog, NOT T-1 loadturn ship.mass. VCR raceid and effective left bays are current factual inputs; no causal proof of the random branch. No shield-generator/other mass modifiers reconstructed, and no mass, seed, side, or other VCR field supplied to an executor. All VCRs in this turn are observational comparators, not held-out predictions. O and special mechanics are not promoted.",
+  "game_id": 400330,
+  "rows": [
+    {
+      "battle_turn": 141,
+      "pair": [
+        219,
+        40
+      ],
+      "seed_observed_only": 55,
+      "sides": [
+        {
+          "allowed_candidates": [
+            {
+              "mass": 120,
+              "scenario": "base_hull_mass_plus_documented_fed_if_applicable"
+            }
+          ],
+          "documentation": "https://help.planets.nu/combat-mass",
+          "factual_combat_mass": 120,
+          "hull_catalog_mass": 120,
+          "hull_id": 81,
+          "left_has_effective_bays": false,
+          "match": "base_hull_mass_plus_documented_fed_if_applicable",
+          "right_carrier_bonus_eligible_candidate": false,
+          "ship_id": 219,
+          "side": "left",
+          "status": "documented_candidate_match",
+          "vcr_race_id": 9
+        },
+        {
+          "allowed_candidates": [
+            {
+              "mass": 160,
+              "scenario": "base_hull_mass_plus_documented_fed_if_applicable"
+            }
+          ],
+          "documentation": "https://help.planets.nu/combat-mass",
+          "factual_combat_mass": 160,
+          "hull_catalog_mass": 160,
+          "hull_id": 22,
+          "left_has_effective_bays": false,
+          "match": "base_hull_mass_plus_documented_fed_if_applicable",
+          "right_carrier_bonus_eligible_candidate": false,
+          "ship_id": 40,
+          "side": "right",
+          "status": "documented_candidate_match",
+          "vcr_race_id": 2
+        }
+      ],
+      "vcr_id": 587
+    },
+    {
+      "battle_turn": 141,
+      "pair": [
+        134,
+        421
+      ],
+      "seed_observed_only": 77,
+      "sides": [
+        {
+          "allowed_candidates": [
+            {
+              "mass": 980,
+              "scenario": "base_hull_mass_plus_documented_fed_if_applicable"
+            }
+          ],
+          "documentation": "https://help.planets.nu/combat-mass",
+          "factual_combat_mass": 980,
+          "hull_catalog_mass": 980,
+          "hull_id": 70,
+          "left_has_effective_bays": true,
+          "match": "base_hull_mass_plus_documented_fed_if_applicable",
+          "right_carrier_bonus_eligible_candidate": false,
+          "ship_id": 134,
+          "side": "left",
+          "status": "documented_candidate_match",
+          "vcr_race_id": 5
+        },
+        {
+          "allowed_candidates": [
+            {
+              "mass": 645,
+              "scenario": "base_hull_mass_plus_documented_fed_if_applicable"
+            },
+            {
+              "mass": 1005,
+              "scenario": "right_vs_left_carrier_random_plus_360"
+            }
+          ],
+          "documentation": "https://help.planets.nu/combat-mass",
+          "factual_combat_mass": 1005,
+          "hull_catalog_mass": 645,
+          "hull_id": 94,
+          "left_has_effective_bays": true,
+          "match": "right_vs_left_carrier_random_plus_360",
+          "right_carrier_bonus_eligible_candidate": true,
+          "ship_id": 421,
+          "side": "right",
+          "status": "documented_candidate_match",
+          "vcr_race_id": 10
+        }
+      ],
+      "vcr_id": 588
+    },
+    {
+      "battle_turn": 141,
+      "pair": [
+        134,
+        296
+      ],
+      "seed_observed_only": 78,
+      "sides": [
+        {
+          "allowed_candidates": [
+            {
+              "mass": 980,
+              "scenario": "base_hull_mass_plus_documented_fed_if_applicable"
+            }
+          ],
+          "documentation": "https://help.planets.nu/combat-mass",
+          "factual_combat_mass": 980,
+          "hull_catalog_mass": 980,
+          "hull_id": 70,
+          "left_has_effective_bays": true,
+          "match": "base_hull_mass_plus_documented_fed_if_applicable",
+          "right_carrier_bonus_eligible_candidate": false,
+          "ship_id": 134,
+          "side": "left",
+          "status": "documented_candidate_match",
+          "vcr_race_id": 5
+        },
+        {
+          "allowed_candidates": [
+            {
+              "mass": 645,
+              "scenario": "base_hull_mass_plus_documented_fed_if_applicable"
+            },
+            {
+              "mass": 1005,
+              "scenario": "right_vs_left_carrier_random_plus_360"
+            }
+          ],
+          "documentation": "https://help.planets.nu/combat-mass",
+          "factual_combat_mass": 1005,
+          "hull_catalog_mass": 645,
+          "hull_id": 94,
+          "left_has_effective_bays": true,
+          "match": "right_vs_left_carrier_random_plus_360",
+          "right_carrier_bonus_eligible_candidate": true,
+          "ship_id": 296,
+          "side": "right",
+          "status": "documented_candidate_match",
+          "vcr_race_id": 10
+        }
+      ],
+      "vcr_id": 589
+    },
+    {
+      "battle_turn": 141,
+      "pair": [
+        134,
+        216
+      ],
+      "seed_observed_only": 31,
+      "sides": [
+        {
+          "allowed_candidates": [
+            {
+              "mass": 980,
+              "scenario": "base_hull_mass_plus_documented_fed_if_applicable"
+            }
+          ],
+          "documentation": "https://help.planets.nu/combat-mass",
+          "factual_combat_mass": 980,
+          "hull_catalog_mass": 980,
+          "hull_id": 70,
+          "left_has_effective_bays": true,
+          "match": "base_hull_mass_plus_documented_fed_if_applicable",
+          "right_carrier_bonus_eligible_candidate": false,
+          "ship_id": 134,
+          "side": "left",
+          "status": "documented_candidate_match",
+          "vcr_race_id": 5
+        },
+        {
+          "allowed_candidates": [
+            {
+              "mass": 645,
+              "scenario": "base_hull_mass_plus_documented_fed_if_applicable"
+            },
+            {
+              "mass": 1005,
+              "scenario": "right_vs_left_carrier_random_plus_360"
+            }
+          ],
+          "documentation": "https://help.planets.nu/combat-mass",
+          "factual_combat_mass": 1005,
+          "hull_catalog_mass": 645,
+          "hull_id": 94,
+          "left_has_effective_bays": true,
+          "match": "right_vs_left_carrier_random_plus_360",
+          "right_carrier_bonus_eligible_candidate": true,
+          "ship_id": 216,
+          "side": "right",
+          "status": "documented_candidate_match",
+          "vcr_race_id": 10
+        }
+      ],
+      "vcr_id": 590
+    },
+    {
+      "battle_turn": 141,
+      "pair": [
+        184,
+        216
+      ],
+      "seed_observed_only": 110,
+      "sides": [
+        {
+          "allowed_candidates": [
+            {
+              "mass": 980,
+              "scenario": "base_hull_mass_plus_documented_fed_if_applicable"
+            }
+          ],
+          "documentation": "https://help.planets.nu/combat-mass",
+          "factual_combat_mass": 980,
+          "hull_catalog_mass": 980,
+          "hull_id": 70,
+          "left_has_effective_bays": true,
+          "match": "base_hull_mass_plus_documented_fed_if_applicable",
+          "right_carrier_bonus_eligible_candidate": false,
+          "ship_id": 184,
+          "side": "left",
+          "status": "documented_candidate_match",
+          "vcr_race_id": 5
+        },
+        {
+          "allowed_candidates": [
+            {
+              "mass": 645,
+              "scenario": "base_hull_mass_plus_documented_fed_if_applicable"
+            },
+            {
+              "mass": 1005,
+              "scenario": "right_vs_left_carrier_random_plus_360"
+            }
+          ],
+          "documentation": "https://help.planets.nu/combat-mass",
+          "factual_combat_mass": 645,
+          "hull_catalog_mass": 645,
+          "hull_id": 94,
+          "left_has_effective_bays": true,
+          "match": "base_hull_mass_plus_documented_fed_if_applicable",
+          "right_carrier_bonus_eligible_candidate": true,
+          "ship_id": 216,
+          "side": "right",
+          "status": "documented_candidate_match",
+          "vcr_race_id": 10
+        }
+      ],
+      "vcr_id": 591
+    },
+    {
+      "battle_turn": 141,
+      "pair": [
+        184,
+        140
+      ],
+      "seed_observed_only": 27,
+      "sides": [
+        {
+          "allowed_candidates": [
+            {
+              "mass": 980,
+              "scenario": "base_hull_mass_plus_documented_fed_if_applicable"
+            }
+          ],
+          "documentation": "https://help.planets.nu/combat-mass",
+          "factual_combat_mass": 980,
+          "hull_catalog_mass": 980,
+          "hull_id": 70,
+          "left_has_effective_bays": true,
+          "match": "base_hull_mass_plus_documented_fed_if_applicable",
+          "right_carrier_bonus_eligible_candidate": false,
+          "ship_id": 184,
+          "side": "left",
+          "status": "documented_candidate_match",
+          "vcr_race_id": 5
+        },
+        {
+          "allowed_candidates": [
+            {
+              "mass": 150,
+              "scenario": "base_hull_mass_plus_documented_fed_if_applicable"
+            },
+            {
+              "mass": 510,
+              "scenario": "right_vs_left_carrier_random_plus_360"
+            }
+          ],
+          "documentation": "https://help.planets.nu/combat-mass",
+          "factual_combat_mass": 510,
+          "hull_catalog_mass": 150,
+          "hull_id": 89,
+          "left_has_effective_bays": true,
+          "match": "right_vs_left_carrier_random_plus_360",
+          "right_carrier_bonus_eligible_candidate": true,
+          "ship_id": 140,
+          "side": "right",
+          "status": "documented_candidate_match",
+          "vcr_race_id": 10
+        }
+      ],
+      "vcr_id": 592
+    },
+    {
+      "battle_turn": 141,
+      "pair": [
+        140,
+        170
+      ],
+      "seed_observed_only": 81,
+      "sides": [
+        {
+          "allowed_candidates": [
+            {
+              "mass": 150,
+              "scenario": "base_hull_mass_plus_documented_fed_if_applicable"
+            }
+          ],
+          "documentation": "https://help.planets.nu/combat-mass",
+          "factual_combat_mass": 150,
+          "hull_catalog_mass": 150,
+          "hull_id": 89,
+          "left_has_effective_bays": false,
+          "match": "base_hull_mass_plus_documented_fed_if_applicable",
+          "right_carrier_bonus_eligible_candidate": false,
+          "ship_id": 140,
+          "side": "left",
+          "status": "documented_candidate_match",
+          "vcr_race_id": 5
+        },
+        {
+          "allowed_candidates": [
+            {
+              "mass": 150,
+              "scenario": "base_hull_mass_plus_documented_fed_if_applicable"
+            }
+          ],
+          "documentation": "https://help.planets.nu/combat-mass",
+          "factual_combat_mass": 150,
+          "hull_catalog_mass": 150,
+          "hull_id": 89,
+          "left_has_effective_bays": false,
+          "match": "base_hull_mass_plus_documented_fed_if_applicable",
+          "right_carrier_bonus_eligible_candidate": false,
+          "ship_id": 170,
+          "side": "right",
+          "status": "documented_candidate_match",
+          "vcr_race_id": 10
+        }
+      ],
+      "vcr_id": 593
+    },
+    {
+      "battle_turn": 141,
+      "pair": [
+        184,
+        170
+      ],
+      "seed_observed_only": 41,
+      "sides": [
+        {
+          "allowed_candidates": [
+            {
+              "mass": 980,
+              "scenario": "base_hull_mass_plus_documented_fed_if_applicable"
+            }
+          ],
+          "documentation": "https://help.planets.nu/combat-mass",
+          "factual_combat_mass": 980,
+          "hull_catalog_mass": 980,
+          "hull_id": 70,
+          "left_has_effective_bays": true,
+          "match": "base_hull_mass_plus_documented_fed_if_applicable",
+          "right_carrier_bonus_eligible_candidate": false,
+          "ship_id": 184,
+          "side": "left",
+          "status": "documented_candidate_match",
+          "vcr_race_id": 5
+        },
+        {
+          "allowed_candidates": [
+            {
+              "mass": 150,
+              "scenario": "base_hull_mass_plus_documented_fed_if_applicable"
+            },
+            {
+              "mass": 510,
+              "scenario": "right_vs_left_carrier_random_plus_360"
+            }
+          ],
+          "documentation": "https://help.planets.nu/combat-mass",
+          "factual_combat_mass": 510,
+          "hull_catalog_mass": 150,
+          "hull_id": 89,
+          "left_has_effective_bays": true,
+          "match": "right_vs_left_carrier_random_plus_360",
+          "right_carrier_bonus_eligible_candidate": true,
+          "ship_id": 170,
+          "side": "right",
+          "status": "documented_candidate_match",
+          "vcr_race_id": 10
+        }
+      ],
+      "vcr_id": 594
+    },
+    {
+      "battle_turn": 141,
+      "pair": [
+        170,
+        382
+      ],
+      "seed_observed_only": 10,
+      "sides": [
+        {
+          "allowed_candidates": [
+            {
+              "mass": 150,
+              "scenario": "base_hull_mass_plus_documented_fed_if_applicable"
+            }
+          ],
+          "documentation": "https://help.planets.nu/combat-mass",
+          "factual_combat_mass": 150,
+          "hull_catalog_mass": 150,
+          "hull_id": 89,
+          "left_has_effective_bays": false,
+          "match": "base_hull_mass_plus_documented_fed_if_applicable",
+          "right_carrier_bonus_eligible_candidate": false,
+          "ship_id": 170,
+          "side": "left",
+          "status": "documented_candidate_match",
+          "vcr_race_id": 5
+        },
+        {
+          "allowed_candidates": [
+            {
+              "mass": 645,
+              "scenario": "base_hull_mass_plus_documented_fed_if_applicable"
+            }
+          ],
+          "documentation": "https://help.planets.nu/combat-mass",
+          "factual_combat_mass": 645,
+          "hull_catalog_mass": 645,
+          "hull_id": 94,
+          "left_has_effective_bays": false,
+          "match": "base_hull_mass_plus_documented_fed_if_applicable",
+          "right_carrier_bonus_eligible_candidate": false,
+          "ship_id": 382,
+          "side": "right",
+          "status": "documented_candidate_match",
+          "vcr_race_id": 10
+        }
+      ],
+      "vcr_id": 595
+    },
+    {
+      "battle_turn": 141,
+      "pair": [
+        184,
+        382
+      ],
+      "seed_observed_only": 118,
+      "sides": [
+        {
+          "allowed_candidates": [
+            {
+              "mass": 980,
+              "scenario": "base_hull_mass_plus_documented_fed_if_applicable"
+            }
+          ],
+          "documentation": "https://help.planets.nu/combat-mass",
+          "factual_combat_mass": 980,
+          "hull_catalog_mass": 980,
+          "hull_id": 70,
+          "left_has_effective_bays": true,
+          "match": "base_hull_mass_plus_documented_fed_if_applicable",
+          "right_carrier_bonus_eligible_candidate": false,
+          "ship_id": 184,
+          "side": "left",
+          "status": "documented_candidate_match",
+          "vcr_race_id": 5
+        },
+        {
+          "allowed_candidates": [
+            {
+              "mass": 645,
+              "scenario": "base_hull_mass_plus_documented_fed_if_applicable"
+            },
+            {
+              "mass": 1005,
+              "scenario": "right_vs_left_carrier_random_plus_360"
+            }
+          ],
+          "documentation": "https://help.planets.nu/combat-mass",
+          "factual_combat_mass": 645,
+          "hull_catalog_mass": 645,
+          "hull_id": 94,
+          "left_has_effective_bays": true,
+          "match": "base_hull_mass_plus_documented_fed_if_applicable",
+          "right_carrier_bonus_eligible_candidate": true,
+          "ship_id": 382,
+          "side": "right",
+          "status": "documented_candidate_match",
+          "vcr_race_id": 10
+        }
+      ],
+      "vcr_id": 596
+    },
+    {
+      "battle_turn": 141,
+      "pair": [
+        195,
+        382
+      ],
+      "seed_observed_only": 25,
+      "sides": [
+        {
+          "allowed_candidates": [
+            {
+              "mass": 980,
+              "scenario": "base_hull_mass_plus_documented_fed_if_applicable"
+            }
+          ],
+          "documentation": "https://help.planets.nu/combat-mass",
+          "factual_combat_mass": 980,
+          "hull_catalog_mass": 980,
+          "hull_id": 70,
+          "left_has_effective_bays": true,
+          "match": "base_hull_mass_plus_documented_fed_if_applicable",
+          "right_carrier_bonus_eligible_candidate": false,
+          "ship_id": 195,
+          "side": "left",
+          "status": "documented_candidate_match",
+          "vcr_race_id": 5
+        },
+        {
+          "allowed_candidates": [
+            {
+              "mass": 645,
+              "scenario": "base_hull_mass_plus_documented_fed_if_applicable"
+            },
+            {
+              "mass": 1005,
+              "scenario": "right_vs_left_carrier_random_plus_360"
+            }
+          ],
+          "documentation": "https://help.planets.nu/combat-mass",
+          "factual_combat_mass": 645,
+          "hull_catalog_mass": 645,
+          "hull_id": 94,
+          "left_has_effective_bays": true,
+          "match": "base_hull_mass_plus_documented_fed_if_applicable",
+          "right_carrier_bonus_eligible_candidate": true,
+          "ship_id": 382,
+          "side": "right",
+          "status": "documented_candidate_match",
+          "vcr_race_id": 10
+        }
+      ],
+      "vcr_id": 597
+    }
+  ],
+  "schema": "planets-lab.combat-mass-candidate-audit.v1",
+  "status": "OBSERVATIONAL_NOT_PROMOTED",
+  "summary": {
+    "documented_candidate_match": 22,
+    "non_ship_vs_ship": 1,
+    "right_carrier_bonus_eligible": 8,
+    "right_carrier_bonus_observed": 5,
+    "ship_vs_ship_vcrs": 11
+  },
+  "turn": 141
+}
