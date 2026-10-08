@@ -1,0 +1,22 @@
+===== SITE COMBAT PAYLOAD PROVENANCE V1 =====
+HEAD:      b1a88cb7e96ed1b93f5b70ad4e73155c4d8c5a62
+public100: generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb
+sha256:    3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c
+runtime:   /root/.cache/planets-lab/site-state-v1/bin/python
+output:    artifacts/combat/site-payload-provenance/game400330-t141-v592-595.json
+===== SITE COMBAT PAYLOAD PROVENANCE V1 =====
+status: OBSERVATIONAL_NOT_PROMOTED
+VCR observations: 4
+V592 pair=[140, 184] seed=27
+  left ship=184 tminus1_source=special_intercept_movement_phase equal=['hullid', 'beamid', 'torpedoid', 'beamcount', 'launchercount', 'baycount', 'torpedos'] different=[{'field': 'mass', 'tminus1': 1391, 'vcr': 980}, {'field': 'fighters', 'tminus1': 200, 'vcr': 129}] unresolved=[]
+  right ship=140 tminus1_source=normal_move equal=['hullid', 'beamid', 'torpedoid', 'beamcount', 'launchercount', 'baycount', 'torpedos', 'fighters'] different=[{'field': 'mass', 'tminus1': 231, 'vcr': 510}] unresolved=[]
+V593 pair=[140, 170] seed=81
+  left ship=140 tminus1_source=normal_move equal=['hullid', 'beamid', 'torpedoid', 'launchercount', 'baycount', 'fighters'] different=[{'field': 'beamcount', 'tminus1': 8, 'vcr': 6}, {'field': 'mass', 'tminus1': 231, 'vcr': 150}, {'field': 'torpedos', 'tminus1': 20, 'vcr': 16}] unresolved=[]
+  right ship=170 tminus1_source=normal_move equal=['hullid', 'beamid', 'torpedoid', 'beamcount', 'launchercount', 'baycount', 'torpedos', 'fighters'] different=[{'field': 'mass', 'tminus1': 235, 'vcr': 150}] unresolved=[]
+V594 pair=[170, 184] seed=41
+  left ship=184 tminus1_source=special_intercept_movement_phase equal=['hullid', 'beamid', 'torpedoid', 'beamcount', 'launchercount', 'baycount', 'torpedos'] different=[{'field': 'mass', 'tminus1': 1391, 'vcr': 980}, {'field': 'fighters', 'tminus1': 200, 'vcr': 105}] unresolved=[]
+  right ship=170 tminus1_source=normal_move equal=['hullid', 'beamid', 'torpedoid', 'beamcount', 'launchercount', 'baycount', 'fighters'] different=[{'field': 'mass', 'tminus1': 235, 'vcr': 510}, {'field': 'torpedos', 'tminus1': 20, 'vcr': 18}] unresolved=[]
+V595 pair=[170, 382] seed=10
+  left ship=170 tminus1_source=normal_move equal=['hullid', 'beamid', 'torpedoid', 'launchercount', 'baycount', 'fighters'] different=[{'field': 'beamcount', 'tminus1': 8, 'vcr': 7}, {'field': 'mass', 'tminus1': 235, 'vcr': 150}, {'field': 'torpedos', 'tminus1': 20, 'vcr': 14}] unresolved=[]
+  right ship=382 tminus1_source=special_tow_movement_phase equal=['hullid', 'beamid', 'torpedoid', 'beamcount', 'launchercount', 'baycount', 'torpedos', 'fighters'] different=[{'field': 'mass', 'tminus1': 794, 'vcr': 645}] unresolved=[]
+output: artifacts/combat/site-payload-provenance/game400330-t141-v592-595.json

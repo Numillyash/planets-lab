@@ -1,0 +1,1049 @@
+{
+  "database_path": "/root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "evidence_boundary": "Research-only observational audit using factual current-VCR payloads as comparison targets and T-1 raw predictions as candidate sources. No observed equality promotes a Host rule; no derived static field or seed is supplied to site_executor. VCRs 592..595 are observational inputs, not held-out predictions; no observed field is injected into the mutable executor. Site-context acquisition may reconstruct historical appearance traces, which this matrix deliberately discards.",
+  "schema": "planets-lab.site-combat-payload-provenance.v1",
+  "status": "OBSERVATIONAL_NOT_PROMOTED",
+  "summary": {
+    "field_observation_counts": {
+      "baycount": 8,
+      "beamcount": 8,
+      "beamid": 8,
+      "fighters": 8,
+      "hullid": 8,
+      "launchercount": 8,
+      "mass": 8,
+      "torpedoid": 8,
+      "torpedos": 8
+    },
+    "field_status_counts": {
+      "baycount::observed_equal": 8,
+      "beamcount::observed_different": 2,
+      "beamcount::observed_equal": 6,
+      "beamid::observed_equal": 8,
+      "fighters::observed_different": 2,
+      "fighters::observed_equal": 6,
+      "hullid::observed_equal": 8,
+      "launchercount::observed_equal": 8,
+      "mass::observed_different": 8,
+      "torpedoid::observed_equal": 8,
+      "torpedos::observed_different": 3,
+      "torpedos::observed_equal": 5
+    },
+    "seed_observations": [
+      {
+        "seed": 27,
+        "vcr_id": 592
+      },
+      {
+        "seed": 81,
+        "vcr_id": 593
+      },
+      {
+        "seed": 41,
+        "vcr_id": 594
+      },
+      {
+        "seed": 10,
+        "vcr_id": 595
+      }
+    ],
+    "side_count": 8,
+    "vcr_count": 4
+  },
+  "target": {
+    "battle_turn": 141,
+    "game_id": 400330,
+    "site": [
+      1674,
+      2363
+    ],
+    "vcr_ids": [
+      592,
+      593,
+      594,
+      595
+    ]
+  },
+  "vcr_rows": [
+    {
+      "battletype": 0,
+      "combat_rng": 0,
+      "factual_left_ship_id": 184,
+      "factual_right_ship_id": 140,
+      "pair": [
+        140,
+        184
+      ],
+      "perspective_observations": 5,
+      "seed": 27,
+      "sides": [
+        {
+          "current_vcr_race_id": 5,
+          "direct_field_observations": [
+            {
+              "current_vcr_observed": 70,
+              "delta_current_minus_tminus1": 0,
+              "field": "hullid",
+              "origin": "tminus1_raw.hullid",
+              "status": "observed_equal",
+              "tminus1_candidate": 70
+            },
+            {
+              "current_vcr_observed": 10,
+              "delta_current_minus_tminus1": 0,
+              "field": "beamid",
+              "origin": "tminus1_raw.beamid",
+              "status": "observed_equal",
+              "tminus1_candidate": 10
+            },
+            {
+              "current_vcr_observed": 0,
+              "delta_current_minus_tminus1": 0,
+              "field": "torpedoid",
+              "origin": "tminus1_raw.torpedoid",
+              "status": "observed_equal",
+              "tminus1_candidate": 0
+            },
+            {
+              "current_vcr_observed": 10,
+              "delta_current_minus_tminus1": 0,
+              "field": "beamcount",
+              "origin": "tminus1_raw.beams",
+              "status": "observed_equal",
+              "tminus1_candidate": 10
+            },
+            {
+              "current_vcr_observed": 0,
+              "delta_current_minus_tminus1": 0,
+              "field": "launchercount",
+              "origin": "tminus1_raw.torps",
+              "status": "observed_equal",
+              "tminus1_candidate": 0
+            },
+            {
+              "current_vcr_observed": 10,
+              "delta_current_minus_tminus1": 0,
+              "field": "baycount",
+              "origin": "tminus1_raw.bays",
+              "status": "observed_equal",
+              "tminus1_candidate": 10
+            },
+            {
+              "current_vcr_observed": 980,
+              "delta_current_minus_tminus1": -411,
+              "field": "mass",
+              "origin": "tminus1_raw.mass",
+              "status": "observed_different",
+              "tminus1_candidate": 1391
+            },
+            {
+              "current_vcr_observed": 0,
+              "delta_current_minus_tminus1": 0,
+              "field": "torpedos",
+              "origin": "tminus1_raw.ammo + fitted_torps/bays",
+              "status": "observed_equal",
+              "tminus1_candidate": 0
+            },
+            {
+              "current_vcr_observed": 129,
+              "delta_current_minus_tminus1": -71,
+              "field": "fighters",
+              "origin": "tminus1_raw.ammo + fitted_torps/bays",
+              "status": "observed_different",
+              "tminus1_candidate": 200
+            }
+          ],
+          "host_rate_fields": [
+            {
+              "classification": "unresolved_host_combat_setup",
+              "field": "beamkillbonus",
+              "source": "factual_current_vcr_only",
+              "value": 3
+            },
+            {
+              "classification": "unresolved_host_combat_setup",
+              "field": "beamchargerate",
+              "source": "factual_current_vcr_only",
+              "value": 1
+            },
+            {
+              "classification": "unresolved_host_combat_setup",
+              "field": "torpchargerate",
+              "source": "factual_current_vcr_only",
+              "value": 1
+            },
+            {
+              "classification": "unresolved_host_combat_setup",
+              "field": "torpmisspercent",
+              "source": "factual_current_vcr_only",
+              "value": 35
+            },
+            {
+              "classification": "unresolved_host_combat_setup",
+              "field": "crewdefensepercent",
+              "source": "factual_current_vcr_only",
+              "value": 0
+            }
+          ],
+          "prediction_source": "special_intercept_movement_phase",
+          "ship_id": 184,
+          "side": "left",
+          "tminus1_ammo_classification": "decoded_nu_ammo_candidate",
+          "tminus1_owner_id": 5
+        },
+        {
+          "current_vcr_race_id": 10,
+          "direct_field_observations": [
+            {
+              "current_vcr_observed": 89,
+              "delta_current_minus_tminus1": 0,
+              "field": "hullid",
+              "origin": "tminus1_raw.hullid",
+              "status": "observed_equal",
+              "tminus1_candidate": 89
+            },
+            {
+              "current_vcr_observed": 10,
+              "delta_current_minus_tminus1": 0,
+              "field": "beamid",
+              "origin": "tminus1_raw.beamid",
+              "status": "observed_equal",
+              "tminus1_candidate": 10
+            },
+            {
+              "current_vcr_observed": 10,
+              "delta_current_minus_tminus1": 0,
+              "field": "torpedoid",
+              "origin": "tminus1_raw.torpedoid",
+              "status": "observed_equal",
+              "tminus1_candidate": 10
+            },
+            {
+              "current_vcr_observed": 8,
+              "delta_current_minus_tminus1": 0,
+              "field": "beamcount",
+              "origin": "tminus1_raw.beams",
+              "status": "observed_equal",
+              "tminus1_candidate": 8
+            },
+            {
+              "current_vcr_observed": 2,
+              "delta_current_minus_tminus1": 0,
+              "field": "launchercount",
+              "origin": "tminus1_raw.torps",
+              "status": "observed_equal",
+              "tminus1_candidate": 2
+            },
+            {
+              "current_vcr_observed": 0,
+              "delta_current_minus_tminus1": 0,
+              "field": "baycount",
+              "origin": "tminus1_raw.bays",
+              "status": "observed_equal",
+              "tminus1_candidate": 0
+            },
+            {
+              "current_vcr_observed": 510,
+              "delta_current_minus_tminus1": 279,
+              "field": "mass",
+              "origin": "tminus1_raw.mass",
+              "status": "observed_different",
+              "tminus1_candidate": 231
+            },
+            {
+              "current_vcr_observed": 20,
+              "delta_current_minus_tminus1": 0,
+              "field": "torpedos",
+              "origin": "tminus1_raw.ammo + fitted_torps/bays",
+              "status": "observed_equal",
+              "tminus1_candidate": 20
+            },
+            {
+              "current_vcr_observed": 0,
+              "delta_current_minus_tminus1": 0,
+              "field": "fighters",
+              "origin": "tminus1_raw.ammo + fitted_torps/bays",
+              "status": "observed_equal",
+              "tminus1_candidate": 0
+            }
+          ],
+          "host_rate_fields": [
+            {
+              "classification": "unresolved_host_combat_setup",
+              "field": "beamkillbonus",
+              "source": "factual_current_vcr_only",
+              "value": 1
+            },
+            {
+              "classification": "unresolved_host_combat_setup",
+              "field": "beamchargerate",
+              "source": "factual_current_vcr_only",
+              "value": 1
+            },
+            {
+              "classification": "unresolved_host_combat_setup",
+              "field": "torpchargerate",
+              "source": "factual_current_vcr_only",
+              "value": 1
+            },
+            {
+              "classification": "unresolved_host_combat_setup",
+              "field": "torpmisspercent",
+              "source": "factual_current_vcr_only",
+              "value": 35
+            },
+            {
+              "classification": "unresolved_host_combat_setup",
+              "field": "crewdefensepercent",
+              "source": "factual_current_vcr_only",
+              "value": 0
+            }
+          ],
+          "prediction_source": "normal_move",
+          "ship_id": 140,
+          "side": "right",
+          "tminus1_ammo_classification": "decoded_nu_ammo_candidate",
+          "tminus1_owner_id": 10
+        }
+      ],
+      "vcr_id": 592,
+      "weapon_catalog_beam_count": 10,
+      "weapon_catalog_torpedo_count": 11
+    },
+    {
+      "battletype": 0,
+      "combat_rng": 0,
+      "factual_left_ship_id": 140,
+      "factual_right_ship_id": 170,
+      "pair": [
+        140,
+        170
+      ],
+      "perspective_observations": 5,
+      "seed": 81,
+      "sides": [
+        {
+          "current_vcr_race_id": 5,
+          "direct_field_observations": [
+            {
+              "current_vcr_observed": 89,
+              "delta_current_minus_tminus1": 0,
+              "field": "hullid",
+              "origin": "tminus1_raw.hullid",
+              "status": "observed_equal",
+              "tminus1_candidate": 89
+            },
+            {
+              "current_vcr_observed": 10,
+              "delta_current_minus_tminus1": 0,
+              "field": "beamid",
+              "origin": "tminus1_raw.beamid",
+              "status": "observed_equal",
+              "tminus1_candidate": 10
+            },
+            {
+              "current_vcr_observed": 10,
+              "delta_current_minus_tminus1": 0,
+              "field": "torpedoid",
+              "origin": "tminus1_raw.torpedoid",
+              "status": "observed_equal",
+              "tminus1_candidate": 10
+            },
+            {
+              "current_vcr_observed": 6,
+              "delta_current_minus_tminus1": -2,
+              "field": "beamcount",
+              "origin": "tminus1_raw.beams",
+              "status": "observed_different",
+              "tminus1_candidate": 8
+            },
+            {
+              "current_vcr_observed": 2,
+              "delta_current_minus_tminus1": 0,
+              "field": "launchercount",
+              "origin": "tminus1_raw.torps",
+              "status": "observed_equal",
+              "tminus1_candidate": 2
+            },
+            {
+              "current_vcr_observed": 0,
+              "delta_current_minus_tminus1": 0,
+              "field": "baycount",
+              "origin": "tminus1_raw.bays",
+              "status": "observed_equal",
+              "tminus1_candidate": 0
+            },
+            {
+              "current_vcr_observed": 150,
+              "delta_current_minus_tminus1": -81,
+              "field": "mass",
+              "origin": "tminus1_raw.mass",
+              "status": "observed_different",
+              "tminus1_candidate": 231
+            },
+            {
+              "current_vcr_observed": 16,
+              "delta_current_minus_tminus1": -4,
+              "field": "torpedos",
+              "origin": "tminus1_raw.ammo + fitted_torps/bays",
+              "status": "observed_different",
+              "tminus1_candidate": 20
+            },
+            {
+              "current_vcr_observed": 0,
+              "delta_current_minus_tminus1": 0,
+              "field": "fighters",
+              "origin": "tminus1_raw.ammo + fitted_torps/bays",
+              "status": "observed_equal",
+              "tminus1_candidate": 0
+            }
+          ],
+          "host_rate_fields": [
+            {
+              "classification": "unresolved_host_combat_setup",
+              "field": "beamkillbonus",
+              "source": "factual_current_vcr_only",
+              "value": 3
+            },
+            {
+              "classification": "unresolved_host_combat_setup",
+              "field": "beamchargerate",
+              "source": "factual_current_vcr_only",
+              "value": 1
+            },
+            {
+              "classification": "unresolved_host_combat_setup",
+              "field": "torpchargerate",
+              "source": "factual_current_vcr_only",
+              "value": 1
+            },
+            {
+              "classification": "unresolved_host_combat_setup",
+              "field": "torpmisspercent",
+              "source": "factual_current_vcr_only",
+              "value": 35
+            },
+            {
+              "classification": "unresolved_host_combat_setup",
+              "field": "crewdefensepercent",
+              "source": "factual_current_vcr_only",
+              "value": 0
+            }
+          ],
+          "prediction_source": "normal_move",
+          "ship_id": 140,
+          "side": "left",
+          "tminus1_ammo_classification": "decoded_nu_ammo_candidate",
+          "tminus1_owner_id": 10
+        },
+        {
+          "current_vcr_race_id": 10,
+          "direct_field_observations": [
+            {
+              "current_vcr_observed": 89,
+              "delta_current_minus_tminus1": 0,
+              "field": "hullid",
+              "origin": "tminus1_raw.hullid",
+              "status": "observed_equal",
+              "tminus1_candidate": 89
+            },
+            {
+              "current_vcr_observed": 10,
+              "delta_current_minus_tminus1": 0,
+              "field": "beamid",
+              "origin": "tminus1_raw.beamid",
+              "status": "observed_equal",
+              "tminus1_candidate": 10
+            },
+            {
+              "current_vcr_observed": 10,
+              "delta_current_minus_tminus1": 0,
+              "field": "torpedoid",
+              "origin": "tminus1_raw.torpedoid",
+              "status": "observed_equal",
+              "tminus1_candidate": 10
+            },
+            {
+              "current_vcr_observed": 8,
+              "delta_current_minus_tminus1": 0,
+              "field": "beamcount",
+              "origin": "tminus1_raw.beams",
+              "status": "observed_equal",
+              "tminus1_candidate": 8
+            },
+            {
+              "current_vcr_observed": 2,
+              "delta_current_minus_tminus1": 0,
+              "field": "launchercount",
+              "origin": "tminus1_raw.torps",
+              "status": "observed_equal",
+              "tminus1_candidate": 2
+            },
+            {
+              "current_vcr_observed": 0,
+              "delta_current_minus_tminus1": 0,
+              "field": "baycount",
+              "origin": "tminus1_raw.bays",
+              "status": "observed_equal",
+              "tminus1_candidate": 0
+            },
+            {
+              "current_vcr_observed": 150,
+              "delta_current_minus_tminus1": -85,
+              "field": "mass",
+              "origin": "tminus1_raw.mass",
+              "status": "observed_different",
+              "tminus1_candidate": 235
+            },
+            {
+              "current_vcr_observed": 20,
+              "delta_current_minus_tminus1": 0,
+              "field": "torpedos",
+              "origin": "tminus1_raw.ammo + fitted_torps/bays",
+              "status": "observed_equal",
+              "tminus1_candidate": 20
+            },
+            {
+              "current_vcr_observed": 0,
+              "delta_current_minus_tminus1": 0,
+              "field": "fighters",
+              "origin": "tminus1_raw.ammo + fitted_torps/bays",
+              "status": "observed_equal",
+              "tminus1_candidate": 0
+            }
+          ],
+          "host_rate_fields": [
+            {
+              "classification": "unresolved_host_combat_setup",
+              "field": "beamkillbonus",
+              "source": "factual_current_vcr_only",
+              "value": 1
+            },
+            {
+              "classification": "unresolved_host_combat_setup",
+              "field": "beamchargerate",
+              "source": "factual_current_vcr_only",
+              "value": 1
+            },
+            {
+              "classification": "unresolved_host_combat_setup",
+              "field": "torpchargerate",
+              "source": "factual_current_vcr_only",
+              "value": 1
+            },
+            {
+              "classification": "unresolved_host_combat_setup",
+              "field": "torpmisspercent",
+              "source": "factual_current_vcr_only",
+              "value": 35
+            },
+            {
+              "classification": "unresolved_host_combat_setup",
+              "field": "crewdefensepercent",
+              "source": "factual_current_vcr_only",
+              "value": 0
+            }
+          ],
+          "prediction_source": "normal_move",
+          "ship_id": 170,
+          "side": "right",
+          "tminus1_ammo_classification": "decoded_nu_ammo_candidate",
+          "tminus1_owner_id": 10
+        }
+      ],
+      "vcr_id": 593,
+      "weapon_catalog_beam_count": 10,
+      "weapon_catalog_torpedo_count": 11
+    },
+    {
+      "battletype": 0,
+      "combat_rng": 0,
+      "factual_left_ship_id": 184,
+      "factual_right_ship_id": 170,
+      "pair": [
+        170,
+        184
+      ],
+      "perspective_observations": 5,
+      "seed": 41,
+      "sides": [
+        {
+          "current_vcr_race_id": 5,
+          "direct_field_observations": [
+            {
+              "current_vcr_observed": 70,
+              "delta_current_minus_tminus1": 0,
+              "field": "hullid",
+              "origin": "tminus1_raw.hullid",
+              "status": "observed_equal",
+              "tminus1_candidate": 70
+            },
+            {
+              "current_vcr_observed": 10,
+              "delta_current_minus_tminus1": 0,
+              "field": "beamid",
+              "origin": "tminus1_raw.beamid",
+              "status": "observed_equal",
+              "tminus1_candidate": 10
+            },
+            {
+              "current_vcr_observed": 0,
+              "delta_current_minus_tminus1": 0,
+              "field": "torpedoid",
+              "origin": "tminus1_raw.torpedoid",
+              "status": "observed_equal",
+              "tminus1_candidate": 0
+            },
+            {
+              "current_vcr_observed": 10,
+              "delta_current_minus_tminus1": 0,
+              "field": "beamcount",
+              "origin": "tminus1_raw.beams",
+              "status": "observed_equal",
+              "tminus1_candidate": 10
+            },
+            {
+              "current_vcr_observed": 0,
+              "delta_current_minus_tminus1": 0,
+              "field": "launchercount",
+              "origin": "tminus1_raw.torps",
+              "status": "observed_equal",
+              "tminus1_candidate": 0
+            },
+            {
+              "current_vcr_observed": 10,
+              "delta_current_minus_tminus1": 0,
+              "field": "baycount",
+              "origin": "tminus1_raw.bays",
+              "status": "observed_equal",
+              "tminus1_candidate": 10
+            },
+            {
+              "current_vcr_observed": 980,
+              "delta_current_minus_tminus1": -411,
+              "field": "mass",
+              "origin": "tminus1_raw.mass",
+              "status": "observed_different",
+              "tminus1_candidate": 1391
+            },
+            {
+              "current_vcr_observed": 0,
+              "delta_current_minus_tminus1": 0,
+              "field": "torpedos",
+              "origin": "tminus1_raw.ammo + fitted_torps/bays",
+              "status": "observed_equal",
+              "tminus1_candidate": 0
+            },
+            {
+              "current_vcr_observed": 105,
+              "delta_current_minus_tminus1": -95,
+              "field": "fighters",
+              "origin": "tminus1_raw.ammo + fitted_torps/bays",
+              "status": "observed_different",
+              "tminus1_candidate": 200
+            }
+          ],
+          "host_rate_fields": [
+            {
+              "classification": "unresolved_host_combat_setup",
+              "field": "beamkillbonus",
+              "source": "factual_current_vcr_only",
+              "value": 3
+            },
+            {
+              "classification": "unresolved_host_combat_setup",
+              "field": "beamchargerate",
+              "source": "factual_current_vcr_only",
+              "value": 1
+            },
+            {
+              "classification": "unresolved_host_combat_setup",
+              "field": "torpchargerate",
+              "source": "factual_current_vcr_only",
+              "value": 1
+            },
+            {
+              "classification": "unresolved_host_combat_setup",
+              "field": "torpmisspercent",
+              "source": "factual_current_vcr_only",
+              "value": 35
+            },
+            {
+              "classification": "unresolved_host_combat_setup",
+              "field": "crewdefensepercent",
+              "source": "factual_current_vcr_only",
+              "value": 0
+            }
+          ],
+          "prediction_source": "special_intercept_movement_phase",
+          "ship_id": 184,
+          "side": "left",
+          "tminus1_ammo_classification": "decoded_nu_ammo_candidate",
+          "tminus1_owner_id": 5
+        },
+        {
+          "current_vcr_race_id": 10,
+          "direct_field_observations": [
+            {
+              "current_vcr_observed": 89,
+              "delta_current_minus_tminus1": 0,
+              "field": "hullid",
+              "origin": "tminus1_raw.hullid",
+              "status": "observed_equal",
+              "tminus1_candidate": 89
+            },
+            {
+              "current_vcr_observed": 10,
+              "delta_current_minus_tminus1": 0,
+              "field": "beamid",
+              "origin": "tminus1_raw.beamid",
+              "status": "observed_equal",
+              "tminus1_candidate": 10
+            },
+            {
+              "current_vcr_observed": 10,
+              "delta_current_minus_tminus1": 0,
+              "field": "torpedoid",
+              "origin": "tminus1_raw.torpedoid",
+              "status": "observed_equal",
+              "tminus1_candidate": 10
+            },
+            {
+              "current_vcr_observed": 8,
+              "delta_current_minus_tminus1": 0,
+              "field": "beamcount",
+              "origin": "tminus1_raw.beams",
+              "status": "observed_equal",
+              "tminus1_candidate": 8
+            },
+            {
+              "current_vcr_observed": 2,
+              "delta_current_minus_tminus1": 0,
+              "field": "launchercount",
+              "origin": "tminus1_raw.torps",
+              "status": "observed_equal",
+              "tminus1_candidate": 2
+            },
+            {
+              "current_vcr_observed": 0,
+              "delta_current_minus_tminus1": 0,
+              "field": "baycount",
+              "origin": "tminus1_raw.bays",
+              "status": "observed_equal",
+              "tminus1_candidate": 0
+            },
+            {
+              "current_vcr_observed": 510,
+              "delta_current_minus_tminus1": 275,
+              "field": "mass",
+              "origin": "tminus1_raw.mass",
+              "status": "observed_different",
+              "tminus1_candidate": 235
+            },
+            {
+              "current_vcr_observed": 18,
+              "delta_current_minus_tminus1": -2,
+              "field": "torpedos",
+              "origin": "tminus1_raw.ammo + fitted_torps/bays",
+              "status": "observed_different",
+              "tminus1_candidate": 20
+            },
+            {
+              "current_vcr_observed": 0,
+              "delta_current_minus_tminus1": 0,
+              "field": "fighters",
+              "origin": "tminus1_raw.ammo + fitted_torps/bays",
+              "status": "observed_equal",
+              "tminus1_candidate": 0
+            }
+          ],
+          "host_rate_fields": [
+            {
+              "classification": "unresolved_host_combat_setup",
+              "field": "beamkillbonus",
+              "source": "factual_current_vcr_only",
+              "value": 1
+            },
+            {
+              "classification": "unresolved_host_combat_setup",
+              "field": "beamchargerate",
+              "source": "factual_current_vcr_only",
+              "value": 1
+            },
+            {
+              "classification": "unresolved_host_combat_setup",
+              "field": "torpchargerate",
+              "source": "factual_current_vcr_only",
+              "value": 1
+            },
+            {
+              "classification": "unresolved_host_combat_setup",
+              "field": "torpmisspercent",
+              "source": "factual_current_vcr_only",
+              "value": 35
+            },
+            {
+              "classification": "unresolved_host_combat_setup",
+              "field": "crewdefensepercent",
+              "source": "factual_current_vcr_only",
+              "value": 0
+            }
+          ],
+          "prediction_source": "normal_move",
+          "ship_id": 170,
+          "side": "right",
+          "tminus1_ammo_classification": "decoded_nu_ammo_candidate",
+          "tminus1_owner_id": 10
+        }
+      ],
+      "vcr_id": 594,
+      "weapon_catalog_beam_count": 10,
+      "weapon_catalog_torpedo_count": 11
+    },
+    {
+      "battletype": 0,
+      "combat_rng": 0,
+      "factual_left_ship_id": 170,
+      "factual_right_ship_id": 382,
+      "pair": [
+        170,
+        382
+      ],
+      "perspective_observations": 5,
+      "seed": 10,
+      "sides": [
+        {
+          "current_vcr_race_id": 5,
+          "direct_field_observations": [
+            {
+              "current_vcr_observed": 89,
+              "delta_current_minus_tminus1": 0,
+              "field": "hullid",
+              "origin": "tminus1_raw.hullid",
+              "status": "observed_equal",
+              "tminus1_candidate": 89
+            },
+            {
+              "current_vcr_observed": 10,
+              "delta_current_minus_tminus1": 0,
+              "field": "beamid",
+              "origin": "tminus1_raw.beamid",
+              "status": "observed_equal",
+              "tminus1_candidate": 10
+            },
+            {
+              "current_vcr_observed": 10,
+              "delta_current_minus_tminus1": 0,
+              "field": "torpedoid",
+              "origin": "tminus1_raw.torpedoid",
+              "status": "observed_equal",
+              "tminus1_candidate": 10
+            },
+            {
+              "current_vcr_observed": 7,
+              "delta_current_minus_tminus1": -1,
+              "field": "beamcount",
+              "origin": "tminus1_raw.beams",
+              "status": "observed_different",
+              "tminus1_candidate": 8
+            },
+            {
+              "current_vcr_observed": 2,
+              "delta_current_minus_tminus1": 0,
+              "field": "launchercount",
+              "origin": "tminus1_raw.torps",
+              "status": "observed_equal",
+              "tminus1_candidate": 2
+            },
+            {
+              "current_vcr_observed": 0,
+              "delta_current_minus_tminus1": 0,
+              "field": "baycount",
+              "origin": "tminus1_raw.bays",
+              "status": "observed_equal",
+              "tminus1_candidate": 0
+            },
+            {
+              "current_vcr_observed": 150,
+              "delta_current_minus_tminus1": -85,
+              "field": "mass",
+              "origin": "tminus1_raw.mass",
+              "status": "observed_different",
+              "tminus1_candidate": 235
+            },
+            {
+              "current_vcr_observed": 14,
+              "delta_current_minus_tminus1": -6,
+              "field": "torpedos",
+              "origin": "tminus1_raw.ammo + fitted_torps/bays",
+              "status": "observed_different",
+              "tminus1_candidate": 20
+            },
+            {
+              "current_vcr_observed": 0,
+              "delta_current_minus_tminus1": 0,
+              "field": "fighters",
+              "origin": "tminus1_raw.ammo + fitted_torps/bays",
+              "status": "observed_equal",
+              "tminus1_candidate": 0
+            }
+          ],
+          "host_rate_fields": [
+            {
+              "classification": "unresolved_host_combat_setup",
+              "field": "beamkillbonus",
+              "source": "factual_current_vcr_only",
+              "value": 3
+            },
+            {
+              "classification": "unresolved_host_combat_setup",
+              "field": "beamchargerate",
+              "source": "factual_current_vcr_only",
+              "value": 1
+            },
+            {
+              "classification": "unresolved_host_combat_setup",
+              "field": "torpchargerate",
+              "source": "factual_current_vcr_only",
+              "value": 1
+            },
+            {
+              "classification": "unresolved_host_combat_setup",
+              "field": "torpmisspercent",
+              "source": "factual_current_vcr_only",
+              "value": 35
+            },
+            {
+              "classification": "unresolved_host_combat_setup",
+              "field": "crewdefensepercent",
+              "source": "factual_current_vcr_only",
+              "value": 0
+            }
+          ],
+          "prediction_source": "normal_move",
+          "ship_id": 170,
+          "side": "left",
+          "tminus1_ammo_classification": "decoded_nu_ammo_candidate",
+          "tminus1_owner_id": 10
+        },
+        {
+          "current_vcr_race_id": 10,
+          "direct_field_observations": [
+            {
+              "current_vcr_observed": 94,
+              "delta_current_minus_tminus1": 0,
+              "field": "hullid",
+              "origin": "tminus1_raw.hullid",
+              "status": "observed_equal",
+              "tminus1_candidate": 94
+            },
+            {
+              "current_vcr_observed": 10,
+              "delta_current_minus_tminus1": 0,
+              "field": "beamid",
+              "origin": "tminus1_raw.beamid",
+              "status": "observed_equal",
+              "tminus1_candidate": 10
+            },
+            {
+              "current_vcr_observed": 0,
+              "delta_current_minus_tminus1": 0,
+              "field": "torpedoid",
+              "origin": "tminus1_raw.torpedoid",
+              "status": "observed_equal",
+              "tminus1_candidate": 0
+            },
+            {
+              "current_vcr_observed": 5,
+              "delta_current_minus_tminus1": 0,
+              "field": "beamcount",
+              "origin": "tminus1_raw.beams",
+              "status": "observed_equal",
+              "tminus1_candidate": 5
+            },
+            {
+              "current_vcr_observed": 0,
+              "delta_current_minus_tminus1": 0,
+              "field": "launchercount",
+              "origin": "tminus1_raw.torps",
+              "status": "observed_equal",
+              "tminus1_candidate": 0
+            },
+            {
+              "current_vcr_observed": 10,
+              "delta_current_minus_tminus1": 0,
+              "field": "baycount",
+              "origin": "tminus1_raw.bays",
+              "status": "observed_equal",
+              "tminus1_candidate": 10
+            },
+            {
+              "current_vcr_observed": 645,
+              "delta_current_minus_tminus1": -149,
+              "field": "mass",
+              "origin": "tminus1_raw.mass",
+              "status": "observed_different",
+              "tminus1_candidate": 794
+            },
+            {
+              "current_vcr_observed": 0,
+              "delta_current_minus_tminus1": 0,
+              "field": "torpedos",
+              "origin": "tminus1_raw.ammo + fitted_torps/bays",
+              "status": "observed_equal",
+              "tminus1_candidate": 0
+            },
+            {
+              "current_vcr_observed": 110,
+              "delta_current_minus_tminus1": 0,
+              "field": "fighters",
+              "origin": "tminus1_raw.ammo + fitted_torps/bays",
+              "status": "observed_equal",
+              "tminus1_candidate": 110
+            }
+          ],
+          "host_rate_fields": [
+            {
+              "classification": "unresolved_host_combat_setup",
+              "field": "beamkillbonus",
+              "source": "factual_current_vcr_only",
+              "value": 1
+            },
+            {
+              "classification": "unresolved_host_combat_setup",
+              "field": "beamchargerate",
+              "source": "factual_current_vcr_only",
+              "value": 1
+            },
+            {
+              "classification": "unresolved_host_combat_setup",
+              "field": "torpchargerate",
+              "source": "factual_current_vcr_only",
+              "value": 1
+            },
+            {
+              "classification": "unresolved_host_combat_setup",
+              "field": "torpmisspercent",
+              "source": "factual_current_vcr_only",
+              "value": 35
+            },
+            {
+              "classification": "unresolved_host_combat_setup",
+              "field": "crewdefensepercent",
+              "source": "factual_current_vcr_only",
+              "value": 0
+            }
+          ],
+          "prediction_source": "special_tow_movement_phase",
+          "ship_id": 382,
+          "side": "right",
+          "tminus1_ammo_classification": "decoded_nu_ammo_candidate",
+          "tminus1_owner_id": 10
+        }
+      ],
+      "vcr_id": 595,
+      "weapon_catalog_beam_count": 10,
+      "weapon_catalog_torpedo_count": 11
+    }
+  ]
+}
