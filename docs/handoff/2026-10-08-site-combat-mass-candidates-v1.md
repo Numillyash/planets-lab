@@ -82,3 +82,40 @@ Successful completion marker:
     OBSERVATIONAL_NOT_PROMOTED
 
 Interpretation: run completed, no candidate mass formula has been promoted.
+
+## Runtime closure — 2026-10-08
+
+Verified server evidence, source main 6e329474f940def9d202391a657cd57b85a5940c:
+
+    runtime-logs/site-combat-mass-candidates-v1/
+      20261008T041759Z_6e329474f940
+
+    exit_code:                        0
+    ship_vs_ship_vcrs:             11
+    side observations:            22
+    documented_candidate_match:   22
+    outside_documented_set:        0
+    right_carrier_bonus_eligible:  8
+    right_carrier_bonus_observed:  5
+    eligible without bonus:        3
+    non_ship_vs_ship:              1
+
+V587–V597 were checked against the actual public100 game 400330 turn 141
+NuStaticSpecs. The observed hull-base and optional right-side +360 values
+match the documented candidate sets for all 22 ship sides. All 11 factual
+left-side masses were consistent with hull catalog mass; five eligible
+right-side observations contained +360 and three contained no bonus.
+
+This is DOCUMENTED + CORPUS_OBSERVED + TESTED for the *candidate-set scope*
+of this one turn, not a deterministic 60% RNG branch reconstruction.
+The 8 eligible observations are far too few to estimate or prove 60%.
+No Federation +50 or Shield Generator branch is independently exercised
+by this scoped population. Do not treat 22/22 as a universal engine.
+
+Mass does not directly use T-1 loadturn.ship.mass. Combat seed and whether
++360 fires remain independent unresolved generative inputs.
+
+Next evidence gate: replay each factual VCR to its internal final_seed,
+then audit whether the next VCR's observed start seed is simply the same
+global state or shifted by one. This must remain observational and cannot
+use N+1 seed as an input to predicting N+1 combat.
