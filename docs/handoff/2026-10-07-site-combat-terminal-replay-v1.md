@@ -161,3 +161,39 @@ construction of the current combat VCR setup from executor-selected ships:
 
 The largest remaining factual pieces are static/effective combat payload fields
 and seed/RNG progression.
+
+## Runtime closure — 2026-10-08
+
+Verified public100 server evidence (source branch main, clean worktree):
+
+    runtime-logs/site-combat-terminal-replay-v1/
+    20261008T024042Z_421360cf07b7
+
+    source_commit 421360cf07b76a794c85300983af7fcae26a5a93
+    exit_code 0
+
+    SITE_STATE_EXACT
+    SITE_TERMINAL_REPLAY_EXACT
+    expected_transitions 3
+    evaluated_transitions 3
+    exact_transitions 3
+    current_vcr_start_exact_transitions 3
+    next_vcr_start_exact_transitions 3
+
+    V592 -> V593 capture_immediate_C   predicted [140,170] exact pair/sides
+    V593 -> V594 capture_parent_resume predicted [170,184] exact pair/sides
+    V594 -> V595 capture_immediate_C   predicted [170,382] exact pair/sides
+
+All current/next VCR start comparisons exact. This closes the
+target-window precomputed terminal-result dependency for the studied chain.
+
+Scope limitation: pre-window queue/state history is still anchored to observed
+VCRs, and the **current** VCR N still supplies the known combat encounter's
+pair/sides, seed, static/effective combat setup, weapon catalog and RNG mode.
+N+1 pair and start state are held out until after predicting N+1. O remains
+unpromoted and fail-closed. This is not a general free-running NuHost.
+
+Next evidence work: decompose factual current-VCR combat setup into values
+recoverable from T-1 ship data, known catalog/settings, carried state, and
+unresolved seed/combat-rate/other host-dependent fields. Do not promote a
+static setup rule or seed progression without independent validation.
