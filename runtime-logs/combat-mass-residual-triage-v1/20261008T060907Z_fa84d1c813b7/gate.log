@@ -1,0 +1,17 @@
+===== COMBAT MASS RESIDUAL TRIAGE V1 =====
+HEAD: fa84d1c813b7d45f237aab730af3cc2f43c3582e
+public100: generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb
+sha256: 3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c
+output: artifacts/combat/mass-residual-triage-v1/public100-two-residuals.json
+===== COMBAT MASS RESIDUAL TRIAGE V1 =====
+status: OBSERVATIONAL_RESIDUALS_NOT_PROMOTED
+residual_sides: 2
+game=217591 T149 V2390 site=[913, 1299]
+  left ship=16 hull=70 (Gorbie Class Battlecarrier) base=980 vcr_mass=980 candidates=[980] residuals=[{'candidate_mass': 980, 'unexplained_delta': 0}] engine_ids=[0, 7] shield_generator_nearby=0
+  right ship=220 hull=2006 (Wild Banshee Class Destroyer) base=170 vcr_mass=530 candidates=[170] residuals=[{'candidate_mass': 170, 'unexplained_delta': 360}] engine_ids=[0, 9] shield_generator_nearby=0
+  relevant_settings: [{'archive_turn': 148, 'perspective_player_id': 1, 'selected_game_settings': {'killrace': False, 'playerselectrace': False, 'hideraceselection': False, 'campaignmode': True, 'maxadvantage': 520, 'maxplayersperrace': 10, 'disallowedraces': '', 'combatrng': 0, 'racehullsonlyfascistdoublebeams': False, 'racehullsonlycloakandintercept': False, 'racehullsonlyhiss': False, 'sensorsweepcombatpodscanrange': 0, 'sensorsweepnoncombatpodscanrange': 0, 'presethullsbyrace': '', 'presetadvantages': False}}, {'archive_turn': 148, 'perspective_player_id': 2, 'selected_game_settings': {'killrace': False, 'playerselectrace': False, 'hideraceselection': False, 'campaignmode': True, 'maxadvantage': 520, 'maxplayersperrace': 10, 'disallowedraces': '', 'combatrng': 0, 'racehullsonlyfascistdoublebeams': False, 'racehullsonlycloakandintercept': False, 'racehullsonlyhiss': False, 'sensorsweepcombatpodscanrange': 0, 'sensorsweepnoncombatpodscanrange': 0, 'presethullsbyrace': '', 'presetadvantages': False}}]
+game=253449 T82 V611 site=[1681, 2721]
+  left ship=346 hull=47 (Red Wind Class Carrier) base=70 vcr_mass=70 candidates=[70] residuals=[{'candidate_mass': 70, 'unexplained_delta': 0}] engine_ids=[0, 1] shield_generator_nearby=0
+  right ship=48 hull=117 (Brood) base=145 vcr_mass=290 candidates=[145, 505] residuals=[{'candidate_mass': 145, 'unexplained_delta': 145}, {'candidate_mass': 505, 'unexplained_delta': -215}] engine_ids=[0, 7] shield_generator_nearby=0
+  relevant_settings: [{'archive_turn': 81, 'perspective_player_id': 1, 'selected_game_settings': {'killrace': False, 'playerselectrace': False, 'hideraceselection': False, 'campaignmode': True, 'maxadvantage': 500, 'maxplayersperrace': 10, 'disallowedraces': '', 'combatrng': 0}}, {'archive_turn': 81, 'perspective_player_id': 2, 'selected_game_settings': {'killrace': False, 'playerselectrace': False, 'hideraceselection': False, 'campaignmode': True, 'maxadvantage': 500, 'maxplayersperrace': 10, 'disallowedraces': '', 'combatrng': 0}}]
+output: artifacts/combat/mass-residual-triage-v1/public100-two-residuals.json
