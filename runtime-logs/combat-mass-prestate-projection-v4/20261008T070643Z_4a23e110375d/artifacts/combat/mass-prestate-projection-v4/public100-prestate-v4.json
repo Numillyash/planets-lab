@@ -1,0 +1,653 @@
+{
+  "documentation": {
+    "brood_reference_catalog": "https://help.planets.nu/RaceSheetPlus",
+    "horwasp": "https://help.planets.nu/horwasp-ships",
+    "shield_generator": "https://help.planets.nu/abil-shield-generator"
+  },
+  "evidence_boundary": "Predictor only consumes game hull catalog and T-1 owner-perspective snapshot. The VCR mass is compared only after candidates are derived. Full-load 2x is documented but Horwasp partial-load interpolation, canonical Brood 145 in a game catalog showing 125, phase-accurate Shield Generator support, right-vs-carrier eligibility and RNG branch are NOT independently proven. T-1 snapshots and game ID grouping are not a held-out validation set. No mass rule promoted to the real executor.",
+  "observations": [
+    {
+      "factual_mass_checked_after_projection": 290,
+      "game_id": 217591,
+      "mass_in_prestate_candidates": true,
+      "projection": {
+        "assumptions": [
+          "T-1 clans assumed unchanged until this particular combat",
+          "Horwasp partial-clan linear interpolation is unverified",
+          "right +360 scenario lacks independently proven opponent carrier/RNG decision",
+          "145 KT Brood reference from published RaceSheetPlus differs from game hull catalog"
+        ],
+        "candidate_details": [
+          {
+            "mass": 250,
+            "rule_status": "documented_full_load_endpoint",
+            "scenario": "game_specific_hull_catalog"
+          },
+          {
+            "mass": 290,
+            "rule_status": "documented_full_load_endpoint_using_assumed_reference_base",
+            "scenario": "external_reference_brood_145"
+          }
+        ],
+        "candidate_masses": [
+          250,
+          290
+        ],
+        "horwasp_reference_alternative": true,
+        "projection_status": "HORWASP_TMINUS1_CONDITIONAL_CANDIDATES",
+        "shield_generator_prestate_support": null,
+        "source_clans": 900,
+        "source_tminus1": 148
+      },
+      "race_id": 12,
+      "ship_id": 119,
+      "side": "left",
+      "source_signature": "unresolved_nonadditive",
+      "turn": 149,
+      "vcr_id": 2405
+    },
+    {
+      "factual_mass_checked_after_projection": 290,
+      "game_id": 217591,
+      "mass_in_prestate_candidates": true,
+      "projection": {
+        "assumptions": [
+          "T-1 clans assumed unchanged until this particular combat",
+          "Horwasp partial-clan linear interpolation is unverified",
+          "right +360 scenario lacks independently proven opponent carrier/RNG decision",
+          "145 KT Brood reference from published RaceSheetPlus differs from game hull catalog"
+        ],
+        "candidate_details": [
+          {
+            "mass": 250,
+            "rule_status": "documented_full_load_endpoint",
+            "scenario": "game_specific_hull_catalog"
+          },
+          {
+            "mass": 610,
+            "rule_status": "unverified_combined_carrier_branch",
+            "scenario": "game_specific_hull_catalog_right_plus360"
+          },
+          {
+            "mass": 290,
+            "rule_status": "documented_full_load_endpoint_using_assumed_reference_base",
+            "scenario": "external_reference_brood_145"
+          },
+          {
+            "mass": 650,
+            "rule_status": "unverified_combined_carrier_branch",
+            "scenario": "external_reference_brood_145_right_plus360"
+          }
+        ],
+        "candidate_masses": [
+          250,
+          290,
+          610,
+          650
+        ],
+        "horwasp_reference_alternative": true,
+        "projection_status": "HORWASP_TMINUS1_CONDITIONAL_CANDIDATES",
+        "shield_generator_prestate_support": null,
+        "source_clans": 900,
+        "source_tminus1": 148
+      },
+      "race_id": 12,
+      "ship_id": 119,
+      "side": "right",
+      "source_signature": "unresolved_nonadditive",
+      "turn": 149,
+      "vcr_id": 2406
+    },
+    {
+      "factual_mass_checked_after_projection": 650,
+      "game_id": 217591,
+      "mass_in_prestate_candidates": false,
+      "projection": {
+        "assumptions": [
+          "owner-perspective T-1 ship state missing"
+        ],
+        "candidate_masses": [],
+        "horwasp_reference_alternative": false,
+        "projection_status": "TMINUS1_OWNER_SHIP_UNAVAILABLE",
+        "shield_generator_prestate_support": null,
+        "source_tminus1": null
+      },
+      "race_id": 12,
+      "ship_id": 253,
+      "side": "right",
+      "source_signature": "unresolved_nonadditive",
+      "turn": 149,
+      "vcr_id": 2421
+    },
+    {
+      "factual_mass_checked_after_projection": 290,
+      "game_id": 217591,
+      "mass_in_prestate_candidates": true,
+      "projection": {
+        "assumptions": [
+          "T-1 clans assumed unchanged until this particular combat",
+          "Horwasp partial-clan linear interpolation is unverified",
+          "right +360 scenario lacks independently proven opponent carrier/RNG decision",
+          "145 KT Brood reference from published RaceSheetPlus differs from game hull catalog"
+        ],
+        "candidate_details": [
+          {
+            "mass": 250,
+            "rule_status": "documented_full_load_endpoint",
+            "scenario": "game_specific_hull_catalog"
+          },
+          {
+            "mass": 610,
+            "rule_status": "unverified_combined_carrier_branch",
+            "scenario": "game_specific_hull_catalog_right_plus360"
+          },
+          {
+            "mass": 290,
+            "rule_status": "documented_full_load_endpoint_using_assumed_reference_base",
+            "scenario": "external_reference_brood_145"
+          },
+          {
+            "mass": 650,
+            "rule_status": "unverified_combined_carrier_branch",
+            "scenario": "external_reference_brood_145_right_plus360"
+          }
+        ],
+        "candidate_masses": [
+          250,
+          290,
+          610,
+          650
+        ],
+        "horwasp_reference_alternative": true,
+        "projection_status": "HORWASP_TMINUS1_CONDITIONAL_CANDIDATES",
+        "shield_generator_prestate_support": null,
+        "source_clans": 900,
+        "source_tminus1": 148
+      },
+      "race_id": 12,
+      "ship_id": 517,
+      "side": "right",
+      "source_signature": "unresolved_nonadditive",
+      "turn": 149,
+      "vcr_id": 2422
+    },
+    {
+      "factual_mass_checked_after_projection": 290,
+      "game_id": 217591,
+      "mass_in_prestate_candidates": true,
+      "projection": {
+        "assumptions": [
+          "T-1 clans assumed unchanged until this particular combat",
+          "Horwasp partial-clan linear interpolation is unverified",
+          "right +360 scenario lacks independently proven opponent carrier/RNG decision",
+          "145 KT Brood reference from published RaceSheetPlus differs from game hull catalog"
+        ],
+        "candidate_details": [
+          {
+            "mass": 250,
+            "rule_status": "documented_full_load_endpoint",
+            "scenario": "game_specific_hull_catalog"
+          },
+          {
+            "mass": 610,
+            "rule_status": "unverified_combined_carrier_branch",
+            "scenario": "game_specific_hull_catalog_right_plus360"
+          },
+          {
+            "mass": 290,
+            "rule_status": "documented_full_load_endpoint_using_assumed_reference_base",
+            "scenario": "external_reference_brood_145"
+          },
+          {
+            "mass": 650,
+            "rule_status": "unverified_combined_carrier_branch",
+            "scenario": "external_reference_brood_145_right_plus360"
+          }
+        ],
+        "candidate_masses": [
+          250,
+          290,
+          610,
+          650
+        ],
+        "horwasp_reference_alternative": true,
+        "projection_status": "HORWASP_TMINUS1_CONDITIONAL_CANDIDATES",
+        "shield_generator_prestate_support": null,
+        "source_clans": 900,
+        "source_tminus1": 148
+      },
+      "race_id": 12,
+      "ship_id": 517,
+      "side": "right",
+      "source_signature": "unresolved_nonadditive",
+      "turn": 149,
+      "vcr_id": 2423
+    },
+    {
+      "factual_mass_checked_after_projection": 530,
+      "game_id": 217591,
+      "mass_in_prestate_candidates": true,
+      "projection": {
+        "assumptions": [
+          "T-1 colocation is not proof of combat-phase generator effect",
+          "right +360 is only a possible branch; left carrier and Host RNG unresolved"
+        ],
+        "candidate_details": [
+          {
+            "mass": 170,
+            "rule_status": "documented_numerical_rule_with_unverified_phase",
+            "scenario": "base_only"
+          },
+          {
+            "mass": 530,
+            "rule_status": "unverified_carrier_eligibility_and_rng",
+            "scenario": "right_plus360_after_0_generator_bonus"
+          }
+        ],
+        "candidate_masses": [
+          170,
+          530
+        ],
+        "horwasp_reference_alternative": false,
+        "projection_status": "SHIELD_GENERATOR_TMINUS1_SITE_CANDIDATES",
+        "shield_generator_prestate_support": {
+          "engine_cost_mc": 300,
+          "engine_id": 9,
+          "n_generators_capped_at_2": 0,
+          "nearby_same_owner_generator_count": 0,
+          "owner_ship_at_vcr_site_tminus1": true,
+          "per_generator_mass": 150,
+          "temporal_status": "TMINUS1_ONLY_NOT_PRECOMBAT_PROOF"
+        },
+        "source_clans": 0,
+        "source_tminus1": 148
+      },
+      "race_id": 1,
+      "ship_id": 220,
+      "side": "right",
+      "source_signature": "fed_threshold_ordering_hypothesis",
+      "turn": 149,
+      "vcr_id": 2390
+    },
+    {
+      "factual_mass_checked_after_projection": 628,
+      "game_id": 217591,
+      "mass_in_prestate_candidates": true,
+      "projection": {
+        "assumptions": [
+          "T-1 clans assumed unchanged until this particular combat",
+          "Horwasp partial-clan linear interpolation is unverified",
+          "right +360 scenario lacks independently proven opponent carrier/RNG decision"
+        ],
+        "candidate_details": [
+          {
+            "mass": 628,
+            "rule_status": "unverified_linear_clan_fraction",
+            "scenario": "game_specific_hull_catalog"
+          }
+        ],
+        "candidate_masses": [
+          628
+        ],
+        "horwasp_reference_alternative": false,
+        "projection_status": "HORWASP_TMINUS1_CONDITIONAL_CANDIDATES",
+        "shield_generator_prestate_support": null,
+        "source_clans": 7752,
+        "source_tminus1": 148
+      },
+      "race_id": 12,
+      "ship_id": 768,
+      "side": "left",
+      "source_signature": "horwasp_partial_load_numeric_candidate",
+      "turn": 149,
+      "vcr_id": 2428
+    },
+    {
+      "factual_mass_checked_after_projection": 760,
+      "game_id": 217591,
+      "mass_in_prestate_candidates": true,
+      "projection": {
+        "assumptions": [
+          "T-1 clans assumed unchanged until this particular combat",
+          "Horwasp partial-clan linear interpolation is unverified",
+          "right +360 scenario lacks independently proven opponent carrier/RNG decision"
+        ],
+        "candidate_details": [
+          {
+            "mass": 400,
+            "rule_status": "documented_full_load_endpoint",
+            "scenario": "game_specific_hull_catalog"
+          },
+          {
+            "mass": 760,
+            "rule_status": "unverified_combined_carrier_branch",
+            "scenario": "game_specific_hull_catalog_right_plus360"
+          }
+        ],
+        "candidate_masses": [
+          400,
+          760
+        ],
+        "horwasp_reference_alternative": false,
+        "projection_status": "HORWASP_TMINUS1_CONDITIONAL_CANDIDATES",
+        "shield_generator_prestate_support": null,
+        "source_clans": 300,
+        "source_tminus1": 148
+      },
+      "race_id": 12,
+      "ship_id": 93,
+      "side": "right",
+      "source_signature": "horwasp_double_plus_360_candidate",
+      "turn": 149,
+      "vcr_id": 2402
+    },
+    {
+      "factual_mass_checked_after_projection": 373,
+      "game_id": 217591,
+      "mass_in_prestate_candidates": false,
+      "projection": {
+        "assumptions": [
+          "mass baseline excludes unknown arrival/movement of generators",
+          "right +360 is only a possible branch; left carrier and Host RNG unresolved"
+        ],
+        "candidate_details": [
+          {
+            "mass": 223,
+            "rule_status": "documented_numerical_rule_with_unverified_phase",
+            "scenario": "base_only"
+          },
+          {
+            "mass": 583,
+            "rule_status": "unverified_carrier_eligibility_and_rng",
+            "scenario": "right_plus360_after_0_generator_bonus"
+          }
+        ],
+        "candidate_masses": [
+          223,
+          583
+        ],
+        "horwasp_reference_alternative": false,
+        "projection_status": "NO_VALID_TMINUS1_GENERATOR_SITE_PROJECTION",
+        "shield_generator_prestate_support": {
+          "engine_cost_mc": 300,
+          "engine_id": 9,
+          "nearby_same_owner_generator_count": 0,
+          "owner_ship_at_vcr_site_tminus1": false,
+          "temporal_status": "NO_INFERENCE_ABOUT_PRECOMBAT_GENERATORS"
+        },
+        "source_clans": 0,
+        "source_tminus1": 148
+      },
+      "race_id": 1,
+      "ship_id": 60,
+      "side": "right",
+      "source_signature": "one_transwarp_shield_generator_numeric_candidate",
+      "turn": 149,
+      "vcr_id": 2399
+    },
+    {
+      "factual_mass_checked_after_projection": 1210,
+      "game_id": 217591,
+      "mass_in_prestate_candidates": false,
+      "projection": {
+        "assumptions": [
+          "mass baseline excludes unknown arrival/movement of generators",
+          "right +360 is only a possible branch; left carrier and Host RNG unresolved"
+        ],
+        "candidate_details": [
+          {
+            "mass": 700,
+            "rule_status": "documented_numerical_rule_with_unverified_phase",
+            "scenario": "base_only"
+          },
+          {
+            "mass": 1060,
+            "rule_status": "unverified_carrier_eligibility_and_rng",
+            "scenario": "right_plus360_after_0_generator_bonus"
+          }
+        ],
+        "candidate_masses": [
+          700,
+          1060
+        ],
+        "horwasp_reference_alternative": false,
+        "projection_status": "NO_VALID_TMINUS1_GENERATOR_SITE_PROJECTION",
+        "shield_generator_prestate_support": {
+          "engine_cost_mc": 300,
+          "engine_id": 9,
+          "nearby_same_owner_generator_count": 0,
+          "owner_ship_at_vcr_site_tminus1": false,
+          "temporal_status": "NO_INFERENCE_ABOUT_PRECOMBAT_GENERATORS"
+        },
+        "source_clans": 0,
+        "source_tminus1": 148
+      },
+      "race_id": 1,
+      "ship_id": 828,
+      "side": "right",
+      "source_signature": "one_generator_plus_360_numeric_candidate",
+      "turn": 149,
+      "vcr_id": 2398
+    },
+    {
+      "factual_mass_checked_after_projection": 287,
+      "game_id": 253449,
+      "mass_in_prestate_candidates": false,
+      "projection": {
+        "assumptions": [
+          "T-1 clans assumed unchanged until this particular combat",
+          "Horwasp partial-clan linear interpolation is unverified",
+          "right +360 scenario lacks independently proven opponent carrier/RNG decision"
+        ],
+        "candidate_details": [
+          {
+            "mass": 290,
+            "rule_status": "documented_full_load_endpoint",
+            "scenario": "game_specific_hull_catalog"
+          },
+          {
+            "mass": 650,
+            "rule_status": "unverified_combined_carrier_branch",
+            "scenario": "game_specific_hull_catalog_right_plus360"
+          }
+        ],
+        "candidate_masses": [
+          290,
+          650
+        ],
+        "horwasp_reference_alternative": false,
+        "projection_status": "HORWASP_TMINUS1_CONDITIONAL_CANDIDATES",
+        "shield_generator_prestate_support": null,
+        "source_clans": 900,
+        "source_tminus1": 81
+      },
+      "race_id": 12,
+      "ship_id": 48,
+      "side": "right",
+      "source_signature": "horwasp_partial_load_numeric_candidate",
+      "turn": 82,
+      "vcr_id": 618
+    },
+    {
+      "factual_mass_checked_after_projection": 266,
+      "game_id": 371631,
+      "mass_in_prestate_candidates": true,
+      "projection": {
+        "assumptions": [
+          "T-1 colocation is not proof of combat-phase generator effect",
+          "right +360 is only a possible branch; left carrier and Host RNG unresolved"
+        ],
+        "candidate_details": [
+          {
+            "mass": 96,
+            "rule_status": "documented_numerical_rule_with_unverified_phase",
+            "scenario": "base_only"
+          },
+          {
+            "mass": 266,
+            "rule_status": "documented_numerical_rule_with_unverified_phase",
+            "scenario": "engine_cost_half_times_Tminus1_generators"
+          }
+        ],
+        "candidate_masses": [
+          96,
+          266
+        ],
+        "horwasp_reference_alternative": false,
+        "projection_status": "SHIELD_GENERATOR_TMINUS1_SITE_CANDIDATES",
+        "shield_generator_prestate_support": {
+          "engine_cost_mc": 170,
+          "engine_id": 7,
+          "n_generators_capped_at_2": 2,
+          "nearby_same_owner_generator_count": 2,
+          "owner_ship_at_vcr_site_tminus1": true,
+          "per_generator_mass": 85,
+          "temporal_status": "TMINUS1_ONLY_NOT_PRECOMBAT_PROOF"
+        },
+        "source_clans": 0,
+        "source_tminus1": 155
+      },
+      "race_id": 4,
+      "ship_id": 262,
+      "side": "left",
+      "source_signature": "unresolved_nonadditive",
+      "turn": 156,
+      "vcr_id": 1209
+    },
+    {
+      "factual_mass_checked_after_projection": 751,
+      "game_id": 371631,
+      "mass_in_prestate_candidates": true,
+      "projection": {
+        "assumptions": [
+          "T-1 colocation is not proof of combat-phase generator effect",
+          "right +360 is only a possible branch; left carrier and Host RNG unresolved"
+        ],
+        "candidate_details": [
+          {
+            "mass": 451,
+            "rule_status": "documented_numerical_rule_with_unverified_phase",
+            "scenario": "base_only"
+          },
+          {
+            "mass": 811,
+            "rule_status": "unverified_carrier_eligibility_and_rng",
+            "scenario": "right_plus360_after_0_generator_bonus"
+          },
+          {
+            "mass": 751,
+            "rule_status": "documented_numerical_rule_with_unverified_phase",
+            "scenario": "engine_cost_half_times_Tminus1_generators"
+          },
+          {
+            "mass": 1111,
+            "rule_status": "unverified_carrier_eligibility_and_rng",
+            "scenario": "right_plus360_after_300_generator_bonus"
+          }
+        ],
+        "candidate_masses": [
+          451,
+          751,
+          811,
+          1111
+        ],
+        "horwasp_reference_alternative": false,
+        "projection_status": "SHIELD_GENERATOR_TMINUS1_SITE_CANDIDATES",
+        "shield_generator_prestate_support": {
+          "engine_cost_mc": 300,
+          "engine_id": 9,
+          "n_generators_capped_at_2": 2,
+          "nearby_same_owner_generator_count": 2,
+          "owner_ship_at_vcr_site_tminus1": true,
+          "per_generator_mass": 150,
+          "temporal_status": "TMINUS1_ONLY_NOT_PRECOMBAT_PROOF"
+        },
+        "source_clans": 0,
+        "source_tminus1": 155
+      },
+      "race_id": 4,
+      "ship_id": 461,
+      "side": "right",
+      "source_signature": "two_transwarp_shield_generators_numeric_candidate",
+      "turn": 156,
+      "vcr_id": 1193
+    },
+    {
+      "factual_mass_checked_after_projection": 1111,
+      "game_id": 371631,
+      "mass_in_prestate_candidates": true,
+      "projection": {
+        "assumptions": [
+          "T-1 colocation is not proof of combat-phase generator effect",
+          "right +360 is only a possible branch; left carrier and Host RNG unresolved"
+        ],
+        "candidate_details": [
+          {
+            "mass": 451,
+            "rule_status": "documented_numerical_rule_with_unverified_phase",
+            "scenario": "base_only"
+          },
+          {
+            "mass": 811,
+            "rule_status": "unverified_carrier_eligibility_and_rng",
+            "scenario": "right_plus360_after_0_generator_bonus"
+          },
+          {
+            "mass": 751,
+            "rule_status": "documented_numerical_rule_with_unverified_phase",
+            "scenario": "engine_cost_half_times_Tminus1_generators"
+          },
+          {
+            "mass": 1111,
+            "rule_status": "unverified_carrier_eligibility_and_rng",
+            "scenario": "right_plus360_after_300_generator_bonus"
+          }
+        ],
+        "candidate_masses": [
+          451,
+          751,
+          811,
+          1111
+        ],
+        "horwasp_reference_alternative": false,
+        "projection_status": "SHIELD_GENERATOR_TMINUS1_SITE_CANDIDATES",
+        "shield_generator_prestate_support": {
+          "engine_cost_mc": 300,
+          "engine_id": 9,
+          "n_generators_capped_at_2": 2,
+          "nearby_same_owner_generator_count": 2,
+          "owner_ship_at_vcr_site_tminus1": true,
+          "per_generator_mass": 150,
+          "temporal_status": "TMINUS1_ONLY_NOT_PRECOMBAT_PROOF"
+        },
+        "source_clans": 0,
+        "source_tminus1": 155
+      },
+      "race_id": 4,
+      "ship_id": 463,
+      "side": "right",
+      "source_signature": "two_generators_plus_360_numeric_candidate",
+      "turn": 156,
+      "vcr_id": 1194
+    }
+  ],
+  "schema": "planets-lab.combat-mass-prestate-hypothesis.v4",
+  "source_v3_file": "artifacts/combat/mass-owner-provenance-v3/public100-owner-provenance.json",
+  "status": "CONDITIONAL_PRESTATE_HYPOTHESES_NOT_PROMOTED",
+  "summary": {
+    "HORWASP_TMINUS1_CONDITIONAL_CANDIDATES": 7,
+    "NO_VALID_TMINUS1_GENERATOR_SITE_PROJECTION": 2,
+    "SHIELD_GENERATOR_TMINUS1_SITE_CANDIDATES": 4,
+    "TMINUS1_OWNER_SHIP_UNAVAILABLE": 1,
+    "distinct_ship_game_turn_groups": 12,
+    "evaluated_factual_sides": 14,
+    "groups_with_all_matches": 8,
+    "groups_with_at_least_one_match": 8,
+    "groups_without_match": 4,
+    "numeric_candidate_match": 10,
+    "numeric_candidate_nonmatch": 4,
+    "observed_zero_OR_unknown_generator_count_is_not_absence_of_Host_support": true,
+    "original_six_match": 5,
+    "original_six_unmatched": 1
+  }
+}

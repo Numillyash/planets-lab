@@ -1,0 +1,24 @@
+===== COMBAT MASS PRESTATE PROJECTION V4 =====
+HEAD: 4a23e110375d6c3013c67e5d650fe8ef23865596
+source: artifacts/combat/mass-owner-provenance-v3/public100-owner-provenance.json
+public100: generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb
+sha256: 3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c
+output: artifacts/combat/mass-prestate-projection-v4/public100-prestate-v4.json
+===== COMBAT MASS PRESTATE PROJECTION V4 =====
+status: CONDITIONAL_PRESTATE_HYPOTHESES_NOT_PROMOTED
+summary: {'HORWASP_TMINUS1_CONDITIONAL_CANDIDATES': 7, 'NO_VALID_TMINUS1_GENERATOR_SITE_PROJECTION': 2, 'SHIELD_GENERATOR_TMINUS1_SITE_CANDIDATES': 4, 'TMINUS1_OWNER_SHIP_UNAVAILABLE': 1, 'numeric_candidate_match': 10, 'numeric_candidate_nonmatch': 4, 'original_six_match': 5, 'original_six_unmatched': 1, 'distinct_ship_game_turn_groups': 12, 'groups_with_at_least_one_match': 8, 'groups_with_all_matches': 8, 'groups_without_match': 4, 'evaluated_factual_sides': 14, 'observed_zero_OR_unknown_generator_count_is_not_absence_of_Host_support': True}
+game=217591 T149 V2405 ship=119 signature=unresolved_nonadditive candidates=[250, 290] factual=290 match=True status=HORWASP_TMINUS1_CONDITIONAL_CANDIDATES
+game=217591 T149 V2406 ship=119 signature=unresolved_nonadditive candidates=[250, 290, 610, 650] factual=290 match=True status=HORWASP_TMINUS1_CONDITIONAL_CANDIDATES
+game=217591 T149 V2421 ship=253 signature=unresolved_nonadditive candidates=[] factual=650 match=False status=TMINUS1_OWNER_SHIP_UNAVAILABLE
+game=217591 T149 V2422 ship=517 signature=unresolved_nonadditive candidates=[250, 290, 610, 650] factual=290 match=True status=HORWASP_TMINUS1_CONDITIONAL_CANDIDATES
+game=217591 T149 V2423 ship=517 signature=unresolved_nonadditive candidates=[250, 290, 610, 650] factual=290 match=True status=HORWASP_TMINUS1_CONDITIONAL_CANDIDATES
+game=217591 T149 V2390 ship=220 signature=fed_threshold_ordering_hypothesis candidates=[170, 530] factual=530 match=True status=SHIELD_GENERATOR_TMINUS1_SITE_CANDIDATES
+game=217591 T149 V2428 ship=768 signature=horwasp_partial_load_numeric_candidate candidates=[628] factual=628 match=True status=HORWASP_TMINUS1_CONDITIONAL_CANDIDATES
+game=217591 T149 V2402 ship=93 signature=horwasp_double_plus_360_candidate candidates=[400, 760] factual=760 match=True status=HORWASP_TMINUS1_CONDITIONAL_CANDIDATES
+game=217591 T149 V2399 ship=60 signature=one_transwarp_shield_generator_numeric_candidate candidates=[223, 583] factual=373 match=False status=NO_VALID_TMINUS1_GENERATOR_SITE_PROJECTION
+game=217591 T149 V2398 ship=828 signature=one_generator_plus_360_numeric_candidate candidates=[700, 1060] factual=1210 match=False status=NO_VALID_TMINUS1_GENERATOR_SITE_PROJECTION
+game=253449 T82 V618 ship=48 signature=horwasp_partial_load_numeric_candidate candidates=[290, 650] factual=287 match=False status=HORWASP_TMINUS1_CONDITIONAL_CANDIDATES
+game=371631 T156 V1209 ship=262 signature=unresolved_nonadditive candidates=[96, 266] factual=266 match=True status=SHIELD_GENERATOR_TMINUS1_SITE_CANDIDATES
+game=371631 T156 V1193 ship=461 signature=two_transwarp_shield_generators_numeric_candidate candidates=[451, 751, 811, 1111] factual=751 match=True status=SHIELD_GENERATOR_TMINUS1_SITE_CANDIDATES
+game=371631 T156 V1194 ship=463 signature=two_generators_plus_360_numeric_candidate candidates=[451, 751, 811, 1111] factual=1111 match=True status=SHIELD_GENERATOR_TMINUS1_SITE_CANDIDATES
+output: artifacts/combat/mass-prestate-projection-v4/public100-prestate-v4.json
