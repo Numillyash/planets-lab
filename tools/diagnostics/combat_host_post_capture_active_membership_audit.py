@@ -16,6 +16,7 @@ for path in (REPO_ROOT, DIAGNOSTICS_DIR):
 
 from planets_lab.corpus.feature_scope import DEFAULT_FEATURE_INDEX_PATH, load_feature_scope
 from planets_lab.corpus.movement_differential import _intish
+from planets_lab.data.nu_loadturn import _ship_ammo
 from planets_lab.rules.combat.mutable_queue import (
     ShipCaptureTransfer,
     apply_ship_terminal_batch,
@@ -66,6 +67,20 @@ def _raw_active_ship(entry: Mapping[str, Any], *, ship_id: int) -> dict[str, Any
                 return int(value)
         return default
 
+    (
+        beam_count,
+        launcher_count,
+        bay_count,
+        fighters,
+        torpedoes,
+        unresolved_ammo,
+    ) = _ship_ammo(raw)
+    if unresolved_ammo > 0:
+        raise ValueError(
+            f"ship {ship_id}: ambiguous Nu ammo={unresolved_ammo} "
+            f"with launchers={launcher_count} bays={bay_count}"
+        )
+
     return {
         "id": ship_id,
         "owner_id": int(owner_id) if isinstance(owner_id, int) and not isinstance(owner_id, bool) else None,
@@ -74,14 +89,14 @@ def _raw_active_ship(entry: Mapping[str, Any], *, ship_id: int) -> dict[str, Any
         "shield": integer("shield", default=100),
         "damage": integer("damage"),
         "crew": integer("crew", default=1),
-        "physical_beam_count": integer("beams", "beamcount"),
-        "physical_launcher_count": integer("torps", "launchercount"),
-        "physical_bay_count": integer("bays", "baycount"),
-        "beam_count": integer("beams", "beamcount"),
-        "launcher_count": integer("torps", "launchercount"),
-        "bay_count": integer("bays", "baycount"),
-        "torpedoes": integer("torpedos", "torpedoes"),
-        "fighters": integer("fighters"),
+        "physical_beam_count": beam_count,
+        "physical_launcher_count": launcher_count,
+        "physical_bay_count": bay_count,
+        "beam_count": beam_count,
+        "launcher_count": launcher_count,
+        "bay_count": bay_count,
+        "torpedoes": torpedoes,
+        "fighters": fighters,
         "federation_crew_bonus": race_id == 1,
         "lizard_crew_bonus": race_id == 2,
     }

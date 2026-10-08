@@ -3,6 +3,8 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
+import pytest
+
 TOOLS_DIR = Path(__file__).resolve().parents[1] / "tools" / "diagnostics"
 if str(TOOLS_DIR) not in sys.path:
     sys.path.insert(0, str(TOOLS_DIR))
@@ -33,8 +35,7 @@ def _raw(
         "beams": 4,
         "torps": 2,
         "bays": 0,
-        "torpedos": 10,
-        "fighters": 0,
+        "ammo": 10,
     }
 
 
@@ -240,3 +241,58 @@ def test_double_capture_uses_mutated_owner_from_prior_vcr(monkeypatch) -> None:
         [10],
     ]
     assert result["factual_opponent_strict_rank"] == 1
+
+
+
+def test_raw_active_ship_decodes_nu_torpedo_ammo() -> None:
+    entry = _entry(140, 10)
+    raw = entry["raw"]
+    assert isinstance(raw, dict)
+    raw.update(
+        {
+            "beams": 4,
+            "torps": 2,
+            "bays": 0,
+            "ammo": 20,
+            "torpedoid": 10,
+        }
+    )
+    active = module._raw_active_ship(entry, ship_id=140)
+    assert active["launcher_count"] == 2
+    assert active["bay_count"] == 0
+    assert active["torpedoes"] == 20
+    assert active["fighters"] == 0
+
+
+def test_raw_active_ship_decodes_nu_carrier_ammo() -> None:
+    entry = _entry(141, 10)
+    raw = entry["raw"]
+    assert isinstance(raw, dict)
+    raw.update(
+        {
+            "beams": 6,
+            "torps": 0,
+            "bays": 10,
+            "ammo": 67,
+        }
+    )
+    active = module._raw_active_ship(entry, ship_id=141)
+    assert active["launcher_count"] == 0
+    assert active["bay_count"] == 10
+    assert active["torpedoes"] == 0
+    assert active["fighters"] == 67
+
+
+def test_raw_active_ship_fails_closed_on_hybrid_ammo() -> None:
+    entry = _entry(142, 10)
+    raw = entry["raw"]
+    assert isinstance(raw, dict)
+    raw.update(
+        {
+            "torps": 3,
+            "bays": 2,
+            "ammo": 12,
+        }
+    )
+    with pytest.raises(ValueError, match="ambiguous Nu ammo=12"):
+        module._raw_active_ship(entry, ship_id=142)

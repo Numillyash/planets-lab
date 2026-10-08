@@ -72,3 +72,49 @@ The next change depends on evidence:
   transfer projection;
 - if neither is present, classify the missing precombat dependency before
   deciding whether a scoped factual start-window anchor is justified.
+
+
+## Runtime result
+
+Runtime evidence:
+
+    runtime-logs/site-precombat-dynamic-probe-v1/
+    20261008T021649Z_0d08f8819271
+
+V592 participants:
+
+    ship 184:
+      source prewindow_vcr_appearance
+      carried torpedoes 0
+      factual VCR torpedoes 0
+      exact
+
+    ship 140:
+      source tminus1_prediction
+      carried torpedoes 0
+      factual VCR torpedoes 20
+      T-1 ammo 20
+      T-1 torps 2
+      T-1 bays implicitly 0 / torpedo ship
+      torpedoid 10
+      no MKT
+      no inbound transfer
+
+This disproves the initial hypothesis of a missing current-turn MKT/transfer
+phase for the +20 delta.
+
+The T-1 raw record already contains the correct combat ammunition as Nu
+`ammo=20`. The mismatch was caused by _raw_active_ship independently looking
+for non-existent raw fields `torpedos/torpedoes` instead of using Nu's
+`ammo` field decoded according to fitted launchers/bays.
+
+## Fix direction
+
+_raw_active_ship must use the same Nu ammo semantics already implemented by
+planets_lab.data.nu_loadturn._ship_ammo:
+
+- launchers > 0 and bays == 0: ammo -> torpedoes
+- bays > 0 and launchers == 0: ammo -> fighters
+- both fitted with ammo > 0: unresolved/fail closed
+
+This is an initial-state decoding fix, not a new Host mechanics rule.
