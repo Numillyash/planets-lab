@@ -73,6 +73,8 @@ def select_game_turn_candidates(
         if gid in EXCLUDED_KNOWN_SPECIAL_GAMES or t < 1:
             continue
         by_game[gid].append((t, int(count)))
+    for game_rows in by_game.values():
+        game_rows.sort(key=lambda row: (row[1], row[0]))
     if anchor_game_id in by_game:
         candidates.append((anchor_game_id, anchor_turn))
     for game_id in sorted(by_game):
