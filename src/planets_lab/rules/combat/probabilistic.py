@@ -97,6 +97,27 @@ def evaluate_conditional_classic(
     ):
         raise ReplayUnsupported("seed ensemble must be a nonempty unique subset of 1..118")
 
+
+    # Horwasp mass is clan-dependent and may change between combats.
+    # We cannot silently use Classic hull mass in a probability evaluator.
+    if left["raceid"] == 12 or right["raceid"] == 12:
+        raise ReplayUnsupported(
+            "Horwasp clan-dependent combat mass is unresolved in Classic ensemble"
+        )
+
+    # Cross-game observations include a Federation hull below 140 KT whose
+    # +50 Federation bonus moves it above 140 KT before the +360 branch.
+    # The ordering/eligibility rule is not yet independently established.
+    # Do not produce a misleading single-branch distribution here.
+    if (
+        right["raceid"] == 1 and right_hull_mass < 140
+        and right_hull_mass + 50 >= 140
+        and left["baycount"] > 0
+    ):
+        raise ReplayUnsupported(
+            "Federation-adjusted 140 KT anti-carrier eligibility unresolved"
+        )
+
     left_mass = left_hull_mass + (50 if left["raceid"] == 1 else 0)
     right_mass = right_hull_mass + (50 if right["raceid"] == 1 else 0)
     carrier_eligible = bool(right_hull_mass >= 140 and left["baycount"] > 0)
