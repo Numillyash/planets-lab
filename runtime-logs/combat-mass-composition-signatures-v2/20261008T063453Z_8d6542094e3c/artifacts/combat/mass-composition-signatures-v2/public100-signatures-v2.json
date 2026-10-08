@@ -1,0 +1,900 @@
+{
+  "by_game": {
+    "217591": {
+      "fed_threshold_ordering_hypothesis": 1,
+      "horwasp_double_plus_360_candidate": 4,
+      "horwasp_full_cargo_endpoint_candidate": 9,
+      "horwasp_partial_load_numeric_candidate": 1,
+      "one_generator_plus_360_numeric_candidate": 3,
+      "one_transwarp_shield_generator_numeric_candidate": 2,
+      "original_classic_candidate": 59,
+      "unresolved_nonadditive": 5
+    },
+    "218619": {
+      "original_classic_candidate": 62
+    },
+    "227887": {
+      "original_classic_candidate": 106
+    },
+    "245123": {
+      "original_classic_candidate": 28
+    },
+    "253449": {
+      "horwasp_double_plus_360_candidate": 3,
+      "horwasp_full_cargo_endpoint_candidate": 8,
+      "horwasp_partial_load_numeric_candidate": 3,
+      "original_classic_candidate": 30
+    },
+    "257776": {
+      "original_classic_candidate": 38
+    },
+    "277134": {
+      "original_classic_candidate": 42
+    },
+    "306971": {
+      "original_classic_candidate": 12
+    },
+    "338264": {
+      "horwasp_double_plus_360_candidate": 12,
+      "horwasp_full_cargo_endpoint_candidate": 27,
+      "horwasp_partial_load_numeric_candidate": 5,
+      "original_classic_candidate": 44
+    },
+    "347358": {
+      "original_classic_candidate": 24
+    },
+    "371631": {
+      "one_transwarp_shield_generator_numeric_candidate": 2,
+      "original_classic_candidate": 28,
+      "two_generators_plus_360_numeric_candidate": 4,
+      "two_transwarp_shield_generators_numeric_candidate": 13,
+      "unresolved_nonadditive": 1
+    },
+    "400330": {
+      "original_classic_candidate": 22
+    },
+    "407599": {
+      "original_classic_candidate": 12
+    },
+    "421949": {
+      "original_classic_candidate": 42
+    },
+    "454504": {
+      "original_classic_candidate": 94
+    },
+    "474699": {
+      "horwasp_full_cargo_endpoint_candidate": 9,
+      "horwasp_partial_load_numeric_candidate": 1,
+      "original_classic_candidate": 10,
+      "two_transwarp_shield_generators_numeric_candidate": 4
+    },
+    "477725": {
+      "original_classic_candidate": 22
+    },
+    "499284": {
+      "original_classic_candidate": 30
+    },
+    "563278": {
+      "one_transwarp_shield_generator_numeric_candidate": 2,
+      "original_classic_candidate": 86,
+      "two_transwarp_shield_generators_numeric_candidate": 14
+    },
+    "617883": {
+      "horwasp_full_cargo_endpoint_candidate": 1,
+      "original_classic_candidate": 49
+    },
+    "644013": {
+      "original_classic_candidate": 42
+    },
+    "660249": {
+      "original_classic_candidate": 30
+    }
+  },
+  "by_race": {
+    "1": {
+      "fed_threshold_ordering_hypothesis": 1,
+      "one_generator_plus_360_numeric_candidate": 3,
+      "one_transwarp_shield_generator_numeric_candidate": 2,
+      "original_classic_candidate": 206
+    },
+    "10": {
+      "original_classic_candidate": 73
+    },
+    "11": {
+      "original_classic_candidate": 9
+    },
+    "12": {
+      "horwasp_double_plus_360_candidate": 19,
+      "horwasp_full_cargo_endpoint_candidate": 54,
+      "horwasp_partial_load_numeric_candidate": 10,
+      "original_classic_candidate": 1,
+      "unresolved_nonadditive": 5
+    },
+    "2": {
+      "original_classic_candidate": 142
+    },
+    "3": {
+      "original_classic_candidate": 64
+    },
+    "4": {
+      "one_transwarp_shield_generator_numeric_candidate": 4,
+      "original_classic_candidate": 128,
+      "two_generators_plus_360_numeric_candidate": 4,
+      "two_transwarp_shield_generators_numeric_candidate": 31,
+      "unresolved_nonadditive": 1
+    },
+    "5": {
+      "original_classic_candidate": 62
+    },
+    "6": {
+      "original_classic_candidate": 46
+    },
+    "7": {
+      "original_classic_candidate": 44
+    },
+    "8": {
+      "original_classic_candidate": 61
+    },
+    "9": {
+      "original_classic_candidate": 76
+    }
+  },
+  "evidence_boundary": "All categories are numerical comparisons of OBSERVED factual VCR masses with existing hull catalog masses. Only source-v1 Classic/endpoint labels are retained; additive patterns do not prove effective engine tech, active Shield Generators, precombat clans, current-side eligibility, or any RNG decision. This is not a predictive or generative mass projection.",
+  "examples_by_signature": {
+    "fed_threshold_ordering_hypothesis": [
+      {
+        "arithmetic": "federation_base_plus_360",
+        "base_mass": 170,
+        "delta_from_base": 360,
+        "factual_mass": 530,
+        "game_id": 217591,
+        "hull_id": 2006,
+        "hull_mass": 120,
+        "race_id": 1,
+        "ship_id": 220,
+        "side": "right",
+        "turn": 149,
+        "vcr_id": 2390
+      }
+    ],
+    "horwasp_double_plus_360_candidate": [
+      {
+        "arithmetic": "two_times_hull_plus_360",
+        "base_mass": 200,
+        "delta_from_base": 560,
+        "factual_mass": 760,
+        "game_id": 217591,
+        "hull_id": 118,
+        "hull_mass": 200,
+        "race_id": 12,
+        "ship_id": 93,
+        "side": "right",
+        "turn": 149,
+        "vcr_id": 2402
+      },
+      {
+        "arithmetic": "two_times_hull_plus_360",
+        "base_mass": 475,
+        "delta_from_base": 835,
+        "factual_mass": 1310,
+        "game_id": 217591,
+        "hull_id": 115,
+        "hull_mass": 475,
+        "race_id": 12,
+        "ship_id": 176,
+        "side": "right",
+        "turn": 149,
+        "vcr_id": 2403
+      },
+      {
+        "arithmetic": "two_times_hull_plus_360",
+        "base_mass": 200,
+        "delta_from_base": 560,
+        "factual_mass": 760,
+        "game_id": 217591,
+        "hull_id": 118,
+        "hull_mass": 200,
+        "race_id": 12,
+        "ship_id": 417,
+        "side": "right",
+        "turn": 149,
+        "vcr_id": 2411
+      },
+      {
+        "arithmetic": "two_times_hull_plus_360",
+        "base_mass": 200,
+        "delta_from_base": 560,
+        "factual_mass": 760,
+        "game_id": 217591,
+        "hull_id": 118,
+        "hull_mass": 200,
+        "race_id": 12,
+        "ship_id": 781,
+        "side": "right",
+        "turn": 149,
+        "vcr_id": 2412
+      },
+      {
+        "arithmetic": "two_times_hull_plus_360",
+        "base_mass": 145,
+        "delta_from_base": 505,
+        "factual_mass": 650,
+        "game_id": 253449,
+        "hull_id": 117,
+        "hull_mass": 145,
+        "race_id": 12,
+        "ship_id": 48,
+        "side": "right",
+        "turn": 82,
+        "vcr_id": 612
+      },
+      {
+        "arithmetic": "two_times_hull_plus_360",
+        "base_mass": 145,
+        "delta_from_base": 505,
+        "factual_mass": 650,
+        "game_id": 253449,
+        "hull_id": 117,
+        "hull_mass": 145,
+        "race_id": 12,
+        "ship_id": 48,
+        "side": "right",
+        "turn": 82,
+        "vcr_id": 613
+      }
+    ],
+    "horwasp_full_cargo_endpoint_candidate": [
+      {
+        "arithmetic": "two_times_hull_mass",
+        "base_mass": 475,
+        "delta_from_base": 475,
+        "factual_mass": 950,
+        "game_id": 217591,
+        "hull_id": 115,
+        "hull_mass": 475,
+        "race_id": 12,
+        "ship_id": 187,
+        "side": "right",
+        "turn": 149,
+        "vcr_id": 2404
+      },
+      {
+        "arithmetic": "two_times_hull_mass",
+        "base_mass": 200,
+        "delta_from_base": 200,
+        "factual_mass": 400,
+        "game_id": 217591,
+        "hull_id": 118,
+        "hull_mass": 200,
+        "race_id": 12,
+        "ship_id": 204,
+        "side": "right",
+        "turn": 149,
+        "vcr_id": 2407
+      },
+      {
+        "arithmetic": "two_times_hull_mass",
+        "base_mass": 200,
+        "delta_from_base": 200,
+        "factual_mass": 400,
+        "game_id": 217591,
+        "hull_id": 118,
+        "hull_mass": 200,
+        "race_id": 12,
+        "ship_id": 418,
+        "side": "right",
+        "turn": 149,
+        "vcr_id": 2408
+      },
+      {
+        "arithmetic": "two_times_hull_mass",
+        "base_mass": 475,
+        "delta_from_base": 475,
+        "factual_mass": 950,
+        "game_id": 217591,
+        "hull_id": 115,
+        "hull_mass": 475,
+        "race_id": 12,
+        "ship_id": 722,
+        "side": "right",
+        "turn": 149,
+        "vcr_id": 2413
+      },
+      {
+        "arithmetic": "two_times_hull_mass",
+        "base_mass": 75,
+        "delta_from_base": 75,
+        "factual_mass": 150,
+        "game_id": 217591,
+        "hull_id": 210,
+        "hull_mass": 75,
+        "race_id": 12,
+        "ship_id": 1094,
+        "side": "right",
+        "turn": 149,
+        "vcr_id": 2418
+      },
+      {
+        "arithmetic": "two_times_hull_mass",
+        "base_mass": 75,
+        "delta_from_base": 75,
+        "factual_mass": 150,
+        "game_id": 217591,
+        "hull_id": 210,
+        "hull_mass": 75,
+        "race_id": 12,
+        "ship_id": 1173,
+        "side": "right",
+        "turn": 149,
+        "vcr_id": 2424
+      }
+    ],
+    "horwasp_partial_load_numeric_candidate": [
+      {
+        "arithmetic": "between_hull_and_two_times_hull",
+        "base_mass": 475,
+        "delta_from_base": 153,
+        "factual_mass": 628,
+        "game_id": 217591,
+        "hull_id": 115,
+        "hull_mass": 475,
+        "race_id": 12,
+        "ship_id": 768,
+        "side": "left",
+        "turn": 149,
+        "vcr_id": 2428
+      },
+      {
+        "arithmetic": "between_hull_and_two_times_hull",
+        "base_mass": 145,
+        "delta_from_base": 142,
+        "factual_mass": 287,
+        "game_id": 253449,
+        "hull_id": 117,
+        "hull_mass": 145,
+        "race_id": 12,
+        "ship_id": 48,
+        "side": "right",
+        "turn": 82,
+        "vcr_id": 618
+      },
+      {
+        "arithmetic": "between_hull_and_two_times_hull",
+        "base_mass": 145,
+        "delta_from_base": 142,
+        "factual_mass": 287,
+        "game_id": 253449,
+        "hull_id": 117,
+        "hull_mass": 145,
+        "race_id": 12,
+        "ship_id": 48,
+        "side": "right",
+        "turn": 82,
+        "vcr_id": 619
+      },
+      {
+        "arithmetic": "between_hull_and_two_times_hull",
+        "base_mass": 145,
+        "delta_from_base": 107,
+        "factual_mass": 252,
+        "game_id": 253449,
+        "hull_id": 117,
+        "hull_mass": 145,
+        "race_id": 12,
+        "ship_id": 420,
+        "side": "left",
+        "turn": 82,
+        "vcr_id": 630
+      },
+      {
+        "arithmetic": "between_hull_and_two_times_hull",
+        "base_mass": 31,
+        "delta_from_base": 3,
+        "factual_mass": 34,
+        "game_id": 338264,
+        "hull_id": 208,
+        "hull_mass": 31,
+        "race_id": 12,
+        "ship_id": 1053,
+        "side": "left",
+        "turn": 143,
+        "vcr_id": 2581
+      },
+      {
+        "arithmetic": "between_hull_and_two_times_hull",
+        "base_mass": 31,
+        "delta_from_base": 6,
+        "factual_mass": 37,
+        "game_id": 338264,
+        "hull_id": 208,
+        "hull_mass": 31,
+        "race_id": 12,
+        "ship_id": 1042,
+        "side": "left",
+        "turn": 143,
+        "vcr_id": 2583
+      }
+    ],
+    "one_generator_plus_360_numeric_candidate": [
+      {
+        "arithmetic": "hypothetical_transwarp_generator_additivity",
+        "base_mass": 700,
+        "delta_from_base": 510,
+        "factual_mass": 1210,
+        "game_id": 217591,
+        "hull_id": 20,
+        "hull_mass": 650,
+        "race_id": 1,
+        "ship_id": 828,
+        "side": "right",
+        "turn": 149,
+        "vcr_id": 2398
+      },
+      {
+        "arithmetic": "hypothetical_transwarp_generator_additivity",
+        "base_mass": 223,
+        "delta_from_base": 510,
+        "factual_mass": 733,
+        "game_id": 217591,
+        "hull_id": 19,
+        "hull_mass": 173,
+        "race_id": 1,
+        "ship_id": 60,
+        "side": "right",
+        "turn": 149,
+        "vcr_id": 2400
+      },
+      {
+        "arithmetic": "hypothetical_transwarp_generator_additivity",
+        "base_mass": 700,
+        "delta_from_base": 510,
+        "factual_mass": 1210,
+        "game_id": 217591,
+        "hull_id": 20,
+        "hull_mass": 650,
+        "race_id": 1,
+        "ship_id": 279,
+        "side": "right",
+        "turn": 149,
+        "vcr_id": 2409
+      }
+    ],
+    "one_transwarp_shield_generator_numeric_candidate": [
+      {
+        "arithmetic": "hypothetical_transwarp_generator_additivity",
+        "base_mass": 223,
+        "delta_from_base": 150,
+        "factual_mass": 373,
+        "game_id": 217591,
+        "hull_id": 19,
+        "hull_mass": 173,
+        "race_id": 1,
+        "ship_id": 60,
+        "side": "right",
+        "turn": 149,
+        "vcr_id": 2399
+      },
+      {
+        "arithmetic": "hypothetical_transwarp_generator_additivity",
+        "base_mass": 223,
+        "delta_from_base": 150,
+        "factual_mass": 373,
+        "game_id": 217591,
+        "hull_id": 19,
+        "hull_mass": 173,
+        "race_id": 1,
+        "ship_id": 841,
+        "side": "left",
+        "turn": 149,
+        "vcr_id": 2410
+      },
+      {
+        "arithmetic": "hypothetical_transwarp_generator_additivity",
+        "base_mass": 173,
+        "delta_from_base": 150,
+        "factual_mass": 323,
+        "game_id": 371631,
+        "hull_id": 1041,
+        "hull_mass": 173,
+        "race_id": 4,
+        "ship_id": 6,
+        "side": "left",
+        "turn": 156,
+        "vcr_id": 1210
+      },
+      {
+        "arithmetic": "hypothetical_transwarp_generator_additivity",
+        "base_mass": 451,
+        "delta_from_base": 150,
+        "factual_mass": 601,
+        "game_id": 371631,
+        "hull_id": 35,
+        "hull_mass": 451,
+        "race_id": 4,
+        "ship_id": 50,
+        "side": "right",
+        "turn": 156,
+        "vcr_id": 1212
+      },
+      {
+        "arithmetic": "hypothetical_transwarp_generator_additivity",
+        "base_mass": 173,
+        "delta_from_base": 150,
+        "factual_mass": 323,
+        "game_id": 563278,
+        "hull_id": 1041,
+        "hull_mass": 173,
+        "race_id": 4,
+        "ship_id": 15,
+        "side": "right",
+        "turn": 233,
+        "vcr_id": 2638
+      },
+      {
+        "arithmetic": "hypothetical_transwarp_generator_additivity",
+        "base_mass": 451,
+        "delta_from_base": 150,
+        "factual_mass": 601,
+        "game_id": 563278,
+        "hull_id": 35,
+        "hull_mass": 451,
+        "race_id": 4,
+        "ship_id": 123,
+        "side": "right",
+        "turn": 233,
+        "vcr_id": 2665
+      }
+    ],
+    "original_classic_candidate": [
+      {
+        "arithmetic": "existing_hull_fed_and_right_carrier_set",
+        "base_mass": 120,
+        "delta_from_base": 0,
+        "factual_mass": 120,
+        "game_id": 400330,
+        "hull_id": 81,
+        "hull_mass": 120,
+        "race_id": 9,
+        "ship_id": 219,
+        "side": "left",
+        "turn": 141,
+        "vcr_id": 587
+      },
+      {
+        "arithmetic": "existing_hull_fed_and_right_carrier_set",
+        "base_mass": 160,
+        "delta_from_base": 0,
+        "factual_mass": 160,
+        "game_id": 400330,
+        "hull_id": 22,
+        "hull_mass": 160,
+        "race_id": 2,
+        "ship_id": 40,
+        "side": "right",
+        "turn": 141,
+        "vcr_id": 587
+      },
+      {
+        "arithmetic": "existing_hull_fed_and_right_carrier_set",
+        "base_mass": 980,
+        "delta_from_base": 0,
+        "factual_mass": 980,
+        "game_id": 400330,
+        "hull_id": 70,
+        "hull_mass": 980,
+        "race_id": 5,
+        "ship_id": 134,
+        "side": "left",
+        "turn": 141,
+        "vcr_id": 588
+      },
+      {
+        "arithmetic": "existing_hull_fed_and_right_carrier_set",
+        "base_mass": 645,
+        "delta_from_base": 360,
+        "factual_mass": 1005,
+        "game_id": 400330,
+        "hull_id": 94,
+        "hull_mass": 645,
+        "race_id": 10,
+        "ship_id": 421,
+        "side": "right",
+        "turn": 141,
+        "vcr_id": 588
+      },
+      {
+        "arithmetic": "existing_hull_fed_and_right_carrier_set",
+        "base_mass": 980,
+        "delta_from_base": 0,
+        "factual_mass": 980,
+        "game_id": 400330,
+        "hull_id": 70,
+        "hull_mass": 980,
+        "race_id": 5,
+        "ship_id": 134,
+        "side": "left",
+        "turn": 141,
+        "vcr_id": 589
+      },
+      {
+        "arithmetic": "existing_hull_fed_and_right_carrier_set",
+        "base_mass": 645,
+        "delta_from_base": 360,
+        "factual_mass": 1005,
+        "game_id": 400330,
+        "hull_id": 94,
+        "hull_mass": 645,
+        "race_id": 10,
+        "ship_id": 296,
+        "side": "right",
+        "turn": 141,
+        "vcr_id": 589
+      }
+    ],
+    "two_generators_plus_360_numeric_candidate": [
+      {
+        "arithmetic": "hypothetical_transwarp_generator_additivity",
+        "base_mass": 451,
+        "delta_from_base": 660,
+        "factual_mass": 1111,
+        "game_id": 371631,
+        "hull_id": 35,
+        "hull_mass": 451,
+        "race_id": 4,
+        "ship_id": 463,
+        "side": "right",
+        "turn": 156,
+        "vcr_id": 1194
+      },
+      {
+        "arithmetic": "hypothetical_transwarp_generator_additivity",
+        "base_mass": 451,
+        "delta_from_base": 660,
+        "factual_mass": 1111,
+        "game_id": 371631,
+        "hull_id": 35,
+        "hull_mass": 451,
+        "race_id": 4,
+        "ship_id": 466,
+        "side": "right",
+        "turn": 156,
+        "vcr_id": 1195
+      },
+      {
+        "arithmetic": "hypothetical_transwarp_generator_additivity",
+        "base_mass": 451,
+        "delta_from_base": 660,
+        "factual_mass": 1111,
+        "game_id": 371631,
+        "hull_id": 35,
+        "hull_mass": 451,
+        "race_id": 4,
+        "ship_id": 459,
+        "side": "right",
+        "turn": 156,
+        "vcr_id": 1206
+      },
+      {
+        "arithmetic": "hypothetical_transwarp_generator_additivity",
+        "base_mass": 451,
+        "delta_from_base": 660,
+        "factual_mass": 1111,
+        "game_id": 371631,
+        "hull_id": 35,
+        "hull_mass": 451,
+        "race_id": 4,
+        "ship_id": 459,
+        "side": "right",
+        "turn": 156,
+        "vcr_id": 1208
+      }
+    ],
+    "two_transwarp_shield_generators_numeric_candidate": [
+      {
+        "arithmetic": "hypothetical_transwarp_generator_additivity",
+        "base_mass": 451,
+        "delta_from_base": 300,
+        "factual_mass": 751,
+        "game_id": 371631,
+        "hull_id": 35,
+        "hull_mass": 451,
+        "race_id": 4,
+        "ship_id": 461,
+        "side": "right",
+        "turn": 156,
+        "vcr_id": 1193
+      },
+      {
+        "arithmetic": "hypothetical_transwarp_generator_additivity",
+        "base_mass": 451,
+        "delta_from_base": 300,
+        "factual_mass": 751,
+        "game_id": 371631,
+        "hull_id": 35,
+        "hull_mass": 451,
+        "race_id": 4,
+        "ship_id": 18,
+        "side": "right",
+        "turn": 156,
+        "vcr_id": 1196
+      },
+      {
+        "arithmetic": "hypothetical_transwarp_generator_additivity",
+        "base_mass": 451,
+        "delta_from_base": 300,
+        "factual_mass": 751,
+        "game_id": 371631,
+        "hull_id": 35,
+        "hull_mass": 451,
+        "race_id": 4,
+        "ship_id": 18,
+        "side": "right",
+        "turn": 156,
+        "vcr_id": 1197
+      },
+      {
+        "arithmetic": "hypothetical_transwarp_generator_additivity",
+        "base_mass": 451,
+        "delta_from_base": 300,
+        "factual_mass": 751,
+        "game_id": 371631,
+        "hull_id": 35,
+        "hull_mass": 451,
+        "race_id": 4,
+        "ship_id": 18,
+        "side": "right",
+        "turn": 156,
+        "vcr_id": 1198
+      },
+      {
+        "arithmetic": "hypothetical_transwarp_generator_additivity",
+        "base_mass": 451,
+        "delta_from_base": 300,
+        "factual_mass": 751,
+        "game_id": 371631,
+        "hull_id": 35,
+        "hull_mass": 451,
+        "race_id": 4,
+        "ship_id": 290,
+        "side": "left",
+        "turn": 156,
+        "vcr_id": 1199
+      },
+      {
+        "arithmetic": "hypothetical_transwarp_generator_additivity",
+        "base_mass": 451,
+        "delta_from_base": 300,
+        "factual_mass": 751,
+        "game_id": 371631,
+        "hull_id": 35,
+        "hull_mass": 451,
+        "race_id": 4,
+        "ship_id": 290,
+        "side": "left",
+        "turn": 156,
+        "vcr_id": 1200
+      }
+    ],
+    "unresolved_nonadditive": [
+      {
+        "arithmetic": null,
+        "base_mass": 125,
+        "delta_from_base": 165,
+        "factual_mass": 290,
+        "game_id": 217591,
+        "hull_id": 117,
+        "hull_mass": 125,
+        "race_id": 12,
+        "ship_id": 119,
+        "side": "left",
+        "turn": 149,
+        "vcr_id": 2405
+      },
+      {
+        "arithmetic": null,
+        "base_mass": 125,
+        "delta_from_base": 165,
+        "factual_mass": 290,
+        "game_id": 217591,
+        "hull_id": 117,
+        "hull_mass": 125,
+        "race_id": 12,
+        "ship_id": 119,
+        "side": "right",
+        "turn": 149,
+        "vcr_id": 2406
+      },
+      {
+        "arithmetic": null,
+        "base_mass": 125,
+        "delta_from_base": 525,
+        "factual_mass": 650,
+        "game_id": 217591,
+        "hull_id": 117,
+        "hull_mass": 125,
+        "race_id": 12,
+        "ship_id": 253,
+        "side": "right",
+        "turn": 149,
+        "vcr_id": 2421
+      },
+      {
+        "arithmetic": null,
+        "base_mass": 125,
+        "delta_from_base": 165,
+        "factual_mass": 290,
+        "game_id": 217591,
+        "hull_id": 117,
+        "hull_mass": 125,
+        "race_id": 12,
+        "ship_id": 517,
+        "side": "right",
+        "turn": 149,
+        "vcr_id": 2422
+      },
+      {
+        "arithmetic": null,
+        "base_mass": 125,
+        "delta_from_base": 165,
+        "factual_mass": 290,
+        "game_id": 217591,
+        "hull_id": 117,
+        "hull_mass": 125,
+        "race_id": 12,
+        "ship_id": 517,
+        "side": "right",
+        "turn": 149,
+        "vcr_id": 2423
+      },
+      {
+        "arithmetic": null,
+        "base_mass": 96,
+        "delta_from_base": 170,
+        "factual_mass": 266,
+        "game_id": 371631,
+        "hull_id": 39,
+        "hull_mass": 96,
+        "race_id": 4,
+        "ship_id": 262,
+        "side": "left",
+        "turn": 156,
+        "vcr_id": 1209
+      }
+    ]
+  },
+  "numeric_signature_counts": {
+    "fed_threshold_ordering_hypothesis": 1,
+    "horwasp_double_plus_360_candidate": 19,
+    "horwasp_full_cargo_endpoint_candidate": 54,
+    "horwasp_partial_load_numeric_candidate": 10,
+    "one_generator_plus_360_numeric_candidate": 3,
+    "one_transwarp_shield_generator_numeric_candidate": 6,
+    "original_classic_candidate": 912,
+    "two_generators_plus_360_numeric_candidate": 4,
+    "two_transwarp_shield_generators_numeric_candidate": 31,
+    "unresolved_nonadditive": 6
+  },
+  "original_schema": "planets-lab.combat-mass-crossgame-controls.v1",
+  "original_summary": {
+    "classic_hull_threshold": 912,
+    "federation_adjusted_threshold_candidate": 1,
+    "horwasp_full_load_endpoint_candidate": 54,
+    "unresolved_mass_residual": 79
+  },
+  "references": [
+    "https://help.planets.nu/combat-mass",
+    "https://help.planets.nu/abil-shield-generator",
+    "https://help.planets.nu/horwasp-ships"
+  ],
+  "schema": "planets-lab.combat-mass-composition-signatures.v2",
+  "source_input_path": "artifacts/combat/mass-crossgame-controls-v1/public100-mass-controls.json",
+  "status": "OBSERVATIONAL_NUMERIC_SIGNATURES_NOT_PROMOTED",
+  "summary": {
+    "newly_grouped_as_numeric_candidates": 73,
+    "original_unresolved_mass_sides": 79,
+    "remaining_unresolved_numeric_sides": 6,
+    "ship_side_observations": 1046,
+    "ship_vs_ship_vcrs": 523,
+    "turns_checked": 22
+  }
+}
