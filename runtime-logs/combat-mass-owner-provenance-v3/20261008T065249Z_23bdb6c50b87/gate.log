@@ -1,0 +1,25 @@
+===== COMBAT MASS OWNER PROVENANCE V3 =====
+HEAD: 23bdb6c50b87971fcf4aa0e6eecef3eb5378952e
+public100: generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb
+sha256: 3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c
+signatures: artifacts/combat/mass-composition-signatures-v2/public100-signatures-v2.json
+output: artifacts/combat/mass-owner-provenance-v3/public100-owner-provenance.json
+===== COMBAT MASS OWNER PROVENANCE V3 =====
+status: OWNER_PROVENANCE_OBSERVATIONAL_NOT_PROMOTED
+summary: {'observations': 14, 'unresolved_targeted': 6, 'owner_Tminus1_ship_seen': 13, 'game_turns': 3, 'signatures': {'fed_threshold_ordering_hypothesis': 1, 'horwasp_double_plus_360_candidate': 1, 'horwasp_partial_load_numeric_candidate': 2, 'one_generator_plus_360_numeric_candidate': 1, 'one_transwarp_shield_generator_numeric_candidate': 1, 'two_generators_plus_360_numeric_candidate': 1, 'two_transwarp_shield_generators_numeric_candidate': 1, 'unresolved_nonadditive': 6}}
+game=217591 T149 V2405 ship=119 hullmass=125 vcrmass=290 signature=unresolved_nonadditive owner_Tminus1=[{'clans': 900, 'engine_id': 7, 'generators_at_site': 0}]
+game=217591 T149 V2406 ship=119 hullmass=125 vcrmass=290 signature=unresolved_nonadditive owner_Tminus1=[{'clans': 900, 'engine_id': 7, 'generators_at_site': 0}]
+game=217591 T149 V2421 ship=253 hullmass=125 vcrmass=650 signature=unresolved_nonadditive owner_Tminus1=[{'clans': None, 'engine_id': None, 'generators_at_site': 0}]
+game=217591 T149 V2422 ship=517 hullmass=125 vcrmass=290 signature=unresolved_nonadditive owner_Tminus1=[{'clans': 900, 'engine_id': 7, 'generators_at_site': 0}]
+game=217591 T149 V2423 ship=517 hullmass=125 vcrmass=290 signature=unresolved_nonadditive owner_Tminus1=[{'clans': 900, 'engine_id': 7, 'generators_at_site': 0}]
+game=217591 T149 V2390 ship=220 hullmass=120 vcrmass=530 signature=fed_threshold_ordering_hypothesis owner_Tminus1=[{'clans': 0, 'engine_id': 9, 'generators_at_site': 0}]
+game=217591 T149 V2428 ship=768 hullmass=475 vcrmass=628 signature=horwasp_partial_load_numeric_candidate owner_Tminus1=[{'clans': 7752, 'engine_id': 7, 'generators_at_site': 0}]
+game=217591 T149 V2402 ship=93 hullmass=200 vcrmass=760 signature=horwasp_double_plus_360_candidate owner_Tminus1=[{'clans': 300, 'engine_id': 7, 'generators_at_site': 0}]
+game=217591 T149 V2399 ship=60 hullmass=173 vcrmass=373 signature=one_transwarp_shield_generator_numeric_candidate owner_Tminus1=[{'clans': 0, 'engine_id': 9, 'generators_at_site': 0}]
+game=217591 T149 V2398 ship=828 hullmass=650 vcrmass=1210 signature=one_generator_plus_360_numeric_candidate owner_Tminus1=[{'clans': 0, 'engine_id': 9, 'generators_at_site': 0}]
+game=253449 T82 V618 ship=48 hullmass=145 vcrmass=287 signature=horwasp_partial_load_numeric_candidate owner_Tminus1=[{'clans': 900, 'engine_id': 7, 'generators_at_site': 0}]
+game=371631 T156 V1209 ship=262 hullmass=96 vcrmass=266 signature=unresolved_nonadditive owner_Tminus1=[{'clans': 0, 'engine_id': 7, 'generators_at_site': 2}]
+game=371631 T156 V1193 ship=461 hullmass=451 vcrmass=751 signature=two_transwarp_shield_generators_numeric_candidate owner_Tminus1=[{'clans': 0, 'engine_id': 9, 'generators_at_site': 2}]
+game=371631 T156 V1194 ship=463 hullmass=451 vcrmass=1111 signature=two_generators_plus_360_numeric_candidate owner_Tminus1=[{'clans': 0, 'engine_id': 9, 'generators_at_site': 2}]
+game_specific_hulls: {'19': {'217591': {'catalog_mass': 173, 'name': 'Kittyhawk Class Carrier', 'cargo_capacity': 65}}, '20': {'217591': {'catalog_mass': 650, 'name': 'Nova Class Super-dreadnought', 'cargo_capacity': 320}}, '35': {'371631': {'catalog_mass': 451, 'name': 'Victorious Class Battleship', 'cargo_capacity': 130}}, '39': {'371631': {'catalog_mass': 96, 'name': 'D19b Nefarious Class Destroyer', 'cargo_capacity': 40}}, '115': {'217591': {'catalog_mass': 475, 'name': 'Hive', 'cargo_capacity': 24000}}, '117': {'217591': {'catalog_mass': 125, 'name': 'Brood', 'cargo_capacity': 900}, '253449': {'catalog_mass': 145, 'name': 'Brood', 'cargo_capacity': 900}}, '118': {'217591': {'catalog_mass': 200, 'name': 'Jacker', 'cargo_capacity': 300}}, '2006': {'217591': {'catalog_mass': 120, 'name': 'Wild Banshee Class Destroyer', 'cargo_capacity': 60}}}
+output: artifacts/combat/mass-owner-provenance-v3/public100-owner-provenance.json

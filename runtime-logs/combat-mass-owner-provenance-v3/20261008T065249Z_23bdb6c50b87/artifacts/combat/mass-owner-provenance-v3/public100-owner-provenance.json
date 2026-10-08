@@ -1,0 +1,1073 @@
+{
+  "database_path": "/root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "evidence_boundary": "Factual VCR mass is used solely to identify and verify historical examples. Only T-1/T owner-perspective raw snapshots are sampled. No historical coordinate proves presence of an active generator at combat, no clan count proves precombat population, and no mass or RNG formula is promoted to the combat evaluator.",
+  "game_specific_hulls": {
+    "115": {
+      "217591": {
+        "cargo_capacity": 24000,
+        "catalog_mass": 475,
+        "name": "Hive"
+      }
+    },
+    "117": {
+      "217591": {
+        "cargo_capacity": 900,
+        "catalog_mass": 125,
+        "name": "Brood"
+      },
+      "253449": {
+        "cargo_capacity": 900,
+        "catalog_mass": 145,
+        "name": "Brood"
+      }
+    },
+    "118": {
+      "217591": {
+        "cargo_capacity": 300,
+        "catalog_mass": 200,
+        "name": "Jacker"
+      }
+    },
+    "19": {
+      "217591": {
+        "cargo_capacity": 65,
+        "catalog_mass": 173,
+        "name": "Kittyhawk Class Carrier"
+      }
+    },
+    "20": {
+      "217591": {
+        "cargo_capacity": 320,
+        "catalog_mass": 650,
+        "name": "Nova Class Super-dreadnought"
+      }
+    },
+    "2006": {
+      "217591": {
+        "cargo_capacity": 60,
+        "catalog_mass": 120,
+        "name": "Wild Banshee Class Destroyer"
+      }
+    },
+    "35": {
+      "371631": {
+        "cargo_capacity": 130,
+        "catalog_mass": 451,
+        "name": "Victorious Class Battleship"
+      }
+    },
+    "39": {
+      "371631": {
+        "cargo_capacity": 40,
+        "catalog_mass": 96,
+        "name": "D19b Nefarious Class Destroyer"
+      }
+    }
+  },
+  "observations": [
+    {
+      "catalog_cargo_capacity": 900,
+      "catalog_hull_mass": 125,
+      "catalog_hull_name": "Brood",
+      "factual_combat_mass": 290,
+      "game_id": 217591,
+      "hull_id": 117,
+      "owner_id": 12,
+      "owner_perspective_snapshots": [
+        {
+          "archive_turn": 148,
+          "nearby_generators_truncated": false,
+          "owner_shield_generator_inventory_count": 0,
+          "owner_shield_generators_at_vcr_coordinates": [],
+          "participant": {
+            "cargo_capacity": 900,
+            "clans": 900,
+            "clans_fraction_of_catalog_capacity": 1.0,
+            "engine_cost_mc": 170,
+            "engine_id": 7,
+            "numeric_shield_bonus_half_engine_cost": 85,
+            "raw": {
+              "ammo": 0,
+              "clans": 900,
+              "damage": 0,
+              "engineid": 7,
+              "hullid": 117,
+              "id": 119,
+              "mass": 1101,
+              "ownerid": 12,
+              "targetx": 1224,
+              "targety": 2911,
+              "warp": 1,
+              "x": 1223,
+              "y": 2911
+            }
+          },
+          "perspective_player_id": 12,
+          "temporal_boundary": "Snapshot position is not precombat position"
+        },
+        {
+          "archive_turn": 149,
+          "nearby_generators_truncated": false,
+          "owner_shield_generator_inventory_count": 0,
+          "owner_shield_generators_at_vcr_coordinates": [],
+          "participant": null,
+          "perspective_player_id": 12,
+          "temporal_boundary": "Snapshot position is not precombat position"
+        }
+      ],
+      "race_id": 12,
+      "ship_id": 119,
+      "side": "left",
+      "signature": "unresolved_nonadditive",
+      "tminus1_owner_ship_seen": true,
+      "turn": 149,
+      "vcr_id": 2405,
+      "vcr_site": [
+        1224,
+        2911
+      ]
+    },
+    {
+      "catalog_cargo_capacity": 900,
+      "catalog_hull_mass": 125,
+      "catalog_hull_name": "Brood",
+      "factual_combat_mass": 290,
+      "game_id": 217591,
+      "hull_id": 117,
+      "owner_id": 12,
+      "owner_perspective_snapshots": [
+        {
+          "archive_turn": 148,
+          "nearby_generators_truncated": false,
+          "owner_shield_generator_inventory_count": 0,
+          "owner_shield_generators_at_vcr_coordinates": [],
+          "participant": {
+            "cargo_capacity": 900,
+            "clans": 900,
+            "clans_fraction_of_catalog_capacity": 1.0,
+            "engine_cost_mc": 170,
+            "engine_id": 7,
+            "numeric_shield_bonus_half_engine_cost": 85,
+            "raw": {
+              "ammo": 0,
+              "clans": 900,
+              "damage": 0,
+              "engineid": 7,
+              "hullid": 117,
+              "id": 119,
+              "mass": 1101,
+              "ownerid": 12,
+              "targetx": 1224,
+              "targety": 2911,
+              "warp": 1,
+              "x": 1223,
+              "y": 2911
+            }
+          },
+          "perspective_player_id": 12,
+          "temporal_boundary": "Snapshot position is not precombat position"
+        },
+        {
+          "archive_turn": 149,
+          "nearby_generators_truncated": false,
+          "owner_shield_generator_inventory_count": 0,
+          "owner_shield_generators_at_vcr_coordinates": [],
+          "participant": null,
+          "perspective_player_id": 12,
+          "temporal_boundary": "Snapshot position is not precombat position"
+        }
+      ],
+      "race_id": 12,
+      "ship_id": 119,
+      "side": "right",
+      "signature": "unresolved_nonadditive",
+      "tminus1_owner_ship_seen": true,
+      "turn": 149,
+      "vcr_id": 2406,
+      "vcr_site": [
+        1224,
+        2911
+      ]
+    },
+    {
+      "catalog_cargo_capacity": 900,
+      "catalog_hull_mass": 125,
+      "catalog_hull_name": "Brood",
+      "factual_combat_mass": 650,
+      "game_id": 217591,
+      "hull_id": 117,
+      "owner_id": 12,
+      "owner_perspective_snapshots": [
+        {
+          "archive_turn": 148,
+          "nearby_generators_truncated": false,
+          "owner_shield_generator_inventory_count": 0,
+          "owner_shield_generators_at_vcr_coordinates": [],
+          "participant": null,
+          "perspective_player_id": 12,
+          "temporal_boundary": "Snapshot position is not precombat position"
+        },
+        {
+          "archive_turn": 149,
+          "nearby_generators_truncated": false,
+          "owner_shield_generator_inventory_count": 0,
+          "owner_shield_generators_at_vcr_coordinates": [],
+          "participant": null,
+          "perspective_player_id": 12,
+          "temporal_boundary": "Snapshot position is not precombat position"
+        }
+      ],
+      "race_id": 12,
+      "ship_id": 253,
+      "side": "right",
+      "signature": "unresolved_nonadditive",
+      "tminus1_owner_ship_seen": false,
+      "turn": 149,
+      "vcr_id": 2421,
+      "vcr_site": [
+        2257,
+        930
+      ]
+    },
+    {
+      "catalog_cargo_capacity": 900,
+      "catalog_hull_mass": 125,
+      "catalog_hull_name": "Brood",
+      "factual_combat_mass": 290,
+      "game_id": 217591,
+      "hull_id": 117,
+      "owner_id": 12,
+      "owner_perspective_snapshots": [
+        {
+          "archive_turn": 148,
+          "nearby_generators_truncated": false,
+          "owner_shield_generator_inventory_count": 0,
+          "owner_shield_generators_at_vcr_coordinates": [],
+          "participant": {
+            "cargo_capacity": 900,
+            "clans": 900,
+            "clans_fraction_of_catalog_capacity": 1.0,
+            "engine_cost_mc": 170,
+            "engine_id": 7,
+            "numeric_shield_bonus_half_engine_cost": 85,
+            "raw": {
+              "ammo": 0,
+              "clans": 900,
+              "damage": 0,
+              "engineid": 7,
+              "hullid": 117,
+              "id": 517,
+              "mass": 1091,
+              "ownerid": 12,
+              "targetx": 2257,
+              "targety": 930,
+              "warp": 7,
+              "x": 2257,
+              "y": 930
+            }
+          },
+          "perspective_player_id": 12,
+          "temporal_boundary": "Snapshot position is not precombat position"
+        },
+        {
+          "archive_turn": 149,
+          "nearby_generators_truncated": false,
+          "owner_shield_generator_inventory_count": 0,
+          "owner_shield_generators_at_vcr_coordinates": [],
+          "participant": {
+            "cargo_capacity": 900,
+            "clans": 900,
+            "clans_fraction_of_catalog_capacity": 1.0,
+            "engine_cost_mc": 170,
+            "engine_id": 7,
+            "numeric_shield_bonus_half_engine_cost": 85,
+            "raw": {
+              "ammo": 0,
+              "clans": 900,
+              "damage": 0,
+              "engineid": 7,
+              "hullid": 117,
+              "id": 517,
+              "mass": 1091,
+              "ownerid": 12,
+              "targetx": 2257,
+              "targety": 930,
+              "warp": 7,
+              "x": 2257,
+              "y": 930
+            }
+          },
+          "perspective_player_id": 12,
+          "temporal_boundary": "Snapshot position is not precombat position"
+        }
+      ],
+      "race_id": 12,
+      "ship_id": 517,
+      "side": "right",
+      "signature": "unresolved_nonadditive",
+      "tminus1_owner_ship_seen": true,
+      "turn": 149,
+      "vcr_id": 2422,
+      "vcr_site": [
+        2257,
+        930
+      ]
+    },
+    {
+      "catalog_cargo_capacity": 900,
+      "catalog_hull_mass": 125,
+      "catalog_hull_name": "Brood",
+      "factual_combat_mass": 290,
+      "game_id": 217591,
+      "hull_id": 117,
+      "owner_id": 12,
+      "owner_perspective_snapshots": [
+        {
+          "archive_turn": 148,
+          "nearby_generators_truncated": false,
+          "owner_shield_generator_inventory_count": 0,
+          "owner_shield_generators_at_vcr_coordinates": [],
+          "participant": {
+            "cargo_capacity": 900,
+            "clans": 900,
+            "clans_fraction_of_catalog_capacity": 1.0,
+            "engine_cost_mc": 170,
+            "engine_id": 7,
+            "numeric_shield_bonus_half_engine_cost": 85,
+            "raw": {
+              "ammo": 0,
+              "clans": 900,
+              "damage": 0,
+              "engineid": 7,
+              "hullid": 117,
+              "id": 517,
+              "mass": 1091,
+              "ownerid": 12,
+              "targetx": 2257,
+              "targety": 930,
+              "warp": 7,
+              "x": 2257,
+              "y": 930
+            }
+          },
+          "perspective_player_id": 12,
+          "temporal_boundary": "Snapshot position is not precombat position"
+        },
+        {
+          "archive_turn": 149,
+          "nearby_generators_truncated": false,
+          "owner_shield_generator_inventory_count": 0,
+          "owner_shield_generators_at_vcr_coordinates": [],
+          "participant": {
+            "cargo_capacity": 900,
+            "clans": 900,
+            "clans_fraction_of_catalog_capacity": 1.0,
+            "engine_cost_mc": 170,
+            "engine_id": 7,
+            "numeric_shield_bonus_half_engine_cost": 85,
+            "raw": {
+              "ammo": 0,
+              "clans": 900,
+              "damage": 0,
+              "engineid": 7,
+              "hullid": 117,
+              "id": 517,
+              "mass": 1091,
+              "ownerid": 12,
+              "targetx": 2257,
+              "targety": 930,
+              "warp": 7,
+              "x": 2257,
+              "y": 930
+            }
+          },
+          "perspective_player_id": 12,
+          "temporal_boundary": "Snapshot position is not precombat position"
+        }
+      ],
+      "race_id": 12,
+      "ship_id": 517,
+      "side": "right",
+      "signature": "unresolved_nonadditive",
+      "tminus1_owner_ship_seen": true,
+      "turn": 149,
+      "vcr_id": 2423,
+      "vcr_site": [
+        2257,
+        930
+      ]
+    },
+    {
+      "catalog_cargo_capacity": 60,
+      "catalog_hull_mass": 120,
+      "catalog_hull_name": "Wild Banshee Class Destroyer",
+      "factual_combat_mass": 530,
+      "game_id": 217591,
+      "hull_id": 2006,
+      "owner_id": 1,
+      "owner_perspective_snapshots": [
+        {
+          "archive_turn": 148,
+          "nearby_generators_truncated": false,
+          "owner_shield_generator_inventory_count": 4,
+          "owner_shield_generators_at_vcr_coordinates": [],
+          "participant": {
+            "cargo_capacity": 60,
+            "clans": 0,
+            "clans_fraction_of_catalog_capacity": 0.0,
+            "engine_cost_mc": 300,
+            "engine_id": 9,
+            "numeric_shield_bonus_half_engine_cost": 150,
+            "raw": {
+              "ammo": 60,
+              "clans": 0,
+              "damage": 0,
+              "engineid": 9,
+              "hullid": 2006,
+              "id": 220,
+              "mass": 326,
+              "ownerid": 1,
+              "targetx": 913,
+              "targety": 1299,
+              "warp": 9,
+              "x": 913,
+              "y": 1299
+            }
+          },
+          "perspective_player_id": 1,
+          "temporal_boundary": "Snapshot position is not precombat position"
+        },
+        {
+          "archive_turn": 149,
+          "nearby_generators_truncated": false,
+          "owner_shield_generator_inventory_count": 3,
+          "owner_shield_generators_at_vcr_coordinates": [],
+          "participant": null,
+          "perspective_player_id": 1,
+          "temporal_boundary": "Snapshot position is not precombat position"
+        }
+      ],
+      "race_id": 1,
+      "ship_id": 220,
+      "side": "right",
+      "signature": "fed_threshold_ordering_hypothesis",
+      "tminus1_owner_ship_seen": true,
+      "turn": 149,
+      "vcr_id": 2390,
+      "vcr_site": [
+        913,
+        1299
+      ]
+    },
+    {
+      "catalog_cargo_capacity": 24000,
+      "catalog_hull_mass": 475,
+      "catalog_hull_name": "Hive",
+      "factual_combat_mass": 628,
+      "game_id": 217591,
+      "hull_id": 115,
+      "owner_id": 12,
+      "owner_perspective_snapshots": [
+        {
+          "archive_turn": 148,
+          "nearby_generators_truncated": false,
+          "owner_shield_generator_inventory_count": 0,
+          "owner_shield_generators_at_vcr_coordinates": [],
+          "participant": {
+            "cargo_capacity": 24000,
+            "clans": 7752,
+            "clans_fraction_of_catalog_capacity": 0.323,
+            "engine_cost_mc": 170,
+            "engine_id": 7,
+            "numeric_shield_bonus_half_engine_cost": 85,
+            "raw": {
+              "ammo": 0,
+              "clans": 7752,
+              "damage": 0,
+              "engineid": 7,
+              "hullid": 115,
+              "id": 768,
+              "mass": 8439,
+              "ownerid": 12,
+              "targetx": 2209,
+              "targety": 1024,
+              "warp": 3,
+              "x": 2212,
+              "y": 1028
+            }
+          },
+          "perspective_player_id": 12,
+          "temporal_boundary": "Snapshot position is not precombat position"
+        },
+        {
+          "archive_turn": 149,
+          "nearby_generators_truncated": false,
+          "owner_shield_generator_inventory_count": 0,
+          "owner_shield_generators_at_vcr_coordinates": [],
+          "participant": {
+            "cargo_capacity": 24000,
+            "clans": 7752,
+            "clans_fraction_of_catalog_capacity": 0.323,
+            "engine_cost_mc": 170,
+            "engine_id": 7,
+            "numeric_shield_bonus_half_engine_cost": 85,
+            "raw": {
+              "ammo": 0,
+              "clans": 7752,
+              "damage": 0,
+              "engineid": 7,
+              "hullid": 115,
+              "id": 768,
+              "mass": 8395,
+              "ownerid": 12,
+              "targetx": 2209,
+              "targety": 1024,
+              "warp": 3,
+              "x": 2209,
+              "y": 1024
+            }
+          },
+          "perspective_player_id": 12,
+          "temporal_boundary": "Snapshot position is not precombat position"
+        }
+      ],
+      "race_id": 12,
+      "ship_id": 768,
+      "side": "left",
+      "signature": "horwasp_partial_load_numeric_candidate",
+      "tminus1_owner_ship_seen": true,
+      "turn": 149,
+      "vcr_id": 2428,
+      "vcr_site": [
+        2209,
+        1024
+      ]
+    },
+    {
+      "catalog_cargo_capacity": 300,
+      "catalog_hull_mass": 200,
+      "catalog_hull_name": "Jacker",
+      "factual_combat_mass": 760,
+      "game_id": 217591,
+      "hull_id": 118,
+      "owner_id": 12,
+      "owner_perspective_snapshots": [
+        {
+          "archive_turn": 148,
+          "nearby_generators_truncated": false,
+          "owner_shield_generator_inventory_count": 0,
+          "owner_shield_generators_at_vcr_coordinates": [],
+          "participant": {
+            "cargo_capacity": 300,
+            "clans": 300,
+            "clans_fraction_of_catalog_capacity": 1.0,
+            "engine_cost_mc": 170,
+            "engine_id": 7,
+            "numeric_shield_bonus_half_engine_cost": 85,
+            "raw": {
+              "ammo": 0,
+              "clans": 300,
+              "damage": 0,
+              "engineid": 7,
+              "hullid": 118,
+              "id": 93,
+              "mass": 507,
+              "ownerid": 12,
+              "targetx": 957,
+              "targety": 1024,
+              "warp": 7,
+              "x": 957,
+              "y": 1024
+            }
+          },
+          "perspective_player_id": 12,
+          "temporal_boundary": "Snapshot position is not precombat position"
+        },
+        {
+          "archive_turn": 149,
+          "nearby_generators_truncated": false,
+          "owner_shield_generator_inventory_count": 0,
+          "owner_shield_generators_at_vcr_coordinates": [],
+          "participant": null,
+          "perspective_player_id": 12,
+          "temporal_boundary": "Snapshot position is not precombat position"
+        }
+      ],
+      "race_id": 12,
+      "ship_id": 93,
+      "side": "right",
+      "signature": "horwasp_double_plus_360_candidate",
+      "tminus1_owner_ship_seen": true,
+      "turn": 149,
+      "vcr_id": 2402,
+      "vcr_site": [
+        957,
+        1024
+      ]
+    },
+    {
+      "catalog_cargo_capacity": 65,
+      "catalog_hull_mass": 173,
+      "catalog_hull_name": "Kittyhawk Class Carrier",
+      "factual_combat_mass": 373,
+      "game_id": 217591,
+      "hull_id": 19,
+      "owner_id": 1,
+      "owner_perspective_snapshots": [
+        {
+          "archive_turn": 148,
+          "nearby_generators_truncated": false,
+          "owner_shield_generator_inventory_count": 4,
+          "owner_shield_generators_at_vcr_coordinates": [],
+          "participant": {
+            "cargo_capacity": 65,
+            "clans": 0,
+            "clans_fraction_of_catalog_capacity": 0.0,
+            "engine_cost_mc": 300,
+            "engine_id": 9,
+            "numeric_shield_bonus_half_engine_cost": 150,
+            "raw": {
+              "ammo": 65,
+              "clans": 0,
+              "damage": 0,
+              "engineid": 9,
+              "hullid": 19,
+              "id": 60,
+              "mass": 453,
+              "ownerid": 1,
+              "targetx": 3011,
+              "targety": 1435,
+              "warp": 9,
+              "x": 3007,
+              "y": 1486
+            }
+          },
+          "perspective_player_id": 1,
+          "temporal_boundary": "Snapshot position is not precombat position"
+        },
+        {
+          "archive_turn": 149,
+          "nearby_generators_truncated": false,
+          "owner_shield_generator_inventory_count": 3,
+          "owner_shield_generators_at_vcr_coordinates": [],
+          "participant": null,
+          "perspective_player_id": 1,
+          "temporal_boundary": "Snapshot position is not precombat position"
+        }
+      ],
+      "race_id": 1,
+      "ship_id": 60,
+      "side": "right",
+      "signature": "one_transwarp_shield_generator_numeric_candidate",
+      "tminus1_owner_ship_seen": true,
+      "turn": 149,
+      "vcr_id": 2399,
+      "vcr_site": [
+        3011,
+        1432
+      ]
+    },
+    {
+      "catalog_cargo_capacity": 320,
+      "catalog_hull_mass": 650,
+      "catalog_hull_name": "Nova Class Super-dreadnought",
+      "factual_combat_mass": 1210,
+      "game_id": 217591,
+      "hull_id": 20,
+      "owner_id": 1,
+      "owner_perspective_snapshots": [
+        {
+          "archive_turn": 148,
+          "nearby_generators_truncated": false,
+          "owner_shield_generator_inventory_count": 4,
+          "owner_shield_generators_at_vcr_coordinates": [],
+          "participant": {
+            "cargo_capacity": 320,
+            "clans": 0,
+            "clans_fraction_of_catalog_capacity": 0.0,
+            "engine_cost_mc": 300,
+            "engine_id": 9,
+            "numeric_shield_bonus_half_engine_cost": 150,
+            "raw": {
+              "ammo": 150,
+              "clans": 0,
+              "damage": 0,
+              "engineid": 9,
+              "hullid": 20,
+              "id": 828,
+              "mass": 1242,
+              "ownerid": 1,
+              "targetx": 3011,
+              "targety": 1435,
+              "warp": 9,
+              "x": 3007,
+              "y": 1486
+            }
+          },
+          "perspective_player_id": 1,
+          "temporal_boundary": "Snapshot position is not precombat position"
+        },
+        {
+          "archive_turn": 149,
+          "nearby_generators_truncated": false,
+          "owner_shield_generator_inventory_count": 3,
+          "owner_shield_generators_at_vcr_coordinates": [],
+          "participant": null,
+          "perspective_player_id": 1,
+          "temporal_boundary": "Snapshot position is not precombat position"
+        }
+      ],
+      "race_id": 1,
+      "ship_id": 828,
+      "side": "right",
+      "signature": "one_generator_plus_360_numeric_candidate",
+      "tminus1_owner_ship_seen": true,
+      "turn": 149,
+      "vcr_id": 2398,
+      "vcr_site": [
+        3011,
+        1432
+      ]
+    },
+    {
+      "catalog_cargo_capacity": 900,
+      "catalog_hull_mass": 145,
+      "catalog_hull_name": "Brood",
+      "factual_combat_mass": 287,
+      "game_id": 253449,
+      "hull_id": 117,
+      "owner_id": 12,
+      "owner_perspective_snapshots": [
+        {
+          "archive_turn": 81,
+          "nearby_generators_truncated": false,
+          "owner_shield_generator_inventory_count": 0,
+          "owner_shield_generators_at_vcr_coordinates": [],
+          "participant": {
+            "cargo_capacity": 900,
+            "clans": 900,
+            "clans_fraction_of_catalog_capacity": 1.0,
+            "engine_cost_mc": 170,
+            "engine_id": 7,
+            "numeric_shield_bonus_half_engine_cost": 85,
+            "raw": {
+              "ammo": 0,
+              "clans": 900,
+              "damage": 0,
+              "engineid": 7,
+              "hullid": 117,
+              "id": 48,
+              "mass": 1197,
+              "ownerid": 12,
+              "targetx": 1681,
+              "targety": 2721,
+              "warp": 7,
+              "x": 1681,
+              "y": 2726
+            }
+          },
+          "perspective_player_id": 12,
+          "temporal_boundary": "Snapshot position is not precombat position"
+        },
+        {
+          "archive_turn": 82,
+          "nearby_generators_truncated": false,
+          "owner_shield_generator_inventory_count": 0,
+          "owner_shield_generators_at_vcr_coordinates": [],
+          "participant": {
+            "cargo_capacity": 900,
+            "clans": 0,
+            "clans_fraction_of_catalog_capacity": 0.0,
+            "engine_cost_mc": 170,
+            "engine_id": 7,
+            "numeric_shield_bonus_half_engine_cost": 85,
+            "raw": {
+              "ammo": 0,
+              "clans": 0,
+              "damage": 0,
+              "engineid": 7,
+              "hullid": 117,
+              "id": 48,
+              "mass": 1173,
+              "ownerid": 12,
+              "targetx": 1681,
+              "targety": 2721,
+              "warp": 7,
+              "x": 1681,
+              "y": 2721
+            }
+          },
+          "perspective_player_id": 12,
+          "temporal_boundary": "Snapshot position is not precombat position"
+        }
+      ],
+      "race_id": 12,
+      "ship_id": 48,
+      "side": "right",
+      "signature": "horwasp_partial_load_numeric_candidate",
+      "tminus1_owner_ship_seen": true,
+      "turn": 82,
+      "vcr_id": 618,
+      "vcr_site": [
+        1681,
+        2721
+      ]
+    },
+    {
+      "catalog_cargo_capacity": 40,
+      "catalog_hull_mass": 96,
+      "catalog_hull_name": "D19b Nefarious Class Destroyer",
+      "factual_combat_mass": 266,
+      "game_id": 371631,
+      "hull_id": 39,
+      "owner_id": 4,
+      "owner_perspective_snapshots": [
+        {
+          "archive_turn": 155,
+          "nearby_generators_truncated": false,
+          "owner_shield_generator_inventory_count": 8,
+          "owner_shield_generators_at_vcr_coordinates": [
+            {
+              "hull_id": 1041,
+              "ship_id": 6,
+              "targetx": 1833,
+              "targety": 1586,
+              "x": 1833,
+              "y": 1586
+            },
+            {
+              "hull_id": 1041,
+              "ship_id": 386,
+              "targetx": 1833,
+              "targety": 1586,
+              "x": 1833,
+              "y": 1586
+            }
+          ],
+          "participant": {
+            "cargo_capacity": 40,
+            "clans": 0,
+            "clans_fraction_of_catalog_capacity": 0.0,
+            "engine_cost_mc": 170,
+            "engine_id": 7,
+            "numeric_shield_bonus_half_engine_cost": 85,
+            "raw": {
+              "ammo": 0,
+              "clans": 0,
+              "damage": 0,
+              "engineid": 7,
+              "hullid": 39,
+              "id": 262,
+              "mass": 163,
+              "ownerid": 4,
+              "targetx": 1833,
+              "targety": 1586,
+              "warp": 0,
+              "x": 1833,
+              "y": 1586
+            }
+          },
+          "perspective_player_id": 4,
+          "temporal_boundary": "Snapshot position is not precombat position"
+        },
+        {
+          "archive_turn": 156,
+          "nearby_generators_truncated": false,
+          "owner_shield_generator_inventory_count": 7,
+          "owner_shield_generators_at_vcr_coordinates": [],
+          "participant": null,
+          "perspective_player_id": 4,
+          "temporal_boundary": "Snapshot position is not precombat position"
+        }
+      ],
+      "race_id": 4,
+      "ship_id": 262,
+      "side": "left",
+      "signature": "unresolved_nonadditive",
+      "tminus1_owner_ship_seen": true,
+      "turn": 156,
+      "vcr_id": 1209,
+      "vcr_site": [
+        1833,
+        1586
+      ]
+    },
+    {
+      "catalog_cargo_capacity": 130,
+      "catalog_hull_mass": 451,
+      "catalog_hull_name": "Victorious Class Battleship",
+      "factual_combat_mass": 751,
+      "game_id": 371631,
+      "hull_id": 35,
+      "owner_id": 4,
+      "owner_perspective_snapshots": [
+        {
+          "archive_turn": 155,
+          "nearby_generators_truncated": false,
+          "owner_shield_generator_inventory_count": 8,
+          "owner_shield_generators_at_vcr_coordinates": [
+            {
+              "hull_id": 1041,
+              "ship_id": 6,
+              "targetx": 1833,
+              "targety": 1586,
+              "x": 1833,
+              "y": 1586
+            },
+            {
+              "hull_id": 1041,
+              "ship_id": 386,
+              "targetx": 1833,
+              "targety": 1586,
+              "x": 1833,
+              "y": 1586
+            }
+          ],
+          "participant": {
+            "cargo_capacity": 130,
+            "clans": 0,
+            "clans_fraction_of_catalog_capacity": 0.0,
+            "engine_cost_mc": 300,
+            "engine_id": 9,
+            "numeric_shield_bonus_half_engine_cost": 150,
+            "raw": {
+              "ammo": 60,
+              "clans": 0,
+              "damage": 0,
+              "engineid": 9,
+              "hullid": 35,
+              "id": 461,
+              "mass": 919,
+              "ownerid": 4,
+              "targetx": 1833,
+              "targety": 1586,
+              "warp": 9,
+              "x": 1833,
+              "y": 1586
+            }
+          },
+          "perspective_player_id": 4,
+          "temporal_boundary": "Snapshot position is not precombat position"
+        },
+        {
+          "archive_turn": 156,
+          "nearby_generators_truncated": false,
+          "owner_shield_generator_inventory_count": 7,
+          "owner_shield_generators_at_vcr_coordinates": [],
+          "participant": null,
+          "perspective_player_id": 4,
+          "temporal_boundary": "Snapshot position is not precombat position"
+        }
+      ],
+      "race_id": 4,
+      "ship_id": 461,
+      "side": "right",
+      "signature": "two_transwarp_shield_generators_numeric_candidate",
+      "tminus1_owner_ship_seen": true,
+      "turn": 156,
+      "vcr_id": 1193,
+      "vcr_site": [
+        1833,
+        1586
+      ]
+    },
+    {
+      "catalog_cargo_capacity": 130,
+      "catalog_hull_mass": 451,
+      "catalog_hull_name": "Victorious Class Battleship",
+      "factual_combat_mass": 1111,
+      "game_id": 371631,
+      "hull_id": 35,
+      "owner_id": 4,
+      "owner_perspective_snapshots": [
+        {
+          "archive_turn": 155,
+          "nearby_generators_truncated": false,
+          "owner_shield_generator_inventory_count": 8,
+          "owner_shield_generators_at_vcr_coordinates": [
+            {
+              "hull_id": 1041,
+              "ship_id": 6,
+              "targetx": 1833,
+              "targety": 1586,
+              "x": 1833,
+              "y": 1586
+            },
+            {
+              "hull_id": 1041,
+              "ship_id": 386,
+              "targetx": 1833,
+              "targety": 1586,
+              "x": 1833,
+              "y": 1586
+            }
+          ],
+          "participant": {
+            "cargo_capacity": 130,
+            "clans": 0,
+            "clans_fraction_of_catalog_capacity": 0.0,
+            "engine_cost_mc": 300,
+            "engine_id": 9,
+            "numeric_shield_bonus_half_engine_cost": 150,
+            "raw": {
+              "ammo": 60,
+              "clans": 0,
+              "damage": 0,
+              "engineid": 9,
+              "hullid": 35,
+              "id": 463,
+              "mass": 659,
+              "ownerid": 4,
+              "targetx": 1833,
+              "targety": 1586,
+              "warp": 9,
+              "x": 1833,
+              "y": 1586
+            }
+          },
+          "perspective_player_id": 4,
+          "temporal_boundary": "Snapshot position is not precombat position"
+        },
+        {
+          "archive_turn": 156,
+          "nearby_generators_truncated": false,
+          "owner_shield_generator_inventory_count": 7,
+          "owner_shield_generators_at_vcr_coordinates": [],
+          "participant": null,
+          "perspective_player_id": 4,
+          "temporal_boundary": "Snapshot position is not precombat position"
+        }
+      ],
+      "race_id": 4,
+      "ship_id": 463,
+      "side": "right",
+      "signature": "two_generators_plus_360_numeric_candidate",
+      "tminus1_owner_ship_seen": true,
+      "turn": 156,
+      "vcr_id": 1194,
+      "vcr_site": [
+        1833,
+        1586
+      ]
+    }
+  ],
+  "schema": "planets-lab.combat-mass-owner-provenance.v3",
+  "source_schema": "planets-lab.combat-mass-composition-signatures.v2",
+  "status": "OWNER_PROVENANCE_OBSERVATIONAL_NOT_PROMOTED",
+  "summary": {
+    "game_turns": 3,
+    "observations": 14,
+    "owner_Tminus1_ship_seen": 13,
+    "signatures": {
+      "fed_threshold_ordering_hypothesis": 1,
+      "horwasp_double_plus_360_candidate": 1,
+      "horwasp_partial_load_numeric_candidate": 2,
+      "one_generator_plus_360_numeric_candidate": 1,
+      "one_transwarp_shield_generator_numeric_candidate": 1,
+      "two_generators_plus_360_numeric_candidate": 1,
+      "two_transwarp_shield_generators_numeric_candidate": 1,
+      "unresolved_nonadditive": 6
+    },
+    "unresolved_targeted": 6
+  }
+}
