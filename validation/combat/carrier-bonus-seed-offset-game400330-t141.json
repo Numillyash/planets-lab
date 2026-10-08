@@ -1,0 +1,74 @@
+{
+  "schema": "planets-lab.carrier-bonus-seed-offset-observations.v1",
+  "source": "runtime-logs/site-combat-mass-candidates-v1/20261008T041759Z_6e329474f940",
+  "source_commit": "6e329474f940def9d202391a657cd57b85a5940c",
+  "game_id": 400330,
+  "battle_turn": 141,
+  "description": "Right-vs-left carrier candidate-eligible observed combat masses and current VCR seeds. Source is factual VCR, not a predicted input.",
+  "rows": [
+    {
+      "vcr_id": 588,
+      "ship_id": 421,
+      "vcr_seed": 77,
+      "hull_mass": 645,
+      "observed_mass": 1005,
+      "bonus_360": true
+    },
+    {
+      "vcr_id": 589,
+      "ship_id": 296,
+      "vcr_seed": 78,
+      "hull_mass": 645,
+      "observed_mass": 1005,
+      "bonus_360": true
+    },
+    {
+      "vcr_id": 590,
+      "ship_id": 216,
+      "vcr_seed": 31,
+      "hull_mass": 645,
+      "observed_mass": 1005,
+      "bonus_360": true
+    },
+    {
+      "vcr_id": 591,
+      "ship_id": 216,
+      "vcr_seed": 110,
+      "hull_mass": 645,
+      "observed_mass": 645,
+      "bonus_360": false
+    },
+    {
+      "vcr_id": 592,
+      "ship_id": 140,
+      "vcr_seed": 27,
+      "hull_mass": 150,
+      "observed_mass": 510,
+      "bonus_360": true
+    },
+    {
+      "vcr_id": 594,
+      "ship_id": 170,
+      "vcr_seed": 41,
+      "hull_mass": 150,
+      "observed_mass": 510,
+      "bonus_360": true
+    },
+    {
+      "vcr_id": 596,
+      "ship_id": 382,
+      "vcr_seed": 118,
+      "hull_mass": 645,
+      "observed_mass": 645,
+      "bonus_360": false
+    },
+    {
+      "vcr_id": 597,
+      "ship_id": 382,
+      "vcr_seed": 25,
+      "hull_mass": 645,
+      "observed_mass": 645,
+      "bonus_360": false
+    }
+  ]
+}
