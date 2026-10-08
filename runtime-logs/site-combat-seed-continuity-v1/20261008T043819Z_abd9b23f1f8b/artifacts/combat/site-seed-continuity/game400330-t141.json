@@ -1,0 +1,285 @@
+{
+  "battle_turn": 141,
+  "classic_rng_size": 119,
+  "database_path": "/root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "evidence_boundary": "All seeds and VCR inputs are factual observations. Replay final_seed describes only the within-VCR Classic simulation. The actual Host's global seed initialization, intermediate RNG draws and right-side +360 bonus decision are not reconstructed. This diagnostic does not predict N+1 or feed any observation back to the executor; matching a naive hypothesis is not proof of global RNG continuity.",
+  "game_id": 400330,
+  "schema": "planets-lab.classic-seed-continuity-audit.v1",
+  "status": "OBSERVATIONAL_NOT_PROMOTED",
+  "summary": {
+    "adjacent_comparable": 11,
+    "adjacent_neither": 11,
+    "observed_vcrs": 12,
+    "replay_supported": 12,
+    "transitions": 11
+  },
+  "transitions": [
+    {
+      "from_vcr_id": 587,
+      "globally_adjacent": true,
+      "naive_plus_one": false,
+      "naive_same_seed": false,
+      "next_observed_start_seed": 77,
+      "prior_replay_final_seed": 51,
+      "same_site_observed": false,
+      "to_vcr_id": 588,
+      "wrapped_delta_mod_119": 26
+    },
+    {
+      "from_vcr_id": 588,
+      "globally_adjacent": true,
+      "naive_plus_one": false,
+      "naive_same_seed": false,
+      "next_observed_start_seed": 78,
+      "prior_replay_final_seed": 5,
+      "same_site_observed": true,
+      "to_vcr_id": 589,
+      "wrapped_delta_mod_119": 73
+    },
+    {
+      "from_vcr_id": 589,
+      "globally_adjacent": true,
+      "naive_plus_one": false,
+      "naive_same_seed": false,
+      "next_observed_start_seed": 31,
+      "prior_replay_final_seed": 79,
+      "same_site_observed": true,
+      "to_vcr_id": 590,
+      "wrapped_delta_mod_119": 71
+    },
+    {
+      "from_vcr_id": 590,
+      "globally_adjacent": true,
+      "naive_plus_one": false,
+      "naive_same_seed": false,
+      "next_observed_start_seed": 110,
+      "prior_replay_final_seed": 15,
+      "same_site_observed": true,
+      "to_vcr_id": 591,
+      "wrapped_delta_mod_119": 95
+    },
+    {
+      "from_vcr_id": 591,
+      "globally_adjacent": true,
+      "naive_plus_one": false,
+      "naive_same_seed": false,
+      "next_observed_start_seed": 27,
+      "prior_replay_final_seed": 23,
+      "same_site_observed": true,
+      "to_vcr_id": 592,
+      "wrapped_delta_mod_119": 4
+    },
+    {
+      "from_vcr_id": 592,
+      "globally_adjacent": true,
+      "naive_plus_one": false,
+      "naive_same_seed": false,
+      "next_observed_start_seed": 81,
+      "prior_replay_final_seed": 11,
+      "same_site_observed": true,
+      "to_vcr_id": 593,
+      "wrapped_delta_mod_119": 70
+    },
+    {
+      "from_vcr_id": 593,
+      "globally_adjacent": true,
+      "naive_plus_one": false,
+      "naive_same_seed": false,
+      "next_observed_start_seed": 41,
+      "prior_replay_final_seed": 21,
+      "same_site_observed": true,
+      "to_vcr_id": 594,
+      "wrapped_delta_mod_119": 20
+    },
+    {
+      "from_vcr_id": 594,
+      "globally_adjacent": true,
+      "naive_plus_one": false,
+      "naive_same_seed": false,
+      "next_observed_start_seed": 10,
+      "prior_replay_final_seed": 30,
+      "same_site_observed": true,
+      "to_vcr_id": 595,
+      "wrapped_delta_mod_119": 99
+    },
+    {
+      "from_vcr_id": 595,
+      "globally_adjacent": true,
+      "naive_plus_one": false,
+      "naive_same_seed": false,
+      "next_observed_start_seed": 118,
+      "prior_replay_final_seed": 66,
+      "same_site_observed": true,
+      "to_vcr_id": 596,
+      "wrapped_delta_mod_119": 52
+    },
+    {
+      "from_vcr_id": 596,
+      "globally_adjacent": true,
+      "naive_plus_one": false,
+      "naive_same_seed": false,
+      "next_observed_start_seed": 25,
+      "prior_replay_final_seed": 13,
+      "same_site_observed": true,
+      "to_vcr_id": 597,
+      "wrapped_delta_mod_119": 12
+    },
+    {
+      "from_vcr_id": 597,
+      "globally_adjacent": true,
+      "naive_plus_one": false,
+      "naive_same_seed": false,
+      "next_observed_start_seed": 21,
+      "prior_replay_final_seed": 15,
+      "same_site_observed": false,
+      "to_vcr_id": 598,
+      "wrapped_delta_mod_119": 6
+    }
+  ],
+  "vcrs": [
+    {
+      "factual_seed": 55,
+      "replay_cycles": 180,
+      "replay_error": null,
+      "replay_status": "supported",
+      "replayed_final_seed": 51,
+      "site": [
+        3052,
+        2117
+      ],
+      "vcr_id": 587
+    },
+    {
+      "factual_seed": 77,
+      "replay_cycles": 277,
+      "replay_error": null,
+      "replay_status": "supported",
+      "replayed_final_seed": 5,
+      "site": [
+        1674,
+        2363
+      ],
+      "vcr_id": 588
+    },
+    {
+      "factual_seed": 78,
+      "replay_cycles": 271,
+      "replay_error": null,
+      "replay_status": "supported",
+      "replayed_final_seed": 79,
+      "site": [
+        1674,
+        2363
+      ],
+      "vcr_id": 589
+    },
+    {
+      "factual_seed": 31,
+      "replay_cycles": 242,
+      "replay_error": null,
+      "replay_status": "supported",
+      "replayed_final_seed": 15,
+      "site": [
+        1674,
+        2363
+      ],
+      "vcr_id": 590
+    },
+    {
+      "factual_seed": 110,
+      "replay_cycles": 259,
+      "replay_error": null,
+      "replay_status": "supported",
+      "replayed_final_seed": 23,
+      "site": [
+        1674,
+        2363
+      ],
+      "vcr_id": 591
+    },
+    {
+      "factual_seed": 27,
+      "replay_cycles": 194,
+      "replay_error": null,
+      "replay_status": "supported",
+      "replayed_final_seed": 11,
+      "site": [
+        1674,
+        2363
+      ],
+      "vcr_id": 592
+    },
+    {
+      "factual_seed": 81,
+      "replay_cycles": 142,
+      "replay_error": null,
+      "replay_status": "supported",
+      "replayed_final_seed": 21,
+      "site": [
+        1674,
+        2363
+      ],
+      "vcr_id": 593
+    },
+    {
+      "factual_seed": 41,
+      "replay_cycles": 192,
+      "replay_error": null,
+      "replay_status": "supported",
+      "replayed_final_seed": 30,
+      "site": [
+        1674,
+        2363
+      ],
+      "vcr_id": 594
+    },
+    {
+      "factual_seed": 10,
+      "replay_cycles": 126,
+      "replay_error": null,
+      "replay_status": "supported",
+      "replayed_final_seed": 66,
+      "site": [
+        1674,
+        2363
+      ],
+      "vcr_id": 595
+    },
+    {
+      "factual_seed": 118,
+      "replay_cycles": 276,
+      "replay_error": null,
+      "replay_status": "supported",
+      "replayed_final_seed": 13,
+      "site": [
+        1674,
+        2363
+      ],
+      "vcr_id": 596
+    },
+    {
+      "factual_seed": 25,
+      "replay_cycles": 141,
+      "replay_error": null,
+      "replay_status": "supported",
+      "replayed_final_seed": 15,
+      "site": [
+        1674,
+        2363
+      ],
+      "vcr_id": 597
+    },
+    {
+      "factual_seed": 21,
+      "replay_cycles": 148,
+      "replay_error": null,
+      "replay_status": "supported",
+      "replayed_final_seed": 9,
+      "site": [
+        2973,
+        2106
+      ],
+      "vcr_id": 598
+    }
+  ]
+}

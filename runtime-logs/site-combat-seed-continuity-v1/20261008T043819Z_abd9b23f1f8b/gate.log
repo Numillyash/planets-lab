@@ -1,0 +1,21 @@
+===== CLASSIC SEED CONTINUITY AUDIT V1 =====
+HEAD: abd9b23f1f8b0b11153dfe7968ca9a9b4e991fee
+public100: generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb
+sha256: 3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c
+runtime: /root/.cache/planets-lab/site-state-v1/bin/python
+output: artifacts/combat/site-seed-continuity/game400330-t141.json
+===== CLASSIC SEED CONTINUITY AUDIT V1 =====
+status: OBSERVATIONAL_NOT_PROMOTED
+summary: {'adjacent_comparable': 11, 'adjacent_neither': 11, 'observed_vcrs': 12, 'replay_supported': 12, 'transitions': 11}
+V587->V588 replay_final=51 next_start=77 delta=26 same=False plus_one=False
+V588->V589 replay_final=5 next_start=78 delta=73 same=False plus_one=False
+V589->V590 replay_final=79 next_start=31 delta=71 same=False plus_one=False
+V590->V591 replay_final=15 next_start=110 delta=95 same=False plus_one=False
+V591->V592 replay_final=23 next_start=27 delta=4 same=False plus_one=False
+V592->V593 replay_final=11 next_start=81 delta=70 same=False plus_one=False
+V593->V594 replay_final=21 next_start=41 delta=20 same=False plus_one=False
+V594->V595 replay_final=30 next_start=10 delta=99 same=False plus_one=False
+V595->V596 replay_final=66 next_start=118 delta=52 same=False plus_one=False
+V596->V597 replay_final=13 next_start=25 delta=12 same=False plus_one=False
+V597->V598 replay_final=15 next_start=21 delta=6 same=False plus_one=False
+output: artifacts/combat/site-seed-continuity/game400330-t141.json
