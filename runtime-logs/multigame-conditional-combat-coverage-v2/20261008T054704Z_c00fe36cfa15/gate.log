@@ -1,0 +1,24 @@
+===== MULTIGAME CONDITIONAL COMBAT COVERAGE V2 =====
+HEAD: c00fe36cfa15ec7a19b1c9fe3c2ae8dc53b7c5ef
+public100: generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb
+sha256: 3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c
+runtime: /root/.cache/planets-lab/site-state-v1/bin/python
+games: 10
+cases_per_game: 2
+max_candidate_games: 35
+turns_per_game: 4
+output: artifacts/combat/multigame-conditional-coverage-v2/public100-coverage-v2.json
+===== MULTIGAME CONDITIONAL COMBAT COVERAGE V2 =====
+status: CONDITIONAL_MULTIGAME_COVERAGE_TARGET_MET
+summary: {'games_selected': 10, 'different_game_ids': [400330, 217591, 221008, 227887, 233558, 245123, 253449, 257776, 266087, 281994], 'cases_evaluated': 20, 'target_cases': 20, 'full_case_quota_games': 10, 'partial_case_quota_games': 0, 'scenario_replays': 3068, 'observed_mass_inside_scenarios': 18, 'observed_mass_outside_scenarios': 2, 'observed_mass_unknown': 0, 'candidate_games_attempted': 10, 'turns_attempted': 10, 'vcrs_attempted': 20, 'games_rejected': 0}
+game=400330 cases=2 turns_examined=1 selected=['T141:V587', 'T141:V588'] unsupported={}
+game=217591 cases=2 turns_examined=1 selected=['T149:V2389', 'T149:V2390'] unsupported={}
+game=221008 cases=2 turns_examined=1 selected=['T129:V321', 'T129:V322'] unsupported={}
+game=227887 cases=2 turns_examined=1 selected=['T285:V869', 'T285:V870'] unsupported={}
+game=233558 cases=2 turns_examined=1 selected=['T428:V1262', 'T428:V1263'] unsupported={}
+game=245123 cases=2 turns_examined=1 selected=['T99:V438', 'T99:V439'] unsupported={}
+game=253449 cases=2 turns_examined=1 selected=['T82:V610', 'T82:V611'] unsupported={}
+game=257776 cases=2 turns_examined=1 selected=['T186:V1319', 'T186:V1320'] unsupported={}
+game=266087 cases=2 turns_examined=1 selected=['T107:V900', 'T107:V901'] unsupported={}
+game=281994 cases=2 turns_examined=1 selected=['T124:V976', 'T124:V977'] unsupported={}
+output: artifacts/combat/multigame-conditional-coverage-v2/public100-coverage-v2.json
