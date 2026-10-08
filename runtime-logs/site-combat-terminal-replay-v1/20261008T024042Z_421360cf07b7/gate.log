@@ -1,0 +1,37 @@
+===== SITE COMBAT TERMINAL REPLAY V1 =====
+HEAD:      421360cf07b76a794c85300983af7fcae26a5a93
+runtime:   local
+output:    artifacts/combat/site-terminal-replay/game400330-t141-v592-595.json
+
+===== SITE COMBAT STATE DIFFERENTIAL V1 =====
+HEAD:      421360cf07b76a794c85300983af7fcae26a5a93
+public100: generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb
+sha256:    3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c
+runtime:   local
+terminal:  replay
+WARNING: no compatible host Python found; planets-lab requires Python >=3.11.
+bootstrapping isolated Python 3.12 via uv
+bootstrap_python: /usr/bin/python3
+bootstrap_venv:   /root/.cache/planets-lab/site-state-bootstrap-uv
+managed_python:   /root/.cache/planets-lab/python
+Python 3.12 is already installed
+host python is missing runtime dependencies; preparing cached venv: /root/.cache/planets-lab/site-state-v1
+runtime_selected: host-python
+runtime_python:   /root/.cache/planets-lab/site-state-v1/bin/python
+===== SITE COMBAT STATE DIFFERENTIAL V1 =====
+status:  SITE_STATE_EXACT
+terminal_source: current_vcr_replay_carried_overlay
+summary: {'expected_transitions': 3, 'evaluated_transitions': 3, 'exact_transitions': 3, 'current_vcr_start_exact_transitions': 3, 'next_vcr_start_exact_transitions': 3, 'all_exact': True, 'modes': ['capture_immediate_C', 'capture_parent_resume', 'capture_immediate_C']}
+V592->V593 mode=capture_immediate_C predicted=[140, 170] factual=[140, 170] pair_exact=True side_exact=True
+V593->V594 mode=capture_parent_resume predicted=[170, 184] factual=[170, 184] pair_exact=True side_exact=True
+V594->V595 mode=capture_immediate_C predicted=[170, 382] factual=[170, 382] pair_exact=True side_exact=True
+output:  artifacts/combat/site-terminal-replay/game400330-t141-v592-595.json
+output: artifacts/combat/site-terminal-replay/game400330-t141-v592-595.json
+SITE_TERMINAL_REPLAY_EXACT
+expected_transitions: 3
+evaluated_transitions: 3
+exact_transitions: 3
+current_vcr_start_exact_transitions: 3
+next_vcr_start_exact_transitions: 3
+modes: ['capture_immediate_C', 'capture_parent_resume', 'capture_immediate_C']
+terminal_source: current_vcr_replay_carried_overlay
