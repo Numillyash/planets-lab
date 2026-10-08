@@ -82,6 +82,12 @@ def test_missing_and_hybrid_ammo_fail_as_unresolved_not_zero() -> None:
         if x["field"] == "torpedos"
     )["status"] == "unresolved_prior"
 
+    invalid = MODULE.side_provenance(
+        side_name="left", vcr_side=_side(),
+        prediction=_prediction(ammo="n/a"),
+    )
+    assert invalid["tminus1_ammo_classification"] == "invalid_tminus1_ammo"
+
     hybrid = MODULE.side_provenance(
         side_name="left", vcr_side=_side(), prediction=_prediction(bays=2)
     )
