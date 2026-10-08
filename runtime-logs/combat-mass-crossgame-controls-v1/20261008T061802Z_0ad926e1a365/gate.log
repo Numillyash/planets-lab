@@ -1,0 +1,169 @@
+===== CROSS-GAME COMBAT MASS CONTROLS V1 =====
+HEAD: 0ad926e1a3653ddde0cee5be4ae95a27ce27fdb0
+public100: generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb
+sha256: 3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c
+extra_games: 20
+max_vcrs_per_turn: 120
+output: artifacts/combat/mass-crossgame-controls-v1/public100-mass-controls.json
+===== CROSS-GAME COMBAT MASS CONTROLS V1 =====
+status: OBSERVATIONAL_CROSSGAME_NOT_PROMOTED
+summary: {'classic_carrier_eligible_sides': 205, 'classic_hull_threshold': 912, 'fed_adjusted_only_eligible_sides': 1, 'federation_adjusted_threshold_candidate': 1, 'horwasp_full_load_endpoint_candidate': 54, 'ship_vs_ship_vcrs_compared': 523, 'turns_compared': 22, 'unresolved_mass_residual': 79}
+games_turns: 22 errors: 0
+game=400330 turn=141 vcrs=12/12 rejects={'side hull/mass/race unavailable': 1}
+game=217591 turn=149 vcrs=61/61 rejects={'side hull/mass/race unavailable': 19}
+  V2390 right ship=220 race=1 hullmass=120 vcr=530 base=170 class=federation_adjusted_threshold_candidate
+  V2398 right ship=828 race=1 hullmass=650 vcr=1210 base=700 class=unresolved_mass_residual
+  V2399 right ship=60 race=1 hullmass=173 vcr=373 base=223 class=unresolved_mass_residual
+  V2400 right ship=60 race=1 hullmass=173 vcr=733 base=223 class=unresolved_mass_residual
+  V2402 right ship=93 race=12 hullmass=200 vcr=760 base=200 class=unresolved_mass_residual
+  V2403 right ship=176 race=12 hullmass=475 vcr=1310 base=475 class=unresolved_mass_residual
+  V2404 right ship=187 race=12 hullmass=475 vcr=950 base=475 class=horwasp_full_load_endpoint_candidate
+  V2405 left ship=119 race=12 hullmass=125 vcr=290 base=125 class=unresolved_mass_residual
+  V2406 right ship=119 race=12 hullmass=125 vcr=290 base=125 class=unresolved_mass_residual
+  V2407 right ship=204 race=12 hullmass=200 vcr=400 base=200 class=horwasp_full_load_endpoint_candidate
+  V2408 right ship=418 race=12 hullmass=200 vcr=400 base=200 class=horwasp_full_load_endpoint_candidate
+  V2409 right ship=279 race=1 hullmass=650 vcr=1210 base=700 class=unresolved_mass_residual
+  V2410 left ship=841 race=1 hullmass=173 vcr=373 base=223 class=unresolved_mass_residual
+  V2411 right ship=417 race=12 hullmass=200 vcr=760 base=200 class=unresolved_mass_residual
+  V2412 right ship=781 race=12 hullmass=200 vcr=760 base=200 class=unresolved_mass_residual
+  V2413 right ship=722 race=12 hullmass=475 vcr=950 base=475 class=horwasp_full_load_endpoint_candidate
+  V2418 right ship=1094 race=12 hullmass=75 vcr=150 base=75 class=horwasp_full_load_endpoint_candidate
+  V2421 right ship=253 race=12 hullmass=125 vcr=650 base=125 class=unresolved_mass_residual
+  V2422 right ship=517 race=12 hullmass=125 vcr=290 base=125 class=unresolved_mass_residual
+  V2423 right ship=517 race=12 hullmass=125 vcr=290 base=125 class=unresolved_mass_residual
+  V2424 right ship=1173 race=12 hullmass=75 vcr=150 base=75 class=horwasp_full_load_endpoint_candidate
+  V2425 right ship=1040 race=12 hullmass=31 vcr=62 base=31 class=horwasp_full_load_endpoint_candidate
+  V2426 right ship=1062 race=12 hullmass=75 vcr=150 base=75 class=horwasp_full_load_endpoint_candidate
+  V2428 left ship=768 race=12 hullmass=475 vcr=628 base=475 class=unresolved_mass_residual
+  V2430 right ship=1031 race=12 hullmass=75 vcr=150 base=75 class=horwasp_full_load_endpoint_candidate
+game=253449 turn=82 vcrs=45/45 rejects={'side hull/mass/race unavailable': 23}
+  V611 right ship=48 race=12 hullmass=145 vcr=290 base=145 class=horwasp_full_load_endpoint_candidate
+  V612 right ship=48 race=12 hullmass=145 vcr=650 base=145 class=unresolved_mass_residual
+  V613 right ship=48 race=12 hullmass=145 vcr=650 base=145 class=unresolved_mass_residual
+  V614 right ship=48 race=12 hullmass=145 vcr=290 base=145 class=horwasp_full_load_endpoint_candidate
+  V615 right ship=48 race=12 hullmass=145 vcr=290 base=145 class=horwasp_full_load_endpoint_candidate
+  V616 right ship=48 race=12 hullmass=145 vcr=290 base=145 class=horwasp_full_load_endpoint_candidate
+  V617 right ship=48 race=12 hullmass=145 vcr=290 base=145 class=horwasp_full_load_endpoint_candidate
+  V618 right ship=48 race=12 hullmass=145 vcr=287 base=145 class=unresolved_mass_residual
+  V619 right ship=48 race=12 hullmass=145 vcr=287 base=145 class=unresolved_mass_residual
+  V624 right ship=248 race=12 hullmass=145 vcr=290 base=145 class=horwasp_full_load_endpoint_candidate
+  V628 right ship=1009 race=12 hullmass=75 vcr=150 base=75 class=horwasp_full_load_endpoint_candidate
+  V629 right ship=504 race=12 hullmass=145 vcr=650 base=145 class=unresolved_mass_residual
+  V630 left ship=420 race=12 hullmass=145 vcr=252 base=145 class=unresolved_mass_residual
+  V631 right ship=1023 race=12 hullmass=75 vcr=150 base=75 class=horwasp_full_load_endpoint_candidate
+game=218619 turn=193 vcrs=33/33 rejects={'side hull/mass/race unavailable': 2}
+game=227887 turn=285 vcrs=58/58 rejects={'side hull/mass/race unavailable': 5}
+game=245123 turn=99 vcrs=22/22 rejects={'side hull/mass/race unavailable': 8}
+game=257776 turn=186 vcrs=32/32 rejects={'side hull/mass/race unavailable': 13}
+game=277134 turn=99 vcrs=32/32 rejects={'side hull/mass/race unavailable': 11}
+game=306971 turn=345 vcrs=31/31 rejects={'side hull/mass/race unavailable': 25}
+game=338264 turn=143 vcrs=63/63 rejects={'side hull/mass/race unavailable': 19}
+  V2580 left ship=434 race=12 hullmass=145 vcr=290 base=145 class=horwasp_full_load_endpoint_candidate
+  V2581 left ship=1053 race=12 hullmass=31 vcr=34 base=31 class=unresolved_mass_residual
+  V2582 left ship=1002 race=12 hullmass=365 vcr=730 base=365 class=horwasp_full_load_endpoint_candidate
+  V2583 left ship=1042 race=12 hullmass=31 vcr=37 base=31 class=unresolved_mass_residual
+  V2584 left ship=1307 race=12 hullmass=31 vcr=34 base=31 class=unresolved_mass_residual
+  V2585 left ship=1125 race=12 hullmass=75 vcr=150 base=75 class=horwasp_full_load_endpoint_candidate
+  V2586 left ship=393 race=12 hullmass=145 vcr=290 base=145 class=horwasp_full_load_endpoint_candidate
+  V2587 right ship=1319 race=12 hullmass=75 vcr=510 base=75 class=unresolved_mass_residual
+  V2588 right ship=1070 race=12 hullmass=75 vcr=510 base=75 class=unresolved_mass_residual
+  V2589 right ship=1070 race=12 hullmass=75 vcr=150 base=75 class=horwasp_full_load_endpoint_candidate
+  V2590 left ship=1046 race=12 hullmass=31 vcr=34 base=31 class=unresolved_mass_residual
+  V2591 right ship=1331 race=12 hullmass=75 vcr=510 base=75 class=unresolved_mass_residual
+  V2592 right ship=1249 race=12 hullmass=75 vcr=510 base=75 class=unresolved_mass_residual
+  V2593 right ship=1258 race=12 hullmass=75 vcr=510 base=75 class=unresolved_mass_residual
+  V2594 right ship=1112 race=12 hullmass=75 vcr=150 base=75 class=horwasp_full_load_endpoint_candidate
+  V2595 right ship=1291 race=12 hullmass=75 vcr=150 base=75 class=horwasp_full_load_endpoint_candidate
+  V2596 right ship=1311 race=12 hullmass=75 vcr=150 base=75 class=horwasp_full_load_endpoint_candidate
+  V2597 right ship=1104 race=12 hullmass=75 vcr=150 base=75 class=horwasp_full_load_endpoint_candidate
+  V2598 right ship=1234 race=12 hullmass=75 vcr=150 base=75 class=horwasp_full_load_endpoint_candidate
+  V2599 right ship=1061 race=12 hullmass=75 vcr=150 base=75 class=horwasp_full_load_endpoint_candidate
+  V2600 right ship=218 race=12 hullmass=145 vcr=290 base=145 class=horwasp_full_load_endpoint_candidate
+  V2601 right ship=386 race=12 hullmass=145 vcr=290 base=145 class=horwasp_full_load_endpoint_candidate
+  V2602 right ship=1030 race=12 hullmass=75 vcr=510 base=75 class=unresolved_mass_residual
+  V2603 right ship=1031 race=12 hullmass=75 vcr=510 base=75 class=unresolved_mass_residual
+  V2604 right ship=1133 race=12 hullmass=75 vcr=510 base=75 class=unresolved_mass_residual
+  V2605 right ship=1087 race=12 hullmass=75 vcr=150 base=75 class=horwasp_full_load_endpoint_candidate
+  V2606 right ship=1226 race=12 hullmass=75 vcr=150 base=75 class=horwasp_full_load_endpoint_candidate
+  V2607 right ship=1095 race=12 hullmass=75 vcr=150 base=75 class=horwasp_full_load_endpoint_candidate
+  V2608 right ship=1210 race=12 hullmass=75 vcr=510 base=75 class=unresolved_mass_residual
+  V2609 right ship=1218 race=12 hullmass=75 vcr=150 base=75 class=horwasp_full_load_endpoint_candidate
+  V2610 right ship=1116 race=12 hullmass=75 vcr=150 base=75 class=horwasp_full_load_endpoint_candidate
+  V2611 right ship=1300 race=12 hullmass=75 vcr=150 base=75 class=horwasp_full_load_endpoint_candidate
+  V2612 left ship=236 race=12 hullmass=475 vcr=950 base=475 class=horwasp_full_load_endpoint_candidate
+  V2613 right ship=1287 race=12 hullmass=75 vcr=510 base=75 class=unresolved_mass_residual
+  V2614 right ship=1321 race=12 hullmass=75 vcr=150 base=75 class=horwasp_full_load_endpoint_candidate
+  V2615 right ship=1203 race=12 hullmass=75 vcr=150 base=75 class=horwasp_full_load_endpoint_candidate
+  V2616 right ship=1038 race=12 hullmass=75 vcr=150 base=75 class=horwasp_full_load_endpoint_candidate
+  V2617 right ship=1003 race=12 hullmass=75 vcr=150 base=75 class=horwasp_full_load_endpoint_candidate
+  V2618 left ship=1180 race=12 hullmass=31 vcr=34 base=31 class=unresolved_mass_residual
+  V2619 right ship=1259 race=12 hullmass=75 vcr=510 base=75 class=unresolved_mass_residual
+  V2620 right ship=1281 race=12 hullmass=75 vcr=150 base=75 class=horwasp_full_load_endpoint_candidate
+  V2621 right ship=1067 race=12 hullmass=75 vcr=150 base=75 class=horwasp_full_load_endpoint_candidate
+  V2622 right ship=1147 race=12 hullmass=75 vcr=150 base=75 class=horwasp_full_load_endpoint_candidate
+  V2623 right ship=1197 race=12 hullmass=75 vcr=510 base=75 class=unresolved_mass_residual
+game=347358 turn=168 vcrs=24/24 rejects={'side hull/mass/race unavailable': 12}
+game=371631 turn=156 vcrs=27/27 rejects={'side hull/mass/race unavailable': 3}
+  V1193 right ship=461 race=4 hullmass=451 vcr=751 base=451 class=unresolved_mass_residual
+  V1194 right ship=463 race=4 hullmass=451 vcr=1111 base=451 class=unresolved_mass_residual
+  V1195 right ship=466 race=4 hullmass=451 vcr=1111 base=451 class=unresolved_mass_residual
+  V1196 right ship=18 race=4 hullmass=451 vcr=751 base=451 class=unresolved_mass_residual
+  V1197 right ship=18 race=4 hullmass=451 vcr=751 base=451 class=unresolved_mass_residual
+  V1198 right ship=18 race=4 hullmass=451 vcr=751 base=451 class=unresolved_mass_residual
+  V1199 left ship=290 race=4 hullmass=451 vcr=751 base=451 class=unresolved_mass_residual
+  V1200 left ship=290 race=4 hullmass=451 vcr=751 base=451 class=unresolved_mass_residual
+  V1201 left ship=410 race=4 hullmass=451 vcr=751 base=451 class=unresolved_mass_residual
+  V1202 left ship=439 race=4 hullmass=451 vcr=751 base=451 class=unresolved_mass_residual
+  V1203 right ship=439 race=4 hullmass=451 vcr=751 base=451 class=unresolved_mass_residual
+  V1204 right ship=439 race=4 hullmass=451 vcr=751 base=451 class=unresolved_mass_residual
+  V1205 right ship=459 race=4 hullmass=451 vcr=751 base=451 class=unresolved_mass_residual
+  V1206 right ship=459 race=4 hullmass=451 vcr=1111 base=451 class=unresolved_mass_residual
+  V1207 right ship=459 race=4 hullmass=451 vcr=751 base=451 class=unresolved_mass_residual
+  V1208 right ship=459 race=4 hullmass=451 vcr=1111 base=451 class=unresolved_mass_residual
+  V1209 left ship=262 race=4 hullmass=96 vcr=266 base=96 class=unresolved_mass_residual
+  V1210 left ship=6 race=4 hullmass=173 vcr=323 base=173 class=unresolved_mass_residual
+  V1212 right ship=50 race=4 hullmass=451 vcr=601 base=451 class=unresolved_mass_residual
+  V1215 right ship=324 race=4 hullmass=451 vcr=751 base=451 class=unresolved_mass_residual
+game=407599 turn=122 vcrs=10/10 rejects={'side hull/mass/race unavailable': 4}
+game=421949 turn=131 vcrs=42/42 rejects={'side hull/mass/race unavailable': 21}
+game=454504 turn=134 vcrs=50/50 rejects={'side hull/mass/race unavailable': 3}
+game=474699 turn=201 vcrs=33/33 rejects={'side hull/mass/race unavailable': 21}
+  V2867 left ship=193 race=4 hullmass=451 vcr=751 base=451 class=unresolved_mass_residual
+  V2867 right ship=1017 race=12 hullmass=75 vcr=150 base=75 class=horwasp_full_load_endpoint_candidate
+  V2868 left ship=193 race=4 hullmass=451 vcr=751 base=451 class=unresolved_mass_residual
+  V2868 right ship=1097 race=12 hullmass=75 vcr=150 base=75 class=horwasp_full_load_endpoint_candidate
+  V2869 left ship=193 race=4 hullmass=451 vcr=751 base=451 class=unresolved_mass_residual
+  V2869 right ship=1149 race=12 hullmass=75 vcr=150 base=75 class=horwasp_full_load_endpoint_candidate
+  V2870 left ship=193 race=4 hullmass=451 vcr=751 base=451 class=unresolved_mass_residual
+  V2870 right ship=1154 race=12 hullmass=75 vcr=150 base=75 class=horwasp_full_load_endpoint_candidate
+  V2871 left ship=33 race=12 hullmass=185 vcr=370 base=185 class=horwasp_full_load_endpoint_candidate
+  V2872 left ship=558 race=12 hullmass=185 vcr=370 base=185 class=horwasp_full_load_endpoint_candidate
+  V2873 left ship=67 race=12 hullmass=475 vcr=950 base=475 class=horwasp_full_load_endpoint_candidate
+  V2874 left ship=67 race=12 hullmass=475 vcr=925 base=475 class=unresolved_mass_residual
+  V2877 right ship=1079 race=12 hullmass=75 vcr=150 base=75 class=horwasp_full_load_endpoint_candidate
+  V2878 right ship=1038 race=12 hullmass=75 vcr=150 base=75 class=horwasp_full_load_endpoint_candidate
+game=477725 turn=151 vcrs=20/20 rejects={'side hull/mass/race unavailable': 9}
+game=499284 turn=117 vcrs=30/30 rejects={'side hull/mass/race unavailable': 15}
+game=563278 turn=233 vcrs=57/57 rejects={'side hull/mass/race unavailable': 6}
+  V2624 left ship=144 race=4 hullmass=451 vcr=751 base=451 class=unresolved_mass_residual
+  V2625 right ship=144 race=4 hullmass=451 vcr=751 base=451 class=unresolved_mass_residual
+  V2626 right ship=216 race=4 hullmass=451 vcr=751 base=451 class=unresolved_mass_residual
+  V2627 right ship=40 race=4 hullmass=451 vcr=751 base=451 class=unresolved_mass_residual
+  V2628 right ship=40 race=4 hullmass=451 vcr=751 base=451 class=unresolved_mass_residual
+  V2629 right ship=130 race=4 hullmass=451 vcr=751 base=451 class=unresolved_mass_residual
+  V2630 right ship=130 race=4 hullmass=451 vcr=751 base=451 class=unresolved_mass_residual
+  V2631 right ship=131 race=4 hullmass=451 vcr=751 base=451 class=unresolved_mass_residual
+  V2632 right ship=110 race=4 hullmass=451 vcr=751 base=451 class=unresolved_mass_residual
+  V2633 right ship=110 race=4 hullmass=451 vcr=751 base=451 class=unresolved_mass_residual
+  V2634 right ship=255 race=4 hullmass=451 vcr=751 base=451 class=unresolved_mass_residual
+  V2635 right ship=255 race=4 hullmass=451 vcr=751 base=451 class=unresolved_mass_residual
+  V2636 right ship=133 race=4 hullmass=451 vcr=751 base=451 class=unresolved_mass_residual
+  V2637 right ship=133 race=4 hullmass=451 vcr=751 base=451 class=unresolved_mass_residual
+  V2638 right ship=15 race=4 hullmass=173 vcr=323 base=173 class=unresolved_mass_residual
+  V2665 right ship=123 race=4 hullmass=451 vcr=601 base=451 class=unresolved_mass_residual
+game=617883 turn=202 vcrs=26/26 rejects={'side hull/mass/race unavailable': 1}
+  V1059 right ship=1060 race=12 hullmass=75 vcr=150 base=75 class=horwasp_full_load_endpoint_candidate
+game=644013 turn=75 vcrs=22/22 rejects={'side hull/mass/race unavailable': 1}
+game=660249 turn=48 vcrs=31/31 rejects={'side hull/mass/race unavailable': 16}
+brood_tminus1_owner: {'game_id': 253449, 'turn': 82, 'ship_id': 48, 'owner_perspective_rows': [{'archive_turn': 81, 'perspective_player_id': 12, 'ship_id': 48, 'hull_id': 117, 'observed_clans': 900, 'catalog_cargo_capacity': 900, 'observed_full_load_at_tminus1': True, 'raw_mass': 1197, 'raw_neutronium': 140, 'evidence_boundary': 'T-1 OWNER-perspective snapshot only, not proof of clan occupancy immediately before combat at T.'}], 'source': 'tminus1_owner_archive_snapshot'}
+output: artifacts/combat/mass-crossgame-controls-v1/public100-mass-controls.json
