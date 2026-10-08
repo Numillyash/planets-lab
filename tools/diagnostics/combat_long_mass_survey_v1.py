@@ -326,6 +326,9 @@ def analyze_turn(*,conn:Any,game:int,turn:int,specs:Any,
                     ([("external_brood_reference_145",145)]
                      if hull_id==117 and hull.mass!=145 else [])
                 ):
+                    if hull.cargo_capacity<=0 or h<=0:
+                        stats["horwasp_unknown_cargo_capacity"]+=1
+                        continue
                     for bonus in ([0,360] if side=="right" and left_bays>0 and 2*h>=140 else [0]):
                         interval=inverse_clan_interval(mass,h,hull.cargo_capacity,bonus)
                         if interval is not None:
@@ -456,13 +459,16 @@ def publish_snapshot(*,checkpoint_dir:Path,summary_path:Path,
         for turn in row["turns"]:
             global_counts.update(turn["counts"])
             if len(examples)<250:
-                examples.extend(turn["examples"][:min(10,250-len(examples))])
+                examples.extend(turn["examples"][:min(3,250-len(examples))])
             if len(timelines)<80:
-                timelines.extend(turn["horwasp_timelines"][:min(3,80-len(timelines))])
+                timelines.extend(turn["horwasp_timelines"][:min(1,80-len(timelines))])
     report={
         "schema":SCHEMA,"status":(
-            "COMPLETE_OBSERVATIONAL_NOT_PROMOTED" if len(done)==len(selection)
-            else "PARTIAL_CHECKPOINT_RESUMABLE_NOT_PROMOTED"
+            "PARTIAL_CHECKPOINT_RESUMABLE_NOT_PROMOTED"
+            if len(done)<len(selection)
+            else "COMPLETE_WITH_REJECTIONS_OBSERVATIONAL_NOT_PROMOTED"
+            if statuses.get("partial",0) or statuses.get("failed",0)
+            else "COMPLETE_OBSERVATIONAL_NOT_PROMOTED"
         ),
         "identity_sha256":identity,
         "config":dict(config),
