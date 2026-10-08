@@ -146,3 +146,25 @@ def test_ambiguous_mass_and_invalid_seed_grid_fail_closed() -> None:
 
 def test_default_grid_is_exactly_118_distinct_start_seeds() -> None:
     assert prob.CLASSIC_START_SEEDS == tuple(range(1, 119))
+
+
+def test_horwasp_mass_must_be_independently_reconstructed() -> None:
+    payload = _payload()
+    payload["right"]["raceid"] = 12
+    with pytest.raises(ReplayUnsupported, match="Horwasp clan-dependent"):
+        prob.evaluate_conditional_classic(
+            payload, beams=(), torpedoes=(), settings={"combatrng": 0},
+            left_hull_mass=980, right_hull_mass=145,
+            assumed_no_other_mass_modifiers=True, seed_values=(1, 2),
+        )
+
+
+def test_federation_threshold_crossing_is_not_silently_classic() -> None:
+    payload = _payload()
+    payload["right"]["raceid"] = 1
+    with pytest.raises(ReplayUnsupported, match="Federation-adjusted"):
+        prob.evaluate_conditional_classic(
+            payload, beams=(), torpedoes=(), settings={"combatrng": 0},
+            left_hull_mass=980, right_hull_mass=120,
+            assumed_no_other_mass_modifiers=True, seed_values=(1, 2),
+        )
