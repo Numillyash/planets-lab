@@ -61,9 +61,12 @@ candidate rule:
 Seed, battle type and combatrng are reported strictly as factual observations.
 No seed-progression formula is inferred or promoted.
 
-All VCR cases must match the factual site queue pair. The probe does not use
-post-combat terminal state and does not run the executor. Its outputs must never
-be wired into a prediction path.
+All VCR cases must match the factual site queue pair. This is an observational
+audit: it intentionally opens every sampled VCR as an observation, so it does
+NOT claim a held-out N+1 prediction. The existing _target_context helper may
+reconstruct historical appearance/terminal traces; this matrix discards them,
+does not use them in field comparisons, and never runs the site executor.
+Its outputs must never be wired into a prediction path.
 
 ## Interpretation boundary
 
