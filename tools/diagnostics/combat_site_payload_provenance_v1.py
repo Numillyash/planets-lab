@@ -287,7 +287,10 @@ def build_report(
             "payloads as comparison targets and T-1 raw predictions as "
             "candidate sources. No observed equality promotes a Host rule; "
             "no derived static field or seed is supplied to site_executor. "
-            "Terminal outcomes and N+1 replay are not read."
+            "VCRs 592..595 are observational inputs, not held-out predictions; "
+            "no observed field is injected into the mutable executor. "
+            "Site-context acquisition may reconstruct historical appearance "
+            "traces, which this matrix deliberately discards."
         ),
     }
 
