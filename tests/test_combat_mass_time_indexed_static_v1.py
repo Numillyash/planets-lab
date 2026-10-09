@@ -122,7 +122,7 @@ def test_independent_holdout_selection_excludes_entire_control_games():
     candidates = [(217591, 149), (217591, 75), (900, 11),
                   (900, 10), (901, 12), (902, 23), (901, 13)]
     assert M.select_holdout_pairs(candidates, excluded_games={217591}) == [
-        (900, 10), (901, 12), (902, 23)
+        (900, 10), (900, 11), (901, 12), (901, 13), (902, 23)
     ]
 
 
@@ -136,3 +136,40 @@ def test_runner_gates_v1_and_verifies_pinned_db():
     assert "--reconciliation" in a.read_text()
     assert "run-with-runtime-evidence.sh" in b.read_text()
     assert "run-combat-mass-temporal-reconciliation-v1-with-evidence.sh" in c.read_text()
+
+
+def test_holdout_candidate_sql_uses_vcr_existence_and_tminus1_without_mass():
+    class Conn:
+        def execute(self, sql):
+            self.sql = sql
+            return self
+        def fetchall(self):
+            return [(900, 10), (900, 11), (901, 12)]
+    conn = Conn()
+    assert M._candidate_pairs(conn) == [(900, 10), (900, 11), (901, 12)]
+    assert "typed_vcrs" in conn.sql
+    assert "archive_turn - 1" in conn.sql
+    assert "data.mass" not in conn.sql.lower()
+
+
+def test_no_vcr_early_turn_does_not_discard_remaining_game_turns():
+    pairs = M.select_holdout_pairs(
+        [(900, 10), (900, 11), (901, 12)], excluded_games=set()
+    )
+    assert pairs[:2] == [(900, 10), (900, 11)]
+    # Live loop must remember a game ONLY after successfully finding VCRs.
+    script = SCRIPT.read_text()
+    assert "completed_games.add(game)" in script
+    assert script.index("if not cases:") < script.index("completed_games.add(game)")
+    assert "no matching VCR; trying next eligible turn" in script
+
+
+def test_progress_and_single_corpus_hash(capsys):
+    M._progress("game=900 T11 predicting")
+    assert "[static-v1] game=900 T11 predicting" in capsys.readouterr().out
+    shell = (ROOT / "tools/run-combat-mass-time-indexed-static-v1.sh").read_text()
+    script = SCRIPT.read_text()
+    assert "sha256sum" not in shell
+    assert script.count('hashlib.file_digest(stream, "sha256")') == 1
+    assert "flush=True" in script
+    assert "candidate game-turns:" in script

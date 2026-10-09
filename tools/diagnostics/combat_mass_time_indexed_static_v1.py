@@ -11,6 +11,7 @@ import argparse
 import hashlib
 import json
 import sys
+import time
 from collections import Counter
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
@@ -23,6 +24,10 @@ CONTROL_SCHEMA = "planets-lab.combat-mass-capture-phase-controls.v1"
 GENERATION = "generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb"
 GENERATION_SHA256 = "3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c"
 MIN_HOLDOUT_GAMES = 3
+
+
+def _progress(message: str) -> None:
+    print(f"[static-v1] {message}", flush=True)
 
 
 def integer(value: Any) -> int | None:
@@ -164,32 +169,38 @@ def evaluate_forecast(forecast: Mapping[str, Any], observed_mass: Any) -> dict[s
 def select_holdout_pairs(
     pairs: Sequence[tuple[int, int]], *, excluded_games: set[int],
 ) -> list[tuple[int, int]]:
-    """First chronological archived T-1/T pair per independent game.
+    """All chronological VCR-bearing candidate turns, grouped by game.
 
-    Selection uses ONLY available archive-turn metadata; never VCR masses or
-    residual rankings. Excludes all games used by the 14 targeted controls.
+    The loop takes the FIRST usable battle turn per game and keeps looking
+    when an earlier consecutive T-1/T archive has no VCR. Whole games from
+    targeted controls are excluded; factual mass is never used for selection.
     """
-    selected: dict[int, int] = {}
-    for game, turn in sorted(set(pairs)):
-        if (integer(game) is None or integer(turn) is None or turn < 1
-                or game in excluded_games):
-            continue
-        selected.setdefault(game, turn)
-    return sorted(selected.items())
+    return [
+        (game, turn) for game, turn in sorted(set(pairs))
+        if integer(game) is not None and game > 0
+        and integer(turn) is not None and turn >= 1
+        and game not in excluded_games
+    ]
 
 
 def _candidate_pairs(conn: Any) -> list[tuple[int, int]]:
     rows = conn.execute("""
-        WITH gt AS (
+        WITH archive_turns AS (
             SELECT DISTINCT game_id, archive_turn FROM source_members
+        ), archived_vcr_turns AS (
+            -- Cheap metadata-only pruning: NEVER read VCR factual mass here.
+            -- Subsequent combat_vcr_cases_for_turns validates battle-turn identity.
+            SELECT DISTINCT sm.game_id, sm.archive_turn
+            FROM typed_vcrs AS v
+            JOIN source_members AS sm USING (member_id)
         )
-        SELECT later.game_id, later.archive_turn
-        FROM gt AS later
-        INNER JOIN gt AS earlier
-          ON earlier.game_id = later.game_id
-         AND earlier.archive_turn = later.archive_turn - 1
-        WHERE later.archive_turn >= 1
-        ORDER BY later.game_id, later.archive_turn
+        SELECT v.game_id, v.archive_turn
+        FROM archived_vcr_turns AS v
+        INNER JOIN archive_turns AS prev
+          ON prev.game_id = v.game_id
+         AND prev.archive_turn = v.archive_turn - 1
+        WHERE v.archive_turn >= 1
+        ORDER BY v.game_id, v.archive_turn
     """).fetchall()
     return [(int(g), int(t)) for g, t in rows]
 
@@ -211,6 +222,7 @@ def live_report(
     )
     from planets_lab.corpus.combat_vcr_runtime import combat_vcr_cases_for_turns
 
+    _progress("validating published V1 reconciliation and static controls")
     controls = _read_json(controls_path)
     recon = _read_json(reconciliation_path)
     if (controls.get("schema") != CONTROL_SCHEMA
@@ -232,28 +244,40 @@ def live_report(
     db_file = db_root / GENERATION
     if not db_file.is_file():
         raise ValueError("pinned public100 generation missing")
-    # Hash before DuckDB open; never modify this file or its CURRENT pointer.
+    # Exactly one full SHA check, before opening the immutable DuckDB.
+    started = time.monotonic()
+    _progress(f"verifying pinned SHA256 for {db_file.name}")
     with db_file.open("rb") as stream:
         digest = hashlib.file_digest(stream, "sha256").hexdigest()
     if digest != GENERATION_SHA256:
         raise ValueError("pinned corpus SHA256 mismatch")
+    _progress(f"SHA256 verified ({time.monotonic()-started:.1f}s); opening read-only database")
     conn, path = connect_compact_generation_read_only(GENERATION, db_root)
     try:
+        _progress("discovering VCR-bearing archive turns with consecutive T-1 data")
         candidates = select_holdout_pairs(
             _candidate_pairs(conn), excluded_games=excluded
         )
+        _progress(f"candidate game-turns: {len(candidates)}; target distinct games: {max_games}")
         results: list[dict[str, Any]] = []
         scan_log: list[dict[str, Any]] = []
-        for game, turn in candidates:
+        completed_games: set[int] = set()
+        for ordinal, (game, turn) in enumerate(candidates, start=1):
             if len(results) >= max_games:
                 break
+            if game in completed_games:
+                continue
+            prefix = f"[{ordinal}/{len(candidates)}] game={game} T{turn}"
+            _progress(f"{prefix}: loading battle VCRs; selected={len(results)}/{max_games}")
             cases = combat_vcr_cases_for_turns(
                 conn, game_id=game, battle_turns={turn}
             )
             if not cases:
                 scan_log.append({"game_id": game, "turn": turn,
                                  "status": "NO_TARGET_VCR"})
+                _progress(f"{prefix}: no matching VCR; trying next eligible turn")
                 continue
+            _progress(f"{prefix}: found {len(cases)} VCRs; reconstructing T-1 snapshots")
             refs = member_refs_for_turns(
                 conn, game_id=game, turns={turn - 1},
                 include_embedded_turn=False,
@@ -262,6 +286,7 @@ def live_report(
                 snapshot_from_member(ref, member)
                 for ref, member in reconstruct_members(conn, refs)
             ]
+            _progress(f"{prefix}: T-1 perspectives={len(snapshots)}; predicting hull components")
             per_case = []
             for (_turn, vcr_id), case in sorted(cases.items()):
                 for side in ("left", "right"):
@@ -291,8 +316,15 @@ def live_report(
                 "vcr_side_count": len(per_case),
                 "predictions": per_case,
             })
+            completed_games.add(game)
+            status_summary = Counter(r["forecast"]["status"] for r in per_case)
+            _progress(f"{prefix}: done; sides={len(per_case)} statuses={dict(sorted(status_summary.items()))}; completed_games={len(results)}")
+        _progress(f"scan complete: independent games={len(results)}, skipped_no_vcr_turns={len(scan_log)}")
         if len(results) < MIN_HOLDOUT_GAMES:
-            raise ValueError("insufficient independent held-out games with VCRs")
+            raise ValueError(
+                f"insufficient held-out games with VCRs: {len(results)} "
+                f"(candidate_turns={len(candidates)}, no_VCR={len(scan_log)})"
+            )
     finally:
         conn.close()
     flattened = [row for group in results for row in group["predictions"]]
@@ -305,7 +337,7 @@ def live_report(
         "corpus_generation": str(path),
         "corpus_sha256": digest,
         "selection": {
-            "method": "earliest consecutive archived T-1/T pair by independent game ID; no VCR or residual mass ranking",
+            "method": "earliest qualifying archived VCR-bearing T-1/T turn per independent game; candidate selection uses only VCR existence, never observed mass or residual ranking",
             "excluded_control_games": sorted(excluded),
             "candidate_game_count": len(candidates),
             "max_selected_games": max_games,
