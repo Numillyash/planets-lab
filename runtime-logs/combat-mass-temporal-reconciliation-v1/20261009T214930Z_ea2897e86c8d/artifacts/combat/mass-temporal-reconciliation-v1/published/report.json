@@ -1,0 +1,373 @@
+{
+  "Rush_same_turn_capture_and_generator_hypothesis": {
+    "capture_between_VCRs_is_strongly_supported_not_terminal_outcome_verified": true,
+    "game_id": 617883,
+    "hypothesis": "CAPTURE_RECOMPUTES_NEW_OWNER_SHIELD_GENERATOR_BONUS",
+    "independent_candidate_formula": {
+      "candidate_second_combat_mass_KT": 795,
+      "documented_SG_bonus_KT": 150,
+      "initial_static_battle_mass_KT": 645,
+      "one_new_owner_Tminus1_Saber_at_site": 406,
+      "original_owner_Tminus1_engine_id": 9,
+      "second_factual_combat_mass_KT": 795
+    },
+    "independently_observed_inputs": {
+      "Saber406_owned_by_owner4_Tminus1_at_battle_site": true,
+      "engine9_from_owner5_Tminus1": true,
+      "factual_mass_transition": true,
+      "initial_crew28": true,
+      "next_crew10": true,
+      "owner_transition": true,
+      "same_combat_site": true,
+      "same_hull": true,
+      "same_id": true
+    },
+    "later_T201_id27_Victorious_is_NOT_assumed_continuous_with_Rush": true,
+    "precombat_generator_activation_still_not_phase_independently_proven": true,
+    "ship_id": 27,
+    "turn": 201,
+    "vcrs": [
+      1016,
+      1017
+    ]
+  },
+  "all_14_static_controls_with_changes": [
+    {
+      "changed_hulls": [
+        {
+          "Tminus1_mass": 145,
+          "first_mass": 125,
+          "hull_id": 117
+        },
+        {
+          "Tminus1_mass": 185,
+          "first_mass": 165,
+          "hull_id": 119
+        },
+        {
+          "Tminus1_mass": 46,
+          "first_mass": 96,
+          "hull_id": 1039
+        }
+      ],
+      "game_id": 217591,
+      "perspectives": 12,
+      "turn": 75
+    },
+    {
+      "changed_hulls": [
+        {
+          "Tminus1_mass": 46,
+          "first_mass": 96,
+          "hull_id": 1039
+        }
+      ],
+      "game_id": 325434,
+      "perspectives": 12,
+      "turn": 149
+    },
+    {
+      "changed_hulls": [
+        {
+          "Tminus1_mass": 46,
+          "first_mass": 96,
+          "hull_id": 1039
+        }
+      ],
+      "game_id": 341336,
+      "perspectives": 10,
+      "turn": 75
+    },
+    {
+      "changed_hulls": [
+        {
+          "Tminus1_mass": 46,
+          "first_mass": 96,
+          "hull_id": 1039
+        }
+      ],
+      "game_id": 310054,
+      "perspectives": 11,
+      "turn": 87
+    },
+    {
+      "changed_hulls": [
+        {
+          "Tminus1_mass": 145,
+          "first_mass": 125,
+          "hull_id": 117
+        },
+        {
+          "Tminus1_mass": 185,
+          "first_mass": 165,
+          "hull_id": 119
+        },
+        {
+          "Tminus1_mass": 46,
+          "first_mass": 96,
+          "hull_id": 1039
+        }
+      ],
+      "game_id": 217591,
+      "perspectives": 12,
+      "turn": 149
+    },
+    {
+      "changed_hulls": [
+        {
+          "Tminus1_mass": 46,
+          "first_mass": 96,
+          "hull_id": 1039
+        }
+      ],
+      "game_id": 325434,
+      "perspectives": 12,
+      "turn": 192
+    }
+  ],
+  "boundary": "T-1 archived hull mass is independent of a factual VCR mass and can resolve a stale first-member static source. But arithmetic branches are selected retrospectively against factual mass. Horwasp start-to-start clan attrition, carrier RNG, true combat capture terminal status and SG activation phase remain NOT generatively verified. The 14 static controls are targeted, not a random population sample. Four zero-change controls use upstream all-perspective aggregate maxima rather than rechecking omitted serialized perspective rows. This report makes NO rules changes to production, combat planner or probabilistic evaluator.",
+  "schema": "planets-lab.combat-mass-temporal-reconciliation.v1",
+  "seven_Tminus1_changed_hull_residuals": [
+    {
+      "Tminus1_source_changed_by_KT": -50,
+      "Tminus1_static_mass": 46,
+      "arithmetic_candidates": [
+        {
+          "Tminus1_site_support_for_assumed_n": false,
+          "branch": "DOCUMENTED_SHIELD_GENERATOR_ARITHMETIC",
+          "documented_bonus_per_generator": 150,
+          "engine": 9,
+          "generator_count_Tminus1_at_VCR_site": 6,
+          "generators_assumed": 2,
+          "mass_candidate": 346,
+          "reference_precombat_catalog_mass": 46,
+          "right_carrier_bonus_assumed": 0
+        }
+      ],
+      "boundary": "VCR factual mass SELECTS matching arithmetic branch; Host phase/SG activation or carrier RNG not proven",
+      "factual_vcr_mass": 346,
+      "first_catalog_mass": 96,
+      "game_id": 217591,
+      "hull_id": 1039,
+      "numeric_match_without_oracle_as_input": true,
+      "race": 4,
+      "ship_id": 758,
+      "side": "right",
+      "source_original_class": "unexplained_with_available_owner_geometry",
+      "turn": 75,
+      "vcr_id": 756
+    },
+    {
+      "Tminus1_source_changed_by_KT": 20,
+      "Tminus1_static_mass": 145,
+      "arithmetic_candidates": [
+        {
+          "Tminus1_clans": 900,
+          "Tminus1_full_load_independently_seen": true,
+          "branch": "HORWASP_FULL_LOAD_ENDPOINT",
+          "cargo_capacity": 900,
+          "mass_candidate": 290,
+          "reference_precombat_catalog_mass": 145,
+          "right_carrier_bonus_assumed": 0
+        }
+      ],
+      "boundary": "VCR factual mass SELECTS matching arithmetic branch; Host phase/SG activation or carrier RNG not proven",
+      "factual_vcr_mass": 290,
+      "first_catalog_mass": 125,
+      "game_id": 217591,
+      "hull_id": 117,
+      "numeric_match_without_oracle_as_input": true,
+      "race": 12,
+      "ship_id": 119,
+      "side": "left",
+      "source_original_class": "horwasp_other_or_catalog_conflict",
+      "turn": 149,
+      "vcr_id": 2405
+    },
+    {
+      "Tminus1_source_changed_by_KT": 20,
+      "Tminus1_static_mass": 145,
+      "arithmetic_candidates": [
+        {
+          "Tminus1_clans": 900,
+          "Tminus1_full_load_independently_seen": true,
+          "branch": "HORWASP_FULL_LOAD_ENDPOINT",
+          "cargo_capacity": 900,
+          "mass_candidate": 290,
+          "reference_precombat_catalog_mass": 145,
+          "right_carrier_bonus_assumed": 0
+        }
+      ],
+      "boundary": "VCR factual mass SELECTS matching arithmetic branch; Host phase/SG activation or carrier RNG not proven",
+      "factual_vcr_mass": 290,
+      "first_catalog_mass": 125,
+      "game_id": 217591,
+      "hull_id": 117,
+      "numeric_match_without_oracle_as_input": true,
+      "race": 12,
+      "ship_id": 119,
+      "side": "right",
+      "source_original_class": "horwasp_other_or_catalog_conflict",
+      "turn": 149,
+      "vcr_id": 2406
+    },
+    {
+      "Tminus1_source_changed_by_KT": 20,
+      "Tminus1_static_mass": 145,
+      "arithmetic_candidates": [
+        {
+          "Tminus1_clans": null,
+          "Tminus1_full_load_independently_seen": null,
+          "branch": "HORWASP_FULL_LOAD_ENDPOINT",
+          "cargo_capacity": 900,
+          "mass_candidate": 650,
+          "reference_precombat_catalog_mass": 145,
+          "right_carrier_bonus_assumed": 360
+        }
+      ],
+      "boundary": "VCR factual mass SELECTS matching arithmetic branch; Host phase/SG activation or carrier RNG not proven",
+      "factual_vcr_mass": 650,
+      "first_catalog_mass": 125,
+      "game_id": 217591,
+      "hull_id": 117,
+      "numeric_match_without_oracle_as_input": true,
+      "race": 12,
+      "ship_id": 253,
+      "side": "right",
+      "source_original_class": "horwasp_other_or_catalog_conflict",
+      "turn": 149,
+      "vcr_id": 2421
+    },
+    {
+      "Tminus1_source_changed_by_KT": 20,
+      "Tminus1_static_mass": 145,
+      "arithmetic_candidates": [
+        {
+          "Tminus1_clans": 900,
+          "Tminus1_full_load_independently_seen": true,
+          "branch": "HORWASP_FULL_LOAD_ENDPOINT",
+          "cargo_capacity": 900,
+          "mass_candidate": 290,
+          "reference_precombat_catalog_mass": 145,
+          "right_carrier_bonus_assumed": 0
+        }
+      ],
+      "boundary": "VCR factual mass SELECTS matching arithmetic branch; Host phase/SG activation or carrier RNG not proven",
+      "factual_vcr_mass": 290,
+      "first_catalog_mass": 125,
+      "game_id": 217591,
+      "hull_id": 117,
+      "numeric_match_without_oracle_as_input": true,
+      "race": 12,
+      "ship_id": 517,
+      "side": "right",
+      "source_original_class": "horwasp_other_or_catalog_conflict",
+      "turn": 149,
+      "vcr_id": 2422
+    },
+    {
+      "Tminus1_source_changed_by_KT": 20,
+      "Tminus1_static_mass": 145,
+      "arithmetic_candidates": [
+        {
+          "Tminus1_clans": 900,
+          "Tminus1_full_load_independently_seen": true,
+          "branch": "HORWASP_FULL_LOAD_ENDPOINT",
+          "cargo_capacity": 900,
+          "mass_candidate": 290,
+          "reference_precombat_catalog_mass": 145,
+          "right_carrier_bonus_assumed": 0
+        }
+      ],
+      "boundary": "VCR factual mass SELECTS matching arithmetic branch; Host phase/SG activation or carrier RNG not proven",
+      "factual_vcr_mass": 290,
+      "first_catalog_mass": 125,
+      "game_id": 217591,
+      "hull_id": 117,
+      "numeric_match_without_oracle_as_input": true,
+      "race": 12,
+      "ship_id": 517,
+      "side": "right",
+      "source_original_class": "horwasp_other_or_catalog_conflict",
+      "turn": 149,
+      "vcr_id": 2423
+    },
+    {
+      "Tminus1_source_changed_by_KT": -50,
+      "Tminus1_static_mass": 46,
+      "arithmetic_candidates": [
+        {
+          "Tminus1_site_support_for_assumed_n": true,
+          "branch": "DOCUMENTED_SHIELD_GENERATOR_ARITHMETIC",
+          "documented_bonus_per_generator": 1,
+          "engine": 1,
+          "generator_count_Tminus1_at_VCR_site": 2,
+          "generators_assumed": 2,
+          "mass_candidate": 48,
+          "reference_precombat_catalog_mass": 46,
+          "right_carrier_bonus_assumed": 0
+        }
+      ],
+      "boundary": "VCR factual mass SELECTS matching arithmetic branch; Host phase/SG activation or carrier RNG not proven",
+      "factual_vcr_mass": 48,
+      "first_catalog_mass": 96,
+      "game_id": 325434,
+      "hull_id": 1039,
+      "numeric_match_without_oracle_as_input": true,
+      "race": 4,
+      "ship_id": 274,
+      "side": "left",
+      "source_original_class": "unexplained_with_available_owner_geometry",
+      "turn": 149,
+      "vcr_id": 1075
+    }
+  ],
+  "status": "TEMPORAL_STATIC_AND_CAPTURE_RECONCILED_OBSERVATIONAL_NOT_PROMOTED",
+  "summary": {
+    "Brood_Tminus1_clans_unavailable": 1,
+    "Brood_full_Tminus1_clans_independently_seen": 4,
+    "Brood_reconciled_numeric_sides": 5,
+    "D19c_reconciled_numeric_sides": 2,
+    "Rush_capture_mass_recalculation_candidate": true,
+    "game_turns_with_static_mass_drift": 6,
+    "residual_VCR_sides": 67,
+    "residual_sides_unaffected_by_direct_confirmed_mass_changes": 60,
+    "residuals_with_direct_Tminus1_changed_hull": 7,
+    "source_aggregate_zero_change_controls_with_truncated_details": 4,
+    "static_control_game_turns_checked": 14
+  },
+  "truncated_zero_change_static_controls": [
+    {
+      "game_id": 441148,
+      "perspectives_in_source_aggregate": 30,
+      "perspectives_with_serialized_details": 12,
+      "proof_boundary": "SOURCE_AGGREGATE_ZERO_VERIFIED; omitted perspective rows not independently rechecked in this postprocessor",
+      "source_max_mass_changed_hulls": 0,
+      "turn": 236
+    },
+    {
+      "game_id": 653272,
+      "perspectives_in_source_aggregate": 30,
+      "perspectives_with_serialized_details": 12,
+      "proof_boundary": "SOURCE_AGGREGATE_ZERO_VERIFIED; omitted perspective rows not independently rechecked in this postprocessor",
+      "source_max_mass_changed_hulls": 0,
+      "turn": 132
+    },
+    {
+      "game_id": 658427,
+      "perspectives_in_source_aggregate": 30,
+      "perspectives_with_serialized_details": 12,
+      "proof_boundary": "SOURCE_AGGREGATE_ZERO_VERIFIED; omitted perspective rows not independently rechecked in this postprocessor",
+      "source_max_mass_changed_hulls": 0,
+      "turn": 73
+    },
+    {
+      "game_id": 658427,
+      "perspectives_in_source_aggregate": 30,
+      "perspectives_with_serialized_details": 12,
+      "proof_boundary": "SOURCE_AGGREGATE_ZERO_VERIFIED; omitted perspective rows not independently rechecked in this postprocessor",
+      "source_max_mass_changed_hulls": 0,
+      "turn": 87
+    }
+  ]
+}
