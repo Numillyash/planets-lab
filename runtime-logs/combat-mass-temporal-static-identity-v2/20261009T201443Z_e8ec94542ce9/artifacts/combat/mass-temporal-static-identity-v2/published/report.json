@@ -1,0 +1,6121 @@
+{
+  "D19c_temporal_catalogs": [
+    {
+      "T0_owner_static_mass_values": [
+        96
+      ],
+      "Tminus1_owner_static_mass_values": [
+        46
+      ],
+      "VCR_mass_comparator": 346,
+      "all_owner_static_history": [
+        {
+          "D19c_hulls_mass": 96,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 96,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 0,
+          "decoded_payload_sha256": "57f440f9c3bc6a3f350caff60646df666b4016acd07fe9fd5ff7741eacd72d95",
+          "embedded_turn": 0,
+          "member_id": 1698,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 1,
+          "decoded_payload_sha256": "c2decb28fa77fd299e683871418e16a61fee5a5d7788533ad1fd093ca85ab765",
+          "embedded_turn": 1,
+          "member_id": 1710,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 2,
+          "decoded_payload_sha256": "24b4b9f5488a31069062686a2d8bf6e2f12aaa13ba0c00eaf0f43b4ce50f880d",
+          "embedded_turn": 2,
+          "member_id": 1722,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 3,
+          "decoded_payload_sha256": "62bc49af384f1a8860130fcb4ce91ac526a32418d8ade4d5b436fb2913d5790f",
+          "embedded_turn": 3,
+          "member_id": 1734,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 4,
+          "decoded_payload_sha256": "6457067cdf5c1cf814af972989f0226730ae62ec96e81dff1e106794dbb3e6d3",
+          "embedded_turn": 4,
+          "member_id": 1746,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 5,
+          "decoded_payload_sha256": "33b4a81820e5cec12ae0fc3d5ea5b3a24d19bc19640e7a23b26ede9091b5ee87",
+          "embedded_turn": 5,
+          "member_id": 1758,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 6,
+          "decoded_payload_sha256": "ba4c540feeb8142c8945f4433f31ed0b2e7ef1ec62e0d89e14bada31f8521189",
+          "embedded_turn": 6,
+          "member_id": 1770,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 7,
+          "decoded_payload_sha256": "1d6c4cbeefb00584cec86a78f644a90e75f144d2ecfd61e39fa0ec02f5f78af4",
+          "embedded_turn": 7,
+          "member_id": 1782,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 8,
+          "decoded_payload_sha256": "90c5b5ef463b71a2a670137edb020a3e63ceaea3b3b2bc87ed54faf1ebb5754a",
+          "embedded_turn": 8,
+          "member_id": 1794,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 9,
+          "decoded_payload_sha256": "52d7b68321f27397253d20eb996fef48c7926b62bcac41daf868e999995d5627",
+          "embedded_turn": 9,
+          "member_id": 1806,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 10,
+          "decoded_payload_sha256": "35dc0373612d686114988e1fd34a833e67663535af7e7261267a1a58016f118a",
+          "embedded_turn": 10,
+          "member_id": 1818,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 11,
+          "decoded_payload_sha256": "1c7e1abf245bae17ed583f392ddd046967f014f3f05049e598bc4ee24b7363c2",
+          "embedded_turn": 11,
+          "member_id": 1830,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 12,
+          "decoded_payload_sha256": "29b14ae16591b807a28cbe078997803ea19ece406d7c43355a2afc48adb651e5",
+          "embedded_turn": 12,
+          "member_id": 1842,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 13,
+          "decoded_payload_sha256": "e8b5d2068ce6a92f44fd01a57f7ed118483b7df3133074e4b924886f55eb6714",
+          "embedded_turn": 13,
+          "member_id": 1854,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 14,
+          "decoded_payload_sha256": "a6ddc674bc216eaf4285d017c348491161a719d0015b6d56e4b973fb2f23f3e3",
+          "embedded_turn": 14,
+          "member_id": 1866,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 15,
+          "decoded_payload_sha256": "85dbd3350924c7006b130b16c0f1593c7575c68b44412e3935b3c081134f7c24",
+          "embedded_turn": 15,
+          "member_id": 1878,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 16,
+          "decoded_payload_sha256": "2feac806be3ec74c3447422056d3450a46281d91d9a42ff99cf7445dd37cd819",
+          "embedded_turn": 16,
+          "member_id": 1890,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 17,
+          "decoded_payload_sha256": "7e593e041b994eed5ad6f850fddcaed36ea3c82469cad56690572446150ef997",
+          "embedded_turn": 17,
+          "member_id": 1902,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 18,
+          "decoded_payload_sha256": "7bc96c3cffaa8bad534478218c0b94304a202c3751c4c19bb537d9f951210bd0",
+          "embedded_turn": 18,
+          "member_id": 1914,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 19,
+          "decoded_payload_sha256": "90e9bf46763f6c51b2fa1599097c1f3d6b121ddf1ea59b707609c8c45d8d6c28",
+          "embedded_turn": 19,
+          "member_id": 1926,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 20,
+          "decoded_payload_sha256": "bf3cec4c8c8455fe0c799bd37db1b6844612d158d2cd923693b3e58b533080a8",
+          "embedded_turn": 20,
+          "member_id": 1938,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 21,
+          "decoded_payload_sha256": "f7bbf9b272813a30b3b72e7bb00e8d4ec8766b51cc853b6b1395093fb25b7647",
+          "embedded_turn": 21,
+          "member_id": 1950,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 22,
+          "decoded_payload_sha256": "a94a731e7f9abaa0aa02f6e69531fc45d2f392a4417a268e5b0394e759443437",
+          "embedded_turn": 22,
+          "member_id": 1962,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 23,
+          "decoded_payload_sha256": "aa10bfc7faabb3e87c90c7284456d1efc7ac69a716038437f88263eca4bf0bf7",
+          "embedded_turn": 23,
+          "member_id": 1974,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 24,
+          "decoded_payload_sha256": "396bb895e35b9105ccc2d5c40068f585c34dbd141e2b92eb911470983eebd5db",
+          "embedded_turn": 24,
+          "member_id": 1986,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 25,
+          "decoded_payload_sha256": "2feddcac6332610e6efa27e7dc7222b3aed1650080ea6ad710e41e394ca92758",
+          "embedded_turn": 25,
+          "member_id": 1998,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 26,
+          "decoded_payload_sha256": "e2d101e3d6abd015604f0948ef221ae724bf29ba9778447a52a1ff9c5b2d879b",
+          "embedded_turn": 26,
+          "member_id": 2010,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 27,
+          "decoded_payload_sha256": "ceff32cd0abc8599c2f62f6490c3d6e2f896488e0d5b57d5239b40ecd40dae19",
+          "embedded_turn": 27,
+          "member_id": 2022,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 28,
+          "decoded_payload_sha256": "9685a1eb9cfd729b83d54c101d4435ef1e2b38684941bd8f421a7294ad33a140",
+          "embedded_turn": 28,
+          "member_id": 2034,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 29,
+          "decoded_payload_sha256": "8aca9a84eaabdaa328cebdf71186c63a579cb292af0bf80cb675400b306fd256",
+          "embedded_turn": 29,
+          "member_id": 2046,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 30,
+          "decoded_payload_sha256": "7e7d92fad711d99d299f356ffe09eb7fb0b3f1f5661ca63829ff7f9a8c8e9470",
+          "embedded_turn": 30,
+          "member_id": 2058,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 31,
+          "decoded_payload_sha256": "d4595d1b920427456e54f33f469455edef4e935e3c4d6039cbb8e5288c1a918f",
+          "embedded_turn": 31,
+          "member_id": 2070,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 32,
+          "decoded_payload_sha256": "82b1453d51077c7af951e4168889a92686e708d479de9aa681bfd7cb3e1e7c2c",
+          "embedded_turn": 32,
+          "member_id": 2082,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 33,
+          "decoded_payload_sha256": "7caa2322d1525bb4e11c93162aac8a8a72c43b7a12f5591f1970a4651aaebb96",
+          "embedded_turn": 33,
+          "member_id": 2094,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 34,
+          "decoded_payload_sha256": "b7df2322ca83ad775bc2557d1bbd523e716c3a994009f718f4fe690f96495769",
+          "embedded_turn": 34,
+          "member_id": 2106,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 35,
+          "decoded_payload_sha256": "20341d37fe21b42dc0f551c5f2bb994647a594797560a2203ddbdccc4ec58712",
+          "embedded_turn": 35,
+          "member_id": 2118,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 36,
+          "decoded_payload_sha256": "8f6b777f014c25a8eadee589708f06f55753bf897c793d54ce38ddff355fdb7d",
+          "embedded_turn": 36,
+          "member_id": 2130,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 37,
+          "decoded_payload_sha256": "472a90b214fdd376b37ab95807ed2734805915a4b2710204074f1a9ab4322aff",
+          "embedded_turn": 37,
+          "member_id": 2142,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 38,
+          "decoded_payload_sha256": "323b4f81feeaffb7f95bd6d2f746fc717093c81ebcf342915c303ddac2ab2355",
+          "embedded_turn": 38,
+          "member_id": 2154,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 39,
+          "decoded_payload_sha256": "53f16c52323b9deacd3f85ccc3315dd0182e02461abf37e24de679bef4495f97",
+          "embedded_turn": 39,
+          "member_id": 2166,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 40,
+          "decoded_payload_sha256": "a6654f412a995a440d86423305831d1738a277201e078715c9a3a9055240088e",
+          "embedded_turn": 40,
+          "member_id": 2178,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 41,
+          "decoded_payload_sha256": "6880a265684c75e7532ee1e9ea64639bccdc82a65c8452e9f6136558b9ae8502",
+          "embedded_turn": 41,
+          "member_id": 2190,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 42,
+          "decoded_payload_sha256": "b7e94502f69e418e8881366adcba7fafda9c6d17badb57148278b7e96f25a8c9",
+          "embedded_turn": 42,
+          "member_id": 2202,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 43,
+          "decoded_payload_sha256": "eed377dd53aecdba4867b7d8d568ca19817911446b7a1e182656b0cdd73f52be",
+          "embedded_turn": 43,
+          "member_id": 2214,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 44,
+          "decoded_payload_sha256": "01eaae9da9da5cb4fde87326c44ab92de34643918a44f13396c9dbb350076a88",
+          "embedded_turn": 44,
+          "member_id": 2226,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 45,
+          "decoded_payload_sha256": "83907d76aff59dc9d8cdce092f6720b5b73245f5ec12c805499a84f0969bf948",
+          "embedded_turn": 45,
+          "member_id": 2238,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 46,
+          "decoded_payload_sha256": "17ff9185ba861d7ed90070efbc3392a9ec0c9f5a089754a41ac40f1467bf9b26",
+          "embedded_turn": 46,
+          "member_id": 2250,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 47,
+          "decoded_payload_sha256": "27e7dad2ba027a74d2d4a40f7675692d1acd7a768d7c7179acf712defd191f3c",
+          "embedded_turn": 47,
+          "member_id": 2262,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 48,
+          "decoded_payload_sha256": "fd89e79e517942b82a0f95620ee46a1eb58c422a3934d557239b5434e1b44592",
+          "embedded_turn": 48,
+          "member_id": 2274,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 49,
+          "decoded_payload_sha256": "459e63e8057d6d761ea67dee5dcdd9270984a496147aafbbb0451d501cbf55cc",
+          "embedded_turn": 49,
+          "member_id": 2286,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 50,
+          "decoded_payload_sha256": "af099848b0e9b4cd1454d6d9e9380b3f8a3ff92d53f6bc5de350f632d73e3385",
+          "embedded_turn": 50,
+          "member_id": 2298,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 51,
+          "decoded_payload_sha256": "8692cf5f5d3aa40d1320af0aa767ff83e0f9daeb3957ffb89a6fd98032e84c58",
+          "embedded_turn": 51,
+          "member_id": 2310,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 52,
+          "decoded_payload_sha256": "b3f592dcc387fc3131621c036705a5142d7ccbf5b91ac8d047f25e713384efc2",
+          "embedded_turn": 52,
+          "member_id": 2322,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 53,
+          "decoded_payload_sha256": "182ba97bbaae507d2e43c0b5d3aa94aff5d5dcfe6b5153969db1aa5f1034174e",
+          "embedded_turn": 53,
+          "member_id": 2334,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 54,
+          "decoded_payload_sha256": "7212bdea5e3b55f4f3793ee208e927d35659f0a34bb960c5eb05cdf40f66d087",
+          "embedded_turn": 54,
+          "member_id": 2346,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 55,
+          "decoded_payload_sha256": "3d9604ef1cd6ba0f6eae19f01218655b4b87be12037ced42b94711380649ef1b",
+          "embedded_turn": 55,
+          "member_id": 2358,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 56,
+          "decoded_payload_sha256": "82b15c3625807adf8f0f71c0fcd425a262303ed2aa585b5cb656302beb8bd2c1",
+          "embedded_turn": 56,
+          "member_id": 2370,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 57,
+          "decoded_payload_sha256": "74d6712722803157c0e4e09f5ca9d2fb112bea340415cddddc7378389707c90b",
+          "embedded_turn": 57,
+          "member_id": 2382,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 58,
+          "decoded_payload_sha256": "716c788aa802a75f12fb24627dffd996aa631f9d507a0909b78cbe52aede265f",
+          "embedded_turn": 58,
+          "member_id": 2394,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 59,
+          "decoded_payload_sha256": "9ab71e8b667d011aa678a0cc43d2ea18ea8d20734dfb42355740f9b8531aeef0",
+          "embedded_turn": 59,
+          "member_id": 2406,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 60,
+          "decoded_payload_sha256": "c12ceb318350b48048694acdc8b33bbcaef12d9b0db7030a7f0844a3200dc907",
+          "embedded_turn": 60,
+          "member_id": 2418,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 61,
+          "decoded_payload_sha256": "19bef17c69c015932c96d02d42080170f7c4773e2b0e7a5fb7424d2478f0b7a5",
+          "embedded_turn": 61,
+          "member_id": 2430,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 62,
+          "decoded_payload_sha256": "07da9dfb75c853eac44129ba5b23425aa6c3dc8e9ea2524933f9522c1908bad7",
+          "embedded_turn": 62,
+          "member_id": 2442,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 63,
+          "decoded_payload_sha256": "d759167c66c2204061dd1a3db085f328e9a7f4d6d23ad54567d6c9610d0d6a66",
+          "embedded_turn": 63,
+          "member_id": 2454,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 64,
+          "decoded_payload_sha256": "e49053c4b91e012363e0cf75d1eedb7117da9ca4db13b94322c2ba12b8070cf3",
+          "embedded_turn": 64,
+          "member_id": 2466,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 65,
+          "decoded_payload_sha256": "08116645c45a05f17e7f722deb7c24734dcaa13ee7cc7cb87c71d8736a6c95fc",
+          "embedded_turn": 65,
+          "member_id": 2478,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 66,
+          "decoded_payload_sha256": "c0a9703576cf07d4ec56ad54c0c2f888d4cdb30162e68709a0fc85aa82953a1a",
+          "embedded_turn": 66,
+          "member_id": 2490,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 67,
+          "decoded_payload_sha256": "2ca9844b3e185306bc5bd51fc13a423e6003427632365eea24469fa426e8dcf7",
+          "embedded_turn": 67,
+          "member_id": 2502,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 68,
+          "decoded_payload_sha256": "551cdf0b8121abae2a76849da9af6741f88bcebde66d7ef7715c0564124bdc90",
+          "embedded_turn": 68,
+          "member_id": 2514,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 69,
+          "decoded_payload_sha256": "4142b549849116ad9d3b1aacb1c275d6b869f3c4f17948fb75138af7bee86de4",
+          "embedded_turn": 69,
+          "member_id": 2526,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 70,
+          "decoded_payload_sha256": "cbe075d34bb48e9d5dfc3c76c218c35a6152dd5f5b30db2e11ee529fa7f270c4",
+          "embedded_turn": 70,
+          "member_id": 2538,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 71,
+          "decoded_payload_sha256": "d1db6e18709d6f0ccb499c670600e4a5efb2195ed51565c0fbfd198a98d6b89e",
+          "embedded_turn": 71,
+          "member_id": 2550,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 72,
+          "decoded_payload_sha256": "71e8195c7e553ca5cd7b5535ad3da556381a66bfc2a8347f3a373b6c4ab60c7e",
+          "embedded_turn": 72,
+          "member_id": 2562,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 73,
+          "decoded_payload_sha256": "7dd5417d78bc85caa125ec16f5f5e681ca28dd88958b076f54b830a7a7b53270",
+          "embedded_turn": 73,
+          "member_id": 2574,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 74,
+          "decoded_payload_sha256": "1cd873c7244adc5416bbf3896a96ffe9d91e4fe808f2e73cec15853b662527e1",
+          "embedded_turn": 74,
+          "member_id": 2586,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 75,
+          "decoded_payload_sha256": "e0992a01bb66feccaa0cf80c337e70596b7ec84d51cbc47c3a28fa18c138b30c",
+          "embedded_turn": 75,
+          "member_id": 2598,
+          "perspective_player_id": 4
+        }
+      ],
+      "archive_turns_missing_owner_static": [],
+      "archive_turns_with_owner_static": 76,
+      "combat_turn": 75,
+      "conflicting_owner_static_same_turn": [],
+      "expected_two_generator_rulebook_arithmetic_mass": 346,
+      "game_id": 217591,
+      "owner_id": 4,
+      "source_is_time_indexed_not_global_first_member": true,
+      "source_owner_members_inspected": 76,
+      "transition_segments_in_member_order": [
+        {
+          "first_member_id": 1698,
+          "first_observed_turn": 0,
+          "last_observed_turn": 0,
+          "mass": 96,
+          "observations": 1
+        },
+        {
+          "first_member_id": 1710,
+          "first_observed_turn": 1,
+          "last_observed_turn": 75,
+          "mass": 46,
+          "observations": 75
+        }
+      ]
+    },
+    {
+      "T0_owner_static_mass_values": [
+        96
+      ],
+      "Tminus1_owner_static_mass_values": [
+        46
+      ],
+      "VCR_mass_comparator": 48,
+      "all_owner_static_history": [
+        {
+          "D19c_hulls_mass": 96,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 96,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 0,
+          "decoded_payload_sha256": "ff2f4ee0edeba72847116eb7edb19f6bfdceff74e596ff54b00fe0d8c7f86c2c",
+          "embedded_turn": 0,
+          "member_id": 66014,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 96,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 96,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 1,
+          "decoded_payload_sha256": "4039e6048ee5c6a2995405555bb7bd3accf36d3c545f405546865685593b2f09",
+          "embedded_turn": 1,
+          "member_id": 66045,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 96,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 96,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 2,
+          "decoded_payload_sha256": "fc02fe83076ef08911a2f7069d39af73e5d590a439b5bb6efb5e381455b35c2a",
+          "embedded_turn": 1,
+          "member_id": 66046,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 96,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 96,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 3,
+          "decoded_payload_sha256": "c3dbc0df7e898967bf5dc754ea1a7cc50f21b075da9b868a8cff09a0f51217bc",
+          "embedded_turn": 3,
+          "member_id": 66050,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 96,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 96,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 4,
+          "decoded_payload_sha256": "d579475374900216c67cb6cbd0852fd53ff82b29d8dbf30892639da730f70f7d",
+          "embedded_turn": 4,
+          "member_id": 66062,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 96,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 96,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 5,
+          "decoded_payload_sha256": "8932d80c3de9312dcdba49e827ed184164efd1fee40d03e2ef7cc1dc098b7719",
+          "embedded_turn": 5,
+          "member_id": 66074,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 96,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 96,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 6,
+          "decoded_payload_sha256": "5577139dd13a18a3971b7e931fe3e7d51dd22b6538ee7f491eca483c68c29c34",
+          "embedded_turn": 6,
+          "member_id": 66086,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 96,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 96,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 7,
+          "decoded_payload_sha256": "c2c7e1f363fea16ee11315bce81eeef4b482f0c4dc8b3eafecf21b8923bce6e1",
+          "embedded_turn": 7,
+          "member_id": 66098,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 96,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 96,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 8,
+          "decoded_payload_sha256": "2d701c60204a43e9f06cf99209da6c4f06c9ecee2932c0e23aba39957cf9cd92",
+          "embedded_turn": 8,
+          "member_id": 66110,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 96,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 96,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 9,
+          "decoded_payload_sha256": "68f49bc7d42ee0d90295b8ce8bd1a2b163b7b6d9bc14f40468d7514cc3b2b7a6",
+          "embedded_turn": 9,
+          "member_id": 66122,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 96,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 96,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 10,
+          "decoded_payload_sha256": "c53b4170149ebcd88c8e1eba74554342606e425520a2d7040f8c0a6a36b7dd0a",
+          "embedded_turn": 10,
+          "member_id": 66134,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 96,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 96,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 11,
+          "decoded_payload_sha256": "8526afd48d5f8704dfd7575aa18e5db8a5354805de9bb98798b09ca85f15a1a2",
+          "embedded_turn": 11,
+          "member_id": 66146,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 96,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 96,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 12,
+          "decoded_payload_sha256": "ea0d5fad3a9a98b73dbc31f4a5a6f836768fbbfd5f2e45472aa8ef64fb11e3d0",
+          "embedded_turn": 12,
+          "member_id": 66158,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 96,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 96,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 13,
+          "decoded_payload_sha256": "246f17ca83d4dbccafc53fee332fe629bde85e97046c3e94ddf1ae93d8ebbc70",
+          "embedded_turn": 13,
+          "member_id": 66170,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 96,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 96,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 14,
+          "decoded_payload_sha256": "c3bc47501d4d7704b639b903fd9781e6c3a383cf8876cbf9c1d40a00e133b5e4",
+          "embedded_turn": 14,
+          "member_id": 66182,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 96,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 96,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 15,
+          "decoded_payload_sha256": "9aec045be7abcfa71c3fc3b1a5a4a1454f1124f6e4d7e969f7471afb00de8192",
+          "embedded_turn": 15,
+          "member_id": 66194,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 96,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 96,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 16,
+          "decoded_payload_sha256": "363141c0367730e0b438b2b3905389b2fd5b3b756f5ca9c528d901befd2e0dbb",
+          "embedded_turn": 16,
+          "member_id": 66206,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 96,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 96,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 17,
+          "decoded_payload_sha256": "b411798f1990f5a455903c246a5e333ab7671b14a0e6cdf7a57d89f9a009636d",
+          "embedded_turn": 17,
+          "member_id": 66218,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 96,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 96,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 18,
+          "decoded_payload_sha256": "dd21e97fbad4751ee766ee4552fd1c65a88419412e3a7ae20cc181a33c6b7e32",
+          "embedded_turn": 18,
+          "member_id": 66230,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 96,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 96,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 19,
+          "decoded_payload_sha256": "f14ad320fdcc45adb61e5e45fe1caaf63382823cf5b7a9de74aef2d425a74555",
+          "embedded_turn": 19,
+          "member_id": 66242,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 96,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 96,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 20,
+          "decoded_payload_sha256": "f884398918fdc91615485262235ab3d588b38aad68d7a69f5728a7b53d9fae5a",
+          "embedded_turn": 20,
+          "member_id": 66254,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 96,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 96,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 21,
+          "decoded_payload_sha256": "a7ba2baa1ca337b35bbd187ef8e9409b8038a6f52d83e66d394f0fb85e1a3d67",
+          "embedded_turn": 21,
+          "member_id": 66266,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 96,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 96,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 22,
+          "decoded_payload_sha256": "16ebdb04f95266f5e11bca7011a94b78d64ce845f5dfd07890257fa6d699ac5a",
+          "embedded_turn": 22,
+          "member_id": 66278,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 96,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 96,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 23,
+          "decoded_payload_sha256": "e39a06045b364492b8856e763fef0d0e841231a8d1e1c2c1c324b3debae16e03",
+          "embedded_turn": 23,
+          "member_id": 66290,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 96,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 96,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 24,
+          "decoded_payload_sha256": "424bcf9bdf923a6a2668c74cf9d266c7085f569f1d2fdff6a55fa50e3e934b57",
+          "embedded_turn": 24,
+          "member_id": 66302,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 96,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 96,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 25,
+          "decoded_payload_sha256": "cd22df76cfc5207e2e2fd72c14d9d3eaefb52f21bdd8eb9300d2ab1d54a2c5e2",
+          "embedded_turn": 25,
+          "member_id": 66314,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 96,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 96,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 26,
+          "decoded_payload_sha256": "f2e7de9ebf6ac2f307c95041299fd3c1aeeba6a9fd499c4311a26052779f8da2",
+          "embedded_turn": 26,
+          "member_id": 66326,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 96,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 96,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 27,
+          "decoded_payload_sha256": "a6fd3f540e540c4c91e4f0c64d319df3a11cba22ba7346b34d478626ee0eb1c4",
+          "embedded_turn": 27,
+          "member_id": 66338,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 96,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 96,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 28,
+          "decoded_payload_sha256": "78f9930cf58ce5fb5f3ba959240ec51aa3915e0800a9324b0e870bdbc03185df",
+          "embedded_turn": 28,
+          "member_id": 66350,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 96,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 96,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 29,
+          "decoded_payload_sha256": "0565e2074191935b127317cc8fd25627a3e5650c72968dfafa1a2fc2e9cf864d",
+          "embedded_turn": 29,
+          "member_id": 66362,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 96,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 96,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 30,
+          "decoded_payload_sha256": "cc75c3d6291c6c967b54325043f928488a452723d52607f82c585b3e5b76e98a",
+          "embedded_turn": 30,
+          "member_id": 66374,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 96,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 96,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 31,
+          "decoded_payload_sha256": "8e41448f171bf4c140865d59084c168845e7d168d794cb696b9775d9aede4998",
+          "embedded_turn": 31,
+          "member_id": 66386,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 96,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 96,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 32,
+          "decoded_payload_sha256": "7240d87d45ed571cb74ce02801b9ba7730aa6b1fbdf2e5a773e7cf0dd6b44e33",
+          "embedded_turn": 32,
+          "member_id": 66398,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 33,
+          "decoded_payload_sha256": "57edcc2957b7aeff30622cefaaf228bfedb93a4b4ef9ed388e8c4914a7567c3a",
+          "embedded_turn": 33,
+          "member_id": 66410,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 34,
+          "decoded_payload_sha256": "1b3b18f5137ec26af64aa36f3cefb6250b202d4ebb2b2bac66e552bd0614104f",
+          "embedded_turn": 34,
+          "member_id": 66422,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 35,
+          "decoded_payload_sha256": "f5d742f6ceba4f55abf3ee86ff92686bed1207c5dbc95ceea280916004af3885",
+          "embedded_turn": 35,
+          "member_id": 66434,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 36,
+          "decoded_payload_sha256": "49463b6b476e5e61962341ddfb72849977bd0d45469e4376de3a584b260f9cdd",
+          "embedded_turn": 36,
+          "member_id": 66446,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 37,
+          "decoded_payload_sha256": "4b955a4a558c335a9d1999c369e9d2e3629eb8bb6da3a7abaf30166d390d068b",
+          "embedded_turn": 37,
+          "member_id": 66458,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 38,
+          "decoded_payload_sha256": "f71fe2f639510e089d2adc4a49b7f0a31fecbfe20b1d01cf9bd59f5be824d5eb",
+          "embedded_turn": 38,
+          "member_id": 66470,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 39,
+          "decoded_payload_sha256": "1833ed9b8fbf6c012daa7f9080b82b70508fe8d7247abaf1a0d4a6e1837b2e09",
+          "embedded_turn": 39,
+          "member_id": 66482,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 40,
+          "decoded_payload_sha256": "bf618e3aaae9a7f6229547e17ab28fec5388dde8ae93396b7ed1a7813748df07",
+          "embedded_turn": 40,
+          "member_id": 66494,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 41,
+          "decoded_payload_sha256": "067e89e224d303678a0b83c28fe2a2d5898194203f681933ee7dca18c5657710",
+          "embedded_turn": 41,
+          "member_id": 66506,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 42,
+          "decoded_payload_sha256": "251648059d2bd2aff3ce75cd244d00b986dd0e0b96daf8fcfd719a32f19f62a6",
+          "embedded_turn": 42,
+          "member_id": 66518,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 43,
+          "decoded_payload_sha256": "326790eb41c26df1f54551616eb65cca872216c6638fd03201481f35da390cf5",
+          "embedded_turn": 43,
+          "member_id": 66530,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 44,
+          "decoded_payload_sha256": "7b62d27c17df4fcabe88a66ea5e5a1e8b5b90a60b5a8c17f548e1d535b2e7119",
+          "embedded_turn": 44,
+          "member_id": 66542,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 45,
+          "decoded_payload_sha256": "3597ac0efa6ee7bbf93ef613b33cdf91b8942d39d85b427a04b7e280eb07383a",
+          "embedded_turn": 45,
+          "member_id": 66554,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 46,
+          "decoded_payload_sha256": "4520d3b8f19daed0adee336dfc7fb46f30cd16c9c96e8c6ea82bd4a11d57121d",
+          "embedded_turn": 46,
+          "member_id": 66566,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 47,
+          "decoded_payload_sha256": "b482b2191c8be4e919886ddbb4cc42cd597c4dce55775329342d3e494c37b3ee",
+          "embedded_turn": 47,
+          "member_id": 66578,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 48,
+          "decoded_payload_sha256": "211494b4f96db1058445f5cfc5bad1c842536b0d8ef99ff6f0458d8941fdd47a",
+          "embedded_turn": 48,
+          "member_id": 66590,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 49,
+          "decoded_payload_sha256": "845bc6eab579b715b91a7fcc711717a9811b39a7bed39e0b7b3e3ef7dbb6f49c",
+          "embedded_turn": 49,
+          "member_id": 66602,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 50,
+          "decoded_payload_sha256": "3babca3e2c74801244b71bb7ce870a26b64804704fb71ea4f4bc32247f8e1fff",
+          "embedded_turn": 50,
+          "member_id": 66614,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 51,
+          "decoded_payload_sha256": "b67fecab57ef81f1e5b6a391787599ec7500dd15ec133a64e5fc682b856f7110",
+          "embedded_turn": 51,
+          "member_id": 66626,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 52,
+          "decoded_payload_sha256": "5ce8ae0fdb3a0923bf77ea6b24b485980918a7458a8c52e6d444dd3f74bb1e99",
+          "embedded_turn": 52,
+          "member_id": 66638,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 53,
+          "decoded_payload_sha256": "1a42fb6388cbc9a0d7715ca9dbd35888873d58c304bc8b3e45f5ed9a0a9df2bf",
+          "embedded_turn": 53,
+          "member_id": 66650,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 54,
+          "decoded_payload_sha256": "a919fc37b5907b351165e88dac61d1d7e8f3253e8a901d5f24054d5dc75c0278",
+          "embedded_turn": 54,
+          "member_id": 66662,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 55,
+          "decoded_payload_sha256": "3a9fd2bac4952908a0d7cc796f7e7750c68821ad39f356819f1b83ee09acc39e",
+          "embedded_turn": 55,
+          "member_id": 66674,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 56,
+          "decoded_payload_sha256": "ea16db93f2047d8734062169f99f48590034336619063f167120a6b21e966c86",
+          "embedded_turn": 56,
+          "member_id": 66686,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 57,
+          "decoded_payload_sha256": "d56b81c2c0f8320553ab8923916669e384336ae8e17ac82ac9b72ce427e3175d",
+          "embedded_turn": 57,
+          "member_id": 66698,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 58,
+          "decoded_payload_sha256": "a8abc99c650ddc1d75ec652156bd8ac1d1da4438572bbd4a599a2b880d81f49b",
+          "embedded_turn": 58,
+          "member_id": 66710,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 59,
+          "decoded_payload_sha256": "7c4209abaf448da88fff731ece43e5f6a8d7a04043069d7a1bd0cc85fa1cb799",
+          "embedded_turn": 59,
+          "member_id": 66722,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 60,
+          "decoded_payload_sha256": "e53d05050c83e57865a5e93e975ce0baa035287b64e23a77bad817af4c31dcad",
+          "embedded_turn": 60,
+          "member_id": 66734,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 61,
+          "decoded_payload_sha256": "94a047565e4a8eb89a350a9fa1bc53d0eae99235cb7e9dcce479be8d0eb6c5a4",
+          "embedded_turn": 61,
+          "member_id": 66746,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 62,
+          "decoded_payload_sha256": "8fba140b2a80f86ea483b0c363a7c97906a8c5c2ced7ec38270129cf04880125",
+          "embedded_turn": 62,
+          "member_id": 66758,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 63,
+          "decoded_payload_sha256": "ad5c1f43d5e2f9ff77cd8933a5777289abbf0107dea972e2c777597f264143d3",
+          "embedded_turn": 63,
+          "member_id": 66770,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 64,
+          "decoded_payload_sha256": "66cb330066e1d323a0f8ace3134b1248e9b38ee90768abe243f80649d27e7936",
+          "embedded_turn": 64,
+          "member_id": 66782,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 65,
+          "decoded_payload_sha256": "6aa71b810f5aec50aa81477e4055bc0791038e702a0cc067d31b7a8648d0f941",
+          "embedded_turn": 65,
+          "member_id": 66794,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 66,
+          "decoded_payload_sha256": "6de129a664cda41ecb5970612a4a8b5bda7f7074485da4b47977e5aa73961540",
+          "embedded_turn": 66,
+          "member_id": 66806,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 67,
+          "decoded_payload_sha256": "802680175e8efad2d9a25d3bf35120ea14cd478554066e7e2679bbd7ab91fb20",
+          "embedded_turn": 67,
+          "member_id": 66818,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 68,
+          "decoded_payload_sha256": "ab272f8644cab9e53c744cbc550790b8caf26490691ec7d802c95408fdbb7833",
+          "embedded_turn": 68,
+          "member_id": 66830,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 69,
+          "decoded_payload_sha256": "2dc958c0bded851b341a30325d322ab0e75bde5f9ef923c5725588052208fbc4",
+          "embedded_turn": 69,
+          "member_id": 66842,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 70,
+          "decoded_payload_sha256": "d15276d82c0b8c8bac9a83419819d0548ab5c733f45639822ccdcc6d3b2246e1",
+          "embedded_turn": 70,
+          "member_id": 66854,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 71,
+          "decoded_payload_sha256": "5b3477441b86bc76de5e53ae269befe96850164d04e231ac811ade4ab9a78b32",
+          "embedded_turn": 71,
+          "member_id": 66866,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 72,
+          "decoded_payload_sha256": "c2ef463fdd8fd9e063a7638dc13330f1fd16a16170f74e710a3db08ba1190cf4",
+          "embedded_turn": 72,
+          "member_id": 66878,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 73,
+          "decoded_payload_sha256": "343421912e4d6bf0b1d8958d3ab0e6a514bc7bc28bdd28bb18dbdf3f956e9ba7",
+          "embedded_turn": 73,
+          "member_id": 66890,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 74,
+          "decoded_payload_sha256": "a1c145305f6b704db0fd70a56ff568c32377ea55bdd9ed2ab155c6c35f22ab0f",
+          "embedded_turn": 74,
+          "member_id": 66902,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 75,
+          "decoded_payload_sha256": "9e12b91afbfb086c839a4c6b9a0c6b9209d5569ca98ac162b97bd95afe2c963a",
+          "embedded_turn": 75,
+          "member_id": 66914,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 76,
+          "decoded_payload_sha256": "b9163053ddd280bb6452990476efcb30fee08ff0b96c0f8a7000032cf230589b",
+          "embedded_turn": 76,
+          "member_id": 66926,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 77,
+          "decoded_payload_sha256": "ec63811889166d608d432da2447dd903ace1361dedd39685654546eb83d75224",
+          "embedded_turn": 77,
+          "member_id": 66938,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 78,
+          "decoded_payload_sha256": "58504217d080a475dcad3a52c18f108b255c9eb7ff51e2d7e3fbd7c319df744d",
+          "embedded_turn": 78,
+          "member_id": 66950,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 79,
+          "decoded_payload_sha256": "fa5d8caf096750c40d0701f752cfae67647afac864a6eba82f8461587a440e25",
+          "embedded_turn": 79,
+          "member_id": 66962,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 80,
+          "decoded_payload_sha256": "f408d8ca7f968af73197488efdc082ca9776e864a5656472593f3f8b5557caf4",
+          "embedded_turn": 80,
+          "member_id": 66974,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 81,
+          "decoded_payload_sha256": "e4aa58f68274491be70bd907746558ca3cda2ecd186231f623ce6944ad8f82fd",
+          "embedded_turn": 81,
+          "member_id": 66986,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 82,
+          "decoded_payload_sha256": "caec5edabea304c840473a2e59dbfa56567c3d92914f369deefbf8c2e9d968de",
+          "embedded_turn": 82,
+          "member_id": 66998,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 83,
+          "decoded_payload_sha256": "410cde9677a5ee58741f49cfd836d087cb678a9b4dd60a60477694479c207700",
+          "embedded_turn": 83,
+          "member_id": 67010,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 84,
+          "decoded_payload_sha256": "a4df9a77875ab98b35e1ac209151b2670db63b4c33b11ce35c57e63cffa05e60",
+          "embedded_turn": 84,
+          "member_id": 67022,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 85,
+          "decoded_payload_sha256": "ecc3d69024abc58a9aaa7a3e0ea6a43ab045e54bc1b88e22cb5d2dfd5a2e010d",
+          "embedded_turn": 85,
+          "member_id": 67034,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 86,
+          "decoded_payload_sha256": "b6b53ed5fee0cda2cc6ab00ed6586b309ab0776baff1519fde9fedaa4716990f",
+          "embedded_turn": 86,
+          "member_id": 67046,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 87,
+          "decoded_payload_sha256": "76fafd8d547d0482187618b69b717da65f7b39e28f51864368a973edeae1cf4c",
+          "embedded_turn": 87,
+          "member_id": 67058,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 88,
+          "decoded_payload_sha256": "a98cff661598c669cd9b663bd3f600b3141004122481a96dfd1213e490fb6df9",
+          "embedded_turn": 88,
+          "member_id": 67070,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 89,
+          "decoded_payload_sha256": "1d939ef0aaf760294f8bd88289f336f5ca2a387950ca1bd7af725582fc0ce640",
+          "embedded_turn": 89,
+          "member_id": 67082,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 90,
+          "decoded_payload_sha256": "75c862aab20fb2ab0c919d7093b3b425d30c113038a87e2ef3af712f6b6835a5",
+          "embedded_turn": 90,
+          "member_id": 67094,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 91,
+          "decoded_payload_sha256": "b41d283f243e4cf63314cb3196174a99ac71a715093e86563bf6fc7964ac3e64",
+          "embedded_turn": 91,
+          "member_id": 67106,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 92,
+          "decoded_payload_sha256": "3d7bdc9a7937b42b62728614492e0253bef0224eec8db306d5a21d0f6ee3dfdb",
+          "embedded_turn": 92,
+          "member_id": 67118,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 93,
+          "decoded_payload_sha256": "f9f2d25a56c3847374d514e1c15b84fabad6305d8c748d5c177b524a52403719",
+          "embedded_turn": 93,
+          "member_id": 67130,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 94,
+          "decoded_payload_sha256": "efd1c4186cb2ae806c982937cb95fbf0af93a251028373ac9e757dcfe8b1b128",
+          "embedded_turn": 94,
+          "member_id": 67142,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 95,
+          "decoded_payload_sha256": "ab72b67679a9d6ee2860a7854a7f070d2bde24290cd8828009b09fe6fe5fda68",
+          "embedded_turn": 95,
+          "member_id": 67154,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 96,
+          "decoded_payload_sha256": "8083a04010d9a022641aba7cfca3bff2c6210d5e5e7c169f29c2344676fb9b94",
+          "embedded_turn": 96,
+          "member_id": 67166,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 97,
+          "decoded_payload_sha256": "042c6d8ed9e22d33c5df85e2501566e493cd63d2054142d6869205f8c87b1746",
+          "embedded_turn": 97,
+          "member_id": 67178,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 98,
+          "decoded_payload_sha256": "ffb36d8ad18e27eaf88dd1f60f60b5015fb7cb4242f6ac614b68a7c353282c80",
+          "embedded_turn": 98,
+          "member_id": 67190,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 99,
+          "decoded_payload_sha256": "69d0f08148550d28edce9fd2e88160bfd28110a88c63cbcf37b49f731ee1f3cc",
+          "embedded_turn": 99,
+          "member_id": 67202,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 100,
+          "decoded_payload_sha256": "fa8b93dc6fe85f4caef60f0d16fcc92da8fdd6f492a6bc9c88be529246f5fda9",
+          "embedded_turn": 100,
+          "member_id": 67214,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 101,
+          "decoded_payload_sha256": "7af9ee4a56476abde4fefa071d2c2378cd2d9b2218cce563b7e69c685c731f9c",
+          "embedded_turn": 101,
+          "member_id": 67226,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 102,
+          "decoded_payload_sha256": "6c1e04e69491fe8c7b3c0a0b0e03ed14cb9ad0d40e16569ecb220347303af126",
+          "embedded_turn": 102,
+          "member_id": 67238,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 103,
+          "decoded_payload_sha256": "da24d98e1d1370ef42529e788a20ce93fd21f01e895e036d84f2557f724e802a",
+          "embedded_turn": 103,
+          "member_id": 67250,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 104,
+          "decoded_payload_sha256": "0da394cbd53dc58c10433a9ebd4fd14fff23f025b4775f57369081cfd3f551dc",
+          "embedded_turn": 104,
+          "member_id": 67262,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 105,
+          "decoded_payload_sha256": "d54ff2155eac26ae028063e57016cba005c32f459b050979912e8e232c4aaf6c",
+          "embedded_turn": 105,
+          "member_id": 67274,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 106,
+          "decoded_payload_sha256": "b9afab1caaae4a7e400cb77e985521213abe7449fee3b6e31ce416fcb6e3ca7c",
+          "embedded_turn": 106,
+          "member_id": 67286,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 107,
+          "decoded_payload_sha256": "55a2cffc427ad9ce91861ba88bd0b538a7a1a0cf0bf8360933bb940dd09e30d3",
+          "embedded_turn": 107,
+          "member_id": 67298,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 108,
+          "decoded_payload_sha256": "818b63652fe8ed6dfee90d69a848b3dcaf2bd8aed3513c7f7b6e8cdac454bc02",
+          "embedded_turn": 108,
+          "member_id": 67310,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 109,
+          "decoded_payload_sha256": "eb2dbe26aaa1d45e700b1b6017f8082941cb6993309425a0e082bb5ffdf07745",
+          "embedded_turn": 109,
+          "member_id": 67322,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 110,
+          "decoded_payload_sha256": "b486ab3005c4187923162ee3ae252709f50bf1da0a88f6b5a7ca86ddc3d9d6df",
+          "embedded_turn": 110,
+          "member_id": 67334,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 111,
+          "decoded_payload_sha256": "dccfe6efe1d0eb7c189bb833ddcf8ca0a04b685f5531e4f385517814f0f53f1d",
+          "embedded_turn": 111,
+          "member_id": 67346,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 112,
+          "decoded_payload_sha256": "5f3fa6c706e89940718e3355eb04830ba996b849eee9d17118eb07c6f3bfdbb8",
+          "embedded_turn": 112,
+          "member_id": 67358,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 113,
+          "decoded_payload_sha256": "bf3ae154f5893e365602f858bc300b9e81a78cddcfed940954cb43b67d4370d7",
+          "embedded_turn": 113,
+          "member_id": 67370,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 114,
+          "decoded_payload_sha256": "e5db0200b4f5ec63ac617e9b78b0d7536f84a7896aa9dd03a00951efd995e987",
+          "embedded_turn": 114,
+          "member_id": 67382,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 115,
+          "decoded_payload_sha256": "537c9261fe13b09104eab3830b0a82e7a68131ade8fd718c221add0ed75bc73a",
+          "embedded_turn": 115,
+          "member_id": 67394,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 116,
+          "decoded_payload_sha256": "fea42a18680a17443437a92a5301a06ef773e28175c503ae98eaaf673ddf2554",
+          "embedded_turn": 116,
+          "member_id": 67406,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 117,
+          "decoded_payload_sha256": "59ecb104ef1fc74926a39620302f2359263fb75a6634ff02e639d0a92031de33",
+          "embedded_turn": 117,
+          "member_id": 67418,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 118,
+          "decoded_payload_sha256": "9a13028308f77a3df5695a3931e5bb4a6cd40b709bd0ffc3e224da9e56ac82f0",
+          "embedded_turn": 118,
+          "member_id": 67430,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 119,
+          "decoded_payload_sha256": "b6c640d480d979e61ab9bc8a83109608abd17ab2390fd8133650c2f3a524395b",
+          "embedded_turn": 119,
+          "member_id": 67442,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 120,
+          "decoded_payload_sha256": "b3130527664df7dc40e3851125d60f978a756182a9b8ec5aee6a50323153513f",
+          "embedded_turn": 120,
+          "member_id": 67454,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 121,
+          "decoded_payload_sha256": "30a42d4faa420b4997d38c595b1f1b7b98cc18e49f8ea56e39ad39237be5d8d1",
+          "embedded_turn": 121,
+          "member_id": 67466,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 122,
+          "decoded_payload_sha256": "adaa2f7e7f7c831cc8c0b5ca1e09e1a0cadc3e7e46fc7e3fe330f06761af8eb1",
+          "embedded_turn": 122,
+          "member_id": 67478,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 123,
+          "decoded_payload_sha256": "b9f36b2771a828675dc7e818ff216b855c618335defe530febd528852fbaa6b0",
+          "embedded_turn": 123,
+          "member_id": 67490,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 124,
+          "decoded_payload_sha256": "74d422d33e931774b09f69325f977a4e74d574379411983823e0d06f44fee4df",
+          "embedded_turn": 124,
+          "member_id": 67502,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 125,
+          "decoded_payload_sha256": "6892dfac2c4e5e33431a69dcd4c7d39ea1a27d8bad83944e353c02dea47bc663",
+          "embedded_turn": 125,
+          "member_id": 67514,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 126,
+          "decoded_payload_sha256": "ad89c1b3aad92da6a85f63686b6b836da061a42e2bf976983879ea96c9c6812c",
+          "embedded_turn": 126,
+          "member_id": 67526,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 127,
+          "decoded_payload_sha256": "5df832896d0fd6b72dd814b84d1c71dc9be8d68b73002d3b3312bddf24c37652",
+          "embedded_turn": 127,
+          "member_id": 67538,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 128,
+          "decoded_payload_sha256": "ef00601efb6233e9c9ec2460aace1dae1d118665d5caea05442a1c7e6c77ef25",
+          "embedded_turn": 128,
+          "member_id": 67550,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 129,
+          "decoded_payload_sha256": "142a451eddd24d54090998ee6ccbf80584a2ca9a9794467d1dfbf02479e6ddbc",
+          "embedded_turn": 129,
+          "member_id": 67562,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 130,
+          "decoded_payload_sha256": "39345e5eadc853927f9a8a29956027f325f37844dd9b3519f7ed8fc9cf1962c0",
+          "embedded_turn": 130,
+          "member_id": 67574,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 131,
+          "decoded_payload_sha256": "f05d8629e3952c23be54b8107605e060216d741732f37516dbd51c9b4807af0a",
+          "embedded_turn": 131,
+          "member_id": 67586,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 132,
+          "decoded_payload_sha256": "a73b9a541a0cee70f9bd21ca13cfa5129584850cf86157d4134dd43021dd48ff",
+          "embedded_turn": 132,
+          "member_id": 67598,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 133,
+          "decoded_payload_sha256": "f38b3f6cf6fd6d5918f88301010471abbfb5b97596c461f564f83686cd6a1523",
+          "embedded_turn": 133,
+          "member_id": 67610,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 134,
+          "decoded_payload_sha256": "14ede81c0e63bfaf0d05953a490167a7757c501a96365bcd10d456bf4536c363",
+          "embedded_turn": 134,
+          "member_id": 67622,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 135,
+          "decoded_payload_sha256": "d942e24767ede132a52cbcbaf95f039c61b08b254b0738bd0cbf38e218591416",
+          "embedded_turn": 135,
+          "member_id": 67634,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 136,
+          "decoded_payload_sha256": "5f24dc435a995ddaa071ff797a7f2b484450e3314588677f7e2f227d9fbc4c7c",
+          "embedded_turn": 136,
+          "member_id": 67646,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 137,
+          "decoded_payload_sha256": "21f55d968b94d75e0eb9ca1c52bbd3f6248b70248e550e85b3e9eee8be6698e1",
+          "embedded_turn": 137,
+          "member_id": 67658,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 138,
+          "decoded_payload_sha256": "09233894e3571dfb0a27e9941e9734fe2008ecd1b7752c43edb96d0a27dc288c",
+          "embedded_turn": 138,
+          "member_id": 67670,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 139,
+          "decoded_payload_sha256": "eb304198f57246d75abccda68bd4b12e29fb3c203f67ee8cf54f0c94cf90f950",
+          "embedded_turn": 139,
+          "member_id": 67682,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 140,
+          "decoded_payload_sha256": "a9899e6fb0f074daa073251d0968d14d272f5099898dadc4ded8a8d92f15427c",
+          "embedded_turn": 140,
+          "member_id": 67694,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 141,
+          "decoded_payload_sha256": "042e8abb5df3a3c7ae33da18e23e741fabcaea09d1182f0c00fb6f07ed636aac",
+          "embedded_turn": 141,
+          "member_id": 67706,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 142,
+          "decoded_payload_sha256": "886c0b6a655ec2d5ac122f592bce659da35e0efb36af0df79de4c8cb603ec839",
+          "embedded_turn": 142,
+          "member_id": 67718,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 143,
+          "decoded_payload_sha256": "8b3d74038070ff5f9499e962f718f22a8738dfa1b8592f0698317d2da2563c77",
+          "embedded_turn": 143,
+          "member_id": 67730,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 144,
+          "decoded_payload_sha256": "fe4737604f86f4e739d5324afef844676a445be4606a6c572c216d2f481c0c84",
+          "embedded_turn": 144,
+          "member_id": 67742,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 145,
+          "decoded_payload_sha256": "31e92459894e97e629042bb7ae01096d7a04ff69af26eff7943867539b6af6ee",
+          "embedded_turn": 145,
+          "member_id": 67754,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 146,
+          "decoded_payload_sha256": "ed1106b7f759ad2d0acc967174f0cb30d5c8ea6cdda936c0c49eb5ab6acd999f",
+          "embedded_turn": 146,
+          "member_id": 67766,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 147,
+          "decoded_payload_sha256": "1b5d08a4390ba9d4af027df3470a0a115267c859026331e12f14a5a1eb22a510",
+          "embedded_turn": 147,
+          "member_id": 67778,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 148,
+          "decoded_payload_sha256": "86bc634955e238801939db43bb86ab4a8589f507abdf60dca76d809940cd9c9f",
+          "embedded_turn": 148,
+          "member_id": 67790,
+          "perspective_player_id": 4
+        },
+        {
+          "D19c_hulls_mass": 46,
+          "D19c_static": {
+            "hulls": {
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39
+                }
+              ],
+              "status": "PRESENT"
+            },
+            "hullsall": {
+              "records": [],
+              "status": "MISSING_COLLECTION"
+            }
+          },
+          "archive_turn": 149,
+          "decoded_payload_sha256": "ad2c51387ff7057c64daf3b67351d216f56c785ae1774f45b05c7f70459754f2",
+          "embedded_turn": 149,
+          "member_id": 67802,
+          "perspective_player_id": 4
+        }
+      ],
+      "archive_turns_missing_owner_static": [],
+      "archive_turns_with_owner_static": 150,
+      "combat_turn": 149,
+      "conflicting_owner_static_same_turn": [],
+      "expected_two_generator_rulebook_arithmetic_mass": 48,
+      "game_id": 325434,
+      "owner_id": 4,
+      "source_is_time_indexed_not_global_first_member": true,
+      "source_owner_members_inspected": 150,
+      "transition_segments_in_member_order": [
+        {
+          "first_member_id": 66014,
+          "first_observed_turn": 0,
+          "last_observed_turn": 32,
+          "mass": 96,
+          "observations": 33
+        },
+        {
+          "first_member_id": 66410,
+          "first_observed_turn": 33,
+          "last_observed_turn": 149,
+          "mass": 46,
+          "observations": 117
+        }
+      ]
+    }
+  ],
+  "Rush_ship_id_discontinuity": {
+    "T_owner4_victorious_engine9": 1,
+    "T_owner_engine9_is_NOT_verified_equipment_of_T_VCR_Rush": true,
+    "Tminus1_rush_owner5": 1,
+    "distinct_physical_identity_unresolved": true,
+    "possible_explanations_not_disambiguated": [
+      "ship_id_reuse_after_destruction_or_capture",
+      "foreign_intelligence_stale_or_masked",
+      "VCR_id_vs_archived_ship_id_identity_semantics",
+      "multiple combat_or_build_phases_inside_same_turn"
+    ],
+    "raw_archive_ID_states": [
+      {
+        "archive_turn": 200,
+        "engine_id": null,
+        "engine_id_masked_or_untrusted_from_foreign_perspective": true,
+        "hull_id": 94,
+        "perspective_is_owner_of_target_VCR": false,
+        "perspective_player_id": 1,
+        "same_owner_generators_at_archived_location": [],
+        "source_member_id": 197804,
+        "source_owner_id": 5,
+        "xy": [
+          1403,
+          2745
+        ]
+      },
+      {
+        "archive_turn": 201,
+        "engine_id": null,
+        "engine_id_masked_or_untrusted_from_foreign_perspective": true,
+        "hull_id": 35,
+        "perspective_is_owner_of_target_VCR": false,
+        "perspective_player_id": 1,
+        "same_owner_generators_at_archived_location": [
+          406
+        ],
+        "source_member_id": 197816,
+        "source_owner_id": 4,
+        "xy": [
+          1455,
+          2615
+        ]
+      },
+      {
+        "archive_turn": 201,
+        "engine_id": 9,
+        "engine_id_masked_or_untrusted_from_foreign_perspective": false,
+        "hull_id": 35,
+        "perspective_is_owner_of_target_VCR": true,
+        "perspective_player_id": 4,
+        "same_owner_generators_at_archived_location": [
+          406
+        ],
+        "source_member_id": 197819,
+        "source_owner_id": 4,
+        "xy": [
+          1455,
+          2615
+        ]
+      },
+      {
+        "archive_turn": 202,
+        "engine_id": 9,
+        "engine_id_masked_or_untrusted_from_foreign_perspective": false,
+        "hull_id": 35,
+        "perspective_is_owner_of_target_VCR": true,
+        "perspective_player_id": 4,
+        "same_owner_generators_at_archived_location": [],
+        "source_member_id": 197831,
+        "source_owner_id": 5,
+        "xy": [
+          1454,
+          2696
+        ]
+      }
+    ],
+    "source_case": {
+      "game_id": 617883,
+      "ship_id": 27,
+      "turn": 201,
+      "vcr_id": 1017
+    },
+    "source_vcr": {
+      "hull_id": 94,
+      "mass": 795,
+      "owner_id": 4
+    },
+    "vcr_id_history": {
+      "VCR_ID_ORDER_NOT_PROVEN_HOST_COMBAT_PHASE_ORDER": true,
+      "distinct_hull_owner_identities": [
+        [
+          201,
+          4,
+          94
+        ],
+        [
+          201,
+          5,
+          94
+        ]
+      ],
+      "game_id": 617883,
+      "lookback_current_forward_turns": [
+        200,
+        201,
+        202
+      ],
+      "ship_id": 27,
+      "target_turn": 201,
+      "vcr_appearances": [
+        {
+          "factual_site": [
+            1455,
+            2615
+          ],
+          "hull_id": 94,
+          "mass": 645,
+          "object_id": 27,
+          "observation_count": 3,
+          "other_side": {
+            "hull_id": 35,
+            "object_id": 253,
+            "owner_id": 4
+          },
+          "owner_id": 5,
+          "race_id": 5,
+          "side": "right",
+          "turn": 201,
+          "vcr_id": 1016
+        },
+        {
+          "factual_site": [
+            1455,
+            2615
+          ],
+          "hull_id": 94,
+          "mass": 795,
+          "object_id": 27,
+          "observation_count": 3,
+          "other_side": {
+            "hull_id": 52,
+            "object_id": 167,
+            "owner_id": 5
+          },
+          "owner_id": 4,
+          "race_id": 4,
+          "side": "left",
+          "turn": 201,
+          "vcr_id": 1017
+        }
+      ],
+      "vcr_appearances_by_turn": {
+        "201": 2
+      }
+    }
+  },
+  "evidence_boundary": "The T-1 owner static hull mass is independent of observed VCR mass but this audit does not prove NuHost's effective static source or the exact combat-phase generator count. A ship ID seen in different archives/VCRs with different hull/owner is not a demonstrably continuous physical vessel; T archived engine9 of Victorious cannot be retroactively attributed to the Rush VCR. No game catalog overrides or combat predictor rules promoted.",
+  "schema": "planets-lab.combat-mass-temporal-static-identity.v2",
+  "source_db": "/root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "source_v1_schema": "planets-lab.combat-mass-catalog-owner-provenance.v1",
+  "status": "STATIC_CATALOG_DRIFT_AND_SHIP_ID_DISCONTINUITY_OBSERVATIONAL_NOT_PROMOTED",
+  "summary": {
+    "Rush_Tminus1_owner5_hull94_to_T_owner4_hull35_discontinuity": true,
+    "Rush_VCR_ship_id": 27,
+    "Tminus1_D19c_mass46_confirmed": 2,
+    "d19c_games_scanned": 2,
+    "first_member_mass96_known": 2
+  }
+}

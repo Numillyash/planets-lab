@@ -1,0 +1,13 @@
+===== MASS TEMPORAL STATIC AND SHIP IDENTITY V2 =====
+HEAD: e8ec94542ce9e1cacffb5c5cb40459da892f6be2
+public100: generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb
+sha256: 3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c
+input: artifacts/combat/mass-catalog-owner-provenance-v1/published/report.json
+output: artifacts/combat/mass-temporal-static-identity-v2/published/report.json
+===== MASS TEMPORAL STATIC AND SHIP ID AUDIT V2 =====
+status: STATIC_CATALOG_DRIFT_AND_SHIP_ID_DISCONTINUITY_OBSERVATIONAL_NOT_PROMOTED
+summary: {'d19c_games_scanned': 2, 'Tminus1_D19c_mass46_confirmed': 2, 'first_member_mass96_known': 2, 'Rush_VCR_ship_id': 27, 'Rush_Tminus1_owner5_hull94_to_T_owner4_hull35_discontinuity': True}
+game: 217591 T: 75 T0: [96] Tminus1: [46] segments: [{'mass': 96, 'first_observed_turn': 0, 'last_observed_turn': 0, 'first_member_id': 1698, 'observations': 1}, {'mass': 46, 'first_observed_turn': 1, 'last_observed_turn': 75, 'first_member_id': 1710, 'observations': 75}] member_count: 76
+game: 325434 T: 149 T0: [96] Tminus1: [46] segments: [{'mass': 96, 'first_observed_turn': 0, 'last_observed_turn': 32, 'first_member_id': 66014, 'observations': 33}, {'mass': 46, 'first_observed_turn': 33, 'last_observed_turn': 149, 'first_member_id': 66410, 'observations': 117}] member_count: 150
+Rush VCR appearances: [{'turn': 201, 'vcr_id': 1016, 'side': 'right', 'object_id': 27, 'owner_id': 5, 'race_id': 5, 'hull_id': 94, 'mass': 645, 'factual_site': [1455, 2615], 'other_side': {'object_id': 253, 'hull_id': 35, 'owner_id': 4}, 'observation_count': 3}, {'turn': 201, 'vcr_id': 1017, 'side': 'left', 'object_id': 27, 'owner_id': 4, 'race_id': 4, 'hull_id': 94, 'mass': 795, 'factual_site': [1455, 2615], 'other_side': {'object_id': 167, 'hull_id': 52, 'owner_id': 5}, 'observation_count': 3}]
+output: artifacts/combat/mass-temporal-static-identity-v2/published/report.json
