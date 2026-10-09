@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from collections import Counter
 from collections.abc import Mapping
 from pathlib import Path
@@ -42,8 +43,26 @@ def _control_mass_map(c:Mapping[str,Any])->dict[int,dict[str,int]]:
     perspectives=c.get("per_perspective")
     if not isinstance(perspectives,list) or not perspectives:
         raise ValueError("T-1 perspectives missing")
-    if c.get("per_perspective_truncated"):
-        raise ValueError("cannot assert all-perspective agreement when truncated")
+    total=c.get("perspectives")
+    if _integer(total) is None or total<1 or len(perspectives)>total:
+        raise ValueError("invalid source perspective count")
+    truncated=c.get("per_perspective_truncated")
+    if type(truncated) is not bool:
+        raise ValueError("source perspective truncation flag unavailable")
+    if truncated:
+        # Upstream computed max_mass_changed_hulls across ALL perspectives
+        # before serializing just the first twelve records. Only an
+        # aggregate of zero is sufficient to establish no changed hull
+        # in omitted perspectives; a nonzero truncated source cannot
+        # prove the actual mass deltas and MUST remain fail-closed.
+        if (total<=len(perspectives) or len(perspectives)!=12
+                or c.get("max_mass_changed_hulls")!=0):
+            raise ValueError(
+                "cannot assert all-perspective mass agreement for "
+                "truncated nonzero/invalid source"
+            )
+    elif total!=len(perspectives):
+        raise ValueError("untruncated source perspective count mismatch")
     normalized=[]
     for snap in perspectives:
         if snap.get("change_details_truncated"):
@@ -66,6 +85,8 @@ def _control_mass_map(c:Mapping[str,Any])->dict[int,dict[str,int]]:
         raise ValueError("T-1 perspectives disagree on hull mass")
     if c.get("max_mass_changed_hulls")!=len(normalized[0]):
         raise ValueError("control mass change aggregate mismatch")
+    if truncated and normalized[0]:
+        raise ValueError("truncated zero-change control contains mass changes")
     return normalized[0]
 
 
@@ -191,12 +212,21 @@ def build_report(controls:Mapping[str,Any],residuals:Mapping[str,Any])->dict[str
         raise ValueError("exact fourteen original static controls required")
     control_maps={}
     static_changed=[]
+    truncated_zero_controls=[]
     for c in ref:
         key=(c.get("game_id"),c.get("turn"))
         if key in control_maps:
             raise ValueError("duplicate selected static control")
         changes=_control_mass_map(c)
         control_maps[key]=changes
+        if c["per_perspective_truncated"]:
+            truncated_zero_controls.append({
+                "game_id":key[0],"turn":key[1],
+                "perspectives_in_source_aggregate":c["perspectives"],
+                "perspectives_with_serialized_details":len(c["per_perspective"]),
+                "source_max_mass_changed_hulls":0,
+                "proof_boundary":"SOURCE_AGGREGATE_ZERO_VERIFIED; omitted perspective rows not independently rechecked in this postprocessor",
+            })
         if changes:
             static_changed.append({
                 "game_id":key[0],"turn":key[1],"perspectives":c["perspectives"],
@@ -249,6 +279,7 @@ def build_report(controls:Mapping[str,Any],residuals:Mapping[str,Any])->dict[str
         "status":"TEMPORAL_STATIC_AND_CAPTURE_RECONCILED_OBSERVATIONAL_NOT_PROMOTED",
         "summary":{
             "static_control_game_turns_checked":len(ref),
+            "source_aggregate_zero_change_controls_with_truncated_details":len(truncated_zero_controls),
             "game_turns_with_static_mass_drift":len(static_changed),
             "residual_VCR_sides":67,
             "residuals_with_direct_Tminus1_changed_hull":len(matches),
@@ -260,6 +291,7 @@ def build_report(controls:Mapping[str,Any],residuals:Mapping[str,Any])->dict[str
             "Rush_capture_mass_recalculation_candidate":True,
         },
         "all_14_static_controls_with_changes":static_changed,
+        "truncated_zero_change_static_controls":truncated_zero_controls,
         "seven_Tminus1_changed_hull_residuals":matches,
         "Rush_same_turn_capture_and_generator_hypothesis":capture,
         "boundary":(
@@ -269,7 +301,9 @@ def build_report(controls:Mapping[str,Any],residuals:Mapping[str,Any])->dict[str
             "Horwasp start-to-start clan attrition, carrier RNG, true combat "
             "capture terminal status and SG activation phase remain NOT "
             "generatively verified. The 14 static controls are targeted, "
-            "not a random population sample. This report makes NO rules "
+            "not a random population sample. Four zero-change controls "
+            "use upstream all-perspective aggregate maxima rather than "
+            "rechecking omitted serialized perspective rows. This report makes NO rules "
             "changes to production, combat planner or probabilistic evaluator."
         ),
     }

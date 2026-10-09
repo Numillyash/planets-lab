@@ -105,3 +105,42 @@ def test_runner_uses_existing_files_without_database():
     assert "mass-capture-phase-controls-v1/published/report.json" in a.read_text()
     assert "mass-residual-complete-v1/published/residuals.json" in a.read_text()
     assert "run-with-runtime-evidence.sh" in b.read_text()
+
+def test_truncated_zero_change_control_accepts_only_full_source_zero_aggregate():
+    # Real public100 shape: 30 perspectives checked upstream, first 12 saved,
+    # max changed hull count computed across the entire 30.
+    sample=_control([])
+    sample["perspectives"]=30
+    sample["per_perspective"]*=6
+    sample["per_perspective_truncated"]=True
+    assert len(sample["per_perspective"])==12
+    assert M._control_mass_map(sample)=={}
+    sample["max_mass_changed_hulls"]=1
+    with pytest.raises(ValueError,match="truncated nonzero"):
+        M._control_mass_map(sample)
+
+
+def test_truncated_nonzero_and_invalid_sample_are_fail_closed():
+    sample=_control([(117,125,145)])
+    sample["perspectives"]=30
+    sample["per_perspective"]*=6
+    sample["per_perspective_truncated"]=True
+    with pytest.raises(ValueError,match="truncated nonzero"):
+        M._control_mass_map(sample)
+    zero=_control([])
+    zero["perspectives"]=30
+    zero["per_perspective"]*=5
+    zero["per_perspective_truncated"]=True
+    with pytest.raises(ValueError,match="truncated nonzero"):
+        M._control_mass_map(zero)
+    full=_control([])
+    full["perspectives"]=30
+    with pytest.raises(ValueError,match="untruncated source perspective count"):
+        M._control_mass_map(full)
+
+
+def test_failure_handler_can_report_error_without_secondary_nameerror(tmp_path):
+    assert M.sys is sys
+    exit_code=M.main.__code__
+    assert exit_code is not None
+
