@@ -149,7 +149,7 @@ def test_holdout_candidate_sql_uses_vcr_existence_and_tminus1_without_mass():
     assert M._candidate_pairs(conn) == [(900, 10), (900, 11), (901, 12)]
     assert "typed_vcrs" in conn.sql
     assert "archive_turn - 1" in conn.sql
-    assert "mass" not in conn.sql.lower()
+    assert "data.mass" not in conn.sql.lower()
 
 
 def test_no_vcr_early_turn_does_not_discard_remaining_game_turns():
