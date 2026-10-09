@@ -1,0 +1,1684 @@
+{
+  "boundary": "Archived compact member static hulls and hullsall are source records, not an independently proven effective Host hull selection. Owner T-1/T archive records are not exact combat-phase snapshots. An absent owner archive record is not a zero engine or missing ship. Current VCR mass is used only to identify/verify cases. No probabilistic executor or production code is updated.",
+  "cases": [
+    {
+      "archive_selection_scope": {
+        "foreign_perspective_selected_per_turn_cap": 3,
+        "owner_source_members_available_by_turn": {
+          "72": 1,
+          "73": 1,
+          "74": 1,
+          "75": 1,
+          "76": 1
+        },
+        "owner_source_members_selected_per_turn_cap": 3,
+        "peer_source_members_available_in_Tminus1_and_T": {
+          "74": 11,
+          "75": 11
+        },
+        "temporal_boundary": "archive_turn is an archived source label; current VCR is a distinct Host-phase fact"
+      },
+      "archive_snapshots": [
+        {
+          "perspective_is_owner": true,
+          "provenance": {
+            "archive_turn": 72,
+            "decoded_payload_sha256": "71e8195c7e553ca5cd7b5535ad3da556381a66bfc2a8347f3a373b6c4ab60c7e",
+            "embedded_turn": 72,
+            "member_id": 2562,
+            "perspective_player_id": 4,
+            "source_member_name": "player4-turn72.trn"
+          },
+          "target": {
+            "ship_list_status": "PRESENT",
+            "ship_records_total": 220,
+            "target_ship_seen": true,
+            "target_ships": [
+              {
+                "ammo": 0,
+                "clans": 0,
+                "damage": 0,
+                "engine_mc_cost_from_first_member_catalog": 300,
+                "engineid": 9,
+                "hullid": 1039,
+                "id": 758,
+                "mass": 63,
+                "mission": 3,
+                "neutronium": 10,
+                "ownerid": 4,
+                "same_owner_shield_generator_ids_at_snapshot_ship_xy": [],
+                "target_owner_matches": true,
+                "targetx": 1226,
+                "targety": 2910,
+                "warp": 0,
+                "x": 1226,
+                "y": 2910
+              }
+            ]
+          }
+        },
+        {
+          "perspective_is_owner": true,
+          "provenance": {
+            "archive_turn": 73,
+            "decoded_payload_sha256": "7dd5417d78bc85caa125ec16f5f5e681ca28dd88958b076f54b830a7a7b53270",
+            "embedded_turn": 73,
+            "member_id": 2574,
+            "perspective_player_id": 4,
+            "source_member_name": "player4-turn73.trn"
+          },
+          "target": {
+            "ship_list_status": "PRESENT",
+            "ship_records_total": 227,
+            "target_ship_seen": true,
+            "target_ships": [
+              {
+                "ammo": 0,
+                "clans": 0,
+                "damage": 0,
+                "engine_mc_cost_from_first_member_catalog": 300,
+                "engineid": 9,
+                "hullid": 1039,
+                "id": 758,
+                "mass": 63,
+                "mission": 3,
+                "neutronium": 10,
+                "ownerid": 4,
+                "same_owner_shield_generator_ids_at_snapshot_ship_xy": [],
+                "target_owner_matches": true,
+                "targetx": 1226,
+                "targety": 2910,
+                "warp": 0,
+                "x": 1226,
+                "y": 2910
+              }
+            ]
+          }
+        },
+        {
+          "perspective_is_owner": false,
+          "provenance": {
+            "archive_turn": 74,
+            "decoded_payload_sha256": "81ddd17758fcba38f328c05c6df741874f985355f6329e45debea019da133974",
+            "embedded_turn": 74,
+            "member_id": 2583,
+            "perspective_player_id": 1,
+            "source_member_name": "player1-turn74.trn"
+          },
+          "target": {
+            "ship_list_status": "PRESENT",
+            "ship_records_total": 298,
+            "target_ship_seen": true,
+            "target_ships": [
+              {
+                "ammo": 0,
+                "clans": 0,
+                "damage": -1,
+                "engine_mc_cost_from_first_member_catalog": null,
+                "engineid": 0,
+                "hullid": 1039,
+                "id": 758,
+                "mass": 63,
+                "mission": 0,
+                "neutronium": 0,
+                "ownerid": 4,
+                "same_owner_shield_generator_ids_at_snapshot_ship_xy": [],
+                "target_owner_matches": true,
+                "targetx": 1226,
+                "targety": 2910,
+                "warp": 0,
+                "x": 1226,
+                "y": 2910
+              }
+            ]
+          }
+        },
+        {
+          "perspective_is_owner": false,
+          "provenance": {
+            "archive_turn": 74,
+            "decoded_payload_sha256": "e3d426f7cd12c9ddfac970ef42175e3baf434ace57db8e5b579b5ed685399471",
+            "embedded_turn": 74,
+            "member_id": 2584,
+            "perspective_player_id": 2,
+            "source_member_name": "player2-turn74.trn"
+          },
+          "target": {
+            "ship_list_status": "PRESENT",
+            "ship_records_total": 116,
+            "target_ship_seen": false,
+            "target_ships": []
+          }
+        },
+        {
+          "perspective_is_owner": false,
+          "provenance": {
+            "archive_turn": 74,
+            "decoded_payload_sha256": "8c78592d2d6103d86430a9dd46aa2d313940247ba512f468763293d110ff46a8",
+            "embedded_turn": 74,
+            "member_id": 2585,
+            "perspective_player_id": 3,
+            "source_member_name": "player3-turn74.trn"
+          },
+          "target": {
+            "ship_list_status": "PRESENT",
+            "ship_records_total": 221,
+            "target_ship_seen": false,
+            "target_ships": []
+          }
+        },
+        {
+          "perspective_is_owner": true,
+          "provenance": {
+            "archive_turn": 74,
+            "decoded_payload_sha256": "1cd873c7244adc5416bbf3896a96ffe9d91e4fe808f2e73cec15853b662527e1",
+            "embedded_turn": 74,
+            "member_id": 2586,
+            "perspective_player_id": 4,
+            "source_member_name": "player4-turn74.trn"
+          },
+          "static": {
+            "hulls": {
+              "collection_status": "PRESENT",
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 2,
+                  "id": 39,
+                  "mass": 96,
+                  "name": "D19b Nefarious Class Destroyer",
+                  "parentid": 0,
+                  "special": "Glory Device, Radiation Shielding - Can self destruct doing 1 mine hit worth of damage to all enemy ships at a location. Will not lose crew or colonists from Star Cluster radiation."
+                },
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "id": 1039,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39,
+                  "special": "Glory Device, Radiation Shielding - Can self destruct doing 1 mine hit worth of damage to all enemy ships at a location. Will not lose crew or colonists from Star Cluster radiation."
+                },
+                {
+                  "cargo": 25,
+                  "engine_count": 2,
+                  "id": 1041,
+                  "mass": 173,
+                  "name": "Saber Class Shield Generator",
+                  "parentid": 41,
+                  "special": "Shield Generator, Glory Device, Radiation Shielding - Will provide an additional 25% shields and invoke a 50% engine shield generator in any ship owned by the same player at its location (up two 2 Sabers at the same time) based on the engines of the boosted ship. Can self destruct doing 1 mine hit worth of damage to all enemy ships at a location. Will not lose crew or colonists from Star Cluster radiation."
+                },
+                {
+                  "cargo": 390,
+                  "engine_count": 6,
+                  "id": 94,
+                  "mass": 645,
+                  "name": "Rush Class Heavy Carrier",
+                  "parentid": 0,
+                  "special": ""
+                }
+              ],
+              "total_records": 220
+            },
+            "hullsall": {
+              "collection_status": "MISSING",
+              "records": []
+            }
+          },
+          "target": {
+            "ship_list_status": "PRESENT",
+            "ship_records_total": 265,
+            "target_ship_seen": true,
+            "target_ships": [
+              {
+                "ammo": 0,
+                "clans": 0,
+                "damage": 0,
+                "engine_mc_cost_from_first_member_catalog": 300,
+                "engineid": 9,
+                "hullid": 1039,
+                "id": 758,
+                "mass": 63,
+                "mission": 3,
+                "neutronium": 10,
+                "ownerid": 4,
+                "same_owner_shield_generator_ids_at_snapshot_ship_xy": [],
+                "target_owner_matches": true,
+                "targetx": 1234,
+                "targety": 2974,
+                "warp": 9,
+                "x": 1226,
+                "y": 2910
+              }
+            ]
+          }
+        },
+        {
+          "perspective_is_owner": false,
+          "provenance": {
+            "archive_turn": 75,
+            "decoded_payload_sha256": "c0040a686d537057483dee457867cd1dd0f5eb6aade04c11be854b5df39346cf",
+            "embedded_turn": 75,
+            "member_id": 2595,
+            "perspective_player_id": 1,
+            "source_member_name": "player1-turn75.trn"
+          },
+          "target": {
+            "ship_list_status": "PRESENT",
+            "ship_records_total": 265,
+            "target_ship_seen": false,
+            "target_ships": []
+          }
+        },
+        {
+          "perspective_is_owner": false,
+          "provenance": {
+            "archive_turn": 75,
+            "decoded_payload_sha256": "87ed0fcee13371f17bc25600fda53fea46128e8b37741df17d0b150b7144c7bc",
+            "embedded_turn": 75,
+            "member_id": 2596,
+            "perspective_player_id": 2,
+            "source_member_name": "player2-turn75.trn"
+          },
+          "target": {
+            "ship_list_status": "PRESENT",
+            "ship_records_total": 23,
+            "target_ship_seen": false,
+            "target_ships": []
+          }
+        },
+        {
+          "perspective_is_owner": false,
+          "provenance": {
+            "archive_turn": 75,
+            "decoded_payload_sha256": "d1b1ed2b662eca8238880825e9f9693afdec3ea7ba4479879f440351c23c48c8",
+            "embedded_turn": 75,
+            "member_id": 2597,
+            "perspective_player_id": 3,
+            "source_member_name": "player3-turn75.trn"
+          },
+          "target": {
+            "ship_list_status": "PRESENT",
+            "ship_records_total": 200,
+            "target_ship_seen": false,
+            "target_ships": []
+          }
+        },
+        {
+          "perspective_is_owner": true,
+          "provenance": {
+            "archive_turn": 75,
+            "decoded_payload_sha256": "e0992a01bb66feccaa0cf80c337e70596b7ec84d51cbc47c3a28fa18c138b30c",
+            "embedded_turn": 75,
+            "member_id": 2598,
+            "perspective_player_id": 4,
+            "source_member_name": "player4-turn75.trn"
+          },
+          "static": {
+            "hulls": {
+              "collection_status": "PRESENT",
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 2,
+                  "id": 39,
+                  "mass": 96,
+                  "name": "D19b Nefarious Class Destroyer",
+                  "parentid": 0,
+                  "special": "Glory Device, Radiation Shielding - Can self destruct doing 1 mine hit worth of damage to all enemy ships at a location. Will not lose crew or colonists from Star Cluster radiation."
+                },
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "id": 1039,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39,
+                  "special": "Glory Device, Radiation Shielding - Can self destruct doing 1 mine hit worth of damage to all enemy ships at a location. Will not lose crew or colonists from Star Cluster radiation."
+                },
+                {
+                  "cargo": 25,
+                  "engine_count": 2,
+                  "id": 1041,
+                  "mass": 173,
+                  "name": "Saber Class Shield Generator",
+                  "parentid": 41,
+                  "special": "Shield Generator, Glory Device, Radiation Shielding - Will provide an additional 25% shields and invoke a 50% engine shield generator in any ship owned by the same player at its location (up two 2 Sabers at the same time) based on the engines of the boosted ship. Can self destruct doing 1 mine hit worth of damage to all enemy ships at a location. Will not lose crew or colonists from Star Cluster radiation."
+                },
+                {
+                  "cargo": 390,
+                  "engine_count": 6,
+                  "id": 94,
+                  "mass": 645,
+                  "name": "Rush Class Heavy Carrier",
+                  "parentid": 0,
+                  "special": ""
+                }
+              ],
+              "total_records": 220
+            },
+            "hullsall": {
+              "collection_status": "MISSING",
+              "records": []
+            }
+          },
+          "target": {
+            "ship_list_status": "PRESENT",
+            "ship_records_total": 230,
+            "target_ship_seen": false,
+            "target_ships": []
+          }
+        },
+        {
+          "perspective_is_owner": true,
+          "provenance": {
+            "archive_turn": 76,
+            "decoded_payload_sha256": "00fe8439455526280cdfd93a0518864dfab5bcce7623ff2fbb134462f7758e21",
+            "embedded_turn": 76,
+            "member_id": 2610,
+            "perspective_player_id": 4,
+            "source_member_name": "player4-turn76.trn"
+          },
+          "target": {
+            "ship_list_status": "PRESENT",
+            "ship_records_total": 249,
+            "target_ship_seen": false,
+            "target_ships": []
+          }
+        }
+      ],
+      "factual_vcr_mass": 346,
+      "factual_vcr_site": [
+        1234,
+        2977
+      ],
+      "game_id": 217591,
+      "hull_id": 1039,
+      "not_proven": {
+        "effective_hull_catalog_selection": true,
+        "phase_accurate_active_generators": true,
+        "phase_accurate_precombat_engine": true
+      },
+      "owner_id": 4,
+      "ship_id": 758,
+      "side": "right",
+      "static_first_last": [
+        {
+          "provenance": {
+            "archive_turn": 0,
+            "decoded_payload_sha256": "c3aeffa4c06bd423c625ab25a7262a9d993345ca7a89b00dd13dbb78e405bb8d",
+            "embedded_turn": 0,
+            "member_id": 1695,
+            "perspective_player_id": 1,
+            "source_member_name": "player1-turn0.trn"
+          },
+          "snapshot_label": "first",
+          "static": {
+            "hulls": {
+              "collection_status": "PRESENT",
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 2,
+                  "id": 39,
+                  "mass": 96,
+                  "name": "D19b Nefarious Class Destroyer",
+                  "parentid": 0,
+                  "special": "Glory Device, Radiation Shielding - Can self destruct doing 1 mine hit worth of damage to all enemy ships at a location. Will not lose crew or colonists from Star Cluster radiation."
+                },
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "id": 1039,
+                  "mass": 96,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39,
+                  "special": "Glory Device, Radiation Shielding - Can self destruct doing 1 mine hit worth of damage to all enemy ships at a location. Will not lose crew or colonists from Star Cluster radiation."
+                },
+                {
+                  "cargo": 25,
+                  "engine_count": 2,
+                  "id": 1041,
+                  "mass": 173,
+                  "name": "Saber Class Shield Generator",
+                  "parentid": 41,
+                  "special": "Shield Generator, Glory Device, Radiation Shielding - Will provide an additional 25% shields and invoke a 50% engine shield generator in any ship owned by the same player at its location (up two 2 Sabers at the same time) based on the engines of the boosted ship. Can self destruct doing 1 mine hit worth of damage to all enemy ships at a location. Will not lose crew or colonists from Star Cluster radiation."
+                },
+                {
+                  "cargo": 390,
+                  "engine_count": 6,
+                  "id": 94,
+                  "mass": 645,
+                  "name": "Rush Class Heavy Carrier",
+                  "parentid": 0,
+                  "special": ""
+                }
+              ],
+              "total_records": 186
+            },
+            "hullsall": {
+              "collection_status": "MISSING",
+              "records": []
+            }
+          }
+        },
+        {
+          "provenance": {
+            "archive_turn": 149,
+            "decoded_payload_sha256": "83d8f9f5370fa07ab92aff1d671f92f1587c45a4875485269ebc4965c5e4f728",
+            "embedded_turn": 149,
+            "member_id": 3494,
+            "perspective_player_id": 12,
+            "source_member_name": "player12-turn149.trn"
+          },
+          "snapshot_label": "last",
+          "static": {
+            "hulls": {
+              "collection_status": "PRESENT",
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 2,
+                  "id": 39,
+                  "mass": 96,
+                  "name": "D19b Nefarious Class Destroyer",
+                  "parentid": 0,
+                  "special": "Glory Device, Radiation Shielding - Can self destruct doing 1 mine hit worth of damage to all enemy ships at a location. Will not lose crew or colonists from Star Cluster radiation."
+                },
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "id": 1039,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39,
+                  "special": "Glory Device, Radiation Shielding - Can self destruct doing 1 mine hit worth of damage to all enemy ships at a location. Will not lose crew or colonists from Star Cluster radiation."
+                },
+                {
+                  "cargo": 25,
+                  "engine_count": 2,
+                  "id": 1041,
+                  "mass": 173,
+                  "name": "Saber Class Shield Generator",
+                  "parentid": 41,
+                  "special": "Shield Generator, Glory Device, Radiation Shielding - Will provide an additional 25% shields and invoke a 50% engine shield generator in any ship owned by the same player at its location (up two 2 Sabers at the same time) based on the engines of the boosted ship. Can self destruct doing 1 mine hit worth of damage to all enemy ships at a location. Will not lose crew or colonists from Star Cluster radiation."
+                },
+                {
+                  "cargo": 390,
+                  "engine_count": 6,
+                  "id": 94,
+                  "mass": 645,
+                  "name": "Rush Class Heavy Carrier",
+                  "parentid": 0,
+                  "special": ""
+                }
+              ],
+              "total_records": 223
+            },
+            "hullsall": {
+              "collection_status": "MISSING",
+              "records": []
+            }
+          }
+        }
+      ],
+      "static_first_last_mass_comparison": {
+        "observed_raw_masses_by_collection_and_hull_id": {
+          "hulls:1039": [
+            46,
+            96
+          ],
+          "hulls:1041": [
+            173
+          ],
+          "hulls:39": [
+            96
+          ],
+          "hulls:94": [
+            645
+          ]
+        },
+        "static_source_observations_are_not_host_mass_rules": true
+      },
+      "temporal_observation_counts": {
+        "T_and_after_owner_ship_seen": false,
+        "Tminus1_owner_perspective_present": true,
+        "Tminus1_ship_seen_by_owner": true,
+        "foreign_perspective_ship_seen_Tminus1_or_T": true,
+        "owner_perspective_source_missing_not_equal_ship_absent": true,
+        "previous_owner_ships_visible": 2
+      },
+      "turn": 75,
+      "typed_first_member_hull": {
+        "mass": 96,
+        "name": "D19c Nefarious Class Destroyer",
+        "parent_id": 39
+      },
+      "vcr_id": 756,
+      "vcr_input_observation_count": 4
+    },
+    {
+      "archive_selection_scope": {
+        "foreign_perspective_selected_per_turn_cap": 3,
+        "owner_source_members_available_by_turn": {
+          "146": 1,
+          "147": 1,
+          "148": 1,
+          "149": 1,
+          "150": 1
+        },
+        "owner_source_members_selected_per_turn_cap": 3,
+        "peer_source_members_available_in_Tminus1_and_T": {
+          "148": 11,
+          "149": 11
+        },
+        "temporal_boundary": "archive_turn is an archived source label; current VCR is a distinct Host-phase fact"
+      },
+      "archive_snapshots": [
+        {
+          "perspective_is_owner": true,
+          "provenance": {
+            "archive_turn": 146,
+            "decoded_payload_sha256": "ed1106b7f759ad2d0acc967174f0cb30d5c8ea6cdda936c0c49eb5ab6acd999f",
+            "embedded_turn": 146,
+            "member_id": 67766,
+            "perspective_player_id": 4,
+            "source_member_name": "player4-turn146.trn"
+          },
+          "target": {
+            "ship_list_status": "PRESENT",
+            "ship_records_total": 202,
+            "target_ship_seen": true,
+            "target_ships": [
+              {
+                "ammo": 0,
+                "clans": 0,
+                "damage": 0,
+                "engine_mc_cost_from_first_member_catalog": 1,
+                "engineid": 1,
+                "hullid": 1039,
+                "id": 274,
+                "mass": 54,
+                "mission": 3,
+                "neutronium": 1,
+                "ownerid": 4,
+                "same_owner_shield_generator_ids_at_snapshot_ship_xy": [
+                  213,
+                  368,
+                  387,
+                  536
+                ],
+                "target_owner_matches": true,
+                "targetx": 1838,
+                "targety": 2141,
+                "warp": 0,
+                "x": 1838,
+                "y": 2141
+              }
+            ]
+          }
+        },
+        {
+          "perspective_is_owner": true,
+          "provenance": {
+            "archive_turn": 147,
+            "decoded_payload_sha256": "1b5d08a4390ba9d4af027df3470a0a115267c859026331e12f14a5a1eb22a510",
+            "embedded_turn": 147,
+            "member_id": 67778,
+            "perspective_player_id": 4,
+            "source_member_name": "player4-turn147.trn"
+          },
+          "target": {
+            "ship_list_status": "PRESENT",
+            "ship_records_total": 212,
+            "target_ship_seen": true,
+            "target_ships": [
+              {
+                "ammo": 0,
+                "clans": 0,
+                "damage": 0,
+                "engine_mc_cost_from_first_member_catalog": 1,
+                "engineid": 1,
+                "hullid": 1039,
+                "id": 274,
+                "mass": 54,
+                "mission": 3,
+                "neutronium": 1,
+                "ownerid": 4,
+                "same_owner_shield_generator_ids_at_snapshot_ship_xy": [
+                  213,
+                  368,
+                  387,
+                  536
+                ],
+                "target_owner_matches": true,
+                "targetx": 1838,
+                "targety": 2141,
+                "warp": 0,
+                "x": 1838,
+                "y": 2141
+              }
+            ]
+          }
+        },
+        {
+          "perspective_is_owner": false,
+          "provenance": {
+            "archive_turn": 148,
+            "decoded_payload_sha256": "5b08eba13a5b9eb6d4b78b4967d72e4b0dcc4e493a70d966d401de7d29cbc1b1",
+            "embedded_turn": 148,
+            "member_id": 67787,
+            "perspective_player_id": 1,
+            "source_member_name": "player1-turn148.trn"
+          },
+          "target": {
+            "ship_list_status": "PRESENT",
+            "ship_records_total": 172,
+            "target_ship_seen": false,
+            "target_ships": []
+          }
+        },
+        {
+          "perspective_is_owner": false,
+          "provenance": {
+            "archive_turn": 148,
+            "decoded_payload_sha256": "4f402d6347c832e7427867338760296a7873ccb2bbdc356c92bf2f53c00b797d",
+            "embedded_turn": 148,
+            "member_id": 67788,
+            "perspective_player_id": 2,
+            "source_member_name": "player2-turn148.trn"
+          },
+          "target": {
+            "ship_list_status": "PRESENT",
+            "ship_records_total": 190,
+            "target_ship_seen": false,
+            "target_ships": []
+          }
+        },
+        {
+          "perspective_is_owner": false,
+          "provenance": {
+            "archive_turn": 148,
+            "decoded_payload_sha256": "ad50a469d07ceec135a78698beb190424e1402d44715855cb868776913ab20f0",
+            "embedded_turn": 148,
+            "member_id": 67789,
+            "perspective_player_id": 3,
+            "source_member_name": "player3-turn148.trn"
+          },
+          "target": {
+            "ship_list_status": "PRESENT",
+            "ship_records_total": 0,
+            "target_ship_seen": false,
+            "target_ships": []
+          }
+        },
+        {
+          "perspective_is_owner": true,
+          "provenance": {
+            "archive_turn": 148,
+            "decoded_payload_sha256": "86bc634955e238801939db43bb86ab4a8589f507abdf60dca76d809940cd9c9f",
+            "embedded_turn": 148,
+            "member_id": 67790,
+            "perspective_player_id": 4,
+            "source_member_name": "player4-turn148.trn"
+          },
+          "static": {
+            "hulls": {
+              "collection_status": "PRESENT",
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 2,
+                  "id": 39,
+                  "mass": 96,
+                  "name": "D19b Nefarious Class Destroyer",
+                  "parentid": 0,
+                  "special": "Glory Device, Radiation Shielding - Can self destruct doing 1 mine hit worth of damage to all enemy ships at a location. Will not lose crew or colonists from Star Cluster radiation."
+                },
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "id": 1039,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39,
+                  "special": "Glory Device, Radiation Shielding - Can self destruct doing 1 mine hit worth of damage to all enemy ships at a location. Will not lose crew or colonists from Star Cluster radiation."
+                },
+                {
+                  "cargo": 25,
+                  "engine_count": 2,
+                  "id": 1041,
+                  "mass": 173,
+                  "name": "Saber Class Shield Generator",
+                  "parentid": 41,
+                  "special": "Shield Generator, Glory Device, Radiation Shielding - Will provide an additional 25% shields and invoke a 50% engine shield generator in any ship owned by the same player at its location (up two 2 Sabers at the same time) based on the engines of the boosted ship. Can self destruct doing 1 mine hit worth of damage to all enemy ships at a location. Will not lose crew or colonists from Star Cluster radiation."
+                },
+                {
+                  "cargo": 390,
+                  "engine_count": 6,
+                  "id": 94,
+                  "mass": 645,
+                  "name": "Rush Class Heavy Carrier",
+                  "parentid": 0,
+                  "special": ""
+                }
+              ],
+              "total_records": 189
+            },
+            "hullsall": {
+              "collection_status": "MISSING",
+              "records": []
+            }
+          },
+          "target": {
+            "ship_list_status": "PRESENT",
+            "ship_records_total": 202,
+            "target_ship_seen": true,
+            "target_ships": [
+              {
+                "ammo": 0,
+                "clans": 0,
+                "damage": 0,
+                "engine_mc_cost_from_first_member_catalog": 1,
+                "engineid": 1,
+                "hullid": 1039,
+                "id": 274,
+                "mass": 54,
+                "mission": 3,
+                "neutronium": 1,
+                "ownerid": 4,
+                "same_owner_shield_generator_ids_at_snapshot_ship_xy": [
+                  213,
+                  368
+                ],
+                "target_owner_matches": true,
+                "targetx": 1838,
+                "targety": 2141,
+                "warp": 0,
+                "x": 1838,
+                "y": 2141
+              }
+            ]
+          }
+        },
+        {
+          "perspective_is_owner": false,
+          "provenance": {
+            "archive_turn": 149,
+            "decoded_payload_sha256": "a0d50163cc55fa4980c6cf2a55c79f8c0c9198d31e5b9ac11e0487a413518037",
+            "embedded_turn": 149,
+            "member_id": 67799,
+            "perspective_player_id": 1,
+            "source_member_name": "player1-turn149.trn"
+          },
+          "target": {
+            "ship_list_status": "PRESENT",
+            "ship_records_total": 177,
+            "target_ship_seen": false,
+            "target_ships": []
+          }
+        },
+        {
+          "perspective_is_owner": false,
+          "provenance": {
+            "archive_turn": 149,
+            "decoded_payload_sha256": "ddb14d1dfa9d8c5b148d7fc21f4e769b1a229666eb2c87e561a807253ef90786",
+            "embedded_turn": 149,
+            "member_id": 67800,
+            "perspective_player_id": 2,
+            "source_member_name": "player2-turn149.trn"
+          },
+          "target": {
+            "ship_list_status": "PRESENT",
+            "ship_records_total": 183,
+            "target_ship_seen": false,
+            "target_ships": []
+          }
+        },
+        {
+          "perspective_is_owner": false,
+          "provenance": {
+            "archive_turn": 149,
+            "decoded_payload_sha256": "62eade386a4aedde7678de07c7376d5f4f0fb203122f554d0a5491429feeb05e",
+            "embedded_turn": 149,
+            "member_id": 67801,
+            "perspective_player_id": 3,
+            "source_member_name": "player3-turn149.trn"
+          },
+          "target": {
+            "ship_list_status": "PRESENT",
+            "ship_records_total": 0,
+            "target_ship_seen": false,
+            "target_ships": []
+          }
+        },
+        {
+          "perspective_is_owner": true,
+          "provenance": {
+            "archive_turn": 149,
+            "decoded_payload_sha256": "ad2c51387ff7057c64daf3b67351d216f56c785ae1774f45b05c7f70459754f2",
+            "embedded_turn": 149,
+            "member_id": 67802,
+            "perspective_player_id": 4,
+            "source_member_name": "player4-turn149.trn"
+          },
+          "static": {
+            "hulls": {
+              "collection_status": "PRESENT",
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 2,
+                  "id": 39,
+                  "mass": 96,
+                  "name": "D19b Nefarious Class Destroyer",
+                  "parentid": 0,
+                  "special": "Glory Device, Radiation Shielding - Can self destruct doing 1 mine hit worth of damage to all enemy ships at a location. Will not lose crew or colonists from Star Cluster radiation."
+                },
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "id": 1039,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39,
+                  "special": "Glory Device, Radiation Shielding - Can self destruct doing 1 mine hit worth of damage to all enemy ships at a location. Will not lose crew or colonists from Star Cluster radiation."
+                },
+                {
+                  "cargo": 25,
+                  "engine_count": 2,
+                  "id": 1041,
+                  "mass": 173,
+                  "name": "Saber Class Shield Generator",
+                  "parentid": 41,
+                  "special": "Shield Generator, Glory Device, Radiation Shielding - Will provide an additional 25% shields and invoke a 50% engine shield generator in any ship owned by the same player at its location (up two 2 Sabers at the same time) based on the engines of the boosted ship. Can self destruct doing 1 mine hit worth of damage to all enemy ships at a location. Will not lose crew or colonists from Star Cluster radiation."
+                },
+                {
+                  "cargo": 390,
+                  "engine_count": 6,
+                  "id": 94,
+                  "mass": 645,
+                  "name": "Rush Class Heavy Carrier",
+                  "parentid": 0,
+                  "special": ""
+                }
+              ],
+              "total_records": 189
+            },
+            "hullsall": {
+              "collection_status": "MISSING",
+              "records": []
+            }
+          },
+          "target": {
+            "ship_list_status": "PRESENT",
+            "ship_records_total": 196,
+            "target_ship_seen": false,
+            "target_ships": []
+          }
+        },
+        {
+          "perspective_is_owner": true,
+          "provenance": {
+            "archive_turn": 150,
+            "decoded_payload_sha256": "33cf1f14db5cd6d5ea42ff7807685f8a7d4484d795b98e956705fadaec996686",
+            "embedded_turn": 150,
+            "member_id": 67814,
+            "perspective_player_id": 4,
+            "source_member_name": "player4-turn150.trn"
+          },
+          "target": {
+            "ship_list_status": "PRESENT",
+            "ship_records_total": 200,
+            "target_ship_seen": false,
+            "target_ships": []
+          }
+        }
+      ],
+      "factual_vcr_mass": 48,
+      "factual_vcr_site": [
+        1838,
+        2141
+      ],
+      "game_id": 325434,
+      "hull_id": 1039,
+      "not_proven": {
+        "effective_hull_catalog_selection": true,
+        "phase_accurate_active_generators": true,
+        "phase_accurate_precombat_engine": true
+      },
+      "owner_id": 4,
+      "ship_id": 274,
+      "side": "left",
+      "static_first_last": [
+        {
+          "provenance": {
+            "archive_turn": 0,
+            "decoded_payload_sha256": "0966de0ad8a4f96d7de3433eb89bb985167c395894686b8728f38900b5d0d8be",
+            "embedded_turn": 0,
+            "member_id": 66011,
+            "perspective_player_id": 1,
+            "source_member_name": "player1-turn0.trn"
+          },
+          "snapshot_label": "first",
+          "static": {
+            "hulls": {
+              "collection_status": "PRESENT",
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 2,
+                  "id": 39,
+                  "mass": 96,
+                  "name": "D19b Nefarious Class Destroyer",
+                  "parentid": 0,
+                  "special": "Glory Device, Radiation Shielding - Can self destruct doing 1 mine hit worth of damage to all enemy ships at a location. Will not lose crew or colonists from Star Cluster radiation."
+                },
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "id": 1039,
+                  "mass": 96,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39,
+                  "special": "Glory Device, Radiation Shielding - Can self destruct doing 1 mine hit worth of damage to all enemy ships at a location. Will not lose crew or colonists from Star Cluster radiation."
+                },
+                {
+                  "cargo": 25,
+                  "engine_count": 2,
+                  "id": 1041,
+                  "mass": 173,
+                  "name": "Saber Class Shield Generator",
+                  "parentid": 41,
+                  "special": "Shield Generator, Glory Device, Radiation Shielding - Will provide an additional 25% shields and invoke a 50% engine shield generator in any ship owned by the same player at its location (up two 2 Sabers at the same time) based on the engines of the boosted ship. Can self destruct doing 1 mine hit worth of damage to all enemy ships at a location. Will not lose crew or colonists from Star Cluster radiation."
+                },
+                {
+                  "cargo": 390,
+                  "engine_count": 6,
+                  "id": 94,
+                  "mass": 645,
+                  "name": "Rush Class Heavy Carrier",
+                  "parentid": 0,
+                  "special": ""
+                }
+              ],
+              "total_records": 187
+            },
+            "hullsall": {
+              "collection_status": "MISSING",
+              "records": []
+            }
+          }
+        },
+        {
+          "provenance": {
+            "archive_turn": 229,
+            "decoded_payload_sha256": "83af0356b20d1ae953d9678f4a10e9cbc6721d220102ffa71adc881e4b895dbd",
+            "embedded_turn": 229,
+            "member_id": 68770,
+            "perspective_player_id": 12,
+            "source_member_name": "player12-turn229.trn"
+          },
+          "snapshot_label": "last",
+          "static": {
+            "hulls": {
+              "collection_status": "PRESENT",
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 2,
+                  "id": 39,
+                  "mass": 96,
+                  "name": "D19b Nefarious Class Destroyer",
+                  "parentid": 0,
+                  "special": "Glory Device, Radiation Shielding - Can self destruct doing 1 mine hit worth of damage to all enemy ships at a location. Will not lose crew or colonists from Star Cluster radiation."
+                },
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "id": 1039,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39,
+                  "special": "Glory Device, Radiation Shielding - Can self destruct doing 1 mine hit worth of damage to all enemy ships at a location. Will not lose crew or colonists from Star Cluster radiation."
+                },
+                {
+                  "cargo": 25,
+                  "engine_count": 2,
+                  "id": 1041,
+                  "mass": 173,
+                  "name": "Saber Class Shield Generator",
+                  "parentid": 41,
+                  "special": "Shield Generator, Glory Device, Radiation Shielding - Will provide an additional 25% shields and invoke a 50% engine shield generator in any ship owned by the same player at its location (up two 2 Sabers at the same time) based on the engines of the boosted ship. Can self destruct doing 1 mine hit worth of damage to all enemy ships at a location. Will not lose crew or colonists from Star Cluster radiation."
+                },
+                {
+                  "cargo": 390,
+                  "engine_count": 6,
+                  "id": 94,
+                  "mass": 645,
+                  "name": "Rush Class Heavy Carrier",
+                  "parentid": 0,
+                  "special": ""
+                }
+              ],
+              "total_records": 189
+            },
+            "hullsall": {
+              "collection_status": "MISSING",
+              "records": []
+            }
+          }
+        }
+      ],
+      "static_first_last_mass_comparison": {
+        "observed_raw_masses_by_collection_and_hull_id": {
+          "hulls:1039": [
+            46,
+            96
+          ],
+          "hulls:1041": [
+            173
+          ],
+          "hulls:39": [
+            96
+          ],
+          "hulls:94": [
+            645
+          ]
+        },
+        "static_source_observations_are_not_host_mass_rules": true
+      },
+      "temporal_observation_counts": {
+        "T_and_after_owner_ship_seen": false,
+        "Tminus1_owner_perspective_present": true,
+        "Tminus1_ship_seen_by_owner": true,
+        "foreign_perspective_ship_seen_Tminus1_or_T": false,
+        "owner_perspective_source_missing_not_equal_ship_absent": true,
+        "previous_owner_ships_visible": 2
+      },
+      "turn": 149,
+      "typed_first_member_hull": {
+        "mass": 96,
+        "name": "D19c Nefarious Class Destroyer",
+        "parent_id": 39
+      },
+      "vcr_id": 1075,
+      "vcr_input_observation_count": 4
+    },
+    {
+      "archive_selection_scope": {
+        "foreign_perspective_selected_per_turn_cap": 3,
+        "owner_source_members_available_by_turn": {
+          "198": 1,
+          "199": 1,
+          "200": 1,
+          "201": 1,
+          "202": 1
+        },
+        "owner_source_members_selected_per_turn_cap": 3,
+        "peer_source_members_available_in_Tminus1_and_T": {
+          "200": 11,
+          "201": 11
+        },
+        "temporal_boundary": "archive_turn is an archived source label; current VCR is a distinct Host-phase fact"
+      },
+      "archive_snapshots": [
+        {
+          "perspective_is_owner": true,
+          "provenance": {
+            "archive_turn": 198,
+            "decoded_payload_sha256": "18bd4770a2fd2c83599f3dd862fc18417c79255a06d24715df402aa7987c1c31",
+            "embedded_turn": 198,
+            "member_id": 197783,
+            "perspective_player_id": 4,
+            "source_member_name": "player4-turn198.trn"
+          },
+          "target": {
+            "ship_list_status": "PRESENT",
+            "ship_records_total": 87,
+            "target_ship_seen": false,
+            "target_ships": []
+          }
+        },
+        {
+          "perspective_is_owner": true,
+          "provenance": {
+            "archive_turn": 199,
+            "decoded_payload_sha256": "465fab7c5539eb17f212134303f03ddde296ee304324a550b114f37dc454bae8",
+            "embedded_turn": 199,
+            "member_id": 197795,
+            "perspective_player_id": 4,
+            "source_member_name": "player4-turn199.trn"
+          },
+          "target": {
+            "ship_list_status": "PRESENT",
+            "ship_records_total": 87,
+            "target_ship_seen": false,
+            "target_ships": []
+          }
+        },
+        {
+          "perspective_is_owner": false,
+          "provenance": {
+            "archive_turn": 200,
+            "decoded_payload_sha256": "82b5fc424a7300f156ecaf824bdc30a3eee3bb11dc11c96f6a7a3894aa8309f1",
+            "embedded_turn": 200,
+            "member_id": 197804,
+            "perspective_player_id": 1,
+            "source_member_name": "player1-turn200.trn"
+          },
+          "target": {
+            "ship_list_status": "PRESENT",
+            "ship_records_total": 395,
+            "target_ship_seen": true,
+            "target_ships": [
+              {
+                "ammo": 209,
+                "clans": 0,
+                "damage": 0,
+                "engine_mc_cost_from_first_member_catalog": null,
+                "engineid": 0,
+                "hullid": 94,
+                "id": 27,
+                "mass": 1827,
+                "mission": 0,
+                "neutronium": 0,
+                "ownerid": 5,
+                "same_owner_shield_generator_ids_at_snapshot_ship_xy": [],
+                "target_owner_matches": false,
+                "targetx": 1403,
+                "targety": 2745,
+                "warp": 1,
+                "x": 1403,
+                "y": 2745
+              }
+            ]
+          }
+        },
+        {
+          "perspective_is_owner": false,
+          "provenance": {
+            "archive_turn": 200,
+            "decoded_payload_sha256": "2dcc0b4993a5023888ad614f431844166381f08017f02d294b83cc1910e4790f",
+            "embedded_turn": 200,
+            "member_id": 197805,
+            "perspective_player_id": 2,
+            "source_member_name": "player2-turn200.trn"
+          },
+          "target": {
+            "ship_list_status": "PRESENT",
+            "ship_records_total": 124,
+            "target_ship_seen": false,
+            "target_ships": []
+          }
+        },
+        {
+          "perspective_is_owner": false,
+          "provenance": {
+            "archive_turn": 200,
+            "decoded_payload_sha256": "1543b198b3cc57bef9df46438cbc6263660db5dd088c77859178423faff3aa81",
+            "embedded_turn": 200,
+            "member_id": 197806,
+            "perspective_player_id": 3,
+            "source_member_name": "player3-turn200.trn"
+          },
+          "target": {
+            "ship_list_status": "PRESENT",
+            "ship_records_total": 0,
+            "target_ship_seen": false,
+            "target_ships": []
+          }
+        },
+        {
+          "perspective_is_owner": true,
+          "provenance": {
+            "archive_turn": 200,
+            "decoded_payload_sha256": "0b0b605d564f2940bec712c76cf58d6fb82fc376e5407d58e6dd1fcdecd1ccd6",
+            "embedded_turn": 200,
+            "member_id": 197807,
+            "perspective_player_id": 4,
+            "source_member_name": "player4-turn200.trn"
+          },
+          "static": {
+            "hulls": {
+              "collection_status": "PRESENT",
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 2,
+                  "id": 39,
+                  "mass": 96,
+                  "name": "D19b Nefarious Class Destroyer",
+                  "parentid": 0,
+                  "special": "Glory Device, Radiation Shielding - Can self destruct doing 1 mine hit worth of damage to all enemy ships at a location. Will not lose crew or colonists from Star Cluster radiation."
+                },
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "id": 1039,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39,
+                  "special": "Glory Device, Radiation Shielding - Can self destruct doing 1 mine hit worth of damage to all enemy ships at a location. Will not lose crew or colonists from Star Cluster radiation."
+                },
+                {
+                  "cargo": 25,
+                  "engine_count": 2,
+                  "id": 1041,
+                  "mass": 173,
+                  "name": "Saber Class Shield Generator",
+                  "parentid": 41,
+                  "special": "Shield Generator, Glory Device, Radiation Shielding - Will provide an additional 25% shields and invoke a 50% engine shield generator in any ship owned by the same player at its location (up two 2 Sabers at the same time) based on the engines of the boosted ship. Can self destruct doing 1 mine hit worth of damage to all enemy ships at a location. Will not lose crew or colonists from Star Cluster radiation."
+                },
+                {
+                  "cargo": 390,
+                  "engine_count": 6,
+                  "id": 94,
+                  "mass": 645,
+                  "name": "Rush Class Heavy Carrier",
+                  "parentid": 0,
+                  "special": ""
+                }
+              ],
+              "total_records": 230
+            },
+            "hullsall": {
+              "collection_status": "MISSING",
+              "records": []
+            }
+          },
+          "target": {
+            "ship_list_status": "PRESENT",
+            "ship_records_total": 86,
+            "target_ship_seen": false,
+            "target_ships": []
+          }
+        },
+        {
+          "perspective_is_owner": false,
+          "provenance": {
+            "archive_turn": 201,
+            "decoded_payload_sha256": "b41862d943a35a72ccf51c242a479c201333bd815c636d3e6854b93cb0ed7f65",
+            "embedded_turn": 201,
+            "member_id": 197816,
+            "perspective_player_id": 1,
+            "source_member_name": "player1-turn201.trn"
+          },
+          "target": {
+            "ship_list_status": "PRESENT",
+            "ship_records_total": 412,
+            "target_ship_seen": true,
+            "target_ships": [
+              {
+                "ammo": 0,
+                "clans": 0,
+                "damage": -1,
+                "engine_mc_cost_from_first_member_catalog": null,
+                "engineid": 0,
+                "hullid": 35,
+                "id": 27,
+                "mass": 539,
+                "mission": 0,
+                "neutronium": 0,
+                "ownerid": 4,
+                "same_owner_shield_generator_ids_at_snapshot_ship_xy": [
+                  406
+                ],
+                "target_owner_matches": true,
+                "targetx": 1455,
+                "targety": 2615,
+                "warp": 0,
+                "x": 1455,
+                "y": 2615
+              }
+            ]
+          }
+        },
+        {
+          "perspective_is_owner": false,
+          "provenance": {
+            "archive_turn": 201,
+            "decoded_payload_sha256": "08ffe47995e46bbabd384ca7b72f88239ca629567b2a7764742727f8571c5899",
+            "embedded_turn": 201,
+            "member_id": 197817,
+            "perspective_player_id": 2,
+            "source_member_name": "player2-turn201.trn"
+          },
+          "target": {
+            "ship_list_status": "PRESENT",
+            "ship_records_total": 128,
+            "target_ship_seen": false,
+            "target_ships": []
+          }
+        },
+        {
+          "perspective_is_owner": false,
+          "provenance": {
+            "archive_turn": 201,
+            "decoded_payload_sha256": "ce17f55a8c404a74566d14e742f9a173944ee6a241d07e00d0f6c93660926c89",
+            "embedded_turn": 201,
+            "member_id": 197818,
+            "perspective_player_id": 3,
+            "source_member_name": "player3-turn201.trn"
+          },
+          "target": {
+            "ship_list_status": "PRESENT",
+            "ship_records_total": 0,
+            "target_ship_seen": false,
+            "target_ships": []
+          }
+        },
+        {
+          "perspective_is_owner": true,
+          "provenance": {
+            "archive_turn": 201,
+            "decoded_payload_sha256": "ec3c90449cbf1a48bf10e305be7bd93999f893ba0b10bf48dd37fdac348644f4",
+            "embedded_turn": 201,
+            "member_id": 197819,
+            "perspective_player_id": 4,
+            "source_member_name": "player4-turn201.trn"
+          },
+          "static": {
+            "hulls": {
+              "collection_status": "PRESENT",
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 2,
+                  "id": 39,
+                  "mass": 96,
+                  "name": "D19b Nefarious Class Destroyer",
+                  "parentid": 0,
+                  "special": "Glory Device, Radiation Shielding - Can self destruct doing 1 mine hit worth of damage to all enemy ships at a location. Will not lose crew or colonists from Star Cluster radiation."
+                },
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "id": 1039,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39,
+                  "special": "Glory Device, Radiation Shielding - Can self destruct doing 1 mine hit worth of damage to all enemy ships at a location. Will not lose crew or colonists from Star Cluster radiation."
+                },
+                {
+                  "cargo": 25,
+                  "engine_count": 2,
+                  "id": 1041,
+                  "mass": 173,
+                  "name": "Saber Class Shield Generator",
+                  "parentid": 41,
+                  "special": "Shield Generator, Glory Device, Radiation Shielding - Will provide an additional 25% shields and invoke a 50% engine shield generator in any ship owned by the same player at its location (up two 2 Sabers at the same time) based on the engines of the boosted ship. Can self destruct doing 1 mine hit worth of damage to all enemy ships at a location. Will not lose crew or colonists from Star Cluster radiation."
+                },
+                {
+                  "cargo": 390,
+                  "engine_count": 6,
+                  "id": 94,
+                  "mass": 645,
+                  "name": "Rush Class Heavy Carrier",
+                  "parentid": 0,
+                  "special": ""
+                }
+              ],
+              "total_records": 230
+            },
+            "hullsall": {
+              "collection_status": "MISSING",
+              "records": []
+            }
+          },
+          "target": {
+            "ship_list_status": "PRESENT",
+            "ship_records_total": 75,
+            "target_ship_seen": true,
+            "target_ships": [
+              {
+                "ammo": 0,
+                "clans": 0,
+                "damage": 0,
+                "engine_mc_cost_from_first_member_catalog": 300,
+                "engineid": 9,
+                "hullid": 35,
+                "id": 27,
+                "mass": 539,
+                "mission": 0,
+                "neutronium": 0,
+                "ownerid": 4,
+                "same_owner_shield_generator_ids_at_snapshot_ship_xy": [
+                  406
+                ],
+                "target_owner_matches": true,
+                "targetx": 1455,
+                "targety": 2615,
+                "warp": 0,
+                "x": 1455,
+                "y": 2615
+              }
+            ]
+          }
+        },
+        {
+          "perspective_is_owner": true,
+          "provenance": {
+            "archive_turn": 202,
+            "decoded_payload_sha256": "fd58eeb3603013bc090cb6210d32971152fdee2d04920734a292ec87e24169e2",
+            "embedded_turn": 202,
+            "member_id": 197831,
+            "perspective_player_id": 4,
+            "source_member_name": "player4-turn202.trn"
+          },
+          "target": {
+            "ship_list_status": "PRESENT",
+            "ship_records_total": 78,
+            "target_ship_seen": true,
+            "target_ships": [
+              {
+                "ammo": 0,
+                "clans": 0,
+                "damage": 0,
+                "engine_mc_cost_from_first_member_catalog": 300,
+                "engineid": 9,
+                "hullid": 35,
+                "id": 27,
+                "mass": 539,
+                "mission": 0,
+                "neutronium": 0,
+                "ownerid": 5,
+                "same_owner_shield_generator_ids_at_snapshot_ship_xy": [],
+                "target_owner_matches": false,
+                "targetx": 1454,
+                "targety": 2696,
+                "warp": 0,
+                "x": 1454,
+                "y": 2696
+              }
+            ]
+          }
+        }
+      ],
+      "factual_vcr_mass": 795,
+      "factual_vcr_site": [
+        1455,
+        2615
+      ],
+      "game_id": 617883,
+      "hull_id": 94,
+      "not_proven": {
+        "effective_hull_catalog_selection": true,
+        "phase_accurate_active_generators": true,
+        "phase_accurate_precombat_engine": true
+      },
+      "owner_id": 4,
+      "ship_id": 27,
+      "side": "left",
+      "static_first_last": [
+        {
+          "provenance": {
+            "archive_turn": 0,
+            "decoded_payload_sha256": "9a46b1d4ac74f9e68f5b9a12b23225ea4f653afdbc90fd07d6811fe83b70bfec",
+            "embedded_turn": 0,
+            "member_id": 195404,
+            "perspective_player_id": 1,
+            "source_member_name": "player1-turn0.trn"
+          },
+          "snapshot_label": "first",
+          "static": {
+            "hulls": {
+              "collection_status": "PRESENT",
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 2,
+                  "id": 39,
+                  "mass": 96,
+                  "name": "D19b Nefarious Class Destroyer",
+                  "parentid": 0,
+                  "special": "Glory Device, Radiation Shielding - Can self destruct doing 1 mine hit worth of damage to all enemy ships at a location. Will not lose crew or colonists from Star Cluster radiation."
+                },
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "id": 1039,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39,
+                  "special": "Glory Device, Radiation Shielding - Can self destruct doing 1 mine hit worth of damage to all enemy ships at a location. Will not lose crew or colonists from Star Cluster radiation."
+                },
+                {
+                  "cargo": 25,
+                  "engine_count": 2,
+                  "id": 1041,
+                  "mass": 173,
+                  "name": "Saber Class Shield Generator",
+                  "parentid": 41,
+                  "special": "Shield Generator, Glory Device, Radiation Shielding - Will provide an additional 25% shields and invoke a 50% engine shield generator in any ship owned by the same player at its location (up two 2 Sabers at the same time) based on the engines of the boosted ship. Can self destruct doing 1 mine hit worth of damage to all enemy ships at a location. Will not lose crew or colonists from Star Cluster radiation."
+                },
+                {
+                  "cargo": 390,
+                  "engine_count": 6,
+                  "id": 94,
+                  "mass": 645,
+                  "name": "Rush Class Heavy Carrier",
+                  "parentid": 0,
+                  "special": ""
+                }
+              ],
+              "total_records": 223
+            },
+            "hullsall": {
+              "collection_status": "MISSING",
+              "records": []
+            }
+          }
+        },
+        {
+          "provenance": {
+            "archive_turn": 221,
+            "decoded_payload_sha256": "6717eb69daac9e83f62458ad7830ea27b2d52c6e1b74ad14821bcee715b4cbe9",
+            "embedded_turn": 221,
+            "member_id": 198067,
+            "perspective_player_id": 12,
+            "source_member_name": "player12-turn221.trn"
+          },
+          "snapshot_label": "last",
+          "static": {
+            "hulls": {
+              "collection_status": "PRESENT",
+              "records": [
+                {
+                  "cargo": 40,
+                  "engine_count": 2,
+                  "id": 39,
+                  "mass": 96,
+                  "name": "D19b Nefarious Class Destroyer",
+                  "parentid": 0,
+                  "special": "Glory Device, Radiation Shielding - Can self destruct doing 1 mine hit worth of damage to all enemy ships at a location. Will not lose crew or colonists from Star Cluster radiation."
+                },
+                {
+                  "cargo": 40,
+                  "engine_count": 1,
+                  "id": 1039,
+                  "mass": 46,
+                  "name": "D19c Nefarious Class Destroyer",
+                  "parentid": 39,
+                  "special": "Glory Device, Radiation Shielding - Can self destruct doing 1 mine hit worth of damage to all enemy ships at a location. Will not lose crew or colonists from Star Cluster radiation."
+                },
+                {
+                  "cargo": 25,
+                  "engine_count": 2,
+                  "id": 1041,
+                  "mass": 173,
+                  "name": "Saber Class Shield Generator",
+                  "parentid": 41,
+                  "special": "Shield Generator, Glory Device, Radiation Shielding - Will provide an additional 25% shields and invoke a 50% engine shield generator in any ship owned by the same player at its location (up two 2 Sabers at the same time) based on the engines of the boosted ship. Can self destruct doing 1 mine hit worth of damage to all enemy ships at a location. Will not lose crew or colonists from Star Cluster radiation."
+                },
+                {
+                  "cargo": 390,
+                  "engine_count": 6,
+                  "id": 94,
+                  "mass": 645,
+                  "name": "Rush Class Heavy Carrier",
+                  "parentid": 0,
+                  "special": ""
+                }
+              ],
+              "total_records": 231
+            },
+            "hullsall": {
+              "collection_status": "MISSING",
+              "records": []
+            }
+          }
+        }
+      ],
+      "static_first_last_mass_comparison": {
+        "observed_raw_masses_by_collection_and_hull_id": {
+          "hulls:1039": [
+            46
+          ],
+          "hulls:1041": [
+            173
+          ],
+          "hulls:39": [
+            96
+          ],
+          "hulls:94": [
+            645
+          ]
+        },
+        "static_source_observations_are_not_host_mass_rules": true
+      },
+      "temporal_observation_counts": {
+        "T_and_after_owner_ship_seen": true,
+        "Tminus1_owner_perspective_present": true,
+        "Tminus1_ship_seen_by_owner": false,
+        "foreign_perspective_ship_seen_Tminus1_or_T": true,
+        "owner_perspective_source_missing_not_equal_ship_absent": true,
+        "previous_owner_ships_visible": 0
+      },
+      "turn": 201,
+      "typed_first_member_hull": {
+        "mass": 645,
+        "name": "Rush Class Heavy Carrier",
+        "parent_id": 0
+      },
+      "vcr_id": 1017,
+      "vcr_input_observation_count": 3
+    }
+  ],
+  "reference": {
+    "official_D19c_link": "https://help.planets.nu/RaceSheetPlus",
+    "official_D19c_mass": 46,
+    "shield_generator_rule": "https://help.planets.nu/abil-shield-generator"
+  },
+  "schema": "planets-lab.combat-mass-catalog-owner-provenance.v1",
+  "source_db": "/root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "source_rulebook_schema": "planets-lab.combat-mass-rulebook-reconciliation.v2",
+  "status": "THREE_MASS_SOURCE_PROVENANCE_CASES_OBSERVED_NOT_PROMOTED",
+  "summary": {
+    "D19c_case_count": 2,
+    "D19c_hullsall_reference46_present_in_first_last": 0,
+    "Rush_case_count": 1,
+    "Rush_owner_ship_seen_in_T_and_after": true,
+    "cases_checked": 3
+  }
+}

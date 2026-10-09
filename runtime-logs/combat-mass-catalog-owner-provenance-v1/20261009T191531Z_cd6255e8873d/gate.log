@@ -1,0 +1,13 @@
+===== MASS CATALOG AND OWNER PROVENANCE V1 =====
+HEAD: cd6255e8873d23e435e487c670f9c1c16bb0fe5b
+public100: generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb
+sha256: 3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c
+source: artifacts/combat/mass-rulebook-reconciliation-v2/published/report.json
+output: artifacts/combat/mass-catalog-owner-provenance-v1/published/report.json
+===== MASS CATALOG AND OWNER PROVENANCE V1 =====
+status: THREE_MASS_SOURCE_PROVENANCE_CASES_OBSERVED_NOT_PROMOTED
+summary: {'cases_checked': 3, 'D19c_case_count': 2, 'Rush_case_count': 1, 'D19c_hullsall_reference46_present_in_first_last': 0, 'Rush_owner_ship_seen_in_T_and_after': True}
+game=217591 T75 V756 ship=758 hull=1039 static_masses={'hulls:1039': [46, 96], 'hulls:1041': [173], 'hulls:39': [96], 'hulls:94': [645]} owner_visibility={'Tminus1_owner_perspective_present': True, 'Tminus1_ship_seen_by_owner': True, 'previous_owner_ships_visible': 2, 'T_and_after_owner_ship_seen': False, 'foreign_perspective_ship_seen_Tminus1_or_T': True, 'owner_perspective_source_missing_not_equal_ship_absent': True}
+game=325434 T149 V1075 ship=274 hull=1039 static_masses={'hulls:1039': [46, 96], 'hulls:1041': [173], 'hulls:39': [96], 'hulls:94': [645]} owner_visibility={'Tminus1_owner_perspective_present': True, 'Tminus1_ship_seen_by_owner': True, 'previous_owner_ships_visible': 2, 'T_and_after_owner_ship_seen': False, 'foreign_perspective_ship_seen_Tminus1_or_T': False, 'owner_perspective_source_missing_not_equal_ship_absent': True}
+game=617883 T201 V1017 ship=27 hull=94 static_masses={'hulls:1039': [46], 'hulls:1041': [173], 'hulls:39': [96], 'hulls:94': [645]} owner_visibility={'Tminus1_owner_perspective_present': True, 'Tminus1_ship_seen_by_owner': False, 'previous_owner_ships_visible': 0, 'T_and_after_owner_ship_seen': True, 'foreign_perspective_ship_seen_Tminus1_or_T': True, 'owner_perspective_source_missing_not_equal_ship_absent': True}
+output: artifacts/combat/mass-catalog-owner-provenance-v1/published/report.json
