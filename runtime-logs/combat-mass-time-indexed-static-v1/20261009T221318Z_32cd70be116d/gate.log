@@ -1,0 +1,18 @@
+===== EXPERIMENTAL PRE-VCR T-1 STATIC FORECAST =====
+HEAD: 32cd70be116da2bfe401999cb2eaaba214ceac0a
+DB: /root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb
+expected_sha256: 3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c
+SHA256: checked once in Python before opening corpus read-only
+[static-v1] validating published V1 reconciliation and static controls
+[static-v1] verifying pinned SHA256 for corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb
+[static-v1] SHA256 verified (27.5s); opening read-only database
+[static-v1] discovering VCR-bearing archive turns with consecutive T-1 data
+[static-v1] candidate game-turns: 13439; target distinct games: 12
+[static-v1] [1/13439] game=2466 T11: loading battle VCRs; selected=0/12
+[static-v1] [1/13439] game=2466 T11: found 1 VCRs; reconstructing T-1 snapshots
+[static-v1] [1/13439] game=2466 T11: T-1 perspectives=11; predicting hull components
+[static-v1] [1/13439] game=2466 T11: done; sides=2 statuses={'RESOLVED': 2}; completed_games=1
+[static-v1] [150/13439] game=218619 T8: loading battle VCRs; selected=1/12
+[static-v1] [150/13439] game=218619 T8: found 3 VCRs; reconstructing T-1 snapshots
+[static-v1] [150/13439] game=218619 T8: T-1 perspectives=11; predicting hull components
+ERROR: invalid prediction identity
