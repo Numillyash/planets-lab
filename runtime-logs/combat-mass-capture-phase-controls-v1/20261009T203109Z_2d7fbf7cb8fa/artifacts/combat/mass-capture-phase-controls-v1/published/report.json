@@ -1,0 +1,3491 @@
+{
+  "Rush_VCR_sequence": {
+    "VCRs": [
+      {
+        "VCR_field_names": [
+          "battletype",
+          "id",
+          "left",
+          "leftownerid",
+          "right",
+          "rightownerid",
+          "seed",
+          "turn",
+          "x",
+          "y"
+        ],
+        "battle_turn": 201,
+        "factual_mass": 645,
+        "hull_id": 94,
+        "independent_source_perspectives": 3,
+        "metadata_scalar_fields": {
+          "battletype": 0,
+          "id": 1016,
+          "leftownerid": 4,
+          "rightownerid": 5,
+          "seed": 35,
+          "turn": 201,
+          "x": 1455,
+          "y": 2615
+        },
+        "opponent_owner_id": 4,
+        "opponent_start_state": {
+          "baycount": 0,
+          "beamcount": 10,
+          "beamid": 4,
+          "crew": 810,
+          "damage": 4,
+          "fighters": 0,
+          "hullid": 35,
+          "mass": 452,
+          "name": "VICTORIOUS CLASS BATTLESHIP",
+          "objectid": 253,
+          "raceid": 4,
+          "shield": 121,
+          "torpedoid": 7
+        },
+        "owner_id": 5,
+        "rush_side_field_names": [
+          "baycount",
+          "beamchargerate",
+          "beamcount",
+          "beamid",
+          "beamkillbonus",
+          "crew",
+          "crewdefensepercent",
+          "damage",
+          "fighters",
+          "hasstarbase",
+          "hullid",
+          "id",
+          "launchercount",
+          "mass",
+          "name",
+          "objectid",
+          "raceid",
+          "shield",
+          "side",
+          "temperature",
+          "torpchargerate",
+          "torpedoid",
+          "torpedos",
+          "torpmisspercent",
+          "vcrid"
+        ],
+        "rush_start_state": {
+          "baycount": 10,
+          "beamcount": 5,
+          "beamid": 6,
+          "crew": 28,
+          "damage": 0,
+          "fighters": 200,
+          "hullid": 94,
+          "mass": 645,
+          "name": "RUSH CLASS HEAVY CARRIER",
+          "objectid": 27,
+          "raceid": 5,
+          "shield": 100,
+          "torpedoid": 0
+        },
+        "same_site": [
+          1455,
+          2615
+        ],
+        "side": "right",
+        "source_member_names": [
+          "player1-turn201.trn",
+          "player4-turn201.trn",
+          "player5-turn201.trn"
+        ],
+        "vcr_id": 1016
+      },
+      {
+        "VCR_field_names": [
+          "battletype",
+          "id",
+          "left",
+          "leftownerid",
+          "right",
+          "rightownerid",
+          "seed",
+          "turn",
+          "x",
+          "y"
+        ],
+        "battle_turn": 201,
+        "factual_mass": 795,
+        "hull_id": 94,
+        "independent_source_perspectives": 3,
+        "metadata_scalar_fields": {
+          "battletype": 0,
+          "id": 1017,
+          "leftownerid": 4,
+          "rightownerid": 5,
+          "seed": 4,
+          "turn": 201,
+          "x": 1455,
+          "y": 2615
+        },
+        "opponent_owner_id": 5,
+        "opponent_start_state": {
+          "baycount": 10,
+          "beamcount": 10,
+          "beamid": 10,
+          "crew": 2810,
+          "damage": 6,
+          "fighters": 290,
+          "hullid": 52,
+          "mass": 1220,
+          "name": "Biocide Class Carrier",
+          "objectid": 167,
+          "raceid": 5,
+          "shield": 94,
+          "torpedoid": 0
+        },
+        "owner_id": 4,
+        "rush_side_field_names": [
+          "baycount",
+          "beamchargerate",
+          "beamcount",
+          "beamid",
+          "beamkillbonus",
+          "crew",
+          "crewdefensepercent",
+          "damage",
+          "fighters",
+          "hasstarbase",
+          "hullid",
+          "id",
+          "launchercount",
+          "mass",
+          "name",
+          "objectid",
+          "raceid",
+          "shield",
+          "side",
+          "temperature",
+          "torpchargerate",
+          "torpedoid",
+          "torpedos",
+          "torpmisspercent",
+          "vcrid"
+        ],
+        "rush_start_state": {
+          "baycount": 9,
+          "beamcount": 5,
+          "beamid": 6,
+          "crew": 10,
+          "damage": 14,
+          "fighters": 148,
+          "hullid": 94,
+          "mass": 795,
+          "name": "RUSH CLASS HEAVY CARRIER",
+          "objectid": 27,
+          "raceid": 4,
+          "shield": 25,
+          "torpedoid": 0
+        },
+        "same_site": [
+          1455,
+          2615
+        ],
+        "side": "left",
+        "source_member_names": [
+          "player1-turn201.trn",
+          "player4-turn201.trn",
+          "player5-turn201.trn"
+        ],
+        "vcr_id": 1017
+      }
+    ],
+    "game_id": 617883,
+    "ship_id": 27,
+    "transition": {
+      "VCR_id_order_is_not_host_phase_proof": true,
+      "consistent_with_documented_combat_capture": true,
+      "independent_capture_outcome_proven": false,
+      "mass_delta": 150,
+      "owner_change": [
+        5,
+        4
+      ],
+      "owner_changed": true,
+      "same_hull_id": true,
+      "same_ship_object_id_in_two_factual_VCR_starts": true
+    },
+    "turn": 201
+  },
+  "Rush_owner_snapshots": {
+    "evidence_boundary": "T-1 owner5 engine applies to original Rush only if owner source shows same hull, and still does not independently prove retained engine after capture. Sabers seen at T-1 are historical locations, not necessarily active at VCR start. A postcombat hull35 with the same ID cannot be treated as the same physical ship.",
+    "owner4_T_Saber_at_site": [
+      {
+        "hull_id": 1041,
+        "neutronium": 85,
+        "origin": [
+          1455,
+          2615
+        ],
+        "ship_id": 406,
+        "site_exact_at_archive": true,
+        "warp": 9,
+        "waypoint": [
+          1455,
+          2615
+        ],
+        "waypoint_exact_to_VCR_site": true
+      }
+    ],
+    "owner4_Tminus1_Saber_at_site": [
+      {
+        "hull_id": 1041,
+        "neutronium": 85,
+        "origin": [
+          1455,
+          2615
+        ],
+        "ship_id": 406,
+        "site_exact_at_archive": true,
+        "warp": 9,
+        "waypoint": [
+          1455,
+          2615
+        ],
+        "waypoint_exact_to_VCR_site": true
+      }
+    ],
+    "owner5_Tminus1_Rush27": [
+      {
+        "ammo": 200,
+        "crew": 28,
+        "damage": 0,
+        "engineid": 9,
+        "hullid": 94,
+        "id": 27,
+        "mass": 1827,
+        "mission": 8,
+        "name": "RUSH CLASS HEAVY CARRIER",
+        "neutronium": 1,
+        "ownerid": 5,
+        "targetx": 1403,
+        "targety": 2745,
+        "warp": 9,
+        "x": 1403,
+        "y": 2745
+      }
+    ],
+    "source_snapshots": [
+      {
+        "archive_turn": 200,
+        "owned_Saber_generators_near_VCR_site": [
+          {
+            "hull_id": 1041,
+            "neutronium": 85,
+            "origin": [
+              1455,
+              2615
+            ],
+            "ship_id": 406,
+            "site_exact_at_archive": true,
+            "warp": 9,
+            "waypoint": [
+              1455,
+              2615
+            ],
+            "waypoint_exact_to_VCR_site": true
+          }
+        ],
+        "owned_ship27": [],
+        "owner_perspective": 4,
+        "owner_ship27_not_present_does_not_imply_nonexistence_for_other_owners": true,
+        "owner_ship_list_available": true,
+        "source_member_id": 197807,
+        "source_member_sha256": "0b0b605d564f2940bec712c76cf58d6fb82fc376e5407d58e6dd1fcdecd1ccd6"
+      },
+      {
+        "archive_turn": 200,
+        "owned_Saber_generators_near_VCR_site": [],
+        "owned_ship27": [
+          {
+            "ammo": 200,
+            "crew": 28,
+            "damage": 0,
+            "engineid": 9,
+            "hullid": 94,
+            "id": 27,
+            "mass": 1827,
+            "mission": 8,
+            "name": "RUSH CLASS HEAVY CARRIER",
+            "neutronium": 1,
+            "ownerid": 5,
+            "targetx": 1403,
+            "targety": 2745,
+            "warp": 9,
+            "x": 1403,
+            "y": 2745
+          }
+        ],
+        "owner_perspective": 5,
+        "owner_ship27_not_present_does_not_imply_nonexistence_for_other_owners": true,
+        "owner_ship_list_available": true,
+        "source_member_id": 197808,
+        "source_member_sha256": "b1c95b3c7fcdea1d78f85aab0f56192f7d910c8d5a2af8ac9fbaa04d244cbcd4"
+      },
+      {
+        "archive_turn": 201,
+        "owned_Saber_generators_near_VCR_site": [
+          {
+            "hull_id": 1041,
+            "neutronium": 85,
+            "origin": [
+              1455,
+              2615
+            ],
+            "ship_id": 406,
+            "site_exact_at_archive": true,
+            "warp": 9,
+            "waypoint": [
+              1455,
+              2615
+            ],
+            "waypoint_exact_to_VCR_site": true
+          }
+        ],
+        "owned_ship27": [
+          {
+            "ammo": 0,
+            "crew": 810,
+            "damage": 0,
+            "engineid": 9,
+            "hullid": 35,
+            "id": 27,
+            "mass": 539,
+            "mission": 0,
+            "name": "VICTORIOUS CLASS BATTLESHIP",
+            "neutronium": 0,
+            "ownerid": 4,
+            "targetx": 1455,
+            "targety": 2615,
+            "warp": 0,
+            "x": 1455,
+            "y": 2615
+          }
+        ],
+        "owner_perspective": 4,
+        "owner_ship27_not_present_does_not_imply_nonexistence_for_other_owners": true,
+        "owner_ship_list_available": true,
+        "source_member_id": 197819,
+        "source_member_sha256": "ec3c90449cbf1a48bf10e305be7bd93999f893ba0b10bf48dd37fdac348644f4"
+      },
+      {
+        "archive_turn": 201,
+        "owned_Saber_generators_near_VCR_site": [],
+        "owned_ship27": [],
+        "owner_perspective": 5,
+        "owner_ship27_not_present_does_not_imply_nonexistence_for_other_owners": true,
+        "owner_ship_list_available": true,
+        "source_member_id": 197820,
+        "source_member_sha256": "51ed9d1077789fc9a669bc09498bffd83a16640e353e6e2b45e1bc53ea0eb3e2"
+      },
+      {
+        "archive_turn": 202,
+        "owned_Saber_generators_near_VCR_site": [],
+        "owned_ship27": [],
+        "owner_perspective": 4,
+        "owner_ship27_not_present_does_not_imply_nonexistence_for_other_owners": true,
+        "owner_ship_list_available": true,
+        "source_member_id": 197831,
+        "source_member_sha256": "fd58eeb3603013bc090cb6210d32971152fdee2d04920734a292ec87e24169e2"
+      },
+      {
+        "archive_turn": 202,
+        "owned_Saber_generators_near_VCR_site": [],
+        "owned_ship27": [
+          {
+            "ammo": 0,
+            "crew": 810,
+            "damage": 0,
+            "engineid": 9,
+            "hullid": 35,
+            "id": 27,
+            "mass": 539,
+            "mission": 0,
+            "name": "VICTORIOUS CLASS BATTLESHIP",
+            "neutronium": 0,
+            "ownerid": 5,
+            "targetx": 1454,
+            "targety": 2696,
+            "warp": 0,
+            "x": 1454,
+            "y": 2696
+          }
+        ],
+        "owner_perspective": 5,
+        "owner_ship27_not_present_does_not_imply_nonexistence_for_other_owners": true,
+        "owner_ship_list_available": true,
+        "source_member_id": 197832,
+        "source_member_sha256": "0b88dff2d0515570d105a1b51fc5ef8844bbf033e66b45c10464497f1be8b82c"
+      }
+    ]
+  },
+  "boundary": "The same Rush ship ID/hull changes observed owner across VCR starts and is CONSISTENT with capture; capture success itself is not proven without combat terminal/ship ownership event evidence. Ship ID27's postcombat Victorious hull35 is not assumed continuous with the Rush hull94. Static T-1 observations are controls, not a generative Host static resolver or verified precombat unit state.",
+  "documentation": {
+    "after_combat_shipbuilding": "https://help.planets.nu/combat-host",
+    "captured_ships_can_fight_again": "https://help.planets.nu/battle-order",
+    "captures_on_crew_zero": "https://help.planets.nu/combat-basics",
+    "generator_rule": "https://help.planets.nu/abil-shield-generator"
+  },
+  "schema": "planets-lab.combat-mass-capture-phase-controls.v1",
+  "source_db": "/root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "source_digest_schema": "planets-lab.combat-mass-long-survey-digest.v1",
+  "source_v2_schema": "planets-lab.combat-mass-temporal-static-identity.v2",
+  "static_snapshot_controls": [
+    {
+      "Tminus1_D19c_values": [
+        46
+      ],
+      "boundary": "T-1 static read-only cross-check, NOT a Host combat effective-spec resolver",
+      "first_member_D19c_mass": 96,
+      "first_member_archive_turn": 0,
+      "first_member_id": 1695,
+      "game_id": 217591,
+      "max_mass_changed_hulls": 3,
+      "per_perspective": [
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 3,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 145,
+              "first_mass": 125,
+              "hull_id": 117
+            },
+            {
+              "Tminus1_mass": 185,
+              "first_mass": 165,
+              "hull_id": 119
+            },
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            117,
+            119,
+            1039
+          ],
+          "perspective_player_id": 1,
+          "shared_hull_count": 186,
+          "source_member_id": 2583,
+          "source_member_sha256": "81ddd17758fcba38f328c05c6df741874f985355f6329e45debea019da133974"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 3,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 145,
+              "first_mass": 125,
+              "hull_id": 117
+            },
+            {
+              "Tminus1_mass": 185,
+              "first_mass": 165,
+              "hull_id": 119
+            },
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            117,
+            119,
+            1039
+          ],
+          "perspective_player_id": 2,
+          "shared_hull_count": 186,
+          "source_member_id": 2584,
+          "source_member_sha256": "e3d426f7cd12c9ddfac970ef42175e3baf434ace57db8e5b579b5ed685399471"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 3,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 145,
+              "first_mass": 125,
+              "hull_id": 117
+            },
+            {
+              "Tminus1_mass": 185,
+              "first_mass": 165,
+              "hull_id": 119
+            },
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            117,
+            119,
+            1039
+          ],
+          "perspective_player_id": 3,
+          "shared_hull_count": 186,
+          "source_member_id": 2585,
+          "source_member_sha256": "8c78592d2d6103d86430a9dd46aa2d313940247ba512f468763293d110ff46a8"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 3,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 145,
+              "first_mass": 125,
+              "hull_id": 117
+            },
+            {
+              "Tminus1_mass": 185,
+              "first_mass": 165,
+              "hull_id": 119
+            },
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            117,
+            119,
+            1039
+          ],
+          "perspective_player_id": 4,
+          "shared_hull_count": 186,
+          "source_member_id": 2586,
+          "source_member_sha256": "1cd873c7244adc5416bbf3896a96ffe9d91e4fe808f2e73cec15853b662527e1"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 3,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 145,
+              "first_mass": 125,
+              "hull_id": 117
+            },
+            {
+              "Tminus1_mass": 185,
+              "first_mass": 165,
+              "hull_id": 119
+            },
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            117,
+            119,
+            1039
+          ],
+          "perspective_player_id": 5,
+          "shared_hull_count": 186,
+          "source_member_id": 2587,
+          "source_member_sha256": "9a123d2ba376ef28fa21ee51630ae16268a2e45111f479241ebbefee8c50b763"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 3,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 145,
+              "first_mass": 125,
+              "hull_id": 117
+            },
+            {
+              "Tminus1_mass": 185,
+              "first_mass": 165,
+              "hull_id": 119
+            },
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            117,
+            119,
+            1039
+          ],
+          "perspective_player_id": 6,
+          "shared_hull_count": 186,
+          "source_member_id": 2588,
+          "source_member_sha256": "10ac29c0ca07ac16e71572d6b86d587b0695d77256831ac48c7eec17ea15ed8b"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 3,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 145,
+              "first_mass": 125,
+              "hull_id": 117
+            },
+            {
+              "Tminus1_mass": 185,
+              "first_mass": 165,
+              "hull_id": 119
+            },
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            117,
+            119,
+            1039
+          ],
+          "perspective_player_id": 7,
+          "shared_hull_count": 186,
+          "source_member_id": 2589,
+          "source_member_sha256": "4c35f96bee76823b57c35814d35c61aee5c03bed1b401deb88217f920bf65027"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 3,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 145,
+              "first_mass": 125,
+              "hull_id": 117
+            },
+            {
+              "Tminus1_mass": 185,
+              "first_mass": 165,
+              "hull_id": 119
+            },
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            117,
+            119,
+            1039
+          ],
+          "perspective_player_id": 8,
+          "shared_hull_count": 186,
+          "source_member_id": 2590,
+          "source_member_sha256": "49649c01daf65869dd6053fd320b1654701dab1774ce28dbb347359fa9284d46"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 3,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 145,
+              "first_mass": 125,
+              "hull_id": 117
+            },
+            {
+              "Tminus1_mass": 185,
+              "first_mass": 165,
+              "hull_id": 119
+            },
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            117,
+            119,
+            1039
+          ],
+          "perspective_player_id": 9,
+          "shared_hull_count": 186,
+          "source_member_id": 2591,
+          "source_member_sha256": "80c82dcadb0e716314f74e1a453960e66094538ba7beec7b56cab4445488d251"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 3,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 145,
+              "first_mass": 125,
+              "hull_id": 117
+            },
+            {
+              "Tminus1_mass": 185,
+              "first_mass": 165,
+              "hull_id": 119
+            },
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            117,
+            119,
+            1039
+          ],
+          "perspective_player_id": 10,
+          "shared_hull_count": 186,
+          "source_member_id": 2592,
+          "source_member_sha256": "8eb5f33b000f7be01f40d034519713bc4bfaeace4df286ea8b21ad84d4c030c3"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 3,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 145,
+              "first_mass": 125,
+              "hull_id": 117
+            },
+            {
+              "Tminus1_mass": 185,
+              "first_mass": 165,
+              "hull_id": 119
+            },
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            117,
+            119,
+            1039
+          ],
+          "perspective_player_id": 11,
+          "shared_hull_count": 186,
+          "source_member_id": 2593,
+          "source_member_sha256": "502dc4d976072425e8e23878701201ddf6391feb84ce7c0931aaba5c2fd54eef"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 3,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 145,
+              "first_mass": 125,
+              "hull_id": 117
+            },
+            {
+              "Tminus1_mass": 185,
+              "first_mass": 165,
+              "hull_id": 119
+            },
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            117,
+            119,
+            1039
+          ],
+          "perspective_player_id": 12,
+          "shared_hull_count": 186,
+          "source_member_id": 2594,
+          "source_member_sha256": "9f4573aaa7bac6105b1284e292c15ea8295f0086c90d6206f42d1f9862baabe4"
+        }
+      ],
+      "per_perspective_truncated": false,
+      "perspectives": 12,
+      "status": "SAME_CHANGE_SET_ACROSS_AVAILABLE_TMINUS1_PERSPECTIVES",
+      "turn": 75
+    },
+    {
+      "Tminus1_D19c_values": [
+        46
+      ],
+      "boundary": "T-1 static read-only cross-check, NOT a Host combat effective-spec resolver",
+      "first_member_D19c_mass": 96,
+      "first_member_archive_turn": 0,
+      "first_member_id": 66011,
+      "game_id": 325434,
+      "max_mass_changed_hulls": 1,
+      "per_perspective": [
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 1,
+          "shared_hull_count": 187,
+          "source_member_id": 67787,
+          "source_member_sha256": "5b08eba13a5b9eb6d4b78b4967d72e4b0dcc4e493a70d966d401de7d29cbc1b1"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 2,
+          "shared_hull_count": 187,
+          "source_member_id": 67788,
+          "source_member_sha256": "4f402d6347c832e7427867338760296a7873ccb2bbdc356c92bf2f53c00b797d"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 3,
+          "shared_hull_count": 187,
+          "source_member_id": 67789,
+          "source_member_sha256": "ad50a469d07ceec135a78698beb190424e1402d44715855cb868776913ab20f0"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 4,
+          "shared_hull_count": 187,
+          "source_member_id": 67790,
+          "source_member_sha256": "86bc634955e238801939db43bb86ab4a8589f507abdf60dca76d809940cd9c9f"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 5,
+          "shared_hull_count": 187,
+          "source_member_id": 67791,
+          "source_member_sha256": "e2dc9af867922381f79c5333aceb2f8a113be03aa4b368eb201ac4efa8eda1ce"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 6,
+          "shared_hull_count": 187,
+          "source_member_id": 67792,
+          "source_member_sha256": "2ae91cb033b365395803672d76f730947b60b72ac1a12045d84d0c8454f6ab76"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 7,
+          "shared_hull_count": 187,
+          "source_member_id": 67793,
+          "source_member_sha256": "9ca47a98f98f5d6747b52579243113167e55d8f428c2f8bdf6dcaf1dd24e514f"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 8,
+          "shared_hull_count": 187,
+          "source_member_id": 67794,
+          "source_member_sha256": "73ed2815311eba82934f14148d39254b6f1e2e14034740235c602156b13ea86f"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 9,
+          "shared_hull_count": 187,
+          "source_member_id": 67795,
+          "source_member_sha256": "31cc5408c8faf9d9e424e67c4e399ca79c4dfd3c098b1acb4891c115d78f9977"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 10,
+          "shared_hull_count": 187,
+          "source_member_id": 67796,
+          "source_member_sha256": "544f191482f5f3cc3337e0b26148893b28d4680761c75c38c467591414765a1f"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 11,
+          "shared_hull_count": 187,
+          "source_member_id": 67797,
+          "source_member_sha256": "7e34dc876d87eaf89f0045f5d7c04d2e3b50321f333237e608e4750391a5d3e8"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 12,
+          "shared_hull_count": 187,
+          "source_member_id": 67798,
+          "source_member_sha256": "6d1d5ed5d9d7cca6f6e8f822d49a1149e3a9515173c148476b4f8432a57f8fe6"
+        }
+      ],
+      "per_perspective_truncated": false,
+      "perspectives": 12,
+      "status": "SAME_CHANGE_SET_ACROSS_AVAILABLE_TMINUS1_PERSPECTIVES",
+      "turn": 149
+    },
+    {
+      "Tminus1_D19c_values": [
+        46
+      ],
+      "boundary": "T-1 static read-only cross-check, NOT a Host combat effective-spec resolver",
+      "first_member_D19c_mass": 96,
+      "first_member_archive_turn": 0,
+      "first_member_id": 77864,
+      "game_id": 341336,
+      "max_mass_changed_hulls": 1,
+      "per_perspective": [
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 1,
+          "shared_hull_count": 187,
+          "source_member_id": 78604,
+          "source_member_sha256": "7ae7ba5580a27eae2a3db1b5eeb29acd434a791fc874a096d1f84c7435289c3a"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 2,
+          "shared_hull_count": 187,
+          "source_member_id": 78605,
+          "source_member_sha256": "f0d095c80cc534588694684ca4a1d39fb969031fb0a1021ed7837d6b4806c81c"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 3,
+          "shared_hull_count": 187,
+          "source_member_id": 78606,
+          "source_member_sha256": "ad97e7e16939723d4a8d5ca688171ab5a6d04a8a8a74eef391f02f74613c7bb4"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 4,
+          "shared_hull_count": 187,
+          "source_member_id": 78607,
+          "source_member_sha256": "757740d4957cb5dfc149afb60cfd0ee0676f45ac2fa3835cd67ac3d15b895de5"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 5,
+          "shared_hull_count": 187,
+          "source_member_id": 78608,
+          "source_member_sha256": "fb7985a61444137844517034790bd71cb9bbe62a9a0359493484342118aa1be8"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 6,
+          "shared_hull_count": 187,
+          "source_member_id": 78609,
+          "source_member_sha256": "c6317915ba4b1c6b3017e4a5845738106f9182ab47abceef4a543db3cea3c3b5"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 7,
+          "shared_hull_count": 187,
+          "source_member_id": 78610,
+          "source_member_sha256": "b88d73794e5a4c400e7a2d65ebfea6d57b6f5b34a5ac8d192845e2399652aecb"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 8,
+          "shared_hull_count": 187,
+          "source_member_id": 78611,
+          "source_member_sha256": "f814bff1e0115d2ac07046b8af8139fbf82643dac4ef5ecef1c1cd079b247caf"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 9,
+          "shared_hull_count": 187,
+          "source_member_id": 78612,
+          "source_member_sha256": "a23bc79ac87bf739ea23a352ff3c2505d878186f29c5f4e8b59e27b809164d92"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 10,
+          "shared_hull_count": 187,
+          "source_member_id": 78613,
+          "source_member_sha256": "d8da63914e598afbe171873bb54ce10c007382177d1f08250c7b98e3172ef0b3"
+        }
+      ],
+      "per_perspective_truncated": false,
+      "perspectives": 10,
+      "status": "SAME_CHANGE_SET_ACROSS_AVAILABLE_TMINUS1_PERSPECTIVES",
+      "turn": 75
+    },
+    {
+      "Tminus1_D19c_values": [
+        46
+      ],
+      "boundary": "T-1 static read-only cross-check, NOT a Host combat effective-spec resolver",
+      "first_member_D19c_mass": 96,
+      "first_member_archive_turn": 0,
+      "first_member_id": 63605,
+      "game_id": 310054,
+      "max_mass_changed_hulls": 1,
+      "per_perspective": [
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 1,
+          "shared_hull_count": 187,
+          "source_member_id": 64551,
+          "source_member_sha256": "245b449b475ccc19c0652ded36fd65ca89f873b662cd3b0668ba0094b13a553f"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 2,
+          "shared_hull_count": 187,
+          "source_member_id": 64552,
+          "source_member_sha256": "bd6026a720af62186809966aeed762c04c3d8ef9c200d861a3611a27515cfb68"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 3,
+          "shared_hull_count": 187,
+          "source_member_id": 64553,
+          "source_member_sha256": "31c2cb5459f295563903d673e9b9f7227ee88ba73541ddc8c5cda7828e121ac6"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 4,
+          "shared_hull_count": 187,
+          "source_member_id": 64554,
+          "source_member_sha256": "919534373f03f7071de68508cf79d449bfd5914111c49439f39acdd6b5c953e4"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 5,
+          "shared_hull_count": 187,
+          "source_member_id": 64555,
+          "source_member_sha256": "7d42dcc9dec1f59305cb8d65b5fd89f444fd333299cd1214fe5261838caea921"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 6,
+          "shared_hull_count": 187,
+          "source_member_id": 64556,
+          "source_member_sha256": "eb6915ff25144d36d1efa6f4298b247bfb36e235d7028930d4493344f1d25ec1"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 7,
+          "shared_hull_count": 187,
+          "source_member_id": 64557,
+          "source_member_sha256": "ddc0aaad42d62f19d0b17ac8581041acb500cc373dbb7ff2fcddafac498ac8f9"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 8,
+          "shared_hull_count": 187,
+          "source_member_id": 64558,
+          "source_member_sha256": "84bc1627f5f42e988c74353b071e4fd51e69508f61d22d3e30b580795db9ba7a"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 9,
+          "shared_hull_count": 187,
+          "source_member_id": 64559,
+          "source_member_sha256": "860b22f34f7e1298bb730404a20f0ace6ae00490cb3f91b08d3e8182ed0fd04e"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 10,
+          "shared_hull_count": 187,
+          "source_member_id": 64560,
+          "source_member_sha256": "43397c6cb2fa31d862559bec409d7a3c63fccef415f0d6bbacebb6b559ed7cdf"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 11,
+          "shared_hull_count": 187,
+          "source_member_id": 64561,
+          "source_member_sha256": "0aa466fc6a2f5e7ceb49d6483e2599b2a11ad7b485776fcb4b1a7cb21f1603a0"
+        }
+      ],
+      "per_perspective_truncated": false,
+      "perspectives": 11,
+      "status": "SAME_CHANGE_SET_ACROSS_AVAILABLE_TMINUS1_PERSPECTIVES",
+      "turn": 87
+    },
+    {
+      "Tminus1_D19c_values": [
+        46
+      ],
+      "boundary": "T-1 static read-only cross-check, NOT a Host combat effective-spec resolver",
+      "first_member_D19c_mass": 46,
+      "first_member_archive_turn": 0,
+      "first_member_id": 131536,
+      "game_id": 441148,
+      "max_mass_changed_hulls": 0,
+      "per_perspective": [
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 1,
+          "shared_hull_count": 189,
+          "source_member_id": 138586,
+          "source_member_sha256": "f3da56b1c03b4b927b182cc62b791dfbfe98746b970984bf8723ea1567212ffc"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 2,
+          "shared_hull_count": 189,
+          "source_member_id": 138587,
+          "source_member_sha256": "a1753c44081113465df9280c9cc95bea823a015099b426ae19f26739a13bacbd"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 3,
+          "shared_hull_count": 189,
+          "source_member_id": 138588,
+          "source_member_sha256": "e3f913c9398fe07eaa45db3f1dbdc9cc92352f6f5debf20ab95cbdc1d20df083"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 4,
+          "shared_hull_count": 189,
+          "source_member_id": 138589,
+          "source_member_sha256": "280e5890cb5400e10c999d0a7f8b58a1fd57c365d23309a3822e9edb709ae004"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 5,
+          "shared_hull_count": 189,
+          "source_member_id": 138590,
+          "source_member_sha256": "c9ae042a0054982fd5a8326111e62e19b7e658358d83be187552ad542d13cb5b"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 6,
+          "shared_hull_count": 189,
+          "source_member_id": 138591,
+          "source_member_sha256": "f4ea769f2d80849e536480ad127293b365edee996cffe627eaeb736cc3142bd1"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 7,
+          "shared_hull_count": 189,
+          "source_member_id": 138592,
+          "source_member_sha256": "e51bd51ec507eaeea9056a0eaa58feee5f1f4fb211586a771a7e4d7e97e1d263"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 8,
+          "shared_hull_count": 189,
+          "source_member_id": 138593,
+          "source_member_sha256": "746dbaab7c3c14e34af7008555a9355fbf800098c5be92312f5a85fe6fa9de9c"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 9,
+          "shared_hull_count": 189,
+          "source_member_id": 138594,
+          "source_member_sha256": "cf84cf37cd9f729832facfb2b2703c324f748b316514fdc0debcd505cc9fed07"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 10,
+          "shared_hull_count": 189,
+          "source_member_id": 138595,
+          "source_member_sha256": "14959a774cf9cdb828147e49845689a6e1c0fc2e9f54f9bc78504319311d1f51"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 11,
+          "shared_hull_count": 189,
+          "source_member_id": 138596,
+          "source_member_sha256": "6895337c8a6707b9f289aea2d264f862cbc5d95e9bcce028defb3576147d3e9d"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 12,
+          "shared_hull_count": 189,
+          "source_member_id": 138597,
+          "source_member_sha256": "2f299acd54c88866fe91974c26e92f3fd4c83e3cc13cbfb8a0165f5d1d94f10f"
+        }
+      ],
+      "per_perspective_truncated": true,
+      "perspectives": 30,
+      "status": "SAME_CHANGE_SET_ACROSS_AVAILABLE_TMINUS1_PERSPECTIVES",
+      "turn": 236
+    },
+    {
+      "Tminus1_D19c_values": [
+        46
+      ],
+      "boundary": "T-1 static read-only cross-check, NOT a Host combat effective-spec resolver",
+      "first_member_D19c_mass": 46,
+      "first_member_archive_turn": 0,
+      "first_member_id": 209175,
+      "game_id": 653272,
+      "max_mass_changed_hulls": 0,
+      "per_perspective": [
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 1,
+          "shared_hull_count": 230,
+          "source_member_id": 213105,
+          "source_member_sha256": "b5abc4995f5fb868126fabed8d3801465c48f5ccaf93d8dbe84f8ed2dab9c7a0"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 2,
+          "shared_hull_count": 230,
+          "source_member_id": 213106,
+          "source_member_sha256": "dd548231b9d84414e8a882e999f7b156dd7dff296b4a41d23d7a8d673820016f"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 3,
+          "shared_hull_count": 230,
+          "source_member_id": 213107,
+          "source_member_sha256": "39b270c0f7da00a34bcf04ad306b20ece764991850c9e81c5cb2f57687f74fa7"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 4,
+          "shared_hull_count": 230,
+          "source_member_id": 213108,
+          "source_member_sha256": "4fc82bcb9bae3fa40685f15124a1bfc2d3afbfa9282a720533c2760d34141bb4"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 5,
+          "shared_hull_count": 230,
+          "source_member_id": 213109,
+          "source_member_sha256": "ce57a57a20799439fcf305b4c1fd1b640edf71190796ed2c9408c23cb614177f"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 6,
+          "shared_hull_count": 230,
+          "source_member_id": 213110,
+          "source_member_sha256": "3562074506e0506e00a34b2b91197465c1f38066dfca085d615941d9d1e03b4f"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 7,
+          "shared_hull_count": 230,
+          "source_member_id": 213111,
+          "source_member_sha256": "9edc0c2981b48d38888845e54507041a3f86f1837d240a654c813361af3b263c"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 8,
+          "shared_hull_count": 230,
+          "source_member_id": 213112,
+          "source_member_sha256": "1e47aacc3d65c22d0a0e76679e3ff7aed881d3c8821f84bfa3efd6e50ff0b586"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 9,
+          "shared_hull_count": 230,
+          "source_member_id": 213113,
+          "source_member_sha256": "3b5ab96b5846cddac2d399f62b12b72393f13894162f2fb768735070a9943a34"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 10,
+          "shared_hull_count": 230,
+          "source_member_id": 213114,
+          "source_member_sha256": "9e576b5d92b892cbfe7d0f1bf54751c551195faa39eaf8d5ff815e6782533cb3"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 11,
+          "shared_hull_count": 230,
+          "source_member_id": 213115,
+          "source_member_sha256": "52800866f4a951852b408efd900a1cac09ebeee13b6dc37c69d588bc3b63fd30"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 12,
+          "shared_hull_count": 230,
+          "source_member_id": 213116,
+          "source_member_sha256": "eb9863af3e4ad5cb10effa5fc830db554a30591fba391be58fae3a1988b5183b"
+        }
+      ],
+      "per_perspective_truncated": true,
+      "perspectives": 30,
+      "status": "SAME_CHANGE_SET_ACROSS_AVAILABLE_TMINUS1_PERSPECTIVES",
+      "turn": 132
+    },
+    {
+      "Tminus1_D19c_values": [
+        46
+      ],
+      "boundary": "T-1 static read-only cross-check, NOT a Host combat effective-spec resolver",
+      "first_member_D19c_mass": 96,
+      "first_member_archive_turn": 0,
+      "first_member_id": 1695,
+      "game_id": 217591,
+      "max_mass_changed_hulls": 3,
+      "per_perspective": [
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 3,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 145,
+              "first_mass": 125,
+              "hull_id": 117
+            },
+            {
+              "Tminus1_mass": 185,
+              "first_mass": 165,
+              "hull_id": 119
+            },
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            117,
+            119,
+            1039
+          ],
+          "perspective_player_id": 1,
+          "shared_hull_count": 186,
+          "source_member_id": 3471,
+          "source_member_sha256": "2a312a27fb4709de93976ad3a5b08186e3c677365ab9d0b7c1824cb73a1254e1"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 3,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 145,
+              "first_mass": 125,
+              "hull_id": 117
+            },
+            {
+              "Tminus1_mass": 185,
+              "first_mass": 165,
+              "hull_id": 119
+            },
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            117,
+            119,
+            1039
+          ],
+          "perspective_player_id": 2,
+          "shared_hull_count": 186,
+          "source_member_id": 3472,
+          "source_member_sha256": "e8a04589d6f06e92fdada5f2ad9126e7a958c05553223bddbaf93bc322180efb"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 3,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 145,
+              "first_mass": 125,
+              "hull_id": 117
+            },
+            {
+              "Tminus1_mass": 185,
+              "first_mass": 165,
+              "hull_id": 119
+            },
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            117,
+            119,
+            1039
+          ],
+          "perspective_player_id": 3,
+          "shared_hull_count": 186,
+          "source_member_id": 3473,
+          "source_member_sha256": "c59fb982e6d2c4c3a355fadad8d94efc73c95865f1363247475714d8fb1afa6f"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 3,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 145,
+              "first_mass": 125,
+              "hull_id": 117
+            },
+            {
+              "Tminus1_mass": 185,
+              "first_mass": 165,
+              "hull_id": 119
+            },
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            117,
+            119,
+            1039
+          ],
+          "perspective_player_id": 4,
+          "shared_hull_count": 186,
+          "source_member_id": 3474,
+          "source_member_sha256": "49e6b35ea353e558a29723b5b9dce882b620ab74b84e5e7043bd369b3fc3cedf"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 3,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 145,
+              "first_mass": 125,
+              "hull_id": 117
+            },
+            {
+              "Tminus1_mass": 185,
+              "first_mass": 165,
+              "hull_id": 119
+            },
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            117,
+            119,
+            1039
+          ],
+          "perspective_player_id": 5,
+          "shared_hull_count": 186,
+          "source_member_id": 3475,
+          "source_member_sha256": "df482fb6a54fe578d2c2b571859c73c7122aa8acd564d4768b66587605466f0b"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 3,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 145,
+              "first_mass": 125,
+              "hull_id": 117
+            },
+            {
+              "Tminus1_mass": 185,
+              "first_mass": 165,
+              "hull_id": 119
+            },
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            117,
+            119,
+            1039
+          ],
+          "perspective_player_id": 6,
+          "shared_hull_count": 186,
+          "source_member_id": 3476,
+          "source_member_sha256": "5bdf8e5d492072d8afa835eead0991dd40b6cedc00345ad0505cb2e069b4dd07"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 3,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 145,
+              "first_mass": 125,
+              "hull_id": 117
+            },
+            {
+              "Tminus1_mass": 185,
+              "first_mass": 165,
+              "hull_id": 119
+            },
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            117,
+            119,
+            1039
+          ],
+          "perspective_player_id": 7,
+          "shared_hull_count": 186,
+          "source_member_id": 3477,
+          "source_member_sha256": "ca13c4459c6de7d6229e03638ab4090e411551cbe6f495b9127b5b5e33a3a9fd"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 3,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 145,
+              "first_mass": 125,
+              "hull_id": 117
+            },
+            {
+              "Tminus1_mass": 185,
+              "first_mass": 165,
+              "hull_id": 119
+            },
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            117,
+            119,
+            1039
+          ],
+          "perspective_player_id": 8,
+          "shared_hull_count": 186,
+          "source_member_id": 3478,
+          "source_member_sha256": "6a9e50af34839c6804295d518652676d94b652530e79014214dcda37c268aa9f"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 3,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 145,
+              "first_mass": 125,
+              "hull_id": 117
+            },
+            {
+              "Tminus1_mass": 185,
+              "first_mass": 165,
+              "hull_id": 119
+            },
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            117,
+            119,
+            1039
+          ],
+          "perspective_player_id": 9,
+          "shared_hull_count": 186,
+          "source_member_id": 3479,
+          "source_member_sha256": "f9d3aada1c8772d22314c46cf820a0e73198bb36831ece2423b8a3084971de39"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 3,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 145,
+              "first_mass": 125,
+              "hull_id": 117
+            },
+            {
+              "Tminus1_mass": 185,
+              "first_mass": 165,
+              "hull_id": 119
+            },
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            117,
+            119,
+            1039
+          ],
+          "perspective_player_id": 10,
+          "shared_hull_count": 186,
+          "source_member_id": 3480,
+          "source_member_sha256": "fb67323952229c9aba131ab94cf359d69c311b4df56615a3829e83e180f02042"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 3,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 145,
+              "first_mass": 125,
+              "hull_id": 117
+            },
+            {
+              "Tminus1_mass": 185,
+              "first_mass": 165,
+              "hull_id": 119
+            },
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            117,
+            119,
+            1039
+          ],
+          "perspective_player_id": 11,
+          "shared_hull_count": 186,
+          "source_member_id": 3481,
+          "source_member_sha256": "b153745d09594597b2fd9b6a4f587dbd9cd7056e49932533ed79b6a26b22581c"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 3,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 145,
+              "first_mass": 125,
+              "hull_id": 117
+            },
+            {
+              "Tminus1_mass": 185,
+              "first_mass": 165,
+              "hull_id": 119
+            },
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            117,
+            119,
+            1039
+          ],
+          "perspective_player_id": 12,
+          "shared_hull_count": 186,
+          "source_member_id": 3482,
+          "source_member_sha256": "31c339e9ea19e101e3c742922636ddaf0e602dab262ffef13f1c41d4b457f9b1"
+        }
+      ],
+      "per_perspective_truncated": false,
+      "perspectives": 12,
+      "status": "SAME_CHANGE_SET_ACROSS_AVAILABLE_TMINUS1_PERSPECTIVES",
+      "turn": 149
+    },
+    {
+      "Tminus1_D19c_values": [
+        46
+      ],
+      "boundary": "T-1 static read-only cross-check, NOT a Host combat effective-spec resolver",
+      "first_member_D19c_mass": 46,
+      "first_member_archive_turn": 0,
+      "first_member_id": 195404,
+      "game_id": 617883,
+      "max_mass_changed_hulls": 0,
+      "per_perspective": [
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 1,
+          "shared_hull_count": 223,
+          "source_member_id": 197804,
+          "source_member_sha256": "82b5fc424a7300f156ecaf824bdc30a3eee3bb11dc11c96f6a7a3894aa8309f1"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 2,
+          "shared_hull_count": 223,
+          "source_member_id": 197805,
+          "source_member_sha256": "2dcc0b4993a5023888ad614f431844166381f08017f02d294b83cc1910e4790f"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 3,
+          "shared_hull_count": 223,
+          "source_member_id": 197806,
+          "source_member_sha256": "1543b198b3cc57bef9df46438cbc6263660db5dd088c77859178423faff3aa81"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 4,
+          "shared_hull_count": 223,
+          "source_member_id": 197807,
+          "source_member_sha256": "0b0b605d564f2940bec712c76cf58d6fb82fc376e5407d58e6dd1fcdecd1ccd6"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 5,
+          "shared_hull_count": 223,
+          "source_member_id": 197808,
+          "source_member_sha256": "b1c95b3c7fcdea1d78f85aab0f56192f7d910c8d5a2af8ac9fbaa04d244cbcd4"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 6,
+          "shared_hull_count": 223,
+          "source_member_id": 197809,
+          "source_member_sha256": "066272bfdb4377943194c3d95a21f1a3b91546f4e56bd2669e2b11c719ec1500"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 7,
+          "shared_hull_count": 223,
+          "source_member_id": 197810,
+          "source_member_sha256": "646d4d40bd73eaa6b0f43129ef199c0bc76967ef6b8d5bdd825ec56a32d815e7"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 8,
+          "shared_hull_count": 223,
+          "source_member_id": 197811,
+          "source_member_sha256": "c3e6436c0b0a55e99f99258b5ba179a13be906d69167178059f65779d3e92e47"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 9,
+          "shared_hull_count": 223,
+          "source_member_id": 197812,
+          "source_member_sha256": "d6b1804a15317aa23616d942e3cbc3d4c9a2861aade19bdb92ce3b1e117f2f97"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 10,
+          "shared_hull_count": 223,
+          "source_member_id": 197813,
+          "source_member_sha256": "decad15c99ed125ba90218f31c7c9784677cae246636551584ba7fb2b324ed56"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 11,
+          "shared_hull_count": 223,
+          "source_member_id": 197814,
+          "source_member_sha256": "2eef4fbc6bc661c5c5abd99a647392882aa738dbd54c9ea93adade8135ae7734"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 12,
+          "shared_hull_count": 223,
+          "source_member_id": 197815,
+          "source_member_sha256": "83377753a8cf7432cb0b098c35bfde357e89e479aa9164383bc1e4e66668ecae"
+        }
+      ],
+      "per_perspective_truncated": false,
+      "perspectives": 12,
+      "status": "SAME_CHANGE_SET_ACROSS_AVAILABLE_TMINUS1_PERSPECTIVES",
+      "turn": 201
+    },
+    {
+      "Tminus1_D19c_values": [
+        46
+      ],
+      "boundary": "T-1 static read-only cross-check, NOT a Host combat effective-spec resolver",
+      "first_member_D19c_mass": 46,
+      "first_member_archive_turn": 0,
+      "first_member_id": 215501,
+      "game_id": 658427,
+      "max_mass_changed_hulls": 0,
+      "per_perspective": [
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 1,
+          "shared_hull_count": 230,
+          "source_member_id": 217661,
+          "source_member_sha256": "e7ed0fbf02ffb23470f58c4b6c06408d2028e9c42f60aee3ef5839c63b2e5c8a"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 2,
+          "shared_hull_count": 230,
+          "source_member_id": 217662,
+          "source_member_sha256": "f72df197d2e96767dfc7de62fa71672005fc5c21be028ac6eb222f0ceb9eb35b"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 3,
+          "shared_hull_count": 230,
+          "source_member_id": 217663,
+          "source_member_sha256": "86b8da8ac646098c4a0118aa3602f0b3e3cc62b49199052c6cd022a5a122c27a"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 4,
+          "shared_hull_count": 230,
+          "source_member_id": 217664,
+          "source_member_sha256": "090093400d44464e9b52eabba9e572babe290ebc40ac0b9685806910b14ee100"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 5,
+          "shared_hull_count": 230,
+          "source_member_id": 217665,
+          "source_member_sha256": "2776c3f619193050eb260c087395c6db9607eebdf1c1d212c9e1442632f8bcb0"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 6,
+          "shared_hull_count": 230,
+          "source_member_id": 217666,
+          "source_member_sha256": "234fee39e0f49eeb0dc4dae63cc9d0d86763a26183f630ef64077698e6448a55"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 7,
+          "shared_hull_count": 230,
+          "source_member_id": 217667,
+          "source_member_sha256": "a942ed072f434fd59049750f4944b9d476a841a0b9dc3a921a81d66b86723ca4"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 8,
+          "shared_hull_count": 230,
+          "source_member_id": 217668,
+          "source_member_sha256": "b930e61789ece0797653a0ab120dce2721c2b31a69017006386df289ab7d3a52"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 9,
+          "shared_hull_count": 230,
+          "source_member_id": 217669,
+          "source_member_sha256": "5172849c47291f650bd65091cbe7f2e273b27e6d61ce4a3e31a193a8b47b5185"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 10,
+          "shared_hull_count": 230,
+          "source_member_id": 217670,
+          "source_member_sha256": "db000b527f3a589b7626dfeb8d58d4fe802aba2005fe2eef7c8a55eda67cbc34"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 11,
+          "shared_hull_count": 230,
+          "source_member_id": 217671,
+          "source_member_sha256": "265a7813da0921ad047504992102e9661761871fd4ce1e964003ee40b0a448cf"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 12,
+          "shared_hull_count": 230,
+          "source_member_id": 217672,
+          "source_member_sha256": "68594cde0d5ed817270c21f6c530bf7539dc8548a8912bea6f3e9490910838a2"
+        }
+      ],
+      "per_perspective_truncated": true,
+      "perspectives": 30,
+      "status": "SAME_CHANGE_SET_ACROSS_AVAILABLE_TMINUS1_PERSPECTIVES",
+      "turn": 73
+    },
+    {
+      "Tminus1_D19c_values": [
+        46
+      ],
+      "boundary": "T-1 static read-only cross-check, NOT a Host combat effective-spec resolver",
+      "first_member_D19c_mass": 46,
+      "first_member_archive_turn": 0,
+      "first_member_id": 215501,
+      "game_id": 658427,
+      "max_mass_changed_hulls": 0,
+      "per_perspective": [
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 1,
+          "shared_hull_count": 230,
+          "source_member_id": 218081,
+          "source_member_sha256": "8d56ff0b32443d8db0cb3af898dd10fdc9479bf18686a84a0c26dd0d29efcf0e"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 2,
+          "shared_hull_count": 230,
+          "source_member_id": 218082,
+          "source_member_sha256": "b14d4a5bebf776b10b5fabcec020711f091f52535846957dfba788ee062d7c85"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 3,
+          "shared_hull_count": 230,
+          "source_member_id": 218083,
+          "source_member_sha256": "578c47cda9daf5ecc798edc240f74354efeeb881392207f4b748992df2194b52"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 4,
+          "shared_hull_count": 230,
+          "source_member_id": 218084,
+          "source_member_sha256": "ddb0f41a9fa685af74c061ac70d98af79adcaa36ab3b4632cb1d0fda4faf7b69"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 5,
+          "shared_hull_count": 230,
+          "source_member_id": 218085,
+          "source_member_sha256": "05b54e92796e9bb69ae992ea6452915c1539953fe2512d3df92da68b531dbb9e"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 6,
+          "shared_hull_count": 230,
+          "source_member_id": 218086,
+          "source_member_sha256": "fba09874be6187e9b8b02a53e8136590ebf1cfb779b1269a10bdb5ee8de4f6b8"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 7,
+          "shared_hull_count": 230,
+          "source_member_id": 218087,
+          "source_member_sha256": "d25aad06431179440b4f70d61495d9398587b7ba14d1a52311bb17a224589e6c"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 8,
+          "shared_hull_count": 230,
+          "source_member_id": 218088,
+          "source_member_sha256": "01c248b45fedaae5bd2d2a468eb33acdcab7f290eb7c8c696685c52bc2a3574a"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 9,
+          "shared_hull_count": 230,
+          "source_member_id": 218089,
+          "source_member_sha256": "f1964ad547ecb1f8463834b871df46f34cbdd57f2b92f573ac8e2249c1cb5830"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 10,
+          "shared_hull_count": 230,
+          "source_member_id": 218090,
+          "source_member_sha256": "087afb6a6d86cab0142aca1e23ad4b830666c347abaae0cd554ed55d2e7978a5"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 11,
+          "shared_hull_count": 230,
+          "source_member_id": 218091,
+          "source_member_sha256": "7eef870b6c95f38ef155ee8f33b219c1772d2fc8f2d009788060380ac6c4bf9a"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 12,
+          "shared_hull_count": 230,
+          "source_member_id": 218092,
+          "source_member_sha256": "2cbe5404bf9d76d65df44c0bf73aa743165346190d0755bc7c1f870f10d21b32"
+        }
+      ],
+      "per_perspective_truncated": true,
+      "perspectives": 30,
+      "status": "SAME_CHANGE_SET_ACROSS_AVAILABLE_TMINUS1_PERSPECTIVES",
+      "turn": 87
+    },
+    {
+      "Tminus1_D19c_values": [
+        46
+      ],
+      "boundary": "T-1 static read-only cross-check, NOT a Host combat effective-spec resolver",
+      "first_member_D19c_mass": 96,
+      "first_member_archive_turn": 0,
+      "first_member_id": 66011,
+      "game_id": 325434,
+      "max_mass_changed_hulls": 1,
+      "per_perspective": [
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 1,
+          "shared_hull_count": 187,
+          "source_member_id": 68303,
+          "source_member_sha256": "35a1da60867305f25c4d2b0037ae29228fcb5b69081ab46276bf12ea7d59e30a"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 2,
+          "shared_hull_count": 187,
+          "source_member_id": 68304,
+          "source_member_sha256": "b96f608dca0701a20bb93accdc393b44b9a1bef5931874d68a4fb5fe5761eee7"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 3,
+          "shared_hull_count": 187,
+          "source_member_id": 68305,
+          "source_member_sha256": "8a6ad0ef2e4c508c890fd8b04177ce1d2afe8bc4676cc2bd3323bd57b383bb5b"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 4,
+          "shared_hull_count": 187,
+          "source_member_id": 68306,
+          "source_member_sha256": "6f19c4d57e6a113c21f7c6acea27119282ec8e13451d243d1203694d36429a36"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 5,
+          "shared_hull_count": 187,
+          "source_member_id": 68307,
+          "source_member_sha256": "3f02a98255b8dfdf163940798bd6b9efc0cdc3bddc35070023ecfc766799201c"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 6,
+          "shared_hull_count": 187,
+          "source_member_id": 68308,
+          "source_member_sha256": "691b1128d4704ae9f5c0b761bfb8e1588c8c579685ea4f51b886b56d185ef93d"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 7,
+          "shared_hull_count": 187,
+          "source_member_id": 68309,
+          "source_member_sha256": "0b2cd38c7e9f9726b0ec515081a33078d1398da3ae6f98764d8a43711e7178d7"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 8,
+          "shared_hull_count": 187,
+          "source_member_id": 68310,
+          "source_member_sha256": "2619f9456107fa1530d108f14d91cba6e5c6f3a6cbaf15e391d3645c51999154"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 9,
+          "shared_hull_count": 187,
+          "source_member_id": 68311,
+          "source_member_sha256": "8ecb7aeba3d7c91edf205b127f4bdc4db80288fadb7c667e179f96d981d0fadd"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 10,
+          "shared_hull_count": 187,
+          "source_member_id": 68312,
+          "source_member_sha256": "4c5d9fba81257ef33aa88239e4bdd8bfc4d3d5b1518d5f148eb4669f87c355ec"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 11,
+          "shared_hull_count": 187,
+          "source_member_id": 68313,
+          "source_member_sha256": "4f1ed45d70746ff04a64ac46c10ee2e89acc6a4b01a1ff7fdb011ef28175e024"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 96,
+          "change_details_truncated": false,
+          "changed_hull_count": 1,
+          "changed_hulls": [
+            {
+              "Tminus1_mass": 46,
+              "first_mass": 96,
+              "hull_id": 1039
+            }
+          ],
+          "full_changed_ids": [
+            1039
+          ],
+          "perspective_player_id": 12,
+          "shared_hull_count": 187,
+          "source_member_id": 68314,
+          "source_member_sha256": "a6d92e85372ebad3b8a64933d6d39b7c1a9222d6a78cb61e2c1b3066fdd60aca"
+        }
+      ],
+      "per_perspective_truncated": false,
+      "perspectives": 12,
+      "status": "SAME_CHANGE_SET_ACROSS_AVAILABLE_TMINUS1_PERSPECTIVES",
+      "turn": 192
+    },
+    {
+      "Tminus1_D19c_values": [
+        46
+      ],
+      "boundary": "T-1 static read-only cross-check, NOT a Host combat effective-spec resolver",
+      "first_member_D19c_mass": 46,
+      "first_member_archive_turn": 0,
+      "first_member_id": 83992,
+      "game_id": 347236,
+      "max_mass_changed_hulls": 0,
+      "per_perspective": [
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 1,
+          "shared_hull_count": 189,
+          "source_member_id": 85477,
+          "source_member_sha256": "37f2f8f512720b677cde3ebaea42badb4b05115ce0ef46a3ae7c7be18f7e7f87"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 2,
+          "shared_hull_count": 189,
+          "source_member_id": 85478,
+          "source_member_sha256": "6edd8edf65411c455666ca7d861757f286baa788269b66bad5635d0f1deb98c0"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 3,
+          "shared_hull_count": 189,
+          "source_member_id": 85479,
+          "source_member_sha256": "12e5e8967cf70c51201c49717a04f4e49ae5c47a4ed441cbcb82ecfe152f615c"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 4,
+          "shared_hull_count": 189,
+          "source_member_id": 85480,
+          "source_member_sha256": "96c1afc08fcc1af1160333d3dcfbd779ec2ccfbae9bd4255b951cc010f717941"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 5,
+          "shared_hull_count": 189,
+          "source_member_id": 85481,
+          "source_member_sha256": "9c24e733748a1dc37e7191a2ba6b4ed3c831e24864c2e056d13058ddb6247175"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 6,
+          "shared_hull_count": 189,
+          "source_member_id": 85482,
+          "source_member_sha256": "44bdf9a8a7eb5f28d5189d6bb51f19ab1181618105ca04bb17a1237f0a7af745"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 7,
+          "shared_hull_count": 189,
+          "source_member_id": 85483,
+          "source_member_sha256": "f5d941edd3cd9e12526a505203c07ac2d440877effe6a806a357c2c79588bee4"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 8,
+          "shared_hull_count": 189,
+          "source_member_id": 85484,
+          "source_member_sha256": "9359efec75d2e931274d83744f6d004fc97590cf96d02fee95cecdd10792b3ca"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 9,
+          "shared_hull_count": 189,
+          "source_member_id": 85485,
+          "source_member_sha256": "4a3b55a4cac640d6f72b883d5560d6b42b92afd0a7dfb5aced1ceccebbd14b0e"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 10,
+          "shared_hull_count": 189,
+          "source_member_id": 85486,
+          "source_member_sha256": "ca9cbaf44e20d5d22452668be19bafdf3efb821d3d59b3418a0d2a9137932913"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 11,
+          "shared_hull_count": 189,
+          "source_member_id": 85487,
+          "source_member_sha256": "92865b7834387d2897c93cc7e5c8d916bda2490dbb50a28085e13dcc9e259e91"
+        }
+      ],
+      "per_perspective_truncated": false,
+      "perspectives": 11,
+      "status": "SAME_CHANGE_SET_ACROSS_AVAILABLE_TMINUS1_PERSPECTIVES",
+      "turn": 136
+    },
+    {
+      "Tminus1_D19c_values": [
+        46
+      ],
+      "boundary": "T-1 static read-only cross-check, NOT a Host combat effective-spec resolver",
+      "first_member_D19c_mass": 46,
+      "first_member_archive_turn": 0,
+      "first_member_id": 184566,
+      "game_id": 563278,
+      "max_mass_changed_hulls": 0,
+      "per_perspective": [
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 1,
+          "shared_hull_count": 220,
+          "source_member_id": 186612,
+          "source_member_sha256": "15d190d36c1b6eeb800f81f04c5563b0e9f4d91eb020325d9d3f286c1141a641"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 2,
+          "shared_hull_count": 220,
+          "source_member_id": 186613,
+          "source_member_sha256": "06c9b9b5fcd7eecfec85796a9887d99b76cbce70a873340a1a39ef0a091f5717"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 3,
+          "shared_hull_count": 220,
+          "source_member_id": 186614,
+          "source_member_sha256": "be16a903d6be608da0bb861ee658572e2bcea87ac56fcd7d44a9d9b088b7c4cd"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 4,
+          "shared_hull_count": 220,
+          "source_member_id": 186615,
+          "source_member_sha256": "7c633c1dfb4848f0eaf7e4a22591fb75dceb34fc11e6a9c85a6e131a11e096ff"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 5,
+          "shared_hull_count": 220,
+          "source_member_id": 186616,
+          "source_member_sha256": "f4e653b45c71fe4bed67b24f6824a3fc579d65c776bf3467c1ae97c21346f510"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 6,
+          "shared_hull_count": 220,
+          "source_member_id": 186617,
+          "source_member_sha256": "8a58aa05c0a4bc2ce2e69243d390055319a7d673be84d6d86fc16abe9fe7feba"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 7,
+          "shared_hull_count": 220,
+          "source_member_id": 186618,
+          "source_member_sha256": "af06aa486c6a3b241d4ed31fcb6a6390d6d7e25a548c53355554e49b40b922bc"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 8,
+          "shared_hull_count": 220,
+          "source_member_id": 186619,
+          "source_member_sha256": "291dd6fd716c354e08e915a9347b52b7edb56c98fe7f4cd7a642f1c76232d312"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 9,
+          "shared_hull_count": 220,
+          "source_member_id": 186620,
+          "source_member_sha256": "c2dda15381f7ef62704a970f92bd76eb7a9b2c54048e01cb0f5bcbeb57634d0a"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 10,
+          "shared_hull_count": 220,
+          "source_member_id": 186621,
+          "source_member_sha256": "4f9bb70114e3d0d649fcc80a44f2a2a5049edb383c4a69b5b6ead0630ad3e160"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 11,
+          "shared_hull_count": 220,
+          "source_member_id": 186622,
+          "source_member_sha256": "61a558017821879ced375c4a7da2573b2332877204df47f9bf85d7b93f515ec3"
+        }
+      ],
+      "per_perspective_truncated": false,
+      "perspectives": 11,
+      "status": "SAME_CHANGE_SET_ACROSS_AVAILABLE_TMINUS1_PERSPECTIVES",
+      "turn": 187
+    },
+    {
+      "Tminus1_D19c_values": [
+        46
+      ],
+      "boundary": "T-1 static read-only cross-check, NOT a Host combat effective-spec resolver",
+      "first_member_D19c_mass": 46,
+      "first_member_archive_turn": 0,
+      "first_member_id": 118517,
+      "game_id": 411645,
+      "max_mass_changed_hulls": 0,
+      "per_perspective": [
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 1,
+          "shared_hull_count": 189,
+          "source_member_id": 121205,
+          "source_member_sha256": "47691467ef470ff9e641d73cd24fbc02f4924ca3c0897179ec94b84122792bd4"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 2,
+          "shared_hull_count": 189,
+          "source_member_id": 121206,
+          "source_member_sha256": "de2f89ce66167b8b3e06f74c8d9646a6236e2ee271f4df7b75258a2c4bf46efd"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 3,
+          "shared_hull_count": 189,
+          "source_member_id": 121207,
+          "source_member_sha256": "65dbbb325a9dc9e324ec467f9176a57994e8a8af83792a7fc817fd21dd04a263"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 4,
+          "shared_hull_count": 189,
+          "source_member_id": 121208,
+          "source_member_sha256": "58d4554956763ec444090ea16be9bf9dbca505ecaff83b3cb8ea294b70d78a47"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 5,
+          "shared_hull_count": 189,
+          "source_member_id": 121209,
+          "source_member_sha256": "d48ed029886e6a194e51059fb7d99dfdf313dfaf8c132000042973ebb2dcecc6"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 6,
+          "shared_hull_count": 189,
+          "source_member_id": 121210,
+          "source_member_sha256": "389ebc4ea0c1e8424f5c06bde0d4c3aeec248c40e4b1a13066456f19009594f9"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 7,
+          "shared_hull_count": 189,
+          "source_member_id": 121211,
+          "source_member_sha256": "542f9fd1d132d84ba553b6fc7b60f9a20742f7bdb3e3ed5557df34c7895edaac"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 8,
+          "shared_hull_count": 189,
+          "source_member_id": 121212,
+          "source_member_sha256": "8edc7979fe7b4dfa2561a0b90d45af8f8b3e8ca1cfb1d80494c95b7389ef2831"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 9,
+          "shared_hull_count": 189,
+          "source_member_id": 121213,
+          "source_member_sha256": "1ac305fdb99698c43e90bc49199ad89f234f3fadeb536c973587ae4824dc0a3d"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 10,
+          "shared_hull_count": 189,
+          "source_member_id": 121214,
+          "source_member_sha256": "1306d64c9366c5949511f1847cf067becc6eda292ba62cb32ba8ade0a4444e74"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 11,
+          "shared_hull_count": 189,
+          "source_member_id": 121215,
+          "source_member_sha256": "d2f600be8e326dfdeb28a60bc621979cbb02cce362526d31f4843637f7c36478"
+        },
+        {
+          "D19c_Tminus1_mass": 46,
+          "D19c_first_mass": 46,
+          "change_details_truncated": false,
+          "changed_hull_count": 0,
+          "changed_hulls": [],
+          "full_changed_ids": [],
+          "perspective_player_id": 12,
+          "shared_hull_count": 189,
+          "source_member_id": 121216,
+          "source_member_sha256": "9ea59606f22a75c3a66ffdb12502293036514684b7c5b46cb4384edbd6716b13"
+        }
+      ],
+      "per_perspective_truncated": false,
+      "perspectives": 12,
+      "status": "SAME_CHANGE_SET_ACROSS_AVAILABLE_TMINUS1_PERSPECTIVES",
+      "turn": 225
+    }
+  ],
+  "status": "INDEPENDENT_CAPTURE_AND_TEMPORAL_STATIC_CONTROLS_OBSERVATIONAL_NOT_PROMOTED",
+  "summary": {
+    "D19c_two_Tminus1_sources_46KT_verified": 2,
+    "Rush_VCR_1016_to_1017_owner_change_observed": true,
+    "Rush_owner4_T_Sabers_at_site": 1,
+    "Rush_owner4_Tminus1_Sabers_at_site": 1,
+    "Rush_owner5_Tminus1_ship27_record_count": 1,
+    "capture_outcome_independently_proven": false,
+    "static_game_turn_groups": 14,
+    "static_groups_with_any_changed_mass": 6,
+    "static_source_status": {
+      "SAME_CHANGE_SET_ACROSS_AVAILABLE_TMINUS1_PERSPECTIVES": 14
+    }
+  }
+}
