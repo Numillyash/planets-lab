@@ -31,3 +31,22 @@ New runtime evidence: runtime-logs/combat-mass-time-indexed-static-v1/
 2. Derive phase-aware Shield Generator eligibility from **archived T-1 geometry plus movement and precombat state**, with positive and negative controls. The current component-only code explicitly abstains from an exact mass.
 3. Test Rush#27 owner transfer with terminal combat outcome replay, not VCR N+1 mass used as a feature.
 4. Reconstruct Horwasp mutable clans from ordered independent battles; do not infer lost clans by subtracting VCR totals.
+
+## 2026-10-10 runtime correction
+
+The actual independent run (source ea2897e) failed closed with
+`insufficient independent held-out games with VCRs`, after successfully
+publishing reconciliation V1 evidence. V1 erroneously selected the *earliest
+consecutive archive* for each independent game, which often contained no
+battle VCR. It then discarded the entire game. The corrected selector
+scans VCR-bearing archived candidate turns with an existing T-1 archive,
+chronologically per game, and takes the first qualifying battle.
+It selects on **VCR presence only** (never factual VCR mass), retains the
+entire-game holdout exclusion, and never uses current mass as a resolver
+input. Missing all eligible games still fails closed and reports candidate
+counts. No promise of successful held-out coverage before server evidence.
+
+The runner now shows progress before the corpus SHA verification and
+throughout the game scan. Redundant shell-side full-file SHA computation
+was removed; a single mandatory Python SHA256 check still runs before
+the read-only database open.

@@ -15,14 +15,11 @@ PYTHON="$HOME/.cache/planets-lab/site-state-v1/bin/python"
   echo "ERROR: immutable DB or V1 prerequisite report missing" >&2; exit 66;
 }
 [[ -x "$PYTHON" ]] || { echo "ERROR: runtime Python missing: $PYTHON" >&2; exit 69; }
-ACTUAL_SHA="$(sha256sum "$DB" | cut -d ' ' -f 1)"
-[[ "$ACTUAL_SHA" == "$EXPECTED_SHA" ]] || {
-  echo "ERROR: pinned public100 SHA256 mismatch" >&2; exit 66;
-}
 echo "===== EXPERIMENTAL PRE-VCR T-1 STATIC FORECAST ====="
 echo "HEAD: $(git rev-parse HEAD)"
 echo "DB: $DB"
-echo "sha256: $ACTUAL_SHA"
+echo "expected_sha256: $EXPECTED_SHA"
+echo "SHA256: checked once in Python before opening corpus read-only"
 PYTHONPATH="$ROOT/src" PYTHONUNBUFFERED=1 "$PYTHON" \
   tools/diagnostics/combat_mass_time_indexed_static_v1.py \
   --corpus-db-root "$DB_ROOT" --capture-controls "$CAPTURE" \
