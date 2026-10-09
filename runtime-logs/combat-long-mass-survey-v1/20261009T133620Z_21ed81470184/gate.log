@@ -1,0 +1,99 @@
+===== LONG PUBLIC100 COMBAT MASS SURVEY =====
+HEAD: 21ed8147018449a3d1e1918dba9ed40cc70fb16f
+public100: generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb
+sha256: 3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c
+max_games: 80
+turns_per_game: 4
+max_vcrs_per_turn: 150
+local_resume: artifacts/combat/long-mass-survey-v1/checkpoints
+published_summary: artifacts/combat/long-mass-survey-v1/published/summary.json
+===== PUBLIC100 LONG COMBAT MASS SURVEY V1 =====
+identity: 016b1dc7e762b1347a7862ba75439b0f7fed911596d7f4c2a41d69aea037a310
+games: 80 turn_targets: 320
+already_completed: 0
+[1/80] game=400330 status=ok turns=4/4 ship_vcrs=32 sides=64 horwasp_transitions=0 completed=1/80
+[2/80] game=217591 status=ok turns=4/4 ship_vcrs=75 sides=148 horwasp_transitions=2 completed=2/80
+[3/80] game=253449 status=ok turns=4/4 ship_vcrs=66 sides=132 horwasp_transitions=13 completed=3/80
+[4/80] game=371631 status=ok turns=4/4 ship_vcrs=31 sides=62 horwasp_transitions=0 completed=4/80
+[5/80] game=2466 status=ok turns=4/4 ship_vcrs=12 sides=24 horwasp_transitions=0 completed=5/80
+[6/80] game=218619 status=ok turns=4/4 ship_vcrs=59 sides=118 horwasp_transitions=0 completed=6/80
+[7/80] game=221008 status=ok turns=4/4 ship_vcrs=16 sides=32 horwasp_transitions=0 completed=7/80
+[8/80] game=224849 status=ok turns=4/4 ship_vcrs=28 sides=56 horwasp_transitions=0 completed=8/80
+[9/80] game=226056 status=ok turns=4/4 ship_vcrs=115 sides=230 horwasp_transitions=21 completed=9/80
+[10/80] game=227887 status=ok turns=4/4 ship_vcrs=86 sides=172 horwasp_transitions=0 completed=10/80
+[11/80] game=230354 status=ok turns=4/4 ship_vcrs=23 sides=46 horwasp_transitions=0 completed=11/80
+[12/80] game=233558 status=ok turns=4/4 ship_vcrs=19 sides=38 horwasp_transitions=0 completed=12/80
+[13/80] game=235762 status=ok turns=4/4 ship_vcrs=69 sides=138 horwasp_transitions=0 completed=13/80
+[14/80] game=245123 status=ok turns=4/4 ship_vcrs=34 sides=68 horwasp_transitions=0 completed=14/80
+[15/80] game=245693 status=ok turns=4/4 ship_vcrs=49 sides=98 horwasp_transitions=0 completed=15/80
+[16/80] game=247785 status=ok turns=4/4 ship_vcrs=44 sides=88 horwasp_transitions=0 completed=16/80
+[17/80] game=256858 status=ok turns=4/4 ship_vcrs=21 sides=42 horwasp_transitions=0 completed=17/80
+[18/80] game=257908 status=ok turns=4/4 ship_vcrs=35 sides=70 horwasp_transitions=0 completed=18/80
+[19/80] game=264889 status=ok turns=4/4 ship_vcrs=23 sides=46 horwasp_transitions=0 completed=19/80
+[20/80] game=266087 status=ok turns=4/4 ship_vcrs=54 sides=108 horwasp_transitions=0 completed=20/80
+[21/80] game=267580 status=ok turns=4/4 ship_vcrs=65 sides=130 horwasp_transitions=0 completed=21/80
+[22/80] game=281994 status=ok turns=4/4 ship_vcrs=52 sides=104 horwasp_transitions=1 completed=22/80
+[23/80] game=283648 status=ok turns=4/4 ship_vcrs=29 sides=58 horwasp_transitions=0 completed=23/80
+[24/80] game=290067 status=ok turns=4/4 ship_vcrs=26 sides=52 horwasp_transitions=0 completed=24/80
+[25/80] game=296210 status=ok turns=4/4 ship_vcrs=35 sides=70 horwasp_transitions=0 completed=25/80
+[26/80] game=310054 status=ok turns=4/4 ship_vcrs=32 sides=64 horwasp_transitions=0 completed=26/80
+[27/80] game=323802 status=ok turns=4/4 ship_vcrs=43 sides=86 horwasp_transitions=0 completed=27/80
+[28/80] game=325434 status=ok turns=4/4 ship_vcrs=73 sides=146 horwasp_transitions=0 completed=28/80
+[29/80] game=326221 status=ok turns=4/4 ship_vcrs=42 sides=84 horwasp_transitions=0 completed=29/80
+[30/80] game=338810 status=ok turns=4/4 ship_vcrs=54 sides=108 horwasp_transitions=0 completed=30/80
+[31/80] game=341336 status=ok turns=4/4 ship_vcrs=38 sides=76 horwasp_transitions=0 completed=31/80
+[32/80] game=342288 status=ok turns=4/4 ship_vcrs=17 sides=34 horwasp_transitions=0 completed=32/80
+[33/80] game=347236 status=ok turns=4/4 ship_vcrs=141 sides=282 horwasp_transitions=0 completed=33/80
+[34/80] game=347358 status=ok turns=4/4 ship_vcrs=17 sides=34 horwasp_transitions=0 completed=34/80
+[35/80] game=347923 status=ok turns=4/4 ship_vcrs=17 sides=34 horwasp_transitions=0 completed=35/80
+[36/80] game=350094 status=ok turns=4/4 ship_vcrs=74 sides=148 horwasp_transitions=21 completed=36/80
+[37/80] game=368767 status=ok turns=4/4 ship_vcrs=59 sides=118 horwasp_transitions=5 completed=37/80
+[38/80] game=373830 status=ok turns=4/4 ship_vcrs=50 sides=100 horwasp_transitions=0 completed=38/80
+[39/80] game=385906 status=ok turns=4/4 ship_vcrs=29 sides=58 horwasp_transitions=0 completed=39/80
+[40/80] game=396107 status=ok turns=4/4 ship_vcrs=31 sides=62 horwasp_transitions=0 completed=40/80
+[41/80] game=407599 status=ok turns=4/4 ship_vcrs=10 sides=20 horwasp_transitions=0 completed=41/80
+[42/80] game=411645 status=ok turns=4/4 ship_vcrs=88 sides=176 horwasp_transitions=40 completed=42/80
+[43/80] game=416233 status=ok turns=4/4 ship_vcrs=43 sides=86 horwasp_transitions=0 completed=43/80
+[44/80] game=416250 status=ok turns=4/4 ship_vcrs=43 sides=86 horwasp_transitions=0 completed=44/80
+[45/80] game=421949 status=ok turns=4/4 ship_vcrs=36 sides=72 horwasp_transitions=0 completed=45/80
+[46/80] game=423531 status=ok turns=4/4 ship_vcrs=24 sides=48 horwasp_transitions=0 completed=46/80
+[47/80] game=425973 status=ok turns=4/4 ship_vcrs=48 sides=96 horwasp_transitions=0 completed=47/80
+[48/80] game=441148 status=ok turns=4/4 ship_vcrs=171 sides=342 horwasp_transitions=9 completed=48/80
+[49/80] game=454504 status=ok turns=4/4 ship_vcrs=86 sides=172 horwasp_transitions=0 completed=49/80
+[50/80] game=467047 status=ok turns=4/4 ship_vcrs=38 sides=76 horwasp_transitions=0 completed=50/80
+[51/80] game=467183 status=ok turns=4/4 ship_vcrs=55 sides=109 horwasp_transitions=0 completed=51/80
+[52/80] game=470320 status=ok turns=4/4 ship_vcrs=11 sides=22 horwasp_transitions=0 completed=52/80
+[53/80] game=473010 status=ok turns=4/4 ship_vcrs=26 sides=52 horwasp_transitions=0 completed=53/80
+[54/80] game=474699 status=ok turns=4/4 ship_vcrs=27 sides=54 horwasp_transitions=2 completed=54/80
+[55/80] game=476380 status=ok turns=4/4 ship_vcrs=44 sides=88 horwasp_transitions=0 completed=55/80
+[56/80] game=476826 status=ok turns=4/4 ship_vcrs=25 sides=50 horwasp_transitions=0 completed=56/80
+[57/80] game=477364 status=ok turns=4/4 ship_vcrs=313 sides=626 horwasp_transitions=0 completed=57/80
+[58/80] game=477725 status=ok turns=4/4 ship_vcrs=24 sides=48 horwasp_transitions=0 completed=58/80
+[59/80] game=486109 status=ok turns=4/4 ship_vcrs=31 sides=62 horwasp_transitions=0 completed=59/80
+[60/80] game=494635 status=ok turns=4/4 ship_vcrs=16 sides=32 horwasp_transitions=0 completed=60/80
+[61/80] game=497195 status=ok turns=4/4 ship_vcrs=26 sides=52 horwasp_transitions=0 completed=61/80
+[62/80] game=499284 status=ok turns=4/4 ship_vcrs=26 sides=52 horwasp_transitions=0 completed=62/80
+[63/80] game=521834 status=ok turns=4/4 ship_vcrs=23 sides=46 horwasp_transitions=0 completed=63/80
+[64/80] game=530635 status=ok turns=4/4 ship_vcrs=56 sides=112 horwasp_transitions=0 completed=64/80
+[65/80] game=550972 status=ok turns=4/4 ship_vcrs=45 sides=90 horwasp_transitions=0 completed=65/80
+[66/80] game=563278 status=ok turns=4/4 ship_vcrs=89 sides=178 horwasp_transitions=0 completed=66/80
+[67/80] game=597079 status=ok turns=4/4 ship_vcrs=26 sides=52 horwasp_transitions=0 completed=67/80
+[68/80] game=600032 status=ok turns=4/4 ship_vcrs=34 sides=68 horwasp_transitions=0 completed=68/80
+[69/80] game=600044 status=ok turns=4/4 ship_vcrs=35 sides=70 horwasp_transitions=0 completed=69/80
+[70/80] game=617883 status=ok turns=4/4 ship_vcrs=52 sides=104 horwasp_transitions=0 completed=70/80
+[71/80] game=629488 status=ok turns=4/4 ship_vcrs=84 sides=168 horwasp_transitions=0 completed=71/80
+[72/80] game=632527 status=ok turns=4/4 ship_vcrs=51 sides=102 horwasp_transitions=0 completed=72/80
+[73/80] game=633837 status=ok turns=4/4 ship_vcrs=61 sides=122 horwasp_transitions=0 completed=73/80
+[74/80] game=633855 status=ok turns=4/4 ship_vcrs=30 sides=60 horwasp_transitions=0 completed=74/80
+[75/80] game=645077 status=ok turns=4/4 ship_vcrs=38 sides=76 horwasp_transitions=0 completed=75/80
+[76/80] game=653272 status=ok turns=4/4 ship_vcrs=97 sides=194 horwasp_transitions=52 completed=76/80
+[77/80] game=655827 status=ok turns=4/4 ship_vcrs=47 sides=94 horwasp_transitions=0 completed=77/80
+[78/80] game=658427 status=ok turns=4/4 ship_vcrs=71 sides=142 horwasp_transitions=21 completed=78/80
+[79/80] game=663317 status=ok turns=4/4 ship_vcrs=31 sides=62 horwasp_transitions=0 completed=79/80
+[80/80] game=674696 status=ok turns=4/4 ship_vcrs=16 sides=32 horwasp_transitions=0 completed=80/80
+===== LONG SURVEY FINAL =====
+status: COMPLETE_OBSERVATIONAL_NOT_PROMOTED
+game_status: {'ok': 80}
+summary: {'class:classic_baseline': 5791, 'class:engine_shield_1_numeric_match': 145, 'class:engine_shield_1_plus360_numeric_match': 38, 'class:engine_shield_2_numeric_match': 307, 'class:engine_shield_2_plus360_numeric_match': 34, 'class:horwasp_catalog_full_load_endpoint': 414, 'class:horwasp_catalog_full_plus360_arithmetic': 60, 'class:horwasp_other_or_catalog_conflict': 15, 'class:horwasp_partial_numeric_range': 259, 'class:right_plus360_arithmetic': 706, 'class:unexplained_with_available_owner_geometry': 52, 'horwasp_changed_mass_between_appearances': 135, 'horwasp_same_ship_vcr_transitions': 187, 'horwasp_ship_timelines': 561, 'missing_effective_side_or_hull_catalog': 3, 'non_ship_vcr': 2137, 'owner_Tminus1_generator_at_vcr_site': 362, 'owner_Tminus1_generator_co_travel_order': 452, 'owner_perspective_source_members': 1506, 'participant_Tminus1_owner_missing': 69, 'participant_Tminus1_owner_seen': 7752, 'ship_vcrs': 3912, 'side_observations': 7821, 'unique_vcrs_available': 6189, 'unique_vcrs_examined': 6049}
+published_summary: artifacts/combat/long-mass-survey-v1/published/summary.json
+local_checkpoints: artifacts/combat/long-mass-survey-v1/checkpoints
