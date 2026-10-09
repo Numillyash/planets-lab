@@ -1,0 +1,26 @@
+===== MASS TEMPORAL RECONCILIATION V1 =====
+HEAD: b48eb0972c99ed259057b3271c33138ac5225907
+capture_controls: artifacts/combat/mass-capture-phase-controls-v1/published/report.json
+residuals: artifacts/combat/mass-residual-complete-v1/published/residuals.json
+output: artifacts/combat/mass-temporal-reconciliation-v1/published/report.json
+Traceback (most recent call last):
+  File "/root/projects/planets-lab/tools/diagnostics/combat_mass_temporal_reconciliation_v1.py", line 287, in main
+    report=build_report(controls,residuals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/projects/planets-lab/tools/diagnostics/combat_mass_temporal_reconciliation_v1.py", line 198, in build_report
+    changes=_control_mass_map(c)
+            ^^^^^^^^^^^^^^^^^^^^
+  File "/root/projects/planets-lab/tools/diagnostics/combat_mass_temporal_reconciliation_v1.py", line 46, in _control_mass_map
+    raise ValueError("cannot assert all-perspective agreement when truncated")
+ValueError: cannot assert all-perspective agreement when truncated
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/projects/planets-lab/tools/diagnostics/combat_mass_temporal_reconciliation_v1.py", line 308, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/root/projects/planets-lab/tools/diagnostics/combat_mass_temporal_reconciliation_v1.py", line 293, in main
+    print("ERROR:",exc,file=sys.stderr)
+                            ^^^
+NameError: name 'sys' is not defined. Did you forget to import 'sys'?
