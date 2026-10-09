@@ -3,7 +3,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
 DB_ROOT="$HOME/projects/planets-corpus-db"
-if [[ -n "$PLANETS_CORPUS_DB_ROOT" ]]; then DB_ROOT="$PLANETS_CORPUS_DB_ROOT"; fi
+if [[ -n "${PLANETS_CORPUS_DB_ROOT:-}" ]]; then DB_ROOT="$PLANETS_CORPUS_DB_ROOT"; fi
 GENERATION="generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb"
 EXPECTED_SHA="3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c"
 DB="$DB_ROOT/$GENERATION"
