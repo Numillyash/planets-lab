@@ -1,0 +1,6697 @@
+{
+  "Tminus1_shield_sample_control_counts": {
+    "NO_TMINUS1_SUPPORT_IN_SAVED_SAMPLE": 104,
+    "TMINUS1_COTRAVEL_CONTROL": 68,
+    "TMINUS1_SITE_CONTROL": 145
+  },
+  "counts": {
+    "engine_shield_arithmetic_sides": 524,
+    "horwasp_changed_mass_transitions": 135,
+    "horwasp_transitions": 187,
+    "missing_side_or_catalog": 3,
+    "saved_horwasp_timelines": 395,
+    "saved_shield_detail_samples": 317,
+    "ship_vcrs": 3912,
+    "side_observations": 7821,
+    "unresolved_VCR_details_saved": 40,
+    "unresolved_VCR_details_unsaved": 27,
+    "unresolved_horwasp": 15,
+    "unresolved_mass_sides": 67,
+    "unresolved_non_horwasp": 52
+  },
+  "coverage_boundary": {
+    "all_game_turn_class_counts_are_complete_within_VCR_cap": true,
+    "original_first_N_examples_per_turn": 20,
+    "original_per_turn_VCR_cap": 150,
+    "saved_example_VCR_identities_are_NOT_exhaustive": true,
+    "unsaved_case_ids_need_targeted_corpus_rescan": true
+  },
+  "evidence_boundary": "Factual current VCR mass was used to classify numeric patterns, not independently predict Host mass. T-1 site/co-travel generator geometry does not prove precombat effects; Shield Generator control frequencies apply to first-N examples only. Horwasp clan intervals are conditional inversions; differences across observed VCR starts are not predictive attrition laws.",
+  "ranked_games": [
+    {
+      "engine_shield_numeric": 1,
+      "game_id": 310054,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 32,
+      "side_observations": 64,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 10
+    },
+    {
+      "engine_shield_numeric": 32,
+      "game_id": 341336,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 2,
+      "ship_vcrs": 38,
+      "side_observations": 76,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 10
+    },
+    {
+      "engine_shield_numeric": 41,
+      "game_id": 441148,
+      "horwasp_changed_mass_transitions": 8,
+      "horwasp_transitions": 9,
+      "owner_Tminus1_missing": 1,
+      "ship_vcrs": 171,
+      "side_observations": 342,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 9
+    },
+    {
+      "engine_shield_numeric": 46,
+      "game_id": 653272,
+      "horwasp_changed_mass_transitions": 50,
+      "horwasp_transitions": 52,
+      "owner_Tminus1_missing": 1,
+      "ship_vcrs": 97,
+      "side_observations": 194,
+      "unresolved_horwasp": 1,
+      "unresolved_numeric": 5
+    },
+    {
+      "engine_shield_numeric": 24,
+      "game_id": 217591,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 2,
+      "owner_Tminus1_missing": 2,
+      "ship_vcrs": 75,
+      "side_observations": 148,
+      "unresolved_horwasp": 5,
+      "unresolved_numeric": 1
+    },
+    {
+      "engine_shield_numeric": 36,
+      "game_id": 325434,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 73,
+      "side_observations": 146,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 6
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 658427,
+      "horwasp_changed_mass_transitions": 20,
+      "horwasp_transitions": 21,
+      "owner_Tminus1_missing": 2,
+      "ship_vcrs": 71,
+      "side_observations": 142,
+      "unresolved_horwasp": 5,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 5,
+      "game_id": 617883,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 6,
+      "ship_vcrs": 52,
+      "side_observations": 104,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 5
+    },
+    {
+      "engine_shield_numeric": 145,
+      "game_id": 347236,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 141,
+      "side_observations": 282,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 3
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 411645,
+      "horwasp_changed_mass_transitions": 30,
+      "horwasp_transitions": 40,
+      "owner_Tminus1_missing": 2,
+      "ship_vcrs": 88,
+      "side_observations": 176,
+      "unresolved_horwasp": 2,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 31,
+      "game_id": 563278,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 89,
+      "side_observations": 178,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 2
+    },
+    {
+      "engine_shield_numeric": 16,
+      "game_id": 350094,
+      "horwasp_changed_mass_transitions": 10,
+      "horwasp_transitions": 21,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 74,
+      "side_observations": 148,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 1
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 253449,
+      "horwasp_changed_mass_transitions": 7,
+      "horwasp_transitions": 13,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 66,
+      "side_observations": 132,
+      "unresolved_horwasp": 1,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 368767,
+      "horwasp_changed_mass_transitions": 4,
+      "horwasp_transitions": 5,
+      "owner_Tminus1_missing": 2,
+      "ship_vcrs": 59,
+      "side_observations": 118,
+      "unresolved_horwasp": 1,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 226056,
+      "horwasp_changed_mass_transitions": 4,
+      "horwasp_transitions": 21,
+      "owner_Tminus1_missing": 2,
+      "ship_vcrs": 115,
+      "side_observations": 230,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 4,
+      "game_id": 474699,
+      "horwasp_changed_mass_transitions": 2,
+      "horwasp_transitions": 2,
+      "owner_Tminus1_missing": 1,
+      "ship_vcrs": 27,
+      "side_observations": 54,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 2466,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 12,
+      "side_observations": 24,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 218619,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 2,
+      "ship_vcrs": 59,
+      "side_observations": 118,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 221008,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 16,
+      "side_observations": 32,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 224849,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 28,
+      "side_observations": 56,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 227887,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 86,
+      "side_observations": 172,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 230354,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 23,
+      "side_observations": 46,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 233558,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 19,
+      "side_observations": 38,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 28,
+      "game_id": 235762,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 17,
+      "ship_vcrs": 69,
+      "side_observations": 138,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 245123,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 34,
+      "side_observations": 68,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 245693,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 49,
+      "side_observations": 98,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 247785,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 44,
+      "side_observations": 88,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 256858,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 1,
+      "ship_vcrs": 21,
+      "side_observations": 42,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 257908,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 35,
+      "side_observations": 70,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 264889,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 2,
+      "ship_vcrs": 23,
+      "side_observations": 46,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 266087,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 54,
+      "side_observations": 108,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 267580,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 65,
+      "side_observations": 130,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 281994,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 1,
+      "owner_Tminus1_missing": 6,
+      "ship_vcrs": 52,
+      "side_observations": 104,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 283648,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 29,
+      "side_observations": 58,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 290067,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 26,
+      "side_observations": 52,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 296210,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 2,
+      "ship_vcrs": 35,
+      "side_observations": 70,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 323802,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 43,
+      "side_observations": 86,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 326221,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 3,
+      "ship_vcrs": 42,
+      "side_observations": 84,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 338810,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 54,
+      "side_observations": 108,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 342288,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 17,
+      "side_observations": 34,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 347358,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 2,
+      "ship_vcrs": 17,
+      "side_observations": 34,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 347923,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 17,
+      "side_observations": 34,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 20,
+      "game_id": 371631,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 31,
+      "side_observations": 62,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 28,
+      "game_id": 373830,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 50,
+      "side_observations": 100,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 385906,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 29,
+      "side_observations": 58,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 25,
+      "game_id": 396107,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 31,
+      "side_observations": 62,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 400330,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 2,
+      "ship_vcrs": 32,
+      "side_observations": 64,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 407599,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 10,
+      "side_observations": 20,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 416233,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 43,
+      "side_observations": 86,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 416250,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 1,
+      "ship_vcrs": 43,
+      "side_observations": 86,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 421949,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 36,
+      "side_observations": 72,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 423531,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 24,
+      "side_observations": 48,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 425973,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 48,
+      "side_observations": 96,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 454504,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 86,
+      "side_observations": 172,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 4,
+      "game_id": 467047,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 38,
+      "side_observations": 76,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 467183,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 55,
+      "side_observations": 109,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 470320,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 11,
+      "side_observations": 22,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 473010,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 26,
+      "side_observations": 52,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 476380,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 44,
+      "side_observations": 88,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 476826,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 25,
+      "side_observations": 50,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 3,
+      "game_id": 477364,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 6,
+      "ship_vcrs": 313,
+      "side_observations": 626,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 477725,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 24,
+      "side_observations": 48,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 486109,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 1,
+      "ship_vcrs": 31,
+      "side_observations": 62,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 494635,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 16,
+      "side_observations": 32,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 10,
+      "game_id": 497195,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 26,
+      "side_observations": 52,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 499284,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 26,
+      "side_observations": 52,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 521834,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 23,
+      "side_observations": 46,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 530635,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 56,
+      "side_observations": 112,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 550972,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 45,
+      "side_observations": 90,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 597079,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 26,
+      "side_observations": 52,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 600032,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 1,
+      "ship_vcrs": 34,
+      "side_observations": 68,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 600044,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 2,
+      "ship_vcrs": 35,
+      "side_observations": 70,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 629488,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 84,
+      "side_observations": 168,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 632527,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 51,
+      "side_observations": 102,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 633837,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 61,
+      "side_observations": 122,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 633855,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 30,
+      "side_observations": 60,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 645077,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 38,
+      "side_observations": 76,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 25,
+      "game_id": 655827,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 47,
+      "side_observations": 94,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 663317,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 31,
+      "side_observations": 62,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    },
+    {
+      "engine_shield_numeric": 0,
+      "game_id": 674696,
+      "horwasp_changed_mass_transitions": 0,
+      "horwasp_transitions": 0,
+      "owner_Tminus1_missing": 0,
+      "ship_vcrs": 16,
+      "side_observations": 32,
+      "unresolved_horwasp": 0,
+      "unresolved_numeric": 0
+    }
+  ],
+  "ranked_turns": [
+    {
+      "game_id": 341336,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 20,
+      "ship_vcrs": 24,
+      "side_observations": 48,
+      "turn": 75,
+      "unresolved": 10
+    },
+    {
+      "game_id": 310054,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 10,
+      "ship_vcrs": 15,
+      "side_observations": 30,
+      "turn": 87,
+      "unresolved": 9
+    },
+    {
+      "game_id": 441148,
+      "horwasp_transitions": 6,
+      "max_examples": 20,
+      "saved_examples": 20,
+      "ship_vcrs": 82,
+      "side_observations": 164,
+      "turn": 236,
+      "unresolved": 8
+    },
+    {
+      "game_id": 653272,
+      "horwasp_transitions": 40,
+      "max_examples": 20,
+      "saved_examples": 20,
+      "ship_vcrs": 67,
+      "side_observations": 134,
+      "turn": 132,
+      "unresolved": 5
+    },
+    {
+      "game_id": 217591,
+      "horwasp_transitions": 2,
+      "max_examples": 20,
+      "saved_examples": 20,
+      "ship_vcrs": 42,
+      "side_observations": 84,
+      "turn": 149,
+      "unresolved": 5
+    },
+    {
+      "game_id": 617883,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 10,
+      "ship_vcrs": 25,
+      "side_observations": 50,
+      "turn": 201,
+      "unresolved": 5
+    },
+    {
+      "game_id": 325434,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 20,
+      "ship_vcrs": 35,
+      "side_observations": 70,
+      "turn": 149,
+      "unresolved": 4
+    },
+    {
+      "game_id": 658427,
+      "horwasp_transitions": 7,
+      "max_examples": 20,
+      "saved_examples": 20,
+      "ship_vcrs": 26,
+      "side_observations": 52,
+      "turn": 73,
+      "unresolved": 3
+    },
+    {
+      "game_id": 658427,
+      "horwasp_transitions": 8,
+      "max_examples": 20,
+      "saved_examples": 20,
+      "ship_vcrs": 27,
+      "side_observations": 54,
+      "turn": 87,
+      "unresolved": 2
+    },
+    {
+      "game_id": 325434,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 13,
+      "ship_vcrs": 37,
+      "side_observations": 74,
+      "turn": 192,
+      "unresolved": 2
+    },
+    {
+      "game_id": 347236,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 20,
+      "ship_vcrs": 61,
+      "side_observations": 122,
+      "turn": 136,
+      "unresolved": 2
+    },
+    {
+      "game_id": 563278,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 20,
+      "ship_vcrs": 33,
+      "side_observations": 66,
+      "turn": 187,
+      "unresolved": 2
+    },
+    {
+      "game_id": 411645,
+      "horwasp_transitions": 20,
+      "max_examples": 20,
+      "saved_examples": 20,
+      "ship_vcrs": 39,
+      "side_observations": 78,
+      "turn": 225,
+      "unresolved": 1
+    },
+    {
+      "game_id": 350094,
+      "horwasp_transitions": 12,
+      "max_examples": 20,
+      "saved_examples": 20,
+      "ship_vcrs": 41,
+      "side_observations": 82,
+      "turn": 64,
+      "unresolved": 1
+    },
+    {
+      "game_id": 653272,
+      "horwasp_transitions": 11,
+      "max_examples": 20,
+      "saved_examples": 20,
+      "ship_vcrs": 23,
+      "side_observations": 46,
+      "turn": 159,
+      "unresolved": 1
+    },
+    {
+      "game_id": 368767,
+      "horwasp_transitions": 4,
+      "max_examples": 20,
+      "saved_examples": 20,
+      "ship_vcrs": 32,
+      "side_observations": 64,
+      "turn": 80,
+      "unresolved": 1
+    },
+    {
+      "game_id": 441148,
+      "horwasp_transitions": 3,
+      "max_examples": 20,
+      "saved_examples": 20,
+      "ship_vcrs": 72,
+      "side_observations": 144,
+      "turn": 176,
+      "unresolved": 1
+    },
+    {
+      "game_id": 253449,
+      "horwasp_transitions": 1,
+      "max_examples": 20,
+      "saved_examples": 11,
+      "ship_vcrs": 11,
+      "side_observations": 22,
+      "turn": 44,
+      "unresolved": 1
+    },
+    {
+      "game_id": 411645,
+      "horwasp_transitions": 1,
+      "max_examples": 20,
+      "saved_examples": 6,
+      "ship_vcrs": 7,
+      "side_observations": 14,
+      "turn": 40,
+      "unresolved": 1
+    },
+    {
+      "game_id": 217591,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 19,
+      "ship_vcrs": 23,
+      "side_observations": 44,
+      "turn": 75,
+      "unresolved": 1
+    },
+    {
+      "game_id": 310054,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 1,
+      "ship_vcrs": 3,
+      "side_observations": 6,
+      "turn": 27,
+      "unresolved": 1
+    },
+    {
+      "game_id": 347236,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 20,
+      "ship_vcrs": 69,
+      "side_observations": 138,
+      "turn": 115,
+      "unresolved": 1
+    },
+    {
+      "game_id": 226056,
+      "horwasp_transitions": 20,
+      "max_examples": 20,
+      "saved_examples": 20,
+      "ship_vcrs": 64,
+      "side_observations": 128,
+      "turn": 108,
+      "unresolved": 0
+    },
+    {
+      "game_id": 411645,
+      "horwasp_transitions": 19,
+      "max_examples": 20,
+      "saved_examples": 20,
+      "ship_vcrs": 42,
+      "side_observations": 84,
+      "turn": 203,
+      "unresolved": 0
+    },
+    {
+      "game_id": 350094,
+      "horwasp_transitions": 9,
+      "max_examples": 20,
+      "saved_examples": 20,
+      "ship_vcrs": 26,
+      "side_observations": 52,
+      "turn": 55,
+      "unresolved": 0
+    },
+    {
+      "game_id": 253449,
+      "horwasp_transitions": 8,
+      "max_examples": 20,
+      "saved_examples": 14,
+      "ship_vcrs": 22,
+      "side_observations": 44,
+      "turn": 82,
+      "unresolved": 0
+    },
+    {
+      "game_id": 658427,
+      "horwasp_transitions": 6,
+      "max_examples": 20,
+      "saved_examples": 10,
+      "ship_vcrs": 17,
+      "side_observations": 34,
+      "turn": 33,
+      "unresolved": 0
+    },
+    {
+      "game_id": 253449,
+      "horwasp_transitions": 4,
+      "max_examples": 20,
+      "saved_examples": 15,
+      "ship_vcrs": 32,
+      "side_observations": 64,
+      "turn": 165,
+      "unresolved": 0
+    },
+    {
+      "game_id": 226056,
+      "horwasp_transitions": 1,
+      "max_examples": 20,
+      "saved_examples": 20,
+      "ship_vcrs": 35,
+      "side_observations": 70,
+      "turn": 109,
+      "unresolved": 0
+    },
+    {
+      "game_id": 281994,
+      "horwasp_transitions": 1,
+      "max_examples": 20,
+      "saved_examples": 6,
+      "ship_vcrs": 16,
+      "side_observations": 32,
+      "turn": 102,
+      "unresolved": 0
+    },
+    {
+      "game_id": 368767,
+      "horwasp_transitions": 1,
+      "max_examples": 20,
+      "saved_examples": 20,
+      "ship_vcrs": 21,
+      "side_observations": 42,
+      "turn": 67,
+      "unresolved": 0
+    },
+    {
+      "game_id": 474699,
+      "horwasp_transitions": 1,
+      "max_examples": 20,
+      "saved_examples": 7,
+      "ship_vcrs": 8,
+      "side_observations": 16,
+      "turn": 178,
+      "unresolved": 0
+    },
+    {
+      "game_id": 474699,
+      "horwasp_transitions": 1,
+      "max_examples": 20,
+      "saved_examples": 15,
+      "ship_vcrs": 12,
+      "side_observations": 24,
+      "turn": 201,
+      "unresolved": 0
+    },
+    {
+      "game_id": 653272,
+      "horwasp_transitions": 1,
+      "max_examples": 20,
+      "saved_examples": 8,
+      "ship_vcrs": 7,
+      "side_observations": 14,
+      "turn": 53,
+      "unresolved": 0
+    },
+    {
+      "game_id": 2466,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 20,
+      "unresolved": 0
+    },
+    {
+      "game_id": 2466,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 3,
+      "side_observations": 6,
+      "turn": 97,
+      "unresolved": 0
+    },
+    {
+      "game_id": 2466,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 7,
+      "side_observations": 14,
+      "turn": 113,
+      "unresolved": 0
+    },
+    {
+      "game_id": 2466,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 2,
+      "side_observations": 4,
+      "turn": 153,
+      "unresolved": 0
+    },
+    {
+      "game_id": 217591,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 14,
+      "unresolved": 0
+    },
+    {
+      "game_id": 217591,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 2,
+      "ship_vcrs": 10,
+      "side_observations": 20,
+      "turn": 63,
+      "unresolved": 0
+    },
+    {
+      "game_id": 218619,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 1,
+      "side_observations": 2,
+      "turn": 12,
+      "unresolved": 0
+    },
+    {
+      "game_id": 218619,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 1,
+      "side_observations": 2,
+      "turn": 19,
+      "unresolved": 0
+    },
+    {
+      "game_id": 218619,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 31,
+      "side_observations": 62,
+      "turn": 193,
+      "unresolved": 0
+    },
+    {
+      "game_id": 218619,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 26,
+      "side_observations": 52,
+      "turn": 211,
+      "unresolved": 0
+    },
+    {
+      "game_id": 221008,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 34,
+      "unresolved": 0
+    },
+    {
+      "game_id": 221008,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 88,
+      "unresolved": 0
+    },
+    {
+      "game_id": 221008,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 7,
+      "side_observations": 14,
+      "turn": 129,
+      "unresolved": 0
+    },
+    {
+      "game_id": 221008,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 9,
+      "side_observations": 18,
+      "turn": 133,
+      "unresolved": 0
+    },
+    {
+      "game_id": 224849,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 50,
+      "unresolved": 0
+    },
+    {
+      "game_id": 224849,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 121,
+      "unresolved": 0
+    },
+    {
+      "game_id": 224849,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 12,
+      "side_observations": 24,
+      "turn": 187,
+      "unresolved": 0
+    },
+    {
+      "game_id": 224849,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 16,
+      "side_observations": 32,
+      "turn": 196,
+      "unresolved": 0
+    },
+    {
+      "game_id": 226056,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 1,
+      "side_observations": 2,
+      "turn": 14,
+      "unresolved": 0
+    },
+    {
+      "game_id": 226056,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 15,
+      "ship_vcrs": 15,
+      "side_observations": 30,
+      "turn": 121,
+      "unresolved": 0
+    },
+    {
+      "game_id": 227887,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 11,
+      "unresolved": 0
+    },
+    {
+      "game_id": 227887,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 93,
+      "unresolved": 0
+    },
+    {
+      "game_id": 227887,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 33,
+      "side_observations": 66,
+      "turn": 265,
+      "unresolved": 0
+    },
+    {
+      "game_id": 227887,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 53,
+      "side_observations": 106,
+      "turn": 285,
+      "unresolved": 0
+    },
+    {
+      "game_id": 230354,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 1,
+      "side_observations": 2,
+      "turn": 11,
+      "unresolved": 0
+    },
+    {
+      "game_id": 230354,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 4,
+      "side_observations": 8,
+      "turn": 24,
+      "unresolved": 0
+    },
+    {
+      "game_id": 230354,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 8,
+      "side_observations": 16,
+      "turn": 80,
+      "unresolved": 0
+    },
+    {
+      "game_id": 230354,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 10,
+      "side_observations": 20,
+      "turn": 153,
+      "unresolved": 0
+    },
+    {
+      "game_id": 233558,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 2,
+      "side_observations": 4,
+      "turn": 329,
+      "unresolved": 0
+    },
+    {
+      "game_id": 233558,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 375,
+      "unresolved": 0
+    },
+    {
+      "game_id": 233558,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 14,
+      "side_observations": 28,
+      "turn": 424,
+      "unresolved": 0
+    },
+    {
+      "game_id": 233558,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 3,
+      "side_observations": 6,
+      "turn": 428,
+      "unresolved": 0
+    },
+    {
+      "game_id": 235762,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 2,
+      "side_observations": 4,
+      "turn": 43,
+      "unresolved": 0
+    },
+    {
+      "game_id": 235762,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 20,
+      "ship_vcrs": 46,
+      "side_observations": 92,
+      "turn": 97,
+      "unresolved": 0
+    },
+    {
+      "game_id": 235762,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 1,
+      "side_observations": 2,
+      "turn": 118,
+      "unresolved": 0
+    },
+    {
+      "game_id": 235762,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 20,
+      "side_observations": 40,
+      "turn": 121,
+      "unresolved": 0
+    },
+    {
+      "game_id": 245123,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 2,
+      "side_observations": 4,
+      "turn": 31,
+      "unresolved": 0
+    },
+    {
+      "game_id": 245123,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 1,
+      "side_observations": 2,
+      "turn": 46,
+      "unresolved": 0
+    },
+    {
+      "game_id": 245123,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 17,
+      "side_observations": 34,
+      "turn": 76,
+      "unresolved": 0
+    },
+    {
+      "game_id": 245123,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 14,
+      "side_observations": 28,
+      "turn": 99,
+      "unresolved": 0
+    },
+    {
+      "game_id": 245693,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 8,
+      "unresolved": 0
+    },
+    {
+      "game_id": 245693,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 19,
+      "side_observations": 38,
+      "turn": 59,
+      "unresolved": 0
+    },
+    {
+      "game_id": 245693,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 23,
+      "side_observations": 46,
+      "turn": 103,
+      "unresolved": 0
+    },
+    {
+      "game_id": 245693,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 7,
+      "side_observations": 14,
+      "turn": 109,
+      "unresolved": 0
+    },
+    {
+      "game_id": 247785,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 9,
+      "unresolved": 0
+    },
+    {
+      "game_id": 247785,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 4,
+      "side_observations": 8,
+      "turn": 41,
+      "unresolved": 0
+    },
+    {
+      "game_id": 247785,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 32,
+      "side_observations": 64,
+      "turn": 103,
+      "unresolved": 0
+    },
+    {
+      "game_id": 247785,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 8,
+      "side_observations": 16,
+      "turn": 155,
+      "unresolved": 0
+    },
+    {
+      "game_id": 253449,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 1,
+      "side_observations": 2,
+      "turn": 33,
+      "unresolved": 0
+    },
+    {
+      "game_id": 256858,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 1,
+      "side_observations": 2,
+      "turn": 28,
+      "unresolved": 0
+    },
+    {
+      "game_id": 256858,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 1,
+      "side_observations": 2,
+      "turn": 109,
+      "unresolved": 0
+    },
+    {
+      "game_id": 256858,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 6,
+      "side_observations": 12,
+      "turn": 300,
+      "unresolved": 0
+    },
+    {
+      "game_id": 256858,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 13,
+      "side_observations": 26,
+      "turn": 337,
+      "unresolved": 0
+    },
+    {
+      "game_id": 257908,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 1,
+      "side_observations": 2,
+      "turn": 37,
+      "unresolved": 0
+    },
+    {
+      "game_id": 257908,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 10,
+      "side_observations": 20,
+      "turn": 52,
+      "unresolved": 0
+    },
+    {
+      "game_id": 257908,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 24,
+      "side_observations": 48,
+      "turn": 97,
+      "unresolved": 0
+    },
+    {
+      "game_id": 257908,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 153,
+      "unresolved": 0
+    },
+    {
+      "game_id": 264889,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 20,
+      "unresolved": 0
+    },
+    {
+      "game_id": 264889,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 6,
+      "side_observations": 12,
+      "turn": 123,
+      "unresolved": 0
+    },
+    {
+      "game_id": 264889,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 1,
+      "side_observations": 2,
+      "turn": 150,
+      "unresolved": 0
+    },
+    {
+      "game_id": 264889,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 16,
+      "side_observations": 32,
+      "turn": 168,
+      "unresolved": 0
+    },
+    {
+      "game_id": 266087,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 22,
+      "unresolved": 0
+    },
+    {
+      "game_id": 266087,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 20,
+      "side_observations": 40,
+      "turn": 74,
+      "unresolved": 0
+    },
+    {
+      "game_id": 266087,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 5,
+      "side_observations": 10,
+      "turn": 94,
+      "unresolved": 0
+    },
+    {
+      "game_id": 266087,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 29,
+      "side_observations": 58,
+      "turn": 107,
+      "unresolved": 0
+    },
+    {
+      "game_id": 267580,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 16,
+      "unresolved": 0
+    },
+    {
+      "game_id": 267580,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 2,
+      "side_observations": 4,
+      "turn": 89,
+      "unresolved": 0
+    },
+    {
+      "game_id": 267580,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 33,
+      "side_observations": 66,
+      "turn": 148,
+      "unresolved": 0
+    },
+    {
+      "game_id": 267580,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 30,
+      "side_observations": 60,
+      "turn": 149,
+      "unresolved": 0
+    },
+    {
+      "game_id": 281994,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 5,
+      "ship_vcrs": 5,
+      "side_observations": 10,
+      "turn": 41,
+      "unresolved": 0
+    },
+    {
+      "game_id": 281994,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 60,
+      "unresolved": 0
+    },
+    {
+      "game_id": 281994,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 3,
+      "ship_vcrs": 31,
+      "side_observations": 62,
+      "turn": 124,
+      "unresolved": 0
+    },
+    {
+      "game_id": 283648,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 32,
+      "unresolved": 0
+    },
+    {
+      "game_id": 283648,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 1,
+      "side_observations": 2,
+      "turn": 90,
+      "unresolved": 0
+    },
+    {
+      "game_id": 283648,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 12,
+      "side_observations": 24,
+      "turn": 163,
+      "unresolved": 0
+    },
+    {
+      "game_id": 283648,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 16,
+      "side_observations": 32,
+      "turn": 166,
+      "unresolved": 0
+    },
+    {
+      "game_id": 290067,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 50,
+      "unresolved": 0
+    },
+    {
+      "game_id": 290067,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 4,
+      "side_observations": 8,
+      "turn": 85,
+      "unresolved": 0
+    },
+    {
+      "game_id": 290067,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 11,
+      "side_observations": 22,
+      "turn": 162,
+      "unresolved": 0
+    },
+    {
+      "game_id": 290067,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 11,
+      "side_observations": 22,
+      "turn": 163,
+      "unresolved": 0
+    },
+    {
+      "game_id": 296210,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 17,
+      "unresolved": 0
+    },
+    {
+      "game_id": 296210,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 14,
+      "side_observations": 28,
+      "turn": 116,
+      "unresolved": 0
+    },
+    {
+      "game_id": 296210,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 4,
+      "side_observations": 8,
+      "turn": 133,
+      "unresolved": 0
+    },
+    {
+      "game_id": 296210,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 17,
+      "side_observations": 34,
+      "turn": 150,
+      "unresolved": 0
+    },
+    {
+      "game_id": 310054,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 1,
+      "side_observations": 2,
+      "turn": 11,
+      "unresolved": 0
+    },
+    {
+      "game_id": 310054,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 1,
+      "ship_vcrs": 13,
+      "side_observations": 26,
+      "turn": 85,
+      "unresolved": 0
+    },
+    {
+      "game_id": 323802,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 21,
+      "side_observations": 42,
+      "turn": 90,
+      "unresolved": 0
+    },
+    {
+      "game_id": 323802,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 104,
+      "unresolved": 0
+    },
+    {
+      "game_id": 323802,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 5,
+      "side_observations": 10,
+      "turn": 108,
+      "unresolved": 0
+    },
+    {
+      "game_id": 323802,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 17,
+      "side_observations": 34,
+      "turn": 121,
+      "unresolved": 0
+    },
+    {
+      "game_id": 325434,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 1,
+      "side_observations": 2,
+      "turn": 10,
+      "unresolved": 0
+    },
+    {
+      "game_id": 325434,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 74,
+      "unresolved": 0
+    },
+    {
+      "game_id": 326221,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 78,
+      "unresolved": 0
+    },
+    {
+      "game_id": 326221,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 3,
+      "side_observations": 6,
+      "turn": 156,
+      "unresolved": 0
+    },
+    {
+      "game_id": 326221,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 13,
+      "side_observations": 26,
+      "turn": 159,
+      "unresolved": 0
+    },
+    {
+      "game_id": 326221,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 26,
+      "side_observations": 52,
+      "turn": 161,
+      "unresolved": 0
+    },
+    {
+      "game_id": 338810,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 20,
+      "unresolved": 0
+    },
+    {
+      "game_id": 338810,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 5,
+      "side_observations": 10,
+      "turn": 88,
+      "unresolved": 0
+    },
+    {
+      "game_id": 338810,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 24,
+      "side_observations": 48,
+      "turn": 90,
+      "unresolved": 0
+    },
+    {
+      "game_id": 338810,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 25,
+      "side_observations": 50,
+      "turn": 126,
+      "unresolved": 0
+    },
+    {
+      "game_id": 341336,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 1,
+      "side_observations": 2,
+      "turn": 24,
+      "unresolved": 0
+    },
+    {
+      "game_id": 341336,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 7,
+      "ship_vcrs": 13,
+      "side_observations": 26,
+      "turn": 94,
+      "unresolved": 0
+    },
+    {
+      "game_id": 341336,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 112,
+      "unresolved": 0
+    },
+    {
+      "game_id": 342288,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 1,
+      "side_observations": 2,
+      "turn": 137,
+      "unresolved": 0
+    },
+    {
+      "game_id": 342288,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 9,
+      "side_observations": 18,
+      "turn": 151,
+      "unresolved": 0
+    },
+    {
+      "game_id": 342288,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 1,
+      "side_observations": 2,
+      "turn": 189,
+      "unresolved": 0
+    },
+    {
+      "game_id": 342288,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 6,
+      "side_observations": 12,
+      "turn": 195,
+      "unresolved": 0
+    },
+    {
+      "game_id": 347236,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 1,
+      "side_observations": 2,
+      "turn": 89,
+      "unresolved": 0
+    },
+    {
+      "game_id": 347236,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 6,
+      "ship_vcrs": 10,
+      "side_observations": 20,
+      "turn": 100,
+      "unresolved": 0
+    },
+    {
+      "game_id": 347358,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 15,
+      "unresolved": 0
+    },
+    {
+      "game_id": 347358,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 40,
+      "unresolved": 0
+    },
+    {
+      "game_id": 347358,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 5,
+      "side_observations": 10,
+      "turn": 166,
+      "unresolved": 0
+    },
+    {
+      "game_id": 347358,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 12,
+      "side_observations": 24,
+      "turn": 168,
+      "unresolved": 0
+    },
+    {
+      "game_id": 347923,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 1,
+      "side_observations": 2,
+      "turn": 26,
+      "unresolved": 0
+    },
+    {
+      "game_id": 347923,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 6,
+      "side_observations": 12,
+      "turn": 73,
+      "unresolved": 0
+    },
+    {
+      "game_id": 347923,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 7,
+      "side_observations": 14,
+      "turn": 102,
+      "unresolved": 0
+    },
+    {
+      "game_id": 347923,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 3,
+      "side_observations": 6,
+      "turn": 103,
+      "unresolved": 0
+    },
+    {
+      "game_id": 350094,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 12,
+      "unresolved": 0
+    },
+    {
+      "game_id": 350094,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 2,
+      "ship_vcrs": 7,
+      "side_observations": 14,
+      "turn": 37,
+      "unresolved": 0
+    },
+    {
+      "game_id": 368767,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 1,
+      "side_observations": 2,
+      "turn": 6,
+      "unresolved": 0
+    },
+    {
+      "game_id": 368767,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 4,
+      "ship_vcrs": 5,
+      "side_observations": 10,
+      "turn": 44,
+      "unresolved": 0
+    },
+    {
+      "game_id": 371631,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 1,
+      "side_observations": 2,
+      "turn": 5,
+      "unresolved": 0
+    },
+    {
+      "game_id": 371631,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 3,
+      "side_observations": 6,
+      "turn": 117,
+      "unresolved": 0
+    },
+    {
+      "game_id": 371631,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 20,
+      "ship_vcrs": 24,
+      "side_observations": 48,
+      "turn": 156,
+      "unresolved": 0
+    },
+    {
+      "game_id": 371631,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 3,
+      "side_observations": 6,
+      "turn": 191,
+      "unresolved": 0
+    },
+    {
+      "game_id": 373830,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 32,
+      "unresolved": 0
+    },
+    {
+      "game_id": 373830,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 3,
+      "ship_vcrs": 15,
+      "side_observations": 30,
+      "turn": 82,
+      "unresolved": 0
+    },
+    {
+      "game_id": 373830,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 20,
+      "ship_vcrs": 28,
+      "side_observations": 56,
+      "turn": 102,
+      "unresolved": 0
+    },
+    {
+      "game_id": 373830,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 5,
+      "ship_vcrs": 7,
+      "side_observations": 14,
+      "turn": 147,
+      "unresolved": 0
+    },
+    {
+      "game_id": 385906,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 1,
+      "side_observations": 2,
+      "turn": 16,
+      "unresolved": 0
+    },
+    {
+      "game_id": 385906,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 5,
+      "side_observations": 10,
+      "turn": 96,
+      "unresolved": 0
+    },
+    {
+      "game_id": 385906,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 22,
+      "side_observations": 44,
+      "turn": 126,
+      "unresolved": 0
+    },
+    {
+      "game_id": 385906,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 1,
+      "side_observations": 2,
+      "turn": 127,
+      "unresolved": 0
+    },
+    {
+      "game_id": 396107,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 1,
+      "side_observations": 2,
+      "turn": 9,
+      "unresolved": 0
+    },
+    {
+      "game_id": 396107,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 1,
+      "side_observations": 2,
+      "turn": 94,
+      "unresolved": 0
+    },
+    {
+      "game_id": 396107,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 13,
+      "ship_vcrs": 16,
+      "side_observations": 32,
+      "turn": 159,
+      "unresolved": 0
+    },
+    {
+      "game_id": 396107,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 13,
+      "ship_vcrs": 13,
+      "side_observations": 26,
+      "turn": 207,
+      "unresolved": 0
+    },
+    {
+      "game_id": 400330,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 11,
+      "side_observations": 22,
+      "turn": 141,
+      "unresolved": 0
+    },
+    {
+      "game_id": 400330,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 2,
+      "side_observations": 4,
+      "turn": 150,
+      "unresolved": 0
+    },
+    {
+      "game_id": 400330,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 10,
+      "side_observations": 20,
+      "turn": 161,
+      "unresolved": 0
+    },
+    {
+      "game_id": 400330,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 9,
+      "side_observations": 18,
+      "turn": 172,
+      "unresolved": 0
+    },
+    {
+      "game_id": 407599,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 1,
+      "side_observations": 2,
+      "turn": 54,
+      "unresolved": 0
+    },
+    {
+      "game_id": 407599,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 118,
+      "unresolved": 0
+    },
+    {
+      "game_id": 407599,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 6,
+      "side_observations": 12,
+      "turn": 122,
+      "unresolved": 0
+    },
+    {
+      "game_id": 407599,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 3,
+      "side_observations": 6,
+      "turn": 123,
+      "unresolved": 0
+    },
+    {
+      "game_id": 411645,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 236,
+      "unresolved": 0
+    },
+    {
+      "game_id": 416233,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 17,
+      "unresolved": 0
+    },
+    {
+      "game_id": 416233,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 44,
+      "unresolved": 0
+    },
+    {
+      "game_id": 416233,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 136,
+      "unresolved": 0
+    },
+    {
+      "game_id": 416233,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 43,
+      "side_observations": 86,
+      "turn": 141,
+      "unresolved": 0
+    },
+    {
+      "game_id": 416250,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 3,
+      "side_observations": 6,
+      "turn": 35,
+      "unresolved": 0
+    },
+    {
+      "game_id": 416250,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 117,
+      "unresolved": 0
+    },
+    {
+      "game_id": 416250,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 19,
+      "side_observations": 38,
+      "turn": 144,
+      "unresolved": 0
+    },
+    {
+      "game_id": 416250,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 21,
+      "side_observations": 42,
+      "turn": 145,
+      "unresolved": 0
+    },
+    {
+      "game_id": 421949,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 64,
+      "unresolved": 0
+    },
+    {
+      "game_id": 421949,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 3,
+      "side_observations": 6,
+      "turn": 96,
+      "unresolved": 0
+    },
+    {
+      "game_id": 421949,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 12,
+      "side_observations": 24,
+      "turn": 128,
+      "unresolved": 0
+    },
+    {
+      "game_id": 421949,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 21,
+      "side_observations": 42,
+      "turn": 131,
+      "unresolved": 0
+    },
+    {
+      "game_id": 423531,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 1,
+      "side_observations": 2,
+      "turn": 16,
+      "unresolved": 0
+    },
+    {
+      "game_id": 423531,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 11,
+      "side_observations": 22,
+      "turn": 22,
+      "unresolved": 0
+    },
+    {
+      "game_id": 423531,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 12,
+      "side_observations": 24,
+      "turn": 40,
+      "unresolved": 0
+    },
+    {
+      "game_id": 423531,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 148,
+      "unresolved": 0
+    },
+    {
+      "game_id": 425973,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 1,
+      "side_observations": 2,
+      "turn": 16,
+      "unresolved": 0
+    },
+    {
+      "game_id": 425973,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 2,
+      "side_observations": 4,
+      "turn": 62,
+      "unresolved": 0
+    },
+    {
+      "game_id": 425973,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 25,
+      "side_observations": 50,
+      "turn": 188,
+      "unresolved": 0
+    },
+    {
+      "game_id": 425973,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 20,
+      "side_observations": 40,
+      "turn": 202,
+      "unresolved": 0
+    },
+    {
+      "game_id": 441148,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 1,
+      "side_observations": 2,
+      "turn": 7,
+      "unresolved": 0
+    },
+    {
+      "game_id": 441148,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 16,
+      "ship_vcrs": 16,
+      "side_observations": 32,
+      "turn": 40,
+      "unresolved": 0
+    },
+    {
+      "game_id": 454504,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 5,
+      "side_observations": 10,
+      "turn": 42,
+      "unresolved": 0
+    },
+    {
+      "game_id": 454504,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 34,
+      "side_observations": 68,
+      "turn": 109,
+      "unresolved": 0
+    },
+    {
+      "game_id": 454504,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 112,
+      "unresolved": 0
+    },
+    {
+      "game_id": 454504,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 47,
+      "side_observations": 94,
+      "turn": 134,
+      "unresolved": 0
+    },
+    {
+      "game_id": 467047,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 1,
+      "ship_vcrs": 11,
+      "side_observations": 22,
+      "turn": 90,
+      "unresolved": 0
+    },
+    {
+      "game_id": 467047,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 5,
+      "ship_vcrs": 24,
+      "side_observations": 48,
+      "turn": 94,
+      "unresolved": 0
+    },
+    {
+      "game_id": 467047,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 3,
+      "side_observations": 6,
+      "turn": 107,
+      "unresolved": 0
+    },
+    {
+      "game_id": 467047,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 121,
+      "unresolved": 0
+    },
+    {
+      "game_id": 467183,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 16,
+      "unresolved": 0
+    },
+    {
+      "game_id": 467183,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 4,
+      "side_observations": 8,
+      "turn": 110,
+      "unresolved": 0
+    },
+    {
+      "game_id": 467183,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 22,
+      "side_observations": 44,
+      "turn": 115,
+      "unresolved": 0
+    },
+    {
+      "game_id": 467183,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 29,
+      "side_observations": 57,
+      "turn": 149,
+      "unresolved": 0
+    },
+    {
+      "game_id": 470320,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 9,
+      "unresolved": 0
+    },
+    {
+      "game_id": 470320,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 3,
+      "side_observations": 6,
+      "turn": 41,
+      "unresolved": 0
+    },
+    {
+      "game_id": 470320,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 2,
+      "side_observations": 4,
+      "turn": 146,
+      "unresolved": 0
+    },
+    {
+      "game_id": 470320,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 6,
+      "side_observations": 12,
+      "turn": 151,
+      "unresolved": 0
+    },
+    {
+      "game_id": 473010,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 1,
+      "side_observations": 2,
+      "turn": 28,
+      "unresolved": 0
+    },
+    {
+      "game_id": 473010,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 14,
+      "side_observations": 28,
+      "turn": 58,
+      "unresolved": 0
+    },
+    {
+      "game_id": 473010,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 137,
+      "unresolved": 0
+    },
+    {
+      "game_id": 473010,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 11,
+      "side_observations": 22,
+      "turn": 190,
+      "unresolved": 0
+    },
+    {
+      "game_id": 474699,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 16,
+      "unresolved": 0
+    },
+    {
+      "game_id": 474699,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 7,
+      "ship_vcrs": 7,
+      "side_observations": 14,
+      "turn": 146,
+      "unresolved": 0
+    },
+    {
+      "game_id": 476380,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 1,
+      "side_observations": 2,
+      "turn": 33,
+      "unresolved": 0
+    },
+    {
+      "game_id": 476380,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 1,
+      "side_observations": 2,
+      "turn": 106,
+      "unresolved": 0
+    },
+    {
+      "game_id": 476380,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 16,
+      "side_observations": 32,
+      "turn": 158,
+      "unresolved": 0
+    },
+    {
+      "game_id": 476380,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 26,
+      "side_observations": 52,
+      "turn": 195,
+      "unresolved": 0
+    },
+    {
+      "game_id": 476826,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 1,
+      "side_observations": 2,
+      "turn": 11,
+      "unresolved": 0
+    },
+    {
+      "game_id": 476826,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 51,
+      "unresolved": 0
+    },
+    {
+      "game_id": 476826,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 18,
+      "side_observations": 36,
+      "turn": 108,
+      "unresolved": 0
+    },
+    {
+      "game_id": 476826,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 6,
+      "side_observations": 12,
+      "turn": 138,
+      "unresolved": 0
+    },
+    {
+      "game_id": 477364,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 25,
+      "unresolved": 0
+    },
+    {
+      "game_id": 477364,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 6,
+      "ship_vcrs": 13,
+      "side_observations": 26,
+      "turn": 80,
+      "unresolved": 0
+    },
+    {
+      "game_id": 477364,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 1,
+      "ship_vcrs": 150,
+      "side_observations": 300,
+      "turn": 123,
+      "unresolved": 0
+    },
+    {
+      "game_id": 477364,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 150,
+      "side_observations": 300,
+      "turn": 148,
+      "unresolved": 0
+    },
+    {
+      "game_id": 477725,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 1,
+      "side_observations": 2,
+      "turn": 20,
+      "unresolved": 0
+    },
+    {
+      "game_id": 477725,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 10,
+      "side_observations": 20,
+      "turn": 78,
+      "unresolved": 0
+    },
+    {
+      "game_id": 477725,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 11,
+      "side_observations": 22,
+      "turn": 151,
+      "unresolved": 0
+    },
+    {
+      "game_id": 477725,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 2,
+      "side_observations": 4,
+      "turn": 154,
+      "unresolved": 0
+    },
+    {
+      "game_id": 486109,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 35,
+      "unresolved": 0
+    },
+    {
+      "game_id": 486109,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 21,
+      "side_observations": 42,
+      "turn": 97,
+      "unresolved": 0
+    },
+    {
+      "game_id": 486109,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 130,
+      "unresolved": 0
+    },
+    {
+      "game_id": 486109,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 10,
+      "side_observations": 20,
+      "turn": 191,
+      "unresolved": 0
+    },
+    {
+      "game_id": 494635,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 10,
+      "unresolved": 0
+    },
+    {
+      "game_id": 494635,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 2,
+      "side_observations": 4,
+      "turn": 33,
+      "unresolved": 0
+    },
+    {
+      "game_id": 494635,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 11,
+      "side_observations": 22,
+      "turn": 101,
+      "unresolved": 0
+    },
+    {
+      "game_id": 494635,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 3,
+      "side_observations": 6,
+      "turn": 116,
+      "unresolved": 0
+    },
+    {
+      "game_id": 497195,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 1,
+      "side_observations": 2,
+      "turn": 27,
+      "unresolved": 0
+    },
+    {
+      "game_id": 497195,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 52,
+      "unresolved": 0
+    },
+    {
+      "game_id": 497195,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 10,
+      "ship_vcrs": 15,
+      "side_observations": 30,
+      "turn": 94,
+      "unresolved": 0
+    },
+    {
+      "game_id": 497195,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 10,
+      "side_observations": 20,
+      "turn": 121,
+      "unresolved": 0
+    },
+    {
+      "game_id": 499284,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 110,
+      "unresolved": 0
+    },
+    {
+      "game_id": 499284,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 15,
+      "side_observations": 30,
+      "turn": 117,
+      "unresolved": 0
+    },
+    {
+      "game_id": 499284,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 10,
+      "side_observations": 20,
+      "turn": 127,
+      "unresolved": 0
+    },
+    {
+      "game_id": 499284,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 1,
+      "side_observations": 2,
+      "turn": 128,
+      "unresolved": 0
+    },
+    {
+      "game_id": 521834,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 1,
+      "side_observations": 2,
+      "turn": 11,
+      "unresolved": 0
+    },
+    {
+      "game_id": 521834,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 3,
+      "side_observations": 6,
+      "turn": 41,
+      "unresolved": 0
+    },
+    {
+      "game_id": 521834,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 58,
+      "unresolved": 0
+    },
+    {
+      "game_id": 521834,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 19,
+      "side_observations": 38,
+      "turn": 70,
+      "unresolved": 0
+    },
+    {
+      "game_id": 530635,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 29,
+      "unresolved": 0
+    },
+    {
+      "game_id": 530635,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 2,
+      "side_observations": 4,
+      "turn": 55,
+      "unresolved": 0
+    },
+    {
+      "game_id": 530635,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 14,
+      "side_observations": 28,
+      "turn": 66,
+      "unresolved": 0
+    },
+    {
+      "game_id": 530635,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 40,
+      "side_observations": 80,
+      "turn": 68,
+      "unresolved": 0
+    },
+    {
+      "game_id": 550972,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 14,
+      "unresolved": 0
+    },
+    {
+      "game_id": 550972,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 2,
+      "side_observations": 4,
+      "turn": 67,
+      "unresolved": 0
+    },
+    {
+      "game_id": 550972,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 21,
+      "side_observations": 42,
+      "turn": 97,
+      "unresolved": 0
+    },
+    {
+      "game_id": 550972,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 22,
+      "side_observations": 44,
+      "turn": 102,
+      "unresolved": 0
+    },
+    {
+      "game_id": 563278,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 5,
+      "side_observations": 10,
+      "turn": 71,
+      "unresolved": 0
+    },
+    {
+      "game_id": 563278,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 91,
+      "unresolved": 0
+    },
+    {
+      "game_id": 563278,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 18,
+      "ship_vcrs": 51,
+      "side_observations": 102,
+      "turn": 233,
+      "unresolved": 0
+    },
+    {
+      "game_id": 597079,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 15,
+      "unresolved": 0
+    },
+    {
+      "game_id": 597079,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 14,
+      "side_observations": 28,
+      "turn": 69,
+      "unresolved": 0
+    },
+    {
+      "game_id": 597079,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 10,
+      "side_observations": 20,
+      "turn": 87,
+      "unresolved": 0
+    },
+    {
+      "game_id": 597079,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 2,
+      "side_observations": 4,
+      "turn": 164,
+      "unresolved": 0
+    },
+    {
+      "game_id": 600032,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 7,
+      "unresolved": 0
+    },
+    {
+      "game_id": 600032,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 4,
+      "side_observations": 8,
+      "turn": 56,
+      "unresolved": 0
+    },
+    {
+      "game_id": 600032,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 19,
+      "side_observations": 38,
+      "turn": 81,
+      "unresolved": 0
+    },
+    {
+      "game_id": 600032,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 11,
+      "side_observations": 22,
+      "turn": 139,
+      "unresolved": 0
+    },
+    {
+      "game_id": 600044,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 3,
+      "side_observations": 6,
+      "turn": 24,
+      "unresolved": 0
+    },
+    {
+      "game_id": 600044,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 26,
+      "side_observations": 52,
+      "turn": 58,
+      "unresolved": 0
+    },
+    {
+      "game_id": 600044,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 80,
+      "unresolved": 0
+    },
+    {
+      "game_id": 600044,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 6,
+      "side_observations": 12,
+      "turn": 121,
+      "unresolved": 0
+    },
+    {
+      "game_id": 617883,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 17,
+      "unresolved": 0
+    },
+    {
+      "game_id": 617883,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 2,
+      "side_observations": 4,
+      "turn": 170,
+      "unresolved": 0
+    },
+    {
+      "game_id": 617883,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 4,
+      "ship_vcrs": 25,
+      "side_observations": 50,
+      "turn": 202,
+      "unresolved": 0
+    },
+    {
+      "game_id": 629488,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 39,
+      "unresolved": 0
+    },
+    {
+      "game_id": 629488,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 28,
+      "side_observations": 56,
+      "turn": 117,
+      "unresolved": 0
+    },
+    {
+      "game_id": 629488,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 56,
+      "side_observations": 112,
+      "turn": 131,
+      "unresolved": 0
+    },
+    {
+      "game_id": 629488,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 166,
+      "unresolved": 0
+    },
+    {
+      "game_id": 632527,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 28,
+      "unresolved": 0
+    },
+    {
+      "game_id": 632527,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 6,
+      "side_observations": 12,
+      "turn": 77,
+      "unresolved": 0
+    },
+    {
+      "game_id": 632527,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 25,
+      "side_observations": 50,
+      "turn": 98,
+      "unresolved": 0
+    },
+    {
+      "game_id": 632527,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 20,
+      "side_observations": 40,
+      "turn": 109,
+      "unresolved": 0
+    },
+    {
+      "game_id": 633837,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 2,
+      "side_observations": 4,
+      "turn": 43,
+      "unresolved": 0
+    },
+    {
+      "game_id": 633837,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 80,
+      "unresolved": 0
+    },
+    {
+      "game_id": 633837,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 24,
+      "side_observations": 48,
+      "turn": 136,
+      "unresolved": 0
+    },
+    {
+      "game_id": 633837,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 35,
+      "side_observations": 70,
+      "turn": 137,
+      "unresolved": 0
+    },
+    {
+      "game_id": 633855,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 2,
+      "side_observations": 4,
+      "turn": 94,
+      "unresolved": 0
+    },
+    {
+      "game_id": 633855,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 1,
+      "side_observations": 2,
+      "turn": 111,
+      "unresolved": 0
+    },
+    {
+      "game_id": 633855,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 8,
+      "side_observations": 16,
+      "turn": 138,
+      "unresolved": 0
+    },
+    {
+      "game_id": 633855,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 19,
+      "side_observations": 38,
+      "turn": 139,
+      "unresolved": 0
+    },
+    {
+      "game_id": 645077,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 47,
+      "unresolved": 0
+    },
+    {
+      "game_id": 645077,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 2,
+      "side_observations": 4,
+      "turn": 86,
+      "unresolved": 0
+    },
+    {
+      "game_id": 645077,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 18,
+      "side_observations": 36,
+      "turn": 101,
+      "unresolved": 0
+    },
+    {
+      "game_id": 645077,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 18,
+      "side_observations": 36,
+      "turn": 102,
+      "unresolved": 0
+    },
+    {
+      "game_id": 653272,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 13,
+      "unresolved": 0
+    },
+    {
+      "game_id": 655827,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 35,
+      "unresolved": 0
+    },
+    {
+      "game_id": 655827,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 2,
+      "ship_vcrs": 5,
+      "side_observations": 10,
+      "turn": 111,
+      "unresolved": 0
+    },
+    {
+      "game_id": 655827,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 15,
+      "ship_vcrs": 22,
+      "side_observations": 44,
+      "turn": 114,
+      "unresolved": 0
+    },
+    {
+      "game_id": 655827,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 14,
+      "ship_vcrs": 20,
+      "side_observations": 40,
+      "turn": 123,
+      "unresolved": 0
+    },
+    {
+      "game_id": 658427,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 1,
+      "side_observations": 2,
+      "turn": 7,
+      "unresolved": 0
+    },
+    {
+      "game_id": 663317,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 20,
+      "unresolved": 0
+    },
+    {
+      "game_id": 663317,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 4,
+      "side_observations": 8,
+      "turn": 35,
+      "unresolved": 0
+    },
+    {
+      "game_id": 663317,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 10,
+      "side_observations": 20,
+      "turn": 71,
+      "unresolved": 0
+    },
+    {
+      "game_id": 663317,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 17,
+      "side_observations": 34,
+      "turn": 74,
+      "unresolved": 0
+    },
+    {
+      "game_id": 674696,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 1,
+      "side_observations": 2,
+      "turn": 44,
+      "unresolved": 0
+    },
+    {
+      "game_id": 674696,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 0,
+      "side_observations": 0,
+      "turn": 78,
+      "unresolved": 0
+    },
+    {
+      "game_id": 674696,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 7,
+      "side_observations": 14,
+      "turn": 132,
+      "unresolved": 0
+    },
+    {
+      "game_id": 674696,
+      "horwasp_transitions": 0,
+      "max_examples": 20,
+      "saved_examples": 0,
+      "ship_vcrs": 8,
+      "side_observations": 16,
+      "turn": 133,
+      "unresolved": 0
+    }
+  ],
+  "sampled_horwasp_mass_changes": [
+    {
+      "candidate_clan_changes": [
+        {
+          "after_bonus": 0,
+          "base_source": "per_game_catalog",
+          "before_bonus": 0,
+          "loss_max": 208,
+          "loss_min": 205,
+          "nonnegative_loss_possible": true
+        }
+      ],
+      "fighter_start_delta": 0,
+      "from_vcr": 2612,
+      "game_id": 226056,
+      "mass_delta": -52,
+      "same_site": true,
+      "ship_id": 1026,
+      "to_vcr": 2613,
+      "turn": 108
+    },
+    {
+      "candidate_clan_changes": [
+        {
+          "after_bonus": 360,
+          "base_source": "per_game_catalog",
+          "before_bonus": 0,
+          "loss_max": 0,
+          "loss_min": 0,
+          "nonnegative_loss_possible": true
+        }
+      ],
+      "fighter_start_delta": 0,
+      "from_vcr": 611,
+      "game_id": 253449,
+      "mass_delta": 360,
+      "same_site": true,
+      "ship_id": 48,
+      "to_vcr": 612,
+      "turn": 82
+    },
+    {
+      "candidate_clan_changes": [
+        {
+          "after_bonus": 0,
+          "base_source": "per_game_catalog",
+          "before_bonus": 0,
+          "loss_max": 20917,
+          "loss_min": 20868,
+          "nonnegative_loss_possible": true
+        }
+      ],
+      "fighter_start_delta": -53,
+      "from_vcr": 519,
+      "game_id": 350094,
+      "mass_delta": -414,
+      "same_site": true,
+      "ship_id": 27,
+      "to_vcr": 520,
+      "turn": 64
+    },
+    {
+      "candidate_clan_changes": [
+        {
+          "after_bonus": 0,
+          "base_source": "per_game_catalog",
+          "before_bonus": 0,
+          "loss_max": 794,
+          "loss_min": 789,
+          "nonnegative_loss_possible": true
+        }
+      ],
+      "fighter_start_delta": -53,
+      "from_vcr": 1350,
+      "game_id": 368767,
+      "mass_delta": -128,
+      "same_site": true,
+      "ship_id": 507,
+      "to_vcr": 1351,
+      "turn": 67
+    },
+    {
+      "candidate_clan_changes": [
+        {
+          "after_bonus": 0,
+          "base_source": "per_game_catalog",
+          "before_bonus": 360,
+          "loss_max": 335,
+          "loss_min": 329,
+          "nonnegative_loss_possible": true
+        }
+      ],
+      "fighter_start_delta": -23,
+      "from_vcr": 2684,
+      "game_id": 411645,
+      "mass_delta": -414,
+      "same_site": true,
+      "ship_id": 410,
+      "to_vcr": 2685,
+      "turn": 203
+    },
+    {
+      "candidate_clan_changes": [
+        {
+          "after_bonus": 0,
+          "base_source": "per_game_catalog",
+          "before_bonus": 0,
+          "loss_max": 24000,
+          "loss_min": 23950,
+          "nonnegative_loss_possible": true
+        }
+      ],
+      "fighter_start_delta": -60,
+      "from_vcr": 4020,
+      "game_id": 441148,
+      "mass_delta": -475,
+      "same_site": true,
+      "ship_id": 182,
+      "to_vcr": 4021,
+      "turn": 176
+    },
+    {
+      "candidate_clan_changes": [
+        {
+          "after_bonus": 0,
+          "base_source": "per_game_catalog",
+          "before_bonus": 0,
+          "loss_max": 198,
+          "loss_min": 197,
+          "nonnegative_loss_possible": true
+        }
+      ],
+      "fighter_start_delta": 0,
+      "from_vcr": 2541,
+      "game_id": 474699,
+      "mass_delta": -132,
+      "same_site": true,
+      "ship_id": 131,
+      "to_vcr": 2542,
+      "turn": 178
+    },
+    {
+      "candidate_clan_changes": [
+        {
+          "after_bonus": 360,
+          "base_source": "per_game_catalog",
+          "before_bonus": 0,
+          "loss_max": 12,
+          "loss_min": 1,
+          "nonnegative_loss_possible": true
+        }
+      ],
+      "fighter_start_delta": 0,
+      "from_vcr": 2191,
+      "game_id": 653272,
+      "mass_delta": 359,
+      "same_site": true,
+      "ship_id": 284,
+      "to_vcr": 2192,
+      "turn": 159
+    },
+    {
+      "candidate_clan_changes": [
+        {
+          "after_bonus": 0,
+          "base_source": "per_game_catalog",
+          "before_bonus": 0,
+          "loss_max": 20665,
+          "loss_min": 20565,
+          "nonnegative_loss_possible": true
+        }
+      ],
+      "fighter_start_delta": -51,
+      "from_vcr": 998,
+      "game_id": 658427,
+      "mass_delta": -408,
+      "same_site": true,
+      "ship_id": 11,
+      "to_vcr": 999,
+      "turn": 87
+    },
+    {
+      "candidate_clan_changes": [
+        {
+          "after_bonus": 0,
+          "base_source": "per_game_catalog",
+          "before_bonus": 0,
+          "loss_max": 172,
+          "loss_min": 169,
+          "nonnegative_loss_possible": true
+        }
+      ],
+      "fighter_start_delta": 0,
+      "from_vcr": 2601,
+      "game_id": 226056,
+      "mass_delta": -43,
+      "same_site": true,
+      "ship_id": 1083,
+      "to_vcr": 2602,
+      "turn": 108
+    },
+    {
+      "candidate_clan_changes": [
+        {
+          "after_bonus": 0,
+          "base_source": "per_game_catalog",
+          "before_bonus": 360,
+          "loss_max": 0,
+          "loss_min": 0,
+          "nonnegative_loss_possible": true
+        }
+      ],
+      "fighter_start_delta": 0,
+      "from_vcr": 613,
+      "game_id": 253449,
+      "mass_delta": -360,
+      "same_site": true,
+      "ship_id": 48,
+      "to_vcr": 614,
+      "turn": 82
+    },
+    {
+      "candidate_clan_changes": [
+        {
+          "after_bonus": 0,
+          "base_source": "per_game_catalog",
+          "before_bonus": 0,
+          "loss_max": 252,
+          "loss_min": 252,
+          "nonnegative_loss_possible": true
+        }
+      ],
+      "fighter_start_delta": -26,
+      "from_vcr": 513,
+      "game_id": 350094,
+      "mass_delta": -156,
+      "same_site": true,
+      "ship_id": 265,
+      "to_vcr": 514,
+      "turn": 64
+    },
+    {
+      "candidate_clan_changes": [
+        {
+          "after_bonus": 0,
+          "base_source": "per_game_catalog",
+          "before_bonus": 0,
+          "loss_max": 347,
+          "loss_min": 342,
+          "nonnegative_loss_possible": true
+        }
+      ],
+      "fighter_start_delta": -23,
+      "from_vcr": 1818,
+      "game_id": 368767,
+      "mass_delta": -56,
+      "same_site": true,
+      "ship_id": 291,
+      "to_vcr": 1819,
+      "turn": 80
+    },
+    {
+      "candidate_clan_changes": [
+        {
+          "after_bonus": 360,
+          "base_source": "per_game_catalog",
+          "before_bonus": 0,
+          "loss_max": 123,
+          "loss_min": 122,
+          "nonnegative_loss_possible": true
+        }
+      ],
+      "fighter_start_delta": 0,
+      "from_vcr": 213,
+      "game_id": 411645,
+      "mass_delta": 278,
+      "same_site": true,
+      "ship_id": 363,
+      "to_vcr": 214,
+      "turn": 40
+    },
+    {
+      "candidate_clan_changes": [
+        {
+          "after_bonus": 0,
+          "base_source": "per_game_catalog",
+          "before_bonus": 0,
+          "loss_max": 18341,
+          "loss_min": 18291,
+          "nonnegative_loss_possible": true
+        }
+      ],
+      "fighter_start_delta": -46,
+      "from_vcr": 6405,
+      "game_id": 441148,
+      "mass_delta": -363,
+      "same_site": true,
+      "ship_id": 311,
+      "to_vcr": 6406,
+      "turn": 236
+    },
+    {
+      "candidate_clan_changes": [
+        {
+          "after_bonus": 0,
+          "base_source": "per_game_catalog",
+          "before_bonus": 0,
+          "loss_max": 1263,
+          "loss_min": 1213,
+          "nonnegative_loss_possible": true
+        }
+      ],
+      "fighter_start_delta": -4,
+      "from_vcr": 2873,
+      "game_id": 474699,
+      "mass_delta": -25,
+      "same_site": true,
+      "ship_id": 67,
+      "to_vcr": 2874,
+      "turn": 201
+    },
+    {
+      "candidate_clan_changes": [
+        {
+          "after_bonus": 0,
+          "base_source": "per_game_catalog",
+          "before_bonus": 0,
+          "loss_max": 850,
+          "loss_min": 845,
+          "nonnegative_loss_possible": true
+        }
+      ],
+      "fighter_start_delta": -57,
+      "from_vcr": 1725,
+      "game_id": 653272,
+      "mass_delta": -137,
+      "same_site": true,
+      "ship_id": 123,
+      "to_vcr": 1726,
+      "turn": 132
+    },
+    {
+      "candidate_clan_changes": [
+        {
+          "after_bonus": 0,
+          "base_source": "per_game_catalog",
+          "before_bonus": 0,
+          "loss_max": 11115,
+          "loss_min": 11015,
+          "nonnegative_loss_possible": true
+        }
+      ],
+      "fighter_start_delta": -28,
+      "from_vcr": 779,
+      "game_id": 658427,
+      "mass_delta": -219,
+      "same_site": true,
+      "ship_id": 148,
+      "to_vcr": 780,
+      "turn": 73
+    },
+    {
+      "candidate_clan_changes": [
+        {
+          "after_bonus": 0,
+          "base_source": "per_game_catalog",
+          "before_bonus": 0,
+          "loss_max": 144,
+          "loss_min": 141,
+          "nonnegative_loss_possible": true
+        }
+      ],
+      "fighter_start_delta": 0,
+      "from_vcr": 2603,
+      "game_id": 226056,
+      "mass_delta": -36,
+      "same_site": true,
+      "ship_id": 1058,
+      "to_vcr": 2604,
+      "turn": 108
+    },
+    {
+      "candidate_clan_changes": [
+        {
+          "after_bonus": 360,
+          "base_source": "per_game_catalog",
+          "before_bonus": 0,
+          "loss_max": 18,
+          "loss_min": 17,
+          "nonnegative_loss_possible": true
+        }
+      ],
+      "fighter_start_delta": 0,
+      "from_vcr": 169,
+      "game_id": 253449,
+      "mass_delta": 348,
+      "same_site": true,
+      "ship_id": 447,
+      "to_vcr": 170,
+      "turn": 44
+    },
+    {
+      "candidate_clan_changes": [
+        {
+          "after_bonus": 0,
+          "base_source": "per_game_catalog",
+          "before_bonus": 0,
+          "loss_max": 207,
+          "loss_min": 206,
+          "nonnegative_loss_possible": true
+        }
+      ],
+      "fighter_start_delta": 0,
+      "from_vcr": 381,
+      "game_id": 350094,
+      "mass_delta": -138,
+      "same_site": true,
+      "ship_id": 419,
+      "to_vcr": 382,
+      "turn": 55
+    },
+    {
+      "candidate_clan_changes": [
+        {
+          "after_bonus": 0,
+          "base_source": "per_game_catalog",
+          "before_bonus": 0,
+          "loss_max": 54,
+          "loss_min": 53,
+          "nonnegative_loss_possible": true
+        }
+      ],
+      "fighter_start_delta": 0,
+      "from_vcr": 1824,
+      "game_id": 368767,
+      "mass_delta": -36,
+      "same_site": true,
+      "ship_id": 140,
+      "to_vcr": 1825,
+      "turn": 80
+    },
+    {
+      "candidate_clan_changes": [
+        {
+          "after_bonus": 0,
+          "base_source": "per_game_catalog",
+          "before_bonus": 0,
+          "loss_max": 10812,
+          "loss_min": 10712,
+          "nonnegative_loss_possible": true
+        }
+      ],
+      "fighter_start_delta": -26,
+      "from_vcr": 2676,
+      "game_id": 411645,
+      "mass_delta": -213,
+      "same_site": true,
+      "ship_id": 380,
+      "to_vcr": 2706,
+      "turn": 203
+    },
+    {
+      "candidate_clan_changes": [
+        {
+          "after_bonus": 0,
+          "base_source": "per_game_catalog",
+          "before_bonus": 0,
+          "loss_max": 300,
+          "loss_min": 299,
+          "nonnegative_loss_possible": true
+        }
+      ],
+      "fighter_start_delta": -30,
+      "from_vcr": 3999,
+      "game_id": 441148,
+      "mass_delta": -185,
+      "same_site": true,
+      "ship_id": 476,
+      "to_vcr": 4000,
+      "turn": 176
+    },
+    {
+      "candidate_clan_changes": [
+        {
+          "after_bonus": 0,
+          "base_source": "per_game_catalog",
+          "before_bonus": 0,
+          "loss_max": 670,
+          "loss_min": 665,
+          "nonnegative_loss_possible": true
+        }
+      ],
+      "fighter_start_delta": -45,
+      "from_vcr": 1732,
+      "game_id": 653272,
+      "mass_delta": -108,
+      "same_site": true,
+      "ship_id": 229,
+      "to_vcr": 1733,
+      "turn": 132
+    },
+    {
+      "candidate_clan_changes": [
+        {
+          "after_bonus": 0,
+          "base_source": "per_game_catalog",
+          "before_bonus": 0,
+          "loss_max": 10863,
+          "loss_min": 10813,
+          "nonnegative_loss_possible": true
+        }
+      ],
+      "fighter_start_delta": -28,
+      "from_vcr": 785,
+      "game_id": 658427,
+      "mass_delta": -215,
+      "same_site": true,
+      "ship_id": 93,
+      "to_vcr": 786,
+      "turn": 73
+    },
+    {
+      "candidate_clan_changes": [
+        {
+          "after_bonus": 0,
+          "base_source": "per_game_catalog",
+          "before_bonus": 0,
+          "loss_max": 131,
+          "loss_min": 125,
+          "nonnegative_loss_possible": true
+        }
+      ],
+      "fighter_start_delta": 0,
+      "from_vcr": 2666,
+      "game_id": 226056,
+      "mass_delta": -32,
+      "same_site": true,
+      "ship_id": 1294,
+      "to_vcr": 2667,
+      "turn": 109
+    },
+    {
+      "candidate_clan_changes": [
+        {
+          "after_bonus": 0,
+          "base_source": "per_game_catalog",
+          "before_bonus": 0,
+          "loss_max": 12025,
+          "loss_min": 11975,
+          "nonnegative_loss_possible": true
+        }
+      ],
+      "fighter_start_delta": -30,
+      "from_vcr": 1737,
+      "game_id": 253449,
+      "mass_delta": -238,
+      "same_site": true,
+      "ship_id": 204,
+      "to_vcr": 1738,
+      "turn": 165
+    },
+    {
+      "candidate_clan_changes": [
+        {
+          "after_bonus": 0,
+          "base_source": "per_game_catalog",
+          "before_bonus": 0,
+          "loss_max": 6265,
+          "loss_min": 6215,
+          "nonnegative_loss_possible": true
+        }
+      ],
+      "fighter_start_delta": -16,
+      "from_vcr": 403,
+      "game_id": 350094,
+      "mass_delta": -124,
+      "same_site": true,
+      "ship_id": 139,
+      "to_vcr": 404,
+      "turn": 55
+    },
+    {
+      "candidate_clan_changes": [
+        {
+          "after_bonus": 0,
+          "base_source": "per_game_catalog",
+          "before_bonus": 0,
+          "loss_max": 54,
+          "loss_min": 53,
+          "nonnegative_loss_possible": true
+        }
+      ],
+      "fighter_start_delta": 0,
+      "from_vcr": 1828,
+      "game_id": 368767,
+      "mass_delta": -36,
+      "same_site": true,
+      "ship_id": 339,
+      "to_vcr": 1829,
+      "turn": 80
+    },
+    {
+      "candidate_clan_changes": [
+        {
+          "after_bonus": 0,
+          "base_source": "per_game_catalog",
+          "before_bonus": 0,
+          "loss_max": 9498,
+          "loss_min": 9398,
+          "nonnegative_loss_possible": true
+        }
+      ],
+      "fighter_start_delta": -24,
+      "from_vcr": 3142,
+      "game_id": 411645,
+      "mass_delta": -187,
+      "same_site": true,
+      "ship_id": 166,
+      "to_vcr": 3143,
+      "turn": 225
+    },
+    {
+      "candidate_clan_changes": [
+        {
+          "after_bonus": 0,
+          "base_source": "per_game_catalog",
+          "before_bonus": 0,
+          "loss_max": 290,
+          "loss_min": 289,
+          "nonnegative_loss_possible": true
+        }
+      ],
+      "fighter_start_delta": -29,
+      "from_vcr": 6371,
+      "game_id": 441148,
+      "mass_delta": -179,
+      "same_site": true,
+      "ship_id": 517,
+      "to_vcr": 6372,
+      "turn": 236
+    },
+    {
+      "candidate_clan_changes": [
+        {
+          "after_bonus": 0,
+          "base_source": "per_game_catalog",
+          "before_bonus": 0,
+          "loss_max": 639,
+          "loss_min": 634,
+          "nonnegative_loss_possible": true
+        }
+      ],
+      "fighter_start_delta": -43,
+      "from_vcr": 1746,
+      "game_id": 653272,
+      "mass_delta": -103,
+      "same_site": true,
+      "ship_id": 430,
+      "to_vcr": 1747,
+      "turn": 132
+    },
+    {
+      "candidate_clan_changes": [
+        {
+          "after_bonus": 0,
+          "base_source": "per_game_catalog",
+          "before_bonus": 0,
+          "loss_max": 9346,
+          "loss_min": 9248,
+          "nonnegative_loss_possible": true
+        }
+      ],
+      "fighter_start_delta": -24,
+      "from_vcr": 991,
+      "game_id": 658427,
+      "mass_delta": -184,
+      "same_site": true,
+      "ship_id": 39,
+      "to_vcr": 992,
+      "turn": 87
+    },
+    {
+      "candidate_clan_changes": [
+        {
+          "after_bonus": 0,
+          "base_source": "per_game_catalog",
+          "before_bonus": 0,
+          "loss_max": 2172,
+          "loss_min": 2123,
+          "nonnegative_loss_possible": true
+        }
+      ],
+      "fighter_start_delta": -6,
+      "from_vcr": 1739,
+      "game_id": 253449,
+      "mass_delta": -43,
+      "same_site": true,
+      "ship_id": 405,
+      "to_vcr": 1740,
+      "turn": 165
+    },
+    {
+      "candidate_clan_changes": [
+        {
+          "after_bonus": 0,
+          "base_source": "per_game_catalog",
+          "before_bonus": 0,
+          "loss_max": 675,
+          "loss_min": 665,
+          "nonnegative_loss_possible": true
+        }
+      ],
+      "fighter_start_delta": -44,
+      "from_vcr": 527,
+      "game_id": 350094,
+      "mass_delta": -108,
+      "same_site": true,
+      "ship_id": 269,
+      "to_vcr": 528,
+      "turn": 64
+    },
+    {
+      "candidate_clan_changes": [
+        {
+          "after_bonus": 0,
+          "base_source": "per_game_catalog",
+          "before_bonus": 0,
+          "loss_max": 9145,
+          "loss_min": 9095,
+          "nonnegative_loss_possible": true
+        }
+      ],
+      "fighter_start_delta": -23,
+      "from_vcr": 2670,
+      "game_id": 411645,
+      "mass_delta": -181,
+      "same_site": true,
+      "ship_id": 143,
+      "to_vcr": 2671,
+      "turn": 203
+    },
+    {
+      "candidate_clan_changes": [
+        {
+          "after_bonus": 0,
+          "base_source": "per_game_catalog",
+          "before_bonus": 0,
+          "loss_max": 126,
+          "loss_min": 125,
+          "nonnegative_loss_possible": true
+        }
+      ],
+      "fighter_start_delta": -13,
+      "from_vcr": 4003,
+      "game_id": 441148,
+      "mass_delta": -78,
+      "same_site": true,
+      "ship_id": 566,
+      "to_vcr": 4004,
+      "turn": 176
+    },
+    {
+      "candidate_clan_changes": [
+        {
+          "after_bonus": 0,
+          "base_source": "per_game_catalog",
+          "before_bonus": 0,
+          "loss_max": 533,
+          "loss_min": 528,
+          "nonnegative_loss_possible": true
+        }
+      ],
+      "fighter_start_delta": -36,
+      "from_vcr": 1743,
+      "game_id": 653272,
+      "mass_delta": -86,
+      "same_site": true,
+      "ship_id": 409,
+      "to_vcr": 1744,
+      "turn": 132
+    },
+    {
+      "candidate_clan_changes": [
+        {
+          "after_bonus": 360,
+          "base_source": "per_game_catalog",
+          "before_bonus": 360,
+          "loss_max": 800,
+          "loss_min": 795,
+          "nonnegative_loss_possible": true
+        }
+      ],
+      "fighter_start_delta": -54,
+      "from_vcr": 994,
+      "game_id": 658427,
+      "mass_delta": -129,
+      "same_site": true,
+      "ship_id": 16,
+      "to_vcr": 995,
+      "turn": 87
+    }
+  ],
+  "sampled_shield_controls": [
+    {
+      "Tminus1_control": "TMINUS1_COTRAVEL_CONTROL",
+      "base_mass": 700,
+      "catalog_mass": 650,
+      "class": "engine_shield_1_plus360_numeric_match",
+      "factual_mass": 1210,
+      "game_id": 217591,
+      "geometry": {
+        "engine_cost_mc": 300,
+        "engine_id": 9,
+        "exact_site_generators": 0,
+        "per_generator_half_engine_cost": 150,
+        "same_origin_and_waypoint_generators": 1,
+        "tminus1_participant_at_site": false,
+        "waypoint_to_vcr_offset": [
+          0,
+          -3
+        ]
+      },
+      "hull_id": 20,
+      "owner_id": 1,
+      "race": 1,
+      "ship_id": 828,
+      "side": "right",
+      "turn": 149,
+      "vcr_id": 2398
+    },
+    {
+      "Tminus1_control": "TMINUS1_COTRAVEL_CONTROL",
+      "base_mass": 451,
+      "catalog_mass": 451,
+      "class": "engine_shield_2_numeric_match",
+      "factual_mass": 751,
+      "game_id": 235762,
+      "geometry": {
+        "engine_cost_mc": 300,
+        "engine_id": 9,
+        "exact_site_generators": 0,
+        "per_generator_half_engine_cost": 150,
+        "same_origin_and_waypoint_generators": 2,
+        "tminus1_participant_at_site": false,
+        "waypoint_to_vcr_offset": [
+          0,
+          0
+        ]
+      },
+      "hull_id": 35,
+      "owner_id": 2,
+      "race": 4,
+      "ship_id": 62,
+      "side": "left",
+      "turn": 97,
+      "vcr_id": 470
+    },
+    {
+      "Tminus1_control": "TMINUS1_SITE_CONTROL",
+      "base_mass": 625,
+      "catalog_mass": 625,
+      "class": "engine_shield_2_numeric_match",
+      "factual_mass": 925,
+      "game_id": 310054,
+      "geometry": {
+        "engine_cost_mc": 300,
+        "engine_id": 9,
+        "exact_site_generators": 3,
+        "per_generator_half_engine_cost": 150,
+        "same_origin_and_waypoint_generators": 1,
+        "tminus1_participant_at_site": true,
+        "waypoint_to_vcr_offset": [
+          0,
+          0
+        ]
+      },
+      "hull_id": 99,
+      "owner_id": 11,
+      "race": 11,
+      "ship_id": 219,
+      "side": "right",
+      "turn": 87,
+      "vcr_id": 496
+    },
+    {
+      "Tminus1_control": "TMINUS1_SITE_CONTROL",
+      "base_mass": 451,
+      "catalog_mass": 451,
+      "class": "engine_shield_2_numeric_match",
+      "factual_mass": 751,
+      "game_id": 325434,
+      "geometry": {
+        "engine_cost_mc": 300,
+        "engine_id": 9,
+        "exact_site_generators": 3,
+        "per_generator_half_engine_cost": 150,
+        "same_origin_and_waypoint_generators": 3,
+        "tminus1_participant_at_site": true,
+        "waypoint_to_vcr_offset": [
+          0,
+          0
+        ]
+      },
+      "hull_id": 63,
+      "owner_id": 7,
+      "race": 7,
+      "ship_id": 496,
+      "side": "right",
+      "turn": 192,
+      "vcr_id": 1358
+    },
+    {
+      "Tminus1_control": "NO_TMINUS1_SUPPORT_IN_SAVED_SAMPLE",
+      "base_mass": 35,
+      "catalog_mass": 35,
+      "class": "engine_shield_2_numeric_match",
+      "factual_mass": 335,
+      "game_id": 341336,
+      "geometry": {
+        "engine_cost_mc": 300,
+        "engine_id": 9,
+        "exact_site_generators": 0,
+        "per_generator_half_engine_cost": 150,
+        "same_origin_and_waypoint_generators": 0,
+        "tminus1_participant_at_site": false,
+        "waypoint_to_vcr_offset": [
+          -6,
+          43
+        ]
+      },
+      "hull_id": 1054,
+      "owner_id": 3,
+      "race": 4,
+      "ship_id": 211,
+      "side": "left",
+      "turn": 75,
+      "vcr_id": 338
+    },
+    {
+      "Tminus1_control": "TMINUS1_SITE_CONTROL",
+      "base_mass": 65,
+      "catalog_mass": 65,
+      "class": "engine_shield_1_numeric_match",
+      "factual_mass": 215,
+      "game_id": 347236,
+      "geometry": {
+        "engine_cost_mc": 300,
+        "engine_id": 9,
+        "exact_site_generators": 2,
+        "per_generator_half_engine_cost": 150,
+        "same_origin_and_waypoint_generators": 2,
+        "tminus1_participant_at_site": true,
+        "waypoint_to_vcr_offset": [
+          0,
+          0
+        ]
+      },
+      "hull_id": 2071,
+      "owner_id": 4,
+      "race": 4,
+      "ship_id": 1041,
+      "side": "left",
+      "turn": 115,
+      "vcr_id": 1243
+    },
+    {
+      "Tminus1_control": "TMINUS1_SITE_CONTROL",
+      "base_mass": 451,
+      "catalog_mass": 451,
+      "class": "engine_shield_2_numeric_match",
+      "factual_mass": 751,
+      "game_id": 371631,
+      "geometry": {
+        "engine_cost_mc": 300,
+        "engine_id": 9,
+        "exact_site_generators": 2,
+        "per_generator_half_engine_cost": 150,
+        "same_origin_and_waypoint_generators": 2,
+        "tminus1_participant_at_site": true,
+        "waypoint_to_vcr_offset": [
+          0,
+          0
+        ]
+      },
+      "hull_id": 35,
+      "owner_id": 4,
+      "race": 4,
+      "ship_id": 461,
+      "side": "right",
+      "turn": 156,
+      "vcr_id": 1193
+    },
+    {
+      "Tminus1_control": "TMINUS1_COTRAVEL_CONTROL",
+      "base_mass": 625,
+      "catalog_mass": 625,
+      "class": "engine_shield_2_numeric_match",
+      "factual_mass": 925,
+      "game_id": 373830,
+      "geometry": {
+        "engine_cost_mc": 300,
+        "engine_id": 9,
+        "exact_site_generators": 0,
+        "per_generator_half_engine_cost": 150,
+        "same_origin_and_waypoint_generators": 2,
+        "tminus1_participant_at_site": false,
+        "waypoint_to_vcr_offset": [
+          2,
+          -2
+        ]
+      },
+      "hull_id": 99,
+      "owner_id": 8,
+      "race": 11,
+      "ship_id": 236,
+      "side": "left",
+      "turn": 102,
+      "vcr_id": 908
+    },
+    {
+      "Tminus1_control": "NO_TMINUS1_SUPPORT_IN_SAVED_SAMPLE",
+      "base_mass": 270,
+      "catalog_mass": 220,
+      "class": "engine_shield_2_numeric_match",
+      "factual_mass": 570,
+      "game_id": 396107,
+      "geometry": {
+        "engine_cost_mc": 300,
+        "engine_id": 9,
+        "exact_site_generators": 0,
+        "per_generator_half_engine_cost": 150,
+        "same_origin_and_waypoint_generators": 0,
+        "tminus1_participant_at_site": false,
+        "waypoint_to_vcr_offset": [
+          0,
+          0
+        ]
+      },
+      "hull_id": 1012,
+      "owner_id": 1,
+      "race": 1,
+      "ship_id": 209,
+      "side": "right",
+      "turn": 159,
+      "vcr_id": 496
+    },
+    {
+      "Tminus1_control": "NO_TMINUS1_SUPPORT_IN_SAVED_SAMPLE",
+      "base_mass": 491,
+      "catalog_mass": 491,
+      "class": "engine_shield_1_numeric_match",
+      "factual_mass": 641,
+      "game_id": 441148,
+      "geometry": {
+        "engine_cost_mc": 300,
+        "engine_id": 9,
+        "exact_site_generators": 1,
+        "per_generator_half_engine_cost": 150,
+        "same_origin_and_waypoint_generators": 0,
+        "tminus1_participant_at_site": false,
+        "waypoint_to_vcr_offset": [
+          -13,
+          -15
+        ]
+      },
+      "hull_id": 29,
+      "owner_id": 27,
+      "race": 9,
+      "ship_id": 465,
+      "side": "right",
+      "turn": 176,
+      "vcr_id": 3998
+    },
+    {
+      "Tminus1_control": "NO_TMINUS1_SUPPORT_IN_SAVED_SAMPLE",
+      "base_mass": 860,
+      "catalog_mass": 860,
+      "class": "engine_shield_1_plus360_numeric_match",
+      "factual_mass": 1370,
+      "game_id": 467047,
+      "geometry": {
+        "engine_cost_mc": 300,
+        "engine_id": 9,
+        "exact_site_generators": 0,
+        "per_generator_half_engine_cost": 150,
+        "same_origin_and_waypoint_generators": 0,
+        "tminus1_participant_at_site": false,
+        "waypoint_to_vcr_offset": [
+          -3,
+          0
+        ]
+      },
+      "hull_id": 52,
+      "owner_id": 6,
+      "race": 6,
+      "ship_id": 182,
+      "side": "right",
+      "turn": 94,
+      "vcr_id": 585
+    },
+    {
+      "Tminus1_control": "TMINUS1_SITE_CONTROL",
+      "base_mass": 451,
+      "catalog_mass": 451,
+      "class": "engine_shield_2_numeric_match",
+      "factual_mass": 751,
+      "game_id": 474699,
+      "geometry": {
+        "engine_cost_mc": 300,
+        "engine_id": 9,
+        "exact_site_generators": 2,
+        "per_generator_half_engine_cost": 150,
+        "same_origin_and_waypoint_generators": 2,
+        "tminus1_participant_at_site": true,
+        "waypoint_to_vcr_offset": [
+          0,
+          0
+        ]
+      },
+      "hull_id": 35,
+      "owner_id": 23,
+      "race": 4,
+      "ship_id": 193,
+      "side": "left",
+      "turn": 201,
+      "vcr_id": 2867
+    },
+    {
+      "Tminus1_control": "TMINUS1_COTRAVEL_CONTROL",
+      "base_mass": 451,
+      "catalog_mass": 451,
+      "class": "engine_shield_2_numeric_match",
+      "factual_mass": 751,
+      "game_id": 477364,
+      "geometry": {
+        "engine_cost_mc": 300,
+        "engine_id": 9,
+        "exact_site_generators": 0,
+        "per_generator_half_engine_cost": 150,
+        "same_origin_and_waypoint_generators": 2,
+        "tminus1_participant_at_site": false,
+        "waypoint_to_vcr_offset": [
+          0,
+          0
+        ]
+      },
+      "hull_id": 35,
+      "owner_id": 4,
+      "race": 4,
+      "ship_id": 2001,
+      "side": "left",
+      "turn": 123,
+      "vcr_id": 3163
+    },
+    {
+      "Tminus1_control": "TMINUS1_SITE_CONTROL",
+      "base_mass": 850,
+      "catalog_mass": 850,
+      "class": "engine_shield_1_numeric_match",
+      "factual_mass": 1000,
+      "game_id": 497195,
+      "geometry": {
+        "engine_cost_mc": 300,
+        "engine_id": 9,
+        "exact_site_generators": 1,
+        "per_generator_half_engine_cost": 150,
+        "same_origin_and_waypoint_generators": 1,
+        "tminus1_participant_at_site": true,
+        "waypoint_to_vcr_offset": [
+          0,
+          0
+        ]
+      },
+      "hull_id": 79,
+      "owner_id": 11,
+      "race": 4,
+      "ship_id": 180,
+      "side": "left",
+      "turn": 94,
+      "vcr_id": 270
+    },
+    {
+      "Tminus1_control": "TMINUS1_COTRAVEL_CONTROL",
+      "base_mass": 451,
+      "catalog_mass": 451,
+      "class": "engine_shield_2_numeric_match",
+      "factual_mass": 751,
+      "game_id": 563278,
+      "geometry": {
+        "engine_cost_mc": 300,
+        "engine_id": 9,
+        "exact_site_generators": 0,
+        "per_generator_half_engine_cost": 150,
+        "same_origin_and_waypoint_generators": 2,
+        "tminus1_participant_at_site": false,
+        "waypoint_to_vcr_offset": [
+          0,
+          0
+        ]
+      },
+      "hull_id": 35,
+      "owner_id": 5,
+      "race": 4,
+      "ship_id": 144,
+      "side": "left",
+      "turn": 233,
+      "vcr_id": 2624
+    },
+    {
+      "Tminus1_control": "TMINUS1_SITE_CONTROL",
+      "base_mass": 451,
+      "catalog_mass": 451,
+      "class": "engine_shield_1_numeric_match",
+      "factual_mass": 601,
+      "game_id": 617883,
+      "geometry": {
+        "engine_cost_mc": 300,
+        "engine_id": 9,
+        "exact_site_generators": 1,
+        "per_generator_half_engine_cost": 150,
+        "same_origin_and_waypoint_generators": 1,
+        "tminus1_participant_at_site": true,
+        "waypoint_to_vcr_offset": [
+          0,
+          0
+        ]
+      },
+      "hull_id": 35,
+      "owner_id": 4,
+      "race": 4,
+      "ship_id": 328,
+      "side": "left",
+      "turn": 201,
+      "vcr_id": 1020
+    },
+    {
+      "Tminus1_control": "TMINUS1_SITE_CONTROL",
+      "base_mass": 451,
+      "catalog_mass": 451,
+      "class": "engine_shield_1_plus360_numeric_match",
+      "factual_mass": 961,
+      "game_id": 653272,
+      "geometry": {
+        "engine_cost_mc": 300,
+        "engine_id": 9,
+        "exact_site_generators": 1,
+        "per_generator_half_engine_cost": 150,
+        "same_origin_and_waypoint_generators": 1,
+        "tminus1_participant_at_site": true,
+        "waypoint_to_vcr_offset": [
+          0,
+          0
+        ]
+      },
+      "hull_id": 63,
+      "owner_id": 4,
+      "race": 4,
+      "ship_id": 301,
+      "side": "right",
+      "turn": 132,
+      "vcr_id": 1720
+    },
+    {
+      "Tminus1_control": "NO_TMINUS1_SUPPORT_IN_SAVED_SAMPLE",
+      "base_mass": 451,
+      "catalog_mass": 451,
+      "class": "engine_shield_2_numeric_match",
+      "factual_mass": 751,
+      "game_id": 655827,
+      "geometry": {
+        "engine_cost_mc": 300,
+        "engine_id": 9,
+        "exact_site_generators": 2,
+        "per_generator_half_engine_cost": 150,
+        "same_origin_and_waypoint_generators": 0,
+        "tminus1_participant_at_site": false,
+        "waypoint_to_vcr_offset": [
+          0,
+          -3
+        ]
+      },
+      "hull_id": 35,
+      "owner_id": 4,
+      "race": 4,
+      "ship_id": 246,
+      "side": "right",
+      "turn": 114,
+      "vcr_id": 1115
+    },
+    {
+      "Tminus1_control": "TMINUS1_COTRAVEL_CONTROL",
+      "base_mass": 223,
+      "catalog_mass": 173,
+      "class": "engine_shield_1_numeric_match",
+      "factual_mass": 373,
+      "game_id": 217591,
+      "geometry": {
+        "engine_cost_mc": 300,
+        "engine_id": 9,
+        "exact_site_generators": 0,
+        "per_generator_half_engine_cost": 150,
+        "same_origin_and_waypoint_generators": 1,
+        "tminus1_participant_at_site": false,
+        "waypoint_to_vcr_offset": [
+          0,
+          -3
+        ]
+      },
+      "hull_id": 19,
+      "owner_id": 1,
+      "race": 1,
+      "ship_id": 60,
+      "side": "right",
+      "turn": 149,
+      "vcr_id": 2399
+    },
+    {
+      "Tminus1_control": "TMINUS1_COTRAVEL_CONTROL",
+      "base_mass": 451,
+      "catalog_mass": 451,
+      "class": "engine_shield_2_numeric_match",
+      "factual_mass": 751,
+      "game_id": 235762,
+      "geometry": {
+        "engine_cost_mc": 300,
+        "engine_id": 9,
+        "exact_site_generators": 0,
+        "per_generator_half_engine_cost": 150,
+        "same_origin_and_waypoint_generators": 2,
+        "tminus1_participant_at_site": false,
+        "waypoint_to_vcr_offset": [
+          0,
+          0
+        ]
+      },
+      "hull_id": 35,
+      "owner_id": 2,
+      "race": 4,
+      "ship_id": 62,
+      "side": "right",
+      "turn": 97,
+      "vcr_id": 471
+    },
+    {
+      "Tminus1_control": "TMINUS1_SITE_CONTROL",
+      "base_mass": 850,
+      "catalog_mass": 850,
+      "class": "engine_shield_2_numeric_match",
+      "factual_mass": 1150,
+      "game_id": 325434,
+      "geometry": {
+        "engine_cost_mc": 300,
+        "engine_id": 9,
+        "exact_site_generators": 3,
+        "per_generator_half_engine_cost": 150,
+        "same_origin_and_waypoint_generators": 3,
+        "tminus1_participant_at_site": true,
+        "waypoint_to_vcr_offset": [
+          0,
+          0
+        ]
+      },
+      "hull_id": 79,
+      "owner_id": 7,
+      "race": 7,
+      "ship_id": 251,
+      "side": "right",
+      "turn": 192,
+      "vcr_id": 1359
+    },
+    {
+      "Tminus1_control": "NO_TMINUS1_SUPPORT_IN_SAVED_SAMPLE",
+      "base_mass": 65,
+      "catalog_mass": 65,
+      "class": "engine_shield_2_numeric_match",
+      "factual_mass": 235,
+      "game_id": 341336,
+      "geometry": {
+        "engine_cost_mc": 170,
+        "engine_id": 7,
+        "exact_site_generators": 0,
+        "per_generator_half_engine_cost": 85,
+        "same_origin_and_waypoint_generators": 1,
+        "tminus1_participant_at_site": false,
+        "waypoint_to_vcr_offset": [
+          2,
+          -2
+        ]
+      },
+      "hull_id": 1065,
+      "owner_id": 5,
+      "race": 4,
+      "ship_id": 155,
+      "side": "left",
+      "turn": 75,
+      "vcr_id": 340
+    },
+    {
+      "Tminus1_control": "NO_TMINUS1_SUPPORT_IN_SAVED_SAMPLE",
+      "base_mass": 183,
+      "catalog_mass": 183,
+      "class": "engine_shield_2_numeric_match",
+      "factual_mass": 483,
+      "game_id": 347236,
+      "geometry": {
+        "engine_cost_mc": 300,
+        "engine_id": 9,
+        "exact_site_generators": 0,
+        "per_generator_half_engine_cost": 150,
+        "same_origin_and_waypoint_generators": 0,
+        "tminus1_participant_at_site": false,
+        "waypoint_to_vcr_offset": [
+          -2,
+          2
+        ]
+      },
+      "hull_id": 3033,
+      "owner_id": 3,
+      "race": 3,
+      "ship_id": 1870,
+      "side": "right",
+      "turn": 115,
+      "vcr_id": 1243
+    },
+    {
+      "Tminus1_control": "TMINUS1_SITE_CONTROL",
+      "base_mass": 451,
+      "catalog_mass": 451,
+      "class": "engine_shield_2_plus360_numeric_match",
+      "factual_mass": 1111,
+      "game_id": 371631,
+      "geometry": {
+        "engine_cost_mc": 300,
+        "engine_id": 9,
+        "exact_site_generators": 2,
+        "per_generator_half_engine_cost": 150,
+        "same_origin_and_waypoint_generators": 2,
+        "tminus1_participant_at_site": true,
+        "waypoint_to_vcr_offset": [
+          0,
+          0
+        ]
+      },
+      "hull_id": 35,
+      "owner_id": 4,
+      "race": 4,
+      "ship_id": 463,
+      "side": "right",
+      "turn": 156,
+      "vcr_id": 1194
+    },
+    {
+      "Tminus1_control": "TMINUS1_COTRAVEL_CONTROL",
+      "base_mass": 625,
+      "catalog_mass": 625,
+      "class": "engine_shield_2_numeric_match",
+      "factual_mass": 925,
+      "game_id": 373830,
+      "geometry": {
+        "engine_cost_mc": 300,
+        "engine_id": 9,
+        "exact_site_generators": 0,
+        "per_generator_half_engine_cost": 150,
+        "same_origin_and_waypoint_generators": 2,
+        "tminus1_participant_at_site": false,
+        "waypoint_to_vcr_offset": [
+          2,
+          -2
+        ]
+      },
+      "hull_id": 99,
+      "owner_id": 8,
+      "race": 11,
+      "ship_id": 236,
+      "side": "left",
+      "turn": 102,
+      "vcr_id": 909
+    },
+    {
+      "Tminus1_control": "NO_TMINUS1_SUPPORT_IN_SAVED_SAMPLE",
+      "base_mass": 270,
+      "catalog_mass": 220,
+      "class": "engine_shield_2_numeric_match",
+      "factual_mass": 570,
+      "game_id": 396107,
+      "geometry": {
+        "engine_cost_mc": 300,
+        "engine_id": 9,
+        "exact_site_generators": 0,
+        "per_generator_half_engine_cost": 150,
+        "same_origin_and_waypoint_generators": 0,
+        "tminus1_participant_at_site": false,
+        "waypoint_to_vcr_offset": [
+          0,
+          0
+        ]
+      },
+      "hull_id": 1012,
+      "owner_id": 1,
+      "race": 1,
+      "ship_id": 209,
+      "side": "right",
+      "turn": 159,
+      "vcr_id": 497
+    },
+    {
+      "Tminus1_control": "NO_TMINUS1_SUPPORT_IN_SAVED_SAMPLE",
+      "base_mass": 451,
+      "catalog_mass": 451,
+      "class": "engine_shield_2_plus360_numeric_match",
+      "factual_mass": 1111,
+      "game_id": 441148,
+      "geometry": {
+        "engine_cost_mc": 300,
+        "engine_id": 9,
+        "exact_site_generators": 2,
+        "per_generator_half_engine_cost": 150,
+        "same_origin_and_waypoint_generators": 0,
+        "tminus1_participant_at_site": false,
+        "waypoint_to_vcr_offset": [
+          0,
+          -3
+        ]
+      },
+      "hull_id": 35,
+      "owner_id": 22,
+      "race": 4,
+      "ship_id": 600,
+      "side": "right",
+      "turn": 176,
+      "vcr_id": 4000
+    },
+    {
+      "Tminus1_control": "NO_TMINUS1_SUPPORT_IN_SAVED_SAMPLE",
+      "base_mass": 860,
+      "catalog_mass": 860,
+      "class": "engine_shield_1_plus360_numeric_match",
+      "factual_mass": 1370,
+      "game_id": 467047,
+      "geometry": {
+        "engine_cost_mc": 300,
+        "engine_id": 9,
+        "exact_site_generators": 0,
+        "per_generator_half_engine_cost": 150,
+        "same_origin_and_waypoint_generators": 0,
+        "tminus1_participant_at_site": false,
+        "waypoint_to_vcr_offset": [
+          -2,
+          -2
+        ]
+      },
+      "hull_id": 52,
+      "owner_id": 6,
+      "race": 6,
+      "ship_id": 419,
+      "side": "right",
+      "turn": 94,
+      "vcr_id": 586
+    },
+    {
+      "Tminus1_control": "TMINUS1_SITE_CONTROL",
+      "base_mass": 451,
+      "catalog_mass": 451,
+      "class": "engine_shield_2_numeric_match",
+      "factual_mass": 751,
+      "game_id": 474699,
+      "geometry": {
+        "engine_cost_mc": 300,
+        "engine_id": 9,
+        "exact_site_generators": 2,
+        "per_generator_half_engine_cost": 150,
+        "same_origin_and_waypoint_generators": 2,
+        "tminus1_participant_at_site": true,
+        "waypoint_to_vcr_offset": [
+          0,
+          0
+        ]
+      },
+      "hull_id": 35,
+      "owner_id": 23,
+      "race": 4,
+      "ship_id": 193,
+      "side": "left",
+      "turn": 201,
+      "vcr_id": 2868
+    },
+    {
+      "Tminus1_control": "TMINUS1_COTRAVEL_CONTROL",
+      "base_mass": 173,
+      "catalog_mass": 173,
+      "class": "engine_shield_1_numeric_match",
+      "factual_mass": 323,
+      "game_id": 477364,
+      "geometry": {
+        "engine_cost_mc": 300,
+        "engine_id": 9,
+        "exact_site_generators": 0,
+        "per_generator_half_engine_cost": 150,
+        "same_origin_and_waypoint_generators": 1,
+        "tminus1_participant_at_site": false,
+        "waypoint_to_vcr_offset": [
+          0,
+          0
+        ]
+      },
+      "hull_id": 1041,
+      "owner_id": 4,
+      "race": 4,
+      "ship_id": 138,
+      "side": "left",
+      "turn": 80,
+      "vcr_id": 1054
+    },
+    {
+      "Tminus1_control": "TMINUS1_SITE_CONTROL",
+      "base_mass": 850,
+      "catalog_mass": 850,
+      "class": "engine_shield_1_numeric_match",
+      "factual_mass": 1000,
+      "game_id": 497195,
+      "geometry": {
+        "engine_cost_mc": 300,
+        "engine_id": 9,
+        "exact_site_generators": 1,
+        "per_generator_half_engine_cost": 150,
+        "same_origin_and_waypoint_generators": 1,
+        "tminus1_participant_at_site": true,
+        "waypoint_to_vcr_offset": [
+          0,
+          0
+        ]
+      },
+      "hull_id": 79,
+      "owner_id": 11,
+      "race": 4,
+      "ship_id": 180,
+      "side": "left",
+      "turn": 94,
+      "vcr_id": 271
+    },
+    {
+      "Tminus1_control": "TMINUS1_COTRAVEL_CONTROL",
+      "base_mass": 451,
+      "catalog_mass": 451,
+      "class": "engine_shield_2_numeric_match",
+      "factual_mass": 751,
+      "game_id": 563278,
+      "geometry": {
+        "engine_cost_mc": 300,
+        "engine_id": 9,
+        "exact_site_generators": 0,
+        "per_generator_half_engine_cost": 150,
+        "same_origin_and_waypoint_generators": 2,
+        "tminus1_participant_at_site": false,
+        "waypoint_to_vcr_offset": [
+          0,
+          0
+        ]
+      },
+      "hull_id": 35,
+      "owner_id": 5,
+      "race": 4,
+      "ship_id": 144,
+      "side": "right",
+      "turn": 233,
+      "vcr_id": 2625
+    }
+  ],
+  "sampled_unresolved_examples": [
+    {
+      "base_mass": 125,
+      "catalog_mass": 125,
+      "class": "horwasp_other_or_catalog_conflict",
+      "factual_mass": 290,
+      "game_id": 217591,
+      "geometry": {
+        "engine_cost_mc": 170,
+        "engine_id": 7,
+        "exact_site_generators": 0,
+        "per_generator_half_engine_cost": 85,
+        "same_origin_and_waypoint_generators": 0,
+        "tminus1_participant_at_site": false,
+        "waypoint_to_vcr_offset": [
+          0,
+          0
+        ]
+      },
+      "hull_id": 117,
+      "owner_id": 12,
+      "race": 12,
+      "ship_id": 119,
+      "side": "left",
+      "turn": 149,
+      "vcr_id": 2405
+    },
+    {
+      "base_mass": 200,
+      "catalog_mass": 200,
+      "class": "horwasp_other_or_catalog_conflict",
+      "factual_mass": 748,
+      "game_id": 253449,
+      "geometry": {
+        "engine_cost_mc": 170,
+        "engine_id": 7,
+        "exact_site_generators": 0,
+        "per_generator_half_engine_cost": 85,
+        "same_origin_and_waypoint_generators": 0,
+        "tminus1_participant_at_site": false,
+        "waypoint_to_vcr_offset": [
+          0,
+          0
+        ]
+      },
+      "hull_id": 118,
+      "owner_id": 12,
+      "race": 12,
+      "ship_id": 447,
+      "side": "right",
+      "turn": 44,
+      "vcr_id": 170
+    },
+    {
+      "base_mass": 625,
+      "catalog_mass": 625,
+      "class": "unexplained_with_available_owner_geometry",
+      "factual_mass": 627,
+      "game_id": 310054,
+      "geometry": {
+        "engine_cost_mc": 1,
+        "engine_id": 1,
+        "exact_site_generators": 3,
+        "per_generator_half_engine_cost": 0,
+        "same_origin_and_waypoint_generators": 3,
+        "tminus1_participant_at_site": false,
+        "waypoint_to_vcr_offset": [
+          -78,
+          -24
+        ]
+      },
+      "hull_id": 99,
+      "owner_id": 11,
+      "race": 11,
+      "ship_id": 111,
+      "side": "right",
+      "turn": 87,
+      "vcr_id": 487
+    },
+    {
+      "base_mass": 173,
+      "catalog_mass": 173,
+      "class": "unexplained_with_available_owner_geometry",
+      "factual_mass": 175,
+      "game_id": 325434,
+      "geometry": {
+        "engine_cost_mc": 1,
+        "engine_id": 1,
+        "exact_site_generators": 2,
+        "per_generator_half_engine_cost": 0,
+        "same_origin_and_waypoint_generators": 2,
+        "tminus1_participant_at_site": true,
+        "waypoint_to_vcr_offset": [
+          0,
+          0
+        ]
+      },
+      "hull_id": 1041,
+      "owner_id": 7,
+      "race": 7,
+      "ship_id": 228,
+      "side": "right",
+      "turn": 192,
+      "vcr_id": 1361
+    },
+    {
+      "base_mass": 451,
+      "catalog_mass": 451,
+      "class": "unexplained_with_available_owner_geometry",
+      "factual_mass": 453,
+      "game_id": 341336,
+      "geometry": {
+        "engine_cost_mc": 1,
+        "engine_id": 1,
+        "exact_site_generators": 0,
+        "per_generator_half_engine_cost": 0,
+        "same_origin_and_waypoint_generators": 0,
+        "tminus1_participant_at_site": false,
+        "waypoint_to_vcr_offset": [
+          -6,
+          43
+        ]
+      },
+      "hull_id": 35,
+      "owner_id": 3,
+      "race": 4,
+      "ship_id": 369,
+      "side": "right",
+      "turn": 75,
+      "vcr_id": 339
+    },
+    {
+      "base_mass": 200,
+      "catalog_mass": 200,
+      "class": "horwasp_other_or_catalog_conflict",
+      "factual_mass": 678,
+      "game_id": 411645,
+      "geometry": {
+        "engine_cost_mc": 170,
+        "engine_id": 7,
+        "exact_site_generators": 0,
+        "per_generator_half_engine_cost": 85,
+        "same_origin_and_waypoint_generators": 0,
+        "tminus1_participant_at_site": false,
+        "waypoint_to_vcr_offset": [
+          -3,
+          0
+        ]
+      },
+      "hull_id": 118,
+      "owner_id": 12,
+      "race": 12,
+      "ship_id": 363,
+      "side": "right",
+      "turn": 40,
+      "vcr_id": 214
+    },
+    {
+      "base_mass": 275,
+      "catalog_mass": 275,
+      "class": "unexplained_with_available_owner_geometry",
+      "factual_mass": 637,
+      "game_id": 441148,
+      "geometry": {
+        "engine_cost_mc": 1,
+        "engine_id": 1,
+        "exact_site_generators": 2,
+        "per_generator_half_engine_cost": 0,
+        "same_origin_and_waypoint_generators": 1,
+        "tminus1_participant_at_site": false,
+        "waypoint_to_vcr_offset": [
+          1,
+          -33
+        ]
+      },
+      "hull_id": 37,
+      "owner_id": 22,
+      "race": 4,
+      "ship_id": 240,
+      "side": "right",
+      "turn": 176,
+      "vcr_id": 3999
+    },
+    {
+      "base_mass": 173,
+      "catalog_mass": 173,
+      "class": "unexplained_with_available_owner_geometry",
+      "factual_mass": 174,
+      "game_id": 563278,
+      "geometry": {
+        "engine_cost_mc": 1,
+        "engine_id": 1,
+        "exact_site_generators": 1,
+        "per_generator_half_engine_cost": 0,
+        "same_origin_and_waypoint_generators": 1,
+        "tminus1_participant_at_site": true,
+        "waypoint_to_vcr_offset": [
+          0,
+          0
+        ]
+      },
+      "hull_id": 1041,
+      "owner_id": 5,
+      "race": 4,
+      "ship_id": 1,
+      "side": "left",
+      "turn": 187,
+      "vcr_id": 1815
+    },
+    {
+      "base_mass": 451,
+      "catalog_mass": 451,
+      "class": "unexplained_with_available_owner_geometry",
+      "factual_mass": 452,
+      "game_id": 617883,
+      "geometry": {
+        "engine_cost_mc": 1,
+        "engine_id": 1,
+        "exact_site_generators": 1,
+        "per_generator_half_engine_cost": 0,
+        "same_origin_and_waypoint_generators": 1,
+        "tminus1_participant_at_site": true,
+        "waypoint_to_vcr_offset": [
+          0,
+          0
+        ]
+      },
+      "hull_id": 35,
+      "owner_id": 4,
+      "race": 4,
+      "ship_id": 253,
+      "side": "left",
+      "turn": 201,
+      "vcr_id": 1016
+    },
+    {
+      "base_mass": 145,
+      "catalog_mass": 145,
+      "class": "horwasp_other_or_catalog_conflict",
+      "factual_mass": 640,
+      "game_id": 653272,
+      "geometry": {
+        "engine_cost_mc": 170,
+        "engine_id": 7,
+        "exact_site_generators": 0,
+        "per_generator_half_engine_cost": 85,
+        "same_origin_and_waypoint_generators": 0,
+        "tminus1_participant_at_site": false,
+        "waypoint_to_vcr_offset": [
+          1,
+          -1
+        ]
+      },
+      "hull_id": 117,
+      "owner_id": 13,
+      "race": 12,
+      "ship_id": 284,
+      "side": "right",
+      "turn": 159,
+      "vcr_id": 2192
+    },
+    {
+      "base_mass": 145,
+      "catalog_mass": 145,
+      "class": "horwasp_other_or_catalog_conflict",
+      "factual_mass": 521,
+      "game_id": 658427,
+      "geometry": {
+        "engine_cost_mc": 170,
+        "engine_id": 7,
+        "exact_site_generators": 0,
+        "per_generator_half_engine_cost": 85,
+        "same_origin_and_waypoint_generators": 0,
+        "tminus1_participant_at_site": false,
+        "waypoint_to_vcr_offset": [
+          1,
+          -1
+        ]
+      },
+      "hull_id": 117,
+      "owner_id": 30,
+      "race": 12,
+      "ship_id": 16,
+      "side": "right",
+      "turn": 87,
+      "vcr_id": 995
+    },
+    {
+      "base_mass": 125,
+      "catalog_mass": 125,
+      "class": "horwasp_other_or_catalog_conflict",
+      "factual_mass": 290,
+      "game_id": 217591,
+      "geometry": {
+        "engine_cost_mc": 170,
+        "engine_id": 7,
+        "exact_site_generators": 0,
+        "per_generator_half_engine_cost": 85,
+        "same_origin_and_waypoint_generators": 0,
+        "tminus1_participant_at_site": false,
+        "waypoint_to_vcr_offset": [
+          0,
+          0
+        ]
+      },
+      "hull_id": 117,
+      "owner_id": 12,
+      "race": 12,
+      "ship_id": 119,
+      "side": "right",
+      "turn": 149,
+      "vcr_id": 2406
+    },
+    {
+      "base_mass": 625,
+      "catalog_mass": 625,
+      "class": "unexplained_with_available_owner_geometry",
+      "factual_mass": 627,
+      "game_id": 310054,
+      "geometry": {
+        "engine_cost_mc": 1,
+        "engine_id": 1,
+        "exact_site_generators": 3,
+        "per_generator_half_engine_cost": 0,
+        "same_origin_and_waypoint_generators": 3,
+        "tminus1_participant_at_site": false,
+        "waypoint_to_vcr_offset": [
+          -78,
+          -24
+        ]
+      },
+      "hull_id": 99,
+      "owner_id": 11,
+      "race": 11,
+      "ship_id": 111,
+      "side": "right",
+      "turn": 87,
+      "vcr_id": 488
+    },
+    {
+      "base_mass": 173,
+      "catalog_mass": 173,
+      "class": "unexplained_with_available_owner_geometry",
+      "factual_mass": 174,
+      "game_id": 325434,
+      "geometry": {
+        "engine_cost_mc": 1,
+        "engine_id": 1,
+        "exact_site_generators": 2,
+        "per_generator_half_engine_cost": 0,
+        "same_origin_and_waypoint_generators": 2,
+        "tminus1_participant_at_site": true,
+        "waypoint_to_vcr_offset": [
+          0,
+          0
+        ]
+      },
+      "hull_id": 1041,
+      "owner_id": 7,
+      "race": 7,
+      "ship_id": 48,
+      "side": "left",
+      "turn": 192,
+      "vcr_id": 1362
+    },
+    {
+      "base_mass": 65,
+      "catalog_mass": 65,
+      "class": "unexplained_with_available_owner_geometry",
+      "factual_mass": 91,
+      "game_id": 341336,
+      "geometry": {
+        "engine_cost_mc": 25,
+        "engine_id": 5,
+        "exact_site_generators": 0,
+        "per_generator_half_engine_cost": 12,
+        "same_origin_and_waypoint_generators": 1,
+        "tminus1_participant_at_site": false,
+        "waypoint_to_vcr_offset": [
+          2,
+          -2
+        ]
+      },
+      "hull_id": 1065,
+      "owner_id": 5,
+      "race": 4,
+      "ship_id": 122,
+      "side": "left",
+      "turn": 75,
+      "vcr_id": 346
+    },
+    {
+      "base_mass": 173,
+      "catalog_mass": 173,
+      "class": "unexplained_with_available_owner_geometry",
+      "factual_mass": 174,
+      "game_id": 563278,
+      "geometry": {
+        "engine_cost_mc": 1,
+        "engine_id": 1,
+        "exact_site_generators": 1,
+        "per_generator_half_engine_cost": 0,
+        "same_origin_and_waypoint_generators": 1,
+        "tminus1_participant_at_site": true,
+        "waypoint_to_vcr_offset": [
+          0,
+          0
+        ]
+      },
+      "hull_id": 1041,
+      "owner_id": 5,
+      "race": 4,
+      "ship_id": 1,
+      "side": "left",
+      "turn": 187,
+      "vcr_id": 1816
+    },
+    {
+      "base_mass": 645,
+      "catalog_mass": 645,
+      "class": "unexplained_with_available_owner_geometry",
+      "factual_mass": 795,
+      "game_id": 617883,
+      "geometry": {
+        "engine_cost_mc": null,
+        "engine_id": null,
+        "exact_site_generators": null,
+        "per_generator_half_engine_cost": null,
+        "same_origin_and_waypoint_generators": null,
+        "tminus1_participant_at_site": null,
+        "waypoint_to_vcr_offset": null
+      },
+      "hull_id": 94,
+      "owner_id": 4,
+      "race": 4,
+      "ship_id": 27,
+      "side": "left",
+      "turn": 201,
+      "vcr_id": 1017
+    },
+    {
+      "base_mass": 145,
+      "catalog_mass": 145,
+      "class": "horwasp_other_or_catalog_conflict",
+      "factual_mass": 617,
+      "game_id": 658427,
+      "geometry": {
+        "engine_cost_mc": 170,
+        "engine_id": 7,
+        "exact_site_generators": 0,
+        "per_generator_half_engine_cost": 85,
+        "same_origin_and_waypoint_generators": 0,
+        "tminus1_participant_at_site": false,
+        "waypoint_to_vcr_offset": [
+          1,
+          -1
+        ]
+      },
+      "hull_id": 117,
+      "owner_id": 30,
+      "race": 12,
+      "ship_id": 495,
+      "side": "right",
+      "turn": 87,
+      "vcr_id": 996
+    },
+    {
+      "base_mass": 125,
+      "catalog_mass": 125,
+      "class": "horwasp_other_or_catalog_conflict",
+      "factual_mass": 650,
+      "game_id": 217591,
+      "geometry": {
+        "engine_cost_mc": null,
+        "engine_id": null,
+        "exact_site_generators": null,
+        "per_generator_half_engine_cost": null,
+        "same_origin_and_waypoint_generators": null,
+        "tminus1_participant_at_site": null,
+        "waypoint_to_vcr_offset": null
+      },
+      "hull_id": 117,
+      "owner_id": 12,
+      "race": 12,
+      "ship_id": 253,
+      "side": "right",
+      "turn": 149,
+      "vcr_id": 2421
+    },
+    {
+      "base_mass": 625,
+      "catalog_mass": 625,
+      "class": "unexplained_with_available_owner_geometry",
+      "factual_mass": 627,
+      "game_id": 310054,
+      "geometry": {
+        "engine_cost_mc": 1,
+        "engine_id": 1,
+        "exact_site_generators": 3,
+        "per_generator_half_engine_cost": 0,
+        "same_origin_and_waypoint_generators": 3,
+        "tminus1_participant_at_site": false,
+        "waypoint_to_vcr_offset": [
+          -78,
+          -24
+        ]
+      },
+      "hull_id": 99,
+      "owner_id": 11,
+      "race": 11,
+      "ship_id": 15,
+      "side": "right",
+      "turn": 87,
+      "vcr_id": 489
+    },
+    {
+      "base_mass": 645,
+      "catalog_mass": 645,
+      "class": "unexplained_with_available_owner_geometry",
+      "factual_mass": 699,
+      "game_id": 325434,
+      "geometry": {
+        "engine_cost_mc": 53,
+        "engine_id": 6,
+        "exact_site_generators": 2,
+        "per_generator_half_engine_cost": 26,
+        "same_origin_and_waypoint_generators": 2,
+        "tminus1_participant_at_site": true,
+        "waypoint_to_vcr_offset": [
+          0,
+          0
+        ]
+      },
+      "hull_id": 94,
+      "owner_id": 4,
+      "race": 4,
+      "ship_id": 328,
+      "side": "left",
+      "turn": 149,
+      "vcr_id": 1058
+    },
+    {
+      "base_mass": 65,
+      "catalog_mass": 65,
+      "class": "unexplained_with_available_owner_geometry",
+      "factual_mass": 91,
+      "game_id": 341336,
+      "geometry": {
+        "engine_cost_mc": 25,
+        "engine_id": 5,
+        "exact_site_generators": 0,
+        "per_generator_half_engine_cost": 12,
+        "same_origin_and_waypoint_generators": 1,
+        "tminus1_participant_at_site": false,
+        "waypoint_to_vcr_offset": [
+          2,
+          -2
+        ]
+      },
+      "hull_id": 1065,
+      "owner_id": 5,
+      "race": 4,
+      "ship_id": 122,
+      "side": "right",
+      "turn": 75,
+      "vcr_id": 347
+    },
+    {
+      "base_mass": 451,
+      "catalog_mass": 451,
+      "class": "unexplained_with_available_owner_geometry",
+      "factual_mass": 452,
+      "game_id": 617883,
+      "geometry": {
+        "engine_cost_mc": 1,
+        "engine_id": 1,
+        "exact_site_generators": 1,
+        "per_generator_half_engine_cost": 0,
+        "same_origin_and_waypoint_generators": 1,
+        "tminus1_participant_at_site": true,
+        "waypoint_to_vcr_offset": [
+          0,
+          0
+        ]
+      },
+      "hull_id": 35,
+      "owner_id": 4,
+      "race": 4,
+      "ship_id": 253,
+      "side": "left",
+      "turn": 201,
+      "vcr_id": 1018
+    },
+    {
+      "base_mass": 145,
+      "catalog_mass": 145,
+      "class": "horwasp_other_or_catalog_conflict",
+      "factual_mass": 646,
+      "game_id": 658427,
+      "geometry": {
+        "engine_cost_mc": 170,
+        "engine_id": 7,
+        "exact_site_generators": 0,
+        "per_generator_half_engine_cost": 85,
+        "same_origin_and_waypoint_generators": 0,
+        "tminus1_participant_at_site": true,
+        "waypoint_to_vcr_offset": [
+          0,
+          0
+        ]
+      },
+      "hull_id": 117,
+      "owner_id": 30,
+      "race": 12,
+      "ship_id": 97,
+      "side": "right",
+      "turn": 73,
+      "vcr_id": 765
+    },
+    {
+      "base_mass": 125,
+      "catalog_mass": 125,
+      "class": "horwasp_other_or_catalog_conflict",
+      "factual_mass": 290,
+      "game_id": 217591,
+      "geometry": {
+        "engine_cost_mc": 170,
+        "engine_id": 7,
+        "exact_site_generators": 0,
+        "per_generator_half_engine_cost": 85,
+        "same_origin_and_waypoint_generators": 0,
+        "tminus1_participant_at_site": true,
+        "waypoint_to_vcr_offset": [
+          0,
+          0
+        ]
+      },
+      "hull_id": 117,
+      "owner_id": 12,
+      "race": 12,
+      "ship_id": 517,
+      "side": "right",
+      "turn": 149,
+      "vcr_id": 2422
+    },
+    {
+      "base_mass": 625,
+      "catalog_mass": 625,
+      "class": "unexplained_with_available_owner_geometry",
+      "factual_mass": 627,
+      "game_id": 310054,
+      "geometry": {
+        "engine_cost_mc": 1,
+        "engine_id": 1,
+        "exact_site_generators": 3,
+        "per_generator_half_engine_cost": 0,
+        "same_origin_and_waypoint_generators": 3,
+        "tminus1_participant_at_site": false,
+        "waypoint_to_vcr_offset": [
+          -78,
+          -24
+        ]
+      },
+      "hull_id": 99,
+      "owner_id": 11,
+      "race": 11,
+      "ship_id": 15,
+      "side": "right",
+      "turn": 87,
+      "vcr_id": 490
+    },
+    {
+      "base_mass": 645,
+      "catalog_mass": 645,
+      "class": "unexplained_with_available_owner_geometry",
+      "factual_mass": 699,
+      "game_id": 325434,
+      "geometry": {
+        "engine_cost_mc": 53,
+        "engine_id": 6,
+        "exact_site_generators": 2,
+        "per_generator_half_engine_cost": 26,
+        "same_origin_and_waypoint_generators": 2,
+        "tminus1_participant_at_site": true,
+        "waypoint_to_vcr_offset": [
+          0,
+          0
+        ]
+      },
+      "hull_id": 94,
+      "owner_id": 4,
+      "race": 4,
+      "ship_id": 328,
+      "side": "left",
+      "turn": 149,
+      "vcr_id": 1059
+    },
+    {
+      "base_mass": 65,
+      "catalog_mass": 65,
+      "class": "unexplained_with_available_owner_geometry",
+      "factual_mass": 91,
+      "game_id": 341336,
+      "geometry": {
+        "engine_cost_mc": 25,
+        "engine_id": 5,
+        "exact_site_generators": 0,
+        "per_generator_half_engine_cost": 12,
+        "same_origin_and_waypoint_generators": 1,
+        "tminus1_participant_at_site": false,
+        "waypoint_to_vcr_offset": [
+          2,
+          -2
+        ]
+      },
+      "hull_id": 1065,
+      "owner_id": 5,
+      "race": 4,
+      "ship_id": 122,
+      "side": "left",
+      "turn": 75,
+      "vcr_id": 348
+    },
+    {
+      "base_mass": 920,
+      "catalog_mass": 920,
+      "class": "unexplained_with_available_owner_geometry",
+      "factual_mass": 921,
+      "game_id": 617883,
+      "geometry": {
+        "engine_cost_mc": 1,
+        "engine_id": 1,
+        "exact_site_generators": 1,
+        "per_generator_half_engine_cost": 0,
+        "same_origin_and_waypoint_generators": 1,
+        "tminus1_participant_at_site": true,
+        "waypoint_to_vcr_offset": [
+          0,
+          0
+        ]
+      },
+      "hull_id": 105,
+      "owner_id": 4,
+      "race": 4,
+      "ship_id": 289,
+      "side": "left",
+      "turn": 201,
+      "vcr_id": 1019
+    },
+    {
+      "base_mass": 145,
+      "catalog_mass": 145,
+      "class": "horwasp_other_or_catalog_conflict",
+      "factual_mass": 647,
+      "game_id": 658427,
+      "geometry": {
+        "engine_cost_mc": 170,
+        "engine_id": 7,
+        "exact_site_generators": 0,
+        "per_generator_half_engine_cost": 85,
+        "same_origin_and_waypoint_generators": 0,
+        "tminus1_participant_at_site": true,
+        "waypoint_to_vcr_offset": [
+          0,
+          0
+        ]
+      },
+      "hull_id": 117,
+      "owner_id": 30,
+      "race": 12,
+      "ship_id": 231,
+      "side": "right",
+      "turn": 73,
+      "vcr_id": 768
+    },
+    {
+      "base_mass": 125,
+      "catalog_mass": 125,
+      "class": "horwasp_other_or_catalog_conflict",
+      "factual_mass": 290,
+      "game_id": 217591,
+      "geometry": {
+        "engine_cost_mc": 170,
+        "engine_id": 7,
+        "exact_site_generators": 0,
+        "per_generator_half_engine_cost": 85,
+        "same_origin_and_waypoint_generators": 0,
+        "tminus1_participant_at_site": true,
+        "waypoint_to_vcr_offset": [
+          0,
+          0
+        ]
+      },
+      "hull_id": 117,
+      "owner_id": 12,
+      "race": 12,
+      "ship_id": 517,
+      "side": "right",
+      "turn": 149,
+      "vcr_id": 2423
+    },
+    {
+      "base_mass": 625,
+      "catalog_mass": 625,
+      "class": "unexplained_with_available_owner_geometry",
+      "factual_mass": 627,
+      "game_id": 310054,
+      "geometry": {
+        "engine_cost_mc": 1,
+        "engine_id": 1,
+        "exact_site_generators": 3,
+        "per_generator_half_engine_cost": 0,
+        "same_origin_and_waypoint_generators": 1,
+        "tminus1_participant_at_site": true,
+        "waypoint_to_vcr_offset": [
+          0,
+          0
+        ]
+      },
+      "hull_id": 99,
+      "owner_id": 11,
+      "race": 11,
+      "ship_id": 337,
+      "side": "right",
+      "turn": 87,
+      "vcr_id": 491
+    },
+    {
+      "base_mass": 645,
+      "catalog_mass": 645,
+      "class": "unexplained_with_available_owner_geometry",
+      "factual_mass": 699,
+      "game_id": 325434,
+      "geometry": {
+        "engine_cost_mc": 53,
+        "engine_id": 6,
+        "exact_site_generators": 2,
+        "per_generator_half_engine_cost": 26,
+        "same_origin_and_waypoint_generators": 2,
+        "tminus1_participant_at_site": true,
+        "waypoint_to_vcr_offset": [
+          0,
+          0
+        ]
+      },
+      "hull_id": 94,
+      "owner_id": 4,
+      "race": 4,
+      "ship_id": 328,
+      "side": "left",
+      "turn": 149,
+      "vcr_id": 1060
+    },
+    {
+      "base_mass": 30,
+      "catalog_mass": 30,
+      "class": "unexplained_with_available_owner_geometry",
+      "factual_mass": 31,
+      "game_id": 617883,
+      "geometry": {
+        "engine_cost_mc": 1,
+        "engine_id": 1,
+        "exact_site_generators": 1,
+        "per_generator_half_engine_cost": 0,
+        "same_origin_and_waypoint_generators": 1,
+        "tminus1_participant_at_site": true,
+        "waypoint_to_vcr_offset": [
+          0,
+          0
+        ]
+      },
+      "hull_id": 51,
+      "owner_id": 4,
+      "race": 4,
+      "ship_id": 78,
+      "side": "left",
+      "turn": 201,
+      "vcr_id": 1025
+    },
+    {
+      "base_mass": 96,
+      "catalog_mass": 96,
+      "class": "unexplained_with_available_owner_geometry",
+      "factual_mass": 346,
+      "game_id": 217591,
+      "geometry": {
+        "engine_cost_mc": 300,
+        "engine_id": 9,
+        "exact_site_generators": 6,
+        "per_generator_half_engine_cost": 150,
+        "same_origin_and_waypoint_generators": 0,
+        "tminus1_participant_at_site": false,
+        "waypoint_to_vcr_offset": [
+          0,
+          3
+        ]
+      },
+      "hull_id": 1039,
+      "owner_id": 4,
+      "race": 4,
+      "ship_id": 758,
+      "side": "right",
+      "turn": 75,
+      "vcr_id": 756
+    }
+  ],
+  "schema": "planets-lab.combat-mass-long-survey-digest.v1",
+  "source": {
+    "games_verified": 80,
+    "identity_sha256": "016b1dc7e762b1347a7862ba75439b0f7fed911596d7f4c2a41d69aea037a310",
+    "recomputed_counts_match_published": true,
+    "source_sha": "21ed8147018449a3d1e1918dba9ed40cc70fb16f",
+    "turns_verified": 320
+  },
+  "status": "COMPLETE_DIGEST_OBSERVATIONAL_NOT_PROMOTED"
+}
