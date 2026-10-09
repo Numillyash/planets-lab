@@ -1,0 +1,2064 @@
+{
+  "D19c_source_conflicts": [
+    {
+      "Tminus1_engine_id": 9,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 6,
+        "participant_at_combat_site_Tminus1": false,
+        "same_origin_waypoint_generator_count": 0
+      },
+      "Tminus1_owner_state_available": true,
+      "factual_vcr_mass_comparator": 346,
+      "game_id": 217591,
+      "historical_catalog_disagreement_KT": 50,
+      "hull_id": 1039,
+      "owner_id": 4,
+      "race": 4,
+      "reference_hull_base_mass": 46,
+      "reference_hull_source": "OFFICIAL_RACESHEETPLUS_D19C",
+      "requires_catalog_provenance_audit": true,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 150,
+          "generator_count_assumed": 2
+        }
+      ],
+      "ship_id": 758,
+      "side": "right",
+      "source_catalog_mass": 96,
+      "source_federation_adjusted_base": 96,
+      "status": "reference_hull_catalog_conflict_numeric_match_not_proven",
+      "turn": 75,
+      "vcr_id": 756
+    },
+    {
+      "Tminus1_engine_id": 1,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 2,
+        "participant_at_combat_site_Tminus1": true,
+        "same_origin_waypoint_generator_count": 2
+      },
+      "Tminus1_owner_state_available": true,
+      "factual_vcr_mass_comparator": 48,
+      "game_id": 325434,
+      "historical_catalog_disagreement_KT": 50,
+      "hull_id": 1039,
+      "owner_id": 4,
+      "race": 4,
+      "reference_hull_base_mass": 46,
+      "reference_hull_source": "OFFICIAL_RACESHEETPLUS_D19C",
+      "requires_catalog_provenance_audit": true,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 1,
+          "generator_count_assumed": 2
+        }
+      ],
+      "ship_id": 274,
+      "side": "left",
+      "source_catalog_mass": 96,
+      "source_federation_adjusted_base": 96,
+      "status": "reference_hull_catalog_conflict_numeric_match_not_proven",
+      "turn": 149,
+      "vcr_id": 1075
+    }
+  ],
+  "all_67_classifications": [
+    {
+      "Tminus1_engine_id": 9,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 6,
+        "participant_at_combat_site_Tminus1": false,
+        "same_origin_waypoint_generator_count": 0
+      },
+      "Tminus1_owner_state_available": true,
+      "factual_vcr_mass_comparator": 346,
+      "game_id": 217591,
+      "historical_catalog_disagreement_KT": 50,
+      "hull_id": 1039,
+      "owner_id": 4,
+      "race": 4,
+      "reference_hull_base_mass": 46,
+      "reference_hull_source": "OFFICIAL_RACESHEETPLUS_D19C",
+      "requires_catalog_provenance_audit": true,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 150,
+          "generator_count_assumed": 2
+        }
+      ],
+      "ship_id": 758,
+      "side": "right",
+      "source_catalog_mass": 96,
+      "source_federation_adjusted_base": 96,
+      "status": "reference_hull_catalog_conflict_numeric_match_not_proven",
+      "turn": 75,
+      "vcr_id": 756
+    },
+    {
+      "Horwasp_Tminus1_clans_if_known": 900,
+      "Tminus1_engine_id": 7,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 0,
+        "participant_at_combat_site_Tminus1": false,
+        "same_origin_waypoint_generator_count": 0
+      },
+      "Tminus1_owner_state_available": true,
+      "factual_vcr_mass_comparator": 290,
+      "game_id": 217591,
+      "horwasp_scenario_count": 1,
+      "hull_id": 117,
+      "inverse_is_oracle_observed_mass_dependent": true,
+      "owner_id": 12,
+      "race": 12,
+      "rulebook_numeric_candidates": [],
+      "ship_id": 119,
+      "side": "left",
+      "source_catalog_mass": 125,
+      "source_federation_adjusted_base": 125,
+      "source_game_hull_catalog_not_overridden": true,
+      "status": "horwasp_inverse_only_not_generatively_validated",
+      "turn": 149,
+      "vcr_id": 2405
+    },
+    {
+      "Horwasp_Tminus1_clans_if_known": 900,
+      "Tminus1_engine_id": 7,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 0,
+        "participant_at_combat_site_Tminus1": false,
+        "same_origin_waypoint_generator_count": 0
+      },
+      "Tminus1_owner_state_available": true,
+      "factual_vcr_mass_comparator": 290,
+      "game_id": 217591,
+      "horwasp_scenario_count": 1,
+      "hull_id": 117,
+      "inverse_is_oracle_observed_mass_dependent": true,
+      "owner_id": 12,
+      "race": 12,
+      "rulebook_numeric_candidates": [],
+      "ship_id": 119,
+      "side": "right",
+      "source_catalog_mass": 125,
+      "source_federation_adjusted_base": 125,
+      "source_game_hull_catalog_not_overridden": true,
+      "status": "horwasp_inverse_only_not_generatively_validated",
+      "turn": 149,
+      "vcr_id": 2406
+    },
+    {
+      "Horwasp_Tminus1_clans_if_known": null,
+      "Tminus1_engine_id": null,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": null,
+        "participant_at_combat_site_Tminus1": null,
+        "same_origin_waypoint_generator_count": null
+      },
+      "Tminus1_owner_state_available": false,
+      "factual_vcr_mass_comparator": 650,
+      "game_id": 217591,
+      "horwasp_scenario_count": 1,
+      "hull_id": 117,
+      "inverse_is_oracle_observed_mass_dependent": true,
+      "owner_id": 12,
+      "race": 12,
+      "rulebook_numeric_candidates": [],
+      "ship_id": 253,
+      "side": "right",
+      "source_catalog_mass": 125,
+      "source_federation_adjusted_base": 125,
+      "source_game_hull_catalog_not_overridden": true,
+      "status": "horwasp_inverse_only_not_generatively_validated",
+      "turn": 149,
+      "vcr_id": 2421
+    },
+    {
+      "Horwasp_Tminus1_clans_if_known": 900,
+      "Tminus1_engine_id": 7,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 0,
+        "participant_at_combat_site_Tminus1": true,
+        "same_origin_waypoint_generator_count": 0
+      },
+      "Tminus1_owner_state_available": true,
+      "factual_vcr_mass_comparator": 290,
+      "game_id": 217591,
+      "horwasp_scenario_count": 1,
+      "hull_id": 117,
+      "inverse_is_oracle_observed_mass_dependent": true,
+      "owner_id": 12,
+      "race": 12,
+      "rulebook_numeric_candidates": [],
+      "ship_id": 517,
+      "side": "right",
+      "source_catalog_mass": 125,
+      "source_federation_adjusted_base": 125,
+      "source_game_hull_catalog_not_overridden": true,
+      "status": "horwasp_inverse_only_not_generatively_validated",
+      "turn": 149,
+      "vcr_id": 2422
+    },
+    {
+      "Horwasp_Tminus1_clans_if_known": 900,
+      "Tminus1_engine_id": 7,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 0,
+        "participant_at_combat_site_Tminus1": true,
+        "same_origin_waypoint_generator_count": 0
+      },
+      "Tminus1_owner_state_available": true,
+      "factual_vcr_mass_comparator": 290,
+      "game_id": 217591,
+      "horwasp_scenario_count": 1,
+      "hull_id": 117,
+      "inverse_is_oracle_observed_mass_dependent": true,
+      "owner_id": 12,
+      "race": 12,
+      "rulebook_numeric_candidates": [],
+      "ship_id": 517,
+      "side": "right",
+      "source_catalog_mass": 125,
+      "source_federation_adjusted_base": 125,
+      "source_game_hull_catalog_not_overridden": true,
+      "status": "horwasp_inverse_only_not_generatively_validated",
+      "turn": 149,
+      "vcr_id": 2423
+    },
+    {
+      "Horwasp_Tminus1_clans_if_known": 300,
+      "Tminus1_engine_id": 7,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 0,
+        "participant_at_combat_site_Tminus1": false,
+        "same_origin_waypoint_generator_count": 0
+      },
+      "Tminus1_owner_state_available": true,
+      "factual_vcr_mass_comparator": 748,
+      "game_id": 253449,
+      "horwasp_scenario_count": 1,
+      "hull_id": 118,
+      "inverse_is_oracle_observed_mass_dependent": true,
+      "owner_id": 12,
+      "race": 12,
+      "rulebook_numeric_candidates": [],
+      "ship_id": 447,
+      "side": "right",
+      "source_catalog_mass": 200,
+      "source_federation_adjusted_base": 200,
+      "source_game_hull_catalog_not_overridden": true,
+      "status": "horwasp_inverse_only_not_generatively_validated",
+      "turn": 44,
+      "vcr_id": 170
+    },
+    {
+      "Tminus1_engine_id": 1,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 0,
+        "participant_at_combat_site_Tminus1": false,
+        "same_origin_waypoint_generator_count": 5
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "TMINUS1_COTRAVEL_ORDER",
+      "factual_vcr_mass_comparator": 453,
+      "game_id": 310054,
+      "hull_id": 35,
+      "owner_id": 4,
+      "race": 4,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 1,
+          "generator_count_assumed": 2
+        }
+      ],
+      "ship_id": 256,
+      "side": "right",
+      "source_catalog_mass": 451,
+      "source_federation_adjusted_base": 451,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 27,
+      "vcr_id": 44
+    },
+    {
+      "Tminus1_engine_id": 1,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 3,
+        "participant_at_combat_site_Tminus1": false,
+        "same_origin_waypoint_generator_count": 3
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "TMINUS1_COTRAVEL_ORDER",
+      "factual_vcr_mass_comparator": 627,
+      "game_id": 310054,
+      "hull_id": 99,
+      "owner_id": 11,
+      "race": 11,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 1,
+          "generator_count_assumed": 2
+        }
+      ],
+      "ship_id": 111,
+      "side": "right",
+      "source_catalog_mass": 625,
+      "source_federation_adjusted_base": 625,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 87,
+      "vcr_id": 487
+    },
+    {
+      "Tminus1_engine_id": 1,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 3,
+        "participant_at_combat_site_Tminus1": false,
+        "same_origin_waypoint_generator_count": 3
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "TMINUS1_COTRAVEL_ORDER",
+      "factual_vcr_mass_comparator": 627,
+      "game_id": 310054,
+      "hull_id": 99,
+      "owner_id": 11,
+      "race": 11,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 1,
+          "generator_count_assumed": 2
+        }
+      ],
+      "ship_id": 111,
+      "side": "right",
+      "source_catalog_mass": 625,
+      "source_federation_adjusted_base": 625,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 87,
+      "vcr_id": 488
+    },
+    {
+      "Tminus1_engine_id": 1,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 3,
+        "participant_at_combat_site_Tminus1": false,
+        "same_origin_waypoint_generator_count": 3
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "TMINUS1_COTRAVEL_ORDER",
+      "factual_vcr_mass_comparator": 627,
+      "game_id": 310054,
+      "hull_id": 99,
+      "owner_id": 11,
+      "race": 11,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 1,
+          "generator_count_assumed": 2
+        }
+      ],
+      "ship_id": 15,
+      "side": "right",
+      "source_catalog_mass": 625,
+      "source_federation_adjusted_base": 625,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 87,
+      "vcr_id": 489
+    },
+    {
+      "Tminus1_engine_id": 1,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 3,
+        "participant_at_combat_site_Tminus1": false,
+        "same_origin_waypoint_generator_count": 3
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "TMINUS1_COTRAVEL_ORDER",
+      "factual_vcr_mass_comparator": 627,
+      "game_id": 310054,
+      "hull_id": 99,
+      "owner_id": 11,
+      "race": 11,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 1,
+          "generator_count_assumed": 2
+        }
+      ],
+      "ship_id": 15,
+      "side": "right",
+      "source_catalog_mass": 625,
+      "source_federation_adjusted_base": 625,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 87,
+      "vcr_id": 490
+    },
+    {
+      "Tminus1_engine_id": 1,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 3,
+        "participant_at_combat_site_Tminus1": true,
+        "same_origin_waypoint_generator_count": 1
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "TMINUS1_SITE_SUPPORT",
+      "factual_vcr_mass_comparator": 627,
+      "game_id": 310054,
+      "hull_id": 99,
+      "owner_id": 11,
+      "race": 11,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 1,
+          "generator_count_assumed": 2
+        }
+      ],
+      "ship_id": 337,
+      "side": "right",
+      "source_catalog_mass": 625,
+      "source_federation_adjusted_base": 625,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 87,
+      "vcr_id": 491
+    },
+    {
+      "Tminus1_engine_id": 1,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 3,
+        "participant_at_combat_site_Tminus1": true,
+        "same_origin_waypoint_generator_count": 1
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "TMINUS1_SITE_SUPPORT",
+      "factual_vcr_mass_comparator": 627,
+      "game_id": 310054,
+      "hull_id": 99,
+      "owner_id": 11,
+      "race": 11,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 1,
+          "generator_count_assumed": 2
+        }
+      ],
+      "ship_id": 337,
+      "side": "right",
+      "source_catalog_mass": 625,
+      "source_federation_adjusted_base": 625,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 87,
+      "vcr_id": 492
+    },
+    {
+      "Tminus1_engine_id": 1,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 3,
+        "participant_at_combat_site_Tminus1": true,
+        "same_origin_waypoint_generator_count": 1
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "TMINUS1_SITE_SUPPORT",
+      "factual_vcr_mass_comparator": 627,
+      "game_id": 310054,
+      "hull_id": 99,
+      "owner_id": 11,
+      "race": 11,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 1,
+          "generator_count_assumed": 2
+        }
+      ],
+      "ship_id": 334,
+      "side": "right",
+      "source_catalog_mass": 625,
+      "source_federation_adjusted_base": 625,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 87,
+      "vcr_id": 493
+    },
+    {
+      "Tminus1_engine_id": 1,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 3,
+        "participant_at_combat_site_Tminus1": true,
+        "same_origin_waypoint_generator_count": 1
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "TMINUS1_SITE_SUPPORT",
+      "factual_vcr_mass_comparator": 627,
+      "game_id": 310054,
+      "hull_id": 99,
+      "owner_id": 11,
+      "race": 11,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 1,
+          "generator_count_assumed": 2
+        }
+      ],
+      "ship_id": 334,
+      "side": "right",
+      "source_catalog_mass": 625,
+      "source_federation_adjusted_base": 625,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 87,
+      "vcr_id": 494
+    },
+    {
+      "Tminus1_engine_id": 1,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 3,
+        "participant_at_combat_site_Tminus1": true,
+        "same_origin_waypoint_generator_count": 1
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "TMINUS1_SITE_SUPPORT",
+      "factual_vcr_mass_comparator": 627,
+      "game_id": 310054,
+      "hull_id": 99,
+      "owner_id": 11,
+      "race": 11,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 1,
+          "generator_count_assumed": 2
+        }
+      ],
+      "ship_id": 334,
+      "side": "right",
+      "source_catalog_mass": 625,
+      "source_federation_adjusted_base": 625,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 87,
+      "vcr_id": 495
+    },
+    {
+      "Tminus1_engine_id": 6,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 2,
+        "participant_at_combat_site_Tminus1": true,
+        "same_origin_waypoint_generator_count": 2
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "TMINUS1_SITE_SUPPORT",
+      "factual_vcr_mass_comparator": 699,
+      "game_id": 325434,
+      "hull_id": 94,
+      "owner_id": 4,
+      "race": 4,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 27,
+          "generator_count_assumed": 2
+        }
+      ],
+      "ship_id": 328,
+      "side": "left",
+      "source_catalog_mass": 645,
+      "source_federation_adjusted_base": 645,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 149,
+      "vcr_id": 1058
+    },
+    {
+      "Tminus1_engine_id": 6,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 2,
+        "participant_at_combat_site_Tminus1": true,
+        "same_origin_waypoint_generator_count": 2
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "TMINUS1_SITE_SUPPORT",
+      "factual_vcr_mass_comparator": 699,
+      "game_id": 325434,
+      "hull_id": 94,
+      "owner_id": 4,
+      "race": 4,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 27,
+          "generator_count_assumed": 2
+        }
+      ],
+      "ship_id": 328,
+      "side": "left",
+      "source_catalog_mass": 645,
+      "source_federation_adjusted_base": 645,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 149,
+      "vcr_id": 1059
+    },
+    {
+      "Tminus1_engine_id": 6,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 2,
+        "participant_at_combat_site_Tminus1": true,
+        "same_origin_waypoint_generator_count": 2
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "TMINUS1_SITE_SUPPORT",
+      "factual_vcr_mass_comparator": 699,
+      "game_id": 325434,
+      "hull_id": 94,
+      "owner_id": 4,
+      "race": 4,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 27,
+          "generator_count_assumed": 2
+        }
+      ],
+      "ship_id": 328,
+      "side": "left",
+      "source_catalog_mass": 645,
+      "source_federation_adjusted_base": 645,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 149,
+      "vcr_id": 1060
+    },
+    {
+      "Tminus1_engine_id": 1,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 2,
+        "participant_at_combat_site_Tminus1": true,
+        "same_origin_waypoint_generator_count": 2
+      },
+      "Tminus1_owner_state_available": true,
+      "factual_vcr_mass_comparator": 48,
+      "game_id": 325434,
+      "historical_catalog_disagreement_KT": 50,
+      "hull_id": 1039,
+      "owner_id": 4,
+      "race": 4,
+      "reference_hull_base_mass": 46,
+      "reference_hull_source": "OFFICIAL_RACESHEETPLUS_D19C",
+      "requires_catalog_provenance_audit": true,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 1,
+          "generator_count_assumed": 2
+        }
+      ],
+      "ship_id": 274,
+      "side": "left",
+      "source_catalog_mass": 96,
+      "source_federation_adjusted_base": 96,
+      "status": "reference_hull_catalog_conflict_numeric_match_not_proven",
+      "turn": 149,
+      "vcr_id": 1075
+    },
+    {
+      "Tminus1_engine_id": 1,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 2,
+        "participant_at_combat_site_Tminus1": true,
+        "same_origin_waypoint_generator_count": 2
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "TMINUS1_SITE_SUPPORT",
+      "factual_vcr_mass_comparator": 175,
+      "game_id": 325434,
+      "hull_id": 1041,
+      "owner_id": 7,
+      "race": 7,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 1,
+          "generator_count_assumed": 2
+        }
+      ],
+      "ship_id": 228,
+      "side": "right",
+      "source_catalog_mass": 173,
+      "source_federation_adjusted_base": 173,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 192,
+      "vcr_id": 1361
+    },
+    {
+      "Tminus1_engine_id": 1,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 2,
+        "participant_at_combat_site_Tminus1": true,
+        "same_origin_waypoint_generator_count": 2
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "TMINUS1_SITE_SUPPORT",
+      "factual_vcr_mass_comparator": 174,
+      "game_id": 325434,
+      "hull_id": 1041,
+      "owner_id": 7,
+      "race": 7,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 1,
+          "generator_count_assumed": 1
+        }
+      ],
+      "ship_id": 48,
+      "side": "left",
+      "source_catalog_mass": 173,
+      "source_federation_adjusted_base": 173,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 192,
+      "vcr_id": 1362
+    },
+    {
+      "Tminus1_engine_id": 1,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 0,
+        "participant_at_combat_site_Tminus1": false,
+        "same_origin_waypoint_generator_count": 0
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "NO_TMINUS1_SITE_OR_COTRAVEL",
+      "factual_vcr_mass_comparator": 453,
+      "game_id": 341336,
+      "hull_id": 35,
+      "owner_id": 3,
+      "race": 4,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 1,
+          "generator_count_assumed": 2
+        }
+      ],
+      "ship_id": 369,
+      "side": "right",
+      "source_catalog_mass": 451,
+      "source_federation_adjusted_base": 451,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 75,
+      "vcr_id": 339
+    },
+    {
+      "Tminus1_engine_id": 5,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 0,
+        "participant_at_combat_site_Tminus1": false,
+        "same_origin_waypoint_generator_count": 1
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "TMINUS1_COTRAVEL_ORDER",
+      "factual_vcr_mass_comparator": 91,
+      "game_id": 341336,
+      "hull_id": 1065,
+      "owner_id": 5,
+      "race": 4,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 13,
+          "generator_count_assumed": 2
+        }
+      ],
+      "ship_id": 122,
+      "side": "left",
+      "source_catalog_mass": 65,
+      "source_federation_adjusted_base": 65,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 75,
+      "vcr_id": 346
+    },
+    {
+      "Tminus1_engine_id": 5,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 0,
+        "participant_at_combat_site_Tminus1": false,
+        "same_origin_waypoint_generator_count": 1
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "TMINUS1_COTRAVEL_ORDER",
+      "factual_vcr_mass_comparator": 91,
+      "game_id": 341336,
+      "hull_id": 1065,
+      "owner_id": 5,
+      "race": 4,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 13,
+          "generator_count_assumed": 2
+        }
+      ],
+      "ship_id": 122,
+      "side": "right",
+      "source_catalog_mass": 65,
+      "source_federation_adjusted_base": 65,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 75,
+      "vcr_id": 347
+    },
+    {
+      "Tminus1_engine_id": 5,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 0,
+        "participant_at_combat_site_Tminus1": false,
+        "same_origin_waypoint_generator_count": 1
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "TMINUS1_COTRAVEL_ORDER",
+      "factual_vcr_mass_comparator": 91,
+      "game_id": 341336,
+      "hull_id": 1065,
+      "owner_id": 5,
+      "race": 4,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 13,
+          "generator_count_assumed": 2
+        }
+      ],
+      "ship_id": 122,
+      "side": "left",
+      "source_catalog_mass": 65,
+      "source_federation_adjusted_base": 65,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 75,
+      "vcr_id": 348
+    },
+    {
+      "Tminus1_engine_id": 5,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 0,
+        "participant_at_combat_site_Tminus1": false,
+        "same_origin_waypoint_generator_count": 1
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "TMINUS1_COTRAVEL_ORDER",
+      "factual_vcr_mass_comparator": 91,
+      "game_id": 341336,
+      "hull_id": 1065,
+      "owner_id": 5,
+      "race": 4,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 13,
+          "generator_count_assumed": 2
+        }
+      ],
+      "ship_id": 122,
+      "side": "right",
+      "source_catalog_mass": 65,
+      "source_federation_adjusted_base": 65,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 75,
+      "vcr_id": 349
+    },
+    {
+      "Tminus1_engine_id": 1,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 2,
+        "participant_at_combat_site_Tminus1": true,
+        "same_origin_waypoint_generator_count": 2
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "TMINUS1_SITE_SUPPORT",
+      "factual_vcr_mass_comparator": 962,
+      "game_id": 341336,
+      "hull_id": 53,
+      "owner_id": 3,
+      "race": 4,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 1,
+          "generator_count_assumed": 2
+        }
+      ],
+      "ship_id": 196,
+      "side": "right",
+      "source_catalog_mass": 960,
+      "source_federation_adjusted_base": 960,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 75,
+      "vcr_id": 351
+    },
+    {
+      "Tminus1_engine_id": 1,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 2,
+        "participant_at_combat_site_Tminus1": true,
+        "same_origin_waypoint_generator_count": 2
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "TMINUS1_SITE_SUPPORT",
+      "factual_vcr_mass_comparator": 1322,
+      "game_id": 341336,
+      "hull_id": 53,
+      "owner_id": 3,
+      "race": 4,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 360,
+          "documented_bonus_per_generator": 1,
+          "generator_count_assumed": 2
+        }
+      ],
+      "ship_id": 196,
+      "side": "right",
+      "source_catalog_mass": 960,
+      "source_federation_adjusted_base": 960,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 75,
+      "vcr_id": 352
+    },
+    {
+      "Tminus1_engine_id": 1,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 2,
+        "participant_at_combat_site_Tminus1": true,
+        "same_origin_waypoint_generator_count": 2
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "TMINUS1_SITE_SUPPORT",
+      "factual_vcr_mass_comparator": 453,
+      "game_id": 341336,
+      "hull_id": 35,
+      "owner_id": 3,
+      "race": 4,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 1,
+          "generator_count_assumed": 2
+        }
+      ],
+      "ship_id": 426,
+      "side": "right",
+      "source_catalog_mass": 451,
+      "source_federation_adjusted_base": 451,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 75,
+      "vcr_id": 353
+    },
+    {
+      "Tminus1_engine_id": 1,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 2,
+        "participant_at_combat_site_Tminus1": true,
+        "same_origin_waypoint_generator_count": 2
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "TMINUS1_SITE_SUPPORT",
+      "factual_vcr_mass_comparator": 453,
+      "game_id": 341336,
+      "hull_id": 35,
+      "owner_id": 3,
+      "race": 4,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 1,
+          "generator_count_assumed": 2
+        }
+      ],
+      "ship_id": 426,
+      "side": "right",
+      "source_catalog_mass": 451,
+      "source_federation_adjusted_base": 451,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 75,
+      "vcr_id": 354
+    },
+    {
+      "Tminus1_engine_id": 1,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 0,
+        "participant_at_combat_site_Tminus1": false,
+        "same_origin_waypoint_generator_count": 0
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "NO_TMINUS1_SITE_OR_COTRAVEL",
+      "factual_vcr_mass_comparator": 174,
+      "game_id": 341336,
+      "hull_id": 1041,
+      "owner_id": 5,
+      "race": 4,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 1,
+          "generator_count_assumed": 1
+        }
+      ],
+      "ship_id": 252,
+      "side": "left",
+      "source_catalog_mass": 173,
+      "source_federation_adjusted_base": 173,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 75,
+      "vcr_id": 356
+    },
+    {
+      "Tminus1_engine_id": 1,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 2,
+        "participant_at_combat_site_Tminus1": true,
+        "same_origin_waypoint_generator_count": 2
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "TMINUS1_SITE_SUPPORT",
+      "factual_vcr_mass_comparator": 921,
+      "game_id": 347236,
+      "hull_id": 105,
+      "owner_id": 4,
+      "race": 4,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 1,
+          "generator_count_assumed": 1
+        }
+      ],
+      "ship_id": 207,
+      "side": "left",
+      "source_catalog_mass": 920,
+      "source_federation_adjusted_base": 920,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 115,
+      "vcr_id": 1264
+    },
+    {
+      "Tminus1_engine_id": 1,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 2,
+        "participant_at_combat_site_Tminus1": true,
+        "same_origin_waypoint_generator_count": 2
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "TMINUS1_SITE_SUPPORT",
+      "factual_vcr_mass_comparator": 922,
+      "game_id": 347236,
+      "hull_id": 105,
+      "owner_id": 4,
+      "race": 4,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 1,
+          "generator_count_assumed": 2
+        }
+      ],
+      "ship_id": 231,
+      "side": "left",
+      "source_catalog_mass": 920,
+      "source_federation_adjusted_base": 920,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 136,
+      "vcr_id": 2035
+    },
+    {
+      "Tminus1_engine_id": 1,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 2,
+        "participant_at_combat_site_Tminus1": true,
+        "same_origin_waypoint_generator_count": 2
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "TMINUS1_SITE_SUPPORT",
+      "factual_vcr_mass_comparator": 922,
+      "game_id": 347236,
+      "hull_id": 105,
+      "owner_id": 4,
+      "race": 4,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 1,
+          "generator_count_assumed": 2
+        }
+      ],
+      "ship_id": 231,
+      "side": "left",
+      "source_catalog_mass": 920,
+      "source_federation_adjusted_base": 920,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 136,
+      "vcr_id": 2036
+    },
+    {
+      "Tminus1_engine_id": 1,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 0,
+        "participant_at_combat_site_Tminus1": false,
+        "same_origin_waypoint_generator_count": 1
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "TMINUS1_COTRAVEL_ORDER",
+      "factual_vcr_mass_comparator": 174,
+      "game_id": 350094,
+      "hull_id": 1041,
+      "owner_id": 21,
+      "race": 4,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 1,
+          "generator_count_assumed": 1
+        }
+      ],
+      "ship_id": 413,
+      "side": "right",
+      "source_catalog_mass": 173,
+      "source_federation_adjusted_base": 173,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 64,
+      "vcr_id": 538
+    },
+    {
+      "Horwasp_Tminus1_clans_if_known": 291,
+      "Tminus1_engine_id": 7,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 0,
+        "participant_at_combat_site_Tminus1": false,
+        "same_origin_waypoint_generator_count": 0
+      },
+      "Tminus1_owner_state_available": true,
+      "factual_vcr_mass_comparator": 507,
+      "game_id": 368767,
+      "horwasp_scenario_count": 1,
+      "hull_id": 210,
+      "inverse_is_oracle_observed_mass_dependent": true,
+      "owner_id": 30,
+      "race": 12,
+      "rulebook_numeric_candidates": [],
+      "ship_id": 1132,
+      "side": "right",
+      "source_catalog_mass": 75,
+      "source_federation_adjusted_base": 75,
+      "source_game_hull_catalog_not_overridden": true,
+      "status": "horwasp_inverse_only_not_generatively_validated",
+      "turn": 80,
+      "vcr_id": 1832
+    },
+    {
+      "Horwasp_Tminus1_clans_if_known": 300,
+      "Tminus1_engine_id": 7,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 0,
+        "participant_at_combat_site_Tminus1": false,
+        "same_origin_waypoint_generator_count": 0
+      },
+      "Tminus1_owner_state_available": true,
+      "factual_vcr_mass_comparator": 678,
+      "game_id": 411645,
+      "horwasp_scenario_count": 1,
+      "hull_id": 118,
+      "inverse_is_oracle_observed_mass_dependent": true,
+      "owner_id": 12,
+      "race": 12,
+      "rulebook_numeric_candidates": [],
+      "ship_id": 363,
+      "side": "right",
+      "source_catalog_mass": 200,
+      "source_federation_adjusted_base": 200,
+      "source_game_hull_catalog_not_overridden": true,
+      "status": "horwasp_inverse_only_not_generatively_validated",
+      "turn": 40,
+      "vcr_id": 214
+    },
+    {
+      "Horwasp_Tminus1_clans_if_known": 23000,
+      "Tminus1_engine_id": 7,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 0,
+        "participant_at_combat_site_Tminus1": true,
+        "same_origin_waypoint_generator_count": 0
+      },
+      "Tminus1_owner_state_available": true,
+      "factual_vcr_mass_comparator": 1290,
+      "game_id": 411645,
+      "horwasp_scenario_count": 1,
+      "hull_id": 115,
+      "inverse_is_oracle_observed_mass_dependent": true,
+      "owner_id": 12,
+      "race": 12,
+      "rulebook_numeric_candidates": [],
+      "ship_id": 631,
+      "side": "right",
+      "source_catalog_mass": 475,
+      "source_federation_adjusted_base": 475,
+      "source_game_hull_catalog_not_overridden": true,
+      "status": "horwasp_inverse_only_not_generatively_validated",
+      "turn": 225,
+      "vcr_id": 3159
+    },
+    {
+      "Tminus1_engine_id": 1,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 2,
+        "participant_at_combat_site_Tminus1": false,
+        "same_origin_waypoint_generator_count": 1
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "TMINUS1_COTRAVEL_ORDER",
+      "factual_vcr_mass_comparator": 637,
+      "game_id": 441148,
+      "hull_id": 37,
+      "owner_id": 22,
+      "race": 4,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 360,
+          "documented_bonus_per_generator": 1,
+          "generator_count_assumed": 2
+        }
+      ],
+      "ship_id": 240,
+      "side": "right",
+      "source_catalog_mass": 275,
+      "source_federation_adjusted_base": 275,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 176,
+      "vcr_id": 3999
+    },
+    {
+      "Tminus1_engine_id": 5,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 1,
+        "participant_at_combat_site_Tminus1": false,
+        "same_origin_waypoint_generator_count": 0
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "NO_TMINUS1_SITE_OR_COTRAVEL",
+      "factual_vcr_mass_comparator": 464,
+      "game_id": 441148,
+      "hull_id": 35,
+      "owner_id": 22,
+      "race": 4,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 13,
+          "generator_count_assumed": 1
+        }
+      ],
+      "ship_id": 382,
+      "side": "left",
+      "source_catalog_mass": 451,
+      "source_federation_adjusted_base": 451,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 236,
+      "vcr_id": 6429
+    },
+    {
+      "Tminus1_engine_id": 5,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 1,
+        "participant_at_combat_site_Tminus1": false,
+        "same_origin_waypoint_generator_count": 0
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "NO_TMINUS1_SITE_OR_COTRAVEL",
+      "factual_vcr_mass_comparator": 464,
+      "game_id": 441148,
+      "hull_id": 35,
+      "owner_id": 22,
+      "race": 4,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 13,
+          "generator_count_assumed": 1
+        }
+      ],
+      "ship_id": 382,
+      "side": "left",
+      "source_catalog_mass": 451,
+      "source_federation_adjusted_base": 451,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 236,
+      "vcr_id": 6430
+    },
+    {
+      "Tminus1_engine_id": 5,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 1,
+        "participant_at_combat_site_Tminus1": false,
+        "same_origin_waypoint_generator_count": 0
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "NO_TMINUS1_SITE_OR_COTRAVEL",
+      "factual_vcr_mass_comparator": 464,
+      "game_id": 441148,
+      "hull_id": 35,
+      "owner_id": 22,
+      "race": 4,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 13,
+          "generator_count_assumed": 1
+        }
+      ],
+      "ship_id": 382,
+      "side": "left",
+      "source_catalog_mass": 451,
+      "source_federation_adjusted_base": 451,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 236,
+      "vcr_id": 6431
+    },
+    {
+      "Tminus1_engine_id": 5,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 1,
+        "participant_at_combat_site_Tminus1": false,
+        "same_origin_waypoint_generator_count": 0
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "NO_TMINUS1_SITE_OR_COTRAVEL",
+      "factual_vcr_mass_comparator": 464,
+      "game_id": 441148,
+      "hull_id": 35,
+      "owner_id": 22,
+      "race": 4,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 13,
+          "generator_count_assumed": 1
+        }
+      ],
+      "ship_id": 382,
+      "side": "left",
+      "source_catalog_mass": 451,
+      "source_federation_adjusted_base": 451,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 236,
+      "vcr_id": 6432
+    },
+    {
+      "Tminus1_engine_id": 5,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 1,
+        "participant_at_combat_site_Tminus1": false,
+        "same_origin_waypoint_generator_count": 0
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "NO_TMINUS1_SITE_OR_COTRAVEL",
+      "factual_vcr_mass_comparator": 464,
+      "game_id": 441148,
+      "hull_id": 35,
+      "owner_id": 22,
+      "race": 4,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 13,
+          "generator_count_assumed": 1
+        }
+      ],
+      "ship_id": 382,
+      "side": "left",
+      "source_catalog_mass": 451,
+      "source_federation_adjusted_base": 451,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 236,
+      "vcr_id": 6433
+    },
+    {
+      "Tminus1_engine_id": 5,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 1,
+        "participant_at_combat_site_Tminus1": false,
+        "same_origin_waypoint_generator_count": 0
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "NO_TMINUS1_SITE_OR_COTRAVEL",
+      "factual_vcr_mass_comparator": 464,
+      "game_id": 441148,
+      "hull_id": 35,
+      "owner_id": 22,
+      "race": 4,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 13,
+          "generator_count_assumed": 1
+        }
+      ],
+      "ship_id": 382,
+      "side": "left",
+      "source_catalog_mass": 451,
+      "source_federation_adjusted_base": 451,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 236,
+      "vcr_id": 6434
+    },
+    {
+      "Tminus1_engine_id": 5,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 1,
+        "participant_at_combat_site_Tminus1": false,
+        "same_origin_waypoint_generator_count": 0
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "NO_TMINUS1_SITE_OR_COTRAVEL",
+      "factual_vcr_mass_comparator": 464,
+      "game_id": 441148,
+      "hull_id": 35,
+      "owner_id": 22,
+      "race": 4,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 13,
+          "generator_count_assumed": 1
+        }
+      ],
+      "ship_id": 382,
+      "side": "left",
+      "source_catalog_mass": 451,
+      "source_federation_adjusted_base": 451,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 236,
+      "vcr_id": 6435
+    },
+    {
+      "Tminus1_engine_id": 5,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 1,
+        "participant_at_combat_site_Tminus1": false,
+        "same_origin_waypoint_generator_count": 0
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "NO_TMINUS1_SITE_OR_COTRAVEL",
+      "factual_vcr_mass_comparator": 464,
+      "game_id": 441148,
+      "hull_id": 35,
+      "owner_id": 22,
+      "race": 4,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 13,
+          "generator_count_assumed": 1
+        }
+      ],
+      "ship_id": 382,
+      "side": "left",
+      "source_catalog_mass": 451,
+      "source_federation_adjusted_base": 451,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 236,
+      "vcr_id": 6436
+    },
+    {
+      "Tminus1_engine_id": 1,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 1,
+        "participant_at_combat_site_Tminus1": true,
+        "same_origin_waypoint_generator_count": 1
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "TMINUS1_SITE_SUPPORT",
+      "factual_vcr_mass_comparator": 174,
+      "game_id": 563278,
+      "hull_id": 1041,
+      "owner_id": 5,
+      "race": 4,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 1,
+          "generator_count_assumed": 1
+        }
+      ],
+      "ship_id": 1,
+      "side": "left",
+      "source_catalog_mass": 173,
+      "source_federation_adjusted_base": 173,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 187,
+      "vcr_id": 1815
+    },
+    {
+      "Tminus1_engine_id": 1,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 1,
+        "participant_at_combat_site_Tminus1": true,
+        "same_origin_waypoint_generator_count": 1
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "TMINUS1_SITE_SUPPORT",
+      "factual_vcr_mass_comparator": 174,
+      "game_id": 563278,
+      "hull_id": 1041,
+      "owner_id": 5,
+      "race": 4,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 1,
+          "generator_count_assumed": 1
+        }
+      ],
+      "ship_id": 1,
+      "side": "left",
+      "source_catalog_mass": 173,
+      "source_federation_adjusted_base": 173,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 187,
+      "vcr_id": 1816
+    },
+    {
+      "Tminus1_engine_id": 1,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 1,
+        "participant_at_combat_site_Tminus1": true,
+        "same_origin_waypoint_generator_count": 1
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "TMINUS1_SITE_SUPPORT",
+      "factual_vcr_mass_comparator": 452,
+      "game_id": 617883,
+      "hull_id": 35,
+      "owner_id": 4,
+      "race": 4,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 1,
+          "generator_count_assumed": 1
+        }
+      ],
+      "ship_id": 253,
+      "side": "left",
+      "source_catalog_mass": 451,
+      "source_federation_adjusted_base": 451,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 201,
+      "vcr_id": 1016
+    },
+    {
+      "Tminus1_engine_id": null,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": null,
+        "participant_at_combat_site_Tminus1": null,
+        "same_origin_waypoint_generator_count": null
+      },
+      "Tminus1_owner_state_available": false,
+      "factual_vcr_mass_comparator": 795,
+      "game_id": 617883,
+      "hull_id": 94,
+      "open_reason": "NO_OWNER_TMINUS1_SHIP",
+      "owner_id": 4,
+      "race": 4,
+      "rulebook_numeric_candidates": [],
+      "ship_id": 27,
+      "side": "left",
+      "source_catalog_mass": 645,
+      "source_federation_adjusted_base": 645,
+      "status": "open_missing_owner_or_other_mechanism",
+      "turn": 201,
+      "vcr_id": 1017
+    },
+    {
+      "Tminus1_engine_id": 1,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 1,
+        "participant_at_combat_site_Tminus1": true,
+        "same_origin_waypoint_generator_count": 1
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "TMINUS1_SITE_SUPPORT",
+      "factual_vcr_mass_comparator": 452,
+      "game_id": 617883,
+      "hull_id": 35,
+      "owner_id": 4,
+      "race": 4,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 1,
+          "generator_count_assumed": 1
+        }
+      ],
+      "ship_id": 253,
+      "side": "left",
+      "source_catalog_mass": 451,
+      "source_federation_adjusted_base": 451,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 201,
+      "vcr_id": 1018
+    },
+    {
+      "Tminus1_engine_id": 1,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 1,
+        "participant_at_combat_site_Tminus1": true,
+        "same_origin_waypoint_generator_count": 1
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "TMINUS1_SITE_SUPPORT",
+      "factual_vcr_mass_comparator": 921,
+      "game_id": 617883,
+      "hull_id": 105,
+      "owner_id": 4,
+      "race": 4,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 1,
+          "generator_count_assumed": 1
+        }
+      ],
+      "ship_id": 289,
+      "side": "left",
+      "source_catalog_mass": 920,
+      "source_federation_adjusted_base": 920,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 201,
+      "vcr_id": 1019
+    },
+    {
+      "Tminus1_engine_id": 1,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 1,
+        "participant_at_combat_site_Tminus1": true,
+        "same_origin_waypoint_generator_count": 1
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "TMINUS1_SITE_SUPPORT",
+      "factual_vcr_mass_comparator": 31,
+      "game_id": 617883,
+      "hull_id": 51,
+      "owner_id": 4,
+      "race": 4,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 1,
+          "generator_count_assumed": 1
+        }
+      ],
+      "ship_id": 78,
+      "side": "left",
+      "source_catalog_mass": 30,
+      "source_federation_adjusted_base": 30,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 201,
+      "vcr_id": 1025
+    },
+    {
+      "Tminus1_engine_id": 1,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 1,
+        "participant_at_combat_site_Tminus1": true,
+        "same_origin_waypoint_generator_count": 1
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "TMINUS1_SITE_SUPPORT",
+      "factual_vcr_mass_comparator": 66,
+      "game_id": 653272,
+      "hull_id": 1065,
+      "owner_id": 4,
+      "race": 4,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 1,
+          "generator_count_assumed": 1
+        }
+      ],
+      "ship_id": 488,
+      "side": "right",
+      "source_catalog_mass": 65,
+      "source_federation_adjusted_base": 65,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 132,
+      "vcr_id": 1754
+    },
+    {
+      "Tminus1_engine_id": 1,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 1,
+        "participant_at_combat_site_Tminus1": true,
+        "same_origin_waypoint_generator_count": 1
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "TMINUS1_SITE_SUPPORT",
+      "factual_vcr_mass_comparator": 66,
+      "game_id": 653272,
+      "hull_id": 1065,
+      "owner_id": 4,
+      "race": 4,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 1,
+          "generator_count_assumed": 1
+        }
+      ],
+      "ship_id": 488,
+      "side": "left",
+      "source_catalog_mass": 65,
+      "source_federation_adjusted_base": 65,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 132,
+      "vcr_id": 1755
+    },
+    {
+      "Tminus1_engine_id": 1,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 1,
+        "participant_at_combat_site_Tminus1": true,
+        "same_origin_waypoint_generator_count": 1
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "TMINUS1_SITE_SUPPORT",
+      "factual_vcr_mass_comparator": 66,
+      "game_id": 653272,
+      "hull_id": 1065,
+      "owner_id": 4,
+      "race": 4,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 1,
+          "generator_count_assumed": 1
+        }
+      ],
+      "ship_id": 488,
+      "side": "right",
+      "source_catalog_mass": 65,
+      "source_federation_adjusted_base": 65,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 132,
+      "vcr_id": 1756
+    },
+    {
+      "Tminus1_engine_id": 1,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 1,
+        "participant_at_combat_site_Tminus1": true,
+        "same_origin_waypoint_generator_count": 1
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "TMINUS1_SITE_SUPPORT",
+      "factual_vcr_mass_comparator": 66,
+      "game_id": 653272,
+      "hull_id": 1065,
+      "owner_id": 4,
+      "race": 4,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 0,
+          "documented_bonus_per_generator": 1,
+          "generator_count_assumed": 1
+        }
+      ],
+      "ship_id": 488,
+      "side": "left",
+      "source_catalog_mass": 65,
+      "source_federation_adjusted_base": 65,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 132,
+      "vcr_id": 1757
+    },
+    {
+      "Tminus1_engine_id": 1,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 1,
+        "participant_at_combat_site_Tminus1": true,
+        "same_origin_waypoint_generator_count": 1
+      },
+      "Tminus1_owner_state_available": true,
+      "Tminus1_phase_label": "TMINUS1_SITE_SUPPORT",
+      "factual_vcr_mass_comparator": 812,
+      "game_id": 653272,
+      "hull_id": 63,
+      "owner_id": 4,
+      "race": 4,
+      "rulebook_numeric_candidates": [
+        {
+          "carrier_360_branch_assumed": 360,
+          "documented_bonus_per_generator": 1,
+          "generator_count_assumed": 1
+        }
+      ],
+      "ship_id": 566,
+      "side": "right",
+      "source_catalog_mass": 451,
+      "source_federation_adjusted_base": 451,
+      "status": "documented_shield_bonus_numeric_match_not_precombat_proof",
+      "turn": 132,
+      "vcr_id": 1770
+    },
+    {
+      "Horwasp_Tminus1_clans_if_known": 900,
+      "Tminus1_engine_id": 7,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 0,
+        "participant_at_combat_site_Tminus1": false,
+        "same_origin_waypoint_generator_count": 0
+      },
+      "Tminus1_owner_state_available": true,
+      "factual_vcr_mass_comparator": 640,
+      "game_id": 653272,
+      "horwasp_scenario_count": 1,
+      "hull_id": 117,
+      "inverse_is_oracle_observed_mass_dependent": true,
+      "owner_id": 13,
+      "race": 12,
+      "rulebook_numeric_candidates": [],
+      "ship_id": 284,
+      "side": "right",
+      "source_catalog_mass": 145,
+      "source_federation_adjusted_base": 145,
+      "source_game_hull_catalog_not_overridden": true,
+      "status": "horwasp_inverse_only_not_generatively_validated",
+      "turn": 159,
+      "vcr_id": 2192
+    },
+    {
+      "Horwasp_Tminus1_clans_if_known": 900,
+      "Tminus1_engine_id": 7,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 0,
+        "participant_at_combat_site_Tminus1": true,
+        "same_origin_waypoint_generator_count": 0
+      },
+      "Tminus1_owner_state_available": true,
+      "factual_vcr_mass_comparator": 646,
+      "game_id": 658427,
+      "horwasp_scenario_count": 1,
+      "hull_id": 117,
+      "inverse_is_oracle_observed_mass_dependent": true,
+      "owner_id": 30,
+      "race": 12,
+      "rulebook_numeric_candidates": [],
+      "ship_id": 97,
+      "side": "right",
+      "source_catalog_mass": 145,
+      "source_federation_adjusted_base": 145,
+      "source_game_hull_catalog_not_overridden": true,
+      "status": "horwasp_inverse_only_not_generatively_validated",
+      "turn": 73,
+      "vcr_id": 765
+    },
+    {
+      "Horwasp_Tminus1_clans_if_known": 900,
+      "Tminus1_engine_id": 7,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 0,
+        "participant_at_combat_site_Tminus1": true,
+        "same_origin_waypoint_generator_count": 0
+      },
+      "Tminus1_owner_state_available": true,
+      "factual_vcr_mass_comparator": 647,
+      "game_id": 658427,
+      "horwasp_scenario_count": 1,
+      "hull_id": 117,
+      "inverse_is_oracle_observed_mass_dependent": true,
+      "owner_id": 30,
+      "race": 12,
+      "rulebook_numeric_candidates": [],
+      "ship_id": 231,
+      "side": "right",
+      "source_catalog_mass": 145,
+      "source_federation_adjusted_base": 145,
+      "source_game_hull_catalog_not_overridden": true,
+      "status": "horwasp_inverse_only_not_generatively_validated",
+      "turn": 73,
+      "vcr_id": 768
+    },
+    {
+      "Horwasp_Tminus1_clans_if_known": null,
+      "Tminus1_engine_id": null,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": null,
+        "participant_at_combat_site_Tminus1": null,
+        "same_origin_waypoint_generator_count": null
+      },
+      "Tminus1_owner_state_available": false,
+      "factual_vcr_mass_comparator": 736,
+      "game_id": 658427,
+      "horwasp_scenario_count": 1,
+      "hull_id": 118,
+      "inverse_is_oracle_observed_mass_dependent": true,
+      "owner_id": 30,
+      "race": 12,
+      "rulebook_numeric_candidates": [],
+      "ship_id": 289,
+      "side": "right",
+      "source_catalog_mass": 200,
+      "source_federation_adjusted_base": 200,
+      "source_game_hull_catalog_not_overridden": true,
+      "status": "horwasp_inverse_only_not_generatively_validated",
+      "turn": 73,
+      "vcr_id": 784
+    },
+    {
+      "Horwasp_Tminus1_clans_if_known": 900,
+      "Tminus1_engine_id": 7,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 0,
+        "participant_at_combat_site_Tminus1": false,
+        "same_origin_waypoint_generator_count": 0
+      },
+      "Tminus1_owner_state_available": true,
+      "factual_vcr_mass_comparator": 521,
+      "game_id": 658427,
+      "horwasp_scenario_count": 1,
+      "hull_id": 117,
+      "inverse_is_oracle_observed_mass_dependent": true,
+      "owner_id": 30,
+      "race": 12,
+      "rulebook_numeric_candidates": [],
+      "ship_id": 16,
+      "side": "right",
+      "source_catalog_mass": 145,
+      "source_federation_adjusted_base": 145,
+      "source_game_hull_catalog_not_overridden": true,
+      "status": "horwasp_inverse_only_not_generatively_validated",
+      "turn": 87,
+      "vcr_id": 995
+    },
+    {
+      "Horwasp_Tminus1_clans_if_known": 700,
+      "Tminus1_engine_id": 7,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": 0,
+        "participant_at_combat_site_Tminus1": false,
+        "same_origin_waypoint_generator_count": 0
+      },
+      "Tminus1_owner_state_available": true,
+      "factual_vcr_mass_comparator": 617,
+      "game_id": 658427,
+      "horwasp_scenario_count": 1,
+      "hull_id": 117,
+      "inverse_is_oracle_observed_mass_dependent": true,
+      "owner_id": 30,
+      "race": 12,
+      "rulebook_numeric_candidates": [],
+      "ship_id": 495,
+      "side": "right",
+      "source_catalog_mass": 145,
+      "source_federation_adjusted_base": 145,
+      "source_game_hull_catalog_not_overridden": true,
+      "status": "horwasp_inverse_only_not_generatively_validated",
+      "turn": 87,
+      "vcr_id": 996
+    }
+  ],
+  "evidence_boundary": "The documented Shield Generator engine table independently supports integer bonus values, but the observed current-VCR mass is used to choose number of generators and possible +360 branch. The actual active generators, exact host phase and RNG remain unpredicted. The official D19c reference 46 disagrees with the game catalog 96: numerical agreement is NOT authorization to replace per-game static values. Horwasp clan inversions are calculated from factual VCR mass and do not reconstruct preceding damage/attrition. Counts are VCR sides, and must not be mistaken for independent ship/game sample sizes.",
+  "rulebook": {
+    "D19c_reference_hull_id": 1039,
+    "D19c_reference_mass_KT": 46,
+    "URLs": {
+      "combat_mass": "https://help.planets.nu/combat-mass",
+      "horwasp": "https://help.planets.nu/horwasp-ships",
+      "race_sheet": "https://help.planets.nu/RaceSheetPlus",
+      "shield_generator": "https://help.planets.nu/abil-shield-generator"
+    },
+    "shield_bonus_KT_by_engine_id": {
+      "1": 1,
+      "2": 1,
+      "3": 2,
+      "4": 2,
+      "5": 13,
+      "6": 27,
+      "7": 85,
+      "8": 100,
+      "9": 150
+    }
+  },
+  "schema": "planets-lab.combat-mass-rulebook-reconciliation.v2",
+  "source": {
+    "all_67_observations_reconciled": true,
+    "runtime": "runtime-logs/combat-mass-complete-residuals-v1/20261009T164712Z_614b20e04efe",
+    "source_commit": "21ed8147018449a3d1e1918dba9ed40cc70fb16f",
+    "survey_identity": "016b1dc7e762b1347a7862ba75439b0f7fed911596d7f4c2a41d69aea037a310",
+    "v1_schema": "planets-lab.combat-mass-complete-residuals.v1"
+  },
+  "status": "DOCUMENTED_ARITHMETIC_AND_SOURCE_CONFLICTS_CHECKPOINTED_NOT_HOST_PREDICTIVE",
+  "summary": {
+    "D19c_46KT_is_external_reference_NOT_replacement_of_game_catalog": true,
+    "distinct_ship_turn_groups": 40,
+    "documented_bonus_engine_breakdown": {
+      "1": 34,
+      "5": 12,
+      "6": 3
+    },
+    "factual_vcr_sides": 67,
+    "horwasp_interpolation_is_NOT_independently_validated": true,
+    "per_group": {
+      "documented_shield_bonus_numeric_match_not_precombat_proof": {
+        "distinct_games": 9,
+        "distinct_ship_turns": 24,
+        "vcr_sides": 49
+      },
+      "horwasp_inverse_only_not_generatively_validated": {
+        "distinct_games": 6,
+        "distinct_ship_turns": 13,
+        "vcr_sides": 15
+      },
+      "open_missing_owner_or_other_mechanism": {
+        "distinct_games": 1,
+        "distinct_ship_turns": 1,
+        "vcr_sides": 1
+      },
+      "reference_hull_catalog_conflict_numeric_match_not_proven": {
+        "distinct_games": 2,
+        "distinct_ship_turns": 2,
+        "vcr_sides": 2
+      }
+    },
+    "remaining_without_nonhorwasp_numeric_alternative": 1,
+    "repeated_observations": 27,
+    "rulebook_match_tminus1_phase_evidence": {
+      "NO_TMINUS1_SITE_OR_COTRAVEL": 10,
+      "TMINUS1_COTRAVEL_ORDER": 11,
+      "TMINUS1_SITE_SUPPORT": 28
+    }
+  },
+  "unresolved_cases": [
+    {
+      "Tminus1_engine_id": null,
+      "Tminus1_generator_geometry": {
+        "generator_count_at_VCR_site_Tminus1": null,
+        "participant_at_combat_site_Tminus1": null,
+        "same_origin_waypoint_generator_count": null
+      },
+      "Tminus1_owner_state_available": false,
+      "factual_vcr_mass_comparator": 795,
+      "game_id": 617883,
+      "hull_id": 94,
+      "open_reason": "NO_OWNER_TMINUS1_SHIP",
+      "owner_id": 4,
+      "race": 4,
+      "rulebook_numeric_candidates": [],
+      "ship_id": 27,
+      "side": "left",
+      "source_catalog_mass": 645,
+      "source_federation_adjusted_base": 645,
+      "status": "open_missing_owner_or_other_mechanism",
+      "turn": 201,
+      "vcr_id": 1017
+    }
+  ]
+}
