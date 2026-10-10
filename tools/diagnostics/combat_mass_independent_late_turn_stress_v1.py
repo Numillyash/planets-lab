@@ -122,7 +122,7 @@ def select_early_late_windows(
     for game, turn in pairs:
         if (
             number(game) is None or game <= 0
-            or number(turn) is None or turn <= 1
+            or number(turn) is None or turn < 1
         ):
             raise ValueError("invalid archive turn candidate metadata")
         if game not in excluded_games:
