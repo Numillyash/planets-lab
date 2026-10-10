@@ -1,0 +1,96 @@
+===== EXPERIMENTAL PRE-VCR T-1 STATIC FORECAST =====
+HEAD: 8949258559d51873d64f010f409ac47efc35b339
+DB: /root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb
+expected_sha256: 3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c
+SHA256: checked once in Python before opening corpus read-only
+[static-v1] validating published V1 reconciliation and static controls
+[static-v1] verifying pinned SHA256 for corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb
+[static-v1] SHA256 verified (27.4s); opening read-only database
+[static-v1] discovering VCR-bearing archive turns with consecutive T-1 data
+[static-v1] candidate game-turns: 13439; target distinct games: 12
+[static-v1] [1/13439] game=2466 T11: loading battle VCRs; selected=0/12
+[static-v1] [1/13439] game=2466 T11: VCRs=1 ship-ship=1 out-of-scope=0
+[static-v1] [1/13439] game=2466 T11: reconstructing T-1 snapshots
+[static-v1] [1/13439] game=2466 T11: T-1 perspectives=11; predicting hull components
+[static-v1] [1/13439] game=2466 T11: done; sides=2 statuses={'RESOLVED': 2}; completed_games=1
+[static-v1] [150/13439] game=218619 T8: loading battle VCRs; selected=1/12
+[static-v1] [150/13439] game=218619 T8: VCRs=3 ship-ship=1 out-of-scope=2
+[static-v1] [150/13439] game=218619 T8: reconstructing T-1 snapshots
+[static-v1] [150/13439] game=218619 T8: T-1 perspectives=11; predicting hull components
+[static-v1] [150/13439] game=218619 T8: done; sides=2 statuses={'RESOLVED': 2}; completed_games=2
+[static-v1] [389/13439] game=220698 T11: loading battle VCRs; selected=2/12
+[static-v1] [389/13439] game=220698 T11: VCRs=2 ship-ship=2 out-of-scope=0
+[static-v1] [389/13439] game=220698 T11: reconstructing T-1 snapshots
+[static-v1] [389/13439] game=220698 T11: T-1 perspectives=11; predicting hull components
+[static-v1] [389/13439] game=220698 T11: done; sides=4 statuses={'RESOLVED': 4}; completed_games=3
+[static-v1] [496/13439] game=221008 T6: loading battle VCRs; selected=3/12
+[static-v1] [496/13439] game=221008 T6: VCRs=1 ship-ship=0 out-of-scope=1
+[static-v1] [496/13439] game=221008 T6: no ship-vs-ship VCR; checking next eligible turn
+[static-v1] [497/13439] game=221008 T8: loading battle VCRs; selected=3/12
+[static-v1] [497/13439] game=221008 T8: VCRs=1 ship-ship=0 out-of-scope=1
+[static-v1] [497/13439] game=221008 T8: no ship-vs-ship VCR; checking next eligible turn
+[static-v1] [498/13439] game=221008 T14: loading battle VCRs; selected=3/12
+[static-v1] [498/13439] game=221008 T14: VCRs=1 ship-ship=0 out-of-scope=1
+[static-v1] [498/13439] game=221008 T14: no ship-vs-ship VCR; checking next eligible turn
+[static-v1] [499/13439] game=221008 T16: loading battle VCRs; selected=3/12
+[static-v1] [499/13439] game=221008 T16: VCRs=3 ship-ship=1 out-of-scope=2
+[static-v1] [499/13439] game=221008 T16: reconstructing T-1 snapshots
+[static-v1] [499/13439] game=221008 T16: T-1 perspectives=11; predicting hull components
+[static-v1] [499/13439] game=221008 T16: done; sides=2 statuses={'RESOLVED': 2}; completed_games=4
+[static-v1] [601/13439] game=224849 T8: loading battle VCRs; selected=4/12
+[static-v1] [601/13439] game=224849 T8: VCRs=1 ship-ship=0 out-of-scope=1
+[static-v1] [601/13439] game=224849 T8: no ship-vs-ship VCR; checking next eligible turn
+[static-v1] [602/13439] game=224849 T16: loading battle VCRs; selected=4/12
+[static-v1] [602/13439] game=224849 T16: VCRs=1 ship-ship=1 out-of-scope=0
+[static-v1] [602/13439] game=224849 T16: reconstructing T-1 snapshots
+[static-v1] [602/13439] game=224849 T16: T-1 perspectives=11; predicting hull components
+[static-v1] [602/13439] game=224849 T16: done; sides=2 statuses={'RESOLVED': 2}; completed_games=5
+[static-v1] [747/13439] game=226056 T8: loading battle VCRs; selected=5/12
+[static-v1] [747/13439] game=226056 T8: VCRs=1 ship-ship=1 out-of-scope=0
+[static-v1] [747/13439] game=226056 T8: reconstructing T-1 snapshots
+[static-v1] [747/13439] game=226056 T8: T-1 perspectives=12; predicting hull components
+[static-v1] [747/13439] game=226056 T8: done; sides=2 statuses={'RESOLVED': 2}; completed_games=6
+[static-v1] [874/13439] game=227887 T9: loading battle VCRs; selected=6/12
+[static-v1] [874/13439] game=227887 T9: VCRs=1 ship-ship=0 out-of-scope=1
+[static-v1] [874/13439] game=227887 T9: no ship-vs-ship VCR; checking next eligible turn
+[static-v1] [875/13439] game=227887 T10: loading battle VCRs; selected=6/12
+[static-v1] [875/13439] game=227887 T10: VCRs=1 ship-ship=1 out-of-scope=0
+[static-v1] [875/13439] game=227887 T10: reconstructing T-1 snapshots
+[static-v1] [875/13439] game=227887 T10: T-1 perspectives=11; predicting hull components
+[static-v1] [875/13439] game=227887 T10: done; sides=2 statuses={'RESOLVED': 2}; completed_games=7
+[static-v1] [1077/13439] game=228199 T7: loading battle VCRs; selected=7/12
+[static-v1] [1077/13439] game=228199 T7: VCRs=1 ship-ship=1 out-of-scope=0
+[static-v1] [1077/13439] game=228199 T7: reconstructing T-1 snapshots
+[static-v1] [1077/13439] game=228199 T7: T-1 perspectives=11; predicting hull components
+[static-v1] [1077/13439] game=228199 T7: done; sides=2 statuses={'RESOLVED': 2}; completed_games=8
+[static-v1] [1224/13439] game=230354 T8: loading battle VCRs; selected=8/12
+[static-v1] [1224/13439] game=230354 T8: VCRs=1 ship-ship=1 out-of-scope=0
+[static-v1] [1224/13439] game=230354 T8: reconstructing T-1 snapshots
+[static-v1] [1224/13439] game=230354 T8: T-1 perspectives=11; predicting hull components
+[static-v1] [1224/13439] game=230354 T8: done; sides=2 statuses={'RESOLVED': 2}; completed_games=9
+[static-v1] [1381/13439] game=233558 T9: loading battle VCRs; selected=9/12
+[static-v1] [1381/13439] game=233558 T9: VCRs=1 ship-ship=1 out-of-scope=0
+[static-v1] [1381/13439] game=233558 T9: reconstructing T-1 snapshots
+[static-v1] [1381/13439] game=233558 T9: T-1 perspectives=11; predicting hull components
+[static-v1] [1381/13439] game=233558 T9: done; sides=2 statuses={'RESOLVED': 2}; completed_games=10
+[static-v1] [1770/13439] game=235762 T8: loading battle VCRs; selected=10/12
+[static-v1] [1770/13439] game=235762 T8: VCRs=4 ship-ship=3 out-of-scope=1
+[static-v1] [1770/13439] game=235762 T8: reconstructing T-1 snapshots
+[static-v1] [1770/13439] game=235762 T8: T-1 perspectives=8; predicting hull components
+[static-v1] [1770/13439] game=235762 T8: done; sides=6 statuses={'RESOLVED': 6}; completed_games=11
+[static-v1] [1876/13439] game=243165 T7: loading battle VCRs; selected=11/12
+[static-v1] [1876/13439] game=243165 T7: VCRs=1 ship-ship=0 out-of-scope=1
+[static-v1] [1876/13439] game=243165 T7: no ship-vs-ship VCR; checking next eligible turn
+[static-v1] [1877/13439] game=243165 T8: loading battle VCRs; selected=11/12
+[static-v1] [1877/13439] game=243165 T8: VCRs=4 ship-ship=0 out-of-scope=4
+[static-v1] [1877/13439] game=243165 T8: no ship-vs-ship VCR; checking next eligible turn
+[static-v1] [1878/13439] game=243165 T9: loading battle VCRs; selected=11/12
+[static-v1] [1878/13439] game=243165 T9: VCRs=2 ship-ship=1 out-of-scope=1
+[static-v1] [1878/13439] game=243165 T9: reconstructing T-1 snapshots
+[static-v1] [1878/13439] game=243165 T9: T-1 perspectives=11; predicting hull components
+[static-v1] [1878/13439] game=243165 T9: done; sides=2 statuses={'RESOLVED': 2}; completed_games=12
+[static-v1] scan complete: independent games=12, skipped_no_vcr_turns=7
+===== TIME-INDEXED STATIC COMPONENT PREDICTION V1 =====
+status: EXPERIMENTAL_TMINUS1_STATIC_COMPONENT_PREDICTION_NOT_PROMOTED
+summary: {'held_out_games_with_VCRs': 12, 'held_out_vcr_sides': 30, 'out_of_scope_VCRs_seen': 16, 'in_scope_ship_VCRs': 15, 'static_resolution_statuses': {'RESOLVED': 30}, 'comparator_statuses': {'COMPARATOR_AVAILABLE': 30}, 'component_equals_full_factual_mass_count': 26, 'full_combat_mass_predictions_made': 0}
+output: artifacts/combat/mass-time-indexed-static-v1/published/report.json

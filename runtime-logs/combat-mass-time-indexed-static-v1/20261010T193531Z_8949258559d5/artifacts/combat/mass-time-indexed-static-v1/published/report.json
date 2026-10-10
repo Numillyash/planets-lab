@@ -1,0 +1,1864 @@
+{
+  "boundary": "Independently held-out games and T-1 owner/static agreement predict only the hull mass component. VCR reveals target identity and site, never predictor features or calibration of mass. Nonship/hull-invalid VCRs are recorded out of scope; owner-ID and comparator gaps abstain rather than silently reassign owners. Neither equality nor residual proves Shield Generator phase, capture, Horwasp loss or a generative NuHost combat engine. Missing/conflicting specs fail closed. No executor or canonical DB mutation.",
+  "corpus_generation": "/root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "corpus_sha256": "3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c",
+  "held_out_results": [
+    {
+      "game_id": 2466,
+      "in_scope_ship_VCR_count": 1,
+      "out_of_scope_VCR_count": 0,
+      "out_of_scope_vcrs": [],
+      "precombat_archive_member_count": 11,
+      "predictions": [
+        {
+          "evaluation": {
+            "component_equals_factual_mass": true,
+            "difference_factual_minus_component_KT": 0,
+            "factual_vcr_mass_KT": 120,
+            "interpretation": "Component-vs-total comparison only; mismatches are NOT proof of an erroneous static resolver",
+            "status": "COMPARATOR_AVAILABLE"
+          },
+          "forecast": {
+            "full_combat_mass_prediction_KT": null,
+            "full_mass_abstention": "SG activation, movement, cargo/clans, carrier RNG, and capture are not phase-independently resolved from T-1 hull catalogs",
+            "owner_perspectives_checked": 1,
+            "perspectives_checked": 11,
+            "predicted_hull_mass_KT": 120,
+            "scope": "PREDICTED_STATIC_HULL_COMPONENT_ONLY",
+            "source_archive_turn": 10,
+            "source_member_ids": [
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22
+            ],
+            "source_sha256": [
+              "1918d89c3115f2f1a7a39a60d367f986c2d87bb9b59ee78051a1cb451a0a3cb4",
+              "350c75fec4165bdd3c4249b9bb4173b7547f461edc3733a0c01e8045d5377556",
+              "44b8a8be7c2010b8181be37c1334197036b83e148084c9e7bca03c9d640762f8",
+              "49af634372745cce82843e2c7838cd78923609a4a7f9c5e540b2cd4d641b56f9",
+              "5bd439877b74b1e9de883669216bf5b28a2aab2c2cfc846138f53e6f6b457a87",
+              "a4ede88ae223bc07214fea9ddbf273e116cc8df1d13e672342f7d8fe772ace22",
+              "baa46c9a4afef3d42ffc74e7bce1dce4a20e1988e2f9379a674a28c81adfaaaf",
+              "d68c33e555bbea724042862dec444c2fc1b75e21c34c9a875db28edfa1ceb3df",
+              "d9f030d30304fd40775ac790094a013c8f067697c24d44c9171ab9498f57a93c",
+              "df41661ca3adaedcb4737c97a5b9e8e7d75b98aaa03167c7ca32a4f2bdf048bc",
+              "e04da2babd629e9a389d2d05d9c76048523e1fa058047364745b21d67942cd28"
+            ],
+            "status": "RESOLVED"
+          },
+          "game_id": 2466,
+          "side": "left",
+          "target_hull_id": 56,
+          "target_identity_from_vcr": true,
+          "target_owner_id": 6,
+          "turn": 11,
+          "vcr_id": 1
+        },
+        {
+          "evaluation": {
+            "component_equals_factual_mass": true,
+            "difference_factual_minus_component_KT": 0,
+            "factual_vcr_mass_KT": 60,
+            "interpretation": "Component-vs-total comparison only; mismatches are NOT proof of an erroneous static resolver",
+            "status": "COMPARATOR_AVAILABLE"
+          },
+          "forecast": {
+            "full_combat_mass_prediction_KT": null,
+            "full_mass_abstention": "SG activation, movement, cargo/clans, carrier RNG, and capture are not phase-independently resolved from T-1 hull catalogs",
+            "owner_perspectives_checked": 1,
+            "perspectives_checked": 11,
+            "predicted_hull_mass_KT": 60,
+            "scope": "PREDICTED_STATIC_HULL_COMPONENT_ONLY",
+            "source_archive_turn": 10,
+            "source_member_ids": [
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22
+            ],
+            "source_sha256": [
+              "1918d89c3115f2f1a7a39a60d367f986c2d87bb9b59ee78051a1cb451a0a3cb4",
+              "350c75fec4165bdd3c4249b9bb4173b7547f461edc3733a0c01e8045d5377556",
+              "44b8a8be7c2010b8181be37c1334197036b83e148084c9e7bca03c9d640762f8",
+              "49af634372745cce82843e2c7838cd78923609a4a7f9c5e540b2cd4d641b56f9",
+              "5bd439877b74b1e9de883669216bf5b28a2aab2c2cfc846138f53e6f6b457a87",
+              "a4ede88ae223bc07214fea9ddbf273e116cc8df1d13e672342f7d8fe772ace22",
+              "baa46c9a4afef3d42ffc74e7bce1dce4a20e1988e2f9379a674a28c81adfaaaf",
+              "d68c33e555bbea724042862dec444c2fc1b75e21c34c9a875db28edfa1ceb3df",
+              "d9f030d30304fd40775ac790094a013c8f067697c24d44c9171ab9498f57a93c",
+              "df41661ca3adaedcb4737c97a5b9e8e7d75b98aaa03167c7ca32a4f2bdf048bc",
+              "e04da2babd629e9a389d2d05d9c76048523e1fa058047364745b21d67942cd28"
+            ],
+            "status": "RESOLVED"
+          },
+          "game_id": 2466,
+          "side": "right",
+          "target_hull_id": 16,
+          "target_identity_from_vcr": true,
+          "target_owner_id": 10,
+          "turn": 11,
+          "vcr_id": 1
+        }
+      ],
+      "total_VCR_count": 1,
+      "turn": 11,
+      "vcr_side_count": 2
+    },
+    {
+      "game_id": 218619,
+      "in_scope_ship_VCR_count": 1,
+      "out_of_scope_VCR_count": 2,
+      "out_of_scope_vcrs": [
+        {
+          "left_hull_id": 96,
+          "right_hull_id": 0,
+          "status": "NONPOSITIVE_OR_MISSING_PARTICIPANT_HULL",
+          "vcr_id": 2
+        },
+        {
+          "left_hull_id": 60,
+          "right_hull_id": 0,
+          "status": "NONPOSITIVE_OR_MISSING_PARTICIPANT_HULL",
+          "vcr_id": 3
+        }
+      ],
+      "precombat_archive_member_count": 11,
+      "predictions": [
+        {
+          "evaluation": {
+            "component_equals_factual_mass": true,
+            "difference_factual_minus_component_KT": 0,
+            "factual_vcr_mass_KT": 30,
+            "interpretation": "Component-vs-total comparison only; mismatches are NOT proof of an erroneous static resolver",
+            "status": "COMPARATOR_AVAILABLE"
+          },
+          "forecast": {
+            "full_combat_mass_prediction_KT": null,
+            "full_mass_abstention": "SG activation, movement, cargo/clans, carrier RNG, and capture are not phase-independently resolved from T-1 hull catalogs",
+            "owner_perspectives_checked": 1,
+            "perspectives_checked": 11,
+            "predicted_hull_mass_KT": 30,
+            "scope": "PREDICTED_STATIC_HULL_COMPONENT_ONLY",
+            "source_archive_turn": 7,
+            "source_member_ids": [
+              3572,
+              3573,
+              3574,
+              3575,
+              3576,
+              3577,
+              3578,
+              3579,
+              3580,
+              3581,
+              3582
+            ],
+            "source_sha256": [
+              "020cd9c05ae5f76128cfc8ceeee1cda2a51d82422cc4dc94b81157559f658342",
+              "0ac6cbaddfbc5b7262dc256e00f2285bd1c1529207fb75d1cc6391d0497654e3",
+              "566d8a7e9fb5d13c163e6203e5cfc08530a140cf98ff5636dd9f15f7a8fb8949",
+              "7b8c3692ab9e6661b1dabfbb9afe44064bfd7e02e9aa332087c0554c6d9e4792",
+              "8f7c483455406d8f4b8505594549ef8830ef0d855e0151c96010e3c9bc966b48",
+              "ab016ce1409dd1ec221ddbe2e6cdbf43ea832e6e71d9bf3979349ca495e4d731",
+              "ac18d79f62a21f73ded85ec53408160d807dcca65aa746fc62a264ecc8d3a7c2",
+              "ba8f1cf4ea3c28b73bac302ea73488679a0101f7c228dcc9045c8b1f30607dcd",
+              "d732a01a170553e734e01eacba2fb370a4121c21c9cada961a77b227d0c038f6",
+              "da3d142b4456f7eca08bd790f1466c43c037a0d3617fccf806fa8543310aa3f0",
+              "f3e5b99f716325f24e95c92b06af0a0364b369a72e2162d8c42d94ff9a0aa86b"
+            ],
+            "status": "RESOLVED"
+          },
+          "game_id": 218619,
+          "side": "left",
+          "target_hull_id": 87,
+          "target_identity_from_vcr": true,
+          "target_owner_id": 10,
+          "turn": 8,
+          "vcr_id": 1
+        },
+        {
+          "evaluation": {
+            "component_equals_factual_mass": true,
+            "difference_factual_minus_component_KT": 0,
+            "factual_vcr_mass_KT": 120,
+            "interpretation": "Component-vs-total comparison only; mismatches are NOT proof of an erroneous static resolver",
+            "status": "COMPARATOR_AVAILABLE"
+          },
+          "forecast": {
+            "full_combat_mass_prediction_KT": null,
+            "full_mass_abstention": "SG activation, movement, cargo/clans, carrier RNG, and capture are not phase-independently resolved from T-1 hull catalogs",
+            "owner_perspectives_checked": 1,
+            "perspectives_checked": 11,
+            "predicted_hull_mass_KT": 120,
+            "scope": "PREDICTED_STATIC_HULL_COMPONENT_ONLY",
+            "source_archive_turn": 7,
+            "source_member_ids": [
+              3572,
+              3573,
+              3574,
+              3575,
+              3576,
+              3577,
+              3578,
+              3579,
+              3580,
+              3581,
+              3582
+            ],
+            "source_sha256": [
+              "020cd9c05ae5f76128cfc8ceeee1cda2a51d82422cc4dc94b81157559f658342",
+              "0ac6cbaddfbc5b7262dc256e00f2285bd1c1529207fb75d1cc6391d0497654e3",
+              "566d8a7e9fb5d13c163e6203e5cfc08530a140cf98ff5636dd9f15f7a8fb8949",
+              "7b8c3692ab9e6661b1dabfbb9afe44064bfd7e02e9aa332087c0554c6d9e4792",
+              "8f7c483455406d8f4b8505594549ef8830ef0d855e0151c96010e3c9bc966b48",
+              "ab016ce1409dd1ec221ddbe2e6cdbf43ea832e6e71d9bf3979349ca495e4d731",
+              "ac18d79f62a21f73ded85ec53408160d807dcca65aa746fc62a264ecc8d3a7c2",
+              "ba8f1cf4ea3c28b73bac302ea73488679a0101f7c228dcc9045c8b1f30607dcd",
+              "d732a01a170553e734e01eacba2fb370a4121c21c9cada961a77b227d0c038f6",
+              "da3d142b4456f7eca08bd790f1466c43c037a0d3617fccf806fa8543310aa3f0",
+              "f3e5b99f716325f24e95c92b06af0a0364b369a72e2162d8c42d94ff9a0aa86b"
+            ],
+            "status": "RESOLVED"
+          },
+          "game_id": 218619,
+          "side": "right",
+          "target_hull_id": 60,
+          "target_identity_from_vcr": true,
+          "target_owner_id": 7,
+          "turn": 8,
+          "vcr_id": 1
+        }
+      ],
+      "total_VCR_count": 3,
+      "turn": 8,
+      "vcr_side_count": 2
+    },
+    {
+      "game_id": 220698,
+      "in_scope_ship_VCR_count": 2,
+      "out_of_scope_VCR_count": 0,
+      "out_of_scope_vcrs": [],
+      "precombat_archive_member_count": 11,
+      "predictions": [
+        {
+          "evaluation": {
+            "component_equals_factual_mass": true,
+            "difference_factual_minus_component_KT": 0,
+            "factual_vcr_mass_KT": 60,
+            "interpretation": "Component-vs-total comparison only; mismatches are NOT proof of an erroneous static resolver",
+            "status": "COMPARATOR_AVAILABLE"
+          },
+          "forecast": {
+            "full_combat_mass_prediction_KT": null,
+            "full_mass_abstention": "SG activation, movement, cargo/clans, carrier RNG, and capture are not phase-independently resolved from T-1 hull catalogs",
+            "owner_perspectives_checked": 1,
+            "perspectives_checked": 11,
+            "predicted_hull_mass_KT": 60,
+            "scope": "PREDICTED_STATIC_HULL_COMPONENT_ONLY",
+            "source_archive_turn": 10,
+            "source_member_ids": [
+              6784,
+              6785,
+              6786,
+              6787,
+              6788,
+              6789,
+              6790,
+              6791,
+              6792,
+              6793,
+              6794
+            ],
+            "source_sha256": [
+              "04df0959cff35817e02f317ac659be96f54b37fd32f598cc89a1cc5f50fa12b8",
+              "0f29d62d966402c470163b838a746a53d52cab1da3edce0201df5f83b2cfc51d",
+              "3e266a70839fb32330c1022b992fb20d0d96ed55753591c8d3bc74ed44405786",
+              "42e1ae2e5e1758a03b36bd88388d99de940ee22ef4392a9c2f2cf9792dfd8b77",
+              "8a9ad57551904a70237f1c4ec167116457f6a69b0abbf0247b797fa03d253f36",
+              "b0d0981635faf08d9af6e156e4506f90362cf4820b7bcee3b66a967537508183",
+              "b3b030f0ceb93ae8671cffc29457b1e525481fa50849075a922cc6fd21b55da0",
+              "bce0e92b0bad763fa1b3a073fc34f99e281331699f295de71a893cb5ecff3fed",
+              "d6b6294706b13c4533e3dd9d4a61a14eeab949893b8a94cf57e39bab2d8451dc",
+              "ddfa61eb12e8046703f14cd87ad93dbc702d088effc5da92898b393b1617a608",
+              "f353a025d036cbe9799f1a76a5d68a5a80df0db7c12a7532b800c43215b9eb5e"
+            ],
+            "status": "RESOLVED"
+          },
+          "game_id": 220698,
+          "side": "left",
+          "target_hull_id": 16,
+          "target_identity_from_vcr": true,
+          "target_owner_id": 10,
+          "turn": 11,
+          "vcr_id": 1
+        },
+        {
+          "evaluation": {
+            "component_equals_factual_mass": true,
+            "difference_factual_minus_component_KT": 0,
+            "factual_vcr_mass_KT": 55,
+            "interpretation": "Component-vs-total comparison only; mismatches are NOT proof of an erroneous static resolver",
+            "status": "COMPARATOR_AVAILABLE"
+          },
+          "forecast": {
+            "full_combat_mass_prediction_KT": null,
+            "full_mass_abstention": "SG activation, movement, cargo/clans, carrier RNG, and capture are not phase-independently resolved from T-1 hull catalogs",
+            "owner_perspectives_checked": 1,
+            "perspectives_checked": 11,
+            "predicted_hull_mass_KT": 55,
+            "scope": "PREDICTED_STATIC_HULL_COMPONENT_ONLY",
+            "source_archive_turn": 10,
+            "source_member_ids": [
+              6784,
+              6785,
+              6786,
+              6787,
+              6788,
+              6789,
+              6790,
+              6791,
+              6792,
+              6793,
+              6794
+            ],
+            "source_sha256": [
+              "04df0959cff35817e02f317ac659be96f54b37fd32f598cc89a1cc5f50fa12b8",
+              "0f29d62d966402c470163b838a746a53d52cab1da3edce0201df5f83b2cfc51d",
+              "3e266a70839fb32330c1022b992fb20d0d96ed55753591c8d3bc74ed44405786",
+              "42e1ae2e5e1758a03b36bd88388d99de940ee22ef4392a9c2f2cf9792dfd8b77",
+              "8a9ad57551904a70237f1c4ec167116457f6a69b0abbf0247b797fa03d253f36",
+              "b0d0981635faf08d9af6e156e4506f90362cf4820b7bcee3b66a967537508183",
+              "b3b030f0ceb93ae8671cffc29457b1e525481fa50849075a922cc6fd21b55da0",
+              "bce0e92b0bad763fa1b3a073fc34f99e281331699f295de71a893cb5ecff3fed",
+              "d6b6294706b13c4533e3dd9d4a61a14eeab949893b8a94cf57e39bab2d8451dc",
+              "ddfa61eb12e8046703f14cd87ad93dbc702d088effc5da92898b393b1617a608",
+              "f353a025d036cbe9799f1a76a5d68a5a80df0db7c12a7532b800c43215b9eb5e"
+            ],
+            "status": "RESOLVED"
+          },
+          "game_id": 220698,
+          "side": "right",
+          "target_hull_id": 44,
+          "target_identity_from_vcr": true,
+          "target_owner_id": 5,
+          "turn": 11,
+          "vcr_id": 1
+        },
+        {
+          "evaluation": {
+            "component_equals_factual_mass": true,
+            "difference_factual_minus_component_KT": 0,
+            "factual_vcr_mass_KT": 30,
+            "interpretation": "Component-vs-total comparison only; mismatches are NOT proof of an erroneous static resolver",
+            "status": "COMPARATOR_AVAILABLE"
+          },
+          "forecast": {
+            "full_combat_mass_prediction_KT": null,
+            "full_mass_abstention": "SG activation, movement, cargo/clans, carrier RNG, and capture are not phase-independently resolved from T-1 hull catalogs",
+            "owner_perspectives_checked": 1,
+            "perspectives_checked": 11,
+            "predicted_hull_mass_KT": 30,
+            "scope": "PREDICTED_STATIC_HULL_COMPONENT_ONLY",
+            "source_archive_turn": 10,
+            "source_member_ids": [
+              6784,
+              6785,
+              6786,
+              6787,
+              6788,
+              6789,
+              6790,
+              6791,
+              6792,
+              6793,
+              6794
+            ],
+            "source_sha256": [
+              "04df0959cff35817e02f317ac659be96f54b37fd32f598cc89a1cc5f50fa12b8",
+              "0f29d62d966402c470163b838a746a53d52cab1da3edce0201df5f83b2cfc51d",
+              "3e266a70839fb32330c1022b992fb20d0d96ed55753591c8d3bc74ed44405786",
+              "42e1ae2e5e1758a03b36bd88388d99de940ee22ef4392a9c2f2cf9792dfd8b77",
+              "8a9ad57551904a70237f1c4ec167116457f6a69b0abbf0247b797fa03d253f36",
+              "b0d0981635faf08d9af6e156e4506f90362cf4820b7bcee3b66a967537508183",
+              "b3b030f0ceb93ae8671cffc29457b1e525481fa50849075a922cc6fd21b55da0",
+              "bce0e92b0bad763fa1b3a073fc34f99e281331699f295de71a893cb5ecff3fed",
+              "d6b6294706b13c4533e3dd9d4a61a14eeab949893b8a94cf57e39bab2d8451dc",
+              "ddfa61eb12e8046703f14cd87ad93dbc702d088effc5da92898b393b1617a608",
+              "f353a025d036cbe9799f1a76a5d68a5a80df0db7c12a7532b800c43215b9eb5e"
+            ],
+            "status": "RESOLVED"
+          },
+          "game_id": 220698,
+          "side": "left",
+          "target_hull_id": 87,
+          "target_identity_from_vcr": true,
+          "target_owner_id": 10,
+          "turn": 11,
+          "vcr_id": 2
+        },
+        {
+          "evaluation": {
+            "component_equals_factual_mass": true,
+            "difference_factual_minus_component_KT": 0,
+            "factual_vcr_mass_KT": 55,
+            "interpretation": "Component-vs-total comparison only; mismatches are NOT proof of an erroneous static resolver",
+            "status": "COMPARATOR_AVAILABLE"
+          },
+          "forecast": {
+            "full_combat_mass_prediction_KT": null,
+            "full_mass_abstention": "SG activation, movement, cargo/clans, carrier RNG, and capture are not phase-independently resolved from T-1 hull catalogs",
+            "owner_perspectives_checked": 1,
+            "perspectives_checked": 11,
+            "predicted_hull_mass_KT": 55,
+            "scope": "PREDICTED_STATIC_HULL_COMPONENT_ONLY",
+            "source_archive_turn": 10,
+            "source_member_ids": [
+              6784,
+              6785,
+              6786,
+              6787,
+              6788,
+              6789,
+              6790,
+              6791,
+              6792,
+              6793,
+              6794
+            ],
+            "source_sha256": [
+              "04df0959cff35817e02f317ac659be96f54b37fd32f598cc89a1cc5f50fa12b8",
+              "0f29d62d966402c470163b838a746a53d52cab1da3edce0201df5f83b2cfc51d",
+              "3e266a70839fb32330c1022b992fb20d0d96ed55753591c8d3bc74ed44405786",
+              "42e1ae2e5e1758a03b36bd88388d99de940ee22ef4392a9c2f2cf9792dfd8b77",
+              "8a9ad57551904a70237f1c4ec167116457f6a69b0abbf0247b797fa03d253f36",
+              "b0d0981635faf08d9af6e156e4506f90362cf4820b7bcee3b66a967537508183",
+              "b3b030f0ceb93ae8671cffc29457b1e525481fa50849075a922cc6fd21b55da0",
+              "bce0e92b0bad763fa1b3a073fc34f99e281331699f295de71a893cb5ecff3fed",
+              "d6b6294706b13c4533e3dd9d4a61a14eeab949893b8a94cf57e39bab2d8451dc",
+              "ddfa61eb12e8046703f14cd87ad93dbc702d088effc5da92898b393b1617a608",
+              "f353a025d036cbe9799f1a76a5d68a5a80df0db7c12a7532b800c43215b9eb5e"
+            ],
+            "status": "RESOLVED"
+          },
+          "game_id": 220698,
+          "side": "right",
+          "target_hull_id": 44,
+          "target_identity_from_vcr": true,
+          "target_owner_id": 5,
+          "turn": 11,
+          "vcr_id": 2
+        }
+      ],
+      "total_VCR_count": 2,
+      "turn": 11,
+      "vcr_side_count": 4
+    },
+    {
+      "game_id": 221008,
+      "in_scope_ship_VCR_count": 1,
+      "out_of_scope_VCR_count": 2,
+      "out_of_scope_vcrs": [
+        {
+          "left_hull_id": 22,
+          "right_hull_id": 0,
+          "status": "NONPOSITIVE_OR_MISSING_PARTICIPANT_HULL",
+          "vcr_id": 5
+        },
+        {
+          "left_hull_id": 51,
+          "right_hull_id": 0,
+          "status": "NONPOSITIVE_OR_MISSING_PARTICIPANT_HULL",
+          "vcr_id": 6
+        }
+      ],
+      "precombat_archive_member_count": 11,
+      "predictions": [
+        {
+          "evaluation": {
+            "component_equals_factual_mass": true,
+            "difference_factual_minus_component_KT": 0,
+            "factual_vcr_mass_KT": 30,
+            "interpretation": "Component-vs-total comparison only; mismatches are NOT proof of an erroneous static resolver",
+            "status": "COMPARATOR_AVAILABLE"
+          },
+          "forecast": {
+            "full_combat_mass_prediction_KT": null,
+            "full_mass_abstention": "SG activation, movement, cargo/clans, carrier RNG, and capture are not phase-independently resolved from T-1 hull catalogs",
+            "owner_perspectives_checked": 1,
+            "perspectives_checked": 11,
+            "predicted_hull_mass_KT": 30,
+            "scope": "PREDICTED_STATIC_HULL_COMPONENT_ONLY",
+            "source_archive_turn": 15,
+            "source_member_ids": [
+              8225,
+              8226,
+              8227,
+              8228,
+              8229,
+              8230,
+              8231,
+              8232,
+              8233,
+              8234,
+              8235
+            ],
+            "source_sha256": [
+              "2400668fb22e8a09ed6e3a1f8d91ab130f4343b3ae535bc1e141e5e3c3048371",
+              "3174e1b13fb55810873ff706b204d801727155854c6e4f42aa9adc149f1ae420",
+              "35f91ca80f84f7b330d67a6fff7d99059b6da7a5dbc98fbf909feccbf2f299d5",
+              "36b6941281e30913e6646d2f5460952af2526dc6a97bb767141dbd2d423d3e08",
+              "3df36f038e8de0822e826d77bc57f51e9d476081066dcbc0da0d797f49a2a30c",
+              "3f2f0e24c690fd085983fef91d74d7f0343268a5f57d4f25aa6969923f0a3c53",
+              "46aed9dea3e3407484ad70bbc7b09a57bb0b534b876a208519b0ff8706e5e399",
+              "5666b7bc51888f8be6024d3bdbd86ebdb4b92582a6bdaba3c1132eee91554752",
+              "c67ecfdeea6bfda38f5e15d4c99fc9d395e37e4d5725a19cad22473c1377f218",
+              "ca4eb6ad0c9cb2b461f6bea0adbe1ce98dd560b2a353219ee7bb8b21d69fd7a4",
+              "d0589cc3aae96d6d14fb92ec78053171228b4bfcdee21fb79161aeb39bdec9b2"
+            ],
+            "status": "RESOLVED"
+          },
+          "game_id": 221008,
+          "side": "left",
+          "target_hull_id": 51,
+          "target_identity_from_vcr": true,
+          "target_owner_id": 6,
+          "turn": 16,
+          "vcr_id": 4
+        },
+        {
+          "evaluation": {
+            "component_equals_factual_mass": true,
+            "difference_factual_minus_component_KT": 0,
+            "factual_vcr_mass_KT": 160,
+            "interpretation": "Component-vs-total comparison only; mismatches are NOT proof of an erroneous static resolver",
+            "status": "COMPARATOR_AVAILABLE"
+          },
+          "forecast": {
+            "full_combat_mass_prediction_KT": null,
+            "full_mass_abstention": "SG activation, movement, cargo/clans, carrier RNG, and capture are not phase-independently resolved from T-1 hull catalogs",
+            "owner_perspectives_checked": 1,
+            "perspectives_checked": 11,
+            "predicted_hull_mass_KT": 160,
+            "scope": "PREDICTED_STATIC_HULL_COMPONENT_ONLY",
+            "source_archive_turn": 15,
+            "source_member_ids": [
+              8225,
+              8226,
+              8227,
+              8228,
+              8229,
+              8230,
+              8231,
+              8232,
+              8233,
+              8234,
+              8235
+            ],
+            "source_sha256": [
+              "2400668fb22e8a09ed6e3a1f8d91ab130f4343b3ae535bc1e141e5e3c3048371",
+              "3174e1b13fb55810873ff706b204d801727155854c6e4f42aa9adc149f1ae420",
+              "35f91ca80f84f7b330d67a6fff7d99059b6da7a5dbc98fbf909feccbf2f299d5",
+              "36b6941281e30913e6646d2f5460952af2526dc6a97bb767141dbd2d423d3e08",
+              "3df36f038e8de0822e826d77bc57f51e9d476081066dcbc0da0d797f49a2a30c",
+              "3f2f0e24c690fd085983fef91d74d7f0343268a5f57d4f25aa6969923f0a3c53",
+              "46aed9dea3e3407484ad70bbc7b09a57bb0b534b876a208519b0ff8706e5e399",
+              "5666b7bc51888f8be6024d3bdbd86ebdb4b92582a6bdaba3c1132eee91554752",
+              "c67ecfdeea6bfda38f5e15d4c99fc9d395e37e4d5725a19cad22473c1377f218",
+              "ca4eb6ad0c9cb2b461f6bea0adbe1ce98dd560b2a353219ee7bb8b21d69fd7a4",
+              "d0589cc3aae96d6d14fb92ec78053171228b4bfcdee21fb79161aeb39bdec9b2"
+            ],
+            "status": "RESOLVED"
+          },
+          "game_id": 221008,
+          "side": "right",
+          "target_hull_id": 22,
+          "target_identity_from_vcr": true,
+          "target_owner_id": 2,
+          "turn": 16,
+          "vcr_id": 4
+        }
+      ],
+      "total_VCR_count": 3,
+      "turn": 16,
+      "vcr_side_count": 2
+    },
+    {
+      "game_id": 224849,
+      "in_scope_ship_VCR_count": 1,
+      "out_of_scope_VCR_count": 0,
+      "out_of_scope_vcrs": [],
+      "precombat_archive_member_count": 11,
+      "predictions": [
+        {
+          "evaluation": {
+            "component_equals_factual_mass": true,
+            "difference_factual_minus_component_KT": 0,
+            "factual_vcr_mass_KT": 90,
+            "interpretation": "Component-vs-total comparison only; mismatches are NOT proof of an erroneous static resolver",
+            "status": "COMPARATOR_AVAILABLE"
+          },
+          "forecast": {
+            "full_combat_mass_prediction_KT": null,
+            "full_mass_abstention": "SG activation, movement, cargo/clans, carrier RNG, and capture are not phase-independently resolved from T-1 hull catalogs",
+            "owner_perspectives_checked": 1,
+            "perspectives_checked": 11,
+            "predicted_hull_mass_KT": 90,
+            "scope": "PREDICTED_STATIC_HULL_COMPONENT_ONLY",
+            "source_archive_turn": 15,
+            "source_member_ids": [
+              9699,
+              9700,
+              9701,
+              9702,
+              9703,
+              9704,
+              9705,
+              9706,
+              9707,
+              9708,
+              9709
+            ],
+            "source_sha256": [
+              "1a011959a48624746c74326cb28c2f1ba7fd40698e92c0ff530d170f866742a0",
+              "745f921392478fe97d151954b04b14d16a6dbcf881faf87b72068c823d8bd69e",
+              "76186154c34f7de1d5dc804b2a9d2d47b1942159b2fc19d6ee0b533e9610c89b",
+              "a2080595a88b157fee6a5a052e43e98b736328024d19160f03fc78e39d571460",
+              "a48bddc1ccd50a5e6680e20197b4e2ed9c471d0953f9d0a3b4c28505ca9dc932",
+              "ac900a363674504efebf4b9452077c4ef1506ff9b7a2d0aa266c8d42041952db",
+              "b3c1f832ab8de95184c25c83174ce6ed6793cbdf3262437003b709238e745274",
+              "d19a09c7f2d47067b7b4d6c09e782671fc7dad98ef537c9b4a1943cc01450b18",
+              "d5995c6f61cdbc2aea3d0156de69cd2c8053480a93967e7fe26088d5fa014b61",
+              "e7604ab521a21cb7e91a5dc0795f18caf6fac828d690f3fd56a67510d94e08c5",
+              "efd3694f4b3cdac9631f94f5b7d5a0a8f8589929becbc2cb456068f258e6e320"
+            ],
+            "status": "RESOLVED"
+          },
+          "game_id": 224849,
+          "side": "left",
+          "target_hull_id": 103,
+          "target_identity_from_vcr": true,
+          "target_owner_id": 10,
+          "turn": 16,
+          "vcr_id": 2
+        },
+        {
+          "evaluation": {
+            "component_equals_factual_mass": true,
+            "difference_factual_minus_component_KT": 0,
+            "factual_vcr_mass_KT": 55,
+            "interpretation": "Component-vs-total comparison only; mismatches are NOT proof of an erroneous static resolver",
+            "status": "COMPARATOR_AVAILABLE"
+          },
+          "forecast": {
+            "full_combat_mass_prediction_KT": null,
+            "full_mass_abstention": "SG activation, movement, cargo/clans, carrier RNG, and capture are not phase-independently resolved from T-1 hull catalogs",
+            "owner_perspectives_checked": 1,
+            "perspectives_checked": 11,
+            "predicted_hull_mass_KT": 55,
+            "scope": "PREDICTED_STATIC_HULL_COMPONENT_ONLY",
+            "source_archive_turn": 15,
+            "source_member_ids": [
+              9699,
+              9700,
+              9701,
+              9702,
+              9703,
+              9704,
+              9705,
+              9706,
+              9707,
+              9708,
+              9709
+            ],
+            "source_sha256": [
+              "1a011959a48624746c74326cb28c2f1ba7fd40698e92c0ff530d170f866742a0",
+              "745f921392478fe97d151954b04b14d16a6dbcf881faf87b72068c823d8bd69e",
+              "76186154c34f7de1d5dc804b2a9d2d47b1942159b2fc19d6ee0b533e9610c89b",
+              "a2080595a88b157fee6a5a052e43e98b736328024d19160f03fc78e39d571460",
+              "a48bddc1ccd50a5e6680e20197b4e2ed9c471d0953f9d0a3b4c28505ca9dc932",
+              "ac900a363674504efebf4b9452077c4ef1506ff9b7a2d0aa266c8d42041952db",
+              "b3c1f832ab8de95184c25c83174ce6ed6793cbdf3262437003b709238e745274",
+              "d19a09c7f2d47067b7b4d6c09e782671fc7dad98ef537c9b4a1943cc01450b18",
+              "d5995c6f61cdbc2aea3d0156de69cd2c8053480a93967e7fe26088d5fa014b61",
+              "e7604ab521a21cb7e91a5dc0795f18caf6fac828d690f3fd56a67510d94e08c5",
+              "efd3694f4b3cdac9631f94f5b7d5a0a8f8589929becbc2cb456068f258e6e320"
+            ],
+            "status": "RESOLVED"
+          },
+          "game_id": 224849,
+          "side": "right",
+          "target_hull_id": 24,
+          "target_identity_from_vcr": true,
+          "target_owner_id": 2,
+          "turn": 16,
+          "vcr_id": 2
+        }
+      ],
+      "total_VCR_count": 1,
+      "turn": 16,
+      "vcr_side_count": 2
+    },
+    {
+      "game_id": 226056,
+      "in_scope_ship_VCR_count": 1,
+      "out_of_scope_VCR_count": 0,
+      "out_of_scope_vcrs": [],
+      "precombat_archive_member_count": 12,
+      "predictions": [
+        {
+          "evaluation": {
+            "component_equals_factual_mass": true,
+            "difference_factual_minus_component_KT": 0,
+            "factual_vcr_mass_KT": 130,
+            "interpretation": "Component-vs-total comparison only; mismatches are NOT proof of an erroneous static resolver",
+            "status": "COMPARATOR_AVAILABLE"
+          },
+          "forecast": {
+            "full_combat_mass_prediction_KT": null,
+            "full_mass_abstention": "SG activation, movement, cargo/clans, carrier RNG, and capture are not phase-independently resolved from T-1 hull catalogs",
+            "owner_perspectives_checked": 1,
+            "perspectives_checked": 12,
+            "predicted_hull_mass_KT": 130,
+            "scope": "PREDICTED_STATIC_HULL_COMPONENT_ONLY",
+            "source_archive_turn": 7,
+            "source_member_ids": [
+              11818,
+              11819,
+              11820,
+              11821,
+              11822,
+              11823,
+              11824,
+              11825,
+              11826,
+              11827,
+              11828,
+              11829
+            ],
+            "source_sha256": [
+              "1e32876239d566b79e5a8cce732bf2529f4caeaff2623544f5360c75b2087329",
+              "3eea43e097098fbfaeb4746c4a87e86c30c354e65997ed7721ef55f4200df481",
+              "424b7d2428bf7b690bb525979438c97670b2239a0ba5271c9920588d3c4eefec",
+              "5b411db11d419c531dab5bd2d900586b123390139d3654e650bbeb7b73424bf5",
+              "60e660244aa2c8cb386d059373c6ddd6ac1fd493594fbcf65494d3ecbf5c7dd5",
+              "81b807a7910238d852929752d9a8db2577773753738185821d20148fdfb09724",
+              "93e8d3a81ff3e65db45c1e4321133a18bb450e14bdb15604db665fde7fe1c708",
+              "9d160fd9abab1166b6cfc02a17a7a3d20fe1406b1a0cda6ecb05c9501ce2106e",
+              "b6f160fbffa450f98de1a229814de01b392bf16675854de541b2862b7b2b4821",
+              "b7b4287a3a92edeb9947a7918b61091357ae640eba341c18f83bb6efb7aff446",
+              "d91f3621b216f671f6b779126075ec094d9e235da5b7f6efb3368b3a4c30c1d8",
+              "eaf2c870a2556f05546e5bbbf1be23d7c32aa84754bfb1bd6cfdda86c9c21443"
+            ],
+            "status": "RESOLVED"
+          },
+          "game_id": 226056,
+          "side": "left",
+          "target_hull_id": 17,
+          "target_identity_from_vcr": true,
+          "target_owner_id": 2,
+          "turn": 8,
+          "vcr_id": 1
+        },
+        {
+          "evaluation": {
+            "component_equals_factual_mass": true,
+            "difference_factual_minus_component_KT": 0,
+            "factual_vcr_mass_KT": 30,
+            "interpretation": "Component-vs-total comparison only; mismatches are NOT proof of an erroneous static resolver",
+            "status": "COMPARATOR_AVAILABLE"
+          },
+          "forecast": {
+            "full_combat_mass_prediction_KT": null,
+            "full_mass_abstention": "SG activation, movement, cargo/clans, carrier RNG, and capture are not phase-independently resolved from T-1 hull catalogs",
+            "owner_perspectives_checked": 1,
+            "perspectives_checked": 12,
+            "predicted_hull_mass_KT": 30,
+            "scope": "PREDICTED_STATIC_HULL_COMPONENT_ONLY",
+            "source_archive_turn": 7,
+            "source_member_ids": [
+              11818,
+              11819,
+              11820,
+              11821,
+              11822,
+              11823,
+              11824,
+              11825,
+              11826,
+              11827,
+              11828,
+              11829
+            ],
+            "source_sha256": [
+              "1e32876239d566b79e5a8cce732bf2529f4caeaff2623544f5360c75b2087329",
+              "3eea43e097098fbfaeb4746c4a87e86c30c354e65997ed7721ef55f4200df481",
+              "424b7d2428bf7b690bb525979438c97670b2239a0ba5271c9920588d3c4eefec",
+              "5b411db11d419c531dab5bd2d900586b123390139d3654e650bbeb7b73424bf5",
+              "60e660244aa2c8cb386d059373c6ddd6ac1fd493594fbcf65494d3ecbf5c7dd5",
+              "81b807a7910238d852929752d9a8db2577773753738185821d20148fdfb09724",
+              "93e8d3a81ff3e65db45c1e4321133a18bb450e14bdb15604db665fde7fe1c708",
+              "9d160fd9abab1166b6cfc02a17a7a3d20fe1406b1a0cda6ecb05c9501ce2106e",
+              "b6f160fbffa450f98de1a229814de01b392bf16675854de541b2862b7b2b4821",
+              "b7b4287a3a92edeb9947a7918b61091357ae640eba341c18f83bb6efb7aff446",
+              "d91f3621b216f671f6b779126075ec094d9e235da5b7f6efb3368b3a4c30c1d8",
+              "eaf2c870a2556f05546e5bbbf1be23d7c32aa84754bfb1bd6cfdda86c9c21443"
+            ],
+            "status": "RESOLVED"
+          },
+          "game_id": 226056,
+          "side": "right",
+          "target_hull_id": 51,
+          "target_identity_from_vcr": true,
+          "target_owner_id": 6,
+          "turn": 8,
+          "vcr_id": 1
+        }
+      ],
+      "total_VCR_count": 1,
+      "turn": 8,
+      "vcr_side_count": 2
+    },
+    {
+      "game_id": 227887,
+      "in_scope_ship_VCR_count": 1,
+      "out_of_scope_VCR_count": 0,
+      "out_of_scope_vcrs": [],
+      "precombat_archive_member_count": 11,
+      "predictions": [
+        {
+          "evaluation": {
+            "component_equals_factual_mass": true,
+            "difference_factual_minus_component_KT": 0,
+            "factual_vcr_mass_KT": 55,
+            "interpretation": "Component-vs-total comparison only; mismatches are NOT proof of an erroneous static resolver",
+            "status": "COMPARATOR_AVAILABLE"
+          },
+          "forecast": {
+            "full_combat_mass_prediction_KT": null,
+            "full_mass_abstention": "SG activation, movement, cargo/clans, carrier RNG, and capture are not phase-independently resolved from T-1 hull catalogs",
+            "owner_perspectives_checked": 1,
+            "perspectives_checked": 11,
+            "predicted_hull_mass_KT": 55,
+            "scope": "PREDICTED_STATIC_HULL_COMPONENT_ONLY",
+            "source_archive_turn": 9,
+            "source_member_ids": [
+              13489,
+              13490,
+              13491,
+              13492,
+              13493,
+              13494,
+              13495,
+              13496,
+              13497,
+              13498,
+              13499
+            ],
+            "source_sha256": [
+              "0c21c41b887b70f53e8c1781df831df843870f5cfc2ac1ab645448a7fcc59dac",
+              "45858fcd795f6527dcadc38628bc43e82ca0a1806876043b3a152420c13f0e7f",
+              "5d42ee855d141d736349d5d604058adb5a8fc946db173537a4531a3a2bd3142e",
+              "6843e84cd03a364865665aab19b5025ada155f05ee8ccb5a3fdabd8ae919a1d4",
+              "76757351dc42c1908c1de468810573351d1825f190e609d6a23c53e59915db15",
+              "93b982a100b24842bc9ed71992d5425e568ee232a6be0f648aca1f8470cf628a",
+              "9d82aa99d988d7d4e5ad9606217ba057992d8e55f3cc049018d864082d9e46b8",
+              "a1dd6bcaa022da1209a5c914cc01c44d79d6161526e0f7274c88df3af5e2f1e0",
+              "cbcca34192a87bc6ce58c6c4c7a3b6af1bff5b8f0ff7d0d6db6554068249173b",
+              "cd9eb588a931c619a3bd7abd9dfde7d14c756088160c94502a35dc532e0c2756",
+              "d9a72589882d5bdad7367c059e7118cfd6480cc9e7bc6a7be6256117310d2a38"
+            ],
+            "status": "RESOLVED"
+          },
+          "game_id": 227887,
+          "side": "left",
+          "target_hull_id": 44,
+          "target_identity_from_vcr": true,
+          "target_owner_id": 5,
+          "turn": 10,
+          "vcr_id": 2
+        },
+        {
+          "evaluation": {
+            "component_equals_factual_mass": true,
+            "difference_factual_minus_component_KT": 0,
+            "factual_vcr_mass_KT": 101,
+            "interpretation": "Component-vs-total comparison only; mismatches are NOT proof of an erroneous static resolver",
+            "status": "COMPARATOR_AVAILABLE"
+          },
+          "forecast": {
+            "full_combat_mass_prediction_KT": null,
+            "full_mass_abstention": "SG activation, movement, cargo/clans, carrier RNG, and capture are not phase-independently resolved from T-1 hull catalogs",
+            "owner_perspectives_checked": 1,
+            "perspectives_checked": 11,
+            "predicted_hull_mass_KT": 101,
+            "scope": "PREDICTED_STATIC_HULL_COMPONENT_ONLY",
+            "source_archive_turn": 9,
+            "source_member_ids": [
+              13489,
+              13490,
+              13491,
+              13492,
+              13493,
+              13494,
+              13495,
+              13496,
+              13497,
+              13498,
+              13499
+            ],
+            "source_sha256": [
+              "0c21c41b887b70f53e8c1781df831df843870f5cfc2ac1ab645448a7fcc59dac",
+              "45858fcd795f6527dcadc38628bc43e82ca0a1806876043b3a152420c13f0e7f",
+              "5d42ee855d141d736349d5d604058adb5a8fc946db173537a4531a3a2bd3142e",
+              "6843e84cd03a364865665aab19b5025ada155f05ee8ccb5a3fdabd8ae919a1d4",
+              "76757351dc42c1908c1de468810573351d1825f190e609d6a23c53e59915db15",
+              "93b982a100b24842bc9ed71992d5425e568ee232a6be0f648aca1f8470cf628a",
+              "9d82aa99d988d7d4e5ad9606217ba057992d8e55f3cc049018d864082d9e46b8",
+              "a1dd6bcaa022da1209a5c914cc01c44d79d6161526e0f7274c88df3af5e2f1e0",
+              "cbcca34192a87bc6ce58c6c4c7a3b6af1bff5b8f0ff7d0d6db6554068249173b",
+              "cd9eb588a931c619a3bd7abd9dfde7d14c756088160c94502a35dc532e0c2756",
+              "d9a72589882d5bdad7367c059e7118cfd6480cc9e7bc6a7be6256117310d2a38"
+            ],
+            "status": "RESOLVED"
+          },
+          "game_id": 227887,
+          "side": "right",
+          "target_hull_id": 7,
+          "target_identity_from_vcr": true,
+          "target_owner_id": 2,
+          "turn": 10,
+          "vcr_id": 2
+        }
+      ],
+      "total_VCR_count": 1,
+      "turn": 10,
+      "vcr_side_count": 2
+    },
+    {
+      "game_id": 228199,
+      "in_scope_ship_VCR_count": 1,
+      "out_of_scope_VCR_count": 0,
+      "out_of_scope_vcrs": [],
+      "precombat_archive_member_count": 11,
+      "predictions": [
+        {
+          "evaluation": {
+            "component_equals_factual_mass": true,
+            "difference_factual_minus_component_KT": 0,
+            "factual_vcr_mass_KT": 30,
+            "interpretation": "Component-vs-total comparison only; mismatches are NOT proof of an erroneous static resolver",
+            "status": "COMPARATOR_AVAILABLE"
+          },
+          "forecast": {
+            "full_combat_mass_prediction_KT": null,
+            "full_mass_abstention": "SG activation, movement, cargo/clans, carrier RNG, and capture are not phase-independently resolved from T-1 hull catalogs",
+            "owner_perspectives_checked": 1,
+            "perspectives_checked": 11,
+            "predicted_hull_mass_KT": 30,
+            "scope": "PREDICTED_STATIC_HULL_COMPONENT_ONLY",
+            "source_archive_turn": 6,
+            "source_member_ids": [
+              16602,
+              16603,
+              16604,
+              16605,
+              16606,
+              16607,
+              16608,
+              16609,
+              16610,
+              16611,
+              16612
+            ],
+            "source_sha256": [
+              "19a2b9a2b038facf1a52ce07bc5f3f4d1295981960a1c3f9bd731920637d428d",
+              "24675470a61f77d287351d82fbcdaa05a8762efecb8300b9c84568647e77f8b5",
+              "262aa464c6592cb0f5d55a3cc65e29bb7c0697adda125bd0e514faa548c5716f",
+              "407eee7a5129420882f121b57f0434f4c7688840350ead97fc5fc64c1b5a8191",
+              "5b661e2059024bbe9b8cc9cd6186d8f3c57433deacd948aaca28ce34c1ee2ed4",
+              "75d641cc40e72533e1c6128b8a2f20139ce6f907694e19e12fb2a42917772370",
+              "8b9df6d9ad1f5c6e4547213527561745cb2c12ad7cf409e845bd3bbce20530a5",
+              "999af35b82b13291bb117dea43dfd4a71a4f3c5948e62d56d2e5a7e2ae723750",
+              "b0b7005996ebd9515455a8a878ea08bb1f1ed06b2ee6c814a8ba8d26443cd607",
+              "d9477bdadf11b89b097222c86e97858d4f5f575eba4904d654969c051383f38c",
+              "fc0c8e043da4e4365d8ae1b5dea9005437b43b79fd9a9a4fe25cf2b540610472"
+            ],
+            "status": "RESOLVED"
+          },
+          "game_id": 228199,
+          "side": "left",
+          "target_hull_id": 51,
+          "target_identity_from_vcr": true,
+          "target_owner_id": 6,
+          "turn": 7,
+          "vcr_id": 1
+        },
+        {
+          "evaluation": {
+            "component_equals_factual_mass": false,
+            "difference_factual_minus_component_KT": 50,
+            "factual_vcr_mass_KT": 220,
+            "interpretation": "Component-vs-total comparison only; mismatches are NOT proof of an erroneous static resolver",
+            "status": "COMPARATOR_AVAILABLE"
+          },
+          "forecast": {
+            "full_combat_mass_prediction_KT": null,
+            "full_mass_abstention": "SG activation, movement, cargo/clans, carrier RNG, and capture are not phase-independently resolved from T-1 hull catalogs",
+            "owner_perspectives_checked": 1,
+            "perspectives_checked": 11,
+            "predicted_hull_mass_KT": 170,
+            "scope": "PREDICTED_STATIC_HULL_COMPONENT_ONLY",
+            "source_archive_turn": 6,
+            "source_member_ids": [
+              16602,
+              16603,
+              16604,
+              16605,
+              16606,
+              16607,
+              16608,
+              16609,
+              16610,
+              16611,
+              16612
+            ],
+            "source_sha256": [
+              "19a2b9a2b038facf1a52ce07bc5f3f4d1295981960a1c3f9bd731920637d428d",
+              "24675470a61f77d287351d82fbcdaa05a8762efecb8300b9c84568647e77f8b5",
+              "262aa464c6592cb0f5d55a3cc65e29bb7c0697adda125bd0e514faa548c5716f",
+              "407eee7a5129420882f121b57f0434f4c7688840350ead97fc5fc64c1b5a8191",
+              "5b661e2059024bbe9b8cc9cd6186d8f3c57433deacd948aaca28ce34c1ee2ed4",
+              "75d641cc40e72533e1c6128b8a2f20139ce6f907694e19e12fb2a42917772370",
+              "8b9df6d9ad1f5c6e4547213527561745cb2c12ad7cf409e845bd3bbce20530a5",
+              "999af35b82b13291bb117dea43dfd4a71a4f3c5948e62d56d2e5a7e2ae723750",
+              "b0b7005996ebd9515455a8a878ea08bb1f1ed06b2ee6c814a8ba8d26443cd607",
+              "d9477bdadf11b89b097222c86e97858d4f5f575eba4904d654969c051383f38c",
+              "fc0c8e043da4e4365d8ae1b5dea9005437b43b79fd9a9a4fe25cf2b540610472"
+            ],
+            "status": "RESOLVED"
+          },
+          "game_id": 228199,
+          "side": "right",
+          "target_hull_id": 5,
+          "target_identity_from_vcr": true,
+          "target_owner_id": 1,
+          "turn": 7,
+          "vcr_id": 1
+        }
+      ],
+      "total_VCR_count": 1,
+      "turn": 7,
+      "vcr_side_count": 2
+    },
+    {
+      "game_id": 230354,
+      "in_scope_ship_VCR_count": 1,
+      "out_of_scope_VCR_count": 0,
+      "out_of_scope_vcrs": [],
+      "precombat_archive_member_count": 11,
+      "predictions": [
+        {
+          "evaluation": {
+            "component_equals_factual_mass": true,
+            "difference_factual_minus_component_KT": 0,
+            "factual_vcr_mass_KT": 130,
+            "interpretation": "Component-vs-total comparison only; mismatches are NOT proof of an erroneous static resolver",
+            "status": "COMPARATOR_AVAILABLE"
+          },
+          "forecast": {
+            "full_combat_mass_prediction_KT": null,
+            "full_mass_abstention": "SG activation, movement, cargo/clans, carrier RNG, and capture are not phase-independently resolved from T-1 hull catalogs",
+            "owner_perspectives_checked": 1,
+            "perspectives_checked": 11,
+            "predicted_hull_mass_KT": 130,
+            "scope": "PREDICTED_STATIC_HULL_COMPONENT_ONLY",
+            "source_archive_turn": 7,
+            "source_member_ids": [
+              18505,
+              18506,
+              18507,
+              18508,
+              18509,
+              18510,
+              18511,
+              18512,
+              18513,
+              18514,
+              18515
+            ],
+            "source_sha256": [
+              "02be849aa108f9372ca91ebb1f875101e9f5f69ff08de893865f7f26f0257f5b",
+              "0514d9cbe17efb4d991d3260361165046aa546c796376b8a2d952aff73b9a447",
+              "17e15a7a339bc46c938d5ccd8cac5b3c2cfbb41a94a114a7031f7c1d5615938e",
+              "497c3c87daa66525e99ba6704b7ddf8cce45c32e51847ec0f92587c51a8da8e8",
+              "530c018c53414d69ffea1896f327ce0fab18f306d2937fbe2857d1f6368b4124",
+              "57447c795395508ed19d8deeb266d5365e29790c9598ddade9043a6d180d6b9a",
+              "5d04fe4ffc796b18c4f184d88a3ed9c524b103efcd9742af3d362a7c50ce13fe",
+              "65113d52cd809bc1ab1ca329d847f34e03714889e539dcb820c4204aa1abf172",
+              "9d408890d68c262a5cfbf2b4960c8543afb9b5f0b4bf17f76320fa6c37ecd527",
+              "a6b363a237aa6937536c0ce772b0d648482276d5ea285ec68d0c5a4e0511d020",
+              "c68edd379c9c4e603106af88ae1edbf46a1f2782f256eaacecba2816269393ef"
+            ],
+            "status": "RESOLVED"
+          },
+          "game_id": 230354,
+          "side": "left",
+          "target_hull_id": 17,
+          "target_identity_from_vcr": true,
+          "target_owner_id": 3,
+          "turn": 8,
+          "vcr_id": 1
+        },
+        {
+          "evaluation": {
+            "component_equals_factual_mass": true,
+            "difference_factual_minus_component_KT": 0,
+            "factual_vcr_mass_KT": 90,
+            "interpretation": "Component-vs-total comparison only; mismatches are NOT proof of an erroneous static resolver",
+            "status": "COMPARATOR_AVAILABLE"
+          },
+          "forecast": {
+            "full_combat_mass_prediction_KT": null,
+            "full_mass_abstention": "SG activation, movement, cargo/clans, carrier RNG, and capture are not phase-independently resolved from T-1 hull catalogs",
+            "owner_perspectives_checked": 1,
+            "perspectives_checked": 11,
+            "predicted_hull_mass_KT": 90,
+            "scope": "PREDICTED_STATIC_HULL_COMPONENT_ONLY",
+            "source_archive_turn": 7,
+            "source_member_ids": [
+              18505,
+              18506,
+              18507,
+              18508,
+              18509,
+              18510,
+              18511,
+              18512,
+              18513,
+              18514,
+              18515
+            ],
+            "source_sha256": [
+              "02be849aa108f9372ca91ebb1f875101e9f5f69ff08de893865f7f26f0257f5b",
+              "0514d9cbe17efb4d991d3260361165046aa546c796376b8a2d952aff73b9a447",
+              "17e15a7a339bc46c938d5ccd8cac5b3c2cfbb41a94a114a7031f7c1d5615938e",
+              "497c3c87daa66525e99ba6704b7ddf8cce45c32e51847ec0f92587c51a8da8e8",
+              "530c018c53414d69ffea1896f327ce0fab18f306d2937fbe2857d1f6368b4124",
+              "57447c795395508ed19d8deeb266d5365e29790c9598ddade9043a6d180d6b9a",
+              "5d04fe4ffc796b18c4f184d88a3ed9c524b103efcd9742af3d362a7c50ce13fe",
+              "65113d52cd809bc1ab1ca329d847f34e03714889e539dcb820c4204aa1abf172",
+              "9d408890d68c262a5cfbf2b4960c8543afb9b5f0b4bf17f76320fa6c37ecd527",
+              "a6b363a237aa6937536c0ce772b0d648482276d5ea285ec68d0c5a4e0511d020",
+              "c68edd379c9c4e603106af88ae1edbf46a1f2782f256eaacecba2816269393ef"
+            ],
+            "status": "RESOLVED"
+          },
+          "game_id": 230354,
+          "side": "right",
+          "target_hull_id": 46,
+          "target_identity_from_vcr": true,
+          "target_owner_id": 5,
+          "turn": 8,
+          "vcr_id": 1
+        }
+      ],
+      "total_VCR_count": 1,
+      "turn": 8,
+      "vcr_side_count": 2
+    },
+    {
+      "game_id": 233558,
+      "in_scope_ship_VCR_count": 1,
+      "out_of_scope_VCR_count": 0,
+      "out_of_scope_vcrs": [],
+      "precombat_archive_member_count": 11,
+      "predictions": [
+        {
+          "evaluation": {
+            "component_equals_factual_mass": true,
+            "difference_factual_minus_component_KT": 0,
+            "factual_vcr_mass_KT": 30,
+            "interpretation": "Component-vs-total comparison only; mismatches are NOT proof of an erroneous static resolver",
+            "status": "COMPARATOR_AVAILABLE"
+          },
+          "forecast": {
+            "full_combat_mass_prediction_KT": null,
+            "full_mass_abstention": "SG activation, movement, cargo/clans, carrier RNG, and capture are not phase-independently resolved from T-1 hull catalogs",
+            "owner_perspectives_checked": 1,
+            "perspectives_checked": 11,
+            "predicted_hull_mass_KT": 30,
+            "scope": "PREDICTED_STATIC_HULL_COMPONENT_ONLY",
+            "source_archive_turn": 8,
+            "source_member_ids": [
+              20496,
+              20497,
+              20498,
+              20499,
+              20500,
+              20501,
+              20502,
+              20503,
+              20504,
+              20505,
+              20506
+            ],
+            "source_sha256": [
+              "0f03d05ee4630aeed87f98485c06e2d49e97a7e42e960a0f4ef0083358bedc9b",
+              "23454f935a79d2f2bce188dc10b2032d950e11a9d4db5e28c6213f6517f94af6",
+              "2c9d8d337bd53cec188e4274fca42d5e07cabadaaf6d9915aefb1697637df968",
+              "3ac47f66f8d9837c49e6b222b29e78cafbb61a6dd9cd466e8d97929e27ce778c",
+              "468b348bceccdce969e96617454a4162a7449a43243f77b3241af3a071fcb37a",
+              "62ed407875b1fe5b750bb3d420b6b6dcfadf1ec20872055e3768a4e06407f456",
+              "80a5de887591835f13d53fc402fe93d396153b8fee7a62a5ae672e352786678b",
+              "91f89b1d22cec1d8c5b77493959f6596585d7433b66a8aeaed9cdc8901cefa93",
+              "c9ad97b0ea99f0088fc90b41a45d64e0df9b909a6d3b644a726046eead776c6b",
+              "faeb76f5ba995277824793e3cb19a094bcaa3805163914417087ac615504abb7",
+              "ff6bf1ebb0d7f08090e35e32b6d77049f841daa2913d2166ce26d407109742b1"
+            ],
+            "status": "RESOLVED"
+          },
+          "game_id": 233558,
+          "side": "left",
+          "target_hull_id": 51,
+          "target_identity_from_vcr": true,
+          "target_owner_id": 6,
+          "turn": 9,
+          "vcr_id": 1
+        },
+        {
+          "evaluation": {
+            "component_equals_factual_mass": false,
+            "difference_factual_minus_component_KT": 50,
+            "factual_vcr_mass_KT": 151,
+            "interpretation": "Component-vs-total comparison only; mismatches are NOT proof of an erroneous static resolver",
+            "status": "COMPARATOR_AVAILABLE"
+          },
+          "forecast": {
+            "full_combat_mass_prediction_KT": null,
+            "full_mass_abstention": "SG activation, movement, cargo/clans, carrier RNG, and capture are not phase-independently resolved from T-1 hull catalogs",
+            "owner_perspectives_checked": 1,
+            "perspectives_checked": 11,
+            "predicted_hull_mass_KT": 101,
+            "scope": "PREDICTED_STATIC_HULL_COMPONENT_ONLY",
+            "source_archive_turn": 8,
+            "source_member_ids": [
+              20496,
+              20497,
+              20498,
+              20499,
+              20500,
+              20501,
+              20502,
+              20503,
+              20504,
+              20505,
+              20506
+            ],
+            "source_sha256": [
+              "0f03d05ee4630aeed87f98485c06e2d49e97a7e42e960a0f4ef0083358bedc9b",
+              "23454f935a79d2f2bce188dc10b2032d950e11a9d4db5e28c6213f6517f94af6",
+              "2c9d8d337bd53cec188e4274fca42d5e07cabadaaf6d9915aefb1697637df968",
+              "3ac47f66f8d9837c49e6b222b29e78cafbb61a6dd9cd466e8d97929e27ce778c",
+              "468b348bceccdce969e96617454a4162a7449a43243f77b3241af3a071fcb37a",
+              "62ed407875b1fe5b750bb3d420b6b6dcfadf1ec20872055e3768a4e06407f456",
+              "80a5de887591835f13d53fc402fe93d396153b8fee7a62a5ae672e352786678b",
+              "91f89b1d22cec1d8c5b77493959f6596585d7433b66a8aeaed9cdc8901cefa93",
+              "c9ad97b0ea99f0088fc90b41a45d64e0df9b909a6d3b644a726046eead776c6b",
+              "faeb76f5ba995277824793e3cb19a094bcaa3805163914417087ac615504abb7",
+              "ff6bf1ebb0d7f08090e35e32b6d77049f841daa2913d2166ce26d407109742b1"
+            ],
+            "status": "RESOLVED"
+          },
+          "game_id": 233558,
+          "side": "right",
+          "target_hull_id": 7,
+          "target_identity_from_vcr": true,
+          "target_owner_id": 1,
+          "turn": 9,
+          "vcr_id": 1
+        }
+      ],
+      "total_VCR_count": 1,
+      "turn": 9,
+      "vcr_side_count": 2
+    },
+    {
+      "game_id": 235762,
+      "in_scope_ship_VCR_count": 3,
+      "out_of_scope_VCR_count": 1,
+      "out_of_scope_vcrs": [
+        {
+          "left_hull_id": 36,
+          "right_hull_id": 0,
+          "status": "NONPOSITIVE_OR_MISSING_PARTICIPANT_HULL",
+          "vcr_id": 4
+        }
+      ],
+      "precombat_archive_member_count": 8,
+      "predictions": [
+        {
+          "evaluation": {
+            "component_equals_factual_mass": false,
+            "difference_factual_minus_component_KT": 50,
+            "factual_vcr_mass_KT": 110,
+            "interpretation": "Component-vs-total comparison only; mismatches are NOT proof of an erroneous static resolver",
+            "status": "COMPARATOR_AVAILABLE"
+          },
+          "forecast": {
+            "full_combat_mass_prediction_KT": null,
+            "full_mass_abstention": "SG activation, movement, cargo/clans, carrier RNG, and capture are not phase-independently resolved from T-1 hull catalogs",
+            "owner_perspectives_checked": 1,
+            "perspectives_checked": 8,
+            "predicted_hull_mass_KT": 60,
+            "scope": "PREDICTED_STATIC_HULL_COMPONENT_ONLY",
+            "source_archive_turn": 7,
+            "source_member_ids": [
+              27174,
+              27175,
+              27176,
+              27177,
+              27178,
+              27179,
+              27180,
+              27181
+            ],
+            "source_sha256": [
+              "088cf86a406b3bacc4f3af0b0a1c372f6dfe7b38827be88deac5390fecb56b1a",
+              "3051c59015bc216e29f3e551c828e3808aa8235465a92353f21d1bfec9ab6e53",
+              "39dc03594bf1f652f76dc96a90381a87edde8fbe981dbc4643657bf78630ba28",
+              "42aef0cde27e1e4646d9d7a1f455051bbe68dfd806444f2b09e5b98c1d8bcff2",
+              "7748371567e6d0250878c95275a47478c040f1defe812477ba5456a9ad5f80b7",
+              "933d334a173b25e108ffa5612478ff942aeefc7ed51441b667392dfc4153c53f",
+              "b8e564b89f02ec1060f57a7c669563be59eda3ba988d1d37060553b5563203aa",
+              "dd67201867dea47bb5392bc870fc6c215269a7a0dbfbe888c79bab558fa00731"
+            ],
+            "status": "RESOLVED"
+          },
+          "game_id": 235762,
+          "side": "left",
+          "target_hull_id": 16,
+          "target_identity_from_vcr": true,
+          "target_owner_id": 3,
+          "turn": 8,
+          "vcr_id": 1
+        },
+        {
+          "evaluation": {
+            "component_equals_factual_mass": true,
+            "difference_factual_minus_component_KT": 0,
+            "factual_vcr_mass_KT": 175,
+            "interpretation": "Component-vs-total comparison only; mismatches are NOT proof of an erroneous static resolver",
+            "status": "COMPARATOR_AVAILABLE"
+          },
+          "forecast": {
+            "full_combat_mass_prediction_KT": null,
+            "full_mass_abstention": "SG activation, movement, cargo/clans, carrier RNG, and capture are not phase-independently resolved from T-1 hull catalogs",
+            "owner_perspectives_checked": 1,
+            "perspectives_checked": 8,
+            "predicted_hull_mass_KT": 175,
+            "scope": "PREDICTED_STATIC_HULL_COMPONENT_ONLY",
+            "source_archive_turn": 7,
+            "source_member_ids": [
+              27174,
+              27175,
+              27176,
+              27177,
+              27178,
+              27179,
+              27180,
+              27181
+            ],
+            "source_sha256": [
+              "088cf86a406b3bacc4f3af0b0a1c372f6dfe7b38827be88deac5390fecb56b1a",
+              "3051c59015bc216e29f3e551c828e3808aa8235465a92353f21d1bfec9ab6e53",
+              "39dc03594bf1f652f76dc96a90381a87edde8fbe981dbc4643657bf78630ba28",
+              "42aef0cde27e1e4646d9d7a1f455051bbe68dfd806444f2b09e5b98c1d8bcff2",
+              "7748371567e6d0250878c95275a47478c040f1defe812477ba5456a9ad5f80b7",
+              "933d334a173b25e108ffa5612478ff942aeefc7ed51441b667392dfc4153c53f",
+              "b8e564b89f02ec1060f57a7c669563be59eda3ba988d1d37060553b5563203aa",
+              "dd67201867dea47bb5392bc870fc6c215269a7a0dbfbe888c79bab558fa00731"
+            ],
+            "status": "RESOLVED"
+          },
+          "game_id": 235762,
+          "side": "right",
+          "target_hull_id": 36,
+          "target_identity_from_vcr": true,
+          "target_owner_id": 2,
+          "turn": 8,
+          "vcr_id": 1
+        },
+        {
+          "evaluation": {
+            "component_equals_factual_mass": true,
+            "difference_factual_minus_component_KT": 0,
+            "factual_vcr_mass_KT": 60,
+            "interpretation": "Component-vs-total comparison only; mismatches are NOT proof of an erroneous static resolver",
+            "status": "COMPARATOR_AVAILABLE"
+          },
+          "forecast": {
+            "full_combat_mass_prediction_KT": null,
+            "full_mass_abstention": "SG activation, movement, cargo/clans, carrier RNG, and capture are not phase-independently resolved from T-1 hull catalogs",
+            "owner_perspectives_checked": 1,
+            "perspectives_checked": 8,
+            "predicted_hull_mass_KT": 60,
+            "scope": "PREDICTED_STATIC_HULL_COMPONENT_ONLY",
+            "source_archive_turn": 7,
+            "source_member_ids": [
+              27174,
+              27175,
+              27176,
+              27177,
+              27178,
+              27179,
+              27180,
+              27181
+            ],
+            "source_sha256": [
+              "088cf86a406b3bacc4f3af0b0a1c372f6dfe7b38827be88deac5390fecb56b1a",
+              "3051c59015bc216e29f3e551c828e3808aa8235465a92353f21d1bfec9ab6e53",
+              "39dc03594bf1f652f76dc96a90381a87edde8fbe981dbc4643657bf78630ba28",
+              "42aef0cde27e1e4646d9d7a1f455051bbe68dfd806444f2b09e5b98c1d8bcff2",
+              "7748371567e6d0250878c95275a47478c040f1defe812477ba5456a9ad5f80b7",
+              "933d334a173b25e108ffa5612478ff942aeefc7ed51441b667392dfc4153c53f",
+              "b8e564b89f02ec1060f57a7c669563be59eda3ba988d1d37060553b5563203aa",
+              "dd67201867dea47bb5392bc870fc6c215269a7a0dbfbe888c79bab558fa00731"
+            ],
+            "status": "RESOLVED"
+          },
+          "game_id": 235762,
+          "side": "left",
+          "target_hull_id": 16,
+          "target_identity_from_vcr": true,
+          "target_owner_id": 4,
+          "turn": 8,
+          "vcr_id": 2
+        },
+        {
+          "evaluation": {
+            "component_equals_factual_mass": true,
+            "difference_factual_minus_component_KT": 0,
+            "factual_vcr_mass_KT": 183,
+            "interpretation": "Component-vs-total comparison only; mismatches are NOT proof of an erroneous static resolver",
+            "status": "COMPARATOR_AVAILABLE"
+          },
+          "forecast": {
+            "full_combat_mass_prediction_KT": null,
+            "full_mass_abstention": "SG activation, movement, cargo/clans, carrier RNG, and capture are not phase-independently resolved from T-1 hull catalogs",
+            "owner_perspectives_checked": 1,
+            "perspectives_checked": 8,
+            "predicted_hull_mass_KT": 183,
+            "scope": "PREDICTED_STATIC_HULL_COMPONENT_ONLY",
+            "source_archive_turn": 7,
+            "source_member_ids": [
+              27174,
+              27175,
+              27176,
+              27177,
+              27178,
+              27179,
+              27180,
+              27181
+            ],
+            "source_sha256": [
+              "088cf86a406b3bacc4f3af0b0a1c372f6dfe7b38827be88deac5390fecb56b1a",
+              "3051c59015bc216e29f3e551c828e3808aa8235465a92353f21d1bfec9ab6e53",
+              "39dc03594bf1f652f76dc96a90381a87edde8fbe981dbc4643657bf78630ba28",
+              "42aef0cde27e1e4646d9d7a1f455051bbe68dfd806444f2b09e5b98c1d8bcff2",
+              "7748371567e6d0250878c95275a47478c040f1defe812477ba5456a9ad5f80b7",
+              "933d334a173b25e108ffa5612478ff942aeefc7ed51441b667392dfc4153c53f",
+              "b8e564b89f02ec1060f57a7c669563be59eda3ba988d1d37060553b5563203aa",
+              "dd67201867dea47bb5392bc870fc6c215269a7a0dbfbe888c79bab558fa00731"
+            ],
+            "status": "RESOLVED"
+          },
+          "game_id": 235762,
+          "side": "right",
+          "target_hull_id": 3033,
+          "target_identity_from_vcr": true,
+          "target_owner_id": 6,
+          "turn": 8,
+          "vcr_id": 2
+        },
+        {
+          "evaluation": {
+            "component_equals_factual_mass": false,
+            "difference_factual_minus_component_KT": 50,
+            "factual_vcr_mass_KT": 140,
+            "interpretation": "Component-vs-total comparison only; mismatches are NOT proof of an erroneous static resolver",
+            "status": "COMPARATOR_AVAILABLE"
+          },
+          "forecast": {
+            "full_combat_mass_prediction_KT": null,
+            "full_mass_abstention": "SG activation, movement, cargo/clans, carrier RNG, and capture are not phase-independently resolved from T-1 hull catalogs",
+            "owner_perspectives_checked": 1,
+            "perspectives_checked": 8,
+            "predicted_hull_mass_KT": 90,
+            "scope": "PREDICTED_STATIC_HULL_COMPONENT_ONLY",
+            "source_archive_turn": 7,
+            "source_member_ids": [
+              27174,
+              27175,
+              27176,
+              27177,
+              27178,
+              27179,
+              27180,
+              27181
+            ],
+            "source_sha256": [
+              "088cf86a406b3bacc4f3af0b0a1c372f6dfe7b38827be88deac5390fecb56b1a",
+              "3051c59015bc216e29f3e551c828e3808aa8235465a92353f21d1bfec9ab6e53",
+              "39dc03594bf1f652f76dc96a90381a87edde8fbe981dbc4643657bf78630ba28",
+              "42aef0cde27e1e4646d9d7a1f455051bbe68dfd806444f2b09e5b98c1d8bcff2",
+              "7748371567e6d0250878c95275a47478c040f1defe812477ba5456a9ad5f80b7",
+              "933d334a173b25e108ffa5612478ff942aeefc7ed51441b667392dfc4153c53f",
+              "b8e564b89f02ec1060f57a7c669563be59eda3ba988d1d37060553b5563203aa",
+              "dd67201867dea47bb5392bc870fc6c215269a7a0dbfbe888c79bab558fa00731"
+            ],
+            "status": "RESOLVED"
+          },
+          "game_id": 235762,
+          "side": "left",
+          "target_hull_id": 9,
+          "target_identity_from_vcr": true,
+          "target_owner_id": 5,
+          "turn": 8,
+          "vcr_id": 3
+        },
+        {
+          "evaluation": {
+            "component_equals_factual_mass": true,
+            "difference_factual_minus_component_KT": 0,
+            "factual_vcr_mass_KT": 160,
+            "interpretation": "Component-vs-total comparison only; mismatches are NOT proof of an erroneous static resolver",
+            "status": "COMPARATOR_AVAILABLE"
+          },
+          "forecast": {
+            "full_combat_mass_prediction_KT": null,
+            "full_mass_abstention": "SG activation, movement, cargo/clans, carrier RNG, and capture are not phase-independently resolved from T-1 hull catalogs",
+            "owner_perspectives_checked": 1,
+            "perspectives_checked": 8,
+            "predicted_hull_mass_KT": 160,
+            "scope": "PREDICTED_STATIC_HULL_COMPONENT_ONLY",
+            "source_archive_turn": 7,
+            "source_member_ids": [
+              27174,
+              27175,
+              27176,
+              27177,
+              27178,
+              27179,
+              27180,
+              27181
+            ],
+            "source_sha256": [
+              "088cf86a406b3bacc4f3af0b0a1c372f6dfe7b38827be88deac5390fecb56b1a",
+              "3051c59015bc216e29f3e551c828e3808aa8235465a92353f21d1bfec9ab6e53",
+              "39dc03594bf1f652f76dc96a90381a87edde8fbe981dbc4643657bf78630ba28",
+              "42aef0cde27e1e4646d9d7a1f455051bbe68dfd806444f2b09e5b98c1d8bcff2",
+              "7748371567e6d0250878c95275a47478c040f1defe812477ba5456a9ad5f80b7",
+              "933d334a173b25e108ffa5612478ff942aeefc7ed51441b667392dfc4153c53f",
+              "b8e564b89f02ec1060f57a7c669563be59eda3ba988d1d37060553b5563203aa",
+              "dd67201867dea47bb5392bc870fc6c215269a7a0dbfbe888c79bab558fa00731"
+            ],
+            "status": "RESOLVED"
+          },
+          "game_id": 235762,
+          "side": "right",
+          "target_hull_id": 22,
+          "target_identity_from_vcr": true,
+          "target_owner_id": 4,
+          "turn": 8,
+          "vcr_id": 3
+        }
+      ],
+      "total_VCR_count": 4,
+      "turn": 8,
+      "vcr_side_count": 6
+    },
+    {
+      "game_id": 243165,
+      "in_scope_ship_VCR_count": 1,
+      "out_of_scope_VCR_count": 1,
+      "out_of_scope_vcrs": [
+        {
+          "left_hull_id": 1084,
+          "right_hull_id": 0,
+          "status": "NONPOSITIVE_OR_MISSING_PARTICIPANT_HULL",
+          "vcr_id": 7
+        }
+      ],
+      "precombat_archive_member_count": 11,
+      "predictions": [
+        {
+          "evaluation": {
+            "component_equals_factual_mass": true,
+            "difference_factual_minus_component_KT": 0,
+            "factual_vcr_mass_KT": 30,
+            "interpretation": "Component-vs-total comparison only; mismatches are NOT proof of an erroneous static resolver",
+            "status": "COMPARATOR_AVAILABLE"
+          },
+          "forecast": {
+            "full_combat_mass_prediction_KT": null,
+            "full_mass_abstention": "SG activation, movement, cargo/clans, carrier RNG, and capture are not phase-independently resolved from T-1 hull catalogs",
+            "owner_perspectives_checked": 1,
+            "perspectives_checked": 11,
+            "predicted_hull_mass_KT": 30,
+            "scope": "PREDICTED_STATIC_HULL_COMPONENT_ONLY",
+            "source_archive_turn": 8,
+            "source_member_ids": [
+              28230,
+              28231,
+              28232,
+              28233,
+              28234,
+              28235,
+              28236,
+              28237,
+              28238,
+              28239,
+              28240
+            ],
+            "source_sha256": [
+              "2b153aebab67dff3ecc649706f4612b0fe41aacc04a1b5c95a25f386a3d74d48",
+              "2bf003e09afd8f5536b4f9d8e3addccb7f548c49161097c7538ae8ada58053f9",
+              "45a6632df64658e10513c422ac7f797f2e71bf94495887d497daca42bb534a41",
+              "522e9038c9a3b6ca1a86ed36067d1638bf973ea8f5049e87e36c20059d3f80ed",
+              "5a264d8b01f26bebb3a03d796994da371c014c59f420e355ecf11dab5f506a44",
+              "686a6cc3d5831cfebf42a7a6c2f2defcc41943fb6febf1ddafbdb5b94ac72bf1",
+              "7227437f8260d4da4035d59dd6dd0393a2e26c5dc672676e1f71e670c3fde31f",
+              "998fcea4ff26552472e0c2f7fe68c87f99de8431f8bdeb83715a09ab9deb3efd",
+              "d692a7967897d1e9c673360954eef4e84d6bee634d673764bbe5b54d8d21b426",
+              "e4c123f01f7c87d23e5b3c5ce0a151ad1a2a8d1b93227fae60c77a9699b11af3",
+              "eae2eac83ffbe73b922c78e394aac367c5993d8dc7060d872d98e3aebcd304a0"
+            ],
+            "status": "RESOLVED"
+          },
+          "game_id": 243165,
+          "side": "left",
+          "target_hull_id": 51,
+          "target_identity_from_vcr": true,
+          "target_owner_id": 6,
+          "turn": 9,
+          "vcr_id": 6
+        },
+        {
+          "evaluation": {
+            "component_equals_factual_mass": true,
+            "difference_factual_minus_component_KT": 0,
+            "factual_vcr_mass_KT": 130,
+            "interpretation": "Component-vs-total comparison only; mismatches are NOT proof of an erroneous static resolver",
+            "status": "COMPARATOR_AVAILABLE"
+          },
+          "forecast": {
+            "full_combat_mass_prediction_KT": null,
+            "full_mass_abstention": "SG activation, movement, cargo/clans, carrier RNG, and capture are not phase-independently resolved from T-1 hull catalogs",
+            "owner_perspectives_checked": 1,
+            "perspectives_checked": 11,
+            "predicted_hull_mass_KT": 130,
+            "scope": "PREDICTED_STATIC_HULL_COMPONENT_ONLY",
+            "source_archive_turn": 8,
+            "source_member_ids": [
+              28230,
+              28231,
+              28232,
+              28233,
+              28234,
+              28235,
+              28236,
+              28237,
+              28238,
+              28239,
+              28240
+            ],
+            "source_sha256": [
+              "2b153aebab67dff3ecc649706f4612b0fe41aacc04a1b5c95a25f386a3d74d48",
+              "2bf003e09afd8f5536b4f9d8e3addccb7f548c49161097c7538ae8ada58053f9",
+              "45a6632df64658e10513c422ac7f797f2e71bf94495887d497daca42bb534a41",
+              "522e9038c9a3b6ca1a86ed36067d1638bf973ea8f5049e87e36c20059d3f80ed",
+              "5a264d8b01f26bebb3a03d796994da371c014c59f420e355ecf11dab5f506a44",
+              "686a6cc3d5831cfebf42a7a6c2f2defcc41943fb6febf1ddafbdb5b94ac72bf1",
+              "7227437f8260d4da4035d59dd6dd0393a2e26c5dc672676e1f71e670c3fde31f",
+              "998fcea4ff26552472e0c2f7fe68c87f99de8431f8bdeb83715a09ab9deb3efd",
+              "d692a7967897d1e9c673360954eef4e84d6bee634d673764bbe5b54d8d21b426",
+              "e4c123f01f7c87d23e5b3c5ce0a151ad1a2a8d1b93227fae60c77a9699b11af3",
+              "eae2eac83ffbe73b922c78e394aac367c5993d8dc7060d872d98e3aebcd304a0"
+            ],
+            "status": "RESOLVED"
+          },
+          "game_id": 243165,
+          "side": "right",
+          "target_hull_id": 2088,
+          "target_identity_from_vcr": true,
+          "target_owner_id": 10,
+          "turn": 9,
+          "vcr_id": 6
+        }
+      ],
+      "total_VCR_count": 2,
+      "turn": 9,
+      "vcr_side_count": 2
+    }
+  ],
+  "schema": "planets-lab.combat-mass-time-indexed-static.v1",
+  "selection": {
+    "candidate_game_count": 13439,
+    "excluded_control_games": [
+      217591,
+      310054,
+      325434,
+      341336,
+      347236,
+      411645,
+      441148,
+      563278,
+      617883,
+      653272,
+      658427
+    ],
+    "max_selected_games": 12,
+    "method": "earliest qualifying archived VCR-bearing T-1/T turn per independent game; candidate selection uses only VCR existence, never observed mass or residual ranking"
+  },
+  "skipped_no_vcr": [
+    {
+      "game_id": 221008,
+      "out_of_scope_vcrs": [
+        {
+          "left_hull_id": 18,
+          "right_hull_id": 0,
+          "status": "NONPOSITIVE_OR_MISSING_PARTICIPANT_HULL",
+          "vcr_id": 1
+        }
+      ],
+      "status": "NO_SHIP_VS_SHIP_VCR",
+      "turn": 6
+    },
+    {
+      "game_id": 221008,
+      "out_of_scope_vcrs": [
+        {
+          "left_hull_id": 18,
+          "right_hull_id": 0,
+          "status": "NONPOSITIVE_OR_MISSING_PARTICIPANT_HULL",
+          "vcr_id": 2
+        }
+      ],
+      "status": "NO_SHIP_VS_SHIP_VCR",
+      "turn": 8
+    },
+    {
+      "game_id": 221008,
+      "out_of_scope_vcrs": [
+        {
+          "left_hull_id": 103,
+          "right_hull_id": 0,
+          "status": "NONPOSITIVE_OR_MISSING_PARTICIPANT_HULL",
+          "vcr_id": 3
+        }
+      ],
+      "status": "NO_SHIP_VS_SHIP_VCR",
+      "turn": 14
+    },
+    {
+      "game_id": 224849,
+      "out_of_scope_vcrs": [
+        {
+          "left_hull_id": 18,
+          "right_hull_id": 0,
+          "status": "NONPOSITIVE_OR_MISSING_PARTICIPANT_HULL",
+          "vcr_id": 1
+        }
+      ],
+      "status": "NO_SHIP_VS_SHIP_VCR",
+      "turn": 8
+    },
+    {
+      "game_id": 227887,
+      "out_of_scope_vcrs": [
+        {
+          "left_hull_id": 44,
+          "right_hull_id": 0,
+          "status": "NONPOSITIVE_OR_MISSING_PARTICIPANT_HULL",
+          "vcr_id": 1
+        }
+      ],
+      "status": "NO_SHIP_VS_SHIP_VCR",
+      "turn": 9
+    },
+    {
+      "game_id": 243165,
+      "out_of_scope_vcrs": [
+        {
+          "left_hull_id": 1084,
+          "right_hull_id": 0,
+          "status": "NONPOSITIVE_OR_MISSING_PARTICIPANT_HULL",
+          "vcr_id": 1
+        }
+      ],
+      "status": "NO_SHIP_VS_SHIP_VCR",
+      "turn": 7
+    },
+    {
+      "game_id": 243165,
+      "out_of_scope_vcrs": [
+        {
+          "left_hull_id": 46,
+          "right_hull_id": 0,
+          "status": "NONPOSITIVE_OR_MISSING_PARTICIPANT_HULL",
+          "vcr_id": 2
+        },
+        {
+          "left_hull_id": 1084,
+          "right_hull_id": 0,
+          "status": "NONPOSITIVE_OR_MISSING_PARTICIPANT_HULL",
+          "vcr_id": 3
+        },
+        {
+          "left_hull_id": 107,
+          "right_hull_id": 0,
+          "status": "NONPOSITIVE_OR_MISSING_PARTICIPANT_HULL",
+          "vcr_id": 4
+        },
+        {
+          "left_hull_id": 5,
+          "right_hull_id": 0,
+          "status": "NONPOSITIVE_OR_MISSING_PARTICIPANT_HULL",
+          "vcr_id": 5
+        }
+      ],
+      "status": "NO_SHIP_VS_SHIP_VCR",
+      "turn": 8
+    }
+  ],
+  "status": "EXPERIMENTAL_TMINUS1_STATIC_COMPONENT_PREDICTION_NOT_PROMOTED",
+  "summary": {
+    "comparator_statuses": {
+      "COMPARATOR_AVAILABLE": 30
+    },
+    "component_equals_full_factual_mass_count": 26,
+    "full_combat_mass_predictions_made": 0,
+    "held_out_games_with_VCRs": 12,
+    "held_out_vcr_sides": 30,
+    "in_scope_ship_VCRs": 15,
+    "out_of_scope_VCRs_seen": 16,
+    "static_resolution_statuses": {
+      "RESOLVED": 30
+    }
+  }
+}
