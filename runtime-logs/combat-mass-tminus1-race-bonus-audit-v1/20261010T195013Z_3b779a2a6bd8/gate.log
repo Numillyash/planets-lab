@@ -1,0 +1,39 @@
+===== PRE-VCR TMINUS1 RACE BONUS AUDIT =====
+HEAD: 3b779a2a6bd83ed83d1ac03b0ae67ea287c7d246
+source: artifacts/combat/mass-time-indexed-static-v1/published/report.json
+DB: /root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb
+SHA256: checked once before read-only DuckDB open in Python
+[race-v1] SHA256 verifying once: corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb
+[race-v1] verified SHA256 in 32.4s
+[race-v1] [1/12] game=2466 T11: reconstructing T-1 owner race rosters
+[race-v1] [1/12] complete; sides=2
+[race-v1] [2/12] game=218619 T8: reconstructing T-1 owner race rosters
+[race-v1] [2/12] complete; sides=2
+[race-v1] [3/12] game=220698 T11: reconstructing T-1 owner race rosters
+[race-v1] [3/12] complete; sides=4
+[race-v1] [4/12] game=221008 T16: reconstructing T-1 owner race rosters
+[race-v1] [4/12] complete; sides=2
+[race-v1] [5/12] game=224849 T16: reconstructing T-1 owner race rosters
+[race-v1] [5/12] complete; sides=2
+[race-v1] [6/12] game=226056 T8: reconstructing T-1 owner race rosters
+[race-v1] [6/12] complete; sides=2
+[race-v1] [7/12] game=227887 T10: reconstructing T-1 owner race rosters
+[race-v1] [7/12] complete; sides=2
+[race-v1] [8/12] game=228199 T7: reconstructing T-1 owner race rosters
+[race-v1] [8/12] complete; sides=2
+[race-v1] [9/12] game=230354 T8: reconstructing T-1 owner race rosters
+[race-v1] [9/12] complete; sides=2
+[race-v1] [10/12] game=233558 T9: reconstructing T-1 owner race rosters
+[race-v1] [10/12] complete; sides=2
+[race-v1] [11/12] game=235762 T8: reconstructing T-1 owner race rosters
+[race-v1] [11/12] complete; sides=6
+[race-v1] [12/12] game=243165 T9: reconstructing T-1 owner race rosters
+[race-v1] [12/12] complete; sides=2
+===== PRE-VCR T-1 RACE BONUS AUDIT =====
+status: TMINUS1_RACE_BONUS_CONDITIONAL_EVIDENCE_NOT_PROMOTED
+summary: {'held_out_games': 12, 'held_out_ship_VCR_sides': 30, 'hull_only_numeric_matches': 26, 'original_plus50KT_sides': 4, 'Tminus1_race_resolver_statuses': {'RESOLVED_TMINUS1_OWNER_RACE': 30}, 'conditional_candidates_evaluable': 30, 'conditional_candidates_matching_full_VCR_mass': 30, 'conditional_candidates_not_matching_full_VCR_mass': 0, 'race_disagreements_vs_current_VCR': 0, 'full_combat_mass_predictions_made': 0}
+plus50: 228199 7 1 right T-1 race status: RESOLVED_TMINUS1_OWNER_RACE raceid: 1 candidate: 220 match: True
+plus50: 233558 9 1 right T-1 race status: RESOLVED_TMINUS1_OWNER_RACE raceid: 1 candidate: 151 match: True
+plus50: 235762 8 1 left T-1 race status: RESOLVED_TMINUS1_OWNER_RACE raceid: 1 candidate: 110 match: True
+plus50: 235762 8 3 left T-1 race status: RESOLVED_TMINUS1_OWNER_RACE raceid: 1 candidate: 140 match: True
+output: artifacts/combat/mass-tminus1-race-bonus-audit-v1/published/report.json

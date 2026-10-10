@@ -1,0 +1,1500 @@
+{
+  "all_30_held_out_sides": [
+    {
+      "conditional_precombat_race_component": {
+        "assumed_federation_bonus_KT": 0,
+        "conditional_hull_plus_race_mass_KT": 120,
+        "federation_advantage_active_in_host_proven": false,
+        "full_combat_mass_prediction_KT": null,
+        "same_turn_current_owner_continuity_proven": false,
+        "status": "CONDITIONAL_DOCUMENTED_RACE_COMPONENT"
+      },
+      "game_id": 2466,
+      "historical_race_evidence": {
+        "owner_raceid_Tminus1": 6,
+        "perspectives_checked": 11,
+        "source_archive_turn": 10,
+        "source_member_ids": [
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22
+        ],
+        "status": "RESOLVED_TMINUS1_OWNER_RACE"
+      },
+      "hull_id": 56,
+      "independent_Tminus1_hull_mass_KT": 120,
+      "original_factual_minus_hull_KT": 0,
+      "owner_id_from_VCR_identity_only": 6,
+      "postforecast_comparison": {
+        "VCR_race_matches_Tminus1_roster": true,
+        "conditional_candidate_equals_full_observed_mass": true,
+        "factual_minus_conditional_candidate_KT": 0,
+        "observed_vcr_mass_KT": 120,
+        "observed_vcr_raceid_ONLY_FOR_EVALUATION": 6
+      },
+      "side": "left",
+      "turn": 11,
+      "vcr_id": 1
+    },
+    {
+      "conditional_precombat_race_component": {
+        "assumed_federation_bonus_KT": 0,
+        "conditional_hull_plus_race_mass_KT": 60,
+        "federation_advantage_active_in_host_proven": false,
+        "full_combat_mass_prediction_KT": null,
+        "same_turn_current_owner_continuity_proven": false,
+        "status": "CONDITIONAL_DOCUMENTED_RACE_COMPONENT"
+      },
+      "game_id": 2466,
+      "historical_race_evidence": {
+        "owner_raceid_Tminus1": 10,
+        "perspectives_checked": 11,
+        "source_archive_turn": 10,
+        "source_member_ids": [
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22
+        ],
+        "status": "RESOLVED_TMINUS1_OWNER_RACE"
+      },
+      "hull_id": 16,
+      "independent_Tminus1_hull_mass_KT": 60,
+      "original_factual_minus_hull_KT": 0,
+      "owner_id_from_VCR_identity_only": 10,
+      "postforecast_comparison": {
+        "VCR_race_matches_Tminus1_roster": true,
+        "conditional_candidate_equals_full_observed_mass": true,
+        "factual_minus_conditional_candidate_KT": 0,
+        "observed_vcr_mass_KT": 60,
+        "observed_vcr_raceid_ONLY_FOR_EVALUATION": 10
+      },
+      "side": "right",
+      "turn": 11,
+      "vcr_id": 1
+    },
+    {
+      "conditional_precombat_race_component": {
+        "assumed_federation_bonus_KT": 0,
+        "conditional_hull_plus_race_mass_KT": 30,
+        "federation_advantage_active_in_host_proven": false,
+        "full_combat_mass_prediction_KT": null,
+        "same_turn_current_owner_continuity_proven": false,
+        "status": "CONDITIONAL_DOCUMENTED_RACE_COMPONENT"
+      },
+      "game_id": 218619,
+      "historical_race_evidence": {
+        "owner_raceid_Tminus1": 10,
+        "perspectives_checked": 11,
+        "source_archive_turn": 7,
+        "source_member_ids": [
+          3572,
+          3573,
+          3574,
+          3575,
+          3576,
+          3577,
+          3578,
+          3579,
+          3580,
+          3581,
+          3582
+        ],
+        "status": "RESOLVED_TMINUS1_OWNER_RACE"
+      },
+      "hull_id": 87,
+      "independent_Tminus1_hull_mass_KT": 30,
+      "original_factual_minus_hull_KT": 0,
+      "owner_id_from_VCR_identity_only": 10,
+      "postforecast_comparison": {
+        "VCR_race_matches_Tminus1_roster": true,
+        "conditional_candidate_equals_full_observed_mass": true,
+        "factual_minus_conditional_candidate_KT": 0,
+        "observed_vcr_mass_KT": 30,
+        "observed_vcr_raceid_ONLY_FOR_EVALUATION": 10
+      },
+      "side": "left",
+      "turn": 8,
+      "vcr_id": 1
+    },
+    {
+      "conditional_precombat_race_component": {
+        "assumed_federation_bonus_KT": 0,
+        "conditional_hull_plus_race_mass_KT": 120,
+        "federation_advantage_active_in_host_proven": false,
+        "full_combat_mass_prediction_KT": null,
+        "same_turn_current_owner_continuity_proven": false,
+        "status": "CONDITIONAL_DOCUMENTED_RACE_COMPONENT"
+      },
+      "game_id": 218619,
+      "historical_race_evidence": {
+        "owner_raceid_Tminus1": 7,
+        "perspectives_checked": 11,
+        "source_archive_turn": 7,
+        "source_member_ids": [
+          3572,
+          3573,
+          3574,
+          3575,
+          3576,
+          3577,
+          3578,
+          3579,
+          3580,
+          3581,
+          3582
+        ],
+        "status": "RESOLVED_TMINUS1_OWNER_RACE"
+      },
+      "hull_id": 60,
+      "independent_Tminus1_hull_mass_KT": 120,
+      "original_factual_minus_hull_KT": 0,
+      "owner_id_from_VCR_identity_only": 7,
+      "postforecast_comparison": {
+        "VCR_race_matches_Tminus1_roster": true,
+        "conditional_candidate_equals_full_observed_mass": true,
+        "factual_minus_conditional_candidate_KT": 0,
+        "observed_vcr_mass_KT": 120,
+        "observed_vcr_raceid_ONLY_FOR_EVALUATION": 7
+      },
+      "side": "right",
+      "turn": 8,
+      "vcr_id": 1
+    },
+    {
+      "conditional_precombat_race_component": {
+        "assumed_federation_bonus_KT": 0,
+        "conditional_hull_plus_race_mass_KT": 60,
+        "federation_advantage_active_in_host_proven": false,
+        "full_combat_mass_prediction_KT": null,
+        "same_turn_current_owner_continuity_proven": false,
+        "status": "CONDITIONAL_DOCUMENTED_RACE_COMPONENT"
+      },
+      "game_id": 220698,
+      "historical_race_evidence": {
+        "owner_raceid_Tminus1": 10,
+        "perspectives_checked": 11,
+        "source_archive_turn": 10,
+        "source_member_ids": [
+          6784,
+          6785,
+          6786,
+          6787,
+          6788,
+          6789,
+          6790,
+          6791,
+          6792,
+          6793,
+          6794
+        ],
+        "status": "RESOLVED_TMINUS1_OWNER_RACE"
+      },
+      "hull_id": 16,
+      "independent_Tminus1_hull_mass_KT": 60,
+      "original_factual_minus_hull_KT": 0,
+      "owner_id_from_VCR_identity_only": 10,
+      "postforecast_comparison": {
+        "VCR_race_matches_Tminus1_roster": true,
+        "conditional_candidate_equals_full_observed_mass": true,
+        "factual_minus_conditional_candidate_KT": 0,
+        "observed_vcr_mass_KT": 60,
+        "observed_vcr_raceid_ONLY_FOR_EVALUATION": 10
+      },
+      "side": "left",
+      "turn": 11,
+      "vcr_id": 1
+    },
+    {
+      "conditional_precombat_race_component": {
+        "assumed_federation_bonus_KT": 0,
+        "conditional_hull_plus_race_mass_KT": 55,
+        "federation_advantage_active_in_host_proven": false,
+        "full_combat_mass_prediction_KT": null,
+        "same_turn_current_owner_continuity_proven": false,
+        "status": "CONDITIONAL_DOCUMENTED_RACE_COMPONENT"
+      },
+      "game_id": 220698,
+      "historical_race_evidence": {
+        "owner_raceid_Tminus1": 5,
+        "perspectives_checked": 11,
+        "source_archive_turn": 10,
+        "source_member_ids": [
+          6784,
+          6785,
+          6786,
+          6787,
+          6788,
+          6789,
+          6790,
+          6791,
+          6792,
+          6793,
+          6794
+        ],
+        "status": "RESOLVED_TMINUS1_OWNER_RACE"
+      },
+      "hull_id": 44,
+      "independent_Tminus1_hull_mass_KT": 55,
+      "original_factual_minus_hull_KT": 0,
+      "owner_id_from_VCR_identity_only": 5,
+      "postforecast_comparison": {
+        "VCR_race_matches_Tminus1_roster": true,
+        "conditional_candidate_equals_full_observed_mass": true,
+        "factual_minus_conditional_candidate_KT": 0,
+        "observed_vcr_mass_KT": 55,
+        "observed_vcr_raceid_ONLY_FOR_EVALUATION": 5
+      },
+      "side": "right",
+      "turn": 11,
+      "vcr_id": 1
+    },
+    {
+      "conditional_precombat_race_component": {
+        "assumed_federation_bonus_KT": 0,
+        "conditional_hull_plus_race_mass_KT": 30,
+        "federation_advantage_active_in_host_proven": false,
+        "full_combat_mass_prediction_KT": null,
+        "same_turn_current_owner_continuity_proven": false,
+        "status": "CONDITIONAL_DOCUMENTED_RACE_COMPONENT"
+      },
+      "game_id": 220698,
+      "historical_race_evidence": {
+        "owner_raceid_Tminus1": 10,
+        "perspectives_checked": 11,
+        "source_archive_turn": 10,
+        "source_member_ids": [
+          6784,
+          6785,
+          6786,
+          6787,
+          6788,
+          6789,
+          6790,
+          6791,
+          6792,
+          6793,
+          6794
+        ],
+        "status": "RESOLVED_TMINUS1_OWNER_RACE"
+      },
+      "hull_id": 87,
+      "independent_Tminus1_hull_mass_KT": 30,
+      "original_factual_minus_hull_KT": 0,
+      "owner_id_from_VCR_identity_only": 10,
+      "postforecast_comparison": {
+        "VCR_race_matches_Tminus1_roster": true,
+        "conditional_candidate_equals_full_observed_mass": true,
+        "factual_minus_conditional_candidate_KT": 0,
+        "observed_vcr_mass_KT": 30,
+        "observed_vcr_raceid_ONLY_FOR_EVALUATION": 10
+      },
+      "side": "left",
+      "turn": 11,
+      "vcr_id": 2
+    },
+    {
+      "conditional_precombat_race_component": {
+        "assumed_federation_bonus_KT": 0,
+        "conditional_hull_plus_race_mass_KT": 55,
+        "federation_advantage_active_in_host_proven": false,
+        "full_combat_mass_prediction_KT": null,
+        "same_turn_current_owner_continuity_proven": false,
+        "status": "CONDITIONAL_DOCUMENTED_RACE_COMPONENT"
+      },
+      "game_id": 220698,
+      "historical_race_evidence": {
+        "owner_raceid_Tminus1": 5,
+        "perspectives_checked": 11,
+        "source_archive_turn": 10,
+        "source_member_ids": [
+          6784,
+          6785,
+          6786,
+          6787,
+          6788,
+          6789,
+          6790,
+          6791,
+          6792,
+          6793,
+          6794
+        ],
+        "status": "RESOLVED_TMINUS1_OWNER_RACE"
+      },
+      "hull_id": 44,
+      "independent_Tminus1_hull_mass_KT": 55,
+      "original_factual_minus_hull_KT": 0,
+      "owner_id_from_VCR_identity_only": 5,
+      "postforecast_comparison": {
+        "VCR_race_matches_Tminus1_roster": true,
+        "conditional_candidate_equals_full_observed_mass": true,
+        "factual_minus_conditional_candidate_KT": 0,
+        "observed_vcr_mass_KT": 55,
+        "observed_vcr_raceid_ONLY_FOR_EVALUATION": 5
+      },
+      "side": "right",
+      "turn": 11,
+      "vcr_id": 2
+    },
+    {
+      "conditional_precombat_race_component": {
+        "assumed_federation_bonus_KT": 0,
+        "conditional_hull_plus_race_mass_KT": 30,
+        "federation_advantage_active_in_host_proven": false,
+        "full_combat_mass_prediction_KT": null,
+        "same_turn_current_owner_continuity_proven": false,
+        "status": "CONDITIONAL_DOCUMENTED_RACE_COMPONENT"
+      },
+      "game_id": 221008,
+      "historical_race_evidence": {
+        "owner_raceid_Tminus1": 6,
+        "perspectives_checked": 11,
+        "source_archive_turn": 15,
+        "source_member_ids": [
+          8225,
+          8226,
+          8227,
+          8228,
+          8229,
+          8230,
+          8231,
+          8232,
+          8233,
+          8234,
+          8235
+        ],
+        "status": "RESOLVED_TMINUS1_OWNER_RACE"
+      },
+      "hull_id": 51,
+      "independent_Tminus1_hull_mass_KT": 30,
+      "original_factual_minus_hull_KT": 0,
+      "owner_id_from_VCR_identity_only": 6,
+      "postforecast_comparison": {
+        "VCR_race_matches_Tminus1_roster": true,
+        "conditional_candidate_equals_full_observed_mass": true,
+        "factual_minus_conditional_candidate_KT": 0,
+        "observed_vcr_mass_KT": 30,
+        "observed_vcr_raceid_ONLY_FOR_EVALUATION": 6
+      },
+      "side": "left",
+      "turn": 16,
+      "vcr_id": 4
+    },
+    {
+      "conditional_precombat_race_component": {
+        "assumed_federation_bonus_KT": 0,
+        "conditional_hull_plus_race_mass_KT": 160,
+        "federation_advantage_active_in_host_proven": false,
+        "full_combat_mass_prediction_KT": null,
+        "same_turn_current_owner_continuity_proven": false,
+        "status": "CONDITIONAL_DOCUMENTED_RACE_COMPONENT"
+      },
+      "game_id": 221008,
+      "historical_race_evidence": {
+        "owner_raceid_Tminus1": 2,
+        "perspectives_checked": 11,
+        "source_archive_turn": 15,
+        "source_member_ids": [
+          8225,
+          8226,
+          8227,
+          8228,
+          8229,
+          8230,
+          8231,
+          8232,
+          8233,
+          8234,
+          8235
+        ],
+        "status": "RESOLVED_TMINUS1_OWNER_RACE"
+      },
+      "hull_id": 22,
+      "independent_Tminus1_hull_mass_KT": 160,
+      "original_factual_minus_hull_KT": 0,
+      "owner_id_from_VCR_identity_only": 2,
+      "postforecast_comparison": {
+        "VCR_race_matches_Tminus1_roster": true,
+        "conditional_candidate_equals_full_observed_mass": true,
+        "factual_minus_conditional_candidate_KT": 0,
+        "observed_vcr_mass_KT": 160,
+        "observed_vcr_raceid_ONLY_FOR_EVALUATION": 2
+      },
+      "side": "right",
+      "turn": 16,
+      "vcr_id": 4
+    },
+    {
+      "conditional_precombat_race_component": {
+        "assumed_federation_bonus_KT": 0,
+        "conditional_hull_plus_race_mass_KT": 90,
+        "federation_advantage_active_in_host_proven": false,
+        "full_combat_mass_prediction_KT": null,
+        "same_turn_current_owner_continuity_proven": false,
+        "status": "CONDITIONAL_DOCUMENTED_RACE_COMPONENT"
+      },
+      "game_id": 224849,
+      "historical_race_evidence": {
+        "owner_raceid_Tminus1": 10,
+        "perspectives_checked": 11,
+        "source_archive_turn": 15,
+        "source_member_ids": [
+          9699,
+          9700,
+          9701,
+          9702,
+          9703,
+          9704,
+          9705,
+          9706,
+          9707,
+          9708,
+          9709
+        ],
+        "status": "RESOLVED_TMINUS1_OWNER_RACE"
+      },
+      "hull_id": 103,
+      "independent_Tminus1_hull_mass_KT": 90,
+      "original_factual_minus_hull_KT": 0,
+      "owner_id_from_VCR_identity_only": 10,
+      "postforecast_comparison": {
+        "VCR_race_matches_Tminus1_roster": true,
+        "conditional_candidate_equals_full_observed_mass": true,
+        "factual_minus_conditional_candidate_KT": 0,
+        "observed_vcr_mass_KT": 90,
+        "observed_vcr_raceid_ONLY_FOR_EVALUATION": 10
+      },
+      "side": "left",
+      "turn": 16,
+      "vcr_id": 2
+    },
+    {
+      "conditional_precombat_race_component": {
+        "assumed_federation_bonus_KT": 0,
+        "conditional_hull_plus_race_mass_KT": 55,
+        "federation_advantage_active_in_host_proven": false,
+        "full_combat_mass_prediction_KT": null,
+        "same_turn_current_owner_continuity_proven": false,
+        "status": "CONDITIONAL_DOCUMENTED_RACE_COMPONENT"
+      },
+      "game_id": 224849,
+      "historical_race_evidence": {
+        "owner_raceid_Tminus1": 2,
+        "perspectives_checked": 11,
+        "source_archive_turn": 15,
+        "source_member_ids": [
+          9699,
+          9700,
+          9701,
+          9702,
+          9703,
+          9704,
+          9705,
+          9706,
+          9707,
+          9708,
+          9709
+        ],
+        "status": "RESOLVED_TMINUS1_OWNER_RACE"
+      },
+      "hull_id": 24,
+      "independent_Tminus1_hull_mass_KT": 55,
+      "original_factual_minus_hull_KT": 0,
+      "owner_id_from_VCR_identity_only": 2,
+      "postforecast_comparison": {
+        "VCR_race_matches_Tminus1_roster": true,
+        "conditional_candidate_equals_full_observed_mass": true,
+        "factual_minus_conditional_candidate_KT": 0,
+        "observed_vcr_mass_KT": 55,
+        "observed_vcr_raceid_ONLY_FOR_EVALUATION": 2
+      },
+      "side": "right",
+      "turn": 16,
+      "vcr_id": 2
+    },
+    {
+      "conditional_precombat_race_component": {
+        "assumed_federation_bonus_KT": 0,
+        "conditional_hull_plus_race_mass_KT": 130,
+        "federation_advantage_active_in_host_proven": false,
+        "full_combat_mass_prediction_KT": null,
+        "same_turn_current_owner_continuity_proven": false,
+        "status": "CONDITIONAL_DOCUMENTED_RACE_COMPONENT"
+      },
+      "game_id": 226056,
+      "historical_race_evidence": {
+        "owner_raceid_Tminus1": 2,
+        "perspectives_checked": 12,
+        "source_archive_turn": 7,
+        "source_member_ids": [
+          11818,
+          11819,
+          11820,
+          11821,
+          11822,
+          11823,
+          11824,
+          11825,
+          11826,
+          11827,
+          11828,
+          11829
+        ],
+        "status": "RESOLVED_TMINUS1_OWNER_RACE"
+      },
+      "hull_id": 17,
+      "independent_Tminus1_hull_mass_KT": 130,
+      "original_factual_minus_hull_KT": 0,
+      "owner_id_from_VCR_identity_only": 2,
+      "postforecast_comparison": {
+        "VCR_race_matches_Tminus1_roster": true,
+        "conditional_candidate_equals_full_observed_mass": true,
+        "factual_minus_conditional_candidate_KT": 0,
+        "observed_vcr_mass_KT": 130,
+        "observed_vcr_raceid_ONLY_FOR_EVALUATION": 2
+      },
+      "side": "left",
+      "turn": 8,
+      "vcr_id": 1
+    },
+    {
+      "conditional_precombat_race_component": {
+        "assumed_federation_bonus_KT": 0,
+        "conditional_hull_plus_race_mass_KT": 30,
+        "federation_advantage_active_in_host_proven": false,
+        "full_combat_mass_prediction_KT": null,
+        "same_turn_current_owner_continuity_proven": false,
+        "status": "CONDITIONAL_DOCUMENTED_RACE_COMPONENT"
+      },
+      "game_id": 226056,
+      "historical_race_evidence": {
+        "owner_raceid_Tminus1": 6,
+        "perspectives_checked": 12,
+        "source_archive_turn": 7,
+        "source_member_ids": [
+          11818,
+          11819,
+          11820,
+          11821,
+          11822,
+          11823,
+          11824,
+          11825,
+          11826,
+          11827,
+          11828,
+          11829
+        ],
+        "status": "RESOLVED_TMINUS1_OWNER_RACE"
+      },
+      "hull_id": 51,
+      "independent_Tminus1_hull_mass_KT": 30,
+      "original_factual_minus_hull_KT": 0,
+      "owner_id_from_VCR_identity_only": 6,
+      "postforecast_comparison": {
+        "VCR_race_matches_Tminus1_roster": true,
+        "conditional_candidate_equals_full_observed_mass": true,
+        "factual_minus_conditional_candidate_KT": 0,
+        "observed_vcr_mass_KT": 30,
+        "observed_vcr_raceid_ONLY_FOR_EVALUATION": 6
+      },
+      "side": "right",
+      "turn": 8,
+      "vcr_id": 1
+    },
+    {
+      "conditional_precombat_race_component": {
+        "assumed_federation_bonus_KT": 0,
+        "conditional_hull_plus_race_mass_KT": 55,
+        "federation_advantage_active_in_host_proven": false,
+        "full_combat_mass_prediction_KT": null,
+        "same_turn_current_owner_continuity_proven": false,
+        "status": "CONDITIONAL_DOCUMENTED_RACE_COMPONENT"
+      },
+      "game_id": 227887,
+      "historical_race_evidence": {
+        "owner_raceid_Tminus1": 5,
+        "perspectives_checked": 11,
+        "source_archive_turn": 9,
+        "source_member_ids": [
+          13489,
+          13490,
+          13491,
+          13492,
+          13493,
+          13494,
+          13495,
+          13496,
+          13497,
+          13498,
+          13499
+        ],
+        "status": "RESOLVED_TMINUS1_OWNER_RACE"
+      },
+      "hull_id": 44,
+      "independent_Tminus1_hull_mass_KT": 55,
+      "original_factual_minus_hull_KT": 0,
+      "owner_id_from_VCR_identity_only": 5,
+      "postforecast_comparison": {
+        "VCR_race_matches_Tminus1_roster": true,
+        "conditional_candidate_equals_full_observed_mass": true,
+        "factual_minus_conditional_candidate_KT": 0,
+        "observed_vcr_mass_KT": 55,
+        "observed_vcr_raceid_ONLY_FOR_EVALUATION": 5
+      },
+      "side": "left",
+      "turn": 10,
+      "vcr_id": 2
+    },
+    {
+      "conditional_precombat_race_component": {
+        "assumed_federation_bonus_KT": 0,
+        "conditional_hull_plus_race_mass_KT": 101,
+        "federation_advantage_active_in_host_proven": false,
+        "full_combat_mass_prediction_KT": null,
+        "same_turn_current_owner_continuity_proven": false,
+        "status": "CONDITIONAL_DOCUMENTED_RACE_COMPONENT"
+      },
+      "game_id": 227887,
+      "historical_race_evidence": {
+        "owner_raceid_Tminus1": 2,
+        "perspectives_checked": 11,
+        "source_archive_turn": 9,
+        "source_member_ids": [
+          13489,
+          13490,
+          13491,
+          13492,
+          13493,
+          13494,
+          13495,
+          13496,
+          13497,
+          13498,
+          13499
+        ],
+        "status": "RESOLVED_TMINUS1_OWNER_RACE"
+      },
+      "hull_id": 7,
+      "independent_Tminus1_hull_mass_KT": 101,
+      "original_factual_minus_hull_KT": 0,
+      "owner_id_from_VCR_identity_only": 2,
+      "postforecast_comparison": {
+        "VCR_race_matches_Tminus1_roster": true,
+        "conditional_candidate_equals_full_observed_mass": true,
+        "factual_minus_conditional_candidate_KT": 0,
+        "observed_vcr_mass_KT": 101,
+        "observed_vcr_raceid_ONLY_FOR_EVALUATION": 2
+      },
+      "side": "right",
+      "turn": 10,
+      "vcr_id": 2
+    },
+    {
+      "conditional_precombat_race_component": {
+        "assumed_federation_bonus_KT": 0,
+        "conditional_hull_plus_race_mass_KT": 30,
+        "federation_advantage_active_in_host_proven": false,
+        "full_combat_mass_prediction_KT": null,
+        "same_turn_current_owner_continuity_proven": false,
+        "status": "CONDITIONAL_DOCUMENTED_RACE_COMPONENT"
+      },
+      "game_id": 228199,
+      "historical_race_evidence": {
+        "owner_raceid_Tminus1": 6,
+        "perspectives_checked": 11,
+        "source_archive_turn": 6,
+        "source_member_ids": [
+          16602,
+          16603,
+          16604,
+          16605,
+          16606,
+          16607,
+          16608,
+          16609,
+          16610,
+          16611,
+          16612
+        ],
+        "status": "RESOLVED_TMINUS1_OWNER_RACE"
+      },
+      "hull_id": 51,
+      "independent_Tminus1_hull_mass_KT": 30,
+      "original_factual_minus_hull_KT": 0,
+      "owner_id_from_VCR_identity_only": 6,
+      "postforecast_comparison": {
+        "VCR_race_matches_Tminus1_roster": true,
+        "conditional_candidate_equals_full_observed_mass": true,
+        "factual_minus_conditional_candidate_KT": 0,
+        "observed_vcr_mass_KT": 30,
+        "observed_vcr_raceid_ONLY_FOR_EVALUATION": 6
+      },
+      "side": "left",
+      "turn": 7,
+      "vcr_id": 1
+    },
+    {
+      "conditional_precombat_race_component": {
+        "assumed_federation_bonus_KT": 50,
+        "conditional_hull_plus_race_mass_KT": 220,
+        "federation_advantage_active_in_host_proven": false,
+        "full_combat_mass_prediction_KT": null,
+        "same_turn_current_owner_continuity_proven": false,
+        "status": "CONDITIONAL_DOCUMENTED_RACE_COMPONENT"
+      },
+      "game_id": 228199,
+      "historical_race_evidence": {
+        "owner_raceid_Tminus1": 1,
+        "perspectives_checked": 11,
+        "source_archive_turn": 6,
+        "source_member_ids": [
+          16602,
+          16603,
+          16604,
+          16605,
+          16606,
+          16607,
+          16608,
+          16609,
+          16610,
+          16611,
+          16612
+        ],
+        "status": "RESOLVED_TMINUS1_OWNER_RACE"
+      },
+      "hull_id": 5,
+      "independent_Tminus1_hull_mass_KT": 170,
+      "original_factual_minus_hull_KT": 50,
+      "owner_id_from_VCR_identity_only": 1,
+      "postforecast_comparison": {
+        "VCR_race_matches_Tminus1_roster": true,
+        "conditional_candidate_equals_full_observed_mass": true,
+        "factual_minus_conditional_candidate_KT": 0,
+        "observed_vcr_mass_KT": 220,
+        "observed_vcr_raceid_ONLY_FOR_EVALUATION": 1
+      },
+      "side": "right",
+      "turn": 7,
+      "vcr_id": 1
+    },
+    {
+      "conditional_precombat_race_component": {
+        "assumed_federation_bonus_KT": 0,
+        "conditional_hull_plus_race_mass_KT": 130,
+        "federation_advantage_active_in_host_proven": false,
+        "full_combat_mass_prediction_KT": null,
+        "same_turn_current_owner_continuity_proven": false,
+        "status": "CONDITIONAL_DOCUMENTED_RACE_COMPONENT"
+      },
+      "game_id": 230354,
+      "historical_race_evidence": {
+        "owner_raceid_Tminus1": 3,
+        "perspectives_checked": 11,
+        "source_archive_turn": 7,
+        "source_member_ids": [
+          18505,
+          18506,
+          18507,
+          18508,
+          18509,
+          18510,
+          18511,
+          18512,
+          18513,
+          18514,
+          18515
+        ],
+        "status": "RESOLVED_TMINUS1_OWNER_RACE"
+      },
+      "hull_id": 17,
+      "independent_Tminus1_hull_mass_KT": 130,
+      "original_factual_minus_hull_KT": 0,
+      "owner_id_from_VCR_identity_only": 3,
+      "postforecast_comparison": {
+        "VCR_race_matches_Tminus1_roster": true,
+        "conditional_candidate_equals_full_observed_mass": true,
+        "factual_minus_conditional_candidate_KT": 0,
+        "observed_vcr_mass_KT": 130,
+        "observed_vcr_raceid_ONLY_FOR_EVALUATION": 3
+      },
+      "side": "left",
+      "turn": 8,
+      "vcr_id": 1
+    },
+    {
+      "conditional_precombat_race_component": {
+        "assumed_federation_bonus_KT": 0,
+        "conditional_hull_plus_race_mass_KT": 90,
+        "federation_advantage_active_in_host_proven": false,
+        "full_combat_mass_prediction_KT": null,
+        "same_turn_current_owner_continuity_proven": false,
+        "status": "CONDITIONAL_DOCUMENTED_RACE_COMPONENT"
+      },
+      "game_id": 230354,
+      "historical_race_evidence": {
+        "owner_raceid_Tminus1": 5,
+        "perspectives_checked": 11,
+        "source_archive_turn": 7,
+        "source_member_ids": [
+          18505,
+          18506,
+          18507,
+          18508,
+          18509,
+          18510,
+          18511,
+          18512,
+          18513,
+          18514,
+          18515
+        ],
+        "status": "RESOLVED_TMINUS1_OWNER_RACE"
+      },
+      "hull_id": 46,
+      "independent_Tminus1_hull_mass_KT": 90,
+      "original_factual_minus_hull_KT": 0,
+      "owner_id_from_VCR_identity_only": 5,
+      "postforecast_comparison": {
+        "VCR_race_matches_Tminus1_roster": true,
+        "conditional_candidate_equals_full_observed_mass": true,
+        "factual_minus_conditional_candidate_KT": 0,
+        "observed_vcr_mass_KT": 90,
+        "observed_vcr_raceid_ONLY_FOR_EVALUATION": 5
+      },
+      "side": "right",
+      "turn": 8,
+      "vcr_id": 1
+    },
+    {
+      "conditional_precombat_race_component": {
+        "assumed_federation_bonus_KT": 0,
+        "conditional_hull_plus_race_mass_KT": 30,
+        "federation_advantage_active_in_host_proven": false,
+        "full_combat_mass_prediction_KT": null,
+        "same_turn_current_owner_continuity_proven": false,
+        "status": "CONDITIONAL_DOCUMENTED_RACE_COMPONENT"
+      },
+      "game_id": 233558,
+      "historical_race_evidence": {
+        "owner_raceid_Tminus1": 6,
+        "perspectives_checked": 11,
+        "source_archive_turn": 8,
+        "source_member_ids": [
+          20496,
+          20497,
+          20498,
+          20499,
+          20500,
+          20501,
+          20502,
+          20503,
+          20504,
+          20505,
+          20506
+        ],
+        "status": "RESOLVED_TMINUS1_OWNER_RACE"
+      },
+      "hull_id": 51,
+      "independent_Tminus1_hull_mass_KT": 30,
+      "original_factual_minus_hull_KT": 0,
+      "owner_id_from_VCR_identity_only": 6,
+      "postforecast_comparison": {
+        "VCR_race_matches_Tminus1_roster": true,
+        "conditional_candidate_equals_full_observed_mass": true,
+        "factual_minus_conditional_candidate_KT": 0,
+        "observed_vcr_mass_KT": 30,
+        "observed_vcr_raceid_ONLY_FOR_EVALUATION": 6
+      },
+      "side": "left",
+      "turn": 9,
+      "vcr_id": 1
+    },
+    {
+      "conditional_precombat_race_component": {
+        "assumed_federation_bonus_KT": 50,
+        "conditional_hull_plus_race_mass_KT": 151,
+        "federation_advantage_active_in_host_proven": false,
+        "full_combat_mass_prediction_KT": null,
+        "same_turn_current_owner_continuity_proven": false,
+        "status": "CONDITIONAL_DOCUMENTED_RACE_COMPONENT"
+      },
+      "game_id": 233558,
+      "historical_race_evidence": {
+        "owner_raceid_Tminus1": 1,
+        "perspectives_checked": 11,
+        "source_archive_turn": 8,
+        "source_member_ids": [
+          20496,
+          20497,
+          20498,
+          20499,
+          20500,
+          20501,
+          20502,
+          20503,
+          20504,
+          20505,
+          20506
+        ],
+        "status": "RESOLVED_TMINUS1_OWNER_RACE"
+      },
+      "hull_id": 7,
+      "independent_Tminus1_hull_mass_KT": 101,
+      "original_factual_minus_hull_KT": 50,
+      "owner_id_from_VCR_identity_only": 1,
+      "postforecast_comparison": {
+        "VCR_race_matches_Tminus1_roster": true,
+        "conditional_candidate_equals_full_observed_mass": true,
+        "factual_minus_conditional_candidate_KT": 0,
+        "observed_vcr_mass_KT": 151,
+        "observed_vcr_raceid_ONLY_FOR_EVALUATION": 1
+      },
+      "side": "right",
+      "turn": 9,
+      "vcr_id": 1
+    },
+    {
+      "conditional_precombat_race_component": {
+        "assumed_federation_bonus_KT": 50,
+        "conditional_hull_plus_race_mass_KT": 110,
+        "federation_advantage_active_in_host_proven": false,
+        "full_combat_mass_prediction_KT": null,
+        "same_turn_current_owner_continuity_proven": false,
+        "status": "CONDITIONAL_DOCUMENTED_RACE_COMPONENT"
+      },
+      "game_id": 235762,
+      "historical_race_evidence": {
+        "owner_raceid_Tminus1": 1,
+        "perspectives_checked": 8,
+        "source_archive_turn": 7,
+        "source_member_ids": [
+          27174,
+          27175,
+          27176,
+          27177,
+          27178,
+          27179,
+          27180,
+          27181
+        ],
+        "status": "RESOLVED_TMINUS1_OWNER_RACE"
+      },
+      "hull_id": 16,
+      "independent_Tminus1_hull_mass_KT": 60,
+      "original_factual_minus_hull_KT": 50,
+      "owner_id_from_VCR_identity_only": 3,
+      "postforecast_comparison": {
+        "VCR_race_matches_Tminus1_roster": true,
+        "conditional_candidate_equals_full_observed_mass": true,
+        "factual_minus_conditional_candidate_KT": 0,
+        "observed_vcr_mass_KT": 110,
+        "observed_vcr_raceid_ONLY_FOR_EVALUATION": 1
+      },
+      "side": "left",
+      "turn": 8,
+      "vcr_id": 1
+    },
+    {
+      "conditional_precombat_race_component": {
+        "assumed_federation_bonus_KT": 0,
+        "conditional_hull_plus_race_mass_KT": 175,
+        "federation_advantage_active_in_host_proven": false,
+        "full_combat_mass_prediction_KT": null,
+        "same_turn_current_owner_continuity_proven": false,
+        "status": "CONDITIONAL_DOCUMENTED_RACE_COMPONENT"
+      },
+      "game_id": 235762,
+      "historical_race_evidence": {
+        "owner_raceid_Tminus1": 4,
+        "perspectives_checked": 8,
+        "source_archive_turn": 7,
+        "source_member_ids": [
+          27174,
+          27175,
+          27176,
+          27177,
+          27178,
+          27179,
+          27180,
+          27181
+        ],
+        "status": "RESOLVED_TMINUS1_OWNER_RACE"
+      },
+      "hull_id": 36,
+      "independent_Tminus1_hull_mass_KT": 175,
+      "original_factual_minus_hull_KT": 0,
+      "owner_id_from_VCR_identity_only": 2,
+      "postforecast_comparison": {
+        "VCR_race_matches_Tminus1_roster": true,
+        "conditional_candidate_equals_full_observed_mass": true,
+        "factual_minus_conditional_candidate_KT": 0,
+        "observed_vcr_mass_KT": 175,
+        "observed_vcr_raceid_ONLY_FOR_EVALUATION": 4
+      },
+      "side": "right",
+      "turn": 8,
+      "vcr_id": 1
+    },
+    {
+      "conditional_precombat_race_component": {
+        "assumed_federation_bonus_KT": 0,
+        "conditional_hull_plus_race_mass_KT": 60,
+        "federation_advantage_active_in_host_proven": false,
+        "full_combat_mass_prediction_KT": null,
+        "same_turn_current_owner_continuity_proven": false,
+        "status": "CONDITIONAL_DOCUMENTED_RACE_COMPONENT"
+      },
+      "game_id": 235762,
+      "historical_race_evidence": {
+        "owner_raceid_Tminus1": 2,
+        "perspectives_checked": 8,
+        "source_archive_turn": 7,
+        "source_member_ids": [
+          27174,
+          27175,
+          27176,
+          27177,
+          27178,
+          27179,
+          27180,
+          27181
+        ],
+        "status": "RESOLVED_TMINUS1_OWNER_RACE"
+      },
+      "hull_id": 16,
+      "independent_Tminus1_hull_mass_KT": 60,
+      "original_factual_minus_hull_KT": 0,
+      "owner_id_from_VCR_identity_only": 4,
+      "postforecast_comparison": {
+        "VCR_race_matches_Tminus1_roster": true,
+        "conditional_candidate_equals_full_observed_mass": true,
+        "factual_minus_conditional_candidate_KT": 0,
+        "observed_vcr_mass_KT": 60,
+        "observed_vcr_raceid_ONLY_FOR_EVALUATION": 2
+      },
+      "side": "left",
+      "turn": 8,
+      "vcr_id": 2
+    },
+    {
+      "conditional_precombat_race_component": {
+        "assumed_federation_bonus_KT": 0,
+        "conditional_hull_plus_race_mass_KT": 183,
+        "federation_advantage_active_in_host_proven": false,
+        "full_combat_mass_prediction_KT": null,
+        "same_turn_current_owner_continuity_proven": false,
+        "status": "CONDITIONAL_DOCUMENTED_RACE_COMPONENT"
+      },
+      "game_id": 235762,
+      "historical_race_evidence": {
+        "owner_raceid_Tminus1": 3,
+        "perspectives_checked": 8,
+        "source_archive_turn": 7,
+        "source_member_ids": [
+          27174,
+          27175,
+          27176,
+          27177,
+          27178,
+          27179,
+          27180,
+          27181
+        ],
+        "status": "RESOLVED_TMINUS1_OWNER_RACE"
+      },
+      "hull_id": 3033,
+      "independent_Tminus1_hull_mass_KT": 183,
+      "original_factual_minus_hull_KT": 0,
+      "owner_id_from_VCR_identity_only": 6,
+      "postforecast_comparison": {
+        "VCR_race_matches_Tminus1_roster": true,
+        "conditional_candidate_equals_full_observed_mass": true,
+        "factual_minus_conditional_candidate_KT": 0,
+        "observed_vcr_mass_KT": 183,
+        "observed_vcr_raceid_ONLY_FOR_EVALUATION": 3
+      },
+      "side": "right",
+      "turn": 8,
+      "vcr_id": 2
+    },
+    {
+      "conditional_precombat_race_component": {
+        "assumed_federation_bonus_KT": 50,
+        "conditional_hull_plus_race_mass_KT": 140,
+        "federation_advantage_active_in_host_proven": false,
+        "full_combat_mass_prediction_KT": null,
+        "same_turn_current_owner_continuity_proven": false,
+        "status": "CONDITIONAL_DOCUMENTED_RACE_COMPONENT"
+      },
+      "game_id": 235762,
+      "historical_race_evidence": {
+        "owner_raceid_Tminus1": 1,
+        "perspectives_checked": 8,
+        "source_archive_turn": 7,
+        "source_member_ids": [
+          27174,
+          27175,
+          27176,
+          27177,
+          27178,
+          27179,
+          27180,
+          27181
+        ],
+        "status": "RESOLVED_TMINUS1_OWNER_RACE"
+      },
+      "hull_id": 9,
+      "independent_Tminus1_hull_mass_KT": 90,
+      "original_factual_minus_hull_KT": 50,
+      "owner_id_from_VCR_identity_only": 5,
+      "postforecast_comparison": {
+        "VCR_race_matches_Tminus1_roster": true,
+        "conditional_candidate_equals_full_observed_mass": true,
+        "factual_minus_conditional_candidate_KT": 0,
+        "observed_vcr_mass_KT": 140,
+        "observed_vcr_raceid_ONLY_FOR_EVALUATION": 1
+      },
+      "side": "left",
+      "turn": 8,
+      "vcr_id": 3
+    },
+    {
+      "conditional_precombat_race_component": {
+        "assumed_federation_bonus_KT": 0,
+        "conditional_hull_plus_race_mass_KT": 160,
+        "federation_advantage_active_in_host_proven": false,
+        "full_combat_mass_prediction_KT": null,
+        "same_turn_current_owner_continuity_proven": false,
+        "status": "CONDITIONAL_DOCUMENTED_RACE_COMPONENT"
+      },
+      "game_id": 235762,
+      "historical_race_evidence": {
+        "owner_raceid_Tminus1": 2,
+        "perspectives_checked": 8,
+        "source_archive_turn": 7,
+        "source_member_ids": [
+          27174,
+          27175,
+          27176,
+          27177,
+          27178,
+          27179,
+          27180,
+          27181
+        ],
+        "status": "RESOLVED_TMINUS1_OWNER_RACE"
+      },
+      "hull_id": 22,
+      "independent_Tminus1_hull_mass_KT": 160,
+      "original_factual_minus_hull_KT": 0,
+      "owner_id_from_VCR_identity_only": 4,
+      "postforecast_comparison": {
+        "VCR_race_matches_Tminus1_roster": true,
+        "conditional_candidate_equals_full_observed_mass": true,
+        "factual_minus_conditional_candidate_KT": 0,
+        "observed_vcr_mass_KT": 160,
+        "observed_vcr_raceid_ONLY_FOR_EVALUATION": 2
+      },
+      "side": "right",
+      "turn": 8,
+      "vcr_id": 3
+    },
+    {
+      "conditional_precombat_race_component": {
+        "assumed_federation_bonus_KT": 0,
+        "conditional_hull_plus_race_mass_KT": 30,
+        "federation_advantage_active_in_host_proven": false,
+        "full_combat_mass_prediction_KT": null,
+        "same_turn_current_owner_continuity_proven": false,
+        "status": "CONDITIONAL_DOCUMENTED_RACE_COMPONENT"
+      },
+      "game_id": 243165,
+      "historical_race_evidence": {
+        "owner_raceid_Tminus1": 6,
+        "perspectives_checked": 11,
+        "source_archive_turn": 8,
+        "source_member_ids": [
+          28230,
+          28231,
+          28232,
+          28233,
+          28234,
+          28235,
+          28236,
+          28237,
+          28238,
+          28239,
+          28240
+        ],
+        "status": "RESOLVED_TMINUS1_OWNER_RACE"
+      },
+      "hull_id": 51,
+      "independent_Tminus1_hull_mass_KT": 30,
+      "original_factual_minus_hull_KT": 0,
+      "owner_id_from_VCR_identity_only": 6,
+      "postforecast_comparison": {
+        "VCR_race_matches_Tminus1_roster": true,
+        "conditional_candidate_equals_full_observed_mass": true,
+        "factual_minus_conditional_candidate_KT": 0,
+        "observed_vcr_mass_KT": 30,
+        "observed_vcr_raceid_ONLY_FOR_EVALUATION": 6
+      },
+      "side": "left",
+      "turn": 9,
+      "vcr_id": 6
+    },
+    {
+      "conditional_precombat_race_component": {
+        "assumed_federation_bonus_KT": 0,
+        "conditional_hull_plus_race_mass_KT": 130,
+        "federation_advantage_active_in_host_proven": false,
+        "full_combat_mass_prediction_KT": null,
+        "same_turn_current_owner_continuity_proven": false,
+        "status": "CONDITIONAL_DOCUMENTED_RACE_COMPONENT"
+      },
+      "game_id": 243165,
+      "historical_race_evidence": {
+        "owner_raceid_Tminus1": 10,
+        "perspectives_checked": 11,
+        "source_archive_turn": 8,
+        "source_member_ids": [
+          28230,
+          28231,
+          28232,
+          28233,
+          28234,
+          28235,
+          28236,
+          28237,
+          28238,
+          28239,
+          28240
+        ],
+        "status": "RESOLVED_TMINUS1_OWNER_RACE"
+      },
+      "hull_id": 2088,
+      "independent_Tminus1_hull_mass_KT": 130,
+      "original_factual_minus_hull_KT": 0,
+      "owner_id_from_VCR_identity_only": 10,
+      "postforecast_comparison": {
+        "VCR_race_matches_Tminus1_roster": true,
+        "conditional_candidate_equals_full_observed_mass": true,
+        "factual_minus_conditional_candidate_KT": 0,
+        "observed_vcr_mass_KT": 130,
+        "observed_vcr_raceid_ONLY_FOR_EVALUATION": 10
+      },
+      "side": "right",
+      "turn": 9,
+      "vcr_id": 6
+    }
+  ],
+  "boundary": "Federation +50KT is documented, but campaign advantage activation and combat-phase owner continuity are not predicted. The candidate uses T-1 player race from ALL perspectives and T-1 static hull mass. Current VCR raceid/mass are only postforecast comparators. Numerical agreement does NOT prove full combat mass, SG, carrier RNG, capture ordering or Host implementation. Missing/conflicting roster abstains. No canonical DB or production change.",
+  "original_four_plus50KT_cases": [
+    {
+      "conditional_precombat_race_component": {
+        "assumed_federation_bonus_KT": 50,
+        "conditional_hull_plus_race_mass_KT": 220,
+        "federation_advantage_active_in_host_proven": false,
+        "full_combat_mass_prediction_KT": null,
+        "same_turn_current_owner_continuity_proven": false,
+        "status": "CONDITIONAL_DOCUMENTED_RACE_COMPONENT"
+      },
+      "game_id": 228199,
+      "historical_race_evidence": {
+        "owner_raceid_Tminus1": 1,
+        "perspectives_checked": 11,
+        "source_archive_turn": 6,
+        "source_member_ids": [
+          16602,
+          16603,
+          16604,
+          16605,
+          16606,
+          16607,
+          16608,
+          16609,
+          16610,
+          16611,
+          16612
+        ],
+        "status": "RESOLVED_TMINUS1_OWNER_RACE"
+      },
+      "hull_id": 5,
+      "independent_Tminus1_hull_mass_KT": 170,
+      "original_factual_minus_hull_KT": 50,
+      "owner_id_from_VCR_identity_only": 1,
+      "postforecast_comparison": {
+        "VCR_race_matches_Tminus1_roster": true,
+        "conditional_candidate_equals_full_observed_mass": true,
+        "factual_minus_conditional_candidate_KT": 0,
+        "observed_vcr_mass_KT": 220,
+        "observed_vcr_raceid_ONLY_FOR_EVALUATION": 1
+      },
+      "side": "right",
+      "turn": 7,
+      "vcr_id": 1
+    },
+    {
+      "conditional_precombat_race_component": {
+        "assumed_federation_bonus_KT": 50,
+        "conditional_hull_plus_race_mass_KT": 151,
+        "federation_advantage_active_in_host_proven": false,
+        "full_combat_mass_prediction_KT": null,
+        "same_turn_current_owner_continuity_proven": false,
+        "status": "CONDITIONAL_DOCUMENTED_RACE_COMPONENT"
+      },
+      "game_id": 233558,
+      "historical_race_evidence": {
+        "owner_raceid_Tminus1": 1,
+        "perspectives_checked": 11,
+        "source_archive_turn": 8,
+        "source_member_ids": [
+          20496,
+          20497,
+          20498,
+          20499,
+          20500,
+          20501,
+          20502,
+          20503,
+          20504,
+          20505,
+          20506
+        ],
+        "status": "RESOLVED_TMINUS1_OWNER_RACE"
+      },
+      "hull_id": 7,
+      "independent_Tminus1_hull_mass_KT": 101,
+      "original_factual_minus_hull_KT": 50,
+      "owner_id_from_VCR_identity_only": 1,
+      "postforecast_comparison": {
+        "VCR_race_matches_Tminus1_roster": true,
+        "conditional_candidate_equals_full_observed_mass": true,
+        "factual_minus_conditional_candidate_KT": 0,
+        "observed_vcr_mass_KT": 151,
+        "observed_vcr_raceid_ONLY_FOR_EVALUATION": 1
+      },
+      "side": "right",
+      "turn": 9,
+      "vcr_id": 1
+    },
+    {
+      "conditional_precombat_race_component": {
+        "assumed_federation_bonus_KT": 50,
+        "conditional_hull_plus_race_mass_KT": 110,
+        "federation_advantage_active_in_host_proven": false,
+        "full_combat_mass_prediction_KT": null,
+        "same_turn_current_owner_continuity_proven": false,
+        "status": "CONDITIONAL_DOCUMENTED_RACE_COMPONENT"
+      },
+      "game_id": 235762,
+      "historical_race_evidence": {
+        "owner_raceid_Tminus1": 1,
+        "perspectives_checked": 8,
+        "source_archive_turn": 7,
+        "source_member_ids": [
+          27174,
+          27175,
+          27176,
+          27177,
+          27178,
+          27179,
+          27180,
+          27181
+        ],
+        "status": "RESOLVED_TMINUS1_OWNER_RACE"
+      },
+      "hull_id": 16,
+      "independent_Tminus1_hull_mass_KT": 60,
+      "original_factual_minus_hull_KT": 50,
+      "owner_id_from_VCR_identity_only": 3,
+      "postforecast_comparison": {
+        "VCR_race_matches_Tminus1_roster": true,
+        "conditional_candidate_equals_full_observed_mass": true,
+        "factual_minus_conditional_candidate_KT": 0,
+        "observed_vcr_mass_KT": 110,
+        "observed_vcr_raceid_ONLY_FOR_EVALUATION": 1
+      },
+      "side": "left",
+      "turn": 8,
+      "vcr_id": 1
+    },
+    {
+      "conditional_precombat_race_component": {
+        "assumed_federation_bonus_KT": 50,
+        "conditional_hull_plus_race_mass_KT": 140,
+        "federation_advantage_active_in_host_proven": false,
+        "full_combat_mass_prediction_KT": null,
+        "same_turn_current_owner_continuity_proven": false,
+        "status": "CONDITIONAL_DOCUMENTED_RACE_COMPONENT"
+      },
+      "game_id": 235762,
+      "historical_race_evidence": {
+        "owner_raceid_Tminus1": 1,
+        "perspectives_checked": 8,
+        "source_archive_turn": 7,
+        "source_member_ids": [
+          27174,
+          27175,
+          27176,
+          27177,
+          27178,
+          27179,
+          27180,
+          27181
+        ],
+        "status": "RESOLVED_TMINUS1_OWNER_RACE"
+      },
+      "hull_id": 9,
+      "independent_Tminus1_hull_mass_KT": 90,
+      "original_factual_minus_hull_KT": 50,
+      "owner_id_from_VCR_identity_only": 5,
+      "postforecast_comparison": {
+        "VCR_race_matches_Tminus1_roster": true,
+        "conditional_candidate_equals_full_observed_mass": true,
+        "factual_minus_conditional_candidate_KT": 0,
+        "observed_vcr_mass_KT": 140,
+        "observed_vcr_raceid_ONLY_FOR_EVALUATION": 1
+      },
+      "side": "left",
+      "turn": 8,
+      "vcr_id": 3
+    }
+  ],
+  "schema": "planets-lab.combat-mass-tminus1-race-bonus-audit.v1",
+  "source_db": "/root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "source_db_sha256": "3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c",
+  "source_static_V1_file_sha256": "4bda6ccb71dc23bb6663f7de25b5235b432354a70f96d477777494e16ec30417",
+  "status": "TMINUS1_RACE_BONUS_CONDITIONAL_EVIDENCE_NOT_PROMOTED",
+  "summary": {
+    "Tminus1_race_resolver_statuses": {
+      "RESOLVED_TMINUS1_OWNER_RACE": 30
+    },
+    "conditional_candidates_evaluable": 30,
+    "conditional_candidates_matching_full_VCR_mass": 30,
+    "conditional_candidates_not_matching_full_VCR_mass": 0,
+    "full_combat_mass_predictions_made": 0,
+    "held_out_games": 12,
+    "held_out_ship_VCR_sides": 30,
+    "hull_only_numeric_matches": 26,
+    "original_plus50KT_sides": 4,
+    "race_disagreements_vs_current_VCR": 0
+  }
+}
