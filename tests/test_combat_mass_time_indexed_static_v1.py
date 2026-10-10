@@ -173,3 +173,174 @@ def test_progress_and_single_corpus_hash(capsys):
     assert script.count('hashlib.file_digest(stream, "sha256")') == 1
     assert "flush=True" in script
     assert "candidate game-turns:" in script
+
+
+def _synthetic_vcr(*, left_hull=94, right_hull=94, left_owner=4,
+                   right_owner=5, left_mass=500, right_mass=100):
+    return {
+        "left": {"hullid": left_hull, "mass": left_mass},
+        "right": {"hullid": right_hull, "mass": right_mass},
+        "leftownerid": left_owner, "rightownerid": right_owner,
+    }
+
+
+def test_out_of_scope_nonship_vcr_must_not_be_reinterpreted_as_ship():
+    cases = [
+        (_synthetic_vcr(left_hull=0), "NONPOSITIVE_OR_MISSING_PARTICIPANT_HULL"),
+        (_synthetic_vcr(right_hull=None), "NONPOSITIVE_OR_MISSING_PARTICIPANT_HULL"),
+        (_synthetic_vcr(left_hull=True), "NONPOSITIVE_OR_MISSING_PARTICIPANT_HULL"),
+        (_synthetic_vcr(), None),
+    ]
+    for case, expected in cases:
+        assert M.vcr_ship_scope(case) == expected
+    assert M.vcr_ship_scope({"left": {}, "right": None}) == "VCR_PARTICIPANT_NOT_OBJECT"
+
+
+@pytest.mark.parametrize("owner", [0, -1, None, False])
+def test_nonpositive_or_missing_owner_abstains_without_poisoning_other_side(owner):
+    payload = _synthetic_vcr(left_owner=owner)
+    left = M.forecast_vcr_side(
+        _snaps(), game_id=217591, battle_turn=75, vcr_id=9,
+        side="left", payload=payload,
+    )
+    right = M.forecast_vcr_side(
+        _snaps(), game_id=217591, battle_turn=75, vcr_id=9,
+        side="right", payload=payload,
+    )
+    assert left["forecast"]["status"] == "ABSTAIN_OWNER_NONPOSITIVE_OR_MISSING"
+    assert left["forecast"]["predicted_hull_mass_KT"] is None
+    assert left["evaluation"]["status"] == "COMPARATOR_AVAILABLE"
+    assert right["forecast"]["status"] == "RESOLVED"
+    assert right["forecast"]["predicted_hull_mass_KT"] == 495
+
+
+def test_numeric_comparator_missing_is_not_passed_into_forecast():
+    payload = _synthetic_vcr(left_hull=1039, left_owner=4, left_mass=None)
+    result = M.forecast_vcr_side(
+        _snaps(), game_id=217591, battle_turn=75,
+        vcr_id=12, side="left", payload=payload,
+    )
+    assert result["forecast"]["predicted_hull_mass_KT"] == 46
+    assert result["evaluation"]["status"] == "ABSTAIN_FACTUAL_MASS_NONPOSITIVE_OR_MISSING"
+    assert result["evaluation"]["difference_factual_minus_component_KT"] is None
+
+
+def test_non_ship_case_adapter_refuses_partial_ship_prediction():
+    with pytest.raises(ValueError, match="non-ship VCR"):
+        M.forecast_vcr_side(
+            _snaps(), game_id=217591, battle_turn=75, vcr_id=10,
+            side="right", payload=_synthetic_vcr(left_hull=0),
+        )
+
+
+def test_vcr_identity_debug_case_is_not_silently_filtered():
+    # Regression: G218619 T8 contains one offending VCR side (source field
+    # not published in failure gate). Cover both conceivable invalid IDs.
+    for payload in (_synthetic_vcr(left_hull=0),
+                    _synthetic_vcr(left_owner=0)):
+        if M.vcr_ship_scope(payload) is None:
+            assert M.forecast_vcr_side(
+                _snaps(), game_id=217591, battle_turn=75, vcr_id=8,
+                side="left", payload=payload
+            )["forecast"]["status"].startswith("ABSTAIN_")
+        else:
+            assert M.vcr_ship_scope(payload) == "NONPOSITIVE_OR_MISSING_PARTICIPANT_HULL"
+
+
+def test_full_holdout_run_accounts_for_unsupported_and_ownerless_vcrs(
+    tmp_path, monkeypatch,
+):
+    """End-to-end mocked public100 path: no live DB required for CI."""
+    import hashlib
+
+    from planets_lab.corpus import corpus_db_runtime as cr
+    from planets_lab.corpus import combat_vcr_runtime as vr
+
+    db_rel = "generations/synthetic-public100.duckdb"
+    db_path = tmp_path / db_rel
+    db_path.parent.mkdir(parents=True)
+    db_path.write_bytes(b"immutable-synthetic-source")
+    monkeypatch.setattr(M, "GENERATION", db_rel)
+    monkeypatch.setattr(
+        M, "GENERATION_SHA256",
+        hashlib.sha256(b"immutable-synthetic-source").hexdigest(),
+    )
+    excluded = [{"game_id": 100 + i} for i in range(14)]
+    controls = {
+        "schema": M.CONTROL_SCHEMA,
+        "status": "INDEPENDENT_CAPTURE_AND_TEMPORAL_STATIC_CONTROLS_OBSERVATIONAL_NOT_PROMOTED",
+        "static_snapshot_controls": excluded,
+    }
+    recon = {
+        "schema": M.RECONCILIATION_SCHEMA,
+        "status": "TEMPORAL_STATIC_AND_CAPTURE_RECONCILED_OBSERVATIONAL_NOT_PROMOTED",
+        "summary": {
+            "residuals_with_direct_Tminus1_changed_hull": 7,
+            "source_aggregate_zero_change_controls_with_truncated_details": 4,
+        },
+    }
+    monkeypatch.setattr(
+        M, "_read_json",
+        lambda p: controls if p.name == "controls.json" else recon,
+    )
+    monkeypatch.setattr(
+        M, "_candidate_pairs",
+        lambda conn: [(900, 10), (900, 11), (901, 12), (902, 13)],
+    )
+    class Connection:
+        closed = False
+        def close(self):
+            self.closed = True
+    conn = Connection()
+    monkeypatch.setattr(
+        cr, "connect_compact_generation_read_only",
+        lambda generation, db_root: (conn, db_path),
+    )
+    def refs(_conn, *, game_id, turns, include_embedded_turn):
+        assert not include_embedded_turn
+        t = next(iter(turns))
+        return [_ref(owner, game_id * 100 + owner, turn=t, embedded=t, game=game_id)
+                for owner in (4, 5)]
+    def reconstruct(_conn, selected):
+        for ref in selected:
+            yield ref, _member(turn=ref.archive_turn, game=ref.game_id)
+    monkeypatch.setattr(cr, "member_refs_for_turns", refs)
+    monkeypatch.setattr(cr, "reconstruct_members", reconstruct)
+
+    cases = {
+        (900, 10): [_synthetic_vcr(left_hull=0)],
+        (900, 11): [_synthetic_vcr(left_owner=0)],
+        (901, 12): [
+            _synthetic_vcr(left_hull=0),
+            _synthetic_vcr(left_hull=1039, left_mass=None),
+        ],
+        (902, 13): [_synthetic_vcr(left_hull=1039)],
+    }
+    def get_cases(_conn, *, game_id, battle_turns):
+        turn = next(iter(battle_turns))
+        return {(turn, idx): SimpleNamespace(payload=payload)
+                for idx, payload in enumerate(cases.get((game_id, turn), []), 1)}
+    monkeypatch.setattr(vr, "combat_vcr_cases_for_turns", get_cases)
+
+    report = M.live_report(
+        db_root=tmp_path,
+        controls_path=tmp_path / "controls.json",
+        reconciliation_path=tmp_path / "recon.json",
+        max_games=3,
+    )
+    assert conn.closed is True
+    assert [row["game_id"] for row in report["held_out_results"]] == [900, 901, 902]
+    assert report["summary"]["held_out_games_with_VCRs"] == 3
+    assert report["summary"]["held_out_vcr_sides"] == 6
+    assert report["summary"]["out_of_scope_VCRs_seen"] == 2
+    assert report["summary"]["static_resolution_statuses"] == {
+        "ABSTAIN_OWNER_NONPOSITIVE_OR_MISSING": 1,
+        "RESOLVED": 5,
+    }
+    assert report["summary"]["comparator_statuses"] == {
+        "ABSTAIN_FACTUAL_MASS_NONPOSITIVE_OR_MISSING": 1,
+        "COMPARATOR_AVAILABLE": 5,
+    }
+    assert report["skipped_no_vcr"][0]["status"] == "NO_SHIP_VS_SHIP_VCR"
+    assert report["held_out_results"][1]["out_of_scope_VCR_count"] == 1
+    assert report["summary"]["full_combat_mass_predictions_made"] == 0

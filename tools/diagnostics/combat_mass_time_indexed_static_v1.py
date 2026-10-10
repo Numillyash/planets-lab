@@ -166,6 +166,77 @@ def evaluate_forecast(forecast: Mapping[str, Any], observed_mass: Any) -> dict[s
     }
 
 
+
+def vcr_ship_scope(payload: Mapping[str, Any]) -> str | None:
+    """Classify only the structural ship/ship subset used by the mass survey.
+
+    A nonpositive/missing hull is *out of scope*, not proof the VCR is a
+    planet battle. Never infer side class from factual mass or owner.
+    """
+    if not isinstance(payload, Mapping):
+        return "VCR_PAYLOAD_NOT_OBJECT"
+    left, right = payload.get("left"), payload.get("right")
+    if not isinstance(left, Mapping) or not isinstance(right, Mapping):
+        return "VCR_PARTICIPANT_NOT_OBJECT"
+    if any(integer(side.get("hullid")) is None
+           or integer(side.get("hullid")) <= 0 for side in (left, right)):
+        return "NONPOSITIVE_OR_MISSING_PARTICIPANT_HULL"
+    return None
+
+
+def forecast_vcr_side(
+    snapshots: Sequence[Snapshot], *, game_id: int, battle_turn: int,
+    vcr_id: int, side: str, payload: Mapping[str, Any],
+) -> dict[str, Any]:
+    """Offline identity-only adapter: invalid owner explicitly abstains.
+
+    Both hulls must have passed vcr_ship_scope. Factual mass is passed
+    strictly to evaluate_forecast, never to forecast_component.
+    """
+    if side not in ("left", "right") or vcr_ship_scope(payload) is not None:
+        raise ValueError("non-ship VCR passed to ship-side forecast")
+    party = payload[side]
+    owner_raw = payload.get(side + "ownerid")
+    owner = integer(owner_raw)
+    hull = integer(party.get("hullid"))
+    assert hull is not None and hull > 0
+    if owner is None or owner <= 0:
+        prediction = {
+            "status": "ABSTAIN_OWNER_NONPOSITIVE_OR_MISSING",
+            "predicted_hull_mass_KT": None,
+            "source_archive_turn": battle_turn - 1,
+            "source_member_ids": [],
+            "scope": "PREDICTED_STATIC_HULL_COMPONENT_ONLY",
+            "full_combat_mass_prediction_KT": None,
+            "full_mass_abstention": "Owner ID is not positive; never invent or coerce an owner",
+        }
+    else:
+        # STRICT: owner/hull identity only, not mass, cargo, engine or VCR state.
+        prediction = forecast_component(
+            snapshots, game_id=game_id, battle_turn=battle_turn,
+            owner_id=owner, hull_id=hull,
+        )
+    factual = integer(party.get("mass"))
+    if factual is None or factual <= 0:
+        evaluation = {
+            "status": "ABSTAIN_FACTUAL_MASS_NONPOSITIVE_OR_MISSING",
+            "factual_vcr_mass_KT": None,
+            "component_equals_factual_mass": None,
+            "difference_factual_minus_component_KT": None,
+            "interpretation": "VCR comparator unavailable; no numeric validation",
+        }
+    else:
+        evaluation = {"status": "COMPARATOR_AVAILABLE",
+                      **evaluate_forecast(prediction, factual)}
+    return {
+        "game_id": game_id, "turn": battle_turn, "vcr_id": vcr_id,
+        "side": side, "target_owner_id": owner_raw,
+        "target_hull_id": hull,
+        "target_identity_from_vcr": True,
+        "forecast": prediction, "evaluation": evaluation,
+    }
+
+
 def select_holdout_pairs(
     pairs: Sequence[tuple[int, int]], *, excluded_games: set[int],
 ) -> list[tuple[int, int]]:
@@ -277,7 +348,40 @@ def live_report(
                                  "status": "NO_TARGET_VCR"})
                 _progress(f"{prefix}: no matching VCR; trying next eligible turn")
                 continue
-            _progress(f"{prefix}: found {len(cases)} VCRs; reconstructing T-1 snapshots")
+            # Decide the scientific population before any static prediction.
+            # Non-ship/unknown-hull VCRs remain explicit negative controls.
+            ship_cases = []
+            out_of_scope = []
+            for (_case_turn, vid), case in sorted(cases.items()):
+                reason = vcr_ship_scope(case.payload)
+                if reason is not None:
+                    raw = case.payload if isinstance(case.payload, Mapping) else {}
+                    left = raw.get("left")
+                    right = raw.get("right")
+                    out_of_scope.append({
+                        "vcr_id": vid, "status": reason,
+                        "left_hull_id": (
+                            left.get("hullid") if isinstance(left, Mapping) else None
+                        ),
+                        "right_hull_id": (
+                            right.get("hullid") if isinstance(right, Mapping) else None
+                        ),
+                    })
+                else:
+                    ship_cases.append((vid, case))
+            _progress(
+                f"{prefix}: VCRs={len(cases)} ship-ship={len(ship_cases)} "
+                f"out-of-scope={len(out_of_scope)}"
+            )
+            if not ship_cases:
+                scan_log.append({
+                    "game_id": game, "turn": turn,
+                    "status": "NO_SHIP_VS_SHIP_VCR",
+                    "out_of_scope_vcrs": out_of_scope,
+                })
+                _progress(f"{prefix}: no ship-vs-ship VCR; checking next eligible turn")
+                continue
+            _progress(f"{prefix}: reconstructing T-1 snapshots")
             refs = member_refs_for_turns(
                 conn, game_id=game, turns={turn - 1},
                 include_embedded_turn=False,
@@ -288,31 +392,21 @@ def live_report(
             ]
             _progress(f"{prefix}: T-1 perspectives={len(snapshots)}; predicting hull components")
             per_case = []
-            for (_turn, vcr_id), case in sorted(cases.items()):
+            for vcr_id, case in ship_cases:
                 for side in ("left", "right"):
-                    party = case.payload.get(side)
-                    owner = integer(case.payload.get(side + "ownerid"))
-                    hull = integer(party.get("hullid")) if isinstance(party, Mapping) else None
-                    factual = integer(party.get("mass")) if isinstance(party, Mapping) else None
-                    if owner is None or hull is None or factual is None:
-                        raise ValueError("held-out VCR identity/observed mass incomplete")
-                    # Forecast receives ONLY pre-VCR snapshots and target IDs.
-                    predicted = forecast_component(
+                    # Invalid owners and missing numeric comparators abstain
+                    # locally, keeping complete held-out side accountability.
+                    per_case.append(forecast_vcr_side(
                         snapshots, game_id=game, battle_turn=turn,
-                        owner_id=owner, hull_id=hull,
-                    )
-                    # Comparator is deliberately applied only AFTER forecast.
-                    assessed = evaluate_forecast(predicted, factual)
-                    per_case.append({
-                        "game_id": game, "turn": turn, "vcr_id": vcr_id,
-                        "side": side, "target_owner_id": owner,
-                        "target_hull_id": hull,
-                        "target_identity_from_vcr": True,
-                        "forecast": predicted, "evaluation": assessed,
-                    })
+                        vcr_id=vcr_id, side=side, payload=case.payload,
+                    ))
             results.append({
                 "game_id": game, "turn": turn,
                 "precombat_archive_member_count": len(refs),
+                "total_VCR_count": len(cases),
+                "in_scope_ship_VCR_count": len(ship_cases),
+                "out_of_scope_VCR_count": len(out_of_scope),
+                "out_of_scope_vcrs": out_of_scope,
                 "vcr_side_count": len(per_case),
                 "predictions": per_case,
             })
@@ -331,6 +425,10 @@ def live_report(
     status = Counter(row["forecast"]["status"] for row in flattened)
     equal = sum(row["evaluation"]["component_equals_factual_mass"] is True
                 for row in flattened)
+    skipped_vcrs = sum(row["out_of_scope_VCR_count"] for row in results)
+    skipped_vcrs += sum(
+        len(row.get("out_of_scope_vcrs", [])) for row in scan_log
+    )
     return {
         "schema": SCHEMA,
         "status": "EXPERIMENTAL_TMINUS1_STATIC_COMPONENT_PREDICTION_NOT_PROMOTED",
@@ -345,7 +443,12 @@ def live_report(
         "summary": {
             "held_out_games_with_VCRs": len(results),
             "held_out_vcr_sides": len(flattened),
+            "out_of_scope_VCRs_seen": skipped_vcrs,
+            "in_scope_ship_VCRs": sum(row["in_scope_ship_VCR_count"] for row in results),
             "static_resolution_statuses": dict(sorted(status.items())),
+            "comparator_statuses": dict(sorted(Counter(
+                row["evaluation"]["status"] for row in flattened
+            ).items())),
             "component_equals_full_factual_mass_count": equal,
             "full_combat_mass_predictions_made": 0,
         },
@@ -354,7 +457,9 @@ def live_report(
         "boundary": (
             "Independently held-out games and T-1 owner/static agreement predict "
             "only the hull mass component. VCR reveals target identity and site, "
-            "never predictor features or calibration of mass. Neither equality "
+            "never predictor features or calibration of mass. Nonship/hull-" 
+            "invalid VCRs are recorded out of scope; owner-ID and comparator "
+            "gaps abstain rather than silently reassign owners. Neither equality "
             "nor residual proves Shield Generator phase, capture, Horwasp loss "
             "or a generative NuHost combat engine. Missing/conflicting specs "
             "fail closed. No executor or canonical DB mutation."
