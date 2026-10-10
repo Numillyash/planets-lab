@@ -1,0 +1,110 @@
+===== INDEPENDENT EARLY/LATE COMBAT-MASS STRESS V1 =====
+HEAD: 95ed2f51e7bbad0d5355c60f0f50eba2c1568ffa
+DB: /root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb
+static_v1: artifacts/combat/mass-time-indexed-static-v1/published/report.json
+race_v1: artifacts/combat/mass-tminus1-race-bonus-audit-v1/published/report.json
+SHA256: verified once in Python before read-only DB open
+[late-stress] verifying pinned corpus SHA256 once: corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb
+[late-stress] SHA256 verified in 36.8s; opening read-only
+[late-stress] discovering VCR-bearing T-1/T metadata, pre-registering independent game/turn split
+[late-stress] preselected 48 windows from 24 independent games; 77 eligible
+[late-stress] [1/48] game=245693 T29 EARLY_QUINTILE: loading VCRs and T-1 facts
+[late-stress] [1/48] ship_vcrs=7 sides=14 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 14}
+[late-stress] [2/48] game=245693 T103 LATE_85TH_PERCENTILE: loading VCRs and T-1 facts
+[late-stress] [2/48] ship_vcrs=23 sides=46 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 46}
+[late-stress] [3/48] game=256858 T60 EARLY_QUINTILE: loading VCRs and T-1 facts
+[late-stress] [3/48] ship_vcrs=9 sides=18 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 18}
+[late-stress] [4/48] game=256858 T271 LATE_85TH_PERCENTILE: loading VCRs and T-1 facts
+[late-stress] [4/48] ship_vcrs=1 sides=2 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 2}
+[late-stress] [5/48] game=266087 T59 EARLY_QUINTILE: loading VCRs and T-1 facts
+[late-stress] [5/48] ship_vcrs=2 sides=4 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 4}
+[late-stress] [6/48] game=266087 T193 LATE_85TH_PERCENTILE: loading VCRs and T-1 facts
+[late-stress] [6/48] ship_vcrs=2 sides=4 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 4}
+[late-stress] [7/48] game=281994 T43 EARLY_QUINTILE: loading VCRs and T-1 facts
+[late-stress] [7/48] ship_vcrs=3 sides=6 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 6}
+[late-stress] [8/48] game=281994 T111 LATE_85TH_PERCENTILE: loading VCRs and T-1 facts
+[late-stress] [8/48] ship_vcrs=3 sides=6 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 6}
+[late-stress] [9/48] game=296210 T40 EARLY_QUINTILE: loading VCRs and T-1 facts
+[late-stress] [9/48] ship_vcrs=2 sides=4 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 4}
+[late-stress] [10/48] game=296210 T129 LATE_85TH_PERCENTILE: loading VCRs and T-1 facts
+[late-stress] [10/48] ship_vcrs=2 sides=4 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 4}
+[late-stress] [11/48] game=326221 T42 EARLY_QUINTILE: loading VCRs and T-1 facts
+[late-stress] [11/48] ship_vcrs=7 sides=14 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 14}
+[late-stress] [12/48] game=326221 T147 LATE_85TH_PERCENTILE: loading VCRs and T-1 facts
+[late-stress] [12/48] ship_vcrs=2 sides=4 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 4}
+[late-stress] [13/48] game=342288 T49 EARLY_QUINTILE: loading VCRs and T-1 facts
+[late-stress] [13/48] ship_vcrs=2 sides=4 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 4}
+[late-stress] [14/48] game=342288 T173 LATE_85TH_PERCENTILE: loading VCRs and T-1 facts
+[late-stress] [14/48] ship_vcrs=2 sides=4 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 4}
+[late-stress] [15/48] game=350094 T45 EARLY_QUINTILE: loading VCRs and T-1 facts
+[late-stress] [15/48] ship_vcrs=0 sides=0 static_failures=0 candidate_statuses={}
+[late-stress] [16/48] game=350094 T153 LATE_85TH_PERCENTILE: loading VCRs and T-1 facts
+[late-stress] [16/48] ship_vcrs=11 sides=22 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 22}
+[late-stress] [17/48] game=371631 T41 EARLY_QUINTILE: loading VCRs and T-1 facts
+[late-stress] [17/48] ship_vcrs=5 sides=10 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 10}
+[late-stress] [18/48] game=371631 T165 LATE_85TH_PERCENTILE: loading VCRs and T-1 facts
+[late-stress] [18/48] ship_vcrs=5 sides=10 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 10}
+[late-stress] [19/48] game=396107 T52 EARLY_QUINTILE: loading VCRs and T-1 facts
+[late-stress] [19/48] ship_vcrs=1 sides=2 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 2}
+[late-stress] [20/48] game=396107 T185 LATE_85TH_PERCENTILE: loading VCRs and T-1 facts
+[late-stress] [20/48] ship_vcrs=11 sides=22 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 22}
+[late-stress] [21/48] game=407599 T49 EARLY_QUINTILE: loading VCRs and T-1 facts
+[late-stress] [21/48] ship_vcrs=1 sides=2 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 2}
+[late-stress] [22/48] game=407599 T117 LATE_85TH_PERCENTILE: loading VCRs and T-1 facts
+[late-stress] [22/48] ship_vcrs=0 sides=0 static_failures=0 candidate_statuses={}
+[late-stress] [23/48] game=421276 T39 EARLY_QUINTILE: loading VCRs and T-1 facts
+[late-stress] [23/48] ship_vcrs=1 sides=2 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 2}
+[late-stress] [24/48] game=421276 T115 LATE_85TH_PERCENTILE: loading VCRs and T-1 facts
+[late-stress] [24/48] ship_vcrs=17 sides=34 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 34}
+[late-stress] [25/48] game=449095 T43 EARLY_QUINTILE: loading VCRs and T-1 facts
+[late-stress] [25/48] ship_vcrs=2 sides=4 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 4}
+[late-stress] [26/48] game=449095 T134 LATE_85TH_PERCENTILE: loading VCRs and T-1 facts
+[late-stress] [26/48] ship_vcrs=14 sides=28 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 28}
+[late-stress] [27/48] game=467183 T37 EARLY_QUINTILE: loading VCRs and T-1 facts
+[late-stress] [27/48] ship_vcrs=2 sides=4 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 4}
+[late-stress] [28/48] game=467183 T133 LATE_85TH_PERCENTILE: loading VCRs and T-1 facts
+[late-stress] [28/48] ship_vcrs=5 sides=10 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 10}
+[late-stress] [29/48] game=473010 T71 EARLY_QUINTILE: loading VCRs and T-1 facts
+[late-stress] [29/48] ship_vcrs=3 sides=6 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 6}
+[late-stress] [30/48] game=473010 T214 LATE_85TH_PERCENTILE: loading VCRs and T-1 facts
+[late-stress] [30/48] ship_vcrs=3 sides=6 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 6}
+[late-stress] [31/48] game=476819 T35 EARLY_QUINTILE: loading VCRs and T-1 facts
+[late-stress] [31/48] ship_vcrs=1 sides=2 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 2}
+[late-stress] [32/48] game=476819 T123 LATE_85TH_PERCENTILE: loading VCRs and T-1 facts
+[late-stress] [32/48] ship_vcrs=7 sides=14 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 14}
+[late-stress] [33/48] game=477725 T55 EARLY_QUINTILE: loading VCRs and T-1 facts
+[late-stress] [33/48] ship_vcrs=1 sides=2 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 2}
+[late-stress] [34/48] game=477725 T187 LATE_85TH_PERCENTILE: loading VCRs and T-1 facts
+[late-stress] [34/48] ship_vcrs=3 sides=6 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 6}
+[late-stress] [35/48] game=497195 T40 EARLY_QUINTILE: loading VCRs and T-1 facts
+[late-stress] [35/48] ship_vcrs=0 sides=0 static_failures=0 candidate_statuses={}
+[late-stress] [36/48] game=497195 T128 LATE_85TH_PERCENTILE: loading VCRs and T-1 facts
+[late-stress] [36/48] ship_vcrs=2 sides=4 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 4}
+[late-stress] [37/48] game=530633 T36 EARLY_QUINTILE: loading VCRs and T-1 facts
+[late-stress] [37/48] ship_vcrs=0 sides=0 static_failures=0 candidate_statuses={}
+[late-stress] [38/48] game=530633 T121 LATE_85TH_PERCENTILE: loading VCRs and T-1 facts
+[late-stress] [38/48] ship_vcrs=1 sides=2 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 2}
+[late-stress] [39/48] game=597079 T43 EARLY_QUINTILE: loading VCRs and T-1 facts
+[late-stress] [39/48] ship_vcrs=1 sides=2 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 2}
+[late-stress] [40/48] game=597079 T144 LATE_85TH_PERCENTILE: loading VCRs and T-1 facts
+[late-stress] [40/48] ship_vcrs=2 sides=4 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 4}
+[late-stress] [41/48] game=600044 T38 EARLY_QUINTILE: loading VCRs and T-1 facts
+[late-stress] [41/48] ship_vcrs=6 sides=12 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 12}
+[late-stress] [42/48] game=600044 T117 LATE_85TH_PERCENTILE: loading VCRs and T-1 facts
+[late-stress] [42/48] ship_vcrs=6 sides=12 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 12}
+[late-stress] [43/48] game=632527 T34 EARLY_QUINTILE: loading VCRs and T-1 facts
+[late-stress] [43/48] ship_vcrs=8 sides=16 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 16}
+[late-stress] [44/48] game=632527 T102 LATE_85TH_PERCENTILE: loading VCRs and T-1 facts
+[late-stress] [44/48] ship_vcrs=18 sides=36 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 36}
+[late-stress] [45/48] game=645077 T57 EARLY_QUINTILE: loading VCRs and T-1 facts
+[late-stress] [45/48] ship_vcrs=1 sides=2 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 2}
+[late-stress] [46/48] game=645077 T112 LATE_85TH_PERCENTILE: loading VCRs and T-1 facts
+[late-stress] [46/48] ship_vcrs=4 sides=8 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 8}
+[late-stress] [47/48] game=663317 T26 EARLY_QUINTILE: loading VCRs and T-1 facts
+[late-stress] [47/48] ship_vcrs=1 sides=2 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 2}
+[late-stress] [48/48] game=663317 T69 LATE_85TH_PERCENTILE: loading VCRs and T-1 facts
+[late-stress] [48/48] ship_vcrs=2 sides=4 static_failures=0 candidate_statuses={'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 4}
+===== INDEPENDENT EARLY/LATE COMBAT-MASS STRESS V1 =====
+status: INDEPENDENT_LATE_TURN_STRESS_OBSERVATIONAL_NOT_PROMOTED
+summary: {'selected_distinct_independent_games': 24, 'preselected_early_and_late_windows': 48, 'windows_with_in_scope_ship_VCRs': 44, 'ship_VCRs': 212, 'ship_VCR_sides': 424, 'out_of_scope_VCRs': 241, 'static_resolution_statuses': {'RESOLVED': 424}, 'race_resolution_statuses': {'RESOLVED_TMINUS1_OWNER_RACE': 424}, 'race_conditional_statuses': {'CONDITIONAL_DOCUMENTED_RACE_COMPONENT': 424}, 'conditional_candidate_evaluable': 424, 'conditional_candidate_equal_to_full_VCR': 353, 'conditional_candidate_different_from_full_VCR': 71, 'evaluable_Tminus1_race_distribution': {'1': 70, '10': 33, '11': 13, '12': 26, '2': 36, '3': 53, '4': 23, '5': 31, '6': 58, '7': 27, '8': 18, '9': 36}, 'evaluable_after_forecast_VCR_race_disagreement': 0, 'full_combat_mass_predictions_made': 0}
+report: artifacts/combat/mass-independent-late-turn-stress-v1/published/report.json
