@@ -175,7 +175,7 @@ def test_progress_and_single_corpus_hash(capsys):
     assert "candidate game-turns:" in script
 
 
-def _synthetic_vcr(*, left_hull=94, right_hull=35, left_owner=4,
+def _synthetic_vcr(*, left_hull=94, right_hull=94, left_owner=4,
                    right_owner=5, left_mass=500, right_mass=100):
     return {
         "left": {"hullid": left_hull, "mass": left_mass},
