@@ -173,3 +173,75 @@ def test_progress_and_single_corpus_hash(capsys):
     assert script.count('hashlib.file_digest(stream, "sha256")') == 1
     assert "flush=True" in script
     assert "candidate game-turns:" in script
+
+
+def _synthetic_vcr(*, left_hull=94, right_hull=35, left_owner=4,
+                   right_owner=5, left_mass=500, right_mass=100):
+    return {
+        "left": {"hullid": left_hull, "mass": left_mass},
+        "right": {"hullid": right_hull, "mass": right_mass},
+        "leftownerid": left_owner, "rightownerid": right_owner,
+    }
+
+
+def test_out_of_scope_nonship_vcr_must_not_be_reinterpreted_as_ship():
+    cases = [
+        (_synthetic_vcr(left_hull=0), "NONPOSITIVE_OR_MISSING_PARTICIPANT_HULL"),
+        (_synthetic_vcr(right_hull=None), "NONPOSITIVE_OR_MISSING_PARTICIPANT_HULL"),
+        (_synthetic_vcr(left_hull=True), "NONPOSITIVE_OR_MISSING_PARTICIPANT_HULL"),
+        (_synthetic_vcr(), None),
+    ]
+    for case, expected in cases:
+        assert M.vcr_ship_scope(case) == expected
+    assert M.vcr_ship_scope({"left": {}, "right": None}) == "VCR_PARTICIPANT_NOT_OBJECT"
+
+
+@pytest.mark.parametrize("owner", [0, -1, None, False])
+def test_nonpositive_or_missing_owner_abstains_without_poisoning_other_side(owner):
+    payload = _synthetic_vcr(left_owner=owner)
+    left = M.forecast_vcr_side(
+        _snaps(), game_id=217591, battle_turn=75, vcr_id=9,
+        side="left", payload=payload,
+    )
+    right = M.forecast_vcr_side(
+        _snaps(), game_id=217591, battle_turn=75, vcr_id=9,
+        side="right", payload=payload,
+    )
+    assert left["forecast"]["status"] == "ABSTAIN_OWNER_NONPOSITIVE_OR_MISSING"
+    assert left["forecast"]["predicted_hull_mass_KT"] is None
+    assert left["evaluation"]["status"] == "COMPARATOR_AVAILABLE"
+    assert right["forecast"]["status"] == "RESOLVED"
+    assert right["forecast"]["predicted_hull_mass_KT"] == 495
+
+
+def test_numeric_comparator_missing_is_not_passed_into_forecast():
+    payload = _synthetic_vcr(left_hull=1039, left_owner=4, left_mass=None)
+    result = M.forecast_vcr_side(
+        _snaps(), game_id=217591, battle_turn=75,
+        vcr_id=12, side="left", payload=payload,
+    )
+    assert result["forecast"]["predicted_hull_mass_KT"] == 46
+    assert result["evaluation"]["status"] == "ABSTAIN_FACTUAL_MASS_NONPOSITIVE_OR_MISSING"
+    assert result["evaluation"]["difference_factual_minus_component_KT"] is None
+
+
+def test_non_ship_case_adapter_refuses_partial_ship_prediction():
+    with pytest.raises(ValueError, match="non-ship VCR"):
+        M.forecast_vcr_side(
+            _snaps(), game_id=217591, battle_turn=75, vcr_id=10,
+            side="right", payload=_synthetic_vcr(left_hull=0),
+        )
+
+
+def test_vcr_identity_debug_case_is_not_silently_filtered():
+    # Regression: G218619 T8 contains one offending VCR side (source field
+    # not published in failure gate). Cover both conceivable invalid IDs.
+    for payload in (_synthetic_vcr(left_hull=0),
+                    _synthetic_vcr(left_owner=0)):
+        if M.vcr_ship_scope(payload) is None:
+            assert M.forecast_vcr_side(
+                _snaps(), game_id=217591, battle_turn=75, vcr_id=8,
+                side="left", payload=payload
+            )["forecast"]["status"].startswith("ABSTAIN_")
+        else:
+            assert M.vcr_ship_scope(payload) == "NONPOSITIVE_OR_MISSING_PARTICIPANT_HULL"

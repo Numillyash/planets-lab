@@ -50,3 +50,27 @@ The runner now shows progress before the corpus SHA verification and
 throughout the game scan. Redundant shell-side full-file SHA computation
 was removed; a single mandatory Python SHA256 check still runs before
 the read-only database open.
+
+
+## 2026-10-10 public100 runtime scope correction (after PR #164)
+
+Actual evidence:
+\`runtime-logs/combat-mass-time-indexed-static-v1/20261009T221318Z_32cd70be116d\`
+completed SHA256 in 27.5 s, found 13,439 VCR-bearing archive pairs,
+resolved 2/2 VCR sides in G2466 T11 and then failed in G218619 T8
+with \`invalid prediction identity\`. The log does **not** include the offending
+VCR ID, side, hull or owner; do not claim it is proven to be a planet.
+Because game/turn were valid, a non-positive owner or hull is a plausible
+trigger in the current \`resolve_mass\` validation.
+
+Correction: explicitly define the hull-component population as ship/ship
+VCRs with both positive integer hull IDs, consistent with the earlier long
+mass survey. Record non-ship/unknown-hull VCRs as out-of-scope observations
+rather than throwing or forecasting one side opportunistically. When owner
+ID is missing/nonpositive in an otherwise in-scope VCR, abstain **only
+for that side**, retaining the other side and the factually observed owner
+field in the report; do not invent a faction or use postcombat ownership.
+If numeric VCR comparator is missing/nonpositive, keep predicted T-1 static
+component and report an explicit comparator abstention rather than a false
+numeric validation. Failed full-scientific predictions remain fail closed.
+The actual held-out result still requires an independent server run.
