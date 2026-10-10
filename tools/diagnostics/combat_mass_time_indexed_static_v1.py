@@ -355,15 +355,16 @@ def live_report(
             for (_case_turn, vid), case in sorted(cases.items()):
                 reason = vcr_ship_scope(case.payload)
                 if reason is not None:
+                    raw = case.payload if isinstance(case.payload, Mapping) else {}
+                    left = raw.get("left")
+                    right = raw.get("right")
                     out_of_scope.append({
                         "vcr_id": vid, "status": reason,
                         "left_hull_id": (
-                            case.payload.get("left", {}).get("hullid")
-                            if isinstance(case.payload.get("left"), Mapping) else None
+                            left.get("hullid") if isinstance(left, Mapping) else None
                         ),
                         "right_hull_id": (
-                            case.payload.get("right", {}).get("hullid")
-                            if isinstance(case.payload.get("right"), Mapping) else None
+                            right.get("hullid") if isinstance(right, Mapping) else None
                         ),
                     })
                 else:
