@@ -245,3 +245,102 @@ def test_vcr_identity_debug_case_is_not_silently_filtered():
             )["forecast"]["status"].startswith("ABSTAIN_")
         else:
             assert M.vcr_ship_scope(payload) == "NONPOSITIVE_OR_MISSING_PARTICIPANT_HULL"
+
+
+def test_full_holdout_run_accounts_for_unsupported_and_ownerless_vcrs(
+    tmp_path, monkeypatch,
+):
+    """End-to-end mocked public100 path: no live DB required for CI."""
+    import hashlib
+
+    from planets_lab.corpus import corpus_db_runtime as cr
+    from planets_lab.corpus import combat_vcr_runtime as vr
+
+    db_rel = "generations/synthetic-public100.duckdb"
+    db_path = tmp_path / db_rel
+    db_path.parent.mkdir(parents=True)
+    db_path.write_bytes(b"immutable-synthetic-source")
+    monkeypatch.setattr(M, "GENERATION", db_rel)
+    monkeypatch.setattr(
+        M, "GENERATION_SHA256",
+        hashlib.sha256(b"immutable-synthetic-source").hexdigest(),
+    )
+    excluded = [{"game_id": 100 + i} for i in range(14)]
+    controls = {
+        "schema": M.CONTROL_SCHEMA,
+        "status": "INDEPENDENT_CAPTURE_AND_TEMPORAL_STATIC_CONTROLS_OBSERVATIONAL_NOT_PROMOTED",
+        "static_snapshot_controls": excluded,
+    }
+    recon = {
+        "schema": M.RECONCILIATION_SCHEMA,
+        "status": "TEMPORAL_STATIC_AND_CAPTURE_RECONCILED_OBSERVATIONAL_NOT_PROMOTED",
+        "summary": {
+            "residuals_with_direct_Tminus1_changed_hull": 7,
+            "source_aggregate_zero_change_controls_with_truncated_details": 4,
+        },
+    }
+    monkeypatch.setattr(
+        M, "_read_json",
+        lambda p: controls if p.name == "controls.json" else recon,
+    )
+    monkeypatch.setattr(
+        M, "_candidate_pairs",
+        lambda conn: [(900, 10), (900, 11), (901, 12), (902, 13)],
+    )
+    class Connection:
+        closed = False
+        def close(self):
+            self.closed = True
+    conn = Connection()
+    monkeypatch.setattr(
+        cr, "connect_compact_generation_read_only",
+        lambda generation, db_root: (conn, db_path),
+    )
+    def refs(_conn, *, game_id, turns, include_embedded_turn):
+        assert not include_embedded_turn
+        t = next(iter(turns))
+        return [_ref(owner, game_id * 100 + owner, turn=t, embedded=t, game=game_id)
+                for owner in (4, 5)]
+    def reconstruct(_conn, selected):
+        for ref in selected:
+            yield ref, _member(turn=ref.archive_turn, game=ref.game_id)
+    monkeypatch.setattr(cr, "member_refs_for_turns", refs)
+    monkeypatch.setattr(cr, "reconstruct_members", reconstruct)
+
+    cases = {
+        (900, 10): [_synthetic_vcr(left_hull=0)],
+        (900, 11): [_synthetic_vcr(left_owner=0)],
+        (901, 12): [
+            _synthetic_vcr(left_hull=0),
+            _synthetic_vcr(left_hull=1039, left_mass=None),
+        ],
+        (902, 13): [_synthetic_vcr(left_hull=1039)],
+    }
+    def get_cases(_conn, *, game_id, battle_turns):
+        turn = next(iter(battle_turns))
+        return {(turn, idx): SimpleNamespace(payload=payload)
+                for idx, payload in enumerate(cases.get((game_id, turn), []), 1)}
+    monkeypatch.setattr(vr, "combat_vcr_cases_for_turns", get_cases)
+
+    report = M.live_report(
+        db_root=tmp_path,
+        controls_path=tmp_path / "controls.json",
+        reconciliation_path=tmp_path / "recon.json",
+        max_games=3,
+    )
+    assert conn.closed is True
+    assert [row["game_id"] for row in report["held_out_results"]] == [900, 901, 902]
+    assert report["summary"]["held_out_games_with_VCRs"] == 3
+    assert report["summary"]["held_out_vcr_sides"] == 6
+    assert report["summary"]["out_of_scope_VCRs_seen"] == 2
+    assert report["summary"]["static_resolution_statuses"] == {
+        "ABSTAIN_OWNER_NONPOSITIVE_OR_MISSING": 1,
+        "RESOLVED": 5,
+    }
+    assert report["summary"]["comparator_statuses"] == {
+        "ABSTAIN_FACTUAL_MASS_NONPOSITIVE_OR_MISSING": 1,
+        "COMPARATOR_AVAILABLE": 5,
+    }
+    assert report["skipped_no_vcr"][0]["status"] == "NO_SHIP_VS_SHIP_VCR"
+    assert report["held_out_results"][1]["out_of_scope_VCR_count"] == 1
+    assert report["summary"]["full_combat_mass_predictions_made"] == 0
