@@ -1,0 +1,12 @@
+===== EXPERIMENTAL HORWASP T-1 CLAN COMPONENT V1 =====
+HEAD: db2d9a037bdba82d8c67d35e250b1fd23932b5b4
+frozen_source: artifacts/combat/mass-late-residual-prestate-audit-v1/published/report.json
+source_git_blob_sha1: f4650a6cdb612f750970385d762af0d486894c6e
+DB: not opened; work strictly from immutable published T-1 evidence
+[horwasp-v1] source immutable Git blob verified
+===== INDEPENDENT T-1 HORWASP CLAN HYPOTHESIS V1 =====
+status: HORWASP_TMINUS1_LINEAR_FLOOR_HYPOTHESIS_NOT_PROMOTED
+all sides: {'sides': 26, 'Tminus1_hypothesis_evaluable': 26, 'Tminus1_hypothesis_abstentions': 0, 'no_carrier_numeric_matches': 21, 'retrospective_plus360_numeric_matches': 1, 'neither_numeric_branch_matches': 4, 'Tminus1_full_load_count': 24, 'Tminus1_partial_load_count': 2, 'observed_minus_Tminus1_no_carrier_by_KT': {'-225': 1, '-34': 1, '-4': 1, '-57': 1, '0': 21, '360': 1}, 'no_full_combat_mass_predictions': True}
+first VCR-ID: {'sides': 21, 'Tminus1_hypothesis_evaluable': 21, 'Tminus1_hypothesis_abstentions': 0, 'no_carrier_numeric_matches': 20, 'retrospective_plus360_numeric_matches': 1, 'neither_numeric_branch_matches': 0, 'Tminus1_full_load_count': 19, 'Tminus1_partial_load_count': 2, 'observed_minus_Tminus1_no_carrier_by_KT': {'0': 20, '360': 1}, 'no_full_combat_mass_predictions': True}
+repeated VCR-ID: {'sides': 5, 'Tminus1_hypothesis_evaluable': 5, 'Tminus1_hypothesis_abstentions': 0, 'no_carrier_numeric_matches': 1, 'retrospective_plus360_numeric_matches': 0, 'neither_numeric_branch_matches': 4, 'Tminus1_full_load_count': 5, 'Tminus1_partial_load_count': 0, 'observed_minus_Tminus1_no_carrier_by_KT': {'-225': 1, '-34': 1, '-4': 1, '-57': 1, '0': 1}, 'no_full_combat_mass_predictions': True}
+output: artifacts/combat/mass-horwasp-tminus1-first-vcr-v1/published/report.json
