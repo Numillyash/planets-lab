@@ -1,0 +1,105 @@
+===== LATE VCR RESIDUAL PHASE / HISTORICAL PRESTATE AUDIT =====
+HEAD: 45a3eaf8d1435117a169b530221a54027f626ed9
+DB: /root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb
+frozen stress source: artifacts/combat/mass-independent-late-turn-stress-v1/published/report.json
+SHA256: verified once in Python before read-only open
+[late-phase] verifying single pinned SHA256: corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb
+[late-phase] SHA256 verified in 34.5s; opening read-only DB
+[late-phase] [1/48] game=245693 T29 EARLY_QUINTILE: VCR=7 sides=14
+[late-phase] [1/48] annotated=14
+[late-phase] [2/48] game=245693 T103 LATE_85TH_PERCENTILE: VCR=23 sides=46
+[late-phase] [2/48] annotated=46
+[late-phase] [3/48] game=256858 T60 EARLY_QUINTILE: VCR=9 sides=18
+[late-phase] [3/48] annotated=18
+[late-phase] [4/48] game=256858 T271 LATE_85TH_PERCENTILE: VCR=1 sides=2
+[late-phase] [4/48] annotated=2
+[late-phase] [5/48] game=266087 T59 EARLY_QUINTILE: VCR=2 sides=4
+[late-phase] [5/48] annotated=4
+[late-phase] [6/48] game=266087 T193 LATE_85TH_PERCENTILE: VCR=2 sides=4
+[late-phase] [6/48] annotated=4
+[late-phase] [7/48] game=281994 T43 EARLY_QUINTILE: VCR=3 sides=6
+[late-phase] [7/48] annotated=6
+[late-phase] [8/48] game=281994 T111 LATE_85TH_PERCENTILE: VCR=3 sides=6
+[late-phase] [8/48] annotated=6
+[late-phase] [9/48] game=296210 T40 EARLY_QUINTILE: VCR=2 sides=4
+[late-phase] [9/48] annotated=4
+[late-phase] [10/48] game=296210 T129 LATE_85TH_PERCENTILE: VCR=2 sides=4
+[late-phase] [10/48] annotated=4
+[late-phase] [11/48] game=326221 T42 EARLY_QUINTILE: VCR=7 sides=14
+[late-phase] [11/48] annotated=14
+[late-phase] [12/48] game=326221 T147 LATE_85TH_PERCENTILE: VCR=2 sides=4
+[late-phase] [12/48] annotated=4
+[late-phase] [13/48] game=342288 T49 EARLY_QUINTILE: VCR=2 sides=4
+[late-phase] [13/48] annotated=4
+[late-phase] [14/48] game=342288 T173 LATE_85TH_PERCENTILE: VCR=2 sides=4
+[late-phase] [14/48] annotated=4
+[late-phase] [15/48] game=350094 T45 EARLY_QUINTILE: VCR=0 sides=0
+[late-phase] [16/48] game=350094 T153 LATE_85TH_PERCENTILE: VCR=11 sides=22
+[late-phase] [16/48] annotated=22
+[late-phase] [17/48] game=371631 T41 EARLY_QUINTILE: VCR=5 sides=10
+[late-phase] [17/48] annotated=10
+[late-phase] [18/48] game=371631 T165 LATE_85TH_PERCENTILE: VCR=5 sides=10
+[late-phase] [18/48] annotated=10
+[late-phase] [19/48] game=396107 T52 EARLY_QUINTILE: VCR=1 sides=2
+[late-phase] [19/48] annotated=2
+[late-phase] [20/48] game=396107 T185 LATE_85TH_PERCENTILE: VCR=11 sides=22
+[late-phase] [20/48] annotated=22
+[late-phase] [21/48] game=407599 T49 EARLY_QUINTILE: VCR=1 sides=2
+[late-phase] [21/48] annotated=2
+[late-phase] [22/48] game=407599 T117 LATE_85TH_PERCENTILE: VCR=0 sides=0
+[late-phase] [23/48] game=421276 T39 EARLY_QUINTILE: VCR=1 sides=2
+[late-phase] [23/48] annotated=2
+[late-phase] [24/48] game=421276 T115 LATE_85TH_PERCENTILE: VCR=17 sides=34
+[late-phase] [24/48] annotated=34
+[late-phase] [25/48] game=449095 T43 EARLY_QUINTILE: VCR=2 sides=4
+[late-phase] [25/48] annotated=4
+[late-phase] [26/48] game=449095 T134 LATE_85TH_PERCENTILE: VCR=14 sides=28
+[late-phase] [26/48] annotated=28
+[late-phase] [27/48] game=467183 T37 EARLY_QUINTILE: VCR=2 sides=4
+[late-phase] [27/48] annotated=4
+[late-phase] [28/48] game=467183 T133 LATE_85TH_PERCENTILE: VCR=5 sides=10
+[late-phase] [28/48] annotated=10
+[late-phase] [29/48] game=473010 T71 EARLY_QUINTILE: VCR=3 sides=6
+[late-phase] [29/48] annotated=6
+[late-phase] [30/48] game=473010 T214 LATE_85TH_PERCENTILE: VCR=3 sides=6
+[late-phase] [30/48] annotated=6
+[late-phase] [31/48] game=476819 T35 EARLY_QUINTILE: VCR=1 sides=2
+[late-phase] [31/48] annotated=2
+[late-phase] [32/48] game=476819 T123 LATE_85TH_PERCENTILE: VCR=7 sides=14
+[late-phase] [32/48] annotated=14
+[late-phase] [33/48] game=477725 T55 EARLY_QUINTILE: VCR=1 sides=2
+[late-phase] [33/48] annotated=2
+[late-phase] [34/48] game=477725 T187 LATE_85TH_PERCENTILE: VCR=3 sides=6
+[late-phase] [34/48] annotated=6
+[late-phase] [35/48] game=497195 T40 EARLY_QUINTILE: VCR=0 sides=0
+[late-phase] [36/48] game=497195 T128 LATE_85TH_PERCENTILE: VCR=2 sides=4
+[late-phase] [36/48] annotated=4
+[late-phase] [37/48] game=530633 T36 EARLY_QUINTILE: VCR=0 sides=0
+[late-phase] [38/48] game=530633 T121 LATE_85TH_PERCENTILE: VCR=1 sides=2
+[late-phase] [38/48] annotated=2
+[late-phase] [39/48] game=597079 T43 EARLY_QUINTILE: VCR=1 sides=2
+[late-phase] [39/48] annotated=2
+[late-phase] [40/48] game=597079 T144 LATE_85TH_PERCENTILE: VCR=2 sides=4
+[late-phase] [40/48] annotated=4
+[late-phase] [41/48] game=600044 T38 EARLY_QUINTILE: VCR=6 sides=12
+[late-phase] [41/48] annotated=12
+[late-phase] [42/48] game=600044 T117 LATE_85TH_PERCENTILE: VCR=6 sides=12
+[late-phase] [42/48] annotated=12
+[late-phase] [43/48] game=632527 T34 EARLY_QUINTILE: VCR=8 sides=16
+[late-phase] [43/48] annotated=16
+[late-phase] [44/48] game=632527 T102 LATE_85TH_PERCENTILE: VCR=18 sides=36
+[late-phase] [44/48] annotated=36
+[late-phase] [45/48] game=645077 T57 EARLY_QUINTILE: VCR=1 sides=2
+[late-phase] [45/48] annotated=2
+[late-phase] [46/48] game=645077 T112 LATE_85TH_PERCENTILE: VCR=4 sides=8
+[late-phase] [46/48] annotated=8
+[late-phase] [47/48] game=663317 T26 EARLY_QUINTILE: VCR=1 sides=2
+[late-phase] [47/48] annotated=2
+[late-phase] [48/48] game=663317 T69 LATE_85TH_PERCENTILE: VCR=2 sides=4
+[late-phase] [48/48] annotated=4
+===== LATE MASS RESIDUAL / PRESTATE PHASE AUDIT V1 =====
+status: OBSERVATIONAL_TMINUS1_LATE_MASS_RESIDUALS_NOT_PROMOTED
+summary: {'total_sides': 424, 'equal_to_frozen_conditional_component': 353, 'observed_residual_sides': 71, 'residual_values_KT': {'1': 4, '145': 6, '150': 2, '151': 1, '152': 1, '185': 1, '200': 7, '250': 1, '300': 3, '360': 35, '361': 2, '418': 1, '435': 1, '475': 1, '71': 1, '75': 4}, 'residual_classes': {'BASELINE_EQUALITY_CONTROL': 353, 'HORWASP_MUTABLE_MASS_OPEN': 26, 'OTHER_POSITIVE_OR_NEGATIVE_RESIDUAL': 10, 'RIGHT_PLUS360_NUMERIC_CANDIDATE': 35}, 'Tminus1_owner_ship_statuses': {'ABSTAIN_TMINUS1_OWNER_SHIP_NOT_SEEN': 1, 'RESOLVED_TMINUS1_OWNER_SHIP': 423}, 'carrier_geometry_cross_tab': {'RIGHT_PLUS360_NUMERIC_CANDIDATE': {'True': 35}, 'OTHER_RIGHT_STANDARD_SIDES': {'False': 140, 'True': 25}}, 'historical_horwasp_Tminus1_clans_seen': 26, 'historical_SG_exact_site_candidate_count_positive': 0, 'full_combat_mass_predictions_made': 0}
+EARLY_QUINTILE 132 residuals: 17
+LATE_85TH_PERCENTILE 292 residuals: 54
+output: artifacts/combat/mass-late-residual-prestate-audit-v1/published/report.json

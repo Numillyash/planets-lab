@@ -1,0 +1,22 @@
+{
+  "evidence_branch": "runtime-logs",
+  "exit_code": 0,
+  "finished_at_utc": "2026-10-11T14:15:33Z",
+  "hostname": "GEORGUL-GAMER",
+  "interrupted_signal": null,
+  "log_file": "gate.log",
+  "missing_artifact_paths": [],
+  "remote": "origin",
+  "requested_artifact_paths": [
+    "artifacts/combat/mass-late-residual-prestate-audit-v1/published"
+  ],
+  "run_id": "20261011T141334Z_45a3eaf8d143",
+  "run_name": "combat-mass-late-residual-prestate-audit-v1",
+  "runner": "bash",
+  "schema": "planets-lab.runtime-evidence.v1",
+  "skipped_oversized_artifact_paths": [],
+  "source_branch": "main",
+  "source_commit": "45a3eaf8d1435117a169b530221a54027f626ed9",
+  "source_dirty": false,
+  "started_at_utc": "2026-10-11T14:13:34Z"
+}
