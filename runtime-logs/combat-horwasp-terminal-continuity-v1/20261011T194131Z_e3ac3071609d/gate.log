@@ -1,0 +1,17 @@
+===== HORWASP SAME-TURN CLASSIC TERMINAL CONTINUITY V1 =====
+HEAD: e3ac3071609dcea2b1b71ca9a5d573fc46386759
+frozen_source: artifacts/combat/mass-horwasp-tminus1-first-vcr-v1/published/report.json
+source_git_blob_sha1: 358c354d424907488dffd3665e6d6d07c8d04f64
+DB: /root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb (SHA256 verified before read-only open)
+[horwasp-chain] verifying immutable corpus SHA256: corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb
+[horwasp-chain] SHA256 verified in 56.4s
+[horwasp-chain] [1/3] G350094 T153 reading VCRs and replaying N before N+1 comparator
+[horwasp-chain] [1/3] chains=6 transitions=9
+[horwasp-chain] [2/3] G371631 T41 reading VCRs and replaying N before N+1 comparator
+[horwasp-chain] [2/3] chains=2 transitions=3
+[horwasp-chain] [3/3] G449095 T134 reading VCRs and replaying N before N+1 comparator
+[horwasp-chain] [3/3] chains=5 transitions=8
+===== HORWASP SAME-TURN VCR REPLAY CONTINUITY V1 =====
+status: OBSERVED_ID_ORDER_TERMINAL_CONTINUITY_NOT_HOST_CHRONOLOGY
+summary: {'frozen_horwasp_chains': 4, 'distinct_windows': 3, 'frozen_horwasp': {'transitions': 5, 'continuity_statuses': {'CLASSIC_REPLAY_TERMINAL_TO_NEXT_START_MISMATCH': 5}, 'replay_statuses': {'CLASSIC_CURRENT_VCR_REPLAY_AVAILABLE': 5}}, 'same_game_turn_non_horwasp_controls': {'transitions': 15, 'continuity_statuses': {'CLASSIC_REPLAY_TERMINAL_TO_NEXT_START_MISMATCH': 10, 'EXACT_CLASSIC_REPLAY_TERMINAL_TO_NEXT_START': 5}, 'replay_statuses': {'CLASSIC_CURRENT_VCR_REPLAY_AVAILABLE': 15}}, 'host_execution_order_independently_proven': False, 'combat_mass_or_clan_loss_predicted': False}
+output: artifacts/combat/horwasp-terminal-continuity-v1/published/report.json

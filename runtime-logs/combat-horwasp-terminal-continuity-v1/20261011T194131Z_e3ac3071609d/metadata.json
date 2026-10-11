@@ -1,0 +1,22 @@
+{
+  "evidence_branch": "runtime-logs",
+  "exit_code": 0,
+  "finished_at_utc": "2026-10-11T19:42:37Z",
+  "hostname": "GEORGUL-GAMER",
+  "interrupted_signal": null,
+  "log_file": "gate.log",
+  "missing_artifact_paths": [],
+  "remote": "origin",
+  "requested_artifact_paths": [
+    "artifacts/combat/horwasp-terminal-continuity-v1/published"
+  ],
+  "run_id": "20261011T194131Z_e3ac3071609d",
+  "run_name": "combat-horwasp-terminal-continuity-v1",
+  "runner": "bash",
+  "schema": "planets-lab.runtime-evidence.v1",
+  "skipped_oversized_artifact_paths": [],
+  "source_branch": "main",
+  "source_commit": "e3ac3071609dcea2b1b71ca9a5d573fc46386759",
+  "source_dirty": false,
+  "started_at_utc": "2026-10-11T19:41:31Z"
+}

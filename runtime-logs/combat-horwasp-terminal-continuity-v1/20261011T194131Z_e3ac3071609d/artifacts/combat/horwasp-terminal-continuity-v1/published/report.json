@@ -1,0 +1,1223 @@
+{
+  "boundaries": "Prior VCR N seed/setup/weapon catalog are factual inputs for a derived deterministic Classic replay; next VCR N+1 is only a comparator after N terminal calculated. The method cannot prove Host VCR ID order and has NO terminal clan state, so independent clan-loss counts or next-VCR combat mass remain unpredicted. Missing/unsupported replay is an explicit abstention. No production/executor/corpus mutation.",
+  "db_path": "/root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "schema": "planets-lab.combat-horwasp-terminal-continuity.v1",
+  "source_db_generation": "generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "source_db_sha256": "3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c",
+  "source_frozen_horwasp_git_blob_sha1": "358c354d424907488dffd3665e6d6d07c8d04f64",
+  "status": "OBSERVED_ID_ORDER_TERMINAL_CONTINUITY_NOT_HOST_CHRONOLOGY",
+  "summary": {
+    "combat_mass_or_clan_loss_predicted": false,
+    "distinct_windows": 3,
+    "frozen_horwasp": {
+      "continuity_statuses": {
+        "CLASSIC_REPLAY_TERMINAL_TO_NEXT_START_MISMATCH": 5
+      },
+      "replay_statuses": {
+        "CLASSIC_CURRENT_VCR_REPLAY_AVAILABLE": 5
+      },
+      "transitions": 5
+    },
+    "frozen_horwasp_chains": 4,
+    "host_execution_order_independently_proven": false,
+    "same_game_turn_non_horwasp_controls": {
+      "continuity_statuses": {
+        "CLASSIC_REPLAY_TERMINAL_TO_NEXT_START_MISMATCH": 10,
+        "EXACT_CLASSIC_REPLAY_TERMINAL_TO_NEXT_START": 5
+      },
+      "replay_statuses": {
+        "CLASSIC_CURRENT_VCR_REPLAY_AVAILABLE": 15
+      },
+      "transitions": 15
+    }
+  },
+  "window_results": [
+    {
+      "all_same_turn_identity_chains": 6,
+      "frozen_horwasp_chains": 2,
+      "game_id": 350094,
+      "total_VCRs": 21,
+      "transitions": [
+        {
+          "ID_order_is_independent_host_execution_order": false,
+          "cohort": "SAME_GAME_TURN_CONTROL",
+          "game_id": 350094,
+          "later_VCR_start_used_only_after_prior_replay": true,
+          "next_VCR_id": 1772,
+          "next_side": "right",
+          "observed_VCR_mass_delta_NEXT_minus_PRIOR_KT": 0,
+          "owner_id": 17,
+          "prior_VCR_factual_setup_and_seed_used_for_replay": true,
+          "prior_VCR_id": 1771,
+          "prior_replay": {
+            "basis": "deterministic_vcr_replay",
+            "engine": "nuhost_classic_119",
+            "reason": null,
+            "status": "CLASSIC_CURRENT_VCR_REPLAY_AVAILABLE"
+          },
+          "prior_side": "right",
+          "raceid": 6,
+          "ship_id": 266,
+          "terminal_clans_reconstructed": false,
+          "terminal_next_continuity": {
+            "all_fields_equal": false,
+            "fields": {
+              "crew": {
+                "equal": false,
+                "next_factual_start": 2583,
+                "previous_replay_terminal": 2653
+              },
+              "damage": {
+                "equal": false,
+                "next_factual_start": 65,
+                "previous_replay_terminal": 46
+              },
+              "fighters": {
+                "equal": true,
+                "next_factual_start": 40,
+                "previous_replay_terminal": 40
+              },
+              "shield": {
+                "equal": false,
+                "next_factual_start": 0,
+                "previous_replay_terminal": 54
+              },
+              "torpedoes": {
+                "equal": true,
+                "next_factual_start": 0,
+                "previous_replay_terminal": 0
+              }
+            },
+            "next_mass_is_only_observational": 860,
+            "no_terminal_clans_available": true,
+            "status": "CLASSIC_REPLAY_TERMINAL_TO_NEXT_START_MISMATCH",
+            "terminal_captured": false,
+            "terminal_destroyed": false
+          },
+          "turn": 153
+        },
+        {
+          "ID_order_is_independent_host_execution_order": false,
+          "cohort": "SAME_GAME_TURN_CONTROL",
+          "game_id": 350094,
+          "later_VCR_start_used_only_after_prior_replay": true,
+          "next_VCR_id": 1773,
+          "next_side": "right",
+          "observed_VCR_mass_delta_NEXT_minus_PRIOR_KT": 0,
+          "owner_id": 17,
+          "prior_VCR_factual_setup_and_seed_used_for_replay": true,
+          "prior_VCR_id": 1772,
+          "prior_replay": {
+            "basis": "deterministic_vcr_replay",
+            "engine": "nuhost_classic_119",
+            "reason": null,
+            "status": "CLASSIC_CURRENT_VCR_REPLAY_AVAILABLE"
+          },
+          "prior_side": "right",
+          "raceid": 6,
+          "ship_id": 266,
+          "terminal_clans_reconstructed": false,
+          "terminal_next_continuity": {
+            "all_fields_equal": false,
+            "fields": {
+              "crew": {
+                "equal": false,
+                "next_factual_start": 2485,
+                "previous_replay_terminal": 2583
+              },
+              "damage": {
+                "equal": false,
+                "next_factual_start": 93,
+                "previous_replay_terminal": 65
+              },
+              "fighters": {
+                "equal": true,
+                "next_factual_start": 40,
+                "previous_replay_terminal": 40
+              },
+              "shield": {
+                "equal": true,
+                "next_factual_start": 0,
+                "previous_replay_terminal": 0
+              },
+              "torpedoes": {
+                "equal": true,
+                "next_factual_start": 0,
+                "previous_replay_terminal": 0
+              }
+            },
+            "next_mass_is_only_observational": 860,
+            "no_terminal_clans_available": true,
+            "status": "CLASSIC_REPLAY_TERMINAL_TO_NEXT_START_MISMATCH",
+            "terminal_captured": false,
+            "terminal_destroyed": false
+          },
+          "turn": 153
+        },
+        {
+          "ID_order_is_independent_host_execution_order": false,
+          "cohort": "SAME_GAME_TURN_CONTROL",
+          "game_id": 350094,
+          "later_VCR_start_used_only_after_prior_replay": true,
+          "next_VCR_id": 1775,
+          "next_side": "right",
+          "observed_VCR_mass_delta_NEXT_minus_PRIOR_KT": 0,
+          "owner_id": 21,
+          "prior_VCR_factual_setup_and_seed_used_for_replay": true,
+          "prior_VCR_id": 1774,
+          "prior_replay": {
+            "basis": "deterministic_vcr_replay",
+            "engine": "nuhost_classic_119",
+            "reason": null,
+            "status": "CLASSIC_CURRENT_VCR_REPLAY_AVAILABLE"
+          },
+          "prior_side": "right",
+          "raceid": 4,
+          "ship_id": 95,
+          "terminal_clans_reconstructed": false,
+          "terminal_next_continuity": {
+            "all_fields_equal": false,
+            "fields": {
+              "crew": {
+                "equal": true,
+                "next_factual_start": 798,
+                "previous_replay_terminal": 798
+              },
+              "damage": {
+                "equal": true,
+                "next_factual_start": 4,
+                "previous_replay_terminal": 4
+              },
+              "fighters": {
+                "equal": true,
+                "next_factual_start": 0,
+                "previous_replay_terminal": 0
+              },
+              "shield": {
+                "equal": false,
+                "next_factual_start": 25,
+                "previous_replay_terminal": 0
+              },
+              "torpedoes": {
+                "equal": false,
+                "next_factual_start": 23,
+                "previous_replay_terminal": 20
+              }
+            },
+            "next_mass_is_only_observational": 452,
+            "no_terminal_clans_available": true,
+            "status": "CLASSIC_REPLAY_TERMINAL_TO_NEXT_START_MISMATCH",
+            "terminal_captured": false,
+            "terminal_destroyed": false
+          },
+          "turn": 153
+        },
+        {
+          "ID_order_is_independent_host_execution_order": false,
+          "cohort": "SAME_GAME_TURN_CONTROL",
+          "game_id": 350094,
+          "later_VCR_start_used_only_after_prior_replay": true,
+          "next_VCR_id": 1776,
+          "next_side": "right",
+          "observed_VCR_mass_delta_NEXT_minus_PRIOR_KT": 0,
+          "owner_id": 21,
+          "prior_VCR_factual_setup_and_seed_used_for_replay": true,
+          "prior_VCR_id": 1775,
+          "prior_replay": {
+            "basis": "deterministic_vcr_replay",
+            "engine": "nuhost_classic_119",
+            "reason": null,
+            "status": "CLASSIC_CURRENT_VCR_REPLAY_AVAILABLE"
+          },
+          "prior_side": "right",
+          "raceid": 4,
+          "ship_id": 95,
+          "terminal_clans_reconstructed": false,
+          "terminal_next_continuity": {
+            "all_fields_equal": false,
+            "fields": {
+              "crew": {
+                "equal": false,
+                "next_factual_start": 714,
+                "previous_replay_terminal": 726
+              },
+              "damage": {
+                "equal": false,
+                "next_factual_start": 38,
+                "previous_replay_terminal": 33
+              },
+              "fighters": {
+                "equal": true,
+                "next_factual_start": 0,
+                "previous_replay_terminal": 0
+              },
+              "shield": {
+                "equal": false,
+                "next_factual_start": 25,
+                "previous_replay_terminal": 0
+              },
+              "torpedoes": {
+                "equal": true,
+                "next_factual_start": 7,
+                "previous_replay_terminal": 7
+              }
+            },
+            "next_mass_is_only_observational": 452,
+            "no_terminal_clans_available": true,
+            "status": "CLASSIC_REPLAY_TERMINAL_TO_NEXT_START_MISMATCH",
+            "terminal_captured": false,
+            "terminal_destroyed": false
+          },
+          "turn": 153
+        },
+        {
+          "ID_order_is_independent_host_execution_order": false,
+          "cohort": "SAME_GAME_TURN_CONTROL",
+          "game_id": 350094,
+          "later_VCR_start_used_only_after_prior_replay": true,
+          "next_VCR_id": 1785,
+          "next_side": "left",
+          "observed_VCR_mass_delta_NEXT_minus_PRIOR_KT": 0,
+          "owner_id": 21,
+          "prior_VCR_factual_setup_and_seed_used_for_replay": true,
+          "prior_VCR_id": 1780,
+          "prior_replay": {
+            "basis": "deterministic_vcr_replay",
+            "engine": "nuhost_classic_119",
+            "reason": null,
+            "status": "CLASSIC_CURRENT_VCR_REPLAY_AVAILABLE"
+          },
+          "prior_side": "right",
+          "raceid": 4,
+          "ship_id": 435,
+          "terminal_clans_reconstructed": false,
+          "terminal_next_continuity": {
+            "all_fields_equal": false,
+            "fields": {
+              "crew": {
+                "equal": false,
+                "next_factual_start": 772,
+                "previous_replay_terminal": 782
+              },
+              "damage": {
+                "equal": false,
+                "next_factual_start": 38,
+                "previous_replay_terminal": 28
+              },
+              "fighters": {
+                "equal": true,
+                "next_factual_start": 0,
+                "previous_replay_terminal": 0
+              },
+              "shield": {
+                "equal": false,
+                "next_factual_start": 25,
+                "previous_replay_terminal": 0
+              },
+              "torpedoes": {
+                "equal": true,
+                "next_factual_start": 0,
+                "previous_replay_terminal": 0
+              }
+            },
+            "next_mass_is_only_observational": 601,
+            "no_terminal_clans_available": true,
+            "status": "CLASSIC_REPLAY_TERMINAL_TO_NEXT_START_MISMATCH",
+            "terminal_captured": false,
+            "terminal_destroyed": false
+          },
+          "turn": 153
+        },
+        {
+          "ID_order_is_independent_host_execution_order": false,
+          "cohort": "SAME_GAME_TURN_CONTROL",
+          "game_id": 350094,
+          "later_VCR_start_used_only_after_prior_replay": true,
+          "next_VCR_id": 1778,
+          "next_side": "right",
+          "observed_VCR_mass_delta_NEXT_minus_PRIOR_KT": 0,
+          "owner_id": 21,
+          "prior_VCR_factual_setup_and_seed_used_for_replay": true,
+          "prior_VCR_id": 1777,
+          "prior_replay": {
+            "basis": "deterministic_vcr_replay",
+            "engine": "nuhost_classic_119",
+            "reason": null,
+            "status": "CLASSIC_CURRENT_VCR_REPLAY_AVAILABLE"
+          },
+          "prior_side": "right",
+          "raceid": 4,
+          "ship_id": 568,
+          "terminal_clans_reconstructed": false,
+          "terminal_next_continuity": {
+            "all_fields_equal": false,
+            "fields": {
+              "crew": {
+                "equal": true,
+                "next_factual_start": 810,
+                "previous_replay_terminal": 810
+              },
+              "damage": {
+                "equal": true,
+                "next_factual_start": 0,
+                "previous_replay_terminal": 0
+              },
+              "fighters": {
+                "equal": true,
+                "next_factual_start": 0,
+                "previous_replay_terminal": 0
+              },
+              "shield": {
+                "equal": false,
+                "next_factual_start": 57,
+                "previous_replay_terminal": 59
+              },
+              "torpedoes": {
+                "equal": false,
+                "next_factual_start": 25,
+                "previous_replay_terminal": 27
+              }
+            },
+            "next_mass_is_only_observational": 812,
+            "no_terminal_clans_available": true,
+            "status": "CLASSIC_REPLAY_TERMINAL_TO_NEXT_START_MISMATCH",
+            "terminal_captured": false,
+            "terminal_destroyed": false
+          },
+          "turn": 153
+        },
+        {
+          "ID_order_is_independent_host_execution_order": false,
+          "cohort": "FROZEN_HORWASP_REPEAT",
+          "game_id": 350094,
+          "later_VCR_start_used_only_after_prior_replay": true,
+          "next_VCR_id": 1777,
+          "next_side": "left",
+          "observed_VCR_mass_delta_NEXT_minus_PRIOR_KT": -34,
+          "owner_id": 30,
+          "prior_VCR_factual_setup_and_seed_used_for_replay": true,
+          "prior_VCR_id": 1776,
+          "prior_replay": {
+            "basis": "deterministic_vcr_replay",
+            "engine": "nuhost_classic_119",
+            "reason": null,
+            "status": "CLASSIC_CURRENT_VCR_REPLAY_AVAILABLE"
+          },
+          "prior_side": "left",
+          "raceid": 12,
+          "ship_id": 34,
+          "terminal_clans_reconstructed": false,
+          "terminal_next_continuity": {
+            "all_fields_equal": false,
+            "fields": {
+              "crew": {
+                "equal": true,
+                "next_factual_start": 1,
+                "previous_replay_terminal": 1
+              },
+              "damage": {
+                "equal": false,
+                "next_factual_start": 0,
+                "previous_replay_terminal": 36
+              },
+              "fighters": {
+                "equal": false,
+                "next_factual_start": 34,
+                "previous_replay_terminal": 13
+              },
+              "shield": {
+                "equal": true,
+                "next_factual_start": 0,
+                "previous_replay_terminal": 0
+              },
+              "torpedoes": {
+                "equal": false,
+                "next_factual_start": 10000,
+                "previous_replay_terminal": 9994
+              }
+            },
+            "next_mass_is_only_observational": 336,
+            "no_terminal_clans_available": true,
+            "status": "CLASSIC_REPLAY_TERMINAL_TO_NEXT_START_MISMATCH",
+            "terminal_captured": false,
+            "terminal_destroyed": false
+          },
+          "turn": 153
+        },
+        {
+          "ID_order_is_independent_host_execution_order": false,
+          "cohort": "FROZEN_HORWASP_REPEAT",
+          "game_id": 350094,
+          "later_VCR_start_used_only_after_prior_replay": true,
+          "next_VCR_id": 1779,
+          "next_side": "left",
+          "observed_VCR_mass_delta_NEXT_minus_PRIOR_KT": -57,
+          "owner_id": 30,
+          "prior_VCR_factual_setup_and_seed_used_for_replay": true,
+          "prior_VCR_id": 1778,
+          "prior_replay": {
+            "basis": "deterministic_vcr_replay",
+            "engine": "nuhost_classic_119",
+            "reason": null,
+            "status": "CLASSIC_CURRENT_VCR_REPLAY_AVAILABLE"
+          },
+          "prior_side": "left",
+          "raceid": 12,
+          "ship_id": 513,
+          "terminal_clans_reconstructed": false,
+          "terminal_next_continuity": {
+            "all_fields_equal": false,
+            "fields": {
+              "crew": {
+                "equal": true,
+                "next_factual_start": 1,
+                "previous_replay_terminal": 1
+              },
+              "damage": {
+                "equal": false,
+                "next_factual_start": 0,
+                "previous_replay_terminal": 21
+              },
+              "fighters": {
+                "equal": false,
+                "next_factual_start": 62,
+                "previous_replay_terminal": 24
+              },
+              "shield": {
+                "equal": true,
+                "next_factual_start": 0,
+                "previous_replay_terminal": 0
+              },
+              "torpedoes": {
+                "equal": false,
+                "next_factual_start": 10000,
+                "previous_replay_terminal": 9988
+              }
+            },
+            "next_mass_is_only_observational": 893,
+            "no_terminal_clans_available": true,
+            "status": "CLASSIC_REPLAY_TERMINAL_TO_NEXT_START_MISMATCH",
+            "terminal_captured": false,
+            "terminal_destroyed": false
+          },
+          "turn": 153
+        },
+        {
+          "ID_order_is_independent_host_execution_order": false,
+          "cohort": "FROZEN_HORWASP_REPEAT",
+          "game_id": 350094,
+          "later_VCR_start_used_only_after_prior_replay": true,
+          "next_VCR_id": 1780,
+          "next_side": "left",
+          "observed_VCR_mass_delta_NEXT_minus_PRIOR_KT": -168,
+          "owner_id": 30,
+          "prior_VCR_factual_setup_and_seed_used_for_replay": true,
+          "prior_VCR_id": 1779,
+          "prior_replay": {
+            "basis": "deterministic_vcr_replay",
+            "engine": "nuhost_classic_119",
+            "reason": null,
+            "status": "CLASSIC_CURRENT_VCR_REPLAY_AVAILABLE"
+          },
+          "prior_side": "left",
+          "raceid": 12,
+          "ship_id": 513,
+          "terminal_clans_reconstructed": false,
+          "terminal_next_continuity": {
+            "all_fields_equal": false,
+            "fields": {
+              "crew": {
+                "equal": true,
+                "next_factual_start": 1,
+                "previous_replay_terminal": 1
+              },
+              "damage": {
+                "equal": false,
+                "next_factual_start": 0,
+                "previous_replay_terminal": 44
+              },
+              "fighters": {
+                "equal": false,
+                "next_factual_start": 41,
+                "previous_replay_terminal": 5
+              },
+              "shield": {
+                "equal": true,
+                "next_factual_start": 0,
+                "previous_replay_terminal": 0
+              },
+              "torpedoes": {
+                "equal": false,
+                "next_factual_start": 10000,
+                "previous_replay_terminal": 9978
+              }
+            },
+            "next_mass_is_only_observational": 725,
+            "no_terminal_clans_available": true,
+            "status": "CLASSIC_REPLAY_TERMINAL_TO_NEXT_START_MISMATCH",
+            "terminal_captured": false,
+            "terminal_destroyed": false
+          },
+          "turn": 153
+        }
+      ],
+      "turn": 153
+    },
+    {
+      "all_same_turn_identity_chains": 2,
+      "frozen_horwasp_chains": 1,
+      "game_id": 371631,
+      "total_VCRs": 13,
+      "transitions": [
+        {
+          "ID_order_is_independent_host_execution_order": false,
+          "cohort": "FROZEN_HORWASP_REPEAT",
+          "game_id": 371631,
+          "later_VCR_start_used_only_after_prior_replay": true,
+          "next_VCR_id": 315,
+          "next_side": "right",
+          "observed_VCR_mass_delta_NEXT_minus_PRIOR_KT": 0,
+          "owner_id": 3,
+          "prior_VCR_factual_setup_and_seed_used_for_replay": true,
+          "prior_VCR_id": 314,
+          "prior_replay": {
+            "basis": "deterministic_vcr_replay",
+            "engine": "nuhost_classic_119",
+            "reason": null,
+            "status": "CLASSIC_CURRENT_VCR_REPLAY_AVAILABLE"
+          },
+          "prior_side": "left",
+          "raceid": 12,
+          "ship_id": 19,
+          "terminal_clans_reconstructed": false,
+          "terminal_next_continuity": {
+            "all_fields_equal": false,
+            "fields": {
+              "crew": {
+                "equal": true,
+                "next_factual_start": 1,
+                "previous_replay_terminal": 1
+              },
+              "damage": {
+                "equal": true,
+                "next_factual_start": 0,
+                "previous_replay_terminal": 0
+              },
+              "fighters": {
+                "equal": false,
+                "next_factual_start": 70,
+                "previous_replay_terminal": 57
+              },
+              "shield": {
+                "equal": true,
+                "next_factual_start": 0,
+                "previous_replay_terminal": 0
+              },
+              "torpedoes": {
+                "equal": true,
+                "next_factual_start": 10000,
+                "previous_replay_terminal": 10000
+              }
+            },
+            "next_mass_is_only_observational": 290,
+            "no_terminal_clans_available": true,
+            "status": "CLASSIC_REPLAY_TERMINAL_TO_NEXT_START_MISMATCH",
+            "terminal_captured": false,
+            "terminal_destroyed": false
+          },
+          "turn": 41
+        },
+        {
+          "ID_order_is_independent_host_execution_order": false,
+          "cohort": "SAME_GAME_TURN_CONTROL",
+          "game_id": 371631,
+          "later_VCR_start_used_only_after_prior_replay": true,
+          "next_VCR_id": 313,
+          "next_side": "left",
+          "observed_VCR_mass_delta_NEXT_minus_PRIOR_KT": 0,
+          "owner_id": 13,
+          "prior_VCR_factual_setup_and_seed_used_for_replay": true,
+          "prior_VCR_id": 312,
+          "prior_replay": {
+            "basis": "deterministic_vcr_replay",
+            "engine": "nuhost_classic_119",
+            "reason": null,
+            "status": "CLASSIC_CURRENT_VCR_REPLAY_AVAILABLE"
+          },
+          "prior_side": "left",
+          "raceid": 1,
+          "ship_id": 445,
+          "terminal_clans_reconstructed": false,
+          "terminal_next_continuity": {
+            "all_fields_equal": false,
+            "fields": {
+              "crew": {
+                "equal": false,
+                "next_factual_start": 784,
+                "previous_replay_terminal": 810
+              },
+              "damage": {
+                "equal": false,
+                "next_factual_start": 7,
+                "previous_replay_terminal": 0
+              },
+              "fighters": {
+                "equal": true,
+                "next_factual_start": 0,
+                "previous_replay_terminal": 0
+              },
+              "shield": {
+                "equal": false,
+                "next_factual_start": 25,
+                "previous_replay_terminal": 37
+              },
+              "torpedoes": {
+                "equal": false,
+                "next_factual_start": 38,
+                "previous_replay_terminal": 34
+              }
+            },
+            "next_mass_is_only_observational": 445,
+            "no_terminal_clans_available": true,
+            "status": "CLASSIC_REPLAY_TERMINAL_TO_NEXT_START_MISMATCH",
+            "terminal_captured": false,
+            "terminal_destroyed": false
+          },
+          "turn": 41
+        },
+        {
+          "ID_order_is_independent_host_execution_order": false,
+          "cohort": "SAME_GAME_TURN_CONTROL",
+          "game_id": 371631,
+          "later_VCR_start_used_only_after_prior_replay": true,
+          "next_VCR_id": 314,
+          "next_side": "right",
+          "observed_VCR_mass_delta_NEXT_minus_PRIOR_KT": 0,
+          "owner_id": 13,
+          "prior_VCR_factual_setup_and_seed_used_for_replay": true,
+          "prior_VCR_id": 313,
+          "prior_replay": {
+            "basis": "deterministic_vcr_replay",
+            "engine": "nuhost_classic_119",
+            "reason": null,
+            "status": "CLASSIC_CURRENT_VCR_REPLAY_AVAILABLE"
+          },
+          "prior_side": "left",
+          "raceid": 1,
+          "ship_id": 445,
+          "terminal_clans_reconstructed": false,
+          "terminal_next_continuity": {
+            "all_fields_equal": false,
+            "fields": {
+              "crew": {
+                "equal": false,
+                "next_factual_start": 754,
+                "previous_replay_terminal": 766
+              },
+              "damage": {
+                "equal": false,
+                "next_factual_start": 25,
+                "previous_replay_terminal": 17
+              },
+              "fighters": {
+                "equal": true,
+                "next_factual_start": 0,
+                "previous_replay_terminal": 0
+              },
+              "shield": {
+                "equal": false,
+                "next_factual_start": 25,
+                "previous_replay_terminal": 0
+              },
+              "torpedoes": {
+                "equal": false,
+                "next_factual_start": 26,
+                "previous_replay_terminal": 22
+              }
+            },
+            "next_mass_is_only_observational": 445,
+            "no_terminal_clans_available": true,
+            "status": "CLASSIC_REPLAY_TERMINAL_TO_NEXT_START_MISMATCH",
+            "terminal_captured": false,
+            "terminal_destroyed": false
+          },
+          "turn": 41
+        }
+      ],
+      "turn": 41
+    },
+    {
+      "all_same_turn_identity_chains": 5,
+      "frozen_horwasp_chains": 1,
+      "game_id": 449095,
+      "total_VCRs": 35,
+      "transitions": [
+        {
+          "ID_order_is_independent_host_execution_order": false,
+          "cohort": "FROZEN_HORWASP_REPEAT",
+          "game_id": 449095,
+          "later_VCR_start_used_only_after_prior_replay": true,
+          "next_VCR_id": 1701,
+          "next_side": "right",
+          "observed_VCR_mass_delta_NEXT_minus_PRIOR_KT": -4,
+          "owner_id": 1,
+          "prior_VCR_factual_setup_and_seed_used_for_replay": true,
+          "prior_VCR_id": 1700,
+          "prior_replay": {
+            "basis": "deterministic_vcr_replay",
+            "engine": "nuhost_classic_119",
+            "reason": null,
+            "status": "CLASSIC_CURRENT_VCR_REPLAY_AVAILABLE"
+          },
+          "prior_side": "right",
+          "raceid": 12,
+          "ship_id": 1022,
+          "terminal_clans_reconstructed": false,
+          "terminal_next_continuity": {
+            "all_fields_equal": false,
+            "fields": {
+              "crew": {
+                "equal": true,
+                "next_factual_start": 1,
+                "previous_replay_terminal": 1
+              },
+              "damage": {
+                "equal": false,
+                "next_factual_start": 0,
+                "previous_replay_terminal": 5
+              },
+              "fighters": {
+                "equal": true,
+                "next_factual_start": 0,
+                "previous_replay_terminal": 0
+              },
+              "shield": {
+                "equal": true,
+                "next_factual_start": 0,
+                "previous_replay_terminal": 0
+              },
+              "torpedoes": {
+                "equal": false,
+                "next_factual_start": 10000,
+                "previous_replay_terminal": 9976
+              }
+            },
+            "next_mass_is_only_observational": 146,
+            "no_terminal_clans_available": true,
+            "status": "CLASSIC_REPLAY_TERMINAL_TO_NEXT_START_MISMATCH",
+            "terminal_captured": false,
+            "terminal_destroyed": false
+          },
+          "turn": 134
+        },
+        {
+          "ID_order_is_independent_host_execution_order": false,
+          "cohort": "SAME_GAME_TURN_CONTROL",
+          "game_id": 449095,
+          "later_VCR_start_used_only_after_prior_replay": true,
+          "next_VCR_id": 1705,
+          "next_side": "left",
+          "observed_VCR_mass_delta_NEXT_minus_PRIOR_KT": 0,
+          "owner_id": 3,
+          "prior_VCR_factual_setup_and_seed_used_for_replay": true,
+          "prior_VCR_id": 1704,
+          "prior_replay": {
+            "basis": "deterministic_vcr_replay",
+            "engine": "nuhost_classic_119",
+            "reason": null,
+            "status": "CLASSIC_CURRENT_VCR_REPLAY_AVAILABLE"
+          },
+          "prior_side": "left",
+          "raceid": 1,
+          "ship_id": 237,
+          "terminal_clans_reconstructed": false,
+          "terminal_next_continuity": {
+            "all_fields_equal": true,
+            "fields": {
+              "crew": {
+                "equal": true,
+                "next_factual_start": 324,
+                "previous_replay_terminal": 324
+              },
+              "damage": {
+                "equal": true,
+                "next_factual_start": 0,
+                "previous_replay_terminal": 0
+              },
+              "fighters": {
+                "equal": true,
+                "next_factual_start": 0,
+                "previous_replay_terminal": 0
+              },
+              "shield": {
+                "equal": true,
+                "next_factual_start": 100,
+                "previous_replay_terminal": 100
+              },
+              "torpedoes": {
+                "equal": true,
+                "next_factual_start": 29,
+                "previous_replay_terminal": 29
+              }
+            },
+            "next_mass_is_only_observational": 343,
+            "no_terminal_clans_available": true,
+            "status": "EXACT_CLASSIC_REPLAY_TERMINAL_TO_NEXT_START",
+            "terminal_captured": false,
+            "terminal_destroyed": false
+          },
+          "turn": 134
+        },
+        {
+          "ID_order_is_independent_host_execution_order": false,
+          "cohort": "SAME_GAME_TURN_CONTROL",
+          "game_id": 449095,
+          "later_VCR_start_used_only_after_prior_replay": true,
+          "next_VCR_id": 1706,
+          "next_side": "right",
+          "observed_VCR_mass_delta_NEXT_minus_PRIOR_KT": 0,
+          "owner_id": 3,
+          "prior_VCR_factual_setup_and_seed_used_for_replay": true,
+          "prior_VCR_id": 1705,
+          "prior_replay": {
+            "basis": "deterministic_vcr_replay",
+            "engine": "nuhost_classic_119",
+            "reason": null,
+            "status": "CLASSIC_CURRENT_VCR_REPLAY_AVAILABLE"
+          },
+          "prior_side": "left",
+          "raceid": 1,
+          "ship_id": 237,
+          "terminal_clans_reconstructed": false,
+          "terminal_next_continuity": {
+            "all_fields_equal": false,
+            "fields": {
+              "crew": {
+                "equal": false,
+                "next_factual_start": 260,
+                "previous_replay_terminal": 292
+              },
+              "damage": {
+                "equal": false,
+                "next_factual_start": 62,
+                "previous_replay_terminal": 45
+              },
+              "fighters": {
+                "equal": true,
+                "next_factual_start": 0,
+                "previous_replay_terminal": 0
+              },
+              "shield": {
+                "equal": false,
+                "next_factual_start": 25,
+                "previous_replay_terminal": 0
+              },
+              "torpedoes": {
+                "equal": false,
+                "next_factual_start": 9,
+                "previous_replay_terminal": 11
+              }
+            },
+            "next_mass_is_only_observational": 343,
+            "no_terminal_clans_available": true,
+            "status": "CLASSIC_REPLAY_TERMINAL_TO_NEXT_START_MISMATCH",
+            "terminal_captured": false,
+            "terminal_destroyed": false
+          },
+          "turn": 134
+        },
+        {
+          "ID_order_is_independent_host_execution_order": false,
+          "cohort": "SAME_GAME_TURN_CONTROL",
+          "game_id": 449095,
+          "later_VCR_start_used_only_after_prior_replay": true,
+          "next_VCR_id": 1723,
+          "next_side": "left",
+          "observed_VCR_mass_delta_NEXT_minus_PRIOR_KT": 0,
+          "owner_id": 3,
+          "prior_VCR_factual_setup_and_seed_used_for_replay": true,
+          "prior_VCR_id": 1706,
+          "prior_replay": {
+            "basis": "deterministic_vcr_replay",
+            "engine": "nuhost_classic_119",
+            "reason": null,
+            "status": "CLASSIC_CURRENT_VCR_REPLAY_AVAILABLE"
+          },
+          "prior_side": "right",
+          "raceid": 1,
+          "ship_id": 237,
+          "terminal_clans_reconstructed": false,
+          "terminal_next_continuity": {
+            "all_fields_equal": false,
+            "fields": {
+              "crew": {
+                "equal": true,
+                "next_factual_start": 260,
+                "previous_replay_terminal": 260
+              },
+              "damage": {
+                "equal": true,
+                "next_factual_start": 62,
+                "previous_replay_terminal": 62
+              },
+              "fighters": {
+                "equal": true,
+                "next_factual_start": 0,
+                "previous_replay_terminal": 0
+              },
+              "shield": {
+                "equal": false,
+                "next_factual_start": 38,
+                "previous_replay_terminal": 25
+              },
+              "torpedoes": {
+                "equal": true,
+                "next_factual_start": 5,
+                "previous_replay_terminal": 5
+              }
+            },
+            "next_mass_is_only_observational": 343,
+            "no_terminal_clans_available": true,
+            "status": "CLASSIC_REPLAY_TERMINAL_TO_NEXT_START_MISMATCH",
+            "terminal_captured": false,
+            "terminal_destroyed": false
+          },
+          "turn": 134
+        },
+        {
+          "ID_order_is_independent_host_execution_order": false,
+          "cohort": "SAME_GAME_TURN_CONTROL",
+          "game_id": 449095,
+          "later_VCR_start_used_only_after_prior_replay": true,
+          "next_VCR_id": 1709,
+          "next_side": "left",
+          "observed_VCR_mass_delta_NEXT_minus_PRIOR_KT": 0,
+          "owner_id": 8,
+          "prior_VCR_factual_setup_and_seed_used_for_replay": true,
+          "prior_VCR_id": 1708,
+          "prior_replay": {
+            "basis": "deterministic_vcr_replay",
+            "engine": "nuhost_classic_119",
+            "reason": null,
+            "status": "CLASSIC_CURRENT_VCR_REPLAY_AVAILABLE"
+          },
+          "prior_side": "left",
+          "raceid": 2,
+          "ship_id": 161,
+          "terminal_clans_reconstructed": false,
+          "terminal_next_continuity": {
+            "all_fields_equal": true,
+            "fields": {
+              "crew": {
+                "equal": true,
+                "next_factual_start": 910,
+                "previous_replay_terminal": 910
+              },
+              "damage": {
+                "equal": true,
+                "next_factual_start": 0,
+                "previous_replay_terminal": 0
+              },
+              "fighters": {
+                "equal": true,
+                "next_factual_start": 93,
+                "previous_replay_terminal": 93
+              },
+              "shield": {
+                "equal": true,
+                "next_factual_start": 100,
+                "previous_replay_terminal": 100
+              },
+              "torpedoes": {
+                "equal": true,
+                "next_factual_start": 0,
+                "previous_replay_terminal": 0
+              }
+            },
+            "next_mass_is_only_observational": 331,
+            "no_terminal_clans_available": true,
+            "status": "EXACT_CLASSIC_REPLAY_TERMINAL_TO_NEXT_START",
+            "terminal_captured": false,
+            "terminal_destroyed": false
+          },
+          "turn": 134
+        },
+        {
+          "ID_order_is_independent_host_execution_order": false,
+          "cohort": "SAME_GAME_TURN_CONTROL",
+          "game_id": 449095,
+          "later_VCR_start_used_only_after_prior_replay": true,
+          "next_VCR_id": 1703,
+          "next_side": "right",
+          "observed_VCR_mass_delta_NEXT_minus_PRIOR_KT": 0,
+          "owner_id": 11,
+          "prior_VCR_factual_setup_and_seed_used_for_replay": true,
+          "prior_VCR_id": 1702,
+          "prior_replay": {
+            "basis": "deterministic_vcr_replay",
+            "engine": "nuhost_classic_119",
+            "reason": null,
+            "status": "CLASSIC_CURRENT_VCR_REPLAY_AVAILABLE"
+          },
+          "prior_side": "right",
+          "raceid": 6,
+          "ship_id": 37,
+          "terminal_clans_reconstructed": false,
+          "terminal_next_continuity": {
+            "all_fields_equal": true,
+            "fields": {
+              "crew": {
+                "equal": true,
+                "next_factual_start": 2536,
+                "previous_replay_terminal": 2536
+              },
+              "damage": {
+                "equal": true,
+                "next_factual_start": 27,
+                "previous_replay_terminal": 27
+              },
+              "fighters": {
+                "equal": true,
+                "next_factual_start": 88,
+                "previous_replay_terminal": 88
+              },
+              "shield": {
+                "equal": true,
+                "next_factual_start": 0,
+                "previous_replay_terminal": 0
+              },
+              "torpedoes": {
+                "equal": true,
+                "next_factual_start": 0,
+                "previous_replay_terminal": 0
+              }
+            },
+            "next_mass_is_only_observational": 860,
+            "no_terminal_clans_available": true,
+            "status": "EXACT_CLASSIC_REPLAY_TERMINAL_TO_NEXT_START",
+            "terminal_captured": false,
+            "terminal_destroyed": false
+          },
+          "turn": 134
+        },
+        {
+          "ID_order_is_independent_host_execution_order": false,
+          "cohort": "SAME_GAME_TURN_CONTROL",
+          "game_id": 449095,
+          "later_VCR_start_used_only_after_prior_replay": true,
+          "next_VCR_id": 1704,
+          "next_side": "right",
+          "observed_VCR_mass_delta_NEXT_minus_PRIOR_KT": 0,
+          "owner_id": 11,
+          "prior_VCR_factual_setup_and_seed_used_for_replay": true,
+          "prior_VCR_id": 1703,
+          "prior_replay": {
+            "basis": "deterministic_vcr_replay",
+            "engine": "nuhost_classic_119",
+            "reason": null,
+            "status": "CLASSIC_CURRENT_VCR_REPLAY_AVAILABLE"
+          },
+          "prior_side": "right",
+          "raceid": 6,
+          "ship_id": 37,
+          "terminal_clans_reconstructed": false,
+          "terminal_next_continuity": {
+            "all_fields_equal": true,
+            "fields": {
+              "crew": {
+                "equal": true,
+                "next_factual_start": 2284,
+                "previous_replay_terminal": 2284
+              },
+              "damage": {
+                "equal": true,
+                "next_factual_start": 99,
+                "previous_replay_terminal": 99
+              },
+              "fighters": {
+                "equal": true,
+                "next_factual_start": 56,
+                "previous_replay_terminal": 56
+              },
+              "shield": {
+                "equal": true,
+                "next_factual_start": 0,
+                "previous_replay_terminal": 0
+              },
+              "torpedoes": {
+                "equal": true,
+                "next_factual_start": 0,
+                "previous_replay_terminal": 0
+              }
+            },
+            "next_mass_is_only_observational": 860,
+            "no_terminal_clans_available": true,
+            "status": "EXACT_CLASSIC_REPLAY_TERMINAL_TO_NEXT_START",
+            "terminal_captured": false,
+            "terminal_destroyed": false
+          },
+          "turn": 134
+        },
+        {
+          "ID_order_is_independent_host_execution_order": false,
+          "cohort": "SAME_GAME_TURN_CONTROL",
+          "game_id": 449095,
+          "later_VCR_start_used_only_after_prior_replay": true,
+          "next_VCR_id": 1708,
+          "next_side": "right",
+          "observed_VCR_mass_delta_NEXT_minus_PRIOR_KT": 360,
+          "owner_id": 11,
+          "prior_VCR_factual_setup_and_seed_used_for_replay": true,
+          "prior_VCR_id": 1707,
+          "prior_replay": {
+            "basis": "deterministic_vcr_replay",
+            "engine": "nuhost_classic_119",
+            "reason": null,
+            "status": "CLASSIC_CURRENT_VCR_REPLAY_AVAILABLE"
+          },
+          "prior_side": "right",
+          "raceid": 6,
+          "ship_id": 57,
+          "terminal_clans_reconstructed": false,
+          "terminal_next_continuity": {
+            "all_fields_equal": true,
+            "fields": {
+              "crew": {
+                "equal": true,
+                "next_factual_start": 2767,
+                "previous_replay_terminal": 2767
+              },
+              "damage": {
+                "equal": true,
+                "next_factual_start": 13,
+                "previous_replay_terminal": 13
+              },
+              "fighters": {
+                "equal": true,
+                "next_factual_start": 18,
+                "previous_replay_terminal": 18
+              },
+              "shield": {
+                "equal": true,
+                "next_factual_start": 0,
+                "previous_replay_terminal": 0
+              },
+              "torpedoes": {
+                "equal": true,
+                "next_factual_start": 0,
+                "previous_replay_terminal": 0
+              }
+            },
+            "next_mass_is_only_observational": 1220,
+            "no_terminal_clans_available": true,
+            "status": "EXACT_CLASSIC_REPLAY_TERMINAL_TO_NEXT_START",
+            "terminal_captured": false,
+            "terminal_destroyed": false
+          },
+          "turn": 134
+        }
+      ],
+      "turn": 134
+    }
+  ]
+}
