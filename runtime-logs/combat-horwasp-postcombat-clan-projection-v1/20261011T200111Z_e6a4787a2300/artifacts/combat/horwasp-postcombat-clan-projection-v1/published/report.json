@@ -1,0 +1,464 @@
+{
+  "all_five_horwasp_forward_transition_audits": [
+    {
+      "VCR_ID_execution_order_proven": false,
+      "after_forecast_observed": {
+        "fighters": 34,
+        "fighters_candidate_matches": false,
+        "mass_KT": 336,
+        "mass_candidate_matches": false,
+        "mass_residual_KT": 66
+      },
+      "from_VCR": 1776,
+      "game_id": 350094,
+      "hull_id": 119,
+      "hypothesized_clans_before_N": 300,
+      "model_before_next_VCR_comparison": {
+        "clan_phase_order_independently_proven": false,
+        "detail": {
+          "assuming_classic_replay_matches_host_terminal": true,
+          "clan_loss_per_lost_fighter": 2,
+          "classic_terminal_damage_percent": 36,
+          "fighter_replay_terminal": 13,
+          "fighter_start": 40,
+          "floor_damage_rounding_unverified": true,
+          "hypothetical_damage_clans_killed": 108,
+          "hypothetical_fighter_clans_killed": 54,
+          "lost_fighters_from_Classic_replay": 27,
+          "total_hypothetical_clan_loss": 162
+        },
+        "full_combat_mass_prediction": false,
+        "projected_clans": 138,
+        "projected_next_fighters": 23,
+        "projected_next_mass_KT": 270,
+        "status": "CONDITIONAL_DOCUMENTED_POSTCOMBAT_CLAN_PROJECTION"
+      },
+      "owner_id": 30,
+      "reset_signature_observation_only": {
+        "crew": {
+          "equal": true,
+          "increased_from_classic_terminal": false,
+          "next_reset_10000": false,
+          "next_reset_zero": false,
+          "next_start": 1,
+          "terminal": 1
+        },
+        "damage": {
+          "equal": false,
+          "increased_from_classic_terminal": false,
+          "next_reset_10000": false,
+          "next_reset_zero": true,
+          "next_start": 0,
+          "terminal": 36
+        },
+        "fighters": {
+          "equal": false,
+          "increased_from_classic_terminal": true,
+          "next_reset_10000": false,
+          "next_reset_zero": false,
+          "next_start": 34,
+          "terminal": 13
+        },
+        "shield": {
+          "equal": true,
+          "increased_from_classic_terminal": false,
+          "next_reset_10000": false,
+          "next_reset_zero": false,
+          "next_start": 0,
+          "terminal": 0
+        },
+        "torpedoes": {
+          "equal": false,
+          "increased_from_classic_terminal": true,
+          "next_reset_10000": true,
+          "next_reset_zero": false,
+          "next_start": 10000,
+          "terminal": 9994
+        }
+      },
+      "ship_id": 34,
+      "source_clans_Tminus1": 300,
+      "terminal_clans_true_Host_reconstruction": false,
+      "to_VCR": 1777,
+      "transition_index_by_VCR_ID": 0,
+      "turn": 153
+    },
+    {
+      "VCR_ID_execution_order_proven": false,
+      "after_forecast_observed": {
+        "fighters": 62,
+        "fighters_candidate_matches": false,
+        "mass_KT": 893,
+        "mass_candidate_matches": false,
+        "mass_residual_KT": 61
+      },
+      "from_VCR": 1778,
+      "game_id": 350094,
+      "hull_id": 115,
+      "hypothesized_clans_before_N": 24000,
+      "model_before_next_VCR_comparison": {
+        "clan_phase_order_independently_proven": false,
+        "detail": {
+          "assuming_classic_replay_matches_host_terminal": true,
+          "clan_loss_per_lost_fighter": 20,
+          "classic_terminal_damage_percent": 21,
+          "fighter_replay_terminal": 24,
+          "fighter_start": 70,
+          "floor_damage_rounding_unverified": true,
+          "hypothetical_damage_clans_killed": 5040,
+          "hypothetical_fighter_clans_killed": 920,
+          "lost_fighters_from_Classic_replay": 46,
+          "total_hypothetical_clan_loss": 5960
+        },
+        "full_combat_mass_prediction": false,
+        "projected_clans": 18040,
+        "projected_next_fighters": 55,
+        "projected_next_mass_KT": 832,
+        "status": "CONDITIONAL_DOCUMENTED_POSTCOMBAT_CLAN_PROJECTION"
+      },
+      "owner_id": 30,
+      "reset_signature_observation_only": {
+        "crew": {
+          "equal": true,
+          "increased_from_classic_terminal": false,
+          "next_reset_10000": false,
+          "next_reset_zero": false,
+          "next_start": 1,
+          "terminal": 1
+        },
+        "damage": {
+          "equal": false,
+          "increased_from_classic_terminal": false,
+          "next_reset_10000": false,
+          "next_reset_zero": true,
+          "next_start": 0,
+          "terminal": 21
+        },
+        "fighters": {
+          "equal": false,
+          "increased_from_classic_terminal": true,
+          "next_reset_10000": false,
+          "next_reset_zero": false,
+          "next_start": 62,
+          "terminal": 24
+        },
+        "shield": {
+          "equal": true,
+          "increased_from_classic_terminal": false,
+          "next_reset_10000": false,
+          "next_reset_zero": false,
+          "next_start": 0,
+          "terminal": 0
+        },
+        "torpedoes": {
+          "equal": false,
+          "increased_from_classic_terminal": true,
+          "next_reset_10000": true,
+          "next_reset_zero": false,
+          "next_start": 10000,
+          "terminal": 9988
+        }
+      },
+      "ship_id": 513,
+      "source_clans_Tminus1": 24000,
+      "terminal_clans_true_Host_reconstruction": false,
+      "to_VCR": 1779,
+      "transition_index_by_VCR_ID": 0,
+      "turn": 153
+    },
+    {
+      "VCR_ID_execution_order_proven": false,
+      "after_forecast_observed": {
+        "fighters": 41,
+        "fighters_candidate_matches": false,
+        "mass_KT": 725,
+        "mass_candidate_matches": false,
+        "mass_residual_KT": 125
+      },
+      "from_VCR": 1779,
+      "game_id": 350094,
+      "hull_id": 115,
+      "hypothesized_clans_before_N": 18040,
+      "model_before_next_VCR_comparison": {
+        "clan_phase_order_independently_proven": false,
+        "detail": {
+          "assuming_classic_replay_matches_host_terminal": true,
+          "clan_loss_per_lost_fighter": 20,
+          "classic_terminal_damage_percent": 44,
+          "fighter_replay_terminal": 5,
+          "fighter_start": 62,
+          "floor_damage_rounding_unverified": true,
+          "hypothetical_damage_clans_killed": 10560,
+          "hypothetical_fighter_clans_killed": 1140,
+          "lost_fighters_from_Classic_replay": 57,
+          "total_hypothetical_clan_loss": 11700
+        },
+        "full_combat_mass_prediction": false,
+        "projected_clans": 6340,
+        "projected_next_fighters": 25,
+        "projected_next_mass_KT": 600,
+        "status": "CONDITIONAL_DOCUMENTED_POSTCOMBAT_CLAN_PROJECTION"
+      },
+      "owner_id": 30,
+      "reset_signature_observation_only": {
+        "crew": {
+          "equal": true,
+          "increased_from_classic_terminal": false,
+          "next_reset_10000": false,
+          "next_reset_zero": false,
+          "next_start": 1,
+          "terminal": 1
+        },
+        "damage": {
+          "equal": false,
+          "increased_from_classic_terminal": false,
+          "next_reset_10000": false,
+          "next_reset_zero": true,
+          "next_start": 0,
+          "terminal": 44
+        },
+        "fighters": {
+          "equal": false,
+          "increased_from_classic_terminal": true,
+          "next_reset_10000": false,
+          "next_reset_zero": false,
+          "next_start": 41,
+          "terminal": 5
+        },
+        "shield": {
+          "equal": true,
+          "increased_from_classic_terminal": false,
+          "next_reset_10000": false,
+          "next_reset_zero": false,
+          "next_start": 0,
+          "terminal": 0
+        },
+        "torpedoes": {
+          "equal": false,
+          "increased_from_classic_terminal": true,
+          "next_reset_10000": true,
+          "next_reset_zero": false,
+          "next_start": 10000,
+          "terminal": 9978
+        }
+      },
+      "ship_id": 513,
+      "source_clans_Tminus1": 24000,
+      "terminal_clans_true_Host_reconstruction": false,
+      "to_VCR": 1780,
+      "transition_index_by_VCR_ID": 1,
+      "turn": 153
+    },
+    {
+      "VCR_ID_execution_order_proven": false,
+      "after_forecast_observed": {
+        "fighters": 70,
+        "fighters_candidate_matches": false,
+        "mass_KT": 290,
+        "mass_candidate_matches": false,
+        "mass_residual_KT": 5
+      },
+      "from_VCR": 314,
+      "game_id": 371631,
+      "hull_id": 117,
+      "hypothesized_clans_before_N": 900,
+      "model_before_next_VCR_comparison": {
+        "clan_phase_order_independently_proven": false,
+        "detail": {
+          "assuming_classic_replay_matches_host_terminal": true,
+          "clan_loss_per_lost_fighter": 2,
+          "classic_terminal_damage_percent": 0,
+          "fighter_replay_terminal": 57,
+          "fighter_start": 70,
+          "floor_damage_rounding_unverified": true,
+          "hypothetical_damage_clans_killed": 0,
+          "hypothetical_fighter_clans_killed": 26,
+          "lost_fighters_from_Classic_replay": 13,
+          "total_hypothetical_clan_loss": 26
+        },
+        "full_combat_mass_prediction": false,
+        "projected_clans": 874,
+        "projected_next_fighters": 68,
+        "projected_next_mass_KT": 285,
+        "status": "CONDITIONAL_DOCUMENTED_POSTCOMBAT_CLAN_PROJECTION"
+      },
+      "owner_id": 3,
+      "reset_signature_observation_only": {
+        "crew": {
+          "equal": true,
+          "increased_from_classic_terminal": false,
+          "next_reset_10000": false,
+          "next_reset_zero": false,
+          "next_start": 1,
+          "terminal": 1
+        },
+        "damage": {
+          "equal": true,
+          "increased_from_classic_terminal": false,
+          "next_reset_10000": false,
+          "next_reset_zero": false,
+          "next_start": 0,
+          "terminal": 0
+        },
+        "fighters": {
+          "equal": false,
+          "increased_from_classic_terminal": true,
+          "next_reset_10000": false,
+          "next_reset_zero": false,
+          "next_start": 70,
+          "terminal": 57
+        },
+        "shield": {
+          "equal": true,
+          "increased_from_classic_terminal": false,
+          "next_reset_10000": false,
+          "next_reset_zero": false,
+          "next_start": 0,
+          "terminal": 0
+        },
+        "torpedoes": {
+          "equal": true,
+          "increased_from_classic_terminal": false,
+          "next_reset_10000": false,
+          "next_reset_zero": false,
+          "next_start": 10000,
+          "terminal": 10000
+        }
+      },
+      "ship_id": 19,
+      "source_clans_Tminus1": 900,
+      "terminal_clans_true_Host_reconstruction": false,
+      "to_VCR": 315,
+      "transition_index_by_VCR_ID": 0,
+      "turn": 41
+    },
+    {
+      "VCR_ID_execution_order_proven": false,
+      "after_forecast_observed": {
+        "fighters": 0,
+        "fighters_candidate_matches": null,
+        "mass_KT": 146,
+        "mass_candidate_matches": true,
+        "mass_residual_KT": 0
+      },
+      "from_VCR": 1700,
+      "game_id": 449095,
+      "hull_id": 210,
+      "hypothesized_clans_before_N": 300,
+      "model_before_next_VCR_comparison": {
+        "clan_phase_order_independently_proven": false,
+        "detail": {
+          "assuming_classic_replay_matches_host_terminal": true,
+          "clan_loss_per_lost_fighter": 2,
+          "classic_terminal_damage_percent": 5,
+          "fighter_replay_terminal": 0,
+          "fighter_start": 0,
+          "floor_damage_rounding_unverified": true,
+          "hypothetical_damage_clans_killed": 15,
+          "hypothetical_fighter_clans_killed": 0,
+          "lost_fighters_from_Classic_replay": 0,
+          "total_hypothetical_clan_loss": 15
+        },
+        "full_combat_mass_prediction": false,
+        "projected_clans": 285,
+        "projected_next_fighters": null,
+        "projected_next_mass_KT": 146,
+        "status": "CONDITIONAL_DOCUMENTED_POSTCOMBAT_CLAN_PROJECTION"
+      },
+      "owner_id": 1,
+      "reset_signature_observation_only": {
+        "crew": {
+          "equal": true,
+          "increased_from_classic_terminal": false,
+          "next_reset_10000": false,
+          "next_reset_zero": false,
+          "next_start": 1,
+          "terminal": 1
+        },
+        "damage": {
+          "equal": false,
+          "increased_from_classic_terminal": false,
+          "next_reset_10000": false,
+          "next_reset_zero": true,
+          "next_start": 0,
+          "terminal": 5
+        },
+        "fighters": {
+          "equal": true,
+          "increased_from_classic_terminal": false,
+          "next_reset_10000": false,
+          "next_reset_zero": false,
+          "next_start": 0,
+          "terminal": 0
+        },
+        "shield": {
+          "equal": true,
+          "increased_from_classic_terminal": false,
+          "next_reset_10000": false,
+          "next_reset_zero": false,
+          "next_start": 0,
+          "terminal": 0
+        },
+        "torpedoes": {
+          "equal": false,
+          "increased_from_classic_terminal": true,
+          "next_reset_10000": true,
+          "next_reset_zero": false,
+          "next_start": 10000,
+          "terminal": 9976
+        }
+      },
+      "ship_id": 1022,
+      "source_clans_Tminus1": 300,
+      "terminal_clans_true_Host_reconstruction": false,
+      "to_VCR": 1701,
+      "transition_index_by_VCR_ID": 0,
+      "turn": 134
+    }
+  ],
+  "boundary": "Published Classic replay N terminal damage/fighters and factual N start fighters, with independently archived T-1 clans, generate conditional official-rule clan/mass/fighter candidate BEFORE N+1 is used only as comparator. N payload/seed and previous derived replay are observed, not independently predicted. Fighter-loss proxy (start minus terminal), integer rounding and order of loss are hypotheses. A model mismatch is reported rather than tuned. No VCR ID timing proof, Host replay equivalence, or production executor promotion.",
+  "db_path": "/root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "schema": "planets-lab.combat-horwasp-postcombat-clan-projection.v1",
+  "source_db_generation": "generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "source_db_sha256": "3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c",
+  "source_horwasp_v1_git_blob_sha1": "358c354d424907488dffd3665e6d6d07c8d04f64",
+  "source_terminal_v1_git_blob_sha1": "04144af2d862a5040d822648f93bfeca8d22c1eb",
+  "status": "DOCUMENTED_RULE_CONDITIONAL_HOST_PHASE_NOT_PROMOTED",
+  "summary": {
+    "Host_execution_order_proven": false,
+    "documented_rule_candidate_statuses": {
+      "CONDITIONAL_DOCUMENTED_POSTCOMBAT_CLAN_PROJECTION": 5
+    },
+    "horwasp_reset_observations": {
+      "field_changed_counts": {
+        "damage": 4,
+        "fighters": 4,
+        "torpedoes": 4
+      },
+      "fighters_increase_over_Classic_terminal": 4,
+      "terminal_damage_resets_to_zero": 4,
+      "terminal_torpedoes_resets_to_10000": 4,
+      "transitions": 5
+    },
+    "model_fighters_evaluable": 4,
+    "model_fighters_numeric_equal": 0,
+    "model_input_uses_later_VCR_mass_or_fighters": false,
+    "model_mass_evaluable": 5,
+    "model_mass_numeric_equal": 1,
+    "model_mass_numeric_nonequal": 4,
+    "ordinary_controls": {
+      "field_changed_counts": {
+        "crew": 7,
+        "damage": 7,
+        "shield": 9,
+        "torpedoes": 5
+      },
+      "fighters_increase_over_Classic_terminal": 0,
+      "terminal_damage_resets_to_zero": 0,
+      "terminal_torpedoes_resets_to_10000": 0,
+      "transitions": 15
+    },
+    "original_horwasp_transitions": 5,
+    "true_host_terminal_clans_reconstructed": false
+  }
+}

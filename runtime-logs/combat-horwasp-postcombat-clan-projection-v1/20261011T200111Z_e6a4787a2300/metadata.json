@@ -1,0 +1,22 @@
+{
+  "evidence_branch": "runtime-logs",
+  "exit_code": 0,
+  "finished_at_utc": "2026-10-11T20:02:04Z",
+  "hostname": "GEORGUL-GAMER",
+  "interrupted_signal": null,
+  "log_file": "gate.log",
+  "missing_artifact_paths": [],
+  "remote": "origin",
+  "requested_artifact_paths": [
+    "artifacts/combat/horwasp-postcombat-clan-projection-v1/published"
+  ],
+  "run_id": "20261011T200111Z_e6a4787a2300",
+  "run_name": "combat-horwasp-postcombat-clan-projection-v1",
+  "runner": "bash",
+  "schema": "planets-lab.runtime-evidence.v1",
+  "skipped_oversized_artifact_paths": [],
+  "source_branch": "main",
+  "source_commit": "e6a4787a23004a3cccee0bfd28629a26735c2c24",
+  "source_dirty": false,
+  "started_at_utc": "2026-10-11T20:01:11Z"
+}

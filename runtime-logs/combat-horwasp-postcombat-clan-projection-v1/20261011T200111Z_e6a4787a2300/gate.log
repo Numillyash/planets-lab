@@ -1,0 +1,16 @@
+===== HORWASP DOCUMENTED POSTCOMBAT CLAN LOSS CONDITIONAL V1 =====
+HEAD: e6a4787a23004a3cccee0bfd28629a26735c2c24
+frozen_horwasp: artifacts/combat/mass-horwasp-tminus1-first-vcr-v1/published/report.json
+source_horwasp_sha1: 358c354d424907488dffd3665e6d6d07c8d04f64
+frozen_terminal: artifacts/combat/horwasp-terminal-continuity-v1/published/report.json
+source_terminal_sha1: 04144af2d862a5040d822648f93bfeca8d22c1eb
+DB: /root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb (SHA256 verified once, read-only)
+[horwasp-postcombat] verifying immutable corpus SHA256: corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb
+[horwasp-postcombat] SHA256 verified in 47.3s; opening read-only
+[horwasp-postcombat] G350094 T153: loading factual current VCRs, not T+1 ship snapshots
+[horwasp-postcombat] G371631 T41: loading factual current VCRs, not T+1 ship snapshots
+[horwasp-postcombat] G449095 T134: loading factual current VCRs, not T+1 ship snapshots
+===== DOCUMENTED HORWASP POSTCOMBAT PHASE CONDITIONAL V1 =====
+status: DOCUMENTED_RULE_CONDITIONAL_HOST_PHASE_NOT_PROMOTED
+summary: {'original_horwasp_transitions': 5, 'ordinary_controls': {'transitions': 15, 'field_changed_counts': {'crew': 7, 'damage': 7, 'shield': 9, 'torpedoes': 5}, 'terminal_damage_resets_to_zero': 0, 'terminal_torpedoes_resets_to_10000': 0, 'fighters_increase_over_Classic_terminal': 0}, 'horwasp_reset_observations': {'transitions': 5, 'field_changed_counts': {'damage': 4, 'fighters': 4, 'torpedoes': 4}, 'terminal_damage_resets_to_zero': 4, 'terminal_torpedoes_resets_to_10000': 4, 'fighters_increase_over_Classic_terminal': 4}, 'documented_rule_candidate_statuses': {'CONDITIONAL_DOCUMENTED_POSTCOMBAT_CLAN_PROJECTION': 5}, 'model_mass_evaluable': 5, 'model_mass_numeric_equal': 1, 'model_mass_numeric_nonequal': 4, 'model_fighters_evaluable': 4, 'model_fighters_numeric_equal': 0, 'model_input_uses_later_VCR_mass_or_fighters': False, 'Host_execution_order_proven': False, 'true_host_terminal_clans_reconstructed': False}
+output: artifacts/combat/horwasp-postcombat-clan-projection-v1/published/report.json
