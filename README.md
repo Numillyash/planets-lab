@@ -25,6 +25,12 @@ Raw historical archives, prepared caches and compiled datasets remain local/giti
 - Classic pairwise combat, ordinary ship-chain carry and attributable
   planet/starbase-chain checkpoints are recorded in the roadmap. Full Host
   engagement ordering remains the immediate major workstream.
+- **Research focus as of 2026-10-14:** Horwasp-specific mass/clan/terminal
+  phase analysis is **paused, not solved**. Preserve its frozen evidence and
+  explicit abstentions; do not spend the next iteration on Horwasp residual
+  fitting. Continue broad ordinary non-Horwasp C5 combat queue/capture and
+  independent next-VCR integration; see
+  [Horwasp pause and C5 restart](docs/handoff/2026-10-14-horwasp-park-c5-restart.md).
 - No `planets-intel` production transfer is implied by a lab evidence promotion;
   production use must preserve the same evidence and scope boundaries.
 - Corpus Game / Host Feature Index v1 is implemented as normalized typed Parquet +\n  DuckDB selection infrastructure. The settings-strict `ordinary-classic` profile\n  currently selects games `360690`, `511506`, and `620694`; index membership is\n  not a mechanics evidence promotion.\n
