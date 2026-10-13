@@ -1,0 +1,20 @@
+===== HORWASP 2021 FIGHTER FEEDBACK RULE GATE / COUNTERFACTUAL V1 =====
+HEAD: 2e1a959931cdf371cc12a41a96052a8e352907a9
+postcombat_sha1: d58fc71d414a08f2a60618981ee3c550b7d7bf2a
+terminal_sha1: 04144af2d862a5040d822648f93bfeca8d22c1eb
+horwasp_sha1: 358c354d424907488dffd3665e6d6d07c8d04f64
+DB: /root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb (sha256 verified once before read-only open)
+[feedback-gate] verifying immutable SHA256: corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb
+[feedback-gate] SHA256 verified in 36.8s
+[feedback-gate] [1/3] G350094 T153: archived creation-date provenance and VCR data
+[feedback-gate] [2/3] G371631 T41: archived creation-date provenance and VCR data
+[feedback-gate] [3/3] G449095 T134: archived creation-date provenance and VCR data
+===== HORWASP PRE-2021 VS 2021 FEEDBACK RULE GATE V1 =====
+status: HORWASP_2021_FEEDBACK_GATE_COUNTERFACTUAL_NOT_PROMOTED
+summary: {'horwasp_transitions': 5, 'ordinary_controls': 15, 'creation_date_gate_statuses': {'ABSTAIN_GAME_CREATED_DATE_NOT_AUTHENTICATED': 5}, 'game_creation_dates_authoritatively_proven': False, 'branch_OFF_mass_exact': 2, 'branch_ON_mass_exact': 1, 'branch_OFF_fighters_exact': 1, 'branch_ON_fighters_exact': 0, 'gate_selected_mass_exact': 0, 'gate_unresolved_sides': 5, 'full_Host_mass_or_clan_loss_reconstructed': False}
+G350094 V1776->1777 gate: None OFF err: 33 ON err: 66
+G350094 V1778->1779 gate: None OFF err: 43 ON err: 61
+G350094 V1779->1780 gate: None OFF err: 84 ON err: 125
+G371631 V314->315 gate: None OFF err: 0 ON err: 5
+G449095 V1700->1701 gate: None OFF err: 0 ON err: 0
+output: artifacts/combat/horwasp-fighter-feedback-gate-v1/published/report.json

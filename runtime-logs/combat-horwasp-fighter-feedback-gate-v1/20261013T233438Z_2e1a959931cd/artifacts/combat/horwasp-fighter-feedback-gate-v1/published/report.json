@@ -1,0 +1,1219 @@
+{
+  "all_five_transition_version_controls": [
+    {
+      "Classic_terminal_equals_Host_terminal_proven": false,
+      "VCR_ID_order_independently_proven": false,
+      "after_forecast_comparisons": {
+        "OFF": {
+          "factual_next_fighters": 34,
+          "factual_next_mass_KT": 336,
+          "fighters_exact": false,
+          "mass_error_factual_minus_candidate_KT": 33,
+          "mass_exact": false
+        },
+        "ON": {
+          "factual_next_fighters": 34,
+          "factual_next_mass_KT": 336,
+          "fighters_exact": false,
+          "mass_error_factual_minus_candidate_KT": 66,
+          "mass_exact": false
+        }
+      },
+      "from_VCR": 1776,
+      "game_id": 350094,
+      "gate_selected_candidate_is_exact": null,
+      "gate_selected_mode": null,
+      "historical_game_creation_date_gate": "ABSTAIN_GAME_CREATED_DATE_NOT_AUTHENTICATED",
+      "historical_gate_rule_enabled": null,
+      "hull_id": 119,
+      "prior_only_counterfactual_candidates": {
+        "OFF": {
+          "classic_replay_host_terminal_equivalence_proven": false,
+          "classic_terminal_damage": 36,
+          "classic_terminal_fighters": 13,
+          "damage_clans_lost_floor_assumption": 108,
+          "factual_next_mass_used": false,
+          "feedback_clans_lost_hypothesis": 0,
+          "feedback_enabled": false,
+          "fighter_loss_proxy": 27,
+          "fighter_start": 40,
+          "prior_clans": 300,
+          "projected_clans": 192,
+          "projected_fighters": 29,
+          "projected_mass_KT": 303,
+          "status": "COUNTERFACTUAL_FIGHTER_FEEDBACK_OFF"
+        },
+        "ON": {
+          "classic_replay_host_terminal_equivalence_proven": false,
+          "classic_terminal_damage": 36,
+          "classic_terminal_fighters": 13,
+          "damage_clans_lost_floor_assumption": 108,
+          "factual_next_mass_used": false,
+          "feedback_clans_lost_hypothesis": 54,
+          "feedback_enabled": true,
+          "fighter_loss_proxy": 27,
+          "fighter_start": 40,
+          "prior_clans": 300,
+          "projected_clans": 138,
+          "projected_fighters": 23,
+          "projected_mass_KT": 270,
+          "status": "COUNTERFACTUAL_FIGHTER_FEEDBACK_ON"
+        }
+      },
+      "ship_id": 34,
+      "to_VCR": 1777,
+      "turn": 153
+    },
+    {
+      "Classic_terminal_equals_Host_terminal_proven": false,
+      "VCR_ID_order_independently_proven": false,
+      "after_forecast_comparisons": {
+        "OFF": {
+          "factual_next_fighters": 62,
+          "factual_next_mass_KT": 893,
+          "fighters_exact": false,
+          "mass_error_factual_minus_candidate_KT": 43,
+          "mass_exact": false
+        },
+        "ON": {
+          "factual_next_fighters": 62,
+          "factual_next_mass_KT": 893,
+          "fighters_exact": false,
+          "mass_error_factual_minus_candidate_KT": 61,
+          "mass_exact": false
+        }
+      },
+      "from_VCR": 1778,
+      "game_id": 350094,
+      "gate_selected_candidate_is_exact": null,
+      "gate_selected_mode": null,
+      "historical_game_creation_date_gate": "ABSTAIN_GAME_CREATED_DATE_NOT_AUTHENTICATED",
+      "historical_gate_rule_enabled": null,
+      "hull_id": 115,
+      "prior_only_counterfactual_candidates": {
+        "OFF": {
+          "classic_replay_host_terminal_equivalence_proven": false,
+          "classic_terminal_damage": 21,
+          "classic_terminal_fighters": 24,
+          "damage_clans_lost_floor_assumption": 5040,
+          "factual_next_mass_used": false,
+          "feedback_clans_lost_hypothesis": 0,
+          "feedback_enabled": false,
+          "fighter_loss_proxy": 46,
+          "fighter_start": 70,
+          "prior_clans": 24000,
+          "projected_clans": 18960,
+          "projected_fighters": 57,
+          "projected_mass_KT": 850,
+          "status": "COUNTERFACTUAL_FIGHTER_FEEDBACK_OFF"
+        },
+        "ON": {
+          "classic_replay_host_terminal_equivalence_proven": false,
+          "classic_terminal_damage": 21,
+          "classic_terminal_fighters": 24,
+          "damage_clans_lost_floor_assumption": 5040,
+          "factual_next_mass_used": false,
+          "feedback_clans_lost_hypothesis": 920,
+          "feedback_enabled": true,
+          "fighter_loss_proxy": 46,
+          "fighter_start": 70,
+          "prior_clans": 24000,
+          "projected_clans": 18040,
+          "projected_fighters": 55,
+          "projected_mass_KT": 832,
+          "status": "COUNTERFACTUAL_FIGHTER_FEEDBACK_ON"
+        }
+      },
+      "ship_id": 513,
+      "to_VCR": 1779,
+      "turn": 153
+    },
+    {
+      "Classic_terminal_equals_Host_terminal_proven": false,
+      "VCR_ID_order_independently_proven": false,
+      "after_forecast_comparisons": {
+        "OFF": {
+          "factual_next_fighters": 41,
+          "factual_next_mass_KT": 725,
+          "fighters_exact": false,
+          "mass_error_factual_minus_candidate_KT": 84,
+          "mass_exact": false
+        },
+        "ON": {
+          "factual_next_fighters": 41,
+          "factual_next_mass_KT": 725,
+          "fighters_exact": false,
+          "mass_error_factual_minus_candidate_KT": 125,
+          "mass_exact": false
+        }
+      },
+      "from_VCR": 1779,
+      "game_id": 350094,
+      "gate_selected_candidate_is_exact": null,
+      "gate_selected_mode": null,
+      "historical_game_creation_date_gate": "ABSTAIN_GAME_CREATED_DATE_NOT_AUTHENTICATED",
+      "historical_gate_rule_enabled": null,
+      "hull_id": 115,
+      "prior_only_counterfactual_candidates": {
+        "OFF": {
+          "classic_replay_host_terminal_equivalence_proven": false,
+          "classic_terminal_damage": 44,
+          "classic_terminal_fighters": 5,
+          "damage_clans_lost_floor_assumption": 10560,
+          "factual_next_mass_used": false,
+          "feedback_clans_lost_hypothesis": 0,
+          "feedback_enabled": false,
+          "fighter_loss_proxy": 57,
+          "fighter_start": 62,
+          "prior_clans": 18960,
+          "projected_clans": 8400,
+          "projected_fighters": 31,
+          "projected_mass_KT": 641,
+          "status": "COUNTERFACTUAL_FIGHTER_FEEDBACK_OFF"
+        },
+        "ON": {
+          "classic_replay_host_terminal_equivalence_proven": false,
+          "classic_terminal_damage": 44,
+          "classic_terminal_fighters": 5,
+          "damage_clans_lost_floor_assumption": 10560,
+          "factual_next_mass_used": false,
+          "feedback_clans_lost_hypothesis": 1140,
+          "feedback_enabled": true,
+          "fighter_loss_proxy": 57,
+          "fighter_start": 62,
+          "prior_clans": 18040,
+          "projected_clans": 6340,
+          "projected_fighters": 25,
+          "projected_mass_KT": 600,
+          "status": "COUNTERFACTUAL_FIGHTER_FEEDBACK_ON"
+        }
+      },
+      "ship_id": 513,
+      "to_VCR": 1780,
+      "turn": 153
+    },
+    {
+      "Classic_terminal_equals_Host_terminal_proven": false,
+      "VCR_ID_order_independently_proven": false,
+      "after_forecast_comparisons": {
+        "OFF": {
+          "factual_next_fighters": 70,
+          "factual_next_mass_KT": 290,
+          "fighters_exact": true,
+          "mass_error_factual_minus_candidate_KT": 0,
+          "mass_exact": true
+        },
+        "ON": {
+          "factual_next_fighters": 70,
+          "factual_next_mass_KT": 290,
+          "fighters_exact": false,
+          "mass_error_factual_minus_candidate_KT": 5,
+          "mass_exact": false
+        }
+      },
+      "from_VCR": 314,
+      "game_id": 371631,
+      "gate_selected_candidate_is_exact": null,
+      "gate_selected_mode": null,
+      "historical_game_creation_date_gate": "ABSTAIN_GAME_CREATED_DATE_NOT_AUTHENTICATED",
+      "historical_gate_rule_enabled": null,
+      "hull_id": 117,
+      "prior_only_counterfactual_candidates": {
+        "OFF": {
+          "classic_replay_host_terminal_equivalence_proven": false,
+          "classic_terminal_damage": 0,
+          "classic_terminal_fighters": 57,
+          "damage_clans_lost_floor_assumption": 0,
+          "factual_next_mass_used": false,
+          "feedback_clans_lost_hypothesis": 0,
+          "feedback_enabled": false,
+          "fighter_loss_proxy": 13,
+          "fighter_start": 70,
+          "prior_clans": 900,
+          "projected_clans": 900,
+          "projected_fighters": 70,
+          "projected_mass_KT": 290,
+          "status": "COUNTERFACTUAL_FIGHTER_FEEDBACK_OFF"
+        },
+        "ON": {
+          "classic_replay_host_terminal_equivalence_proven": false,
+          "classic_terminal_damage": 0,
+          "classic_terminal_fighters": 57,
+          "damage_clans_lost_floor_assumption": 0,
+          "factual_next_mass_used": false,
+          "feedback_clans_lost_hypothesis": 26,
+          "feedback_enabled": true,
+          "fighter_loss_proxy": 13,
+          "fighter_start": 70,
+          "prior_clans": 900,
+          "projected_clans": 874,
+          "projected_fighters": 68,
+          "projected_mass_KT": 285,
+          "status": "COUNTERFACTUAL_FIGHTER_FEEDBACK_ON"
+        }
+      },
+      "ship_id": 19,
+      "to_VCR": 315,
+      "turn": 41
+    },
+    {
+      "Classic_terminal_equals_Host_terminal_proven": false,
+      "VCR_ID_order_independently_proven": false,
+      "after_forecast_comparisons": {
+        "OFF": {
+          "factual_next_fighters": 0,
+          "factual_next_mass_KT": 146,
+          "fighters_exact": null,
+          "mass_error_factual_minus_candidate_KT": 0,
+          "mass_exact": true
+        },
+        "ON": {
+          "factual_next_fighters": 0,
+          "factual_next_mass_KT": 146,
+          "fighters_exact": null,
+          "mass_error_factual_minus_candidate_KT": 0,
+          "mass_exact": true
+        }
+      },
+      "from_VCR": 1700,
+      "game_id": 449095,
+      "gate_selected_candidate_is_exact": null,
+      "gate_selected_mode": null,
+      "historical_game_creation_date_gate": "ABSTAIN_GAME_CREATED_DATE_NOT_AUTHENTICATED",
+      "historical_gate_rule_enabled": null,
+      "hull_id": 210,
+      "prior_only_counterfactual_candidates": {
+        "OFF": {
+          "classic_replay_host_terminal_equivalence_proven": false,
+          "classic_terminal_damage": 5,
+          "classic_terminal_fighters": 0,
+          "damage_clans_lost_floor_assumption": 15,
+          "factual_next_mass_used": false,
+          "feedback_clans_lost_hypothesis": 0,
+          "feedback_enabled": false,
+          "fighter_loss_proxy": 0,
+          "fighter_start": 0,
+          "prior_clans": 300,
+          "projected_clans": 285,
+          "projected_fighters": null,
+          "projected_mass_KT": 146,
+          "status": "COUNTERFACTUAL_FIGHTER_FEEDBACK_OFF"
+        },
+        "ON": {
+          "classic_replay_host_terminal_equivalence_proven": false,
+          "classic_terminal_damage": 5,
+          "classic_terminal_fighters": 0,
+          "damage_clans_lost_floor_assumption": 15,
+          "factual_next_mass_used": false,
+          "feedback_clans_lost_hypothesis": 0,
+          "feedback_enabled": true,
+          "fighter_loss_proxy": 0,
+          "fighter_start": 0,
+          "prior_clans": 300,
+          "projected_clans": 285,
+          "projected_fighters": null,
+          "projected_mass_KT": 146,
+          "status": "COUNTERFACTUAL_FIGHTER_FEEDBACK_ON"
+        }
+      },
+      "ship_id": 1022,
+      "to_VCR": 1701,
+      "turn": 134
+    }
+  ],
+  "boundary": "2021-era feedback documented as conditional on game generation, not the turn date or game ID. Historical date keys, if any, are only metadata candidates and require provenance verification. Fixed ON/OFF branches are exploratory counterfactuals, not an oracle-selected model. Classic terminal outcomes, damage rounding, battle order and fighter-loss proxy are not independently verified. Never use N+1 mass/fighters to generate any candidate. No production, executor, corpus CURRENT or engine rule changes.",
+  "historical_creation_date_provenance": {
+    "350094": {
+      "observations": [
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "1/5/2020 1:56:13 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 93295,
+          "player_id": 1
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "1/5/2020 1:56:13 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 93296,
+          "player_id": 2
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "1/5/2020 1:56:13 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 93297,
+          "player_id": 3
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "1/5/2020 1:56:13 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 93298,
+          "player_id": 4
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "1/5/2020 1:56:13 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 93299,
+          "player_id": 5
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "1/5/2020 1:56:13 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 93300,
+          "player_id": 6
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "1/5/2020 1:56:13 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 93301,
+          "player_id": 7
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "1/5/2020 1:56:13 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 93302,
+          "player_id": 8
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "1/5/2020 1:56:13 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 93303,
+          "player_id": 9
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "1/5/2020 1:56:13 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 93304,
+          "player_id": 10
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "1/5/2020 1:56:13 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 93305,
+          "player_id": 11
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "1/5/2020 1:56:13 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 93306,
+          "player_id": 12
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "1/5/2020 1:56:13 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 93307,
+          "player_id": 13
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "1/5/2020 1:56:13 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 93308,
+          "player_id": 14
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "1/5/2020 1:56:13 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 93309,
+          "player_id": 15
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "1/5/2020 1:56:13 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 93310,
+          "player_id": 16
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "1/5/2020 1:56:13 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 93311,
+          "player_id": 17
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "1/5/2020 1:56:13 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 93312,
+          "player_id": 18
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "1/5/2020 1:56:13 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 93313,
+          "player_id": 19
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "1/5/2020 1:56:13 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 93314,
+          "player_id": 20
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "1/5/2020 1:56:13 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 93315,
+          "player_id": 21
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "1/5/2020 1:56:13 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 93316,
+          "player_id": 22
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "1/5/2020 1:56:13 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 93317,
+          "player_id": 23
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "1/5/2020 1:56:13 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 93318,
+          "player_id": 24
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "1/5/2020 1:56:13 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 93319,
+          "player_id": 25
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "1/5/2020 1:56:13 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 93320,
+          "player_id": 26
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "1/5/2020 1:56:13 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 93321,
+          "player_id": 27
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "1/5/2020 1:56:13 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 93322,
+          "player_id": 28
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "1/5/2020 1:56:13 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 93323,
+          "player_id": 29
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "1/5/2020 1:56:13 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 93324,
+          "player_id": 30
+        }
+      ],
+      "rule_applies_since_2021": null,
+      "status": "ABSTAIN_GAME_CREATED_DATE_NOT_AUTHENTICATED"
+    },
+    "371631": {
+      "observations": [
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "4/21/2020 11:38:05 PM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 104010,
+          "player_id": 1
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "4/21/2020 11:38:05 PM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 104011,
+          "player_id": 2
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "4/21/2020 11:38:05 PM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 104012,
+          "player_id": 3
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "4/21/2020 11:38:05 PM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 104013,
+          "player_id": 4
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "4/21/2020 11:38:05 PM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 104014,
+          "player_id": 5
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "4/21/2020 11:38:05 PM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 104015,
+          "player_id": 6
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "4/21/2020 11:38:05 PM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 104016,
+          "player_id": 7
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "4/21/2020 11:38:05 PM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 104017,
+          "player_id": 8
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "4/21/2020 11:38:05 PM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 104018,
+          "player_id": 9
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "4/21/2020 11:38:05 PM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 104019,
+          "player_id": 10
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "4/21/2020 11:38:05 PM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 104020,
+          "player_id": 11
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "4/21/2020 11:38:05 PM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 104021,
+          "player_id": 12
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "4/21/2020 11:38:05 PM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 104022,
+          "player_id": 13
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "4/21/2020 11:38:05 PM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 104023,
+          "player_id": 14
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "4/21/2020 11:38:05 PM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 104024,
+          "player_id": 15
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "4/21/2020 11:38:05 PM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 104025,
+          "player_id": 16
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "4/21/2020 11:38:05 PM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 104026,
+          "player_id": 17
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "4/21/2020 11:38:05 PM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 104027,
+          "player_id": 18
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "4/21/2020 11:38:05 PM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 104028,
+          "player_id": 19
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "4/21/2020 11:38:05 PM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 104029,
+          "player_id": 20
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "4/21/2020 11:38:05 PM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 104030,
+          "player_id": 21
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "4/21/2020 11:38:05 PM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 104031,
+          "player_id": 22
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "4/21/2020 11:38:05 PM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 104032,
+          "player_id": 23
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "4/21/2020 11:38:05 PM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 104033,
+          "player_id": 24
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "4/21/2020 11:38:05 PM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 104034,
+          "player_id": 25
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "4/21/2020 11:38:05 PM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 104035,
+          "player_id": 26
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "4/21/2020 11:38:05 PM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 104036,
+          "player_id": 27
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "4/21/2020 11:38:05 PM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 104037,
+          "player_id": 28
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "4/21/2020 11:38:05 PM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 104038,
+          "player_id": 29
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "4/21/2020 11:38:05 PM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 104039,
+          "player_id": 30
+        }
+      ],
+      "rule_applies_since_2021": null,
+      "status": "ABSTAIN_GAME_CREATED_DATE_NOT_AUTHENTICATED"
+    },
+    "449095": {
+      "observations": [
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "6/18/2021 12:54:55 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 140139,
+          "player_id": 1
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "6/18/2021 12:54:55 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 140140,
+          "player_id": 2
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "6/18/2021 12:54:55 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 140141,
+          "player_id": 3
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "6/18/2021 12:54:55 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 140142,
+          "player_id": 4
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "6/18/2021 12:54:55 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 140143,
+          "player_id": 5
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "6/18/2021 12:54:55 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 140144,
+          "player_id": 6
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "6/18/2021 12:54:55 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 140145,
+          "player_id": 7
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "6/18/2021 12:54:55 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 140146,
+          "player_id": 8
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "6/18/2021 12:54:55 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 140147,
+          "player_id": 9
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "6/18/2021 12:54:55 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 140148,
+          "player_id": 10
+        },
+        {
+          "date_candidates": [
+            {
+              "field": "datecreated",
+              "iso_date": null,
+              "raw_value": "6/18/2021 12:54:55 AM",
+              "semantically_authoritative": true
+            }
+          ],
+          "member_id": 140149,
+          "player_id": 11
+        }
+      ],
+      "rule_applies_since_2021": null,
+      "status": "ABSTAIN_GAME_CREATED_DATE_NOT_AUTHENTICATED"
+    }
+  },
+  "schema": "planets-lab.combat-horwasp-fighter-feedback-gate.v1",
+  "source_db_path": "/root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "source_db_sha256": "3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c",
+  "source_horwasp_git_blob_sha1": "358c354d424907488dffd3665e6d6d07c8d04f64",
+  "source_postcombat_git_blob_sha1": "d58fc71d414a08f2a60618981ee3c550b7d7bf2a",
+  "source_terminal_git_blob_sha1": "04144af2d862a5040d822648f93bfeca8d22c1eb",
+  "status": "HORWASP_2021_FEEDBACK_GATE_COUNTERFACTUAL_NOT_PROMOTED",
+  "summary": {
+    "branch_OFF_fighters_exact": 1,
+    "branch_OFF_mass_exact": 2,
+    "branch_ON_fighters_exact": 0,
+    "branch_ON_mass_exact": 1,
+    "creation_date_gate_statuses": {
+      "ABSTAIN_GAME_CREATED_DATE_NOT_AUTHENTICATED": 5
+    },
+    "full_Host_mass_or_clan_loss_reconstructed": false,
+    "game_creation_dates_authoritatively_proven": false,
+    "gate_selected_mass_exact": 0,
+    "gate_unresolved_sides": 5,
+    "horwasp_transitions": 5,
+    "ordinary_controls": 15
+  }
+}
