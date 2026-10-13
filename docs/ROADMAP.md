@@ -35,6 +35,16 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 Active milestone remains **M5 — historical NuHost corpus + compatibility mining**.
 
+**October 14, 2026 scope decision:** temporarily park Horwasp-specific
+postcombat mass, clan losses, fighter-feedback activation and VCR-order
+micro-investigations. The evidence is retained as unresolved, not promoted.
+Resume the broader ordinary **non-Horwasp C5 Host combat queue** integration,
+prioritizing capture/parent-queue continuation and genuinely held-out next-VCR
+selection before returning to exotic combat physics. Keep the existing
+`combat-planar-no-horwasp` FeatureScope rather than adding ad hoc
+per-example exclusions. Full handoff:
+[`2026-10-14-horwasp-park-c5-restart.md`](handoff/2026-10-14-horwasp-park-c5-restart.md).
+
 Movement, including the base finite-fuel Tow mass/proration rule, Classic pairwise replay, ordinary ship battle-sequence carry-over, and the attributable ordinary repeated-planet persistence layer now have explicit subsystem checkpoints.
 
 The immediate combat work is the missing **Host combat phase around the resolver**:
