@@ -113,6 +113,47 @@ def test_original_predictions_cannot_become_claimed_full_host_results():
     assert result["original_next_pair_or_side_changed"] is False
 
 
+def test_frozen_transition_accounting_preserves_multiplicity_and_missing():
+    site={"adjacent_pairs":[(100,101),(101,102)]}
+    first={"from_vcr_id":100,"to_vcr_id":101}
+    second={"from_vcr_id":101,"to_vcr_id":102}
+    M._validate_frozen_transition_membership(site,{"transitions":[first],"missing":1})
+    M._validate_frozen_transition_membership(
+        site,{"transitions":[first,second],"missing":0})
+    # Old set-only logic incorrectly accepted a duplicated first row with
+    # missing=1: two serialized rows, but only one unique transition.
+    with pytest.raises(ValueError,match="duplicate frozen V2"):
+        M._validate_frozen_transition_membership(
+            site,{"transitions":[first,dict(first)],"missing":1})
+    with pytest.raises(ValueError,match="membership/count drift"):
+        M._validate_frozen_transition_membership(
+            site,{"transitions":[first,{"from_vcr_id":101,"to_vcr_id":103}],
+                  "missing":0})
+    for invalid in (-1,True,"1",None):
+        with pytest.raises(ValueError,match="list/count unavailable"):
+            M._validate_frozen_transition_membership(
+                site,{"transitions":[first],"missing":invalid})
+    with pytest.raises(ValueError,match="duplicate census"):
+        M._validate_frozen_transition_membership(
+            {"adjacent_pairs":[(100,101),(100,101)]},
+            {"transitions":[first],"missing":1})
+
+
+def test_missing_tminus1_index_is_abstention_not_empty_safe_index():
+    frozen={"from_vcr_id":111,"status":"ABSTAIN_PARENT_STANDARD_NO_PAIR",
+            "factual_comparison":{"exact":None}}
+    payload={"leftownerid":8,"rightownerid":9,
+             "left":{"objectid":1},"right":{"objectid":2}}
+    with pytest.raises(ValueError,match="T-1 prediction index unavailable"):
+        M.guarded_transition(
+            frozen=frozen,predictions=None,
+            current_vcr_payload=payload,site=(101,200))
+    with pytest.raises(EvidenceInputUnresolved,match="T-1 .* index unavailable"):
+        potential_tminus1_site_arrivals(
+            predictions=None,active_ships={1:{"owner_id":8}},
+            site=(101,200))
+
+
 def test_provenance_pins_and_evidence_wrapper():
     run=ROOT/"tools/run-combat-c5-parent-queue-arrival-uncertainty-v4.sh"
     wrapper=ROOT/"tools/run-combat-c5-parent-queue-arrival-uncertainty-v4-with-evidence.sh"
