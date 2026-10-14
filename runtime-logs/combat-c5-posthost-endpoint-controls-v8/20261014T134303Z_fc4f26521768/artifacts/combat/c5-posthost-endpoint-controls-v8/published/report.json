@@ -1,0 +1,1062 @@
+{
+  "boundary": "This retrospective C5-site-selected cohort compares independently generated T-1 normal-route model endpoints with owner-current ship coordinates in the T archive AFTER Host processing. It does NOT observe the precombat position, mine-hit rolls, combat queue, or physical site arrival. Mines remain a risk; NO_HIT is only a counterfactual. Owner drift, stale/missing records and incomplete endpoints are abstentions, never counted as misses or destroyed. Normal controls are model-based, not proven mine-free. No N+1 VCR is used to choose comparator ships. Historical first-static-spec context and source-site selection mean this is NOT holdout validation.",
+  "cohort_examples": {
+    "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT": [
+      {
+        "Nplus1_vcr_used": false,
+        "T_owner_current_owner_id": 3,
+        "T_owner_current_position": [
+          2435,
+          1778
+        ],
+        "Tminus1_hull_id": 16,
+        "Tminus1_owner_id": 3,
+        "Tminus1_source": "normal_mine_route_risk",
+        "after_turn": 232,
+        "before_turn": 231,
+        "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+        "comparison_status": "POSTHOST_ENDPOINT_MATCH",
+        "conditional_no_mine_only": true,
+        "conditional_or_model_endpoint": [
+          2435,
+          1778
+        ],
+        "frozen_v7_witness": false,
+        "game_id": 218619,
+        "mine_hit_or_nonhit_proven": false,
+        "precombat_site_membership_proven": false,
+        "ship_id": 9
+      },
+      {
+        "Nplus1_vcr_used": false,
+        "T_owner_current_owner_id": 5,
+        "T_owner_current_position": [
+          1460,
+          2721
+        ],
+        "Tminus1_hull_id": 69,
+        "Tminus1_owner_id": 5,
+        "Tminus1_source": "normal_mine_route_risk",
+        "after_turn": 232,
+        "before_turn": 231,
+        "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+        "comparison_status": "POSTHOST_ENDPOINT_MATCH",
+        "conditional_no_mine_only": true,
+        "conditional_or_model_endpoint": [
+          1460,
+          2721
+        ],
+        "frozen_v7_witness": false,
+        "game_id": 218619,
+        "mine_hit_or_nonhit_proven": false,
+        "precombat_site_membership_proven": false,
+        "ship_id": 13
+      },
+      {
+        "Nplus1_vcr_used": false,
+        "T_owner_current_owner_id": 1,
+        "T_owner_current_position": [
+          2199,
+          2514
+        ],
+        "Tminus1_hull_id": 20,
+        "Tminus1_owner_id": 1,
+        "Tminus1_source": "normal_mine_route_risk",
+        "after_turn": 232,
+        "before_turn": 231,
+        "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+        "comparison_status": "POSTHOST_ENDPOINT_MATCH",
+        "conditional_no_mine_only": true,
+        "conditional_or_model_endpoint": [
+          2199,
+          2514
+        ],
+        "frozen_v7_witness": false,
+        "game_id": 218619,
+        "mine_hit_or_nonhit_proven": false,
+        "precombat_site_membership_proven": false,
+        "ship_id": 18
+      },
+      {
+        "Nplus1_vcr_used": false,
+        "T_owner_current_owner_id": 1,
+        "T_owner_current_position": [
+          2184,
+          2075
+        ],
+        "Tminus1_hull_id": 19,
+        "Tminus1_owner_id": 1,
+        "Tminus1_source": "normal_mine_route_risk",
+        "after_turn": 232,
+        "before_turn": 231,
+        "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+        "comparison_status": "POSTHOST_ENDPOINT_MATCH",
+        "conditional_no_mine_only": true,
+        "conditional_or_model_endpoint": [
+          2184,
+          2075
+        ],
+        "frozen_v7_witness": false,
+        "game_id": 218619,
+        "mine_hit_or_nonhit_proven": false,
+        "precombat_site_membership_proven": false,
+        "ship_id": 21
+      },
+      {
+        "Nplus1_vcr_used": false,
+        "T_owner_current_owner_id": 10,
+        "T_owner_current_position": [
+          2560,
+          1878
+        ],
+        "Tminus1_hull_id": 14,
+        "Tminus1_owner_id": 10,
+        "Tminus1_source": "normal_mine_route_risk",
+        "after_turn": 232,
+        "before_turn": 231,
+        "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+        "comparison_status": "POSTHOST_ENDPOINT_MATCH",
+        "conditional_no_mine_only": true,
+        "conditional_or_model_endpoint": [
+          2560,
+          1878
+        ],
+        "frozen_v7_witness": false,
+        "game_id": 218619,
+        "mine_hit_or_nonhit_proven": false,
+        "precombat_site_membership_proven": false,
+        "ship_id": 35
+      },
+      {
+        "Nplus1_vcr_used": false,
+        "T_owner_current_owner_id": 3,
+        "T_owner_current_position": [
+          2699,
+          1354
+        ],
+        "Tminus1_hull_id": 31,
+        "Tminus1_owner_id": 3,
+        "Tminus1_source": "normal_mine_route_risk",
+        "after_turn": 232,
+        "before_turn": 231,
+        "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+        "comparison_status": "POSTHOST_ENDPOINT_MATCH",
+        "conditional_no_mine_only": true,
+        "conditional_or_model_endpoint": [
+          2699,
+          1354
+        ],
+        "frozen_v7_witness": false,
+        "game_id": 218619,
+        "mine_hit_or_nonhit_proven": false,
+        "precombat_site_membership_proven": false,
+        "ship_id": 44
+      },
+      {
+        "Nplus1_vcr_used": false,
+        "T_owner_current_owner_id": 3,
+        "T_owner_current_position": [
+          2615,
+          1763
+        ],
+        "Tminus1_hull_id": 29,
+        "Tminus1_owner_id": 3,
+        "Tminus1_source": "normal_mine_route_risk",
+        "after_turn": 232,
+        "before_turn": 231,
+        "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+        "comparison_status": "POSTHOST_ENDPOINT_MATCH",
+        "conditional_no_mine_only": true,
+        "conditional_or_model_endpoint": [
+          2615,
+          1763
+        ],
+        "frozen_v7_witness": false,
+        "game_id": 218619,
+        "mine_hit_or_nonhit_proven": false,
+        "precombat_site_membership_proven": false,
+        "ship_id": 67
+      },
+      {
+        "Nplus1_vcr_used": false,
+        "T_owner_current_owner_id": 3,
+        "T_owner_current_position": [
+          2687,
+          1838
+        ],
+        "Tminus1_hull_id": 29,
+        "Tminus1_owner_id": 3,
+        "Tminus1_source": "normal_mine_route_risk",
+        "after_turn": 232,
+        "before_turn": 231,
+        "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+        "comparison_status": "POSTHOST_ENDPOINT_MATCH",
+        "conditional_no_mine_only": true,
+        "conditional_or_model_endpoint": [
+          2687,
+          1838
+        ],
+        "frozen_v7_witness": false,
+        "game_id": 218619,
+        "mine_hit_or_nonhit_proven": false,
+        "precombat_site_membership_proven": false,
+        "ship_id": 84
+      },
+      {
+        "Nplus1_vcr_used": false,
+        "T_owner_current_owner_id": 1,
+        "T_owner_current_position": [
+          2184,
+          2075
+        ],
+        "Tminus1_hull_id": 13,
+        "Tminus1_owner_id": 1,
+        "Tminus1_source": "normal_mine_route_risk",
+        "after_turn": 232,
+        "before_turn": 231,
+        "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+        "comparison_status": "POSTHOST_ENDPOINT_MATCH",
+        "conditional_no_mine_only": true,
+        "conditional_or_model_endpoint": [
+          2184,
+          2075
+        ],
+        "frozen_v7_witness": false,
+        "game_id": 218619,
+        "mine_hit_or_nonhit_proven": false,
+        "precombat_site_membership_proven": false,
+        "ship_id": 104
+      },
+      {
+        "Nplus1_vcr_used": false,
+        "T_owner_current_owner_id": 1,
+        "T_owner_current_position": [
+          2184,
+          2075
+        ],
+        "Tminus1_hull_id": 13,
+        "Tminus1_owner_id": 1,
+        "Tminus1_source": "normal_mine_route_risk",
+        "after_turn": 232,
+        "before_turn": 231,
+        "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+        "comparison_status": "POSTHOST_ENDPOINT_MATCH",
+        "conditional_no_mine_only": true,
+        "conditional_or_model_endpoint": [
+          2184,
+          2075
+        ],
+        "frozen_v7_witness": false,
+        "game_id": 218619,
+        "mine_hit_or_nonhit_proven": false,
+        "precombat_site_membership_proven": false,
+        "ship_id": 120
+      },
+      {
+        "Nplus1_vcr_used": false,
+        "T_owner_current_owner_id": 3,
+        "T_owner_current_position": [
+          2678,
+          1670
+        ],
+        "Tminus1_hull_id": 31,
+        "Tminus1_owner_id": 3,
+        "Tminus1_source": "normal_mine_route_risk",
+        "after_turn": 232,
+        "before_turn": 231,
+        "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+        "comparison_status": "POSTHOST_ENDPOINT_MATCH",
+        "conditional_no_mine_only": true,
+        "conditional_or_model_endpoint": [
+          2678,
+          1670
+        ],
+        "frozen_v7_witness": false,
+        "game_id": 218619,
+        "mine_hit_or_nonhit_proven": false,
+        "precombat_site_membership_proven": false,
+        "ship_id": 159
+      },
+      {
+        "Nplus1_vcr_used": false,
+        "T_owner_current_owner_id": 3,
+        "T_owner_current_position": [
+          2687,
+          1838
+        ],
+        "Tminus1_hull_id": 29,
+        "Tminus1_owner_id": 3,
+        "Tminus1_source": "normal_mine_route_risk",
+        "after_turn": 232,
+        "before_turn": 231,
+        "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+        "comparison_status": "POSTHOST_ENDPOINT_MATCH",
+        "conditional_no_mine_only": true,
+        "conditional_or_model_endpoint": [
+          2687,
+          1838
+        ],
+        "frozen_v7_witness": false,
+        "game_id": 218619,
+        "mine_hit_or_nonhit_proven": false,
+        "precombat_site_membership_proven": false,
+        "ship_id": 167
+      }
+    ],
+    "NORMAL_MODEL_NO_INDEXED_MINE_RISK": [
+      {
+        "Nplus1_vcr_used": false,
+        "T_owner_current_owner_id": 1,
+        "T_owner_current_position": [
+          2866,
+          2314
+        ],
+        "Tminus1_hull_id": 16,
+        "Tminus1_owner_id": 1,
+        "Tminus1_source": "normal_move",
+        "after_turn": 232,
+        "before_turn": 231,
+        "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+        "comparison_status": "POSTHOST_ENDPOINT_MATCH",
+        "conditional_no_mine_only": false,
+        "conditional_or_model_endpoint": [
+          2866,
+          2314
+        ],
+        "frozen_v7_witness": false,
+        "game_id": 218619,
+        "mine_hit_or_nonhit_proven": false,
+        "precombat_site_membership_proven": false,
+        "ship_id": 1
+      },
+      {
+        "Nplus1_vcr_used": false,
+        "T_owner_current_owner_id": 5,
+        "T_owner_current_position": [
+          2053,
+          2837
+        ],
+        "Tminus1_hull_id": 16,
+        "Tminus1_owner_id": 5,
+        "Tminus1_source": "normal_move",
+        "after_turn": 232,
+        "before_turn": 231,
+        "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+        "comparison_status": "POSTHOST_ENDPOINT_MATCH",
+        "conditional_no_mine_only": false,
+        "conditional_or_model_endpoint": [
+          2053,
+          2837
+        ],
+        "frozen_v7_witness": false,
+        "game_id": 218619,
+        "mine_hit_or_nonhit_proven": false,
+        "precombat_site_membership_proven": false,
+        "ship_id": 2
+      },
+      {
+        "Nplus1_vcr_used": false,
+        "T_owner_current_owner_id": 1,
+        "T_owner_current_position": [
+          2795,
+          1756
+        ],
+        "Tminus1_hull_id": 13,
+        "Tminus1_owner_id": 1,
+        "Tminus1_source": "normal_move",
+        "after_turn": 232,
+        "before_turn": 231,
+        "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+        "comparison_status": "POSTHOST_ENDPOINT_MATCH",
+        "conditional_no_mine_only": false,
+        "conditional_or_model_endpoint": [
+          2795,
+          1756
+        ],
+        "frozen_v7_witness": false,
+        "game_id": 218619,
+        "mine_hit_or_nonhit_proven": false,
+        "precombat_site_membership_proven": false,
+        "ship_id": 4
+      },
+      {
+        "Nplus1_vcr_used": false,
+        "T_owner_current_owner_id": 1,
+        "T_owner_current_position": [
+          2705,
+          2173
+        ],
+        "Tminus1_hull_id": 77,
+        "Tminus1_owner_id": 1,
+        "Tminus1_source": "normal_move",
+        "after_turn": 232,
+        "before_turn": 231,
+        "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+        "comparison_status": "POSTHOST_ENDPOINT_MATCH",
+        "conditional_no_mine_only": false,
+        "conditional_or_model_endpoint": [
+          2705,
+          2173
+        ],
+        "frozen_v7_witness": false,
+        "game_id": 218619,
+        "mine_hit_or_nonhit_proven": false,
+        "precombat_site_membership_proven": false,
+        "ship_id": 5
+      },
+      {
+        "Nplus1_vcr_used": false,
+        "T_owner_current_owner_id": 5,
+        "T_owner_current_position": [
+          1456,
+          2041
+        ],
+        "Tminus1_hull_id": 16,
+        "Tminus1_owner_id": 5,
+        "Tminus1_source": "normal_move",
+        "after_turn": 232,
+        "before_turn": 231,
+        "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+        "comparison_status": "POSTHOST_ENDPOINT_MATCH",
+        "conditional_no_mine_only": false,
+        "conditional_or_model_endpoint": [
+          1456,
+          2041
+        ],
+        "frozen_v7_witness": false,
+        "game_id": 218619,
+        "mine_hit_or_nonhit_proven": false,
+        "precombat_site_membership_proven": false,
+        "ship_id": 6
+      },
+      {
+        "Nplus1_vcr_used": false,
+        "T_owner_current_owner_id": 1,
+        "T_owner_current_position": [
+          2992,
+          2252
+        ],
+        "Tminus1_hull_id": 16,
+        "Tminus1_owner_id": 1,
+        "Tminus1_source": "normal_move",
+        "after_turn": 232,
+        "before_turn": 231,
+        "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+        "comparison_status": "POSTHOST_ENDPOINT_MATCH",
+        "conditional_no_mine_only": false,
+        "conditional_or_model_endpoint": [
+          2992,
+          2252
+        ],
+        "frozen_v7_witness": false,
+        "game_id": 218619,
+        "mine_hit_or_nonhit_proven": false,
+        "precombat_site_membership_proven": false,
+        "ship_id": 7
+      },
+      {
+        "Nplus1_vcr_used": false,
+        "T_owner_current_owner_id": 5,
+        "T_owner_current_position": [
+          1308,
+          2010
+        ],
+        "Tminus1_hull_id": 16,
+        "Tminus1_owner_id": 5,
+        "Tminus1_source": "normal_move",
+        "after_turn": 232,
+        "before_turn": 231,
+        "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+        "comparison_status": "POSTHOST_ENDPOINT_MATCH",
+        "conditional_no_mine_only": false,
+        "conditional_or_model_endpoint": [
+          1308,
+          2010
+        ],
+        "frozen_v7_witness": false,
+        "game_id": 218619,
+        "mine_hit_or_nonhit_proven": false,
+        "precombat_site_membership_proven": false,
+        "ship_id": 8
+      },
+      {
+        "Nplus1_vcr_used": false,
+        "T_owner_current_owner_id": 5,
+        "T_owner_current_position": [
+          2372,
+          2620
+        ],
+        "Tminus1_hull_id": 46,
+        "Tminus1_owner_id": 5,
+        "Tminus1_source": "normal_move",
+        "after_turn": 232,
+        "before_turn": 231,
+        "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+        "comparison_status": "POSTHOST_ENDPOINT_MATCH",
+        "conditional_no_mine_only": false,
+        "conditional_or_model_endpoint": [
+          2372,
+          2620
+        ],
+        "frozen_v7_witness": false,
+        "game_id": 218619,
+        "mine_hit_or_nonhit_proven": false,
+        "precombat_site_membership_proven": false,
+        "ship_id": 10
+      },
+      {
+        "Nplus1_vcr_used": false,
+        "T_owner_current_owner_id": 10,
+        "T_owner_current_position": [
+          1685,
+          1252
+        ],
+        "Tminus1_hull_id": 16,
+        "Tminus1_owner_id": 10,
+        "Tminus1_source": "normal_move",
+        "after_turn": 232,
+        "before_turn": 231,
+        "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+        "comparison_status": "POSTHOST_ENDPOINT_MATCH",
+        "conditional_no_mine_only": false,
+        "conditional_or_model_endpoint": [
+          1685,
+          1252
+        ],
+        "frozen_v7_witness": false,
+        "game_id": 218619,
+        "mine_hit_or_nonhit_proven": false,
+        "precombat_site_membership_proven": false,
+        "ship_id": 11
+      },
+      {
+        "Nplus1_vcr_used": false,
+        "T_owner_current_owner_id": 3,
+        "T_owner_current_position": [
+          2004,
+          1261
+        ],
+        "Tminus1_hull_id": 14,
+        "Tminus1_owner_id": 3,
+        "Tminus1_source": "normal_move_warp_well",
+        "after_turn": 232,
+        "before_turn": 231,
+        "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+        "comparison_status": "POSTHOST_ENDPOINT_MATCH",
+        "conditional_no_mine_only": false,
+        "conditional_or_model_endpoint": [
+          2004,
+          1261
+        ],
+        "frozen_v7_witness": false,
+        "game_id": 218619,
+        "mine_hit_or_nonhit_proven": false,
+        "precombat_site_membership_proven": false,
+        "ship_id": 23
+      },
+      {
+        "Nplus1_vcr_used": false,
+        "T_owner_current_owner_id": 1,
+        "T_owner_current_position": [
+          2254,
+          2287
+        ],
+        "Tminus1_hull_id": 13,
+        "Tminus1_owner_id": 1,
+        "Tminus1_source": "normal_move",
+        "after_turn": 232,
+        "before_turn": 231,
+        "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+        "comparison_status": "POSTHOST_ENDPOINT_MATCH",
+        "conditional_no_mine_only": false,
+        "conditional_or_model_endpoint": [
+          2254,
+          2287
+        ],
+        "frozen_v7_witness": false,
+        "game_id": 218619,
+        "mine_hit_or_nonhit_proven": false,
+        "precombat_site_membership_proven": false,
+        "ship_id": 28
+      },
+      {
+        "Nplus1_vcr_used": false,
+        "T_owner_current_owner_id": 1,
+        "T_owner_current_position": [
+          2836,
+          1901
+        ],
+        "Tminus1_hull_id": 17,
+        "Tminus1_owner_id": 1,
+        "Tminus1_source": "normal_move",
+        "after_turn": 232,
+        "before_turn": 231,
+        "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+        "comparison_status": "POSTHOST_ENDPOINT_MATCH",
+        "conditional_no_mine_only": false,
+        "conditional_or_model_endpoint": [
+          2836,
+          1901
+        ],
+        "frozen_v7_witness": false,
+        "game_id": 218619,
+        "mine_hit_or_nonhit_proven": false,
+        "precombat_site_membership_proven": false,
+        "ship_id": 30
+      }
+    ]
+  },
+  "context_errors": [
+    {
+      "game_id": 364412,
+      "phase": "Tminus1",
+      "reason": "site_context_unavailable",
+      "turn": 65
+    },
+    {
+      "game_id": 473010,
+      "phase": "Tminus1",
+      "reason": "site_context_unavailable",
+      "turn": 214
+    },
+    {
+      "game_id": 490865,
+      "phase": "Tminus1",
+      "reason": "site_context_unavailable",
+      "turn": 137
+    },
+    {
+      "game_id": 629488,
+      "phase": "Tminus1",
+      "reason": "site_context_unavailable",
+      "turn": 141
+    }
+  ],
+  "db_path": "/root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "frozen_v7_witness_posthost_comparisons": [
+    {
+      "Nplus1_vcr_used": false,
+      "T_owner_current_owner_id": 8,
+      "T_owner_current_position": null,
+      "Tminus1_hull_id": 103,
+      "Tminus1_owner_id": 10,
+      "Tminus1_source": "normal_mine_route_risk",
+      "after_turn": 115,
+      "before_turn": 114,
+      "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+      "comparison_status": "ABSTAIN_OWNER_DRIFT_AT_T",
+      "conditional_no_mine_only": true,
+      "conditional_or_model_endpoint": [
+        2178,
+        1105
+      ],
+      "frozen_v7_witness": true,
+      "game_id": 421276,
+      "mine_hit_or_nonhit_proven": false,
+      "precombat_site_membership_proven": false,
+      "ship_id": 96
+    },
+    {
+      "Nplus1_vcr_used": false,
+      "T_owner_current_owner_id": 5,
+      "T_owner_current_position": null,
+      "Tminus1_hull_id": 101,
+      "Tminus1_owner_id": 10,
+      "Tminus1_source": "normal_mine_route_risk",
+      "after_turn": 115,
+      "before_turn": 114,
+      "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+      "comparison_status": "ABSTAIN_OWNER_DRIFT_AT_T",
+      "conditional_no_mine_only": true,
+      "conditional_or_model_endpoint": [
+        2178,
+        1105
+      ],
+      "frozen_v7_witness": true,
+      "game_id": 421276,
+      "mine_hit_or_nonhit_proven": false,
+      "precombat_site_membership_proven": false,
+      "ship_id": 150
+    },
+    {
+      "Nplus1_vcr_used": false,
+      "T_owner_current_owner_id": 10,
+      "T_owner_current_position": [
+        2178,
+        1105
+      ],
+      "Tminus1_hull_id": 18,
+      "Tminus1_owner_id": 10,
+      "Tminus1_source": "normal_mine_route_risk",
+      "after_turn": 115,
+      "before_turn": 114,
+      "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+      "comparison_status": "POSTHOST_ENDPOINT_MATCH",
+      "conditional_no_mine_only": true,
+      "conditional_or_model_endpoint": [
+        2178,
+        1105
+      ],
+      "frozen_v7_witness": true,
+      "game_id": 421276,
+      "mine_hit_or_nonhit_proven": false,
+      "precombat_site_membership_proven": false,
+      "ship_id": 233
+    },
+    {
+      "Nplus1_vcr_used": false,
+      "T_owner_current_owner_id": 4,
+      "T_owner_current_position": null,
+      "Tminus1_hull_id": 101,
+      "Tminus1_owner_id": 10,
+      "Tminus1_source": "normal_mine_route_risk",
+      "after_turn": 115,
+      "before_turn": 114,
+      "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+      "comparison_status": "ABSTAIN_OWNER_DRIFT_AT_T",
+      "conditional_no_mine_only": true,
+      "conditional_or_model_endpoint": [
+        2178,
+        1105
+      ],
+      "frozen_v7_witness": true,
+      "game_id": 421276,
+      "mine_hit_or_nonhit_proven": false,
+      "precombat_site_membership_proven": false,
+      "ship_id": 264
+    },
+    {
+      "Nplus1_vcr_used": false,
+      "T_owner_current_owner_id": 6,
+      "T_owner_current_position": null,
+      "Tminus1_hull_id": 17,
+      "Tminus1_owner_id": 10,
+      "Tminus1_source": "normal_mine_route_risk",
+      "after_turn": 115,
+      "before_turn": 114,
+      "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+      "comparison_status": "ABSTAIN_OWNER_DRIFT_AT_T",
+      "conditional_no_mine_only": true,
+      "conditional_or_model_endpoint": [
+        2178,
+        1105
+      ],
+      "frozen_v7_witness": true,
+      "game_id": 421276,
+      "mine_hit_or_nonhit_proven": false,
+      "precombat_site_membership_proven": false,
+      "ship_id": 280
+    },
+    {
+      "Nplus1_vcr_used": false,
+      "T_owner_current_owner_id": null,
+      "T_owner_current_position": null,
+      "Tminus1_hull_id": 91,
+      "Tminus1_owner_id": 10,
+      "Tminus1_source": "normal_mine_route_risk",
+      "after_turn": 115,
+      "before_turn": 114,
+      "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+      "comparison_status": "ABSTAIN_T_ARCHIVE_OWNER_CURRENT_UNAVAILABLE",
+      "conditional_no_mine_only": true,
+      "conditional_or_model_endpoint": [
+        2178,
+        1105
+      ],
+      "frozen_v7_witness": true,
+      "game_id": 421276,
+      "mine_hit_or_nonhit_proven": false,
+      "precombat_site_membership_proven": false,
+      "ship_id": 338
+    },
+    {
+      "Nplus1_vcr_used": false,
+      "T_owner_current_owner_id": null,
+      "T_owner_current_position": null,
+      "Tminus1_hull_id": 91,
+      "Tminus1_owner_id": 10,
+      "Tminus1_source": "normal_mine_route_risk",
+      "after_turn": 115,
+      "before_turn": 114,
+      "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+      "comparison_status": "ABSTAIN_T_ARCHIVE_OWNER_CURRENT_UNAVAILABLE",
+      "conditional_no_mine_only": true,
+      "conditional_or_model_endpoint": [
+        2178,
+        1105
+      ],
+      "frozen_v7_witness": true,
+      "game_id": 421276,
+      "mine_hit_or_nonhit_proven": false,
+      "precombat_site_membership_proven": false,
+      "ship_id": 362
+    },
+    {
+      "Nplus1_vcr_used": false,
+      "T_owner_current_owner_id": 3,
+      "T_owner_current_position": null,
+      "Tminus1_hull_id": 91,
+      "Tminus1_owner_id": 10,
+      "Tminus1_source": "normal_mine_route_risk",
+      "after_turn": 115,
+      "before_turn": 114,
+      "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+      "comparison_status": "ABSTAIN_OWNER_DRIFT_AT_T",
+      "conditional_no_mine_only": true,
+      "conditional_or_model_endpoint": [
+        2178,
+        1105
+      ],
+      "frozen_v7_witness": true,
+      "game_id": 421276,
+      "mine_hit_or_nonhit_proven": false,
+      "precombat_site_membership_proven": false,
+      "ship_id": 399
+    },
+    {
+      "Nplus1_vcr_used": false,
+      "T_owner_current_owner_id": 3,
+      "T_owner_current_position": null,
+      "Tminus1_hull_id": 91,
+      "Tminus1_owner_id": 10,
+      "Tminus1_source": "normal_mine_route_risk",
+      "after_turn": 115,
+      "before_turn": 114,
+      "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+      "comparison_status": "ABSTAIN_OWNER_DRIFT_AT_T",
+      "conditional_no_mine_only": true,
+      "conditional_or_model_endpoint": [
+        2178,
+        1105
+      ],
+      "frozen_v7_witness": true,
+      "game_id": 421276,
+      "mine_hit_or_nonhit_proven": false,
+      "precombat_site_membership_proven": false,
+      "ship_id": 400
+    },
+    {
+      "Nplus1_vcr_used": false,
+      "T_owner_current_owner_id": 10,
+      "T_owner_current_position": [
+        2178,
+        1105
+      ],
+      "Tminus1_hull_id": 89,
+      "Tminus1_owner_id": 10,
+      "Tminus1_source": "normal_mine_route_risk",
+      "after_turn": 115,
+      "before_turn": 114,
+      "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+      "comparison_status": "POSTHOST_ENDPOINT_MATCH",
+      "conditional_no_mine_only": true,
+      "conditional_or_model_endpoint": [
+        2178,
+        1105
+      ],
+      "frozen_v7_witness": true,
+      "game_id": 421276,
+      "mine_hit_or_nonhit_proven": false,
+      "precombat_site_membership_proven": false,
+      "ship_id": 437
+    },
+    {
+      "Nplus1_vcr_used": false,
+      "T_owner_current_owner_id": 10,
+      "T_owner_current_position": [
+        2178,
+        1105
+      ],
+      "Tminus1_hull_id": 91,
+      "Tminus1_owner_id": 10,
+      "Tminus1_source": "normal_mine_route_risk",
+      "after_turn": 115,
+      "before_turn": 114,
+      "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+      "comparison_status": "POSTHOST_ENDPOINT_MATCH",
+      "conditional_no_mine_only": true,
+      "conditional_or_model_endpoint": [
+        2178,
+        1105
+      ],
+      "frozen_v7_witness": true,
+      "game_id": 421276,
+      "mine_hit_or_nonhit_proven": false,
+      "precombat_site_membership_proven": false,
+      "ship_id": 455
+    },
+    {
+      "Nplus1_vcr_used": false,
+      "T_owner_current_owner_id": 3,
+      "T_owner_current_position": null,
+      "Tminus1_hull_id": 91,
+      "Tminus1_owner_id": 10,
+      "Tminus1_source": "normal_mine_route_risk",
+      "after_turn": 115,
+      "before_turn": 114,
+      "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+      "comparison_status": "ABSTAIN_OWNER_DRIFT_AT_T",
+      "conditional_no_mine_only": true,
+      "conditional_or_model_endpoint": [
+        2178,
+        1105
+      ],
+      "frozen_v7_witness": true,
+      "game_id": 421276,
+      "mine_hit_or_nonhit_proven": false,
+      "precombat_site_membership_proven": false,
+      "ship_id": 457
+    }
+  ],
+  "game_level_counts": {
+    "218619": {
+      "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT": {
+        "POSTHOST_ENDPOINT_MATCH": 39
+      },
+      "NORMAL_MODEL_NO_INDEXED_MINE_RISK": {
+        "POSTHOST_ENDPOINT_MATCH": 251,
+        "POSTHOST_ENDPOINT_MISMATCH": 2
+      }
+    },
+    "245693": {
+      "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT": {
+        "ABSTAIN_OWNER_DRIFT_AT_T": 1,
+        "POSTHOST_ENDPOINT_MATCH": 16
+      },
+      "NORMAL_MODEL_NO_INDEXED_MINE_RISK": {
+        "ABSTAIN_HULL_IDENTITY_DRIFT_AT_T": 1,
+        "ABSTAIN_OWNER_DRIFT_AT_T": 6,
+        "ABSTAIN_T_ARCHIVE_OWNER_CURRENT_UNAVAILABLE": 8,
+        "POSTHOST_ENDPOINT_MATCH": 360,
+        "POSTHOST_ENDPOINT_MISMATCH": 7
+      }
+    },
+    "257776": {
+      "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT": {
+        "ABSTAIN_T_ARCHIVE_OWNER_CURRENT_UNAVAILABLE": 1,
+        "POSTHOST_ENDPOINT_MATCH": 23,
+        "POSTHOST_ENDPOINT_MISMATCH": 2
+      },
+      "NORMAL_MODEL_NO_INDEXED_MINE_RISK": {
+        "ABSTAIN_T_ARCHIVE_OWNER_CURRENT_UNAVAILABLE": 4,
+        "POSTHOST_ENDPOINT_MATCH": 236
+      }
+    },
+    "347923": {
+      "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT": {
+        "POSTHOST_ENDPOINT_MATCH": 33
+      },
+      "NORMAL_MODEL_NO_INDEXED_MINE_RISK": {
+        "ABSTAIN_HULL_IDENTITY_DRIFT_AT_T": 1,
+        "ABSTAIN_T_ARCHIVE_OWNER_CURRENT_UNAVAILABLE": 3,
+        "POSTHOST_ENDPOINT_MATCH": 260
+      }
+    },
+    "399914": {
+      "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT": {
+        "POSTHOST_ENDPOINT_MATCH": 55
+      },
+      "NORMAL_MODEL_NO_INDEXED_MINE_RISK": {
+        "ABSTAIN_OWNER_DRIFT_AT_T": 6,
+        "POSTHOST_ENDPOINT_MATCH": 180,
+        "POSTHOST_ENDPOINT_MISMATCH": 1
+      }
+    },
+    "421276": {
+      "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT": {
+        "ABSTAIN_OWNER_DRIFT_AT_T": 7,
+        "ABSTAIN_T_ARCHIVE_OWNER_CURRENT_UNAVAILABLE": 2,
+        "POSTHOST_ENDPOINT_MATCH": 93
+      },
+      "NORMAL_MODEL_NO_INDEXED_MINE_RISK": {
+        "ABSTAIN_OWNER_DRIFT_AT_T": 2,
+        "ABSTAIN_T_ARCHIVE_OWNER_CURRENT_UNAVAILABLE": 1,
+        "POSTHOST_ENDPOINT_MATCH": 208,
+        "POSTHOST_ENDPOINT_MISMATCH": 8
+      }
+    },
+    "476380": {
+      "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT": {
+        "ABSTAIN_OWNER_DRIFT_AT_T": 1,
+        "ABSTAIN_T_ARCHIVE_OWNER_CURRENT_UNAVAILABLE": 3,
+        "POSTHOST_ENDPOINT_MATCH": 34
+      },
+      "NORMAL_MODEL_NO_INDEXED_MINE_RISK": {
+        "ABSTAIN_OWNER_DRIFT_AT_T": 3,
+        "ABSTAIN_T_ARCHIVE_OWNER_CURRENT_UNAVAILABLE": 3,
+        "POSTHOST_ENDPOINT_MATCH": 502
+      }
+    },
+    "477725": {
+      "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT": {
+        "POSTHOST_ENDPOINT_MATCH": 51
+      },
+      "NORMAL_MODEL_NO_INDEXED_MINE_RISK": {
+        "ABSTAIN_HULL_IDENTITY_DRIFT_AT_T": 1,
+        "ABSTAIN_OWNER_DRIFT_AT_T": 2,
+        "ABSTAIN_T_ARCHIVE_OWNER_CURRENT_UNAVAILABLE": 1,
+        "POSTHOST_ENDPOINT_MATCH": 342,
+        "POSTHOST_ENDPOINT_MISMATCH": 1
+      }
+    },
+    "633837": {
+      "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT": {
+        "ABSTAIN_T_ARCHIVE_OWNER_CURRENT_UNAVAILABLE": 3,
+        "POSTHOST_ENDPOINT_MATCH": 57
+      },
+      "NORMAL_MODEL_NO_INDEXED_MINE_RISK": {
+        "POSTHOST_ENDPOINT_MATCH": 152,
+        "POSTHOST_ENDPOINT_MISMATCH": 4
+      }
+    },
+    "674696": {
+      "NORMAL_MODEL_NO_INDEXED_MINE_RISK": {
+        "ABSTAIN_OWNER_DRIFT_AT_T": 1,
+        "POSTHOST_ENDPOINT_MATCH": 107,
+        "POSTHOST_ENDPOINT_MISMATCH": 1
+      }
+    }
+  },
+  "schema": "planets-lab.combat-c5-posthost-endpoint-controls.v8",
+  "source_db_generation": "generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "source_db_sha256": "3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c",
+  "source_v6_git_blob_sha1": "51d21132e4db89511be59805ebe2be14014b3e7a",
+  "source_v7_git_blob_sha1": "f551fc83b1725f7170aae210238ebae68c0e6eee",
+  "status": "EXPLORATORY_POSTHOST_POSITION_DIFFERENTIAL_NO_MINE_HIT_INFERENCE",
+  "summary": {
+    "Nplus1_VCR_used": false,
+    "Tminus1_forecast_rows": 3086,
+    "cohort_distinct_game_turn_clusters": {
+      "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT": 10,
+      "NORMAL_MODEL_NO_INDEXED_MINE_RISK": 12
+    },
+    "cohort_posthost_comparison_counts": {
+      "FROZEN_V7_MINE_WITNESSES": {
+        "ABSTAIN_OWNER_DRIFT_AT_T": 7,
+        "ABSTAIN_T_ARCHIVE_OWNER_CURRENT_UNAVAILABLE": 2,
+        "POSTHOST_ENDPOINT_MATCH": 3
+      },
+      "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT": {
+        "ABSTAIN_OWNER_DRIFT_AT_T": 9,
+        "ABSTAIN_T_ARCHIVE_OWNER_CURRENT_UNAVAILABLE": 9,
+        "POSTHOST_ENDPOINT_MATCH": 401,
+        "POSTHOST_ENDPOINT_MISMATCH": 2
+      },
+      "NORMAL_MODEL_NO_INDEXED_MINE_RISK": {
+        "ABSTAIN_HULL_IDENTITY_DRIFT_AT_T": 3,
+        "ABSTAIN_OWNER_DRIFT_AT_T": 20,
+        "ABSTAIN_T_ARCHIVE_OWNER_CURRENT_UNAVAILABLE": 20,
+        "POSTHOST_ENDPOINT_MATCH": 2598,
+        "POSTHOST_ENDPOINT_MISMATCH": 24
+      }
+    },
+    "frozen_adjacent_transitions": 63,
+    "frozen_game_turn_windows": 21,
+    "frozen_site_census": 27,
+    "frozen_v7_mine_witnesses": 12,
+    "mine_hits_inferred": 0,
+    "new_host_queue_or_position_predictions": 0,
+    "precombat_site_membership_proven": false,
+    "source_context_failures": 4
+  }
+}

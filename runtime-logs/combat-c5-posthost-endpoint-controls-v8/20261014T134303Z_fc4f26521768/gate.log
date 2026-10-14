@@ -1,0 +1,28 @@
+===== C5 T-1 VERSUS POST-HOST T ENDPOINT DIFFERENTIAL V8 =====
+HEAD: fc4f26521768bb1473d81d2f98bae185ad0d1fa3
+V6 Git blob: 51d21132e4db89511be59805ebe2be14014b3e7a
+V7 Git blob: f551fc83b1725f7170aae210238ebae68c0e6eee
+DB: /root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb (SHA256 checked once, read only)
+[c5-posthost] verifying public100 SHA256
+[c5-posthost] immutable DB verified in 28.1s
+[c5-posthost] [1/17] G218619 turns=[232]
+[c5-posthost] [2/17] G243165 turns=[30, 107]
+[c5-posthost] [3/17] G245693 turns=[29, 103]
+[c5-posthost] [4/17] G257776 turns=[92]
+[c5-posthost] [5/17] G283648 turns=[52, 144]
+[c5-posthost] [6/17] G347923 turns=[95]
+[c5-posthost] [7/17] G364412 turns=[65]
+[c5-posthost] [8/17] G399914 turns=[116]
+[c5-posthost] [9/17] G421276 turns=[115]
+[c5-posthost] [10/17] G473010 turns=[214]
+[c5-posthost] [11/17] G476380 turns=[82, 327]
+[c5-posthost] [12/17] G477725 turns=[187]
+[c5-posthost] [13/17] G490865 turns=[137]
+[c5-posthost] [14/17] G629488 turns=[141]
+[c5-posthost] [15/17] G633837 turns=[119]
+[c5-posthost] [16/17] G658427 turns=[41]
+[c5-posthost] [17/17] G674696 turns=[32]
+===== C5 POSTHOST ENDPOINT OBSERVATION V8 =====
+status: EXPLORATORY_POSTHOST_POSITION_DIFFERENTIAL_NO_MINE_HIT_INFERENCE
+summary: {'frozen_site_census': 27, 'frozen_adjacent_transitions': 63, 'frozen_game_turn_windows': 21, 'frozen_v7_mine_witnesses': 12, 'Tminus1_forecast_rows': 3086, 'source_context_failures': 4, 'cohort_posthost_comparison_counts': {'FROZEN_V7_MINE_WITNESSES': {'ABSTAIN_OWNER_DRIFT_AT_T': 7, 'ABSTAIN_T_ARCHIVE_OWNER_CURRENT_UNAVAILABLE': 2, 'POSTHOST_ENDPOINT_MATCH': 3}, 'NORMAL_MINE_RISK_CONDITIONAL_NO_HIT': {'ABSTAIN_OWNER_DRIFT_AT_T': 9, 'ABSTAIN_T_ARCHIVE_OWNER_CURRENT_UNAVAILABLE': 9, 'POSTHOST_ENDPOINT_MATCH': 401, 'POSTHOST_ENDPOINT_MISMATCH': 2}, 'NORMAL_MODEL_NO_INDEXED_MINE_RISK': {'ABSTAIN_HULL_IDENTITY_DRIFT_AT_T': 3, 'ABSTAIN_OWNER_DRIFT_AT_T': 20, 'ABSTAIN_T_ARCHIVE_OWNER_CURRENT_UNAVAILABLE': 20, 'POSTHOST_ENDPOINT_MATCH': 2598, 'POSTHOST_ENDPOINT_MISMATCH': 24}}, 'cohort_distinct_game_turn_clusters': {'NORMAL_MINE_RISK_CONDITIONAL_NO_HIT': 10, 'NORMAL_MODEL_NO_INDEXED_MINE_RISK': 12}, 'new_host_queue_or_position_predictions': 0, 'precombat_site_membership_proven': False, 'mine_hits_inferred': 0, 'Nplus1_VCR_used': False}
+output: artifacts/combat/c5-posthost-endpoint-controls-v8/published/report.json
