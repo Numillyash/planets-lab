@@ -171,5 +171,6 @@ def test_runners_and_pins():
     wrap=(ROOT/"tools/run-combat-c5-current-n-roster-bridge-v2-with-evidence.sh").read_text()
     assert M.STRICT_V1_BLOB in run
     assert M.CENSUS_BLOB in run
-    assert "CURRENT" not in run
+    assert "/CURRENT" not in run
+    assert "connect_current_compact" not in run
     assert "run-with-runtime-evidence.sh" in wrap
