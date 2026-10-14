@@ -1,0 +1,53 @@
+===== C5 CONDITIONAL CURRENT-VCR-N ROSTER BRIDGE V2 =====
+HEAD: 9ace8839a471814faa86f844369cc8c6cda81854
+source_census_git_blob: fda92475988d2f7dfbc7b93606de4f8cec909806
+source_strict_v1_git_blob: 1ed69919f38fbc7d09b2e890162c1a25a3f677bd
+DB: /root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb (SHA256 once, read-only)
+[c5-current-N] verifying pinned public100 SHA256 once
+[c5-current-N] SHA256 verified in 24.5s
+[c5-current-N] [1/21] G218619 T232: 1 frozen sites
+[c5-current-N] [1/21] completed 1 sites
+[c5-current-N] [2/21] G243165 T30: 1 frozen sites
+[c5-current-N] [2/21] completed 1 sites
+[c5-current-N] [3/21] G243165 T107: 1 frozen sites
+[c5-current-N] [3/21] completed 1 sites
+[c5-current-N] [4/21] G245693 T29: 2 frozen sites
+[c5-current-N] [4/21] completed 2 sites
+[c5-current-N] [5/21] G245693 T103: 3 frozen sites
+[c5-current-N] [5/21] completed 3 sites
+[c5-current-N] [6/21] G257776 T92: 1 frozen sites
+[c5-current-N] [6/21] completed 1 sites
+[c5-current-N] [7/21] G283648 T52: 1 frozen sites
+[c5-current-N] [7/21] completed 1 sites
+[c5-current-N] [8/21] G283648 T144: 1 frozen sites
+[c5-current-N] [8/21] completed 1 sites
+[c5-current-N] [9/21] G347923 T95: 1 frozen sites
+[c5-current-N] [9/21] completed 1 sites
+[c5-current-N] [10/21] G364412 T65: 1 frozen sites
+[c5-current-N] [10/21] completed 1 sites
+[c5-current-N] [11/21] G399914 T116: 1 frozen sites
+[c5-current-N] [11/21] completed 1 sites
+[c5-current-N] [12/21] G421276 T115: 2 frozen sites
+[c5-current-N] [12/21] completed 2 sites
+[c5-current-N] [13/21] G473010 T214: 1 frozen sites
+[c5-current-N] [13/21] completed 1 sites
+[c5-current-N] [14/21] G476380 T82: 3 frozen sites
+[c5-current-N] [14/21] completed 3 sites
+[c5-current-N] [15/21] G476380 T327: 1 frozen sites
+[c5-current-N] [15/21] completed 1 sites
+[c5-current-N] [16/21] G477725 T187: 1 frozen sites
+[c5-current-N] [16/21] completed 1 sites
+[c5-current-N] [17/21] G490865 T137: 1 frozen sites
+[c5-current-N] [17/21] completed 1 sites
+[c5-current-N] [18/21] G629488 T141: 1 frozen sites
+[c5-current-N] [18/21] completed 1 sites
+[c5-current-N] [19/21] G633837 T119: 1 frozen sites
+[c5-current-N] [19/21] completed 1 sites
+[c5-current-N] [20/21] G658427 T41: 1 frozen sites
+[c5-current-N] [20/21] completed 1 sites
+[c5-current-N] [21/21] G674696 T32: 1 frozen sites
+[c5-current-N] [21/21] completed 1 sites
+===== C5 CURRENT-VCR-N ROSTER BRIDGE CONDITIONAL V2 =====
+status: CURRENT_N_ROSTER_CONDITIONAL_C5_NOT_INDEPENDENT_TMINUS1
+summary: {'frozen_sites': 27, 'frozen_adjacent_ID_transitions': 63, 'attempted_transitions': 56, 'site_failure_transitions': 7, 'status_counts': {'ABSTAIN_CAPTURE_TEMPORARY_ORDER_NOT_INDEPENDENT': 5, 'ABSTAIN_N_REPLAY_OR_CARRIED_START': 8, 'ABSTAIN_PARENT_STANDARD_NO_PAIR': 25, 'ABSTAIN_PARENT_STANDARD_UNRESOLVED': 8, 'ABSTAIN_TMINUS1_OR_CURRENT_N_BRIDGE_UNRESOLVED': 1, 'CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1': 9}, 'conditional_predictions_made': 9, 'conditional_current_N_roster_anchored_predictions': 6, 'strict_V1_previously_unavailable_now_conditional_predictions': 6, 'conditional_pair_and_sides_exact': 7, 'conditional_pair_or_sides_mismatch': 2, 'independent_full_Host_predictions_made': 0, 'unverified_capture_temporary_order_promoted': False, 'future_Nplus1_used_in_predictor': False, 'ordinary_non_Horwasp_only': True}
+output: artifacts/combat/c5-current-n-roster-bridge-v2/published/report.json

@@ -1,0 +1,2694 @@
+{
+  "boundary": "Factual current N participant dynamic state can be used to anchor only T-1 independently known owner+ship+races+catalog identities missing from inferred T-1 site roster. Existing carried ships are never overwritten. Prior-site participants cannot be resurrected. Captures abstain. All conditional predictions measure next-queue selection GIVEN factual N membership/state, NOT ability to predict N itself. The original V1 strict population and outcomes are immutable. N+1 is strictly post-selection comparator. Already open sites remain exploratory, not new held-out validation. No Horwasp, production or executor promotion.",
+  "database_path": "/root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "schema": "planets-lab.combat-c5-current-n-roster-bridge.v2",
+  "site_evaluations": [
+    {
+      "adjacent_pairs": [
+        [
+          1160,
+          1161
+        ]
+      ],
+      "cohort": "LATE_85TH_PERCENTILE",
+      "game_id": 218619,
+      "missing": 0,
+      "status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "transitions": [
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                2199,
+                2514
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 263,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            },
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                2199,
+                2514
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 18,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            }
+          ],
+          "current_N_roster_evidence_conditioned": true,
+          "factual_comparison": {
+            "actual_left_ship_id": 480,
+            "actual_pair": [
+              18,
+              480
+            ],
+            "actual_right_ship_id": 18,
+            "exact": true,
+            "pair_exact": true,
+            "sides_exact": true,
+            "status": "COMPARATOR_AVAILABLE"
+          },
+          "from_vcr_id": 1160,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": {
+            "capture_fixture_order_used": false,
+            "current_N_roster_conditioned": true,
+            "diplomacy_controls_through_vcr_id": 1160,
+            "left_ship_id": 480,
+            "occurrence_index": 1,
+            "pair": [
+              18,
+              480
+            ],
+            "pair_input_count": 1,
+            "right_ship_id": 18
+          },
+          "reason": null,
+          "status": "CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1",
+          "to_vcr_id": 1161
+        }
+      ],
+      "turn": 232,
+      "vcr_ids": [
+        1160,
+        1161
+      ],
+      "x": 2199,
+      "y": 2514
+    },
+    {
+      "adjacent_pairs": [
+        [
+          146,
+          147
+        ],
+        [
+          147,
+          148
+        ]
+      ],
+      "cohort": "EARLY_QUINTILE",
+      "game_id": 243165,
+      "missing": 0,
+      "status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "transitions": [
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                2743,
+                2147
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 98,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            },
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                2743,
+                2147
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 115,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            }
+          ],
+          "current_N_roster_evidence_conditioned": true,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 146,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": "no_remaining_plain_standard_pair_inputs",
+          "status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "to_vcr_id": 147
+        },
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [],
+          "current_N_roster_evidence_conditioned": false,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 147,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": "ValueError:ship_seen_before_N_and_now_missing_no_resurrection",
+          "status": "ABSTAIN_TMINUS1_OR_CURRENT_N_BRIDGE_UNRESOLVED",
+          "to_vcr_id": 148
+        }
+      ],
+      "turn": 30,
+      "vcr_ids": [
+        146,
+        147,
+        148
+      ],
+      "x": 2743,
+      "y": 2147
+    },
+    {
+      "adjacent_pairs": [
+        [
+          981,
+          982
+        ],
+        [
+          982,
+          983
+        ],
+        [
+          983,
+          984
+        ]
+      ],
+      "cohort": "LATE_85TH_PERCENTILE",
+      "game_id": 243165,
+      "missing": 0,
+      "status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "transitions": [
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                2569,
+                2544
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 220,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            },
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                2569,
+                2544
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 295,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            }
+          ],
+          "current_N_roster_evidence_conditioned": true,
+          "factual_comparison": {
+            "actual_left_ship_id": 220,
+            "actual_pair": [
+              138,
+              220
+            ],
+            "actual_right_ship_id": 138,
+            "exact": false,
+            "pair_exact": false,
+            "sides_exact": false,
+            "status": "COMPARATOR_AVAILABLE"
+          },
+          "from_vcr_id": 981,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": {
+            "capture_fixture_order_used": false,
+            "current_N_roster_conditioned": true,
+            "diplomacy_controls_through_vcr_id": 981,
+            "left_ship_id": 220,
+            "occurrence_index": 1,
+            "pair": [
+              220,
+              261
+            ],
+            "pair_input_count": 1,
+            "right_ship_id": 261
+          },
+          "reason": null,
+          "status": "CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1",
+          "to_vcr_id": 982
+        },
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                2569,
+                2544
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 138,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            }
+          ],
+          "current_N_roster_evidence_conditioned": true,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 982,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": "no_remaining_plain_standard_pair_inputs",
+          "status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "to_vcr_id": 983
+        },
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                2569,
+                2544
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 257,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            }
+          ],
+          "current_N_roster_evidence_conditioned": true,
+          "factual_comparison": {
+            "actual_left_ship_id": 257,
+            "actual_pair": [
+              257,
+              261
+            ],
+            "actual_right_ship_id": 261,
+            "exact": true,
+            "pair_exact": true,
+            "sides_exact": true,
+            "status": "COMPARATOR_AVAILABLE"
+          },
+          "from_vcr_id": 983,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": {
+            "capture_fixture_order_used": false,
+            "current_N_roster_conditioned": true,
+            "diplomacy_controls_through_vcr_id": 983,
+            "left_ship_id": 257,
+            "occurrence_index": 1,
+            "pair": [
+              257,
+              261
+            ],
+            "pair_input_count": 1,
+            "right_ship_id": 261
+          },
+          "reason": null,
+          "status": "CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1",
+          "to_vcr_id": 984
+        }
+      ],
+      "turn": 107,
+      "vcr_ids": [
+        981,
+        982,
+        983,
+        984
+      ],
+      "x": 2569,
+      "y": 2544
+    },
+    {
+      "adjacent_pairs": [
+        [
+          83,
+          84
+        ],
+        [
+          84,
+          85
+        ]
+      ],
+      "cohort": "EARLY_QUINTILE",
+      "game_id": 245693,
+      "missing": 0,
+      "status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "transitions": [
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                2373,
+                1641
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 110,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            },
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                2373,
+                1641
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 10,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            }
+          ],
+          "current_N_roster_evidence_conditioned": true,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 83,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": "14-110:pair_engagement_unresolved",
+          "status": "ABSTAIN_PARENT_STANDARD_UNRESOLVED",
+          "to_vcr_id": 84
+        },
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [],
+          "current_N_roster_evidence_conditioned": false,
+          "factual_comparison": {
+            "actual_left_ship_id": 192,
+            "actual_pair": [
+              110,
+              192
+            ],
+            "actual_right_ship_id": 110,
+            "exact": true,
+            "pair_exact": true,
+            "sides_exact": true,
+            "status": "COMPARATOR_AVAILABLE"
+          },
+          "from_vcr_id": 84,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": true,
+          "original_strict_V1_status": "PREDICTED_NEXT_PARENT_STANDARD",
+          "prediction": {
+            "capture_fixture_order_used": false,
+            "current_N_roster_conditioned": false,
+            "diplomacy_controls_through_vcr_id": 84,
+            "left_ship_id": 192,
+            "occurrence_index": 1,
+            "pair": [
+              110,
+              192
+            ],
+            "pair_input_count": 1,
+            "right_ship_id": 110
+          },
+          "reason": null,
+          "status": "CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1",
+          "to_vcr_id": 85
+        }
+      ],
+      "turn": 29,
+      "vcr_ids": [
+        83,
+        84,
+        85
+      ],
+      "x": 2373,
+      "y": 1641
+    },
+    {
+      "adjacent_pairs": [],
+      "cohort": "EARLY_QUINTILE",
+      "game_id": 245693,
+      "missing": 0,
+      "status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "transitions": [],
+      "turn": 29,
+      "vcr_ids": [
+        82,
+        88
+      ],
+      "x": 2617,
+      "y": 2078
+    },
+    {
+      "adjacent_pairs": [
+        [
+          1023,
+          1024
+        ],
+        [
+          1024,
+          1025
+        ],
+        [
+          1025,
+          1026
+        ]
+      ],
+      "cohort": "LATE_85TH_PERCENTILE",
+      "game_id": 245693,
+      "missing": 0,
+      "status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "transitions": [
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                1368,
+                2266
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 449,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            }
+          ],
+          "current_N_roster_evidence_conditioned": true,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 1023,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": "254-540:pair_engagement_unresolved",
+          "status": "ABSTAIN_PARENT_STANDARD_UNRESOLVED",
+          "to_vcr_id": 1024
+        },
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [],
+          "current_N_roster_evidence_conditioned": false,
+          "factual_comparison": {
+            "actual_left_ship_id": 519,
+            "actual_pair": [
+              449,
+              519
+            ],
+            "actual_right_ship_id": 449,
+            "exact": false,
+            "pair_exact": false,
+            "sides_exact": false,
+            "status": "COMPARATOR_AVAILABLE"
+          },
+          "from_vcr_id": 1024,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": false,
+          "original_strict_V1_status": "PREDICTED_NEXT_PARENT_STANDARD",
+          "prediction": {
+            "capture_fixture_order_used": false,
+            "current_N_roster_conditioned": false,
+            "diplomacy_controls_through_vcr_id": 1024,
+            "left_ship_id": 539,
+            "occurrence_index": 1,
+            "pair": [
+              449,
+              539
+            ],
+            "pair_input_count": 5,
+            "right_ship_id": 449
+          },
+          "reason": null,
+          "status": "CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1",
+          "to_vcr_id": 1025
+        },
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                1368,
+                2266
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 519,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            }
+          ],
+          "current_N_roster_evidence_conditioned": true,
+          "factual_comparison": {
+            "actual_left_ship_id": 539,
+            "actual_pair": [
+              449,
+              539
+            ],
+            "actual_right_ship_id": 449,
+            "exact": true,
+            "pair_exact": true,
+            "sides_exact": true,
+            "status": "COMPARATOR_AVAILABLE"
+          },
+          "from_vcr_id": 1025,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": {
+            "capture_fixture_order_used": false,
+            "current_N_roster_conditioned": true,
+            "diplomacy_controls_through_vcr_id": 1025,
+            "left_ship_id": 539,
+            "occurrence_index": 1,
+            "pair": [
+              449,
+              539
+            ],
+            "pair_input_count": 5,
+            "right_ship_id": 449
+          },
+          "reason": null,
+          "status": "CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1",
+          "to_vcr_id": 1026
+        }
+      ],
+      "turn": 103,
+      "vcr_ids": [
+        1023,
+        1024,
+        1025,
+        1026
+      ],
+      "x": 1368,
+      "y": 2266
+    },
+    {
+      "adjacent_pairs": [
+        [
+          1020,
+          1021
+        ]
+      ],
+      "cohort": "LATE_85TH_PERCENTILE",
+      "game_id": 245693,
+      "missing": 0,
+      "status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "transitions": [
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [],
+          "current_N_roster_evidence_conditioned": false,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 1020,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "prediction": null,
+          "reason": "no_remaining_plain_standard_pair_inputs",
+          "status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "to_vcr_id": 1021
+        }
+      ],
+      "turn": 103,
+      "vcr_ids": [
+        1020,
+        1021
+      ],
+      "x": 1384,
+      "y": 2360
+    },
+    {
+      "adjacent_pairs": [
+        [
+          1005,
+          1006
+        ],
+        [
+          1006,
+          1007
+        ]
+      ],
+      "cohort": "LATE_85TH_PERCENTILE",
+      "game_id": 245693,
+      "missing": 0,
+      "status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "transitions": [
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                2794,
+                2246
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 301,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            }
+          ],
+          "current_N_roster_evidence_conditioned": true,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 1005,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": "18-301:pair_engagement_unresolved",
+          "status": "ABSTAIN_PARENT_STANDARD_UNRESOLVED",
+          "to_vcr_id": 1006
+        },
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [],
+          "current_N_roster_evidence_conditioned": false,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 1006,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_PARENT_STANDARD_UNRESOLVED",
+          "prediction": null,
+          "reason": "18-301:pair_engagement_unresolved",
+          "status": "ABSTAIN_PARENT_STANDARD_UNRESOLVED",
+          "to_vcr_id": 1007
+        }
+      ],
+      "turn": 103,
+      "vcr_ids": [
+        1005,
+        1006,
+        1007
+      ],
+      "x": 2794,
+      "y": 2246
+    },
+    {
+      "adjacent_pairs": [
+        [
+          337,
+          338
+        ],
+        [
+          338,
+          339
+        ]
+      ],
+      "cohort": "EARLY_QUINTILE",
+      "game_id": 257776,
+      "missing": 0,
+      "status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "transitions": [
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                2595,
+                2254
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 146,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            },
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                2595,
+                2254
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 58,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            }
+          ],
+          "current_N_roster_evidence_conditioned": true,
+          "factual_comparison": {
+            "actual_left_ship_id": 342,
+            "actual_pair": [
+              58,
+              342
+            ],
+            "actual_right_ship_id": 58,
+            "exact": true,
+            "pair_exact": true,
+            "sides_exact": true,
+            "status": "COMPARATOR_AVAILABLE"
+          },
+          "from_vcr_id": 337,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": {
+            "capture_fixture_order_used": false,
+            "current_N_roster_conditioned": true,
+            "diplomacy_controls_through_vcr_id": 337,
+            "left_ship_id": 342,
+            "occurrence_index": 1,
+            "pair": [
+              58,
+              342
+            ],
+            "pair_input_count": 1,
+            "right_ship_id": 58
+          },
+          "reason": null,
+          "status": "CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1",
+          "to_vcr_id": 338
+        },
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [],
+          "current_N_roster_evidence_conditioned": false,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 338,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": "carried_start_differs_from_current_vcr",
+          "status": "ABSTAIN_N_REPLAY_OR_CARRIED_START",
+          "to_vcr_id": 339
+        }
+      ],
+      "turn": 92,
+      "vcr_ids": [
+        337,
+        338,
+        339
+      ],
+      "x": 2595,
+      "y": 2254
+    },
+    {
+      "adjacent_pairs": [
+        [
+          112,
+          113
+        ],
+        [
+          113,
+          114
+        ]
+      ],
+      "cohort": "EARLY_QUINTILE",
+      "game_id": 283648,
+      "missing": 0,
+      "status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "transitions": [
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                1911,
+                1000
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 321,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            },
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                1911,
+                1000
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 209,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            }
+          ],
+          "current_N_roster_evidence_conditioned": true,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 112,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": "no_remaining_plain_standard_pair_inputs",
+          "status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "to_vcr_id": 113
+        },
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                1911,
+                1000
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 458,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            }
+          ],
+          "current_N_roster_evidence_conditioned": true,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 113,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": "no_remaining_plain_standard_pair_inputs",
+          "status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "to_vcr_id": 114
+        }
+      ],
+      "turn": 52,
+      "vcr_ids": [
+        112,
+        113,
+        114
+      ],
+      "x": 1911,
+      "y": 1000
+    },
+    {
+      "adjacent_pairs": [
+        [
+          786,
+          787
+        ]
+      ],
+      "cohort": "LATE_85TH_PERCENTILE",
+      "game_id": 283648,
+      "missing": 0,
+      "status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "transitions": [
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                1275,
+                1689
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 364,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            },
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                1275,
+                1689
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 102,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            }
+          ],
+          "current_N_roster_evidence_conditioned": true,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 786,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": "no_remaining_plain_standard_pair_inputs",
+          "status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "to_vcr_id": 787
+        }
+      ],
+      "turn": 144,
+      "vcr_ids": [
+        786,
+        787
+      ],
+      "x": 1275,
+      "y": 1689
+    },
+    {
+      "adjacent_pairs": [
+        [
+          451,
+          452
+        ],
+        [
+          452,
+          453
+        ]
+      ],
+      "cohort": "LATE_85TH_PERCENTILE",
+      "game_id": 347923,
+      "missing": 0,
+      "status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "transitions": [
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                2186,
+                1120
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 383,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            },
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                2186,
+                1120
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 408,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            }
+          ],
+          "current_N_roster_evidence_conditioned": true,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 451,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": "no_remaining_plain_standard_pair_inputs",
+          "status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "to_vcr_id": 452
+        },
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                2186,
+                1120
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 458,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            }
+          ],
+          "current_N_roster_evidence_conditioned": true,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 452,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": "no_remaining_plain_standard_pair_inputs",
+          "status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "to_vcr_id": 453
+        }
+      ],
+      "turn": 95,
+      "vcr_ids": [
+        451,
+        452,
+        453
+      ],
+      "x": 2186,
+      "y": 1120
+    },
+    {
+      "adjacent_pairs": [
+        [
+          362,
+          363
+        ]
+      ],
+      "cohort": "EARLY_QUINTILE",
+      "game_id": 364412,
+      "missing": 1,
+      "reason": "site context not reconstructed",
+      "status": "ABSTAIN_TMINUS1_SITE_CONTEXT_MISSING",
+      "transitions": [],
+      "turn": 65,
+      "vcr_ids": [
+        362,
+        363
+      ],
+      "x": 1245,
+      "y": 1540
+    },
+    {
+      "adjacent_pairs": [
+        [
+          832,
+          833
+        ],
+        [
+          833,
+          834
+        ],
+        [
+          834,
+          835
+        ],
+        [
+          835,
+          836
+        ]
+      ],
+      "cohort": "LATE_85TH_PERCENTILE",
+      "game_id": 399914,
+      "missing": 0,
+      "status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "transitions": [
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                1293,
+                2185
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 349,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            }
+          ],
+          "current_N_roster_evidence_conditioned": true,
+          "factual_comparison": {
+            "actual_left_ship_id": 471,
+            "actual_pair": [
+              349,
+              471
+            ],
+            "actual_right_ship_id": 349,
+            "exact": true,
+            "pair_exact": true,
+            "sides_exact": true,
+            "status": "COMPARATOR_AVAILABLE"
+          },
+          "from_vcr_id": 832,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": {
+            "capture_fixture_order_used": false,
+            "current_N_roster_conditioned": true,
+            "diplomacy_controls_through_vcr_id": 832,
+            "left_ship_id": 471,
+            "occurrence_index": 1,
+            "pair": [
+              349,
+              471
+            ],
+            "pair_input_count": 4,
+            "right_ship_id": 349
+          },
+          "reason": null,
+          "status": "CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1",
+          "to_vcr_id": 833
+        },
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [],
+          "current_N_roster_evidence_conditioned": false,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 833,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CAPTURE_TEMPORARY_ORDER_NOT_INDEPENDENT",
+          "prediction": null,
+          "reason": null,
+          "status": "ABSTAIN_CAPTURE_TEMPORARY_ORDER_NOT_INDEPENDENT",
+          "to_vcr_id": 834
+        },
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [],
+          "current_N_roster_evidence_conditioned": false,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 834,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": "carried_start_differs_from_current_vcr",
+          "status": "ABSTAIN_N_REPLAY_OR_CARRIED_START",
+          "to_vcr_id": 835
+        },
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [],
+          "current_N_roster_evidence_conditioned": false,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 835,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": "carried_start_differs_from_current_vcr",
+          "status": "ABSTAIN_N_REPLAY_OR_CARRIED_START",
+          "to_vcr_id": 836
+        }
+      ],
+      "turn": 116,
+      "vcr_ids": [
+        832,
+        833,
+        834,
+        835,
+        836
+      ],
+      "x": 1293,
+      "y": 2185
+    },
+    {
+      "adjacent_pairs": [
+        [
+          436,
+          437
+        ],
+        [
+          437,
+          438
+        ],
+        [
+          438,
+          439
+        ],
+        [
+          439,
+          440
+        ],
+        [
+          440,
+          441
+        ],
+        [
+          441,
+          442
+        ],
+        [
+          442,
+          443
+        ],
+        [
+          443,
+          444
+        ],
+        [
+          444,
+          445
+        ],
+        [
+          445,
+          446
+        ],
+        [
+          446,
+          447
+        ],
+        [
+          447,
+          448
+        ]
+      ],
+      "cohort": "LATE_85TH_PERCENTILE",
+      "game_id": 421276,
+      "missing": 0,
+      "status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "transitions": [
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                2178,
+                1105
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 177,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            },
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                2178,
+                1105
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 181,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            }
+          ],
+          "current_N_roster_evidence_conditioned": true,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 436,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": "no_remaining_plain_standard_pair_inputs",
+          "status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "to_vcr_id": 437
+        },
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                2178,
+                1105
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 457,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            }
+          ],
+          "current_N_roster_evidence_conditioned": true,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 437,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": null,
+          "status": "ABSTAIN_CAPTURE_TEMPORARY_ORDER_NOT_INDEPENDENT",
+          "to_vcr_id": 438
+        },
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                2178,
+                1105
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 46,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            }
+          ],
+          "current_N_roster_evidence_conditioned": true,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 438,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": "no_remaining_plain_standard_pair_inputs",
+          "status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "to_vcr_id": 439
+        },
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                2178,
+                1105
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 117,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            }
+          ],
+          "current_N_roster_evidence_conditioned": true,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 439,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": "no_remaining_plain_standard_pair_inputs",
+          "status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "to_vcr_id": 440
+        },
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                2178,
+                1105
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 264,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            }
+          ],
+          "current_N_roster_evidence_conditioned": true,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 440,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": "no_remaining_plain_standard_pair_inputs",
+          "status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "to_vcr_id": 441
+        },
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                2178,
+                1105
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 362,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            }
+          ],
+          "current_N_roster_evidence_conditioned": true,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 441,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": "no_remaining_plain_standard_pair_inputs",
+          "status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "to_vcr_id": 442
+        },
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                2178,
+                1105
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 400,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            }
+          ],
+          "current_N_roster_evidence_conditioned": true,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 442,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": null,
+          "status": "ABSTAIN_CAPTURE_TEMPORARY_ORDER_NOT_INDEPENDENT",
+          "to_vcr_id": 443
+        },
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                2178,
+                1105
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 96,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            }
+          ],
+          "current_N_roster_evidence_conditioned": true,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 443,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": "no_remaining_plain_standard_pair_inputs",
+          "status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "to_vcr_id": 444
+        },
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                2178,
+                1105
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 150,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            }
+          ],
+          "current_N_roster_evidence_conditioned": true,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 444,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": "no_remaining_plain_standard_pair_inputs",
+          "status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "to_vcr_id": 445
+        },
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                2178,
+                1105
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 280,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            }
+          ],
+          "current_N_roster_evidence_conditioned": true,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 445,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": "no_remaining_plain_standard_pair_inputs",
+          "status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "to_vcr_id": 446
+        },
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                2178,
+                1105
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 338,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            }
+          ],
+          "current_N_roster_evidence_conditioned": true,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 446,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": "no_remaining_plain_standard_pair_inputs",
+          "status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "to_vcr_id": 447
+        },
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                2178,
+                1105
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 399,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            }
+          ],
+          "current_N_roster_evidence_conditioned": true,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 447,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": null,
+          "status": "ABSTAIN_CAPTURE_TEMPORARY_ORDER_NOT_INDEPENDENT",
+          "to_vcr_id": 448
+        }
+      ],
+      "turn": 115,
+      "vcr_ids": [
+        436,
+        437,
+        438,
+        439,
+        440,
+        441,
+        442,
+        443,
+        444,
+        445,
+        446,
+        447,
+        448
+      ],
+      "x": 2178,
+      "y": 1105
+    },
+    {
+      "adjacent_pairs": [
+        [
+          432,
+          433
+        ],
+        [
+          433,
+          434
+        ],
+        [
+          434,
+          435
+        ]
+      ],
+      "cohort": "LATE_85TH_PERCENTILE",
+      "game_id": 421276,
+      "missing": 0,
+      "status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "transitions": [
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [],
+          "current_N_roster_evidence_conditioned": false,
+          "factual_comparison": {
+            "actual_left_ship_id": 83,
+            "actual_pair": [
+              83,
+              218
+            ],
+            "actual_right_ship_id": 218,
+            "exact": true,
+            "pair_exact": true,
+            "sides_exact": true,
+            "status": "COMPARATOR_AVAILABLE"
+          },
+          "from_vcr_id": 432,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": true,
+          "original_strict_V1_status": "PREDICTED_NEXT_PARENT_STANDARD",
+          "prediction": {
+            "capture_fixture_order_used": false,
+            "current_N_roster_conditioned": false,
+            "diplomacy_controls_through_vcr_id": 432,
+            "left_ship_id": 83,
+            "occurrence_index": 1,
+            "pair": [
+              83,
+              218
+            ],
+            "pair_input_count": 10,
+            "right_ship_id": 218
+          },
+          "reason": null,
+          "status": "CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1",
+          "to_vcr_id": 433
+        },
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [],
+          "current_N_roster_evidence_conditioned": false,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 433,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CAPTURE_TEMPORARY_ORDER_NOT_INDEPENDENT",
+          "prediction": null,
+          "reason": null,
+          "status": "ABSTAIN_CAPTURE_TEMPORARY_ORDER_NOT_INDEPENDENT",
+          "to_vcr_id": 434
+        },
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [],
+          "current_N_roster_evidence_conditioned": false,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 434,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": "carried_start_differs_from_current_vcr",
+          "status": "ABSTAIN_N_REPLAY_OR_CARRIED_START",
+          "to_vcr_id": 435
+        }
+      ],
+      "turn": 115,
+      "vcr_ids": [
+        432,
+        433,
+        434,
+        435
+      ],
+      "x": 2322,
+      "y": 1131
+    },
+    {
+      "adjacent_pairs": [
+        [
+          797,
+          798
+        ]
+      ],
+      "cohort": "LATE_85TH_PERCENTILE",
+      "game_id": 473010,
+      "missing": 1,
+      "reason": "site context not reconstructed",
+      "status": "ABSTAIN_TMINUS1_SITE_CONTEXT_MISSING",
+      "transitions": [],
+      "turn": 214,
+      "vcr_ids": [
+        797,
+        798
+      ],
+      "x": 1277,
+      "y": 1853
+    },
+    {
+      "adjacent_pairs": [
+        [
+          322,
+          323
+        ],
+        [
+          323,
+          324
+        ],
+        [
+          324,
+          325
+        ],
+        [
+          325,
+          326
+        ],
+        [
+          326,
+          327
+        ],
+        [
+          327,
+          328
+        ],
+        [
+          328,
+          329
+        ],
+        [
+          329,
+          330
+        ]
+      ],
+      "cohort": "EARLY_QUINTILE",
+      "game_id": 476380,
+      "missing": 0,
+      "status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "transitions": [
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                1286,
+                1835
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 40,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            },
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                1286,
+                1835
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 479,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            }
+          ],
+          "current_N_roster_evidence_conditioned": true,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 322,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": "no_remaining_plain_standard_pair_inputs",
+          "status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "to_vcr_id": 323
+        },
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                1286,
+                1835
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 21,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            }
+          ],
+          "current_N_roster_evidence_conditioned": true,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 323,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": "3-21:pair_engagement_unresolved",
+          "status": "ABSTAIN_PARENT_STANDARD_UNRESOLVED",
+          "to_vcr_id": 324
+        },
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                1286,
+                1835
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 370,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            },
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                1286,
+                1835
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 168,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            }
+          ],
+          "current_N_roster_evidence_conditioned": true,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 324,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": "3-21:pair_engagement_unresolved",
+          "status": "ABSTAIN_PARENT_STANDARD_UNRESOLVED",
+          "to_vcr_id": 325
+        },
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [],
+          "current_N_roster_evidence_conditioned": false,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 325,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_PARENT_STANDARD_UNRESOLVED",
+          "prediction": null,
+          "reason": "3-21:pair_engagement_unresolved",
+          "status": "ABSTAIN_PARENT_STANDARD_UNRESOLVED",
+          "to_vcr_id": 326
+        },
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [],
+          "current_N_roster_evidence_conditioned": false,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 326,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": "carried_start_differs_from_current_vcr",
+          "status": "ABSTAIN_N_REPLAY_OR_CARRIED_START",
+          "to_vcr_id": 327
+        },
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                1286,
+                1835
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 329,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            }
+          ],
+          "current_N_roster_evidence_conditioned": true,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 327,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": "no_remaining_plain_standard_pair_inputs",
+          "status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "to_vcr_id": 328
+        },
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                1286,
+                1835
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 437,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            }
+          ],
+          "current_N_roster_evidence_conditioned": true,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 328,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": "no_remaining_plain_standard_pair_inputs",
+          "status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "to_vcr_id": 329
+        },
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                1286,
+                1835
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 58,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            }
+          ],
+          "current_N_roster_evidence_conditioned": true,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 329,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": "no_remaining_plain_standard_pair_inputs",
+          "status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "to_vcr_id": 330
+        }
+      ],
+      "turn": 82,
+      "vcr_ids": [
+        322,
+        323,
+        324,
+        325,
+        326,
+        327,
+        328,
+        329,
+        330
+      ],
+      "x": 1286,
+      "y": 1835
+    },
+    {
+      "adjacent_pairs": [
+        [
+          335,
+          336
+        ]
+      ],
+      "cohort": "EARLY_QUINTILE",
+      "game_id": 476380,
+      "missing": 0,
+      "status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "transitions": [
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                1637,
+                2078
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 436,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            },
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                1637,
+                2078
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 426,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            }
+          ],
+          "current_N_roster_evidence_conditioned": true,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 335,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": "no_remaining_plain_standard_pair_inputs",
+          "status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "to_vcr_id": 336
+        }
+      ],
+      "turn": 82,
+      "vcr_ids": [
+        335,
+        336
+      ],
+      "x": 1637,
+      "y": 2078
+    },
+    {
+      "adjacent_pairs": [
+        [
+          332,
+          333
+        ]
+      ],
+      "cohort": "EARLY_QUINTILE",
+      "game_id": 476380,
+      "missing": 0,
+      "status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "transitions": [
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                2410,
+                1880
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 92,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            },
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                2410,
+                1880
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 205,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            }
+          ],
+          "current_N_roster_evidence_conditioned": true,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 332,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": "no_remaining_plain_standard_pair_inputs",
+          "status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "to_vcr_id": 333
+        }
+      ],
+      "turn": 82,
+      "vcr_ids": [
+        332,
+        333
+      ],
+      "x": 2410,
+      "y": 1880
+    },
+    {
+      "adjacent_pairs": [
+        [
+          1166,
+          1167
+        ]
+      ],
+      "cohort": "LATE_85TH_PERCENTILE",
+      "game_id": 476380,
+      "missing": 0,
+      "status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "transitions": [
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [],
+          "current_N_roster_evidence_conditioned": false,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 1166,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_PARENT_STANDARD_UNRESOLVED",
+          "prediction": null,
+          "reason": "180-436:pair_engagement_unresolved",
+          "status": "ABSTAIN_PARENT_STANDARD_UNRESOLVED",
+          "to_vcr_id": 1167
+        }
+      ],
+      "turn": 327,
+      "vcr_ids": [
+        1166,
+        1167
+      ],
+      "x": 1546,
+      "y": 1868
+    },
+    {
+      "adjacent_pairs": [
+        [
+          1247,
+          1248
+        ],
+        [
+          1248,
+          1249
+        ]
+      ],
+      "cohort": "LATE_85TH_PERCENTILE",
+      "game_id": 477725,
+      "missing": 0,
+      "status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "transitions": [
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [],
+          "current_N_roster_evidence_conditioned": false,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 1247,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": "carried_start_differs_from_current_vcr",
+          "status": "ABSTAIN_N_REPLAY_OR_CARRIED_START",
+          "to_vcr_id": 1248
+        },
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [],
+          "current_N_roster_evidence_conditioned": false,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 1248,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": "carried_start_differs_from_current_vcr",
+          "status": "ABSTAIN_N_REPLAY_OR_CARRIED_START",
+          "to_vcr_id": 1249
+        }
+      ],
+      "turn": 187,
+      "vcr_ids": [
+        1247,
+        1248,
+        1249
+      ],
+      "x": 2257,
+      "y": 832
+    },
+    {
+      "adjacent_pairs": [
+        [
+          1074,
+          1075
+        ]
+      ],
+      "cohort": "LATE_85TH_PERCENTILE",
+      "game_id": 490865,
+      "missing": 1,
+      "reason": "site context not reconstructed",
+      "status": "ABSTAIN_TMINUS1_SITE_CONTEXT_MISSING",
+      "transitions": [],
+      "turn": 137,
+      "vcr_ids": [
+        1074,
+        1075
+      ],
+      "x": 2092,
+      "y": 1400
+    },
+    {
+      "adjacent_pairs": [
+        [
+          1004,
+          1005
+        ],
+        [
+          1005,
+          1006
+        ],
+        [
+          1006,
+          1007
+        ],
+        [
+          1007,
+          1008
+        ]
+      ],
+      "cohort": "LATE_85TH_PERCENTILE",
+      "game_id": 629488,
+      "missing": 4,
+      "reason": "site context not reconstructed",
+      "status": "ABSTAIN_TMINUS1_SITE_CONTEXT_MISSING",
+      "transitions": [],
+      "turn": 141,
+      "vcr_ids": [
+        1004,
+        1005,
+        1006,
+        1007,
+        1008
+      ],
+      "x": 1268,
+      "y": 1296
+    },
+    {
+      "adjacent_pairs": [
+        [
+          381,
+          382
+        ]
+      ],
+      "cohort": "LATE_85TH_PERCENTILE",
+      "game_id": 633837,
+      "missing": 0,
+      "status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "transitions": [
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                1942,
+                2606
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 177,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            },
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                1942,
+                2606
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 407,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            }
+          ],
+          "current_N_roster_evidence_conditioned": true,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 381,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": "no_remaining_plain_standard_pair_inputs",
+          "status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "to_vcr_id": 382
+        }
+      ],
+      "turn": 119,
+      "vcr_ids": [
+        381,
+        382
+      ],
+      "x": 1942,
+      "y": 2606
+    },
+    {
+      "adjacent_pairs": [
+        [
+          164,
+          165
+        ]
+      ],
+      "cohort": "EARLY_QUINTILE",
+      "game_id": 658427,
+      "missing": 0,
+      "status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "transitions": [
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                2026,
+                2853
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 206,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            },
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                2026,
+                2853
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 228,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            }
+          ],
+          "current_N_roster_evidence_conditioned": true,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 164,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": "no_remaining_plain_standard_pair_inputs",
+          "status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "to_vcr_id": 165
+        }
+      ],
+      "turn": 41,
+      "vcr_ids": [
+        164,
+        165
+      ],
+      "x": 2026,
+      "y": 2853
+    },
+    {
+      "adjacent_pairs": [
+        [
+          130,
+          131
+        ]
+      ],
+      "cohort": "EARLY_QUINTILE",
+      "game_id": 674696,
+      "missing": 0,
+      "status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "transitions": [
+        {
+          "Nplus1_used_only_as_comparator": true,
+          "anchored_ships": [
+            {
+              "Nplus1_fields_used": false,
+              "Tminus1_predicted_at_current_N_site": false,
+              "Tminus1_predicted_position": null,
+              "current_N_site": [
+                2193,
+                1839
+              ],
+              "dynamic_state_independently_predicted": false,
+              "ship_id": 60,
+              "source": "CURRENT_VCR_N_START_WITH_TMINUS1_OWNER_IDENTITY"
+            }
+          ],
+          "current_N_roster_evidence_conditioned": true,
+          "factual_comparison": {
+            "exact": null,
+            "pair_exact": null,
+            "sides_exact": null,
+            "status": "NOT_PREDICTED"
+          },
+          "from_vcr_id": 130,
+          "no_next_vcr_oracle": true,
+          "original_strict_V1_exact": null,
+          "original_strict_V1_status": "ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START",
+          "prediction": null,
+          "reason": "carried_start_differs_from_current_vcr",
+          "status": "ABSTAIN_N_REPLAY_OR_CARRIED_START",
+          "to_vcr_id": 131
+        }
+      ],
+      "turn": 32,
+      "vcr_ids": [
+        130,
+        131
+      ],
+      "x": 2193,
+      "y": 1839
+    }
+  ],
+  "source_census_git_blob_sha1": "fda92475988d2f7dfbc7b93606de4f8cec909806",
+  "source_db_generation": "generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "source_db_sha256": "3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c",
+  "source_strict_v1_git_blob_sha1": "1ed69919f38fbc7d09b2e890162c1a25a3f677bd",
+  "status": "CURRENT_N_ROSTER_CONDITIONAL_C5_NOT_INDEPENDENT_TMINUS1",
+  "summary": {
+    "attempted_transitions": 56,
+    "conditional_current_N_roster_anchored_predictions": 6,
+    "conditional_pair_and_sides_exact": 7,
+    "conditional_pair_or_sides_mismatch": 2,
+    "conditional_predictions_made": 9,
+    "frozen_adjacent_ID_transitions": 63,
+    "frozen_sites": 27,
+    "future_Nplus1_used_in_predictor": false,
+    "independent_full_Host_predictions_made": 0,
+    "ordinary_non_Horwasp_only": true,
+    "site_failure_transitions": 7,
+    "status_counts": {
+      "ABSTAIN_CAPTURE_TEMPORARY_ORDER_NOT_INDEPENDENT": 5,
+      "ABSTAIN_N_REPLAY_OR_CARRIED_START": 8,
+      "ABSTAIN_PARENT_STANDARD_NO_PAIR": 25,
+      "ABSTAIN_PARENT_STANDARD_UNRESOLVED": 8,
+      "ABSTAIN_TMINUS1_OR_CURRENT_N_BRIDGE_UNRESOLVED": 1,
+      "CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1": 9
+    },
+    "strict_V1_previously_unavailable_now_conditional_predictions": 6,
+    "unverified_capture_temporary_order_promoted": false
+  }
+}
