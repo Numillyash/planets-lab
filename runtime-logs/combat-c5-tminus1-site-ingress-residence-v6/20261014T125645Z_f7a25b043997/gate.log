@@ -1,0 +1,9 @@
+===== C5 TMINUS1 SITE INGRESS VS RESIDENCE V6 =====
+HEAD: f7a25b043997aa155d06f5188f619fc6da52c6b2
+V4 git blob: 847d0a951c1a3bdddc55f1b1b9a82f9d50c0c610
+V5 git blob: bd293c573c85bd849c9e6add06af661bfe519ee9
+Source: published pinned JSON only; no DB or CURRENT access
+===== C5 TMINUS1 INGRESS VERSUS RESIDENCE V6 =====
+status: PRE_N_SITE_INGRESS_VS_RESIDENCE_OBSERVATIONAL_NOT_PROMOTED
+summary: {'frozen_sites': 27, 'frozen_adjacent_transitions': 63, 'evaluated_transitions': 56, 'source_uninspected': 7, 'NO_PAIR_transitions': 25, 'V4_witness_appearances': 219, 'NO_PAIR_witness_appearances': 157, 'NO_PAIR_prior_site_witness_appearances': 50, 'NO_PAIR_unseen_prior_site_witness_appearances': 107, 'NO_PAIR_unique_unseen_site_ship_witnesses': 42, 'NO_PAIR_unique_unseen_spatial_classes': {'UNSEEN_TMINUS1_START_AND_WAYPOINT_AT_SITE': 12, 'UNSEEN_TMINUS1_START_AT_SITE_ONLY': 12, 'UNSEEN_TMINUS1_WAYPOINT_AT_SITE_ONLY': 18}, 'NO_PAIR_unseen_appearance_spatial_classes': {'UNSEEN_TMINUS1_START_AND_WAYPOINT_AT_SITE': 12, 'UNSEEN_TMINUS1_START_AT_SITE_ONLY': 12, 'UNSEEN_TMINUS1_WAYPOINT_AT_SITE_ONLY': 83}, 'NO_PAIR_unseen_appearance_source_counts': {'normal_mine_route_risk': 80, 'pre_move_mkt_mass_change': 3, 'sphere_topology_not_integrated': 3, 'tow_attempt': 14, 'tow_target': 7}, 'NO_PAIR_transition_spatial_guard_counts': {'ABSTAIN_ONLY_PRIOR_SITE_CARRY_UNRESOLVED': 1, 'ABSTAIN_TMINUS1_START_RESIDENCE_UNRESOLVED': 3, 'ABSTAIN_WAYPOINT_ONLY_INGRESS_UNRESOLVED': 13, 'NO_PAIR_NOT_PROVEN_NO_INDEXED_WITNESS': 8}, 'new_battle_predictions': 0, 'changed_original_V2_predictions': 0, 'Nplus1_used': False, 'Host_site_exhaustion_proven': False}
+output: artifacts/combat/c5-tminus1-site-ingress-residence-v6/published/report.json
