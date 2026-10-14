@@ -1,0 +1,32 @@
+===== ORDINARY C5 PRE-N SITE HISTORY PARTITION V5 =====
+HEAD: b6af6f4b3e51904962158dde5d526984e3294c29
+v4_report_git_blob: 847d0a951c1a3bdddc55f1b1b9a82f9d50c0c610
+census_git_blob: fda92475988d2f7dfbc7b93606de4f8cec909806
+DB: /root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb (pinned SHA256 once, read-only)
+[c5-site-prefix] verifying pinned public100 SHA256 once
+[c5-site-prefix] SHA verified in 26.0s; read-only
+[c5-site-prefix] [1/21] G218619 T232 sites=1
+[c5-site-prefix] [2/21] G243165 T30 sites=1
+[c5-site-prefix] [3/21] G243165 T107 sites=1
+[c5-site-prefix] [4/21] G245693 T29 sites=2
+[c5-site-prefix] [5/21] G245693 T103 sites=3
+[c5-site-prefix] [6/21] G257776 T92 sites=1
+[c5-site-prefix] [7/21] G283648 T52 sites=1
+[c5-site-prefix] [8/21] G283648 T144 sites=1
+[c5-site-prefix] [9/21] G347923 T95 sites=1
+[c5-site-prefix] [10/21] G364412 T65 sites=1
+[c5-site-prefix] [11/21] G399914 T116 sites=1
+[c5-site-prefix] [12/21] G421276 T115 sites=2
+[c5-site-prefix] [13/21] G473010 T214 sites=1
+[c5-site-prefix] [14/21] G476380 T82 sites=3
+[c5-site-prefix] [15/21] G476380 T327 sites=1
+[c5-site-prefix] [16/21] G477725 T187 sites=1
+[c5-site-prefix] [17/21] G490865 T137 sites=1
+[c5-site-prefix] [18/21] G629488 T141 sites=1
+[c5-site-prefix] [19/21] G633837 T119 sites=1
+[c5-site-prefix] [20/21] G658427 T41 sites=1
+[c5-site-prefix] [21/21] G674696 T32 sites=1
+===== ORDINARY C5 PRE-N SITE HISTORY PARTITION V5 =====
+status: UNRESOLVED_TMINUS1_ARRIVALS_PARTITIONED_BY_PRE_N_SITE_HISTORY_NOT_PREDICTED
+summary: {'frozen_sites': 27, 'frozen_transitions': 63, 'evaluated_transitions': 56, 'source_uninspected': 7, 'NO_PAIR_transitions': 25, 'NO_PAIR_sites': 12, 'NO_PAIR_partition_counts': {'ABSTAIN_ONLY_PRIOR_SITE_PARTICIPANTS_CARRY_UNRESOLVED': 1, 'ABSTAIN_UNSEEN_TMINUS1_SITE_ARRIVAL_REMAINS': 16, 'NO_PAIR_NOT_PROVEN_SITE_EXHAUSTED_WITH_NO_INDEXED_WITNESS': 8}, 'all_partition_counts': {'ABSTAIN_ONLY_PRIOR_SITE_PARTICIPANTS_CARRY_UNRESOLVED': 1, 'ABSTAIN_UNSEEN_TMINUS1_SITE_ARRIVAL_REMAINS': 16, 'NO_PAIR_NOT_PROVEN_SITE_EXHAUSTED_WITH_NO_INDEXED_WITNESS': 8, 'ORIGINAL_V2_NON_NO_PAIR_VERDICT_UNCHANGED': 31}, 'original_V4_witness_appearances': 219, 'V4_unique_site_ship_witnesses': 54, 'NO_PAIR_witness_appearances': 157, 'NO_PAIR_prior_site_witness_appearances': 50, 'NO_PAIR_unseen_prior_site_witness_appearances': 107, 'new_battle_predictions': 0, 'changed_V2_predictions': 0, 'Nplus1_comparator_used': False, 'Host_queue_exhaustion_proven': False}
+output: artifacts/combat/c5-pre-n-site-presence-partition-v5/published/report.json

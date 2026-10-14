@@ -1,0 +1,2790 @@
+{
+  "boundary": "Uses ONLY immutable V4 potential arrivals and site-census-VCR ship identities at or BEFORE current N. Earlier site combat participation is not proof of survival, removal, ownership continuity, or eligibility for the next battle. Absence of prior VCR is not proof of newly arrived physical presence. No N+1 body, ship IDs, mass, outcomes or next-pair selection enter this research-only report. Zero Host predictions made.",
+  "db_path": "/root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "schema": "planets-lab.combat-c5-pre-n-site-presence-partition.v5",
+  "site_evaluations": [
+    {
+      "V4_original_uninspected": 0,
+      "game_id": 218619,
+      "transition_partitions": [
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 0,
+          "from_vcr_id": 1160,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 0,
+          "original_v2_status": "CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1",
+          "original_v4_risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK",
+          "partition_status": "ORIGINAL_V2_NON_NO_PAIR_VERDICT_UNCHANGED",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": []
+        }
+      ],
+      "turn": 232,
+      "x": 2199,
+      "y": 2514
+    },
+    {
+      "V4_original_uninspected": 0,
+      "game_id": 243165,
+      "transition_partitions": [
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 1,
+          "from_vcr_id": 146,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 1,
+          "original_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_v4_risk_status": "ABSTAIN_PLAUSIBLE_UNRESOLVED_TMINUS1_ARRIVALS",
+          "partition_status": "ABSTAIN_UNSEEN_TMINUS1_SITE_ARRIVAL_REMAINS",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": [
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "sphere_topology_not_integrated",
+              "ship_id": 363,
+              "site_history_not_terminal_survival_evidence": true
+            }
+          ]
+        },
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 1,
+          "from_vcr_id": 147,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 1,
+          "original_v2_status": "ABSTAIN_TMINUS1_OR_CURRENT_N_BRIDGE_UNRESOLVED",
+          "original_v4_risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK",
+          "partition_status": "ORIGINAL_V2_NON_NO_PAIR_VERDICT_UNCHANGED",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": [
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "sphere_topology_not_integrated",
+              "ship_id": 363,
+              "site_history_not_terminal_survival_evidence": true
+            }
+          ]
+        }
+      ],
+      "turn": 30,
+      "x": 2743,
+      "y": 2147
+    },
+    {
+      "V4_original_uninspected": 0,
+      "game_id": 243165,
+      "transition_partitions": [
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 1,
+          "from_vcr_id": 981,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 1,
+          "original_v2_status": "CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1",
+          "original_v4_risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK",
+          "partition_status": "ORIGINAL_V2_NON_NO_PAIR_VERDICT_UNCHANGED",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": [
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 9,
+              "position_source": "sphere_topology_not_integrated",
+              "ship_id": 138,
+              "site_history_not_terminal_survival_evidence": true
+            }
+          ]
+        },
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 1,
+          "from_vcr_id": 982,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 0,
+          "original_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_v4_risk_status": "ABSTAIN_PLAUSIBLE_UNRESOLVED_TMINUS1_ARRIVALS",
+          "partition_status": "ABSTAIN_ONLY_PRIOR_SITE_PARTICIPANTS_CARRY_UNRESOLVED",
+          "prior_site_VCR_participant_count": 1,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": [
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 981,
+              "owner_id": 9,
+              "position_source": "tow_target",
+              "ship_id": 295,
+              "site_history_not_terminal_survival_evidence": true
+            }
+          ]
+        },
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 1,
+          "from_vcr_id": 983,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 0,
+          "original_v2_status": "CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1",
+          "original_v4_risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK",
+          "partition_status": "ORIGINAL_V2_NON_NO_PAIR_VERDICT_UNCHANGED",
+          "prior_site_VCR_participant_count": 1,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": [
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 981,
+              "owner_id": 9,
+              "position_source": "tow_target",
+              "ship_id": 295,
+              "site_history_not_terminal_survival_evidence": true
+            }
+          ]
+        }
+      ],
+      "turn": 107,
+      "x": 2569,
+      "y": 2544
+    },
+    {
+      "V4_original_uninspected": 0,
+      "game_id": 245693,
+      "transition_partitions": [
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 0,
+          "from_vcr_id": 83,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 0,
+          "original_v2_status": "ABSTAIN_PARENT_STANDARD_UNRESOLVED",
+          "original_v4_risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK",
+          "partition_status": "ORIGINAL_V2_NON_NO_PAIR_VERDICT_UNCHANGED",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": []
+        },
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 0,
+          "from_vcr_id": 84,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 0,
+          "original_v2_status": "CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1",
+          "original_v4_risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK",
+          "partition_status": "ORIGINAL_V2_NON_NO_PAIR_VERDICT_UNCHANGED",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": []
+        }
+      ],
+      "turn": 29,
+      "x": 2373,
+      "y": 1641
+    },
+    {
+      "V4_original_uninspected": 0,
+      "game_id": 245693,
+      "transition_partitions": [],
+      "turn": 29,
+      "x": 2617,
+      "y": 2078
+    },
+    {
+      "V4_original_uninspected": 0,
+      "game_id": 245693,
+      "transition_partitions": [
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 1,
+          "from_vcr_id": 1023,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 1,
+          "original_v2_status": "ABSTAIN_PARENT_STANDARD_UNRESOLVED",
+          "original_v4_risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK",
+          "partition_status": "ORIGINAL_V2_NON_NO_PAIR_VERDICT_UNCHANGED",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": [
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 4,
+              "position_source": "pre_move_mkt_mass_change",
+              "ship_id": 519,
+              "site_history_not_terminal_survival_evidence": true
+            }
+          ]
+        },
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 1,
+          "from_vcr_id": 1024,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 1,
+          "original_v2_status": "CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1",
+          "original_v4_risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK",
+          "partition_status": "ORIGINAL_V2_NON_NO_PAIR_VERDICT_UNCHANGED",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": [
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 4,
+              "position_source": "pre_move_mkt_mass_change",
+              "ship_id": 519,
+              "site_history_not_terminal_survival_evidence": true
+            }
+          ]
+        },
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 0,
+          "from_vcr_id": 1025,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 0,
+          "original_v2_status": "CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1",
+          "original_v4_risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK",
+          "partition_status": "ORIGINAL_V2_NON_NO_PAIR_VERDICT_UNCHANGED",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": []
+        }
+      ],
+      "turn": 103,
+      "x": 1368,
+      "y": 2266
+    },
+    {
+      "V4_original_uninspected": 0,
+      "game_id": 245693,
+      "transition_partitions": [
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 0,
+          "from_vcr_id": 1020,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 0,
+          "original_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_v4_risk_status": "NO_PAIR_NOT_PROVEN_NO_ARRIVALS_IN_LIMITED_TMINUS1_INDEX",
+          "partition_status": "NO_PAIR_NOT_PROVEN_SITE_EXHAUSTED_WITH_NO_INDEXED_WITNESS",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": []
+        }
+      ],
+      "turn": 103,
+      "x": 1384,
+      "y": 2360
+    },
+    {
+      "V4_original_uninspected": 0,
+      "game_id": 245693,
+      "transition_partitions": [
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 3,
+          "from_vcr_id": 1005,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 3,
+          "original_v2_status": "ABSTAIN_PARENT_STANDARD_UNRESOLVED",
+          "original_v4_risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK",
+          "partition_status": "ORIGINAL_V2_NON_NO_PAIR_VERDICT_UNCHANGED",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": [
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 8,
+              "position_source": "normal_plan_insufficient_fuel",
+              "ship_id": 129,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 8,
+              "position_source": "cloak_intercept_movement",
+              "ship_id": 157,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 8,
+              "position_source": "pre_move_mkt_mass_change",
+              "ship_id": 300,
+              "site_history_not_terminal_survival_evidence": true
+            }
+          ]
+        },
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 3,
+          "from_vcr_id": 1006,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 3,
+          "original_v2_status": "ABSTAIN_PARENT_STANDARD_UNRESOLVED",
+          "original_v4_risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK",
+          "partition_status": "ORIGINAL_V2_NON_NO_PAIR_VERDICT_UNCHANGED",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": [
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 8,
+              "position_source": "normal_plan_insufficient_fuel",
+              "ship_id": 129,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 8,
+              "position_source": "cloak_intercept_movement",
+              "ship_id": 157,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 8,
+              "position_source": "pre_move_mkt_mass_change",
+              "ship_id": 300,
+              "site_history_not_terminal_survival_evidence": true
+            }
+          ]
+        }
+      ],
+      "turn": 103,
+      "x": 2794,
+      "y": 2246
+    },
+    {
+      "V4_original_uninspected": 0,
+      "game_id": 257776,
+      "transition_partitions": [
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 1,
+          "from_vcr_id": 337,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 1,
+          "original_v2_status": "CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1",
+          "original_v4_risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK",
+          "partition_status": "ORIGINAL_V2_NON_NO_PAIR_VERDICT_UNCHANGED",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": [
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 9,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 303,
+              "site_history_not_terminal_survival_evidence": true
+            }
+          ]
+        },
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 2,
+          "from_vcr_id": 338,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 1,
+          "original_v2_status": "ABSTAIN_N_REPLAY_OR_CARRIED_START",
+          "original_v4_risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK",
+          "partition_status": "ORIGINAL_V2_NON_NO_PAIR_VERDICT_UNCHANGED",
+          "prior_site_VCR_participant_count": 1,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": [
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 337,
+              "owner_id": 3,
+              "position_source": "pre_move_mkt_mass_change",
+              "ship_id": 146,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 9,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 303,
+              "site_history_not_terminal_survival_evidence": true
+            }
+          ]
+        }
+      ],
+      "turn": 92,
+      "x": 2595,
+      "y": 2254
+    },
+    {
+      "V4_original_uninspected": 0,
+      "game_id": 283648,
+      "transition_partitions": [
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 1,
+          "from_vcr_id": 112,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 1,
+          "original_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_v4_risk_status": "ABSTAIN_PLAUSIBLE_UNRESOLVED_TMINUS1_ARRIVALS",
+          "partition_status": "ABSTAIN_UNSEEN_TMINUS1_SITE_ARRIVAL_REMAINS",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": [
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 4,
+              "position_source": "tow_attempt",
+              "ship_id": 393,
+              "site_history_not_terminal_survival_evidence": true
+            }
+          ]
+        },
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 2,
+          "from_vcr_id": 113,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 1,
+          "original_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_v4_risk_status": "ABSTAIN_PLAUSIBLE_UNRESOLVED_TMINUS1_ARRIVALS",
+          "partition_status": "ABSTAIN_UNSEEN_TMINUS1_SITE_ARRIVAL_REMAINS",
+          "prior_site_VCR_participant_count": 1,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": [
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 112,
+              "owner_id": 4,
+              "position_source": "tow_attempt",
+              "ship_id": 321,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 4,
+              "position_source": "tow_attempt",
+              "ship_id": 393,
+              "site_history_not_terminal_survival_evidence": true
+            }
+          ]
+        }
+      ],
+      "turn": 52,
+      "x": 1911,
+      "y": 1000
+    },
+    {
+      "V4_original_uninspected": 0,
+      "game_id": 283648,
+      "transition_partitions": [
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 0,
+          "from_vcr_id": 786,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 0,
+          "original_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_v4_risk_status": "NO_PAIR_NOT_PROVEN_NO_ARRIVALS_IN_LIMITED_TMINUS1_INDEX",
+          "partition_status": "NO_PAIR_NOT_PROVEN_SITE_EXHAUSTED_WITH_NO_INDEXED_WITNESS",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": []
+        }
+      ],
+      "turn": 144,
+      "x": 1275,
+      "y": 1689
+    },
+    {
+      "V4_original_uninspected": 0,
+      "game_id": 347923,
+      "transition_partitions": [
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 0,
+          "from_vcr_id": 451,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 0,
+          "original_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_v4_risk_status": "NO_PAIR_NOT_PROVEN_NO_ARRIVALS_IN_LIMITED_TMINUS1_INDEX",
+          "partition_status": "NO_PAIR_NOT_PROVEN_SITE_EXHAUSTED_WITH_NO_INDEXED_WITNESS",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": []
+        },
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 0,
+          "from_vcr_id": 452,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 0,
+          "original_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_v4_risk_status": "NO_PAIR_NOT_PROVEN_NO_ARRIVALS_IN_LIMITED_TMINUS1_INDEX",
+          "partition_status": "NO_PAIR_NOT_PROVEN_SITE_EXHAUSTED_WITH_NO_INDEXED_WITNESS",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": []
+        }
+      ],
+      "turn": 95,
+      "x": 2186,
+      "y": 1120
+    },
+    {
+      "V4_original_uninspected": 1,
+      "game_id": 364412,
+      "transition_partitions": [],
+      "turn": 65,
+      "x": 1245,
+      "y": 1540
+    },
+    {
+      "V4_original_uninspected": 0,
+      "game_id": 399914,
+      "transition_partitions": [
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 0,
+          "from_vcr_id": 832,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 0,
+          "original_v2_status": "CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1",
+          "original_v4_risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK",
+          "partition_status": "ORIGINAL_V2_NON_NO_PAIR_VERDICT_UNCHANGED",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": []
+        },
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 0,
+          "from_vcr_id": 833,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 0,
+          "original_v2_status": "ABSTAIN_CAPTURE_TEMPORARY_ORDER_NOT_INDEPENDENT",
+          "original_v4_risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK",
+          "partition_status": "ORIGINAL_V2_NON_NO_PAIR_VERDICT_UNCHANGED",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": []
+        },
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 0,
+          "from_vcr_id": 834,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 0,
+          "original_v2_status": "ABSTAIN_N_REPLAY_OR_CARRIED_START",
+          "original_v4_risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK",
+          "partition_status": "ORIGINAL_V2_NON_NO_PAIR_VERDICT_UNCHANGED",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": []
+        },
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 0,
+          "from_vcr_id": 835,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 0,
+          "original_v2_status": "ABSTAIN_N_REPLAY_OR_CARRIED_START",
+          "original_v4_risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK",
+          "partition_status": "ORIGINAL_V2_NON_NO_PAIR_VERDICT_UNCHANGED",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": []
+        }
+      ],
+      "turn": 116,
+      "x": 1293,
+      "y": 2185
+    },
+    {
+      "V4_original_uninspected": 0,
+      "game_id": 421276,
+      "transition_partitions": [
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 14,
+          "from_vcr_id": 436,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 14,
+          "original_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_v4_risk_status": "ABSTAIN_PLAUSIBLE_UNRESOLVED_TMINUS1_ARRIVALS",
+          "partition_status": "ABSTAIN_UNSEEN_TMINUS1_SITE_ARRIVAL_REMAINS",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": [
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 46,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 96,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 117,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 150,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 233,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 264,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 280,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 338,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 362,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 399,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 400,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 437,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 455,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 457,
+              "site_history_not_terminal_survival_evidence": true
+            }
+          ]
+        },
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 14,
+          "from_vcr_id": 437,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 13,
+          "original_v2_status": "ABSTAIN_CAPTURE_TEMPORARY_ORDER_NOT_INDEPENDENT",
+          "original_v4_risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK",
+          "partition_status": "ORIGINAL_V2_NON_NO_PAIR_VERDICT_UNCHANGED",
+          "prior_site_VCR_participant_count": 1,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": [
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 46,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 96,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 117,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 150,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 436,
+              "owner_id": 10,
+              "position_source": "tow_target",
+              "ship_id": 177,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 233,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 264,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 280,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 338,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 362,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 399,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 400,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 437,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 455,
+              "site_history_not_terminal_survival_evidence": true
+            }
+          ]
+        },
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 14,
+          "from_vcr_id": 438,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 12,
+          "original_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_v4_risk_status": "ABSTAIN_PLAUSIBLE_UNRESOLVED_TMINUS1_ARRIVALS",
+          "partition_status": "ABSTAIN_UNSEEN_TMINUS1_SITE_ARRIVAL_REMAINS",
+          "prior_site_VCR_participant_count": 2,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": [
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 96,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 117,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 150,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 436,
+              "owner_id": 10,
+              "position_source": "tow_target",
+              "ship_id": 177,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 233,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 264,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 280,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 338,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 362,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 399,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 400,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 437,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 455,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 437,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 457,
+              "site_history_not_terminal_survival_evidence": true
+            }
+          ]
+        },
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 14,
+          "from_vcr_id": 439,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 11,
+          "original_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_v4_risk_status": "ABSTAIN_PLAUSIBLE_UNRESOLVED_TMINUS1_ARRIVALS",
+          "partition_status": "ABSTAIN_UNSEEN_TMINUS1_SITE_ARRIVAL_REMAINS",
+          "prior_site_VCR_participant_count": 3,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": [
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 438,
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 46,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 96,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 150,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 436,
+              "owner_id": 10,
+              "position_source": "tow_target",
+              "ship_id": 177,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 233,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 264,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 280,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 338,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 362,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 399,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 400,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 437,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 455,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 437,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 457,
+              "site_history_not_terminal_survival_evidence": true
+            }
+          ]
+        },
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 14,
+          "from_vcr_id": 440,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 10,
+          "original_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_v4_risk_status": "ABSTAIN_PLAUSIBLE_UNRESOLVED_TMINUS1_ARRIVALS",
+          "partition_status": "ABSTAIN_UNSEEN_TMINUS1_SITE_ARRIVAL_REMAINS",
+          "prior_site_VCR_participant_count": 4,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": [
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 438,
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 46,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 96,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 439,
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 117,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 150,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 436,
+              "owner_id": 10,
+              "position_source": "tow_target",
+              "ship_id": 177,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 233,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 280,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 338,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 362,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 399,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 400,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 437,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 455,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 437,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 457,
+              "site_history_not_terminal_survival_evidence": true
+            }
+          ]
+        },
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 14,
+          "from_vcr_id": 441,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 9,
+          "original_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_v4_risk_status": "ABSTAIN_PLAUSIBLE_UNRESOLVED_TMINUS1_ARRIVALS",
+          "partition_status": "ABSTAIN_UNSEEN_TMINUS1_SITE_ARRIVAL_REMAINS",
+          "prior_site_VCR_participant_count": 5,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": [
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 438,
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 46,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 96,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 439,
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 117,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 150,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 436,
+              "owner_id": 10,
+              "position_source": "tow_target",
+              "ship_id": 177,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 233,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 440,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 264,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 280,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 338,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 399,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 400,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 437,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 455,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 437,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 457,
+              "site_history_not_terminal_survival_evidence": true
+            }
+          ]
+        },
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 14,
+          "from_vcr_id": 442,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 8,
+          "original_v2_status": "ABSTAIN_CAPTURE_TEMPORARY_ORDER_NOT_INDEPENDENT",
+          "original_v4_risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK",
+          "partition_status": "ORIGINAL_V2_NON_NO_PAIR_VERDICT_UNCHANGED",
+          "prior_site_VCR_participant_count": 6,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": [
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 438,
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 46,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 96,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 439,
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 117,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 150,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 436,
+              "owner_id": 10,
+              "position_source": "tow_target",
+              "ship_id": 177,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 233,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 440,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 264,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 280,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 338,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 441,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 362,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 399,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 437,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 455,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 437,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 457,
+              "site_history_not_terminal_survival_evidence": true
+            }
+          ]
+        },
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 14,
+          "from_vcr_id": 443,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 7,
+          "original_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_v4_risk_status": "ABSTAIN_PLAUSIBLE_UNRESOLVED_TMINUS1_ARRIVALS",
+          "partition_status": "ABSTAIN_UNSEEN_TMINUS1_SITE_ARRIVAL_REMAINS",
+          "prior_site_VCR_participant_count": 7,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": [
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 438,
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 46,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 439,
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 117,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 150,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 436,
+              "owner_id": 10,
+              "position_source": "tow_target",
+              "ship_id": 177,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 233,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 440,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 264,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 280,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 338,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 441,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 362,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 399,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 442,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 400,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 437,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 455,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 437,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 457,
+              "site_history_not_terminal_survival_evidence": true
+            }
+          ]
+        },
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 14,
+          "from_vcr_id": 444,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 6,
+          "original_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_v4_risk_status": "ABSTAIN_PLAUSIBLE_UNRESOLVED_TMINUS1_ARRIVALS",
+          "partition_status": "ABSTAIN_UNSEEN_TMINUS1_SITE_ARRIVAL_REMAINS",
+          "prior_site_VCR_participant_count": 8,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": [
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 438,
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 46,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 443,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 96,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 439,
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 117,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 436,
+              "owner_id": 10,
+              "position_source": "tow_target",
+              "ship_id": 177,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 233,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 440,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 264,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 280,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 338,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 441,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 362,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 399,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 442,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 400,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 437,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 455,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 437,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 457,
+              "site_history_not_terminal_survival_evidence": true
+            }
+          ]
+        },
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 14,
+          "from_vcr_id": 445,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 5,
+          "original_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_v4_risk_status": "ABSTAIN_PLAUSIBLE_UNRESOLVED_TMINUS1_ARRIVALS",
+          "partition_status": "ABSTAIN_UNSEEN_TMINUS1_SITE_ARRIVAL_REMAINS",
+          "prior_site_VCR_participant_count": 9,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": [
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 438,
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 46,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 443,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 96,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 439,
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 117,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 444,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 150,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 436,
+              "owner_id": 10,
+              "position_source": "tow_target",
+              "ship_id": 177,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 233,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 440,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 264,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 338,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 441,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 362,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 399,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 442,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 400,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 437,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 455,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 437,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 457,
+              "site_history_not_terminal_survival_evidence": true
+            }
+          ]
+        },
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 14,
+          "from_vcr_id": 446,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 4,
+          "original_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_v4_risk_status": "ABSTAIN_PLAUSIBLE_UNRESOLVED_TMINUS1_ARRIVALS",
+          "partition_status": "ABSTAIN_UNSEEN_TMINUS1_SITE_ARRIVAL_REMAINS",
+          "prior_site_VCR_participant_count": 10,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": [
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 438,
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 46,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 443,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 96,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 439,
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 117,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 444,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 150,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 436,
+              "owner_id": 10,
+              "position_source": "tow_target",
+              "ship_id": 177,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 233,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 440,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 264,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 445,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 280,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 441,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 362,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 399,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 442,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 400,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 437,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 455,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 437,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 457,
+              "site_history_not_terminal_survival_evidence": true
+            }
+          ]
+        },
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 14,
+          "from_vcr_id": 447,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 3,
+          "original_v2_status": "ABSTAIN_CAPTURE_TEMPORARY_ORDER_NOT_INDEPENDENT",
+          "original_v4_risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK",
+          "partition_status": "ORIGINAL_V2_NON_NO_PAIR_VERDICT_UNCHANGED",
+          "prior_site_VCR_participant_count": 11,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": [
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 438,
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 46,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 443,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 96,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 439,
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 117,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 444,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 150,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 436,
+              "owner_id": 10,
+              "position_source": "tow_target",
+              "ship_id": 177,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 233,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 440,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 264,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 445,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 280,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 446,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 338,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 441,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 362,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 442,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 400,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 437,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 455,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "PRIOR_SAME_SITE_VCR_PARTICIPANT_CARRY_UNRESOLVED",
+              "first_prior_site_vcr_id": 437,
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 457,
+              "site_history_not_terminal_survival_evidence": true
+            }
+          ]
+        }
+      ],
+      "turn": 115,
+      "x": 2178,
+      "y": 1105
+    },
+    {
+      "V4_original_uninspected": 0,
+      "game_id": 421276,
+      "transition_partitions": [
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 2,
+          "from_vcr_id": 432,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 2,
+          "original_v2_status": "CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1",
+          "original_v4_risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK",
+          "partition_status": "ORIGINAL_V2_NON_NO_PAIR_VERDICT_UNCHANGED",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": [
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 3,
+              "position_source": "tow_target",
+              "ship_id": 92,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "outbound_transfer",
+              "ship_id": 430,
+              "site_history_not_terminal_survival_evidence": true
+            }
+          ]
+        },
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 2,
+          "from_vcr_id": 433,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 2,
+          "original_v2_status": "ABSTAIN_CAPTURE_TEMPORARY_ORDER_NOT_INDEPENDENT",
+          "original_v4_risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK",
+          "partition_status": "ORIGINAL_V2_NON_NO_PAIR_VERDICT_UNCHANGED",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": [
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 3,
+              "position_source": "tow_target",
+              "ship_id": 92,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "outbound_transfer",
+              "ship_id": 430,
+              "site_history_not_terminal_survival_evidence": true
+            }
+          ]
+        },
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 2,
+          "from_vcr_id": 434,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 2,
+          "original_v2_status": "ABSTAIN_N_REPLAY_OR_CARRIED_START",
+          "original_v4_risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK",
+          "partition_status": "ORIGINAL_V2_NON_NO_PAIR_VERDICT_UNCHANGED",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": [
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 3,
+              "position_source": "tow_target",
+              "ship_id": 92,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 10,
+              "position_source": "outbound_transfer",
+              "ship_id": 430,
+              "site_history_not_terminal_survival_evidence": true
+            }
+          ]
+        }
+      ],
+      "turn": 115,
+      "x": 2322,
+      "y": 1131
+    },
+    {
+      "V4_original_uninspected": 1,
+      "game_id": 473010,
+      "transition_partitions": [],
+      "turn": 214,
+      "x": 1277,
+      "y": 1853
+    },
+    {
+      "V4_original_uninspected": 0,
+      "game_id": 476380,
+      "transition_partitions": [
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 0,
+          "from_vcr_id": 322,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 0,
+          "original_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_v4_risk_status": "NO_PAIR_NOT_PROVEN_NO_ARRIVALS_IN_LIMITED_TMINUS1_INDEX",
+          "partition_status": "NO_PAIR_NOT_PROVEN_SITE_EXHAUSTED_WITH_NO_INDEXED_WITNESS",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": []
+        },
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 0,
+          "from_vcr_id": 323,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 0,
+          "original_v2_status": "ABSTAIN_PARENT_STANDARD_UNRESOLVED",
+          "original_v4_risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK",
+          "partition_status": "ORIGINAL_V2_NON_NO_PAIR_VERDICT_UNCHANGED",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": []
+        },
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 0,
+          "from_vcr_id": 324,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 0,
+          "original_v2_status": "ABSTAIN_PARENT_STANDARD_UNRESOLVED",
+          "original_v4_risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK",
+          "partition_status": "ORIGINAL_V2_NON_NO_PAIR_VERDICT_UNCHANGED",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": []
+        },
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 0,
+          "from_vcr_id": 325,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 0,
+          "original_v2_status": "ABSTAIN_PARENT_STANDARD_UNRESOLVED",
+          "original_v4_risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK",
+          "partition_status": "ORIGINAL_V2_NON_NO_PAIR_VERDICT_UNCHANGED",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": []
+        },
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 0,
+          "from_vcr_id": 326,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 0,
+          "original_v2_status": "ABSTAIN_N_REPLAY_OR_CARRIED_START",
+          "original_v4_risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK",
+          "partition_status": "ORIGINAL_V2_NON_NO_PAIR_VERDICT_UNCHANGED",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": []
+        },
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 0,
+          "from_vcr_id": 327,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 0,
+          "original_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_v4_risk_status": "NO_PAIR_NOT_PROVEN_NO_ARRIVALS_IN_LIMITED_TMINUS1_INDEX",
+          "partition_status": "NO_PAIR_NOT_PROVEN_SITE_EXHAUSTED_WITH_NO_INDEXED_WITNESS",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": []
+        },
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 0,
+          "from_vcr_id": 328,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 0,
+          "original_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_v4_risk_status": "NO_PAIR_NOT_PROVEN_NO_ARRIVALS_IN_LIMITED_TMINUS1_INDEX",
+          "partition_status": "NO_PAIR_NOT_PROVEN_SITE_EXHAUSTED_WITH_NO_INDEXED_WITNESS",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": []
+        },
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 0,
+          "from_vcr_id": 329,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 0,
+          "original_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_v4_risk_status": "NO_PAIR_NOT_PROVEN_NO_ARRIVALS_IN_LIMITED_TMINUS1_INDEX",
+          "partition_status": "NO_PAIR_NOT_PROVEN_SITE_EXHAUSTED_WITH_NO_INDEXED_WITNESS",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": []
+        }
+      ],
+      "turn": 82,
+      "x": 1286,
+      "y": 1835
+    },
+    {
+      "V4_original_uninspected": 0,
+      "game_id": 476380,
+      "transition_partitions": [
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 1,
+          "from_vcr_id": 335,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 1,
+          "original_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_v4_risk_status": "ABSTAIN_PLAUSIBLE_UNRESOLVED_TMINUS1_ARRIVALS",
+          "partition_status": "ABSTAIN_UNSEEN_TMINUS1_SITE_ARRIVAL_REMAINS",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": [
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 9,
+              "position_source": "tow_attempt",
+              "ship_id": 119,
+              "site_history_not_terminal_survival_evidence": true
+            }
+          ]
+        }
+      ],
+      "turn": 82,
+      "x": 1637,
+      "y": 2078
+    },
+    {
+      "V4_original_uninspected": 0,
+      "game_id": 476380,
+      "transition_partitions": [
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 7,
+          "from_vcr_id": 332,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 7,
+          "original_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_v4_risk_status": "ABSTAIN_PLAUSIBLE_UNRESOLVED_TMINUS1_ARRIVALS",
+          "partition_status": "ABSTAIN_UNSEEN_TMINUS1_SITE_ARRIVAL_REMAINS",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": [
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 9,
+              "position_source": "tow_target",
+              "ship_id": 85,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 9,
+              "position_source": "tow_attempt",
+              "ship_id": 87,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 1,
+              "position_source": "tow_target",
+              "ship_id": 102,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 9,
+              "position_source": "pre_move_mkt_mass_change",
+              "ship_id": 236,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 9,
+              "position_source": "tow_attempt",
+              "ship_id": 267,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 9,
+              "position_source": "pre_move_mkt_mass_change",
+              "ship_id": 268,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 9,
+              "position_source": "pre_move_mkt_mass_change",
+              "ship_id": 428,
+              "site_history_not_terminal_survival_evidence": true
+            }
+          ]
+        }
+      ],
+      "turn": 82,
+      "x": 2410,
+      "y": 1880
+    },
+    {
+      "V4_original_uninspected": 0,
+      "game_id": 476380,
+      "transition_partitions": [
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 0,
+          "from_vcr_id": 1166,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 0,
+          "original_v2_status": "ABSTAIN_PARENT_STANDARD_UNRESOLVED",
+          "original_v4_risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK",
+          "partition_status": "ORIGINAL_V2_NON_NO_PAIR_VERDICT_UNCHANGED",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": []
+        }
+      ],
+      "turn": 327,
+      "x": 1546,
+      "y": 1868
+    },
+    {
+      "V4_original_uninspected": 0,
+      "game_id": 477725,
+      "transition_partitions": [
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 0,
+          "from_vcr_id": 1247,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 0,
+          "original_v2_status": "ABSTAIN_N_REPLAY_OR_CARRIED_START",
+          "original_v4_risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK",
+          "partition_status": "ORIGINAL_V2_NON_NO_PAIR_VERDICT_UNCHANGED",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": []
+        },
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 0,
+          "from_vcr_id": 1248,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 0,
+          "original_v2_status": "ABSTAIN_N_REPLAY_OR_CARRIED_START",
+          "original_v4_risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK",
+          "partition_status": "ORIGINAL_V2_NON_NO_PAIR_VERDICT_UNCHANGED",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": []
+        }
+      ],
+      "turn": 187,
+      "x": 2257,
+      "y": 832
+    },
+    {
+      "V4_original_uninspected": 1,
+      "game_id": 490865,
+      "transition_partitions": [],
+      "turn": 137,
+      "x": 2092,
+      "y": 1400
+    },
+    {
+      "V4_original_uninspected": 4,
+      "game_id": 629488,
+      "transition_partitions": [],
+      "turn": 141,
+      "x": 1268,
+      "y": 1296
+    },
+    {
+      "V4_original_uninspected": 0,
+      "game_id": 633837,
+      "transition_partitions": [
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 15,
+          "from_vcr_id": 381,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 15,
+          "original_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_v4_risk_status": "ABSTAIN_PLAUSIBLE_UNRESOLVED_TMINUS1_ARRIVALS",
+          "partition_status": "ABSTAIN_UNSEEN_TMINUS1_SITE_ARRIVAL_REMAINS",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": [
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 5,
+              "position_source": "tow_attempt",
+              "ship_id": 82,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 5,
+              "position_source": "tow_attempt",
+              "ship_id": 113,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 5,
+              "position_source": "tow_attempt",
+              "ship_id": 137,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 5,
+              "position_source": "tow_attempt",
+              "ship_id": 159,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 5,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 233,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 5,
+              "position_source": "tow_target",
+              "ship_id": 266,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 5,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 306,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 5,
+              "position_source": "tow_target",
+              "ship_id": 439,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 5,
+              "position_source": "tow_target",
+              "ship_id": 440,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 5,
+              "position_source": "tow_target",
+              "ship_id": 441,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 5,
+              "position_source": "tow_attempt",
+              "ship_id": 462,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 5,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 466,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 5,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 481,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 5,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 500,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 5,
+              "position_source": "tow_target",
+              "ship_id": 565,
+              "site_history_not_terminal_survival_evidence": true
+            }
+          ]
+        }
+      ],
+      "turn": 119,
+      "x": 1942,
+      "y": 2606
+    },
+    {
+      "V4_original_uninspected": 0,
+      "game_id": 658427,
+      "transition_partitions": [
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 3,
+          "from_vcr_id": 164,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 3,
+          "original_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_v4_risk_status": "ABSTAIN_PLAUSIBLE_UNRESOLVED_TMINUS1_ARRIVALS",
+          "partition_status": "ABSTAIN_UNSEEN_TMINUS1_SITE_ARRIVAL_REMAINS",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": [
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 21,
+              "position_source": "sphere_topology_not_integrated",
+              "ship_id": 229,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 21,
+              "position_source": "sphere_topology_not_integrated",
+              "ship_id": 242,
+              "site_history_not_terminal_survival_evidence": true
+            },
+            {
+              "class": "NOT_SEEN_IN_PRIOR_SITE_VCR_TMINUS1_ARRIVAL_UNRESOLVED",
+              "first_prior_site_vcr_id": null,
+              "owner_id": 24,
+              "position_source": "tow_attempt",
+              "ship_id": 309,
+              "site_history_not_terminal_survival_evidence": true
+            }
+          ]
+        }
+      ],
+      "turn": 41,
+      "x": 2026,
+      "y": 2853
+    },
+    {
+      "V4_original_uninspected": 0,
+      "game_id": 674696,
+      "transition_partitions": [
+        {
+          "Nplus1_ship_identity_used": false,
+          "V4_potential_arrival_count": 0,
+          "from_vcr_id": 130,
+          "new_battle_prediction": false,
+          "not_seen_in_prior_site_VCR_count": 0,
+          "original_v2_status": "ABSTAIN_N_REPLAY_OR_CARRIED_START",
+          "original_v4_risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK",
+          "partition_status": "ORIGINAL_V2_NON_NO_PAIR_VERDICT_UNCHANGED",
+          "prior_site_VCR_participant_count": 0,
+          "terminal_outcome_or_survival_inferred": false,
+          "witnesses": []
+        }
+      ],
+      "turn": 32,
+      "x": 2193,
+      "y": 1839
+    }
+  ],
+  "source_census_git_blob_sha1": "fda92475988d2f7dfbc7b93606de4f8cec909806",
+  "source_db_generation": "generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "source_db_sha256": "3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c",
+  "source_v4_git_blob_sha1": "847d0a951c1a3bdddc55f1b1b9a82f9d50c0c610",
+  "status": "UNRESOLVED_TMINUS1_ARRIVALS_PARTITIONED_BY_PRE_N_SITE_HISTORY_NOT_PREDICTED",
+  "summary": {
+    "Host_queue_exhaustion_proven": false,
+    "NO_PAIR_partition_counts": {
+      "ABSTAIN_ONLY_PRIOR_SITE_PARTICIPANTS_CARRY_UNRESOLVED": 1,
+      "ABSTAIN_UNSEEN_TMINUS1_SITE_ARRIVAL_REMAINS": 16,
+      "NO_PAIR_NOT_PROVEN_SITE_EXHAUSTED_WITH_NO_INDEXED_WITNESS": 8
+    },
+    "NO_PAIR_prior_site_witness_appearances": 50,
+    "NO_PAIR_sites": 12,
+    "NO_PAIR_transitions": 25,
+    "NO_PAIR_unseen_prior_site_witness_appearances": 107,
+    "NO_PAIR_witness_appearances": 157,
+    "Nplus1_comparator_used": false,
+    "V4_unique_site_ship_witnesses": 54,
+    "all_partition_counts": {
+      "ABSTAIN_ONLY_PRIOR_SITE_PARTICIPANTS_CARRY_UNRESOLVED": 1,
+      "ABSTAIN_UNSEEN_TMINUS1_SITE_ARRIVAL_REMAINS": 16,
+      "NO_PAIR_NOT_PROVEN_SITE_EXHAUSTED_WITH_NO_INDEXED_WITNESS": 8,
+      "ORIGINAL_V2_NON_NO_PAIR_VERDICT_UNCHANGED": 31
+    },
+    "changed_V2_predictions": 0,
+    "evaluated_transitions": 56,
+    "frozen_sites": 27,
+    "frozen_transitions": 63,
+    "new_battle_predictions": 0,
+    "original_V4_witness_appearances": 219,
+    "source_uninspected": 7
+  }
+}
