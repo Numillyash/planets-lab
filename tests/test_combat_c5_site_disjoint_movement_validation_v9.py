@@ -142,6 +142,24 @@ def test_pre_forecast_rejects_conflicting_exact_tminus1_static(monkeypatch):
         ))
 
 
+def test_tminus1_topology_conflict_not_overwritten(monkeypatch):
+    pre=[SimpleNamespace(member=SimpleNamespace(name=f"owner-{i}.trn"))
+         for i in (1,2)]
+    monkeypatch.setattr(M,"import_static_all",lambda raw:raw)
+    class Specs:
+        hulls={1:35}
+        engines={1:9}
+        @staticmethod
+        def from_catalog(_raw):
+            return Specs()
+    monkeypatch.setattr(M,"NuStaticSpecs",Specs)
+    with pytest.raises(ValueError,match="sphere topology unknown"):
+        M.resolve_pre_context(1,4,pre,(
+            {"settings":{"sphere":False}},
+            {"settings":{"sphere":True}},
+        ))
+
+
 def test_runner_evidence_and_pinned_db():
     script=ROOT/"tools/run-combat-c5-site-disjoint-movement-validation-v9.sh"
     wrapper=ROOT/"tools/run-combat-c5-site-disjoint-movement-validation-v9-with-evidence.sh"
