@@ -82,10 +82,45 @@ def frozen_sites(census:Mapping[str,Any],v2report:Mapping[str,Any]):
         raise ValueError("frozen V2 sites differ from census")
     for s in sites:
         o=bysite[(s["game_id"],s["turn"],s["x"],s["y"])]
-        pairs={(t["from_vcr_id"],t["to_vcr_id"]) for t in o["transitions"]}
-        if len(pairs)+o["missing"]!=len(s["adjacent_pairs"]) or not pairs.issubset(set(s["adjacent_pairs"])):
-            raise ValueError("frozen transition membership drift")
+        _validate_frozen_transition_membership(s,o)
     return sites,bysite
+
+
+def _validate_frozen_transition_membership(
+    site:Mapping[str,Any], original:Mapping[str,Any],
+)->None:
+    """Exact, multiplicity-aware accounting for preselected VCR transitions.
+
+    Set-only comparison is insufficient: duplicate serialized V2 rows could
+    otherwise be masked by the original 'missing' counter. No factual future
+    fields are inspected; this is exclusively a source-integrity check.
+    """
+    expected=site.get("adjacent_pairs")
+    transitions=original.get("transitions")
+    missing=integer(original.get("missing"))
+    if (not isinstance(expected,list) or not isinstance(transitions,list)
+            or missing is None or missing<0):
+        raise ValueError("frozen V2 transition list/count unavailable")
+    target=[]
+    for pair in expected:
+        if (not isinstance(pair,(tuple,list)) or len(pair)!=2
+                or any(integer(v) is None or v<=0 for v in pair)):
+            raise ValueError("invalid census adjacent transition identity")
+        target.append(tuple(pair))
+    if len(target)!=len(set(target)):
+        raise ValueError("duplicate census adjacent transition")
+    observed=[]
+    for row in transitions:
+        if not isinstance(row,Mapping):
+            raise ValueError("invalid frozen V2 transition row")
+        a,b=integer(row.get("from_vcr_id")),integer(row.get("to_vcr_id"))
+        if a is None or a<=0 or b is None or b<=0:
+            raise ValueError("invalid frozen V2 transition identity")
+        observed.append((a,b))
+    if len(observed)!=len(set(observed)):
+        raise ValueError("duplicate frozen V2 transition")
+    if len(observed)+missing!=len(target) or not set(observed).issubset(set(target)):
+        raise ValueError("frozen transition membership/count drift")
 
 
 def guarded_transition(
@@ -94,6 +129,10 @@ def guarded_transition(
     current_vcr_payload:Mapping[str,Any],site:tuple[int,int],
 )->dict[str,Any]:
     """This function has NO next-VCR or future opponent argument."""
+    if not isinstance(predictions,Mapping):
+        raise ValueError("T-1 prediction index unavailable")
+    if not isinstance(current_vcr_payload,Mapping):
+        raise ValueError("current VCR N unavailable")
     current={}
     for side in ("left","right"):
         body=current_vcr_payload.get(side)
