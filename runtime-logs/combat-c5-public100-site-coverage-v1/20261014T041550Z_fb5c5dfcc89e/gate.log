@@ -1,0 +1,205 @@
+===== C5 ORDINARY PUBLIC100 SITE-COVERAGE PREFLIGHT =====
+HEAD: fb5c5dfcc89e9eab76b6f7cb56ee92e734c0e350
+DB: /root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb
+selection: metadata only; before VCR payloads
+SHA256: verified once before read-only DuckDB open
+[c5-coverage] verifying SHA256 once before read-only DuckDB open
+[c5-coverage] SHA256 verified in 31.5s
+[c5-coverage] preselecting game-turns using T-1 archive and VCR-existence metadata
+[c5-coverage] preselected 96 windows / 48 games
+[c5-coverage] [1/96] G2466 T42 EARLY_QUINTILE
+[c5-coverage] [1/96] VCR=11 ordinary_multi_sites=0
+[c5-coverage] [2/96] G2466 T139 LATE_85TH_PERCENTILE
+[c5-coverage] [2/96] VCR=3 ordinary_multi_sites=0
+[c5-coverage] [3/96] G218619 T61 EARLY_QUINTILE
+[c5-coverage] [3/96] VCR=24 ordinary_multi_sites=0
+[c5-coverage] [4/96] G218619 T232 LATE_85TH_PERCENTILE
+[c5-coverage] [4/96] VCR=5 ordinary_multi_sites=1
+[c5-coverage] [5/96] G221008 T35 EARLY_QUINTILE
+[c5-coverage] [5/96] VCR=2 ordinary_multi_sites=0
+[c5-coverage] [6/96] G221008 T115 LATE_85TH_PERCENTILE
+[c5-coverage] [6/96] VCR=1 ordinary_multi_sites=0
+[c5-coverage] [7/96] G226056 T36 EARLY_QUINTILE
+[c5-coverage] [7/96] VCR=23 ordinary_multi_sites=0
+[c5-coverage] [8/96] G226056 T118 LATE_85TH_PERCENTILE
+[c5-coverage] [8/96] VCR=45 ordinary_multi_sites=0
+[c5-coverage] [9/96] G228199 T41 EARLY_QUINTILE
+[c5-coverage] [9/96] VCR=11 ordinary_multi_sites=0
+[c5-coverage] [10/96] G228199 T143 LATE_85TH_PERCENTILE
+[c5-coverage] [10/96] VCR=4 ordinary_multi_sites=0
+[c5-coverage] [11/96] G233558 T94 EARLY_QUINTILE
+[c5-coverage] [11/96] VCR=5 ordinary_multi_sites=0
+[c5-coverage] [12/96] G233558 T409 LATE_85TH_PERCENTILE
+[c5-coverage] [12/96] VCR=2 ordinary_multi_sites=0
+[c5-coverage] [13/96] G243165 T30 EARLY_QUINTILE
+[c5-coverage] [13/96] VCR=17 ordinary_multi_sites=1
+[c5-coverage] [14/96] G243165 T107 LATE_85TH_PERCENTILE
+[c5-coverage] [14/96] VCR=9 ordinary_multi_sites=1
+[c5-coverage] [15/96] G245693 T29 EARLY_QUINTILE
+[c5-coverage] [15/96] VCR=13 ordinary_multi_sites=2
+[c5-coverage] [16/96] G245693 T103 LATE_85TH_PERCENTILE
+[c5-coverage] [16/96] VCR=33 ordinary_multi_sites=3
+[c5-coverage] [17/96] G253449 T44 EARLY_QUINTILE
+[c5-coverage] [17/96] VCR=12 ordinary_multi_sites=0
+[c5-coverage] [18/96] G253449 T146 LATE_85TH_PERCENTILE
+[c5-coverage] [18/96] VCR=11 ordinary_multi_sites=0
+[c5-coverage] [19/96] G257776 T92 EARLY_QUINTILE
+[c5-coverage] [19/96] VCR=7 ordinary_multi_sites=1
+[c5-coverage] [20/96] G257776 T339 LATE_85TH_PERCENTILE
+[c5-coverage] [20/96] VCR=1 ordinary_multi_sites=0
+[c5-coverage] [21/96] G266087 T59 EARLY_QUINTILE
+[c5-coverage] [21/96] VCR=15 ordinary_multi_sites=0
+[c5-coverage] [22/96] G266087 T193 LATE_85TH_PERCENTILE
+[c5-coverage] [22/96] VCR=7 ordinary_multi_sites=0
+[c5-coverage] [23/96] G277134 T36 EARLY_QUINTILE
+[c5-coverage] [23/96] VCR=1 ordinary_multi_sites=0
+[c5-coverage] [24/96] G277134 T107 LATE_85TH_PERCENTILE
+[c5-coverage] [24/96] VCR=6 ordinary_multi_sites=0
+[c5-coverage] [25/96] G283648 T52 EARLY_QUINTILE
+[c5-coverage] [25/96] VCR=7 ordinary_multi_sites=1
+[c5-coverage] [26/96] G283648 T144 LATE_85TH_PERCENTILE
+[c5-coverage] [26/96] VCR=11 ordinary_multi_sites=1
+[c5-coverage] [27/96] G296210 T40 EARLY_QUINTILE
+[c5-coverage] [27/96] VCR=3 ordinary_multi_sites=0
+[c5-coverage] [28/96] G296210 T129 LATE_85TH_PERCENTILE
+[c5-coverage] [28/96] VCR=8 ordinary_multi_sites=0
+[c5-coverage] [29/96] G310054 T37 EARLY_QUINTILE
+[c5-coverage] [29/96] VCR=6 ordinary_multi_sites=0
+[c5-coverage] [30/96] G310054 T112 LATE_85TH_PERCENTILE
+[c5-coverage] [30/96] VCR=3 ordinary_multi_sites=0
+[c5-coverage] [31/96] G325434 T52 EARLY_QUINTILE
+[c5-coverage] [31/96] VCR=8 ordinary_multi_sites=0
+[c5-coverage] [32/96] G325434 T198 LATE_85TH_PERCENTILE
+[c5-coverage] [32/96] VCR=12 ordinary_multi_sites=0
+[c5-coverage] [33/96] G338264 T44 EARLY_QUINTILE
+[c5-coverage] [33/96] VCR=13 ordinary_multi_sites=0
+[c5-coverage] [34/96] G338264 T166 LATE_85TH_PERCENTILE
+[c5-coverage] [34/96] VCR=39 ordinary_multi_sites=0
+[c5-coverage] [35/96] G341336 T33 EARLY_QUINTILE
+[c5-coverage] [35/96] VCR=7 ordinary_multi_sites=0
+[c5-coverage] [36/96] G341336 T99 LATE_85TH_PERCENTILE
+[c5-coverage] [36/96] VCR=6 ordinary_multi_sites=0
+[c5-coverage] [37/96] G343550 T53 EARLY_QUINTILE
+[c5-coverage] [37/96] VCR=9 ordinary_multi_sites=0
+[c5-coverage] [38/96] G343550 T193 LATE_85TH_PERCENTILE
+[c5-coverage] [38/96] VCR=2 ordinary_multi_sites=0
+[c5-coverage] [39/96] G347923 T34 EARLY_QUINTILE
+[c5-coverage] [39/96] VCR=10 ordinary_multi_sites=0
+[c5-coverage] [40/96] G347923 T95 LATE_85TH_PERCENTILE
+[c5-coverage] [40/96] VCR=5 ordinary_multi_sites=1
+[c5-coverage] [41/96] G364412 T65 EARLY_QUINTILE
+[c5-coverage] [41/96] VCR=5 ordinary_multi_sites=1
+[c5-coverage] [42/96] G364412 T196 LATE_85TH_PERCENTILE
+[c5-coverage] [42/96] VCR=4 ordinary_multi_sites=0
+[c5-coverage] [43/96] G371631 T41 EARLY_QUINTILE
+[c5-coverage] [43/96] VCR=13 ordinary_multi_sites=0
+[c5-coverage] [44/96] G371631 T165 LATE_85TH_PERCENTILE
+[c5-coverage] [44/96] VCR=11 ordinary_multi_sites=0
+[c5-coverage] [45/96] G385906 T39 EARLY_QUINTILE
+[c5-coverage] [45/96] VCR=10 ordinary_multi_sites=0
+[c5-coverage] [46/96] G385906 T128 LATE_85TH_PERCENTILE
+[c5-coverage] [46/96] VCR=3 ordinary_multi_sites=0
+[c5-coverage] [47/96] G399914 T38 EARLY_QUINTILE
+[c5-coverage] [47/96] VCR=6 ordinary_multi_sites=0
+[c5-coverage] [48/96] G399914 T116 LATE_85TH_PERCENTILE
+[c5-coverage] [48/96] VCR=14 ordinary_multi_sites=1
+[c5-coverage] [49/96] G407599 T49 EARLY_QUINTILE
+[c5-coverage] [49/96] VCR=3 ordinary_multi_sites=0
+[c5-coverage] [50/96] G407599 T117 LATE_85TH_PERCENTILE
+[c5-coverage] [50/96] VCR=1 ordinary_multi_sites=0
+[c5-coverage] [51/96] G416233 T32 EARLY_QUINTILE
+[c5-coverage] [51/96] VCR=8 ordinary_multi_sites=0
+[c5-coverage] [52/96] G416233 T121 LATE_85TH_PERCENTILE
+[c5-coverage] [52/96] VCR=2 ordinary_multi_sites=0
+[c5-coverage] [53/96] G421276 T39 EARLY_QUINTILE
+[c5-coverage] [53/96] VCR=3 ordinary_multi_sites=0
+[c5-coverage] [54/96] G421276 T115 LATE_85TH_PERCENTILE
+[c5-coverage] [54/96] VCR=20 ordinary_multi_sites=2
+[c5-coverage] [55/96] G423531 T34 EARLY_QUINTILE
+[c5-coverage] [55/96] VCR=7 ordinary_multi_sites=0
+[c5-coverage] [56/96] G423531 T123 LATE_85TH_PERCENTILE
+[c5-coverage] [56/96] VCR=4 ordinary_multi_sites=0
+[c5-coverage] [57/96] G441148 T54 EARLY_QUINTILE
+[c5-coverage] [57/96] VCR=17 ordinary_multi_sites=0
+[c5-coverage] [58/96] G441148 T202 LATE_85TH_PERCENTILE
+[c5-coverage] [58/96] VCR=13 ordinary_multi_sites=0
+[c5-coverage] [59/96] G467047 T36 EARLY_QUINTILE
+[c5-coverage] [59/96] VCR=10 ordinary_multi_sites=0
+[c5-coverage] [60/96] G467047 T117 LATE_85TH_PERCENTILE
+[c5-coverage] [60/96] VCR=2 ordinary_multi_sites=0
+[c5-coverage] [61/96] G467386 T69 EARLY_QUINTILE
+[c5-coverage] [61/96] VCR=17 ordinary_multi_sites=0
+[c5-coverage] [62/96] G467386 T245 LATE_85TH_PERCENTILE
+[c5-coverage] [62/96] VCR=1 ordinary_multi_sites=0
+[c5-coverage] [63/96] G473010 T71 EARLY_QUINTILE
+[c5-coverage] [63/96] VCR=4 ordinary_multi_sites=0
+[c5-coverage] [64/96] G473010 T214 LATE_85TH_PERCENTILE
+[c5-coverage] [64/96] VCR=3 ordinary_multi_sites=1
+[c5-coverage] [65/96] G476380 T82 EARLY_QUINTILE
+[c5-coverage] [65/96] VCR=18 ordinary_multi_sites=3
+[c5-coverage] [66/96] G476380 T327 LATE_85TH_PERCENTILE
+[c5-coverage] [66/96] VCR=2 ordinary_multi_sites=1
+[c5-coverage] [67/96] G476826 T36 EARLY_QUINTILE
+[c5-coverage] [67/96] VCR=3 ordinary_multi_sites=0
+[c5-coverage] [68/96] G476826 T122 LATE_85TH_PERCENTILE
+[c5-coverage] [68/96] VCR=15 ordinary_multi_sites=0
+[c5-coverage] [69/96] G477725 T55 EARLY_QUINTILE
+[c5-coverage] [69/96] VCR=3 ordinary_multi_sites=0
+[c5-coverage] [70/96] G477725 T187 LATE_85TH_PERCENTILE
+[c5-coverage] [70/96] VCR=3 ordinary_multi_sites=1
+[c5-coverage] [71/96] G490865 T40 EARLY_QUINTILE
+[c5-coverage] [71/96] VCR=10 ordinary_multi_sites=0
+[c5-coverage] [72/96] G490865 T137 LATE_85TH_PERCENTILE
+[c5-coverage] [72/96] VCR=2 ordinary_multi_sites=1
+[c5-coverage] [73/96] G497195 T40 EARLY_QUINTILE
+[c5-coverage] [73/96] VCR=4 ordinary_multi_sites=0
+[c5-coverage] [74/96] G497195 T128 LATE_85TH_PERCENTILE
+[c5-coverage] [74/96] VCR=9 ordinary_multi_sites=0
+[c5-coverage] [75/96] G521834 T28 EARLY_QUINTILE
+[c5-coverage] [75/96] VCR=1 ordinary_multi_sites=0
+[c5-coverage] [76/96] G521834 T86 LATE_85TH_PERCENTILE
+[c5-coverage] [76/96] VCR=1 ordinary_multi_sites=0
+[c5-coverage] [77/96] G550972 T55 EARLY_QUINTILE
+[c5-coverage] [77/96] VCR=11 ordinary_multi_sites=0
+[c5-coverage] [78/96] G550972 T135 LATE_85TH_PERCENTILE
+[c5-coverage] [78/96] VCR=1 ordinary_multi_sites=0
+[c5-coverage] [79/96] G597079 T43 EARLY_QUINTILE
+[c5-coverage] [79/96] VCR=6 ordinary_multi_sites=0
+[c5-coverage] [80/96] G597079 T144 LATE_85TH_PERCENTILE
+[c5-coverage] [80/96] VCR=6 ordinary_multi_sites=0
+[c5-coverage] [81/96] G600032 T35 EARLY_QUINTILE
+[c5-coverage] [81/96] VCR=3 ordinary_multi_sites=0
+[c5-coverage] [82/96] G600032 T119 LATE_85TH_PERCENTILE
+[c5-coverage] [82/96] VCR=6 ordinary_multi_sites=0
+[c5-coverage] [83/96] G617883 T51 EARLY_QUINTILE
+[c5-coverage] [83/96] VCR=7 ordinary_multi_sites=0
+[c5-coverage] [84/96] G617883 T192 LATE_85TH_PERCENTILE
+[c5-coverage] [84/96] VCR=2 ordinary_multi_sites=0
+[c5-coverage] [85/96] G629488 T41 EARLY_QUINTILE
+[c5-coverage] [85/96] VCR=1 ordinary_multi_sites=0
+[c5-coverage] [86/96] G629488 T141 LATE_85TH_PERCENTILE
+[c5-coverage] [86/96] VCR=5 ordinary_multi_sites=1
+[c5-coverage] [87/96] G633837 T33 EARLY_QUINTILE
+[c5-coverage] [87/96] VCR=3 ordinary_multi_sites=0
+[c5-coverage] [88/96] G633837 T119 LATE_85TH_PERCENTILE
+[c5-coverage] [88/96] VCR=8 ordinary_multi_sites=1
+[c5-coverage] [89/96] G644013 T49 EARLY_QUINTILE
+[c5-coverage] [89/96] VCR=3 ordinary_multi_sites=0
+[c5-coverage] [90/96] G644013 T124 LATE_85TH_PERCENTILE
+[c5-coverage] [90/96] VCR=10 ordinary_multi_sites=0
+[c5-coverage] [91/96] G653272 T39 EARLY_QUINTILE
+[c5-coverage] [91/96] VCR=3 ordinary_multi_sites=0
+[c5-coverage] [92/96] G653272 T137 LATE_85TH_PERCENTILE
+[c5-coverage] [92/96] VCR=21 ordinary_multi_sites=0
+[c5-coverage] [93/96] G658427 T41 EARLY_QUINTILE
+[c5-coverage] [93/96] VCR=11 ordinary_multi_sites=1
+[c5-coverage] [94/96] G658427 T132 LATE_85TH_PERCENTILE
+[c5-coverage] [94/96] VCR=25 ordinary_multi_sites=0
+[c5-coverage] [95/96] G674696 T32 EARLY_QUINTILE
+[c5-coverage] [95/96] VCR=5 ordinary_multi_sites=1
+[c5-coverage] [96/96] G674696 T115 LATE_85TH_PERCENTILE
+[c5-coverage] [96/96] VCR=3 ordinary_multi_sites=0
+===== INDEPENDENT PUBLIC100 ORDINARY C5 COVERAGE V1 =====
+status: PRESELECTED_ORDINARY_C5_SITE_CENSUS_NOT_A_QUEUE_PREDICTION
+summary: {'games': 48, 'windows': 96, 'current_VCR_observations': 809, 'unique_sites': 552, 'ordinary_ship_only_multi_VCR_sites': 27, 'ordinary_ship_vs_ship_VCRs': 253, 'explicit_horwasp_out_of_scope_VCRs': 257, 'ordinary_ship_planet_candidate_VCRs': 299, 'site_classifications': {'ORDINARY_MIXED_SHIP_PLANET_SITE': 36, 'ORDINARY_SHIP_ONLY_MULTIVCR_SITE': 27, 'OUT_OF_SCOPE_HORWASP_SITE': 178, 'SITE_NOT_BOUNDED_ORDINARY_SHIP_ONLY_MULTIVCR': 311}, 'VCR_shape_classifications': {'ORDINARY_SHIP_VS_PLANET_CANDIDATE': 299, 'ORDINARY_SHIP_VS_SHIP': 253, 'OUT_OF_SCOPE_HORWASP_RACE12': 257}, 'Tminus1_owner_ship_order_readiness': {'TMINUS1_OWNER_ORDER_CONSENSUS': 376}, 'candidate_parent_queue_transition_sites': 27, 'full_NuHost_combat_queue_or_seed_predictions': 0, 'Horwasp_rules_promoted': False}
+output: artifacts/combat/c5-public100-site-coverage-v1/published/report.json
