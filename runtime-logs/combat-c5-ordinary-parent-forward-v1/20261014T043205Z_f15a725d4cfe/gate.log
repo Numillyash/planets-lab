@@ -1,0 +1,53 @@
+===== C5 ORDINARY PARENT STANDARD NEXT-VCR FORWARD V1 =====
+HEAD: f15a725d4cfec1214d83c2a2a05cd6d3c25a3a46
+frozen_c5_census_sha1: fda92475988d2f7dfbc7b93606de4f8cec909806
+frozen_c5_census: artifacts/combat/c5-public100-site-coverage-v1/published/report.json
+DB: /root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb (pinned SHA256 once, read-only)
+[c5-forward] verifying immutable public100 SHA256 once
+[c5-forward] SHA256 verified in 25.2s
+[c5-forward] [1/21] G218619 T232: 1 frozen sites
+[c5-forward] [1/21] processed 1 sites
+[c5-forward] [2/21] G243165 T30: 1 frozen sites
+[c5-forward] [2/21] processed 1 sites
+[c5-forward] [3/21] G243165 T107: 1 frozen sites
+[c5-forward] [3/21] processed 1 sites
+[c5-forward] [4/21] G245693 T29: 2 frozen sites
+[c5-forward] [4/21] processed 2 sites
+[c5-forward] [5/21] G245693 T103: 3 frozen sites
+[c5-forward] [5/21] processed 3 sites
+[c5-forward] [6/21] G257776 T92: 1 frozen sites
+[c5-forward] [6/21] processed 1 sites
+[c5-forward] [7/21] G283648 T52: 1 frozen sites
+[c5-forward] [7/21] processed 1 sites
+[c5-forward] [8/21] G283648 T144: 1 frozen sites
+[c5-forward] [8/21] processed 1 sites
+[c5-forward] [9/21] G347923 T95: 1 frozen sites
+[c5-forward] [9/21] processed 1 sites
+[c5-forward] [10/21] G364412 T65: 1 frozen sites
+[c5-forward] [10/21] processed 1 sites
+[c5-forward] [11/21] G399914 T116: 1 frozen sites
+[c5-forward] [11/21] processed 1 sites
+[c5-forward] [12/21] G421276 T115: 2 frozen sites
+[c5-forward] [12/21] processed 2 sites
+[c5-forward] [13/21] G473010 T214: 1 frozen sites
+[c5-forward] [13/21] processed 1 sites
+[c5-forward] [14/21] G476380 T82: 3 frozen sites
+[c5-forward] [14/21] processed 3 sites
+[c5-forward] [15/21] G476380 T327: 1 frozen sites
+[c5-forward] [15/21] processed 1 sites
+[c5-forward] [16/21] G477725 T187: 1 frozen sites
+[c5-forward] [16/21] processed 1 sites
+[c5-forward] [17/21] G490865 T137: 1 frozen sites
+[c5-forward] [17/21] processed 1 sites
+[c5-forward] [18/21] G629488 T141: 1 frozen sites
+[c5-forward] [18/21] processed 1 sites
+[c5-forward] [19/21] G633837 T119: 1 frozen sites
+[c5-forward] [19/21] processed 1 sites
+[c5-forward] [20/21] G658427 T41: 1 frozen sites
+[c5-forward] [20/21] processed 1 sites
+[c5-forward] [21/21] G674696 T32: 1 frozen sites
+[c5-forward] [21/21] processed 1 sites
+===== ORDINARY C5 PARENT STANDARD N-TO-N+1 FORWARD V1 =====
+status: EXPLORATORY_PARENT_STANDARD_FORWARD_C5_NOT_PROMOTED
+summary: {'frozen_sites': 27, 'frozen_adjacent_VCR_ID_transitions': 63, 'transition_trials': 56, 'unattempted_due_to_site_failure': 7, 'status_counts': {'ABSTAIN_CAPTURE_TEMPORARY_ORDER_NOT_INDEPENDENT': 2, 'ABSTAIN_CURRENT_REPLAY_OR_CARRIED_START': 47, 'ABSTAIN_PARENT_STANDARD_NO_PAIR': 1, 'ABSTAIN_PARENT_STANDARD_UNRESOLVED': 3, 'PREDICTED_NEXT_PARENT_STANDARD': 3}, 'parent_queue_predictions_made': 3, 'available_factual_comparators': 3, 'exact_next_pair_and_sides': 2, 'mismatched_next_pair_or_sides': 1, 'Horwasp_cases_predicted': 0, 'game_specific_capture_fixture_order_used': False, 'truly_independent_holdout': False, 'full_NuHost_executor_promotion': False}
+output: artifacts/combat/c5-ordinary-parent-forward-v1/published/report.json
