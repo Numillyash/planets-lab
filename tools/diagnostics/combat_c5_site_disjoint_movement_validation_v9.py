@@ -178,11 +178,14 @@ def resolve_pre_context(game:int,before:int,snapshots:Sequence[Any],raw_payloads
         elif (specs.hulls!=current.hulls or specs.engines!=current.engines):
             raise ValueError("conflicting exact Tminus1 static catalogs")
     candidates={}
-    for raw in raw_payloads:
+    # Keep ALL source perspectives in the scalar candidate inventory.
+    # Repeated "settings.sphere" keys must not silently overwrite a conflict.
+    for index,raw in enumerate(raw_payloads):
         for root in ("settings","game"):
             item=raw.get(root)
             if isinstance(item,(Mapping,list,tuple)):
-                candidates.update(_topology_candidates(item,prefix=root))
+                candidates.update(_topology_candidates(
+                    item,prefix=f"perspective[{index}].{root}"))
     sphere=_unique_bool(candidates,"sphere")
     if sphere is None:raise ValueError("Tminus1 sphere topology unknown")
     topology=effective_sphere_topology(
@@ -199,6 +202,8 @@ def resolve_pre_context(game:int,before:int,snapshots:Sequence[Any],raw_payloads
         for val in _find_named_setting(raw,"nuionstorms"):
             flag=_boolish(val)
             if flag is not None:flags.add(flag)
+    if len(flags)>1:
+        raise ValueError("conflicting Tminus1 nuionstorms settings")
     nuionstorms=next(iter(flags)) if len(flags)==1 else None
     entities=_entity_map(snapshots)
     planets=tuple(_planet_tuples_by_turn(entities,include_ineligible=True).get(before,()))
