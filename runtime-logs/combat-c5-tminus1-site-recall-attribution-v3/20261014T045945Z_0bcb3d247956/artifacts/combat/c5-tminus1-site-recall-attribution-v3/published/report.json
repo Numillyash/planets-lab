@@ -1,0 +1,3330 @@
+{
+  "boundary": "Frozen 27 sites/63 transitions and 9/7 V2 conditional results remain unchanged. T-1 ship movement/position calculation is independent; factual N+1 ship IDs and owner identity are supplied ONLY inside a post-verdict diagnostic. This is a retrospective failure attribution, not selection or validation of a next pair, nor a demonstration of Host movement accuracy on all ships. Exact VCR order unproven. No race12, production, CURRENT, or combat executor changes.",
+  "database_path": "/root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "schema": "planets-lab.combat-c5-tminus1-site-recall-attribution.v3",
+  "site_evaluations": [
+    {
+      "context_error": null,
+      "context_reconstructed": true,
+      "game_id": 218619,
+      "source_site_missing_count": 0,
+      "source_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "source_site_transition_count": 1,
+      "transition_posthoc_evaluations": [
+        {
+          "from_VCR": 1160,
+          "frozen_conditional_V2_accuracy": true,
+          "frozen_conditional_V2_prediction": {
+            "capture_fixture_order_used": false,
+            "current_N_roster_conditioned": true,
+            "diplomacy_controls_through_vcr_id": 1160,
+            "left_ship_id": 480,
+            "occurrence_index": 1,
+            "pair": [
+              18,
+              480
+            ],
+            "pair_input_count": 1,
+            "right_ship_id": 18
+          },
+          "frozen_conditional_V2_status": "CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_ONE_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_PREDICTS_FACTUAL_SITE",
+              "actual_next_owner": 5,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": [
+                2199,
+                2514
+              ],
+              "raw_Tminus1_targetx": 2199,
+              "raw_Tminus1_targety": 2514,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                2199,
+                2514
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 480,
+              "source": "special_tow_movement_phase"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 1,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2197,
+              "raw_Tminus1_targety": 2512,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                2157,
+                2483
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 18,
+              "source": "normal_mine_route_risk"
+            }
+          ],
+          "to_VCR": 1161
+        }
+      ],
+      "turn": 232,
+      "x": 2199,
+      "y": 2514
+    },
+    {
+      "context_error": null,
+      "context_reconstructed": true,
+      "game_id": 243165,
+      "source_site_missing_count": 0,
+      "source_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "source_site_transition_count": 2,
+      "transition_posthoc_evaluations": [
+        {
+          "from_VCR": 146,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_NEITHER_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 7,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2745,
+              "raw_Tminus1_targety": 2145,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                2784,
+                2079
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 115,
+              "source": "sphere_topology_not_integrated"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 10,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2740,
+              "raw_Tminus1_targety": 2147,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                2665,
+                2173
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 98,
+              "source": "sphere_topology_not_integrated"
+            }
+          ],
+          "to_VCR": 147
+        },
+        {
+          "from_VCR": 147,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_TMINUS1_OR_CURRENT_N_BRIDGE_UNRESOLVED",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_NEITHER_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 10,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2740,
+              "raw_Tminus1_targety": 2147,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                2665,
+                2173
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 98,
+              "source": "sphere_topology_not_integrated"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 7,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2745,
+              "raw_Tminus1_targety": 2145,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                2784,
+                2079
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 115,
+              "source": "sphere_topology_not_integrated"
+            }
+          ],
+          "to_VCR": 148
+        }
+      ],
+      "turn": 30,
+      "x": 2743,
+      "y": 2147
+    },
+    {
+      "context_error": null,
+      "context_reconstructed": true,
+      "game_id": 243165,
+      "source_site_missing_count": 0,
+      "source_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "source_site_transition_count": 3,
+      "transition_posthoc_evaluations": [
+        {
+          "from_VCR": 981,
+          "frozen_conditional_V2_accuracy": false,
+          "frozen_conditional_V2_prediction": {
+            "capture_fixture_order_used": false,
+            "current_N_roster_conditioned": true,
+            "diplomacy_controls_through_vcr_id": 981,
+            "left_ship_id": 220,
+            "occurrence_index": 1,
+            "pair": [
+              220,
+              261
+            ],
+            "pair_input_count": 1,
+            "right_ship_id": 261
+          },
+          "frozen_conditional_V2_status": "CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_NEITHER_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 10,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2571,
+              "raw_Tminus1_targety": 2546,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                2645,
+                2574
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 220,
+              "source": "tow_attempt"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 9,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2569,
+              "raw_Tminus1_targety": 2544,
+              "raw_Tminus1_warp": 0,
+              "raw_Tminus1_x_y": [
+                2569,
+                2544
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 138,
+              "source": "sphere_topology_not_integrated"
+            }
+          ],
+          "to_VCR": 982
+        },
+        {
+          "from_VCR": 982,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_NEITHER_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 10,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2569,
+              "raw_Tminus1_targety": 2541,
+              "raw_Tminus1_warp": 7,
+              "raw_Tminus1_x_y": [
+                2576,
+                2492
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 257,
+              "source": "sphere_topology_not_integrated"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 9,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2569,
+              "raw_Tminus1_targety": 2544,
+              "raw_Tminus1_warp": 0,
+              "raw_Tminus1_x_y": [
+                2569,
+                2544
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 138,
+              "source": "sphere_topology_not_integrated"
+            }
+          ],
+          "to_VCR": 983
+        },
+        {
+          "from_VCR": 983,
+          "frozen_conditional_V2_accuracy": true,
+          "frozen_conditional_V2_prediction": {
+            "capture_fixture_order_used": false,
+            "current_N_roster_conditioned": true,
+            "diplomacy_controls_through_vcr_id": 983,
+            "left_ship_id": 257,
+            "occurrence_index": 1,
+            "pair": [
+              257,
+              261
+            ],
+            "pair_input_count": 1,
+            "right_ship_id": 261
+          },
+          "frozen_conditional_V2_status": "CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_ONE_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 10,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2569,
+              "raw_Tminus1_targety": 2541,
+              "raw_Tminus1_warp": 7,
+              "raw_Tminus1_x_y": [
+                2576,
+                2492
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 257,
+              "source": "sphere_topology_not_integrated"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_PREDICTS_FACTUAL_SITE",
+              "actual_next_owner": 9,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": [
+                2569,
+                2544
+              ],
+              "raw_Tminus1_targetx": 2569,
+              "raw_Tminus1_targety": 2544,
+              "raw_Tminus1_warp": 0,
+              "raw_Tminus1_x_y": [
+                2569,
+                2544
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 261,
+              "source": "special_tow_movement_phase"
+            }
+          ],
+          "to_VCR": 984
+        }
+      ],
+      "turn": 107,
+      "x": 2569,
+      "y": 2544
+    },
+    {
+      "context_error": null,
+      "context_reconstructed": true,
+      "game_id": 245693,
+      "source_site_missing_count": 0,
+      "source_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "source_site_transition_count": 2,
+      "transition_posthoc_evaluations": [
+        {
+          "from_VCR": 83,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_PARENT_STANDARD_UNRESOLVED",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_ONE_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 8,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2373,
+              "raw_Tminus1_targety": 1638,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                2385,
+                1582
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 110,
+              "source": "pre_move_mkt_mass_change"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_PREDICTS_FACTUAL_SITE",
+              "actual_next_owner": 1,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": [
+                2373,
+                1641
+              ],
+              "raw_Tminus1_targetx": 2373,
+              "raw_Tminus1_targety": 1641,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                2307,
+                1593
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 14,
+              "source": "normal_move_warp_well"
+            }
+          ],
+          "to_VCR": 84
+        },
+        {
+          "from_VCR": 84,
+          "frozen_conditional_V2_accuracy": true,
+          "frozen_conditional_V2_prediction": {
+            "capture_fixture_order_used": false,
+            "current_N_roster_conditioned": false,
+            "diplomacy_controls_through_vcr_id": 84,
+            "left_ship_id": 192,
+            "occurrence_index": 1,
+            "pair": [
+              110,
+              192
+            ],
+            "pair_input_count": 1,
+            "right_ship_id": 110
+          },
+          "frozen_conditional_V2_status": "CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_ONE_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_PREDICTS_FACTUAL_SITE",
+              "actual_next_owner": 1,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": [
+                2373,
+                1641
+              ],
+              "raw_Tminus1_targetx": 2373,
+              "raw_Tminus1_targety": 1641,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                2299,
+                1658
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 192,
+              "source": "special_tow_movement_phase"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 8,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2373,
+              "raw_Tminus1_targety": 1638,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                2385,
+                1582
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 110,
+              "source": "pre_move_mkt_mass_change"
+            }
+          ],
+          "to_VCR": 85
+        }
+      ],
+      "turn": 29,
+      "x": 2373,
+      "y": 1641
+    },
+    {
+      "context_error": null,
+      "context_reconstructed": true,
+      "game_id": 245693,
+      "source_site_missing_count": 0,
+      "source_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "source_site_transition_count": 0,
+      "transition_posthoc_evaluations": [],
+      "turn": 29,
+      "x": 2617,
+      "y": 2078
+    },
+    {
+      "context_error": null,
+      "context_reconstructed": true,
+      "game_id": 245693,
+      "source_site_missing_count": 0,
+      "source_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "source_site_transition_count": 3,
+      "transition_posthoc_evaluations": [
+        {
+          "from_VCR": 1023,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_PARENT_STANDARD_UNRESOLVED",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_ONE_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_PREDICTS_FACTUAL_SITE",
+              "actual_next_owner": 4,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": [
+                1368,
+                2266
+              ],
+              "raw_Tminus1_targetx": 1368,
+              "raw_Tminus1_targety": 2266,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                1368,
+                2266
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 254,
+              "source": "normal_move"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 5,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 1370,
+              "raw_Tminus1_targety": 2268,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                1399,
+                2285
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 449,
+              "source": "web_mine_route_risk"
+            }
+          ],
+          "to_VCR": 1024
+        },
+        {
+          "from_VCR": 1024,
+          "frozen_conditional_V2_accuracy": false,
+          "frozen_conditional_V2_prediction": {
+            "capture_fixture_order_used": false,
+            "current_N_roster_conditioned": false,
+            "diplomacy_controls_through_vcr_id": 1024,
+            "left_ship_id": 539,
+            "occurrence_index": 1,
+            "pair": [
+              449,
+              539
+            ],
+            "pair_input_count": 5,
+            "right_ship_id": 449
+          },
+          "frozen_conditional_V2_status": "CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_NEITHER_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 4,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 1368,
+              "raw_Tminus1_targety": 2266,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                1368,
+                2266
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 519,
+              "source": "pre_move_mkt_mass_change"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 5,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 1370,
+              "raw_Tminus1_targety": 2268,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                1399,
+                2285
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 449,
+              "source": "web_mine_route_risk"
+            }
+          ],
+          "to_VCR": 1025
+        },
+        {
+          "from_VCR": 1025,
+          "frozen_conditional_V2_accuracy": true,
+          "frozen_conditional_V2_prediction": {
+            "capture_fixture_order_used": false,
+            "current_N_roster_conditioned": true,
+            "diplomacy_controls_through_vcr_id": 1025,
+            "left_ship_id": 539,
+            "occurrence_index": 1,
+            "pair": [
+              449,
+              539
+            ],
+            "pair_input_count": 5,
+            "right_ship_id": 449
+          },
+          "frozen_conditional_V2_status": "CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_ONE_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_PREDICTS_FACTUAL_SITE",
+              "actual_next_owner": 4,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": [
+                1368,
+                2266
+              ],
+              "raw_Tminus1_targetx": 1368,
+              "raw_Tminus1_targety": 2266,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                1368,
+                2266
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 539,
+              "source": "normal_move"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 5,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 1370,
+              "raw_Tminus1_targety": 2268,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                1399,
+                2285
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 449,
+              "source": "web_mine_route_risk"
+            }
+          ],
+          "to_VCR": 1026
+        }
+      ],
+      "turn": 103,
+      "x": 1368,
+      "y": 2266
+    },
+    {
+      "context_error": null,
+      "context_reconstructed": true,
+      "game_id": 245693,
+      "source_site_missing_count": 0,
+      "source_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "source_site_transition_count": 1,
+      "transition_posthoc_evaluations": [
+        {
+          "from_VCR": 1020,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_ONE_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 4,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 1384,
+              "raw_Tminus1_targety": 2357,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                1376,
+                2333
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 472,
+              "source": "pre_move_mkt_mass_change"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_PREDICTS_FACTUAL_SITE",
+              "actual_next_owner": 5,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": [
+                1384,
+                2360
+              ],
+              "raw_Tminus1_targetx": 1384,
+              "raw_Tminus1_targety": 2360,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                1384,
+                2360
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 447,
+              "source": "normal_move"
+            }
+          ],
+          "to_VCR": 1021
+        }
+      ],
+      "turn": 103,
+      "x": 1384,
+      "y": 2360
+    },
+    {
+      "context_error": null,
+      "context_reconstructed": true,
+      "game_id": 245693,
+      "source_site_missing_count": 0,
+      "source_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "source_site_transition_count": 2,
+      "transition_posthoc_evaluations": [
+        {
+          "from_VCR": 1005,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_PARENT_STANDARD_UNRESOLVED",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_ONE_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_PREDICTS_FACTUAL_SITE",
+              "actual_next_owner": 8,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": [
+                2794,
+                2246
+              ],
+              "raw_Tminus1_targetx": 2794,
+              "raw_Tminus1_targety": 2246,
+              "raw_Tminus1_warp": 0,
+              "raw_Tminus1_x_y": [
+                2794,
+                2246
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 375,
+              "source": "stationary_effective_warp_zero"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 1,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2792,
+              "raw_Tminus1_targety": 2248,
+              "raw_Tminus1_warp": 4,
+              "raw_Tminus1_x_y": [
+                2779,
+                2251
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 301,
+              "source": "normal_mine_route_risk"
+            }
+          ],
+          "to_VCR": 1006
+        },
+        {
+          "from_VCR": 1006,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_PARENT_STANDARD_UNRESOLVED",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_ONE_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_PREDICTS_FACTUAL_SITE",
+              "actual_next_owner": 8,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": [
+                2794,
+                2246
+              ],
+              "raw_Tminus1_targetx": 2794,
+              "raw_Tminus1_targety": 2246,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                2794,
+                2246
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 536,
+              "source": "normal_move"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 1,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2792,
+              "raw_Tminus1_targety": 2248,
+              "raw_Tminus1_warp": 4,
+              "raw_Tminus1_x_y": [
+                2779,
+                2251
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 301,
+              "source": "normal_mine_route_risk"
+            }
+          ],
+          "to_VCR": 1007
+        }
+      ],
+      "turn": 103,
+      "x": 2794,
+      "y": 2246
+    },
+    {
+      "context_error": null,
+      "context_reconstructed": true,
+      "game_id": 257776,
+      "source_site_missing_count": 0,
+      "source_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "source_site_transition_count": 2,
+      "transition_posthoc_evaluations": [
+        {
+          "from_VCR": 337,
+          "frozen_conditional_V2_accuracy": true,
+          "frozen_conditional_V2_prediction": {
+            "capture_fixture_order_used": false,
+            "current_N_roster_conditioned": true,
+            "diplomacy_controls_through_vcr_id": 337,
+            "left_ship_id": 342,
+            "occurrence_index": 1,
+            "pair": [
+              58,
+              342
+            ],
+            "pair_input_count": 1,
+            "right_ship_id": 58
+          },
+          "frozen_conditional_V2_status": "CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_ONE_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_PREDICTS_FACTUAL_SITE",
+              "actual_next_owner": 3,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": [
+                2595,
+                2254
+              ],
+              "raw_Tminus1_targetx": 2595,
+              "raw_Tminus1_targety": 2254,
+              "raw_Tminus1_warp": 8,
+              "raw_Tminus1_x_y": [
+                2595,
+                2254
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 342,
+              "source": "normal_move"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 7,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2595,
+              "raw_Tminus1_targety": 2254,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                2598,
+                2281
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 58,
+              "source": "normal_mine_route_risk"
+            }
+          ],
+          "to_VCR": 338
+        },
+        {
+          "from_VCR": 338,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_N_REPLAY_OR_CARRIED_START",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_ONE_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_PREDICTS_FACTUAL_SITE",
+              "actual_next_owner": 3,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": [
+                2595,
+                2254
+              ],
+              "raw_Tminus1_targetx": 2595,
+              "raw_Tminus1_targety": 2254,
+              "raw_Tminus1_warp": 8,
+              "raw_Tminus1_x_y": [
+                2595,
+                2254
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 342,
+              "source": "normal_move"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 9,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2595,
+              "raw_Tminus1_targety": 2254,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                2593,
+                2254
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 303,
+              "source": "normal_mine_route_risk"
+            }
+          ],
+          "to_VCR": 339
+        }
+      ],
+      "turn": 92,
+      "x": 2595,
+      "y": 2254
+    },
+    {
+      "context_error": null,
+      "context_reconstructed": true,
+      "game_id": 283648,
+      "source_site_missing_count": 0,
+      "source_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "source_site_transition_count": 2,
+      "transition_posthoc_evaluations": [
+        {
+          "from_VCR": 112,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_NEITHER_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 4,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 1992,
+              "raw_Tminus1_targety": 997,
+              "raw_Tminus1_warp": 7,
+              "raw_Tminus1_x_y": [
+                1992,
+                997
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 458,
+              "source": "tow_target"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 10,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 1882,
+              "raw_Tminus1_targety": 1002,
+              "raw_Tminus1_warp": 4,
+              "raw_Tminus1_x_y": [
+                1882,
+                1002
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 209,
+              "source": "tow_target"
+            }
+          ],
+          "to_VCR": 113
+        },
+        {
+          "from_VCR": 113,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_NEITHER_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 4,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 1911,
+              "raw_Tminus1_targety": 1000,
+              "raw_Tminus1_warp": 7,
+              "raw_Tminus1_x_y": [
+                1882,
+                1002
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 393,
+              "source": "tow_attempt"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 10,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 1882,
+              "raw_Tminus1_targety": 1002,
+              "raw_Tminus1_warp": 4,
+              "raw_Tminus1_x_y": [
+                1882,
+                1002
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 209,
+              "source": "tow_target"
+            }
+          ],
+          "to_VCR": 114
+        }
+      ],
+      "turn": 52,
+      "x": 1911,
+      "y": 1000
+    },
+    {
+      "context_error": null,
+      "context_reconstructed": true,
+      "game_id": 283648,
+      "source_site_missing_count": 0,
+      "source_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "source_site_transition_count": 1,
+      "transition_posthoc_evaluations": [
+        {
+          "from_VCR": 786,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_NEITHER_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 10,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 1275,
+              "raw_Tminus1_targety": 1689,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                1275,
+                1689
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 364,
+              "source": "sphere_topology_not_integrated"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 2,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 1273,
+              "raw_Tminus1_targety": 1687,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                1255,
+                1655
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 441,
+              "source": "tow_attempt"
+            }
+          ],
+          "to_VCR": 787
+        }
+      ],
+      "turn": 144,
+      "x": 1275,
+      "y": 1689
+    },
+    {
+      "context_error": null,
+      "context_reconstructed": true,
+      "game_id": 347923,
+      "source_site_missing_count": 0,
+      "source_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "source_site_transition_count": 2,
+      "transition_posthoc_evaluations": [
+        {
+          "from_VCR": 451,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_NEITHER_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 1,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2186,
+              "raw_Tminus1_targety": 1120,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                2186,
+                1121
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 383,
+              "source": "web_mine_route_risk"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 7,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2186,
+              "raw_Tminus1_targety": 1121,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                2184,
+                1104
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 458,
+              "source": "intercept_movement"
+            }
+          ],
+          "to_VCR": 452
+        },
+        {
+          "from_VCR": 452,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_NEITHER_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 1,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2186,
+              "raw_Tminus1_targety": 1120,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                2186,
+                1121
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 383,
+              "source": "web_mine_route_risk"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 7,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2186,
+              "raw_Tminus1_targety": 1121,
+              "raw_Tminus1_warp": 8,
+              "raw_Tminus1_x_y": [
+                2184,
+                1104
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 470,
+              "source": "intercept_movement"
+            }
+          ],
+          "to_VCR": 453
+        }
+      ],
+      "turn": 95,
+      "x": 2186,
+      "y": 1120
+    },
+    {
+      "context_error": null,
+      "context_reconstructed": false,
+      "game_id": 364412,
+      "source_site_missing_count": 1,
+      "source_site_status": "ABSTAIN_TMINUS1_SITE_CONTEXT_MISSING",
+      "source_site_transition_count": 0,
+      "transition_posthoc_evaluations": [],
+      "turn": 65,
+      "x": 1245,
+      "y": 1540
+    },
+    {
+      "context_error": null,
+      "context_reconstructed": true,
+      "game_id": 399914,
+      "source_site_missing_count": 0,
+      "source_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "source_site_transition_count": 4,
+      "transition_posthoc_evaluations": [
+        {
+          "from_VCR": 832,
+          "frozen_conditional_V2_accuracy": true,
+          "frozen_conditional_V2_prediction": {
+            "capture_fixture_order_used": false,
+            "current_N_roster_conditioned": true,
+            "diplomacy_controls_through_vcr_id": 832,
+            "left_ship_id": 471,
+            "occurrence_index": 1,
+            "pair": [
+              349,
+              471
+            ],
+            "pair_input_count": 4,
+            "right_ship_id": 349
+          },
+          "frozen_conditional_V2_status": "CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_ONE_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_PREDICTS_FACTUAL_SITE",
+              "actual_next_owner": 7,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": [
+                1293,
+                2185
+              ],
+              "raw_Tminus1_targetx": 1293,
+              "raw_Tminus1_targety": 2185,
+              "raw_Tminus1_warp": 1,
+              "raw_Tminus1_x_y": [
+                1293,
+                2185
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 471,
+              "source": "normal_move"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 2,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 1293,
+              "raw_Tminus1_targety": 2185,
+              "raw_Tminus1_warp": 1,
+              "raw_Tminus1_x_y": [
+                1293,
+                2186
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 349,
+              "source": "intercept_movement"
+            }
+          ],
+          "to_VCR": 833
+        },
+        {
+          "from_VCR": 833,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_CAPTURE_TEMPORARY_ORDER_NOT_INDEPENDENT",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_ONE_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_PREDICTS_FACTUAL_SITE",
+              "actual_next_owner": 7,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": [
+                1293,
+                2185
+              ],
+              "raw_Tminus1_targetx": 1293,
+              "raw_Tminus1_targety": 2185,
+              "raw_Tminus1_warp": 1,
+              "raw_Tminus1_x_y": [
+                1293,
+                2185
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 33,
+              "source": "normal_move"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 2,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 1293,
+              "raw_Tminus1_targety": 2185,
+              "raw_Tminus1_warp": 1,
+              "raw_Tminus1_x_y": [
+                1293,
+                2186
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 349,
+              "source": "intercept_movement"
+            }
+          ],
+          "to_VCR": 834
+        },
+        {
+          "from_VCR": 834,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_N_REPLAY_OR_CARRIED_START",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_ONE_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_PREDICTS_FACTUAL_SITE",
+              "actual_next_owner": 7,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": [
+                1293,
+                2185
+              ],
+              "raw_Tminus1_targetx": 1293,
+              "raw_Tminus1_targety": 2185,
+              "raw_Tminus1_warp": 1,
+              "raw_Tminus1_x_y": [
+                1293,
+                2185
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 132,
+              "source": "normal_move"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 2,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 1293,
+              "raw_Tminus1_targety": 2185,
+              "raw_Tminus1_warp": 1,
+              "raw_Tminus1_x_y": [
+                1293,
+                2186
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 349,
+              "source": "intercept_movement"
+            }
+          ],
+          "to_VCR": 835
+        },
+        {
+          "from_VCR": 835,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_N_REPLAY_OR_CARRIED_START",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_ONE_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_PREDICTS_FACTUAL_SITE",
+              "actual_next_owner": 7,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": [
+                1293,
+                2185
+              ],
+              "raw_Tminus1_targetx": 1293,
+              "raw_Tminus1_targety": 2185,
+              "raw_Tminus1_warp": 1,
+              "raw_Tminus1_x_y": [
+                1293,
+                2185
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 155,
+              "source": "normal_move"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 2,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 1293,
+              "raw_Tminus1_targety": 2185,
+              "raw_Tminus1_warp": 1,
+              "raw_Tminus1_x_y": [
+                1293,
+                2186
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 349,
+              "source": "intercept_movement"
+            }
+          ],
+          "to_VCR": 836
+        }
+      ],
+      "turn": 116,
+      "x": 1293,
+      "y": 2185
+    },
+    {
+      "context_error": null,
+      "context_reconstructed": true,
+      "game_id": 421276,
+      "source_site_missing_count": 0,
+      "source_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "source_site_transition_count": 12,
+      "transition_posthoc_evaluations": [
+        {
+          "from_VCR": 436,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_NEITHER_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 10,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2178,
+              "raw_Tminus1_targety": 1105,
+              "raw_Tminus1_warp": 1,
+              "raw_Tminus1_x_y": [
+                2177,
+                1105
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 457,
+              "source": "normal_mine_route_risk"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 3,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2177,
+              "raw_Tminus1_targety": 1105,
+              "raw_Tminus1_warp": 0,
+              "raw_Tminus1_x_y": [
+                2177,
+                1105
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 181,
+              "source": "tow_target"
+            }
+          ],
+          "to_VCR": 437
+        },
+        {
+          "from_VCR": 437,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_CAPTURE_TEMPORARY_ORDER_NOT_INDEPENDENT",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_NEITHER_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 10,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2178,
+              "raw_Tminus1_targety": 1105,
+              "raw_Tminus1_warp": 1,
+              "raw_Tminus1_x_y": [
+                2177,
+                1105
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 46,
+              "source": "tow_attempt"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 3,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2177,
+              "raw_Tminus1_targety": 1105,
+              "raw_Tminus1_warp": 0,
+              "raw_Tminus1_x_y": [
+                2177,
+                1105
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 181,
+              "source": "tow_target"
+            }
+          ],
+          "to_VCR": 438
+        },
+        {
+          "from_VCR": 438,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_NEITHER_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 10,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2178,
+              "raw_Tminus1_targety": 1105,
+              "raw_Tminus1_warp": 1,
+              "raw_Tminus1_x_y": [
+                2177,
+                1105
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 117,
+              "source": "tow_attempt"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 3,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2177,
+              "raw_Tminus1_targety": 1105,
+              "raw_Tminus1_warp": 0,
+              "raw_Tminus1_x_y": [
+                2177,
+                1105
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 181,
+              "source": "tow_target"
+            }
+          ],
+          "to_VCR": 439
+        },
+        {
+          "from_VCR": 439,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_NEITHER_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 10,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2178,
+              "raw_Tminus1_targety": 1105,
+              "raw_Tminus1_warp": 1,
+              "raw_Tminus1_x_y": [
+                2177,
+                1105
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 264,
+              "source": "normal_mine_route_risk"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 3,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2177,
+              "raw_Tminus1_targety": 1105,
+              "raw_Tminus1_warp": 0,
+              "raw_Tminus1_x_y": [
+                2177,
+                1105
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 181,
+              "source": "tow_target"
+            }
+          ],
+          "to_VCR": 440
+        },
+        {
+          "from_VCR": 440,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_NEITHER_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 10,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2178,
+              "raw_Tminus1_targety": 1105,
+              "raw_Tminus1_warp": 1,
+              "raw_Tminus1_x_y": [
+                2177,
+                1105
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 362,
+              "source": "normal_mine_route_risk"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 3,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2177,
+              "raw_Tminus1_targety": 1105,
+              "raw_Tminus1_warp": 0,
+              "raw_Tminus1_x_y": [
+                2177,
+                1105
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 181,
+              "source": "tow_target"
+            }
+          ],
+          "to_VCR": 441
+        },
+        {
+          "from_VCR": 441,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_NEITHER_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 10,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2178,
+              "raw_Tminus1_targety": 1105,
+              "raw_Tminus1_warp": 1,
+              "raw_Tminus1_x_y": [
+                2177,
+                1105
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 400,
+              "source": "normal_mine_route_risk"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 3,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2177,
+              "raw_Tminus1_targety": 1105,
+              "raw_Tminus1_warp": 0,
+              "raw_Tminus1_x_y": [
+                2177,
+                1105
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 181,
+              "source": "tow_target"
+            }
+          ],
+          "to_VCR": 442
+        },
+        {
+          "from_VCR": 442,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_CAPTURE_TEMPORARY_ORDER_NOT_INDEPENDENT",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_NEITHER_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 10,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2178,
+              "raw_Tminus1_targety": 1105,
+              "raw_Tminus1_warp": 1,
+              "raw_Tminus1_x_y": [
+                2177,
+                1105
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 96,
+              "source": "normal_mine_route_risk"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 3,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2177,
+              "raw_Tminus1_targety": 1105,
+              "raw_Tminus1_warp": 0,
+              "raw_Tminus1_x_y": [
+                2177,
+                1105
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 181,
+              "source": "tow_target"
+            }
+          ],
+          "to_VCR": 443
+        },
+        {
+          "from_VCR": 443,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_NEITHER_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 10,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2178,
+              "raw_Tminus1_targety": 1105,
+              "raw_Tminus1_warp": 1,
+              "raw_Tminus1_x_y": [
+                2177,
+                1105
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 150,
+              "source": "normal_mine_route_risk"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 3,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2177,
+              "raw_Tminus1_targety": 1105,
+              "raw_Tminus1_warp": 0,
+              "raw_Tminus1_x_y": [
+                2177,
+                1105
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 181,
+              "source": "tow_target"
+            }
+          ],
+          "to_VCR": 444
+        },
+        {
+          "from_VCR": 444,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_NEITHER_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 10,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2178,
+              "raw_Tminus1_targety": 1105,
+              "raw_Tminus1_warp": 1,
+              "raw_Tminus1_x_y": [
+                2177,
+                1105
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 280,
+              "source": "normal_mine_route_risk"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 3,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2177,
+              "raw_Tminus1_targety": 1105,
+              "raw_Tminus1_warp": 0,
+              "raw_Tminus1_x_y": [
+                2177,
+                1105
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 181,
+              "source": "tow_target"
+            }
+          ],
+          "to_VCR": 445
+        },
+        {
+          "from_VCR": 445,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_NEITHER_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 10,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2178,
+              "raw_Tminus1_targety": 1105,
+              "raw_Tminus1_warp": 1,
+              "raw_Tminus1_x_y": [
+                2177,
+                1105
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 338,
+              "source": "normal_mine_route_risk"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 3,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2177,
+              "raw_Tminus1_targety": 1105,
+              "raw_Tminus1_warp": 0,
+              "raw_Tminus1_x_y": [
+                2177,
+                1105
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 181,
+              "source": "tow_target"
+            }
+          ],
+          "to_VCR": 446
+        },
+        {
+          "from_VCR": 446,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_NEITHER_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 10,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2178,
+              "raw_Tminus1_targety": 1105,
+              "raw_Tminus1_warp": 1,
+              "raw_Tminus1_x_y": [
+                2177,
+                1105
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 399,
+              "source": "normal_mine_route_risk"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 3,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2177,
+              "raw_Tminus1_targety": 1105,
+              "raw_Tminus1_warp": 0,
+              "raw_Tminus1_x_y": [
+                2177,
+                1105
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 181,
+              "source": "tow_target"
+            }
+          ],
+          "to_VCR": 447
+        },
+        {
+          "from_VCR": 447,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_CAPTURE_TEMPORARY_ORDER_NOT_INDEPENDENT",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_NEITHER_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 10,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2178,
+              "raw_Tminus1_targety": 1105,
+              "raw_Tminus1_warp": 1,
+              "raw_Tminus1_x_y": [
+                2177,
+                1105
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 437,
+              "source": "normal_mine_route_risk"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 3,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2177,
+              "raw_Tminus1_targety": 1105,
+              "raw_Tminus1_warp": 0,
+              "raw_Tminus1_x_y": [
+                2177,
+                1105
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 181,
+              "source": "tow_target"
+            }
+          ],
+          "to_VCR": 448
+        }
+      ],
+      "turn": 115,
+      "x": 2178,
+      "y": 1105
+    },
+    {
+      "context_error": null,
+      "context_reconstructed": true,
+      "game_id": 421276,
+      "source_site_missing_count": 0,
+      "source_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "source_site_transition_count": 3,
+      "transition_posthoc_evaluations": [
+        {
+          "from_VCR": 432,
+          "frozen_conditional_V2_accuracy": true,
+          "frozen_conditional_V2_prediction": {
+            "capture_fixture_order_used": false,
+            "current_N_roster_conditioned": false,
+            "diplomacy_controls_through_vcr_id": 432,
+            "left_ship_id": 83,
+            "occurrence_index": 1,
+            "pair": [
+              83,
+              218
+            ],
+            "pair_input_count": 10,
+            "right_ship_id": 218
+          },
+          "frozen_conditional_V2_status": "CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_BOTH_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_PREDICTS_FACTUAL_SITE",
+              "actual_next_owner": 10,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": [
+                2322,
+                1131
+              ],
+              "raw_Tminus1_targetx": 2322,
+              "raw_Tminus1_targety": 1131,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                2322,
+                1131
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 83,
+              "source": "normal_move"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_PREDICTS_FACTUAL_SITE",
+              "actual_next_owner": 3,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": [
+                2322,
+                1131
+              ],
+              "raw_Tminus1_targetx": 2322,
+              "raw_Tminus1_targety": 1131,
+              "raw_Tminus1_warp": 0,
+              "raw_Tminus1_x_y": [
+                2322,
+                1131
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 218,
+              "source": "stationary_effective_warp_zero"
+            }
+          ],
+          "to_VCR": 433
+        },
+        {
+          "from_VCR": 433,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_CAPTURE_TEMPORARY_ORDER_NOT_INDEPENDENT",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_BOTH_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_PREDICTS_FACTUAL_SITE",
+              "actual_next_owner": 10,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": [
+                2322,
+                1131
+              ],
+              "raw_Tminus1_targetx": 2322,
+              "raw_Tminus1_targety": 1131,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                2322,
+                1131
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 305,
+              "source": "normal_move"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_PREDICTS_FACTUAL_SITE",
+              "actual_next_owner": 3,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": [
+                2322,
+                1131
+              ],
+              "raw_Tminus1_targetx": 2322,
+              "raw_Tminus1_targety": 1131,
+              "raw_Tminus1_warp": 0,
+              "raw_Tminus1_x_y": [
+                2322,
+                1131
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 218,
+              "source": "stationary_effective_warp_zero"
+            }
+          ],
+          "to_VCR": 434
+        },
+        {
+          "from_VCR": 434,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_N_REPLAY_OR_CARRIED_START",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_ONE_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 10,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2322,
+              "raw_Tminus1_targety": 1131,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                2322,
+                1131
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 430,
+              "source": "outbound_transfer"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_PREDICTS_FACTUAL_SITE",
+              "actual_next_owner": 3,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": [
+                2322,
+                1131
+              ],
+              "raw_Tminus1_targetx": 2322,
+              "raw_Tminus1_targety": 1131,
+              "raw_Tminus1_warp": 0,
+              "raw_Tminus1_x_y": [
+                2322,
+                1131
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 218,
+              "source": "stationary_effective_warp_zero"
+            }
+          ],
+          "to_VCR": 435
+        }
+      ],
+      "turn": 115,
+      "x": 2322,
+      "y": 1131
+    },
+    {
+      "context_error": null,
+      "context_reconstructed": false,
+      "game_id": 473010,
+      "source_site_missing_count": 1,
+      "source_site_status": "ABSTAIN_TMINUS1_SITE_CONTEXT_MISSING",
+      "source_site_transition_count": 0,
+      "transition_posthoc_evaluations": [],
+      "turn": 214,
+      "x": 1277,
+      "y": 1853
+    },
+    {
+      "context_error": null,
+      "context_reconstructed": true,
+      "game_id": 476380,
+      "source_site_missing_count": 0,
+      "source_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "source_site_transition_count": 8,
+      "transition_posthoc_evaluations": [
+        {
+          "from_VCR": 322,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_NEITHER_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 8,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 1278,
+              "raw_Tminus1_targety": 1848,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                1277,
+                1870
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 40,
+              "source": "intercept_movement"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 6,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 1278,
+              "raw_Tminus1_targety": 1848,
+              "raw_Tminus1_warp": 0,
+              "raw_Tminus1_x_y": [
+                1278,
+                1848
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 21,
+              "source": "tow_target"
+            }
+          ],
+          "to_VCR": 323
+        },
+        {
+          "from_VCR": 323,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_PARENT_STANDARD_UNRESOLVED",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_NEITHER_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 8,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 1278,
+              "raw_Tminus1_targety": 1848,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                1277,
+                1870
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 370,
+              "source": "intercept_movement"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 6,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 1284,
+              "raw_Tminus1_targety": 1837,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                1278,
+                1848
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 168,
+              "source": "normal_mine_route_risk"
+            }
+          ],
+          "to_VCR": 324
+        },
+        {
+          "from_VCR": 324,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_PARENT_STANDARD_UNRESOLVED",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_NEITHER_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 8,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 1278,
+              "raw_Tminus1_targety": 1848,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                1277,
+                1870
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 370,
+              "source": "intercept_movement"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 6,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 1278,
+              "raw_Tminus1_targety": 1848,
+              "raw_Tminus1_warp": 0,
+              "raw_Tminus1_x_y": [
+                1278,
+                1848
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 21,
+              "source": "tow_target"
+            }
+          ],
+          "to_VCR": 325
+        },
+        {
+          "from_VCR": 325,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_PARENT_STANDARD_UNRESOLVED",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_ONE_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_PREDICTS_FACTUAL_SITE",
+              "actual_next_owner": 8,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": [
+                1286,
+                1835
+              ],
+              "raw_Tminus1_targetx": 1286,
+              "raw_Tminus1_targety": 1835,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                1286,
+                1835
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 3,
+              "source": "normal_move"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 6,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 1278,
+              "raw_Tminus1_targety": 1848,
+              "raw_Tminus1_warp": 0,
+              "raw_Tminus1_x_y": [
+                1278,
+                1848
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 21,
+              "source": "tow_target"
+            }
+          ],
+          "to_VCR": 326
+        },
+        {
+          "from_VCR": 326,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_N_REPLAY_OR_CARRIED_START",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_ONE_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_PREDICTS_FACTUAL_SITE",
+              "actual_next_owner": 8,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": [
+                1286,
+                1835
+              ],
+              "raw_Tminus1_targetx": 1286,
+              "raw_Tminus1_targety": 1835,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                1286,
+                1835
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 3,
+              "source": "normal_move"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 6,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 1284,
+              "raw_Tminus1_targety": 1837,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                1278,
+                1848
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 329,
+              "source": "normal_mine_route_risk"
+            }
+          ],
+          "to_VCR": 327
+        },
+        {
+          "from_VCR": 327,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_ONE_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_PREDICTS_FACTUAL_SITE",
+              "actual_next_owner": 8,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": [
+                1286,
+                1835
+              ],
+              "raw_Tminus1_targetx": 1286,
+              "raw_Tminus1_targety": 1835,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                1286,
+                1835
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 3,
+              "source": "normal_move"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 6,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 1276,
+              "raw_Tminus1_targety": 1857,
+              "raw_Tminus1_warp": 0,
+              "raw_Tminus1_x_y": [
+                1276,
+                1857
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 437,
+              "source": "tow_target"
+            }
+          ],
+          "to_VCR": 328
+        },
+        {
+          "from_VCR": 328,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_NEITHER_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 8,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 1278,
+              "raw_Tminus1_targety": 1848,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                1277,
+                1870
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 58,
+              "source": "intercept_movement"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 6,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 1276,
+              "raw_Tminus1_targety": 1857,
+              "raw_Tminus1_warp": 0,
+              "raw_Tminus1_x_y": [
+                1276,
+                1857
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 437,
+              "source": "tow_target"
+            }
+          ],
+          "to_VCR": 329
+        },
+        {
+          "from_VCR": 329,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_NEITHER_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 8,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 1278,
+              "raw_Tminus1_targety": 1848,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                1277,
+                1870
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 58,
+              "source": "intercept_movement"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 6,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 1284,
+              "raw_Tminus1_targety": 1837,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                1278,
+                1848
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 389,
+              "source": "normal_mine_route_risk"
+            }
+          ],
+          "to_VCR": 330
+        }
+      ],
+      "turn": 82,
+      "x": 1286,
+      "y": 1835
+    },
+    {
+      "context_error": null,
+      "context_reconstructed": true,
+      "game_id": 476380,
+      "source_site_missing_count": 0,
+      "source_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "source_site_transition_count": 1,
+      "transition_posthoc_evaluations": [
+        {
+          "from_VCR": 335,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_NEITHER_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 8,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 1605,
+              "raw_Tminus1_targety": 2060,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                1602,
+                2069
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 436,
+              "source": "tow_attempt"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 9,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 1637,
+              "raw_Tminus1_targety": 2078,
+              "raw_Tminus1_warp": 6,
+              "raw_Tminus1_x_y": [
+                1602,
+                2069
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 119,
+              "source": "tow_attempt"
+            }
+          ],
+          "to_VCR": 336
+        }
+      ],
+      "turn": 82,
+      "x": 1637,
+      "y": 2078
+    },
+    {
+      "context_error": null,
+      "context_reconstructed": true,
+      "game_id": 476380,
+      "source_site_missing_count": 0,
+      "source_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "source_site_transition_count": 1,
+      "transition_posthoc_evaluations": [
+        {
+          "from_VCR": 332,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_NEITHER_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 1,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2410,
+              "raw_Tminus1_targety": 1880,
+              "raw_Tminus1_warp": 0,
+              "raw_Tminus1_x_y": [
+                2410,
+                1880
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 102,
+              "source": "tow_target"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 9,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2410,
+              "raw_Tminus1_targety": 1880,
+              "raw_Tminus1_warp": 0,
+              "raw_Tminus1_x_y": [
+                2410,
+                1880
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 205,
+              "source": "tow_target"
+            }
+          ],
+          "to_VCR": 333
+        }
+      ],
+      "turn": 82,
+      "x": 2410,
+      "y": 1880
+    },
+    {
+      "context_error": null,
+      "context_reconstructed": true,
+      "game_id": 476380,
+      "source_site_missing_count": 0,
+      "source_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "source_site_transition_count": 1,
+      "transition_posthoc_evaluations": [
+        {
+          "from_VCR": 1166,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_PARENT_STANDARD_UNRESOLVED",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_BOTH_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_PREDICTS_FACTUAL_SITE",
+              "actual_next_owner": 3,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": [
+                1546,
+                1868
+              ],
+              "raw_Tminus1_targetx": 1546,
+              "raw_Tminus1_targety": 1868,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                1546,
+                1868
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 436,
+              "source": "normal_move"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_PREDICTS_FACTUAL_SITE",
+              "actual_next_owner": 5,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": [
+                1546,
+                1868
+              ],
+              "raw_Tminus1_targetx": 1546,
+              "raw_Tminus1_targety": 1868,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                1513,
+                1827
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 180,
+              "source": "special_intercept_movement_phase"
+            }
+          ],
+          "to_VCR": 1167
+        }
+      ],
+      "turn": 327,
+      "x": 1546,
+      "y": 1868
+    },
+    {
+      "context_error": null,
+      "context_reconstructed": true,
+      "game_id": 477725,
+      "source_site_missing_count": 0,
+      "source_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "source_site_transition_count": 2,
+      "transition_posthoc_evaluations": [
+        {
+          "from_VCR": 1247,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_N_REPLAY_OR_CARRIED_START",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_BOTH_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_PREDICTS_FACTUAL_SITE",
+              "actual_next_owner": 4,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": [
+                2257,
+                832
+              ],
+              "raw_Tminus1_targetx": 2254,
+              "raw_Tminus1_targety": 832,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                2188,
+                849
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 774,
+              "source": "normal_move_warp_well"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_PREDICTS_FACTUAL_SITE",
+              "actual_next_owner": 5,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": [
+                2257,
+                832
+              ],
+              "raw_Tminus1_targetx": 2255,
+              "raw_Tminus1_targety": 834,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                2190,
+                876
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 791,
+              "source": "normal_move_warp_well"
+            }
+          ],
+          "to_VCR": 1248
+        },
+        {
+          "from_VCR": 1248,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_N_REPLAY_OR_CARRIED_START",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_BOTH_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_PREDICTS_FACTUAL_SITE",
+              "actual_next_owner": 4,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": [
+                2257,
+                832
+              ],
+              "raw_Tminus1_targetx": 2254,
+              "raw_Tminus1_targety": 832,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                2218,
+                851
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 827,
+              "source": "normal_move_warp_well"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_PREDICTS_FACTUAL_SITE",
+              "actual_next_owner": 5,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": [
+                2257,
+                832
+              ],
+              "raw_Tminus1_targetx": 2255,
+              "raw_Tminus1_targety": 834,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                2190,
+                876
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 791,
+              "source": "normal_move_warp_well"
+            }
+          ],
+          "to_VCR": 1249
+        }
+      ],
+      "turn": 187,
+      "x": 2257,
+      "y": 832
+    },
+    {
+      "context_error": null,
+      "context_reconstructed": false,
+      "game_id": 490865,
+      "source_site_missing_count": 1,
+      "source_site_status": "ABSTAIN_TMINUS1_SITE_CONTEXT_MISSING",
+      "source_site_transition_count": 0,
+      "transition_posthoc_evaluations": [],
+      "turn": 137,
+      "x": 2092,
+      "y": 1400
+    },
+    {
+      "context_error": null,
+      "context_reconstructed": false,
+      "game_id": 629488,
+      "source_site_missing_count": 4,
+      "source_site_status": "ABSTAIN_TMINUS1_SITE_CONTEXT_MISSING",
+      "source_site_transition_count": 0,
+      "transition_posthoc_evaluations": [],
+      "turn": 141,
+      "x": 1268,
+      "y": 1296
+    },
+    {
+      "context_error": null,
+      "context_reconstructed": true,
+      "game_id": 633837,
+      "source_site_missing_count": 0,
+      "source_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "source_site_transition_count": 1,
+      "transition_posthoc_evaluations": [
+        {
+          "from_VCR": 381,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_NEITHER_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 5,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 1939,
+              "raw_Tminus1_targety": 2606,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                1894,
+                2588
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 279,
+              "source": "normal_mine_route_risk"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 2,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 1944,
+              "raw_Tminus1_targety": 2604,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                1993,
+                2580
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 407,
+              "source": "normal_mine_route_risk"
+            }
+          ],
+          "to_VCR": 382
+        }
+      ],
+      "turn": 119,
+      "x": 1942,
+      "y": 2606
+    },
+    {
+      "context_error": null,
+      "context_reconstructed": true,
+      "game_id": 658427,
+      "source_site_missing_count": 0,
+      "source_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "source_site_transition_count": 1,
+      "transition_posthoc_evaluations": [
+        {
+          "from_VCR": 164,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_NEITHER_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 21,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": false,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2026,
+              "raw_Tminus1_targety": 2853,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                2057,
+                2865
+              ],
+              "seen_at_site_before_or_during_N": false,
+              "ship_id": 242,
+              "source": "sphere_topology_not_integrated"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 24,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 1971,
+              "raw_Tminus1_targety": 2817,
+              "raw_Tminus1_warp": 0,
+              "raw_Tminus1_x_y": [
+                1971,
+                2817
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 228,
+              "source": "tow_target"
+            }
+          ],
+          "to_VCR": 165
+        }
+      ],
+      "turn": 41,
+      "x": 2026,
+      "y": 2853
+    },
+    {
+      "context_error": null,
+      "context_reconstructed": true,
+      "game_id": 674696,
+      "source_site_missing_count": 0,
+      "source_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "source_site_transition_count": 1,
+      "transition_posthoc_evaluations": [
+        {
+          "from_VCR": 130,
+          "frozen_conditional_V2_accuracy": null,
+          "frozen_conditional_V2_prediction": null,
+          "frozen_conditional_V2_status": "ABSTAIN_N_REPLAY_OR_CARRIED_START",
+          "next_VCR_used_in_prediction": false,
+          "posthoc_factual_Nplus1_dependent": true,
+          "posthoc_next_pair_Tminus1_class": "NEXT_PAIR_ONE_TMINUS1_AT_SITE",
+          "posthoc_next_ship_Tminus1_positions": [
+            {
+              "Tminus1_position_class": "TMINUS1_POSITION_UNRESOLVED",
+              "actual_next_owner": 8,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": null,
+              "raw_Tminus1_targetx": 2193,
+              "raw_Tminus1_targety": 1839,
+              "raw_Tminus1_warp": 0,
+              "raw_Tminus1_x_y": [
+                2193,
+                1839
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 60,
+              "source": "hyperjump_movement"
+            },
+            {
+              "Tminus1_position_class": "TMINUS1_PREDICTS_FACTUAL_SITE",
+              "actual_next_owner": 7,
+              "factual_next_identity_used_only_for_posthoc_attribution": true,
+              "in_prior_N": true,
+              "owner_consistent": true,
+              "predicted_position": [
+                2193,
+                1839
+              ],
+              "raw_Tminus1_targetx": 2193,
+              "raw_Tminus1_targety": 1836,
+              "raw_Tminus1_warp": 9,
+              "raw_Tminus1_x_y": [
+                2197,
+                1803
+              ],
+              "seen_at_site_before_or_during_N": true,
+              "ship_id": 18,
+              "source": "normal_move_warp_well"
+            }
+          ],
+          "to_VCR": 131
+        }
+      ],
+      "turn": 32,
+      "x": 2193,
+      "y": 1839
+    }
+  ],
+  "source_census_git_blob_sha1": "fda92475988d2f7dfbc7b93606de4f8cec909806",
+  "source_conditional_v2_git_blob_sha1": "dd641864dc3bd541098ea2c21cf21fb8ff03d5ce",
+  "source_db_generation": "generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "source_db_sha256": "3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c",
+  "status": "OBSERVATIONAL_TMINUS1_SITE_RECALL_NOT_QUEUE_PROMOTION",
+  "summary": {
+    "by_original_V2_status": {
+      "ABSTAIN_CAPTURE_TEMPORARY_ORDER_NOT_INDEPENDENT": {
+        "NEXT_PAIR_BOTH_TMINUS1_AT_SITE": 1,
+        "NEXT_PAIR_NEITHER_TMINUS1_AT_SITE": 3,
+        "NEXT_PAIR_ONE_TMINUS1_AT_SITE": 1
+      },
+      "ABSTAIN_N_REPLAY_OR_CARRIED_START": {
+        "NEXT_PAIR_BOTH_TMINUS1_AT_SITE": 2,
+        "NEXT_PAIR_ONE_TMINUS1_AT_SITE": 6
+      },
+      "ABSTAIN_PARENT_STANDARD_NO_PAIR": {
+        "NEXT_PAIR_NEITHER_TMINUS1_AT_SITE": 23,
+        "NEXT_PAIR_ONE_TMINUS1_AT_SITE": 2
+      },
+      "ABSTAIN_PARENT_STANDARD_UNRESOLVED": {
+        "NEXT_PAIR_BOTH_TMINUS1_AT_SITE": 1,
+        "NEXT_PAIR_NEITHER_TMINUS1_AT_SITE": 2,
+        "NEXT_PAIR_ONE_TMINUS1_AT_SITE": 5
+      },
+      "ABSTAIN_TMINUS1_OR_CURRENT_N_BRIDGE_UNRESOLVED": {
+        "NEXT_PAIR_NEITHER_TMINUS1_AT_SITE": 1
+      },
+      "CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1": {
+        "NEXT_PAIR_BOTH_TMINUS1_AT_SITE": 1,
+        "NEXT_PAIR_NEITHER_TMINUS1_AT_SITE": 2,
+        "NEXT_PAIR_ONE_TMINUS1_AT_SITE": 6
+      }
+    },
+    "existing_predictions_changed": 0,
+    "failed_next_ship_Tminus1_position_sources_by_V2_status": {
+      "ABSTAIN_CAPTURE_TEMPORARY_ORDER_NOT_INDEPENDENT": {
+        "intercept_movement": 1,
+        "normal_mine_route_risk": 2,
+        "tow_attempt": 1,
+        "tow_target": 3
+      },
+      "ABSTAIN_N_REPLAY_OR_CARRIED_START": {
+        "hyperjump_movement": 1,
+        "intercept_movement": 2,
+        "normal_mine_route_risk": 2,
+        "outbound_transfer": 1
+      },
+      "ABSTAIN_PARENT_STANDARD_NO_PAIR": {
+        "intercept_movement": 5,
+        "normal_mine_route_risk": 11,
+        "pre_move_mkt_mass_change": 1,
+        "sphere_topology_not_integrated": 6,
+        "tow_attempt": 5,
+        "tow_target": 18,
+        "web_mine_route_risk": 2
+      },
+      "ABSTAIN_PARENT_STANDARD_UNRESOLVED": {
+        "intercept_movement": 2,
+        "normal_mine_route_risk": 3,
+        "pre_move_mkt_mass_change": 1,
+        "tow_target": 2,
+        "web_mine_route_risk": 1
+      },
+      "ABSTAIN_TMINUS1_OR_CURRENT_N_BRIDGE_UNRESOLVED": {
+        "sphere_topology_not_integrated": 2
+      },
+      "CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1": {
+        "intercept_movement": 1,
+        "normal_mine_route_risk": 2,
+        "pre_move_mkt_mass_change": 2,
+        "sphere_topology_not_integrated": 2,
+        "tow_attempt": 1,
+        "web_mine_route_risk": 2
+      }
+    },
+    "frozen_adjacent_transitions": 63,
+    "frozen_sites": 27,
+    "full_Host_prediction_promoted": false,
+    "future_Nplus1_used_to_select_queue": false,
+    "new_queue_predictions_made": 0,
+    "original_conditional_V2_exact": 7,
+    "original_conditional_V2_predictions": 9,
+    "posthoc_next_pair_site_position_counts": {
+      "NEXT_PAIR_BOTH_TMINUS1_AT_SITE": 5,
+      "NEXT_PAIR_NEITHER_TMINUS1_AT_SITE": 31,
+      "NEXT_PAIR_ONE_TMINUS1_AT_SITE": 20
+    },
+    "posthoc_transitions_inspected": 56,
+    "posthoc_transitions_without_site_context": 7
+  }
+}

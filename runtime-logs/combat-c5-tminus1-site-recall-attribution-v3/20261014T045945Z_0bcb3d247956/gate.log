@@ -1,0 +1,32 @@
+===== C5 INDEPENDENT T-1 SPATIAL SITE RECALL / ERROR ATTRIBUTION V3 =====
+HEAD: 0bcb3d247956aa0aa4c357204c5974520bfb9679
+census_git_blob: fda92475988d2f7dfbc7b93606de4f8cec909806
+conditional_v2_git_blob: dd641864dc3bd541098ea2c21cf21fb8ff03d5ce
+DB: /root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb (SHA256 verified once, read-only)
+[c5-site-recall] verifying immutable public100 SHA256 once
+[c5-site-recall] SHA256 verified in 24.4s
+[c5-site-recall] [1/21] G218619 T232 sites=1
+[c5-site-recall] [2/21] G243165 T30 sites=1
+[c5-site-recall] [3/21] G243165 T107 sites=1
+[c5-site-recall] [4/21] G245693 T29 sites=2
+[c5-site-recall] [5/21] G245693 T103 sites=3
+[c5-site-recall] [6/21] G257776 T92 sites=1
+[c5-site-recall] [7/21] G283648 T52 sites=1
+[c5-site-recall] [8/21] G283648 T144 sites=1
+[c5-site-recall] [9/21] G347923 T95 sites=1
+[c5-site-recall] [10/21] G364412 T65 sites=1
+[c5-site-recall] [11/21] G399914 T116 sites=1
+[c5-site-recall] [12/21] G421276 T115 sites=2
+[c5-site-recall] [13/21] G473010 T214 sites=1
+[c5-site-recall] [14/21] G476380 T82 sites=3
+[c5-site-recall] [15/21] G476380 T327 sites=1
+[c5-site-recall] [16/21] G477725 T187 sites=1
+[c5-site-recall] [17/21] G490865 T137 sites=1
+[c5-site-recall] [18/21] G629488 T141 sites=1
+[c5-site-recall] [19/21] G633837 T119 sites=1
+[c5-site-recall] [20/21] G658427 T41 sites=1
+[c5-site-recall] [21/21] G674696 T32 sites=1
+===== C5 T-1 SITE RECALL / NO-PAIR CAUSE ATTRIBUTION V3 =====
+status: OBSERVATIONAL_TMINUS1_SITE_RECALL_NOT_QUEUE_PROMOTION
+summary: {'frozen_sites': 27, 'frozen_adjacent_transitions': 63, 'original_conditional_V2_predictions': 9, 'original_conditional_V2_exact': 7, 'posthoc_transitions_inspected': 56, 'posthoc_transitions_without_site_context': 7, 'posthoc_next_pair_site_position_counts': {'NEXT_PAIR_BOTH_TMINUS1_AT_SITE': 5, 'NEXT_PAIR_NEITHER_TMINUS1_AT_SITE': 31, 'NEXT_PAIR_ONE_TMINUS1_AT_SITE': 20}, 'by_original_V2_status': {'ABSTAIN_CAPTURE_TEMPORARY_ORDER_NOT_INDEPENDENT': {'NEXT_PAIR_BOTH_TMINUS1_AT_SITE': 1, 'NEXT_PAIR_NEITHER_TMINUS1_AT_SITE': 3, 'NEXT_PAIR_ONE_TMINUS1_AT_SITE': 1}, 'ABSTAIN_N_REPLAY_OR_CARRIED_START': {'NEXT_PAIR_BOTH_TMINUS1_AT_SITE': 2, 'NEXT_PAIR_ONE_TMINUS1_AT_SITE': 6}, 'ABSTAIN_PARENT_STANDARD_NO_PAIR': {'NEXT_PAIR_NEITHER_TMINUS1_AT_SITE': 23, 'NEXT_PAIR_ONE_TMINUS1_AT_SITE': 2}, 'ABSTAIN_PARENT_STANDARD_UNRESOLVED': {'NEXT_PAIR_BOTH_TMINUS1_AT_SITE': 1, 'NEXT_PAIR_NEITHER_TMINUS1_AT_SITE': 2, 'NEXT_PAIR_ONE_TMINUS1_AT_SITE': 5}, 'ABSTAIN_TMINUS1_OR_CURRENT_N_BRIDGE_UNRESOLVED': {'NEXT_PAIR_NEITHER_TMINUS1_AT_SITE': 1}, 'CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1': {'NEXT_PAIR_BOTH_TMINUS1_AT_SITE': 1, 'NEXT_PAIR_NEITHER_TMINUS1_AT_SITE': 2, 'NEXT_PAIR_ONE_TMINUS1_AT_SITE': 6}}, 'failed_next_ship_Tminus1_position_sources_by_V2_status': {'ABSTAIN_CAPTURE_TEMPORARY_ORDER_NOT_INDEPENDENT': {'intercept_movement': 1, 'normal_mine_route_risk': 2, 'tow_attempt': 1, 'tow_target': 3}, 'ABSTAIN_N_REPLAY_OR_CARRIED_START': {'hyperjump_movement': 1, 'intercept_movement': 2, 'normal_mine_route_risk': 2, 'outbound_transfer': 1}, 'ABSTAIN_PARENT_STANDARD_NO_PAIR': {'intercept_movement': 5, 'normal_mine_route_risk': 11, 'pre_move_mkt_mass_change': 1, 'sphere_topology_not_integrated': 6, 'tow_attempt': 5, 'tow_target': 18, 'web_mine_route_risk': 2}, 'ABSTAIN_PARENT_STANDARD_UNRESOLVED': {'intercept_movement': 2, 'normal_mine_route_risk': 3, 'pre_move_mkt_mass_change': 1, 'tow_target': 2, 'web_mine_route_risk': 1}, 'ABSTAIN_TMINUS1_OR_CURRENT_N_BRIDGE_UNRESOLVED': {'sphere_topology_not_integrated': 2}, 'CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1': {'intercept_movement': 1, 'normal_mine_route_risk': 2, 'pre_move_mkt_mass_change': 2, 'sphere_topology_not_integrated': 2, 'tow_attempt': 1, 'web_mine_route_risk': 2}}, 'new_queue_predictions_made': 0, 'existing_predictions_changed': 0, 'future_Nplus1_used_to_select_queue': False, 'full_Host_prediction_promoted': False}
+output: artifacts/combat/c5-tminus1-site-recall-attribution-v3/published/report.json
