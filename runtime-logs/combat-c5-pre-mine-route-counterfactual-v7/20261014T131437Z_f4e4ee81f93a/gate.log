@@ -1,0 +1,11 @@
+===== C5 T-1 PRE-MINE NO-HIT NORMAL MOVEMENT V7 =====
+HEAD: f4e4ee81f93ab0ec170bed62636fb4c9f235a004
+V6 Git blob: 51d21132e4db89511be59805ebe2be14014b3e7a
+DB: /root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb (SHA256 checked once, read-only)
+[c5-pre-mine] checking pinned immutable public100 SHA256 once
+[c5-pre-mine] verified 1 sites in 23.9s; read-only DB
+[c5-pre-mine] [1/1] G421276 T115 sites=1
+===== C5 PRE-MINE NORMAL ROUTE COUNTERFACTUAL V7 =====
+status: TMINUS1_PRE_MINE_NORMAL_ROUTE_CONDITIONAL_NOT_HOST_PREDICTION
+summary: {'original_frozen_sites': 27, 'original_adjacent_transitions': 63, 'original_NO_PAIR_transitions': 25, 'V6_waypoint_only_witnesses_all_sources': 18, 'distinct_mine_risk_waypoint_only_witnesses': 12, 'distinct_game_turn_windows': 1, 'observed_site_count': 1, 'conditional_no_hit_endpoint_status_counts': {'COUNTERFACTUAL_NO_MINE_ROUTE_ENDS_AT_SITE': 12}, 'context_errors': 0, 'full_Host_ship_positions_predicted': 0, 'new_combat_pair_predictions': 0, 'Nplus1_target_or_comparator_used': False, 'frozen_V2_queue_score_unchanged': True}
+output: artifacts/combat/c5-pre-mine-route-counterfactual-v7/published/report.json
