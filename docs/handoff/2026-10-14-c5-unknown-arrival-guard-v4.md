@@ -91,3 +91,18 @@ Tow/normal/intercept phase engine to resolve only independently
 admissible special-movement cohorts in *whole site contexts*, then
 rerun the fixed 63-transition C5 acceptance. Do not add individual
 per-game future-opponent rules or treat possible as certain.
+
+## Frozen-transition source-integrity follow-up (2026-10-14)
+
+Before running the still-unpublished V4 corpus gate, a source preflight
+now checks **multiplicity** as well as membership/count of the frozen V2
+adjacent transitions. Previously, a duplicate serialized transition
+could be masked by a nonzero `missing` count in set-only validation.
+Duplicate/foreign/malformed transition identities, invalid missing counts,
+and duplicate census identities now fail closed. A missing T−1 prediction
+index is never interpreted as an empty index with no possible arrivals.
+Negative unit controls exercise all these boundaries.
+
+This is a data-integrity fix only; it introduces zero additional Host
+predictions and does not establish observed V4 runtime results. Execute
+the existing V4 evidence wrapper before attempting any V5 inference.

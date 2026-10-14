@@ -585,6 +585,8 @@ def potential_tminus1_site_arrivals(
         or any(isinstance(v, bool) or not isinstance(v, int) for v in site)
     ):
         raise EvidenceInputUnresolved("current_site_coordinates_unavailable")
+    if not isinstance(predictions, Mapping) or not isinstance(active_ships, Mapping):
+        raise EvidenceInputUnresolved("T-1 arrival index unavailable")
     active_owners = {
         _positive_int(ship.get("owner_id"))
         for ship in active_ships.values()
