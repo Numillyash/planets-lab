@@ -41,7 +41,6 @@ from planets_lab.corpus.movement_topology_diagnostics import (
 from planets_lab.data.nu_static import import_static_all
 from planets_lab.data.nu_specs import NuStaticSpecs
 from planets_lab.corpus.movement_sphere_context import effective_sphere_topology
-from planets_lab.rules.combat.order import TOW_MISSION_ID
 from combat_host_candidate_set_audit import (
     _owner_rows_for_turn,_tow_target_ids,_potential_chunnel_source_sites
 )
@@ -333,6 +332,8 @@ def build_report(conn:Any,v6:Mapping[str,Any])->dict[str,Any]:
             total_comparisons+=1
             if status=="POSTHOST_ENDPOINT_MISMATCH" and len(mismatch_examples[cls])<24:
                 mismatch_examples[cls].append(record)
+    if input_counts["pre_forecast_rows"]<100 or sum(bool(x) for x in frozen.values())<4:
+        raise ValueError("insufficient held-out Tminus1 forecasts; refuse empty validation")
     return {
         "schema":SCHEMA,"status":STATUS,
         "source_v6_git_blob_sha1":V6_BLOB,
