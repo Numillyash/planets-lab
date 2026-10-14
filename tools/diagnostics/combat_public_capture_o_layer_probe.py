@@ -487,7 +487,11 @@ def _visit_targeted_site_contexts(
     targets: Mapping[tuple[int, int, int, int], Sequence[Mapping[str, Any]]],
     appearances: Sequence[Mapping[str, Any]],
     observer: Any,
+    collect_pre_mine_counterfactual: bool = False,
 ) -> dict[str, Any]:
+    # Opt-in diagnostics only: never alter the primary position or queue.
+    if type(collect_pre_mine_counterfactual) is not bool:
+        raise ValueError("invalid pre-mine diagnostic flag")
     battle_turns = {
         int(turn)
         for target_game, turn, _x, _y in targets
@@ -612,6 +616,8 @@ def _visit_targeted_site_contexts(
                         storms=storms or (),
                         nuionstorms=nuionstorms,
                     )
+                pre_mine_position = predicted
+                pre_mine_source = source
                 if predicted is not None:
                     mine_risk = _foreign_mine_route_risk(
                         context=mine_context,
@@ -636,6 +642,14 @@ def _visit_targeted_site_contexts(
                     "position": predicted,
                     "source": source,
                 }
+                # A counterfactual in which the independent NORMAL movement
+                # planner runs but the foreign-mine risk mask is *not* applied.
+                # It does not assert that a real ship avoided a mine hit.
+                if (collect_pre_mine_counterfactual and
+                        source == "normal_mine_route_risk" and
+                        pre_mine_position is not None):
+                    predicted_rows[ship_id]["diagnostic_no_mine_hit_destination"] = tuple(pre_mine_position)
+                    predicted_rows[ship_id]["diagnostic_no_mine_hit_source"] = pre_mine_source
 
             overlay = special_movement_module.special_position_overlay(
                 {
