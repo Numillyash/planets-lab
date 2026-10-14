@@ -549,3 +549,93 @@ def build_parent_standard_pair_inputs(
         pair_inputs=tuple(inputs),
         diagnostics=diagnostics,
     )
+
+
+@dataclass(frozen=True, slots=True)
+class PotentialTMinus1SiteArrival:
+    """Evidence of *possible*, not proven, arrival at a known current site."""
+
+    ship_id: int
+    owner_id: int
+    position_source: str
+    start_at_site: bool
+    waypoint_at_site: bool
+
+
+def potential_tminus1_site_arrivals(
+    *,
+    predictions: Mapping[int, Mapping[str, Any]],
+    active_ships: Mapping[int, Mapping[str, Any]],
+    site: tuple[int, int],
+    previously_removed_ship_ids: frozenset[int] = frozenset(),
+) -> tuple[PotentialTMinus1SiteArrival, ...]:
+    """Find unresolved T-1 movement that can invalidate parent NO_PAIR.
+
+    This is a conservative *uncertainty* index, not position prediction:
+    an unknown-position ship whose archived start or destination equals
+    the site might compete with a carried active ship. No factual future
+    VCR, combat result, or competitor identity is admitted as an input.
+
+    Requests/diplomacy/priority are not evaluated; these records can
+    prevent us from proving site exhaustion, never create a pair.
+    """
+    if (
+        not isinstance(site, tuple)
+        or len(site) != 2
+        or any(isinstance(v, bool) or not isinstance(v, int) for v in site)
+    ):
+        raise EvidenceInputUnresolved("current_site_coordinates_unavailable")
+    active_owners = {
+        _positive_int(ship.get("owner_id"))
+        for ship in active_ships.values()
+        if isinstance(ship, Mapping)
+    }
+    active_owners.discard(None)
+    candidates: list[PotentialTMinus1SiteArrival] = []
+    for ship_id, prediction in sorted(predictions.items()):
+        if (
+            _positive_int(ship_id) is None
+            or ship_id in active_ships
+            or ship_id in previously_removed_ship_ids
+            or not isinstance(prediction, Mapping)
+            or prediction.get("position") is not None
+        ):
+            continue
+        raw = prediction.get("raw")
+        owner_id = _positive_int(prediction.get("owner_id"))
+        if (
+            not isinstance(raw, Mapping)
+            or owner_id is None
+            or _positive_int(raw.get("id")) != ship_id
+            or _positive_int(raw.get("ownerid")) != owner_id
+            or _positive_int(prediction.get("hull_id")) is None
+            or _positive_int(prediction.get("race_id")) in (None, 12)
+        ):
+            continue
+        start = (raw.get("x"), raw.get("y"))
+        target = (raw.get("targetx"), raw.get("targety"))
+        at_start = (
+            all(isinstance(v, int) and not isinstance(v, bool) for v in start)
+            and start == site
+        )
+        at_target = (
+            all(isinstance(v, int) and not isinstance(v, bool) for v in target)
+            and target == site
+        )
+        if not at_start and not at_target:
+            continue
+        candidates.append(
+            PotentialTMinus1SiteArrival(
+                ship_id=ship_id,
+                owner_id=owner_id,
+                position_source=str(prediction.get("source", "unknown")),
+                start_at_site=at_start,
+                waypoint_at_site=at_target,
+            )
+        )
+    owners = {row.owner_id for row in candidates}
+    if active_owners:
+        return tuple(row for row in candidates if any(
+            row.owner_id != owner for owner in active_owners
+        ))
+    return tuple(candidates) if len(owners) >= 2 else ()
