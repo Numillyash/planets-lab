@@ -1,0 +1,2853 @@
+{
+  "boundary": "Potential arrival = unresolved T-1 position plus independent owner/raw ship identity with T-1 start or waypoint at the already known current-N site, and a distinct current-N owner. This is a bounded lower-bound uncertainty witness only; tow or mine behavior is NOT reconstructed. Does not use N+1 identities, outcomes or positions. Original V2 prediction score 9/7 remains frozen. A NO_PAIR without a witness does NOT prove complete Host queue exhaustion. No new pair, seed, combat or movement rule prediction.",
+  "db_path": "/root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "schema": "planets-lab.combat-c5-parent-queue-arrival-uncertainty.v4",
+  "site_evaluations": [
+    {
+      "additional_risk_unavailable": 0,
+      "context_error": null,
+      "game_id": 218619,
+      "original_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "original_unattempted_transitions": 0,
+      "preselected_frozen_vcr_pairs": [
+        [
+          1160,
+          1161
+        ]
+      ],
+      "transition_risks": [
+        {
+          "Tminus1_plausible_arrivals": [],
+          "from_vcr_id": 1160,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 0,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": true,
+          "original_conditional_v2_status": "CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK"
+        }
+      ],
+      "turn": 232,
+      "x": 2199,
+      "y": 2514
+    },
+    {
+      "additional_risk_unavailable": 0,
+      "context_error": null,
+      "game_id": 243165,
+      "original_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "original_unattempted_transitions": 0,
+      "preselected_frozen_vcr_pairs": [
+        [
+          146,
+          147
+        ],
+        [
+          147,
+          148
+        ]
+      ],
+      "transition_risks": [
+        {
+          "Tminus1_plausible_arrivals": [
+            {
+              "owner_id": 10,
+              "position_source": "sphere_topology_not_integrated",
+              "ship_id": 363,
+              "start_at_site": true,
+              "waypoint_at_site": false
+            }
+          ],
+          "from_vcr_id": 146,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 1,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ABSTAIN_PLAUSIBLE_UNRESOLVED_TMINUS1_ARRIVALS"
+        },
+        {
+          "Tminus1_plausible_arrivals": [
+            {
+              "owner_id": 10,
+              "position_source": "sphere_topology_not_integrated",
+              "ship_id": 363,
+              "start_at_site": true,
+              "waypoint_at_site": false
+            }
+          ],
+          "from_vcr_id": 147,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 1,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_TMINUS1_OR_CURRENT_N_BRIDGE_UNRESOLVED",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK"
+        }
+      ],
+      "turn": 30,
+      "x": 2743,
+      "y": 2147
+    },
+    {
+      "additional_risk_unavailable": 0,
+      "context_error": null,
+      "game_id": 243165,
+      "original_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "original_unattempted_transitions": 0,
+      "preselected_frozen_vcr_pairs": [
+        [
+          981,
+          982
+        ],
+        [
+          982,
+          983
+        ],
+        [
+          983,
+          984
+        ]
+      ],
+      "transition_risks": [
+        {
+          "Tminus1_plausible_arrivals": [
+            {
+              "owner_id": 9,
+              "position_source": "sphere_topology_not_integrated",
+              "ship_id": 138,
+              "start_at_site": true,
+              "waypoint_at_site": true
+            }
+          ],
+          "from_vcr_id": 981,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 1,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": false,
+          "original_conditional_v2_status": "CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK"
+        },
+        {
+          "Tminus1_plausible_arrivals": [
+            {
+              "owner_id": 9,
+              "position_source": "tow_target",
+              "ship_id": 295,
+              "start_at_site": true,
+              "waypoint_at_site": true
+            }
+          ],
+          "from_vcr_id": 982,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 1,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ABSTAIN_PLAUSIBLE_UNRESOLVED_TMINUS1_ARRIVALS"
+        },
+        {
+          "Tminus1_plausible_arrivals": [
+            {
+              "owner_id": 9,
+              "position_source": "tow_target",
+              "ship_id": 295,
+              "start_at_site": true,
+              "waypoint_at_site": true
+            }
+          ],
+          "from_vcr_id": 983,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 1,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": true,
+          "original_conditional_v2_status": "CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK"
+        }
+      ],
+      "turn": 107,
+      "x": 2569,
+      "y": 2544
+    },
+    {
+      "additional_risk_unavailable": 0,
+      "context_error": null,
+      "game_id": 245693,
+      "original_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "original_unattempted_transitions": 0,
+      "preselected_frozen_vcr_pairs": [
+        [
+          83,
+          84
+        ],
+        [
+          84,
+          85
+        ]
+      ],
+      "transition_risks": [
+        {
+          "Tminus1_plausible_arrivals": [],
+          "from_vcr_id": 83,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 0,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_PARENT_STANDARD_UNRESOLVED",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK"
+        },
+        {
+          "Tminus1_plausible_arrivals": [],
+          "from_vcr_id": 84,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 0,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": true,
+          "original_conditional_v2_status": "CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK"
+        }
+      ],
+      "turn": 29,
+      "x": 2373,
+      "y": 1641
+    },
+    {
+      "additional_risk_unavailable": 0,
+      "context_error": null,
+      "game_id": 245693,
+      "original_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "original_unattempted_transitions": 0,
+      "preselected_frozen_vcr_pairs": [],
+      "transition_risks": [],
+      "turn": 29,
+      "x": 2617,
+      "y": 2078
+    },
+    {
+      "additional_risk_unavailable": 0,
+      "context_error": null,
+      "game_id": 245693,
+      "original_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "original_unattempted_transitions": 0,
+      "preselected_frozen_vcr_pairs": [
+        [
+          1023,
+          1024
+        ],
+        [
+          1024,
+          1025
+        ],
+        [
+          1025,
+          1026
+        ]
+      ],
+      "transition_risks": [
+        {
+          "Tminus1_plausible_arrivals": [
+            {
+              "owner_id": 4,
+              "position_source": "pre_move_mkt_mass_change",
+              "ship_id": 519,
+              "start_at_site": true,
+              "waypoint_at_site": true
+            }
+          ],
+          "from_vcr_id": 1023,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 1,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_PARENT_STANDARD_UNRESOLVED",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK"
+        },
+        {
+          "Tminus1_plausible_arrivals": [
+            {
+              "owner_id": 4,
+              "position_source": "pre_move_mkt_mass_change",
+              "ship_id": 519,
+              "start_at_site": true,
+              "waypoint_at_site": true
+            }
+          ],
+          "from_vcr_id": 1024,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 1,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": false,
+          "original_conditional_v2_status": "CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK"
+        },
+        {
+          "Tminus1_plausible_arrivals": [],
+          "from_vcr_id": 1025,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 0,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": true,
+          "original_conditional_v2_status": "CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK"
+        }
+      ],
+      "turn": 103,
+      "x": 1368,
+      "y": 2266
+    },
+    {
+      "additional_risk_unavailable": 0,
+      "context_error": null,
+      "game_id": 245693,
+      "original_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "original_unattempted_transitions": 0,
+      "preselected_frozen_vcr_pairs": [
+        [
+          1020,
+          1021
+        ]
+      ],
+      "transition_risks": [
+        {
+          "Tminus1_plausible_arrivals": [],
+          "from_vcr_id": 1020,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 0,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "NO_PAIR_NOT_PROVEN_NO_ARRIVALS_IN_LIMITED_TMINUS1_INDEX"
+        }
+      ],
+      "turn": 103,
+      "x": 1384,
+      "y": 2360
+    },
+    {
+      "additional_risk_unavailable": 0,
+      "context_error": null,
+      "game_id": 245693,
+      "original_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "original_unattempted_transitions": 0,
+      "preselected_frozen_vcr_pairs": [
+        [
+          1005,
+          1006
+        ],
+        [
+          1006,
+          1007
+        ]
+      ],
+      "transition_risks": [
+        {
+          "Tminus1_plausible_arrivals": [
+            {
+              "owner_id": 8,
+              "position_source": "normal_plan_insufficient_fuel",
+              "ship_id": 129,
+              "start_at_site": true,
+              "waypoint_at_site": false
+            },
+            {
+              "owner_id": 8,
+              "position_source": "cloak_intercept_movement",
+              "ship_id": 157,
+              "start_at_site": true,
+              "waypoint_at_site": false
+            },
+            {
+              "owner_id": 8,
+              "position_source": "pre_move_mkt_mass_change",
+              "ship_id": 300,
+              "start_at_site": true,
+              "waypoint_at_site": true
+            }
+          ],
+          "from_vcr_id": 1005,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 3,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_PARENT_STANDARD_UNRESOLVED",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK"
+        },
+        {
+          "Tminus1_plausible_arrivals": [
+            {
+              "owner_id": 8,
+              "position_source": "normal_plan_insufficient_fuel",
+              "ship_id": 129,
+              "start_at_site": true,
+              "waypoint_at_site": false
+            },
+            {
+              "owner_id": 8,
+              "position_source": "cloak_intercept_movement",
+              "ship_id": 157,
+              "start_at_site": true,
+              "waypoint_at_site": false
+            },
+            {
+              "owner_id": 8,
+              "position_source": "pre_move_mkt_mass_change",
+              "ship_id": 300,
+              "start_at_site": true,
+              "waypoint_at_site": true
+            }
+          ],
+          "from_vcr_id": 1006,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 3,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_PARENT_STANDARD_UNRESOLVED",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK"
+        }
+      ],
+      "turn": 103,
+      "x": 2794,
+      "y": 2246
+    },
+    {
+      "additional_risk_unavailable": 0,
+      "context_error": null,
+      "game_id": 257776,
+      "original_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "original_unattempted_transitions": 0,
+      "preselected_frozen_vcr_pairs": [
+        [
+          337,
+          338
+        ],
+        [
+          338,
+          339
+        ]
+      ],
+      "transition_risks": [
+        {
+          "Tminus1_plausible_arrivals": [
+            {
+              "owner_id": 9,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 303,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            }
+          ],
+          "from_vcr_id": 337,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 1,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": true,
+          "original_conditional_v2_status": "CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK"
+        },
+        {
+          "Tminus1_plausible_arrivals": [
+            {
+              "owner_id": 3,
+              "position_source": "pre_move_mkt_mass_change",
+              "ship_id": 146,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 9,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 303,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            }
+          ],
+          "from_vcr_id": 338,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 2,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_N_REPLAY_OR_CARRIED_START",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK"
+        }
+      ],
+      "turn": 92,
+      "x": 2595,
+      "y": 2254
+    },
+    {
+      "additional_risk_unavailable": 0,
+      "context_error": null,
+      "game_id": 283648,
+      "original_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "original_unattempted_transitions": 0,
+      "preselected_frozen_vcr_pairs": [
+        [
+          112,
+          113
+        ],
+        [
+          113,
+          114
+        ]
+      ],
+      "transition_risks": [
+        {
+          "Tminus1_plausible_arrivals": [
+            {
+              "owner_id": 4,
+              "position_source": "tow_attempt",
+              "ship_id": 393,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            }
+          ],
+          "from_vcr_id": 112,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 1,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ABSTAIN_PLAUSIBLE_UNRESOLVED_TMINUS1_ARRIVALS"
+        },
+        {
+          "Tminus1_plausible_arrivals": [
+            {
+              "owner_id": 4,
+              "position_source": "tow_attempt",
+              "ship_id": 321,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 4,
+              "position_source": "tow_attempt",
+              "ship_id": 393,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            }
+          ],
+          "from_vcr_id": 113,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 2,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ABSTAIN_PLAUSIBLE_UNRESOLVED_TMINUS1_ARRIVALS"
+        }
+      ],
+      "turn": 52,
+      "x": 1911,
+      "y": 1000
+    },
+    {
+      "additional_risk_unavailable": 0,
+      "context_error": null,
+      "game_id": 283648,
+      "original_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "original_unattempted_transitions": 0,
+      "preselected_frozen_vcr_pairs": [
+        [
+          786,
+          787
+        ]
+      ],
+      "transition_risks": [
+        {
+          "Tminus1_plausible_arrivals": [],
+          "from_vcr_id": 786,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 0,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "NO_PAIR_NOT_PROVEN_NO_ARRIVALS_IN_LIMITED_TMINUS1_INDEX"
+        }
+      ],
+      "turn": 144,
+      "x": 1275,
+      "y": 1689
+    },
+    {
+      "additional_risk_unavailable": 0,
+      "context_error": null,
+      "game_id": 347923,
+      "original_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "original_unattempted_transitions": 0,
+      "preselected_frozen_vcr_pairs": [
+        [
+          451,
+          452
+        ],
+        [
+          452,
+          453
+        ]
+      ],
+      "transition_risks": [
+        {
+          "Tminus1_plausible_arrivals": [],
+          "from_vcr_id": 451,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 0,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "NO_PAIR_NOT_PROVEN_NO_ARRIVALS_IN_LIMITED_TMINUS1_INDEX"
+        },
+        {
+          "Tminus1_plausible_arrivals": [],
+          "from_vcr_id": 452,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 0,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "NO_PAIR_NOT_PROVEN_NO_ARRIVALS_IN_LIMITED_TMINUS1_INDEX"
+        }
+      ],
+      "turn": 95,
+      "x": 2186,
+      "y": 1120
+    },
+    {
+      "additional_risk_unavailable": 0,
+      "context_error": null,
+      "game_id": 364412,
+      "original_site_status": "ABSTAIN_TMINUS1_SITE_CONTEXT_MISSING",
+      "original_unattempted_transitions": 1,
+      "preselected_frozen_vcr_pairs": [
+        [
+          362,
+          363
+        ]
+      ],
+      "transition_risks": [],
+      "turn": 65,
+      "x": 1245,
+      "y": 1540
+    },
+    {
+      "additional_risk_unavailable": 0,
+      "context_error": null,
+      "game_id": 399914,
+      "original_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "original_unattempted_transitions": 0,
+      "preselected_frozen_vcr_pairs": [
+        [
+          832,
+          833
+        ],
+        [
+          833,
+          834
+        ],
+        [
+          834,
+          835
+        ],
+        [
+          835,
+          836
+        ]
+      ],
+      "transition_risks": [
+        {
+          "Tminus1_plausible_arrivals": [],
+          "from_vcr_id": 832,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 0,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": true,
+          "original_conditional_v2_status": "CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK"
+        },
+        {
+          "Tminus1_plausible_arrivals": [],
+          "from_vcr_id": 833,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 0,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_CAPTURE_TEMPORARY_ORDER_NOT_INDEPENDENT",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK"
+        },
+        {
+          "Tminus1_plausible_arrivals": [],
+          "from_vcr_id": 834,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 0,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_N_REPLAY_OR_CARRIED_START",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK"
+        },
+        {
+          "Tminus1_plausible_arrivals": [],
+          "from_vcr_id": 835,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 0,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_N_REPLAY_OR_CARRIED_START",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK"
+        }
+      ],
+      "turn": 116,
+      "x": 1293,
+      "y": 2185
+    },
+    {
+      "additional_risk_unavailable": 0,
+      "context_error": null,
+      "game_id": 421276,
+      "original_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "original_unattempted_transitions": 0,
+      "preselected_frozen_vcr_pairs": [
+        [
+          436,
+          437
+        ],
+        [
+          437,
+          438
+        ],
+        [
+          438,
+          439
+        ],
+        [
+          439,
+          440
+        ],
+        [
+          440,
+          441
+        ],
+        [
+          441,
+          442
+        ],
+        [
+          442,
+          443
+        ],
+        [
+          443,
+          444
+        ],
+        [
+          444,
+          445
+        ],
+        [
+          445,
+          446
+        ],
+        [
+          446,
+          447
+        ],
+        [
+          447,
+          448
+        ]
+      ],
+      "transition_risks": [
+        {
+          "Tminus1_plausible_arrivals": [
+            {
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 46,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 96,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 117,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 150,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 233,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 264,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 280,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 338,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 362,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 399,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 400,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 437,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 455,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 457,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            }
+          ],
+          "from_vcr_id": 436,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 14,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ABSTAIN_PLAUSIBLE_UNRESOLVED_TMINUS1_ARRIVALS"
+        },
+        {
+          "Tminus1_plausible_arrivals": [
+            {
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 46,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 96,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 117,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 150,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "tow_target",
+              "ship_id": 177,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 233,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 264,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 280,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 338,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 362,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 399,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 400,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 437,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 455,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            }
+          ],
+          "from_vcr_id": 437,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 14,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_CAPTURE_TEMPORARY_ORDER_NOT_INDEPENDENT",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK"
+        },
+        {
+          "Tminus1_plausible_arrivals": [
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 96,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 117,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 150,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "tow_target",
+              "ship_id": 177,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 233,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 264,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 280,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 338,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 362,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 399,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 400,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 437,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 455,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 457,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            }
+          ],
+          "from_vcr_id": 438,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 14,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ABSTAIN_PLAUSIBLE_UNRESOLVED_TMINUS1_ARRIVALS"
+        },
+        {
+          "Tminus1_plausible_arrivals": [
+            {
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 46,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 96,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 150,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "tow_target",
+              "ship_id": 177,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 233,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 264,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 280,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 338,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 362,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 399,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 400,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 437,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 455,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 457,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            }
+          ],
+          "from_vcr_id": 439,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 14,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ABSTAIN_PLAUSIBLE_UNRESOLVED_TMINUS1_ARRIVALS"
+        },
+        {
+          "Tminus1_plausible_arrivals": [
+            {
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 46,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 96,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 117,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 150,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "tow_target",
+              "ship_id": 177,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 233,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 280,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 338,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 362,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 399,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 400,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 437,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 455,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 457,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            }
+          ],
+          "from_vcr_id": 440,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 14,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ABSTAIN_PLAUSIBLE_UNRESOLVED_TMINUS1_ARRIVALS"
+        },
+        {
+          "Tminus1_plausible_arrivals": [
+            {
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 46,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 96,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 117,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 150,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "tow_target",
+              "ship_id": 177,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 233,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 264,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 280,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 338,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 399,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 400,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 437,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 455,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 457,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            }
+          ],
+          "from_vcr_id": 441,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 14,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ABSTAIN_PLAUSIBLE_UNRESOLVED_TMINUS1_ARRIVALS"
+        },
+        {
+          "Tminus1_plausible_arrivals": [
+            {
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 46,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 96,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 117,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 150,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "tow_target",
+              "ship_id": 177,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 233,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 264,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 280,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 338,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 362,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 399,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 437,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 455,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 457,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            }
+          ],
+          "from_vcr_id": 442,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 14,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_CAPTURE_TEMPORARY_ORDER_NOT_INDEPENDENT",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK"
+        },
+        {
+          "Tminus1_plausible_arrivals": [
+            {
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 46,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 117,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 150,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "tow_target",
+              "ship_id": 177,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 233,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 264,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 280,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 338,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 362,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 399,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 400,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 437,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 455,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 457,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            }
+          ],
+          "from_vcr_id": 443,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 14,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ABSTAIN_PLAUSIBLE_UNRESOLVED_TMINUS1_ARRIVALS"
+        },
+        {
+          "Tminus1_plausible_arrivals": [
+            {
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 46,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 96,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 117,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "tow_target",
+              "ship_id": 177,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 233,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 264,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 280,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 338,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 362,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 399,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 400,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 437,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 455,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 457,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            }
+          ],
+          "from_vcr_id": 444,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 14,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ABSTAIN_PLAUSIBLE_UNRESOLVED_TMINUS1_ARRIVALS"
+        },
+        {
+          "Tminus1_plausible_arrivals": [
+            {
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 46,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 96,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 117,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 150,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "tow_target",
+              "ship_id": 177,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 233,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 264,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 338,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 362,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 399,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 400,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 437,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 455,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 457,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            }
+          ],
+          "from_vcr_id": 445,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 14,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ABSTAIN_PLAUSIBLE_UNRESOLVED_TMINUS1_ARRIVALS"
+        },
+        {
+          "Tminus1_plausible_arrivals": [
+            {
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 46,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 96,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 117,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 150,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "tow_target",
+              "ship_id": 177,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 233,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 264,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 280,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 362,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 399,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 400,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 437,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 455,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 457,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            }
+          ],
+          "from_vcr_id": 446,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 14,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ABSTAIN_PLAUSIBLE_UNRESOLVED_TMINUS1_ARRIVALS"
+        },
+        {
+          "Tminus1_plausible_arrivals": [
+            {
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 46,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 96,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "tow_attempt",
+              "ship_id": 117,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 150,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "tow_target",
+              "ship_id": 177,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 233,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 264,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 280,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 338,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 362,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 400,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 437,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 455,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 10,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 457,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            }
+          ],
+          "from_vcr_id": 447,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 14,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_CAPTURE_TEMPORARY_ORDER_NOT_INDEPENDENT",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK"
+        }
+      ],
+      "turn": 115,
+      "x": 2178,
+      "y": 1105
+    },
+    {
+      "additional_risk_unavailable": 0,
+      "context_error": null,
+      "game_id": 421276,
+      "original_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "original_unattempted_transitions": 0,
+      "preselected_frozen_vcr_pairs": [
+        [
+          432,
+          433
+        ],
+        [
+          433,
+          434
+        ],
+        [
+          434,
+          435
+        ]
+      ],
+      "transition_risks": [
+        {
+          "Tminus1_plausible_arrivals": [
+            {
+              "owner_id": 3,
+              "position_source": "tow_target",
+              "ship_id": 92,
+              "start_at_site": true,
+              "waypoint_at_site": false
+            },
+            {
+              "owner_id": 10,
+              "position_source": "outbound_transfer",
+              "ship_id": 430,
+              "start_at_site": true,
+              "waypoint_at_site": true
+            }
+          ],
+          "from_vcr_id": 432,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 2,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": true,
+          "original_conditional_v2_status": "CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK"
+        },
+        {
+          "Tminus1_plausible_arrivals": [
+            {
+              "owner_id": 3,
+              "position_source": "tow_target",
+              "ship_id": 92,
+              "start_at_site": true,
+              "waypoint_at_site": false
+            },
+            {
+              "owner_id": 10,
+              "position_source": "outbound_transfer",
+              "ship_id": 430,
+              "start_at_site": true,
+              "waypoint_at_site": true
+            }
+          ],
+          "from_vcr_id": 433,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 2,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_CAPTURE_TEMPORARY_ORDER_NOT_INDEPENDENT",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK"
+        },
+        {
+          "Tminus1_plausible_arrivals": [
+            {
+              "owner_id": 3,
+              "position_source": "tow_target",
+              "ship_id": 92,
+              "start_at_site": true,
+              "waypoint_at_site": false
+            },
+            {
+              "owner_id": 10,
+              "position_source": "outbound_transfer",
+              "ship_id": 430,
+              "start_at_site": true,
+              "waypoint_at_site": true
+            }
+          ],
+          "from_vcr_id": 434,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 2,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_N_REPLAY_OR_CARRIED_START",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK"
+        }
+      ],
+      "turn": 115,
+      "x": 2322,
+      "y": 1131
+    },
+    {
+      "additional_risk_unavailable": 0,
+      "context_error": null,
+      "game_id": 473010,
+      "original_site_status": "ABSTAIN_TMINUS1_SITE_CONTEXT_MISSING",
+      "original_unattempted_transitions": 1,
+      "preselected_frozen_vcr_pairs": [
+        [
+          797,
+          798
+        ]
+      ],
+      "transition_risks": [],
+      "turn": 214,
+      "x": 1277,
+      "y": 1853
+    },
+    {
+      "additional_risk_unavailable": 0,
+      "context_error": null,
+      "game_id": 476380,
+      "original_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "original_unattempted_transitions": 0,
+      "preselected_frozen_vcr_pairs": [
+        [
+          322,
+          323
+        ],
+        [
+          323,
+          324
+        ],
+        [
+          324,
+          325
+        ],
+        [
+          325,
+          326
+        ],
+        [
+          326,
+          327
+        ],
+        [
+          327,
+          328
+        ],
+        [
+          328,
+          329
+        ],
+        [
+          329,
+          330
+        ]
+      ],
+      "transition_risks": [
+        {
+          "Tminus1_plausible_arrivals": [],
+          "from_vcr_id": 322,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 0,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "NO_PAIR_NOT_PROVEN_NO_ARRIVALS_IN_LIMITED_TMINUS1_INDEX"
+        },
+        {
+          "Tminus1_plausible_arrivals": [],
+          "from_vcr_id": 323,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 0,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_PARENT_STANDARD_UNRESOLVED",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK"
+        },
+        {
+          "Tminus1_plausible_arrivals": [],
+          "from_vcr_id": 324,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 0,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_PARENT_STANDARD_UNRESOLVED",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK"
+        },
+        {
+          "Tminus1_plausible_arrivals": [],
+          "from_vcr_id": 325,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 0,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_PARENT_STANDARD_UNRESOLVED",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK"
+        },
+        {
+          "Tminus1_plausible_arrivals": [],
+          "from_vcr_id": 326,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 0,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_N_REPLAY_OR_CARRIED_START",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK"
+        },
+        {
+          "Tminus1_plausible_arrivals": [],
+          "from_vcr_id": 327,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 0,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "NO_PAIR_NOT_PROVEN_NO_ARRIVALS_IN_LIMITED_TMINUS1_INDEX"
+        },
+        {
+          "Tminus1_plausible_arrivals": [],
+          "from_vcr_id": 328,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 0,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "NO_PAIR_NOT_PROVEN_NO_ARRIVALS_IN_LIMITED_TMINUS1_INDEX"
+        },
+        {
+          "Tminus1_plausible_arrivals": [],
+          "from_vcr_id": 329,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 0,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "NO_PAIR_NOT_PROVEN_NO_ARRIVALS_IN_LIMITED_TMINUS1_INDEX"
+        }
+      ],
+      "turn": 82,
+      "x": 1286,
+      "y": 1835
+    },
+    {
+      "additional_risk_unavailable": 0,
+      "context_error": null,
+      "game_id": 476380,
+      "original_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "original_unattempted_transitions": 0,
+      "preselected_frozen_vcr_pairs": [
+        [
+          335,
+          336
+        ]
+      ],
+      "transition_risks": [
+        {
+          "Tminus1_plausible_arrivals": [
+            {
+              "owner_id": 9,
+              "position_source": "tow_attempt",
+              "ship_id": 119,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            }
+          ],
+          "from_vcr_id": 335,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 1,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ABSTAIN_PLAUSIBLE_UNRESOLVED_TMINUS1_ARRIVALS"
+        }
+      ],
+      "turn": 82,
+      "x": 1637,
+      "y": 2078
+    },
+    {
+      "additional_risk_unavailable": 0,
+      "context_error": null,
+      "game_id": 476380,
+      "original_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "original_unattempted_transitions": 0,
+      "preselected_frozen_vcr_pairs": [
+        [
+          332,
+          333
+        ]
+      ],
+      "transition_risks": [
+        {
+          "Tminus1_plausible_arrivals": [
+            {
+              "owner_id": 9,
+              "position_source": "tow_target",
+              "ship_id": 85,
+              "start_at_site": true,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 9,
+              "position_source": "tow_attempt",
+              "ship_id": 87,
+              "start_at_site": true,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 1,
+              "position_source": "tow_target",
+              "ship_id": 102,
+              "start_at_site": true,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 9,
+              "position_source": "pre_move_mkt_mass_change",
+              "ship_id": 236,
+              "start_at_site": true,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 9,
+              "position_source": "tow_attempt",
+              "ship_id": 267,
+              "start_at_site": true,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 9,
+              "position_source": "pre_move_mkt_mass_change",
+              "ship_id": 268,
+              "start_at_site": true,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 9,
+              "position_source": "pre_move_mkt_mass_change",
+              "ship_id": 428,
+              "start_at_site": true,
+              "waypoint_at_site": true
+            }
+          ],
+          "from_vcr_id": 332,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 7,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ABSTAIN_PLAUSIBLE_UNRESOLVED_TMINUS1_ARRIVALS"
+        }
+      ],
+      "turn": 82,
+      "x": 2410,
+      "y": 1880
+    },
+    {
+      "additional_risk_unavailable": 0,
+      "context_error": null,
+      "game_id": 476380,
+      "original_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "original_unattempted_transitions": 0,
+      "preselected_frozen_vcr_pairs": [
+        [
+          1166,
+          1167
+        ]
+      ],
+      "transition_risks": [
+        {
+          "Tminus1_plausible_arrivals": [],
+          "from_vcr_id": 1166,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 0,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_PARENT_STANDARD_UNRESOLVED",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK"
+        }
+      ],
+      "turn": 327,
+      "x": 1546,
+      "y": 1868
+    },
+    {
+      "additional_risk_unavailable": 0,
+      "context_error": null,
+      "game_id": 477725,
+      "original_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "original_unattempted_transitions": 0,
+      "preselected_frozen_vcr_pairs": [
+        [
+          1247,
+          1248
+        ],
+        [
+          1248,
+          1249
+        ]
+      ],
+      "transition_risks": [
+        {
+          "Tminus1_plausible_arrivals": [],
+          "from_vcr_id": 1247,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 0,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_N_REPLAY_OR_CARRIED_START",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK"
+        },
+        {
+          "Tminus1_plausible_arrivals": [],
+          "from_vcr_id": 1248,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 0,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_N_REPLAY_OR_CARRIED_START",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK"
+        }
+      ],
+      "turn": 187,
+      "x": 2257,
+      "y": 832
+    },
+    {
+      "additional_risk_unavailable": 0,
+      "context_error": null,
+      "game_id": 490865,
+      "original_site_status": "ABSTAIN_TMINUS1_SITE_CONTEXT_MISSING",
+      "original_unattempted_transitions": 1,
+      "preselected_frozen_vcr_pairs": [
+        [
+          1074,
+          1075
+        ]
+      ],
+      "transition_risks": [],
+      "turn": 137,
+      "x": 2092,
+      "y": 1400
+    },
+    {
+      "additional_risk_unavailable": 0,
+      "context_error": null,
+      "game_id": 629488,
+      "original_site_status": "ABSTAIN_TMINUS1_SITE_CONTEXT_MISSING",
+      "original_unattempted_transitions": 4,
+      "preselected_frozen_vcr_pairs": [
+        [
+          1004,
+          1005
+        ],
+        [
+          1005,
+          1006
+        ],
+        [
+          1006,
+          1007
+        ],
+        [
+          1007,
+          1008
+        ]
+      ],
+      "transition_risks": [],
+      "turn": 141,
+      "x": 1268,
+      "y": 1296
+    },
+    {
+      "additional_risk_unavailable": 0,
+      "context_error": null,
+      "game_id": 633837,
+      "original_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "original_unattempted_transitions": 0,
+      "preselected_frozen_vcr_pairs": [
+        [
+          381,
+          382
+        ]
+      ],
+      "transition_risks": [
+        {
+          "Tminus1_plausible_arrivals": [
+            {
+              "owner_id": 5,
+              "position_source": "tow_attempt",
+              "ship_id": 82,
+              "start_at_site": true,
+              "waypoint_at_site": false
+            },
+            {
+              "owner_id": 5,
+              "position_source": "tow_attempt",
+              "ship_id": 113,
+              "start_at_site": true,
+              "waypoint_at_site": false
+            },
+            {
+              "owner_id": 5,
+              "position_source": "tow_attempt",
+              "ship_id": 137,
+              "start_at_site": true,
+              "waypoint_at_site": false
+            },
+            {
+              "owner_id": 5,
+              "position_source": "tow_attempt",
+              "ship_id": 159,
+              "start_at_site": true,
+              "waypoint_at_site": false
+            },
+            {
+              "owner_id": 5,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 233,
+              "start_at_site": true,
+              "waypoint_at_site": false
+            },
+            {
+              "owner_id": 5,
+              "position_source": "tow_target",
+              "ship_id": 266,
+              "start_at_site": true,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 5,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 306,
+              "start_at_site": true,
+              "waypoint_at_site": false
+            },
+            {
+              "owner_id": 5,
+              "position_source": "tow_target",
+              "ship_id": 439,
+              "start_at_site": true,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 5,
+              "position_source": "tow_target",
+              "ship_id": 440,
+              "start_at_site": true,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 5,
+              "position_source": "tow_target",
+              "ship_id": 441,
+              "start_at_site": true,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 5,
+              "position_source": "tow_attempt",
+              "ship_id": 462,
+              "start_at_site": true,
+              "waypoint_at_site": false
+            },
+            {
+              "owner_id": 5,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 466,
+              "start_at_site": true,
+              "waypoint_at_site": false
+            },
+            {
+              "owner_id": 5,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 481,
+              "start_at_site": true,
+              "waypoint_at_site": false
+            },
+            {
+              "owner_id": 5,
+              "position_source": "normal_mine_route_risk",
+              "ship_id": 500,
+              "start_at_site": true,
+              "waypoint_at_site": false
+            },
+            {
+              "owner_id": 5,
+              "position_source": "tow_target",
+              "ship_id": 565,
+              "start_at_site": true,
+              "waypoint_at_site": true
+            }
+          ],
+          "from_vcr_id": 381,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 15,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ABSTAIN_PLAUSIBLE_UNRESOLVED_TMINUS1_ARRIVALS"
+        }
+      ],
+      "turn": 119,
+      "x": 1942,
+      "y": 2606
+    },
+    {
+      "additional_risk_unavailable": 0,
+      "context_error": null,
+      "game_id": 658427,
+      "original_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "original_unattempted_transitions": 0,
+      "preselected_frozen_vcr_pairs": [
+        [
+          164,
+          165
+        ]
+      ],
+      "transition_risks": [
+        {
+          "Tminus1_plausible_arrivals": [
+            {
+              "owner_id": 21,
+              "position_source": "sphere_topology_not_integrated",
+              "ship_id": 229,
+              "start_at_site": true,
+              "waypoint_at_site": false
+            },
+            {
+              "owner_id": 21,
+              "position_source": "sphere_topology_not_integrated",
+              "ship_id": 242,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            },
+            {
+              "owner_id": 24,
+              "position_source": "tow_attempt",
+              "ship_id": 309,
+              "start_at_site": false,
+              "waypoint_at_site": true
+            }
+          ],
+          "from_vcr_id": 164,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 3,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_PARENT_STANDARD_NO_PAIR",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ABSTAIN_PLAUSIBLE_UNRESOLVED_TMINUS1_ARRIVALS"
+        }
+      ],
+      "turn": 41,
+      "x": 2026,
+      "y": 2853
+    },
+    {
+      "additional_risk_unavailable": 0,
+      "context_error": null,
+      "game_id": 674696,
+      "original_site_status": "ALL_FROZEN_TRANSITIONS_ATTEMPTED",
+      "original_unattempted_transitions": 0,
+      "preselected_frozen_vcr_pairs": [
+        [
+          130,
+          131
+        ]
+      ],
+      "transition_risks": [
+        {
+          "Tminus1_plausible_arrivals": [],
+          "from_vcr_id": 130,
+          "future_Nplus1_used": false,
+          "independent_Tminus1_plausible_arrival_count": 0,
+          "only_known_current_N_active_owners_used": true,
+          "original_conditional_v2_exact": null,
+          "original_conditional_v2_status": "ABSTAIN_N_REPLAY_OR_CARRIED_START",
+          "original_next_pair_or_side_changed": false,
+          "risk_status": "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK"
+        }
+      ],
+      "turn": 32,
+      "x": 2193,
+      "y": 1839
+    }
+  ],
+  "source_census_git_blob_sha1": "fda92475988d2f7dfbc7b93606de4f8cec909806",
+  "source_conditional_v2_git_blob_sha1": "dd641864dc3bd541098ea2c21cf21fb8ff03d5ce",
+  "source_db_generation": "generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "source_db_sha256": "3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c",
+  "status": "PARENT_NO_PAIR_IS_SITE_ROSTER_CONDITIONAL_NOT_HOST_EXHAUSTION",
+  "summary": {
+    "Host_site_exhaustion_proven": false,
+    "Nplus1_used_in_risk_guard": false,
+    "changed_original_V2_predictions": 0,
+    "frozen_adjacent_transitions": 63,
+    "frozen_sites": 27,
+    "guard_status_counts": {
+      "ABSTAIN_PLAUSIBLE_UNRESOLVED_TMINUS1_ARRIVALS": 17,
+      "NO_PAIR_NOT_PROVEN_NO_ARRIVALS_IN_LIMITED_TMINUS1_INDEX": 8,
+      "ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK": 31
+    },
+    "new_combat_pair_predictions": 0,
+    "not_inspected_due_to_missing_context": 7,
+    "original_V2_conditional_exact": 7,
+    "original_V2_conditional_predictions": 9,
+    "original_V2_status_counts_on_evaluated": {
+      "ABSTAIN_CAPTURE_TEMPORARY_ORDER_NOT_INDEPENDENT": 5,
+      "ABSTAIN_N_REPLAY_OR_CARRIED_START": 8,
+      "ABSTAIN_PARENT_STANDARD_NO_PAIR": 25,
+      "ABSTAIN_PARENT_STANDARD_UNRESOLVED": 8,
+      "ABSTAIN_TMINUS1_OR_CURRENT_N_BRIDGE_UNRESOLVED": 1,
+      "CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1": 9
+    },
+    "plausible_arrival_Tminus1_source_counts": {
+      "cloak_intercept_movement": 2,
+      "normal_mine_route_risk": 142,
+      "normal_plan_insufficient_fuel": 2,
+      "outbound_transfer": 3,
+      "pre_move_mkt_mass_change": 8,
+      "sphere_topology_not_integrated": 5,
+      "tow_attempt": 34,
+      "tow_target": 23
+    },
+    "race12_Horwasp_promoted": false,
+    "risk_evaluations": 56
+  }
+}

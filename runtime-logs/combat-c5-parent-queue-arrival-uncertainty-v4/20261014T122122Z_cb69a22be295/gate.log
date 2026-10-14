@@ -1,0 +1,32 @@
+===== C5 PARENT QUEUE UNCERTAIN T-1 ARRIVALS SAFETY GATE V4 =====
+HEAD: cb69a22be295bd17103fadf606c8869252d1bf52
+census_git_blob: fda92475988d2f7dfbc7b93606de4f8cec909806
+conditional_v2_git_blob: dd641864dc3bd541098ea2c21cf21fb8ff03d5ce
+DB: /root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb (pinned SHA256 once, read-only)
+[c5-arrival-guard] verifying pinned public100 SHA256
+[c5-arrival-guard] verified in 23.6s; read-only DB
+[c5-arrival-guard] [1/21] G218619 T232 sites=1
+[c5-arrival-guard] [2/21] G243165 T30 sites=1
+[c5-arrival-guard] [3/21] G243165 T107 sites=1
+[c5-arrival-guard] [4/21] G245693 T29 sites=2
+[c5-arrival-guard] [5/21] G245693 T103 sites=3
+[c5-arrival-guard] [6/21] G257776 T92 sites=1
+[c5-arrival-guard] [7/21] G283648 T52 sites=1
+[c5-arrival-guard] [8/21] G283648 T144 sites=1
+[c5-arrival-guard] [9/21] G347923 T95 sites=1
+[c5-arrival-guard] [10/21] G364412 T65 sites=1
+[c5-arrival-guard] [11/21] G399914 T116 sites=1
+[c5-arrival-guard] [12/21] G421276 T115 sites=2
+[c5-arrival-guard] [13/21] G473010 T214 sites=1
+[c5-arrival-guard] [14/21] G476380 T82 sites=3
+[c5-arrival-guard] [15/21] G476380 T327 sites=1
+[c5-arrival-guard] [16/21] G477725 T187 sites=1
+[c5-arrival-guard] [17/21] G490865 T137 sites=1
+[c5-arrival-guard] [18/21] G629488 T141 sites=1
+[c5-arrival-guard] [19/21] G633837 T119 sites=1
+[c5-arrival-guard] [20/21] G658427 T41 sites=1
+[c5-arrival-guard] [21/21] G674696 T32 sites=1
+===== ORDINARY C5 PARENT QUEUE UNKNOWN ARRIVAL GUARD V4 =====
+status: PARENT_NO_PAIR_IS_SITE_ROSTER_CONDITIONAL_NOT_HOST_EXHAUSTION
+summary: {'frozen_sites': 27, 'frozen_adjacent_transitions': 63, 'original_V2_conditional_predictions': 9, 'original_V2_conditional_exact': 7, 'risk_evaluations': 56, 'not_inspected_due_to_missing_context': 7, 'original_V2_status_counts_on_evaluated': {'ABSTAIN_CAPTURE_TEMPORARY_ORDER_NOT_INDEPENDENT': 5, 'ABSTAIN_N_REPLAY_OR_CARRIED_START': 8, 'ABSTAIN_PARENT_STANDARD_NO_PAIR': 25, 'ABSTAIN_PARENT_STANDARD_UNRESOLVED': 8, 'ABSTAIN_TMINUS1_OR_CURRENT_N_BRIDGE_UNRESOLVED': 1, 'CONDITIONAL_PARENT_STANDARD_N_TO_NPLUS1': 9}, 'guard_status_counts': {'ABSTAIN_PLAUSIBLE_UNRESOLVED_TMINUS1_ARRIVALS': 17, 'NO_PAIR_NOT_PROVEN_NO_ARRIVALS_IN_LIMITED_TMINUS1_INDEX': 8, 'ORIGINAL_VERDICT_UNCHANGED_OBSERVATIONAL_RISK': 31}, 'plausible_arrival_Tminus1_source_counts': {'cloak_intercept_movement': 2, 'normal_mine_route_risk': 142, 'normal_plan_insufficient_fuel': 2, 'outbound_transfer': 3, 'pre_move_mkt_mass_change': 8, 'sphere_topology_not_integrated': 5, 'tow_attempt': 34, 'tow_target': 23}, 'new_combat_pair_predictions': 0, 'changed_original_V2_predictions': 0, 'Host_site_exhaustion_proven': False, 'Nplus1_used_in_risk_guard': False, 'race12_Horwasp_promoted': False}
+output: artifacts/combat/c5-parent-queue-arrival-uncertainty-v4/published/report.json
