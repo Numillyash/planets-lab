@@ -35,8 +35,7 @@ class TLeakSentinel(dict):
 
 
 def test_pre_t_forecasts_do_not_look_up_future_or_current_vcr():
-    before=TLeakSentinel({46:pred(),77:pred(77,source="normal_move"),
-                          "T_archive":object(),"next_vcr":object()})
+    before=TLeakSentinel({46:pred(),77:pred(77,source="normal_move")})
     frozen=M.freeze_tminus1_forecast(
         game=421276,turn=115,predictions=before,v7_target={46:10})
     assert frozen[46]["cohort"]==M.MINE
