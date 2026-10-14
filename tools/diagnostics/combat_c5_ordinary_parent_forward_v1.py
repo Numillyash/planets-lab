@@ -146,8 +146,11 @@ def predict_from_prefix(
     ):
         raise ValueError("future factual VCR reached parent queue predictor")
     try:
+        # Explicitly remove current N as well from historical reconstruction;
+        # current VCR N is accessed separately only for its replay.
+        history_context=context_without_future(context,through_vcr_id=n-1)
         state=differential._initial_state_before_window(
-            context=context,appearances=appearances,start_vcr_id=n
+            context=history_context,appearances=appearances,start_vcr_id=n
         )
         current=differential._row_by_vcr(queue,n)
         state=record_factual_site_pair(
