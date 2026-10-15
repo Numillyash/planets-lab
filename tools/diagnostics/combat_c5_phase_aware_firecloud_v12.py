@@ -191,7 +191,8 @@ def pre_join(
             "Tminus1_without_T_observation_status":status,
             "T_archive_not_used_to_construct_candidates":True,
         })
-    if len(rows)!=13:raise ValueError("frozen 13 V11 residuals missing")
+    if not rows or len(rows)!=len(cases):
+        raise ValueError("Tminus1 pre-join dropped frozen input cases")
     return rows
 
 
