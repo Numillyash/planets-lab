@@ -222,6 +222,8 @@ def build_report(conn:Any,v6:Mapping[str,Any],v9report:Mapping[str,Any],v13repor
         try:
             snaps,raws=v9.pre_snapshots(conn,game=game,before=turn-1)
             features=v13.freeze_window(game,turn,snaps,raws)
+            if features.get("game_id")!=game or features.get("turn")!=turn:
+                raise ValueError("Tminus1 feature/window identity changed")
             pre[game,turn]=freeze_conditional_cases(features)
         except (ValueError,KeyError,TypeError) as exc:
             errors.append({"game_id":game,"turn":turn,"phase":"Tminus1",
