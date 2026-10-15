@@ -123,8 +123,10 @@ def test_tminus1_graph_precedes_every_posthost_archive_read(monkeypatch):
     cases=[]
     windows=[(245123,75),(306971,116),(245123,38),
              (306971,231),(476826,96),(663317,54)]
-    for i in range(13):
-        game,turn=windows[i%6]
+    allocation=([windows[0]]*4 + [windows[1]]*3 +
+                [windows[2]]*2 + [windows[3]]*2 +
+                [windows[4],windows[5]])
+    for i,(game,turn) in enumerate(allocation):
         cases.append(make_case(i+100,game=game,turn=turn,owner=10))
     events=[]
     def pre(_conn,game,turn):
