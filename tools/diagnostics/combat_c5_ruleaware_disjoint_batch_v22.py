@@ -136,8 +136,6 @@ def field_features(actor,stargates,rules,races):
     if source==target:cohort="NON_DISCRIMINATIVE_COLOCATED"
     elif actor["cohort"]=="ALL_TMINUS1_GATES_PASS":
         cohort="LONG_CONVENTIONAL_PASS"
-    elif actor["single_failing_gate"]==v16.SHORT_GATE if hasattr(v16,"SHORT_GATE") else False:
-        cohort="SHORT_WITH_TMINUS1_STABILIZER_WITNESS" if source_valid and distance>=1 else "SHORT_NO_DOCUMENTED_STABILIZER_WITNESS"
     elif actor["single_failing_gate"]=="DISTANCE_BELOW_100_AT_TMINUS1":
         cohort="SHORT_WITH_TMINUS1_STABILIZER_WITNESS" if source_valid and distance>=1 else "SHORT_NO_DOCUMENTED_STABILIZER_WITNESS"
     else:cohort="OTHER_ONE_FAILED_TMINUS1_GATE"
