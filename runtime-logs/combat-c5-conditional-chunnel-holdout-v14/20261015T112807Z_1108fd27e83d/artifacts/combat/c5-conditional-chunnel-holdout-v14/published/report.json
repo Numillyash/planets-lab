@@ -1,0 +1,5213 @@
+{
+  "boundary": "Conditional inference only: a valid Tminus1 conventional stock Firecloud pair does NOT guarantee execution, and Tminus1 pre-move normal endpoints (especially mine-risk cases) do NOT prove arrival. The model emits both a hypothetical Chunnel destination and a no-Chunnel normal endpoint BEFORE reading any T observation. All candidate game IDs are excluded from earlier V6, V9, V13 research and chosen using archival metadata only. Missing, owner or hull drift, duplicate eligible Firecloud sources and any post-T interruptions abstain. After-Host T matching does not isolate the Chunnel phase or rule out other movement and fuel operations. No production executor changes or N+1 VCR comparisons. Same public100 corpus is NOT a freshly collected independent dataset.",
+  "by_game_counts": {
+    "226056": {
+      "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY": 1
+    },
+    "253449": {
+      "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY": 4
+    },
+    "267580": {
+      "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY": 12
+    },
+    "290067": {
+      "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY": 11
+    },
+    "325434": {
+      "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY": 4
+    },
+    "341336": {
+      "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY": 2
+    },
+    "385906": {
+      "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY": 7
+    },
+    "423531": {
+      "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY": 5
+    },
+    "633855": {
+      "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY": 7
+    },
+    "655827": {
+      "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY": 2
+    }
+  },
+  "frozen_selection": {
+    "excluded_game_ids": [
+      2466,
+      217591,
+      218619,
+      228199,
+      243165,
+      245123,
+      245693,
+      257776,
+      257908,
+      283648,
+      296210,
+      306971,
+      338810,
+      347923,
+      350094,
+      364412,
+      371631,
+      399914,
+      416233,
+      421276,
+      421949,
+      467047,
+      473010,
+      476380,
+      476826,
+      477364,
+      477725,
+      490865,
+      530635,
+      597910,
+      627339,
+      629488,
+      633837,
+      658427,
+      660249,
+      663317,
+      674696
+    ],
+    "no_VCR_or_T_outcome_selection": true,
+    "protocol": "20 games x 3 adjacent windows, metadata only, exclude entire V6/V9/V13 game sets",
+    "selected_game_turns": [
+      {
+        "game_id": 220698,
+        "turn": 32
+      },
+      {
+        "game_id": 220698,
+        "turn": 63
+      },
+      {
+        "game_id": 220698,
+        "turn": 94
+      },
+      {
+        "game_id": 226056,
+        "turn": 35
+      },
+      {
+        "game_id": 226056,
+        "turn": 69
+      },
+      {
+        "game_id": 226056,
+        "turn": 103
+      },
+      {
+        "game_id": 233558,
+        "turn": 153
+      },
+      {
+        "game_id": 233558,
+        "turn": 305
+      },
+      {
+        "game_id": 233558,
+        "turn": 457
+      },
+      {
+        "game_id": 253449,
+        "turn": 44
+      },
+      {
+        "game_id": 253449,
+        "turn": 86
+      },
+      {
+        "game_id": 253449,
+        "turn": 128
+      },
+      {
+        "game_id": 267580,
+        "turn": 39
+      },
+      {
+        "game_id": 267580,
+        "turn": 76
+      },
+      {
+        "game_id": 267580,
+        "turn": 113
+      },
+      {
+        "game_id": 290067,
+        "turn": 42
+      },
+      {
+        "game_id": 290067,
+        "turn": 82
+      },
+      {
+        "game_id": 290067,
+        "turn": 122
+      },
+      {
+        "game_id": 325434,
+        "turn": 58
+      },
+      {
+        "game_id": 325434,
+        "turn": 115
+      },
+      {
+        "game_id": 325434,
+        "turn": 172
+      },
+      {
+        "game_id": 341336,
+        "turn": 30
+      },
+      {
+        "game_id": 341336,
+        "turn": 58
+      },
+      {
+        "game_id": 341336,
+        "turn": 86
+      },
+      {
+        "game_id": 347358,
+        "turn": 43
+      },
+      {
+        "game_id": 347358,
+        "turn": 85
+      },
+      {
+        "game_id": 347358,
+        "turn": 127
+      },
+      {
+        "game_id": 385906,
+        "turn": 41
+      },
+      {
+        "game_id": 385906,
+        "turn": 81
+      },
+      {
+        "game_id": 385906,
+        "turn": 121
+      },
+      {
+        "game_id": 407599,
+        "turn": 33
+      },
+      {
+        "game_id": 407599,
+        "turn": 65
+      },
+      {
+        "game_id": 407599,
+        "turn": 97
+      },
+      {
+        "game_id": 423531,
+        "turn": 38
+      },
+      {
+        "game_id": 423531,
+        "turn": 75
+      },
+      {
+        "game_id": 423531,
+        "turn": 111
+      },
+      {
+        "game_id": 454504,
+        "turn": 36
+      },
+      {
+        "game_id": 454504,
+        "turn": 70
+      },
+      {
+        "game_id": 454504,
+        "turn": 104
+      },
+      {
+        "game_id": 470320,
+        "turn": 44
+      },
+      {
+        "game_id": 470320,
+        "turn": 86
+      },
+      {
+        "game_id": 470320,
+        "turn": 128
+      },
+      {
+        "game_id": 486109,
+        "turn": 55
+      },
+      {
+        "game_id": 486109,
+        "turn": 108
+      },
+      {
+        "game_id": 486109,
+        "turn": 161
+      },
+      {
+        "game_id": 499284,
+        "turn": 33
+      },
+      {
+        "game_id": 499284,
+        "turn": 65
+      },
+      {
+        "game_id": 499284,
+        "turn": 96
+      },
+      {
+        "game_id": 563278,
+        "turn": 60
+      },
+      {
+        "game_id": 563278,
+        "turn": 119
+      },
+      {
+        "game_id": 563278,
+        "turn": 178
+      },
+      {
+        "game_id": 600044,
+        "turn": 35
+      },
+      {
+        "game_id": 600044,
+        "turn": 68
+      },
+      {
+        "game_id": 600044,
+        "turn": 101
+      },
+      {
+        "game_id": 633855,
+        "turn": 36
+      },
+      {
+        "game_id": 633855,
+        "turn": 70
+      },
+      {
+        "game_id": 633855,
+        "turn": 104
+      },
+      {
+        "game_id": 655827,
+        "turn": 35
+      },
+      {
+        "game_id": 655827,
+        "turn": 68
+      },
+      {
+        "game_id": 655827,
+        "turn": 101
+      }
+    ]
+  },
+  "schema": "planets-lab.combat-c5-conditional-chunnel-holdout.v14",
+  "source_db_generation": "generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "source_db_sha256": "3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c",
+  "source_v13_git_blob_sha1": "29309650f770b60dab2ec9aaedba3bcbbb652982",
+  "source_v6_git_blob_sha1": "51d21132e4db89511be59805ebe2be14014b3e7a",
+  "source_v9_git_blob_sha1": "4e7d707123586311456cc14e78ff774a851caa48",
+  "status": "GAME_DISJOINT_PREOUTCOME_CHUNNEL_CONDITIONAL_VS_NORMAL_BASELINE",
+  "summary": {
+    "Chunnel_execution_independently_proven": false,
+    "Nplus1_VCR_used": false,
+    "T_negative_normal_control_counts": {
+      "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE": 1,
+      "ABSTAIN_T_HULL_IDENTITY_DRIFT": 1,
+      "ABSTAIN_T_OWNER_DRIFT": 4,
+      "MATCH": 526,
+      "MISMATCH": 8
+    },
+    "T_passenger_conditional_vs_baseline_counts": {
+      "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY": 55
+    },
+    "T_passenger_counts_by_Tminus1_mine_risk": {
+      "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT": {
+        "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY": 1
+      },
+      "NORMAL_MODEL_NO_INDEXED_MINE_RISK": {
+        "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY": 54
+      }
+    },
+    "V6_V9_V13_game_overlap": 0,
+    "ambiguous_passenger_exclusions": 0,
+    "completed_windows": 60,
+    "context_abstentions": 0,
+    "eligible_Tminus1_Firecloud_edges_in_completed_windows": 95,
+    "frozen_unambiguous_candidate_passengers": 55,
+    "new_independent_corpus": false,
+    "new_production_Host_movement_or_combat_predictions": 0,
+    "passenger_exposure_distinct_games": 10,
+    "passenger_exposure_game_turns": 15,
+    "selected_game_count": 20,
+    "selected_window_count": 60
+  },
+  "window_errors": [],
+  "window_evaluations": [
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 1,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 5,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 6,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 7,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 8,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 9,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 10,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 11,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 12,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 14,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 220698,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 0,
+      "turn": 32
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 1,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 2,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 3,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 5,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 6,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 7,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 8,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 10,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 11,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 12,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 220698,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 3,
+      "turn": 63
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 2,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 3,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 7,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 10,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 11,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 12,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 19,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 21,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 23,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 24,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 220698,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 2,
+      "turn": 94
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 6,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 9,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 12,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 17,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 18,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 21,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 22,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 23,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 24,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 31,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 226056,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 0,
+      "turn": 35
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 3,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 9,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 10,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 12,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 14,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 16,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 17,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 24,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 26,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 27,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 226056,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 1,
+      "turn": 69
+    },
+    {
+      "T_conditional_passenger_comparisons": [
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            2601,
+            1835
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            2601,
+            1835
+          ],
+          "game_id": 226056,
+          "hull_id": 17,
+          "initiator_ship_id": 276,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            1477,
+            1605
+          ],
+          "owner_id": 1,
+          "ship_id": 25,
+          "target_ship_id": 115,
+          "turn": 103
+        }
+      ],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 2,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 4,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 5,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 13,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 16,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 18,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 22,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 24,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 28,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 29,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 226056,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 2,
+      "turn": 103
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [],
+      "game_id": 233558,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 3,
+      "turn": 153
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [],
+      "game_id": 233558,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 0,
+      "turn": 305
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [],
+      "game_id": 233558,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 2,
+      "turn": 457
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 1,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 3,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 7,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 8,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 11,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 12,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 16,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 17,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 25,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 27,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 253449,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 0,
+      "turn": 44
+    },
+    {
+      "T_conditional_passenger_comparisons": [
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            1100,
+            2575
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            1100,
+            2575
+          ],
+          "game_id": 253449,
+          "hull_id": 57,
+          "initiator_ship_id": 346,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            1239,
+            2107
+          ],
+          "owner_id": 6,
+          "ship_id": 599,
+          "target_ship_id": 334,
+          "turn": 86
+        }
+      ],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 1,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 3,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 4,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 6,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 7,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 8,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 9,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 12,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 13,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 16,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 253449,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 2,
+      "turn": 86
+    },
+    {
+      "T_conditional_passenger_comparisons": [
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            2840,
+            1613
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            2840,
+            1613
+          ],
+          "game_id": 253449,
+          "hull_id": 52,
+          "initiator_ship_id": 102,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            1698,
+            2874
+          ],
+          "owner_id": 6,
+          "ship_id": 47,
+          "target_ship_id": 349,
+          "turn": 128
+        },
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            2840,
+            1613
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            2840,
+            1613
+          ],
+          "game_id": 253449,
+          "hull_id": 52,
+          "initiator_ship_id": 102,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            1698,
+            2874
+          ],
+          "owner_id": 6,
+          "ship_id": 290,
+          "target_ship_id": 349,
+          "turn": 128
+        },
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            2840,
+            1613
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            2840,
+            1613
+          ],
+          "game_id": 253449,
+          "hull_id": 52,
+          "initiator_ship_id": 102,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            1698,
+            2874
+          ],
+          "owner_id": 6,
+          "ship_id": 594,
+          "target_ship_id": 349,
+          "turn": 128
+        }
+      ],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": false,
+          "ship_id": 1,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": false,
+          "ship_id": 3,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 4,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": false,
+          "ship_id": 6,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 8,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 9,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 10,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 11,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 12,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 16,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 253449,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 2,
+      "turn": 128
+    },
+    {
+      "T_conditional_passenger_comparisons": [
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            1010,
+            1844
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            1010,
+            1844
+          ],
+          "game_id": 267580,
+          "hull_id": 8,
+          "initiator_ship_id": 419,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            1219,
+            1926
+          ],
+          "owner_id": 2,
+          "ship_id": 176,
+          "target_ship_id": 500,
+          "turn": 39
+        },
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            1010,
+            1844
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            1010,
+            1844
+          ],
+          "game_id": 267580,
+          "hull_id": 7,
+          "initiator_ship_id": 419,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            1219,
+            1926
+          ],
+          "owner_id": 2,
+          "ship_id": 211,
+          "target_ship_id": 500,
+          "turn": 39
+        },
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            1010,
+            1844
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            1010,
+            1844
+          ],
+          "game_id": 267580,
+          "hull_id": 8,
+          "initiator_ship_id": 419,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            1219,
+            1926
+          ],
+          "owner_id": 2,
+          "ship_id": 236,
+          "target_ship_id": 500,
+          "turn": 39
+        },
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            1154,
+            1823
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            1154,
+            1823
+          ],
+          "game_id": 267580,
+          "hull_id": 8,
+          "initiator_ship_id": 471,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            1353,
+            1899
+          ],
+          "owner_id": 2,
+          "ship_id": 248,
+          "target_ship_id": 355,
+          "turn": 39
+        },
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            1010,
+            1844
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            1010,
+            1844
+          ],
+          "game_id": 267580,
+          "hull_id": 8,
+          "initiator_ship_id": 419,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            1219,
+            1926
+          ],
+          "owner_id": 2,
+          "ship_id": 294,
+          "target_ship_id": 500,
+          "turn": 39
+        }
+      ],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 1,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 3,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 4,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 6,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 7,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 8,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 12,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 13,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 14,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 15,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 267580,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 7,
+      "turn": 39
+    },
+    {
+      "T_conditional_passenger_comparisons": [
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            1256,
+            1914
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+          "conditional_chunnel_endpoint": [
+            1256,
+            1914
+          ],
+          "game_id": 267580,
+          "hull_id": 17,
+          "initiator_ship_id": 500,
+          "mine_exposure_requires_no_hit_assumption": true,
+          "normal_no_chunnel_baseline": [
+            1589,
+            1588
+          ],
+          "owner_id": 2,
+          "ship_id": 40,
+          "target_ship_id": 445,
+          "turn": 76
+        },
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            2299,
+            2865
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            2299,
+            2865
+          ],
+          "game_id": 267580,
+          "hull_id": 56,
+          "initiator_ship_id": 265,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            1734,
+            2937
+          ],
+          "owner_id": 6,
+          "ship_id": 166,
+          "target_ship_id": 142,
+          "turn": 76
+        }
+      ],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 1,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 2,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 3,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 11,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 14,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 15,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 16,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 18,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 19,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 21,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 267580,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 10,
+      "turn": 76
+    },
+    {
+      "T_conditional_passenger_comparisons": [
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            1415,
+            2774
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            1415,
+            2774
+          ],
+          "game_id": 267580,
+          "hull_id": 17,
+          "initiator_ship_id": 336,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            1937,
+            2376
+          ],
+          "owner_id": 8,
+          "ship_id": 69,
+          "target_ship_id": 263,
+          "turn": 113
+        },
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            1415,
+            2774
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            1415,
+            2774
+          ],
+          "game_id": 267580,
+          "hull_id": 70,
+          "initiator_ship_id": 336,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            1937,
+            2376
+          ],
+          "owner_id": 8,
+          "ship_id": 343,
+          "target_ship_id": 263,
+          "turn": 113
+        },
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            1415,
+            2774
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            1415,
+            2774
+          ],
+          "game_id": 267580,
+          "hull_id": 70,
+          "initiator_ship_id": 336,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            1937,
+            2376
+          ],
+          "owner_id": 8,
+          "ship_id": 405,
+          "target_ship_id": 263,
+          "turn": 113
+        },
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            1415,
+            2774
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            1415,
+            2774
+          ],
+          "game_id": 267580,
+          "hull_id": 69,
+          "initiator_ship_id": 336,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            1937,
+            2376
+          ],
+          "owner_id": 8,
+          "ship_id": 436,
+          "target_ship_id": 263,
+          "turn": 113
+        },
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            1415,
+            2774
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            1415,
+            2774
+          ],
+          "game_id": 267580,
+          "hull_id": 46,
+          "initiator_ship_id": 336,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            1937,
+            2376
+          ],
+          "owner_id": 8,
+          "ship_id": 466,
+          "target_ship_id": 263,
+          "turn": 113
+        }
+      ],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 3,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 9,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 11,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 14,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 16,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 21,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 22,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 25,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 31,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 34,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 267580,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 6,
+      "turn": 113
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 1,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 2,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 3,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 5,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 7,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 8,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 9,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 10,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 11,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 12,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 290067,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 1,
+      "turn": 42
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 3,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 8,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 9,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 10,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 11,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 13,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 16,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 17,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 18,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 19,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 290067,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 0,
+      "turn": 82
+    },
+    {
+      "T_conditional_passenger_comparisons": [
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            2863,
+            2415
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            2863,
+            2415
+          ],
+          "game_id": 290067,
+          "hull_id": 17,
+          "initiator_ship_id": 226,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            2810,
+            1549
+          ],
+          "owner_id": 10,
+          "ship_id": 16,
+          "target_ship_id": 190,
+          "turn": 122
+        },
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            2809,
+            1549
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            2809,
+            1549
+          ],
+          "game_id": 290067,
+          "hull_id": 17,
+          "initiator_ship_id": 38,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            2864,
+            2415
+          ],
+          "owner_id": 10,
+          "ship_id": 21,
+          "target_ship_id": 279,
+          "turn": 122
+        },
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            2863,
+            2415
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            2863,
+            2415
+          ],
+          "game_id": 290067,
+          "hull_id": 17,
+          "initiator_ship_id": 226,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            2810,
+            1549
+          ],
+          "owner_id": 10,
+          "ship_id": 46,
+          "target_ship_id": 190,
+          "turn": 122
+        },
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            2809,
+            1549
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            2809,
+            1549
+          ],
+          "game_id": 290067,
+          "hull_id": 17,
+          "initiator_ship_id": 38,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            2864,
+            2415
+          ],
+          "owner_id": 10,
+          "ship_id": 56,
+          "target_ship_id": 279,
+          "turn": 122
+        },
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            2863,
+            2415
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            2863,
+            2415
+          ],
+          "game_id": 290067,
+          "hull_id": 46,
+          "initiator_ship_id": 226,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            2810,
+            1549
+          ],
+          "owner_id": 10,
+          "ship_id": 131,
+          "target_ship_id": 190,
+          "turn": 122
+        },
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            2809,
+            1549
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            2809,
+            1549
+          ],
+          "game_id": 290067,
+          "hull_id": 17,
+          "initiator_ship_id": 38,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            2864,
+            2415
+          ],
+          "owner_id": 10,
+          "ship_id": 147,
+          "target_ship_id": 279,
+          "turn": 122
+        },
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            2809,
+            1549
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            2809,
+            1549
+          ],
+          "game_id": 290067,
+          "hull_id": 17,
+          "initiator_ship_id": 38,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            2864,
+            2415
+          ],
+          "owner_id": 10,
+          "ship_id": 175,
+          "target_ship_id": 279,
+          "turn": 122
+        },
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            2809,
+            1549
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            2809,
+            1549
+          ],
+          "game_id": 290067,
+          "hull_id": 16,
+          "initiator_ship_id": 38,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            2864,
+            2415
+          ],
+          "owner_id": 10,
+          "ship_id": 208,
+          "target_ship_id": 279,
+          "turn": 122
+        },
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            2809,
+            1549
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            2809,
+            1549
+          ],
+          "game_id": 290067,
+          "hull_id": 17,
+          "initiator_ship_id": 38,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            2864,
+            2415
+          ],
+          "owner_id": 10,
+          "ship_id": 213,
+          "target_ship_id": 279,
+          "turn": 122
+        },
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            2809,
+            1549
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            2809,
+            1549
+          ],
+          "game_id": 290067,
+          "hull_id": 105,
+          "initiator_ship_id": 38,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            2864,
+            2415
+          ],
+          "owner_id": 10,
+          "ship_id": 272,
+          "target_ship_id": 279,
+          "turn": 122
+        },
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            2809,
+            1549
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            2809,
+            1549
+          ],
+          "game_id": 290067,
+          "hull_id": 18,
+          "initiator_ship_id": 38,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            2864,
+            2415
+          ],
+          "owner_id": 10,
+          "ship_id": 398,
+          "target_ship_id": 279,
+          "turn": 122
+        }
+      ],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 1,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 2,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 7,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 8,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 9,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 10,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 13,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 19,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": false,
+          "ship_id": 20,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 25,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 290067,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 3,
+      "turn": 122
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 1,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 2,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 4,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 5,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 7,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 8,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 9,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 10,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 11,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 13,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 325434,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 3,
+      "turn": 58
+    },
+    {
+      "T_conditional_passenger_comparisons": [
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            2027,
+            965
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            2027,
+            965
+          ],
+          "game_id": 325434,
+          "hull_id": 17,
+          "initiator_ship_id": 183,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            2187,
+            1338
+          ],
+          "owner_id": 6,
+          "ship_id": 18,
+          "target_ship_id": 23,
+          "turn": 115
+        },
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            2027,
+            965
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            2027,
+            965
+          ],
+          "game_id": 325434,
+          "hull_id": 17,
+          "initiator_ship_id": 183,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            2187,
+            1338
+          ],
+          "owner_id": 6,
+          "ship_id": 109,
+          "target_ship_id": 23,
+          "turn": 115
+        },
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            2027,
+            965
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            2027,
+            965
+          ],
+          "game_id": 325434,
+          "hull_id": 18,
+          "initiator_ship_id": 183,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            2187,
+            1338
+          ],
+          "owner_id": 6,
+          "ship_id": 150,
+          "target_ship_id": 23,
+          "turn": 115
+        },
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            2027,
+            965
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            2027,
+            965
+          ],
+          "game_id": 325434,
+          "hull_id": 18,
+          "initiator_ship_id": 183,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            2187,
+            1338
+          ],
+          "owner_id": 6,
+          "ship_id": 178,
+          "target_ship_id": 23,
+          "turn": 115
+        }
+      ],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 6,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 7,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 8,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 15,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 16,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 22,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 24,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 25,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 26,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 28,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 325434,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 1,
+      "turn": 115
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 1,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": null,
+          "ship_id": 4,
+          "status": "ABSTAIN_T_OWNER_DRIFT"
+        },
+        {
+          "T_normal_control_baseline_match": null,
+          "ship_id": 5,
+          "status": "ABSTAIN_T_OWNER_DRIFT"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 7,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 8,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 9,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 10,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 11,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 13,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": null,
+          "ship_id": 14,
+          "status": "ABSTAIN_T_OWNER_DRIFT"
+        }
+      ],
+      "game_id": 325434,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 0,
+      "turn": 172
+    },
+    {
+      "T_conditional_passenger_comparisons": [
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            2603,
+            1207
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            2603,
+            1207
+          ],
+          "game_id": 341336,
+          "hull_id": 1038,
+          "initiator_ship_id": 270,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            2371,
+            1525
+          ],
+          "owner_id": 3,
+          "ship_id": 315,
+          "target_ship_id": 305,
+          "turn": 30
+        },
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            2603,
+            1207
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            2603,
+            1207
+          ],
+          "game_id": 341336,
+          "hull_id": 17,
+          "initiator_ship_id": 270,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            2371,
+            1525
+          ],
+          "owner_id": 3,
+          "ship_id": 336,
+          "target_ship_id": 305,
+          "turn": 30
+        }
+      ],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 1,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 2,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 4,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 5,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 8,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 9,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 10,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 12,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 15,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 19,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 341336,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 1,
+      "turn": 30
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": false,
+          "ship_id": 2,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 5,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 6,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 8,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 9,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 10,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 13,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 15,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 17,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 19,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 341336,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 2,
+      "turn": 58
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 1,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 2,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 5,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 8,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 9,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 10,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 15,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 21,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 25,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 29,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 341336,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 2,
+      "turn": 86
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 1,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 2,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 3,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": false,
+          "ship_id": 4,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 5,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 8,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 9,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 10,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 11,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 12,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 347358,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 0,
+      "turn": 43
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 1,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 2,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 3,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 4,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 5,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 6,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 7,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 8,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 9,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 10,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 347358,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 0,
+      "turn": 85
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 3,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 4,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 6,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 9,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 10,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 11,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 12,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 13,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 14,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 16,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 347358,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 0,
+      "turn": 127
+    },
+    {
+      "T_conditional_passenger_comparisons": [
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            2307,
+            2024
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            2307,
+            2024
+          ],
+          "game_id": 385906,
+          "hull_id": 52,
+          "initiator_ship_id": 365,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            1256,
+            1711
+          ],
+          "owner_id": 6,
+          "ship_id": 484,
+          "target_ship_id": 313,
+          "turn": 41
+        }
+      ],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 1,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": false,
+          "ship_id": 2,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 3,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 5,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 6,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 7,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 8,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 9,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 10,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 11,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 385906,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 2,
+      "turn": 41
+    },
+    {
+      "T_conditional_passenger_comparisons": [
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            2443,
+            1137
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            2443,
+            1137
+          ],
+          "game_id": 385906,
+          "hull_id": 17,
+          "initiator_ship_id": 539,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            1928,
+            1148
+          ],
+          "owner_id": 2,
+          "ship_id": 145,
+          "target_ship_id": 445,
+          "turn": 81
+        },
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            1925,
+            1149
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            1925,
+            1149
+          ],
+          "game_id": 385906,
+          "hull_id": 49,
+          "initiator_ship_id": 532,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            2390,
+            1239
+          ],
+          "owner_id": 2,
+          "ship_id": 417,
+          "target_ship_id": 433,
+          "turn": 81
+        },
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            1925,
+            1149
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            1925,
+            1149
+          ],
+          "game_id": 385906,
+          "hull_id": 14,
+          "initiator_ship_id": 532,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            2390,
+            1239
+          ],
+          "owner_id": 2,
+          "ship_id": 516,
+          "target_ship_id": 433,
+          "turn": 81
+        },
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            1925,
+            1149
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            1925,
+            1149
+          ],
+          "game_id": 385906,
+          "hull_id": 14,
+          "initiator_ship_id": 532,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            2390,
+            1239
+          ],
+          "owner_id": 2,
+          "ship_id": 523,
+          "target_ship_id": 433,
+          "turn": 81
+        },
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            1925,
+            1149
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            1925,
+            1149
+          ],
+          "game_id": 385906,
+          "hull_id": 14,
+          "initiator_ship_id": 321,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            1937,
+            949
+          ],
+          "owner_id": 2,
+          "ship_id": 527,
+          "target_ship_id": 433,
+          "turn": 81
+        },
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            1925,
+            1149
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            1925,
+            1149
+          ],
+          "game_id": 385906,
+          "hull_id": 14,
+          "initiator_ship_id": 321,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            1937,
+            949
+          ],
+          "owner_id": 2,
+          "ship_id": 529,
+          "target_ship_id": 433,
+          "turn": 81
+        }
+      ],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 1,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 4,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 5,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 7,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 9,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 10,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 11,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 13,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 17,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 21,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 385906,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 3,
+      "turn": 81
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 3,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 4,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 5,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 7,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 9,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 10,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 12,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 13,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 17,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 19,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 385906,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 4,
+      "turn": 121
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 1,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 3,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 4,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 5,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 7,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 8,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 10,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 11,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 13,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 14,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 407599,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 0,
+      "turn": 33
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 2,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 5,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 7,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 8,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 9,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 10,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 11,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 13,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 14,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 15,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 407599,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 0,
+      "turn": 65
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 3,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 4,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 5,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 7,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 8,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 10,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 11,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 12,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 14,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 16,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 407599,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 0,
+      "turn": 97
+    },
+    {
+      "T_conditional_passenger_comparisons": [
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            1779,
+            2408
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            1779,
+            2408
+          ],
+          "game_id": 423531,
+          "hull_id": 17,
+          "initiator_ship_id": 162,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            1649,
+            2757
+          ],
+          "owner_id": 6,
+          "ship_id": 229,
+          "target_ship_id": 242,
+          "turn": 38
+        },
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            1779,
+            2408
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            1779,
+            2408
+          ],
+          "game_id": 423531,
+          "hull_id": 52,
+          "initiator_ship_id": 420,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            1681,
+            2803
+          ],
+          "owner_id": 6,
+          "ship_id": 243,
+          "target_ship_id": 242,
+          "turn": 38
+        },
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            1779,
+            2408
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            1779,
+            2408
+          ],
+          "game_id": 423531,
+          "hull_id": 15,
+          "initiator_ship_id": 162,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            1649,
+            2757
+          ],
+          "owner_id": 6,
+          "ship_id": 253,
+          "target_ship_id": 242,
+          "turn": 38
+        },
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            1779,
+            2408
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            1779,
+            2408
+          ],
+          "game_id": 423531,
+          "hull_id": 52,
+          "initiator_ship_id": 420,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            1681,
+            2803
+          ],
+          "owner_id": 6,
+          "ship_id": 306,
+          "target_ship_id": 242,
+          "turn": 38
+        }
+      ],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 3,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 4,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 7,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 8,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 9,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 11,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 13,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 14,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 15,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 16,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 423531,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 4,
+      "turn": 38
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 3,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 4,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 8,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 9,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 10,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 13,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 14,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 16,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 17,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 19,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 423531,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 5,
+      "turn": 75
+    },
+    {
+      "T_conditional_passenger_comparisons": [
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            1547,
+            2870
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            1547,
+            2870
+          ],
+          "game_id": 423531,
+          "hull_id": 86,
+          "initiator_ship_id": 390,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            1414,
+            1556
+          ],
+          "owner_id": 6,
+          "ship_id": 347,
+          "target_ship_id": 276,
+          "turn": 111
+        }
+      ],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 1,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 9,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 16,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 18,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 23,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 24,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 30,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 40,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 41,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 45,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 423531,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 11,
+      "turn": 111
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 1,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 2,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 3,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 4,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": null,
+          "ship_id": 6,
+          "status": "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 8,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 9,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 11,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 12,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 13,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 454504,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 0,
+      "turn": 36
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 2,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 4,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 6,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 11,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 12,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 13,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 14,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 15,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 20,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 21,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 454504,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 0,
+      "turn": 70
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 2,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 4,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 6,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 8,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 11,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 13,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 17,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 20,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 21,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 23,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 454504,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 0,
+      "turn": 104
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 1,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 2,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 3,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 4,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 6,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 7,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 8,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 9,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 10,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 18,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 470320,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 0,
+      "turn": 44
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 1,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 2,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 3,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 4,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 5,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 6,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 7,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 8,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 9,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 10,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 470320,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 0,
+      "turn": 86
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 3,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": null,
+          "ship_id": 6,
+          "status": "ABSTAIN_T_HULL_IDENTITY_DRIFT"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 7,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 8,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 11,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 12,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 13,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 14,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 15,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 20,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 470320,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 0,
+      "turn": 128
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 3,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 4,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 5,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 7,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 8,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 9,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 10,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 11,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 12,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 15,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 486109,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 2,
+      "turn": 55
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 1,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 2,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 4,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 5,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 6,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 8,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 9,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 10,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 11,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 15,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 486109,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 0,
+      "turn": 108
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 2,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 3,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 4,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 5,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 6,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 9,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 10,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 11,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 12,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 13,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 486109,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 0,
+      "turn": 161
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [],
+      "game_id": 499284,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 1,
+      "turn": 33
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [],
+      "game_id": 499284,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 0,
+      "turn": 65
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [],
+      "game_id": 499284,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 2,
+      "turn": 96
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 1,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 2,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 4,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 5,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 7,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": false,
+          "ship_id": 9,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 10,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 11,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 12,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 13,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 563278,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 0,
+      "turn": 60
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 1,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 2,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 10,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 12,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 13,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 14,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 16,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 17,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 18,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 26,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 563278,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 0,
+      "turn": 119
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": null,
+          "ship_id": 7,
+          "status": "ABSTAIN_T_OWNER_DRIFT"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 8,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 12,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 13,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 14,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 16,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 20,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 21,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 23,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 24,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 563278,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 0,
+      "turn": 178
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 1,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 2,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 3,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 4,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 5,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 6,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 7,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 8,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 9,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 11,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 600044,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 0,
+      "turn": 35
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 1,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 4,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 5,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 6,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 7,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 8,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 10,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 11,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 12,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 14,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 600044,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 0,
+      "turn": 68
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 2,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 5,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 7,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 9,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 10,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 14,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 15,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 16,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 19,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 21,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 600044,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 0,
+      "turn": 101
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 1,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 3,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 4,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 5,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 6,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 7,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 8,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 10,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 13,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 14,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 633855,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 1,
+      "turn": 36
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 1,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 2,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 4,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 5,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 6,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 7,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 8,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 10,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 11,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 13,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 633855,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 1,
+      "turn": 70
+    },
+    {
+      "T_conditional_passenger_comparisons": [
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            2528,
+            2879
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            2528,
+            2879
+          ],
+          "game_id": 633855,
+          "hull_id": 33,
+          "initiator_ship_id": 263,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            2460,
+            2712
+          ],
+          "owner_id": 4,
+          "ship_id": 102,
+          "target_ship_id": 333,
+          "turn": 104
+        },
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            2528,
+            2879
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            2528,
+            2879
+          ],
+          "game_id": 633855,
+          "hull_id": 30,
+          "initiator_ship_id": 263,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            2460,
+            2712
+          ],
+          "owner_id": 4,
+          "ship_id": 244,
+          "target_ship_id": 333,
+          "turn": 104
+        },
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            2528,
+            2879
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            2528,
+            2879
+          ],
+          "game_id": 633855,
+          "hull_id": 36,
+          "initiator_ship_id": 263,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            2460,
+            2712
+          ],
+          "owner_id": 4,
+          "ship_id": 297,
+          "target_ship_id": 333,
+          "turn": 104
+        },
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            2528,
+            2879
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            2528,
+            2879
+          ],
+          "game_id": 633855,
+          "hull_id": 2034,
+          "initiator_ship_id": 263,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            2460,
+            2712
+          ],
+          "owner_id": 4,
+          "ship_id": 322,
+          "target_ship_id": 333,
+          "turn": 104
+        },
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            2528,
+            2879
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            2528,
+            2879
+          ],
+          "game_id": 633855,
+          "hull_id": 16,
+          "initiator_ship_id": 263,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            2460,
+            2712
+          ],
+          "owner_id": 4,
+          "ship_id": 339,
+          "target_ship_id": 333,
+          "turn": 104
+        },
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            2528,
+            2879
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            2528,
+            2879
+          ],
+          "game_id": 633855,
+          "hull_id": 33,
+          "initiator_ship_id": 263,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            2460,
+            2712
+          ],
+          "owner_id": 4,
+          "ship_id": 506,
+          "target_ship_id": 333,
+          "turn": 104
+        },
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            2528,
+            2879
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            2528,
+            2879
+          ],
+          "game_id": 633855,
+          "hull_id": 33,
+          "initiator_ship_id": 263,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            2460,
+            2712
+          ],
+          "owner_id": 4,
+          "ship_id": 540,
+          "target_ship_id": 333,
+          "turn": 104
+        }
+      ],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 1,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 2,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 4,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 5,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 6,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 8,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 9,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 12,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 14,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 17,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 633855,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 1,
+      "turn": 104
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 1,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 2,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 3,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 4,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 5,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 7,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 8,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 9,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 10,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 11,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 655827,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 0,
+      "turn": 35
+    },
+    {
+      "T_conditional_passenger_comparisons": [],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 2,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 3,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 5,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 8,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 9,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 13,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 14,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 15,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 19,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 20,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 655827,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 0,
+      "turn": 68
+    },
+    {
+      "T_conditional_passenger_comparisons": [
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            2053,
+            1202
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            2053,
+            1202
+          ],
+          "game_id": 655827,
+          "hull_id": 52,
+          "initiator_ship_id": 243,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            1363,
+            1660
+          ],
+          "owner_id": 6,
+          "ship_id": 312,
+          "target_ship_id": 328,
+          "turn": 101
+        },
+        {
+          "Chunnel_execution_proven": false,
+          "T_conditional_chunnel_match": true,
+          "T_normal_baseline_match": false,
+          "T_observation_status": "T_MATCHES_CONDITIONAL_CHUNNEL_ONLY",
+          "T_owner_current_position": [
+            2053,
+            1202
+          ],
+          "activation_proven": false,
+          "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+          "conditional_chunnel_endpoint": [
+            2053,
+            1202
+          ],
+          "game_id": 655827,
+          "hull_id": 52,
+          "initiator_ship_id": 304,
+          "mine_exposure_requires_no_hit_assumption": false,
+          "normal_no_chunnel_baseline": [
+            1303,
+            2186
+          ],
+          "owner_id": 6,
+          "ship_id": 387,
+          "target_ship_id": 328,
+          "turn": 101
+        }
+      ],
+      "T_nonexposed_normal_control_comparisons": [
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 2,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 3,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 4,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 5,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 6,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 9,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 10,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 11,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 12,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        },
+        {
+          "T_normal_control_baseline_match": true,
+          "ship_id": 14,
+          "status": "OWNER_CURRENT_T_OBSERVED"
+        }
+      ],
+      "game_id": 655827,
+      "no_VCR_or_T_used_to_select_cases": true,
+      "preoutcome_ambiguous_passenger_ids": [],
+      "preoutcome_eligible_edges": 5,
+      "turn": 101
+    }
+  ]
+}
