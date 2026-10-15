@@ -1,0 +1,29 @@
+===== C5 V20 CHUNNEL STABILIZATION FIELD TMINUS1 SOURCE AUDIT =====
+HEAD: 74acf3fd509c1ab910ac789b50f65f14e882676c
+V17 Git blob: a6256b70dc63b9b7126a211245bc65ce20ece863
+V19 Git blob: 572d14d348235694402148273c7085d212301eac
+DB: /root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb (pinned SHA256 once; read-only)
+[c5-v20] checking immutable public100 SHA256
+[c5-v20] pinned read-only DB verified in 31.0s
+[c5-v20] PRE [1/9] G221008 T100
+[c5-v20] PRE [2/9] G227887 T72
+[c5-v20] PRE [3/9] G338264 T50
+[c5-v20] PRE [4/9] G373830 T38
+[c5-v20] PRE [5/9] G467386 T75
+[c5-v20] PRE [6/9] G467386 T221
+[c5-v20] PRE [7/9] G521834 T34
+[c5-v20] PRE [8/9] G632527 T60
+[c5-v20] PRE [9/9] G632527 T89
+[c5-v20] POST [1/9] G221008 T100
+[c5-v20] POST [2/9] G227887 T72
+[c5-v20] POST [3/9] G338264 T50
+[c5-v20] POST [4/9] G373830 T38
+[c5-v20] POST [5/9] G467386 T75
+[c5-v20] POST [6/9] G467386 T221
+[c5-v20] POST [7/9] G521834 T34
+[c5-v20] POST [8/9] G632527 T60
+[c5-v20] POST [9/9] G632527 T89
+===== C5 V20 TMINUS1 STABILIZATION COVERAGE AND SHORT CHUNNEL CONTROLS =====
+status: V17_SHORT_EDGES_TMINUS1_STABILIZATION_COVERAGE_OBSERVATIONAL
+summary: {'frozen_V17_48_windows_113_edges': True, 'frozen_V17_short_distance_edges': 13, 'frozen_V17_short_distance_windows': 9, 'discriminative_short_edges': 4, 'colocated_nondiscriminative_edges': 9, 'Tminus1_stabilization_evidence_categories': {'ABSTAIN_STABILIZATION_FIELD_STATE_UNPROVEN': 11, 'TMINUS1_STARGATE_FIELD_POSSIBLE_WITHIN_DOCUMENTED_RADIUS': 2}, 'G467386_T75_467_80_Tminus1_coverage_status': 'TMINUS1_STARGATE_FIELD_POSSIBLE_WITHIN_DOCUMENTED_RADIUS', 'Tminus1_all_window_data_frozen_before_T': True, 'Host_stabilizer_activation_or_25LY_Chunnel_proven': False, 'new_Host_movement_or_combat_predictions': 0, 'Nplus1_VCR_used': False}
+output: artifacts/combat/c5-chunnel-stabilization-provenance-v20/published/report.json

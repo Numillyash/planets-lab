@@ -1,0 +1,22 @@
+{
+  "evidence_branch": "runtime-logs",
+  "exit_code": 0,
+  "finished_at_utc": "2026-10-15T20:20:24Z",
+  "hostname": "GEORGUL-GAMER",
+  "interrupted_signal": null,
+  "log_file": "gate.log",
+  "missing_artifact_paths": [],
+  "remote": "origin",
+  "requested_artifact_paths": [
+    "artifacts/combat/c5-chunnel-stabilization-provenance-v20/published"
+  ],
+  "run_id": "20261015T201935Z_74acf3fd509c",
+  "run_name": "combat-c5-chunnel-stabilization-provenance-v20",
+  "runner": "bash",
+  "schema": "planets-lab.runtime-evidence.v1",
+  "skipped_oversized_artifact_paths": [],
+  "source_branch": "main",
+  "source_commit": "74acf3fd509c1ab910ac789b50f65f14e882676c",
+  "source_dirty": false,
+  "started_at_utc": "2026-10-15T20:19:35Z"
+}

@@ -1,0 +1,627 @@
+{
+  "G467386_T75_467_80_stabilization_audit": {
+    "T_actor_at_distinct_Tminus1_target": true,
+    "T_reverified_actor_position": [
+      1126,
+      1439
+    ],
+    "Tminus1_distance_ly": 25.0,
+    "Tminus1_documented_stabilizer_coverage_candidates": [
+      {
+        "distance_from_actor_ly": 491.7601,
+        "field_active_at_Chunnel_phase_proven": false,
+        "radius_from_engine_ly": 550,
+        "same_owner": true,
+        "stargate_owner_id": 6,
+        "stargate_ship_id": 446
+      }
+    ],
+    "Tminus1_explicit_short_format_rule_flag": null,
+    "Tminus1_source": [
+      1141,
+      1459
+    ],
+    "Tminus1_source_target_distinct": true,
+    "Tminus1_stabilization_coverage_status": "TMINUS1_STARGATE_FIELD_POSSIBLE_WITHIN_DOCUMENTED_RADIUS",
+    "Tminus1_stabilizer_missing_position_or_engine_candidates": [],
+    "Tminus1_target": [
+      1126,
+      1439
+    ],
+    "V17_frozen_posthost_actor_status": "T_ACTOR_AT_DISTINCT_FROZEN_TARGET",
+    "V17_observational_after_T_status_not_used_to_select": true,
+    "actual_host_stabilization_or_short_Chunnel_proven": false,
+    "game_id": 467386,
+    "initiator_ship_id": 467,
+    "owner_Tminus1_race_id": 6,
+    "owner_id": 6,
+    "reverified_T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+    "target_ship_id": 80,
+    "turn": 75
+  },
+  "Tminus1_window_metadata": {
+    "221008/100": {
+      "Tminus1_safe_game_rule_markers": {
+        "game.gametype": 2,
+        "game.maptype": 3,
+        "game.scenarioid": 0
+      },
+      "Tminus1_stock_dungeon_stargate_inventory": []
+    },
+    "227887/72": {
+      "Tminus1_safe_game_rule_markers": {
+        "game.gametype": 2,
+        "game.maptype": 2,
+        "game.scenarioid": 0
+      },
+      "Tminus1_stock_dungeon_stargate_inventory": []
+    },
+    "338264/50": {
+      "Tminus1_safe_game_rule_markers": {
+        "game.gametype": 4,
+        "game.maptype": 2,
+        "game.scenarioid": 0
+      },
+      "Tminus1_stock_dungeon_stargate_inventory": []
+    },
+    "373830/38": {
+      "Tminus1_safe_game_rule_markers": {
+        "game.gametype": 2,
+        "game.maptype": 3,
+        "game.scenarioid": 0
+      },
+      "Tminus1_stock_dungeon_stargate_inventory": []
+    },
+    "467386/221": {
+      "Tminus1_safe_game_rule_markers": {
+        "game.gametype": 2,
+        "game.maptype": 2,
+        "game.scenarioid": 0,
+        "settings.chunnelstabilizationeverywhere": false
+      },
+      "Tminus1_stock_dungeon_stargate_inventory": [
+        {
+          "Tminus1_engine_id": 9,
+          "Tminus1_field_activation_verified": false,
+          "Tminus1_position": [
+            1278,
+            1931
+          ],
+          "archived_catalog_name_confirms_dungeon_stargate": true,
+          "documentation_field_radius_ly": 550,
+          "hull_id": 108,
+          "owner_id": 6,
+          "ship_id": 446
+        }
+      ]
+    },
+    "467386/75": {
+      "Tminus1_safe_game_rule_markers": {
+        "game.gametype": 2,
+        "game.maptype": 2,
+        "game.scenarioid": 0,
+        "settings.chunnelstabilizationeverywhere": false
+      },
+      "Tminus1_stock_dungeon_stargate_inventory": [
+        {
+          "Tminus1_engine_id": 9,
+          "Tminus1_field_activation_verified": false,
+          "Tminus1_position": [
+            1279,
+            1931
+          ],
+          "archived_catalog_name_confirms_dungeon_stargate": true,
+          "documentation_field_radius_ly": 550,
+          "hull_id": 108,
+          "owner_id": 6,
+          "ship_id": 446
+        }
+      ]
+    },
+    "521834/34": {
+      "Tminus1_safe_game_rule_markers": {
+        "game.gametype": 2,
+        "game.maptype": 3,
+        "game.scenarioid": 0,
+        "settings.chunnelstabilizationeverywhere": false
+      },
+      "Tminus1_stock_dungeon_stargate_inventory": []
+    },
+    "632527/60": {
+      "Tminus1_safe_game_rule_markers": {
+        "game.gametype": 3,
+        "game.maptype": 3,
+        "game.scenarioid": 0,
+        "settings.chunnelstabilizationeverywhere": false
+      },
+      "Tminus1_stock_dungeon_stargate_inventory": []
+    },
+    "632527/89": {
+      "Tminus1_safe_game_rule_markers": {
+        "game.gametype": 3,
+        "game.maptype": 3,
+        "game.scenarioid": 0,
+        "settings.chunnelstabilizationeverywhere": false
+      },
+      "Tminus1_stock_dungeon_stargate_inventory": [
+        {
+          "Tminus1_engine_id": 9,
+          "Tminus1_field_activation_verified": false,
+          "Tminus1_position": [
+            1135,
+            2629
+          ],
+          "archived_catalog_name_confirms_dungeon_stargate": true,
+          "documentation_field_radius_ly": 550,
+          "hull_id": 108,
+          "owner_id": 9,
+          "ship_id": 251
+        }
+      ]
+    }
+  },
+  "boundary": "This is retrospective attribution of preselected V17 short-distance Firecloud edges within the SAME historical public100, not a new heldout activation predictor. The official conventional Chunnel minimum is 100LY, reduced to 1LY under Short Format Cyborg Stabilization Field or within a Dungeon Class Stargate field (engine-dependent range 150..550LY). Tminus1 game settings might omit the rule flag, and ship hull108 plus spatial range alone cannot establish field activation at the later Host phase; other owners/turn-phases can matter. Only explicit safe scalar settings are retained; NO player secrets, names, raw FC codes or free-text settings. A missing indicator is ABSTAIN, not evidence the ability was disabled. One short edge ending at a far target is not proof of a short Chunnel. Original V17 actor T statuses only checked after all Tminus1 features freeze. No future VCR or canonical movement/combat promotion.",
+  "per_game_Tminus1_stabilization_evidence": {
+    "221008": {
+      "ABSTAIN_STABILIZATION_FIELD_STATE_UNPROVEN": 1
+    },
+    "227887": {
+      "ABSTAIN_STABILIZATION_FIELD_STATE_UNPROVEN": 2
+    },
+    "338264": {
+      "ABSTAIN_STABILIZATION_FIELD_STATE_UNPROVEN": 1
+    },
+    "373830": {
+      "ABSTAIN_STABILIZATION_FIELD_STATE_UNPROVEN": 1
+    },
+    "467386": {
+      "ABSTAIN_STABILIZATION_FIELD_STATE_UNPROVEN": 1,
+      "TMINUS1_STARGATE_FIELD_POSSIBLE_WITHIN_DOCUMENTED_RADIUS": 2
+    },
+    "521834": {
+      "ABSTAIN_STABILIZATION_FIELD_STATE_UNPROVEN": 1
+    },
+    "632527": {
+      "ABSTAIN_STABILIZATION_FIELD_STATE_UNPROVEN": 4
+    }
+  },
+  "schema": "planets-lab.combat-c5-chunnel-stabilization-provenance.v20",
+  "short_edge_evaluations": [
+    {
+      "T_actor_at_distinct_Tminus1_target": null,
+      "T_reverified_actor_position": [
+        1193,
+        1016
+      ],
+      "Tminus1_distance_ly": 0.0,
+      "Tminus1_documented_stabilizer_coverage_candidates": [],
+      "Tminus1_explicit_short_format_rule_flag": null,
+      "Tminus1_source": [
+        1193,
+        1016
+      ],
+      "Tminus1_source_target_distinct": false,
+      "Tminus1_stabilization_coverage_status": "ABSTAIN_STABILIZATION_FIELD_STATE_UNPROVEN",
+      "Tminus1_stabilizer_missing_position_or_engine_candidates": [],
+      "Tminus1_target": [
+        1193,
+        1016
+      ],
+      "V17_frozen_posthost_actor_status": "NON_DISCRIMINATIVE_SOURCE_EQUALS_TARGET",
+      "V17_observational_after_T_status_not_used_to_select": true,
+      "actual_host_stabilization_or_short_Chunnel_proven": false,
+      "game_id": 221008,
+      "initiator_ship_id": 78,
+      "owner_Tminus1_race_id": 6,
+      "owner_id": 6,
+      "reverified_T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "target_ship_id": 443,
+      "turn": 100
+    },
+    {
+      "T_actor_at_distinct_Tminus1_target": null,
+      "T_reverified_actor_position": null,
+      "Tminus1_distance_ly": 0.0,
+      "Tminus1_documented_stabilizer_coverage_candidates": [],
+      "Tminus1_explicit_short_format_rule_flag": null,
+      "Tminus1_source": [
+        1470,
+        2270
+      ],
+      "Tminus1_source_target_distinct": false,
+      "Tminus1_stabilization_coverage_status": "ABSTAIN_STABILIZATION_FIELD_STATE_UNPROVEN",
+      "Tminus1_stabilizer_missing_position_or_engine_candidates": [],
+      "Tminus1_target": [
+        1470,
+        2270
+      ],
+      "V17_frozen_posthost_actor_status": "NON_DISCRIMINATIVE_SOURCE_EQUALS_TARGET",
+      "V17_observational_after_T_status_not_used_to_select": true,
+      "actual_host_stabilization_or_short_Chunnel_proven": false,
+      "game_id": 227887,
+      "initiator_ship_id": 441,
+      "owner_Tminus1_race_id": 6,
+      "owner_id": 6,
+      "reverified_T_owner_current_status": "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE",
+      "target_ship_id": 413,
+      "turn": 72
+    },
+    {
+      "T_actor_at_distinct_Tminus1_target": null,
+      "T_reverified_actor_position": null,
+      "Tminus1_distance_ly": 0.0,
+      "Tminus1_documented_stabilizer_coverage_candidates": [],
+      "Tminus1_explicit_short_format_rule_flag": null,
+      "Tminus1_source": [
+        1470,
+        2270
+      ],
+      "Tminus1_source_target_distinct": false,
+      "Tminus1_stabilization_coverage_status": "ABSTAIN_STABILIZATION_FIELD_STATE_UNPROVEN",
+      "Tminus1_stabilizer_missing_position_or_engine_candidates": [],
+      "Tminus1_target": [
+        1470,
+        2270
+      ],
+      "V17_frozen_posthost_actor_status": "NON_DISCRIMINATIVE_SOURCE_EQUALS_TARGET",
+      "V17_observational_after_T_status_not_used_to_select": true,
+      "actual_host_stabilization_or_short_Chunnel_proven": false,
+      "game_id": 227887,
+      "initiator_ship_id": 512,
+      "owner_Tminus1_race_id": 6,
+      "owner_id": 6,
+      "reverified_T_owner_current_status": "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE",
+      "target_ship_id": 152,
+      "turn": 72
+    },
+    {
+      "T_actor_at_distinct_Tminus1_target": false,
+      "T_reverified_actor_position": [
+        2327,
+        1527
+      ],
+      "Tminus1_distance_ly": 1.0,
+      "Tminus1_documented_stabilizer_coverage_candidates": [],
+      "Tminus1_explicit_short_format_rule_flag": null,
+      "Tminus1_source": [
+        2971,
+        1728
+      ],
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_coverage_status": "ABSTAIN_STABILIZATION_FIELD_STATE_UNPROVEN",
+      "Tminus1_stabilizer_missing_position_or_engine_candidates": [],
+      "Tminus1_target": [
+        2971,
+        1727
+      ],
+      "V17_frozen_posthost_actor_status": "T_ACTOR_ELSEWHERE",
+      "V17_observational_after_T_status_not_used_to_select": true,
+      "actual_host_stabilization_or_short_Chunnel_proven": false,
+      "game_id": 338264,
+      "initiator_ship_id": 204,
+      "owner_Tminus1_race_id": 6,
+      "owner_id": 13,
+      "reverified_T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "target_ship_id": 116,
+      "turn": 50
+    },
+    {
+      "T_actor_at_distinct_Tminus1_target": null,
+      "T_reverified_actor_position": [
+        2416,
+        2743
+      ],
+      "Tminus1_distance_ly": 0.0,
+      "Tminus1_documented_stabilizer_coverage_candidates": [],
+      "Tminus1_explicit_short_format_rule_flag": null,
+      "Tminus1_source": [
+        2416,
+        2743
+      ],
+      "Tminus1_source_target_distinct": false,
+      "Tminus1_stabilization_coverage_status": "ABSTAIN_STABILIZATION_FIELD_STATE_UNPROVEN",
+      "Tminus1_stabilizer_missing_position_or_engine_candidates": [],
+      "Tminus1_target": [
+        2416,
+        2743
+      ],
+      "V17_frozen_posthost_actor_status": "NON_DISCRIMINATIVE_SOURCE_EQUALS_TARGET",
+      "V17_observational_after_T_status_not_used_to_select": true,
+      "actual_host_stabilization_or_short_Chunnel_proven": false,
+      "game_id": 373830,
+      "initiator_ship_id": 407,
+      "owner_Tminus1_race_id": 6,
+      "owner_id": 5,
+      "reverified_T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "target_ship_id": 129,
+      "turn": 38
+    },
+    {
+      "T_actor_at_distinct_Tminus1_target": false,
+      "T_reverified_actor_position": [
+        2380,
+        1484
+      ],
+      "Tminus1_distance_ly": 1.0,
+      "Tminus1_documented_stabilizer_coverage_candidates": [],
+      "Tminus1_explicit_short_format_rule_flag": null,
+      "Tminus1_source": [
+        2380,
+        1484
+      ],
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_coverage_status": "ABSTAIN_STABILIZATION_FIELD_STATE_UNPROVEN",
+      "Tminus1_stabilizer_missing_position_or_engine_candidates": [],
+      "Tminus1_target": [
+        2380,
+        1483
+      ],
+      "V17_frozen_posthost_actor_status": "T_ACTOR_AT_FROZEN_SOURCE",
+      "V17_observational_after_T_status_not_used_to_select": true,
+      "actual_host_stabilization_or_short_Chunnel_proven": false,
+      "game_id": 467386,
+      "initiator_ship_id": 215,
+      "owner_Tminus1_race_id": 1,
+      "owner_id": 1,
+      "reverified_T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "target_ship_id": 254,
+      "turn": 75
+    },
+    {
+      "T_actor_at_distinct_Tminus1_target": true,
+      "T_reverified_actor_position": [
+        1126,
+        1439
+      ],
+      "Tminus1_distance_ly": 25.0,
+      "Tminus1_documented_stabilizer_coverage_candidates": [
+        {
+          "distance_from_actor_ly": 491.7601,
+          "field_active_at_Chunnel_phase_proven": false,
+          "radius_from_engine_ly": 550,
+          "same_owner": true,
+          "stargate_owner_id": 6,
+          "stargate_ship_id": 446
+        }
+      ],
+      "Tminus1_explicit_short_format_rule_flag": null,
+      "Tminus1_source": [
+        1141,
+        1459
+      ],
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_coverage_status": "TMINUS1_STARGATE_FIELD_POSSIBLE_WITHIN_DOCUMENTED_RADIUS",
+      "Tminus1_stabilizer_missing_position_or_engine_candidates": [],
+      "Tminus1_target": [
+        1126,
+        1439
+      ],
+      "V17_frozen_posthost_actor_status": "T_ACTOR_AT_DISTINCT_FROZEN_TARGET",
+      "V17_observational_after_T_status_not_used_to_select": true,
+      "actual_host_stabilization_or_short_Chunnel_proven": false,
+      "game_id": 467386,
+      "initiator_ship_id": 467,
+      "owner_Tminus1_race_id": 6,
+      "owner_id": 6,
+      "reverified_T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "target_ship_id": 80,
+      "turn": 75
+    },
+    {
+      "T_actor_at_distinct_Tminus1_target": null,
+      "T_reverified_actor_position": [
+        1279,
+        1777
+      ],
+      "Tminus1_distance_ly": 0.0,
+      "Tminus1_documented_stabilizer_coverage_candidates": [
+        {
+          "distance_from_actor_ly": 154.00325,
+          "field_active_at_Chunnel_phase_proven": false,
+          "radius_from_engine_ly": 550,
+          "same_owner": true,
+          "stargate_owner_id": 6,
+          "stargate_ship_id": 446
+        }
+      ],
+      "Tminus1_explicit_short_format_rule_flag": null,
+      "Tminus1_source": [
+        1279,
+        1777
+      ],
+      "Tminus1_source_target_distinct": false,
+      "Tminus1_stabilization_coverage_status": "TMINUS1_STARGATE_FIELD_POSSIBLE_WITHIN_DOCUMENTED_RADIUS",
+      "Tminus1_stabilizer_missing_position_or_engine_candidates": [],
+      "Tminus1_target": [
+        1279,
+        1777
+      ],
+      "V17_frozen_posthost_actor_status": "NON_DISCRIMINATIVE_SOURCE_EQUALS_TARGET",
+      "V17_observational_after_T_status_not_used_to_select": true,
+      "actual_host_stabilization_or_short_Chunnel_proven": false,
+      "game_id": 467386,
+      "initiator_ship_id": 142,
+      "owner_Tminus1_race_id": 6,
+      "owner_id": 6,
+      "reverified_T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "target_ship_id": 496,
+      "turn": 221
+    },
+    {
+      "T_actor_at_distinct_Tminus1_target": null,
+      "T_reverified_actor_position": [
+        2021,
+        2520
+      ],
+      "Tminus1_distance_ly": 0.0,
+      "Tminus1_documented_stabilizer_coverage_candidates": [],
+      "Tminus1_explicit_short_format_rule_flag": null,
+      "Tminus1_source": [
+        2021,
+        2520
+      ],
+      "Tminus1_source_target_distinct": false,
+      "Tminus1_stabilization_coverage_status": "ABSTAIN_STABILIZATION_FIELD_STATE_UNPROVEN",
+      "Tminus1_stabilizer_missing_position_or_engine_candidates": [],
+      "Tminus1_target": [
+        2021,
+        2520
+      ],
+      "V17_frozen_posthost_actor_status": "NON_DISCRIMINATIVE_SOURCE_EQUALS_TARGET",
+      "V17_observational_after_T_status_not_used_to_select": true,
+      "actual_host_stabilization_or_short_Chunnel_proven": false,
+      "game_id": 521834,
+      "initiator_ship_id": 200,
+      "owner_Tminus1_race_id": 6,
+      "owner_id": 6,
+      "reverified_T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "target_ship_id": 265,
+      "turn": 34
+    },
+    {
+      "T_actor_at_distinct_Tminus1_target": null,
+      "T_reverified_actor_position": [
+        2150,
+        1718
+      ],
+      "Tminus1_distance_ly": 0.0,
+      "Tminus1_documented_stabilizer_coverage_candidates": [],
+      "Tminus1_explicit_short_format_rule_flag": null,
+      "Tminus1_source": [
+        2150,
+        1718
+      ],
+      "Tminus1_source_target_distinct": false,
+      "Tminus1_stabilization_coverage_status": "ABSTAIN_STABILIZATION_FIELD_STATE_UNPROVEN",
+      "Tminus1_stabilizer_missing_position_or_engine_candidates": [],
+      "Tminus1_target": [
+        2150,
+        1718
+      ],
+      "V17_frozen_posthost_actor_status": "NON_DISCRIMINATIVE_SOURCE_EQUALS_TARGET",
+      "V17_observational_after_T_status_not_used_to_select": true,
+      "actual_host_stabilization_or_short_Chunnel_proven": false,
+      "game_id": 632527,
+      "initiator_ship_id": 69,
+      "owner_Tminus1_race_id": 6,
+      "owner_id": 5,
+      "reverified_T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "target_ship_id": 286,
+      "turn": 60
+    },
+    {
+      "T_actor_at_distinct_Tminus1_target": null,
+      "T_reverified_actor_position": [
+        2379,
+        2912
+      ],
+      "Tminus1_distance_ly": 0.0,
+      "Tminus1_documented_stabilizer_coverage_candidates": [],
+      "Tminus1_explicit_short_format_rule_flag": null,
+      "Tminus1_source": [
+        2379,
+        2912
+      ],
+      "Tminus1_source_target_distinct": false,
+      "Tminus1_stabilization_coverage_status": "ABSTAIN_STABILIZATION_FIELD_STATE_UNPROVEN",
+      "Tminus1_stabilizer_missing_position_or_engine_candidates": [],
+      "Tminus1_target": [
+        2379,
+        2912
+      ],
+      "V17_frozen_posthost_actor_status": "NON_DISCRIMINATIVE_SOURCE_EQUALS_TARGET",
+      "V17_observational_after_T_status_not_used_to_select": true,
+      "actual_host_stabilization_or_short_Chunnel_proven": false,
+      "game_id": 632527,
+      "initiator_ship_id": 509,
+      "owner_Tminus1_race_id": 6,
+      "owner_id": 5,
+      "reverified_T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "target_ship_id": 99,
+      "turn": 60
+    },
+    {
+      "T_actor_at_distinct_Tminus1_target": null,
+      "T_reverified_actor_position": [
+        2371,
+        746
+      ],
+      "Tminus1_distance_ly": 0.0,
+      "Tminus1_documented_stabilizer_coverage_candidates": [],
+      "Tminus1_explicit_short_format_rule_flag": null,
+      "Tminus1_source": [
+        2371,
+        746
+      ],
+      "Tminus1_source_target_distinct": false,
+      "Tminus1_stabilization_coverage_status": "ABSTAIN_STABILIZATION_FIELD_STATE_UNPROVEN",
+      "Tminus1_stabilizer_missing_position_or_engine_candidates": [],
+      "Tminus1_target": [
+        2371,
+        746
+      ],
+      "V17_frozen_posthost_actor_status": "NON_DISCRIMINATIVE_SOURCE_EQUALS_TARGET",
+      "V17_observational_after_T_status_not_used_to_select": true,
+      "actual_host_stabilization_or_short_Chunnel_proven": false,
+      "game_id": 632527,
+      "initiator_ship_id": 88,
+      "owner_Tminus1_race_id": 6,
+      "owner_id": 5,
+      "reverified_T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "target_ship_id": 199,
+      "turn": 89
+    },
+    {
+      "T_actor_at_distinct_Tminus1_target": false,
+      "T_reverified_actor_position": [
+        3256,
+        785
+      ],
+      "Tminus1_distance_ly": 28.63564,
+      "Tminus1_documented_stabilizer_coverage_candidates": [],
+      "Tminus1_explicit_short_format_rule_flag": null,
+      "Tminus1_source": [
+        3256,
+        785
+      ],
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_coverage_status": "ABSTAIN_STABILIZATION_FIELD_STATE_UNPROVEN",
+      "Tminus1_stabilizer_missing_position_or_engine_candidates": [],
+      "Tminus1_target": [
+        3268,
+        811
+      ],
+      "V17_frozen_posthost_actor_status": "T_ACTOR_AT_FROZEN_SOURCE",
+      "V17_observational_after_T_status_not_used_to_select": true,
+      "actual_host_stabilization_or_short_Chunnel_proven": false,
+      "game_id": 632527,
+      "initiator_ship_id": 106,
+      "owner_Tminus1_race_id": 6,
+      "owner_id": 9,
+      "reverified_T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "target_ship_id": 432,
+      "turn": 89
+    }
+  ],
+  "source_db_generation": "generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "source_db_sha256": "3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c",
+  "source_v17_git_blob_sha1": "a6256b70dc63b9b7126a211245bc65ce20ece863",
+  "source_v19_git_blob_sha1": "572d14d348235694402148273c7085d212301eac",
+  "status": "V17_SHORT_EDGES_TMINUS1_STABILIZATION_COVERAGE_OBSERVATIONAL",
+  "summary": {
+    "G467386_T75_467_80_Tminus1_coverage_status": "TMINUS1_STARGATE_FIELD_POSSIBLE_WITHIN_DOCUMENTED_RADIUS",
+    "Host_stabilizer_activation_or_25LY_Chunnel_proven": false,
+    "Nplus1_VCR_used": false,
+    "Tminus1_all_window_data_frozen_before_T": true,
+    "Tminus1_stabilization_evidence_categories": {
+      "ABSTAIN_STABILIZATION_FIELD_STATE_UNPROVEN": 11,
+      "TMINUS1_STARGATE_FIELD_POSSIBLE_WITHIN_DOCUMENTED_RADIUS": 2
+    },
+    "colocated_nondiscriminative_edges": 9,
+    "discriminative_short_edges": 4,
+    "frozen_V17_48_windows_113_edges": true,
+    "frozen_V17_short_distance_edges": 13,
+    "frozen_V17_short_distance_windows": 9,
+    "new_Host_movement_or_combat_predictions": 0
+  }
+}
