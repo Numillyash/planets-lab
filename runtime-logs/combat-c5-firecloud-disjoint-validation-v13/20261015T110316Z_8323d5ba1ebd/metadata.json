@@ -1,0 +1,22 @@
+{
+  "evidence_branch": "runtime-logs",
+  "exit_code": 0,
+  "finished_at_utc": "2026-10-15T11:05:16Z",
+  "hostname": "GEORGUL-GAMER",
+  "interrupted_signal": null,
+  "log_file": "gate.log",
+  "missing_artifact_paths": [],
+  "remote": "origin",
+  "requested_artifact_paths": [
+    "artifacts/combat/c5-firecloud-disjoint-validation-v13/published"
+  ],
+  "run_id": "20261015T110316Z_8323d5ba1ebd",
+  "run_name": "combat-c5-firecloud-disjoint-validation-v13",
+  "runner": "bash",
+  "schema": "planets-lab.runtime-evidence.v1",
+  "skipped_oversized_artifact_paths": [],
+  "source_branch": "main",
+  "source_commit": "8323d5ba1ebd52954e43c59c00726fde5cd2b59f",
+  "source_dirty": false,
+  "started_at_utc": "2026-10-15T11:03:16Z"
+}
