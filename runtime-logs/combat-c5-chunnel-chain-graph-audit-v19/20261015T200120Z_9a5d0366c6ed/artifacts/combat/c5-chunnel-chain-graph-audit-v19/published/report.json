@@ -1,0 +1,431 @@
+{
+  "G467386_T75_25LY_original_Tminus1_edge": {
+    "actual_sub100LY_Chunnel_proven": false,
+    "distance_ly": 25.0,
+    "initiator_ship_id": 467,
+    "posthost_actor": [
+      1126,
+      1439
+    ],
+    "source": [
+      1141,
+      1459
+    ],
+    "target": [
+      1126,
+      1439
+    ],
+    "target_ship_id": 80
+  },
+  "Tminus1_graph_chain_posthoc_comparisons": [
+    {
+      "T_first_actor_at_downstream_target": true,
+      "T_first_actor_net_fuel_delta_KT": 50,
+      "T_first_actor_position": [
+        2327,
+        1527
+      ],
+      "T_first_actor_status": "T_ACTOR_ELSEWHERE",
+      "T_second_actor_at_downstream_target": true,
+      "T_second_actor_net_fuel_delta_KT": 50,
+      "T_second_actor_position": [
+        2327,
+        1527
+      ],
+      "T_second_actor_status": "T_ACTOR_AT_DISTINCT_FROZEN_TARGET",
+      "first_actor_id": 204,
+      "first_source": [
+        2971,
+        1728
+      ],
+      "game_id": 338264,
+      "graph_only_not_activation_evidence": true,
+      "intermediate_firecloud_id": 116,
+      "middle_Tminus1_site": [
+        2971,
+        1727
+      ],
+      "owner_id": 13,
+      "posthoc_correlation_not_chunnel_execution_proof": true,
+      "second_eligible_distance_ly": 674.34116,
+      "second_target": [
+        2327,
+        1527
+      ],
+      "second_target_id": 129,
+      "short_first_distance_ly": 1.0,
+      "turn": 50
+    },
+    {
+      "T_first_actor_at_downstream_target": false,
+      "T_first_actor_net_fuel_delta_KT": 0,
+      "T_first_actor_position": [
+        2380,
+        1484
+      ],
+      "T_first_actor_status": "T_ACTOR_AT_FROZEN_SOURCE",
+      "T_second_actor_at_downstream_target": true,
+      "T_second_actor_net_fuel_delta_KT": 50,
+      "T_second_actor_position": [
+        2400,
+        1689
+      ],
+      "T_second_actor_status": "T_ACTOR_AT_DISTINCT_FROZEN_TARGET",
+      "first_actor_id": 215,
+      "first_source": [
+        2380,
+        1484
+      ],
+      "game_id": 467386,
+      "graph_only_not_activation_evidence": true,
+      "intermediate_firecloud_id": 254,
+      "middle_Tminus1_site": [
+        2380,
+        1483
+      ],
+      "owner_id": 1,
+      "posthoc_correlation_not_chunnel_execution_proof": true,
+      "second_eligible_distance_ly": 206.9686,
+      "second_target": [
+        2400,
+        1689
+      ],
+      "second_target_id": 189,
+      "short_first_distance_ly": 1.0,
+      "turn": 75
+    }
+  ],
+  "boundary": "V19 is intentionally posthoc on V17/V18, NOT an independent validation dataset. Only exact frozen Tminus1 graph edges and two targeted Tminus1 owner-current rosters create chains and passenger candidate features, before any T comparison. A short first edge ending at a second valid Firecloud actor is a graph association, not verified local transit; it could represent another process, and a source ship may move through other Host phases. The 25LY actor #467 case remains unexplained even if co-located warp9 ships move together. The normal planner can abstain on stationary/Chunnel sources; absence of a forecast is not proof of absence of movement. No archived T can reveal the actual pre-Chunnel phase or prove activation. No future VCR, mine event inference, or canonical movement/combat promotion.",
+  "schema": "planets-lab.combat-c5-chunnel-chain-graph-audit.v19",
+  "source_db_generation": "generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "source_db_sha256": "3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c",
+  "source_v17_git_blob_sha1": "a6256b70dc63b9b7126a211245bc65ce20ece863",
+  "source_v18_git_blob_sha1": "88bd596534e5e7390c21d6a0a108c732e8a07150",
+  "status": "V17_TMINUS1_SHORT_EDGE_CHAIN_AND_25LY_POSTHOC_NOT_EXECUTION_PROOF",
+  "summary": {
+    "G338264_T50_204_to_116_to_129_graph_chain_preselected": true,
+    "G467386_T75_467_to_80_has_outgoing_eligible_long_edge": false,
+    "Nplus1_VCR_used": false,
+    "Tminus1_eligible_short_to_long_distinct_windows": 2,
+    "Tminus1_eligible_short_to_long_graph_chains": 2,
+    "all_Tminus1_graph_and_rosters_frozen_before_T": true,
+    "frozen_V17_candidate_edges": 113,
+    "frozen_V17_windows": 48,
+    "new_Host_movement_or_combat_predictions": 0,
+    "posthoc_chain_first_actor_at_downstream_target": 1,
+    "short_Chunnel_or_activation_proven": false,
+    "targeted_Tminus1_windows": 2,
+    "targeted_ship_identity_appearances": 10
+  },
+  "targeted_focus_owner_current_Tminus1_T": [
+    {
+      "Tminus1_context_abstention": {
+        "cloak_intercept_movement": 2,
+        "intercept_movement": 2,
+        "potential_chunnel_source_stack": 13,
+        "sphere_topology_not_integrated": 461,
+        "tow_attempt": 19,
+        "tow_target": 19
+      },
+      "Tminus1_frozen_forecast_count": 0,
+      "game_id": 338264,
+      "selected_ship_posthost_comparisons": [
+        {
+          "T_match_to_normal_Tminus1_endpoint": null,
+          "T_minus_Tminus1_fuel_KT": 50,
+          "T_observation_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_owner_current_position": [
+            2327,
+            1527
+          ],
+          "Tminus1_hull_id": 56,
+          "Tminus1_mission": 0,
+          "Tminus1_neutronium": 440,
+          "Tminus1_no_model_is_not_evidence_of_no_movement": true,
+          "Tminus1_normal_model_cohort": null,
+          "Tminus1_normal_model_endpoint": null,
+          "Tminus1_position": [
+            2971,
+            1728
+          ],
+          "Tminus1_status": "OWNER_CURRENT",
+          "Tminus1_warp": 0,
+          "Tminus1_waypoint": [
+            2971,
+            1728
+          ],
+          "causal_mechanism_proven": false,
+          "owner_id": 13,
+          "ship_id": 204
+        },
+        {
+          "T_match_to_normal_Tminus1_endpoint": null,
+          "T_minus_Tminus1_fuel_KT": 50,
+          "T_observation_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_owner_current_position": [
+            2327,
+            1527
+          ],
+          "Tminus1_hull_id": 56,
+          "Tminus1_mission": 0,
+          "Tminus1_neutronium": 440,
+          "Tminus1_no_model_is_not_evidence_of_no_movement": true,
+          "Tminus1_normal_model_cohort": null,
+          "Tminus1_normal_model_endpoint": null,
+          "Tminus1_position": [
+            2971,
+            1727
+          ],
+          "Tminus1_status": "OWNER_CURRENT",
+          "Tminus1_warp": 0,
+          "Tminus1_waypoint": [
+            2971,
+            1727
+          ],
+          "causal_mechanism_proven": false,
+          "owner_id": 13,
+          "ship_id": 116
+        },
+        {
+          "T_match_to_normal_Tminus1_endpoint": null,
+          "T_minus_Tminus1_fuel_KT": 0,
+          "T_observation_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_owner_current_position": [
+            2327,
+            1527
+          ],
+          "Tminus1_hull_id": 56,
+          "Tminus1_mission": 0,
+          "Tminus1_neutronium": 217,
+          "Tminus1_no_model_is_not_evidence_of_no_movement": true,
+          "Tminus1_normal_model_cohort": null,
+          "Tminus1_normal_model_endpoint": null,
+          "Tminus1_position": [
+            2327,
+            1527
+          ],
+          "Tminus1_status": "OWNER_CURRENT",
+          "Tminus1_warp": 0,
+          "Tminus1_waypoint": [
+            2327,
+            1527
+          ],
+          "causal_mechanism_proven": false,
+          "owner_id": 13,
+          "ship_id": 129
+        },
+        {
+          "T_match_to_normal_Tminus1_endpoint": null,
+          "T_minus_Tminus1_fuel_KT": null,
+          "T_observation_status": "ABSTAIN_T_OWNER_DRIFT",
+          "T_owner_current_position": null,
+          "Tminus1_hull_id": 56,
+          "Tminus1_mission": 0,
+          "Tminus1_neutronium": 440,
+          "Tminus1_no_model_is_not_evidence_of_no_movement": true,
+          "Tminus1_normal_model_cohort": null,
+          "Tminus1_normal_model_endpoint": null,
+          "Tminus1_position": [
+            2182,
+            1529
+          ],
+          "Tminus1_status": "OWNER_CURRENT",
+          "Tminus1_warp": 0,
+          "Tminus1_waypoint": [
+            2182,
+            1529
+          ],
+          "causal_mechanism_proven": false,
+          "owner_id": 13,
+          "ship_id": 234
+        },
+        {
+          "T_match_to_normal_Tminus1_endpoint": null,
+          "T_minus_Tminus1_fuel_KT": null,
+          "T_observation_status": "ABSTAIN_T_OWNER_DRIFT",
+          "T_owner_current_position": null,
+          "Tminus1_hull_id": 56,
+          "Tminus1_mission": 0,
+          "Tminus1_neutronium": 101,
+          "Tminus1_no_model_is_not_evidence_of_no_movement": true,
+          "Tminus1_normal_model_cohort": null,
+          "Tminus1_normal_model_endpoint": null,
+          "Tminus1_position": [
+            2107,
+            2197
+          ],
+          "Tminus1_status": "OWNER_CURRENT",
+          "Tminus1_warp": 0,
+          "Tminus1_waypoint": [
+            2107,
+            2197
+          ],
+          "causal_mechanism_proven": false,
+          "owner_id": 13,
+          "ship_id": 308
+        }
+      ],
+      "turn": 50
+    },
+    {
+      "Tminus1_context_abstention": {
+        "hyperjump_movement": 6,
+        "inbound_transfer": 3,
+        "intercept_movement": 9,
+        "normal_plan_insufficient_fuel": 85,
+        "outbound_transfer": 4,
+        "potential_chunnel_source_stack": 120,
+        "pre_move_mkt_mass_change": 29,
+        "stationary_effective_warp_zero": 38,
+        "tow_attempt": 15,
+        "tow_target": 15,
+        "web_mine_route_risk": 9
+      },
+      "Tminus1_frozen_forecast_count": 348,
+      "game_id": 467386,
+      "selected_ship_posthost_comparisons": [
+        {
+          "T_match_to_normal_Tminus1_endpoint": null,
+          "T_minus_Tminus1_fuel_KT": 48,
+          "T_observation_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_owner_current_position": [
+            1126,
+            1439
+          ],
+          "Tminus1_hull_id": 56,
+          "Tminus1_mission": 1,
+          "Tminus1_neutronium": 51,
+          "Tminus1_no_model_is_not_evidence_of_no_movement": true,
+          "Tminus1_normal_model_cohort": null,
+          "Tminus1_normal_model_endpoint": null,
+          "Tminus1_position": [
+            1141,
+            1459
+          ],
+          "Tminus1_status": "OWNER_CURRENT",
+          "Tminus1_warp": 0,
+          "Tminus1_waypoint": [
+            1141,
+            1459
+          ],
+          "causal_mechanism_proven": false,
+          "owner_id": 6,
+          "ship_id": 467
+        },
+        {
+          "T_match_to_normal_Tminus1_endpoint": null,
+          "T_minus_Tminus1_fuel_KT": -2,
+          "T_observation_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_owner_current_position": [
+            1126,
+            1439
+          ],
+          "Tminus1_hull_id": 56,
+          "Tminus1_mission": 1,
+          "Tminus1_neutronium": 1,
+          "Tminus1_no_model_is_not_evidence_of_no_movement": true,
+          "Tminus1_normal_model_cohort": null,
+          "Tminus1_normal_model_endpoint": null,
+          "Tminus1_position": [
+            1126,
+            1439
+          ],
+          "Tminus1_status": "OWNER_CURRENT",
+          "Tminus1_warp": 0,
+          "Tminus1_waypoint": [
+            1126,
+            1439
+          ],
+          "causal_mechanism_proven": false,
+          "owner_id": 6,
+          "ship_id": 80
+        },
+        {
+          "T_match_to_normal_Tminus1_endpoint": null,
+          "T_minus_Tminus1_fuel_KT": -2,
+          "T_observation_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_owner_current_position": [
+            1126,
+            1439
+          ],
+          "Tminus1_hull_id": 17,
+          "Tminus1_mission": 1,
+          "Tminus1_neutronium": 1,
+          "Tminus1_no_model_is_not_evidence_of_no_movement": true,
+          "Tminus1_normal_model_cohort": null,
+          "Tminus1_normal_model_endpoint": null,
+          "Tminus1_position": [
+            1141,
+            1459
+          ],
+          "Tminus1_status": "OWNER_CURRENT",
+          "Tminus1_warp": 9,
+          "Tminus1_waypoint": [
+            1141,
+            1459
+          ],
+          "causal_mechanism_proven": false,
+          "owner_id": 6,
+          "ship_id": 193
+        },
+        {
+          "T_match_to_normal_Tminus1_endpoint": null,
+          "T_minus_Tminus1_fuel_KT": -2,
+          "T_observation_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_owner_current_position": [
+            1126,
+            1439
+          ],
+          "Tminus1_hull_id": 17,
+          "Tminus1_mission": 1,
+          "Tminus1_neutronium": 1,
+          "Tminus1_no_model_is_not_evidence_of_no_movement": true,
+          "Tminus1_normal_model_cohort": null,
+          "Tminus1_normal_model_endpoint": null,
+          "Tminus1_position": [
+            1141,
+            1459
+          ],
+          "Tminus1_status": "OWNER_CURRENT",
+          "Tminus1_warp": 9,
+          "Tminus1_waypoint": [
+            1141,
+            1459
+          ],
+          "causal_mechanism_proven": false,
+          "owner_id": 6,
+          "ship_id": 235
+        },
+        {
+          "T_match_to_normal_Tminus1_endpoint": null,
+          "T_minus_Tminus1_fuel_KT": -2,
+          "T_observation_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_owner_current_position": [
+            1126,
+            1439
+          ],
+          "Tminus1_hull_id": 17,
+          "Tminus1_mission": 1,
+          "Tminus1_neutronium": 1,
+          "Tminus1_no_model_is_not_evidence_of_no_movement": true,
+          "Tminus1_normal_model_cohort": null,
+          "Tminus1_normal_model_endpoint": null,
+          "Tminus1_position": [
+            1141,
+            1459
+          ],
+          "Tminus1_status": "OWNER_CURRENT",
+          "Tminus1_warp": 9,
+          "Tminus1_waypoint": [
+            1141,
+            1459
+          ],
+          "causal_mechanism_proven": false,
+          "owner_id": 6,
+          "ship_id": 405
+        }
+      ],
+      "turn": 75
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+===== C5 V19 CHUNNEL TMINUS1 CHAIN GRAPH AND 25LY CASE =====
+HEAD: 9a5d0366c6edf41b200de814865ba46487e40d60
+V17 Git blob: a6256b70dc63b9b7126a211245bc65ce20ece863
+V18 Git blob: 88bd596534e5e7390c21d6a0a108c732e8a07150
+DB: /root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb (SHA256 pinned, read-only)
+[c5-v19] checking immutable public100 SHA256 once
+[c5-v19] SHA verified in 26.6s; read-only
+[c5-v19] PRE [1/2] G338264 T50
+[c5-v19] PRE [2/2] G467386 T75
+[c5-v19] POST [1/2] G338264 T50
+[c5-v19] POST [2/2] G467386 T75
+===== C5 V19 TMINUS1 SHORT-EDGE DOWNSTREAM CHUNNEL GRAPH =====
+status: V17_TMINUS1_SHORT_EDGE_CHAIN_AND_25LY_POSTHOC_NOT_EXECUTION_PROOF
+summary: {'frozen_V17_windows': 48, 'frozen_V17_candidate_edges': 113, 'Tminus1_eligible_short_to_long_graph_chains': 2, 'Tminus1_eligible_short_to_long_distinct_windows': 2, 'posthoc_chain_first_actor_at_downstream_target': 1, 'G338264_T50_204_to_116_to_129_graph_chain_preselected': True, 'G467386_T75_467_to_80_has_outgoing_eligible_long_edge': False, 'targeted_Tminus1_windows': 2, 'targeted_ship_identity_appearances': 10, 'all_Tminus1_graph_and_rosters_frozen_before_T': True, 'new_Host_movement_or_combat_predictions': 0, 'short_Chunnel_or_activation_proven': False, 'Nplus1_VCR_used': False}
+output: artifacts/combat/c5-chunnel-chain-graph-audit-v19/published/report.json
