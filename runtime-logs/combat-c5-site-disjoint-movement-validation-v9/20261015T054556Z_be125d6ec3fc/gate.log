@@ -1,0 +1,43 @@
+===== C5 SITE-DISJOINT T-1 MOVEMENT VALIDATION V9 =====
+HEAD: be125d6ec3fce47693915ce82589fab980683c93
+V6 Git blob: 51d21132e4db89511be59805ebe2be14014b3e7a
+DB: /root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb (pinned SHA256, read-only)
+[c5-holdout] verifying pinned public100 checksum
+[c5-holdout] read-only SHA verified in 25.9s
+[c5-holdout] site-disjoint preselected windows: ((2466, 60), (2466, 111), (245123, 38), (245123, 75), (306971, 116), (306971, 231), (350094, 60), (350094, 119), (421949, 45), (421949, 88), (476826, 49), (476826, 96), (597910, 93), (597910, 185), (663317, 28), (663317, 54))
+[c5-holdout] PRE [1/16] G2466 T60
+[c5-holdout] PRE [2/16] G2466 T111
+[c5-holdout] PRE [3/16] G245123 T38
+[c5-holdout] PRE [4/16] G245123 T75
+[c5-holdout] PRE [5/16] G306971 T116
+[c5-holdout] PRE [6/16] G306971 T231
+[c5-holdout] PRE [7/16] G350094 T60
+[c5-holdout] PRE [8/16] G350094 T119
+[c5-holdout] PRE [9/16] G421949 T45
+[c5-holdout] PRE [10/16] G421949 T88
+[c5-holdout] PRE [11/16] G476826 T49
+[c5-holdout] PRE [12/16] G476826 T96
+[c5-holdout] PRE [13/16] G597910 T93
+[c5-holdout] PRE [14/16] G597910 T185
+[c5-holdout] PRE [15/16] G663317 T28
+[c5-holdout] PRE [16/16] G663317 T54
+[c5-holdout] POST [1/16] G2466 T60
+[c5-holdout] POST [2/16] G2466 T111
+[c5-holdout] POST [3/16] G245123 T38
+[c5-holdout] POST [4/16] G245123 T75
+[c5-holdout] POST [5/16] G306971 T116
+[c5-holdout] POST [6/16] G306971 T231
+[c5-holdout] POST [7/16] G350094 T60
+[c5-holdout] POST [8/16] G350094 T119
+[c5-holdout] POST [9/16] G421949 T45
+[c5-holdout] POST [10/16] G421949 T88
+[c5-holdout] POST [11/16] G476826 T49
+[c5-holdout] POST [12/16] G476826 T96
+[c5-holdout] POST [13/16] G597910 T93
+[c5-holdout] POST [14/16] G597910 T185
+[c5-holdout] POST [15/16] G663317 T28
+[c5-holdout] POST [16/16] G663317 T54
+===== C5 SITE-DISJOINT MOVEMENT T-1 -> T VALIDATION V9 =====
+status: SITE_DISJOINT_TMINUS1_POSTHOST_MOVEMENT_EVALUATION_NOT_HOST_COMBAT_PROMOTED
+summary: {'selected_games': 8, 'selected_windows': 16, 'selected_games_overlap_with_C5': 0, 'pre_forecast_rows': 3191, 'Tminus1_owner_current_ships': 7727, 'posthost_compared_rows': 3191, 'window_context_abstentions': 2, 'excluded_pre_sources': {'cloak_intercept_movement': 3, 'damage_repair_can_change_warp': 2, 'hyperjump_movement': 134, 'inbound_transfer': 66, 'intercept_movement': 54, 'normal_plan_insufficient_fuel': 88, 'outbound_transfer': 76, 'potential_chunnel_source_stack': 323, 'pre_move_mkt_mass_change': 422, 'sphere_topology_not_integrated': 1057, 'stationary_effective_warp_zero': 962, 'stationary_ion_storm': 2, 'tow_attempt': 516, 'tow_target': 501, 'warp_well_setting_unknown': 248, 'web_mine_route_risk': 82}, 'cohort_posthost_status_counts': {'NORMAL_MINE_RISK_CONDITIONAL_NO_HIT': {'ABSTAIN_OWNER_DRIFT_AT_T': 4, 'ABSTAIN_T_ARCHIVE_OWNER_CURRENT_UNAVAILABLE': 10, 'POSTHOST_ENDPOINT_MATCH': 551, 'POSTHOST_ENDPOINT_MISMATCH': 9}, 'NORMAL_MODEL_NO_INDEXED_MINE_RISK': {'ABSTAIN_OWNER_DRIFT_AT_T': 18, 'ABSTAIN_T_ARCHIVE_OWNER_CURRENT_UNAVAILABLE': 11, 'POSTHOST_ENDPOINT_MATCH': 2584, 'POSTHOST_ENDPOINT_MISMATCH': 4}}, 'new_Host_combat_predictions': 0, 'Nplus1_VCR_read': False, 'actual_mine_hit_inferred': False, 'independent_new_corpus': False}
+output: artifacts/combat/c5-site-disjoint-movement-validation-v9/published/report.json
