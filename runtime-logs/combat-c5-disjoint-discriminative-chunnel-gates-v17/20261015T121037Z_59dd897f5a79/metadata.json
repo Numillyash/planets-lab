@@ -1,0 +1,22 @@
+{
+  "evidence_branch": "runtime-logs",
+  "exit_code": 0,
+  "finished_at_utc": "2026-10-15T12:12:40Z",
+  "hostname": "GEORGUL-GAMER",
+  "interrupted_signal": null,
+  "log_file": "gate.log",
+  "missing_artifact_paths": [],
+  "remote": "origin",
+  "requested_artifact_paths": [
+    "artifacts/combat/c5-disjoint-discriminative-chunnel-gates-v17/published"
+  ],
+  "run_id": "20261015T121037Z_59dd897f5a79",
+  "run_name": "combat-c5-disjoint-discriminative-chunnel-gates-v17",
+  "runner": "bash",
+  "schema": "planets-lab.runtime-evidence.v1",
+  "skipped_oversized_artifact_paths": [],
+  "source_branch": "main",
+  "source_commit": "59dd897f5a79b96c030e715f3fecd676f818131e",
+  "source_dirty": false,
+  "started_at_utc": "2026-10-15T12:10:37Z"
+}
