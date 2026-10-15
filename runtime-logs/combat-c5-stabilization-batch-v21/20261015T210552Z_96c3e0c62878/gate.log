@@ -1,0 +1,65 @@
+===== C5 V21 BATCH: 3 EXPERIMENTS / ONE SERVER COMMAND =====
+HEAD: 96c3e0c628784d38bc0bdf9c76c96c0603f5723d
+V19 Git blob: 572d14d348235694402148273c7085d212301eac
+V20 Git blob: 3d5e1d5aeb6b0138c01bab3ec81185d0685233c0
+DB: /root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb (pinned SHA256, read-only)
+===== C5 V21 EXPERIMENT: geometry =====
+[c5-batch-v21/geometry] verifying SHA256 of immutable DB
+[c5-batch-v21/geometry] database read-only verified in 50.3s
+[c5-batch-v21/geometry] Tminus1 [1/9] G221008 T100
+[c5-batch-v21/geometry] Tminus1 [2/9] G227887 T72
+[c5-batch-v21/geometry] Tminus1 [3/9] G338264 T50
+[c5-batch-v21/geometry] Tminus1 [4/9] G373830 T38
+[c5-batch-v21/geometry] Tminus1 [5/9] G467386 T75
+[c5-batch-v21/geometry] Tminus1 [6/9] G467386 T221
+[c5-batch-v21/geometry] Tminus1 [7/9] G521834 T34
+[c5-batch-v21/geometry] Tminus1 [8/9] G632527 T60
+[c5-batch-v21/geometry] Tminus1 [9/9] G632527 T89
+===== C5 STABILIZATION BATCH V21: geometry =====
+status: RETROSPECTIVE_STABILIZER_GEOMETRY_PERSISTENCE_AND_ESCORTS_NOT_ACTIVATION_PROOF
+summary: {'windows': 9, 'frozen_short_edges': 13, 'geometrically_distinct_edges': 4, 'source_inside_documented_field': 2, 'target_inside_documented_field': 2, 'G467386_T75_467_to_80_source_inside_field': True, 'G467386_T75_467_to_80_target_inside_field': True, 'field_active_in_Host_phase_proven': False, 'T_archives_read': False}
+output: artifacts/combat/c5-stabilization-batch-v21/published/geometry.json
+===== C5 V21 EXPERIMENT: persistence =====
+[c5-batch-v21/persistence] verifying SHA256 of immutable DB
+[c5-batch-v21/persistence] database read-only verified in 30.4s
+[c5-batch-v21/persistence] PRE [1/9] G221008 T100
+[c5-batch-v21/persistence] PRE [2/9] G227887 T72
+[c5-batch-v21/persistence] PRE [3/9] G338264 T50
+[c5-batch-v21/persistence] PRE [4/9] G373830 T38
+[c5-batch-v21/persistence] PRE [5/9] G467386 T75
+[c5-batch-v21/persistence] PRE [6/9] G467386 T221
+[c5-batch-v21/persistence] PRE [7/9] G521834 T34
+[c5-batch-v21/persistence] PRE [8/9] G632527 T60
+[c5-batch-v21/persistence] PRE [9/9] G632527 T89
+[c5-batch-v21/persistence] POST [1/9] G221008 T100
+[c5-batch-v21/persistence] POST [2/9] G227887 T72
+[c5-batch-v21/persistence] POST [3/9] G338264 T50
+[c5-batch-v21/persistence] POST [4/9] G373830 T38
+[c5-batch-v21/persistence] POST [5/9] G467386 T75
+[c5-batch-v21/persistence] POST [6/9] G467386 T221
+[c5-batch-v21/persistence] POST [7/9] G521834 T34
+[c5-batch-v21/persistence] POST [8/9] G632527 T60
+[c5-batch-v21/persistence] POST [9/9] G632527 T89
+===== C5 STABILIZATION BATCH V21: persistence =====
+status: RETROSPECTIVE_STABILIZER_GEOMETRY_PERSISTENCE_AND_ESCORTS_NOT_ACTIVATION_PROOF
+summary: {'frozen_short_windows': 9, 'Tminus1_Dungeon_ship_appearances': 3, 'Tminus1_Dungeon_windows': 3, 'T_owner_current_categories': {'OWNER_CURRENT_T_OBSERVED': 3}, 'T_positions_unchanged': 3, 'T_positions_changed': 0, 'T_engine_unchanged': 3, 'all_Tminus1_stargates_frozen_before_first_T': True, 'active_field_or_Chunnel_executed_proven': False}
+output: artifacts/combat/c5-stabilization-batch-v21/published/persistence.json
+===== C5 V21 EXPERIMENT: escorts =====
+[c5-batch-v21/escorts] verifying SHA256 of immutable DB
+[c5-batch-v21/escorts] database read-only verified in 30.2s
+[c5-batch-v21/escorts] PRE [1/3] G338264 T50
+[c5-batch-v21/escorts] PRE [2/3] G467386 T75
+[c5-batch-v21/escorts] PRE [3/3] G632527 T89
+[c5-batch-v21/escorts] POST [1/3] G338264 T50
+[c5-batch-v21/escorts] POST [2/3] G467386 T75
+[c5-batch-v21/escorts] POST [3/3] G632527 T89
+===== C5 STABILIZATION BATCH V21: escorts =====
+status: RETROSPECTIVE_STABILIZER_GEOMETRY_PERSISTENCE_AND_ESCORTS_NOT_ACTIVATION_PROOF
+summary: {'Tminus1_distinct_short_edges': 4, 'Tminus1_distinct_game_turn_windows': 3, 'preselected_Tminus1_colocated_ship_appearances': 27, 'G467386_T75_467_stack_size': 4, 'G467386_T75_467_stack_owner_current_at_target': 4, 'all_Tminus1_stacks_frozen_before_first_T': True, 'movement_mechanism_or_Chunnel_activation_proven': False}
+output: artifacts/combat/c5-stabilization-batch-v21/published/escorts.json
+===== C5 V21 MANIFEST / COMPLETENESS GATE =====
+===== C5 STABILIZATION BATCH V21: manifest =====
+status: ALL_THREE_PINNED_V21_RESEARCH_PHASES_PUBLISHED_TOGETHER
+summary: True
+output: artifacts/combat/c5-stabilization-batch-v21/published/manifest.json
+===== C5 V21 ALL THREE EXPERIMENTS COMPLETED =====

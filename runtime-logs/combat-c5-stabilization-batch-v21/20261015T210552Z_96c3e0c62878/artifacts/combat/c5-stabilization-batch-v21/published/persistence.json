@@ -1,0 +1,93 @@
+{
+  "Nplus1_VCR_used": false,
+  "new_Host_movement_or_combat_predictions": 0,
+  "observed_phase_not_chunnel_execution_proof": true,
+  "phase": "persistence",
+  "schema": "planets-lab.combat-c5-stabilization-batch.v21",
+  "source_db_generation": "generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "source_db_sha256": "3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c",
+  "source_v19_git_blob_sha1": "572d14d348235694402148273c7085d212301eac",
+  "source_v20_git_blob_sha1": "3d5e1d5aeb6b0138c01bab3ec81185d0685233c0",
+  "stargate_Tminus1_to_T": [
+    {
+      "T_engine_id": 9,
+      "T_owner_current_position": [
+        1279,
+        1931
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_stargate_engine_unchanged": true,
+      "T_stargate_position_unchanged": true,
+      "Tminus1_documented_radius": 550,
+      "Tminus1_engine": 9,
+      "Tminus1_hull": 108,
+      "Tminus1_position": [
+        1279,
+        1931
+      ],
+      "game_id": 467386,
+      "owner_id": 6,
+      "ship_id": 446,
+      "stabilization_active_during_chunnel_proven": false,
+      "turn": 75
+    },
+    {
+      "T_engine_id": 9,
+      "T_owner_current_position": [
+        1278,
+        1931
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_stargate_engine_unchanged": true,
+      "T_stargate_position_unchanged": true,
+      "Tminus1_documented_radius": 550,
+      "Tminus1_engine": 9,
+      "Tminus1_hull": 108,
+      "Tminus1_position": [
+        1278,
+        1931
+      ],
+      "game_id": 467386,
+      "owner_id": 6,
+      "ship_id": 446,
+      "stabilization_active_during_chunnel_proven": false,
+      "turn": 221
+    },
+    {
+      "T_engine_id": 9,
+      "T_owner_current_position": [
+        1135,
+        2629
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_stargate_engine_unchanged": true,
+      "T_stargate_position_unchanged": true,
+      "Tminus1_documented_radius": 550,
+      "Tminus1_engine": 9,
+      "Tminus1_hull": 108,
+      "Tminus1_position": [
+        1135,
+        2629
+      ],
+      "game_id": 632527,
+      "owner_id": 9,
+      "ship_id": 251,
+      "stabilization_active_during_chunnel_proven": false,
+      "turn": 89
+    }
+  ],
+  "status": "RETROSPECTIVE_STABILIZER_GEOMETRY_PERSISTENCE_AND_ESCORTS_NOT_ACTIVATION_PROOF",
+  "summary": {
+    "T_engine_unchanged": 3,
+    "T_owner_current_categories": {
+      "OWNER_CURRENT_T_OBSERVED": 3
+    },
+    "T_positions_changed": 0,
+    "T_positions_unchanged": 3,
+    "Tminus1_Dungeon_ship_appearances": 3,
+    "Tminus1_Dungeon_windows": 3,
+    "active_field_or_Chunnel_executed_proven": false,
+    "all_Tminus1_stargates_frozen_before_first_T": true,
+    "frozen_short_windows": 9
+  }
+}

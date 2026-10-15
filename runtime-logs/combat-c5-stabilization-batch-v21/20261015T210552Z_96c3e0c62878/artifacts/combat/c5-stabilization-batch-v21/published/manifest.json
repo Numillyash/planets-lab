@@ -1,0 +1,61 @@
+{
+  "Nplus1_VCR_used": false,
+  "new_Host_movement_or_combat_predictions": 0,
+  "observed_phase_not_chunnel_execution_proof": true,
+  "phase": "manifest",
+  "phase_reports": {
+    "escorts": {
+      "relative_report": "escorts.json",
+      "sha256": "a8d0a8965850fb7bf158da1a87b91b69ae6e2361fbaa080a883bf8fec7097616",
+      "summary": {
+        "G467386_T75_467_stack_owner_current_at_target": 4,
+        "G467386_T75_467_stack_size": 4,
+        "Tminus1_distinct_game_turn_windows": 3,
+        "Tminus1_distinct_short_edges": 4,
+        "all_Tminus1_stacks_frozen_before_first_T": true,
+        "movement_mechanism_or_Chunnel_activation_proven": false,
+        "preselected_Tminus1_colocated_ship_appearances": 27
+      }
+    },
+    "geometry": {
+      "relative_report": "geometry.json",
+      "sha256": "c93152158ce8534d8cb32f471a535edcfef88aa167244ca58e57cd3ec596dbd7",
+      "summary": {
+        "G467386_T75_467_to_80_source_inside_field": true,
+        "G467386_T75_467_to_80_target_inside_field": true,
+        "T_archives_read": false,
+        "field_active_in_Host_phase_proven": false,
+        "frozen_short_edges": 13,
+        "geometrically_distinct_edges": 4,
+        "source_inside_documented_field": 2,
+        "target_inside_documented_field": 2,
+        "windows": 9
+      }
+    },
+    "persistence": {
+      "relative_report": "persistence.json",
+      "sha256": "7a5d34342307ca922746dd2a3982e9b21da94aee701a8843104ec322523b2026",
+      "summary": {
+        "T_engine_unchanged": 3,
+        "T_owner_current_categories": {
+          "OWNER_CURRENT_T_OBSERVED": 3
+        },
+        "T_positions_changed": 0,
+        "T_positions_unchanged": 3,
+        "Tminus1_Dungeon_ship_appearances": 3,
+        "Tminus1_Dungeon_windows": 3,
+        "active_field_or_Chunnel_executed_proven": false,
+        "all_Tminus1_stargates_frozen_before_first_T": true,
+        "frozen_short_windows": 9
+      }
+    }
+  },
+  "research_caveat": "This is ONE independently evidence-published BATCH of THREE read-only diagnostics on the SAME preselected historical V17/V20 public100 cohort, not three new heldout studies. No posthoc engine activation, a 25LY special rule or production combat/movement inference proven.",
+  "schema": "planets-lab.combat-c5-stabilization-batch.v21",
+  "source_db_generation": "generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "source_db_sha256": "3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c",
+  "source_v19_git_blob_sha1": "572d14d348235694402148273c7085d212301eac",
+  "source_v20_git_blob_sha1": "3d5e1d5aeb6b0138c01bab3ec81185d0685233c0",
+  "status": "ALL_THREE_PINNED_V21_RESEARCH_PHASES_PUBLISHED_TOGETHER",
+  "three_experiments_completed": true
+}

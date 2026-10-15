@@ -1,0 +1,277 @@
+{
+  "G467386_T75_467_to_80": {
+    "Tminus1_all_field_states_unproven": true,
+    "Tminus1_any_documented_source_field": true,
+    "Tminus1_any_documented_target_field": true,
+    "Tminus1_distinct_source_target": true,
+    "Tminus1_explicit_short_format_flag": null,
+    "Tminus1_fields": [
+      {
+        "active_during_actual_Chunnel_unverified": true,
+        "owner_matches_chunnel_actor": true,
+        "radius_ly": 550,
+        "source_distance_ly": 491.7601,
+        "source_inside_field_on_Tminus1": true,
+        "source_margin_ly": 58.2399,
+        "stargate_id": 446,
+        "stargate_owner_id": 6,
+        "target_distance_ly": 515.24072,
+        "target_inside_field_on_Tminus1": true,
+        "target_margin_ly": 34.75928
+      }
+    ],
+    "game_id": 467386,
+    "initiator_ship_id": 467,
+    "target_ship_id": 80,
+    "turn": 75
+  },
+  "Nplus1_VCR_used": false,
+  "edge_geometry": [
+    {
+      "Tminus1_all_field_states_unproven": true,
+      "Tminus1_any_documented_source_field": false,
+      "Tminus1_any_documented_target_field": false,
+      "Tminus1_distinct_source_target": false,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_fields": [],
+      "game_id": 221008,
+      "initiator_ship_id": 78,
+      "target_ship_id": 443,
+      "turn": 100
+    },
+    {
+      "Tminus1_all_field_states_unproven": true,
+      "Tminus1_any_documented_source_field": false,
+      "Tminus1_any_documented_target_field": false,
+      "Tminus1_distinct_source_target": false,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_fields": [],
+      "game_id": 227887,
+      "initiator_ship_id": 441,
+      "target_ship_id": 413,
+      "turn": 72
+    },
+    {
+      "Tminus1_all_field_states_unproven": true,
+      "Tminus1_any_documented_source_field": false,
+      "Tminus1_any_documented_target_field": false,
+      "Tminus1_distinct_source_target": false,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_fields": [],
+      "game_id": 227887,
+      "initiator_ship_id": 512,
+      "target_ship_id": 152,
+      "turn": 72
+    },
+    {
+      "Tminus1_all_field_states_unproven": true,
+      "Tminus1_any_documented_source_field": false,
+      "Tminus1_any_documented_target_field": false,
+      "Tminus1_distinct_source_target": true,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_fields": [],
+      "game_id": 338264,
+      "initiator_ship_id": 204,
+      "target_ship_id": 116,
+      "turn": 50
+    },
+    {
+      "Tminus1_all_field_states_unproven": true,
+      "Tminus1_any_documented_source_field": false,
+      "Tminus1_any_documented_target_field": false,
+      "Tminus1_distinct_source_target": false,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_fields": [],
+      "game_id": 373830,
+      "initiator_ship_id": 407,
+      "target_ship_id": 129,
+      "turn": 38
+    },
+    {
+      "Tminus1_all_field_states_unproven": true,
+      "Tminus1_any_documented_source_field": false,
+      "Tminus1_any_documented_target_field": false,
+      "Tminus1_distinct_source_target": true,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_fields": [
+        {
+          "active_during_actual_Chunnel_unverified": true,
+          "owner_matches_chunnel_actor": false,
+          "radius_ly": 550,
+          "source_distance_ly": 1188.28027,
+          "source_inside_field_on_Tminus1": false,
+          "source_margin_ly": -638.28027,
+          "stargate_id": 446,
+          "stargate_owner_id": 6,
+          "target_distance_ly": 1188.6568,
+          "target_inside_field_on_Tminus1": false,
+          "target_margin_ly": -638.6568
+        }
+      ],
+      "game_id": 467386,
+      "initiator_ship_id": 215,
+      "target_ship_id": 254,
+      "turn": 75
+    },
+    {
+      "Tminus1_all_field_states_unproven": true,
+      "Tminus1_any_documented_source_field": true,
+      "Tminus1_any_documented_target_field": true,
+      "Tminus1_distinct_source_target": true,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_fields": [
+        {
+          "active_during_actual_Chunnel_unverified": true,
+          "owner_matches_chunnel_actor": true,
+          "radius_ly": 550,
+          "source_distance_ly": 491.7601,
+          "source_inside_field_on_Tminus1": true,
+          "source_margin_ly": 58.2399,
+          "stargate_id": 446,
+          "stargate_owner_id": 6,
+          "target_distance_ly": 515.24072,
+          "target_inside_field_on_Tminus1": true,
+          "target_margin_ly": 34.75928
+        }
+      ],
+      "game_id": 467386,
+      "initiator_ship_id": 467,
+      "target_ship_id": 80,
+      "turn": 75
+    },
+    {
+      "Tminus1_all_field_states_unproven": true,
+      "Tminus1_any_documented_source_field": true,
+      "Tminus1_any_documented_target_field": true,
+      "Tminus1_distinct_source_target": false,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_fields": [
+        {
+          "active_during_actual_Chunnel_unverified": true,
+          "owner_matches_chunnel_actor": true,
+          "radius_ly": 550,
+          "source_distance_ly": 154.00325,
+          "source_inside_field_on_Tminus1": true,
+          "source_margin_ly": 395.99675,
+          "stargate_id": 446,
+          "stargate_owner_id": 6,
+          "target_distance_ly": 154.00325,
+          "target_inside_field_on_Tminus1": true,
+          "target_margin_ly": 395.99675
+        }
+      ],
+      "game_id": 467386,
+      "initiator_ship_id": 142,
+      "target_ship_id": 496,
+      "turn": 221
+    },
+    {
+      "Tminus1_all_field_states_unproven": true,
+      "Tminus1_any_documented_source_field": false,
+      "Tminus1_any_documented_target_field": false,
+      "Tminus1_distinct_source_target": false,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_fields": [],
+      "game_id": 521834,
+      "initiator_ship_id": 200,
+      "target_ship_id": 265,
+      "turn": 34
+    },
+    {
+      "Tminus1_all_field_states_unproven": true,
+      "Tminus1_any_documented_source_field": false,
+      "Tminus1_any_documented_target_field": false,
+      "Tminus1_distinct_source_target": false,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_fields": [],
+      "game_id": 632527,
+      "initiator_ship_id": 69,
+      "target_ship_id": 286,
+      "turn": 60
+    },
+    {
+      "Tminus1_all_field_states_unproven": true,
+      "Tminus1_any_documented_source_field": false,
+      "Tminus1_any_documented_target_field": false,
+      "Tminus1_distinct_source_target": false,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_fields": [],
+      "game_id": 632527,
+      "initiator_ship_id": 509,
+      "target_ship_id": 99,
+      "turn": 60
+    },
+    {
+      "Tminus1_all_field_states_unproven": true,
+      "Tminus1_any_documented_source_field": false,
+      "Tminus1_any_documented_target_field": false,
+      "Tminus1_distinct_source_target": false,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_fields": [
+        {
+          "active_during_actual_Chunnel_unverified": true,
+          "owner_matches_chunnel_actor": false,
+          "radius_ly": 550,
+          "source_distance_ly": 2252.41759,
+          "source_inside_field_on_Tminus1": false,
+          "source_margin_ly": -1702.41759,
+          "stargate_id": 251,
+          "stargate_owner_id": 9,
+          "target_distance_ly": 2252.41759,
+          "target_inside_field_on_Tminus1": false,
+          "target_margin_ly": -1702.41759
+        }
+      ],
+      "game_id": 632527,
+      "initiator_ship_id": 88,
+      "target_ship_id": 199,
+      "turn": 89
+    },
+    {
+      "Tminus1_all_field_states_unproven": true,
+      "Tminus1_any_documented_source_field": false,
+      "Tminus1_any_documented_target_field": false,
+      "Tminus1_distinct_source_target": true,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_fields": [
+        {
+          "active_during_actual_Chunnel_unverified": true,
+          "owner_matches_chunnel_actor": true,
+          "radius_ly": 550,
+          "source_distance_ly": 2810.51188,
+          "source_inside_field_on_Tminus1": false,
+          "source_margin_ly": -2260.51188,
+          "stargate_id": 251,
+          "stargate_owner_id": 9,
+          "target_distance_ly": 2802.64393,
+          "target_inside_field_on_Tminus1": false,
+          "target_margin_ly": -2252.64393
+        }
+      ],
+      "game_id": 632527,
+      "initiator_ship_id": 106,
+      "target_ship_id": 432,
+      "turn": 89
+    }
+  ],
+  "new_Host_movement_or_combat_predictions": 0,
+  "observed_phase_not_chunnel_execution_proof": true,
+  "phase": "geometry",
+  "schema": "planets-lab.combat-c5-stabilization-batch.v21",
+  "source_db_generation": "generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "source_db_sha256": "3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c",
+  "source_v19_git_blob_sha1": "572d14d348235694402148273c7085d212301eac",
+  "source_v20_git_blob_sha1": "3d5e1d5aeb6b0138c01bab3ec81185d0685233c0",
+  "status": "RETROSPECTIVE_STABILIZER_GEOMETRY_PERSISTENCE_AND_ESCORTS_NOT_ACTIVATION_PROOF",
+  "summary": {
+    "G467386_T75_467_to_80_source_inside_field": true,
+    "G467386_T75_467_to_80_target_inside_field": true,
+    "T_archives_read": false,
+    "field_active_in_Host_phase_proven": false,
+    "frozen_short_edges": 13,
+    "geometrically_distinct_edges": 4,
+    "source_inside_documented_field": 2,
+    "target_inside_documented_field": 2,
+    "windows": 9
+  }
+}
