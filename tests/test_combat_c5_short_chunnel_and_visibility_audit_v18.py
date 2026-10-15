@@ -147,6 +147,10 @@ def synthetic_v17_report():
                            a=500+i,b=600+i,src=(500,500),dst=(550,500))
                for i in range(6)]
     negatives[0]=sample_case()
+    for control in negatives[1:]:
+        control["T_actor_status"]="T_ACTOR_AT_FROZEN_SOURCE"
+        control["T_actor_position"]=list(control["source"])
+        control["T_actor_net_fuel_delta_KT"]=0
     neg_non_discriminating=[
         {**sample_case(g=wins[(i+30)%48]["game_id"],t=wins[(i+30)%48]["turn"],
                        a=700+i,b=800+i,src=(500,500),dst=(500,500)),
