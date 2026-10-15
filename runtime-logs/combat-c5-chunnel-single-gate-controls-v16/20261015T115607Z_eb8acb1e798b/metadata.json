@@ -1,0 +1,22 @@
+{
+  "evidence_branch": "runtime-logs",
+  "exit_code": 0,
+  "finished_at_utc": "2026-10-15T11:58:09Z",
+  "hostname": "GEORGUL-GAMER",
+  "interrupted_signal": null,
+  "log_file": "gate.log",
+  "missing_artifact_paths": [],
+  "remote": "origin",
+  "requested_artifact_paths": [
+    "artifacts/combat/c5-chunnel-single-gate-controls-v16/published"
+  ],
+  "run_id": "20261015T115607Z_eb8acb1e798b",
+  "run_name": "combat-c5-chunnel-single-gate-controls-v16",
+  "runner": "bash",
+  "schema": "planets-lab.runtime-evidence.v1",
+  "skipped_oversized_artifact_paths": [],
+  "source_branch": "main",
+  "source_commit": "eb8acb1e798b3bd0443dd470ccc84e24f97e02f0",
+  "source_dirty": false,
+  "started_at_utc": "2026-10-15T11:56:07Z"
+}
