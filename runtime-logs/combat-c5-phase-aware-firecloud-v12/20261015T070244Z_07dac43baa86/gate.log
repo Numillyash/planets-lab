@@ -1,0 +1,22 @@
+===== C5 PREMOVE ENDPOINT FIRECLOUD CHUNNEL SCREEN V12 =====
+HEAD: 07dac43baa86e5aa2194fe7d0abed22a50a19d72
+V11 Git blob: 98e31ff87b615af1e60d9e120317cbbe8c756d4e
+DB: /root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb (pinned SHA256 once, read-only)
+[c5-firecloud] checking immutable public100 SHA256
+[c5-firecloud] verified in 25.7s; read-only
+[c5-firecloud] PRE [1/6] G245123 T38
+[c5-firecloud] PRE [2/6] G245123 T75
+[c5-firecloud] PRE [3/6] G306971 T116
+[c5-firecloud] PRE [4/6] G306971 T231
+[c5-firecloud] PRE [5/6] G476826 T96
+[c5-firecloud] PRE [6/6] G663317 T54
+[c5-firecloud] POST [1/6] G245123 T38
+[c5-firecloud] POST [2/6] G245123 T75
+[c5-firecloud] POST [3/6] G306971 T116
+[c5-firecloud] POST [4/6] G306971 T231
+[c5-firecloud] POST [5/6] G476826 T96
+[c5-firecloud] POST [6/6] G663317 T54
+===== C5 PHASE AWARE FIRECLOUD V12 =====
+status: TMINUS1_PREMOVE_FIRECLOUD_ENDPOINT_CONCORDANCE_OBSERVATIONAL_ONLY
+summary: {'frozen_V9_endpoint_mismatches': 13, 'frozen_V11_windows': 6, 'frozen_V11_games': 4, 'frozen_V11_clustered_ships': 7, 'frozen_Tminus1_firecloud_graph_controls': {'Tminus1_all_numeric_fc_edges': 39, 'Tminus1_nonstock_numeric_fc_edges': 15, 'Tminus1_stock_firecloud_edges': 24}, 'phase_aware_posthost_status_counts': {'NO_STOCK_FIRECLOUD_SOURCE_AT_PREMOVE_MODEL_ENDPOINT': 5, 'POSTHOC_T_ENDPOINT_CONCORDANT_WITH_PREMOVE_FIRECLOUD_EDGE': 8}, 'posthoc_firecloud_target_concordant_cases': 8, 'new_host_combat_or_movement_predictions': 0, 'Tminus1_graphs_frozen_before_T': True, 'mine_hits_or_Chunnel_execution_proven': False, 'Nplus1_VCR_used': False}
+output: artifacts/combat/c5-phase-aware-firecloud-v12/published/report.json

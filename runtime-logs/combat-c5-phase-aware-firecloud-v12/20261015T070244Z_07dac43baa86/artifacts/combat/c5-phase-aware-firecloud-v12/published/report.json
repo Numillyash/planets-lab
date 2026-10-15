@@ -1,0 +1,913 @@
+{
+  "boundary": "Frozen thirteen V9 misses, not an unseen holdout. Exact Tminus1 documented STOCK hull56 Firecloud source/target necessary gate does not establish custom game capability or Chunnel activation. Only frozen independent V9 Tminus1 normal model endpoint is matched to a candidate initiator location; candidate inventory built across all six windows BEFORE any T archive read. Matching posthost T ship, actor and target state is observational and potentially confounded by other Host phases. Numeric-FC non-Firecloud false positives explicitly excluded. No precombat position, fuel roll, mine hit, combat queue, Nplus1 VCR or executor promotion inferred.",
+  "case_evaluations": [
+    {
+      "Nplus1_VCR_used": false,
+      "T_actor_target_comparisons": [],
+      "T_archive_not_used_to_construct_candidates": true,
+      "T_observation_comparison_status": "NO_STOCK_FIRECLOUD_SOURCE_AT_PREMOVE_MODEL_ENDPOINT",
+      "Tminus1_all_same_owner_firecloud_sources": 0,
+      "Tminus1_owner_id": 3,
+      "Tminus1_stock_firecloud_source_candidates": [],
+      "Tminus1_without_T_observation_status": "NO_STOCK_FIRECLOUD_SOURCE_AT_PREMOVE_MODEL_ENDPOINT",
+      "documented_Firecloud_rule_still_requires_independent_execution_evidence": true,
+      "frozen_Tminus1_pre_move_normal_endpoint": [
+        1163,
+        1701
+      ],
+      "frozen_Tminus1_start": [
+        1163,
+        1701
+      ],
+      "frozen_posthost_T_comparator": [
+        1506,
+        1539
+      ],
+      "game_id": 245123,
+      "new_host_position_prediction": false,
+      "ship_id": 364,
+      "source_risk_cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+      "turn": 38
+    },
+    {
+      "Nplus1_VCR_used": false,
+      "T_actor_target_comparisons": [
+        {
+          "T_actor_at_preselected_target": true,
+          "T_actor_fuel_delta_KT": 50,
+          "T_actor_fuel_delta_exactly_50": true,
+          "T_actor_owner_current_endpoint": [
+            2504,
+            1351
+          ],
+          "T_ship_endpoint_agrees_with_Tminus1_target": true,
+          "T_target_owner_current_endpoint": [
+            2504,
+            1351
+          ],
+          "T_target_still_at_Tminus1_endpoint": true,
+          "Tminus1_conventional_actor_target_gate_passed": true,
+          "Tminus1_tow_order_on_endpoints": false,
+          "chunnel_execution_proven": false,
+          "documented_stock_hulls_but_game_custom_capability_unverified": true,
+          "initiator_Tminus1_fuel": 122,
+          "initiator_Tminus1_position": [
+            2513,
+            1946
+          ],
+          "initiator_Tminus1_warp": 0,
+          "initiator_ship_id": 293,
+          "owner_id": 10,
+          "target_Tminus1_fuel": 32,
+          "target_Tminus1_position": [
+            2504,
+            1351
+          ],
+          "target_Tminus1_warp": 0,
+          "target_ship_id": 646
+        }
+      ],
+      "T_archive_not_used_to_construct_candidates": true,
+      "T_observation_comparison_status": "POSTHOC_T_ENDPOINT_CONCORDANT_WITH_PREMOVE_FIRECLOUD_EDGE",
+      "Tminus1_all_same_owner_firecloud_sources": 1,
+      "Tminus1_owner_id": 10,
+      "Tminus1_stock_firecloud_source_candidates": [
+        {
+          "Tminus1_conventional_actor_target_gate_passed": true,
+          "Tminus1_tow_order_on_endpoints": false,
+          "documented_stock_hulls_but_game_custom_capability_unverified": true,
+          "initiator_Tminus1_fuel": 122,
+          "initiator_Tminus1_position": [
+            2513,
+            1946
+          ],
+          "initiator_Tminus1_warp": 0,
+          "initiator_ship_id": 293,
+          "owner_id": 10,
+          "target_Tminus1_fuel": 32,
+          "target_Tminus1_position": [
+            2504,
+            1351
+          ],
+          "target_Tminus1_warp": 0,
+          "target_ship_id": 646
+        }
+      ],
+      "Tminus1_without_T_observation_status": "PREMOVE_MODEL_ENDPOINT_AT_STOCK_FIRECLOUD_SOURCE",
+      "documented_Firecloud_rule_still_requires_independent_execution_evidence": true,
+      "frozen_Tminus1_pre_move_normal_endpoint": [
+        2513,
+        1946
+      ],
+      "frozen_Tminus1_start": [
+        2512,
+        1947
+      ],
+      "frozen_posthost_T_comparator": [
+        2504,
+        1351
+      ],
+      "game_id": 245123,
+      "new_host_position_prediction": false,
+      "ship_id": 325,
+      "source_risk_cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+      "turn": 75
+    },
+    {
+      "Nplus1_VCR_used": false,
+      "T_actor_target_comparisons": [
+        {
+          "T_actor_at_preselected_target": true,
+          "T_actor_fuel_delta_KT": 50,
+          "T_actor_fuel_delta_exactly_50": true,
+          "T_actor_owner_current_endpoint": [
+            2504,
+            1351
+          ],
+          "T_ship_endpoint_agrees_with_Tminus1_target": true,
+          "T_target_owner_current_endpoint": [
+            2504,
+            1351
+          ],
+          "T_target_still_at_Tminus1_endpoint": true,
+          "Tminus1_conventional_actor_target_gate_passed": true,
+          "Tminus1_tow_order_on_endpoints": false,
+          "chunnel_execution_proven": false,
+          "documented_stock_hulls_but_game_custom_capability_unverified": true,
+          "initiator_Tminus1_fuel": 122,
+          "initiator_Tminus1_position": [
+            2513,
+            1946
+          ],
+          "initiator_Tminus1_warp": 0,
+          "initiator_ship_id": 293,
+          "owner_id": 10,
+          "target_Tminus1_fuel": 32,
+          "target_Tminus1_position": [
+            2504,
+            1351
+          ],
+          "target_Tminus1_warp": 0,
+          "target_ship_id": 646
+        }
+      ],
+      "T_archive_not_used_to_construct_candidates": true,
+      "T_observation_comparison_status": "POSTHOC_T_ENDPOINT_CONCORDANT_WITH_PREMOVE_FIRECLOUD_EDGE",
+      "Tminus1_all_same_owner_firecloud_sources": 1,
+      "Tminus1_owner_id": 10,
+      "Tminus1_stock_firecloud_source_candidates": [
+        {
+          "Tminus1_conventional_actor_target_gate_passed": true,
+          "Tminus1_tow_order_on_endpoints": false,
+          "documented_stock_hulls_but_game_custom_capability_unverified": true,
+          "initiator_Tminus1_fuel": 122,
+          "initiator_Tminus1_position": [
+            2513,
+            1946
+          ],
+          "initiator_Tminus1_warp": 0,
+          "initiator_ship_id": 293,
+          "owner_id": 10,
+          "target_Tminus1_fuel": 32,
+          "target_Tminus1_position": [
+            2504,
+            1351
+          ],
+          "target_Tminus1_warp": 0,
+          "target_ship_id": 646
+        }
+      ],
+      "Tminus1_without_T_observation_status": "PREMOVE_MODEL_ENDPOINT_AT_STOCK_FIRECLOUD_SOURCE",
+      "documented_Firecloud_rule_still_requires_independent_execution_evidence": true,
+      "frozen_Tminus1_pre_move_normal_endpoint": [
+        2513,
+        1946
+      ],
+      "frozen_Tminus1_start": [
+        2512,
+        1947
+      ],
+      "frozen_posthost_T_comparator": [
+        2504,
+        1351
+      ],
+      "game_id": 245123,
+      "new_host_position_prediction": false,
+      "ship_id": 360,
+      "source_risk_cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+      "turn": 75
+    },
+    {
+      "Nplus1_VCR_used": false,
+      "T_actor_target_comparisons": [],
+      "T_archive_not_used_to_construct_candidates": true,
+      "T_observation_comparison_status": "NO_STOCK_FIRECLOUD_SOURCE_AT_PREMOVE_MODEL_ENDPOINT",
+      "Tminus1_all_same_owner_firecloud_sources": 0,
+      "Tminus1_owner_id": 9,
+      "Tminus1_stock_firecloud_source_candidates": [],
+      "Tminus1_without_T_observation_status": "NO_STOCK_FIRECLOUD_SOURCE_AT_PREMOVE_MODEL_ENDPOINT",
+      "documented_Firecloud_rule_still_requires_independent_execution_evidence": true,
+      "frozen_Tminus1_pre_move_normal_endpoint": [
+        2270,
+        1889
+      ],
+      "frozen_Tminus1_start": [
+        2250,
+        1905
+      ],
+      "frozen_posthost_T_comparator": [
+        2268,
+        1887
+      ],
+      "game_id": 245123,
+      "new_host_position_prediction": false,
+      "ship_id": 499,
+      "source_risk_cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+      "turn": 75
+    },
+    {
+      "Nplus1_VCR_used": false,
+      "T_actor_target_comparisons": [],
+      "T_archive_not_used_to_construct_candidates": true,
+      "T_observation_comparison_status": "NO_STOCK_FIRECLOUD_SOURCE_AT_PREMOVE_MODEL_ENDPOINT",
+      "Tminus1_all_same_owner_firecloud_sources": 0,
+      "Tminus1_owner_id": 9,
+      "Tminus1_stock_firecloud_source_candidates": [],
+      "Tminus1_without_T_observation_status": "NO_STOCK_FIRECLOUD_SOURCE_AT_PREMOVE_MODEL_ENDPOINT",
+      "documented_Firecloud_rule_still_requires_independent_execution_evidence": true,
+      "frozen_Tminus1_pre_move_normal_endpoint": [
+        2291,
+        1980
+      ],
+      "frozen_Tminus1_start": [
+        2270,
+        1916
+      ],
+      "frozen_posthost_T_comparator": [
+        2289,
+        1978
+      ],
+      "game_id": 245123,
+      "new_host_position_prediction": false,
+      "ship_id": 639,
+      "source_risk_cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+      "turn": 75
+    },
+    {
+      "Nplus1_VCR_used": false,
+      "T_actor_target_comparisons": [
+        {
+          "T_actor_at_preselected_target": true,
+          "T_actor_fuel_delta_KT": 50,
+          "T_actor_fuel_delta_exactly_50": true,
+          "T_actor_owner_current_endpoint": [
+            2504,
+            1351
+          ],
+          "T_ship_endpoint_agrees_with_Tminus1_target": true,
+          "T_target_owner_current_endpoint": [
+            2504,
+            1351
+          ],
+          "T_target_still_at_Tminus1_endpoint": true,
+          "Tminus1_conventional_actor_target_gate_passed": true,
+          "Tminus1_tow_order_on_endpoints": false,
+          "chunnel_execution_proven": false,
+          "documented_stock_hulls_but_game_custom_capability_unverified": true,
+          "initiator_Tminus1_fuel": 122,
+          "initiator_Tminus1_position": [
+            2513,
+            1946
+          ],
+          "initiator_Tminus1_warp": 0,
+          "initiator_ship_id": 293,
+          "owner_id": 10,
+          "target_Tminus1_fuel": 32,
+          "target_Tminus1_position": [
+            2504,
+            1351
+          ],
+          "target_Tminus1_warp": 0,
+          "target_ship_id": 646
+        }
+      ],
+      "T_archive_not_used_to_construct_candidates": true,
+      "T_observation_comparison_status": "POSTHOC_T_ENDPOINT_CONCORDANT_WITH_PREMOVE_FIRECLOUD_EDGE",
+      "Tminus1_all_same_owner_firecloud_sources": 1,
+      "Tminus1_owner_id": 10,
+      "Tminus1_stock_firecloud_source_candidates": [
+        {
+          "Tminus1_conventional_actor_target_gate_passed": true,
+          "Tminus1_tow_order_on_endpoints": false,
+          "documented_stock_hulls_but_game_custom_capability_unverified": true,
+          "initiator_Tminus1_fuel": 122,
+          "initiator_Tminus1_position": [
+            2513,
+            1946
+          ],
+          "initiator_Tminus1_warp": 0,
+          "initiator_ship_id": 293,
+          "owner_id": 10,
+          "target_Tminus1_fuel": 32,
+          "target_Tminus1_position": [
+            2504,
+            1351
+          ],
+          "target_Tminus1_warp": 0,
+          "target_ship_id": 646
+        }
+      ],
+      "Tminus1_without_T_observation_status": "PREMOVE_MODEL_ENDPOINT_AT_STOCK_FIRECLOUD_SOURCE",
+      "documented_Firecloud_rule_still_requires_independent_execution_evidence": true,
+      "frozen_Tminus1_pre_move_normal_endpoint": [
+        2513,
+        1946
+      ],
+      "frozen_Tminus1_start": [
+        2512,
+        1947
+      ],
+      "frozen_posthost_T_comparator": [
+        2504,
+        1351
+      ],
+      "game_id": 245123,
+      "new_host_position_prediction": false,
+      "ship_id": 912,
+      "source_risk_cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+      "turn": 75
+    },
+    {
+      "Nplus1_VCR_used": false,
+      "T_actor_target_comparisons": [
+        {
+          "T_actor_at_preselected_target": true,
+          "T_actor_fuel_delta_KT": 50,
+          "T_actor_fuel_delta_exactly_50": true,
+          "T_actor_owner_current_endpoint": [
+            2504,
+            1351
+          ],
+          "T_ship_endpoint_agrees_with_Tminus1_target": true,
+          "T_target_owner_current_endpoint": [
+            2504,
+            1351
+          ],
+          "T_target_still_at_Tminus1_endpoint": true,
+          "Tminus1_conventional_actor_target_gate_passed": true,
+          "Tminus1_tow_order_on_endpoints": false,
+          "chunnel_execution_proven": false,
+          "documented_stock_hulls_but_game_custom_capability_unverified": true,
+          "initiator_Tminus1_fuel": 122,
+          "initiator_Tminus1_position": [
+            2513,
+            1946
+          ],
+          "initiator_Tminus1_warp": 0,
+          "initiator_ship_id": 293,
+          "owner_id": 10,
+          "target_Tminus1_fuel": 32,
+          "target_Tminus1_position": [
+            2504,
+            1351
+          ],
+          "target_Tminus1_warp": 0,
+          "target_ship_id": 646
+        }
+      ],
+      "T_archive_not_used_to_construct_candidates": true,
+      "T_observation_comparison_status": "POSTHOC_T_ENDPOINT_CONCORDANT_WITH_PREMOVE_FIRECLOUD_EDGE",
+      "Tminus1_all_same_owner_firecloud_sources": 1,
+      "Tminus1_owner_id": 10,
+      "Tminus1_stock_firecloud_source_candidates": [
+        {
+          "Tminus1_conventional_actor_target_gate_passed": true,
+          "Tminus1_tow_order_on_endpoints": false,
+          "documented_stock_hulls_but_game_custom_capability_unverified": true,
+          "initiator_Tminus1_fuel": 122,
+          "initiator_Tminus1_position": [
+            2513,
+            1946
+          ],
+          "initiator_Tminus1_warp": 0,
+          "initiator_ship_id": 293,
+          "owner_id": 10,
+          "target_Tminus1_fuel": 32,
+          "target_Tminus1_position": [
+            2504,
+            1351
+          ],
+          "target_Tminus1_warp": 0,
+          "target_ship_id": 646
+        }
+      ],
+      "Tminus1_without_T_observation_status": "PREMOVE_MODEL_ENDPOINT_AT_STOCK_FIRECLOUD_SOURCE",
+      "documented_Firecloud_rule_still_requires_independent_execution_evidence": true,
+      "frozen_Tminus1_pre_move_normal_endpoint": [
+        2513,
+        1946
+      ],
+      "frozen_Tminus1_start": [
+        2512,
+        1947
+      ],
+      "frozen_posthost_T_comparator": [
+        2504,
+        1351
+      ],
+      "game_id": 245123,
+      "new_host_position_prediction": false,
+      "ship_id": 923,
+      "source_risk_cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+      "turn": 75
+    },
+    {
+      "Nplus1_VCR_used": false,
+      "T_actor_target_comparisons": [
+        {
+          "T_actor_at_preselected_target": true,
+          "T_actor_fuel_delta_KT": 50,
+          "T_actor_fuel_delta_exactly_50": true,
+          "T_actor_owner_current_endpoint": [
+            3074,
+            1914
+          ],
+          "T_ship_endpoint_agrees_with_Tminus1_target": true,
+          "T_target_owner_current_endpoint": [
+            3074,
+            1914
+          ],
+          "T_target_still_at_Tminus1_endpoint": true,
+          "Tminus1_conventional_actor_target_gate_passed": true,
+          "Tminus1_tow_order_on_endpoints": false,
+          "chunnel_execution_proven": false,
+          "documented_stock_hulls_but_game_custom_capability_unverified": true,
+          "initiator_Tminus1_fuel": 440,
+          "initiator_Tminus1_position": [
+            2653,
+            2074
+          ],
+          "initiator_Tminus1_warp": 0,
+          "initiator_ship_id": 377,
+          "owner_id": 6,
+          "target_Tminus1_fuel": 440,
+          "target_Tminus1_position": [
+            3074,
+            1914
+          ],
+          "target_Tminus1_warp": 0,
+          "target_ship_id": 581
+        }
+      ],
+      "T_archive_not_used_to_construct_candidates": true,
+      "T_observation_comparison_status": "POSTHOC_T_ENDPOINT_CONCORDANT_WITH_PREMOVE_FIRECLOUD_EDGE",
+      "Tminus1_all_same_owner_firecloud_sources": 1,
+      "Tminus1_owner_id": 6,
+      "Tminus1_stock_firecloud_source_candidates": [
+        {
+          "Tminus1_conventional_actor_target_gate_passed": true,
+          "Tminus1_tow_order_on_endpoints": false,
+          "documented_stock_hulls_but_game_custom_capability_unverified": true,
+          "initiator_Tminus1_fuel": 440,
+          "initiator_Tminus1_position": [
+            2653,
+            2074
+          ],
+          "initiator_Tminus1_warp": 0,
+          "initiator_ship_id": 377,
+          "owner_id": 6,
+          "target_Tminus1_fuel": 440,
+          "target_Tminus1_position": [
+            3074,
+            1914
+          ],
+          "target_Tminus1_warp": 0,
+          "target_ship_id": 581
+        }
+      ],
+      "Tminus1_without_T_observation_status": "PREMOVE_MODEL_ENDPOINT_AT_STOCK_FIRECLOUD_SOURCE",
+      "documented_Firecloud_rule_still_requires_independent_execution_evidence": true,
+      "frozen_Tminus1_pre_move_normal_endpoint": [
+        2653,
+        2074
+      ],
+      "frozen_Tminus1_start": [
+        2652,
+        2075
+      ],
+      "frozen_posthost_T_comparator": [
+        3074,
+        1914
+      ],
+      "game_id": 306971,
+      "new_host_position_prediction": false,
+      "ship_id": 211,
+      "source_risk_cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+      "turn": 116
+    },
+    {
+      "Nplus1_VCR_used": false,
+      "T_actor_target_comparisons": [
+        {
+          "T_actor_at_preselected_target": true,
+          "T_actor_fuel_delta_KT": 50,
+          "T_actor_fuel_delta_exactly_50": true,
+          "T_actor_owner_current_endpoint": [
+            3074,
+            1914
+          ],
+          "T_ship_endpoint_agrees_with_Tminus1_target": true,
+          "T_target_owner_current_endpoint": [
+            3074,
+            1914
+          ],
+          "T_target_still_at_Tminus1_endpoint": true,
+          "Tminus1_conventional_actor_target_gate_passed": true,
+          "Tminus1_tow_order_on_endpoints": false,
+          "chunnel_execution_proven": false,
+          "documented_stock_hulls_but_game_custom_capability_unverified": true,
+          "initiator_Tminus1_fuel": 440,
+          "initiator_Tminus1_position": [
+            2653,
+            2074
+          ],
+          "initiator_Tminus1_warp": 0,
+          "initiator_ship_id": 377,
+          "owner_id": 6,
+          "target_Tminus1_fuel": 440,
+          "target_Tminus1_position": [
+            3074,
+            1914
+          ],
+          "target_Tminus1_warp": 0,
+          "target_ship_id": 581
+        }
+      ],
+      "T_archive_not_used_to_construct_candidates": true,
+      "T_observation_comparison_status": "POSTHOC_T_ENDPOINT_CONCORDANT_WITH_PREMOVE_FIRECLOUD_EDGE",
+      "Tminus1_all_same_owner_firecloud_sources": 1,
+      "Tminus1_owner_id": 6,
+      "Tminus1_stock_firecloud_source_candidates": [
+        {
+          "Tminus1_conventional_actor_target_gate_passed": true,
+          "Tminus1_tow_order_on_endpoints": false,
+          "documented_stock_hulls_but_game_custom_capability_unverified": true,
+          "initiator_Tminus1_fuel": 440,
+          "initiator_Tminus1_position": [
+            2653,
+            2074
+          ],
+          "initiator_Tminus1_warp": 0,
+          "initiator_ship_id": 377,
+          "owner_id": 6,
+          "target_Tminus1_fuel": 440,
+          "target_Tminus1_position": [
+            3074,
+            1914
+          ],
+          "target_Tminus1_warp": 0,
+          "target_ship_id": 581
+        }
+      ],
+      "Tminus1_without_T_observation_status": "PREMOVE_MODEL_ENDPOINT_AT_STOCK_FIRECLOUD_SOURCE",
+      "documented_Firecloud_rule_still_requires_independent_execution_evidence": true,
+      "frozen_Tminus1_pre_move_normal_endpoint": [
+        2653,
+        2074
+      ],
+      "frozen_Tminus1_start": [
+        2652,
+        2075
+      ],
+      "frozen_posthost_T_comparator": [
+        3074,
+        1914
+      ],
+      "game_id": 306971,
+      "new_host_position_prediction": false,
+      "ship_id": 285,
+      "source_risk_cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+      "turn": 116
+    },
+    {
+      "Nplus1_VCR_used": false,
+      "T_actor_target_comparisons": [
+        {
+          "T_actor_at_preselected_target": true,
+          "T_actor_fuel_delta_KT": 50,
+          "T_actor_fuel_delta_exactly_50": true,
+          "T_actor_owner_current_endpoint": [
+            3074,
+            1914
+          ],
+          "T_ship_endpoint_agrees_with_Tminus1_target": true,
+          "T_target_owner_current_endpoint": [
+            3074,
+            1914
+          ],
+          "T_target_still_at_Tminus1_endpoint": true,
+          "Tminus1_conventional_actor_target_gate_passed": true,
+          "Tminus1_tow_order_on_endpoints": false,
+          "chunnel_execution_proven": false,
+          "documented_stock_hulls_but_game_custom_capability_unverified": true,
+          "initiator_Tminus1_fuel": 440,
+          "initiator_Tminus1_position": [
+            2653,
+            2074
+          ],
+          "initiator_Tminus1_warp": 0,
+          "initiator_ship_id": 377,
+          "owner_id": 6,
+          "target_Tminus1_fuel": 440,
+          "target_Tminus1_position": [
+            3074,
+            1914
+          ],
+          "target_Tminus1_warp": 0,
+          "target_ship_id": 581
+        }
+      ],
+      "T_archive_not_used_to_construct_candidates": true,
+      "T_observation_comparison_status": "POSTHOC_T_ENDPOINT_CONCORDANT_WITH_PREMOVE_FIRECLOUD_EDGE",
+      "Tminus1_all_same_owner_firecloud_sources": 1,
+      "Tminus1_owner_id": 6,
+      "Tminus1_stock_firecloud_source_candidates": [
+        {
+          "Tminus1_conventional_actor_target_gate_passed": true,
+          "Tminus1_tow_order_on_endpoints": false,
+          "documented_stock_hulls_but_game_custom_capability_unverified": true,
+          "initiator_Tminus1_fuel": 440,
+          "initiator_Tminus1_position": [
+            2653,
+            2074
+          ],
+          "initiator_Tminus1_warp": 0,
+          "initiator_ship_id": 377,
+          "owner_id": 6,
+          "target_Tminus1_fuel": 440,
+          "target_Tminus1_position": [
+            3074,
+            1914
+          ],
+          "target_Tminus1_warp": 0,
+          "target_ship_id": 581
+        }
+      ],
+      "Tminus1_without_T_observation_status": "PREMOVE_MODEL_ENDPOINT_AT_STOCK_FIRECLOUD_SOURCE",
+      "documented_Firecloud_rule_still_requires_independent_execution_evidence": true,
+      "frozen_Tminus1_pre_move_normal_endpoint": [
+        2653,
+        2074
+      ],
+      "frozen_Tminus1_start": [
+        2652,
+        2075
+      ],
+      "frozen_posthost_T_comparator": [
+        3074,
+        1914
+      ],
+      "game_id": 306971,
+      "new_host_position_prediction": false,
+      "ship_id": 369,
+      "source_risk_cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+      "turn": 116
+    },
+    {
+      "Nplus1_VCR_used": false,
+      "T_actor_target_comparisons": [],
+      "T_archive_not_used_to_construct_candidates": true,
+      "T_observation_comparison_status": "NO_STOCK_FIRECLOUD_SOURCE_AT_PREMOVE_MODEL_ENDPOINT",
+      "Tminus1_all_same_owner_firecloud_sources": 0,
+      "Tminus1_owner_id": 4,
+      "Tminus1_stock_firecloud_source_candidates": [],
+      "Tminus1_without_T_observation_status": "NO_STOCK_FIRECLOUD_SOURCE_AT_PREMOVE_MODEL_ENDPOINT",
+      "documented_Firecloud_rule_still_requires_independent_execution_evidence": true,
+      "frozen_Tminus1_pre_move_normal_endpoint": [
+        1319,
+        1882
+      ],
+      "frozen_Tminus1_start": [
+        1317,
+        1878
+      ],
+      "frozen_posthost_T_comparator": [
+        1334,
+        1910
+      ],
+      "game_id": 306971,
+      "new_host_position_prediction": false,
+      "ship_id": 314,
+      "source_risk_cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+      "turn": 231
+    },
+    {
+      "Nplus1_VCR_used": false,
+      "T_actor_target_comparisons": [
+        {
+          "T_actor_at_preselected_target": true,
+          "T_actor_fuel_delta_KT": 10,
+          "T_actor_fuel_delta_exactly_50": false,
+          "T_actor_owner_current_endpoint": [
+            1525,
+            2374
+          ],
+          "T_ship_endpoint_agrees_with_Tminus1_target": true,
+          "T_target_owner_current_endpoint": [
+            1525,
+            2374
+          ],
+          "T_target_still_at_Tminus1_endpoint": true,
+          "Tminus1_conventional_actor_target_gate_passed": true,
+          "Tminus1_tow_order_on_endpoints": false,
+          "chunnel_execution_proven": false,
+          "documented_stock_hulls_but_game_custom_capability_unverified": true,
+          "initiator_Tminus1_fuel": 60,
+          "initiator_Tminus1_position": [
+            1629,
+            2491
+          ],
+          "initiator_Tminus1_warp": 0,
+          "initiator_ship_id": 458,
+          "owner_id": 6,
+          "target_Tminus1_fuel": 59,
+          "target_Tminus1_position": [
+            1525,
+            2374
+          ],
+          "target_Tminus1_warp": 0,
+          "target_ship_id": 340
+        }
+      ],
+      "T_archive_not_used_to_construct_candidates": true,
+      "T_observation_comparison_status": "POSTHOC_T_ENDPOINT_CONCORDANT_WITH_PREMOVE_FIRECLOUD_EDGE",
+      "Tminus1_all_same_owner_firecloud_sources": 1,
+      "Tminus1_owner_id": 6,
+      "Tminus1_stock_firecloud_source_candidates": [
+        {
+          "Tminus1_conventional_actor_target_gate_passed": true,
+          "Tminus1_tow_order_on_endpoints": false,
+          "documented_stock_hulls_but_game_custom_capability_unverified": true,
+          "initiator_Tminus1_fuel": 60,
+          "initiator_Tminus1_position": [
+            1629,
+            2491
+          ],
+          "initiator_Tminus1_warp": 0,
+          "initiator_ship_id": 458,
+          "owner_id": 6,
+          "target_Tminus1_fuel": 59,
+          "target_Tminus1_position": [
+            1525,
+            2374
+          ],
+          "target_Tminus1_warp": 0,
+          "target_ship_id": 340
+        }
+      ],
+      "Tminus1_without_T_observation_status": "PREMOVE_MODEL_ENDPOINT_AT_STOCK_FIRECLOUD_SOURCE",
+      "documented_Firecloud_rule_still_requires_independent_execution_evidence": true,
+      "frozen_Tminus1_pre_move_normal_endpoint": [
+        1629,
+        2491
+      ],
+      "frozen_Tminus1_start": [
+        1635,
+        2491
+      ],
+      "frozen_posthost_T_comparator": [
+        1525,
+        2374
+      ],
+      "game_id": 476826,
+      "new_host_position_prediction": false,
+      "ship_id": 358,
+      "source_risk_cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+      "turn": 96
+    },
+    {
+      "Nplus1_VCR_used": false,
+      "T_actor_target_comparisons": [],
+      "T_archive_not_used_to_construct_candidates": true,
+      "T_observation_comparison_status": "NO_STOCK_FIRECLOUD_SOURCE_AT_PREMOVE_MODEL_ENDPOINT",
+      "Tminus1_all_same_owner_firecloud_sources": 0,
+      "Tminus1_owner_id": 5,
+      "Tminus1_stock_firecloud_source_candidates": [],
+      "Tminus1_without_T_observation_status": "NO_STOCK_FIRECLOUD_SOURCE_AT_PREMOVE_MODEL_ENDPOINT",
+      "documented_Firecloud_rule_still_requires_independent_execution_evidence": true,
+      "frozen_Tminus1_pre_move_normal_endpoint": [
+        1374,
+        2679
+      ],
+      "frozen_Tminus1_start": [
+        1350,
+        2619
+      ],
+      "frozen_posthost_T_comparator": [
+        1350,
+        2619
+      ],
+      "game_id": 663317,
+      "new_host_position_prediction": false,
+      "ship_id": 129,
+      "source_risk_cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+      "turn": 54
+    }
+  ],
+  "cluster_screen": [
+    {
+      "all_phase_aware_firecloud_target_concordant": true,
+      "game_id": 245123,
+      "mechanism_proven": false,
+      "ship_ids": [
+        325,
+        360,
+        912,
+        923
+      ],
+      "size": 4,
+      "turn": 75
+    },
+    {
+      "all_phase_aware_firecloud_target_concordant": true,
+      "game_id": 306971,
+      "mechanism_proven": false,
+      "ship_ids": [
+        211,
+        285,
+        369
+      ],
+      "size": 3,
+      "turn": 116
+    }
+  ],
+  "schema": "planets-lab.combat-c5-phase-aware-firecloud-screen.v12",
+  "source_db_generation": "generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "source_db_sha256": "3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c",
+  "source_v11_git_blob_sha1": "98e31ff87b615af1e60d9e120317cbbe8c756d4e",
+  "status": "TMINUS1_PREMOVE_FIRECLOUD_ENDPOINT_CONCORDANCE_OBSERVATIONAL_ONLY",
+  "summary": {
+    "Nplus1_VCR_used": false,
+    "Tminus1_graphs_frozen_before_T": true,
+    "frozen_Tminus1_firecloud_graph_controls": {
+      "Tminus1_all_numeric_fc_edges": 39,
+      "Tminus1_nonstock_numeric_fc_edges": 15,
+      "Tminus1_stock_firecloud_edges": 24
+    },
+    "frozen_V11_clustered_ships": 7,
+    "frozen_V11_games": 4,
+    "frozen_V11_windows": 6,
+    "frozen_V9_endpoint_mismatches": 13,
+    "mine_hits_or_Chunnel_execution_proven": false,
+    "new_host_combat_or_movement_predictions": 0,
+    "phase_aware_posthost_status_counts": {
+      "NO_STOCK_FIRECLOUD_SOURCE_AT_PREMOVE_MODEL_ENDPOINT": 5,
+      "POSTHOC_T_ENDPOINT_CONCORDANT_WITH_PREMOVE_FIRECLOUD_EDGE": 8
+    },
+    "posthoc_firecloud_target_concordant_cases": 8
+  },
+  "window_Tminus1_controls": [
+    {
+      "Tminus1_all_numeric_fc_edges": 3,
+      "Tminus1_nonstock_numeric_fc_edges": 0,
+      "Tminus1_stock_firecloud_edges": 3,
+      "game_id": 245123,
+      "turn": 38
+    },
+    {
+      "Tminus1_all_numeric_fc_edges": 13,
+      "Tminus1_nonstock_numeric_fc_edges": 10,
+      "Tminus1_stock_firecloud_edges": 3,
+      "game_id": 245123,
+      "turn": 75
+    },
+    {
+      "Tminus1_all_numeric_fc_edges": 7,
+      "Tminus1_nonstock_numeric_fc_edges": 0,
+      "Tminus1_stock_firecloud_edges": 7,
+      "game_id": 306971,
+      "turn": 116
+    },
+    {
+      "Tminus1_all_numeric_fc_edges": 8,
+      "Tminus1_nonstock_numeric_fc_edges": 4,
+      "Tminus1_stock_firecloud_edges": 4,
+      "game_id": 306971,
+      "turn": 231
+    },
+    {
+      "Tminus1_all_numeric_fc_edges": 8,
+      "Tminus1_nonstock_numeric_fc_edges": 1,
+      "Tminus1_stock_firecloud_edges": 7,
+      "game_id": 476826,
+      "turn": 96
+    },
+    {
+      "Tminus1_all_numeric_fc_edges": 0,
+      "Tminus1_nonstock_numeric_fc_edges": 0,
+      "Tminus1_stock_firecloud_edges": 0,
+      "game_id": 663317,
+      "turn": 54
+    }
+  ]
+}
