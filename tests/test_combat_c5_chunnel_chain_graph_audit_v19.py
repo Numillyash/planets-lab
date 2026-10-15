@@ -144,7 +144,10 @@ def test_T_owner_or_hull_changes_remain_abstentions():
 def test_all_pre_windows_before_any_posthost_and_25ly_stays_unknown(monkeypatch):
     doc=graph_fixture()
     events=[]
-    monkeypatch.setattr(M,"source_precheck",lambda *_:({},()))
+    monkeypatch.setattr(M,"source_precheck",lambda src,_: ({
+        (e["game_id"],e["turn"],e["initiator_ship_id"],e["target_ship_id"]):e
+        for window in src["windows"] for e in window["edges"]
+    },()))
     def pre(_conn,g,t):
         events.append("pre")
         return {
