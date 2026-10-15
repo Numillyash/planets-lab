@@ -1,0 +1,765 @@
+{
+  "Tminus1_errors": [],
+  "boundary": "Thirteen misses selected from V9 after inspecting its T outcomes: entirely post-hoc diagnostic; clusters of equal end positions are correlated, not separate confirmations of a Host rule. T-1 ship orders, tow requests, colocation, fuel and damage are FROZEN before reading T owner-current state. T is after Host; Tow order is not Tow success, negative residual is not mine hit, post-turn damage may be from battle, and game-wide actor state remains incomplete. Original V9 site-disjoint selection, 8/16 protocol, all failures and denominator remain unchanged. No VCRs, executor or mine RNG result used or promoted.",
+  "case_evaluations": [
+    {
+      "Nplus1_VCR_used": false,
+      "T_after_Host": {
+        "T_damage_delta": 0,
+        "T_posthost_damage": 0,
+        "T_posthost_fuel": 61,
+        "T_posthost_position": [
+          1506,
+          1539
+        ],
+        "Tminus1_start_to_T_displacement_ly": 379.3323,
+        "frozen_model_to_T_residual_ly": 379.3323,
+        "mine_hit_or_tow_success_proven": false,
+        "precombat_position_proven": false,
+        "source_post_T_status": "OWNER_CURRENT_T_ENDPOINT_REVERIFIED"
+      },
+      "Tminus1": {
+        "Tminus1_damage": 0,
+        "Tminus1_fuel": 61,
+        "Tminus1_mission": 23,
+        "Tminus1_mission_target_id": 0,
+        "Tminus1_same_start_other_ships": 0,
+        "Tminus1_same_start_same_waypoint_other_ships": 0,
+        "Tminus1_start": [
+          1163,
+          1701
+        ],
+        "Tminus1_tow_orders_targeting_ship": [],
+        "Tminus1_warp": 9,
+        "Tminus1_waypoint": [
+          1163,
+          1701
+        ],
+        "requested_Tminus1_route_is_factual_intent_only": true,
+        "source_status": "TMINUS1_OWNER_CURRENT_RECONSTRUCTED"
+      },
+      "Tminus1_source": "normal_move",
+      "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+      "frozen_T_owner_current_endpoint": [
+        1506,
+        1539
+      ],
+      "frozen_model_endpoint": [
+        1163,
+        1701
+      ],
+      "game_id": 245123,
+      "hull_id": 95,
+      "mechanic_attribution": "ABSTAIN_INDEPENDENT_TERMINAL_OR_PHASE_EVIDENCE_MISSING",
+      "owner_id": 3,
+      "ship_id": 364,
+      "turn": 38
+    },
+    {
+      "Nplus1_VCR_used": false,
+      "T_after_Host": {
+        "T_damage_delta": 0,
+        "T_posthost_damage": 0,
+        "T_posthost_fuel": 1,
+        "T_posthost_position": [
+          2504,
+          1351
+        ],
+        "Tminus1_start_to_T_displacement_ly": 596.0537,
+        "frozen_model_to_T_residual_ly": 595.0681,
+        "mine_hit_or_tow_success_proven": false,
+        "precombat_position_proven": false,
+        "source_post_T_status": "OWNER_CURRENT_T_ENDPOINT_REVERIFIED"
+      },
+      "Tminus1": {
+        "Tminus1_damage": 0,
+        "Tminus1_fuel": 900,
+        "Tminus1_mission": 4,
+        "Tminus1_mission_target_id": 0,
+        "Tminus1_same_start_other_ships": 7,
+        "Tminus1_same_start_same_waypoint_other_ships": 3,
+        "Tminus1_start": [
+          2512,
+          1947
+        ],
+        "Tminus1_tow_orders_targeting_ship": [],
+        "Tminus1_warp": 1,
+        "Tminus1_waypoint": [
+          2513,
+          1946
+        ],
+        "requested_Tminus1_route_is_factual_intent_only": true,
+        "source_status": "TMINUS1_OWNER_CURRENT_RECONSTRUCTED"
+      },
+      "Tminus1_source": "normal_mine_route_risk",
+      "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+      "frozen_T_owner_current_endpoint": [
+        2504,
+        1351
+      ],
+      "frozen_model_endpoint": [
+        2513,
+        1946
+      ],
+      "game_id": 245123,
+      "hull_id": 14,
+      "mechanic_attribution": "ABSTAIN_INDEPENDENT_TERMINAL_OR_PHASE_EVIDENCE_MISSING",
+      "owner_id": 10,
+      "ship_id": 325,
+      "turn": 75
+    },
+    {
+      "Nplus1_VCR_used": false,
+      "T_after_Host": {
+        "T_damage_delta": 0,
+        "T_posthost_damage": 0,
+        "T_posthost_fuel": 1,
+        "T_posthost_position": [
+          2504,
+          1351
+        ],
+        "Tminus1_start_to_T_displacement_ly": 596.0537,
+        "frozen_model_to_T_residual_ly": 595.0681,
+        "mine_hit_or_tow_success_proven": false,
+        "precombat_position_proven": false,
+        "source_post_T_status": "OWNER_CURRENT_T_ENDPOINT_REVERIFIED"
+      },
+      "Tminus1": {
+        "Tminus1_damage": 0,
+        "Tminus1_fuel": 900,
+        "Tminus1_mission": 1,
+        "Tminus1_mission_target_id": 0,
+        "Tminus1_same_start_other_ships": 7,
+        "Tminus1_same_start_same_waypoint_other_ships": 3,
+        "Tminus1_start": [
+          2512,
+          1947
+        ],
+        "Tminus1_tow_orders_targeting_ship": [],
+        "Tminus1_warp": 1,
+        "Tminus1_waypoint": [
+          2513,
+          1946
+        ],
+        "requested_Tminus1_route_is_factual_intent_only": true,
+        "source_status": "TMINUS1_OWNER_CURRENT_RECONSTRUCTED"
+      },
+      "Tminus1_source": "normal_mine_route_risk",
+      "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+      "frozen_T_owner_current_endpoint": [
+        2504,
+        1351
+      ],
+      "frozen_model_endpoint": [
+        2513,
+        1946
+      ],
+      "game_id": 245123,
+      "hull_id": 14,
+      "mechanic_attribution": "ABSTAIN_INDEPENDENT_TERMINAL_OR_PHASE_EVIDENCE_MISSING",
+      "owner_id": 10,
+      "ship_id": 360,
+      "turn": 75
+    },
+    {
+      "Nplus1_VCR_used": false,
+      "T_after_Host": {
+        "T_damage_delta": 0,
+        "T_posthost_damage": 1,
+        "T_posthost_fuel": 0,
+        "T_posthost_position": [
+          2268,
+          1887
+        ],
+        "Tminus1_start_to_T_displacement_ly": 25.4558,
+        "frozen_model_to_T_residual_ly": 2.8284,
+        "mine_hit_or_tow_success_proven": false,
+        "precombat_position_proven": false,
+        "source_post_T_status": "OWNER_CURRENT_T_ENDPOINT_REVERIFIED"
+      },
+      "Tminus1": {
+        "Tminus1_damage": 1,
+        "Tminus1_fuel": 0,
+        "Tminus1_mission": 0,
+        "Tminus1_mission_target_id": 0,
+        "Tminus1_same_start_other_ships": 0,
+        "Tminus1_same_start_same_waypoint_other_ships": 0,
+        "Tminus1_start": [
+          2250,
+          1905
+        ],
+        "Tminus1_tow_orders_targeting_ship": [],
+        "Tminus1_warp": 1,
+        "Tminus1_waypoint": [
+          2213,
+          1937
+        ],
+        "requested_Tminus1_route_is_factual_intent_only": true,
+        "source_status": "TMINUS1_OWNER_CURRENT_RECONSTRUCTED"
+      },
+      "Tminus1_source": "normal_mine_route_risk",
+      "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+      "frozen_T_owner_current_endpoint": [
+        2268,
+        1887
+      ],
+      "frozen_model_endpoint": [
+        2270,
+        1889
+      ],
+      "game_id": 245123,
+      "hull_id": 52,
+      "mechanic_attribution": "ABSTAIN_INDEPENDENT_TERMINAL_OR_PHASE_EVIDENCE_MISSING",
+      "owner_id": 9,
+      "ship_id": 499,
+      "turn": 75
+    },
+    {
+      "Nplus1_VCR_used": false,
+      "T_after_Host": {
+        "T_damage_delta": 0,
+        "T_posthost_damage": 2,
+        "T_posthost_fuel": 31,
+        "T_posthost_position": [
+          2289,
+          1978
+        ],
+        "Tminus1_start_to_T_displacement_ly": 64.846,
+        "frozen_model_to_T_residual_ly": 2.8284,
+        "mine_hit_or_tow_success_proven": false,
+        "precombat_position_proven": false,
+        "source_post_T_status": "OWNER_CURRENT_T_ENDPOINT_REVERIFIED"
+      },
+      "Tminus1": {
+        "Tminus1_damage": 2,
+        "Tminus1_fuel": 99,
+        "Tminus1_mission": 1,
+        "Tminus1_mission_target_id": 0,
+        "Tminus1_same_start_other_ships": 0,
+        "Tminus1_same_start_same_waypoint_other_ships": 0,
+        "Tminus1_start": [
+          2270,
+          1916
+        ],
+        "Tminus1_tow_orders_targeting_ship": [],
+        "Tminus1_warp": 9,
+        "Tminus1_waypoint": [
+          2270,
+          2016
+        ],
+        "requested_Tminus1_route_is_factual_intent_only": true,
+        "source_status": "TMINUS1_OWNER_CURRENT_RECONSTRUCTED"
+      },
+      "Tminus1_source": "normal_mine_route_risk",
+      "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+      "frozen_T_owner_current_endpoint": [
+        2289,
+        1978
+      ],
+      "frozen_model_endpoint": [
+        2291,
+        1980
+      ],
+      "game_id": 245123,
+      "hull_id": 99,
+      "mechanic_attribution": "ABSTAIN_INDEPENDENT_TERMINAL_OR_PHASE_EVIDENCE_MISSING",
+      "owner_id": 9,
+      "ship_id": 639,
+      "turn": 75
+    },
+    {
+      "Nplus1_VCR_used": false,
+      "T_after_Host": {
+        "T_damage_delta": 0,
+        "T_posthost_damage": 0,
+        "T_posthost_fuel": 1,
+        "T_posthost_position": [
+          2504,
+          1351
+        ],
+        "Tminus1_start_to_T_displacement_ly": 596.0537,
+        "frozen_model_to_T_residual_ly": 595.0681,
+        "mine_hit_or_tow_success_proven": false,
+        "precombat_position_proven": false,
+        "source_post_T_status": "OWNER_CURRENT_T_ENDPOINT_REVERIFIED"
+      },
+      "Tminus1": {
+        "Tminus1_damage": 0,
+        "Tminus1_fuel": 900,
+        "Tminus1_mission": 1,
+        "Tminus1_mission_target_id": 0,
+        "Tminus1_same_start_other_ships": 7,
+        "Tminus1_same_start_same_waypoint_other_ships": 3,
+        "Tminus1_start": [
+          2512,
+          1947
+        ],
+        "Tminus1_tow_orders_targeting_ship": [],
+        "Tminus1_warp": 1,
+        "Tminus1_waypoint": [
+          2513,
+          1946
+        ],
+        "requested_Tminus1_route_is_factual_intent_only": true,
+        "source_status": "TMINUS1_OWNER_CURRENT_RECONSTRUCTED"
+      },
+      "Tminus1_source": "normal_mine_route_risk",
+      "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+      "frozen_T_owner_current_endpoint": [
+        2504,
+        1351
+      ],
+      "frozen_model_endpoint": [
+        2513,
+        1946
+      ],
+      "game_id": 245123,
+      "hull_id": 14,
+      "mechanic_attribution": "ABSTAIN_INDEPENDENT_TERMINAL_OR_PHASE_EVIDENCE_MISSING",
+      "owner_id": 10,
+      "ship_id": 912,
+      "turn": 75
+    },
+    {
+      "Nplus1_VCR_used": false,
+      "T_after_Host": {
+        "T_damage_delta": 0,
+        "T_posthost_damage": 0,
+        "T_posthost_fuel": 330,
+        "T_posthost_position": [
+          2504,
+          1351
+        ],
+        "Tminus1_start_to_T_displacement_ly": 596.0537,
+        "frozen_model_to_T_residual_ly": 595.0681,
+        "mine_hit_or_tow_success_proven": false,
+        "precombat_position_proven": false,
+        "source_post_T_status": "OWNER_CURRENT_T_ENDPOINT_REVERIFIED"
+      },
+      "Tminus1": {
+        "Tminus1_damage": 0,
+        "Tminus1_fuel": 330,
+        "Tminus1_mission": 8,
+        "Tminus1_mission_target_id": 0,
+        "Tminus1_same_start_other_ships": 7,
+        "Tminus1_same_start_same_waypoint_other_ships": 3,
+        "Tminus1_start": [
+          2512,
+          1947
+        ],
+        "Tminus1_tow_orders_targeting_ship": [],
+        "Tminus1_warp": 1,
+        "Tminus1_waypoint": [
+          2513,
+          1946
+        ],
+        "requested_Tminus1_route_is_factual_intent_only": true,
+        "source_status": "TMINUS1_OWNER_CURRENT_RECONSTRUCTED"
+      },
+      "Tminus1_source": "normal_mine_route_risk",
+      "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+      "frozen_T_owner_current_endpoint": [
+        2504,
+        1351
+      ],
+      "frozen_model_endpoint": [
+        2513,
+        1946
+      ],
+      "game_id": 245123,
+      "hull_id": 22,
+      "mechanic_attribution": "ABSTAIN_INDEPENDENT_TERMINAL_OR_PHASE_EVIDENCE_MISSING",
+      "owner_id": 10,
+      "ship_id": 923,
+      "turn": 75
+    },
+    {
+      "Nplus1_VCR_used": false,
+      "T_after_Host": {
+        "T_damage_delta": 0,
+        "T_posthost_damage": 0,
+        "T_posthost_fuel": 252,
+        "T_posthost_position": [
+          3074,
+          1914
+        ],
+        "Tminus1_start_to_T_displacement_ly": 451.6691,
+        "frozen_model_to_T_residual_ly": 450.3787,
+        "mine_hit_or_tow_success_proven": false,
+        "precombat_position_proven": false,
+        "source_post_T_status": "OWNER_CURRENT_T_ENDPOINT_REVERIFIED"
+      },
+      "Tminus1": {
+        "Tminus1_damage": 0,
+        "Tminus1_fuel": 154,
+        "Tminus1_mission": 0,
+        "Tminus1_mission_target_id": 0,
+        "Tminus1_same_start_other_ships": 11,
+        "Tminus1_same_start_same_waypoint_other_ships": 2,
+        "Tminus1_start": [
+          2652,
+          2075
+        ],
+        "Tminus1_tow_orders_targeting_ship": [],
+        "Tminus1_warp": 1,
+        "Tminus1_waypoint": [
+          2653,
+          2074
+        ],
+        "requested_Tminus1_route_is_factual_intent_only": true,
+        "source_status": "TMINUS1_OWNER_CURRENT_RECONSTRUCTED"
+      },
+      "Tminus1_source": "normal_move",
+      "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+      "frozen_T_owner_current_endpoint": [
+        3074,
+        1914
+      ],
+      "frozen_model_endpoint": [
+        2653,
+        2074
+      ],
+      "game_id": 306971,
+      "hull_id": 18,
+      "mechanic_attribution": "ABSTAIN_INDEPENDENT_TERMINAL_OR_PHASE_EVIDENCE_MISSING",
+      "owner_id": 6,
+      "ship_id": 211,
+      "turn": 116
+    },
+    {
+      "Nplus1_VCR_used": false,
+      "T_after_Host": {
+        "T_damage_delta": 0,
+        "T_posthost_damage": 0,
+        "T_posthost_fuel": 293,
+        "T_posthost_position": [
+          3074,
+          1914
+        ],
+        "Tminus1_start_to_T_displacement_ly": 451.6691,
+        "frozen_model_to_T_residual_ly": 450.3787,
+        "mine_hit_or_tow_success_proven": false,
+        "precombat_position_proven": false,
+        "source_post_T_status": "OWNER_CURRENT_T_ENDPOINT_REVERIFIED"
+      },
+      "Tminus1": {
+        "Tminus1_damage": 0,
+        "Tminus1_fuel": 293,
+        "Tminus1_mission": 0,
+        "Tminus1_mission_target_id": 0,
+        "Tminus1_same_start_other_ships": 11,
+        "Tminus1_same_start_same_waypoint_other_ships": 2,
+        "Tminus1_start": [
+          2652,
+          2075
+        ],
+        "Tminus1_tow_orders_targeting_ship": [],
+        "Tminus1_warp": 1,
+        "Tminus1_waypoint": [
+          2653,
+          2074
+        ],
+        "requested_Tminus1_route_is_factual_intent_only": true,
+        "source_status": "TMINUS1_OWNER_CURRENT_RECONSTRUCTED"
+      },
+      "Tminus1_source": "normal_move",
+      "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+      "frozen_T_owner_current_endpoint": [
+        3074,
+        1914
+      ],
+      "frozen_model_endpoint": [
+        2653,
+        2074
+      ],
+      "game_id": 306971,
+      "hull_id": 18,
+      "mechanic_attribution": "ABSTAIN_INDEPENDENT_TERMINAL_OR_PHASE_EVIDENCE_MISSING",
+      "owner_id": 6,
+      "ship_id": 285,
+      "turn": 116
+    },
+    {
+      "Nplus1_VCR_used": false,
+      "T_after_Host": {
+        "T_damage_delta": 0,
+        "T_posthost_damage": 0,
+        "T_posthost_fuel": 180,
+        "T_posthost_position": [
+          3074,
+          1914
+        ],
+        "Tminus1_start_to_T_displacement_ly": 451.6691,
+        "frozen_model_to_T_residual_ly": 450.3787,
+        "mine_hit_or_tow_success_proven": false,
+        "precombat_position_proven": false,
+        "source_post_T_status": "OWNER_CURRENT_T_ENDPOINT_REVERIFIED"
+      },
+      "Tminus1": {
+        "Tminus1_damage": 0,
+        "Tminus1_fuel": 180,
+        "Tminus1_mission": 0,
+        "Tminus1_mission_target_id": 0,
+        "Tminus1_same_start_other_ships": 11,
+        "Tminus1_same_start_same_waypoint_other_ships": 2,
+        "Tminus1_start": [
+          2652,
+          2075
+        ],
+        "Tminus1_tow_orders_targeting_ship": [],
+        "Tminus1_warp": 1,
+        "Tminus1_waypoint": [
+          2653,
+          2074
+        ],
+        "requested_Tminus1_route_is_factual_intent_only": true,
+        "source_status": "TMINUS1_OWNER_CURRENT_RECONSTRUCTED"
+      },
+      "Tminus1_source": "normal_move",
+      "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+      "frozen_T_owner_current_endpoint": [
+        3074,
+        1914
+      ],
+      "frozen_model_endpoint": [
+        2653,
+        2074
+      ],
+      "game_id": 306971,
+      "hull_id": 69,
+      "mechanic_attribution": "ABSTAIN_INDEPENDENT_TERMINAL_OR_PHASE_EVIDENCE_MISSING",
+      "owner_id": 6,
+      "ship_id": 369,
+      "turn": 116
+    },
+    {
+      "Nplus1_VCR_used": false,
+      "T_after_Host": {
+        "T_damage_delta": -82,
+        "T_posthost_damage": 0,
+        "T_posthost_fuel": 126,
+        "T_posthost_position": [
+          1334,
+          1910
+        ],
+        "Tminus1_start_to_T_displacement_ly": 36.2353,
+        "frozen_model_to_T_residual_ly": 31.7648,
+        "mine_hit_or_tow_success_proven": false,
+        "precombat_position_proven": false,
+        "source_post_T_status": "OWNER_CURRENT_T_ENDPOINT_REVERIFIED"
+      },
+      "Tminus1": {
+        "Tminus1_damage": 82,
+        "Tminus1_fuel": 150,
+        "Tminus1_mission": 2,
+        "Tminus1_mission_target_id": 0,
+        "Tminus1_same_start_other_ships": 2,
+        "Tminus1_same_start_same_waypoint_other_ships": 0,
+        "Tminus1_start": [
+          1317,
+          1878
+        ],
+        "Tminus1_tow_orders_targeting_ship": [],
+        "Tminus1_warp": 9,
+        "Tminus1_waypoint": [
+          1334,
+          1910
+        ],
+        "requested_Tminus1_route_is_factual_intent_only": true,
+        "source_status": "TMINUS1_OWNER_CURRENT_RECONSTRUCTED"
+      },
+      "Tminus1_source": "normal_mine_route_risk",
+      "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+      "frozen_T_owner_current_endpoint": [
+        1334,
+        1910
+      ],
+      "frozen_model_endpoint": [
+        1319,
+        1882
+      ],
+      "game_id": 306971,
+      "hull_id": 35,
+      "mechanic_attribution": "ABSTAIN_INDEPENDENT_TERMINAL_OR_PHASE_EVIDENCE_MISSING",
+      "owner_id": 4,
+      "ship_id": 314,
+      "turn": 231
+    },
+    {
+      "Nplus1_VCR_used": false,
+      "T_after_Host": {
+        "T_damage_delta": 0,
+        "T_posthost_damage": 0,
+        "T_posthost_fuel": 5,
+        "T_posthost_position": [
+          1525,
+          2374
+        ],
+        "Tminus1_start_to_T_displacement_ly": 160.5895,
+        "frozen_model_to_T_residual_ly": 156.5407,
+        "mine_hit_or_tow_success_proven": false,
+        "precombat_position_proven": false,
+        "source_post_T_status": "OWNER_CURRENT_T_ENDPOINT_REVERIFIED"
+      },
+      "Tminus1": {
+        "Tminus1_damage": 0,
+        "Tminus1_fuel": 11,
+        "Tminus1_mission": 3,
+        "Tminus1_mission_target_id": 0,
+        "Tminus1_same_start_other_ships": 2,
+        "Tminus1_same_start_same_waypoint_other_ships": 1,
+        "Tminus1_start": [
+          1635,
+          2491
+        ],
+        "Tminus1_tow_orders_targeting_ship": [],
+        "Tminus1_warp": 5,
+        "Tminus1_waypoint": [
+          1629,
+          2491
+        ],
+        "requested_Tminus1_route_is_factual_intent_only": true,
+        "source_status": "TMINUS1_OWNER_CURRENT_RECONSTRUCTED"
+      },
+      "Tminus1_source": "normal_mine_route_risk",
+      "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+      "frozen_T_owner_current_endpoint": [
+        1525,
+        2374
+      ],
+      "frozen_model_endpoint": [
+        1629,
+        2491
+      ],
+      "game_id": 476826,
+      "hull_id": 52,
+      "mechanic_attribution": "ABSTAIN_INDEPENDENT_TERMINAL_OR_PHASE_EVIDENCE_MISSING",
+      "owner_id": 6,
+      "ship_id": 358,
+      "turn": 96
+    },
+    {
+      "Nplus1_VCR_used": false,
+      "T_after_Host": {
+        "T_damage_delta": 0,
+        "T_posthost_damage": 11,
+        "T_posthost_fuel": 0,
+        "T_posthost_position": [
+          1350,
+          2619
+        ],
+        "Tminus1_start_to_T_displacement_ly": 0.0,
+        "frozen_model_to_T_residual_ly": 64.622,
+        "mine_hit_or_tow_success_proven": false,
+        "precombat_position_proven": false,
+        "source_post_T_status": "OWNER_CURRENT_T_ENDPOINT_REVERIFIED"
+      },
+      "Tminus1": {
+        "Tminus1_damage": 11,
+        "Tminus1_fuel": 20,
+        "Tminus1_mission": 1,
+        "Tminus1_mission_target_id": 0,
+        "Tminus1_same_start_other_ships": 1,
+        "Tminus1_same_start_same_waypoint_other_ships": 1,
+        "Tminus1_start": [
+          1350,
+          2619
+        ],
+        "Tminus1_tow_orders_targeting_ship": [],
+        "Tminus1_warp": 9,
+        "Tminus1_waypoint": [
+          1374,
+          2679
+        ],
+        "requested_Tminus1_route_is_factual_intent_only": true,
+        "source_status": "TMINUS1_OWNER_CURRENT_RECONSTRUCTED"
+      },
+      "Tminus1_source": "normal_mine_route_risk",
+      "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+      "frozen_T_owner_current_endpoint": [
+        1350,
+        2619
+      ],
+      "frozen_model_endpoint": [
+        1374,
+        2679
+      ],
+      "game_id": 663317,
+      "hull_id": 46,
+      "mechanic_attribution": "ABSTAIN_INDEPENDENT_TERMINAL_OR_PHASE_EVIDENCE_MISSING",
+      "owner_id": 5,
+      "ship_id": 129,
+      "turn": 54
+    }
+  ],
+  "posthoc_correlated_endpoint_groups": [
+    {
+      "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+      "frozen_T_owner_current_endpoint": [
+        2504,
+        1351
+      ],
+      "frozen_model_endpoint": [
+        2513,
+        1946
+      ],
+      "game_id": 245123,
+      "same_pair_of_endpoints_is_shared_effect_not_mechanic_proof": true,
+      "ship_ids": [
+        325,
+        360,
+        912,
+        923
+      ],
+      "size": 4,
+      "turn": 75
+    },
+    {
+      "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+      "frozen_T_owner_current_endpoint": [
+        3074,
+        1914
+      ],
+      "frozen_model_endpoint": [
+        2653,
+        2074
+      ],
+      "game_id": 306971,
+      "same_pair_of_endpoints_is_shared_effect_not_mechanic_proof": true,
+      "ship_ids": [
+        211,
+        285,
+        369
+      ],
+      "size": 3,
+      "turn": 116
+    }
+  ],
+  "schema": "planets-lab.combat-c5-posthost-residual-coupling.v10",
+  "source_db_generation": "generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "source_db_sha256": "3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c",
+  "source_v9_git_blob_sha1": "4e7d707123586311456cc14e78ff774a851caa48",
+  "status": "V9_RESIDUALS_RECONCILED_AS_OBSERVATIONAL_PATTERNS_NOT_CAUSAL_MECHANICS",
+  "summary": {
+    "Nplus1_VCR_used": false,
+    "TOW_success_attributed": 0,
+    "Tminus1_context_errors": 0,
+    "Tminus1_source_statuses": {
+      "TMINUS1_OWNER_CURRENT_RECONSTRUCTED": 13
+    },
+    "Tminus1_tow_order_witness_appearances": 0,
+    "V9_endpoint_mismatches": 13,
+    "V9_selected_games": 8,
+    "V9_selected_windows": 16,
+    "V9_source_window_context_abstentions": 2,
+    "mine_hits_attributed": 0,
+    "mine_risk_conditional_mismatches": 9,
+    "new_Host_combat_or_movement_predictions": 0,
+    "normal_model_mismatches": 4,
+    "posthoc_clustered_ship_count": 7,
+    "posthoc_same_endpoint_clusters": 2,
+    "residual_distinct_games": 4,
+    "residual_game_turn_windows": 6,
+    "standalone_residual_ship_count": 6
+  }
+}

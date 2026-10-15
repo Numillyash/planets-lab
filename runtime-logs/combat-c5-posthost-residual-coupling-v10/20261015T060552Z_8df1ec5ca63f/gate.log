@@ -1,0 +1,22 @@
+===== V9 POSTHOST RESIDUAL COUPLING V10 =====
+HEAD: 8df1ec5ca63f9838359be696389520e6a2822fec
+V9 Git blob: 4e7d707123586311456cc14e78ff774a851caa48
+DB: /root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb (SHA256-checked once, read-only)
+[c5-residual] verifying public100 SHA256 once
+[c5-residual] read-only DB checked in 26.7s
+[c5-residual] PRE [1/6] G245123 T38 cases=1
+[c5-residual] PRE [2/6] G245123 T75 cases=6
+[c5-residual] PRE [3/6] G306971 T116 cases=3
+[c5-residual] PRE [4/6] G306971 T231 cases=1
+[c5-residual] PRE [5/6] G476826 T96 cases=1
+[c5-residual] PRE [6/6] G663317 T54 cases=1
+[c5-residual] POST [1/6] G245123 T38
+[c5-residual] POST [2/6] G245123 T75
+[c5-residual] POST [3/6] G306971 T116
+[c5-residual] POST [4/6] G306971 T231
+[c5-residual] POST [5/6] G476826 T96
+[c5-residual] POST [6/6] G663317 T54
+===== C5 POSTHOST V9 RESIDUAL COUPLING V10 =====
+status: V9_RESIDUALS_RECONCILED_AS_OBSERVATIONAL_PATTERNS_NOT_CAUSAL_MECHANICS
+summary: {'V9_selected_games': 8, 'V9_selected_windows': 16, 'V9_source_window_context_abstentions': 2, 'V9_endpoint_mismatches': 13, 'mine_risk_conditional_mismatches': 9, 'normal_model_mismatches': 4, 'residual_game_turn_windows': 6, 'residual_distinct_games': 4, 'Tminus1_context_errors': 0, 'Tminus1_source_statuses': {'TMINUS1_OWNER_CURRENT_RECONSTRUCTED': 13}, 'Tminus1_tow_order_witness_appearances': 0, 'posthoc_same_endpoint_clusters': 2, 'posthoc_clustered_ship_count': 7, 'standalone_residual_ship_count': 6, 'new_Host_combat_or_movement_predictions': 0, 'mine_hits_attributed': 0, 'TOW_success_attributed': 0, 'Nplus1_VCR_used': False}
+output: artifacts/combat/c5-posthost-residual-coupling-v10/published/report.json
