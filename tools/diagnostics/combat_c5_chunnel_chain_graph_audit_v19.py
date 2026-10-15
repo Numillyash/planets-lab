@@ -31,6 +31,7 @@ from combat_host_candidate_set_audit import _owner_rows_for_turn
 import combat_c5_short_chunnel_and_visibility_audit_v18 as v18
 import combat_c5_disjoint_discriminative_chunnel_gates_v17 as v17
 import combat_c5_site_disjoint_movement_validation_v9 as v9
+import combat_c5_chunnel_single_gate_controls_v16 as v16
 
 SCHEMA="planets-lab.combat-c5-chunnel-chain-graph-audit.v19"
 STATUS="V17_TMINUS1_SHORT_EDGE_CHAIN_AND_25LY_POSTHOC_NOT_EXECUTION_PROOF"
