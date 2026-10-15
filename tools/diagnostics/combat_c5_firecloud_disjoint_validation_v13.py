@@ -284,6 +284,7 @@ def evaluate_window(frozen:Mapping[str,Any],after:Mapping[int,Any]):
                 "Chunnel_transport_proven":False,
             })
         edges_out.append({
+            "game_id":frozen["game_id"],"turn":frozen["turn"],
             **{k:v for k,v in edge.items() if k!="Tminus1_passenger_candidates"},
             "T_actor_observation_status":a_state,
             "T_target_observation_status":t_state,
@@ -364,7 +365,7 @@ def build_report(conn:Any,v6:Mapping[str,Any],v9report:Mapping[str,Any]):
     by_game=defaultdict(Counter)
     for e in edges:
         # Each edge is one episode, passenger counts are not independent.
-        game=next(w["game_id"] for w in results if e in w["Tminus1_Firecloud_edge_observations"])
+        game=e["game_id"]
         by_game[str(game)]["candidate_edges"]+=1
         by_game[str(game)]["passenger_candidates"]+=len(e["posthost_passengers"])
         if e["T_actor_target_observational_signature"]=="SUPPORTIVE_TARGET_AND_50KT_CONCORDANCE":
