@@ -155,7 +155,7 @@ def test_all_pre_windows_frozen_before_any_T_archive(monkeypatch):
         return (),()
     def freeze_window(game,turn,_snap,_raw):
         events.append("forecast")
-        return pre()
+        return {**pre(),"game_id":game,"turn":turn}
     def post(_conn,*,game,turn):
         assert events.count("forecast")==60
         events.append("post")
