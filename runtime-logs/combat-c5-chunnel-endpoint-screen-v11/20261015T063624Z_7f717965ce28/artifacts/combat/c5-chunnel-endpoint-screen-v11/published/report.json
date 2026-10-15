@@ -1,0 +1,2319 @@
+{
+  "boundary": "The source residual set is post-hoc V9 and all 13 mismatches remain unchanged. T-1 conventional Chunnel screen checks only numeric friendly-code targeting, same-owner initiator fuel >=50, target warp0/fuel>0 and minimum 100-ly distance; archive static hull name is descriptive only, NOT proof of Chunnel ability. Tow on endpoint may prevent Chunnel. Actor/target candidate graph is frozen before any T archive read. Matching an edge to a post-Host observed destination is POSTHOC; cannot prove Chunnel execution or current precombat location. No RNG, VCR N+1, combat selection, canonical movement rule or production executor updated.",
+  "cluster_screen": [
+    {
+      "game_id": 245123,
+      "mechanism_independently_proven": false,
+      "posthoc_endpoint_matching_candidates_for_all": true,
+      "posthoc_source_gate_counts": [
+        4,
+        4,
+        4,
+        4
+      ],
+      "ship_ids": [
+        325,
+        360,
+        912,
+        923
+      ],
+      "size": 4,
+      "turn": 75
+    },
+    {
+      "game_id": 306971,
+      "mechanism_independently_proven": false,
+      "posthoc_endpoint_matching_candidates_for_all": false,
+      "posthoc_source_gate_counts": [
+        0,
+        0,
+        0
+      ],
+      "ship_ids": [
+        211,
+        285,
+        369
+      ],
+      "size": 3,
+      "turn": 116
+    }
+  ],
+  "residual_case_evaluations": [
+    {
+      "Nplus1_VCR_used": false,
+      "Tminus1_candidate_edges_at_source_all_owners": 0,
+      "Tminus1_candidate_edges_at_source_matching_T_endpoint": 0,
+      "Tminus1_candidate_edges_at_source_same_owner": 0,
+      "Tminus1_owner_id": 3,
+      "Tminus1_start": [
+        1163,
+        1701
+      ],
+      "canonical_chunnel_verified": false,
+      "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+      "frozen_normal_model_endpoint": [
+        1163,
+        1701
+      ],
+      "game_id": 245123,
+      "new_host_prediction": false,
+      "posthoc_endpoint_matching_edges": [],
+      "posthoc_screen_status": "NO_TMINUS1_SAME_OWNER_CONVENTIONAL_CHUNNEL_ENDPOINT_MATCH",
+      "published_posthost_T_endpoint": [
+        1506,
+        1539
+      ],
+      "ship_id": 364,
+      "source_preobserved_fuel": 61,
+      "source_preobserved_mission": 23,
+      "source_preobserved_warp": 9,
+      "transport_or_mine_hit_attributed": false,
+      "turn": 38
+    },
+    {
+      "Nplus1_VCR_used": false,
+      "Tminus1_candidate_edges_at_source_all_owners": 4,
+      "Tminus1_candidate_edges_at_source_matching_T_endpoint": 4,
+      "Tminus1_candidate_edges_at_source_same_owner": 4,
+      "Tminus1_owner_id": 10,
+      "Tminus1_start": [
+        2512,
+        1947
+      ],
+      "canonical_chunnel_verified": false,
+      "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+      "frozen_normal_model_endpoint": [
+        2513,
+        1946
+      ],
+      "game_id": 245123,
+      "new_host_prediction": false,
+      "posthoc_endpoint_matching_edges": [
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 596.0537,
+          "initiator_Tminus1_fuel": 900,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 14,
+          "initiator_hull_name": "Neutronic Fuel Carrier",
+          "initiator_name_mentions_firecloud": false,
+          "initiator_owner_id": 10,
+          "initiator_ship_id": 325,
+          "initiator_start": [
+            2512,
+            1947
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            325,
+            360,
+            368,
+            731,
+            748,
+            912,
+            923,
+            925
+          ],
+          "target_Tminus1_fuel": 32,
+          "target_Tminus1_position": [
+            2504,
+            1351
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 646,
+          "tow_order_on_initiator_or_target": false
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 596.0537,
+          "initiator_Tminus1_fuel": 900,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 14,
+          "initiator_hull_name": "Neutronic Fuel Carrier",
+          "initiator_name_mentions_firecloud": false,
+          "initiator_owner_id": 10,
+          "initiator_ship_id": 360,
+          "initiator_start": [
+            2512,
+            1947
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            325,
+            360,
+            368,
+            731,
+            748,
+            912,
+            923,
+            925
+          ],
+          "target_Tminus1_fuel": 32,
+          "target_Tminus1_position": [
+            2504,
+            1351
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 646,
+          "tow_order_on_initiator_or_target": false
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 596.0537,
+          "initiator_Tminus1_fuel": 900,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 14,
+          "initiator_hull_name": "Neutronic Fuel Carrier",
+          "initiator_name_mentions_firecloud": false,
+          "initiator_owner_id": 10,
+          "initiator_ship_id": 912,
+          "initiator_start": [
+            2512,
+            1947
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            325,
+            360,
+            368,
+            731,
+            748,
+            912,
+            923,
+            925
+          ],
+          "target_Tminus1_fuel": 32,
+          "target_Tminus1_position": [
+            2504,
+            1351
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 646,
+          "tow_order_on_initiator_or_target": false
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 596.0537,
+          "initiator_Tminus1_fuel": 330,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 22,
+          "initiator_hull_name": "Lizard Class Cruiser",
+          "initiator_name_mentions_firecloud": false,
+          "initiator_owner_id": 10,
+          "initiator_ship_id": 923,
+          "initiator_start": [
+            2512,
+            1947
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            325,
+            360,
+            368,
+            731,
+            748,
+            912,
+            923,
+            925
+          ],
+          "target_Tminus1_fuel": 32,
+          "target_Tminus1_position": [
+            2504,
+            1351
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 646,
+          "tow_order_on_initiator_or_target": false
+        }
+      ],
+      "posthoc_screen_status": "POSTHOC_T_ENDPOINT_MATCHES_TMINUS1_CONVENTIONAL_CHUNNEL_GATE",
+      "published_posthost_T_endpoint": [
+        2504,
+        1351
+      ],
+      "ship_id": 325,
+      "source_preobserved_fuel": 900,
+      "source_preobserved_mission": 4,
+      "source_preobserved_warp": 1,
+      "transport_or_mine_hit_attributed": false,
+      "turn": 75
+    },
+    {
+      "Nplus1_VCR_used": false,
+      "Tminus1_candidate_edges_at_source_all_owners": 4,
+      "Tminus1_candidate_edges_at_source_matching_T_endpoint": 4,
+      "Tminus1_candidate_edges_at_source_same_owner": 4,
+      "Tminus1_owner_id": 10,
+      "Tminus1_start": [
+        2512,
+        1947
+      ],
+      "canonical_chunnel_verified": false,
+      "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+      "frozen_normal_model_endpoint": [
+        2513,
+        1946
+      ],
+      "game_id": 245123,
+      "new_host_prediction": false,
+      "posthoc_endpoint_matching_edges": [
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 596.0537,
+          "initiator_Tminus1_fuel": 900,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 14,
+          "initiator_hull_name": "Neutronic Fuel Carrier",
+          "initiator_name_mentions_firecloud": false,
+          "initiator_owner_id": 10,
+          "initiator_ship_id": 325,
+          "initiator_start": [
+            2512,
+            1947
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            325,
+            360,
+            368,
+            731,
+            748,
+            912,
+            923,
+            925
+          ],
+          "target_Tminus1_fuel": 32,
+          "target_Tminus1_position": [
+            2504,
+            1351
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 646,
+          "tow_order_on_initiator_or_target": false
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 596.0537,
+          "initiator_Tminus1_fuel": 900,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 14,
+          "initiator_hull_name": "Neutronic Fuel Carrier",
+          "initiator_name_mentions_firecloud": false,
+          "initiator_owner_id": 10,
+          "initiator_ship_id": 360,
+          "initiator_start": [
+            2512,
+            1947
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            325,
+            360,
+            368,
+            731,
+            748,
+            912,
+            923,
+            925
+          ],
+          "target_Tminus1_fuel": 32,
+          "target_Tminus1_position": [
+            2504,
+            1351
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 646,
+          "tow_order_on_initiator_or_target": false
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 596.0537,
+          "initiator_Tminus1_fuel": 900,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 14,
+          "initiator_hull_name": "Neutronic Fuel Carrier",
+          "initiator_name_mentions_firecloud": false,
+          "initiator_owner_id": 10,
+          "initiator_ship_id": 912,
+          "initiator_start": [
+            2512,
+            1947
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            325,
+            360,
+            368,
+            731,
+            748,
+            912,
+            923,
+            925
+          ],
+          "target_Tminus1_fuel": 32,
+          "target_Tminus1_position": [
+            2504,
+            1351
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 646,
+          "tow_order_on_initiator_or_target": false
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 596.0537,
+          "initiator_Tminus1_fuel": 330,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 22,
+          "initiator_hull_name": "Lizard Class Cruiser",
+          "initiator_name_mentions_firecloud": false,
+          "initiator_owner_id": 10,
+          "initiator_ship_id": 923,
+          "initiator_start": [
+            2512,
+            1947
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            325,
+            360,
+            368,
+            731,
+            748,
+            912,
+            923,
+            925
+          ],
+          "target_Tminus1_fuel": 32,
+          "target_Tminus1_position": [
+            2504,
+            1351
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 646,
+          "tow_order_on_initiator_or_target": false
+        }
+      ],
+      "posthoc_screen_status": "POSTHOC_T_ENDPOINT_MATCHES_TMINUS1_CONVENTIONAL_CHUNNEL_GATE",
+      "published_posthost_T_endpoint": [
+        2504,
+        1351
+      ],
+      "ship_id": 360,
+      "source_preobserved_fuel": 900,
+      "source_preobserved_mission": 1,
+      "source_preobserved_warp": 1,
+      "transport_or_mine_hit_attributed": false,
+      "turn": 75
+    },
+    {
+      "Nplus1_VCR_used": false,
+      "Tminus1_candidate_edges_at_source_all_owners": 0,
+      "Tminus1_candidate_edges_at_source_matching_T_endpoint": 0,
+      "Tminus1_candidate_edges_at_source_same_owner": 0,
+      "Tminus1_owner_id": 9,
+      "Tminus1_start": [
+        2250,
+        1905
+      ],
+      "canonical_chunnel_verified": false,
+      "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+      "frozen_normal_model_endpoint": [
+        2270,
+        1889
+      ],
+      "game_id": 245123,
+      "new_host_prediction": false,
+      "posthoc_endpoint_matching_edges": [],
+      "posthoc_screen_status": "NO_TMINUS1_SAME_OWNER_CONVENTIONAL_CHUNNEL_ENDPOINT_MATCH",
+      "published_posthost_T_endpoint": [
+        2268,
+        1887
+      ],
+      "ship_id": 499,
+      "source_preobserved_fuel": 0,
+      "source_preobserved_mission": 0,
+      "source_preobserved_warp": 1,
+      "transport_or_mine_hit_attributed": false,
+      "turn": 75
+    },
+    {
+      "Nplus1_VCR_used": false,
+      "Tminus1_candidate_edges_at_source_all_owners": 0,
+      "Tminus1_candidate_edges_at_source_matching_T_endpoint": 0,
+      "Tminus1_candidate_edges_at_source_same_owner": 0,
+      "Tminus1_owner_id": 9,
+      "Tminus1_start": [
+        2270,
+        1916
+      ],
+      "canonical_chunnel_verified": false,
+      "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+      "frozen_normal_model_endpoint": [
+        2291,
+        1980
+      ],
+      "game_id": 245123,
+      "new_host_prediction": false,
+      "posthoc_endpoint_matching_edges": [],
+      "posthoc_screen_status": "NO_TMINUS1_SAME_OWNER_CONVENTIONAL_CHUNNEL_ENDPOINT_MATCH",
+      "published_posthost_T_endpoint": [
+        2289,
+        1978
+      ],
+      "ship_id": 639,
+      "source_preobserved_fuel": 99,
+      "source_preobserved_mission": 1,
+      "source_preobserved_warp": 9,
+      "transport_or_mine_hit_attributed": false,
+      "turn": 75
+    },
+    {
+      "Nplus1_VCR_used": false,
+      "Tminus1_candidate_edges_at_source_all_owners": 4,
+      "Tminus1_candidate_edges_at_source_matching_T_endpoint": 4,
+      "Tminus1_candidate_edges_at_source_same_owner": 4,
+      "Tminus1_owner_id": 10,
+      "Tminus1_start": [
+        2512,
+        1947
+      ],
+      "canonical_chunnel_verified": false,
+      "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+      "frozen_normal_model_endpoint": [
+        2513,
+        1946
+      ],
+      "game_id": 245123,
+      "new_host_prediction": false,
+      "posthoc_endpoint_matching_edges": [
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 596.0537,
+          "initiator_Tminus1_fuel": 900,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 14,
+          "initiator_hull_name": "Neutronic Fuel Carrier",
+          "initiator_name_mentions_firecloud": false,
+          "initiator_owner_id": 10,
+          "initiator_ship_id": 325,
+          "initiator_start": [
+            2512,
+            1947
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            325,
+            360,
+            368,
+            731,
+            748,
+            912,
+            923,
+            925
+          ],
+          "target_Tminus1_fuel": 32,
+          "target_Tminus1_position": [
+            2504,
+            1351
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 646,
+          "tow_order_on_initiator_or_target": false
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 596.0537,
+          "initiator_Tminus1_fuel": 900,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 14,
+          "initiator_hull_name": "Neutronic Fuel Carrier",
+          "initiator_name_mentions_firecloud": false,
+          "initiator_owner_id": 10,
+          "initiator_ship_id": 360,
+          "initiator_start": [
+            2512,
+            1947
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            325,
+            360,
+            368,
+            731,
+            748,
+            912,
+            923,
+            925
+          ],
+          "target_Tminus1_fuel": 32,
+          "target_Tminus1_position": [
+            2504,
+            1351
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 646,
+          "tow_order_on_initiator_or_target": false
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 596.0537,
+          "initiator_Tminus1_fuel": 900,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 14,
+          "initiator_hull_name": "Neutronic Fuel Carrier",
+          "initiator_name_mentions_firecloud": false,
+          "initiator_owner_id": 10,
+          "initiator_ship_id": 912,
+          "initiator_start": [
+            2512,
+            1947
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            325,
+            360,
+            368,
+            731,
+            748,
+            912,
+            923,
+            925
+          ],
+          "target_Tminus1_fuel": 32,
+          "target_Tminus1_position": [
+            2504,
+            1351
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 646,
+          "tow_order_on_initiator_or_target": false
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 596.0537,
+          "initiator_Tminus1_fuel": 330,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 22,
+          "initiator_hull_name": "Lizard Class Cruiser",
+          "initiator_name_mentions_firecloud": false,
+          "initiator_owner_id": 10,
+          "initiator_ship_id": 923,
+          "initiator_start": [
+            2512,
+            1947
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            325,
+            360,
+            368,
+            731,
+            748,
+            912,
+            923,
+            925
+          ],
+          "target_Tminus1_fuel": 32,
+          "target_Tminus1_position": [
+            2504,
+            1351
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 646,
+          "tow_order_on_initiator_or_target": false
+        }
+      ],
+      "posthoc_screen_status": "POSTHOC_T_ENDPOINT_MATCHES_TMINUS1_CONVENTIONAL_CHUNNEL_GATE",
+      "published_posthost_T_endpoint": [
+        2504,
+        1351
+      ],
+      "ship_id": 912,
+      "source_preobserved_fuel": 900,
+      "source_preobserved_mission": 1,
+      "source_preobserved_warp": 1,
+      "transport_or_mine_hit_attributed": false,
+      "turn": 75
+    },
+    {
+      "Nplus1_VCR_used": false,
+      "Tminus1_candidate_edges_at_source_all_owners": 4,
+      "Tminus1_candidate_edges_at_source_matching_T_endpoint": 4,
+      "Tminus1_candidate_edges_at_source_same_owner": 4,
+      "Tminus1_owner_id": 10,
+      "Tminus1_start": [
+        2512,
+        1947
+      ],
+      "canonical_chunnel_verified": false,
+      "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+      "frozen_normal_model_endpoint": [
+        2513,
+        1946
+      ],
+      "game_id": 245123,
+      "new_host_prediction": false,
+      "posthoc_endpoint_matching_edges": [
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 596.0537,
+          "initiator_Tminus1_fuel": 900,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 14,
+          "initiator_hull_name": "Neutronic Fuel Carrier",
+          "initiator_name_mentions_firecloud": false,
+          "initiator_owner_id": 10,
+          "initiator_ship_id": 325,
+          "initiator_start": [
+            2512,
+            1947
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            325,
+            360,
+            368,
+            731,
+            748,
+            912,
+            923,
+            925
+          ],
+          "target_Tminus1_fuel": 32,
+          "target_Tminus1_position": [
+            2504,
+            1351
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 646,
+          "tow_order_on_initiator_or_target": false
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 596.0537,
+          "initiator_Tminus1_fuel": 900,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 14,
+          "initiator_hull_name": "Neutronic Fuel Carrier",
+          "initiator_name_mentions_firecloud": false,
+          "initiator_owner_id": 10,
+          "initiator_ship_id": 360,
+          "initiator_start": [
+            2512,
+            1947
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            325,
+            360,
+            368,
+            731,
+            748,
+            912,
+            923,
+            925
+          ],
+          "target_Tminus1_fuel": 32,
+          "target_Tminus1_position": [
+            2504,
+            1351
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 646,
+          "tow_order_on_initiator_or_target": false
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 596.0537,
+          "initiator_Tminus1_fuel": 900,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 14,
+          "initiator_hull_name": "Neutronic Fuel Carrier",
+          "initiator_name_mentions_firecloud": false,
+          "initiator_owner_id": 10,
+          "initiator_ship_id": 912,
+          "initiator_start": [
+            2512,
+            1947
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            325,
+            360,
+            368,
+            731,
+            748,
+            912,
+            923,
+            925
+          ],
+          "target_Tminus1_fuel": 32,
+          "target_Tminus1_position": [
+            2504,
+            1351
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 646,
+          "tow_order_on_initiator_or_target": false
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 596.0537,
+          "initiator_Tminus1_fuel": 330,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 22,
+          "initiator_hull_name": "Lizard Class Cruiser",
+          "initiator_name_mentions_firecloud": false,
+          "initiator_owner_id": 10,
+          "initiator_ship_id": 923,
+          "initiator_start": [
+            2512,
+            1947
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            325,
+            360,
+            368,
+            731,
+            748,
+            912,
+            923,
+            925
+          ],
+          "target_Tminus1_fuel": 32,
+          "target_Tminus1_position": [
+            2504,
+            1351
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 646,
+          "tow_order_on_initiator_or_target": false
+        }
+      ],
+      "posthoc_screen_status": "POSTHOC_T_ENDPOINT_MATCHES_TMINUS1_CONVENTIONAL_CHUNNEL_GATE",
+      "published_posthost_T_endpoint": [
+        2504,
+        1351
+      ],
+      "ship_id": 923,
+      "source_preobserved_fuel": 330,
+      "source_preobserved_mission": 8,
+      "source_preobserved_warp": 1,
+      "transport_or_mine_hit_attributed": false,
+      "turn": 75
+    },
+    {
+      "Nplus1_VCR_used": false,
+      "Tminus1_candidate_edges_at_source_all_owners": 0,
+      "Tminus1_candidate_edges_at_source_matching_T_endpoint": 0,
+      "Tminus1_candidate_edges_at_source_same_owner": 0,
+      "Tminus1_owner_id": 6,
+      "Tminus1_start": [
+        2652,
+        2075
+      ],
+      "canonical_chunnel_verified": false,
+      "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+      "frozen_normal_model_endpoint": [
+        2653,
+        2074
+      ],
+      "game_id": 306971,
+      "new_host_prediction": false,
+      "posthoc_endpoint_matching_edges": [],
+      "posthoc_screen_status": "NO_TMINUS1_SAME_OWNER_CONVENTIONAL_CHUNNEL_ENDPOINT_MATCH",
+      "published_posthost_T_endpoint": [
+        3074,
+        1914
+      ],
+      "ship_id": 211,
+      "source_preobserved_fuel": 154,
+      "source_preobserved_mission": 0,
+      "source_preobserved_warp": 1,
+      "transport_or_mine_hit_attributed": false,
+      "turn": 116
+    },
+    {
+      "Nplus1_VCR_used": false,
+      "Tminus1_candidate_edges_at_source_all_owners": 0,
+      "Tminus1_candidate_edges_at_source_matching_T_endpoint": 0,
+      "Tminus1_candidate_edges_at_source_same_owner": 0,
+      "Tminus1_owner_id": 6,
+      "Tminus1_start": [
+        2652,
+        2075
+      ],
+      "canonical_chunnel_verified": false,
+      "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+      "frozen_normal_model_endpoint": [
+        2653,
+        2074
+      ],
+      "game_id": 306971,
+      "new_host_prediction": false,
+      "posthoc_endpoint_matching_edges": [],
+      "posthoc_screen_status": "NO_TMINUS1_SAME_OWNER_CONVENTIONAL_CHUNNEL_ENDPOINT_MATCH",
+      "published_posthost_T_endpoint": [
+        3074,
+        1914
+      ],
+      "ship_id": 285,
+      "source_preobserved_fuel": 293,
+      "source_preobserved_mission": 0,
+      "source_preobserved_warp": 1,
+      "transport_or_mine_hit_attributed": false,
+      "turn": 116
+    },
+    {
+      "Nplus1_VCR_used": false,
+      "Tminus1_candidate_edges_at_source_all_owners": 0,
+      "Tminus1_candidate_edges_at_source_matching_T_endpoint": 0,
+      "Tminus1_candidate_edges_at_source_same_owner": 0,
+      "Tminus1_owner_id": 6,
+      "Tminus1_start": [
+        2652,
+        2075
+      ],
+      "canonical_chunnel_verified": false,
+      "cohort": "NORMAL_MODEL_NO_INDEXED_MINE_RISK",
+      "frozen_normal_model_endpoint": [
+        2653,
+        2074
+      ],
+      "game_id": 306971,
+      "new_host_prediction": false,
+      "posthoc_endpoint_matching_edges": [],
+      "posthoc_screen_status": "NO_TMINUS1_SAME_OWNER_CONVENTIONAL_CHUNNEL_ENDPOINT_MATCH",
+      "published_posthost_T_endpoint": [
+        3074,
+        1914
+      ],
+      "ship_id": 369,
+      "source_preobserved_fuel": 180,
+      "source_preobserved_mission": 0,
+      "source_preobserved_warp": 1,
+      "transport_or_mine_hit_attributed": false,
+      "turn": 116
+    },
+    {
+      "Nplus1_VCR_used": false,
+      "Tminus1_candidate_edges_at_source_all_owners": 0,
+      "Tminus1_candidate_edges_at_source_matching_T_endpoint": 0,
+      "Tminus1_candidate_edges_at_source_same_owner": 0,
+      "Tminus1_owner_id": 4,
+      "Tminus1_start": [
+        1317,
+        1878
+      ],
+      "canonical_chunnel_verified": false,
+      "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+      "frozen_normal_model_endpoint": [
+        1319,
+        1882
+      ],
+      "game_id": 306971,
+      "new_host_prediction": false,
+      "posthoc_endpoint_matching_edges": [],
+      "posthoc_screen_status": "NO_TMINUS1_SAME_OWNER_CONVENTIONAL_CHUNNEL_ENDPOINT_MATCH",
+      "published_posthost_T_endpoint": [
+        1334,
+        1910
+      ],
+      "ship_id": 314,
+      "source_preobserved_fuel": 150,
+      "source_preobserved_mission": 2,
+      "source_preobserved_warp": 9,
+      "transport_or_mine_hit_attributed": false,
+      "turn": 231
+    },
+    {
+      "Nplus1_VCR_used": false,
+      "Tminus1_candidate_edges_at_source_all_owners": 0,
+      "Tminus1_candidate_edges_at_source_matching_T_endpoint": 0,
+      "Tminus1_candidate_edges_at_source_same_owner": 0,
+      "Tminus1_owner_id": 6,
+      "Tminus1_start": [
+        1635,
+        2491
+      ],
+      "canonical_chunnel_verified": false,
+      "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+      "frozen_normal_model_endpoint": [
+        1629,
+        2491
+      ],
+      "game_id": 476826,
+      "new_host_prediction": false,
+      "posthoc_endpoint_matching_edges": [],
+      "posthoc_screen_status": "NO_TMINUS1_SAME_OWNER_CONVENTIONAL_CHUNNEL_ENDPOINT_MATCH",
+      "published_posthost_T_endpoint": [
+        1525,
+        2374
+      ],
+      "ship_id": 358,
+      "source_preobserved_fuel": 11,
+      "source_preobserved_mission": 3,
+      "source_preobserved_warp": 5,
+      "transport_or_mine_hit_attributed": false,
+      "turn": 96
+    },
+    {
+      "Nplus1_VCR_used": false,
+      "Tminus1_candidate_edges_at_source_all_owners": 0,
+      "Tminus1_candidate_edges_at_source_matching_T_endpoint": 0,
+      "Tminus1_candidate_edges_at_source_same_owner": 0,
+      "Tminus1_owner_id": 5,
+      "Tminus1_start": [
+        1350,
+        2619
+      ],
+      "canonical_chunnel_verified": false,
+      "cohort": "NORMAL_MINE_RISK_CONDITIONAL_NO_HIT",
+      "frozen_normal_model_endpoint": [
+        1374,
+        2679
+      ],
+      "game_id": 663317,
+      "new_host_prediction": false,
+      "posthoc_endpoint_matching_edges": [],
+      "posthoc_screen_status": "NO_TMINUS1_SAME_OWNER_CONVENTIONAL_CHUNNEL_ENDPOINT_MATCH",
+      "published_posthost_T_endpoint": [
+        1350,
+        2619
+      ],
+      "ship_id": 129,
+      "source_preobserved_fuel": 20,
+      "source_preobserved_mission": 1,
+      "source_preobserved_warp": 9,
+      "transport_or_mine_hit_attributed": false,
+      "turn": 54
+    }
+  ],
+  "schema": "planets-lab.combat-c5-chunnel-endpoint-screen.v11",
+  "source_db_generation": "generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "source_db_sha256": "3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c",
+  "source_v10_git_blob_sha1": "9f2fc93e189b264ebdd1d78b0cd0c39517bb2386",
+  "status": "V10_TMINUS1_CHUNNEL_ACTOR_SCREEN_OBSERVATIONAL_NOT_CAUSAL",
+  "summary": {
+    "Nplus1_VCR_read": false,
+    "Tminus1_graph_edge_controls": {
+      "Tminus1_edges_at_residual_start": 4,
+      "Tminus1_edges_outside_residual_start": 35
+    },
+    "Tminus1_pre_context_failures": 0,
+    "Tminus1_screen_rejection_counts": {
+      "CHUNNEL_DISTANCE_BELOW_100_LY": 14,
+      "INITIATOR_NO_NUMERIC_FC": 3256,
+      "INITIATOR_START_OR_FUEL_GATE": 74,
+      "NO_SAME_OWNER_FC_TARGET": 178,
+      "TARGET_WARP0_FUEL_POSITION_GATE": 33
+    },
+    "chunnel_execution_proven": false,
+    "chunnel_initiator_target_abilities_verified": false,
+    "frozen_v10_correlated_clusters": 2,
+    "frozen_v10_correlated_ships": 7,
+    "frozen_v10_distinct_games": 4,
+    "frozen_v10_distinct_windows": 6,
+    "frozen_v9_mismatches": 13,
+    "mine_hits_inferred": 0,
+    "new_combat_or_movement_predictions": 0,
+    "posthoc_screen_status_counts": {
+      "NO_TMINUS1_SAME_OWNER_CONVENTIONAL_CHUNNEL_ENDPOINT_MATCH": 9,
+      "POSTHOC_T_ENDPOINT_MATCHES_TMINUS1_CONVENTIONAL_CHUNNEL_GATE": 4
+    }
+  },
+  "window_evaluations": [
+    {
+      "Tminus1_conventional_candidate_edges": 3,
+      "Tminus1_edges_at_residual_source": 0,
+      "Tminus1_edges_elsewhere": 3,
+      "Tminus1_owner_current_ships": 563,
+      "Tminus1_screen_rejections": {
+        "CHUNNEL_DISTANCE_BELOW_100_LY": 3,
+        "INITIATOR_NO_NUMERIC_FC": 549,
+        "INITIATOR_START_OR_FUEL_GATE": 2,
+        "NO_SAME_OWNER_FC_TARGET": 4,
+        "TARGET_WARP0_FUEL_POSITION_GATE": 2
+      },
+      "game_id": 245123,
+      "nonresidual_source_control_examples": [
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 268.4772,
+          "initiator_Tminus1_fuel": 200,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 56,
+          "initiator_hull_name": "Firecloud Class Cruiser",
+          "initiator_name_mentions_firecloud": true,
+          "initiator_owner_id": 5,
+          "initiator_ship_id": 93,
+          "initiator_start": [
+            1451,
+            1762
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            93
+          ],
+          "target_Tminus1_fuel": 1,
+          "target_Tminus1_position": [
+            1339,
+            2006
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 487,
+          "tow_order_on_initiator_or_target": false
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 156.4001,
+          "initiator_Tminus1_fuel": 325,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 56,
+          "initiator_hull_name": "Firecloud Class Cruiser",
+          "initiator_name_mentions_firecloud": true,
+          "initiator_owner_id": 5,
+          "initiator_ship_id": 110,
+          "initiator_start": [
+            1407,
+            1700
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            110
+          ],
+          "target_Tminus1_fuel": 257,
+          "target_Tminus1_position": [
+            1501,
+            1825
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 391,
+          "tow_order_on_initiator_or_target": false
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 113.9912,
+          "initiator_Tminus1_fuel": 257,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 56,
+          "initiator_hull_name": "Firecloud Class Cruiser",
+          "initiator_name_mentions_firecloud": true,
+          "initiator_owner_id": 5,
+          "initiator_ship_id": 391,
+          "initiator_start": [
+            1501,
+            1825
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            391
+          ],
+          "target_Tminus1_fuel": 1,
+          "target_Tminus1_position": [
+            1438,
+            1920
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 340,
+          "tow_order_on_initiator_or_target": false
+        }
+      ],
+      "turn": 38
+    },
+    {
+      "Tminus1_conventional_candidate_edges": 13,
+      "Tminus1_edges_at_residual_source": 4,
+      "Tminus1_edges_elsewhere": 9,
+      "Tminus1_owner_current_ships": 918,
+      "Tminus1_screen_rejections": {
+        "CHUNNEL_DISTANCE_BELOW_100_LY": 9,
+        "INITIATOR_NO_NUMERIC_FC": 849,
+        "INITIATOR_START_OR_FUEL_GATE": 9,
+        "NO_SAME_OWNER_FC_TARGET": 30,
+        "TARGET_WARP0_FUEL_POSITION_GATE": 8
+      },
+      "game_id": 245123,
+      "nonresidual_source_control_examples": [
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 634.1546,
+          "initiator_Tminus1_fuel": 233,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 23,
+          "initiator_hull_name": "T-Rex Class Battleship",
+          "initiator_name_mentions_firecloud": false,
+          "initiator_owner_id": 10,
+          "initiator_ship_id": 38,
+          "initiator_start": [
+            2499,
+            1312
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            38
+          ],
+          "target_Tminus1_fuel": 122,
+          "target_Tminus1_position": [
+            2513,
+            1946
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 293,
+          "tow_order_on_initiator_or_target": false
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 385.0013,
+          "initiator_Tminus1_fuel": 138,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 7,
+          "initiator_hull_name": "Loki Class Destroyer",
+          "initiator_name_mentions_firecloud": false,
+          "initiator_owner_id": 10,
+          "initiator_ship_id": 146,
+          "initiator_start": [
+            2494,
+            1409
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            146
+          ],
+          "target_Tminus1_fuel": 155,
+          "target_Tminus1_position": [
+            2493,
+            1794
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 658,
+          "tow_order_on_initiator_or_target": true
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 411.8507,
+          "initiator_Tminus1_fuel": 436,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 23,
+          "initiator_hull_name": "T-Rex Class Battleship",
+          "initiator_name_mentions_firecloud": false,
+          "initiator_owner_id": 10,
+          "initiator_ship_id": 247,
+          "initiator_start": [
+            2454,
+            1384
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            247,
+            431,
+            502,
+            603,
+            620,
+            727,
+            788,
+            850,
+            851,
+            855
+          ],
+          "target_Tminus1_fuel": 155,
+          "target_Tminus1_position": [
+            2493,
+            1794
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 658,
+          "tow_order_on_initiator_or_target": true
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 595.0681,
+          "initiator_Tminus1_fuel": 122,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 56,
+          "initiator_hull_name": "Firecloud Class Cruiser",
+          "initiator_name_mentions_firecloud": true,
+          "initiator_owner_id": 10,
+          "initiator_ship_id": 293,
+          "initiator_start": [
+            2513,
+            1946
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            293
+          ],
+          "target_Tminus1_fuel": 32,
+          "target_Tminus1_position": [
+            2504,
+            1351
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 646,
+          "tow_order_on_initiator_or_target": false
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 595.0681,
+          "initiator_Tminus1_fuel": 208,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 23,
+          "initiator_hull_name": "T-Rex Class Battleship",
+          "initiator_name_mentions_firecloud": false,
+          "initiator_owner_id": 10,
+          "initiator_ship_id": 307,
+          "initiator_start": [
+            2504,
+            1351
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            88,
+            132,
+            139,
+            190,
+            205,
+            231,
+            260,
+            272,
+            284,
+            307,
+            316,
+            357,
+            358,
+            409,
+            450,
+            463,
+            509,
+            540,
+            566,
+            596,
+            633,
+            643,
+            646,
+            663,
+            672,
+            707,
+            710,
+            711,
+            758,
+            774,
+            779,
+            811,
+            876,
+            920
+          ],
+          "target_Tminus1_fuel": 122,
+          "target_Tminus1_position": [
+            2513,
+            1946
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 293,
+          "tow_order_on_initiator_or_target": false
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 520.566,
+          "initiator_Tminus1_fuel": 78,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 22,
+          "initiator_hull_name": "Lizard Class Cruiser",
+          "initiator_name_mentions_firecloud": false,
+          "initiator_owner_id": 10,
+          "initiator_ship_id": 313,
+          "initiator_start": [
+            2504,
+            1350
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            313,
+            511,
+            652
+          ],
+          "target_Tminus1_fuel": 78,
+          "target_Tminus1_position": [
+            2734,
+            1817
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 382,
+          "tow_order_on_initiator_or_target": false
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 520.566,
+          "initiator_Tminus1_fuel": 195,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 56,
+          "initiator_hull_name": "Firecloud Class Cruiser",
+          "initiator_name_mentions_firecloud": true,
+          "initiator_owner_id": 10,
+          "initiator_ship_id": 511,
+          "initiator_start": [
+            2504,
+            1350
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            313,
+            511,
+            652
+          ],
+          "target_Tminus1_fuel": 78,
+          "target_Tminus1_position": [
+            2734,
+            1817
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 382,
+          "tow_order_on_initiator_or_target": false
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 515.6443,
+          "initiator_Tminus1_fuel": 158,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 23,
+          "initiator_hull_name": "T-Rex Class Battleship",
+          "initiator_name_mentions_firecloud": false,
+          "initiator_owner_id": 10,
+          "initiator_ship_id": 851,
+          "initiator_start": [
+            2454,
+            1384
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            247,
+            431,
+            502,
+            603,
+            620,
+            727,
+            788,
+            850,
+            851,
+            855
+          ],
+          "target_Tminus1_fuel": 1,
+          "target_Tminus1_position": [
+            2734,
+            1817
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 105,
+          "target_hull_name": "Merlin Class Alchemy Ship",
+          "target_name_mentions_firecloud": false,
+          "target_ship_id": 125,
+          "tow_order_on_initiator_or_target": false
+        }
+      ],
+      "turn": 75
+    },
+    {
+      "Tminus1_conventional_candidate_edges": 7,
+      "Tminus1_edges_at_residual_source": 0,
+      "Tminus1_edges_elsewhere": 7,
+      "Tminus1_owner_current_ships": 560,
+      "Tminus1_screen_rejections": {
+        "INITIATOR_NO_NUMERIC_FC": 502,
+        "INITIATOR_START_OR_FUEL_GATE": 8,
+        "NO_SAME_OWNER_FC_TARGET": 35,
+        "TARGET_WARP0_FUEL_POSITION_GATE": 8
+      },
+      "game_id": 306971,
+      "nonresidual_source_control_examples": [
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 294.4418,
+          "initiator_Tminus1_fuel": 440,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 56,
+          "initiator_hull_name": "Firecloud Class Cruiser",
+          "initiator_name_mentions_firecloud": true,
+          "initiator_owner_id": 6,
+          "initiator_ship_id": 43,
+          "initiator_start": [
+            2688,
+            2135
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            43,
+            62,
+            95
+          ],
+          "target_Tminus1_fuel": 47,
+          "target_Tminus1_position": [
+            2758,
+            1849
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 511,
+          "tow_order_on_initiator_or_target": false
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 205.9126,
+          "initiator_Tminus1_fuel": 403,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 56,
+          "initiator_hull_name": "Firecloud Class Cruiser",
+          "initiator_name_mentions_firecloud": true,
+          "initiator_owner_id": 6,
+          "initiator_ship_id": 125,
+          "initiator_start": [
+            2857,
+            1890
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            125,
+            481
+          ],
+          "target_Tminus1_fuel": 386,
+          "target_Tminus1_position": [
+            2677,
+            1790
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 438,
+          "tow_order_on_initiator_or_target": false
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 450.3787,
+          "initiator_Tminus1_fuel": 440,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 56,
+          "initiator_hull_name": "Firecloud Class Cruiser",
+          "initiator_name_mentions_firecloud": true,
+          "initiator_owner_id": 6,
+          "initiator_ship_id": 377,
+          "initiator_start": [
+            2653,
+            2074
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            377
+          ],
+          "target_Tminus1_fuel": 440,
+          "target_Tminus1_position": [
+            3074,
+            1914
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 581,
+          "tow_order_on_initiator_or_target": false
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 572.6867,
+          "initiator_Tminus1_fuel": 141,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 56,
+          "initiator_hull_name": "Firecloud Class Cruiser",
+          "initiator_name_mentions_firecloud": true,
+          "initiator_owner_id": 6,
+          "initiator_ship_id": 392,
+          "initiator_start": [
+            2689,
+            2134
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            392
+          ],
+          "target_Tminus1_fuel": 264,
+          "target_Tminus1_position": [
+            2140,
+            1971
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 194,
+          "tow_order_on_initiator_or_target": false
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 568.9613,
+          "initiator_Tminus1_fuel": 440,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 56,
+          "initiator_hull_name": "Firecloud Class Cruiser",
+          "initiator_name_mentions_firecloud": true,
+          "initiator_owner_id": 1,
+          "initiator_ship_id": 461,
+          "initiator_start": [
+            2613,
+            2794
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            12,
+            35,
+            168,
+            176,
+            313,
+            354,
+            461,
+            593
+          ],
+          "target_Tminus1_fuel": 263,
+          "target_Tminus1_position": [
+            2507,
+            2235
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 424,
+          "tow_order_on_initiator_or_target": false
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 106.3203,
+          "initiator_Tminus1_fuel": 284,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 56,
+          "initiator_hull_name": "Firecloud Class Cruiser",
+          "initiator_name_mentions_firecloud": true,
+          "initiator_owner_id": 6,
+          "initiator_ship_id": 512,
+          "initiator_start": [
+            2683,
+            1867
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            512
+          ],
+          "target_Tminus1_fuel": 383,
+          "target_Tminus1_position": [
+            2785,
+            1837
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 321,
+          "tow_order_on_initiator_or_target": false
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 580.6074,
+          "initiator_Tminus1_fuel": 440,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 56,
+          "initiator_hull_name": "Firecloud Class Cruiser",
+          "initiator_name_mentions_firecloud": true,
+          "initiator_owner_id": 6,
+          "initiator_ship_id": 537,
+          "initiator_start": [
+            2661,
+            2483
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            537
+          ],
+          "target_Tminus1_fuel": 440,
+          "target_Tminus1_position": [
+            2734,
+            1907
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 426,
+          "tow_order_on_initiator_or_target": false
+        }
+      ],
+      "turn": 116
+    },
+    {
+      "Tminus1_conventional_candidate_edges": 8,
+      "Tminus1_edges_at_residual_source": 0,
+      "Tminus1_edges_elsewhere": 8,
+      "Tminus1_owner_current_ships": 501,
+      "Tminus1_screen_rejections": {
+        "INITIATOR_NO_NUMERIC_FC": 441,
+        "INITIATOR_START_OR_FUEL_GATE": 11,
+        "NO_SAME_OWNER_FC_TARGET": 29,
+        "TARGET_WARP0_FUEL_POSITION_GATE": 12
+      },
+      "game_id": 306971,
+      "nonresidual_source_control_examples": [
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 706.463,
+          "initiator_Tminus1_fuel": 118,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 56,
+          "initiator_hull_name": "Firecloud Class Cruiser",
+          "initiator_name_mentions_firecloud": true,
+          "initiator_owner_id": 6,
+          "initiator_ship_id": 45,
+          "initiator_start": [
+            2766,
+            2671
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            45
+          ],
+          "target_Tminus1_fuel": 377,
+          "target_Tminus1_position": [
+            2619,
+            1980
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 504,
+          "tow_order_on_initiator_or_target": false
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 1306.2657,
+          "initiator_Tminus1_fuel": 440,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 56,
+          "initiator_hull_name": "Firecloud Class Cruiser",
+          "initiator_name_mentions_firecloud": true,
+          "initiator_owner_id": 6,
+          "initiator_ship_id": 156,
+          "initiator_start": [
+            2653,
+            2076
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            156
+          ],
+          "target_Tminus1_fuel": 83,
+          "target_Tminus1_position": [
+            1406,
+            2465
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 98,
+          "tow_order_on_initiator_or_target": false
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 481.4862,
+          "initiator_Tminus1_fuel": 255,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 56,
+          "initiator_hull_name": "Firecloud Class Cruiser",
+          "initiator_name_mentions_firecloud": true,
+          "initiator_owner_id": 6,
+          "initiator_ship_id": 246,
+          "initiator_start": [
+            3049,
+            2036
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            211,
+            246,
+            285,
+            341,
+            398,
+            401,
+            412
+          ],
+          "target_Tminus1_fuel": 10,
+          "target_Tminus1_position": [
+            2784,
+            2438
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 523,
+          "tow_order_on_initiator_or_target": false
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 162.1172,
+          "initiator_Tminus1_fuel": 213,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 79,
+          "initiator_hull_name": "Golem Class Baseship",
+          "initiator_name_mentions_firecloud": false,
+          "initiator_owner_id": 9,
+          "initiator_ship_id": 263,
+          "initiator_start": [
+            1599,
+            2134
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            263,
+            281,
+            305
+          ],
+          "target_Tminus1_fuel": 62,
+          "target_Tminus1_position": [
+            1760,
+            2153
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 81,
+          "target_hull_name": "Cat's Paw Class Destroyer",
+          "target_name_mentions_firecloud": false,
+          "target_ship_id": 101,
+          "tow_order_on_initiator_or_target": true
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 165.215,
+          "initiator_Tminus1_fuel": 1719,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 79,
+          "initiator_hull_name": "Golem Class Baseship",
+          "initiator_name_mentions_firecloud": false,
+          "initiator_owner_id": 9,
+          "initiator_ship_id": 276,
+          "initiator_start": [
+            1596,
+            2133
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            66,
+            276
+          ],
+          "target_Tminus1_fuel": 62,
+          "target_Tminus1_position": [
+            1760,
+            2153
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 81,
+          "target_hull_name": "Cat's Paw Class Destroyer",
+          "target_name_mentions_firecloud": false,
+          "target_ship_id": 101,
+          "tow_order_on_initiator_or_target": true
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 152.794,
+          "initiator_Tminus1_fuel": 104,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 56,
+          "initiator_hull_name": "Firecloud Class Cruiser",
+          "initiator_name_mentions_firecloud": true,
+          "initiator_owner_id": 6,
+          "initiator_ship_id": 396,
+          "initiator_start": [
+            1760,
+            2153
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            101,
+            370,
+            396
+          ],
+          "target_Tminus1_fuel": 99,
+          "target_Tminus1_position": [
+            1871,
+            2048
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 554,
+          "tow_order_on_initiator_or_target": false
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 497.8554,
+          "initiator_Tminus1_fuel": 237,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 79,
+          "initiator_hull_name": "Golem Class Baseship",
+          "initiator_name_mentions_firecloud": false,
+          "initiator_owner_id": 9,
+          "initiator_ship_id": 429,
+          "initiator_start": [
+            1274,
+            2261
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            219,
+            306,
+            320,
+            371,
+            429
+          ],
+          "target_Tminus1_fuel": 62,
+          "target_Tminus1_position": [
+            1760,
+            2153
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 81,
+          "target_hull_name": "Cat's Paw Class Destroyer",
+          "target_name_mentions_firecloud": false,
+          "target_ship_id": 101,
+          "tow_order_on_initiator_or_target": true
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 303.3711,
+          "initiator_Tminus1_fuel": 1550,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 99,
+          "initiator_hull_name": "Virgo Class Battlestar",
+          "initiator_name_mentions_firecloud": false,
+          "initiator_owner_id": 11,
+          "initiator_ship_id": 492,
+          "initiator_start": [
+            1794,
+            2628
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            82,
+            90,
+            103,
+            138,
+            154,
+            178,
+            216,
+            228,
+            327,
+            360,
+            452,
+            485,
+            492
+          ],
+          "target_Tminus1_fuel": 1550,
+          "target_Tminus1_position": [
+            2097,
+            2613
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 99,
+          "target_hull_name": "Virgo Class Battlestar",
+          "target_name_mentions_firecloud": false,
+          "target_ship_id": 13,
+          "tow_order_on_initiator_or_target": false
+        }
+      ],
+      "turn": 231
+    },
+    {
+      "Tminus1_conventional_candidate_edges": 8,
+      "Tminus1_edges_at_residual_source": 0,
+      "Tminus1_edges_elsewhere": 8,
+      "Tminus1_owner_current_ships": 508,
+      "Tminus1_screen_rejections": {
+        "CHUNNEL_DISTANCE_BELOW_100_LY": 1,
+        "INITIATOR_NO_NUMERIC_FC": 418,
+        "INITIATOR_START_OR_FUEL_GATE": 21,
+        "NO_SAME_OWNER_FC_TARGET": 57,
+        "TARGET_WARP0_FUEL_POSITION_GATE": 3
+      },
+      "game_id": 476826,
+      "nonresidual_source_control_examples": [
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 833.2347,
+          "initiator_Tminus1_fuel": 217,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 56,
+          "initiator_hull_name": "Firecloud Class Cruiser",
+          "initiator_name_mentions_firecloud": true,
+          "initiator_owner_id": 6,
+          "initiator_ship_id": 141,
+          "initiator_start": [
+            2004,
+            1741
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            6,
+            141,
+            405,
+            490
+          ],
+          "target_Tminus1_fuel": 337,
+          "target_Tminus1_position": [
+            1342,
+            2247
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 257,
+          "tow_order_on_initiator_or_target": false
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 929.9978,
+          "initiator_Tminus1_fuel": 390,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 56,
+          "initiator_hull_name": "Firecloud Class Cruiser",
+          "initiator_name_mentions_firecloud": true,
+          "initiator_owner_id": 6,
+          "initiator_ship_id": 202,
+          "initiator_start": [
+            1234,
+            2307
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            15,
+            202,
+            272
+          ],
+          "target_Tminus1_fuel": 40,
+          "target_Tminus1_position": [
+            2154,
+            2171
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 110,
+          "tow_order_on_initiator_or_target": false
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 1074.256,
+          "initiator_Tminus1_fuel": 110,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 56,
+          "initiator_hull_name": "Firecloud Class Cruiser",
+          "initiator_name_mentions_firecloud": true,
+          "initiator_owner_id": 6,
+          "initiator_ship_id": 225,
+          "initiator_start": [
+            2153,
+            2171
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            225,
+            234
+          ],
+          "target_Tminus1_fuel": 90,
+          "target_Tminus1_position": [
+            1252,
+            1586
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 442,
+          "tow_order_on_initiator_or_target": false
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 829.8687,
+          "initiator_Tminus1_fuel": 337,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 56,
+          "initiator_hull_name": "Firecloud Class Cruiser",
+          "initiator_name_mentions_firecloud": true,
+          "initiator_owner_id": 6,
+          "initiator_ship_id": 257,
+          "initiator_start": [
+            1342,
+            2247
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            257
+          ],
+          "target_Tminus1_fuel": 27,
+          "target_Tminus1_position": [
+            1973,
+            1708
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 86,
+          "tow_order_on_initiator_or_target": false
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 356.2752,
+          "initiator_Tminus1_fuel": 114,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 49,
+          "initiator_hull_name": "Madonnzila Class Carrier",
+          "initiator_name_mentions_firecloud": false,
+          "initiator_owner_id": 2,
+          "initiator_ship_id": 320,
+          "initiator_start": [
+            2741,
+            2763
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            49,
+            117,
+            265,
+            320,
+            385
+          ],
+          "target_Tminus1_fuel": 1,
+          "target_Tminus1_position": [
+            2727,
+            2407
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 105,
+          "target_hull_name": "Merlin Class Alchemy Ship",
+          "target_name_mentions_firecloud": false,
+          "target_ship_id": 349,
+          "tow_order_on_initiator_or_target": false
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 850.6427,
+          "initiator_Tminus1_fuel": 100,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 56,
+          "initiator_hull_name": "Firecloud Class Cruiser",
+          "initiator_name_mentions_firecloud": true,
+          "initiator_owner_id": 6,
+          "initiator_ship_id": 410,
+          "initiator_start": [
+            2821,
+            1641
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            38,
+            47,
+            130,
+            146,
+            193,
+            216,
+            220,
+            233,
+            245,
+            248,
+            299,
+            407,
+            410
+          ],
+          "target_Tminus1_fuel": 27,
+          "target_Tminus1_position": [
+            1973,
+            1708
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 86,
+          "tow_order_on_initiator_or_target": false
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 971.8076,
+          "initiator_Tminus1_fuel": 105,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 56,
+          "initiator_hull_name": "Firecloud Class Cruiser",
+          "initiator_name_mentions_firecloud": true,
+          "initiator_owner_id": 6,
+          "initiator_ship_id": 453,
+          "initiator_start": [
+            2115,
+            1709
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            453
+          ],
+          "target_Tminus1_fuel": 2,
+          "target_Tminus1_position": [
+            1248,
+            2148
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 218,
+          "tow_order_on_initiator_or_target": false
+        },
+        {
+          "chunnel_execution_proven": false,
+          "distance_ly": 156.5407,
+          "initiator_Tminus1_fuel": 60,
+          "initiator_and_target_ability_independently_verified": false,
+          "initiator_hull_id": 56,
+          "initiator_hull_name": "Firecloud Class Cruiser",
+          "initiator_name_mentions_firecloud": true,
+          "initiator_owner_id": 6,
+          "initiator_ship_id": 458,
+          "initiator_start": [
+            1629,
+            2491
+          ],
+          "numeric_FC_same_owner_fuel_distance_gates_only": true,
+          "possible_colocated_ship_ids": [
+            55,
+            85,
+            108,
+            187,
+            192,
+            199,
+            292,
+            354,
+            369,
+            446,
+            458
+          ],
+          "target_Tminus1_fuel": 59,
+          "target_Tminus1_position": [
+            1525,
+            2374
+          ],
+          "target_Tminus1_warp": 0,
+          "target_hull_id": 56,
+          "target_hull_name": "Firecloud Class Cruiser",
+          "target_name_mentions_firecloud": true,
+          "target_ship_id": 340,
+          "tow_order_on_initiator_or_target": false
+        }
+      ],
+      "turn": 96
+    },
+    {
+      "Tminus1_conventional_candidate_edges": 0,
+      "Tminus1_edges_at_residual_source": 0,
+      "Tminus1_edges_elsewhere": 0,
+      "Tminus1_owner_current_ships": 544,
+      "Tminus1_screen_rejections": {
+        "CHUNNEL_DISTANCE_BELOW_100_LY": 1,
+        "INITIATOR_NO_NUMERIC_FC": 497,
+        "INITIATOR_START_OR_FUEL_GATE": 23,
+        "NO_SAME_OWNER_FC_TARGET": 23
+      },
+      "game_id": 663317,
+      "nonresidual_source_control_examples": [],
+      "turn": 54
+    }
+  ]
+}

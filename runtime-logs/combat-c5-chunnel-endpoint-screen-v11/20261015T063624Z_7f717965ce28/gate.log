@@ -1,0 +1,22 @@
+===== C5 V10 RESIDUAL CHUNNEL T-1 ENDPOINT SCREEN V11 =====
+HEAD: 7f717965ce28292f3b2f8255504f2878d8b77d59
+V10 Git blob: 9f2fc93e189b264ebdd1d78b0cd0c39517bb2386
+DB: /root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb (pinned SHA256 once; immutable read-only)
+[c5-chunnel] validating pinned immutable public100 SHA256
+[c5-chunnel] SHA verified in 30.6s; read-only
+[c5-chunnel] PRE [1/6] G245123 T38
+[c5-chunnel] PRE [2/6] G245123 T75
+[c5-chunnel] PRE [3/6] G306971 T116
+[c5-chunnel] PRE [4/6] G306971 T231
+[c5-chunnel] PRE [5/6] G476826 T96
+[c5-chunnel] PRE [6/6] G663317 T54
+[c5-chunnel] POST [1/6] G245123 T38
+[c5-chunnel] POST [2/6] G245123 T75
+[c5-chunnel] POST [3/6] G306971 T116
+[c5-chunnel] POST [4/6] G306971 T231
+[c5-chunnel] POST [5/6] G476826 T96
+[c5-chunnel] POST [6/6] G663317 T54
+===== C5 POSTHOST CHUNNEL SOURCE/TARGET SCREEN V11 =====
+status: V10_TMINUS1_CHUNNEL_ACTOR_SCREEN_OBSERVATIONAL_NOT_CAUSAL
+summary: {'frozen_v9_mismatches': 13, 'frozen_v10_distinct_windows': 6, 'frozen_v10_distinct_games': 4, 'frozen_v10_correlated_clusters': 2, 'frozen_v10_correlated_ships': 7, 'Tminus1_pre_context_failures': 0, 'posthoc_screen_status_counts': {'NO_TMINUS1_SAME_OWNER_CONVENTIONAL_CHUNNEL_ENDPOINT_MATCH': 9, 'POSTHOC_T_ENDPOINT_MATCHES_TMINUS1_CONVENTIONAL_CHUNNEL_GATE': 4}, 'Tminus1_screen_rejection_counts': {'CHUNNEL_DISTANCE_BELOW_100_LY': 14, 'INITIATOR_NO_NUMERIC_FC': 3256, 'INITIATOR_START_OR_FUEL_GATE': 74, 'NO_SAME_OWNER_FC_TARGET': 178, 'TARGET_WARP0_FUEL_POSITION_GATE': 33}, 'Tminus1_graph_edge_controls': {'Tminus1_edges_at_residual_start': 4, 'Tminus1_edges_outside_residual_start': 35}, 'new_combat_or_movement_predictions': 0, 'chunnel_initiator_target_abilities_verified': False, 'chunnel_execution_proven': False, 'mine_hits_inferred': 0, 'Nplus1_VCR_read': False}
+output: artifacts/combat/c5-chunnel-endpoint-screen-v11/published/report.json
