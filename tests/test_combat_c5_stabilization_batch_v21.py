@@ -170,7 +170,7 @@ def test_three_report_manifest_rejects_absent_or_tampered_phase(tmp_path):
     with pytest.raises(ValueError,match="missing batched phase"):
         M.make_manifest(tmp_path)
     for ph in M.PHASES:
-        (tmp_path/(ph+".json")).write_text(json.dumps(M.base_record(ph)),
+        (tmp_path/(ph+".json")).write_text(json.dumps({**M.base_record(ph),"summary":{}}),
                                           encoding="utf-8")
     out=M.make_manifest(tmp_path)
     assert out["three_experiments_completed"] is True
