@@ -1,0 +1,22 @@
+===== C5 V17 VISIBILITY AND 25LY CHUNNEL ANOMALY V18 =====
+HEAD: a530a2862fff0e61e7bc1131a7b58128ce860271
+V17 Git blob: a6256b70dc63b9b7126a211245bc65ce20ece863
+DB: /root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb (pinned SHA256 once, read-only)
+[c5-v18] checking pinned public100 SHA256 once
+[c5-v18] checksum verified in 53.1s; read-only
+[c5-v18] PRE [1/6] G227887 T72
+[c5-v18] PRE [2/6] G338264 T50
+[c5-v18] PRE [3/6] G373830 T74
+[c5-v18] PRE [4/6] G411645 T60
+[c5-v18] PRE [5/6] G467386 T75
+[c5-v18] PRE [6/6] G632527 T89
+[c5-v18] POST [1/6] G227887 T72
+[c5-v18] POST [2/6] G338264 T50
+[c5-v18] POST [3/6] G373830 T74
+[c5-v18] POST [4/6] G411645 T60
+[c5-v18] POST [5/6] G467386 T75
+[c5-v18] POST [6/6] G632527 T89
+===== C5 V17 ARCHIVE VISIBILITY AND 25-LY CHUNNEL ANOMALY V18 =====
+status: POSTHOC_V17_ANOMALY_AND_OWNER_CURRENT_VISIBILITY_NOT_CHUNNEL_RULE
+summary: {'V17_frozen_48_windows_16_games': True, 'V17_frozen_113_candidates': 113, 'targeted_V17_positive_owner_current_abstentions': 14, 'targeted_V17_discriminative_negative_edges': 6, 'targeted_Tminus1_windows': 6, 'reverified_Tminus1_T_cases': 20, 'source_owner_T_perspective_missing_appearances': 0, 'actor_T_owner_current_unavailable_appearances': 14, 'posthoc_25ly_anomaly_cases': 1, 'new_Host_movement_or_combat_predictions': 0, 'Host_short_distance_Chunnel_or_activation_proven': False, 'Nplus1_VCR_used': False}
+output: artifacts/combat/c5-short-chunnel-and-visibility-audit-v18/published/report.json

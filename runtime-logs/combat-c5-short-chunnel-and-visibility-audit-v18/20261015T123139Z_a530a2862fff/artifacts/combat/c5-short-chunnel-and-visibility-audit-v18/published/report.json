@@ -1,0 +1,3167 @@
+{
+  "boundary": "All 20 cases are POST-HOC selected from published V17 after examining outcomes, not new heldout predictions. Tminus1 actor/target positions, orders, fuel, waypoint, tow requests and colocations are collected for all selected windows BEFORE reading T. T perspective census and fresh/stale information are for archive visibility attribution only. A missing owner-current observation is not a missing/destroyed starship and a fresh non-owner report cannot become an authoritative current precombat position. G467386/T75 Firecloud #467 to #80 had Tminus1 separation 25LY: posthost coincidence and net fuel delta48KT do not prove a sub-100LY Chunnel. No activation rule, future VCR, mine RNG or production executor updates follow from this retrospective audit.",
+  "positive_abstention_window_clusters": {
+    "G227887/T72": {
+      "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE": 13
+    },
+    "G338264/T50": {
+      "ABSTAIN_T_OWNER_DRIFT": 1
+    }
+  },
+  "schema": "planets-lab.combat-c5-short-chunnel-and-archive-coverage.v18",
+  "short_distance_25ly_case": {
+    "Chunnel_activation_or_short_distance_override_proven": false,
+    "Nplus1_VCR_used": false,
+    "T_actor_net_fuel_delta_KT": 48,
+    "T_after_Host_actor_position": [
+      1126,
+      1439
+    ],
+    "T_after_Host_target_position": [
+      1126,
+      1439
+    ],
+    "T_archive_visibility": {
+      "T_archived_perspective_player_ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "T_fresh_ship_evidence": {
+        "actor": {
+          "T_fresh_perspectives": [
+            6
+          ],
+          "T_fresh_reported_owners": [
+            6
+          ],
+          "T_owner_current_record_available": true,
+          "T_stale_contacts_not_authoritative": true,
+          "T_stale_perspectives": [],
+          "ship_id": 467
+        },
+        "target": {
+          "T_fresh_perspectives": [
+            6
+          ],
+          "T_fresh_reported_owners": [
+            6
+          ],
+          "T_owner_current_record_available": true,
+          "T_stale_contacts_not_authoritative": true,
+          "T_stale_perspectives": [],
+          "ship_id": 80
+        }
+      },
+      "T_source_owner_perspective_present": true,
+      "T_visibility_only_not_host_mechanic_or_ship_destruction": true
+    },
+    "T_current_owner_source_provenance_only": true,
+    "Tminus1_frozen_features": {
+      "Tminus1_25ly_event_not_assigned_cause": true,
+      "Tminus1_actor": {
+        "damage": 0,
+        "fuel": 51,
+        "mission": 1,
+        "ship_id": 467,
+        "start": [
+          1141,
+          1459
+        ],
+        "warp": 0,
+        "waypoint": [
+          1141,
+          1459
+        ]
+      },
+      "Tminus1_candidate_source_target_distance_ly": 25.0,
+      "Tminus1_nearby_ships_at_endpoints": [
+        {
+          "Tminus1_start": [
+            1141,
+            1459
+          ],
+          "Tminus1_warp": 9,
+          "is_stock_firecloud": false,
+          "owner_id": 6,
+          "ship_id": 193
+        },
+        {
+          "Tminus1_start": [
+            1141,
+            1459
+          ],
+          "Tminus1_warp": 9,
+          "is_stock_firecloud": false,
+          "owner_id": 6,
+          "ship_id": 235
+        },
+        {
+          "Tminus1_start": [
+            1141,
+            1459
+          ],
+          "Tminus1_warp": 9,
+          "is_stock_firecloud": false,
+          "owner_id": 6,
+          "ship_id": 405
+        }
+      ],
+      "Tminus1_numeric_friendly_code_target_confirmed": true,
+      "Tminus1_other_ships_colocated_with_actor": 3,
+      "Tminus1_other_ships_colocated_with_target": 0,
+      "Tminus1_target": {
+        "damage": 0,
+        "fuel": 1,
+        "mission": 1,
+        "ship_id": 80,
+        "start": [
+          1126,
+          1439
+        ],
+        "warp": 0,
+        "waypoint": [
+          1126,
+          1439
+        ]
+      },
+      "Tminus1_tow_requests_on_endpoints": []
+    },
+    "V17_frozen_cohort": "ONE_TMINUS1_GATE_FAILS",
+    "V17_frozen_gate": "DISTANCE_BELOW_100_AT_TMINUS1",
+    "V17_posthost_classification": "T_ACTOR_AT_DISTINCT_FROZEN_TARGET",
+    "game_id": 467386,
+    "initiator_ship_id": 467,
+    "owner_id": 6,
+    "target_ship_id": 80,
+    "turn": 75
+  },
+  "source_db_generation": "generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "source_db_sha256": "3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c",
+  "source_v17_git_blob_sha1": "a6256b70dc63b9b7126a211245bc65ce20ece863",
+  "status": "POSTHOC_V17_ANOMALY_AND_OWNER_CURRENT_VISIBILITY_NOT_CHUNNEL_RULE",
+  "summary": {
+    "Host_short_distance_Chunnel_or_activation_proven": false,
+    "Nplus1_VCR_used": false,
+    "V17_frozen_113_candidates": 113,
+    "V17_frozen_48_windows_16_games": true,
+    "actor_T_owner_current_unavailable_appearances": 14,
+    "new_Host_movement_or_combat_predictions": 0,
+    "posthoc_25ly_anomaly_cases": 1,
+    "reverified_Tminus1_T_cases": 20,
+    "source_owner_T_perspective_missing_appearances": 0,
+    "targeted_Tminus1_windows": 6,
+    "targeted_V17_discriminative_negative_edges": 6,
+    "targeted_V17_positive_owner_current_abstentions": 14
+  },
+  "targeted_case_evaluations": [
+    {
+      "Chunnel_activation_or_short_distance_override_proven": false,
+      "Nplus1_VCR_used": false,
+      "T_actor_net_fuel_delta_KT": null,
+      "T_after_Host_actor_position": null,
+      "T_after_Host_target_position": null,
+      "T_archive_visibility": {
+        "T_archived_perspective_player_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "T_fresh_ship_evidence": {
+          "actor": {
+            "T_fresh_perspectives": [],
+            "T_fresh_reported_owners": [],
+            "T_owner_current_record_available": false,
+            "T_stale_contacts_not_authoritative": true,
+            "T_stale_perspectives": [],
+            "ship_id": 117
+          },
+          "target": {
+            "T_fresh_perspectives": [
+              2,
+              3,
+              6,
+              7,
+              9
+            ],
+            "T_fresh_reported_owners": [
+              9
+            ],
+            "T_owner_current_record_available": false,
+            "T_stale_contacts_not_authoritative": true,
+            "T_stale_perspectives": [],
+            "ship_id": 182
+          }
+        },
+        "T_source_owner_perspective_present": true,
+        "T_visibility_only_not_host_mechanic_or_ship_destruction": true
+      },
+      "T_current_owner_source_provenance_only": true,
+      "Tminus1_frozen_features": {
+        "Tminus1_25ly_event_not_assigned_cause": true,
+        "Tminus1_actor": {
+          "damage": 0,
+          "fuel": 217,
+          "mission": 1,
+          "ship_id": 117,
+          "start": [
+            1560,
+            2359
+          ],
+          "warp": 0,
+          "waypoint": [
+            1560,
+            2359
+          ]
+        },
+        "Tminus1_candidate_source_target_distance_ly": 588.74782,
+        "Tminus1_nearby_ships_at_endpoints": [
+          {
+            "Tminus1_start": [
+              1560,
+              2359
+            ],
+            "Tminus1_warp": 0,
+            "is_stock_firecloud": true,
+            "owner_id": 7,
+            "ship_id": 22
+          },
+          {
+            "Tminus1_start": [
+              1160,
+              1927
+            ],
+            "Tminus1_warp": 9,
+            "is_stock_firecloud": false,
+            "owner_id": 3,
+            "ship_id": 51
+          },
+          {
+            "Tminus1_start": [
+              1160,
+              1927
+            ],
+            "Tminus1_warp": 9,
+            "is_stock_firecloud": false,
+            "owner_id": 7,
+            "ship_id": 76
+          },
+          {
+            "Tminus1_start": [
+              1160,
+              1927
+            ],
+            "Tminus1_warp": 1,
+            "is_stock_firecloud": false,
+            "owner_id": 9,
+            "ship_id": 402
+          }
+        ],
+        "Tminus1_numeric_friendly_code_target_confirmed": true,
+        "Tminus1_other_ships_colocated_with_actor": 1,
+        "Tminus1_other_ships_colocated_with_target": 3,
+        "Tminus1_target": {
+          "damage": 0,
+          "fuel": 136,
+          "mission": 1,
+          "ship_id": 182,
+          "start": [
+            1160,
+            1927
+          ],
+          "warp": 0,
+          "waypoint": [
+            1160,
+            1927
+          ]
+        },
+        "Tminus1_tow_requests_on_endpoints": []
+      },
+      "V17_frozen_cohort": "ALL_TMINUS1_GATES_PASS",
+      "V17_frozen_gate": null,
+      "V17_posthost_classification": "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE",
+      "game_id": 227887,
+      "initiator_ship_id": 117,
+      "owner_id": 6,
+      "target_ship_id": 182,
+      "turn": 72
+    },
+    {
+      "Chunnel_activation_or_short_distance_override_proven": false,
+      "Nplus1_VCR_used": false,
+      "T_actor_net_fuel_delta_KT": null,
+      "T_after_Host_actor_position": null,
+      "T_after_Host_target_position": null,
+      "T_archive_visibility": {
+        "T_archived_perspective_player_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "T_fresh_ship_evidence": {
+          "actor": {
+            "T_fresh_perspectives": [],
+            "T_fresh_reported_owners": [],
+            "T_owner_current_record_available": false,
+            "T_stale_contacts_not_authoritative": true,
+            "T_stale_perspectives": [],
+            "ship_id": 152
+          },
+          "target": {
+            "T_fresh_perspectives": [
+              2,
+              3,
+              6,
+              7,
+              9
+            ],
+            "T_fresh_reported_owners": [
+              9
+            ],
+            "T_owner_current_record_available": false,
+            "T_stale_contacts_not_authoritative": true,
+            "T_stale_perspectives": [],
+            "ship_id": 182
+          }
+        },
+        "T_source_owner_perspective_present": true,
+        "T_visibility_only_not_host_mechanic_or_ship_destruction": true
+      },
+      "T_current_owner_source_provenance_only": true,
+      "Tminus1_frozen_features": {
+        "Tminus1_25ly_event_not_assigned_cause": true,
+        "Tminus1_actor": {
+          "damage": 0,
+          "fuel": 440,
+          "mission": 1,
+          "ship_id": 152,
+          "start": [
+            1470,
+            2270
+          ],
+          "warp": 0,
+          "waypoint": [
+            1470,
+            2270
+          ]
+        },
+        "Tminus1_candidate_source_target_distance_ly": 462.32997,
+        "Tminus1_nearby_ships_at_endpoints": [
+          {
+            "Tminus1_start": [
+              1470,
+              2270
+            ],
+            "Tminus1_warp": 9,
+            "is_stock_firecloud": false,
+            "owner_id": 6,
+            "ship_id": 17
+          },
+          {
+            "Tminus1_start": [
+              1470,
+              2270
+            ],
+            "Tminus1_warp": 0,
+            "is_stock_firecloud": false,
+            "owner_id": 2,
+            "ship_id": 34
+          },
+          {
+            "Tminus1_start": [
+              1470,
+              2270
+            ],
+            "Tminus1_warp": 9,
+            "is_stock_firecloud": false,
+            "owner_id": 6,
+            "ship_id": 46
+          },
+          {
+            "Tminus1_start": [
+              1470,
+              2270
+            ],
+            "Tminus1_warp": 0,
+            "is_stock_firecloud": false,
+            "owner_id": 2,
+            "ship_id": 48
+          },
+          {
+            "Tminus1_start": [
+              1160,
+              1927
+            ],
+            "Tminus1_warp": 9,
+            "is_stock_firecloud": false,
+            "owner_id": 3,
+            "ship_id": 51
+          },
+          {
+            "Tminus1_start": [
+              1160,
+              1927
+            ],
+            "Tminus1_warp": 9,
+            "is_stock_firecloud": false,
+            "owner_id": 7,
+            "ship_id": 76
+          },
+          {
+            "Tminus1_start": [
+              1470,
+              2270
+            ],
+            "Tminus1_warp": 9,
+            "is_stock_firecloud": false,
+            "owner_id": 6,
+            "ship_id": 79
+          },
+          {
+            "Tminus1_start": [
+              1470,
+              2270
+            ],
+            "Tminus1_warp": 1,
+            "is_stock_firecloud": false,
+            "owner_id": 6,
+            "ship_id": 139
+          },
+          {
+            "Tminus1_start": [
+              1470,
+              2270
+            ],
+            "Tminus1_warp": 0,
+            "is_stock_firecloud": false,
+            "owner_id": 2,
+            "ship_id": 217
+          },
+          {
+            "Tminus1_start": [
+              1470,
+              2270
+            ],
+            "Tminus1_warp": 1,
+            "is_stock_firecloud": false,
+            "owner_id": 6,
+            "ship_id": 229
+          },
+          {
+            "Tminus1_start": [
+              1470,
+              2270
+            ],
+            "Tminus1_warp": 0,
+            "is_stock_firecloud": false,
+            "owner_id": 7,
+            "ship_id": 237
+          },
+          {
+            "Tminus1_start": [
+              1470,
+              2270
+            ],
+            "Tminus1_warp": 0,
+            "is_stock_firecloud": false,
+            "owner_id": 7,
+            "ship_id": 245
+          },
+          {
+            "Tminus1_start": [
+              1470,
+              2270
+            ],
+            "Tminus1_warp": 0,
+            "is_stock_firecloud": false,
+            "owner_id": 2,
+            "ship_id": 291
+          },
+          {
+            "Tminus1_start": [
+              1160,
+              1927
+            ],
+            "Tminus1_warp": 1,
+            "is_stock_firecloud": false,
+            "owner_id": 9,
+            "ship_id": 402
+          },
+          {
+            "Tminus1_start": [
+              1470,
+              2270
+            ],
+            "Tminus1_warp": 1,
+            "is_stock_firecloud": false,
+            "owner_id": 6,
+            "ship_id": 403
+          },
+          {
+            "Tminus1_start": [
+              1470,
+              2270
+            ],
+            "Tminus1_warp": 0,
+            "is_stock_firecloud": true,
+            "owner_id": 6,
+            "ship_id": 413
+          },
+          {
+            "Tminus1_start": [
+              1470,
+              2270
+            ],
+            "Tminus1_warp": 1,
+            "is_stock_firecloud": false,
+            "owner_id": 6,
+            "ship_id": 419
+          },
+          {
+            "Tminus1_start": [
+              1470,
+              2270
+            ],
+            "Tminus1_warp": 1,
+            "is_stock_firecloud": false,
+            "owner_id": 6,
+            "ship_id": 426
+          },
+          {
+            "Tminus1_start": [
+              1470,
+              2270
+            ],
+            "Tminus1_warp": 0,
+            "is_stock_firecloud": false,
+            "owner_id": 7,
+            "ship_id": 427
+          },
+          {
+            "Tminus1_start": [
+              1470,
+              2270
+            ],
+            "Tminus1_warp": 0,
+            "is_stock_firecloud": true,
+            "owner_id": 6,
+            "ship_id": 441
+          },
+          {
+            "Tminus1_start": [
+              1470,
+              2270
+            ],
+            "Tminus1_warp": 1,
+            "is_stock_firecloud": false,
+            "owner_id": 6,
+            "ship_id": 468
+          },
+          {
+            "Tminus1_start": [
+              1470,
+              2270
+            ],
+            "Tminus1_warp": 1,
+            "is_stock_firecloud": false,
+            "owner_id": 6,
+            "ship_id": 503
+          },
+          {
+            "Tminus1_start": [
+              1470,
+              2270
+            ],
+            "Tminus1_warp": 0,
+            "is_stock_firecloud": true,
+            "owner_id": 6,
+            "ship_id": 512
+          },
+          {
+            "Tminus1_start": [
+              1470,
+              2270
+            ],
+            "Tminus1_warp": 0,
+            "is_stock_firecloud": false,
+            "owner_id": 2,
+            "ship_id": 529
+          },
+          {
+            "Tminus1_start": [
+              1470,
+              2270
+            ],
+            "Tminus1_warp": 0,
+            "is_stock_firecloud": false,
+            "owner_id": 2,
+            "ship_id": 530
+          }
+        ],
+        "Tminus1_numeric_friendly_code_target_confirmed": true,
+        "Tminus1_other_ships_colocated_with_actor": 22,
+        "Tminus1_other_ships_colocated_with_target": 3,
+        "Tminus1_target": {
+          "damage": 0,
+          "fuel": 136,
+          "mission": 1,
+          "ship_id": 182,
+          "start": [
+            1160,
+            1927
+          ],
+          "warp": 0,
+          "waypoint": [
+            1160,
+            1927
+          ]
+        },
+        "Tminus1_tow_requests_on_endpoints": []
+      },
+      "V17_frozen_cohort": "ALL_TMINUS1_GATES_PASS",
+      "V17_frozen_gate": null,
+      "V17_posthost_classification": "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE",
+      "game_id": 227887,
+      "initiator_ship_id": 152,
+      "owner_id": 6,
+      "target_ship_id": 182,
+      "turn": 72
+    },
+    {
+      "Chunnel_activation_or_short_distance_override_proven": false,
+      "Nplus1_VCR_used": false,
+      "T_actor_net_fuel_delta_KT": null,
+      "T_after_Host_actor_position": null,
+      "T_after_Host_target_position": null,
+      "T_archive_visibility": {
+        "T_archived_perspective_player_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "T_fresh_ship_evidence": {
+          "actor": {
+            "T_fresh_perspectives": [],
+            "T_fresh_reported_owners": [],
+            "T_owner_current_record_available": false,
+            "T_stale_contacts_not_authoritative": true,
+            "T_stale_perspectives": [],
+            "ship_id": 210
+          },
+          "target": {
+            "T_fresh_perspectives": [
+              2,
+              3,
+              6,
+              7,
+              9
+            ],
+            "T_fresh_reported_owners": [
+              9
+            ],
+            "T_owner_current_record_available": false,
+            "T_stale_contacts_not_authoritative": true,
+            "T_stale_perspectives": [],
+            "ship_id": 182
+          }
+        },
+        "T_source_owner_perspective_present": true,
+        "T_visibility_only_not_host_mechanic_or_ship_destruction": true
+      },
+      "T_current_owner_source_provenance_only": true,
+      "Tminus1_frozen_features": {
+        "Tminus1_25ly_event_not_assigned_cause": true,
+        "Tminus1_actor": {
+          "damage": 0,
+          "fuel": 219,
+          "mission": 1,
+          "ship_id": 210,
+          "start": [
+            2391,
+            1673
+          ],
+          "warp": 0,
+          "waypoint": [
+            2391,
+            1673
+          ]
+        },
+        "Tminus1_candidate_source_target_distance_ly": 1256.93158,
+        "Tminus1_nearby_ships_at_endpoints": [
+          {
+            "Tminus1_start": [
+              1160,
+              1927
+            ],
+            "Tminus1_warp": 9,
+            "is_stock_firecloud": false,
+            "owner_id": 3,
+            "ship_id": 51
+          },
+          {
+            "Tminus1_start": [
+              1160,
+              1927
+            ],
+            "Tminus1_warp": 9,
+            "is_stock_firecloud": false,
+            "owner_id": 7,
+            "ship_id": 76
+          },
+          {
+            "Tminus1_start": [
+              1160,
+              1927
+            ],
+            "Tminus1_warp": 1,
+            "is_stock_firecloud": false,
+            "owner_id": 9,
+            "ship_id": 402
+          }
+        ],
+        "Tminus1_numeric_friendly_code_target_confirmed": true,
+        "Tminus1_other_ships_colocated_with_actor": 0,
+        "Tminus1_other_ships_colocated_with_target": 3,
+        "Tminus1_target": {
+          "damage": 0,
+          "fuel": 136,
+          "mission": 1,
+          "ship_id": 182,
+          "start": [
+            1160,
+            1927
+          ],
+          "warp": 0,
+          "waypoint": [
+            1160,
+            1927
+          ]
+        },
+        "Tminus1_tow_requests_on_endpoints": []
+      },
+      "V17_frozen_cohort": "ALL_TMINUS1_GATES_PASS",
+      "V17_frozen_gate": null,
+      "V17_posthost_classification": "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE",
+      "game_id": 227887,
+      "initiator_ship_id": 210,
+      "owner_id": 6,
+      "target_ship_id": 182,
+      "turn": 72
+    },
+    {
+      "Chunnel_activation_or_short_distance_override_proven": false,
+      "Nplus1_VCR_used": false,
+      "T_actor_net_fuel_delta_KT": null,
+      "T_after_Host_actor_position": null,
+      "T_after_Host_target_position": null,
+      "T_archive_visibility": {
+        "T_archived_perspective_player_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "T_fresh_ship_evidence": {
+          "actor": {
+            "T_fresh_perspectives": [],
+            "T_fresh_reported_owners": [],
+            "T_owner_current_record_available": false,
+            "T_stale_contacts_not_authoritative": true,
+            "T_stale_perspectives": [],
+            "ship_id": 282
+          },
+          "target": {
+            "T_fresh_perspectives": [
+              2,
+              3,
+              6,
+              7,
+              9
+            ],
+            "T_fresh_reported_owners": [
+              9
+            ],
+            "T_owner_current_record_available": false,
+            "T_stale_contacts_not_authoritative": true,
+            "T_stale_perspectives": [],
+            "ship_id": 182
+          }
+        },
+        "T_source_owner_perspective_present": true,
+        "T_visibility_only_not_host_mechanic_or_ship_destruction": true
+      },
+      "T_current_owner_source_provenance_only": true,
+      "Tminus1_frozen_features": {
+        "Tminus1_25ly_event_not_assigned_cause": true,
+        "Tminus1_actor": {
+          "damage": 0,
+          "fuel": 440,
+          "mission": 1,
+          "ship_id": 282,
+          "start": [
+            2134,
+            2145
+          ],
+          "warp": 0,
+          "waypoint": [
+            2134,
+            2145
+          ]
+        },
+        "Tminus1_candidate_source_target_distance_ly": 998.09819,
+        "Tminus1_nearby_ships_at_endpoints": [
+          {
+            "Tminus1_start": [
+              1160,
+              1927
+            ],
+            "Tminus1_warp": 9,
+            "is_stock_firecloud": false,
+            "owner_id": 3,
+            "ship_id": 51
+          },
+          {
+            "Tminus1_start": [
+              1160,
+              1927
+            ],
+            "Tminus1_warp": 9,
+            "is_stock_firecloud": false,
+            "owner_id": 7,
+            "ship_id": 76
+          },
+          {
+            "Tminus1_start": [
+              1160,
+              1927
+            ],
+            "Tminus1_warp": 1,
+            "is_stock_firecloud": false,
+            "owner_id": 9,
+            "ship_id": 402
+          }
+        ],
+        "Tminus1_numeric_friendly_code_target_confirmed": true,
+        "Tminus1_other_ships_colocated_with_actor": 0,
+        "Tminus1_other_ships_colocated_with_target": 3,
+        "Tminus1_target": {
+          "damage": 0,
+          "fuel": 136,
+          "mission": 1,
+          "ship_id": 182,
+          "start": [
+            1160,
+            1927
+          ],
+          "warp": 0,
+          "waypoint": [
+            1160,
+            1927
+          ]
+        },
+        "Tminus1_tow_requests_on_endpoints": []
+      },
+      "V17_frozen_cohort": "ALL_TMINUS1_GATES_PASS",
+      "V17_frozen_gate": null,
+      "V17_posthost_classification": "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE",
+      "game_id": 227887,
+      "initiator_ship_id": 282,
+      "owner_id": 6,
+      "target_ship_id": 182,
+      "turn": 72
+    },
+    {
+      "Chunnel_activation_or_short_distance_override_proven": false,
+      "Nplus1_VCR_used": false,
+      "T_actor_net_fuel_delta_KT": null,
+      "T_after_Host_actor_position": null,
+      "T_after_Host_target_position": null,
+      "T_archive_visibility": {
+        "T_archived_perspective_player_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "T_fresh_ship_evidence": {
+          "actor": {
+            "T_fresh_perspectives": [],
+            "T_fresh_reported_owners": [],
+            "T_owner_current_record_available": false,
+            "T_stale_contacts_not_authoritative": true,
+            "T_stale_perspectives": [],
+            "ship_id": 358
+          },
+          "target": {
+            "T_fresh_perspectives": [
+              2,
+              3,
+              6,
+              7,
+              9
+            ],
+            "T_fresh_reported_owners": [
+              9
+            ],
+            "T_owner_current_record_available": false,
+            "T_stale_contacts_not_authoritative": true,
+            "T_stale_perspectives": [],
+            "ship_id": 182
+          }
+        },
+        "T_source_owner_perspective_present": true,
+        "T_visibility_only_not_host_mechanic_or_ship_destruction": true
+      },
+      "T_current_owner_source_provenance_only": true,
+      "Tminus1_frozen_features": {
+        "Tminus1_25ly_event_not_assigned_cause": true,
+        "Tminus1_actor": {
+          "damage": 0,
+          "fuel": 229,
+          "mission": 1,
+          "ship_id": 358,
+          "start": [
+            1587,
+            3392
+          ],
+          "warp": 0,
+          "waypoint": [
+            1587,
+            3392
+          ]
+        },
+        "Tminus1_candidate_source_target_distance_ly": 1525.96003,
+        "Tminus1_nearby_ships_at_endpoints": [
+          {
+            "Tminus1_start": [
+              1160,
+              1927
+            ],
+            "Tminus1_warp": 9,
+            "is_stock_firecloud": false,
+            "owner_id": 3,
+            "ship_id": 51
+          },
+          {
+            "Tminus1_start": [
+              1160,
+              1927
+            ],
+            "Tminus1_warp": 9,
+            "is_stock_firecloud": false,
+            "owner_id": 7,
+            "ship_id": 76
+          },
+          {
+            "Tminus1_start": [
+              1160,
+              1927
+            ],
+            "Tminus1_warp": 1,
+            "is_stock_firecloud": false,
+            "owner_id": 9,
+            "ship_id": 402
+          }
+        ],
+        "Tminus1_numeric_friendly_code_target_confirmed": true,
+        "Tminus1_other_ships_colocated_with_actor": 0,
+        "Tminus1_other_ships_colocated_with_target": 3,
+        "Tminus1_target": {
+          "damage": 0,
+          "fuel": 136,
+          "mission": 1,
+          "ship_id": 182,
+          "start": [
+            1160,
+            1927
+          ],
+          "warp": 0,
+          "waypoint": [
+            1160,
+            1927
+          ]
+        },
+        "Tminus1_tow_requests_on_endpoints": []
+      },
+      "V17_frozen_cohort": "ALL_TMINUS1_GATES_PASS",
+      "V17_frozen_gate": null,
+      "V17_posthost_classification": "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE",
+      "game_id": 227887,
+      "initiator_ship_id": 358,
+      "owner_id": 6,
+      "target_ship_id": 182,
+      "turn": 72
+    },
+    {
+      "Chunnel_activation_or_short_distance_override_proven": false,
+      "Nplus1_VCR_used": false,
+      "T_actor_net_fuel_delta_KT": null,
+      "T_after_Host_actor_position": null,
+      "T_after_Host_target_position": null,
+      "T_archive_visibility": {
+        "T_archived_perspective_player_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "T_fresh_ship_evidence": {
+          "actor": {
+            "T_fresh_perspectives": [],
+            "T_fresh_reported_owners": [],
+            "T_owner_current_record_available": false,
+            "T_stale_contacts_not_authoritative": true,
+            "T_stale_perspectives": [],
+            "ship_id": 372
+          },
+          "target": {
+            "T_fresh_perspectives": [
+              2,
+              3,
+              6,
+              7,
+              9
+            ],
+            "T_fresh_reported_owners": [
+              9
+            ],
+            "T_owner_current_record_available": false,
+            "T_stale_contacts_not_authoritative": true,
+            "T_stale_perspectives": [],
+            "ship_id": 182
+          }
+        },
+        "T_source_owner_perspective_present": true,
+        "T_visibility_only_not_host_mechanic_or_ship_destruction": true
+      },
+      "T_current_owner_source_provenance_only": true,
+      "Tminus1_frozen_features": {
+        "Tminus1_25ly_event_not_assigned_cause": true,
+        "Tminus1_actor": {
+          "damage": 0,
+          "fuel": 70,
+          "mission": 0,
+          "ship_id": 372,
+          "start": [
+            861,
+            2918
+          ],
+          "warp": 0,
+          "waypoint": [
+            861,
+            2918
+          ]
+        },
+        "Tminus1_candidate_source_target_distance_ly": 1035.12415,
+        "Tminus1_nearby_ships_at_endpoints": [
+          {
+            "Tminus1_start": [
+              1160,
+              1927
+            ],
+            "Tminus1_warp": 9,
+            "is_stock_firecloud": false,
+            "owner_id": 3,
+            "ship_id": 51
+          },
+          {
+            "Tminus1_start": [
+              1160,
+              1927
+            ],
+            "Tminus1_warp": 9,
+            "is_stock_firecloud": false,
+            "owner_id": 7,
+            "ship_id": 76
+          },
+          {
+            "Tminus1_start": [
+              1160,
+              1927
+            ],
+            "Tminus1_warp": 1,
+            "is_stock_firecloud": false,
+            "owner_id": 9,
+            "ship_id": 402
+          }
+        ],
+        "Tminus1_numeric_friendly_code_target_confirmed": true,
+        "Tminus1_other_ships_colocated_with_actor": 0,
+        "Tminus1_other_ships_colocated_with_target": 3,
+        "Tminus1_target": {
+          "damage": 0,
+          "fuel": 136,
+          "mission": 1,
+          "ship_id": 182,
+          "start": [
+            1160,
+            1927
+          ],
+          "warp": 0,
+          "waypoint": [
+            1160,
+            1927
+          ]
+        },
+        "Tminus1_tow_requests_on_endpoints": []
+      },
+      "V17_frozen_cohort": "ALL_TMINUS1_GATES_PASS",
+      "V17_frozen_gate": null,
+      "V17_posthost_classification": "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE",
+      "game_id": 227887,
+      "initiator_ship_id": 372,
+      "owner_id": 6,
+      "target_ship_id": 182,
+      "turn": 72
+    },
+    {
+      "Chunnel_activation_or_short_distance_override_proven": false,
+      "Nplus1_VCR_used": false,
+      "T_actor_net_fuel_delta_KT": null,
+      "T_after_Host_actor_position": null,
+      "T_after_Host_target_position": null,
+      "T_archive_visibility": {
+        "T_archived_perspective_player_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "T_fresh_ship_evidence": {
+          "actor": {
+            "T_fresh_perspectives": [],
+            "T_fresh_reported_owners": [],
+            "T_owner_current_record_available": false,
+            "T_stale_contacts_not_authoritative": true,
+            "T_stale_perspectives": [],
+            "ship_id": 422
+          },
+          "target": {
+            "T_fresh_perspectives": [
+              2,
+              3,
+              6,
+              7,
+              9
+            ],
+            "T_fresh_reported_owners": [
+              9
+            ],
+            "T_owner_current_record_available": false,
+            "T_stale_contacts_not_authoritative": true,
+            "T_stale_perspectives": [],
+            "ship_id": 182
+          }
+        },
+        "T_source_owner_perspective_present": true,
+        "T_visibility_only_not_host_mechanic_or_ship_destruction": true
+      },
+      "T_current_owner_source_provenance_only": true,
+      "Tminus1_frozen_features": {
+        "Tminus1_25ly_event_not_assigned_cause": true,
+        "Tminus1_actor": {
+          "damage": 0,
+          "fuel": 210,
+          "mission": 2,
+          "ship_id": 422,
+          "start": [
+            1377,
+            2360
+          ],
+          "warp": 0,
+          "waypoint": [
+            1377,
+            2360
+          ]
+        },
+        "Tminus1_candidate_source_target_distance_ly": 484.33253,
+        "Tminus1_nearby_ships_at_endpoints": [
+          {
+            "Tminus1_start": [
+              1160,
+              1927
+            ],
+            "Tminus1_warp": 9,
+            "is_stock_firecloud": false,
+            "owner_id": 3,
+            "ship_id": 51
+          },
+          {
+            "Tminus1_start": [
+              1160,
+              1927
+            ],
+            "Tminus1_warp": 9,
+            "is_stock_firecloud": false,
+            "owner_id": 7,
+            "ship_id": 76
+          },
+          {
+            "Tminus1_start": [
+              1377,
+              2360
+            ],
+            "Tminus1_warp": 8,
+            "is_stock_firecloud": false,
+            "owner_id": 6,
+            "ship_id": 240
+          },
+          {
+            "Tminus1_start": [
+              1377,
+              2360
+            ],
+            "Tminus1_warp": 0,
+            "is_stock_firecloud": true,
+            "owner_id": 7,
+            "ship_id": 339
+          },
+          {
+            "Tminus1_start": [
+              1377,
+              2360
+            ],
+            "Tminus1_warp": 1,
+            "is_stock_firecloud": false,
+            "owner_id": 6,
+            "ship_id": 362
+          },
+          {
+            "Tminus1_start": [
+              1160,
+              1927
+            ],
+            "Tminus1_warp": 1,
+            "is_stock_firecloud": false,
+            "owner_id": 9,
+            "ship_id": 402
+          },
+          {
+            "Tminus1_start": [
+              1377,
+              2360
+            ],
+            "Tminus1_warp": 1,
+            "is_stock_firecloud": false,
+            "owner_id": 6,
+            "ship_id": 404
+          }
+        ],
+        "Tminus1_numeric_friendly_code_target_confirmed": true,
+        "Tminus1_other_ships_colocated_with_actor": 4,
+        "Tminus1_other_ships_colocated_with_target": 3,
+        "Tminus1_target": {
+          "damage": 0,
+          "fuel": 136,
+          "mission": 1,
+          "ship_id": 182,
+          "start": [
+            1160,
+            1927
+          ],
+          "warp": 0,
+          "waypoint": [
+            1160,
+            1927
+          ]
+        },
+        "Tminus1_tow_requests_on_endpoints": []
+      },
+      "V17_frozen_cohort": "ALL_TMINUS1_GATES_PASS",
+      "V17_frozen_gate": null,
+      "V17_posthost_classification": "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE",
+      "game_id": 227887,
+      "initiator_ship_id": 422,
+      "owner_id": 6,
+      "target_ship_id": 182,
+      "turn": 72
+    },
+    {
+      "Chunnel_activation_or_short_distance_override_proven": false,
+      "Nplus1_VCR_used": false,
+      "T_actor_net_fuel_delta_KT": null,
+      "T_after_Host_actor_position": null,
+      "T_after_Host_target_position": null,
+      "T_archive_visibility": {
+        "T_archived_perspective_player_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "T_fresh_ship_evidence": {
+          "actor": {
+            "T_fresh_perspectives": [],
+            "T_fresh_reported_owners": [],
+            "T_owner_current_record_available": false,
+            "T_stale_contacts_not_authoritative": true,
+            "T_stale_perspectives": [],
+            "ship_id": 442
+          },
+          "target": {
+            "T_fresh_perspectives": [
+              2,
+              3,
+              6,
+              7,
+              9
+            ],
+            "T_fresh_reported_owners": [
+              9
+            ],
+            "T_owner_current_record_available": false,
+            "T_stale_contacts_not_authoritative": true,
+            "T_stale_perspectives": [],
+            "ship_id": 182
+          }
+        },
+        "T_source_owner_perspective_present": true,
+        "T_visibility_only_not_host_mechanic_or_ship_destruction": true
+      },
+      "T_current_owner_source_provenance_only": true,
+      "Tminus1_frozen_features": {
+        "Tminus1_25ly_event_not_assigned_cause": true,
+        "Tminus1_actor": {
+          "damage": 0,
+          "fuel": 200,
+          "mission": 0,
+          "ship_id": 442,
+          "start": [
+            2581,
+            1726
+          ],
+          "warp": 0,
+          "waypoint": [
+            2581,
+            1726
+          ]
+        },
+        "Tminus1_candidate_source_target_distance_ly": 1435.14529,
+        "Tminus1_nearby_ships_at_endpoints": [
+          {
+            "Tminus1_start": [
+              1160,
+              1927
+            ],
+            "Tminus1_warp": 9,
+            "is_stock_firecloud": false,
+            "owner_id": 3,
+            "ship_id": 51
+          },
+          {
+            "Tminus1_start": [
+              1160,
+              1927
+            ],
+            "Tminus1_warp": 9,
+            "is_stock_firecloud": false,
+            "owner_id": 7,
+            "ship_id": 76
+          },
+          {
+            "Tminus1_start": [
+              1160,
+              1927
+            ],
+            "Tminus1_warp": 1,
+            "is_stock_firecloud": false,
+            "owner_id": 9,
+            "ship_id": 402
+          }
+        ],
+        "Tminus1_numeric_friendly_code_target_confirmed": true,
+        "Tminus1_other_ships_colocated_with_actor": 0,
+        "Tminus1_other_ships_colocated_with_target": 3,
+        "Tminus1_target": {
+          "damage": 0,
+          "fuel": 136,
+          "mission": 1,
+          "ship_id": 182,
+          "start": [
+            1160,
+            1927
+          ],
+          "warp": 0,
+          "waypoint": [
+            1160,
+            1927
+          ]
+        },
+        "Tminus1_tow_requests_on_endpoints": []
+      },
+      "V17_frozen_cohort": "ALL_TMINUS1_GATES_PASS",
+      "V17_frozen_gate": null,
+      "V17_posthost_classification": "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE",
+      "game_id": 227887,
+      "initiator_ship_id": 442,
+      "owner_id": 6,
+      "target_ship_id": 182,
+      "turn": 72
+    },
+    {
+      "Chunnel_activation_or_short_distance_override_proven": false,
+      "Nplus1_VCR_used": false,
+      "T_actor_net_fuel_delta_KT": null,
+      "T_after_Host_actor_position": null,
+      "T_after_Host_target_position": null,
+      "T_archive_visibility": {
+        "T_archived_perspective_player_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "T_fresh_ship_evidence": {
+          "actor": {
+            "T_fresh_perspectives": [],
+            "T_fresh_reported_owners": [],
+            "T_owner_current_record_available": false,
+            "T_stale_contacts_not_authoritative": true,
+            "T_stale_perspectives": [],
+            "ship_id": 451
+          },
+          "target": {
+            "T_fresh_perspectives": [
+              2,
+              3,
+              6,
+              7,
+              9
+            ],
+            "T_fresh_reported_owners": [
+              9
+            ],
+            "T_owner_current_record_available": false,
+            "T_stale_contacts_not_authoritative": true,
+            "T_stale_perspectives": [],
+            "ship_id": 182
+          }
+        },
+        "T_source_owner_perspective_present": true,
+        "T_visibility_only_not_host_mechanic_or_ship_destruction": true
+      },
+      "T_current_owner_source_provenance_only": true,
+      "Tminus1_frozen_features": {
+        "Tminus1_25ly_event_not_assigned_cause": true,
+        "Tminus1_actor": {
+          "damage": 0,
+          "fuel": 60,
+          "mission": 0,
+          "ship_id": 451,
+          "start": [
+            1291,
+            3272
+          ],
+          "warp": 0,
+          "waypoint": [
+            1291,
+            3272
+          ]
+        },
+        "Tminus1_candidate_source_target_distance_ly": 1351.3645,
+        "Tminus1_nearby_ships_at_endpoints": [
+          {
+            "Tminus1_start": [
+              1160,
+              1927
+            ],
+            "Tminus1_warp": 9,
+            "is_stock_firecloud": false,
+            "owner_id": 3,
+            "ship_id": 51
+          },
+          {
+            "Tminus1_start": [
+              1160,
+              1927
+            ],
+            "Tminus1_warp": 9,
+            "is_stock_firecloud": false,
+            "owner_id": 7,
+            "ship_id": 76
+          },
+          {
+            "Tminus1_start": [
+              1160,
+              1927
+            ],
+            "Tminus1_warp": 1,
+            "is_stock_firecloud": false,
+            "owner_id": 9,
+            "ship_id": 402
+          }
+        ],
+        "Tminus1_numeric_friendly_code_target_confirmed": true,
+        "Tminus1_other_ships_colocated_with_actor": 0,
+        "Tminus1_other_ships_colocated_with_target": 3,
+        "Tminus1_target": {
+          "damage": 0,
+          "fuel": 136,
+          "mission": 1,
+          "ship_id": 182,
+          "start": [
+            1160,
+            1927
+          ],
+          "warp": 0,
+          "waypoint": [
+            1160,
+            1927
+          ]
+        },
+        "Tminus1_tow_requests_on_endpoints": []
+      },
+      "V17_frozen_cohort": "ALL_TMINUS1_GATES_PASS",
+      "V17_frozen_gate": null,
+      "V17_posthost_classification": "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE",
+      "game_id": 227887,
+      "initiator_ship_id": 451,
+      "owner_id": 6,
+      "target_ship_id": 182,
+      "turn": 72
+    },
+    {
+      "Chunnel_activation_or_short_distance_override_proven": false,
+      "Nplus1_VCR_used": false,
+      "T_actor_net_fuel_delta_KT": null,
+      "T_after_Host_actor_position": null,
+      "T_after_Host_target_position": null,
+      "T_archive_visibility": {
+        "T_archived_perspective_player_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "T_fresh_ship_evidence": {
+          "actor": {
+            "T_fresh_perspectives": [],
+            "T_fresh_reported_owners": [],
+            "T_owner_current_record_available": false,
+            "T_stale_contacts_not_authoritative": true,
+            "T_stale_perspectives": [],
+            "ship_id": 455
+          },
+          "target": {
+            "T_fresh_perspectives": [
+              2,
+              3,
+              6,
+              7,
+              9
+            ],
+            "T_fresh_reported_owners": [
+              9
+            ],
+            "T_owner_current_record_available": false,
+            "T_stale_contacts_not_authoritative": true,
+            "T_stale_perspectives": [],
+            "ship_id": 182
+          }
+        },
+        "T_source_owner_perspective_present": true,
+        "T_visibility_only_not_host_mechanic_or_ship_destruction": true
+      },
+      "T_current_owner_source_provenance_only": true,
+      "Tminus1_frozen_features": {
+        "Tminus1_25ly_event_not_assigned_cause": true,
+        "Tminus1_actor": {
+          "damage": 0,
+          "fuel": 440,
+          "mission": 1,
+          "ship_id": 455,
+          "start": [
+            1169,
+            2501
+          ],
+          "warp": 0,
+          "waypoint": [
+            1169,
+            2501
+          ]
+        },
+        "Tminus1_candidate_source_target_distance_ly": 574.07055,
+        "Tminus1_nearby_ships_at_endpoints": [
+          {
+            "Tminus1_start": [
+              1160,
+              1927
+            ],
+            "Tminus1_warp": 9,
+            "is_stock_firecloud": false,
+            "owner_id": 3,
+            "ship_id": 51
+          },
+          {
+            "Tminus1_start": [
+              1160,
+              1927
+            ],
+            "Tminus1_warp": 9,
+            "is_stock_firecloud": false,
+            "owner_id": 7,
+            "ship_id": 76
+          },
+          {
+            "Tminus1_start": [
+              1160,
+              1927
+            ],
+            "Tminus1_warp": 1,
+            "is_stock_firecloud": false,
+            "owner_id": 9,
+            "ship_id": 402
+          }
+        ],
+        "Tminus1_numeric_friendly_code_target_confirmed": true,
+        "Tminus1_other_ships_colocated_with_actor": 0,
+        "Tminus1_other_ships_colocated_with_target": 3,
+        "Tminus1_target": {
+          "damage": 0,
+          "fuel": 136,
+          "mission": 1,
+          "ship_id": 182,
+          "start": [
+            1160,
+            1927
+          ],
+          "warp": 0,
+          "waypoint": [
+            1160,
+            1927
+          ]
+        },
+        "Tminus1_tow_requests_on_endpoints": []
+      },
+      "V17_frozen_cohort": "ALL_TMINUS1_GATES_PASS",
+      "V17_frozen_gate": null,
+      "V17_posthost_classification": "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE",
+      "game_id": 227887,
+      "initiator_ship_id": 455,
+      "owner_id": 6,
+      "target_ship_id": 182,
+      "turn": 72
+    },
+    {
+      "Chunnel_activation_or_short_distance_override_proven": false,
+      "Nplus1_VCR_used": false,
+      "T_actor_net_fuel_delta_KT": null,
+      "T_after_Host_actor_position": null,
+      "T_after_Host_target_position": null,
+      "T_archive_visibility": {
+        "T_archived_perspective_player_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "T_fresh_ship_evidence": {
+          "actor": {
+            "T_fresh_perspectives": [],
+            "T_fresh_reported_owners": [],
+            "T_owner_current_record_available": false,
+            "T_stale_contacts_not_authoritative": true,
+            "T_stale_perspectives": [],
+            "ship_id": 501
+          },
+          "target": {
+            "T_fresh_perspectives": [
+              2,
+              3,
+              6,
+              7,
+              9
+            ],
+            "T_fresh_reported_owners": [
+              9
+            ],
+            "T_owner_current_record_available": false,
+            "T_stale_contacts_not_authoritative": true,
+            "T_stale_perspectives": [],
+            "ship_id": 182
+          }
+        },
+        "T_source_owner_perspective_present": true,
+        "T_visibility_only_not_host_mechanic_or_ship_destruction": true
+      },
+      "T_current_owner_source_provenance_only": true,
+      "Tminus1_frozen_features": {
+        "Tminus1_25ly_event_not_assigned_cause": true,
+        "Tminus1_actor": {
+          "damage": 0,
+          "fuel": 96,
+          "mission": 0,
+          "ship_id": 501,
+          "start": [
+            2165,
+            937
+          ],
+          "warp": 0,
+          "waypoint": [
+            2165,
+            937
+          ]
+        },
+        "Tminus1_candidate_source_target_distance_ly": 1410.7179,
+        "Tminus1_nearby_ships_at_endpoints": [
+          {
+            "Tminus1_start": [
+              1160,
+              1927
+            ],
+            "Tminus1_warp": 9,
+            "is_stock_firecloud": false,
+            "owner_id": 3,
+            "ship_id": 51
+          },
+          {
+            "Tminus1_start": [
+              1160,
+              1927
+            ],
+            "Tminus1_warp": 9,
+            "is_stock_firecloud": false,
+            "owner_id": 7,
+            "ship_id": 76
+          },
+          {
+            "Tminus1_start": [
+              1160,
+              1927
+            ],
+            "Tminus1_warp": 1,
+            "is_stock_firecloud": false,
+            "owner_id": 9,
+            "ship_id": 402
+          }
+        ],
+        "Tminus1_numeric_friendly_code_target_confirmed": true,
+        "Tminus1_other_ships_colocated_with_actor": 0,
+        "Tminus1_other_ships_colocated_with_target": 3,
+        "Tminus1_target": {
+          "damage": 0,
+          "fuel": 136,
+          "mission": 1,
+          "ship_id": 182,
+          "start": [
+            1160,
+            1927
+          ],
+          "warp": 0,
+          "waypoint": [
+            1160,
+            1927
+          ]
+        },
+        "Tminus1_tow_requests_on_endpoints": []
+      },
+      "V17_frozen_cohort": "ALL_TMINUS1_GATES_PASS",
+      "V17_frozen_gate": null,
+      "V17_posthost_classification": "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE",
+      "game_id": 227887,
+      "initiator_ship_id": 501,
+      "owner_id": 6,
+      "target_ship_id": 182,
+      "turn": 72
+    },
+    {
+      "Chunnel_activation_or_short_distance_override_proven": false,
+      "Nplus1_VCR_used": false,
+      "T_actor_net_fuel_delta_KT": null,
+      "T_after_Host_actor_position": null,
+      "T_after_Host_target_position": null,
+      "T_archive_visibility": {
+        "T_archived_perspective_player_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "T_fresh_ship_evidence": {
+          "actor": {
+            "T_fresh_perspectives": [],
+            "T_fresh_reported_owners": [],
+            "T_owner_current_record_available": false,
+            "T_stale_contacts_not_authoritative": true,
+            "T_stale_perspectives": [],
+            "ship_id": 510
+          },
+          "target": {
+            "T_fresh_perspectives": [
+              2,
+              3,
+              6,
+              7,
+              9
+            ],
+            "T_fresh_reported_owners": [
+              9
+            ],
+            "T_owner_current_record_available": false,
+            "T_stale_contacts_not_authoritative": true,
+            "T_stale_perspectives": [],
+            "ship_id": 182
+          }
+        },
+        "T_source_owner_perspective_present": true,
+        "T_visibility_only_not_host_mechanic_or_ship_destruction": true
+      },
+      "T_current_owner_source_provenance_only": true,
+      "Tminus1_frozen_features": {
+        "Tminus1_25ly_event_not_assigned_cause": true,
+        "Tminus1_actor": {
+          "damage": 0,
+          "fuel": 433,
+          "mission": 1,
+          "ship_id": 510,
+          "start": [
+            1412,
+            2420
+          ],
+          "warp": 0,
+          "waypoint": [
+            1412,
+            2420
+          ]
+        },
+        "Tminus1_candidate_source_target_distance_ly": 553.67229,
+        "Tminus1_nearby_ships_at_endpoints": [
+          {
+            "Tminus1_start": [
+              1160,
+              1927
+            ],
+            "Tminus1_warp": 9,
+            "is_stock_firecloud": false,
+            "owner_id": 3,
+            "ship_id": 51
+          },
+          {
+            "Tminus1_start": [
+              1160,
+              1927
+            ],
+            "Tminus1_warp": 9,
+            "is_stock_firecloud": false,
+            "owner_id": 7,
+            "ship_id": 76
+          },
+          {
+            "Tminus1_start": [
+              1160,
+              1927
+            ],
+            "Tminus1_warp": 1,
+            "is_stock_firecloud": false,
+            "owner_id": 9,
+            "ship_id": 402
+          }
+        ],
+        "Tminus1_numeric_friendly_code_target_confirmed": true,
+        "Tminus1_other_ships_colocated_with_actor": 0,
+        "Tminus1_other_ships_colocated_with_target": 3,
+        "Tminus1_target": {
+          "damage": 0,
+          "fuel": 136,
+          "mission": 1,
+          "ship_id": 182,
+          "start": [
+            1160,
+            1927
+          ],
+          "warp": 0,
+          "waypoint": [
+            1160,
+            1927
+          ]
+        },
+        "Tminus1_tow_requests_on_endpoints": []
+      },
+      "V17_frozen_cohort": "ALL_TMINUS1_GATES_PASS",
+      "V17_frozen_gate": null,
+      "V17_posthost_classification": "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE",
+      "game_id": 227887,
+      "initiator_ship_id": 510,
+      "owner_id": 6,
+      "target_ship_id": 182,
+      "turn": 72
+    },
+    {
+      "Chunnel_activation_or_short_distance_override_proven": false,
+      "Nplus1_VCR_used": false,
+      "T_actor_net_fuel_delta_KT": null,
+      "T_after_Host_actor_position": null,
+      "T_after_Host_target_position": null,
+      "T_archive_visibility": {
+        "T_archived_perspective_player_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "T_fresh_ship_evidence": {
+          "actor": {
+            "T_fresh_perspectives": [],
+            "T_fresh_reported_owners": [],
+            "T_owner_current_record_available": false,
+            "T_stale_contacts_not_authoritative": true,
+            "T_stale_perspectives": [],
+            "ship_id": 518
+          },
+          "target": {
+            "T_fresh_perspectives": [
+              2,
+              3,
+              6,
+              7,
+              9
+            ],
+            "T_fresh_reported_owners": [
+              9
+            ],
+            "T_owner_current_record_available": false,
+            "T_stale_contacts_not_authoritative": true,
+            "T_stale_perspectives": [],
+            "ship_id": 182
+          }
+        },
+        "T_source_owner_perspective_present": true,
+        "T_visibility_only_not_host_mechanic_or_ship_destruction": true
+      },
+      "T_current_owner_source_provenance_only": true,
+      "Tminus1_frozen_features": {
+        "Tminus1_25ly_event_not_assigned_cause": true,
+        "Tminus1_actor": {
+          "damage": 0,
+          "fuel": 240,
+          "mission": 1,
+          "ship_id": 518,
+          "start": [
+            2130,
+            2144
+          ],
+          "warp": 0,
+          "waypoint": [
+            2130,
+            2144
+          ]
+        },
+        "Tminus1_candidate_source_target_distance_ly": 993.97636,
+        "Tminus1_nearby_ships_at_endpoints": [
+          {
+            "Tminus1_start": [
+              1160,
+              1927
+            ],
+            "Tminus1_warp": 9,
+            "is_stock_firecloud": false,
+            "owner_id": 3,
+            "ship_id": 51
+          },
+          {
+            "Tminus1_start": [
+              1160,
+              1927
+            ],
+            "Tminus1_warp": 9,
+            "is_stock_firecloud": false,
+            "owner_id": 7,
+            "ship_id": 76
+          },
+          {
+            "Tminus1_start": [
+              1160,
+              1927
+            ],
+            "Tminus1_warp": 1,
+            "is_stock_firecloud": false,
+            "owner_id": 9,
+            "ship_id": 402
+          }
+        ],
+        "Tminus1_numeric_friendly_code_target_confirmed": true,
+        "Tminus1_other_ships_colocated_with_actor": 0,
+        "Tminus1_other_ships_colocated_with_target": 3,
+        "Tminus1_target": {
+          "damage": 0,
+          "fuel": 136,
+          "mission": 1,
+          "ship_id": 182,
+          "start": [
+            1160,
+            1927
+          ],
+          "warp": 0,
+          "waypoint": [
+            1160,
+            1927
+          ]
+        },
+        "Tminus1_tow_requests_on_endpoints": []
+      },
+      "V17_frozen_cohort": "ALL_TMINUS1_GATES_PASS",
+      "V17_frozen_gate": null,
+      "V17_posthost_classification": "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE",
+      "game_id": 227887,
+      "initiator_ship_id": 518,
+      "owner_id": 6,
+      "target_ship_id": 182,
+      "turn": 72
+    },
+    {
+      "Chunnel_activation_or_short_distance_override_proven": false,
+      "Nplus1_VCR_used": false,
+      "T_actor_net_fuel_delta_KT": 50,
+      "T_after_Host_actor_position": [
+        2327,
+        1527
+      ],
+      "T_after_Host_target_position": [
+        2327,
+        1527
+      ],
+      "T_archive_visibility": {
+        "T_archived_perspective_player_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30
+        ],
+        "T_fresh_ship_evidence": {
+          "actor": {
+            "T_fresh_perspectives": [
+              1,
+              13
+            ],
+            "T_fresh_reported_owners": [
+              13
+            ],
+            "T_owner_current_record_available": true,
+            "T_stale_contacts_not_authoritative": true,
+            "T_stale_perspectives": [],
+            "ship_id": 204
+          },
+          "target": {
+            "T_fresh_perspectives": [
+              1,
+              13
+            ],
+            "T_fresh_reported_owners": [
+              13
+            ],
+            "T_owner_current_record_available": true,
+            "T_stale_contacts_not_authoritative": true,
+            "T_stale_perspectives": [],
+            "ship_id": 116
+          }
+        },
+        "T_source_owner_perspective_present": true,
+        "T_visibility_only_not_host_mechanic_or_ship_destruction": true
+      },
+      "T_current_owner_source_provenance_only": true,
+      "Tminus1_frozen_features": {
+        "Tminus1_25ly_event_not_assigned_cause": true,
+        "Tminus1_actor": {
+          "damage": 0,
+          "fuel": 440,
+          "mission": 0,
+          "ship_id": 204,
+          "start": [
+            2971,
+            1728
+          ],
+          "warp": 0,
+          "waypoint": [
+            2971,
+            1728
+          ]
+        },
+        "Tminus1_candidate_source_target_distance_ly": 1.0,
+        "Tminus1_nearby_ships_at_endpoints": [
+          {
+            "Tminus1_start": [
+              2971,
+              1727
+            ],
+            "Tminus1_warp": 1,
+            "is_stock_firecloud": false,
+            "owner_id": 13,
+            "ship_id": 59
+          },
+          {
+            "Tminus1_start": [
+              2971,
+              1727
+            ],
+            "Tminus1_warp": 1,
+            "is_stock_firecloud": false,
+            "owner_id": 13,
+            "ship_id": 131
+          },
+          {
+            "Tminus1_start": [
+              2971,
+              1728
+            ],
+            "Tminus1_warp": 1,
+            "is_stock_firecloud": false,
+            "owner_id": 13,
+            "ship_id": 212
+          },
+          {
+            "Tminus1_start": [
+              2971,
+              1728
+            ],
+            "Tminus1_warp": 1,
+            "is_stock_firecloud": false,
+            "owner_id": 13,
+            "ship_id": 219
+          },
+          {
+            "Tminus1_start": [
+              2971,
+              1728
+            ],
+            "Tminus1_warp": 1,
+            "is_stock_firecloud": false,
+            "owner_id": 13,
+            "ship_id": 319
+          },
+          {
+            "Tminus1_start": [
+              2971,
+              1728
+            ],
+            "Tminus1_warp": 1,
+            "is_stock_firecloud": false,
+            "owner_id": 13,
+            "ship_id": 332
+          }
+        ],
+        "Tminus1_numeric_friendly_code_target_confirmed": true,
+        "Tminus1_other_ships_colocated_with_actor": 4,
+        "Tminus1_other_ships_colocated_with_target": 2,
+        "Tminus1_target": {
+          "damage": 0,
+          "fuel": 440,
+          "mission": 0,
+          "ship_id": 116,
+          "start": [
+            2971,
+            1727
+          ],
+          "warp": 0,
+          "waypoint": [
+            2971,
+            1727
+          ]
+        },
+        "Tminus1_tow_requests_on_endpoints": []
+      },
+      "V17_frozen_cohort": "ONE_TMINUS1_GATE_FAILS",
+      "V17_frozen_gate": "DISTANCE_BELOW_100_AT_TMINUS1",
+      "V17_posthost_classification": "T_ACTOR_ELSEWHERE",
+      "game_id": 338264,
+      "initiator_ship_id": 204,
+      "owner_id": 13,
+      "target_ship_id": 116,
+      "turn": 50
+    },
+    {
+      "Chunnel_activation_or_short_distance_override_proven": false,
+      "Nplus1_VCR_used": false,
+      "T_actor_net_fuel_delta_KT": null,
+      "T_after_Host_actor_position": null,
+      "T_after_Host_target_position": null,
+      "T_archive_visibility": {
+        "T_archived_perspective_player_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30
+        ],
+        "T_fresh_ship_evidence": {
+          "actor": {
+            "T_fresh_perspectives": [
+              21,
+              29
+            ],
+            "T_fresh_reported_owners": [
+              21
+            ],
+            "T_owner_current_record_available": false,
+            "T_stale_contacts_not_authoritative": true,
+            "T_stale_perspectives": [],
+            "ship_id": 234
+          },
+          "target": {
+            "T_fresh_perspectives": [
+              21,
+              29
+            ],
+            "T_fresh_reported_owners": [
+              29
+            ],
+            "T_owner_current_record_available": false,
+            "T_stale_contacts_not_authoritative": true,
+            "T_stale_perspectives": [],
+            "ship_id": 308
+          }
+        },
+        "T_source_owner_perspective_present": true,
+        "T_visibility_only_not_host_mechanic_or_ship_destruction": true
+      },
+      "T_current_owner_source_provenance_only": true,
+      "Tminus1_frozen_features": {
+        "Tminus1_25ly_event_not_assigned_cause": true,
+        "Tminus1_actor": {
+          "damage": 0,
+          "fuel": 440,
+          "mission": 0,
+          "ship_id": 234,
+          "start": [
+            2182,
+            1529
+          ],
+          "warp": 0,
+          "waypoint": [
+            2182,
+            1529
+          ]
+        },
+        "Tminus1_candidate_source_target_distance_ly": 672.19714,
+        "Tminus1_nearby_ships_at_endpoints": [],
+        "Tminus1_numeric_friendly_code_target_confirmed": true,
+        "Tminus1_other_ships_colocated_with_actor": 0,
+        "Tminus1_other_ships_colocated_with_target": 0,
+        "Tminus1_target": {
+          "damage": 0,
+          "fuel": 101,
+          "mission": 0,
+          "ship_id": 308,
+          "start": [
+            2107,
+            2197
+          ],
+          "warp": 0,
+          "waypoint": [
+            2107,
+            2197
+          ]
+        },
+        "Tminus1_tow_requests_on_endpoints": []
+      },
+      "V17_frozen_cohort": "ALL_TMINUS1_GATES_PASS",
+      "V17_frozen_gate": null,
+      "V17_posthost_classification": "ABSTAIN_T_OWNER_DRIFT",
+      "game_id": 338264,
+      "initiator_ship_id": 234,
+      "owner_id": 13,
+      "target_ship_id": 308,
+      "turn": 50
+    },
+    {
+      "Chunnel_activation_or_short_distance_override_proven": false,
+      "Nplus1_VCR_used": false,
+      "T_actor_net_fuel_delta_KT": 0,
+      "T_after_Host_actor_position": [
+        1182,
+        1165
+      ],
+      "T_after_Host_target_position": [
+        2416,
+        2742
+      ],
+      "T_archive_visibility": {
+        "T_archived_perspective_player_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "T_fresh_ship_evidence": {
+          "actor": {
+            "T_fresh_perspectives": [
+              1,
+              5,
+              7
+            ],
+            "T_fresh_reported_owners": [
+              5
+            ],
+            "T_owner_current_record_available": true,
+            "T_stale_contacts_not_authoritative": true,
+            "T_stale_perspectives": [],
+            "ship_id": 251
+          },
+          "target": {
+            "T_fresh_perspectives": [
+              1,
+              2,
+              4,
+              5,
+              7,
+              8
+            ],
+            "T_fresh_reported_owners": [
+              5
+            ],
+            "T_owner_current_record_available": true,
+            "T_stale_contacts_not_authoritative": true,
+            "T_stale_perspectives": [],
+            "ship_id": 514
+          }
+        },
+        "T_source_owner_perspective_present": true,
+        "T_visibility_only_not_host_mechanic_or_ship_destruction": true
+      },
+      "T_current_owner_source_provenance_only": true,
+      "Tminus1_frozen_features": {
+        "Tminus1_25ly_event_not_assigned_cause": true,
+        "Tminus1_actor": {
+          "damage": 0,
+          "fuel": 76,
+          "mission": 2,
+          "ship_id": 251,
+          "start": [
+            1182,
+            1165
+          ],
+          "warp": 0,
+          "waypoint": [
+            1182,
+            1165
+          ]
+        },
+        "Tminus1_candidate_source_target_distance_ly": 2002.41979,
+        "Tminus1_nearby_ships_at_endpoints": [],
+        "Tminus1_numeric_friendly_code_target_confirmed": true,
+        "Tminus1_other_ships_colocated_with_actor": 0,
+        "Tminus1_other_ships_colocated_with_target": 0,
+        "Tminus1_target": {
+          "damage": 0,
+          "fuel": 440,
+          "mission": 0,
+          "ship_id": 514,
+          "start": [
+            2416,
+            2742
+          ],
+          "warp": 1,
+          "waypoint": [
+            2416,
+            2742
+          ]
+        },
+        "Tminus1_tow_requests_on_endpoints": []
+      },
+      "V17_frozen_cohort": "ONE_TMINUS1_GATE_FAILS",
+      "V17_frozen_gate": "TARGET_WARP_NONZERO_AT_TMINUS1",
+      "V17_posthost_classification": "T_ACTOR_AT_FROZEN_SOURCE",
+      "game_id": 373830,
+      "initiator_ship_id": 251,
+      "owner_id": 5,
+      "target_ship_id": 514,
+      "turn": 74
+    },
+    {
+      "Chunnel_activation_or_short_distance_override_proven": false,
+      "Nplus1_VCR_used": false,
+      "T_actor_net_fuel_delta_KT": 0,
+      "T_after_Host_actor_position": [
+        2058,
+        2289
+      ],
+      "T_after_Host_target_position": [
+        1983,
+        2395
+      ],
+      "T_archive_visibility": {
+        "T_archived_perspective_player_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "T_fresh_ship_evidence": {
+          "actor": {
+            "T_fresh_perspectives": [
+              2,
+              9
+            ],
+            "T_fresh_reported_owners": [
+              9
+            ],
+            "T_owner_current_record_available": true,
+            "T_stale_contacts_not_authoritative": true,
+            "T_stale_perspectives": [],
+            "ship_id": 208
+          },
+          "target": {
+            "T_fresh_perspectives": [
+              2,
+              9
+            ],
+            "T_fresh_reported_owners": [
+              9
+            ],
+            "T_owner_current_record_available": true,
+            "T_stale_contacts_not_authoritative": true,
+            "T_stale_perspectives": [],
+            "ship_id": 351
+          }
+        },
+        "T_source_owner_perspective_present": true,
+        "T_visibility_only_not_host_mechanic_or_ship_destruction": true
+      },
+      "T_current_owner_source_provenance_only": true,
+      "Tminus1_frozen_features": {
+        "Tminus1_25ly_event_not_assigned_cause": true,
+        "Tminus1_actor": {
+          "damage": 0,
+          "fuel": 50,
+          "mission": 0,
+          "ship_id": 208,
+          "start": [
+            2058,
+            2289
+          ],
+          "warp": 0,
+          "waypoint": [
+            2058,
+            2289
+          ]
+        },
+        "Tminus1_candidate_source_target_distance_ly": 145.45446,
+        "Tminus1_nearby_ships_at_endpoints": [
+          {
+            "Tminus1_start": [
+              2058,
+              2289
+            ],
+            "Tminus1_warp": 0,
+            "is_stock_firecloud": false,
+            "owner_id": 9,
+            "ship_id": 354
+          }
+        ],
+        "Tminus1_numeric_friendly_code_target_confirmed": true,
+        "Tminus1_other_ships_colocated_with_actor": 1,
+        "Tminus1_other_ships_colocated_with_target": 0,
+        "Tminus1_target": {
+          "damage": 0,
+          "fuel": 373,
+          "mission": 0,
+          "ship_id": 351,
+          "start": [
+            1947,
+            2383
+          ],
+          "warp": 8,
+          "waypoint": [
+            1980,
+            2395
+          ]
+        },
+        "Tminus1_tow_requests_on_endpoints": []
+      },
+      "V17_frozen_cohort": "ONE_TMINUS1_GATE_FAILS",
+      "V17_frozen_gate": "TARGET_WARP_NONZERO_AT_TMINUS1",
+      "V17_posthost_classification": "T_ACTOR_AT_FROZEN_SOURCE",
+      "game_id": 411645,
+      "initiator_ship_id": 208,
+      "owner_id": 9,
+      "target_ship_id": 351,
+      "turn": 60
+    },
+    {
+      "Chunnel_activation_or_short_distance_override_proven": false,
+      "Nplus1_VCR_used": false,
+      "T_actor_net_fuel_delta_KT": 0,
+      "T_after_Host_actor_position": [
+        2380,
+        1484
+      ],
+      "T_after_Host_target_position": [
+        2400,
+        1689
+      ],
+      "T_archive_visibility": {
+        "T_archived_perspective_player_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "T_fresh_ship_evidence": {
+          "actor": {
+            "T_fresh_perspectives": [
+              1,
+              7
+            ],
+            "T_fresh_reported_owners": [
+              1
+            ],
+            "T_owner_current_record_available": true,
+            "T_stale_contacts_not_authoritative": true,
+            "T_stale_perspectives": [],
+            "ship_id": 215
+          },
+          "target": {
+            "T_fresh_perspectives": [
+              1,
+              7
+            ],
+            "T_fresh_reported_owners": [
+              1
+            ],
+            "T_owner_current_record_available": true,
+            "T_stale_contacts_not_authoritative": true,
+            "T_stale_perspectives": [],
+            "ship_id": 254
+          }
+        },
+        "T_source_owner_perspective_present": true,
+        "T_visibility_only_not_host_mechanic_or_ship_destruction": true
+      },
+      "T_current_owner_source_provenance_only": true,
+      "Tminus1_frozen_features": {
+        "Tminus1_25ly_event_not_assigned_cause": true,
+        "Tminus1_actor": {
+          "damage": 0,
+          "fuel": 327,
+          "mission": 1,
+          "ship_id": 215,
+          "start": [
+            2380,
+            1484
+          ],
+          "warp": 0,
+          "waypoint": [
+            2380,
+            1484
+          ]
+        },
+        "Tminus1_candidate_source_target_distance_ly": 1.0,
+        "Tminus1_nearby_ships_at_endpoints": [
+          {
+            "Tminus1_start": [
+              2380,
+              1484
+            ],
+            "Tminus1_warp": 1,
+            "is_stock_firecloud": false,
+            "owner_id": 1,
+            "ship_id": 17
+          },
+          {
+            "Tminus1_start": [
+              2380,
+              1484
+            ],
+            "Tminus1_warp": 1,
+            "is_stock_firecloud": false,
+            "owner_id": 1,
+            "ship_id": 71
+          },
+          {
+            "Tminus1_start": [
+              2380,
+              1484
+            ],
+            "Tminus1_warp": 9,
+            "is_stock_firecloud": false,
+            "owner_id": 1,
+            "ship_id": 136
+          },
+          {
+            "Tminus1_start": [
+              2380,
+              1484
+            ],
+            "Tminus1_warp": 1,
+            "is_stock_firecloud": false,
+            "owner_id": 1,
+            "ship_id": 231
+          },
+          {
+            "Tminus1_start": [
+              2380,
+              1484
+            ],
+            "Tminus1_warp": 1,
+            "is_stock_firecloud": false,
+            "owner_id": 1,
+            "ship_id": 270
+          },
+          {
+            "Tminus1_start": [
+              2380,
+              1484
+            ],
+            "Tminus1_warp": 1,
+            "is_stock_firecloud": false,
+            "owner_id": 1,
+            "ship_id": 297
+          },
+          {
+            "Tminus1_start": [
+              2380,
+              1484
+            ],
+            "Tminus1_warp": 1,
+            "is_stock_firecloud": false,
+            "owner_id": 1,
+            "ship_id": 299
+          },
+          {
+            "Tminus1_start": [
+              2380,
+              1484
+            ],
+            "Tminus1_warp": 9,
+            "is_stock_firecloud": false,
+            "owner_id": 1,
+            "ship_id": 303
+          },
+          {
+            "Tminus1_start": [
+              2380,
+              1484
+            ],
+            "Tminus1_warp": 1,
+            "is_stock_firecloud": false,
+            "owner_id": 1,
+            "ship_id": 343
+          },
+          {
+            "Tminus1_start": [
+              2380,
+              1484
+            ],
+            "Tminus1_warp": 1,
+            "is_stock_firecloud": false,
+            "owner_id": 1,
+            "ship_id": 365
+          },
+          {
+            "Tminus1_start": [
+              2380,
+              1484
+            ],
+            "Tminus1_warp": 9,
+            "is_stock_firecloud": false,
+            "owner_id": 1,
+            "ship_id": 385
+          },
+          {
+            "Tminus1_start": [
+              2380,
+              1484
+            ],
+            "Tminus1_warp": 1,
+            "is_stock_firecloud": false,
+            "owner_id": 1,
+            "ship_id": 403
+          },
+          {
+            "Tminus1_start": [
+              2380,
+              1484
+            ],
+            "Tminus1_warp": 1,
+            "is_stock_firecloud": false,
+            "owner_id": 1,
+            "ship_id": 491
+          },
+          {
+            "Tminus1_start": [
+              2380,
+              1484
+            ],
+            "Tminus1_warp": 1,
+            "is_stock_firecloud": false,
+            "owner_id": 1,
+            "ship_id": 533
+          },
+          {
+            "Tminus1_start": [
+              2380,
+              1484
+            ],
+            "Tminus1_warp": 1,
+            "is_stock_firecloud": false,
+            "owner_id": 1,
+            "ship_id": 538
+          },
+          {
+            "Tminus1_start": [
+              2380,
+              1484
+            ],
+            "Tminus1_warp": 9,
+            "is_stock_firecloud": false,
+            "owner_id": 1,
+            "ship_id": 555
+          }
+        ],
+        "Tminus1_numeric_friendly_code_target_confirmed": true,
+        "Tminus1_other_ships_colocated_with_actor": 16,
+        "Tminus1_other_ships_colocated_with_target": 0,
+        "Tminus1_target": {
+          "damage": 0,
+          "fuel": 100,
+          "mission": 1,
+          "ship_id": 254,
+          "start": [
+            2380,
+            1483
+          ],
+          "warp": 0,
+          "waypoint": [
+            2380,
+            1483
+          ]
+        },
+        "Tminus1_tow_requests_on_endpoints": []
+      },
+      "V17_frozen_cohort": "ONE_TMINUS1_GATE_FAILS",
+      "V17_frozen_gate": "DISTANCE_BELOW_100_AT_TMINUS1",
+      "V17_posthost_classification": "T_ACTOR_AT_FROZEN_SOURCE",
+      "game_id": 467386,
+      "initiator_ship_id": 215,
+      "owner_id": 1,
+      "target_ship_id": 254,
+      "turn": 75
+    },
+    {
+      "Chunnel_activation_or_short_distance_override_proven": false,
+      "Nplus1_VCR_used": false,
+      "T_actor_net_fuel_delta_KT": 48,
+      "T_after_Host_actor_position": [
+        1126,
+        1439
+      ],
+      "T_after_Host_target_position": [
+        1126,
+        1439
+      ],
+      "T_archive_visibility": {
+        "T_archived_perspective_player_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "T_fresh_ship_evidence": {
+          "actor": {
+            "T_fresh_perspectives": [
+              6
+            ],
+            "T_fresh_reported_owners": [
+              6
+            ],
+            "T_owner_current_record_available": true,
+            "T_stale_contacts_not_authoritative": true,
+            "T_stale_perspectives": [],
+            "ship_id": 467
+          },
+          "target": {
+            "T_fresh_perspectives": [
+              6
+            ],
+            "T_fresh_reported_owners": [
+              6
+            ],
+            "T_owner_current_record_available": true,
+            "T_stale_contacts_not_authoritative": true,
+            "T_stale_perspectives": [],
+            "ship_id": 80
+          }
+        },
+        "T_source_owner_perspective_present": true,
+        "T_visibility_only_not_host_mechanic_or_ship_destruction": true
+      },
+      "T_current_owner_source_provenance_only": true,
+      "Tminus1_frozen_features": {
+        "Tminus1_25ly_event_not_assigned_cause": true,
+        "Tminus1_actor": {
+          "damage": 0,
+          "fuel": 51,
+          "mission": 1,
+          "ship_id": 467,
+          "start": [
+            1141,
+            1459
+          ],
+          "warp": 0,
+          "waypoint": [
+            1141,
+            1459
+          ]
+        },
+        "Tminus1_candidate_source_target_distance_ly": 25.0,
+        "Tminus1_nearby_ships_at_endpoints": [
+          {
+            "Tminus1_start": [
+              1141,
+              1459
+            ],
+            "Tminus1_warp": 9,
+            "is_stock_firecloud": false,
+            "owner_id": 6,
+            "ship_id": 193
+          },
+          {
+            "Tminus1_start": [
+              1141,
+              1459
+            ],
+            "Tminus1_warp": 9,
+            "is_stock_firecloud": false,
+            "owner_id": 6,
+            "ship_id": 235
+          },
+          {
+            "Tminus1_start": [
+              1141,
+              1459
+            ],
+            "Tminus1_warp": 9,
+            "is_stock_firecloud": false,
+            "owner_id": 6,
+            "ship_id": 405
+          }
+        ],
+        "Tminus1_numeric_friendly_code_target_confirmed": true,
+        "Tminus1_other_ships_colocated_with_actor": 3,
+        "Tminus1_other_ships_colocated_with_target": 0,
+        "Tminus1_target": {
+          "damage": 0,
+          "fuel": 1,
+          "mission": 1,
+          "ship_id": 80,
+          "start": [
+            1126,
+            1439
+          ],
+          "warp": 0,
+          "waypoint": [
+            1126,
+            1439
+          ]
+        },
+        "Tminus1_tow_requests_on_endpoints": []
+      },
+      "V17_frozen_cohort": "ONE_TMINUS1_GATE_FAILS",
+      "V17_frozen_gate": "DISTANCE_BELOW_100_AT_TMINUS1",
+      "V17_posthost_classification": "T_ACTOR_AT_DISTINCT_FROZEN_TARGET",
+      "game_id": 467386,
+      "initiator_ship_id": 467,
+      "owner_id": 6,
+      "target_ship_id": 80,
+      "turn": 75
+    },
+    {
+      "Chunnel_activation_or_short_distance_override_proven": false,
+      "Nplus1_VCR_used": false,
+      "T_actor_net_fuel_delta_KT": -43,
+      "T_after_Host_actor_position": [
+        3256,
+        785
+      ],
+      "T_after_Host_target_position": [
+        3268,
+        811
+      ],
+      "T_archive_visibility": {
+        "T_archived_perspective_player_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "T_fresh_ship_evidence": {
+          "actor": {
+            "T_fresh_perspectives": [
+              3,
+              6,
+              9
+            ],
+            "T_fresh_reported_owners": [
+              9
+            ],
+            "T_owner_current_record_available": true,
+            "T_stale_contacts_not_authoritative": true,
+            "T_stale_perspectives": [],
+            "ship_id": 106
+          },
+          "target": {
+            "T_fresh_perspectives": [
+              3,
+              6,
+              9
+            ],
+            "T_fresh_reported_owners": [
+              9
+            ],
+            "T_owner_current_record_available": true,
+            "T_stale_contacts_not_authoritative": true,
+            "T_stale_perspectives": [],
+            "ship_id": 432
+          }
+        },
+        "T_source_owner_perspective_present": true,
+        "T_visibility_only_not_host_mechanic_or_ship_destruction": true
+      },
+      "T_current_owner_source_provenance_only": true,
+      "Tminus1_frozen_features": {
+        "Tminus1_25ly_event_not_assigned_cause": true,
+        "Tminus1_actor": {
+          "damage": 0,
+          "fuel": 158,
+          "mission": 4,
+          "ship_id": 106,
+          "start": [
+            3256,
+            785
+          ],
+          "warp": 0,
+          "waypoint": [
+            3256,
+            785
+          ]
+        },
+        "Tminus1_candidate_source_target_distance_ly": 28.63564,
+        "Tminus1_nearby_ships_at_endpoints": [
+          {
+            "Tminus1_start": [
+              3268,
+              811
+            ],
+            "Tminus1_warp": 0,
+            "is_stock_firecloud": false,
+            "owner_id": 9,
+            "ship_id": 592
+          }
+        ],
+        "Tminus1_numeric_friendly_code_target_confirmed": true,
+        "Tminus1_other_ships_colocated_with_actor": 0,
+        "Tminus1_other_ships_colocated_with_target": 1,
+        "Tminus1_target": {
+          "damage": 0,
+          "fuel": 440,
+          "mission": 1,
+          "ship_id": 432,
+          "start": [
+            3268,
+            811
+          ],
+          "warp": 0,
+          "waypoint": [
+            3268,
+            811
+          ]
+        },
+        "Tminus1_tow_requests_on_endpoints": []
+      },
+      "V17_frozen_cohort": "ONE_TMINUS1_GATE_FAILS",
+      "V17_frozen_gate": "DISTANCE_BELOW_100_AT_TMINUS1",
+      "V17_posthost_classification": "T_ACTOR_AT_FROZEN_SOURCE",
+      "game_id": 632527,
+      "initiator_ship_id": 106,
+      "owner_id": 9,
+      "target_ship_id": 432,
+      "turn": 89
+    }
+  ]
+}
