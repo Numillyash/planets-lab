@@ -33,6 +33,18 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**M2 pre-Host capture admission V1 (implementation; runtime still pending):**
+Research-only `planetary_order_capture.py` now supplies exact pre-state
+fingerprinting, operator HMAC integrity, complete declared-player coverage,
+external Host-start witness requirement and a fail-closed admission path into
+the existing order-aware simulator. This is **operator attestation**, not
+evidence that NuHost actually accepted the orders. No genuine real-game
+submission captures or historical causal comparison have been acquired.
+A bounded capture CLI tests this gate with synthetic data only, then
+the next requirement is independently witnessed, authorized, genuinely
+submitted pre-Host orders. See
+[pre-Host capture V1 handoff](handoff/2026-10-17-m2-prehost-order-capture-v1.md).
+
 **M2 October 17, 2026 — order-aware vertical slice runtime VERIFIED.**
 PRs #208 and #209 have merged and main CI #1268 passed (1175 tests).
 The server evidence `runtime-logs/planetary-order-aware-slice-v1/20261016T211423Z_894240fad1c4`
