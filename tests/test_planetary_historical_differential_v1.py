@@ -140,7 +140,7 @@ def test_whole_32_window_source_freeze_before_first_T(monkeypatch):
     def post(_conn,g,t):
         assert sum(x[0]=="PRE" for x in events)==len(windows)
         events.append(("POST",g,t))
-        return {}
+        return {},None
     monkeypatch.setattr(M,"pre_window",source)
     monkeypatch.setattr(M,"post_window",post)
     pre,comparisons=M.run_windows(None,windows)
@@ -151,6 +151,83 @@ def test_whole_32_window_source_freeze_before_first_T(monkeypatch):
     items=M.reports(tuple(range(1,9)),windows,pre,comparisons)
     assert all(items[k]["summary"]["abstention_count"]==32 for k in M.FAMILIES)
 
+
+
+def test_t_archive_rejects_exact_identity_and_fails_closed(monkeypatch):
+    for detail,expected in M.T_ARCHIVE_ABSTAIN_REASONS.items():
+        def bad_archive(*_args,**_kwargs):
+            raise ValueError(detail)
+        monkeypatch.setattr(M.v9,"pre_snapshots",bad_archive)
+        after,reason=M.post_window(None,608293,2)
+        assert after=={}
+        assert reason==expected
+    def unrelated_bug(*_args,**_kwargs):
+        raise ValueError("simulator code failure must not masquerade as missing archive")
+    monkeypatch.setattr(M.v9,"pre_snapshots",unrelated_bug)
+    with pytest.raises(ValueError,match="simulator code failure"):
+        M.post_window(None,608293,2)
+
+
+def test_bad_T_window_is_not_scored_as_economy_mismatch(monkeypatch):
+    source=snapshot(planet())
+    def fake_pre(_conn,g,t):
+        return {
+            "game_id":g,"turn":t,
+            "Tminus1_planets":[{
+                **M.pre_window(None,g,t)["Tminus1_planets"][0],
+                "game_id":g,"turn":t,
+            }],
+        }
+    monkeypatch.setattr(M.v9,"pre_snapshots",
+                        lambda *_args,**_kwargs:((source,),()))
+    windows=((608293,2),(608293,20))
+    seen=[]
+    def pre(_conn,g,t):
+        seen.append(("PRE",g,t))
+        return M.pre_window(None,g,t)
+    def post(_conn,g,t):
+        assert seen==[("PRE",608293,2),("PRE",608293,20)]
+        seen.append(("POST",g,t))
+        if t==2:
+            return {},"ABSTAIN_T_ARCHIVE_IDENTITY_UNTRUSTED"
+        actual=planet(turn=4)
+        actual["supplies"]=30
+        return {1:(1,actual)},None
+    monkeypatch.setattr(M,"pre_window",pre)
+    monkeypatch.setattr(M,"post_window",post)
+    # Construct a real Tminus1 planet forecast without calling patched pre.
+    original_pre=pre
+    def frozen_pre(_conn,g,t):
+        seen.append(("PRE",g,t))
+        player=M.Player(id=1,race_id=1)
+        planet_input=M.import_planet(planet())
+        state=M.GameState(game_id=g,turn=t-1,players={1:player},planets={1:planet_input})
+        forecast,_=M.PlanetaryHostPipeline().engine().step(state,M.TurnOrders.empty(),seed=23)
+        return {
+            "game_id":g,"turn":t,
+            "Tminus1_planets":[{
+                "game_id":g,"turn":t,"planet_id":1,"owner_id":1,"race_id":1,
+                "Tminus1_status":"MODEL_CONDITIONAL",
+                "source_missing":{family:[] for family in M.FAMILIES},
+                "before":{family:{field:M.int_field(planet(),M.ALIASES[field]) for field in M.FIELDS[family]}
+                          for family in M.FAMILIES},
+                "expected":{family:{field:M.value(forecast.planets[1],field) for field in M.FIELDS[family]}
+                            for family in M.FAMILIES},
+            }],
+        }
+    monkeypatch.setattr(M,"pre_window",frozen_pre)
+    pre_data,comparison=M.run_windows(None,windows)
+    assert len(pre_data)==2
+    assert seen==[("PRE",608293,2),("PRE",608293,20),
+                  ("POST",608293,2),("POST",608293,20)]
+    summaries=M.reports((608293,),windows,pre_data,comparison)
+    for family in M.FAMILIES:
+        statuses=[r["status"] for r in comparison[family]]
+        assert statuses[0]=="ABSTAIN_T_ARCHIVE_IDENTITY_UNTRUSTED"
+        assert statuses[0]!="CONDITIONAL_MISMATCH_UNATTRIBUTED"
+        assert summaries[family]["summary"]["T_archive_context_rejected_windows"]==1
+        assert summaries[family]["summary"]["T_archive_context_rejection_rows"]==1
+        assert len(statuses)==2
 
 def test_no_fabricated_causal_matches_and_sha256_manifest(tmp_path):
     windows=((1,20),)
