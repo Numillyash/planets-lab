@@ -1,0 +1,93 @@
+{
+  "CURRENT_modified": false,
+  "Host_mechanics_proven": false,
+  "all_three_complete": true,
+  "generation": "/root/projects/planets-corpus-db/generations/corpus-v2compact-c5-v25-public8-20261016.duckdb",
+  "generation_sha256": "af4c1579b97736c158cf50a7f709e39b749860661ed65c028fb8085e756c573a",
+  "newly_collected_games_but_retrospective_archival_outcomes": true,
+  "reports": {
+    "actors": {
+      "filename": "actors.json",
+      "sha256": "e3333bee450dff3338fc4ba2e567115e5cd207986bf51acab8348755d2bbad05",
+      "summary": {
+        "T_endpoint_by_cohort": {
+          "LONG_CONVENTIONAL_PASS": {
+            "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE": 2,
+            "AT_DISTINCT_FROZEN_TARGET": 55,
+            "ELSEWHERE": 1
+          },
+          "NON_DISCRIMINATIVE_COLOCATED": {
+            "NON_DISCRIMINATIVE_COLOCATED": 38
+          },
+          "OTHER_SINGLE_FAILED_GATE": {
+            "AT_SOURCE": 9,
+            "ELSEWHERE": 1
+          }
+        },
+        "Tminus1_contexts_available": 192,
+        "Tminus1_frozen_cohort_counts": {
+          "LONG_CONVENTIONAL_PASS": 58,
+          "NON_DISCRIMINATIVE_COLOCATED": 38,
+          "OTHER_SINGLE_FAILED_GATE": 10
+        },
+        "Tminus1_stock_chunnel_candidate_edges": 106,
+        "actual_Host_chunnel_activation_proven": false,
+        "baseline_games_excluded": 100,
+        "context_errors": 0,
+        "metadata_selected_adjacent_windows": 192,
+        "posthost_compared_windows": 33,
+        "selected_disjoint_games": 8,
+        "short_Tminus1_documented_field_witnesses": 0,
+        "short_field_witness_distinct_game_turn_windows": 0,
+        "short_field_witness_distinct_games": 0
+      }
+    },
+    "fields": {
+      "filename": "fields.json",
+      "sha256": "ef523afd550ac9366cc38695209e0777cd207b1311f141cdc92c960afc2fb6b2",
+      "summary": {
+        "T_Dungeon_engine_unchanged": 0,
+        "T_Dungeon_position_unchanged": 0,
+        "Tminus1_Dungeon_Stargate_appearances": 0,
+        "Tminus1_Dungeon_games": 0,
+        "Tminus1_contexts_available": 192,
+        "actual_stabilizer_activation_proven": false,
+        "baseline_games_excluded": 100,
+        "context_errors": 0,
+        "metadata_selected_adjacent_windows": 192,
+        "posthost_compared_windows": 33,
+        "selected_disjoint_games": 8
+      }
+    },
+    "passengers": {
+      "filename": "passengers.json",
+      "sha256": "ac61aa1ae0713127c857c1f4d3ecc49759ed6a19067bbad583072aae6f7ea51f",
+      "summary": {
+        "Host_passenger_mechanism_proven": false,
+        "Tminus1_contexts_available": 192,
+        "baseline_games_excluded": 100,
+        "context_errors": 0,
+        "different_owner_at_frozen_target": 7,
+        "metadata_selected_adjacent_windows": 192,
+        "posthost_compared_windows": 33,
+        "preselected_Tminus1_source_episodes": 22,
+        "preselected_distinct_game_turns": 22,
+        "preselected_source_ship_appearances": 66,
+        "same_owner_at_frozen_target": 34,
+        "selected_disjoint_games": 8
+      }
+    }
+  },
+  "schema": "planets-lab.combat-c5-new-game-corpus-batch.v25",
+  "selected_game_ids": [
+    233802,
+    290449,
+    403181,
+    444043,
+    469931,
+    521268,
+    536676,
+    608293
+  ],
+  "status": "V25_NEW_GAME_CORPUS_THREE_REPORTS_COMPLETE"
+}

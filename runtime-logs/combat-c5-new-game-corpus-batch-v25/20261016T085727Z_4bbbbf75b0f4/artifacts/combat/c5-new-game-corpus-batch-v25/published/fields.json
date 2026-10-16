@@ -1,0 +1,1115 @@
+{
+  "Host_Chunnel_activation_or_combat_predictions_promoted": 0,
+  "Nplus1_VCR_used": false,
+  "Tminus1_frozen_before_first_T": true,
+  "Tminus1_rule_scalar_hints": {
+    "233802/103": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "233802/108": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "233802/11": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "233802/15": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "233802/2": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "233802/20": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "233802/25": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "233802/29": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "233802/34": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "233802/38": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "233802/43": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "233802/48": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "233802/52": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "233802/57": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "233802/6": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "233802/61": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "233802/66": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "233802/71": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "233802/75": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "233802/80": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "233802/84": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "233802/89": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "233802/94": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "233802/98": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "290449/102": {
+      "game.gametype": 3,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "290449/107": {
+      "game.gametype": 3,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "290449/11": {
+      "game.gametype": 3,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "290449/15": {
+      "game.gametype": 3,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "290449/2": {
+      "game.gametype": 3,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "290449/20": {
+      "game.gametype": 3,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "290449/24": {
+      "game.gametype": 3,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "290449/29": {
+      "game.gametype": 3,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "290449/33": {
+      "game.gametype": 3,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "290449/38": {
+      "game.gametype": 3,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "290449/43": {
+      "game.gametype": 3,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "290449/47": {
+      "game.gametype": 3,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "290449/52": {
+      "game.gametype": 3,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "290449/56": {
+      "game.gametype": 3,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "290449/6": {
+      "game.gametype": 3,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "290449/61": {
+      "game.gametype": 3,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "290449/65": {
+      "game.gametype": 3,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "290449/70": {
+      "game.gametype": 3,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "290449/75": {
+      "game.gametype": 3,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "290449/79": {
+      "game.gametype": 3,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "290449/84": {
+      "game.gametype": 3,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "290449/88": {
+      "game.gametype": 3,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "290449/93": {
+      "game.gametype": 3,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "290449/97": {
+      "game.gametype": 3,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "403181/104": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "403181/109": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "403181/11": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "403181/114": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "403181/16": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "403181/2": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "403181/21": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "403181/26": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "403181/31": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "403181/36": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "403181/40": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "403181/45": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "403181/50": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "403181/55": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "403181/6": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "403181/60": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "403181/65": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "403181/70": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "403181/75": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "403181/79": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "403181/84": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "403181/89": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "403181/94": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "403181/99": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "444043/104": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "444043/109": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "444043/11": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "444043/15": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "444043/2": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "444043/20": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "444043/25": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "444043/29": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "444043/34": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "444043/39": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "444043/43": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "444043/48": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "444043/53": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "444043/57": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "444043/6": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "444043/62": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "444043/67": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "444043/71": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "444043/76": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "444043/81": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "444043/85": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "444043/90": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "444043/95": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "444043/99": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "469931/103": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "469931/108": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "469931/113": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "469931/119": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "469931/12": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "469931/17": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "469931/2": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "469931/22": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "469931/27": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "469931/32": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "469931/37": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "469931/42": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "469931/47": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "469931/52": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "469931/57": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "469931/63": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "469931/68": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "469931/7": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "469931/73": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "469931/78": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "469931/83": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "469931/88": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "469931/93": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "469931/98": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "521268/101": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "521268/106": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "521268/11": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "521268/111": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "521268/116": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "521268/16": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "521268/2": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "521268/21": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "521268/26": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "521268/31": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "521268/36": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "521268/41": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "521268/46": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "521268/51": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "521268/56": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "521268/6": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "521268/61": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "521268/66": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "521268/71": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "521268/76": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "521268/81": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "521268/86": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "521268/91": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "521268/96": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "536676/102": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "536676/107": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "536676/11": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "536676/112": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "536676/16": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "536676/2": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "536676/21": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "536676/25": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "536676/30": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "536676/35": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "536676/40": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "536676/45": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "536676/49": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "536676/54": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "536676/59": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "536676/6": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "536676/64": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "536676/68": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "536676/73": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "536676/78": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "536676/83": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "536676/88": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "536676/92": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "536676/97": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "608293/101": {
+      "game.gametype": 2,
+      "game.maptype": 2,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "608293/107": {
+      "game.gametype": 2,
+      "game.maptype": 2,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "608293/113": {
+      "game.gametype": 2,
+      "game.maptype": 2,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "608293/119": {
+      "game.gametype": 2,
+      "game.maptype": 2,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "608293/125": {
+      "game.gametype": 2,
+      "game.maptype": 2,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "608293/13": {
+      "game.gametype": 2,
+      "game.maptype": 2,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "608293/131": {
+      "game.gametype": 2,
+      "game.maptype": 2,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "608293/137": {
+      "game.gametype": 2,
+      "game.maptype": 2,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "608293/19": {
+      "game.gametype": 2,
+      "game.maptype": 2,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "608293/2": {
+      "game.gametype": 2,
+      "game.maptype": 2,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "608293/25": {
+      "game.gametype": 2,
+      "game.maptype": 2,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "608293/31": {
+      "game.gametype": 2,
+      "game.maptype": 2,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "608293/37": {
+      "game.gametype": 2,
+      "game.maptype": 2,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "608293/43": {
+      "game.gametype": 2,
+      "game.maptype": 2,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "608293/48": {
+      "game.gametype": 2,
+      "game.maptype": 2,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "608293/54": {
+      "game.gametype": 2,
+      "game.maptype": 2,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "608293/60": {
+      "game.gametype": 2,
+      "game.maptype": 2,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "608293/66": {
+      "game.gametype": 2,
+      "game.maptype": 2,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "608293/7": {
+      "game.gametype": 2,
+      "game.maptype": 2,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "608293/72": {
+      "game.gametype": 2,
+      "game.maptype": 2,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "608293/78": {
+      "game.gametype": 2,
+      "game.maptype": 2,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "608293/84": {
+      "game.gametype": 2,
+      "game.maptype": 2,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "608293/90": {
+      "game.gametype": 2,
+      "game.maptype": 2,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "608293/95": {
+      "game.gametype": 2,
+      "game.maptype": 2,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    }
+  },
+  "Tminus1_to_T_stargate_appearances": [],
+  "baseline_game_ids_sha256": "ba22350fcc57e3c4f7ae397dcba13bd1b291114edaaa7c9d3bb0f43a8f41d838",
+  "generation": "/root/projects/planets-corpus-db/generations/corpus-v2compact-c5-v25-public8-20261016.duckdb",
+  "generation_sha256": "af4c1579b97736c158cf50a7f709e39b749860661ed65c028fb8085e756c573a",
+  "newly_acquired_archival_games_not_live_prospective_Host_observations": true,
+  "phase": "fields",
+  "schema": "planets-lab.combat-c5-new-game-corpus-batch.v25",
+  "selected_game_ids": [
+    233802,
+    290449,
+    403181,
+    444043,
+    469931,
+    521268,
+    536676,
+    608293
+  ],
+  "status": "NEWLY_ACQUIRED_GAME_DISJOINT_RETROSPECTIVE_TMINUS1_RULEAWARE_OBSERVATIONAL",
+  "summary": {
+    "T_Dungeon_engine_unchanged": 0,
+    "T_Dungeon_position_unchanged": 0,
+    "Tminus1_Dungeon_Stargate_appearances": 0,
+    "Tminus1_Dungeon_games": 0,
+    "Tminus1_contexts_available": 192,
+    "actual_stabilizer_activation_proven": false,
+    "baseline_games_excluded": 100,
+    "context_errors": 0,
+    "metadata_selected_adjacent_windows": 192,
+    "posthost_compared_windows": 33,
+    "selected_disjoint_games": 8
+  },
+  "window_errors": []
+}

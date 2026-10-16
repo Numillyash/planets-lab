@@ -1,0 +1,1395 @@
+===== C5 V25 NEW GAME CORPUS / 3 STUDIES / ONE RUN =====
+HEAD: 4bbbbf75b0f4b15aad800cd2133767af404d4188
+baseline: validation/corpus/manifests/public-postindependent-validation-with-public68.jsonl (100 prior public games)
+new generation: /root/projects/planets-corpus-db/generations/corpus-v2compact-c5-v25-public8-20261016.duckdb (never activates CURRENT)
+===== C5 V25 ACQUIRE 8 DISJOINT FINISHED PUBLIC GAMES =====
+===== PUBLIC VALIDATION CORPUS: PREFLIGHT =====
+docker:       ready
+===== PUBLIC VALIDATION CORPUS: BUILD LAB IMAGE =====
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "default" instance using docker driver
+
+#1 [lab internal] load build definition from Dockerfile
+#1 transferring dockerfile: 373B done
+#1 DONE 0.0s
+
+#2 [lab internal] load metadata for docker.io/library/python:3.12-slim
+#2 DONE 0.0s
+
+#3 [lab internal] load .dockerignore
+#3 transferring context: 184B done
+#3 DONE 0.0s
+
+#4 [lab internal] load build context
+#4 DONE 0.0s
+
+#5 [lab 1/6] FROM docker.io/library/python:3.12-slim@sha256:dd29372629eeba2dd003fd9e9d35a5b8236c44727875a0364254b5127af88e65
+#5 resolve docker.io/library/python:3.12-slim@sha256:dd29372629eeba2dd003fd9e9d35a5b8236c44727875a0364254b5127af88e65
+#5 ...
+
+#6 [lab auth] library/python:pull token for registry-1.docker.io
+#6 DONE 0.0s
+
+#5 [lab 1/6] FROM docker.io/library/python:3.12-slim@sha256:dd29372629eeba2dd003fd9e9d35a5b8236c44727875a0364254b5127af88e65
+#5 resolve docker.io/library/python:3.12-slim@sha256:dd29372629eeba2dd003fd9e9d35a5b8236c44727875a0364254b5127af88e65 1.0s done
+#5 DONE 1.0s
+
+#4 [lab internal] load build context
+#4 transferring context: 1.41MB 0.0s done
+#4 DONE 0.1s
+
+#7 [lab 2/6] WORKDIR /workspace
+#7 CACHED
+
+#8 [lab 3/6] COPY pyproject.toml README.md ./
+#8 DONE 0.0s
+
+#9 [lab 4/6] COPY src ./src
+#9 DONE 0.1s
+
+#10 [lab 5/6] COPY tests ./tests
+#10 DONE 0.1s
+
+#11 [lab 6/6] RUN python -m pip install --no-cache-dir --upgrade pip     && python -m pip install --no-cache-dir -e '.[dev]'
+#11 1.137 Requirement already satisfied: pip in /usr/local/lib/python3.12/site-packages (25.0.1)
+#11 1.426 Collecting pip
+#11 1.652   Downloading pip-26.2.1-py3-none-any.whl.metadata (4.6 kB)
+#11 1.698 Downloading pip-26.2.1-py3-none-any.whl (1.8 MB)
+#11 1.937    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 14.3 MB/s eta 0:00:00
+#11 1.948 Installing collected packages: pip
+#11 1.948   Attempting uninstall: pip
+#11 1.950     Found existing installation: pip 25.0.1
+#11 1.979     Uninstalling pip-25.0.1:
+#11 2.139       Successfully uninstalled pip-25.0.1
+#11 2.737 Successfully installed pip-26.2.1
+#11 2.737 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#11 3.257 Obtaining file:///workspace
+#11 3.259   Installing build dependencies: started
+#11 4.715   Installing build dependencies: finished with status 'done'
+#11 4.716   Checking if build backend supports build_editable: started
+#11 5.114   Checking if build backend supports build_editable: finished with status 'done'
+#11 5.115   Getting requirements to build editable: started
+#11 5.639   Getting requirements to build editable: finished with status 'done'
+#11 5.641   Preparing editable metadata (pyproject.toml): started
+#11 6.171   Preparing editable metadata (pyproject.toml): finished with status 'done'
+#11 6.693 Collecting duckdb<1.6,>=1.5 (from planets-lab==0.1.0)
+#11 6.916   Downloading duckdb-1.5.6-cp312-cp312-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl.metadata (4.2 kB)
+#11 7.010 Collecting pyarrow<22,>=21 (from planets-lab==0.1.0)
+#11 7.056   Downloading pyarrow-21.0.0-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (3.3 kB)
+#11 7.112 Collecting pytest<9,>=8 (from planets-lab==0.1.0)
+#11 7.157   Downloading pytest-8.4.2-py3-none-any.whl.metadata (7.7 kB)
+#11 7.210 Collecting iniconfig>=1 (from pytest<9,>=8->planets-lab==0.1.0)
+#11 7.253   Downloading iniconfig-2.3.1-py3-none-any.whl.metadata (2.8 kB)
+#11 7.305 Collecting packaging>=20 (from pytest<9,>=8->planets-lab==0.1.0)
+#11 7.349   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+#11 7.397 Collecting pluggy<2,>=1.5 (from pytest<9,>=8->planets-lab==0.1.0)
+#11 7.442   Downloading pluggy-1.7.0-py3-none-any.whl.metadata (5.0 kB)
+#11 7.495 Collecting pygments>=2.7.2 (from pytest<9,>=8->planets-lab==0.1.0)
+#11 7.539   Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+#11 7.591 Downloading duckdb-1.5.6-cp312-cp312-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl (21.6 MB)
+#11 8.360    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 21.6/21.6 MB 33.3 MB/s  0:00:00
+#11 8.405 Downloading pyarrow-21.0.0-cp312-cp312-manylinux_2_28_x86_64.whl (42.8 MB)
+#11 9.320    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 42.8/42.8 MB 46.8 MB/s  0:00:00
+#11 9.363 Downloading pytest-8.4.2-py3-none-any.whl (365 kB)
+#11 9.419 Downloading pluggy-1.7.0-py3-none-any.whl (27 kB)
+#11 9.464 Downloading iniconfig-2.3.1-py3-none-any.whl (7.6 kB)
+#11 9.507 Downloading packaging-26.3-py3-none-any.whl (129 kB)
+#11 9.553 Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+#11 9.578    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 52.7 MB/s  0:00:00
+#11 9.622 Building wheels for collected packages: planets-lab
+#11 9.625   Building editable for planets-lab (pyproject.toml): started
+#11 10.17   Building editable for planets-lab (pyproject.toml): finished with status 'done'
+#11 10.17   Created wheel for planets-lab: filename=planets_lab-0.1.0-0.editable-py3-none-any.whl size=3860 sha256=271dfb27b7e5f7db541ad774e01b243f5203eca65b886dd6a0a0657ba6e19d0a
+#11 10.17   Stored in directory: /tmp/pip-ephem-wheel-cache-hzeiap64/wheels/b0/41/ab/4e04a8678980f3355548f1261923479fbf2a713a7393a7dea8
+#11 10.17 Successfully built planets-lab
+#11 10.20 Installing collected packages: pygments, pyarrow, pluggy, packaging, iniconfig, duckdb, pytest, planets-lab
+#11 11.86 
+#11 11.86 Successfully installed duckdb-1.5.6 iniconfig-2.3.1 packaging-26.3 planets-lab-0.1.0 pluggy-1.7.0 pyarrow-21.0.0 pygments-2.21.0 pytest-8.4.2
+#11 11.86 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#11 DONE 12.1s
+
+#12 [lab] exporting to image
+#12 exporting layers
+#12 exporting layers 5.6s done
+#12 exporting manifest sha256:4e0721a1b9a304226c35c5bdb0697c8a9a14f5add9f428acbaa030551958ec35 done
+#12 exporting config sha256:49a71c87b321d1c9b75fa417990fa90b165fb78db215e0ab1fa792d379619dbf 0.0s done
+#12 exporting attestation manifest sha256:d0ea5b3b5dbb66f590f83583c91233ce1b5782e4b77da9029599fb76db3ad3e4 0.0s done
+#12 exporting manifest list sha256:252ea0491fbdfcc67b6b4638dcd13729f7e61cc42ced8c4304ef503b6a57d029 done
+#12 naming to docker.io/library/planets-lab-lab:latest done
+#12 unpacking to docker.io/library/planets-lab-lab:latest
+#12 unpacking to docker.io/library/planets-lab-lab:latest 1.3s done
+#12 DONE 7.0s
+
+#13 [lab] resolving provenance for metadata file
+#13 DONE 0.0s
+ lab  Built
+network_mode: direct
+proxy:        not configured
+===== PUBLIC VALIDATION CORPUS: DISCOVERY =====
+{"bucket": "campaign", "game_id": 427351, "position": 1, "slots": 12, "status": "ok", "total": 320, "turn": 140}
+{"bucket": "championship", "game_id": 38553, "position": 2, "slots": 11, "status": "ok", "total": 320, "turn": 110}
+{"bucket": "classic", "game_id": 583859, "position": 3, "slots": 11, "status": "ok", "total": 320, "turn": 140}
+{"bucket": "standard_or_other", "game_id": 656448, "position": 4, "slots": 11, "status": "ok", "total": 320, "turn": 140}
+{"bucket": "custom", "game_id": 314897, "position": 5, "slots": 8, "status": "ok", "total": 320, "turn": 138}
+{"bucket": "team_or_mvm", "game_id": 40708, "position": 6, "slots": 12, "status": "ok", "total": 320, "turn": 140}
+{"bucket": "campaign", "game_id": 134091, "position": 7, "slots": 11, "status": "ok", "total": 320, "turn": 140}
+{"bucket": "classic", "game_id": 349053, "position": 8, "slots": 11, "status": "ok", "total": 320, "turn": 140}
+{"bucket": "standard_or_other", "game_id": 550974, "position": 9, "slots": 11, "status": "ok", "total": 320, "turn": 140}
+{"bucket": "custom", "game_id": 200015, "position": 10, "slots": 11, "status": "ok", "total": 320, "turn": 137}
+{"bucket": "team_or_mvm", "game_id": 151661, "position": 11, "slots": 12, "status": "ok", "total": 320, "turn": 138}
+{"bucket": "campaign", "game_id": 87845, "position": 12, "slots": 11, "status": "ok", "total": 320, "turn": 140}
+{"bucket": "classic", "game_id": 348073, "position": 13, "slots": 11, "status": "ok", "total": 320, "turn": 140}
+{"bucket": "standard_or_other", "game_id": 390432, "position": 14, "slots": 11, "status": "ok", "total": 320, "turn": 140}
+{"bucket": "custom", "game_id": 355526, "position": 15, "slots": 11, "status": "ok", "total": 320, "turn": 133}
+{"bucket": "team_or_mvm", "game_id": 226775, "position": 16, "slots": 12, "status": "ok", "total": 320, "turn": 137}
+{"bucket": "campaign", "game_id": 78128, "position": 17, "slots": 11, "status": "ok", "total": 320, "turn": 140}
+{"bucket": "classic", "game_id": 291632, "position": 18, "slots": 11, "status": "ok", "total": 320, "turn": 140}
+{"bucket": "standard_or_other", "game_id": 263417, "position": 19, "slots": 11, "status": "ok", "total": 320, "turn": 140}
+{"bucket": "custom", "game_id": 517222, "position": 20, "slots": 11, "status": "ok", "total": 320, "turn": 132}
+{"bucket": "team_or_mvm", "game_id": 195441, "position": 21, "slots": 12, "status": "ok", "total": 320, "turn": 136}
+{"bucket": "campaign", "game_id": 524547, "position": 22, "slots": 12, "status": "ok", "total": 320, "turn": 139}
+{"bucket": "classic", "game_id": 179497, "position": 23, "slots": 11, "status": "ok", "total": 320, "turn": 140}
+{"bucket": "standard_or_other", "game_id": 206957, "position": 24, "slots": 11, "status": "ok", "total": 320, "turn": 140}
+{"bucket": "custom", "game_id": 199300, "position": 25, "slots": 12, "status": "ok", "total": 320, "turn": 131}
+{"bucket": "team_or_mvm", "game_id": 70253, "position": 26, "slots": 12, "status": "ok", "total": 320, "turn": 132}
+{"bucket": "campaign", "game_id": 312518, "position": 27, "slots": 12, "status": "ok", "total": 320, "turn": 139}
+{"bucket": "classic", "game_id": 629796, "position": 28, "slots": 11, "status": "ok", "total": 320, "turn": 139}
+{"bucket": "standard_or_other", "game_id": 139421, "position": 29, "slots": 11, "status": "ok", "total": 320, "turn": 140}
+{"bucket": "custom", "game_id": 330273, "position": 30, "slots": 11, "status": "ok", "total": 320, "turn": 131}
+{"bucket": "team_or_mvm", "game_id": 105186, "position": 31, "slots": 10, "status": "ok", "total": 320, "turn": 132}
+{"bucket": "campaign", "game_id": 522154, "position": 32, "slots": 12, "status": "ok", "total": 320, "turn": 138}
+{"bucket": "classic", "game_id": 625682, "position": 33, "slots": 11, "status": "ok", "total": 320, "turn": 139}
+{"bucket": "standard_or_other", "game_id": 81827, "position": 34, "slots": 11, "status": "ok", "total": 320, "turn": 140}
+{"bucket": "custom", "game_id": 172010, "position": 35, "slots": 11, "status": "ok", "total": 320, "turn": 131}
+{"bucket": "team_or_mvm", "game_id": 237646, "position": 36, "slots": 12, "status": "ok", "total": 320, "turn": 131}
+{"bucket": "campaign", "game_id": 406930, "position": 37, "slots": 12, "status": "ok", "total": 320, "turn": 138}
+{"bucket": "classic", "game_id": 350901, "position": 38, "slots": 11, "status": "ok", "total": 320, "turn": 139}
+{"bucket": "standard_or_other", "game_id": 5324, "position": 39, "slots": 11, "status": "ok", "total": 320, "turn": 140}
+{"bucket": "custom", "game_id": 66342, "position": 40, "slots": 11, "status": "ok", "total": 320, "turn": 131}
+{"bucket": "team_or_mvm", "game_id": 82000, "position": 41, "slots": 12, "status": "ok", "total": 320, "turn": 131}
+{"bucket": "campaign", "game_id": 399722, "position": 42, "slots": 12, "status": "ok", "total": 320, "turn": 138}
+{"bucket": "classic", "game_id": 276857, "position": 43, "slots": 11, "status": "ok", "total": 320, "turn": 139}
+{"bucket": "standard_or_other", "game_id": 573780, "position": 44, "slots": 11, "status": "ok", "total": 320, "turn": 139}
+{"bucket": "custom", "game_id": 296151, "position": 45, "slots": 11, "status": "ok", "total": 320, "turn": 129}
+{"bucket": "team_or_mvm", "game_id": 282883, "position": 46, "slots": 12, "status": "ok", "total": 320, "turn": 130}
+{"bucket": "campaign", "game_id": 216017, "position": 47, "slots": 12, "status": "ok", "total": 320, "turn": 138}
+{"bucket": "classic", "game_id": 101975, "position": 48, "slots": 11, "status": "ok", "total": 320, "turn": 139}
+{"bucket": "standard_or_other", "game_id": 504464, "position": 49, "slots": 11, "status": "ok", "total": 320, "turn": 139}
+{"bucket": "custom", "game_id": 63203, "position": 50, "slots": 11, "status": "ok", "total": 320, "turn": 129}
+{"bucket": "team_or_mvm", "game_id": 270544, "position": 51, "slots": 12, "status": "ok", "total": 320, "turn": 130}
+{"bucket": "campaign", "game_id": 465672, "position": 52, "slots": 12, "status": "ok", "total": 320, "turn": 137}
+{"bucket": "classic", "game_id": 619552, "position": 53, "slots": 11, "status": "ok", "total": 320, "turn": 138}
+{"bucket": "standard_or_other", "game_id": 368900, "position": 54, "slots": 11, "status": "ok", "total": 320, "turn": 139}
+{"bucket": "custom", "game_id": 54512, "position": 55, "slots": 11, "status": "ok", "total": 320, "turn": 129}
+{"bucket": "team_or_mvm", "game_id": 150411, "position": 56, "slots": 12, "status": "ok", "total": 320, "turn": 130}
+{"bucket": "campaign", "game_id": 332564, "position": 57, "slots": 12, "status": "ok", "total": 320, "turn": 137}
+{"bucket": "classic", "game_id": 614130, "position": 58, "slots": 11, "status": "ok", "total": 320, "turn": 138}
+{"bucket": "standard_or_other", "game_id": 255810, "position": 59, "slots": 11, "status": "ok", "total": 320, "turn": 139}
+{"bucket": "custom", "game_id": 605174, "position": 60, "slots": 11, "status": "ok", "total": 320, "turn": 126}
+{"bucket": "team_or_mvm", "game_id": 506926, "position": 61, "slots": 12, "status": "ok", "total": 320, "turn": 128}
+{"bucket": "campaign", "game_id": 256565, "position": 62, "slots": 12, "status": "ok", "total": 320, "turn": 137}
+{"bucket": "classic", "game_id": 520875, "position": 63, "slots": 11, "status": "ok", "total": 320, "turn": 138}
+{"bucket": "standard_or_other", "game_id": 136077, "position": 64, "slots": 11, "status": "ok", "total": 320, "turn": 139}
+{"bucket": "custom", "game_id": 651280, "position": 65, "slots": 8, "status": "ok", "total": 320, "turn": 126}
+{"bucket": "team_or_mvm", "game_id": 162549, "position": 66, "slots": 12, "status": "ok", "total": 320, "turn": 128}
+{"bucket": "campaign", "game_id": 49055, "position": 67, "slots": 11, "status": "ok", "total": 320, "turn": 137}
+{"bucket": "classic", "game_id": 490569, "position": 68, "slots": 11, "status": "ok", "total": 320, "turn": 138}
+{"bucket": "standard_or_other", "game_id": 72490, "position": 69, "slots": 11, "status": "ok", "total": 320, "turn": 139}
+{"bucket": "custom", "game_id": 467011, "position": 70, "slots": 12, "status": "ok", "total": 320, "turn": 125}
+{"bucket": "team_or_mvm", "game_id": 239598, "position": 71, "slots": 12, "status": "ok", "total": 320, "turn": 126}
+{"bucket": "campaign", "game_id": 320261, "position": 72, "slots": 12, "status": "ok", "total": 320, "turn": 135}
+{"bucket": "classic", "game_id": 301074, "position": 73, "slots": 11, "status": "ok", "total": 320, "turn": 138}
+{"bucket": "standard_or_other", "game_id": 28089, "position": 74, "slots": 11, "status": "ok", "total": 320, "turn": 139}
+{"bucket": "custom", "game_id": 181660, "position": 75, "slots": 12, "status": "ok", "total": 320, "turn": 125}
+{"bucket": "team_or_mvm", "game_id": 46374, "position": 76, "slots": 12, "status": "ok", "total": 320, "turn": 126}
+{"bucket": "campaign", "game_id": 294624, "position": 77, "slots": 12, "status": "ok", "total": 320, "turn": 135}
+{"bucket": "classic", "game_id": 231807, "position": 78, "slots": 11, "status": "ok", "total": 320, "turn": 138}
+{"bucket": "standard_or_other", "game_id": 608293, "position": 79, "slots": 11, "status": "ok", "total": 320, "turn": 138}
+{"bucket": "custom", "game_id": 625188, "position": 80, "slots": 11, "status": "ok", "total": 320, "turn": 125}
+{"bucket": "team_or_mvm", "game_id": 20771, "position": 81, "slots": 12, "status": "ok", "total": 320, "turn": 126}
+{"bucket": "campaign", "game_id": 98036, "position": 82, "slots": 11, "status": "ok", "total": 320, "turn": 135}
+{"bucket": "classic", "game_id": 87846, "position": 83, "slots": 11, "status": "ok", "total": 320, "turn": 138}
+{"bucket": "standard_or_other", "game_id": 407702, "position": 84, "slots": 11, "status": "ok", "total": 320, "turn": 138}
+{"bucket": "custom", "game_id": 287127, "position": 85, "slots": 11, "status": "ok", "total": 320, "turn": 125}
+{"bucket": "team_or_mvm", "game_id": 653412, "position": 86, "slots": 12, "status": "ok", "total": 320, "turn": 125}
+{"bucket": "campaign", "game_id": 75084, "position": 87, "slots": 11, "status": "ok", "total": 320, "turn": 135}
+{"bucket": "classic", "game_id": 638564, "position": 88, "slots": 11, "status": "ok", "total": 320, "turn": 137}
+{"bucket": "standard_or_other", "game_id": 165634, "position": 89, "slots": 11, "status": "ok", "total": 320, "turn": 138}
+{"bucket": "custom", "game_id": 267496, "position": 90, "slots": 11, "status": "ok", "total": 320, "turn": 125}
+{"bucket": "team_or_mvm", "game_id": 128334, "position": 91, "slots": 12, "status": "ok", "total": 320, "turn": 124}
+{"bucket": "campaign", "game_id": 642976, "position": 92, "slots": 12, "status": "ok", "total": 320, "turn": 133}
+{"bucket": "classic", "game_id": 616394, "position": 93, "slots": 11, "status": "ok", "total": 320, "turn": 137}
+{"bucket": "standard_or_other", "game_id": 96616, "position": 94, "slots": 11, "status": "ok", "total": 320, "turn": 138}
+{"bucket": "custom", "game_id": 264095, "position": 95, "slots": 11, "status": "ok", "total": 320, "turn": 125}
+{"bucket": "team_or_mvm", "game_id": 96764, "position": 96, "slots": 12, "status": "ok", "total": 320, "turn": 123}
+{"bucket": "campaign", "game_id": 512655, "position": 97, "slots": 12, "status": "ok", "total": 320, "turn": 133}
+{"bucket": "classic", "game_id": 597217, "position": 98, "slots": 11, "status": "ok", "total": 320, "turn": 137}
+{"bucket": "standard_or_other", "game_id": 643798, "position": 99, "slots": 11, "status": "ok", "total": 320, "turn": 137}
+{"bucket": "custom", "game_id": 237406, "position": 100, "slots": 11, "status": "ok", "total": 320, "turn": 125}
+{"bucket": "team_or_mvm", "game_id": 45561, "position": 101, "slots": 12, "status": "ok", "total": 320, "turn": 123}
+{"bucket": "campaign", "game_id": 73971, "position": 102, "slots": 11, "status": "ok", "total": 320, "turn": 133}
+{"bucket": "classic", "game_id": 575333, "position": 103, "slots": 11, "status": "ok", "total": 320, "turn": 137}
+{"bucket": "standard_or_other", "game_id": 441856, "position": 104, "slots": 11, "status": "ok", "total": 320, "turn": 137}
+{"bucket": "custom", "game_id": 190062, "position": 105, "slots": 11, "status": "ok", "total": 320, "turn": 125}
+{"bucket": "team_or_mvm", "game_id": 157947, "position": 106, "slots": 12, "status": "ok", "total": 320, "turn": 121}
+{"bucket": "campaign", "game_id": 361318, "position": 107, "slots": 12, "status": "ok", "total": 320, "turn": 132}
+{"bucket": "classic", "game_id": 491117, "position": 108, "slots": 11, "status": "ok", "total": 320, "turn": 137}
+{"bucket": "standard_or_other", "game_id": 297450, "position": 109, "slots": 11, "status": "ok", "total": 320, "turn": 137}
+{"bucket": "custom", "game_id": 157358, "position": 110, "slots": 11, "status": "ok", "total": 320, "turn": 125}
+{"bucket": "team_or_mvm", "game_id": 137611, "position": 111, "slots": 12, "status": "ok", "total": 320, "turn": 121}
+{"bucket": "campaign", "game_id": 573744, "position": 112, "slots": 12, "status": "ok", "total": 320, "turn": 131}
+{"bucket": "classic", "game_id": 346186, "position": 113, "slots": 11, "status": "ok", "total": 320, "turn": 137}
+{"bucket": "standard_or_other", "game_id": 208746, "position": 114, "slots": 11, "status": "ok", "total": 320, "turn": 137}
+{"bucket": "custom", "game_id": 339708, "position": 115, "slots": 10, "status": "ok", "total": 320, "turn": 125}
+{"bucket": "team_or_mvm", "game_id": 357770, "position": 116, "slots": 12, "status": "ok", "total": 320, "turn": 120}
+{"bucket": "campaign", "game_id": 86014, "position": 117, "slots": 11, "status": "ok", "total": 320, "turn": 131}
+{"bucket": "classic", "game_id": 218843, "position": 118, "slots": 11, "status": "ok", "total": 320, "turn": 137}
+{"bucket": "standard_or_other", "game_id": 130144, "position": 119, "slots": 11, "status": "ok", "total": 320, "turn": 137}
+{"bucket": "custom", "game_id": 336677, "position": 120, "slots": 10, "status": "ok", "total": 320, "turn": 125}
+{"bucket": "team_or_mvm", "game_id": 91630, "position": 121, "slots": 12, "status": "ok", "total": 320, "turn": 120}
+{"bucket": "campaign", "game_id": 401760, "position": 122, "slots": 12, "status": "ok", "total": 320, "turn": 130}
+{"bucket": "classic", "game_id": 218338, "position": 123, "slots": 11, "status": "ok", "total": 320, "turn": 137}
+{"bucket": "standard_or_other", "game_id": 110148, "position": 124, "slots": 11, "status": "ok", "total": 320, "turn": 137}
+{"bucket": "custom", "game_id": 474043, "position": 125, "slots": 11, "status": "ok", "total": 320, "turn": 124}
+{"bucket": "team_or_mvm", "game_id": 66901, "position": 126, "slots": 12, "status": "ok", "total": 320, "turn": 120}
+{"bucket": "campaign", "game_id": 69099, "position": 127, "slots": 11, "status": "ok", "total": 320, "turn": 129}
+{"bucket": "classic", "game_id": 196949, "position": 128, "slots": 11, "status": "ok", "total": 320, "turn": 137}
+{"bucket": "standard_or_other", "game_id": 71868, "position": 129, "slots": 11, "status": "ok", "total": 320, "turn": 137}
+{"bucket": "custom", "game_id": 492731, "position": 130, "slots": 11, "status": "ok", "total": 320, "turn": 122}
+{"bucket": "team_or_mvm", "game_id": 84401, "position": 131, "slots": 12, "status": "ok", "total": 320, "turn": 118}
+{"bucket": "campaign", "game_id": 53490, "position": 132, "slots": 11, "status": "ok", "total": 320, "turn": 129}
+{"bucket": "classic", "game_id": 133762, "position": 133, "slots": 11, "status": "ok", "total": 320, "turn": 137}
+{"bucket": "standard_or_other", "game_id": 69075, "position": 134, "slots": 11, "status": "ok", "total": 320, "turn": 137}
+{"bucket": "custom", "game_id": 469931, "position": 135, "slots": 12, "status": "ok", "total": 320, "turn": 120}
+{"bucket": "team_or_mvm", "game_id": 42421, "position": 136, "slots": 12, "status": "ok", "total": 320, "turn": 118}
+{"bucket": "campaign", "game_id": 554204, "position": 137, "slots": 12, "status": "ok", "total": 320, "turn": 128}
+{"bucket": "classic", "game_id": 128302, "position": 138, "slots": 11, "status": "ok", "total": 320, "turn": 137}
+{"bucket": "standard_or_other", "game_id": 66888, "position": 139, "slots": 11, "status": "ok", "total": 320, "turn": 137}
+{"bucket": "custom", "game_id": 225391, "position": 140, "slots": 11, "status": "ok", "total": 320, "turn": 120}
+{"bucket": "team_or_mvm", "game_id": 292181, "position": 141, "slots": 9, "status": "ok", "total": 320, "turn": 118}
+{"bucket": "campaign", "game_id": 449250, "position": 142, "slots": 12, "status": "ok", "total": 320, "turn": 128}
+{"bucket": "classic", "game_id": 656926, "position": 143, "slots": 11, "status": "ok", "total": 320, "turn": 136}
+{"bucket": "standard_or_other", "game_id": 61410, "position": 144, "slots": 11, "status": "ok", "total": 320, "turn": 137}
+{"bucket": "custom", "game_id": 46352, "position": 145, "slots": 10, "status": "ok", "total": 320, "turn": 120}
+{"bucket": "team_or_mvm", "game_id": 380878, "position": 146, "slots": 12, "status": "ok", "total": 320, "turn": 117}
+{"bucket": "campaign", "game_id": 297511, "position": 147, "slots": 12, "status": "ok", "total": 320, "turn": 128}
+{"bucket": "classic", "game_id": 568485, "position": 148, "slots": 11, "status": "ok", "total": 320, "turn": 136}
+{"bucket": "standard_or_other", "game_id": 634659, "position": 149, "slots": 11, "status": "ok", "total": 320, "turn": 136}
+{"bucket": "custom", "game_id": 299146, "position": 150, "slots": 11, "status": "ok", "total": 320, "turn": 118}
+{"bucket": "team_or_mvm", "game_id": 227342, "position": 151, "slots": 12, "status": "ok", "total": 320, "turn": 116}
+{"bucket": "campaign", "game_id": 169683, "position": 152, "slots": 11, "status": "ok", "total": 320, "turn": 128}
+{"bucket": "classic", "game_id": 259151, "position": 153, "slots": 11, "status": "ok", "total": 320, "turn": 136}
+{"bucket": "standard_or_other", "game_id": 315935, "position": 154, "slots": 11, "status": "ok", "total": 320, "turn": 136}
+{"bucket": "custom", "game_id": 147504, "position": 155, "slots": 11, "status": "ok", "total": 320, "turn": 118}
+{"bucket": "team_or_mvm", "game_id": 371057, "position": 156, "slots": 12, "status": "ok", "total": 320, "turn": 115}
+{"bucket": "campaign", "game_id": 388743, "position": 157, "slots": 12, "status": "ok", "total": 320, "turn": 127}
+{"bucket": "classic", "game_id": 321193, "position": 158, "slots": 11, "status": "ok", "total": 320, "turn": 135}
+{"bucket": "standard_or_other", "game_id": 232467, "position": 159, "slots": 11, "status": "ok", "total": 320, "turn": 136}
+{"bucket": "custom", "game_id": 521268, "position": 160, "slots": 12, "status": "ok", "total": 320, "turn": 117}
+{"bucket": "team_or_mvm", "game_id": 318723, "position": 161, "slots": 12, "status": "ok", "total": 320, "turn": 115}
+{"bucket": "campaign", "game_id": 660565, "position": 162, "slots": 11, "status": "ok", "total": 320, "turn": 127}
+{"bucket": "classic", "game_id": 260909, "position": 163, "slots": 11, "status": "ok", "total": 320, "turn": 135}
+{"bucket": "standard_or_other", "game_id": 225638, "position": 164, "slots": 11, "status": "ok", "total": 320, "turn": 136}
+{"bucket": "custom", "game_id": 137418, "position": 165, "slots": 8, "status": "ok", "total": 320, "turn": 117}
+{"bucket": "team_or_mvm", "game_id": 160278, "position": 166, "slots": 12, "status": "ok", "total": 320, "turn": 114}
+{"bucket": "campaign", "game_id": 321561, "position": 167, "slots": 12, "status": "ok", "total": 320, "turn": 126}
+{"bucket": "classic", "game_id": 204826, "position": 168, "slots": 11, "status": "ok", "total": 320, "turn": 135}
+{"bucket": "standard_or_other", "game_id": 223160, "position": 169, "slots": 11, "status": "ok", "total": 320, "turn": 136}
+{"bucket": "custom", "game_id": 243409, "position": 170, "slots": 11, "status": "ok", "total": 320, "turn": 116}
+{"bucket": "team_or_mvm", "game_id": 72849, "position": 171, "slots": 12, "status": "ok", "total": 320, "turn": 114}
+{"bucket": "campaign", "game_id": 148884, "position": 172, "slots": 11, "status": "ok", "total": 320, "turn": 126}
+{"bucket": "classic", "game_id": 91858, "position": 173, "slots": 11, "status": "ok", "total": 320, "turn": 135}
+{"bucket": "standard_or_other", "game_id": 161505, "position": 174, "slots": 11, "status": "ok", "total": 320, "turn": 136}
+{"bucket": "custom", "game_id": 131585, "position": 175, "slots": 11, "status": "ok", "total": 320, "turn": 116}
+{"bucket": "team_or_mvm", "game_id": 43452, "position": 176, "slots": 12, "status": "ok", "total": 320, "turn": 114}
+{"bucket": "campaign", "game_id": 636699, "position": 177, "slots": 11, "status": "ok", "total": 320, "turn": 125}
+{"bucket": "classic", "game_id": 447614, "position": 178, "slots": 11, "status": "ok", "total": 320, "turn": 134}
+{"bucket": "standard_or_other", "game_id": 159960, "position": 179, "slots": 11, "status": "ok", "total": 320, "turn": 136}
+{"bucket": "custom", "game_id": 113391, "position": 180, "slots": 11, "status": "ok", "total": 320, "turn": 116}
+{"bucket": "team_or_mvm", "game_id": 26220, "position": 181, "slots": 12, "status": "ok", "total": 320, "turn": 114}
+{"bucket": "campaign", "game_id": 120606, "position": 182, "slots": 11, "status": "ok", "total": 320, "turn": 125}
+{"bucket": "classic", "game_id": 256587, "position": 183, "slots": 11, "status": "ok", "total": 320, "turn": 134}
+{"bucket": "standard_or_other", "game_id": 54847, "position": 184, "slots": 11, "status": "ok", "total": 320, "turn": 136}
+{"bucket": "custom", "game_id": 193427, "position": 185, "slots": 11, "status": "ok", "total": 320, "turn": 115}
+{"bucket": "team_or_mvm", "game_id": 96190, "position": 186, "slots": 12, "status": "ok", "total": 320, "turn": 113}
+{"bucket": "campaign", "game_id": 526245, "position": 187, "slots": 12, "status": "ok", "total": 320, "turn": 123}
+{"bucket": "classic", "game_id": 179099, "position": 188, "slots": 11, "status": "ok", "total": 320, "turn": 134}
+{"bucket": "standard_or_other", "game_id": 40311, "position": 189, "slots": 11, "status": "ok", "total": 320, "turn": 136}
+{"bucket": "custom", "game_id": 66574, "position": 190, "slots": 11, "status": "ok", "total": 320, "turn": 115}
+{"bucket": "team_or_mvm", "game_id": 38591, "position": 191, "slots": 12, "status": "ok", "total": 320, "turn": 113}
+{"bucket": "campaign", "game_id": 486742, "position": 192, "slots": 12, "status": "ok", "total": 320, "turn": 122}
+{"bucket": "classic", "game_id": 62178, "position": 193, "slots": 11, "status": "ok", "total": 320, "turn": 134}
+{"bucket": "standard_or_other", "game_id": 430947, "position": 194, "slots": 11, "status": "ok", "total": 320, "turn": 135}
+{"bucket": "custom", "game_id": 403181, "position": 195, "slots": 8, "status": "ok", "total": 320, "turn": 115}
+{"bucket": "team_or_mvm", "game_id": 406653, "position": 196, "slots": 12, "status": "ok", "total": 320, "turn": 112}
+{"bucket": "campaign", "game_id": 95209, "position": 197, "slots": 11, "status": "ok", "total": 320, "turn": 122}
+{"bucket": "classic", "game_id": 592489, "position": 198, "slots": 11, "status": "ok", "total": 320, "turn": 133}
+{"bucket": "standard_or_other", "game_id": 397401, "position": 199, "slots": 11, "status": "ok", "total": 320, "turn": 135}
+{"bucket": "custom", "game_id": 573115, "position": 200, "slots": 12, "status": "ok", "total": 320, "turn": 114}
+{"bucket": "team_or_mvm", "game_id": 216678, "position": 201, "slots": 12, "status": "ok", "total": 320, "turn": 112}
+{"bucket": "campaign", "game_id": 72388, "position": 202, "slots": 11, "status": "ok", "total": 320, "turn": 122}
+{"bucket": "classic", "game_id": 408829, "position": 203, "slots": 11, "status": "ok", "total": 320, "turn": 133}
+{"bucket": "standard_or_other", "game_id": 217174, "position": 204, "slots": 11, "status": "ok", "total": 320, "turn": 135}
+{"bucket": "custom", "game_id": 523367, "position": 205, "slots": 11, "status": "ok", "total": 320, "turn": 114}
+{"bucket": "team_or_mvm", "game_id": 100704, "position": 206, "slots": 12, "status": "ok", "total": 320, "turn": 112}
+{"bucket": "campaign", "game_id": 349337, "position": 207, "slots": 12, "status": "ok", "total": 320, "turn": 121}
+{"bucket": "classic", "game_id": 345508, "position": 208, "slots": 11, "status": "ok", "total": 320, "turn": 133}
+{"bucket": "standard_or_other", "game_id": 208762, "position": 209, "slots": 11, "status": "ok", "total": 320, "turn": 135}
+{"bucket": "custom", "game_id": 266805, "position": 210, "slots": 11, "status": "ok", "total": 320, "turn": 114}
+{"bucket": "team_or_mvm", "game_id": 78368, "position": 211, "slots": 12, "status": "ok", "total": 320, "turn": 112}
+{"bucket": "campaign", "game_id": 189400, "position": 212, "slots": 11, "status": "ok", "total": 320, "turn": 120}
+{"bucket": "classic", "game_id": 284865, "position": 213, "slots": 11, "status": "ok", "total": 320, "turn": 133}
+{"bucket": "standard_or_other", "game_id": 112611, "position": 214, "slots": 11, "status": "ok", "total": 320, "turn": 135}
+{"bucket": "custom", "game_id": 168073, "position": 215, "slots": 11, "status": "ok", "total": 320, "turn": 114}
+{"bucket": "team_or_mvm", "game_id": 23013, "position": 216, "slots": 12, "status": "ok", "total": 320, "turn": 112}
+{"bucket": "campaign", "game_id": 94432, "position": 217, "slots": 11, "status": "ok", "total": 320, "turn": 120}
+{"bucket": "classic", "game_id": 193711, "position": 218, "slots": 11, "status": "ok", "total": 320, "turn": 133}
+{"bucket": "standard_or_other", "game_id": 34589, "position": 219, "slots": 11, "status": "ok", "total": 320, "turn": 135}
+{"bucket": "custom", "game_id": 145976, "position": 220, "slots": 9, "status": "ok", "total": 320, "turn": 114}
+{"bucket": "team_or_mvm", "game_id": 467020, "position": 221, "slots": 12, "status": "ok", "total": 320, "turn": 111}
+{"bucket": "campaign", "game_id": 82336, "position": 222, "slots": 11, "status": "ok", "total": 320, "turn": 120}
+{"bucket": "classic", "game_id": 110353, "position": 223, "slots": 11, "status": "ok", "total": 320, "turn": 133}
+{"bucket": "standard_or_other", "game_id": 214538, "position": 224, "slots": 11, "status": "ok", "total": 320, "turn": 134}
+{"bucket": "custom", "game_id": 263646, "position": 225, "slots": 8, "status": "ok", "total": 320, "turn": 114}
+{"bucket": "team_or_mvm", "game_id": 183057, "position": 226, "slots": 12, "status": "ok", "total": 320, "turn": 111}
+{"bucket": "campaign", "game_id": 105823, "position": 227, "slots": 11, "status": "ok", "total": 320, "turn": 119}
+{"bucket": "classic", "game_id": 81093, "position": 228, "slots": 11, "status": "ok", "total": 320, "turn": 133}
+{"bucket": "standard_or_other", "game_id": 61474, "position": 229, "slots": 11, "status": "ok", "total": 320, "turn": 134}
+{"bucket": "custom", "game_id": 219337, "position": 230, "slots": 12, "status": "ok", "total": 320, "turn": 113}
+{"bucket": "team_or_mvm", "game_id": 177332, "position": 231, "slots": 12, "status": "ok", "total": 320, "turn": 111}
+{"bucket": "campaign", "game_id": 583135, "position": 232, "slots": 12, "status": "ok", "total": 320, "turn": 117}
+{"bucket": "classic", "game_id": 75413, "position": 233, "slots": 11, "status": "ok", "total": 320, "turn": 133}
+{"bucket": "standard_or_other", "game_id": 45229, "position": 234, "slots": 11, "status": "ok", "total": 320, "turn": 134}
+{"bucket": "custom", "game_id": 536676, "position": 235, "slots": 11, "status": "ok", "total": 320, "turn": 113}
+{"bucket": "team_or_mvm", "game_id": 458344, "position": 236, "slots": 12, "status": "ok", "total": 320, "turn": 110}
+{"bucket": "campaign", "game_id": 539649, "position": 237, "slots": 12, "status": "ok", "total": 320, "turn": 117}
+{"bucket": "classic", "game_id": 70463, "position": 238, "slots": 11, "status": "ok", "total": 320, "turn": 133}
+{"bucket": "standard_or_other", "game_id": 33562, "position": 239, "slots": 11, "status": "ok", "total": 320, "turn": 134}
+{"bucket": "custom", "game_id": 322360, "position": 240, "slots": 11, "status": "ok", "total": 320, "turn": 113}
+{"bucket": "team_or_mvm", "game_id": 61817, "position": 241, "slots": 12, "status": "ok", "total": 320, "turn": 110}
+{"bucket": "campaign", "game_id": 89490, "position": 242, "slots": 11, "status": "ok", "total": 320, "turn": 117}
+{"bucket": "classic", "game_id": 639367, "position": 243, "slots": 11, "status": "ok", "total": 320, "turn": 132}
+{"bucket": "standard_or_other", "game_id": 619111, "position": 244, "slots": 11, "status": "ok", "total": 320, "turn": 133}
+{"bucket": "custom", "game_id": 365691, "position": 245, "slots": 10, "status": "ok", "total": 320, "turn": 113}
+{"bucket": "team_or_mvm", "game_id": 360331, "position": 246, "slots": 15, "status": "ok", "total": 320, "turn": 109}
+{"bucket": "campaign", "game_id": 61390, "position": 247, "slots": 11, "status": "ok", "total": 320, "turn": 117}
+{"bucket": "classic", "game_id": 631479, "position": 248, "slots": 11, "status": "ok", "total": 320, "turn": 132}
+{"bucket": "standard_or_other", "game_id": 541420, "position": 249, "slots": 11, "status": "ok", "total": 320, "turn": 133}
+{"bucket": "custom", "game_id": 637163, "position": 250, "slots": 11, "status": "ok", "total": 320, "turn": 112}
+{"bucket": "team_or_mvm", "game_id": 620202, "position": 251, "slots": 10, "status": "ok", "total": 320, "turn": 109}
+{"bucket": "campaign", "game_id": 70495, "position": 252, "slots": 11, "status": "ok", "total": 320, "turn": 116}
+{"bucket": "classic", "game_id": 590577, "position": 253, "slots": 11, "status": "ok", "total": 320, "turn": 132}
+{"bucket": "standard_or_other", "game_id": 459791, "position": 254, "slots": 11, "status": "ok", "total": 320, "turn": 133}
+{"bucket": "custom", "game_id": 307710, "position": 255, "slots": 11, "status": "ok", "total": 320, "turn": 112}
+{"bucket": "team_or_mvm", "game_id": 400766, "position": 256, "slots": 12, "status": "ok", "total": 320, "turn": 108}
+{"bucket": "campaign", "game_id": 625069, "position": 257, "slots": 11, "status": "ok", "total": 320, "turn": 114}
+{"bucket": "classic", "game_id": 342864, "position": 258, "slots": 11, "status": "ok", "total": 320, "turn": 132}
+{"bucket": "standard_or_other", "game_id": 426950, "position": 259, "slots": 11, "status": "ok", "total": 320, "turn": 133}
+{"bucket": "custom", "game_id": 258737, "position": 260, "slots": 11, "status": "ok", "total": 320, "turn": 112}
+{"bucket": "team_or_mvm", "game_id": 290449, "position": 261, "slots": 9, "status": "ok", "total": 320, "turn": 108}
+{"bucket": "campaign", "game_id": 55115, "position": 262, "slots": 11, "status": "ok", "total": 320, "turn": 114}
+{"bucket": "classic", "game_id": 159247, "position": 263, "slots": 11, "status": "ok", "total": 320, "turn": 132}
+{"bucket": "standard_or_other", "game_id": 343714, "position": 264, "slots": 11, "status": "ok", "total": 320, "turn": 133}
+{"bucket": "custom", "game_id": 232446, "position": 265, "slots": 11, "status": "ok", "total": 320, "turn": 112}
+{"bucket": "team_or_mvm", "game_id": 422907, "position": 266, "slots": 12, "status": "ok", "total": 320, "turn": 107}
+{"bucket": "campaign", "game_id": 546857, "position": 267, "slots": 12, "status": "ok", "total": 320, "turn": 113}
+{"bucket": "classic", "game_id": 157499, "position": 268, "slots": 11, "status": "ok", "total": 320, "turn": 132}
+{"bucket": "standard_or_other", "game_id": 199204, "position": 269, "slots": 11, "status": "ok", "total": 320, "turn": 133}
+{"bucket": "custom", "game_id": 444043, "position": 270, "slots": 12, "status": "ok", "total": 320, "turn": 110}
+{"bucket": "team_or_mvm", "game_id": 197352, "position": 271, "slots": 12, "status": "ok", "total": 320, "turn": 107}
+{"bucket": "campaign", "game_id": 155620, "position": 272, "slots": 11, "status": "ok", "total": 320, "turn": 113}
+{"bucket": "classic", "game_id": 649240, "position": 273, "slots": 11, "status": "ok", "total": 320, "turn": 131}
+{"bucket": "standard_or_other", "game_id": 188463, "position": 274, "slots": 11, "status": "ok", "total": 320, "turn": 133}
+{"bucket": "custom", "game_id": 273325, "position": 275, "slots": 11, "status": "ok", "total": 320, "turn": 109}
+{"bucket": "team_or_mvm", "game_id": 70806, "position": 276, "slots": 12, "status": "ok", "total": 320, "turn": 107}
+{"bucket": "campaign", "game_id": 59114, "position": 277, "slots": 11, "status": "ok", "total": 320, "turn": 113}
+{"bucket": "classic", "game_id": 466467, "position": 278, "slots": 11, "status": "ok", "total": 320, "turn": 131}
+{"bucket": "standard_or_other", "game_id": 86698, "position": 279, "slots": 11, "status": "ok", "total": 320, "turn": 133}
+{"bucket": "custom", "game_id": 233802, "position": 280, "slots": 11, "status": "ok", "total": 320, "turn": 109}
+{"bucket": "team_or_mvm", "game_id": 45904, "position": 281, "slots": 12, "status": "ok", "total": 320, "turn": 107}
+{"bucket": "campaign", "game_id": 470472, "position": 282, "slots": 12, "status": "ok", "total": 320, "turn": 112}
+{"bucket": "classic", "game_id": 290343, "position": 283, "slots": 11, "status": "ok", "total": 320, "turn": 131}
+{"bucket": "standard_or_other", "game_id": 79253, "position": 284, "slots": 11, "status": "ok", "total": 320, "turn": 133}
+{"bucket": "custom", "game_id": 308083, "position": 285, "slots": 10, "status": "ok", "total": 320, "turn": 109}
+{"bucket": "team_or_mvm", "game_id": 610943, "position": 286, "slots": 10, "status": "ok", "total": 320, "turn": 107}
+{"bucket": "campaign", "game_id": 221222, "position": 287, "slots": 12, "status": "ok", "total": 320, "turn": 112}
+{"bucket": "classic", "game_id": 263414, "position": 288, "slots": 11, "status": "ok", "total": 320, "turn": 131}
+{"bucket": "standard_or_other", "game_id": 57151, "position": 289, "slots": 11, "status": "ok", "total": 320, "turn": 133}
+{"bucket": "custom", "game_id": 259597, "position": 290, "slots": 11, "status": "ok", "total": 320, "turn": 108}
+{"bucket": "team_or_mvm", "game_id": 295037, "position": 291, "slots": 8, "status": "ok", "total": 320, "turn": 107}
+{"bucket": "campaign", "game_id": 652866, "position": 292, "slots": 11, "status": "ok", "total": 320, "turn": 112}
+{"bucket": "classic", "game_id": 162844, "position": 293, "slots": 11, "status": "ok", "total": 320, "turn": 131}
+{"bucket": "standard_or_other", "game_id": 54567, "position": 294, "slots": 11, "status": "ok", "total": 320, "turn": 133}
+{"bucket": "custom", "game_id": 215857, "position": 295, "slots": 11, "status": "ok", "total": 320, "turn": 108}
+{"bucket": "team_or_mvm", "game_id": 564079, "position": 296, "slots": 12, "status": "ok", "total": 320, "turn": 106}
+{"bucket": "campaign", "game_id": 169773, "position": 297, "slots": 11, "status": "ok", "total": 320, "turn": 112}
+{"bucket": "classic", "game_id": 579810, "position": 298, "slots": 11, "status": "ok", "total": 320, "turn": 130}
+{"bucket": "standard_or_other", "game_id": 332566, "position": 299, "slots": 11, "status": "ok", "total": 320, "turn": 132}
+{"bucket": "custom", "game_id": 630946, "position": 300, "slots": 12, "status": "ok", "total": 320, "turn": 107}
+{"bucket": "team_or_mvm", "game_id": 110555, "position": 301, "slots": 12, "status": "ok", "total": 320, "turn": 106}
+{"bucket": "campaign", "game_id": 78599, "position": 302, "slots": 11, "status": "ok", "total": 320, "turn": 112}
+{"bucket": "classic", "game_id": 129700, "position": 303, "slots": 11, "status": "ok", "total": 320, "turn": 130}
+{"bucket": "standard_or_other", "game_id": 221281, "position": 304, "slots": 11, "status": "ok", "total": 320, "turn": 132}
+{"bucket": "custom", "game_id": 186102, "position": 305, "slots": 11, "status": "ok", "total": 320, "turn": 107}
+{"bucket": "team_or_mvm", "game_id": 243824, "position": 306, "slots": 12, "status": "ok", "total": 320, "turn": 104}
+{"bucket": "campaign", "game_id": 75757, "position": 307, "slots": 11, "status": "ok", "total": 320, "turn": 112}
+{"bucket": "classic", "game_id": 111938, "position": 308, "slots": 11, "status": "ok", "total": 320, "turn": 130}
+{"bucket": "standard_or_other", "game_id": 673333, "position": 309, "slots": 11, "status": "ok", "total": 320, "turn": 131}
+{"bucket": "custom", "game_id": 192260, "position": 310, "slots": 10, "status": "ok", "total": 320, "turn": 107}
+{"bucket": "team_or_mvm", "game_id": 126715, "position": 311, "slots": 12, "status": "ok", "total": 320, "turn": 104}
+{"bucket": "campaign", "game_id": 633156, "position": 312, "slots": 11, "status": "ok", "total": 320, "turn": 111}
+{"bucket": "classic", "game_id": 620694, "position": 313, "slots": 11, "status": "ok", "total": 320, "turn": 129}
+{"bucket": "standard_or_other", "game_id": 586709, "position": 314, "slots": 11, "status": "ok", "total": 320, "turn": 131}
+{"bucket": "custom", "game_id": 168541, "position": 315, "slots": 10, "status": "ok", "total": 320, "turn": 107}
+{"bucket": "team_or_mvm", "game_id": 124160, "position": 316, "slots": 12, "status": "ok", "total": 320, "turn": 104}
+{"bucket": "campaign", "game_id": 180122, "position": 317, "slots": 11, "status": "ok", "total": 320, "turn": 111}
+{"bucket": "classic", "game_id": 574103, "position": 318, "slots": 11, "status": "ok", "total": 320, "turn": 129}
+{"bucket": "standard_or_other", "game_id": 465849, "position": 319, "slots": 11, "status": "ok", "total": 320, "turn": 131}
+{"bucket": "custom", "game_id": 180177, "position": 320, "slots": 9, "status": "ok", "total": 320, "turn": 106}
+===== PUBLIC VALIDATION CORPUS DISCOVERY =====
+listed_games:       8702
+eligible_games:     5002
+probed_games:       320
+loadinfo_ok:        320
+loadinfo_failed:    0
+selected_games:     8
+combined_games:     108
+selected_by_bucket: {'campaign': 5, 'finite_fuel': 2, 'sphere': 1}
+selected_manifest:  validation/corpus/manifests/public-c5-v25-selected.jsonl
+combined_manifest:  validation/corpus/manifests/public-c5-v25-with-public100.jsonl
+report:             artifacts/combat/c5-new-game-corpus-batch-v25/selection-report.json
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+{"canonical_failed": 0, "canonical_ok": 920, "embedded_consecutive": 912, "game_id": 403181, "ghost_ship_records": 4, "ionstorm_records": 12824, "minefield_records": 82884, "position": 1, "snapshots": 920, "source": "network", "status": "ok", "total": 8, "transitions": 912}
+{"canonical_failed": 86, "canonical_ok": 1354, "embedded_consecutive": 1428, "game_id": 469931, "ghost_ship_records": 0, "ionstorm_records": 16920, "minefield_records": 135444, "position": 2, "snapshots": 1440, "source": "network", "status": "ok", "total": 8, "transitions": 1428}
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 145976, "position": 3, "status": "failed", "total": 8}
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 199300, "position": 4, "status": "failed", "total": 8}
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 69075, "position": 5, "status": "failed", "total": 8}
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 79253, "position": 6, "status": "failed", "total": 8}
+{"canonical_failed": 84, "canonical_ok": 1320, "embedded_consecutive": 1392, "game_id": 521268, "ghost_ship_records": 0, "ionstorm_records": 5508, "minefield_records": 158787, "position": 7, "snapshots": 1404, "source": "network", "status": "ok", "total": 8, "transitions": 1392}
+{"canonical_failed": 11, "canonical_ok": 1232, "embedded_consecutive": 1232, "game_id": 536676, "ghost_ship_records": 77, "ionstorm_records": 9823, "minefield_records": 38401, "position": 8, "snapshots": 1243, "source": "network", "status": "ok", "total": 8, "transitions": 1232}
+===== CORPUS INGEST SUMMARY =====
+manifest_games:      8
+games_indexed:       4
+games_failed:        4
+index_output:        validation/corpus/index/public-c5-v25-games.jsonl
+stats_output:        validation/corpus/index/public-c5-v25-stats.json
+snapshots:           5007
+transitions:         4964
+embedded_consecutive:4964
+canonical_ok:        4826
+canonical_failed:    181
+settings_hashes:     4
+races:               {'1': 4, '2': 7, '3': 5, '4': 3, '5': 5, '6': 4, '7': 3, '8': 2, '9': 6, '10': 3, '11': 1}
+candidate_mechanics: {'ghost_ship_records': 81, 'hyp_order_candidates': 7327, 'intercept_order_candidates': 860, 'ionstorm_records': 45075, 'minefield_records': 415516, 'snapshots_with_ghost_ships': 81, 'snapshots_with_hyp_candidates': 1624, 'snapshots_with_intercept_candidates': 497, 'snapshots_with_ionstorms': 4742, 'snapshots_with_minefields': 3734, 'snapshots_with_tow_candidates': 2859, 'tow_order_candidates': 16088}
+exit status 1
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: BACKFILL ROUND 1/24 =====
+===== PUBLIC VALIDATION CORPUS BACKFILL =====
+target_games:                  8
+failed_this_round:             4
+rejected_total:                4
+successful_before_backfill:    4
+replacements_selected:         4
+selected_after_backfill:       8
+target_by_bucket:              {'campaign': 5, 'finite_fuel': 2, 'sphere': 1}
+selected_by_bucket_after:      {'campaign': 5, 'finite_fuel': 2, 'sphere': 1}
+missing_bucket_counts:         {}
+replacement_game_ids:          [233802, 75084, 81827, 110148]
+report:                        artifacts/combat/c5-new-game-corpus-batch-v25/backfill-report.json
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 75084, "position": 1, "status": "failed", "total": 8}
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 81827, "position": 2, "status": "failed", "total": 8}
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 110148, "position": 3, "status": "failed", "total": 8}
+{"canonical_failed": 0, "canonical_ok": 1199, "embedded_consecutive": 1188, "game_id": 233802, "ghost_ship_records": 169, "ionstorm_records": 16742, "minefield_records": 54400, "position": 4, "snapshots": 1199, "source": "network", "status": "ok", "total": 8, "transitions": 1188}
+{"canonical_failed": 0, "canonical_ok": 920, "embedded_consecutive": 912, "game_id": 403181, "ghost_ship_records": 4, "ionstorm_records": 12824, "minefield_records": 82884, "position": 5, "snapshots": 920, "source": "index-cache", "status": "ok", "total": 8, "transitions": 912}
+{"canonical_failed": 86, "canonical_ok": 1354, "embedded_consecutive": 1428, "game_id": 469931, "ghost_ship_records": 0, "ionstorm_records": 16920, "minefield_records": 135444, "position": 6, "snapshots": 1440, "source": "index-cache", "status": "ok", "total": 8, "transitions": 1428}
+{"canonical_failed": 84, "canonical_ok": 1320, "embedded_consecutive": 1392, "game_id": 521268, "ghost_ship_records": 0, "ionstorm_records": 5508, "minefield_records": 158787, "position": 7, "snapshots": 1404, "source": "index-cache", "status": "ok", "total": 8, "transitions": 1392}
+{"canonical_failed": 11, "canonical_ok": 1232, "embedded_consecutive": 1232, "game_id": 536676, "ghost_ship_records": 77, "ionstorm_records": 9823, "minefield_records": 38401, "position": 8, "snapshots": 1243, "source": "index-cache", "status": "ok", "total": 8, "transitions": 1232}
+===== CORPUS INGEST SUMMARY =====
+manifest_games:      8
+games_indexed:       5
+games_failed:        3
+index_output:        validation/corpus/index/public-c5-v25-games.jsonl
+stats_output:        validation/corpus/index/public-c5-v25-stats.json
+snapshots:           6206
+transitions:         6152
+embedded_consecutive:6152
+canonical_ok:        6025
+canonical_failed:    181
+settings_hashes:     5
+races:               {'1': 5, '2': 8, '3': 6, '4': 4, '5': 6, '6': 5, '7': 4, '8': 3, '9': 7, '10': 4, '11': 2}
+candidate_mechanics: {'ghost_ship_records': 250, 'hyp_order_candidates': 8195, 'intercept_order_candidates': 1140, 'ionstorm_records': 61817, 'minefield_records': 469916, 'snapshots_with_ghost_ships': 250, 'snapshots_with_hyp_candidates': 2094, 'snapshots_with_intercept_candidates': 641, 'snapshots_with_ionstorms': 5721, 'snapshots_with_minefields': 4724, 'snapshots_with_tow_candidates': 3436, 'tow_order_candidates': 17919}
+exit status 1
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: BACKFILL ROUND 2/24 =====
+===== PUBLIC VALIDATION CORPUS BACKFILL =====
+target_games:                  8
+failed_this_round:             3
+rejected_total:                7
+successful_before_backfill:    5
+replacements_selected:         3
+selected_after_backfill:       8
+target_by_bucket:              {'campaign': 5, 'finite_fuel': 2, 'sphere': 1}
+selected_by_bucket_after:      {'campaign': 5, 'finite_fuel': 2, 'sphere': 1}
+missing_bucket_counts:         {}
+replacement_game_ids:          [96616, 112611, 444043]
+report:                        artifacts/combat/c5-new-game-corpus-batch-v25/backfill-report.json
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 96616, "position": 1, "status": "failed", "total": 8}
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 112611, "position": 2, "status": "failed", "total": 8}
+{"canonical_failed": 0, "canonical_ok": 1199, "embedded_consecutive": 1188, "game_id": 233802, "ghost_ship_records": 169, "ionstorm_records": 16742, "minefield_records": 54400, "position": 3, "snapshots": 1199, "source": "index-cache", "status": "ok", "total": 8, "transitions": 1188}
+{"canonical_failed": 0, "canonical_ok": 920, "embedded_consecutive": 912, "game_id": 403181, "ghost_ship_records": 4, "ionstorm_records": 12824, "minefield_records": 82884, "position": 4, "snapshots": 920, "source": "index-cache", "status": "ok", "total": 8, "transitions": 912}
+{"canonical_failed": 0, "canonical_ok": 1320, "embedded_consecutive": 1308, "game_id": 444043, "ghost_ship_records": 0, "ionstorm_records": 22152, "minefield_records": 93368, "position": 5, "snapshots": 1320, "source": "network", "status": "ok", "total": 8, "transitions": 1308}
+{"canonical_failed": 86, "canonical_ok": 1354, "embedded_consecutive": 1428, "game_id": 469931, "ghost_ship_records": 0, "ionstorm_records": 16920, "minefield_records": 135444, "position": 6, "snapshots": 1440, "source": "index-cache", "status": "ok", "total": 8, "transitions": 1428}
+{"canonical_failed": 84, "canonical_ok": 1320, "embedded_consecutive": 1392, "game_id": 521268, "ghost_ship_records": 0, "ionstorm_records": 5508, "minefield_records": 158787, "position": 7, "snapshots": 1404, "source": "index-cache", "status": "ok", "total": 8, "transitions": 1392}
+{"canonical_failed": 11, "canonical_ok": 1232, "embedded_consecutive": 1232, "game_id": 536676, "ghost_ship_records": 77, "ionstorm_records": 9823, "minefield_records": 38401, "position": 8, "snapshots": 1243, "source": "index-cache", "status": "ok", "total": 8, "transitions": 1232}
+===== CORPUS INGEST SUMMARY =====
+manifest_games:      8
+games_indexed:       6
+games_failed:        2
+index_output:        validation/corpus/index/public-c5-v25-games.jsonl
+stats_output:        validation/corpus/index/public-c5-v25-stats.json
+snapshots:           7526
+transitions:         7460
+embedded_consecutive:7460
+canonical_ok:        7345
+canonical_failed:    181
+settings_hashes:     6
+races:               {'1': 8, '2': 9, '3': 8, '4': 5, '5': 7, '6': 6, '7': 5, '8': 3, '9': 7, '10': 5, '11': 3}
+candidate_mechanics: {'ghost_ship_records': 250, 'hyp_order_candidates': 9065, 'intercept_order_candidates': 1407, 'ionstorm_records': 83969, 'minefield_records': 563284, 'snapshots_with_ghost_ships': 250, 'snapshots_with_hyp_candidates': 2365, 'snapshots_with_intercept_candidates': 798, 'snapshots_with_ionstorms': 7017, 'snapshots_with_minefields': 5773, 'snapshots_with_tow_candidates': 3824, 'tow_order_candidates': 20518}
+exit status 1
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: BACKFILL ROUND 3/24 =====
+===== PUBLIC VALIDATION CORPUS BACKFILL =====
+target_games:                  8
+failed_this_round:             2
+rejected_total:                9
+successful_before_backfill:    6
+replacements_selected:         2
+selected_after_backfill:       8
+target_by_bucket:              {'campaign': 5, 'finite_fuel': 2, 'sphere': 1}
+selected_by_bucket_after:      {'campaign': 5, 'finite_fuel': 2, 'sphere': 1}
+missing_bucket_counts:         {}
+replacement_game_ids:          [66574, 168073]
+report:                        artifacts/combat/c5-new-game-corpus-batch-v25/backfill-report.json
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 66574, "position": 1, "status": "failed", "total": 8}
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 168073, "position": 2, "status": "failed", "total": 8}
+{"canonical_failed": 0, "canonical_ok": 1199, "embedded_consecutive": 1188, "game_id": 233802, "ghost_ship_records": 169, "ionstorm_records": 16742, "minefield_records": 54400, "position": 3, "snapshots": 1199, "source": "index-cache", "status": "ok", "total": 8, "transitions": 1188}
+{"canonical_failed": 0, "canonical_ok": 920, "embedded_consecutive": 912, "game_id": 403181, "ghost_ship_records": 4, "ionstorm_records": 12824, "minefield_records": 82884, "position": 4, "snapshots": 920, "source": "index-cache", "status": "ok", "total": 8, "transitions": 912}
+{"canonical_failed": 0, "canonical_ok": 1320, "embedded_consecutive": 1308, "game_id": 444043, "ghost_ship_records": 0, "ionstorm_records": 22152, "minefield_records": 93368, "position": 5, "snapshots": 1320, "source": "index-cache", "status": "ok", "total": 8, "transitions": 1308}
+{"canonical_failed": 86, "canonical_ok": 1354, "embedded_consecutive": 1428, "game_id": 469931, "ghost_ship_records": 0, "ionstorm_records": 16920, "minefield_records": 135444, "position": 6, "snapshots": 1440, "source": "index-cache", "status": "ok", "total": 8, "transitions": 1428}
+{"canonical_failed": 84, "canonical_ok": 1320, "embedded_consecutive": 1392, "game_id": 521268, "ghost_ship_records": 0, "ionstorm_records": 5508, "minefield_records": 158787, "position": 7, "snapshots": 1404, "source": "index-cache", "status": "ok", "total": 8, "transitions": 1392}
+{"canonical_failed": 11, "canonical_ok": 1232, "embedded_consecutive": 1232, "game_id": 536676, "ghost_ship_records": 77, "ionstorm_records": 9823, "minefield_records": 38401, "position": 8, "snapshots": 1243, "source": "index-cache", "status": "ok", "total": 8, "transitions": 1232}
+===== CORPUS INGEST SUMMARY =====
+manifest_games:      8
+games_indexed:       6
+games_failed:        2
+index_output:        validation/corpus/index/public-c5-v25-games.jsonl
+stats_output:        validation/corpus/index/public-c5-v25-stats.json
+snapshots:           7526
+transitions:         7460
+embedded_consecutive:7460
+canonical_ok:        7345
+canonical_failed:    181
+settings_hashes:     6
+races:               {'1': 8, '2': 9, '3': 8, '4': 5, '5': 7, '6': 6, '7': 5, '8': 3, '9': 7, '10': 5, '11': 3}
+candidate_mechanics: {'ghost_ship_records': 250, 'hyp_order_candidates': 9065, 'intercept_order_candidates': 1407, 'ionstorm_records': 83969, 'minefield_records': 563284, 'snapshots_with_ghost_ships': 250, 'snapshots_with_hyp_candidates': 2365, 'snapshots_with_intercept_candidates': 798, 'snapshots_with_ionstorms': 7017, 'snapshots_with_minefields': 5773, 'snapshots_with_tow_candidates': 3824, 'tow_order_candidates': 20518}
+exit status 1
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: BACKFILL ROUND 4/24 =====
+===== PUBLIC VALIDATION CORPUS BACKFILL =====
+target_games:                  8
+failed_this_round:             2
+rejected_total:                11
+successful_before_backfill:    6
+replacements_selected:         2
+selected_after_backfill:       8
+target_by_bucket:              {'campaign': 5, 'finite_fuel': 2, 'sphere': 1}
+selected_by_bucket_after:      {'campaign': 5, 'finite_fuel': 2, 'sphere': 1}
+missing_bucket_counts:         {}
+replacement_game_ids:          [199204, 139421]
+report:                        artifacts/combat/c5-new-game-corpus-batch-v25/backfill-report.json
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 139421, "position": 1, "status": "failed", "total": 8}
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 199204, "position": 2, "status": "failed", "total": 8}
+{"canonical_failed": 0, "canonical_ok": 1199, "embedded_consecutive": 1188, "game_id": 233802, "ghost_ship_records": 169, "ionstorm_records": 16742, "minefield_records": 54400, "position": 3, "snapshots": 1199, "source": "index-cache", "status": "ok", "total": 8, "transitions": 1188}
+{"canonical_failed": 0, "canonical_ok": 920, "embedded_consecutive": 912, "game_id": 403181, "ghost_ship_records": 4, "ionstorm_records": 12824, "minefield_records": 82884, "position": 4, "snapshots": 920, "source": "index-cache", "status": "ok", "total": 8, "transitions": 912}
+{"canonical_failed": 0, "canonical_ok": 1320, "embedded_consecutive": 1308, "game_id": 444043, "ghost_ship_records": 0, "ionstorm_records": 22152, "minefield_records": 93368, "position": 5, "snapshots": 1320, "source": "index-cache", "status": "ok", "total": 8, "transitions": 1308}
+{"canonical_failed": 86, "canonical_ok": 1354, "embedded_consecutive": 1428, "game_id": 469931, "ghost_ship_records": 0, "ionstorm_records": 16920, "minefield_records": 135444, "position": 6, "snapshots": 1440, "source": "index-cache", "status": "ok", "total": 8, "transitions": 1428}
+{"canonical_failed": 84, "canonical_ok": 1320, "embedded_consecutive": 1392, "game_id": 521268, "ghost_ship_records": 0, "ionstorm_records": 5508, "minefield_records": 158787, "position": 7, "snapshots": 1404, "source": "index-cache", "status": "ok", "total": 8, "transitions": 1392}
+{"canonical_failed": 11, "canonical_ok": 1232, "embedded_consecutive": 1232, "game_id": 536676, "ghost_ship_records": 77, "ionstorm_records": 9823, "minefield_records": 38401, "position": 8, "snapshots": 1243, "source": "index-cache", "status": "ok", "total": 8, "transitions": 1232}
+===== CORPUS INGEST SUMMARY =====
+manifest_games:      8
+games_indexed:       6
+games_failed:        2
+index_output:        validation/corpus/index/public-c5-v25-games.jsonl
+stats_output:        validation/corpus/index/public-c5-v25-stats.json
+snapshots:           7526
+transitions:         7460
+embedded_consecutive:7460
+canonical_ok:        7345
+canonical_failed:    181
+settings_hashes:     6
+races:               {'1': 8, '2': 9, '3': 8, '4': 5, '5': 7, '6': 6, '7': 5, '8': 3, '9': 7, '10': 5, '11': 3}
+candidate_mechanics: {'ghost_ship_records': 250, 'hyp_order_candidates': 9065, 'intercept_order_candidates': 1407, 'ionstorm_records': 83969, 'minefield_records': 563284, 'snapshots_with_ghost_ships': 250, 'snapshots_with_hyp_candidates': 2365, 'snapshots_with_intercept_candidates': 798, 'snapshots_with_ionstorms': 7017, 'snapshots_with_minefields': 5773, 'snapshots_with_tow_candidates': 3824, 'tow_order_candidates': 20518}
+exit status 1
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: BACKFILL ROUND 5/24 =====
+===== PUBLIC VALIDATION CORPUS BACKFILL =====
+target_games:                  8
+failed_this_round:             2
+rejected_total:                13
+successful_before_backfill:    6
+replacements_selected:         2
+selected_after_backfill:       8
+target_by_bucket:              {'campaign': 5, 'finite_fuel': 2, 'sphere': 1}
+selected_by_bucket_after:      {'campaign': 5, 'finite_fuel': 2, 'sphere': 1}
+missing_bucket_counts:         {}
+replacement_game_ids:          [86698, 28089]
+report:                        artifacts/combat/c5-new-game-corpus-batch-v25/backfill-report.json
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 28089, "position": 1, "status": "failed", "total": 8}
+{"error": "player1-turn0.trn: turn payload is not UTF-8 JSON", "error_type": "CorpusNormalizationError", "game_id": 86698, "position": 2, "status": "failed", "total": 8}
+{"canonical_failed": 0, "canonical_ok": 1199, "embedded_consecutive": 1188, "game_id": 233802, "ghost_ship_records": 169, "ionstorm_records": 16742, "minefield_records": 54400, "position": 3, "snapshots": 1199, "source": "index-cache", "status": "ok", "total": 8, "transitions": 1188}
+{"canonical_failed": 0, "canonical_ok": 920, "embedded_consecutive": 912, "game_id": 403181, "ghost_ship_records": 4, "ionstorm_records": 12824, "minefield_records": 82884, "position": 4, "snapshots": 920, "source": "index-cache", "status": "ok", "total": 8, "transitions": 912}
+{"canonical_failed": 0, "canonical_ok": 1320, "embedded_consecutive": 1308, "game_id": 444043, "ghost_ship_records": 0, "ionstorm_records": 22152, "minefield_records": 93368, "position": 5, "snapshots": 1320, "source": "index-cache", "status": "ok", "total": 8, "transitions": 1308}
+{"canonical_failed": 86, "canonical_ok": 1354, "embedded_consecutive": 1428, "game_id": 469931, "ghost_ship_records": 0, "ionstorm_records": 16920, "minefield_records": 135444, "position": 6, "snapshots": 1440, "source": "index-cache", "status": "ok", "total": 8, "transitions": 1428}
+{"canonical_failed": 84, "canonical_ok": 1320, "embedded_consecutive": 1392, "game_id": 521268, "ghost_ship_records": 0, "ionstorm_records": 5508, "minefield_records": 158787, "position": 7, "snapshots": 1404, "source": "index-cache", "status": "ok", "total": 8, "transitions": 1392}
+{"canonical_failed": 11, "canonical_ok": 1232, "embedded_consecutive": 1232, "game_id": 536676, "ghost_ship_records": 77, "ionstorm_records": 9823, "minefield_records": 38401, "position": 8, "snapshots": 1243, "source": "index-cache", "status": "ok", "total": 8, "transitions": 1232}
+===== CORPUS INGEST SUMMARY =====
+manifest_games:      8
+games_indexed:       6
+games_failed:        2
+index_output:        validation/corpus/index/public-c5-v25-games.jsonl
+stats_output:        validation/corpus/index/public-c5-v25-stats.json
+snapshots:           7526
+transitions:         7460
+embedded_consecutive:7460
+canonical_ok:        7345
+canonical_failed:    181
+settings_hashes:     6
+races:               {'1': 8, '2': 9, '3': 8, '4': 5, '5': 7, '6': 6, '7': 5, '8': 3, '9': 7, '10': 5, '11': 3}
+candidate_mechanics: {'ghost_ship_records': 250, 'hyp_order_candidates': 9065, 'intercept_order_candidates': 1407, 'ionstorm_records': 83969, 'minefield_records': 563284, 'snapshots_with_ghost_ships': 250, 'snapshots_with_hyp_candidates': 2365, 'snapshots_with_intercept_candidates': 798, 'snapshots_with_ionstorms': 7017, 'snapshots_with_minefields': 5773, 'snapshots_with_tow_candidates': 3824, 'tow_order_candidates': 20518}
+exit status 1
+
+===== PUBLIC VALIDATION CORPUS: CONTINUE WITH FRESH FAILURE STATS =====
+
+===== PUBLIC VALIDATION CORPUS: BACKFILL ROUND 6/24 =====
+===== PUBLIC VALIDATION CORPUS BACKFILL =====
+target_games:                  8
+failed_this_round:             2
+rejected_total:                15
+successful_before_backfill:    6
+replacements_selected:         2
+selected_after_backfill:       8
+target_by_bucket:              {'campaign': 5, 'finite_fuel': 2, 'sphere': 1}
+selected_by_bucket_after:      {'campaign': 5, 'finite_fuel': 2, 'sphere': 1}
+missing_bucket_counts:         {}
+replacement_game_ids:          [608293, 290449]
+report:                        artifacts/combat/c5-new-game-corpus-batch-v25/backfill-report.json
+
+===== PUBLIC VALIDATION CORPUS: DOWNLOAD + INDEX =====
+{"canonical_failed": 0, "canonical_ok": 1199, "embedded_consecutive": 1188, "game_id": 233802, "ghost_ship_records": 169, "ionstorm_records": 16742, "minefield_records": 54400, "position": 1, "snapshots": 1199, "source": "index-cache", "status": "ok", "total": 8, "transitions": 1188}
+{"canonical_failed": 0, "canonical_ok": 972, "embedded_consecutive": 963, "game_id": 290449, "ghost_ship_records": 0, "ionstorm_records": 18891, "minefield_records": 28587, "position": 2, "snapshots": 972, "source": "network", "status": "ok", "total": 8, "transitions": 963}
+{"canonical_failed": 0, "canonical_ok": 920, "embedded_consecutive": 912, "game_id": 403181, "ghost_ship_records": 4, "ionstorm_records": 12824, "minefield_records": 82884, "position": 3, "snapshots": 920, "source": "index-cache", "status": "ok", "total": 8, "transitions": 912}
+{"canonical_failed": 0, "canonical_ok": 1320, "embedded_consecutive": 1308, "game_id": 444043, "ghost_ship_records": 0, "ionstorm_records": 22152, "minefield_records": 93368, "position": 4, "snapshots": 1320, "source": "index-cache", "status": "ok", "total": 8, "transitions": 1308}
+{"canonical_failed": 86, "canonical_ok": 1354, "embedded_consecutive": 1428, "game_id": 469931, "ghost_ship_records": 0, "ionstorm_records": 16920, "minefield_records": 135444, "position": 5, "snapshots": 1440, "source": "index-cache", "status": "ok", "total": 8, "transitions": 1428}
+{"canonical_failed": 84, "canonical_ok": 1320, "embedded_consecutive": 1392, "game_id": 521268, "ghost_ship_records": 0, "ionstorm_records": 5508, "minefield_records": 158787, "position": 6, "snapshots": 1404, "source": "index-cache", "status": "ok", "total": 8, "transitions": 1392}
+{"canonical_failed": 11, "canonical_ok": 1232, "embedded_consecutive": 1232, "game_id": 536676, "ghost_ship_records": 77, "ionstorm_records": 9823, "minefield_records": 38401, "position": 7, "snapshots": 1243, "source": "index-cache", "status": "ok", "total": 8, "transitions": 1232}
+{"canonical_failed": 0, "canonical_ok": 1518, "embedded_consecutive": 1485, "game_id": 608293, "ghost_ship_records": 5, "ionstorm_records": 22110, "minefield_records": 34622, "position": 8, "snapshots": 1518, "source": "network", "status": "ok", "total": 8, "transitions": 1507}
+===== CORPUS INGEST SUMMARY =====
+manifest_games:      8
+games_indexed:       8
+games_failed:        0
+index_output:        validation/corpus/index/public-c5-v25-games.jsonl
+stats_output:        validation/corpus/index/public-c5-v25-stats.json
+snapshots:           10016
+transitions:         9930
+embedded_consecutive:9908
+canonical_ok:        9835
+canonical_failed:    181
+settings_hashes:     8
+races:               {'1': 10, '2': 11, '3': 9, '4': 7, '5': 9, '6': 7, '7': 7, '8': 5, '9': 9, '10': 7, '11': 5}
+candidate_mechanics: {'ghost_ship_records': 255, 'hyp_order_candidates': 12123, 'intercept_order_candidates': 1703, 'ionstorm_records': 124970, 'minefield_records': 626493, 'snapshots_with_ghost_ships': 255, 'snapshots_with_hyp_candidates': 3121, 'snapshots_with_intercept_candidates': 1016, 'snapshots_with_ionstorms': 9412, 'snapshots_with_minefields': 7843, 'snapshots_with_tow_candidates': 4949, 'tow_order_candidates': 28320}
+
+===== PUBLIC VALIDATION CORPUS: STAGE SAFE EVIDENCE =====
+
+===== PUBLIC VALIDATION CORPUS: COMPLETE =====
+baseline_manifest: validation/corpus/manifests/public-postindependent-validation-with-public68.jsonl
+selected_manifest: validation/corpus/manifests/public-c5-v25-selected.jsonl
+combined_manifest: validation/corpus/manifests/public-c5-v25-with-public100.jsonl
+selection_report:  artifacts/combat/c5-new-game-corpus-batch-v25/selection-report.json
+index_output:      validation/corpus/index/public-c5-v25-games.jsonl
+stats_output:      validation/corpus/index/public-c5-v25-stats.json
+rejected_file:     validation/corpus/manifests/public-c5-v25-rejected.json
+backfill_report:   artifacts/combat/c5-new-game-corpus-batch-v25/backfill-report.json
+evidence_dir:      artifacts/combat/c5-new-game-corpus-batch-v25/acquisition-evidence
+archive_cache:     validation/corpus/cache/loadall
+backfill_rounds:   6
+ingest_rc:         0
+===== C5 V25 VERIFY FULL PUBLIC100 EXCLUSION =====
+old=100 fresh=8 overlap=0
+===== C5 V25 BUILD AND EXACT-PARITY VALIDATE NEW COMPACT GENERATION =====
+{"game_id":233802,"phase":"schema","status":"scan-start"}
+{"game_id":233802,"phase":"schema","status":"scan-complete"}
+{"game_id":290449,"phase":"schema","status":"scan-start"}
+{"game_id":290449,"phase":"schema","status":"scan-complete"}
+{"game_id":403181,"phase":"schema","status":"scan-start"}
+{"game_id":403181,"phase":"schema","status":"scan-complete"}
+{"game_id":444043,"phase":"schema","status":"scan-start"}
+{"game_id":444043,"phase":"schema","status":"scan-complete"}
+{"game_id":469931,"phase":"schema","status":"scan-start"}
+{"game_id":469931,"phase":"schema","status":"scan-complete"}
+{"game_id":521268,"phase":"schema","status":"scan-start"}
+{"game_id":521268,"phase":"schema","status":"scan-complete"}
+{"game_id":536676,"phase":"schema","status":"scan-start"}
+{"game_id":536676,"phase":"schema","status":"scan-complete"}
+{"game_id":608293,"phase":"schema","status":"scan-start"}
+{"game_id":608293,"phase":"schema","status":"scan-complete"}
+{"archive_id":1,"game_id":233802,"phase":"import","status":"archive-start"}
+{"archive_id":1,"game_id":233802,"phase":"import","status":"archive-complete"}
+{"archive_id":2,"game_id":290449,"phase":"import","status":"archive-start"}
+{"archive_id":2,"game_id":290449,"phase":"import","status":"archive-complete"}
+{"archive_id":3,"game_id":403181,"phase":"import","status":"archive-start"}
+100% ▕██████████████████████████████████████▏ (00:00:02.12 elapsed)     
+{"archive_id":3,"game_id":403181,"phase":"import","status":"archive-complete"}
+{"archive_id":4,"game_id":444043,"phase":"import","status":"archive-start"}
+{"archive_id":4,"game_id":444043,"phase":"import","status":"archive-complete"}
+{"archive_id":5,"game_id":469931,"phase":"import","status":"archive-start"}
+{"archive_id":5,"game_id":469931,"phase":"import","status":"archive-complete"}
+{"archive_id":6,"game_id":521268,"phase":"import","status":"archive-start"}
+100% ▕██████████████████████████████████████▏ (00:00:02.04 elapsed)     
+100% ▕██████████████████████████████████████▏ (00:00:02.13 elapsed)     
+{"archive_id":6,"game_id":521268,"phase":"import","status":"archive-complete"}
+{"archive_id":7,"game_id":536676,"phase":"import","status":"archive-start"}
+100% ▕██████████████████████████████████████▏ (00:00:02.20 elapsed)     
+{"archive_id":7,"game_id":536676,"phase":"import","status":"archive-complete"}
+{"archive_id":8,"game_id":608293,"phase":"import","status":"archive-start"}
+{"archive_id":8,"game_id":608293,"phase":"import","status":"archive-complete"}
+{"game_id":233802,"phase":"parity","status":"archive-start"}
+{"checked":1199,"game_id":233802,"phase":"parity","status":"archive-complete"}
+{"game_id":290449,"phase":"parity","status":"archive-start"}
+{"checked":972,"game_id":290449,"phase":"parity","status":"archive-complete"}
+{"game_id":403181,"phase":"parity","status":"archive-start"}
+{"checked":920,"game_id":403181,"phase":"parity","status":"archive-complete"}
+{"game_id":444043,"phase":"parity","status":"archive-start"}
+{"checked":1320,"game_id":444043,"phase":"parity","status":"archive-complete"}
+{"game_id":469931,"phase":"parity","status":"archive-start"}
+{"checked":1440,"game_id":469931,"phase":"parity","status":"archive-complete"}
+{"game_id":521268,"phase":"parity","status":"archive-start"}
+{"checked":1404,"game_id":521268,"phase":"parity","status":"archive-complete"}
+{"game_id":536676,"phase":"parity","status":"archive-start"}
+{"checked":1243,"game_id":536676,"phase":"parity","status":"archive-complete"}
+{"game_id":608293,"phase":"parity","status":"archive-start"}
+{"checked":1518,"game_id":608293,"phase":"parity","status":"archive-complete"}
+{
+  "cache_dir": "/workspace/validation/corpus/cache/loadall",
+  "import": {
+    "archive_bytes": 663577209,
+    "archive_count": 8,
+    "corpus_fingerprint": "b5fa1ca045ba9c21efcac5b490678f085546529d6e6eed3a298964f08cd0fd7c",
+    "database_path": "/corpus-db/staging/compact-c5-v25-public8-resume.duckdb",
+    "decoded_json_bytes": 9350355038,
+    "entity_rows": 18100275,
+    "game_ids": [
+      233802,
+      290449,
+      403181,
+      444043,
+      469931,
+      521268,
+      536676,
+      608293
+    ],
+    "import_wall_seconds": 1322.2272910259999,
+    "peak_rss_bytes": 2450042880,
+    "resumed_archives": 0,
+    "schema": "planets-lab.corpus-db.v2.compact1",
+    "turn_members": 10016,
+    "zip_members": 10016
+  },
+  "manifest": "/workspace/validation/corpus/manifests/public-c5-v25-selected.jsonl",
+  "parity": {
+    "checked": 10016,
+    "failed": 0,
+    "mismatches": [],
+    "peak_rss_bytes": 2450042880,
+    "wall_seconds": 1088.5009891549998
+  }
+}
+{
+  "database": {
+    "database_bytes": 928002048,
+    "database_path": "/corpus-db/generations/corpus-v2compact-c5-v25-public8-20261016.duckdb",
+    "decoded_json_bytes": 9350355038,
+    "entity_rows": 18100275,
+    "game_ids": [
+      233802,
+      290449,
+      403181,
+      444043,
+      469931,
+      521268,
+      536676,
+      608293
+    ],
+    "inline_json_bytes": 60284502,
+    "member_fields": 310496,
+    "missing_residual_bytes": 68653416,
+    "missing_residual_rows": 3144224,
+    "schema": "planets-lab.corpus-db.v2.compact1",
+    "source_archive_bytes_total": 663577209,
+    "source_archive_count": 8,
+    "source_members": 10016,
+    "typed_sections": {
+      "activebadges": {
+        "missing_residual_bytes": 0,
+        "missing_residual_rows": 0,
+        "rows": 159424
+      },
+      "advantages": {
+        "missing_residual_bytes": 0,
+        "missing_residual_rows": 0,
+        "rows": 821748
+      },
+      "artifacts": {
+        "missing_residual_bytes": 0,
+        "missing_residual_rows": 0,
+        "rows": 537
+      },
+      "beams": {
+        "missing_residual_bytes": 0,
+        "missing_residual_rows": 0,
+        "rows": 100160
+      },
+      "engines": {
+        "missing_residual_bytes": 0,
+        "missing_residual_rows": 0,
+        "rows": 90144
+      },
+      "hulls": {
+        "missing_residual_bytes": 0,
+        "missing_residual_rows": 0,
+        "rows": 2062294
+      },
+      "ionstorms": {
+        "missing_residual_bytes": 0,
+        "missing_residual_rows": 0,
+        "rows": 124970
+      },
+      "messages": {
+        "missing_residual_bytes": 0,
+        "missing_residual_rows": 0,
+        "rows": 1433580
+      },
+      "minefields": {
+        "missing_residual_bytes": 4220398,
+        "missing_residual_rows": 301457,
+        "rows": 626493
+      },
+      "mymessages": {
+        "missing_residual_bytes": 0,
+        "missing_residual_rows": 0,
+        "rows": 9804
+      },
+      "nebulas": {
+        "missing_residual_bytes": 0,
+        "missing_residual_rows": 0,
+        "rows": 225493
+      },
+      "notes": {
+        "missing_residual_bytes": 0,
+        "missing_residual_rows": 0,
+        "rows": 274136
+      },
+      "planets": {
+        "missing_residual_bytes": 60756938,
+        "missing_residual_rows": 2761679,
+        "rows": 4504115
+      },
+      "players": {
+        "missing_residual_bytes": 2863752,
+        "missing_residual_rows": 52026,
+        "rows": 109636
+      },
+      "races": {
+        "missing_residual_bytes": 0,
+        "missing_residual_rows": 0,
+        "rows": 130208
+      },
+      "relations": {
+        "missing_residual_bytes": 0,
+        "missing_residual_rows": 0,
+        "rows": 109636
+      },
+      "scores": {
+        "missing_residual_bytes": 0,
+        "missing_residual_rows": 0,
+        "rows": 108696
+      },
+      "ships": {
+        "missing_residual_bytes": 0,
+        "missing_residual_rows": 0,
+        "rows": 953662
+      },
+      "starbases": {
+        "missing_residual_bytes": 0,
+        "missing_residual_rows": 0,
+        "rows": 235385
+      },
+      "stars": {
+        "missing_residual_bytes": 0,
+        "missing_residual_rows": 0,
+        "rows": 20154
+      },
+      "stock": {
+        "missing_residual_bytes": 0,
+        "missing_residual_rows": 0,
+        "rows": 5838942
+      },
+      "torpedos": {
+        "missing_residual_bytes": 812328,
+        "missing_residual_rows": 29062,
+        "rows": 110165
+      },
+      "vcrs": {
+        "missing_residual_bytes": 0,
+        "missing_residual_rows": 0,
+        "rows": 24698
+      },
+      "wormholes": {
+        "missing_residual_bytes": 0,
+        "missing_residual_rows": 0,
+        "rows": 26195
+      }
+    }
+  },
+  "published": {
+    "build_id": "corpus-v2compact-c5-v25-public8-20261016",
+    "current_value": "",
+    "generation_path": "/corpus-db/generations/corpus-v2compact-c5-v25-public8-20261016.duckdb",
+    "generation_sha256": "af4c1579b97736c158cf50a7f709e39b749860661ed65c028fb8085e756c573a",
+    "manifest_path": "/corpus-db/manifests/corpus-v2compact-c5-v25-public8-20261016.json"
+  }
+}
+===== C5 V25 THREE NEW-CORPUS FROZEN T-1/T ANALYSES =====
+[c5-v25] hashing new immutable compact generation
+[c5-v25] read-only SHA256=af4c1579b97736c158cf50a7f709e39b749860661ed65c028fb8085e756c573a, 0.7s
+[c5-v25] selected metadata-only windows: 192 / 8 new games
+[c5-v25] PRE [1/192] G233802 T2
+[c5-v25] PRE [2/192] G233802 T6
+[c5-v25] PRE [3/192] G233802 T11
+[c5-v25] PRE [4/192] G233802 T15
+[c5-v25] PRE [5/192] G233802 T20
+[c5-v25] PRE [6/192] G233802 T25
+[c5-v25] PRE [7/192] G233802 T29
+[c5-v25] PRE [8/192] G233802 T34
+[c5-v25] PRE [9/192] G233802 T38
+[c5-v25] PRE [10/192] G233802 T43
+[c5-v25] PRE [11/192] G233802 T48
+[c5-v25] PRE [12/192] G233802 T52
+[c5-v25] PRE [13/192] G233802 T57
+[c5-v25] PRE [14/192] G233802 T61
+[c5-v25] PRE [15/192] G233802 T66
+[c5-v25] PRE [16/192] G233802 T71
+[c5-v25] PRE [17/192] G233802 T75
+[c5-v25] PRE [18/192] G233802 T80
+[c5-v25] PRE [19/192] G233802 T84
+[c5-v25] PRE [20/192] G233802 T89
+[c5-v25] PRE [21/192] G233802 T94
+[c5-v25] PRE [22/192] G233802 T98
+[c5-v25] PRE [23/192] G233802 T103
+[c5-v25] PRE [24/192] G233802 T108
+[c5-v25] PRE [25/192] G290449 T2
+[c5-v25] PRE [26/192] G290449 T6
+[c5-v25] PRE [27/192] G290449 T11
+[c5-v25] PRE [28/192] G290449 T15
+[c5-v25] PRE [29/192] G290449 T20
+[c5-v25] PRE [30/192] G290449 T24
+[c5-v25] PRE [31/192] G290449 T29
+[c5-v25] PRE [32/192] G290449 T33
+[c5-v25] PRE [33/192] G290449 T38
+[c5-v25] PRE [34/192] G290449 T43
+[c5-v25] PRE [35/192] G290449 T47
+[c5-v25] PRE [36/192] G290449 T52
+[c5-v25] PRE [37/192] G290449 T56
+[c5-v25] PRE [38/192] G290449 T61
+[c5-v25] PRE [39/192] G290449 T65
+[c5-v25] PRE [40/192] G290449 T70
+[c5-v25] PRE [41/192] G290449 T75
+[c5-v25] PRE [42/192] G290449 T79
+[c5-v25] PRE [43/192] G290449 T84
+[c5-v25] PRE [44/192] G290449 T88
+[c5-v25] PRE [45/192] G290449 T93
+[c5-v25] PRE [46/192] G290449 T97
+[c5-v25] PRE [47/192] G290449 T102
+[c5-v25] PRE [48/192] G290449 T107
+[c5-v25] PRE [49/192] G403181 T2
+[c5-v25] PRE [50/192] G403181 T6
+[c5-v25] PRE [51/192] G403181 T11
+[c5-v25] PRE [52/192] G403181 T16
+[c5-v25] PRE [53/192] G403181 T21
+[c5-v25] PRE [54/192] G403181 T26
+[c5-v25] PRE [55/192] G403181 T31
+[c5-v25] PRE [56/192] G403181 T36
+[c5-v25] PRE [57/192] G403181 T40
+[c5-v25] PRE [58/192] G403181 T45
+[c5-v25] PRE [59/192] G403181 T50
+[c5-v25] PRE [60/192] G403181 T55
+[c5-v25] PRE [61/192] G403181 T60
+[c5-v25] PRE [62/192] G403181 T65
+[c5-v25] PRE [63/192] G403181 T70
+[c5-v25] PRE [64/192] G403181 T75
+[c5-v25] PRE [65/192] G403181 T79
+[c5-v25] PRE [66/192] G403181 T84
+[c5-v25] PRE [67/192] G403181 T89
+[c5-v25] PRE [68/192] G403181 T94
+[c5-v25] PRE [69/192] G403181 T99
+[c5-v25] PRE [70/192] G403181 T104
+[c5-v25] PRE [71/192] G403181 T109
+[c5-v25] PRE [72/192] G403181 T114
+[c5-v25] PRE [73/192] G444043 T2
+[c5-v25] PRE [74/192] G444043 T6
+[c5-v25] PRE [75/192] G444043 T11
+[c5-v25] PRE [76/192] G444043 T15
+[c5-v25] PRE [77/192] G444043 T20
+[c5-v25] PRE [78/192] G444043 T25
+[c5-v25] PRE [79/192] G444043 T29
+[c5-v25] PRE [80/192] G444043 T34
+[c5-v25] PRE [81/192] G444043 T39
+[c5-v25] PRE [82/192] G444043 T43
+[c5-v25] PRE [83/192] G444043 T48
+[c5-v25] PRE [84/192] G444043 T53
+[c5-v25] PRE [85/192] G444043 T57
+[c5-v25] PRE [86/192] G444043 T62
+[c5-v25] PRE [87/192] G444043 T67
+[c5-v25] PRE [88/192] G444043 T71
+[c5-v25] PRE [89/192] G444043 T76
+[c5-v25] PRE [90/192] G444043 T81
+[c5-v25] PRE [91/192] G444043 T85
+[c5-v25] PRE [92/192] G444043 T90
+[c5-v25] PRE [93/192] G444043 T95
+[c5-v25] PRE [94/192] G444043 T99
+[c5-v25] PRE [95/192] G444043 T104
+[c5-v25] PRE [96/192] G444043 T109
+[c5-v25] PRE [97/192] G469931 T2
+[c5-v25] PRE [98/192] G469931 T7
+[c5-v25] PRE [99/192] G469931 T12
+[c5-v25] PRE [100/192] G469931 T17
+[c5-v25] PRE [101/192] G469931 T22
+[c5-v25] PRE [102/192] G469931 T27
+[c5-v25] PRE [103/192] G469931 T32
+[c5-v25] PRE [104/192] G469931 T37
+[c5-v25] PRE [105/192] G469931 T42
+[c5-v25] PRE [106/192] G469931 T47
+[c5-v25] PRE [107/192] G469931 T52
+[c5-v25] PRE [108/192] G469931 T57
+[c5-v25] PRE [109/192] G469931 T63
+[c5-v25] PRE [110/192] G469931 T68
+[c5-v25] PRE [111/192] G469931 T73
+[c5-v25] PRE [112/192] G469931 T78
+[c5-v25] PRE [113/192] G469931 T83
+[c5-v25] PRE [114/192] G469931 T88
+[c5-v25] PRE [115/192] G469931 T93
+[c5-v25] PRE [116/192] G469931 T98
+[c5-v25] PRE [117/192] G469931 T103
+[c5-v25] PRE [118/192] G469931 T108
+[c5-v25] PRE [119/192] G469931 T113
+[c5-v25] PRE [120/192] G469931 T119
+[c5-v25] PRE [121/192] G521268 T2
+[c5-v25] PRE [122/192] G521268 T6
+[c5-v25] PRE [123/192] G521268 T11
+[c5-v25] PRE [124/192] G521268 T16
+[c5-v25] PRE [125/192] G521268 T21
+[c5-v25] PRE [126/192] G521268 T26
+[c5-v25] PRE [127/192] G521268 T31
+[c5-v25] PRE [128/192] G521268 T36
+[c5-v25] PRE [129/192] G521268 T41
+[c5-v25] PRE [130/192] G521268 T46
+[c5-v25] PRE [131/192] G521268 T51
+[c5-v25] PRE [132/192] G521268 T56
+[c5-v25] PRE [133/192] G521268 T61
+[c5-v25] PRE [134/192] G521268 T66
+[c5-v25] PRE [135/192] G521268 T71
+[c5-v25] PRE [136/192] G521268 T76
+[c5-v25] PRE [137/192] G521268 T81
+[c5-v25] PRE [138/192] G521268 T86
+[c5-v25] PRE [139/192] G521268 T91
+[c5-v25] PRE [140/192] G521268 T96
+[c5-v25] PRE [141/192] G521268 T101
+[c5-v25] PRE [142/192] G521268 T106
+[c5-v25] PRE [143/192] G521268 T111
+[c5-v25] PRE [144/192] G521268 T116
+[c5-v25] PRE [145/192] G536676 T2
+[c5-v25] PRE [146/192] G536676 T6
+[c5-v25] PRE [147/192] G536676 T11
+[c5-v25] PRE [148/192] G536676 T16
+[c5-v25] PRE [149/192] G536676 T21
+[c5-v25] PRE [150/192] G536676 T25
+[c5-v25] PRE [151/192] G536676 T30
+[c5-v25] PRE [152/192] G536676 T35
+[c5-v25] PRE [153/192] G536676 T40
+[c5-v25] PRE [154/192] G536676 T45
+[c5-v25] PRE [155/192] G536676 T49
+[c5-v25] PRE [156/192] G536676 T54
+[c5-v25] PRE [157/192] G536676 T59
+[c5-v25] PRE [158/192] G536676 T64
+[c5-v25] PRE [159/192] G536676 T68
+[c5-v25] PRE [160/192] G536676 T73
+[c5-v25] PRE [161/192] G536676 T78
+[c5-v25] PRE [162/192] G536676 T83
+[c5-v25] PRE [163/192] G536676 T88
+[c5-v25] PRE [164/192] G536676 T92
+[c5-v25] PRE [165/192] G536676 T97
+[c5-v25] PRE [166/192] G536676 T102
+[c5-v25] PRE [167/192] G536676 T107
+[c5-v25] PRE [168/192] G536676 T112
+[c5-v25] PRE [169/192] G608293 T2
+[c5-v25] PRE [170/192] G608293 T7
+[c5-v25] PRE [171/192] G608293 T13
+[c5-v25] PRE [172/192] G608293 T19
+[c5-v25] PRE [173/192] G608293 T25
+[c5-v25] PRE [174/192] G608293 T31
+[c5-v25] PRE [175/192] G608293 T37
+[c5-v25] PRE [176/192] G608293 T43
+[c5-v25] PRE [177/192] G608293 T48
+[c5-v25] PRE [178/192] G608293 T54
+[c5-v25] PRE [179/192] G608293 T60
+[c5-v25] PRE [180/192] G608293 T66
+[c5-v25] PRE [181/192] G608293 T72
+[c5-v25] PRE [182/192] G608293 T78
+[c5-v25] PRE [183/192] G608293 T84
+[c5-v25] PRE [184/192] G608293 T90
+[c5-v25] PRE [185/192] G608293 T95
+[c5-v25] PRE [186/192] G608293 T101
+[c5-v25] PRE [187/192] G608293 T107
+[c5-v25] PRE [188/192] G608293 T113
+[c5-v25] PRE [189/192] G608293 T119
+[c5-v25] PRE [190/192] G608293 T125
+[c5-v25] PRE [191/192] G608293 T131
+[c5-v25] PRE [192/192] G608293 T137
+[c5-v25] POST [1/192] G233802 T2
+[c5-v25] POST [2/192] G233802 T6
+[c5-v25] POST [3/192] G233802 T11
+[c5-v25] POST [4/192] G233802 T15
+[c5-v25] POST [5/192] G233802 T20
+[c5-v25] POST [6/192] G233802 T25
+[c5-v25] POST [7/192] G233802 T29
+[c5-v25] POST [8/192] G233802 T34
+[c5-v25] POST [9/192] G233802 T38
+[c5-v25] POST [10/192] G233802 T43
+[c5-v25] POST [11/192] G233802 T48
+[c5-v25] POST [12/192] G233802 T52
+[c5-v25] POST [13/192] G233802 T57
+[c5-v25] POST [14/192] G233802 T61
+[c5-v25] POST [15/192] G233802 T66
+[c5-v25] POST [16/192] G233802 T71
+[c5-v25] POST [17/192] G233802 T75
+[c5-v25] POST [18/192] G233802 T80
+[c5-v25] POST [19/192] G233802 T84
+[c5-v25] POST [20/192] G233802 T89
+[c5-v25] POST [21/192] G233802 T94
+[c5-v25] POST [22/192] G233802 T98
+[c5-v25] POST [23/192] G233802 T103
+[c5-v25] POST [24/192] G233802 T108
+[c5-v25] POST [25/192] G290449 T2
+[c5-v25] POST [26/192] G290449 T6
+[c5-v25] POST [27/192] G290449 T11
+[c5-v25] POST [28/192] G290449 T15
+[c5-v25] POST [29/192] G290449 T20
+[c5-v25] POST [30/192] G290449 T24
+[c5-v25] POST [31/192] G290449 T29
+[c5-v25] POST [32/192] G290449 T33
+[c5-v25] POST [33/192] G290449 T38
+[c5-v25] POST [34/192] G290449 T43
+[c5-v25] POST [35/192] G290449 T47
+[c5-v25] POST [36/192] G290449 T52
+[c5-v25] POST [37/192] G290449 T56
+[c5-v25] POST [38/192] G290449 T61
+[c5-v25] POST [39/192] G290449 T65
+[c5-v25] POST [40/192] G290449 T70
+[c5-v25] POST [41/192] G290449 T75
+[c5-v25] POST [42/192] G290449 T79
+[c5-v25] POST [43/192] G290449 T84
+[c5-v25] POST [44/192] G290449 T88
+[c5-v25] POST [45/192] G290449 T93
+[c5-v25] POST [46/192] G290449 T97
+[c5-v25] POST [47/192] G290449 T102
+[c5-v25] POST [48/192] G290449 T107
+[c5-v25] POST [49/192] G403181 T2
+[c5-v25] POST [50/192] G403181 T6
+[c5-v25] POST [51/192] G403181 T11
+[c5-v25] POST [52/192] G403181 T16
+[c5-v25] POST [53/192] G403181 T21
+[c5-v25] POST [54/192] G403181 T26
+[c5-v25] POST [55/192] G403181 T31
+[c5-v25] POST [56/192] G403181 T36
+[c5-v25] POST [57/192] G403181 T40
+[c5-v25] POST [58/192] G403181 T45
+[c5-v25] POST [59/192] G403181 T50
+[c5-v25] POST [60/192] G403181 T55
+[c5-v25] POST [61/192] G403181 T60
+[c5-v25] POST [62/192] G403181 T65
+[c5-v25] POST [63/192] G403181 T70
+[c5-v25] POST [64/192] G403181 T75
+[c5-v25] POST [65/192] G403181 T79
+[c5-v25] POST [66/192] G403181 T84
+[c5-v25] POST [67/192] G403181 T89
+[c5-v25] POST [68/192] G403181 T94
+[c5-v25] POST [69/192] G403181 T99
+[c5-v25] POST [70/192] G403181 T104
+[c5-v25] POST [71/192] G403181 T109
+[c5-v25] POST [72/192] G403181 T114
+[c5-v25] POST [73/192] G444043 T2
+[c5-v25] POST [74/192] G444043 T6
+[c5-v25] POST [75/192] G444043 T11
+[c5-v25] POST [76/192] G444043 T15
+[c5-v25] POST [77/192] G444043 T20
+[c5-v25] POST [78/192] G444043 T25
+[c5-v25] POST [79/192] G444043 T29
+[c5-v25] POST [80/192] G444043 T34
+[c5-v25] POST [81/192] G444043 T39
+[c5-v25] POST [82/192] G444043 T43
+[c5-v25] POST [83/192] G444043 T48
+[c5-v25] POST [84/192] G444043 T53
+[c5-v25] POST [85/192] G444043 T57
+[c5-v25] POST [86/192] G444043 T62
+[c5-v25] POST [87/192] G444043 T67
+[c5-v25] POST [88/192] G444043 T71
+[c5-v25] POST [89/192] G444043 T76
+[c5-v25] POST [90/192] G444043 T81
+[c5-v25] POST [91/192] G444043 T85
+[c5-v25] POST [92/192] G444043 T90
+[c5-v25] POST [93/192] G444043 T95
+[c5-v25] POST [94/192] G444043 T99
+[c5-v25] POST [95/192] G444043 T104
+[c5-v25] POST [96/192] G444043 T109
+[c5-v25] POST [97/192] G469931 T2
+[c5-v25] POST [98/192] G469931 T7
+[c5-v25] POST [99/192] G469931 T12
+[c5-v25] POST [100/192] G469931 T17
+[c5-v25] POST [101/192] G469931 T22
+[c5-v25] POST [102/192] G469931 T27
+[c5-v25] POST [103/192] G469931 T32
+[c5-v25] POST [104/192] G469931 T37
+[c5-v25] POST [105/192] G469931 T42
+[c5-v25] POST [106/192] G469931 T47
+[c5-v25] POST [107/192] G469931 T52
+[c5-v25] POST [108/192] G469931 T57
+[c5-v25] POST [109/192] G469931 T63
+[c5-v25] POST [110/192] G469931 T68
+[c5-v25] POST [111/192] G469931 T73
+[c5-v25] POST [112/192] G469931 T78
+[c5-v25] POST [113/192] G469931 T83
+[c5-v25] POST [114/192] G469931 T88
+[c5-v25] POST [115/192] G469931 T93
+[c5-v25] POST [116/192] G469931 T98
+[c5-v25] POST [117/192] G469931 T103
+[c5-v25] POST [118/192] G469931 T108
+[c5-v25] POST [119/192] G469931 T113
+[c5-v25] POST [120/192] G469931 T119
+[c5-v25] POST [121/192] G521268 T2
+[c5-v25] POST [122/192] G521268 T6
+[c5-v25] POST [123/192] G521268 T11
+[c5-v25] POST [124/192] G521268 T16
+[c5-v25] POST [125/192] G521268 T21
+[c5-v25] POST [126/192] G521268 T26
+[c5-v25] POST [127/192] G521268 T31
+[c5-v25] POST [128/192] G521268 T36
+[c5-v25] POST [129/192] G521268 T41
+[c5-v25] POST [130/192] G521268 T46
+[c5-v25] POST [131/192] G521268 T51
+[c5-v25] POST [132/192] G521268 T56
+[c5-v25] POST [133/192] G521268 T61
+[c5-v25] POST [134/192] G521268 T66
+[c5-v25] POST [135/192] G521268 T71
+[c5-v25] POST [136/192] G521268 T76
+[c5-v25] POST [137/192] G521268 T81
+[c5-v25] POST [138/192] G521268 T86
+[c5-v25] POST [139/192] G521268 T91
+[c5-v25] POST [140/192] G521268 T96
+[c5-v25] POST [141/192] G521268 T101
+[c5-v25] POST [142/192] G521268 T106
+[c5-v25] POST [143/192] G521268 T111
+[c5-v25] POST [144/192] G521268 T116
+[c5-v25] POST [145/192] G536676 T2
+[c5-v25] POST [146/192] G536676 T6
+[c5-v25] POST [147/192] G536676 T11
+[c5-v25] POST [148/192] G536676 T16
+[c5-v25] POST [149/192] G536676 T21
+[c5-v25] POST [150/192] G536676 T25
+[c5-v25] POST [151/192] G536676 T30
+[c5-v25] POST [152/192] G536676 T35
+[c5-v25] POST [153/192] G536676 T40
+[c5-v25] POST [154/192] G536676 T45
+[c5-v25] POST [155/192] G536676 T49
+[c5-v25] POST [156/192] G536676 T54
+[c5-v25] POST [157/192] G536676 T59
+[c5-v25] POST [158/192] G536676 T64
+[c5-v25] POST [159/192] G536676 T68
+[c5-v25] POST [160/192] G536676 T73
+[c5-v25] POST [161/192] G536676 T78
+[c5-v25] POST [162/192] G536676 T83
+[c5-v25] POST [163/192] G536676 T88
+[c5-v25] POST [164/192] G536676 T92
+[c5-v25] POST [165/192] G536676 T97
+[c5-v25] POST [166/192] G536676 T102
+[c5-v25] POST [167/192] G536676 T107
+[c5-v25] POST [168/192] G536676 T112
+[c5-v25] POST [169/192] G608293 T2
+[c5-v25] POST [170/192] G608293 T7
+[c5-v25] POST [171/192] G608293 T13
+[c5-v25] POST [172/192] G608293 T19
+[c5-v25] POST [173/192] G608293 T25
+[c5-v25] POST [174/192] G608293 T31
+[c5-v25] POST [175/192] G608293 T37
+[c5-v25] POST [176/192] G608293 T43
+[c5-v25] POST [177/192] G608293 T48
+[c5-v25] POST [178/192] G608293 T54
+[c5-v25] POST [179/192] G608293 T60
+[c5-v25] POST [180/192] G608293 T66
+[c5-v25] POST [181/192] G608293 T72
+[c5-v25] POST [182/192] G608293 T78
+[c5-v25] POST [183/192] G608293 T84
+[c5-v25] POST [184/192] G608293 T90
+[c5-v25] POST [185/192] G608293 T95
+[c5-v25] POST [186/192] G608293 T101
+[c5-v25] POST [187/192] G608293 T107
+[c5-v25] POST [188/192] G608293 T113
+[c5-v25] POST [189/192] G608293 T119
+[c5-v25] POST [190/192] G608293 T125
+[c5-v25] POST [191/192] G608293 T131
+[c5-v25] POST [192/192] G608293 T137
+===== C5 NEW CORPUS V25: actors =====
+summary: {'selected_disjoint_games': 8, 'baseline_games_excluded': 100, 'metadata_selected_adjacent_windows': 192, 'Tminus1_contexts_available': 192, 'posthost_compared_windows': 33, 'context_errors': 0, 'Tminus1_stock_chunnel_candidate_edges': 106, 'Tminus1_frozen_cohort_counts': {'LONG_CONVENTIONAL_PASS': 58, 'NON_DISCRIMINATIVE_COLOCATED': 38, 'OTHER_SINGLE_FAILED_GATE': 10}, 'T_endpoint_by_cohort': {'LONG_CONVENTIONAL_PASS': {'ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE': 2, 'AT_DISTINCT_FROZEN_TARGET': 55, 'ELSEWHERE': 1}, 'NON_DISCRIMINATIVE_COLOCATED': {'NON_DISCRIMINATIVE_COLOCATED': 38}, 'OTHER_SINGLE_FAILED_GATE': {'AT_SOURCE': 9, 'ELSEWHERE': 1}}, 'short_Tminus1_documented_field_witnesses': 0, 'short_field_witness_distinct_games': 0, 'short_field_witness_distinct_game_turn_windows': 0, 'actual_Host_chunnel_activation_proven': False}
+output: artifacts/combat/c5-new-game-corpus-batch-v25/published/actors.json
+===== C5 NEW CORPUS V25: fields =====
+summary: {'selected_disjoint_games': 8, 'baseline_games_excluded': 100, 'metadata_selected_adjacent_windows': 192, 'Tminus1_contexts_available': 192, 'posthost_compared_windows': 33, 'context_errors': 0, 'Tminus1_Dungeon_Stargate_appearances': 0, 'Tminus1_Dungeon_games': 0, 'T_Dungeon_position_unchanged': 0, 'T_Dungeon_engine_unchanged': 0, 'actual_stabilizer_activation_proven': False}
+output: artifacts/combat/c5-new-game-corpus-batch-v25/published/fields.json
+===== C5 NEW CORPUS V25: passengers =====
+summary: {'selected_disjoint_games': 8, 'baseline_games_excluded': 100, 'metadata_selected_adjacent_windows': 192, 'Tminus1_contexts_available': 192, 'posthost_compared_windows': 33, 'context_errors': 0, 'preselected_Tminus1_source_episodes': 22, 'preselected_distinct_game_turns': 22, 'preselected_source_ship_appearances': 66, 'same_owner_at_frozen_target': 34, 'different_owner_at_frozen_target': 7, 'Host_passenger_mechanism_proven': False}
+output: artifacts/combat/c5-new-game-corpus-batch-v25/published/passengers.json
+===== C5 V25 ALL THREE NEW CORPUS REPORTS COMPLETE =====
+status: V25_NEW_GAME_CORPUS_THREE_REPORTS_COMPLETE
+generation: /root/projects/planets-corpus-db/generations/corpus-v2compact-c5-v25-public8-20261016.duckdb
+generation_sha256: af4c1579b97736c158cf50a7f709e39b749860661ed65c028fb8085e756c573a
+output: artifacts/combat/c5-new-game-corpus-batch-v25/published/manifest.json
+===== C5 V25 ALL THREE NEW-CORPUS REPORTS / MANIFEST COMPLETE =====

@@ -1,0 +1,1344 @@
+{
+  "Host_Chunnel_activation_or_combat_predictions_promoted": 0,
+  "Nplus1_VCR_used": false,
+  "Tminus1_frozen_before_first_T": true,
+  "Tminus1_preselected_source_stack_posthost_comparisons": [
+    {
+      "T_members": [
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": false,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1721,
+            2396
+          ],
+          "fuel": 432,
+          "hull_id": 17,
+          "owner_id": 6,
+          "same_owner_as_actor": true,
+          "ship_id": 27,
+          "warp": 9
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1985,
+            2268
+          ],
+          "fuel": 440,
+          "hull_id": 56,
+          "owner_id": 6,
+          "same_owner_as_actor": true,
+          "ship_id": 117,
+          "warp": 0
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": false,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1758,
+            2356
+          ],
+          "fuel": 438,
+          "hull_id": 17,
+          "owner_id": 6,
+          "same_owner_as_actor": true,
+          "ship_id": 120,
+          "warp": 6
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": false,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1765,
+            2285
+          ],
+          "fuel": 420,
+          "hull_id": 17,
+          "owner_id": 6,
+          "same_owner_as_actor": true,
+          "ship_id": 225,
+          "warp": 9
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1985,
+            2268
+          ],
+          "fuel": 1,
+          "hull_id": 104,
+          "owner_id": 6,
+          "same_owner_as_actor": true,
+          "ship_id": 243,
+          "warp": 0
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1985,
+            2268
+          ],
+          "fuel": 1260,
+          "hull_id": 53,
+          "owner_id": 6,
+          "same_owner_as_actor": true,
+          "ship_id": 258,
+          "warp": 0
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": false,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1689,
+            2313
+          ],
+          "fuel": 275,
+          "hull_id": 17,
+          "owner_id": 6,
+          "same_owner_as_actor": true,
+          "ship_id": 285,
+          "warp": 9
+        }
+      ],
+      "Tminus1_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_destination": [
+        1985,
+        2268
+      ],
+      "Tminus1_stack_size": 7,
+      "game_id": 233802,
+      "initiator_ship_id": 117,
+      "owner_id": 6,
+      "target_ship_id": 317,
+      "turn": 57
+    },
+    {
+      "T_members": [
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            2344,
+            2745
+          ],
+          "fuel": 400,
+          "hull_id": 52,
+          "owner_id": 1,
+          "same_owner_as_actor": true,
+          "ship_id": 42,
+          "warp": 9
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": false,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            2169,
+            2782
+          ],
+          "fuel": 300,
+          "hull_id": 52,
+          "owner_id": 1,
+          "same_owner_as_actor": true,
+          "ship_id": 125,
+          "warp": 9
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            2344,
+            2745
+          ],
+          "fuel": 172,
+          "hull_id": 56,
+          "owner_id": 1,
+          "same_owner_as_actor": true,
+          "ship_id": 130,
+          "warp": 0
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": false,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            2116,
+            2813
+          ],
+          "fuel": 1,
+          "hull_id": 1054,
+          "owner_id": 1,
+          "same_owner_as_actor": true,
+          "ship_id": 139,
+          "warp": 9
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": false,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            2116,
+            2813
+          ],
+          "fuel": 129,
+          "hull_id": 17,
+          "owner_id": 1,
+          "same_owner_as_actor": true,
+          "ship_id": 226,
+          "warp": 9
+        }
+      ],
+      "Tminus1_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_destination": [
+        2344,
+        2745
+      ],
+      "Tminus1_stack_size": 5,
+      "game_id": 403181,
+      "initiator_ship_id": 130,
+      "owner_id": 1,
+      "target_ship_id": 170,
+      "turn": 36
+    },
+    {
+      "T_members": [
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": false,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            2149,
+            1755
+          ],
+          "fuel": 170,
+          "hull_id": 56,
+          "owner_id": 4,
+          "same_owner_as_actor": true,
+          "ship_id": 85,
+          "warp": 9
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1144,
+            2858
+          ],
+          "fuel": 51,
+          "hull_id": 56,
+          "owner_id": 4,
+          "same_owner_as_actor": true,
+          "ship_id": 123,
+          "warp": 0
+        }
+      ],
+      "Tminus1_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_destination": [
+        1144,
+        2858
+      ],
+      "Tminus1_stack_size": 2,
+      "game_id": 403181,
+      "initiator_ship_id": 123,
+      "owner_id": 4,
+      "target_ship_id": 130,
+      "turn": 60
+    },
+    {
+      "T_members": [
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1509,
+            2683
+          ],
+          "fuel": 600,
+          "hull_id": 17,
+          "owner_id": 4,
+          "same_owner_as_actor": true,
+          "ship_id": 5,
+          "warp": 0
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1509,
+            2683
+          ],
+          "fuel": 101,
+          "hull_id": 56,
+          "owner_id": 4,
+          "same_owner_as_actor": true,
+          "ship_id": 123,
+          "warp": 0
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1509,
+            2683
+          ],
+          "fuel": 20,
+          "hull_id": 56,
+          "owner_id": 4,
+          "same_owner_as_actor": true,
+          "ship_id": 130,
+          "warp": 0
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1509,
+            2683
+          ],
+          "fuel": 600,
+          "hull_id": 17,
+          "owner_id": 4,
+          "same_owner_as_actor": true,
+          "ship_id": 152,
+          "warp": 0
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1509,
+            2683
+          ],
+          "fuel": 93,
+          "hull_id": 105,
+          "owner_id": 4,
+          "same_owner_as_actor": true,
+          "ship_id": 203,
+          "warp": 0
+        }
+      ],
+      "Tminus1_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_destination": [
+        1509,
+        2683
+      ],
+      "Tminus1_stack_size": 5,
+      "game_id": 403181,
+      "initiator_ship_id": 123,
+      "owner_id": 4,
+      "target_ship_id": 164,
+      "turn": 65
+    },
+    {
+      "T_members": [
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1335,
+            1902
+          ],
+          "fuel": 3,
+          "hull_id": 105,
+          "owner_id": 6,
+          "same_owner_as_actor": false,
+          "ship_id": 239,
+          "warp": 0
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1335,
+            1902
+          ],
+          "fuel": 64,
+          "hull_id": 56,
+          "owner_id": 5,
+          "same_owner_as_actor": true,
+          "ship_id": 270,
+          "warp": 0
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1335,
+            1902
+          ],
+          "fuel": 141,
+          "hull_id": 104,
+          "owner_id": 6,
+          "same_owner_as_actor": false,
+          "ship_id": 312,
+          "warp": 0
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1335,
+            1902
+          ],
+          "fuel": 10,
+          "hull_id": 18,
+          "owner_id": 5,
+          "same_owner_as_actor": true,
+          "ship_id": 328,
+          "warp": 0
+        }
+      ],
+      "Tminus1_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_destination": [
+        1335,
+        1902
+      ],
+      "Tminus1_stack_size": 4,
+      "game_id": 521268,
+      "initiator_ship_id": 270,
+      "owner_id": 5,
+      "target_ship_id": 255,
+      "turn": 31
+    },
+    {
+      "T_members": [
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": false,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1144,
+            2086
+          ],
+          "fuel": 108,
+          "hull_id": 17,
+          "owner_id": 4,
+          "same_owner_as_actor": true,
+          "ship_id": 13,
+          "warp": 9
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": null,
+          "T_owner_current_status": "ABSTAIN_T_OWNER_DRIFT",
+          "T_position": null,
+          "fuel": 1,
+          "hull_id": 16,
+          "owner_id": 4,
+          "same_owner_as_actor": true,
+          "ship_id": 95,
+          "warp": 9
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1385,
+            2665
+          ],
+          "fuel": 0,
+          "hull_id": 20,
+          "owner_id": 4,
+          "same_owner_as_actor": true,
+          "ship_id": 147,
+          "warp": 9
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": false,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1150,
+            2128
+          ],
+          "fuel": 278,
+          "hull_id": 17,
+          "owner_id": 4,
+          "same_owner_as_actor": true,
+          "ship_id": 212,
+          "warp": 9
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1385,
+            2665
+          ],
+          "fuel": 101,
+          "hull_id": 56,
+          "owner_id": 4,
+          "same_owner_as_actor": true,
+          "ship_id": 240,
+          "warp": 0
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": false,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1108,
+            2133
+          ],
+          "fuel": 31,
+          "hull_id": 17,
+          "owner_id": 4,
+          "same_owner_as_actor": true,
+          "ship_id": 281,
+          "warp": 9
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1385,
+            2665
+          ],
+          "fuel": 53,
+          "hull_id": 20,
+          "owner_id": 4,
+          "same_owner_as_actor": true,
+          "ship_id": 301,
+          "warp": 0
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": false,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1108,
+            2133
+          ],
+          "fuel": 14,
+          "hull_id": 1054,
+          "owner_id": 4,
+          "same_owner_as_actor": true,
+          "ship_id": 327,
+          "warp": 9
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": false,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1089,
+            2138
+          ],
+          "fuel": 51,
+          "hull_id": 1012,
+          "owner_id": 4,
+          "same_owner_as_actor": true,
+          "ship_id": 394,
+          "warp": 9
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": false,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1150,
+            2128
+          ],
+          "fuel": 1,
+          "hull_id": 105,
+          "owner_id": 4,
+          "same_owner_as_actor": true,
+          "ship_id": 404,
+          "warp": 0
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1385,
+            2665
+          ],
+          "fuel": 38,
+          "hull_id": 20,
+          "owner_id": 4,
+          "same_owner_as_actor": true,
+          "ship_id": 433,
+          "warp": 0
+        }
+      ],
+      "Tminus1_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_destination": [
+        1385,
+        2665
+      ],
+      "Tminus1_stack_size": 11,
+      "game_id": 521268,
+      "initiator_ship_id": 240,
+      "owner_id": 4,
+      "target_ship_id": 279,
+      "turn": 36
+    },
+    {
+      "T_members": [
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": false,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1437,
+            1065
+          ],
+          "fuel": 100,
+          "hull_id": 17,
+          "owner_id": 6,
+          "same_owner_as_actor": false,
+          "ship_id": 117,
+          "warp": 9
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1420,
+            1801
+          ],
+          "fuel": 288,
+          "hull_id": 56,
+          "owner_id": 5,
+          "same_owner_as_actor": true,
+          "ship_id": 393,
+          "warp": 0
+        }
+      ],
+      "Tminus1_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_destination": [
+        1420,
+        1801
+      ],
+      "Tminus1_stack_size": 2,
+      "game_id": 521268,
+      "initiator_ship_id": 393,
+      "owner_id": 5,
+      "target_ship_id": 270,
+      "turn": 41
+    },
+    {
+      "T_members": [
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1434,
+            2750
+          ],
+          "fuel": 190,
+          "hull_id": 56,
+          "owner_id": 10,
+          "same_owner_as_actor": true,
+          "ship_id": 396,
+          "warp": 0
+        }
+      ],
+      "Tminus1_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_destination": [
+        1434,
+        2750
+      ],
+      "Tminus1_stack_size": 1,
+      "game_id": 521268,
+      "initiator_ship_id": 396,
+      "owner_id": 10,
+      "target_ship_id": 462,
+      "turn": 46
+    },
+    {
+      "T_members": [
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1335,
+            1902
+          ],
+          "fuel": 184,
+          "hull_id": 114,
+          "owner_id": 5,
+          "same_owner_as_actor": true,
+          "ship_id": 217,
+          "warp": 9
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1335,
+            1902
+          ],
+          "fuel": 356,
+          "hull_id": 56,
+          "owner_id": 5,
+          "same_owner_as_actor": true,
+          "ship_id": 518,
+          "warp": 0
+        }
+      ],
+      "Tminus1_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_destination": [
+        1335,
+        1902
+      ],
+      "Tminus1_stack_size": 2,
+      "game_id": 521268,
+      "initiator_ship_id": 518,
+      "owner_id": 5,
+      "target_ship_id": 317,
+      "turn": 51
+    },
+    {
+      "T_members": [
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1337,
+            2003
+          ],
+          "fuel": 350,
+          "hull_id": 105,
+          "owner_id": 5,
+          "same_owner_as_actor": true,
+          "ship_id": 200,
+          "warp": 0
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1337,
+            2003
+          ],
+          "fuel": 368,
+          "hull_id": 56,
+          "owner_id": 5,
+          "same_owner_as_actor": true,
+          "ship_id": 393,
+          "warp": 0
+        }
+      ],
+      "Tminus1_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_destination": [
+        1337,
+        2003
+      ],
+      "Tminus1_stack_size": 2,
+      "game_id": 521268,
+      "initiator_ship_id": 393,
+      "owner_id": 5,
+      "target_ship_id": 230,
+      "turn": 56
+    },
+    {
+      "T_members": [
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1372,
+            1287
+          ],
+          "fuel": 1200,
+          "hull_id": 18,
+          "owner_id": 6,
+          "same_owner_as_actor": false,
+          "ship_id": 113,
+          "warp": 0
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1372,
+            1287
+          ],
+          "fuel": 376,
+          "hull_id": 56,
+          "owner_id": 5,
+          "same_owner_as_actor": true,
+          "ship_id": 203,
+          "warp": 0
+        }
+      ],
+      "Tminus1_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_destination": [
+        1372,
+        1287
+      ],
+      "Tminus1_stack_size": 2,
+      "game_id": 521268,
+      "initiator_ship_id": 203,
+      "owner_id": 5,
+      "target_ship_id": 542,
+      "turn": 61
+    },
+    {
+      "T_members": [
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1293,
+            1850
+          ],
+          "fuel": 10,
+          "hull_id": 52,
+          "owner_id": 6,
+          "same_owner_as_actor": false,
+          "ship_id": 27,
+          "warp": 0
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1293,
+            1850
+          ],
+          "fuel": 390,
+          "hull_id": 56,
+          "owner_id": 5,
+          "same_owner_as_actor": true,
+          "ship_id": 317,
+          "warp": 0
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1293,
+            1850
+          ],
+          "fuel": 100,
+          "hull_id": 52,
+          "owner_id": 6,
+          "same_owner_as_actor": false,
+          "ship_id": 369,
+          "warp": 0
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": false,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            998,
+            1917
+          ],
+          "fuel": 138,
+          "hull_id": 56,
+          "owner_id": 5,
+          "same_owner_as_actor": true,
+          "ship_id": 526,
+          "warp": 9
+        }
+      ],
+      "Tminus1_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_destination": [
+        1293,
+        1850
+      ],
+      "Tminus1_stack_size": 4,
+      "game_id": 521268,
+      "initiator_ship_id": 317,
+      "owner_id": 5,
+      "target_ship_id": 128,
+      "turn": 66
+    },
+    {
+      "T_members": [
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1293,
+            1850
+          ],
+          "fuel": 6,
+          "hull_id": 17,
+          "owner_id": 6,
+          "same_owner_as_actor": false,
+          "ship_id": 14,
+          "warp": 0
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1293,
+            1850
+          ],
+          "fuel": 379,
+          "hull_id": 56,
+          "owner_id": 5,
+          "same_owner_as_actor": true,
+          "ship_id": 45,
+          "warp": 0
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1293,
+            1850
+          ],
+          "fuel": 1,
+          "hull_id": 18,
+          "owner_id": 6,
+          "same_owner_as_actor": false,
+          "ship_id": 113,
+          "warp": 0
+        }
+      ],
+      "Tminus1_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_destination": [
+        1293,
+        1850
+      ],
+      "Tminus1_stack_size": 3,
+      "game_id": 521268,
+      "initiator_ship_id": 45,
+      "owner_id": 5,
+      "target_ship_id": 365,
+      "turn": 71
+    },
+    {
+      "T_members": [
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            2767,
+            2237
+          ],
+          "fuel": 134,
+          "hull_id": 56,
+          "owner_id": 10,
+          "same_owner_as_actor": true,
+          "ship_id": 467,
+          "warp": 0
+        }
+      ],
+      "Tminus1_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_destination": [
+        2767,
+        2237
+      ],
+      "Tminus1_stack_size": 1,
+      "game_id": 521268,
+      "initiator_ship_id": 467,
+      "owner_id": 10,
+      "target_ship_id": 302,
+      "turn": 76
+    },
+    {
+      "T_members": [
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": false,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1403,
+            1064
+          ],
+          "fuel": 161,
+          "hull_id": 1054,
+          "owner_id": 5,
+          "same_owner_as_actor": true,
+          "ship_id": 58,
+          "warp": 9
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1948,
+            1643
+          ],
+          "fuel": 103,
+          "hull_id": 56,
+          "owner_id": 5,
+          "same_owner_as_actor": true,
+          "ship_id": 393,
+          "warp": 0
+        }
+      ],
+      "Tminus1_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_destination": [
+        1948,
+        1643
+      ],
+      "Tminus1_stack_size": 2,
+      "game_id": 521268,
+      "initiator_ship_id": 393,
+      "owner_id": 5,
+      "target_ship_id": 230,
+      "turn": 81
+    },
+    {
+      "T_members": [
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1293,
+            1850
+          ],
+          "fuel": 440,
+          "hull_id": 56,
+          "owner_id": 5,
+          "same_owner_as_actor": true,
+          "ship_id": 317,
+          "warp": 0
+        }
+      ],
+      "Tminus1_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_destination": [
+        1293,
+        1850
+      ],
+      "Tminus1_stack_size": 1,
+      "game_id": 521268,
+      "initiator_ship_id": 317,
+      "owner_id": 5,
+      "target_ship_id": 25,
+      "turn": 86
+    },
+    {
+      "T_members": [
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1820,
+            2839
+          ],
+          "fuel": 440,
+          "hull_id": 56,
+          "owner_id": 7,
+          "same_owner_as_actor": true,
+          "ship_id": 192,
+          "warp": 0
+        }
+      ],
+      "Tminus1_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_destination": [
+        1820,
+        2839
+      ],
+      "Tminus1_stack_size": 1,
+      "game_id": 521268,
+      "initiator_ship_id": 192,
+      "owner_id": 7,
+      "target_ship_id": 488,
+      "turn": 91
+    },
+    {
+      "T_members": [
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1951,
+            2915
+          ],
+          "fuel": 238,
+          "hull_id": 56,
+          "owner_id": 7,
+          "same_owner_as_actor": true,
+          "ship_id": 192,
+          "warp": 0
+        }
+      ],
+      "Tminus1_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_destination": [
+        1951,
+        2915
+      ],
+      "Tminus1_stack_size": 1,
+      "game_id": 521268,
+      "initiator_ship_id": 192,
+      "owner_id": 7,
+      "target_ship_id": 388,
+      "turn": 96
+    },
+    {
+      "T_members": [
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            2154,
+            1224
+          ],
+          "fuel": 199,
+          "hull_id": 56,
+          "owner_id": 5,
+          "same_owner_as_actor": true,
+          "ship_id": 16,
+          "warp": 0
+        }
+      ],
+      "Tminus1_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_destination": [
+        2154,
+        1224
+      ],
+      "Tminus1_stack_size": 1,
+      "game_id": 521268,
+      "initiator_ship_id": 16,
+      "owner_id": 5,
+      "target_ship_id": 229,
+      "turn": 101
+    },
+    {
+      "T_members": [
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": false,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1381,
+            2389
+          ],
+          "fuel": 230,
+          "hull_id": 20,
+          "owner_id": 4,
+          "same_owner_as_actor": true,
+          "ship_id": 4,
+          "warp": 9
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": false,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1381,
+            2389
+          ],
+          "fuel": 230,
+          "hull_id": 20,
+          "owner_id": 4,
+          "same_owner_as_actor": true,
+          "ship_id": 23,
+          "warp": 1
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            2269,
+            2848
+          ],
+          "fuel": 58,
+          "hull_id": 56,
+          "owner_id": 4,
+          "same_owner_as_actor": true,
+          "ship_id": 240,
+          "warp": 0
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": false,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            1381,
+            2389
+          ],
+          "fuel": 135,
+          "hull_id": 56,
+          "owner_id": 4,
+          "same_owner_as_actor": true,
+          "ship_id": 274,
+          "warp": 1
+        }
+      ],
+      "Tminus1_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_destination": [
+        2269,
+        2848
+      ],
+      "Tminus1_stack_size": 4,
+      "game_id": 521268,
+      "initiator_ship_id": 240,
+      "owner_id": 4,
+      "target_ship_id": 279,
+      "turn": 106
+    },
+    {
+      "T_members": [
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": true,
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "T_position": [
+            938,
+            1883
+          ],
+          "fuel": 100,
+          "hull_id": 56,
+          "owner_id": 5,
+          "same_owner_as_actor": true,
+          "ship_id": 317,
+          "warp": 0
+        }
+      ],
+      "Tminus1_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_destination": [
+        938,
+        1883
+      ],
+      "Tminus1_stack_size": 1,
+      "game_id": 521268,
+      "initiator_ship_id": 317,
+      "owner_id": 5,
+      "target_ship_id": 128,
+      "turn": 111
+    },
+    {
+      "T_members": [
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": null,
+          "T_owner_current_status": "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE",
+          "T_position": null,
+          "fuel": 24,
+          "hull_id": 18,
+          "owner_id": 7,
+          "same_owner_as_actor": true,
+          "ship_id": 44,
+          "warp": 0
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": null,
+          "T_owner_current_status": "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE",
+          "T_position": null,
+          "fuel": 149,
+          "hull_id": 18,
+          "owner_id": 7,
+          "same_owner_as_actor": true,
+          "ship_id": 126,
+          "warp": 0
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": null,
+          "T_owner_current_status": "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE",
+          "T_position": null,
+          "fuel": 450,
+          "hull_id": 105,
+          "owner_id": 7,
+          "same_owner_as_actor": true,
+          "ship_id": 153,
+          "warp": 0
+        },
+        {
+          "Chunnel_passenger_mechanism_proven": false,
+          "T_at_frozen_target": null,
+          "T_owner_current_status": "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE",
+          "T_position": null,
+          "fuel": 350,
+          "hull_id": 56,
+          "owner_id": 7,
+          "same_owner_as_actor": true,
+          "ship_id": 388,
+          "warp": 0
+        }
+      ],
+      "Tminus1_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_destination": [
+        1152,
+        2243
+      ],
+      "Tminus1_stack_size": 4,
+      "game_id": 521268,
+      "initiator_ship_id": 388,
+      "owner_id": 7,
+      "target_ship_id": 192,
+      "turn": 116
+    }
+  ],
+  "baseline_game_ids_sha256": "ba22350fcc57e3c4f7ae397dcba13bd1b291114edaaa7c9d3bb0f43a8f41d838",
+  "generation": "/root/projects/planets-corpus-db/generations/corpus-v2compact-c5-v25-public8-20261016.duckdb",
+  "generation_sha256": "af4c1579b97736c158cf50a7f709e39b749860661ed65c028fb8085e756c573a",
+  "newly_acquired_archival_games_not_live_prospective_Host_observations": true,
+  "phase": "passengers",
+  "schema": "planets-lab.combat-c5-new-game-corpus-batch.v25",
+  "selected_game_ids": [
+    233802,
+    290449,
+    403181,
+    444043,
+    469931,
+    521268,
+    536676,
+    608293
+  ],
+  "status": "NEWLY_ACQUIRED_GAME_DISJOINT_RETROSPECTIVE_TMINUS1_RULEAWARE_OBSERVATIONAL",
+  "summary": {
+    "Host_passenger_mechanism_proven": false,
+    "Tminus1_contexts_available": 192,
+    "baseline_games_excluded": 100,
+    "context_errors": 0,
+    "different_owner_at_frozen_target": 7,
+    "metadata_selected_adjacent_windows": 192,
+    "posthost_compared_windows": 33,
+    "preselected_Tminus1_source_episodes": 22,
+    "preselected_distinct_game_turns": 22,
+    "preselected_source_ship_appearances": 66,
+    "same_owner_at_frozen_target": 34,
+    "selected_disjoint_games": 8
+  },
+  "window_errors": []
+}
