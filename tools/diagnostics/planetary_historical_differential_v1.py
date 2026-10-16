@@ -29,6 +29,7 @@ from planets_lab.core import GameState,Player
 from planets_lab.data.nu_loadturn import _planet as import_planet
 from planets_lab.corpus.reconstruction import group_perspective_records
 from planets_lab.sim import PlanetaryHostPipeline,TurnOrders
+from planets_lab.sim.population_phases import UnsupportedPopulationRule
 import combat_c5_site_disjoint_movement_validation_v9 as v9
 
 SCHEMA="planets-lab.planetary-historical-differential.v1"
@@ -222,7 +223,7 @@ def pre_window(conn,game:int,turn:int):
                 name:{field:int_field(raw,ALIASES[field]) for field in FIELDS[name]}
                 for name in FAMILIES}
             item["predicted_internal_events"]=sorted({e.kind for e in events})
-        except (ValueError,TypeError,NotImplementedError) as exc:
+        except (ValueError,TypeError,NotImplementedError,UnsupportedPopulationRule) as exc:
             # Event-level exceptions mean the simulator is not applicable.
             item["Tminus1_status"]="ABSTAIN_MODEL_UNSUPPORTED"
             item["abstain_exception_type"]=type(exc).__name__
