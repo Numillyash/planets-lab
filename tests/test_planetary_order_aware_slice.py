@@ -62,9 +62,9 @@ def test_three_real_turn_orders_and_phase_ledger(placement):
         assert result.supported
         assert result.state is not None
         assert result.state.turn == original.turn + 1
-        assert len(result.balances) == 14
+        assert len(result.balances) == 15
         phase_names = [item.phase for item in result.balances]
-        assert phase_names.index("planet_cargo_transfer") == (0 if placement == "transfer_before_planetary" else 13)
+        assert phase_names.index("planet_cargo_transfer") == (0 if placement == "transfer_before_planetary" else 14)
         assert all(not item.combined_net_delta and not item.ground_mineral_delta
                    for item in result.balances if item.category == "explicit_transfer")
         assert any(item.phase == "factory_supplies" and item.combined_net_delta.get("supplies", 0) > 0
