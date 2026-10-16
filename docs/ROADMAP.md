@@ -33,6 +33,20 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**M2 owner-scoped pre-Host observation integration (CI/runtime pending):**
+The preceding synthetic operator HMAC intake succeeded at runtime on
+`53206e40e5da48c0f29cad16c5eae0de78e83766` (`exit_code=0`,
+missing artifacts `[]`, 8/8 abstentions; report Git blob
+`c59a24dca535feefa16408555bfb74b36fda2e62`).
+Since the original intake required impossible cross-player capture by a
+single owner, a new signed **per-owner** observation and strictly
+complete aggregation interface is under test. Missing owner data remains
+`ABSTAIN`, never an invented empty order. Operator signatures are not
+authenticated `/game/save` acknowledgements or causal NuHost parity.
+See [owner-scoped capture handoff](handoff/2026-10-17-m2-owner-scoped-prehost-capture-v1.md).
+Next: authorized successful-save capture and real order-field mapping, not
+more synthetic passes or unbounded historical residual fitting.
+
 **M2 pre-Host capture admission V1 (implementation; runtime still pending):**
 Research-only `planetary_order_capture.py` now supplies exact pre-state
 fingerprinting, operator HMAC integrity, complete declared-player coverage,
