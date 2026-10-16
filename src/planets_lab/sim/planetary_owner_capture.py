@@ -159,14 +159,6 @@ def aggregate_owner_observations(
                 return OwnerBundleAdmission(
                     "ABSTAIN_DUPLICATE_OWNER", reason="duplicate owner capture",
                 )
-            if (type(payload["game_id"]) is not type(state.game_id)
-                    or payload["game_id"] != state.game_id
-                    or type(payload["turn"]) is not int
-                    or payload["turn"] != state.turn
-                    or payload["pre_state_sha256"] != state_hash):
-                return OwnerBundleAdmission(
-                    "ABSTAIN_STATE_IDENTITY", reason="game/turn/prestate mismatch",
-                )
             if auth["algorithm"] != "HMAC-SHA256":
                 return OwnerBundleAdmission(
                     "ABSTAIN_INVALID_ATTESTATION", reason="unknown signing algorithm",
@@ -187,6 +179,14 @@ def aggregate_owner_observations(
             if not hmac.compare_digest(tag, expected):
                 return OwnerBundleAdmission(
                     "ABSTAIN_INVALID_ATTESTATION", reason="owner signature mismatch",
+                )
+            if (type(payload["game_id"]) is not type(state.game_id)
+                    or payload["game_id"] != state.game_id
+                    or type(payload["turn"]) is not int
+                    or payload["turn"] != state.turn
+                    or payload["pre_state_sha256"] != state_hash):
+                return OwnerBundleAdmission(
+                    "ABSTAIN_STATE_IDENTITY", reason="game/turn/prestate mismatch",
                 )
             if _utc(payload["captured_at_utc"], "capture time") >= host_start:
                 return OwnerBundleAdmission(
