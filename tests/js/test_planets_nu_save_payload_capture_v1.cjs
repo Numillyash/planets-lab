@@ -124,8 +124,7 @@ assert.equal(report.observations[0].request.body.unknownShipNotes,
 assert.equal(report.observations[0].request.body.turn.meta, RAW_NOTES);
 assert.equal(report.observations[0].request.body.apikey, "<REDACTED_CREDENTIAL>");
 assert.equal(report.observations[0].request.body.savekey, "<REDACTED_CREDENTIAL>");
-assert.equal(report.observations[0].request.body.turn.auth.savekey, "<REDACTED_CREDENTIAL>");
-assert.equal(report.observations[0].request.body.turn.auth.token, "<REDACTED_CREDENTIAL>");
+assert.equal(report.observations[0].request.body.turn.auth, "<REDACTED_CREDENTIAL>");
 assert.equal(report.observations[0].response.body.savekey, "<REDACTED_CREDENTIAL>");
 assert.equal(report.observations[0].http_status, 200);
 
@@ -136,7 +135,7 @@ assert.equal(diff.truncated, false);
 assert.equal(diff.changes[0].path, "$.request.body.turn.planets[0].colonisttaxrate");
 assert.equal(diff.changes[0].before, 5);
 assert.equal(diff.changes[0].after, 6);
-assert.throws(() => probe.diff(0, 5), RangeError);
+assert.throws(() => probe.diff(0, 5), /Choose two valid indices/);
 
 // Detached reports cannot be used to tamper with retained observations.
 report.observations[0].request.body.turn.planets[0].colonisttaxrate = 999;
