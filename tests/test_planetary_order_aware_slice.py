@@ -2,42 +2,16 @@ from __future__ import annotations
 
 import pytest
 
-from planets_lab.core import Cargo, GameState, MineralDeposit, Planet, Player, Ship
-from planets_lab.data.nu_specs import HullSpec, NuStaticSpecs, ResourceCost
+from pathlib import Path
+import sys
+
+# Single dependency-free fixture source for CI and server runtime.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools" / "diagnostics"))
+from planetary_order_aware_scenarios_v1 import (
+    fixture, order, orders_sequence, specs, unsupported_scenarios,
+)
 from planets_lab.sim.orders import PlanetCargoTransferOrder, PlayerOrders, ShipOrder, TurnOrders
 from planets_lab.sim.planetary_order_aware_slice import PlanetaryOrderAwareSlice
-
-
-def specs(capacity=200, fuel=100):
-    return NuStaticSpecs(hulls={1: HullSpec(
-        id=1, name="Test freighter", tech_level=1, mass=50,
-        cargo_capacity=capacity, fuel_tank=fuel, crew=10, engine_count=2,
-        beam_count=0, torpedo_launcher_count=0, fighter_bay_count=0,
-        can_cloak=False, cost=ResourceCost(),
-    )})
-
-
-def fixture():
-    return GameState(
-        game_id="research-slice", turn=7,
-        players={1: Player(id=1, race_id=1), 2: Player(id=2, race_id=2)},
-        planets={10: Planet(
-            id=10, x=100, y=100, owner_id=1, temperature=50,
-            cargo=Cargo(clans=100, supplies=40, megacredits=20, neutronium=80),
-            ground_duranium=MineralDeposit(amount=1000, density=100),
-            factories=10, mines=10, happiness=100, tax_rate=10,
-        )},
-        ships={1: Ship(id=1, owner_id=1, hull_id=1, x=100, y=100,
-                       cargo=Cargo(supplies=20, neutronium=10, clans=10))},
-    )
-
-
-def order(direction="planet_to_ship", **kwargs):
-    return TurnOrders(by_player={1: PlayerOrders(player_id=1, ship_orders=(
-        ShipOrder(ship_id=1, planet_transfer=PlanetCargoTransferOrder(
-            planet_id=10, direction=direction, **kwargs,
-        )),
-    ))})
 
 
 def totals(state):
@@ -50,9 +24,7 @@ def totals(state):
 def test_three_real_turn_orders_and_phase_ledger(placement):
     pipe = PlanetaryOrderAwareSlice(specs(), placement)
     source = fixture()
-    a = order(supplies=10, neutronium=10, clans=5)
-    b = order("ship_to_planet", supplies=4, neutronium=5, clans=3)
-    sequence = (a, b, TurnOrders.empty())
+    sequence = orders_sequence()
     state = source
     trace = []
     for index, orders in enumerate(sequence):

@@ -35,14 +35,27 @@ and archival datasets are untouched.
 
 `tools/diagnostics/planetary_order_aware_slice_v1.py` runs three deterministic
 turns in both hypothesized phase placements using actual `TurnOrders`.
+Shared synthetic fixtures are in `tools/diagnostics/planetary_order_aware_scenarios_v1.py`.
 The published trace records every phase's events and inventory deltas,
-and its stable SHA256. These are internal controlled scenarios, not historical
-NuHost differential tests.
+and its stable SHA256. Runtime acceptance also checks eight fail-closed
+ABSTAIN cases, state immutability, resource conservation, mining, factory
+output, taxes, and a hypothetical phase-order discriminator. These are
+internal controlled scenarios, not historical NuHost differential tests.
 
-The server wrapper invokes targeted tests first, then produces
-`artifacts/planetary/order-aware-slice-v1/published/report.json`; the
-existing runtime-evidence publisher records the clean source commit, logs
-and report on `runtime-logs`.
+The server's `site-state-v1` research Python intentionally need not contain
+`pytest`. The runner executes **pytest-independent runtime acceptance checks**
+in the diagnostics CLI, then publishes
+`artifacts/planetary/order-aware-slice-v1/published/report.json`.
+The full `pytest` suite remains enforced in GitHub CI, including an explicit
+runtime invocation with `pytest` imports blocked. The existing runtime-evidence
+publisher records the clean source commit, logs and report on `runtime-logs`.
+
+The first server run on `2026-10-16T20:37:39Z` using
+`1fadeedbf0a27bd7156addf88a1a4045fe0dcd26` failed with `exit_code=1`
+and missing report because the runner called `site-state-v1/bin/python -m pytest`
+and imported fixtures directly from a test module. Its presence in
+`runtime-logs` does **not** constitute a successful evidence run; rerun on
+an updated clean `main` to publish a new runtime outcome.
 
 ```bash
 cd ~/projects/planets-lab && git fetch origin && git switch main && git pull --ff-only origin main && bash tools/run-planetary-order-aware-slice-v1-with-evidence.sh
