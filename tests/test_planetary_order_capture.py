@@ -195,7 +195,7 @@ def test_unsupported_order_fields_and_missing_players_are_not_silently_dropped()
         sealed(state, illegal)
     with pytest.raises(OrderCaptureInvalid, match="every declared game player"):
         sealed(state, order(supplies=1))
-    with pytest.raises(OrderCaptureInvalid, match=r"32\\+ bytes"):
+    with pytest.raises(OrderCaptureInvalid, match=r"32\+ bytes"):
         seal_prehost_capture(state, complete_orders(), captured_at_utc=CAPTURED,
                              key=b"weak", key_id="demo")
 
