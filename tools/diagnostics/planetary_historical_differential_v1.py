@@ -356,6 +356,23 @@ def publish(folder,items):
     print("output:",dest)
 
 
+
+def run_windows(conn,windows):
+    """One global PRE freeze, then POST; testable absolute phase barrier."""
+    pre={}
+    for i,(game,turn) in enumerate(windows,1):
+        print(f"[m2-archive-v1] PRE [{i}/{len(windows)}] G{game} T{turn}",flush=True)
+        pre[game,turn]=pre_window(conn,game,turn)
+    # ABSOLUTE GLOBAL BARRIER: only now inspect any T archive record.
+    grouped={name:[] for name in FAMILIES}
+    for i,(game,turn) in enumerate(windows,1):
+        print(f"[m2-archive-v1] POST [{i}/{len(windows)}] G{game} T{turn}",flush=True)
+        after=post_window(conn,game,turn)
+        result=compare(pre[game,turn],after)
+        for family in FAMILIES:grouped[family].extend(result[family])
+    return pre,grouped
+
+
 def main():
     parser=argparse.ArgumentParser()
     parser.add_argument("--database",type=Path,required=True)
@@ -381,17 +398,7 @@ def main():
                 "SELECT DISTINCT game_id,archive_turn FROM source_members ORDER BY game_id,archive_turn"
             ).fetchall()
             windows=choose_metadata_windows(metadata,selected)
-            pre={}
-            for i,(game,turn) in enumerate(windows,1):
-                print(f"[m2-archive-v1] PRE [{i}/{len(windows)}] G{game} T{turn}",flush=True)
-                pre[game,turn]=pre_window(conn,game,turn)
-            # ABSOLUTE GLOBAL BARRIER: only now inspect any T archive record.
-            grouped={name:[] for name in FAMILIES}
-            for i,(game,turn) in enumerate(windows,1):
-                print(f"[m2-archive-v1] POST [{i}/{len(windows)}] G{game} T{turn}",flush=True)
-                after=post_window(conn,game,turn)
-                result=compare(pre[game,turn],after)
-                for family in FAMILIES:grouped[family].extend(result[family])
+            pre,grouped=run_windows(conn,windows)
             if not any(grouped.values()):
                 raise ValueError("no owner-current source planets selected")
             output=reports(selected,windows,pre,grouped)
