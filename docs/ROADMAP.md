@@ -33,6 +33,23 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**M2 real game-data save capture and client differential (implementation / CI pending):**
+Six user-observed real `/game/save` XHR saves returned HTTP 200 with
+`success:true`; all arrived before a `/game/turnready` request.
+Unknown form fields appear as 4/4/4/4/5/5 (three numeric-text and
+one/two opaque-text). These shape-only reports still do not establish
+any per-entity save-command mapping. The owner explicitly authorized
+collecting game data from Home Sector or a test game: the new
+`tools/client/planets_nu_save_payload_capture_v1.js` is a separate
+opt-in full game-field capture + two-save differential instrument,
+while recursively redacting known credentials and omitting query
+strings/headers. Review all output manually for unexpected secrets;
+never commit real captures. No independent NuHost acceptance, Host
+phase ordering or historical `DIFF_VERIFIED` claimed. Next: one
+genuine owner-approved redacted full request and bounded field
+mapping, not further opaque counting.
+[Protocol](handoff/2026-10-17-m2-real-save-payload-capture-v1.md).
+
 **M2 live autosave observation (tax-rate edits; follow-up v1.3):**
 The authorized player observed four XHR `POST /game/save` responses
 (HTTP 200, `success=true`) during several own-planet tax adjustments,
