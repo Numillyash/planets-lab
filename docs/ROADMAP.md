@@ -33,7 +33,30 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
-Active milestone remains **M5 — historical NuHost corpus + compatibility mining**.
+**October 16, 2026 priority reset — C5 bounded freeze / M2 active.**
+After the V27 archival Chunnel/visibility retrospective, further serial
+C5 short-Chunnel and Horwasp residue chasing is PAUSED. The previously
+verified ordinary non-capture queue remains bounded at 22/22 held-out
+next-VCR comparisons, but complete Host queue, capture O-branch LEFT/RIGHT,
+unresolved site arrivals and mixed ship/planet combat remain open and
+fail closed. No new universal Host activation rule is promoted.
+
+**Active implementation work is now M2 planetary economy/production
+integration and independent historical validation.** Reuse the already
+implemented `PlanetaryHostPipeline` instead of restarting formula research.
+First operational checkpoint:
+`docs/handoff/2026-10-16-c5-bounded-freeze-m2-active.md`
+and the 3-turn deterministic `planetary_multiturn_baseline_v1`
+runner. That internal baseline has **zero NuHost historical differential
+claims**; the next M2 acceptance must explicitly evaluate real
+owner-current T-1/T planet snapshots and abstain on unattributable Host
+and player-order interactions.
+
+Historical corpus infrastructure **M5** remains available as the
+research data foundation, not a reason to block M2 while explaining
+individual Chunnel episodes. Production `planets-intel`, main combat
+executor, immutable corpus CURRENT, and draft PR #28 remain untouched.
+
 
 **October 14, 2026 scope decision:** temporarily park Horwasp-specific
 postcombat mass, clan losses, fighter-feedback activation and VCR-order
