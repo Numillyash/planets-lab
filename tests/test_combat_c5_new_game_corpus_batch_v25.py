@@ -76,7 +76,7 @@ def test_documented_short_field_and_unproven_actual_activation():
     short=M.field_evidence(edge,[],{"settings.shortformatrules":True},{6:6})
     assert short["Tminus1_explicit_cyborg_stabilization"] is True
     not_cyborg=M.field_evidence(edge,[],{"settings.shortformatrules":True},{6:7})
-    assert not_cyborg["Tminus1_explicit_cyborg_stabilization"]
+    assert not_cyborg["Tminus1_explicit_cyborg_stabilization"] is False
 
 
 def test_source_preselection_frozen_before_any_owner_current_T(monkeypatch):
