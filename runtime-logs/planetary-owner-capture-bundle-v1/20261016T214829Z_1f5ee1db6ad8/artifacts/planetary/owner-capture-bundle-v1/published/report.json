@@ -1,0 +1,46 @@
+{
+  "controls": {
+    "changed_initial_state": "ABSTAIN_STATE_IDENTITY",
+    "duplicate_owner": "ABSTAIN_DUPLICATE_OWNER",
+    "forged_ack_claim": "ABSTAIN_INVALID_SCOPE",
+    "host_before_capture": "ABSTAIN_NOT_PREHOST",
+    "missing_host_witness": "ABSTAIN_UNWITNESSED_TIME",
+    "missing_player2": "ABSTAIN_INCOMPLETE_PLAYER_COVERAGE",
+    "modified_signed_cargo": "ABSTAIN_INVALID_ATTESTATION",
+    "wrong_owner_key": "ABSTAIN_INVALID_ATTESTATION"
+  },
+  "limitations": [
+    "operator signatures are not NuHost server acknowledgements",
+    "synthetic captures only; no private owner orders read",
+    "caller-supplied host clock is not independently attested",
+    "no causal NuHost phase order or historical validation"
+  ],
+  "placements": {
+    "transfer_after_planetary": {
+      "phase_balances": 15,
+      "resource_conservation_passed": true,
+      "status": "MODELED_OWNER_BUNDLE_NOT_NUHOST_DIFFERENTIAL"
+    },
+    "transfer_before_planetary": {
+      "phase_balances": 15,
+      "resource_conservation_passed": true,
+      "status": "MODELED_OWNER_BUNDLE_NOT_NUHOST_DIFFERENTIAL"
+    }
+  },
+  "schema": "planets-lab.prehost-owner-bundle-controls.v1",
+  "status": "M2_OWNER_SCOPED_CAPTURE_SYNTHETIC_TESTED_NO_NUHOST_ORDERS",
+  "summary": {
+    "C5_changes": 0,
+    "NuHost_orders_authenticated": false,
+    "abstain_controls_passed": 8,
+    "complete_bundle_accepted": true,
+    "corpus_files_opened": 0,
+    "historical_differential_verified": false,
+    "independent_clock_provenance_verified": false,
+    "independent_server_submission_acknowledged": false,
+    "missing_player_abstains": true,
+    "placement_count": 2,
+    "source_state_unchanged": true,
+    "synthetic_players_independently_signed": 2
+  }
+}

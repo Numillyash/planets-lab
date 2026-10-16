@@ -1,0 +1,8 @@
+===== M2 OWNER-SCOPED PREHOST BUNDLE TEST =====
+HEAD: 1f5ee1db6ad82a15791981f3384ef2101d327e1d
+scope: synthetic per-owner signatures, no actual NuHost order capture
+===== M2 OWNER-SCOPED PREHOST CAPTURE BUNDLE =====
+status: M2_OWNER_SCOPED_CAPTURE_SYNTHETIC_TESTED_NO_NUHOST_ORDERS
+summary: {'synthetic_players_independently_signed': 2, 'complete_bundle_accepted': True, 'missing_player_abstains': True, 'placement_count': 2, 'abstain_controls_passed': 8, 'source_state_unchanged': True, 'NuHost_orders_authenticated': False, 'independent_server_submission_acknowledged': False, 'independent_clock_provenance_verified': False, 'historical_differential_verified': False, 'corpus_files_opened': 0, 'C5_changes': 0}
+output: artifacts/planetary/owner-capture-bundle-v1/published/report.json
+===== M2 OWNER-SCOPED REPORT PUBLISHED =====
