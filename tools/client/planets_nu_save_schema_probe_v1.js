@@ -123,6 +123,7 @@
     return {outer_type: "string", content: "not_json"};
   }
   function formValueProfiles(text) {
+    if (text.length > MAX_PARSE_CHARS) return null;
     // URLSearchParams values can themselves be JSON documents. Inspect ONLY
     // value types and allowed nested field NAMES, never raw value or field name.
     const profiles = [];
