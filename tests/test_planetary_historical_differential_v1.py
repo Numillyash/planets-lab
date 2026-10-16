@@ -179,7 +179,6 @@ def test_bad_T_window_is_not_scored_as_economy_mismatch(monkeypatch):
         actual=planet(turn=4)
         actual["supplies"]=30
         return {1:(1,actual)},None
-    monkeypatch.setattr(M,"pre_window",pre)
     monkeypatch.setattr(M,"post_window",post)
     def frozen_pre(_conn,g,t):
         seen.append(("PRE",g,t))
