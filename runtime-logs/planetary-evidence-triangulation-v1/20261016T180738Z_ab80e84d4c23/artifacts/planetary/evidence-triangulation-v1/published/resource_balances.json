@@ -1,0 +1,142 @@
+{
+  "C5_mechanic_or_executor_changed": false,
+  "causal_Host_phase_attribution_proven": false,
+  "new_archival_records_or_NuHost_reads": 0,
+  "original_frozen_predictions_or_denominators_modified": false,
+  "phase": "resource_balances",
+  "residual_signatures_are_not_proof_of_cargo_transfers": true,
+  "same_public8_archive_not_new_independent_validation": true,
+  "schema": "planets-lab.m2-four-family-evidence-gate.v1",
+  "source_4_family_manifest_git_blob_sha1": "c2d95b1c50d89895a30497f0008c0e0f486d12ef",
+  "source_corpus_sha256": "af4c1579b97736c158cf50a7f709e39b749860661ed65c028fb8085e756c573a",
+  "status": "M2_HISTORICAL_STOCK_RESIDUALS_ATTRIBUTION_UNPROVEN",
+  "summary": {
+    "common_MC_signed_residuals": [
+      {
+        "planet_rows": 358,
+        "signed_residual": 0
+      },
+      {
+        "planet_rows": 4,
+        "signed_residual": -10
+      },
+      {
+        "planet_rows": 4,
+        "signed_residual": -6
+      },
+      {
+        "planet_rows": 3,
+        "signed_residual": -3
+      },
+      {
+        "planet_rows": 2,
+        "signed_residual": -4126
+      },
+      {
+        "planet_rows": 2,
+        "signed_residual": -3643
+      },
+      {
+        "planet_rows": 2,
+        "signed_residual": -64
+      },
+      {
+        "planet_rows": 2,
+        "signed_residual": -36
+      },
+      {
+        "planet_rows": 2,
+        "signed_residual": -13
+      },
+      {
+        "planet_rows": 2,
+        "signed_residual": -2
+      },
+      {
+        "planet_rows": 1,
+        "signed_residual": -10858
+      },
+      {
+        "planet_rows": 1,
+        "signed_residual": -9530
+      }
+    ],
+    "common_supply_signed_residuals": [
+      {
+        "planet_rows": 312,
+        "signed_residual": 0
+      },
+      {
+        "planet_rows": 42,
+        "signed_residual": -1
+      },
+      {
+        "planet_rows": 22,
+        "signed_residual": -2
+      },
+      {
+        "planet_rows": 20,
+        "signed_residual": -4
+      },
+      {
+        "planet_rows": 14,
+        "signed_residual": -200
+      },
+      {
+        "planet_rows": 9,
+        "signed_residual": -9
+      },
+      {
+        "planet_rows": 8,
+        "signed_residual": -8
+      },
+      {
+        "planet_rows": 7,
+        "signed_residual": -15
+      },
+      {
+        "planet_rows": 7,
+        "signed_residual": -10
+      },
+      {
+        "planet_rows": 6,
+        "signed_residual": -100
+      },
+      {
+        "planet_rows": 6,
+        "signed_residual": -20
+      },
+      {
+        "planet_rows": 6,
+        "signed_residual": -11
+      }
+    ],
+    "ground_extraction_phase_proven": false,
+    "ground_mineral_fields_different": {
+      "groundduranium": 12,
+      "groundmolybdenum": 15,
+      "groundneutronium": 16,
+      "groundtritanium": 15
+    },
+    "mineral_8_field_quadrants": {
+      "ALL_EIGHT_MINERAL_FIELDS_EXACT": 440,
+      "GROUND_ONLY_DEVIATES": 3,
+      "SURFACE_AND_GROUND_DEVIATE": 22,
+      "SURFACE_ONLY_DEVIATES": 152
+    },
+    "qualified_planets": 617,
+    "stock_change_cause_attributed_to_player_actions": false,
+    "supply_MC_cobehavior": {
+      "SUPPLIES_EXACT/MC_EXACT": 241,
+      "SUPPLIES_EXACT/MC_MISMATCH": 71,
+      "SUPPLIES_MISMATCH/MC_EXACT": 117,
+      "SUPPLIES_MISMATCH/MC_MISMATCH": 188
+    },
+    "surface_mineral_fields_different": {
+      "duranium": 127,
+      "molybdenum": 143,
+      "neutronium": 137,
+      "tritanium": 145
+    }
+  }
+}

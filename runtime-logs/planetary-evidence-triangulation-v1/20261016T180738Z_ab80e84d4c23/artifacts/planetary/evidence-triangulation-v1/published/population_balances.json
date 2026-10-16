@@ -1,0 +1,111 @@
+{
+  "C5_mechanic_or_executor_changed": false,
+  "causal_Host_phase_attribution_proven": false,
+  "new_archival_records_or_NuHost_reads": 0,
+  "original_frozen_predictions_or_denominators_modified": false,
+  "phase": "population_balances",
+  "population_deltas_do_not_identify_colonist_transport_or_growth_causally": true,
+  "same_public8_archive_not_new_independent_validation": true,
+  "schema": "planets-lab.m2-four-family-evidence-gate.v1",
+  "source_4_family_manifest_git_blob_sha1": "c2d95b1c50d89895a30497f0008c0e0f486d12ef",
+  "source_corpus_sha256": "af4c1579b97736c158cf50a7f709e39b749860661ed65c028fb8085e756c573a",
+  "status": "M2_HISTORICAL_STOCK_RESIDUALS_ATTRIBUTION_UNPROVEN",
+  "summary": {
+    "common_colonist_signed_residuals": [
+      {
+        "planet_rows": 510,
+        "signed_residual": 0
+      },
+      {
+        "planet_rows": 20,
+        "signed_residual": -1000
+      },
+      {
+        "planet_rows": 7,
+        "signed_residual": -100
+      },
+      {
+        "planet_rows": 5,
+        "signed_residual": -200
+      },
+      {
+        "planet_rows": 5,
+        "signed_residual": 1
+      },
+      {
+        "planet_rows": 4,
+        "signed_residual": 2
+      },
+      {
+        "planet_rows": 3,
+        "signed_residual": -2
+      },
+      {
+        "planet_rows": 2,
+        "signed_residual": -900
+      },
+      {
+        "planet_rows": 2,
+        "signed_residual": -190
+      },
+      {
+        "planet_rows": 2,
+        "signed_residual": -150
+      },
+      {
+        "planet_rows": 2,
+        "signed_residual": -30
+      },
+      {
+        "planet_rows": 2,
+        "signed_residual": 10
+      }
+    ],
+    "common_native_signed_residuals": [
+      {
+        "planet_rows": 582,
+        "signed_residual": 0
+      },
+      {
+        "planet_rows": 28,
+        "signed_residual": 1
+      },
+      {
+        "planet_rows": 1,
+        "signed_residual": -4
+      },
+      {
+        "planet_rows": 1,
+        "signed_residual": 6
+      },
+      {
+        "planet_rows": 1,
+        "signed_residual": 7
+      },
+      {
+        "planet_rows": 1,
+        "signed_residual": 9
+      },
+      {
+        "planet_rows": 1,
+        "signed_residual": 19
+      },
+      {
+        "planet_rows": 1,
+        "signed_residual": 177
+      },
+      {
+        "planet_rows": 1,
+        "signed_residual": 1186
+      }
+    ],
+    "observed_stock_delta_is_not_unique_growth_phase_evidence": true,
+    "population_2_field_quadrants": {
+      "BOTH_POPULATION_FIELDS_EXACT": 481,
+      "COLONIST_AND_NATIVE_DEVIATE": 6,
+      "COLONIST_ONLY_DEVIATES": 101,
+      "NATIVE_ONLY_DEVIATES": 29
+    },
+    "qualified_planets": 617
+  }
+}
