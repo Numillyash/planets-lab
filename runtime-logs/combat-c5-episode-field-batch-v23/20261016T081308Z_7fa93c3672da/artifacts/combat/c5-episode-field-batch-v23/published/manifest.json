@@ -1,0 +1,123 @@
+{
+  "Host_activations_proven": false,
+  "all_three_complete": true,
+  "one_evidence_publication": true,
+  "outcome_selected_field_candidates": false,
+  "phase": "manifest",
+  "phase_reports": {
+    "episodes": {
+      "file": "episodes.json",
+      "sha256": "78f95e6db23be8a89235b170e7c62a91a6385065813baeff8812677d0247a31d",
+      "summary": {
+        "LONG_CONVENTIONAL_PASS_actor_rows": 36,
+        "LONG_CONVENTIONAL_PASS_distinct_games": 10,
+        "LONG_CONVENTIONAL_PASS_episode_windows": 19,
+        "OTHER_SINGLE_GATE_FAIL_actor_rows": 13,
+        "OTHER_SINGLE_GATE_FAIL_distinct_games": 9,
+        "OTHER_SINGLE_GATE_FAIL_episode_windows": 11,
+        "Tminus1_active_episode_windows": 25,
+        "Tminus1_actor_rows": 57,
+        "V22_frozen_games": 16,
+        "V22_frozen_windows": 48,
+        "different_game_turn_episodes_not_independent_Host_mechanic_proofs": true,
+        "observed_endpoint_counts_by_cohort": {
+          "LONG_CONVENTIONAL_PASS": {
+            "T_ACTOR_AT_DISTINCT_TARGET": 36
+          },
+          "NON_DISCRIMINATIVE_COLOCATED": {
+            "NON_DISCRIMINATIVE_SOURCE_EQUALS_TARGET": 8
+          },
+          "OTHER_ONE_FAILED_TMINUS1_GATE": {
+            "T_ACTOR_AT_SOURCE": 11,
+            "T_ACTOR_ELSEWHERE": 2
+          }
+        },
+        "observed_endpoint_counts_by_gate": {
+          "DISTANCE_BELOW_100_AT_TMINUS1": {
+            "NON_DISCRIMINATIVE_SOURCE_EQUALS_TARGET": 8
+          },
+          "INITIATOR_FUEL_LT50": {
+            "T_ACTOR_AT_SOURCE": 3
+          },
+          "TARGET_WARP_NONZERO_AT_TMINUS1": {
+            "T_ACTOR_AT_SOURCE": 6
+          },
+          "TOW_REQUEST_ON_ENDPOINT_AT_TMINUS1": {
+            "T_ACTOR_AT_SOURCE": 2,
+            "T_ACTOR_ELSEWHERE": 2
+          }
+        }
+      }
+    },
+    "field_scan": {
+      "file": "field_scan.json",
+      "sha256": "455298a85272fc8dd8818ca01f96d9424a15e2e58ef50c7ccd825e49a2ad3b29",
+      "summary": {
+        "Host_field_activation_or_Chunnel_proven": false,
+        "Tminus1_distinct_short_candidate_edges": 8,
+        "Tminus1_long_controls": 375,
+        "all_unused_game_Tminus1_freezes_before_first_T": true,
+        "metadata_selected_adjacent_windows": 264,
+        "metadata_selected_unused_games": 11,
+        "no_new_public_corpus": true,
+        "post_context_abstentions": 0,
+        "posthost_compared_long_controls": 375,
+        "posthost_compared_short_edges": 8,
+        "posthost_outcomes_by_frozen_cohort": {
+          "ABSTAIN_NO_DOCUMENTED_FIELD_WITNESS": {
+            "AT_FROZEN_SOURCE": 5,
+            "ELSEWHERE": 1
+          },
+          "LONG": {
+            "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE": 1,
+            "ABSTAIN_T_OWNER_DRIFT": 1,
+            "AT_DISTINCT_FROZEN_TARGET": 367,
+            "ELSEWHERE": 6
+          },
+          "TMINUS1_DOCUMENTED_FIELD_WITNESS": {
+            "AT_DISTINCT_FROZEN_TARGET": 1,
+            "ELSEWHERE": 1
+          }
+        },
+        "selected_previous_games_excluded": 89,
+        "short_with_Tminus1_documented_field_witness": 2,
+        "short_witness_distinct_games": 1,
+        "short_witness_distinct_windows": 2,
+        "source_context_abstentions": 0,
+        "zero_exposure_not_rule_refutation": false
+      }
+    },
+    "ownership": {
+      "file": "ownership.json",
+      "sha256": "43b7a974251f5049376b194fd7605b784050508c858d60abeb4532e286b48ccc",
+      "summary": {
+        "by_ownership_and_posthost_status": {
+          "DIFFERENT_OWNER": {
+            "AT_TARGET": 14,
+            "NOT_AT_TARGET": 7,
+            "OWNER_CURRENT_T_OBSERVED": 21
+          },
+          "SAME_OWNER": {
+            "ABSTAIN_OWNER_CURRENT": 3,
+            "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE": 3,
+            "AT_TARGET": 249,
+            "NOT_AT_TARGET": 78,
+            "OWNER_CURRENT_T_OBSERVED": 327
+          }
+        },
+        "different_owner_appearances": 21,
+        "different_owner_at_frozen_target": 14,
+        "episode_windows": 19,
+        "frozen_episode_count": 36,
+        "frozen_source_ship_appearances": 351,
+        "same_owner_appearances": 330,
+        "same_owner_at_frozen_target": 249,
+        "same_source_shared_trajectory_does_not_prove_passenger_eligibility": true
+      }
+    }
+  },
+  "schema": "planets-lab.combat-c5-episode-field-discovery-batch.v23",
+  "source_db_sha256": "3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c",
+  "source_v22_manifest_git_blob_sha1": "ef6ad48b2f8f8e0c054525c2bdc19780f465d92a",
+  "status": "V23_EPISODES_OWNERSHIP_FIELD_SCAN_COMPLETE"
+}
