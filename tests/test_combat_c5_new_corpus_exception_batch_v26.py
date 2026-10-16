@@ -173,9 +173,6 @@ def test_independent_Tminus1_pre_reconstruction_no_raw_friendly_codes(monkeypatc
     assert compared[0]["Tminus1_simple_waypoint_warp_reaches_target"] is False
     assert compared[0]["T_target_remained_at_Tminus1_destination"] is True
     assert compared[0]["actual_Host_Chunnel_activation_proven"] is False
-    analyze=M.analyze_residuals(compared,{(403181,60,143,202):row},
-        {(403181,60):frozen},{(403181,60):after}) if False else None
-    assert analyze is None
 
 
 def test_replay_rejects_T_outcome_identity_drift():
