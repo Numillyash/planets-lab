@@ -1,0 +1,300 @@
+{
+  "Nplus1_VCR_used": false,
+  "Tminus1_all_windows_frozen_before_any_T": true,
+  "Tminus1_documented_field_geometry": [
+    {
+      "Tminus1_source_distance_to_field": 962.92523,
+      "Tminus1_target_distance_to_field": 963.00363,
+      "active_during_Chunnel_Host_phase_proven": false,
+      "actor_id": 361,
+      "documentary_radius_ly": 550,
+      "dungeon_id": 7,
+      "dungeon_owner_id": 11,
+      "game_id": 449095,
+      "same_owner": false,
+      "source_covered_on_Tminus1": false,
+      "source_margin_ly": -412.92523,
+      "target_covered_on_Tminus1": false,
+      "target_id": 114,
+      "target_margin_ly": -413.00363,
+      "turn": 121
+    },
+    {
+      "Tminus1_source_distance_to_field": 577.44956,
+      "Tminus1_target_distance_to_field": 578.00087,
+      "active_during_Chunnel_Host_phase_proven": false,
+      "actor_id": 361,
+      "documentary_radius_ly": 550,
+      "dungeon_id": 122,
+      "dungeon_owner_id": 11,
+      "game_id": 449095,
+      "same_owner": false,
+      "source_covered_on_Tminus1": false,
+      "source_margin_ly": -27.44956,
+      "target_covered_on_Tminus1": false,
+      "target_id": 114,
+      "target_margin_ly": -28.00087,
+      "turn": 121
+    },
+    {
+      "Tminus1_source_distance_to_field": 493.82183,
+      "Tminus1_target_distance_to_field": 493.57168,
+      "active_during_Chunnel_Host_phase_proven": false,
+      "actor_id": 361,
+      "documentary_radius_ly": 550,
+      "dungeon_id": 238,
+      "dungeon_owner_id": 11,
+      "game_id": 449095,
+      "same_owner": false,
+      "source_covered_on_Tminus1": true,
+      "source_margin_ly": 56.17817,
+      "target_covered_on_Tminus1": true,
+      "target_id": 114,
+      "target_margin_ly": 56.42832,
+      "turn": 121
+    },
+    {
+      "Tminus1_source_distance_to_field": 1427.22003,
+      "Tminus1_target_distance_to_field": 1426.87421,
+      "active_during_Chunnel_Host_phase_proven": false,
+      "actor_id": 396,
+      "documentary_radius_ly": 550,
+      "dungeon_id": 7,
+      "dungeon_owner_id": 11,
+      "game_id": 449095,
+      "same_owner": false,
+      "source_covered_on_Tminus1": false,
+      "source_margin_ly": -877.22003,
+      "target_covered_on_Tminus1": false,
+      "target_id": 218,
+      "target_margin_ly": -876.87421,
+      "turn": 121
+    },
+    {
+      "Tminus1_source_distance_to_field": 1582.08091,
+      "Tminus1_target_distance_to_field": 1582.07111,
+      "active_during_Chunnel_Host_phase_proven": false,
+      "actor_id": 396,
+      "documentary_radius_ly": 550,
+      "dungeon_id": 122,
+      "dungeon_owner_id": 11,
+      "game_id": 449095,
+      "same_owner": false,
+      "source_covered_on_Tminus1": false,
+      "source_margin_ly": -1032.08091,
+      "target_covered_on_Tminus1": false,
+      "target_id": 218,
+      "target_margin_ly": -1032.07111,
+      "turn": 121
+    },
+    {
+      "Tminus1_source_distance_to_field": 1140.06316,
+      "Tminus1_target_distance_to_field": 1140.05307,
+      "active_during_Chunnel_Host_phase_proven": false,
+      "actor_id": 396,
+      "documentary_radius_ly": 550,
+      "dungeon_id": 238,
+      "dungeon_owner_id": 11,
+      "game_id": 449095,
+      "same_owner": false,
+      "source_covered_on_Tminus1": false,
+      "source_margin_ly": -590.06316,
+      "target_covered_on_Tminus1": false,
+      "target_id": 218,
+      "target_margin_ly": -590.05307,
+      "turn": 121
+    },
+    {
+      "Tminus1_source_distance_to_field": 847.62728,
+      "Tminus1_target_distance_to_field": 848.23405,
+      "active_during_Chunnel_Host_phase_proven": false,
+      "actor_id": 547,
+      "documentary_radius_ly": 550,
+      "dungeon_id": 7,
+      "dungeon_owner_id": 11,
+      "game_id": 449095,
+      "same_owner": false,
+      "source_covered_on_Tminus1": false,
+      "source_margin_ly": -297.62728,
+      "target_covered_on_Tminus1": false,
+      "target_id": 229,
+      "target_margin_ly": -298.23405,
+      "turn": 141
+    },
+    {
+      "Tminus1_source_distance_to_field": 781.96228,
+      "Tminus1_target_distance_to_field": 782.93039,
+      "active_during_Chunnel_Host_phase_proven": false,
+      "actor_id": 547,
+      "documentary_radius_ly": 550,
+      "dungeon_id": 122,
+      "dungeon_owner_id": 11,
+      "game_id": 449095,
+      "same_owner": false,
+      "source_covered_on_Tminus1": false,
+      "source_margin_ly": -231.96228,
+      "target_covered_on_Tminus1": false,
+      "target_id": 229,
+      "target_margin_ly": -232.93039,
+      "turn": 141
+    },
+    {
+      "Tminus1_source_distance_to_field": 368.90243,
+      "Tminus1_target_distance_to_field": 369.75668,
+      "active_during_Chunnel_Host_phase_proven": false,
+      "actor_id": 547,
+      "documentary_radius_ly": 550,
+      "dungeon_id": 238,
+      "dungeon_owner_id": 11,
+      "game_id": 449095,
+      "same_owner": false,
+      "source_covered_on_Tminus1": true,
+      "source_margin_ly": 181.09757,
+      "target_covered_on_Tminus1": true,
+      "target_id": 229,
+      "target_margin_ly": 180.24332,
+      "turn": 141
+    }
+  ],
+  "Tminus1_to_T_stargate_persistence": [
+    {
+      "T_engine_unchanged": true,
+      "T_owner_current_position": [
+        2399,
+        2789
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_position_unchanged": true,
+      "Tminus1_engine_id": 9,
+      "Tminus1_position": [
+        2399,
+        2789
+      ],
+      "actual_Host_field_activation_proven": false,
+      "game_id": 449095,
+      "owner_id": 11,
+      "ship_id": 7,
+      "turn": 121
+    },
+    {
+      "T_engine_unchanged": true,
+      "T_owner_current_position": [
+        2642,
+        2311
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_position_unchanged": true,
+      "Tminus1_engine_id": 9,
+      "Tminus1_position": [
+        2642,
+        2311
+      ],
+      "actual_Host_field_activation_proven": false,
+      "game_id": 449095,
+      "owner_id": 11,
+      "ship_id": 122,
+      "turn": 121
+    },
+    {
+      "T_engine_unchanged": true,
+      "T_owner_current_position": [
+        2200,
+        2307
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_position_unchanged": true,
+      "Tminus1_engine_id": 9,
+      "Tminus1_position": [
+        2200,
+        2307
+      ],
+      "actual_Host_field_activation_proven": false,
+      "game_id": 449095,
+      "owner_id": 11,
+      "ship_id": 238,
+      "turn": 121
+    },
+    {
+      "T_engine_unchanged": true,
+      "T_owner_current_position": [
+        2399,
+        2789
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_position_unchanged": true,
+      "Tminus1_engine_id": 9,
+      "Tminus1_position": [
+        2399,
+        2789
+      ],
+      "actual_Host_field_activation_proven": false,
+      "game_id": 449095,
+      "owner_id": 11,
+      "ship_id": 7,
+      "turn": 141
+    },
+    {
+      "T_engine_unchanged": true,
+      "T_owner_current_position": [
+        2642,
+        2311
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_position_unchanged": true,
+      "Tminus1_engine_id": 9,
+      "Tminus1_position": [
+        2642,
+        2311
+      ],
+      "actual_Host_field_activation_proven": false,
+      "game_id": 449095,
+      "owner_id": 11,
+      "ship_id": 122,
+      "turn": 141
+    },
+    {
+      "T_engine_unchanged": true,
+      "T_owner_current_position": [
+        2200,
+        2307
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_position_unchanged": true,
+      "Tminus1_engine_id": 9,
+      "Tminus1_position": [
+        2200,
+        2307
+      ],
+      "actual_Host_field_activation_proven": false,
+      "game_id": 449095,
+      "owner_id": 11,
+      "ship_id": 238,
+      "turn": 141
+    }
+  ],
+  "actual_chunnel_activation_or_movement_phase_proven": false,
+  "boundary": "V24 examines exactly eight V23-selected short edges, and the selection is retrospective. Graph edges are Tminus1-only and require ID, owner and exact shared target/source location. A short candidate observed at a downstream eligible long destination may have been transported by another Host-phase mechanism; same endpoint does not prove short-Chunnel execution. A source=target difference of 1LY is NOT automatically a Chunnel or an ordinary warp-well step; frozen raw waypoint, Warp, Tow orders and T owner-current support only observational comparisons. Dungeon stabilized-field radius at Tminus1 does not prove activation at the later Host phase. Multi-ship same-site evidence is correlated. No production rules promoted.",
+  "independent_new_corpus": false,
+  "new_Host_movement_or_combat_predictions": 0,
+  "phase": "stabilizers",
+  "schema": "planets-lab.combat-c5-short-edge-mechanisms-batch.v24",
+  "source_db_generation": "generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "source_db_sha256": "3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c",
+  "source_v23_field_scan_git_blob_sha1": "9d5dab0cdd8969313c795a56efea939de83242b4",
+  "source_v23_manifest_git_blob_sha1": "12c0648b5b123caa50ef8d974ed7dc3d2bab4c9b",
+  "status": "POSTHOC_V23_SHORT_EDGES_GRAPH_ORDERS_STABILIZER_NOT_CAUSAL",
+  "summary": {
+    "G449095_T121_361_to_114_to_443_chain": true,
+    "G449095_T121_396_to_218_to_548_chain": true,
+    "Host_stabilization_activation_proven": false,
+    "T_stargate_position_unchanged": 6,
+    "Tminus1_documented_dungeon_field_actor_geometry_rows": 9,
+    "Tminus1_field_target_inside_rows": 2,
+    "Tminus1_short_actor_source_field_coverage_rows": 2,
+    "Tminus1_short_actor_source_field_foreign_owner_rows": 2,
+    "Tminus1_stargate_ship_appearances": 6,
+    "frozen_V23_conventional_long_edge_controls": 375,
+    "frozen_V23_short_edge_count": 8,
+    "targeted_Tminus1_windows": 7
+  }
+}

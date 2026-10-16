@@ -1,0 +1,67 @@
+{
+  "Host_activation_proven": false,
+  "all_three_complete": true,
+  "phase": "manifest",
+  "reports": {
+    "chains": {
+      "file": "chains.json",
+      "sha256": "4e1d5cf12784c00ec9b535573d2e005df271fab8365acc57e2d701c588c8d4f7",
+      "summary": {
+        "Chunnel_chain_execution_proven": false,
+        "G449095_T121_361_to_114_to_443_chain": true,
+        "G449095_T121_396_to_218_to_548_chain": true,
+        "G449095_both_T121_short_actors_at_frozen_long_destinations": true,
+        "Tminus1_eligible_short_to_long_chains": 4,
+        "chain_window_clusters": 3,
+        "first_actor_T_at_downstream_long_destination": 2,
+        "first_actor_T_at_original_short_target": 0,
+        "frozen_V23_conventional_long_edge_controls": 375,
+        "frozen_V23_short_edge_count": 8,
+        "targeted_Tminus1_windows": 7
+      }
+    },
+    "orders": {
+      "file": "orders.json",
+      "sha256": "afaaa0c54b298c4a184fb945f8817c413f193223ad8212bdb280ec0e8d148058",
+      "summary": {
+        "G449095_T121_361_to_114_to_443_chain": true,
+        "G449095_T121_396_to_218_to_548_chain": true,
+        "G449095_T141_547_to_229_observed_at_1LY_target": true,
+        "Tminus1_tow_request_appearances": 0,
+        "Tminus1_warp_geometric_waypoint_candidates": 0,
+        "actual_movement_or_chunnel_execution_proven": false,
+        "eight_actor_observed_endpoint_categories": {
+          "AT_DOWNSTREAM_LONG_DESTINATION": 2,
+          "AT_ORIGINAL_SHORT_TARGET": 1,
+          "AT_SOURCE": 5
+        },
+        "frozen_V23_conventional_long_edge_controls": 375,
+        "frozen_V23_short_edge_count": 8,
+        "targeted_Tminus1_windows": 7
+      }
+    },
+    "stabilizers": {
+      "file": "stabilizers.json",
+      "sha256": "97f2a3cf8b6e48a0b4b147b2d0cf1f47532be3401b96d804282a5d9277ec97aa",
+      "summary": {
+        "G449095_T121_361_to_114_to_443_chain": true,
+        "G449095_T121_396_to_218_to_548_chain": true,
+        "Host_stabilization_activation_proven": false,
+        "T_stargate_position_unchanged": 6,
+        "Tminus1_documented_dungeon_field_actor_geometry_rows": 9,
+        "Tminus1_field_target_inside_rows": 2,
+        "Tminus1_short_actor_source_field_coverage_rows": 2,
+        "Tminus1_short_actor_source_field_foreign_owner_rows": 2,
+        "Tminus1_stargate_ship_appearances": 6,
+        "frozen_V23_conventional_long_edge_controls": 375,
+        "frozen_V23_short_edge_count": 8,
+        "targeted_Tminus1_windows": 7
+      }
+    }
+  },
+  "schema": "planets-lab.combat-c5-short-edge-mechanisms-batch.v24",
+  "source_db_sha256": "3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c",
+  "source_v23_field_scan_git_blob_sha1": "9d5dab0cdd8969313c795a56efea939de83242b4",
+  "source_v23_manifest_git_blob_sha1": "12c0648b5b123caa50ef8d974ed7dc3d2bab4c9b",
+  "status": "V24_SHORT_EDGE_THREE_MECHANISM_AUDITS_COMPLETE"
+}

@@ -1,0 +1,138 @@
+{
+  "Nplus1_VCR_used": false,
+  "Tminus1_all_windows_frozen_before_any_T": true,
+  "actual_chunnel_activation_or_movement_phase_proven": false,
+  "boundary": "V24 examines exactly eight V23-selected short edges, and the selection is retrospective. Graph edges are Tminus1-only and require ID, owner and exact shared target/source location. A short candidate observed at a downstream eligible long destination may have been transported by another Host-phase mechanism; same endpoint does not prove short-Chunnel execution. A source=target difference of 1LY is NOT automatically a Chunnel or an ordinary warp-well step; frozen raw waypoint, Warp, Tow orders and T owner-current support only observational comparisons. Dungeon stabilized-field radius at Tminus1 does not prove activation at the later Host phase. Multi-ship same-site evidence is correlated. No production rules promoted.",
+  "frozen_Tminus1_chain_T_observations": [
+    {
+      "T_first_actor_at_downstream_destination": false,
+      "T_first_actor_at_original_short_target": false,
+      "T_middle_actor_at_downstream_destination": true,
+      "Tminus1_chain_graph_only": true,
+      "Tminus1_downstream_distance_ly": 539.31994,
+      "Tminus1_downstream_target": [
+        1418,
+        2132
+      ],
+      "Tminus1_field_witness": "ABSTAIN_NO_DOCUMENTED_FIELD_WITNESS",
+      "Tminus1_short_start": [
+        1558,
+        1525
+      ],
+      "Tminus1_short_target": [
+        1523,
+        1603
+      ],
+      "downstream_target_id": 105,
+      "game_id": 264889,
+      "independent_host_chunnel_activation_proven": false,
+      "middle_firecloud_id": 243,
+      "owner_id": 3,
+      "short_actor_id": 91,
+      "turn": 160
+    },
+    {
+      "T_first_actor_at_downstream_destination": true,
+      "T_first_actor_at_original_short_target": false,
+      "T_middle_actor_at_downstream_destination": true,
+      "Tminus1_chain_graph_only": true,
+      "Tminus1_downstream_distance_ly": 1069.22869,
+      "Tminus1_downstream_target": [
+        1300,
+        2140
+      ],
+      "Tminus1_field_witness": "TMINUS1_DOCUMENTED_FIELD_WITNESS",
+      "Tminus1_short_start": [
+        2324,
+        1829
+      ],
+      "Tminus1_short_target": [
+        2323,
+        1829
+      ],
+      "downstream_target_id": 443,
+      "game_id": 449095,
+      "independent_host_chunnel_activation_proven": false,
+      "middle_firecloud_id": 114,
+      "owner_id": 4,
+      "short_actor_id": 361,
+      "turn": 121
+    },
+    {
+      "T_first_actor_at_downstream_destination": true,
+      "T_first_actor_at_original_short_target": false,
+      "T_middle_actor_at_downstream_destination": true,
+      "Tminus1_chain_graph_only": true,
+      "Tminus1_downstream_distance_ly": 557.54103,
+      "Tminus1_downstream_target": [
+        1276,
+        2810
+      ],
+      "Tminus1_field_witness": "ABSTAIN_NO_DOCUMENTED_FIELD_WITNESS",
+      "Tminus1_short_start": [
+        1060,
+        2295
+      ],
+      "Tminus1_short_target": [
+        1060,
+        2296
+      ],
+      "downstream_target_id": 548,
+      "game_id": 449095,
+      "independent_host_chunnel_activation_proven": false,
+      "middle_firecloud_id": 218,
+      "owner_id": 4,
+      "short_actor_id": 396,
+      "turn": 121
+    },
+    {
+      "T_first_actor_at_downstream_destination": false,
+      "T_first_actor_at_original_short_target": false,
+      "T_middle_actor_at_downstream_destination": true,
+      "Tminus1_chain_graph_only": true,
+      "Tminus1_downstream_distance_ly": 1079.97454,
+      "Tminus1_downstream_target": [
+        2146,
+        1865
+      ],
+      "Tminus1_field_witness": "ABSTAIN_NO_DOCUMENTED_FIELD_WITNESS",
+      "Tminus1_short_start": [
+        1029,
+        2210
+      ],
+      "Tminus1_short_target": [
+        1125,
+        2217
+      ],
+      "downstream_target_id": 609,
+      "game_id": 530633,
+      "independent_host_chunnel_activation_proven": false,
+      "middle_firecloud_id": 201,
+      "owner_id": 8,
+      "short_actor_id": 344,
+      "turn": 121
+    }
+  ],
+  "independent_new_corpus": false,
+  "new_Host_movement_or_combat_predictions": 0,
+  "phase": "chains",
+  "schema": "planets-lab.combat-c5-short-edge-mechanisms-batch.v24",
+  "source_db_generation": "generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "source_db_sha256": "3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c",
+  "source_v23_field_scan_git_blob_sha1": "9d5dab0cdd8969313c795a56efea939de83242b4",
+  "source_v23_manifest_git_blob_sha1": "12c0648b5b123caa50ef8d974ed7dc3d2bab4c9b",
+  "status": "POSTHOC_V23_SHORT_EDGES_GRAPH_ORDERS_STABILIZER_NOT_CAUSAL",
+  "summary": {
+    "Chunnel_chain_execution_proven": false,
+    "G449095_T121_361_to_114_to_443_chain": true,
+    "G449095_T121_396_to_218_to_548_chain": true,
+    "G449095_both_T121_short_actors_at_frozen_long_destinations": true,
+    "Tminus1_eligible_short_to_long_chains": 4,
+    "chain_window_clusters": 3,
+    "first_actor_T_at_downstream_long_destination": 2,
+    "first_actor_T_at_original_short_target": 0,
+    "frozen_V23_conventional_long_edge_controls": 375,
+    "frozen_V23_short_edge_count": 8,
+    "targeted_Tminus1_windows": 7
+  }
+}

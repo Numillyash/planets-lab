@@ -1,0 +1,36 @@
+===== C5 V24: SHORT-EDGE MECHANISMS (3 REPORTS, ONE RUN) =====
+HEAD: cf67af585095d8e4b3901d80db965411a92a2201
+V23 field Git blob: 9d5dab0cdd8969313c795a56efea939de83242b4
+V23 manifest Git blob: 12c0648b5b123caa50ef8d974ed7dc3d2bab4c9b
+DB: /root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb (pinned SHA256 once, immutable/read-only)
+[c5-v24] verifying pinned public100 SHA256 once
+[c5-v24] hash verified in 27.7s, read-only
+[c5-v24] PRE [1/7] G264889 T74
+[c5-v24] PRE [2/7] G264889 T124
+[c5-v24] PRE [3/7] G264889 T160
+[c5-v24] PRE [4/7] G342288 T187
+[c5-v24] PRE [5/7] G449095 T121
+[c5-v24] PRE [6/7] G449095 T141
+[c5-v24] PRE [7/7] G530633 T121
+[c5-v24] POST [1/7] G264889 T74
+[c5-v24] POST [2/7] G264889 T124
+[c5-v24] POST [3/7] G264889 T160
+[c5-v24] POST [4/7] G342288 T187
+[c5-v24] POST [5/7] G449095 T121
+[c5-v24] POST [6/7] G449095 T141
+[c5-v24] POST [7/7] G530633 T121
+===== C5 V24 chains =====
+status: POSTHOC_V23_SHORT_EDGES_GRAPH_ORDERS_STABILIZER_NOT_CAUSAL
+summary: {'frozen_V23_short_edge_count': 8, 'frozen_V23_conventional_long_edge_controls': 375, 'targeted_Tminus1_windows': 7, 'G449095_T121_361_to_114_to_443_chain': True, 'G449095_T121_396_to_218_to_548_chain': True, 'Tminus1_eligible_short_to_long_chains': 4, 'chain_window_clusters': 3, 'first_actor_T_at_downstream_long_destination': 2, 'first_actor_T_at_original_short_target': 0, 'G449095_both_T121_short_actors_at_frozen_long_destinations': True, 'Chunnel_chain_execution_proven': False}
+output: artifacts/combat/c5-short-edge-mechanisms-batch-v24/published/chains.json
+===== C5 V24 orders =====
+status: POSTHOC_V23_SHORT_EDGES_GRAPH_ORDERS_STABILIZER_NOT_CAUSAL
+summary: {'frozen_V23_short_edge_count': 8, 'frozen_V23_conventional_long_edge_controls': 375, 'targeted_Tminus1_windows': 7, 'G449095_T121_361_to_114_to_443_chain': True, 'G449095_T121_396_to_218_to_548_chain': True, 'eight_actor_observed_endpoint_categories': {'AT_DOWNSTREAM_LONG_DESTINATION': 2, 'AT_ORIGINAL_SHORT_TARGET': 1, 'AT_SOURCE': 5}, 'Tminus1_warp_geometric_waypoint_candidates': 0, 'Tminus1_tow_request_appearances': 0, 'G449095_T141_547_to_229_observed_at_1LY_target': True, 'actual_movement_or_chunnel_execution_proven': False}
+output: artifacts/combat/c5-short-edge-mechanisms-batch-v24/published/orders.json
+===== C5 V24 stabilizers =====
+status: POSTHOC_V23_SHORT_EDGES_GRAPH_ORDERS_STABILIZER_NOT_CAUSAL
+summary: {'frozen_V23_short_edge_count': 8, 'frozen_V23_conventional_long_edge_controls': 375, 'targeted_Tminus1_windows': 7, 'G449095_T121_361_to_114_to_443_chain': True, 'G449095_T121_396_to_218_to_548_chain': True, 'Tminus1_documented_dungeon_field_actor_geometry_rows': 9, 'Tminus1_short_actor_source_field_coverage_rows': 2, 'Tminus1_short_actor_source_field_foreign_owner_rows': 2, 'Tminus1_field_target_inside_rows': 2, 'Tminus1_stargate_ship_appearances': 6, 'T_stargate_position_unchanged': 6, 'Host_stabilization_activation_proven': False}
+output: artifacts/combat/c5-short-edge-mechanisms-batch-v24/published/stabilizers.json
+===== C5 V24 MANIFEST COMPLETE =====
+status: V24_SHORT_EDGE_THREE_MECHANISM_AUDITS_COMPLETE
+output: artifacts/combat/c5-short-edge-mechanisms-batch-v24/published/manifest.json
