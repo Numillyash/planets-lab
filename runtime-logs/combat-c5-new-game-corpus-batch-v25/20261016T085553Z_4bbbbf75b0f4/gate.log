@@ -1,0 +1,7 @@
+===== C5 V25 NEW GAME CORPUS / 3 STUDIES / ONE RUN =====
+HEAD: 4bbbbf75b0f4b15aad800cd2133767af404d4188
+baseline: validation/corpus/manifests/public-postindependent-validation-with-public68.jsonl (100 prior public games)
+new generation: /root/projects/planets-corpus-db/generations/corpus-v2compact-c5-v25-public8-20261016.duckdb (never activates CURRENT)
+===== C5 V25 ACQUIRE 8 DISJOINT FINISHED PUBLIC GAMES =====
+===== PUBLIC VALIDATION CORPUS: PREFLIGHT =====
+ERROR: Docker daemon/backend is not responding within 10s.
