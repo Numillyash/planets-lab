@@ -33,6 +33,25 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**M2 update — October 16, 2026: historical triangulation complete; implementation next.**
+The complete three-report `planetary-evidence-triangulation-v1` runtime
+was independently verified on `runtime-logs`, with source
+`ab80e84d4c23ca4190f1a73c5d071e65cc8aa5e5`,
+`exit_code=0` and all artifacts published. Across 617 qualified
+historical T−1/T planet observations, 215 match all four conditional
+stock families; 592 have unchanged-vs-model exact underground mineral
+stocks. These are observational NET-stock comparisons, **not causal
+confirmation** of taxation, mining, growth or any player order.
+
+**Next deliverable:** integrate existing `PlanetCargoTransferPhase` and
+`PlanetaryHostPipeline` into a testable explicit-order, multi-turn
+research simulation slice. Reuse existing `TurnOrders`; test
+conservation, phase interactions and fail-closed support boundaries.
+Do not spend further runs hunting single historical stock residuals.
+Handoff: [verified M2 runtime and next implementation](handoff/2026-10-16-m2-triangulation-runtime-verified-next-implementation.md).
+Keep C5 frozen, public corpus CURRENT unchanged, PR #28 draft,
+and production `planets-intel` untouched.
+
 **October 16, 2026 priority reset — C5 bounded freeze / M2 active.**
 After the V27 archival Chunnel/visibility retrospective, further serial
 C5 short-Chunnel and Horwasp residue chasing is PAUSED. The previously
