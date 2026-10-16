@@ -1,0 +1,120 @@
+{
+  "C5_frozen_not_reopened": true,
+  "all_four_complete": true,
+  "causal_NuHost_parity_claimed": false,
+  "new_corpus_sha256": "af4c1579b97736c158cf50a7f709e39b749860661ed65c028fb8085e756c573a",
+  "read_only_no_CURRENT_modification": true,
+  "reports": {
+    "minerals": {
+      "file": "minerals.json",
+      "sha256": "56b7b767d21d605b3f39341b77b7fb85abd7c2c7db7637ab6f2beb139fc796ee",
+      "summary": {
+        "C5_Chunnel_research_experiments_run": 0,
+        "NuHost_component_formulas_verified_causally": false,
+        "T_archive_context_rejected_windows": 1,
+        "T_archive_context_rejection_rows": 11,
+        "Tminus1_authentic_owner_planet_rows": 650,
+        "abstention_count": 33,
+        "comparable_qualified_rows": 617,
+        "conditionally_all_field_exact": 440,
+        "conditionally_all_field_mismatch": 177,
+        "exact_compared_window_clusters": 27,
+        "metadata_selected_games": 8,
+        "metadata_selected_windows": 32,
+        "mismatch_compared_window_clusters": 28,
+        "status_counts": {
+          "ABSTAIN_MODEL_UNSUPPORTED": 16,
+          "ABSTAIN_OWNER_CHANGED": 5,
+          "ABSTAIN_T_ARCHIVE_IDENTITY_UNTRUSTED": 11,
+          "ABSTAIN_T_OWNER_CURRENT_MISSING": 1,
+          "CONDITIONAL_EXACT_ALL_FIELDS": 440,
+          "CONDITIONAL_MISMATCH_UNATTRIBUTED": 177
+        }
+      }
+    },
+    "populations": {
+      "file": "populations.json",
+      "sha256": "0a357a4e43fffe49c67170c52936da2a5401b4fee9e3891943dfa1bb2e9830d6",
+      "summary": {
+        "C5_Chunnel_research_experiments_run": 0,
+        "NuHost_component_formulas_verified_causally": false,
+        "T_archive_context_rejected_windows": 1,
+        "T_archive_context_rejection_rows": 11,
+        "Tminus1_authentic_owner_planet_rows": 650,
+        "abstention_count": 33,
+        "comparable_qualified_rows": 617,
+        "conditionally_all_field_exact": 481,
+        "conditionally_all_field_mismatch": 136,
+        "exact_compared_window_clusters": 28,
+        "metadata_selected_games": 8,
+        "metadata_selected_windows": 32,
+        "mismatch_compared_window_clusters": 28,
+        "status_counts": {
+          "ABSTAIN_MODEL_UNSUPPORTED": 16,
+          "ABSTAIN_OWNER_CHANGED": 5,
+          "ABSTAIN_T_ARCHIVE_IDENTITY_UNTRUSTED": 11,
+          "ABSTAIN_T_OWNER_CURRENT_MISSING": 1,
+          "CONDITIONAL_EXACT_ALL_FIELDS": 481,
+          "CONDITIONAL_MISMATCH_UNATTRIBUTED": 136
+        }
+      }
+    },
+    "supplies": {
+      "file": "supplies.json",
+      "sha256": "92d64a3f43959efb676b7cdbea3bee9c70d305e081e17f4525b006426e68a807",
+      "summary": {
+        "C5_Chunnel_research_experiments_run": 0,
+        "NuHost_component_formulas_verified_causally": false,
+        "T_archive_context_rejected_windows": 1,
+        "T_archive_context_rejection_rows": 11,
+        "Tminus1_authentic_owner_planet_rows": 650,
+        "abstention_count": 33,
+        "comparable_qualified_rows": 617,
+        "conditionally_all_field_exact": 312,
+        "conditionally_all_field_mismatch": 305,
+        "exact_compared_window_clusters": 28,
+        "metadata_selected_games": 8,
+        "metadata_selected_windows": 32,
+        "mismatch_compared_window_clusters": 30,
+        "status_counts": {
+          "ABSTAIN_MODEL_UNSUPPORTED": 16,
+          "ABSTAIN_OWNER_CHANGED": 5,
+          "ABSTAIN_T_ARCHIVE_IDENTITY_UNTRUSTED": 11,
+          "ABSTAIN_T_OWNER_CURRENT_MISSING": 1,
+          "CONDITIONAL_EXACT_ALL_FIELDS": 312,
+          "CONDITIONAL_MISMATCH_UNATTRIBUTED": 305
+        }
+      }
+    },
+    "taxes": {
+      "file": "taxes.json",
+      "sha256": "6f9a1703552a18324f450f7678123e9f9df39d8132482008fc790882d43648f1",
+      "summary": {
+        "C5_Chunnel_research_experiments_run": 0,
+        "NuHost_component_formulas_verified_causally": false,
+        "T_archive_context_rejected_windows": 1,
+        "T_archive_context_rejection_rows": 11,
+        "Tminus1_authentic_owner_planet_rows": 650,
+        "abstention_count": 33,
+        "comparable_qualified_rows": 617,
+        "conditionally_all_field_exact": 358,
+        "conditionally_all_field_mismatch": 259,
+        "exact_compared_window_clusters": 26,
+        "metadata_selected_games": 8,
+        "metadata_selected_windows": 32,
+        "mismatch_compared_window_clusters": 30,
+        "status_counts": {
+          "ABSTAIN_MODEL_UNSUPPORTED": 16,
+          "ABSTAIN_OWNER_CHANGED": 5,
+          "ABSTAIN_T_ARCHIVE_IDENTITY_UNTRUSTED": 11,
+          "ABSTAIN_T_OWNER_CURRENT_MISSING": 1,
+          "CONDITIONAL_EXACT_ALL_FIELDS": 358,
+          "CONDITIONAL_MISMATCH_UNATTRIBUTED": 259
+        }
+      }
+    }
+  },
+  "schema": "planets-lab.planetary-historical-differential.v1",
+  "source_V25_manifest_git_blob_sha1": "2c89d5320b31b2f12d9235192a8ac31240549052",
+  "status": "M2_FOUR_FAMILY_HISTORICAL_ARCHIVE_COMPARISONS_COMPLETE"
+}

@@ -1,0 +1,90 @@
+===== M2 ARCHIVE DIFF V1: 4 PLANET FAMILIES / ONE RUN =====
+HEAD: f2f70dc46528ccc3695b62bd8fd0b39fa60067dc
+generation: /root/projects/planets-corpus-db/generations/corpus-v2compact-c5-v25-public8-20261016.duckdb (SHA256 pinned read-only)
+V25 manifest Git blob: 2c89d5320b31b2f12d9235192a8ac31240549052
+[m2-archive-v1] verify original V25 public8 SHA256 once
+[m2-archive-v1] SHA verified in 1.0s
+[m2-archive-v1] PRE [1/32] G233802 T2
+[m2-archive-v1] PRE [2/32] G233802 T37
+[m2-archive-v1] PRE [3/32] G233802 T72
+[m2-archive-v1] PRE [4/32] G233802 T108
+[m2-archive-v1] PRE [5/32] G290449 T2
+[m2-archive-v1] PRE [6/32] G290449 T37
+[m2-archive-v1] PRE [7/32] G290449 T72
+[m2-archive-v1] PRE [8/32] G290449 T107
+[m2-archive-v1] PRE [9/32] G403181 T2
+[m2-archive-v1] PRE [10/32] G403181 T39
+[m2-archive-v1] PRE [11/32] G403181 T76
+[m2-archive-v1] PRE [12/32] G403181 T114
+[m2-archive-v1] PRE [13/32] G444043 T2
+[m2-archive-v1] PRE [14/32] G444043 T37
+[m2-archive-v1] PRE [15/32] G444043 T73
+[m2-archive-v1] PRE [16/32] G444043 T109
+[m2-archive-v1] PRE [17/32] G469931 T2
+[m2-archive-v1] PRE [18/32] G469931 T41
+[m2-archive-v1] PRE [19/32] G469931 T80
+[m2-archive-v1] PRE [20/32] G469931 T119
+[m2-archive-v1] PRE [21/32] G521268 T2
+[m2-archive-v1] PRE [22/32] G521268 T40
+[m2-archive-v1] PRE [23/32] G521268 T78
+[m2-archive-v1] PRE [24/32] G521268 T116
+[m2-archive-v1] PRE [25/32] G536676 T2
+[m2-archive-v1] PRE [26/32] G536676 T38
+[m2-archive-v1] PRE [27/32] G536676 T75
+[m2-archive-v1] PRE [28/32] G536676 T112
+[m2-archive-v1] PRE [29/32] G608293 T2
+[m2-archive-v1] PRE [30/32] G608293 T47
+[m2-archive-v1] PRE [31/32] G608293 T92
+[m2-archive-v1] PRE [32/32] G608293 T137
+[m2-archive-v1] POST [1/32] G233802 T2
+[m2-archive-v1] POST [2/32] G233802 T37
+[m2-archive-v1] POST [3/32] G233802 T72
+[m2-archive-v1] POST [4/32] G233802 T108
+[m2-archive-v1] POST [5/32] G290449 T2
+[m2-archive-v1] POST [6/32] G290449 T37
+[m2-archive-v1] POST [7/32] G290449 T72
+[m2-archive-v1] POST [8/32] G290449 T107
+[m2-archive-v1] POST [9/32] G403181 T2
+[m2-archive-v1] POST [10/32] G403181 T39
+[m2-archive-v1] POST [11/32] G403181 T76
+[m2-archive-v1] POST [12/32] G403181 T114
+[m2-archive-v1] POST [13/32] G444043 T2
+[m2-archive-v1] POST [14/32] G444043 T37
+[m2-archive-v1] POST [15/32] G444043 T73
+[m2-archive-v1] POST [16/32] G444043 T109
+[m2-archive-v1] POST [17/32] G469931 T2
+[m2-archive-v1] POST [18/32] G469931 T41
+[m2-archive-v1] POST [19/32] G469931 T80
+[m2-archive-v1] POST [20/32] G469931 T119
+[m2-archive-v1] POST [21/32] G521268 T2
+[m2-archive-v1] POST [22/32] G521268 T40
+[m2-archive-v1] POST [23/32] G521268 T78
+[m2-archive-v1] POST [24/32] G521268 T116
+[m2-archive-v1] POST [25/32] G536676 T2
+[m2-archive-v1] POST [26/32] G536676 T38
+[m2-archive-v1] POST [27/32] G536676 T75
+[m2-archive-v1] POST [28/32] G536676 T112
+[m2-archive-v1] POST [29/32] G608293 T2
+[m2-archive-v1] ARCHIVE ABSTAIN G608293 T2: ABSTAIN_T_ARCHIVE_IDENTITY_UNTRUSTED
+[m2-archive-v1] POST [30/32] G608293 T47
+[m2-archive-v1] POST [31/32] G608293 T92
+[m2-archive-v1] POST [32/32] G608293 T137
+===== M2 HISTORICAL DIFFERENTIAL supplies =====
+status: M2_ARCHIVAL_OWNER_CURRENT_CONDITIONAL_TMINUS1_TO_T_NOT_CAUSAL
+summary: {'metadata_selected_games': 8, 'metadata_selected_windows': 32, 'Tminus1_authentic_owner_planet_rows': 650, 'comparable_qualified_rows': 617, 'conditionally_all_field_exact': 312, 'conditionally_all_field_mismatch': 305, 'abstention_count': 33, 'status_counts': {'ABSTAIN_MODEL_UNSUPPORTED': 16, 'ABSTAIN_OWNER_CHANGED': 5, 'ABSTAIN_T_ARCHIVE_IDENTITY_UNTRUSTED': 11, 'ABSTAIN_T_OWNER_CURRENT_MISSING': 1, 'CONDITIONAL_EXACT_ALL_FIELDS': 312, 'CONDITIONAL_MISMATCH_UNATTRIBUTED': 305}, 'exact_compared_window_clusters': 28, 'mismatch_compared_window_clusters': 30, 'T_archive_context_rejected_windows': 1, 'T_archive_context_rejection_rows': 11, 'NuHost_component_formulas_verified_causally': False, 'C5_Chunnel_research_experiments_run': 0}
+output: artifacts/planetary/historical-differential-v1/published/supplies.json
+===== M2 HISTORICAL DIFFERENTIAL taxes =====
+status: M2_ARCHIVAL_OWNER_CURRENT_CONDITIONAL_TMINUS1_TO_T_NOT_CAUSAL
+summary: {'metadata_selected_games': 8, 'metadata_selected_windows': 32, 'Tminus1_authentic_owner_planet_rows': 650, 'comparable_qualified_rows': 617, 'conditionally_all_field_exact': 358, 'conditionally_all_field_mismatch': 259, 'abstention_count': 33, 'status_counts': {'ABSTAIN_MODEL_UNSUPPORTED': 16, 'ABSTAIN_OWNER_CHANGED': 5, 'ABSTAIN_T_ARCHIVE_IDENTITY_UNTRUSTED': 11, 'ABSTAIN_T_OWNER_CURRENT_MISSING': 1, 'CONDITIONAL_EXACT_ALL_FIELDS': 358, 'CONDITIONAL_MISMATCH_UNATTRIBUTED': 259}, 'exact_compared_window_clusters': 26, 'mismatch_compared_window_clusters': 30, 'T_archive_context_rejected_windows': 1, 'T_archive_context_rejection_rows': 11, 'NuHost_component_formulas_verified_causally': False, 'C5_Chunnel_research_experiments_run': 0}
+output: artifacts/planetary/historical-differential-v1/published/taxes.json
+===== M2 HISTORICAL DIFFERENTIAL minerals =====
+status: M2_ARCHIVAL_OWNER_CURRENT_CONDITIONAL_TMINUS1_TO_T_NOT_CAUSAL
+summary: {'metadata_selected_games': 8, 'metadata_selected_windows': 32, 'Tminus1_authentic_owner_planet_rows': 650, 'comparable_qualified_rows': 617, 'conditionally_all_field_exact': 440, 'conditionally_all_field_mismatch': 177, 'abstention_count': 33, 'status_counts': {'ABSTAIN_MODEL_UNSUPPORTED': 16, 'ABSTAIN_OWNER_CHANGED': 5, 'ABSTAIN_T_ARCHIVE_IDENTITY_UNTRUSTED': 11, 'ABSTAIN_T_OWNER_CURRENT_MISSING': 1, 'CONDITIONAL_EXACT_ALL_FIELDS': 440, 'CONDITIONAL_MISMATCH_UNATTRIBUTED': 177}, 'exact_compared_window_clusters': 27, 'mismatch_compared_window_clusters': 28, 'T_archive_context_rejected_windows': 1, 'T_archive_context_rejection_rows': 11, 'NuHost_component_formulas_verified_causally': False, 'C5_Chunnel_research_experiments_run': 0}
+output: artifacts/planetary/historical-differential-v1/published/minerals.json
+===== M2 HISTORICAL DIFFERENTIAL populations =====
+status: M2_ARCHIVAL_OWNER_CURRENT_CONDITIONAL_TMINUS1_TO_T_NOT_CAUSAL
+summary: {'metadata_selected_games': 8, 'metadata_selected_windows': 32, 'Tminus1_authentic_owner_planet_rows': 650, 'comparable_qualified_rows': 617, 'conditionally_all_field_exact': 481, 'conditionally_all_field_mismatch': 136, 'abstention_count': 33, 'status_counts': {'ABSTAIN_MODEL_UNSUPPORTED': 16, 'ABSTAIN_OWNER_CHANGED': 5, 'ABSTAIN_T_ARCHIVE_IDENTITY_UNTRUSTED': 11, 'ABSTAIN_T_OWNER_CURRENT_MISSING': 1, 'CONDITIONAL_EXACT_ALL_FIELDS': 481, 'CONDITIONAL_MISMATCH_UNATTRIBUTED': 136}, 'exact_compared_window_clusters': 28, 'mismatch_compared_window_clusters': 28, 'T_archive_context_rejected_windows': 1, 'T_archive_context_rejection_rows': 11, 'NuHost_component_formulas_verified_causally': False, 'C5_Chunnel_research_experiments_run': 0}
+output: artifacts/planetary/historical-differential-v1/published/populations.json
+===== M2 HISTORICAL DIFFERENTIAL ALL FOUR REPORTS COMPLETE =====
+status: M2_FOUR_FAMILY_HISTORICAL_ARCHIVE_COMPARISONS_COMPLETE
+output: artifacts/planetary/historical-differential-v1/published/manifest.json
