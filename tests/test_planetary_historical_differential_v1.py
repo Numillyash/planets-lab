@@ -169,22 +169,8 @@ def test_t_archive_rejects_exact_identity_and_fails_closed(monkeypatch):
 
 
 def test_bad_T_window_is_not_scored_as_economy_mismatch(monkeypatch):
-    source=snapshot(planet())
-    def fake_pre(_conn,g,t):
-        return {
-            "game_id":g,"turn":t,
-            "Tminus1_planets":[{
-                **M.pre_window(None,g,t)["Tminus1_planets"][0],
-                "game_id":g,"turn":t,
-            }],
-        }
-    monkeypatch.setattr(M.v9,"pre_snapshots",
-                        lambda *_args,**_kwargs:((source,),()))
     windows=((608293,2),(608293,20))
     seen=[]
-    def pre(_conn,g,t):
-        seen.append(("PRE",g,t))
-        return M.pre_window(None,g,t)
     def post(_conn,g,t):
         assert seen==[("PRE",608293,2),("PRE",608293,20)]
         seen.append(("POST",g,t))
@@ -195,8 +181,6 @@ def test_bad_T_window_is_not_scored_as_economy_mismatch(monkeypatch):
         return {1:(1,actual)},None
     monkeypatch.setattr(M,"pre_window",pre)
     monkeypatch.setattr(M,"post_window",post)
-    # Construct a real Tminus1 planet forecast without calling patched pre.
-    original_pre=pre
     def frozen_pre(_conn,g,t):
         seen.append(("PRE",g,t))
         player=M.Player(id=1,race_id=1)
