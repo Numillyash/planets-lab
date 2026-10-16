@@ -70,7 +70,7 @@
       if (!/(^|\.)planets\.nu$/i.test(url.hostname)) return null;
       const pathname = url.pathname.replace(/\/+$|^\/+$/g, "") || "/";
       if (/^\/game\/save$/i.test(pathname)) return "game_save_exact";
-      if (/^\/(?:api\/)?game\/(?:save[a-z-]*|submit[a-z-]*|orders?)$/i.test(pathname))
+      if (/^\/(?:api\/)?game\/(?:save|savegame|saveorders|saveturn|save-turn|submit|submitturn|submit-turn|orders)$/i.test(pathname))
         return "game_save_candidate";
       if (/^\/game\/turnready$/i.test(pathname)) return "game_turnready";
       if (/^\/(?:api\/)?game\//i.test(pathname)) return "game_other";
