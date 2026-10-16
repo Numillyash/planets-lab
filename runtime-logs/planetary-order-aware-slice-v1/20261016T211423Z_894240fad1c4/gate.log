@@ -1,0 +1,10 @@
+===== M2 ORDER-AWARE RESEARCH INTEGRATION =====
+HEAD: 894240fad1c42db2cba868de3ec228a72a19fc83
+scope: 3-turn synthetic integration and eight ABSTAIN controls; NOT NuHost historical validation
+runtime: dependency-free scenario acceptance; pytest belongs to GitHub CI
+===== M2 ORDER-AWARE PLANETARY SLICE =====
+status: M2_ORDER_AWARE_INTERNAL_TESTED_NOT_NUHOST_DIFFERENTIAL
+summary: {'modeled_turns_per_placement': 3, 'placements': 2, 'phase_balances_per_turn': 15, 'runtime_abstention_controls_passed': 8, 'runtime_self_checks_passed': True, 'actual_NuHost_orders_authenticated': 0, 'NuHost_phase_order_verified': False, 'historical_differential_verified': False, 'canonical_combat_changes': 0}
+trace_sha256: 327af515dc6b3f4bf4ea87764469640f4d60c1db47553d38fa494dbf42b40ef1
+output: artifacts/planetary/order-aware-slice-v1/published/report.json
+===== M2 ORDER-AWARE REPORT PUBLISHED =====

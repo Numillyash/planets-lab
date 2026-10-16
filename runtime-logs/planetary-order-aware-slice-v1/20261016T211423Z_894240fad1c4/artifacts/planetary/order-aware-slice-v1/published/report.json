@@ -1,0 +1,2323 @@
+{
+  "abstention_controls": {
+    "cargo": "ABSTAIN_UNSUPPORTED_OR_INVALID",
+    "fuel": "ABSTAIN_UNSUPPORTED_OR_INVALID",
+    "funds": "ABSTAIN_UNSUPPORTED_OR_INVALID",
+    "movement": "ABSTAIN_UNSUPPORTED_OR_INVALID",
+    "orbit": "ABSTAIN_UNSUPPORTED_OR_INVALID",
+    "owner": "ABSTAIN_UNSUPPORTED_OR_INVALID",
+    "unknown_hull": "ABSTAIN_UNSUPPORTED_OR_INVALID",
+    "unowned_money": "ABSTAIN_UNSUPPORTED_OR_INVALID"
+  },
+  "limitations": [
+    "no purchase or build orders",
+    "no ship movement, missions, combat, starbases or ion storms",
+    "no order authenticity from historical archives",
+    "unresolved full NuHost global chronology and racial mechanics"
+  ],
+  "phase_boundary": "HYPOTHETICAL_BOTH_PLACEMENTS_NOT_NUHOST_CAUSAL",
+  "schema": "planets-lab.planetary-order-aware-slice.v1",
+  "status": "M2_ORDER_AWARE_INTERNAL_TESTED_NOT_NUHOST_DIFFERENTIAL",
+  "summary": {
+    "NuHost_phase_order_verified": false,
+    "actual_NuHost_orders_authenticated": 0,
+    "canonical_combat_changes": 0,
+    "historical_differential_verified": false,
+    "modeled_turns_per_placement": 3,
+    "phase_balances_per_turn": 15,
+    "placements": 2,
+    "runtime_abstention_controls_passed": 8,
+    "runtime_self_checks_passed": true
+  },
+  "trace_sha256": "327af515dc6b3f4bf4ea87764469640f4d60c1db47553d38fa494dbf42b40ef1",
+  "traces": {
+    "transfer_after_planetary": [
+      {
+        "events": [
+          {
+            "details": [
+              [
+                "old",
+                "100"
+              ],
+              [
+                "new",
+                "100"
+              ]
+            ],
+            "entity_id": 10,
+            "entity_type": "planet",
+            "kind": "colonist_happiness_changed",
+            "message": "planet=10 colonist_happiness 100->100",
+            "phase": "colonist_happiness"
+          },
+          {
+            "details": [
+              [
+                "factories",
+                "10"
+              ],
+              [
+                "factory_supplies",
+                "10"
+              ],
+              [
+                "bovinoid_supplies",
+                "0"
+              ],
+              [
+                "supplies",
+                "10"
+              ]
+            ],
+            "entity_id": 10,
+            "entity_type": "planet",
+            "kind": "supplies_produced",
+            "message": "planet=10 factories=10 bovinoids=0 supplies=10",
+            "phase": "factory_supplies"
+          },
+          {
+            "details": [
+              [
+                "colonist_income",
+                "100"
+              ],
+              [
+                "native_income",
+                "0"
+              ],
+              [
+                "collected",
+                "100"
+              ]
+            ],
+            "entity_id": 10,
+            "entity_type": "planet",
+            "kind": "taxes_collected",
+            "message": "planet=10 taxes=100",
+            "phase": "tax_collection"
+          },
+          {
+            "details": [
+              [
+                "growth",
+                "2"
+              ],
+              [
+                "clans",
+                "102"
+              ]
+            ],
+            "entity_id": 10,
+            "entity_type": "planet",
+            "kind": "colonists_grew",
+            "message": "planet=10 colonist_growth +2",
+            "phase": "colonist_growth"
+          },
+          {
+            "details": [
+              [
+                "neutronium",
+                "0"
+              ],
+              [
+                "duranium",
+                "7"
+              ],
+              [
+                "tritanium",
+                "0"
+              ],
+              [
+                "molybdenum",
+                "0"
+              ]
+            ],
+            "entity_id": 10,
+            "entity_type": "planet",
+            "kind": "minerals_mined",
+            "message": "planet=10 minerals_mined",
+            "phase": "mineral_mining"
+          },
+          {
+            "details": [
+              [
+                "neutronium",
+                "0"
+              ],
+              [
+                "duranium",
+                "5"
+              ],
+              [
+                "tritanium",
+                "0"
+              ],
+              [
+                "molybdenum",
+                "0"
+              ]
+            ],
+            "entity_id": 10,
+            "entity_type": "planet",
+            "kind": "minerals_mutated",
+            "message": "planet=10 trans_uranium_mutation",
+            "phase": "trans_uranium_mutation"
+          },
+          {
+            "details": [
+              [
+                "ship_id",
+                "1"
+              ],
+              [
+                "planet_id",
+                "10"
+              ],
+              [
+                "direction",
+                "planet_to_ship"
+              ],
+              [
+                "colonized",
+                "false"
+              ],
+              [
+                "neutronium",
+                "10"
+              ],
+              [
+                "duranium",
+                "0"
+              ],
+              [
+                "tritanium",
+                "0"
+              ],
+              [
+                "molybdenum",
+                "0"
+              ],
+              [
+                "supplies",
+                "10"
+              ],
+              [
+                "clans",
+                "5"
+              ],
+              [
+                "megacredits",
+                "0"
+              ]
+            ],
+            "entity_id": 10,
+            "entity_type": "planet",
+            "kind": "planet_cargo_transferred",
+            "message": "ship=1 planet=10 direction=planet_to_ship",
+            "phase": "planet_cargo_transfer"
+          }
+        ],
+        "from_turn": 7,
+        "phase_balances": [
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "structure_decay",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [
+              "colonist_happiness_changed"
+            ],
+            "ground_mineral_delta": {},
+            "phase": "colonist_happiness",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "native_happiness",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {
+              "supplies": 10
+            },
+            "event_kinds": [
+              "supplies_produced"
+            ],
+            "ground_mineral_delta": {},
+            "phase": "factory_supplies",
+            "planet_cargo_delta": {
+              "10": {
+                "supplies": 10
+              }
+            },
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {
+              "megacredits": 100
+            },
+            "event_kinds": [
+              "taxes_collected"
+            ],
+            "ground_mineral_delta": {},
+            "phase": "tax_collection",
+            "planet_cargo_delta": {
+              "10": {
+                "megacredits": 100
+              }
+            },
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "cyborg_assimilation",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {
+              "clans": 2
+            },
+            "event_kinds": [
+              "colonists_grew"
+            ],
+            "ground_mineral_delta": {},
+            "phase": "colonist_growth",
+            "planet_cargo_delta": {
+              "10": {
+                "clans": 2
+              }
+            },
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "native_growth",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "colonist_overpopulation",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "amorphous_consumption",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "riots",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "civil_war",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [
+              "minerals_mined"
+            ],
+            "ground_mineral_delta": {
+              "10": {
+                "duranium": -7
+              }
+            },
+            "phase": "mineral_mining",
+            "planet_cargo_delta": {
+              "10": {
+                "duranium": 7
+              }
+            },
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {
+              "duranium": 5
+            },
+            "event_kinds": [
+              "minerals_mutated"
+            ],
+            "ground_mineral_delta": {
+              "10": {
+                "duranium": 5
+              }
+            },
+            "phase": "trans_uranium_mutation",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "explicit_transfer",
+            "combined_net_delta": {},
+            "event_kinds": [
+              "planet_cargo_transferred"
+            ],
+            "ground_mineral_delta": {},
+            "phase": "planet_cargo_transfer",
+            "planet_cargo_delta": {
+              "10": {
+                "clans": -5,
+                "neutronium": -10,
+                "supplies": -10
+              }
+            },
+            "ship_cargo_delta": {
+              "1": {
+                "clans": 5,
+                "neutronium": 10,
+                "supplies": 10
+              }
+            }
+          }
+        ],
+        "planet_resources": {
+          "clans": 97,
+          "duranium": 7,
+          "megacredits": 120,
+          "molybdenum": 0,
+          "neutronium": 70,
+          "supplies": 40,
+          "tritanium": 0
+        },
+        "ship_resources": {
+          "clans": 15,
+          "duranium": 0,
+          "megacredits": 0,
+          "molybdenum": 0,
+          "neutronium": 20,
+          "supplies": 30,
+          "tritanium": 0
+        },
+        "to_turn": 8,
+        "underground_duranium": 998
+      },
+      {
+        "events": [
+          {
+            "details": [
+              [
+                "old",
+                "100"
+              ],
+              [
+                "new",
+                "100"
+              ]
+            ],
+            "entity_id": 10,
+            "entity_type": "planet",
+            "kind": "colonist_happiness_changed",
+            "message": "planet=10 colonist_happiness 100->100",
+            "phase": "colonist_happiness"
+          },
+          {
+            "details": [
+              [
+                "factories",
+                "10"
+              ],
+              [
+                "factory_supplies",
+                "10"
+              ],
+              [
+                "bovinoid_supplies",
+                "0"
+              ],
+              [
+                "supplies",
+                "10"
+              ]
+            ],
+            "entity_id": 10,
+            "entity_type": "planet",
+            "kind": "supplies_produced",
+            "message": "planet=10 factories=10 bovinoids=0 supplies=10",
+            "phase": "factory_supplies"
+          },
+          {
+            "details": [
+              [
+                "colonist_income",
+                "97"
+              ],
+              [
+                "native_income",
+                "0"
+              ],
+              [
+                "collected",
+                "97"
+              ]
+            ],
+            "entity_id": 10,
+            "entity_type": "planet",
+            "kind": "taxes_collected",
+            "message": "planet=10 taxes=97",
+            "phase": "tax_collection"
+          },
+          {
+            "details": [
+              [
+                "growth",
+                "2"
+              ],
+              [
+                "clans",
+                "99"
+              ]
+            ],
+            "entity_id": 10,
+            "entity_type": "planet",
+            "kind": "colonists_grew",
+            "message": "planet=10 colonist_growth +2",
+            "phase": "colonist_growth"
+          },
+          {
+            "details": [
+              [
+                "neutronium",
+                "0"
+              ],
+              [
+                "duranium",
+                "7"
+              ],
+              [
+                "tritanium",
+                "0"
+              ],
+              [
+                "molybdenum",
+                "0"
+              ]
+            ],
+            "entity_id": 10,
+            "entity_type": "planet",
+            "kind": "minerals_mined",
+            "message": "planet=10 minerals_mined",
+            "phase": "mineral_mining"
+          },
+          {
+            "details": [
+              [
+                "neutronium",
+                "0"
+              ],
+              [
+                "duranium",
+                "5"
+              ],
+              [
+                "tritanium",
+                "0"
+              ],
+              [
+                "molybdenum",
+                "0"
+              ]
+            ],
+            "entity_id": 10,
+            "entity_type": "planet",
+            "kind": "minerals_mutated",
+            "message": "planet=10 trans_uranium_mutation",
+            "phase": "trans_uranium_mutation"
+          },
+          {
+            "details": [
+              [
+                "ship_id",
+                "1"
+              ],
+              [
+                "planet_id",
+                "10"
+              ],
+              [
+                "direction",
+                "ship_to_planet"
+              ],
+              [
+                "colonized",
+                "false"
+              ],
+              [
+                "neutronium",
+                "5"
+              ],
+              [
+                "duranium",
+                "0"
+              ],
+              [
+                "tritanium",
+                "0"
+              ],
+              [
+                "molybdenum",
+                "0"
+              ],
+              [
+                "supplies",
+                "4"
+              ],
+              [
+                "clans",
+                "3"
+              ],
+              [
+                "megacredits",
+                "0"
+              ]
+            ],
+            "entity_id": 10,
+            "entity_type": "planet",
+            "kind": "planet_cargo_transferred",
+            "message": "ship=1 planet=10 direction=ship_to_planet",
+            "phase": "planet_cargo_transfer"
+          }
+        ],
+        "from_turn": 8,
+        "phase_balances": [
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "structure_decay",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [
+              "colonist_happiness_changed"
+            ],
+            "ground_mineral_delta": {},
+            "phase": "colonist_happiness",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "native_happiness",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {
+              "supplies": 10
+            },
+            "event_kinds": [
+              "supplies_produced"
+            ],
+            "ground_mineral_delta": {},
+            "phase": "factory_supplies",
+            "planet_cargo_delta": {
+              "10": {
+                "supplies": 10
+              }
+            },
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {
+              "megacredits": 97
+            },
+            "event_kinds": [
+              "taxes_collected"
+            ],
+            "ground_mineral_delta": {},
+            "phase": "tax_collection",
+            "planet_cargo_delta": {
+              "10": {
+                "megacredits": 97
+              }
+            },
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "cyborg_assimilation",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {
+              "clans": 2
+            },
+            "event_kinds": [
+              "colonists_grew"
+            ],
+            "ground_mineral_delta": {},
+            "phase": "colonist_growth",
+            "planet_cargo_delta": {
+              "10": {
+                "clans": 2
+              }
+            },
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "native_growth",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "colonist_overpopulation",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "amorphous_consumption",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "riots",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "civil_war",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [
+              "minerals_mined"
+            ],
+            "ground_mineral_delta": {
+              "10": {
+                "duranium": -7
+              }
+            },
+            "phase": "mineral_mining",
+            "planet_cargo_delta": {
+              "10": {
+                "duranium": 7
+              }
+            },
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {
+              "duranium": 5
+            },
+            "event_kinds": [
+              "minerals_mutated"
+            ],
+            "ground_mineral_delta": {
+              "10": {
+                "duranium": 5
+              }
+            },
+            "phase": "trans_uranium_mutation",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "explicit_transfer",
+            "combined_net_delta": {},
+            "event_kinds": [
+              "planet_cargo_transferred"
+            ],
+            "ground_mineral_delta": {},
+            "phase": "planet_cargo_transfer",
+            "planet_cargo_delta": {
+              "10": {
+                "clans": 3,
+                "neutronium": 5,
+                "supplies": 4
+              }
+            },
+            "ship_cargo_delta": {
+              "1": {
+                "clans": -3,
+                "neutronium": -5,
+                "supplies": -4
+              }
+            }
+          }
+        ],
+        "planet_resources": {
+          "clans": 102,
+          "duranium": 14,
+          "megacredits": 217,
+          "molybdenum": 0,
+          "neutronium": 75,
+          "supplies": 54,
+          "tritanium": 0
+        },
+        "ship_resources": {
+          "clans": 12,
+          "duranium": 0,
+          "megacredits": 0,
+          "molybdenum": 0,
+          "neutronium": 15,
+          "supplies": 26,
+          "tritanium": 0
+        },
+        "to_turn": 9,
+        "underground_duranium": 996
+      },
+      {
+        "events": [
+          {
+            "details": [
+              [
+                "old",
+                "100"
+              ],
+              [
+                "new",
+                "100"
+              ]
+            ],
+            "entity_id": 10,
+            "entity_type": "planet",
+            "kind": "colonist_happiness_changed",
+            "message": "planet=10 colonist_happiness 100->100",
+            "phase": "colonist_happiness"
+          },
+          {
+            "details": [
+              [
+                "factories",
+                "10"
+              ],
+              [
+                "factory_supplies",
+                "10"
+              ],
+              [
+                "bovinoid_supplies",
+                "0"
+              ],
+              [
+                "supplies",
+                "10"
+              ]
+            ],
+            "entity_id": 10,
+            "entity_type": "planet",
+            "kind": "supplies_produced",
+            "message": "planet=10 factories=10 bovinoids=0 supplies=10",
+            "phase": "factory_supplies"
+          },
+          {
+            "details": [
+              [
+                "colonist_income",
+                "102"
+              ],
+              [
+                "native_income",
+                "0"
+              ],
+              [
+                "collected",
+                "102"
+              ]
+            ],
+            "entity_id": 10,
+            "entity_type": "planet",
+            "kind": "taxes_collected",
+            "message": "planet=10 taxes=102",
+            "phase": "tax_collection"
+          },
+          {
+            "details": [
+              [
+                "growth",
+                "2"
+              ],
+              [
+                "clans",
+                "104"
+              ]
+            ],
+            "entity_id": 10,
+            "entity_type": "planet",
+            "kind": "colonists_grew",
+            "message": "planet=10 colonist_growth +2",
+            "phase": "colonist_growth"
+          },
+          {
+            "details": [
+              [
+                "neutronium",
+                "0"
+              ],
+              [
+                "duranium",
+                "7"
+              ],
+              [
+                "tritanium",
+                "0"
+              ],
+              [
+                "molybdenum",
+                "0"
+              ]
+            ],
+            "entity_id": 10,
+            "entity_type": "planet",
+            "kind": "minerals_mined",
+            "message": "planet=10 minerals_mined",
+            "phase": "mineral_mining"
+          },
+          {
+            "details": [
+              [
+                "neutronium",
+                "0"
+              ],
+              [
+                "duranium",
+                "5"
+              ],
+              [
+                "tritanium",
+                "0"
+              ],
+              [
+                "molybdenum",
+                "0"
+              ]
+            ],
+            "entity_id": 10,
+            "entity_type": "planet",
+            "kind": "minerals_mutated",
+            "message": "planet=10 trans_uranium_mutation",
+            "phase": "trans_uranium_mutation"
+          }
+        ],
+        "from_turn": 9,
+        "phase_balances": [
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "structure_decay",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [
+              "colonist_happiness_changed"
+            ],
+            "ground_mineral_delta": {},
+            "phase": "colonist_happiness",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "native_happiness",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {
+              "supplies": 10
+            },
+            "event_kinds": [
+              "supplies_produced"
+            ],
+            "ground_mineral_delta": {},
+            "phase": "factory_supplies",
+            "planet_cargo_delta": {
+              "10": {
+                "supplies": 10
+              }
+            },
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {
+              "megacredits": 102
+            },
+            "event_kinds": [
+              "taxes_collected"
+            ],
+            "ground_mineral_delta": {},
+            "phase": "tax_collection",
+            "planet_cargo_delta": {
+              "10": {
+                "megacredits": 102
+              }
+            },
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "cyborg_assimilation",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {
+              "clans": 2
+            },
+            "event_kinds": [
+              "colonists_grew"
+            ],
+            "ground_mineral_delta": {},
+            "phase": "colonist_growth",
+            "planet_cargo_delta": {
+              "10": {
+                "clans": 2
+              }
+            },
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "native_growth",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "colonist_overpopulation",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "amorphous_consumption",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "riots",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "civil_war",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [
+              "minerals_mined"
+            ],
+            "ground_mineral_delta": {
+              "10": {
+                "duranium": -7
+              }
+            },
+            "phase": "mineral_mining",
+            "planet_cargo_delta": {
+              "10": {
+                "duranium": 7
+              }
+            },
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {
+              "duranium": 5
+            },
+            "event_kinds": [
+              "minerals_mutated"
+            ],
+            "ground_mineral_delta": {
+              "10": {
+                "duranium": 5
+              }
+            },
+            "phase": "trans_uranium_mutation",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "explicit_transfer",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "planet_cargo_transfer",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          }
+        ],
+        "planet_resources": {
+          "clans": 104,
+          "duranium": 21,
+          "megacredits": 319,
+          "molybdenum": 0,
+          "neutronium": 75,
+          "supplies": 64,
+          "tritanium": 0
+        },
+        "ship_resources": {
+          "clans": 12,
+          "duranium": 0,
+          "megacredits": 0,
+          "molybdenum": 0,
+          "neutronium": 15,
+          "supplies": 26,
+          "tritanium": 0
+        },
+        "to_turn": 10,
+        "underground_duranium": 994
+      }
+    ],
+    "transfer_before_planetary": [
+      {
+        "events": [
+          {
+            "details": [
+              [
+                "ship_id",
+                "1"
+              ],
+              [
+                "planet_id",
+                "10"
+              ],
+              [
+                "direction",
+                "planet_to_ship"
+              ],
+              [
+                "colonized",
+                "false"
+              ],
+              [
+                "neutronium",
+                "10"
+              ],
+              [
+                "duranium",
+                "0"
+              ],
+              [
+                "tritanium",
+                "0"
+              ],
+              [
+                "molybdenum",
+                "0"
+              ],
+              [
+                "supplies",
+                "10"
+              ],
+              [
+                "clans",
+                "5"
+              ],
+              [
+                "megacredits",
+                "0"
+              ]
+            ],
+            "entity_id": 10,
+            "entity_type": "planet",
+            "kind": "planet_cargo_transferred",
+            "message": "ship=1 planet=10 direction=planet_to_ship",
+            "phase": "planet_cargo_transfer"
+          },
+          {
+            "details": [
+              [
+                "old",
+                "100"
+              ],
+              [
+                "new",
+                "100"
+              ]
+            ],
+            "entity_id": 10,
+            "entity_type": "planet",
+            "kind": "colonist_happiness_changed",
+            "message": "planet=10 colonist_happiness 100->100",
+            "phase": "colonist_happiness"
+          },
+          {
+            "details": [
+              [
+                "factories",
+                "10"
+              ],
+              [
+                "factory_supplies",
+                "10"
+              ],
+              [
+                "bovinoid_supplies",
+                "0"
+              ],
+              [
+                "supplies",
+                "10"
+              ]
+            ],
+            "entity_id": 10,
+            "entity_type": "planet",
+            "kind": "supplies_produced",
+            "message": "planet=10 factories=10 bovinoids=0 supplies=10",
+            "phase": "factory_supplies"
+          },
+          {
+            "details": [
+              [
+                "colonist_income",
+                "95"
+              ],
+              [
+                "native_income",
+                "0"
+              ],
+              [
+                "collected",
+                "95"
+              ]
+            ],
+            "entity_id": 10,
+            "entity_type": "planet",
+            "kind": "taxes_collected",
+            "message": "planet=10 taxes=95",
+            "phase": "tax_collection"
+          },
+          {
+            "details": [
+              [
+                "growth",
+                "2"
+              ],
+              [
+                "clans",
+                "97"
+              ]
+            ],
+            "entity_id": 10,
+            "entity_type": "planet",
+            "kind": "colonists_grew",
+            "message": "planet=10 colonist_growth +2",
+            "phase": "colonist_growth"
+          },
+          {
+            "details": [
+              [
+                "neutronium",
+                "0"
+              ],
+              [
+                "duranium",
+                "7"
+              ],
+              [
+                "tritanium",
+                "0"
+              ],
+              [
+                "molybdenum",
+                "0"
+              ]
+            ],
+            "entity_id": 10,
+            "entity_type": "planet",
+            "kind": "minerals_mined",
+            "message": "planet=10 minerals_mined",
+            "phase": "mineral_mining"
+          },
+          {
+            "details": [
+              [
+                "neutronium",
+                "0"
+              ],
+              [
+                "duranium",
+                "5"
+              ],
+              [
+                "tritanium",
+                "0"
+              ],
+              [
+                "molybdenum",
+                "0"
+              ]
+            ],
+            "entity_id": 10,
+            "entity_type": "planet",
+            "kind": "minerals_mutated",
+            "message": "planet=10 trans_uranium_mutation",
+            "phase": "trans_uranium_mutation"
+          }
+        ],
+        "from_turn": 7,
+        "phase_balances": [
+          {
+            "category": "explicit_transfer",
+            "combined_net_delta": {},
+            "event_kinds": [
+              "planet_cargo_transferred"
+            ],
+            "ground_mineral_delta": {},
+            "phase": "planet_cargo_transfer",
+            "planet_cargo_delta": {
+              "10": {
+                "clans": -5,
+                "neutronium": -10,
+                "supplies": -10
+              }
+            },
+            "ship_cargo_delta": {
+              "1": {
+                "clans": 5,
+                "neutronium": 10,
+                "supplies": 10
+              }
+            }
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "structure_decay",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [
+              "colonist_happiness_changed"
+            ],
+            "ground_mineral_delta": {},
+            "phase": "colonist_happiness",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "native_happiness",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {
+              "supplies": 10
+            },
+            "event_kinds": [
+              "supplies_produced"
+            ],
+            "ground_mineral_delta": {},
+            "phase": "factory_supplies",
+            "planet_cargo_delta": {
+              "10": {
+                "supplies": 10
+              }
+            },
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {
+              "megacredits": 95
+            },
+            "event_kinds": [
+              "taxes_collected"
+            ],
+            "ground_mineral_delta": {},
+            "phase": "tax_collection",
+            "planet_cargo_delta": {
+              "10": {
+                "megacredits": 95
+              }
+            },
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "cyborg_assimilation",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {
+              "clans": 2
+            },
+            "event_kinds": [
+              "colonists_grew"
+            ],
+            "ground_mineral_delta": {},
+            "phase": "colonist_growth",
+            "planet_cargo_delta": {
+              "10": {
+                "clans": 2
+              }
+            },
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "native_growth",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "colonist_overpopulation",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "amorphous_consumption",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "riots",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "civil_war",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [
+              "minerals_mined"
+            ],
+            "ground_mineral_delta": {
+              "10": {
+                "duranium": -7
+              }
+            },
+            "phase": "mineral_mining",
+            "planet_cargo_delta": {
+              "10": {
+                "duranium": 7
+              }
+            },
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {
+              "duranium": 5
+            },
+            "event_kinds": [
+              "minerals_mutated"
+            ],
+            "ground_mineral_delta": {
+              "10": {
+                "duranium": 5
+              }
+            },
+            "phase": "trans_uranium_mutation",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          }
+        ],
+        "planet_resources": {
+          "clans": 97,
+          "duranium": 7,
+          "megacredits": 115,
+          "molybdenum": 0,
+          "neutronium": 70,
+          "supplies": 40,
+          "tritanium": 0
+        },
+        "ship_resources": {
+          "clans": 15,
+          "duranium": 0,
+          "megacredits": 0,
+          "molybdenum": 0,
+          "neutronium": 20,
+          "supplies": 30,
+          "tritanium": 0
+        },
+        "to_turn": 8,
+        "underground_duranium": 998
+      },
+      {
+        "events": [
+          {
+            "details": [
+              [
+                "ship_id",
+                "1"
+              ],
+              [
+                "planet_id",
+                "10"
+              ],
+              [
+                "direction",
+                "ship_to_planet"
+              ],
+              [
+                "colonized",
+                "false"
+              ],
+              [
+                "neutronium",
+                "5"
+              ],
+              [
+                "duranium",
+                "0"
+              ],
+              [
+                "tritanium",
+                "0"
+              ],
+              [
+                "molybdenum",
+                "0"
+              ],
+              [
+                "supplies",
+                "4"
+              ],
+              [
+                "clans",
+                "3"
+              ],
+              [
+                "megacredits",
+                "0"
+              ]
+            ],
+            "entity_id": 10,
+            "entity_type": "planet",
+            "kind": "planet_cargo_transferred",
+            "message": "ship=1 planet=10 direction=ship_to_planet",
+            "phase": "planet_cargo_transfer"
+          },
+          {
+            "details": [
+              [
+                "old",
+                "100"
+              ],
+              [
+                "new",
+                "100"
+              ]
+            ],
+            "entity_id": 10,
+            "entity_type": "planet",
+            "kind": "colonist_happiness_changed",
+            "message": "planet=10 colonist_happiness 100->100",
+            "phase": "colonist_happiness"
+          },
+          {
+            "details": [
+              [
+                "factories",
+                "10"
+              ],
+              [
+                "factory_supplies",
+                "10"
+              ],
+              [
+                "bovinoid_supplies",
+                "0"
+              ],
+              [
+                "supplies",
+                "10"
+              ]
+            ],
+            "entity_id": 10,
+            "entity_type": "planet",
+            "kind": "supplies_produced",
+            "message": "planet=10 factories=10 bovinoids=0 supplies=10",
+            "phase": "factory_supplies"
+          },
+          {
+            "details": [
+              [
+                "colonist_income",
+                "100"
+              ],
+              [
+                "native_income",
+                "0"
+              ],
+              [
+                "collected",
+                "100"
+              ]
+            ],
+            "entity_id": 10,
+            "entity_type": "planet",
+            "kind": "taxes_collected",
+            "message": "planet=10 taxes=100",
+            "phase": "tax_collection"
+          },
+          {
+            "details": [
+              [
+                "growth",
+                "2"
+              ],
+              [
+                "clans",
+                "102"
+              ]
+            ],
+            "entity_id": 10,
+            "entity_type": "planet",
+            "kind": "colonists_grew",
+            "message": "planet=10 colonist_growth +2",
+            "phase": "colonist_growth"
+          },
+          {
+            "details": [
+              [
+                "neutronium",
+                "0"
+              ],
+              [
+                "duranium",
+                "7"
+              ],
+              [
+                "tritanium",
+                "0"
+              ],
+              [
+                "molybdenum",
+                "0"
+              ]
+            ],
+            "entity_id": 10,
+            "entity_type": "planet",
+            "kind": "minerals_mined",
+            "message": "planet=10 minerals_mined",
+            "phase": "mineral_mining"
+          },
+          {
+            "details": [
+              [
+                "neutronium",
+                "0"
+              ],
+              [
+                "duranium",
+                "5"
+              ],
+              [
+                "tritanium",
+                "0"
+              ],
+              [
+                "molybdenum",
+                "0"
+              ]
+            ],
+            "entity_id": 10,
+            "entity_type": "planet",
+            "kind": "minerals_mutated",
+            "message": "planet=10 trans_uranium_mutation",
+            "phase": "trans_uranium_mutation"
+          }
+        ],
+        "from_turn": 8,
+        "phase_balances": [
+          {
+            "category": "explicit_transfer",
+            "combined_net_delta": {},
+            "event_kinds": [
+              "planet_cargo_transferred"
+            ],
+            "ground_mineral_delta": {},
+            "phase": "planet_cargo_transfer",
+            "planet_cargo_delta": {
+              "10": {
+                "clans": 3,
+                "neutronium": 5,
+                "supplies": 4
+              }
+            },
+            "ship_cargo_delta": {
+              "1": {
+                "clans": -3,
+                "neutronium": -5,
+                "supplies": -4
+              }
+            }
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "structure_decay",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [
+              "colonist_happiness_changed"
+            ],
+            "ground_mineral_delta": {},
+            "phase": "colonist_happiness",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "native_happiness",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {
+              "supplies": 10
+            },
+            "event_kinds": [
+              "supplies_produced"
+            ],
+            "ground_mineral_delta": {},
+            "phase": "factory_supplies",
+            "planet_cargo_delta": {
+              "10": {
+                "supplies": 10
+              }
+            },
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {
+              "megacredits": 100
+            },
+            "event_kinds": [
+              "taxes_collected"
+            ],
+            "ground_mineral_delta": {},
+            "phase": "tax_collection",
+            "planet_cargo_delta": {
+              "10": {
+                "megacredits": 100
+              }
+            },
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "cyborg_assimilation",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {
+              "clans": 2
+            },
+            "event_kinds": [
+              "colonists_grew"
+            ],
+            "ground_mineral_delta": {},
+            "phase": "colonist_growth",
+            "planet_cargo_delta": {
+              "10": {
+                "clans": 2
+              }
+            },
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "native_growth",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "colonist_overpopulation",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "amorphous_consumption",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "riots",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "civil_war",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [
+              "minerals_mined"
+            ],
+            "ground_mineral_delta": {
+              "10": {
+                "duranium": -7
+              }
+            },
+            "phase": "mineral_mining",
+            "planet_cargo_delta": {
+              "10": {
+                "duranium": 7
+              }
+            },
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {
+              "duranium": 5
+            },
+            "event_kinds": [
+              "minerals_mutated"
+            ],
+            "ground_mineral_delta": {
+              "10": {
+                "duranium": 5
+              }
+            },
+            "phase": "trans_uranium_mutation",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          }
+        ],
+        "planet_resources": {
+          "clans": 102,
+          "duranium": 14,
+          "megacredits": 215,
+          "molybdenum": 0,
+          "neutronium": 75,
+          "supplies": 54,
+          "tritanium": 0
+        },
+        "ship_resources": {
+          "clans": 12,
+          "duranium": 0,
+          "megacredits": 0,
+          "molybdenum": 0,
+          "neutronium": 15,
+          "supplies": 26,
+          "tritanium": 0
+        },
+        "to_turn": 9,
+        "underground_duranium": 996
+      },
+      {
+        "events": [
+          {
+            "details": [
+              [
+                "old",
+                "100"
+              ],
+              [
+                "new",
+                "100"
+              ]
+            ],
+            "entity_id": 10,
+            "entity_type": "planet",
+            "kind": "colonist_happiness_changed",
+            "message": "planet=10 colonist_happiness 100->100",
+            "phase": "colonist_happiness"
+          },
+          {
+            "details": [
+              [
+                "factories",
+                "10"
+              ],
+              [
+                "factory_supplies",
+                "10"
+              ],
+              [
+                "bovinoid_supplies",
+                "0"
+              ],
+              [
+                "supplies",
+                "10"
+              ]
+            ],
+            "entity_id": 10,
+            "entity_type": "planet",
+            "kind": "supplies_produced",
+            "message": "planet=10 factories=10 bovinoids=0 supplies=10",
+            "phase": "factory_supplies"
+          },
+          {
+            "details": [
+              [
+                "colonist_income",
+                "102"
+              ],
+              [
+                "native_income",
+                "0"
+              ],
+              [
+                "collected",
+                "102"
+              ]
+            ],
+            "entity_id": 10,
+            "entity_type": "planet",
+            "kind": "taxes_collected",
+            "message": "planet=10 taxes=102",
+            "phase": "tax_collection"
+          },
+          {
+            "details": [
+              [
+                "growth",
+                "2"
+              ],
+              [
+                "clans",
+                "104"
+              ]
+            ],
+            "entity_id": 10,
+            "entity_type": "planet",
+            "kind": "colonists_grew",
+            "message": "planet=10 colonist_growth +2",
+            "phase": "colonist_growth"
+          },
+          {
+            "details": [
+              [
+                "neutronium",
+                "0"
+              ],
+              [
+                "duranium",
+                "7"
+              ],
+              [
+                "tritanium",
+                "0"
+              ],
+              [
+                "molybdenum",
+                "0"
+              ]
+            ],
+            "entity_id": 10,
+            "entity_type": "planet",
+            "kind": "minerals_mined",
+            "message": "planet=10 minerals_mined",
+            "phase": "mineral_mining"
+          },
+          {
+            "details": [
+              [
+                "neutronium",
+                "0"
+              ],
+              [
+                "duranium",
+                "5"
+              ],
+              [
+                "tritanium",
+                "0"
+              ],
+              [
+                "molybdenum",
+                "0"
+              ]
+            ],
+            "entity_id": 10,
+            "entity_type": "planet",
+            "kind": "minerals_mutated",
+            "message": "planet=10 trans_uranium_mutation",
+            "phase": "trans_uranium_mutation"
+          }
+        ],
+        "from_turn": 9,
+        "phase_balances": [
+          {
+            "category": "explicit_transfer",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "planet_cargo_transfer",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "structure_decay",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [
+              "colonist_happiness_changed"
+            ],
+            "ground_mineral_delta": {},
+            "phase": "colonist_happiness",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "native_happiness",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {
+              "supplies": 10
+            },
+            "event_kinds": [
+              "supplies_produced"
+            ],
+            "ground_mineral_delta": {},
+            "phase": "factory_supplies",
+            "planet_cargo_delta": {
+              "10": {
+                "supplies": 10
+              }
+            },
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {
+              "megacredits": 102
+            },
+            "event_kinds": [
+              "taxes_collected"
+            ],
+            "ground_mineral_delta": {},
+            "phase": "tax_collection",
+            "planet_cargo_delta": {
+              "10": {
+                "megacredits": 102
+              }
+            },
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "cyborg_assimilation",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {
+              "clans": 2
+            },
+            "event_kinds": [
+              "colonists_grew"
+            ],
+            "ground_mineral_delta": {},
+            "phase": "colonist_growth",
+            "planet_cargo_delta": {
+              "10": {
+                "clans": 2
+              }
+            },
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "native_growth",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "colonist_overpopulation",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "amorphous_consumption",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "riots",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [],
+            "ground_mineral_delta": {},
+            "phase": "civil_war",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {},
+            "event_kinds": [
+              "minerals_mined"
+            ],
+            "ground_mineral_delta": {
+              "10": {
+                "duranium": -7
+              }
+            },
+            "phase": "mineral_mining",
+            "planet_cargo_delta": {
+              "10": {
+                "duranium": 7
+              }
+            },
+            "ship_cargo_delta": {}
+          },
+          {
+            "category": "planetary_economy",
+            "combined_net_delta": {
+              "duranium": 5
+            },
+            "event_kinds": [
+              "minerals_mutated"
+            ],
+            "ground_mineral_delta": {
+              "10": {
+                "duranium": 5
+              }
+            },
+            "phase": "trans_uranium_mutation",
+            "planet_cargo_delta": {},
+            "ship_cargo_delta": {}
+          }
+        ],
+        "planet_resources": {
+          "clans": 104,
+          "duranium": 21,
+          "megacredits": 317,
+          "molybdenum": 0,
+          "neutronium": 75,
+          "supplies": 64,
+          "tritanium": 0
+        },
+        "ship_resources": {
+          "clans": 12,
+          "duranium": 0,
+          "megacredits": 0,
+          "molybdenum": 0,
+          "neutronium": 15,
+          "supplies": 26,
+          "tritanium": 0
+        },
+        "to_turn": 10,
+        "underground_duranium": 994
+      }
+    ]
+  }
+}
