@@ -108,7 +108,7 @@ def trajectory(seed:int=23)->dict[str,object]:
             "after":snapshot(next_state),
         })
         state=next_state
-    if snapshot(state.planets and fixture())!=original:
+    if snapshot(fixture())!=original:
         raise ValueError("baseline fixture not reproducible")
     return {"initial":original,"steps":trace,"final":snapshot(state)}
 
