@@ -8,6 +8,10 @@
  * payloads or responses retained, no localStorage, no cookies, no exfiltration.
  * Only a fixed allowlist of known mechanic field NAMES and their TYPES.
  * v1.1 reports category-only traffic counts when observed_save_calls is 0.
+ * v1.3 corrects collapsed unknown-form-field counts and adds aggregate,
+ * order-independent encoding classes plus up to two sanitized structured
+ * unknown-value profiles from anywhere in a form (not only first 2).
+ * It also retains a bounded order-only sequence of coarse API route labels.
  * v1.2 profiles (up to two) unknown field VALUE TYPES and allowed nested
  * field names. Unknown field names and ALL actual values remain redacted.
  * A JSON-looking field does NOT establish that the server applied any order.
@@ -58,6 +62,8 @@
     "game_save_exact", "game_save_candidate", "game_turnready",
     "game_other", "account_other", "planets_other"
   ];
+  const MAX_ROUTE_SEQUENCE = 24;
+  const routeSequence = [];
   const counters = {
     planets_requests_total: 0,
     planets_post_requests: 0,
@@ -88,6 +94,9 @@
     if (transport === "fetch") counters.fetch_requests++;
     else counters.xhr_requests++;
     counters.by_class[route]++;
+    if (routeSequence.length < MAX_ROUTE_SEQUENCE) {
+      routeSequence.push({category: route, method: method === "POST" ? "POST" : "OTHER"});
+    }
   }
   function primitiveType(value) {
     if (value === null) return "null";
@@ -122,23 +131,54 @@
     }
     return {outer_type: "string", content: "not_json"};
   }
+  // Categorization is deliberately coarse, with NO secret, length, string
+  // prefix, field position, form key name or digest ever disclosed.
+  const ENCODINGS = Object.freeze([
+    "json_object", "json_array", "numeric_text", "empty_text",
+    "percent_encoded_text", "markup_like", "opaque_text", "other",
+    "not_profiled"
+  ]);
+  function classifyUnknownValue(value, profile) {
+    if (typeof value !== "string") return "other";
+    if (profile.content === "json_object" || profile.content === "json_array")
+      return profile.content;
+    const trimmed = value.trim();
+    if (!trimmed) return "empty_text";
+    if (/^[+-]?\d+(?:\.\d+)?$/.test(trimmed)) return "numeric_text";
+    if (/^%(?:7[bBdD]|3[cC])/.test(trimmed)) return "percent_encoded_text";
+    if (/^</.test(trimmed)) return "markup_like";
+    return "opaque_text";
+  }
   function formValueProfiles(text) {
     if (text.length > MAX_PARSE_CHARS) return null;
-    // URLSearchParams values can themselves be JSON documents. Inspect ONLY
-    // value types and allowed nested field NAMES, never raw value or field name.
+    // Enumerate all unknown fields as COUNTS, with at most 24 values parsed.
+    // A structured candidate at the end must not be hidden by two scalar
+    // fields at the start. All field names remain unavailable to the report.
     const profiles = [];
-    let unknown = 0;
-    let redacted = 0;
+    const structured = [];
+    const counts = Object.fromEntries(ENCODINGS.map(kind => [kind, 0]));
+    let unknown = 0, redacted = 0, inspected = 0;
     try {
       for (const [key, value] of new URLSearchParams(text)) {
         if (SECRET_KEYS.test(key)) { redacted++; continue; }
         if (SAFE_KEYS.has(key.toLowerCase())) continue;
         unknown++;
-        if (profiles.length < 2) profiles.push(opaqueValueProfile(value, 1));
+        if (inspected++ >= 24) { counts.not_profiled++; continue; }
+        const profile = opaqueValueProfile(value, 1);
+        const encoding = classifyUnknownValue(value, profile);
+        counts[encoding]++;
+        if (profiles.length < 2) profiles.push(profile);
+        if ((encoding === "json_object" || encoding === "json_array") &&
+            structured.length < 2) structured.push(profile);
       }
     } catch (_) { return null; }
-    return {unknown_field_count: unknown, secret_field_count: redacted,
-      opaque_field_value_profiles: profiles};
+    return {
+      unknown_field_count: unknown,
+      secret_field_count: redacted,
+      unknown_field_encoding_counts: counts,
+      opaque_field_value_profiles: profiles,
+      structured_candidate_profiles: structured
+    };
   }
   function structure(value, depth) {
     if (++used > MAX_NODES || depth > MAX_DEPTH) return {type: "truncated"};
@@ -177,7 +217,10 @@
         for (const [key, value] of new URLSearchParams(clean)) {
           // Only allowlisted, nonsecret names are materialized.
           if (SECRET_KEYS.test(key)) { pairs[key] = null; continue; }
-          if (!SAFE_KEYS.has(key.toLowerCase())) { pairs["(unlisted)"] = null; continue; }
+          // Do not invent a placeholder 'unknown field' in the shape.
+          // True per-field counts and safe type classes are computed by
+          // formValueProfiles(), separately from allowlisted content.
+          if (!SAFE_KEYS.has(key.toLowerCase())) continue;
           const trimmed = value.trim();
           if ((trimmed.startsWith("{") || trimmed.startsWith("[")) &&
               trimmed.length < MAX_PARSE_CHARS) {
@@ -203,7 +246,14 @@
             trimmed.includes("=")) {
           // Up to two anonymized unknown-form-field profiles; no key names.
           const summary = formValueProfiles(text);
-          if (summary) shape.opaque_form_fields = summary;
+          if (summary) {
+            // The old '(unlisted)' sentinel collapsed N unknown form keys
+            // into one phantom null. Use the actual, sanitized form counts.
+            shape.unknown_key_count = summary.unknown_field_count;
+            shape.redacted_key_count = summary.secret_field_count;
+            shape.opaque_field_value_profiles = [];
+            shape.opaque_form_fields = summary;
+          }
         }
         return shape;
       }
@@ -311,6 +361,8 @@
           fetch_requests: counters.fetch_requests,
           xhr_requests: counters.xhr_requests,
           route_categories: {...counters.by_class},
+          route_sequence: routeSequence.map(entry => ({...entry})),
+          route_sequence_truncated: counters.planets_requests_total > MAX_ROUTE_SEQUENCE,
           // These counters are transport observations, not saved-order evidence.
           route_discovery_only_not_server_ack: true
         },
