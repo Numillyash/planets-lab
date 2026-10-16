@@ -7,6 +7,10 @@
  * No additional network requests, no writing, no credentials, no raw HTTP
  * payloads or responses retained, no localStorage, no cookies, no exfiltration.
  * Only a fixed allowlist of known mechanic field NAMES and their TYPES.
+ * v1.1 reports category-only traffic counts when observed_save_calls is 0.
+ * No raw URL paths, query strings, request bodies or other-site traffic are
+ * emitted in its diagnostics; the exact save path is still the ONLY endpoint
+ * whose schema is inspected.
  *
  * To inspect:
  *   __planetsM2SaveSchemaProbeV1.report()
@@ -45,12 +49,42 @@
   const nativeOpen = xhrProto && xhrProto.open;
   const nativeSend = xhrProto && xhrProto.send;
 
-  function endpoint(input) {
+  // Coarse transport census: only fixed route-category labels are recorded.
+  // Never retain URLs, paths, query strings, HTTP bodies, or request headers.
+  const CLASS_NAMES = [
+    "game_save_exact", "game_save_candidate", "game_turnready",
+    "game_other", "account_other", "planets_other"
+  ];
+  const counters = {
+    planets_requests_total: 0,
+    planets_post_requests: 0,
+    fetch_requests: 0,
+    xhr_requests: 0,
+    by_class: Object.fromEntries(CLASS_NAMES.map(name => [name, 0]))
+  };
+  function routeClass(input) {
     try {
-      let url = new URL(typeof input === "string" ? input : input.url, root.location.href);
-      const host = url.hostname.toLowerCase();
-      return /(^|\.)planets\.nu$/.test(host) && /^\/game\/save\/?$/i.test(url.pathname);
-    } catch (_) { return false; }
+      const rawUrl = typeof input === "string" || input instanceof URL
+        ? input : input && input.url;
+      const url = new URL(rawUrl, root.location.href);
+      if (!/(^|\\.)planets\\.nu$/i.test(url.hostname)) return null;
+      const pathname = url.pathname.replace(/\\/+$|^\\/+$/g, "") || "/";
+      if (/^\\/game\\/save$/i.test(pathname)) return "game_save_exact";
+      if (/^\\/(?:api\\/)?game\\/(?:save[a-z-]*|submit[a-z-]*|orders?)$/i.test(pathname))
+        return "game_save_candidate";
+      if (/^\\/game\\/turnready$/i.test(pathname)) return "game_turnready";
+      if (/^\\/(?:api\\/)?game\\//i.test(pathname)) return "game_other";
+      if (/^\\/(?:api\\/)?account\\//i.test(pathname)) return "account_other";
+      return "planets_other";
+    } catch (_) { return null; }
+  }
+  function countRequest(route, transport, method) {
+    if (route === null) return;
+    counters.planets_requests_total++;
+    if (method === "POST") counters.planets_post_requests++;
+    if (transport === "fetch") counters.fetch_requests++;
+    else counters.xhr_requests++;
+    counters.by_class[route]++;
   }
   function primitiveType(value) {
     if (value === null) return "null";
@@ -139,12 +173,13 @@
   }
   if (nativeFetch) {
     root.fetch = function (input, init) {
-      const watched = endpoint(input);
+      const route = routeClass(input);
+      const method = String(init?.method || input?.method || "GET").toUpperCase();
+      countRequest(route, "fetch", method);
       const result = nativeFetch.apply(this, arguments);
-      if (watched) {
-        const capture = {transport: "fetch", method: "POST", request_schema: {type: "not_inspected"}};
+      if (route === "game_save_exact") {
+        const capture = {transport: "fetch", method, request_schema: {type: "not_inspected"}};
         try {
-          capture.method = String(init?.method || input?.method || "GET").toUpperCase();
           if (init && Object.hasOwn(init, "body")) capture.request_schema = bodyShape(init.body);
           else if (input && typeof input.clone === "function") {
             input.clone().text().then(t => { capture.request_schema = bodyShape(t); }).catch(() => {});
@@ -163,11 +198,16 @@
   if (xhrProto && nativeOpen && nativeSend) {
     const metadata = new WeakMap();
     xhrProto.open = function (method, url) {
-      metadata.set(this, endpoint(url) ? {transport: "xhr", method: String(method).toUpperCase()} : null);
+      const route = routeClass(url);
+      const normalizedMethod = String(method).toUpperCase();
+      metadata.set(this, {route, method: normalizedMethod});
       return nativeOpen.apply(this, arguments);
     };
     xhrProto.send = function (body) {
-      const capture = metadata.get(this);
+      const meta = metadata.get(this);
+      if (meta) countRequest(meta.route, "xhr", meta.method);
+      const capture = meta && meta.route === "game_save_exact"
+        ? {transport: "xhr", method: meta.method} : null;
       if (capture) {
         capture.request_schema = bodyShape(body);
         this.addEventListener("loadend", () => {
@@ -193,6 +233,15 @@
         status: "SCHEMA_ONLY_NOT_SERVER_ORDER_ACK_OR_NUHOST_VERIFIED",
         observed_save_calls: events.length,
         events: events,
+        diagnostics: {
+          planets_requests_total: counters.planets_requests_total,
+          planets_post_requests: counters.planets_post_requests,
+          fetch_requests: counters.fetch_requests,
+          xhr_requests: counters.xhr_requests,
+          route_categories: {...counters.by_class},
+          // These counters are transport observations, not saved-order evidence.
+          route_discovery_only_not_server_ack: true
+        },
         values_logged: false,
         credentials_logged: false,
         submitted_order_mapping_verified: false,
