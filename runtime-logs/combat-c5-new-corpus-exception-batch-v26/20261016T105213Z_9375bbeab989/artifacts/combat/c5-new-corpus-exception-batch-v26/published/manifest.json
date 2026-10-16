@@ -1,0 +1,69 @@
+{
+  "Host_mechanism_proven": false,
+  "all_three_complete": true,
+  "generation_sha256": "af4c1579b97736c158cf50a7f709e39b749860661ed65c028fb8085e756c573a",
+  "posthoc_not_independent_validation": true,
+  "reports": {
+    "archive_visibility": {
+      "filename": "archive_visibility.json",
+      "sha256": "6e999d59718ee04d0b6e1f37b7e9641171278665777dc5400cc86d17bbdf97f6",
+      "summary": {
+        "T_owner_perspective_missing_count": 0,
+        "T_owner_perspective_present_count": 2,
+        "all_33_original_active_windows_audited_for_perspective_metadata": 33,
+        "owner_current_T_unavailable": 2,
+        "unavailable_distinct_games": 1,
+        "unavailable_not_counted_as_failed_chunnel": true
+      }
+    },
+    "exception_routes": {
+      "filename": "exception_routes.json",
+      "sha256": "fe6bbc5009ff207a9afff32a7586fc8c298daf8b51cceabb8abd0b16a2e32aa9",
+      "summary": {
+        "G403181_T60_143_actor_observed_location": [
+          2198,
+          1799
+        ],
+        "G403181_T60_143_to_202_drift_explored": true,
+        "G521268_T116_missing_actor_episodes": 2,
+        "V25_T_distinct_target_matches": 55,
+        "V25_T_other_destination": 1,
+        "V25_T_owner_current_unavailable": 2,
+        "V25_eligible_long_actor_edges": 58,
+        "V25_eligible_long_distinct_games": 3,
+        "V25_eligible_long_episode_windows": 22,
+        "original_V25_actor_outcomes_not_new_validation": true
+      }
+    },
+    "passenger_episodes": {
+      "filename": "passenger_episodes.json",
+      "sha256": "bba28088e9d931f72aadecce955fa0ada1960a5b39e583d85b1e281beb32ce16",
+      "summary": {
+        "V25_distinct_game_turn_windows": 22,
+        "V25_distinct_games": 3,
+        "V25_foreign_owner_at_target_distinct_episodes": 4,
+        "V25_foreign_owner_at_target_ship_appearances": 7,
+        "V25_frozen_passenger_episodes": 22,
+        "V25_ownership_T_counts": {
+          "DIFFERENT_OWNER": {
+            "abstain": 0,
+            "at_target": 7,
+            "elsewhere": 1,
+            "ship_appearances": 8
+          },
+          "SAME_OWNER": {
+            "abstain": 5,
+            "at_target": 34,
+            "elsewhere": 19,
+            "ship_appearances": 58
+          }
+        },
+        "V25_source_ship_appearances": 66,
+        "passenger_transport_or_eligibility_proven": false
+      }
+    }
+  },
+  "schema": "planets-lab.combat-c5-new-corpus-exception-batch.v26",
+  "source_V25_manifest_git_blob_sha1": "2c89d5320b31b2f12d9235192a8ac31240549052",
+  "status": "V26_POSTHOC_EXCEPTION_VISIBILITY_OWNERSHIP_COMPLETE"
+}

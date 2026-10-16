@@ -1,0 +1,90 @@
+===== C5 V26: LONG EXCEPTION, ARCHIVE VISIBILITY, PASSENGER CLUSTERS =====
+HEAD: 9375bbeab9897c0dc3e2a125a1a279119dc0230e
+V25 manifest Git blob: 2c89d5320b31b2f12d9235192a8ac31240549052
+V25 actors Git blob: 423e6123496068b8d2987bd27fe0b455fee4c1df
+V25 passengers Git blob: ebe8e812d91a80e4fd3c9ccdbc99df0edcc98145
+V25 fields Git blob: b559901540ee1a906811ed4e510629be70aae365
+DB: /root/projects/planets-corpus-db/generations/corpus-v2compact-c5-v25-public8-20261016.duckdb (SHA256 af4c1579b97736c158cf50a7f709e39b749860661ed65c028fb8085e756c573a)
+[c5-v26] verify immutable V25 corpus SHA256 once
+[c5-v26] SHA verified in 1.0s
+[c5-v26] PRE [1/33] G233802 T48
+[c5-v26] PRE [2/33] G233802 T57
+[c5-v26] PRE [3/33] G233802 T66
+[c5-v26] PRE [4/33] G403181 T36
+[c5-v26] PRE [5/33] G403181 T60
+[c5-v26] PRE [6/33] G403181 T65
+[c5-v26] PRE [7/33] G403181 T70
+[c5-v26] PRE [8/33] G403181 T75
+[c5-v26] PRE [9/33] G403181 T79
+[c5-v26] PRE [10/33] G403181 T84
+[c5-v26] PRE [11/33] G403181 T89
+[c5-v26] PRE [12/33] G403181 T94
+[c5-v26] PRE [13/33] G403181 T99
+[c5-v26] PRE [14/33] G403181 T109
+[c5-v26] PRE [15/33] G403181 T114
+[c5-v26] PRE [16/33] G521268 T31
+[c5-v26] PRE [17/33] G521268 T36
+[c5-v26] PRE [18/33] G521268 T41
+[c5-v26] PRE [19/33] G521268 T46
+[c5-v26] PRE [20/33] G521268 T51
+[c5-v26] PRE [21/33] G521268 T56
+[c5-v26] PRE [22/33] G521268 T61
+[c5-v26] PRE [23/33] G521268 T66
+[c5-v26] PRE [24/33] G521268 T71
+[c5-v26] PRE [25/33] G521268 T76
+[c5-v26] PRE [26/33] G521268 T81
+[c5-v26] PRE [27/33] G521268 T86
+[c5-v26] PRE [28/33] G521268 T91
+[c5-v26] PRE [29/33] G521268 T96
+[c5-v26] PRE [30/33] G521268 T101
+[c5-v26] PRE [31/33] G521268 T106
+[c5-v26] PRE [32/33] G521268 T111
+[c5-v26] PRE [33/33] G521268 T116
+[c5-v26] POST [1/33] G233802 T48
+[c5-v26] POST [2/33] G233802 T57
+[c5-v26] POST [3/33] G233802 T66
+[c5-v26] POST [4/33] G403181 T36
+[c5-v26] POST [5/33] G403181 T60
+[c5-v26] POST [6/33] G403181 T65
+[c5-v26] POST [7/33] G403181 T70
+[c5-v26] POST [8/33] G403181 T75
+[c5-v26] POST [9/33] G403181 T79
+[c5-v26] POST [10/33] G403181 T84
+[c5-v26] POST [11/33] G403181 T89
+[c5-v26] POST [12/33] G403181 T94
+[c5-v26] POST [13/33] G403181 T99
+[c5-v26] POST [14/33] G403181 T109
+[c5-v26] POST [15/33] G403181 T114
+[c5-v26] POST [16/33] G521268 T31
+[c5-v26] POST [17/33] G521268 T36
+[c5-v26] POST [18/33] G521268 T41
+[c5-v26] POST [19/33] G521268 T46
+[c5-v26] POST [20/33] G521268 T51
+[c5-v26] POST [21/33] G521268 T56
+[c5-v26] POST [22/33] G521268 T61
+[c5-v26] POST [23/33] G521268 T66
+[c5-v26] POST [24/33] G521268 T71
+[c5-v26] POST [25/33] G521268 T76
+[c5-v26] POST [26/33] G521268 T81
+[c5-v26] POST [27/33] G521268 T86
+[c5-v26] POST [28/33] G521268 T91
+[c5-v26] POST [29/33] G521268 T96
+[c5-v26] POST [30/33] G521268 T101
+[c5-v26] POST [31/33] G521268 T106
+[c5-v26] POST [32/33] G521268 T111
+[c5-v26] POST [33/33] G521268 T116
+===== C5 V26 exception_routes =====
+status: V25_GAME_DISJOINT_POSTHOC_ACTOR_RESIDUAL_AND_VISIBILITY_AUDIT_NOT_CAUSAL
+summary: {'V25_eligible_long_actor_edges': 58, 'V25_T_distinct_target_matches': 55, 'V25_T_other_destination': 1, 'V25_T_owner_current_unavailable': 2, 'V25_eligible_long_episode_windows': 22, 'V25_eligible_long_distinct_games': 3, 'G403181_T60_143_to_202_drift_explored': True, 'G403181_T60_143_actor_observed_location': [2198, 1799], 'G521268_T116_missing_actor_episodes': 2, 'original_V25_actor_outcomes_not_new_validation': True}
+output: artifacts/combat/c5-new-corpus-exception-batch-v26/published/exception_routes.json
+===== C5 V26 archive_visibility =====
+status: V25_GAME_DISJOINT_POSTHOC_ACTOR_RESIDUAL_AND_VISIBILITY_AUDIT_NOT_CAUSAL
+summary: {'all_33_original_active_windows_audited_for_perspective_metadata': 33, 'owner_current_T_unavailable': 2, 'unavailable_distinct_games': 1, 'T_owner_perspective_present_count': 2, 'T_owner_perspective_missing_count': 0, 'unavailable_not_counted_as_failed_chunnel': True}
+output: artifacts/combat/c5-new-corpus-exception-batch-v26/published/archive_visibility.json
+===== C5 V26 passenger_episodes =====
+status: V25_GAME_DISJOINT_POSTHOC_ACTOR_RESIDUAL_AND_VISIBILITY_AUDIT_NOT_CAUSAL
+summary: {'V25_frozen_passenger_episodes': 22, 'V25_distinct_game_turn_windows': 22, 'V25_distinct_games': 3, 'V25_source_ship_appearances': 66, 'V25_ownership_T_counts': {'DIFFERENT_OWNER': {'abstain': 0, 'at_target': 7, 'elsewhere': 1, 'ship_appearances': 8}, 'SAME_OWNER': {'abstain': 5, 'at_target': 34, 'elsewhere': 19, 'ship_appearances': 58}}, 'V25_foreign_owner_at_target_ship_appearances': 7, 'V25_foreign_owner_at_target_distinct_episodes': 4, 'passenger_transport_or_eligibility_proven': False}
+output: artifacts/combat/c5-new-corpus-exception-batch-v26/published/passenger_episodes.json
+===== C5 V26 COMPLETE THREE-REPORT MANIFEST =====
+status: V26_POSTHOC_EXCEPTION_VISIBILITY_OWNERSHIP_COMPLETE
+output: artifacts/combat/c5-new-corpus-exception-batch-v26/published/manifest.json
