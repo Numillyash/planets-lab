@@ -51,7 +51,7 @@ def build_report():
         raise RuntimeError("non-deterministic full trajectory")
     for steps in traces.values():
         assert len(steps) == 3
-        assert all(len(step["phase_balances"]) == 14 for step in steps)
+        assert all(len(step["phase_balances"]) == 15 for step in steps)
         assert steps[-1]["to_turn"] == 10
         for step in steps:
             for balance in step["phase_balances"]:
@@ -67,7 +67,7 @@ def build_report():
         "summary": {
             "modeled_turns_per_placement": 3,
             "placements": len(traces),
-            "phase_balances_per_turn": 14,
+            "phase_balances_per_turn": 15,
             "actual_NuHost_orders_authenticated": 0,
             "NuHost_phase_order_verified": False,
             "historical_differential_verified": False,
