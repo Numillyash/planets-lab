@@ -1,0 +1,51 @@
+{
+  "abstention_controls": {
+    "changed_prehost_snapshot": "ABSTAIN_STATE_IDENTITY",
+    "changed_signed_transfer": "ABSTAIN_INVALID_ATTESTATION",
+    "equal_capture_and_host_start": "ABSTAIN_NOT_PREHOST",
+    "missing_capture": "ABSTAIN_INVALID_CAPTURE",
+    "no_host_start_witness": "ABSTAIN_UNWITNESSED_TIME",
+    "retroactive_capture": "ABSTAIN_NOT_PREHOST",
+    "unknown_key": "ABSTAIN_UNTRUSTED_KEY",
+    "wrong_key": "ABSTAIN_INVALID_ATTESTATION"
+  },
+  "placements": {
+    "transfer_after_planetary": {
+      "happiness_and_economy_original_phases_reused": true,
+      "phase_resource_balances": 15,
+      "status": "MODELED_OPERATOR_ATTESTED_NOT_NUHOST_DIFFERENTIAL",
+      "to_turn": 8,
+      "transfer_conservation_checked": true
+    },
+    "transfer_before_planetary": {
+      "happiness_and_economy_original_phases_reused": true,
+      "phase_resource_balances": 15,
+      "status": "MODELED_OPERATOR_ATTESTED_NOT_NUHOST_DIFFERENTIAL",
+      "to_turn": 8,
+      "transfer_conservation_checked": true
+    }
+  },
+  "pre_state_sha256": "bbf4cbee019a82e39525f53d04405f0cf007879e00449da05de7f533411f292c",
+  "provenance_limitations": [
+    "signed local record is NOT server acceptance evidence",
+    "capture timestamp and Host boundary are SYNTHETIC",
+    "real recorder must have independent pre-Host timing and owner authority",
+    "capture API is offline: no authenticated NuHost orders acquired",
+    "never publish private input envelopes, submitted orders or secret keys"
+  ],
+  "report_content_without_digest_sha256": "e0c00fa0f0b507ddbf6416e7148a182ad4871ab4e979b9903f210cea0e1cda08",
+  "schema": "planets-lab.prehost-order-capture-controls.v1",
+  "status": "M2_SYNTHETIC_PREHOST_CAPTURE_ADMISSION_TESTED_NOT_NUHOST_VERIFIED",
+  "summary": {
+    "NuHost_phase_order_verified": false,
+    "abstention_controls_passed": 8,
+    "actual_NuHost_order_submission_authenticated": false,
+    "capture_timestamp_independently_attested": false,
+    "corpus_files_opened": 0,
+    "historical_differential_verified": false,
+    "modeled_placement_count": 2,
+    "original_state_unchanged": true,
+    "synthetic_capture_admitted": true,
+    "synthetic_signed_capture_has_all_player_rows": true
+  }
+}

@@ -1,0 +1,8 @@
+===== M2 PREHOST ORDER CAPTURE ADMISSION CONTROLS =====
+HEAD: 53206e40e5da48c0f29cad16c5eae0de78e83766
+scope: synthetic signing, identity, HMAC, time, coverage and fail-closed; NO real NuHost submitted orders
+===== M2 PREHOST ORDER CAPTURE ADMISSION =====
+status: M2_SYNTHETIC_PREHOST_CAPTURE_ADMISSION_TESTED_NOT_NUHOST_VERIFIED
+summary: {'synthetic_capture_admitted': True, 'synthetic_signed_capture_has_all_player_rows': True, 'modeled_placement_count': 2, 'abstention_controls_passed': 8, 'original_state_unchanged': True, 'actual_NuHost_order_submission_authenticated': False, 'capture_timestamp_independently_attested': False, 'NuHost_phase_order_verified': False, 'historical_differential_verified': False, 'corpus_files_opened': 0}
+output: artifacts/planetary/prehost-order-capture-v1/published/report.json
+===== M2 PREHOST ORDER ADMISSION REPORT PUBLISHED =====

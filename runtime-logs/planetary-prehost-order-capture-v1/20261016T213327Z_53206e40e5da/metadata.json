@@ -1,0 +1,22 @@
+{
+  "evidence_branch": "runtime-logs",
+  "exit_code": 0,
+  "finished_at_utc": "2026-10-16T21:33:28Z",
+  "hostname": "GEORGUL-GAMER",
+  "interrupted_signal": null,
+  "log_file": "gate.log",
+  "missing_artifact_paths": [],
+  "remote": "origin",
+  "requested_artifact_paths": [
+    "artifacts/planetary/prehost-order-capture-v1/published"
+  ],
+  "run_id": "20261016T213327Z_53206e40e5da",
+  "run_name": "planetary-prehost-order-capture-v1",
+  "runner": "bash",
+  "schema": "planets-lab.runtime-evidence.v1",
+  "skipped_oversized_artifact_paths": [],
+  "source_branch": "main",
+  "source_commit": "53206e40e5da48c0f29cad16c5eae0de78e83766",
+  "source_dirty": false,
+  "started_at_utc": "2026-10-16T21:33:27Z"
+}
