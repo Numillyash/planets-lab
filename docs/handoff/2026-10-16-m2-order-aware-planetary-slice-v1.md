@@ -9,7 +9,7 @@ any existing economy equations or changing canonical combat execution.
 `PlanetaryOrderAwareSlice(specs, placement=...)` requires **explicit**
 `transfer_before_planetary` or `transfer_after_planetary`. These are
 *counterfactual research assumptions*, **NOT** established NuHost chronology.
-The 13 existing planetary phases retain their current relative order.
+The 14 existing planetary phases retain their current relative order.
 
 `step(state, TurnOrders)` produces a next cloned state, original HostEvents
 and phase-by-phase `PhaseResourceBalance` entries for ship cargo, planet
