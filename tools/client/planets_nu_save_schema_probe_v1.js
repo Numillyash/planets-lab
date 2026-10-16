@@ -67,14 +67,14 @@
       const rawUrl = typeof input === "string" || input instanceof URL
         ? input : input && input.url;
       const url = new URL(rawUrl, root.location.href);
-      if (!/(^|\\.)planets\\.nu$/i.test(url.hostname)) return null;
-      const pathname = url.pathname.replace(/\\/+$|^\\/+$/g, "") || "/";
-      if (/^\\/game\\/save$/i.test(pathname)) return "game_save_exact";
-      if (/^\\/(?:api\\/)?game\\/(?:save[a-z-]*|submit[a-z-]*|orders?)$/i.test(pathname))
+      if (!/(^|\.)planets\.nu$/i.test(url.hostname)) return null;
+      const pathname = url.pathname.replace(/\/+$|^\/+$/g, "") || "/";
+      if (/^\/game\/save$/i.test(pathname)) return "game_save_exact";
+      if (/^\/(?:api\/)?game\/(?:save[a-z-]*|submit[a-z-]*|orders?)$/i.test(pathname))
         return "game_save_candidate";
-      if (/^\\/game\\/turnready$/i.test(pathname)) return "game_turnready";
-      if (/^\\/(?:api\\/)?game\\//i.test(pathname)) return "game_other";
-      if (/^\\/(?:api\\/)?account\\//i.test(pathname)) return "account_other";
+      if (/^\/game\/turnready$/i.test(pathname)) return "game_turnready";
+      if (/^\/(?:api\/)?game\//i.test(pathname)) return "game_other";
+      if (/^\/(?:api\/)?account\//i.test(pathname)) return "account_other";
       return "planets_other";
     } catch (_) { return null; }
   }
