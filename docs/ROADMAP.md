@@ -33,6 +33,16 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**M2 live save transport checkpoint (zero qualifying observations):**
+The first owner-authorized passive DevTools probe returned
+`observed_save_calls=0`. This is **not** proof that nothing was saved,
+nor a reason to invent /game/save request fields. Probe v1.1 adds
+privacy-safe *counts only* of same-origin fetch/XHR route categories,
+so a future single ordinary save can distinguish no visible traffic
+from different routes; no raw URLs, values or credentials are retained.
+No NuHost order acceptance has yet been authenticated. See
+[save schema handoff](handoff/2026-10-17-m2-save-schema-reconnaissance-v1.md).
+
 **M2 /game/save empirical schema reconnaissance (October 17, 2026):**
 Owner-scoped pre-Host bundle server runtime succeeded at clean source
 `1f5ee1db6ad82a15791981f3384ef2101d327e1d`,
