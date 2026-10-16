@@ -33,6 +33,25 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**M2 /game/save empirical schema reconnaissance (October 17, 2026):**
+Owner-scoped pre-Host bundle server runtime succeeded at clean source
+`1f5ee1db6ad82a15791981f3384ef2101d327e1d`,
+`exit_code=0`, no missing artifacts; report Git blob
+`62667e5fc3b415d7d9e22170883727ef94c688f4`.
+All eight ABSTAIN controls passed, but there is still **no actual
+NuHost-acknowledged save command** in the evidence corpus.
+
+Do not add more purely synthetic owner-signing layers without new real
+evidence. The next blocker is field-level client `/game/save`
+transport semantics and proof of whether own-planet cargo transfers are
+persisted as pre-applied client state. A consent-only browser schema
+observer, `tools/client/planets_nu_save_schema_probe_v1.js`,
+now permits inspection of names/types **without** recording raw
+payloads, credentials or submitting new saves. Its output is not
+order-authenticated. Next: one ordinary owner-authorized save, review
+safe schema, then a bounded mapping and proper acknowledgement witness.
+Handoff: [save-schema reconnaissance](handoff/2026-10-17-m2-save-schema-reconnaissance-v1.md).
+
 **M2 owner-scoped pre-Host observation integration (CI/runtime pending):**
 The preceding synthetic operator HMAC intake succeeded at runtime on
 `53206e40e5da48c0f29cad16c5eae0de78e83766` (`exit_code=0`,
