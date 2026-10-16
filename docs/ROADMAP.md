@@ -33,6 +33,20 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**M2 live autosave observation (tax-rate edits; follow-up v1.3):**
+The authorized player observed four XHR `POST /game/save` responses
+(HTTP 200, `success=true`) during several own-planet tax adjustments,
+plus one `game_turnready` call. There is **no separate Save button**
+in this game UI; Turn Ready navigates to the dashboard. Requests showed
+5,5,4,4 anonymous form parameters beyond the safe allowlist.
+V1.2's single `unknown_key_count=1` and `outer_type:null` are an
+observer placeholder bug, NOT a factual one-field/null-value finding.
+V1.3 repairs that count and profiles coarse encodings of all bounded
+unknown fields, not just the first two. The timing of each save vs.
+each tax edit, server-side order acceptance and NuHost phase semantics
+remain unverified. No more forced Ready toggles for research.
+Handoff: [empirical save schema](handoff/2026-10-17-m2-save-schema-reconnaissance-v1.md).
+
 **M2 first positive ordinary `/game/save` observation (October 17, 2026):**
 The owner-supplied privacy-redacted browser report contains exactly one
 XHR `POST /game/save` with HTTP 200 and response `success:true`.
