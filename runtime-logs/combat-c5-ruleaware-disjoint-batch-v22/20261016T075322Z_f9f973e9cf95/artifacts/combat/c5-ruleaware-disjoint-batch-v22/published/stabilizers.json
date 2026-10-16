@@ -1,0 +1,711 @@
+{
+  "Nplus1_VCR_used": false,
+  "Tminus1_T_stargate_comparisons": [
+    {
+      "Host_field_activation_proven": false,
+      "T_engine_unchanged": true,
+      "T_position_unchanged": true,
+      "T_stargate_engine": 9,
+      "T_stargate_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_stargate_position": [
+        1293,
+        2565
+      ],
+      "Tminus1_engine_id": 9,
+      "Tminus1_field_activation_verified": false,
+      "Tminus1_position": [
+        1293,
+        2565
+      ],
+      "archived_catalog_name_confirms_dungeon_stargate": true,
+      "documentation_field_radius_ly": 550,
+      "game_id": 494635,
+      "hull_id": 108,
+      "owner_id": 6,
+      "ship_id": 381,
+      "turn": 61
+    },
+    {
+      "Host_field_activation_proven": false,
+      "T_engine_unchanged": true,
+      "T_position_unchanged": true,
+      "T_stargate_engine": 9,
+      "T_stargate_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_stargate_position": [
+        1454,
+        2020
+      ],
+      "Tminus1_engine_id": 9,
+      "Tminus1_field_activation_verified": false,
+      "Tminus1_position": [
+        1454,
+        2020
+      ],
+      "archived_catalog_name_confirms_dungeon_stargate": true,
+      "documentation_field_radius_ly": 550,
+      "game_id": 494635,
+      "hull_id": 108,
+      "owner_id": 6,
+      "ship_id": 450,
+      "turn": 61
+    },
+    {
+      "Host_field_activation_proven": false,
+      "T_engine_unchanged": true,
+      "T_position_unchanged": true,
+      "T_stargate_engine": 9,
+      "T_stargate_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_stargate_position": [
+        2291,
+        2263
+      ],
+      "Tminus1_engine_id": 9,
+      "Tminus1_field_activation_verified": false,
+      "Tminus1_position": [
+        2291,
+        2263
+      ],
+      "archived_catalog_name_confirms_dungeon_stargate": true,
+      "documentation_field_radius_ly": 550,
+      "game_id": 494635,
+      "hull_id": 108,
+      "owner_id": 6,
+      "ship_id": 329,
+      "turn": 91
+    },
+    {
+      "Host_field_activation_proven": false,
+      "T_engine_unchanged": true,
+      "T_position_unchanged": true,
+      "T_stargate_engine": 9,
+      "T_stargate_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_stargate_position": [
+        1293,
+        2565
+      ],
+      "Tminus1_engine_id": 9,
+      "Tminus1_field_activation_verified": false,
+      "Tminus1_position": [
+        1293,
+        2565
+      ],
+      "archived_catalog_name_confirms_dungeon_stargate": true,
+      "documentation_field_radius_ly": 550,
+      "game_id": 494635,
+      "hull_id": 108,
+      "owner_id": 6,
+      "ship_id": 381,
+      "turn": 91
+    },
+    {
+      "Host_field_activation_proven": false,
+      "T_engine_unchanged": true,
+      "T_position_unchanged": true,
+      "T_stargate_engine": 9,
+      "T_stargate_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_stargate_position": [
+        1367,
+        1668
+      ],
+      "Tminus1_engine_id": 9,
+      "Tminus1_field_activation_verified": false,
+      "Tminus1_position": [
+        1367,
+        1668
+      ],
+      "archived_catalog_name_confirms_dungeon_stargate": true,
+      "documentation_field_radius_ly": 550,
+      "game_id": 494635,
+      "hull_id": 108,
+      "owner_id": 6,
+      "ship_id": 450,
+      "turn": 91
+    },
+    {
+      "Host_field_activation_proven": false,
+      "T_engine_unchanged": true,
+      "T_position_unchanged": true,
+      "T_stargate_engine": 9,
+      "T_stargate_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_stargate_position": [
+        1096,
+        1966
+      ],
+      "Tminus1_engine_id": 9,
+      "Tminus1_field_activation_verified": false,
+      "Tminus1_position": [
+        1096,
+        1966
+      ],
+      "archived_catalog_name_confirms_dungeon_stargate": true,
+      "documentation_field_radius_ly": 550,
+      "game_id": 497195,
+      "hull_id": 108,
+      "owner_id": 5,
+      "ship_id": 88,
+      "turn": 117
+    }
+  ],
+  "Tminus1_game_rule_scalar_hints": {
+    "224849/100": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "224849/149": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "224849/51": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "230354/134": {
+      "game.gametype": 2,
+      "game.maptype": 2,
+      "game.scenarioid": 0
+    },
+    "230354/46": {
+      "game.gametype": 2,
+      "game.maptype": 2,
+      "game.scenarioid": 0
+    },
+    "230354/90": {
+      "game.gametype": 2,
+      "game.maptype": 2,
+      "game.scenarioid": 0
+    },
+    "256858/169": {
+      "game.gametype": 2,
+      "game.maptype": 2,
+      "game.scenarioid": 0
+    },
+    "256858/253": {
+      "game.gametype": 2,
+      "game.maptype": 2,
+      "game.scenarioid": 0
+    },
+    "256858/85": {
+      "game.gametype": 2,
+      "game.maptype": 2,
+      "game.scenarioid": 0
+    },
+    "277134/32": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "277134/63": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "277134/93": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "281994/33": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "281994/64": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "281994/95": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "326221/129": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "326221/44": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "326221/87": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "347236/104": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "347236/36": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "347236/70": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "396107/108": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "396107/161": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "396107/55": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0
+    },
+    "400330/130": {
+      "game.gametype": 2,
+      "game.maptype": 2,
+      "game.scenarioid": 0
+    },
+    "400330/44": {
+      "game.gametype": 2,
+      "game.maptype": 2,
+      "game.scenarioid": 0
+    },
+    "400330/87": {
+      "game.gametype": 2,
+      "game.maptype": 2,
+      "game.scenarioid": 0
+    },
+    "425973/105": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "425973/157": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "425973/53": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "467183/116": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "467183/40": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "467183/78": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "494635/31": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "494635/61": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "494635/91": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "497195/117": {
+      "game.gametype": 3,
+      "game.maptype": 2,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "497195/40": {
+      "game.gametype": 3,
+      "game.maptype": 2,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "497195/79": {
+      "game.gametype": 3,
+      "game.maptype": 2,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "550972/116": {
+      "game.gametype": 3,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "550972/40": {
+      "game.gametype": 3,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "550972/78": {
+      "game.gametype": 3,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "617883/111": {
+      "game.gametype": 2,
+      "game.maptype": 2,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "617883/166": {
+      "game.gametype": 2,
+      "game.maptype": 2,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "617883/56": {
+      "game.gametype": 2,
+      "game.maptype": 2,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "645077/32": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "645077/63": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    },
+    "645077/94": {
+      "game.gametype": 2,
+      "game.maptype": 3,
+      "game.scenarioid": 0,
+      "settings.chunnelstabilizationeverywhere": false
+    }
+  },
+  "actual_Chunnel_activation_proven": false,
+  "all_windows_Tminus1_frozen_before_any_T": true,
+  "frozen_previous_research_games": [
+    2466,
+    217591,
+    218619,
+    220698,
+    221008,
+    226056,
+    227887,
+    228199,
+    233558,
+    243165,
+    245123,
+    245693,
+    247785,
+    253449,
+    257776,
+    257908,
+    266087,
+    267580,
+    283648,
+    290067,
+    296210,
+    306971,
+    310054,
+    325434,
+    338264,
+    338810,
+    341336,
+    343550,
+    347358,
+    347923,
+    350094,
+    364412,
+    371631,
+    373830,
+    385906,
+    399914,
+    407599,
+    411645,
+    416233,
+    421276,
+    421949,
+    423531,
+    441148,
+    454504,
+    467047,
+    467386,
+    470320,
+    473010,
+    476380,
+    476819,
+    476826,
+    477364,
+    477725,
+    486109,
+    490865,
+    499284,
+    521834,
+    530635,
+    563278,
+    597079,
+    597910,
+    600044,
+    627339,
+    629488,
+    632527,
+    633837,
+    633855,
+    653272,
+    655827,
+    658427,
+    660249,
+    663317,
+    674696
+  ],
+  "metadata_selected_game_turns": [
+    {
+      "game_id": 224849,
+      "turn": 51
+    },
+    {
+      "game_id": 224849,
+      "turn": 100
+    },
+    {
+      "game_id": 224849,
+      "turn": 149
+    },
+    {
+      "game_id": 230354,
+      "turn": 46
+    },
+    {
+      "game_id": 230354,
+      "turn": 90
+    },
+    {
+      "game_id": 230354,
+      "turn": 134
+    },
+    {
+      "game_id": 256858,
+      "turn": 85
+    },
+    {
+      "game_id": 256858,
+      "turn": 169
+    },
+    {
+      "game_id": 256858,
+      "turn": 253
+    },
+    {
+      "game_id": 277134,
+      "turn": 32
+    },
+    {
+      "game_id": 277134,
+      "turn": 63
+    },
+    {
+      "game_id": 277134,
+      "turn": 93
+    },
+    {
+      "game_id": 281994,
+      "turn": 33
+    },
+    {
+      "game_id": 281994,
+      "turn": 64
+    },
+    {
+      "game_id": 281994,
+      "turn": 95
+    },
+    {
+      "game_id": 326221,
+      "turn": 44
+    },
+    {
+      "game_id": 326221,
+      "turn": 87
+    },
+    {
+      "game_id": 326221,
+      "turn": 129
+    },
+    {
+      "game_id": 347236,
+      "turn": 36
+    },
+    {
+      "game_id": 347236,
+      "turn": 70
+    },
+    {
+      "game_id": 347236,
+      "turn": 104
+    },
+    {
+      "game_id": 396107,
+      "turn": 55
+    },
+    {
+      "game_id": 396107,
+      "turn": 108
+    },
+    {
+      "game_id": 396107,
+      "turn": 161
+    },
+    {
+      "game_id": 400330,
+      "turn": 44
+    },
+    {
+      "game_id": 400330,
+      "turn": 87
+    },
+    {
+      "game_id": 400330,
+      "turn": 130
+    },
+    {
+      "game_id": 425973,
+      "turn": 53
+    },
+    {
+      "game_id": 425973,
+      "turn": 105
+    },
+    {
+      "game_id": 425973,
+      "turn": 157
+    },
+    {
+      "game_id": 467183,
+      "turn": 40
+    },
+    {
+      "game_id": 467183,
+      "turn": 78
+    },
+    {
+      "game_id": 467183,
+      "turn": 116
+    },
+    {
+      "game_id": 494635,
+      "turn": 31
+    },
+    {
+      "game_id": 494635,
+      "turn": 61
+    },
+    {
+      "game_id": 494635,
+      "turn": 91
+    },
+    {
+      "game_id": 497195,
+      "turn": 40
+    },
+    {
+      "game_id": 497195,
+      "turn": 79
+    },
+    {
+      "game_id": 497195,
+      "turn": 117
+    },
+    {
+      "game_id": 550972,
+      "turn": 40
+    },
+    {
+      "game_id": 550972,
+      "turn": 78
+    },
+    {
+      "game_id": 550972,
+      "turn": 116
+    },
+    {
+      "game_id": 617883,
+      "turn": 56
+    },
+    {
+      "game_id": 617883,
+      "turn": 111
+    },
+    {
+      "game_id": 617883,
+      "turn": 166
+    },
+    {
+      "game_id": 645077,
+      "turn": 32
+    },
+    {
+      "game_id": 645077,
+      "turn": 63
+    },
+    {
+      "game_id": 645077,
+      "turn": 94
+    }
+  ],
+  "new_canonical_Host_movement_or_combat_predictions": 0,
+  "phase": "stabilizers",
+  "same_preexisting_public100_not_newly_collected_corpus": true,
+  "schema": "planets-lab.combat-c5-ruleaware-disjoint-batch.v22",
+  "source_db_generation": "generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "source_db_sha256": "3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c",
+  "source_v17_git_blob_sha1": "a6256b70dc63b9b7126a211245bc65ce20ece863",
+  "source_v20_git_blob_sha1": "3d5e1d5aeb6b0138c01bab3ec81185d0685233c0",
+  "status": "GAME_DISJOINT_TMINUS1_RULEAWARE_OBSERVATIONAL_NOT_ACTIVATION",
+  "summary": {
+    "Host_stabilizer_phase_active_proven": false,
+    "Nplus1_VCR_used": false,
+    "T_Dungeon_engine_unchanged": 6,
+    "T_Dungeon_owner_current_categories": {
+      "OWNER_CURRENT_T_OBSERVED": 6
+    },
+    "T_Dungeon_position_changed": 0,
+    "T_Dungeon_position_unchanged": 6,
+    "Tminus1_Dungeon_appearances": 6,
+    "Tminus1_Dungeon_distinct_games": 2,
+    "new_canonical_Host_movement_or_combat_predictions": 0,
+    "posthost_compared_windows": 48,
+    "previous_research_game_overlap": 0,
+    "selected_games": 16,
+    "selected_windows": 48,
+    "window_context_abstentions": 0
+  },
+  "window_errors": []
+}

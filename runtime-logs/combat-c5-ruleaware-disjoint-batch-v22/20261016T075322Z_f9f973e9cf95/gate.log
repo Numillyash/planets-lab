@@ -1,0 +1,119 @@
+===== C5 V22: THREE REPORTS / ONE IMMUTABLE DB PASS =====
+HEAD: f9f973e9cf955494e9fd6b437a74e531cfd5aace
+V17 Git blob: a6256b70dc63b9b7126a211245bc65ce20ece863
+V20 Git blob: 3d5e1d5aeb6b0138c01bab3ec81185d0685233c0
+DB: /root/projects/planets-corpus-db/generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb (one pinned SHA256 check, read-only)
+[c5-v22] pinned read-only DB SHA256 verification
+[c5-v22] verified in 33.3s
+[c5-v22] frozen metadata-only game-turn selection: ((224849, 51), (224849, 100), (224849, 149), (230354, 46), (230354, 90), (230354, 134), (256858, 85), (256858, 169), (256858, 253), (277134, 32), (277134, 63), (277134, 93), (281994, 33), (281994, 64), (281994, 95), (326221, 44), (326221, 87), (326221, 129), (347236, 36), (347236, 70), (347236, 104), (396107, 55), (396107, 108), (396107, 161), (400330, 44), (400330, 87), (400330, 130), (425973, 53), (425973, 105), (425973, 157), (467183, 40), (467183, 78), (467183, 116), (494635, 31), (494635, 61), (494635, 91), (497195, 40), (497195, 79), (497195, 117), (550972, 40), (550972, 78), (550972, 116), (617883, 56), (617883, 111), (617883, 166), (645077, 32), (645077, 63), (645077, 94))
+[c5-v22] PRE [1/48] G224849 T51
+[c5-v22] PRE [2/48] G224849 T100
+[c5-v22] PRE [3/48] G224849 T149
+[c5-v22] PRE [4/48] G230354 T46
+[c5-v22] PRE [5/48] G230354 T90
+[c5-v22] PRE [6/48] G230354 T134
+[c5-v22] PRE [7/48] G256858 T85
+[c5-v22] PRE [8/48] G256858 T169
+[c5-v22] PRE [9/48] G256858 T253
+[c5-v22] PRE [10/48] G277134 T32
+[c5-v22] PRE [11/48] G277134 T63
+[c5-v22] PRE [12/48] G277134 T93
+[c5-v22] PRE [13/48] G281994 T33
+[c5-v22] PRE [14/48] G281994 T64
+[c5-v22] PRE [15/48] G281994 T95
+[c5-v22] PRE [16/48] G326221 T44
+[c5-v22] PRE [17/48] G326221 T87
+[c5-v22] PRE [18/48] G326221 T129
+[c5-v22] PRE [19/48] G347236 T36
+[c5-v22] PRE [20/48] G347236 T70
+[c5-v22] PRE [21/48] G347236 T104
+[c5-v22] PRE [22/48] G396107 T55
+[c5-v22] PRE [23/48] G396107 T108
+[c5-v22] PRE [24/48] G396107 T161
+[c5-v22] PRE [25/48] G400330 T44
+[c5-v22] PRE [26/48] G400330 T87
+[c5-v22] PRE [27/48] G400330 T130
+[c5-v22] PRE [28/48] G425973 T53
+[c5-v22] PRE [29/48] G425973 T105
+[c5-v22] PRE [30/48] G425973 T157
+[c5-v22] PRE [31/48] G467183 T40
+[c5-v22] PRE [32/48] G467183 T78
+[c5-v22] PRE [33/48] G467183 T116
+[c5-v22] PRE [34/48] G494635 T31
+[c5-v22] PRE [35/48] G494635 T61
+[c5-v22] PRE [36/48] G494635 T91
+[c5-v22] PRE [37/48] G497195 T40
+[c5-v22] PRE [38/48] G497195 T79
+[c5-v22] PRE [39/48] G497195 T117
+[c5-v22] PRE [40/48] G550972 T40
+[c5-v22] PRE [41/48] G550972 T78
+[c5-v22] PRE [42/48] G550972 T116
+[c5-v22] PRE [43/48] G617883 T56
+[c5-v22] PRE [44/48] G617883 T111
+[c5-v22] PRE [45/48] G617883 T166
+[c5-v22] PRE [46/48] G645077 T32
+[c5-v22] PRE [47/48] G645077 T63
+[c5-v22] PRE [48/48] G645077 T94
+[c5-v22] POST [1/48] G224849 T51
+[c5-v22] POST [2/48] G224849 T100
+[c5-v22] POST [3/48] G224849 T149
+[c5-v22] POST [4/48] G230354 T46
+[c5-v22] POST [5/48] G230354 T90
+[c5-v22] POST [6/48] G230354 T134
+[c5-v22] POST [7/48] G256858 T85
+[c5-v22] POST [8/48] G256858 T169
+[c5-v22] POST [9/48] G256858 T253
+[c5-v22] POST [10/48] G277134 T32
+[c5-v22] POST [11/48] G277134 T63
+[c5-v22] POST [12/48] G277134 T93
+[c5-v22] POST [13/48] G281994 T33
+[c5-v22] POST [14/48] G281994 T64
+[c5-v22] POST [15/48] G281994 T95
+[c5-v22] POST [16/48] G326221 T44
+[c5-v22] POST [17/48] G326221 T87
+[c5-v22] POST [18/48] G326221 T129
+[c5-v22] POST [19/48] G347236 T36
+[c5-v22] POST [20/48] G347236 T70
+[c5-v22] POST [21/48] G347236 T104
+[c5-v22] POST [22/48] G396107 T55
+[c5-v22] POST [23/48] G396107 T108
+[c5-v22] POST [24/48] G396107 T161
+[c5-v22] POST [25/48] G400330 T44
+[c5-v22] POST [26/48] G400330 T87
+[c5-v22] POST [27/48] G400330 T130
+[c5-v22] POST [28/48] G425973 T53
+[c5-v22] POST [29/48] G425973 T105
+[c5-v22] POST [30/48] G425973 T157
+[c5-v22] POST [31/48] G467183 T40
+[c5-v22] POST [32/48] G467183 T78
+[c5-v22] POST [33/48] G467183 T116
+[c5-v22] POST [34/48] G494635 T31
+[c5-v22] POST [35/48] G494635 T61
+[c5-v22] POST [36/48] G494635 T91
+[c5-v22] POST [37/48] G497195 T40
+[c5-v22] POST [38/48] G497195 T79
+[c5-v22] POST [39/48] G497195 T117
+[c5-v22] POST [40/48] G550972 T40
+[c5-v22] POST [41/48] G550972 T78
+[c5-v22] POST [42/48] G550972 T116
+[c5-v22] POST [43/48] G617883 T56
+[c5-v22] POST [44/48] G617883 T111
+[c5-v22] POST [45/48] G617883 T166
+[c5-v22] POST [46/48] G645077 T32
+[c5-v22] POST [47/48] G645077 T63
+[c5-v22] POST [48/48] G645077 T94
+===== C5 V22 actors =====
+status: GAME_DISJOINT_TMINUS1_RULEAWARE_OBSERVATIONAL_NOT_ACTIVATION
+summary: {'selected_games': 16, 'selected_windows': 48, 'previous_research_game_overlap': 0, 'posthost_compared_windows': 48, 'window_context_abstentions': 0, 'new_canonical_Host_movement_or_combat_predictions': 0, 'Nplus1_VCR_used': False, 'Tminus1_candidate_actor_edges': 57, 'Tminus1_cohorts': {'LONG_CONVENTIONAL_PASS': 36, 'NON_DISCRIMINATIVE_COLOCATED': 8, 'OTHER_ONE_FAILED_TMINUS1_GATE': 13}, 'T_cohort_endpoint_counts': {'LONG_CONVENTIONAL_PASS': {'T_ACTOR_AT_DISTINCT_TARGET': 36}, 'NON_DISCRIMINATIVE_COLOCATED': {'NON_DISCRIMINATIVE_SOURCE_EQUALS_TARGET': 8}, 'OTHER_ONE_FAILED_TMINUS1_GATE': {'T_ACTOR_AT_SOURCE': 11, 'T_ACTOR_ELSEWHERE': 2}}, 'distinct_game_turn_clusters_by_cohort': {'LONG_CONVENTIONAL_PASS': 19, 'NON_DISCRIMINATIVE_COLOCATED': 7, 'OTHER_ONE_FAILED_TMINUS1_GATE': 11}, 'Tminus1_short_field_witness_candidates': 0, 'short_field_witness_distinct_games': 0, 'short_field_witness_distinct_windows': 0, 'Host_chunnel_activation_proven': False}
+output: artifacts/combat/c5-ruleaware-disjoint-batch-v22/published/actors.json
+===== C5 V22 stabilizers =====
+status: GAME_DISJOINT_TMINUS1_RULEAWARE_OBSERVATIONAL_NOT_ACTIVATION
+summary: {'selected_games': 16, 'selected_windows': 48, 'previous_research_game_overlap': 0, 'posthost_compared_windows': 48, 'window_context_abstentions': 0, 'new_canonical_Host_movement_or_combat_predictions': 0, 'Nplus1_VCR_used': False, 'Tminus1_Dungeon_appearances': 6, 'Tminus1_Dungeon_distinct_games': 2, 'T_Dungeon_owner_current_categories': {'OWNER_CURRENT_T_OBSERVED': 6}, 'T_Dungeon_position_unchanged': 6, 'T_Dungeon_position_changed': 0, 'T_Dungeon_engine_unchanged': 6, 'Host_stabilizer_phase_active_proven': False}
+output: artifacts/combat/c5-ruleaware-disjoint-batch-v22/published/stabilizers.json
+===== C5 V22 escorts =====
+status: GAME_DISJOINT_TMINUS1_RULEAWARE_OBSERVATIONAL_NOT_ACTIVATION
+summary: {'selected_games': 16, 'selected_windows': 48, 'previous_research_game_overlap': 0, 'posthost_compared_windows': 48, 'window_context_abstentions': 0, 'new_canonical_Host_movement_or_combat_predictions': 0, 'Nplus1_VCR_used': False, 'Tminus1_preselected_actor_episodes': 36, 'Tminus1_preselected_distinct_windows': 19, 'Tminus1_source_ship_appearances': 351, 'T_owner_current_ship_at_preselected_target': 263, 'true_Chunnel_passenger_mechanism_proven': False}
+output: artifacts/combat/c5-ruleaware-disjoint-batch-v22/published/escorts.json
+===== C5 V22 ALL THREE REPORTS COMPLETE =====
+status: V22_ALL_THREE_DISJOINT_HOLDOUT_REPORTS_COMPLETE
+output: artifacts/combat/c5-ruleaware-disjoint-batch-v22/published/manifest.json

@@ -1,0 +1,93 @@
+{
+  "activation_not_proven": true,
+  "all_three_completed": true,
+  "phase": "manifest",
+  "phase_reports": {
+    "actors": {
+      "file": "actors.json",
+      "sha256": "245850e64dcd850dee72f21676bfe4e3d1311f640dde1afd9a345b8cb2116a45",
+      "summary": {
+        "Host_chunnel_activation_proven": false,
+        "Nplus1_VCR_used": false,
+        "T_cohort_endpoint_counts": {
+          "LONG_CONVENTIONAL_PASS": {
+            "T_ACTOR_AT_DISTINCT_TARGET": 36
+          },
+          "NON_DISCRIMINATIVE_COLOCATED": {
+            "NON_DISCRIMINATIVE_SOURCE_EQUALS_TARGET": 8
+          },
+          "OTHER_ONE_FAILED_TMINUS1_GATE": {
+            "T_ACTOR_AT_SOURCE": 11,
+            "T_ACTOR_ELSEWHERE": 2
+          }
+        },
+        "Tminus1_candidate_actor_edges": 57,
+        "Tminus1_cohorts": {
+          "LONG_CONVENTIONAL_PASS": 36,
+          "NON_DISCRIMINATIVE_COLOCATED": 8,
+          "OTHER_ONE_FAILED_TMINUS1_GATE": 13
+        },
+        "Tminus1_short_field_witness_candidates": 0,
+        "distinct_game_turn_clusters_by_cohort": {
+          "LONG_CONVENTIONAL_PASS": 19,
+          "NON_DISCRIMINATIVE_COLOCATED": 7,
+          "OTHER_ONE_FAILED_TMINUS1_GATE": 11
+        },
+        "new_canonical_Host_movement_or_combat_predictions": 0,
+        "posthost_compared_windows": 48,
+        "previous_research_game_overlap": 0,
+        "selected_games": 16,
+        "selected_windows": 48,
+        "short_field_witness_distinct_games": 0,
+        "short_field_witness_distinct_windows": 0,
+        "window_context_abstentions": 0
+      }
+    },
+    "escorts": {
+      "file": "escorts.json",
+      "sha256": "ed99a91e0c4f4304fa794750eaac426fefa032a28a95f08b5991f01902520145",
+      "summary": {
+        "Nplus1_VCR_used": false,
+        "T_owner_current_ship_at_preselected_target": 263,
+        "Tminus1_preselected_actor_episodes": 36,
+        "Tminus1_preselected_distinct_windows": 19,
+        "Tminus1_source_ship_appearances": 351,
+        "new_canonical_Host_movement_or_combat_predictions": 0,
+        "posthost_compared_windows": 48,
+        "previous_research_game_overlap": 0,
+        "selected_games": 16,
+        "selected_windows": 48,
+        "true_Chunnel_passenger_mechanism_proven": false,
+        "window_context_abstentions": 0
+      }
+    },
+    "stabilizers": {
+      "file": "stabilizers.json",
+      "sha256": "7c34c79f38d2ebc21354dcd37bd9876561fd47906d53dd5fd4a2fb28674d698b",
+      "summary": {
+        "Host_stabilizer_phase_active_proven": false,
+        "Nplus1_VCR_used": false,
+        "T_Dungeon_engine_unchanged": 6,
+        "T_Dungeon_owner_current_categories": {
+          "OWNER_CURRENT_T_OBSERVED": 6
+        },
+        "T_Dungeon_position_changed": 0,
+        "T_Dungeon_position_unchanged": 6,
+        "Tminus1_Dungeon_appearances": 6,
+        "Tminus1_Dungeon_distinct_games": 2,
+        "new_canonical_Host_movement_or_combat_predictions": 0,
+        "posthost_compared_windows": 48,
+        "previous_research_game_overlap": 0,
+        "selected_games": 16,
+        "selected_windows": 48,
+        "window_context_abstentions": 0
+      }
+    }
+  },
+  "same_public100_not_new_corpus": true,
+  "schema": "planets-lab.combat-c5-ruleaware-disjoint-batch.v22",
+  "source_db_sha256": "3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c",
+  "source_v17_git_blob_sha1": "a6256b70dc63b9b7126a211245bc65ce20ece863",
+  "source_v20_git_blob_sha1": "3d5e1d5aeb6b0138c01bab3ec81185d0685233c0",
+  "status": "V22_ALL_THREE_DISJOINT_HOLDOUT_REPORTS_COMPLETE"
+}

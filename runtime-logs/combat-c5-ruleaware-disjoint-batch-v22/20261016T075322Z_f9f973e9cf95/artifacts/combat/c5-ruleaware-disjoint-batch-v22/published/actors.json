@@ -1,0 +1,3012 @@
+{
+  "Nplus1_VCR_used": false,
+  "actor_Tminus1_to_T_comparisons": [
+    {
+      "T_actor_net_fuel_loss_KT": 0,
+      "T_actor_status": "NON_DISCRIMINATIVE_SOURCE_EQUALS_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        1075,
+        1690
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1075,
+        1690
+      ],
+      "Tminus1_distance_ly": 0.0,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 5,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "NON_DISCRIMINATIVE_COLOCATED",
+      "Tminus1_source_target_distinct": false,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 200,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ONE_TMINUS1_GATE_FAILS",
+      "game_id": 224849,
+      "initiator_ship_id": 246,
+      "owner_id": 5,
+      "single_failing_gate": "DISTANCE_BELOW_100_AT_TMINUS1",
+      "source": [
+        1075,
+        1690
+      ],
+      "target": [
+        1075,
+        1690
+      ],
+      "target_Tminus1_fuel": 20,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 175,
+      "turn": 149
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 50,
+      "T_actor_status": "T_ACTOR_AT_DISTINCT_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        2835,
+        1336
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2835,
+        1336
+      ],
+      "Tminus1_distance_ly": 152.08221,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 4,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 100,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ALL_TMINUS1_GATES_PASS",
+      "game_id": 224849,
+      "initiator_ship_id": 294,
+      "owner_id": 4,
+      "single_failing_gate": null,
+      "source": [
+        2687,
+        1301
+      ],
+      "target": [
+        2835,
+        1336
+      ],
+      "target_Tminus1_fuel": 173,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 352,
+      "turn": 149
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 0,
+      "T_actor_status": "T_ACTOR_AT_SOURCE",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        2548,
+        1276
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1075,
+        1690
+      ],
+      "Tminus1_distance_ly": 1530.07353,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 5,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "OTHER_ONE_FAILED_TMINUS1_GATE",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 12,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ONE_TMINUS1_GATE_FAILS",
+      "game_id": 224849,
+      "initiator_ship_id": 322,
+      "owner_id": 5,
+      "single_failing_gate": "INITIATOR_FUEL_LT50",
+      "source": [
+        2548,
+        1276
+      ],
+      "target": [
+        1075,
+        1690
+      ],
+      "target_Tminus1_fuel": 200,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 246,
+      "turn": 149
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 50,
+      "T_actor_status": "T_ACTOR_AT_DISTINCT_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        2012,
+        2639
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2012,
+        2639
+      ],
+      "Tminus1_distance_ly": 443.09931,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 6,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 440,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ALL_TMINUS1_GATES_PASS",
+      "game_id": 230354,
+      "initiator_ship_id": 432,
+      "owner_id": 6,
+      "single_failing_gate": null,
+      "source": [
+        1576,
+        2718
+      ],
+      "target": [
+        2012,
+        2639
+      ],
+      "target_Tminus1_fuel": 293,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 212,
+      "turn": 46
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 50,
+      "T_actor_status": "T_ACTOR_AT_DISTINCT_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        2012,
+        2639
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2012,
+        2639
+      ],
+      "Tminus1_distance_ly": 686.73867,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 6,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 50,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ALL_TMINUS1_GATES_PASS",
+      "game_id": 230354,
+      "initiator_ship_id": 212,
+      "owner_id": 6,
+      "single_failing_gate": null,
+      "source": [
+        1589,
+        2098
+      ],
+      "target": [
+        2012,
+        2639
+      ],
+      "target_Tminus1_fuel": 440,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 157,
+      "turn": 90
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 0,
+      "T_actor_status": "T_ACTOR_AT_SOURCE",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        1426,
+        2045
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2012,
+        2639
+      ],
+      "Tminus1_distance_ly": 171.40012,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 6,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "OTHER_ONE_FAILED_TMINUS1_GATE",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 0,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ONE_TMINUS1_GATE_FAILS",
+      "game_id": 230354,
+      "initiator_ship_id": 336,
+      "owner_id": 6,
+      "single_failing_gate": "INITIATOR_FUEL_LT50",
+      "source": [
+        1426,
+        2045
+      ],
+      "target": [
+        1589,
+        2098
+      ],
+      "target_Tminus1_fuel": 27,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 139,
+      "turn": 90
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 50,
+      "T_actor_status": "T_ACTOR_AT_DISTINCT_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        2050,
+        2288
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2050,
+        2288
+      ],
+      "Tminus1_distance_ly": 568.9086,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 6,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 332,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ALL_TMINUS1_GATES_PASS",
+      "game_id": 230354,
+      "initiator_ship_id": 139,
+      "owner_id": 6,
+      "single_failing_gate": null,
+      "source": [
+        1751,
+        2772
+      ],
+      "target": [
+        2050,
+        2288
+      ],
+      "target_Tminus1_fuel": 50,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 336,
+      "turn": 134
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 50,
+      "T_actor_status": "T_ACTOR_AT_DISTINCT_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        3025,
+        2071
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        3025,
+        2071
+      ],
+      "Tminus1_distance_ly": 575.06347,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 6,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 291,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ALL_TMINUS1_GATES_PASS",
+      "game_id": 256858,
+      "initiator_ship_id": 462,
+      "owner_id": 6,
+      "single_failing_gate": null,
+      "source": [
+        2468,
+        2214
+      ],
+      "target": [
+        3025,
+        2071
+      ],
+      "target_Tminus1_fuel": 152,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 75,
+      "turn": 85
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 0,
+      "T_actor_status": "T_ACTOR_ELSEWHERE",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        2749,
+        2650
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2584,
+        2333
+      ],
+      "Tminus1_distance_ly": 388.88173,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 7,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "OTHER_ONE_FAILED_TMINUS1_GATE",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 440,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ONE_TMINUS1_GATE_FAILS",
+      "game_id": 256858,
+      "initiator_ship_id": 478,
+      "owner_id": 7,
+      "single_failing_gate": "TOW_REQUEST_ON_ENDPOINT_AT_TMINUS1",
+      "source": [
+        2829,
+        2635
+      ],
+      "target": [
+        2584,
+        2333
+      ],
+      "target_Tminus1_fuel": 383,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 444,
+      "turn": 85
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 50,
+      "T_actor_status": "T_ACTOR_AT_DISTINCT_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        2468,
+        2214
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2468,
+        2214
+      ],
+      "Tminus1_distance_ly": 581.37767,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 6,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 175,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ALL_TMINUS1_GATES_PASS",
+      "game_id": 256858,
+      "initiator_ship_id": 21,
+      "owner_id": 6,
+      "single_failing_gate": null,
+      "source": [
+        3036,
+        2090
+      ],
+      "target": [
+        2468,
+        2214
+      ],
+      "target_Tminus1_fuel": 354,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 260,
+      "turn": 169
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 50,
+      "T_actor_status": "T_ACTOR_AT_DISTINCT_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        1592,
+        2844
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1592,
+        2844
+      ],
+      "Tminus1_distance_ly": 879.38672,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 1,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 55,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ALL_TMINUS1_GATES_PASS",
+      "game_id": 256858,
+      "initiator_ship_id": 98,
+      "owner_id": 1,
+      "single_failing_gate": null,
+      "source": [
+        2403,
+        2504
+      ],
+      "target": [
+        1592,
+        2844
+      ],
+      "target_Tminus1_fuel": 399,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 230,
+      "turn": 169
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 0,
+      "T_actor_status": "T_ACTOR_AT_SOURCE",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        2887,
+        2271
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        3050,
+        2273
+      ],
+      "Tminus1_distance_ly": 163.01227,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 7,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "OTHER_ONE_FAILED_TMINUS1_GATE",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 340,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ONE_TMINUS1_GATE_FAILS",
+      "game_id": 256858,
+      "initiator_ship_id": 239,
+      "owner_id": 7,
+      "single_failing_gate": "TOW_REQUEST_ON_ENDPOINT_AT_TMINUS1",
+      "source": [
+        2887,
+        2271
+      ],
+      "target": [
+        3050,
+        2273
+      ],
+      "target_Tminus1_fuel": 290,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 504,
+      "turn": 169
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 256,
+      "T_actor_status": "T_ACTOR_AT_DISTINCT_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        2758,
+        1907
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2758,
+        1907
+      ],
+      "Tminus1_distance_ly": 313.34486,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 6,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 306,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ALL_TMINUS1_GATES_PASS",
+      "game_id": 256858,
+      "initiator_ship_id": 359,
+      "owner_id": 6,
+      "single_failing_gate": null,
+      "source": [
+        3025,
+        2071
+      ],
+      "target": [
+        2758,
+        1907
+      ],
+      "target_Tminus1_fuel": 301,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 224,
+      "turn": 169
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 50,
+      "T_actor_status": "T_ACTOR_AT_DISTINCT_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        2468,
+        2214
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2468,
+        2214
+      ],
+      "Tminus1_distance_ly": 364.60664,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 6,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 425,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ALL_TMINUS1_GATES_PASS",
+      "game_id": 256858,
+      "initiator_ship_id": 385,
+      "owner_id": 6,
+      "single_failing_gate": null,
+      "source": [
+        2781,
+        2027
+      ],
+      "target": [
+        2468,
+        2214
+      ],
+      "target_Tminus1_fuel": 354,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 260,
+      "turn": 169
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 0,
+      "T_actor_status": "T_ACTOR_AT_SOURCE",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        3050,
+        2273
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2846,
+        2384
+      ],
+      "Tminus1_distance_ly": 163.01227,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 7,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "OTHER_ONE_FAILED_TMINUS1_GATE",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 290,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ONE_TMINUS1_GATE_FAILS",
+      "game_id": 256858,
+      "initiator_ship_id": 504,
+      "owner_id": 7,
+      "single_failing_gate": "TOW_REQUEST_ON_ENDPOINT_AT_TMINUS1",
+      "source": [
+        3050,
+        2273
+      ],
+      "target": [
+        2887,
+        2271
+      ],
+      "target_Tminus1_fuel": 390,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 522,
+      "turn": 169
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 0,
+      "T_actor_status": "T_ACTOR_AT_SOURCE",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        2043,
+        2929
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2249,
+        3017
+      ],
+      "Tminus1_distance_ly": 204.36242,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 2,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "OTHER_ONE_FAILED_TMINUS1_GATE",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 340,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ONE_TMINUS1_GATE_FAILS",
+      "game_id": 256858,
+      "initiator_ship_id": 75,
+      "owner_id": 2,
+      "single_failing_gate": "TARGET_WARP_NONZERO_AT_TMINUS1",
+      "source": [
+        2043,
+        2929
+      ],
+      "target": [
+        2235,
+        2999
+      ],
+      "target_Tminus1_fuel": 167,
+      "target_Tminus1_warp": 9,
+      "target_ship_id": 505,
+      "turn": 253
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 0,
+      "T_actor_status": "T_ACTOR_AT_DISTINCT_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        2934,
+        2188
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2934,
+        2188
+      ],
+      "Tminus1_distance_ly": 568.63081,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 7,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 440,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ALL_TMINUS1_GATES_PASS",
+      "game_id": 256858,
+      "initiator_ship_id": 289,
+      "owner_id": 7,
+      "single_failing_gate": null,
+      "source": [
+        2580,
+        1743
+      ],
+      "target": [
+        2934,
+        2188
+      ],
+      "target_Tminus1_fuel": 440,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 287,
+      "turn": 253
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 0,
+      "T_actor_status": "NON_DISCRIMINATIVE_SOURCE_EQUALS_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        2542,
+        530
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2542,
+        530
+      ],
+      "Tminus1_distance_ly": 0.0,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 2,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "NON_DISCRIMINATIVE_COLOCATED",
+      "Tminus1_source_target_distinct": false,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 86,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ONE_TMINUS1_GATE_FAILS",
+      "game_id": 281994,
+      "initiator_ship_id": 146,
+      "owner_id": 2,
+      "single_failing_gate": "DISTANCE_BELOW_100_AT_TMINUS1",
+      "source": [
+        2542,
+        530
+      ],
+      "target": [
+        2542,
+        530
+      ],
+      "target_Tminus1_fuel": 130,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 280,
+      "turn": 33
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 50,
+      "T_actor_status": "T_ACTOR_AT_DISTINCT_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        2293,
+        2819
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2293,
+        2819
+      ],
+      "Tminus1_distance_ly": 628.52367,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 6,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 100,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ALL_TMINUS1_GATES_PASS",
+      "game_id": 281994,
+      "initiator_ship_id": 301,
+      "owner_id": 6,
+      "single_failing_gate": null,
+      "source": [
+        2184,
+        2200
+      ],
+      "target": [
+        2293,
+        2819
+      ],
+      "target_Tminus1_fuel": 50,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 67,
+      "turn": 33
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 0,
+      "T_actor_status": "T_ACTOR_AT_SOURCE",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        2697,
+        3341
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2884,
+        2517
+      ],
+      "Tminus1_distance_ly": 844.95266,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 6,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "OTHER_ONE_FAILED_TMINUS1_GATE",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 1,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ONE_TMINUS1_GATE_FAILS",
+      "game_id": 281994,
+      "initiator_ship_id": 354,
+      "owner_id": 6,
+      "single_failing_gate": "INITIATOR_FUEL_LT50",
+      "source": [
+        2697,
+        3341
+      ],
+      "target": [
+        2884,
+        2517
+      ],
+      "target_Tminus1_fuel": 7,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 121,
+      "turn": 64
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 0,
+      "T_actor_status": "T_ACTOR_AT_SOURCE",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        2332,
+        742
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2112,
+        940
+      ],
+      "Tminus1_distance_ly": 329.09725,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 2,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "OTHER_ONE_FAILED_TMINUS1_GATE",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 100,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ONE_TMINUS1_GATE_FAILS",
+      "game_id": 281994,
+      "initiator_ship_id": 456,
+      "owner_id": 2,
+      "single_failing_gate": "TARGET_WARP_NONZERO_AT_TMINUS1",
+      "source": [
+        2332,
+        742
+      ],
+      "target": [
+        2064,
+        933
+      ],
+      "target_Tminus1_fuel": 313,
+      "target_Tminus1_warp": 7,
+      "target_ship_id": 432,
+      "turn": 64
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 0,
+      "T_actor_status": "NON_DISCRIMINATIVE_SOURCE_EQUALS_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        2884,
+        2517
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2884,
+        2517
+      ],
+      "Tminus1_distance_ly": 0.0,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 6,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "NON_DISCRIMINATIVE_COLOCATED",
+      "Tminus1_source_target_distinct": false,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 390,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ONE_TMINUS1_GATE_FAILS",
+      "game_id": 281994,
+      "initiator_ship_id": 696,
+      "owner_id": 6,
+      "single_failing_gate": "DISTANCE_BELOW_100_AT_TMINUS1",
+      "source": [
+        2884,
+        2517
+      ],
+      "target": [
+        2884,
+        2517
+      ],
+      "target_Tminus1_fuel": 7,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 121,
+      "turn": 64
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 0,
+      "T_actor_status": "NON_DISCRIMINATIVE_SOURCE_EQUALS_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        2550,
+        2532
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2550,
+        2532
+      ],
+      "Tminus1_distance_ly": 0.0,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 5,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "NON_DISCRIMINATIVE_COLOCATED",
+      "Tminus1_source_target_distinct": false,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 207,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ONE_TMINUS1_GATE_FAILS",
+      "game_id": 281994,
+      "initiator_ship_id": 286,
+      "owner_id": 5,
+      "single_failing_gate": "DISTANCE_BELOW_100_AT_TMINUS1",
+      "source": [
+        2550,
+        2532
+      ],
+      "target": [
+        2550,
+        2532
+      ],
+      "target_Tminus1_fuel": 101,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 722,
+      "turn": 95
+    },
+    {
+      "T_actor_net_fuel_loss_KT": -50,
+      "T_actor_status": "T_ACTOR_AT_DISTINCT_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        1905,
+        2403
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1905,
+        2403
+      ],
+      "Tminus1_distance_ly": 346.43325,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 5,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 286,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ALL_TMINUS1_GATES_PASS",
+      "game_id": 281994,
+      "initiator_ship_id": 572,
+      "owner_id": 5,
+      "single_failing_gate": null,
+      "source": [
+        2185,
+        2199
+      ],
+      "target": [
+        1905,
+        2403
+      ],
+      "target_Tminus1_fuel": 190,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 696,
+      "turn": 95
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 0,
+      "T_actor_status": "T_ACTOR_AT_SOURCE",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        2609,
+        2589
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2671,
+        2376
+      ],
+      "Tminus1_distance_ly": 169.00888,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 6,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "OTHER_ONE_FAILED_TMINUS1_GATE",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 100,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ONE_TMINUS1_GATE_FAILS",
+      "game_id": 326221,
+      "initiator_ship_id": 104,
+      "owner_id": 6,
+      "single_failing_gate": "TARGET_WARP_NONZERO_AT_TMINUS1",
+      "source": [
+        2609,
+        2589
+      ],
+      "target": [
+        2669,
+        2431
+      ],
+      "target_Tminus1_fuel": 69,
+      "target_Tminus1_warp": 9,
+      "target_ship_id": 410,
+      "turn": 44
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 50,
+      "T_actor_status": "T_ACTOR_AT_DISTINCT_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        1840,
+        1892
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1840,
+        1892
+      ],
+      "Tminus1_distance_ly": 926.10151,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 3,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 55,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ALL_TMINUS1_GATES_PASS",
+      "game_id": 347236,
+      "initiator_ship_id": 586,
+      "owner_id": 3,
+      "single_failing_gate": null,
+      "source": [
+        2632,
+        2372
+      ],
+      "target": [
+        1840,
+        1892
+      ],
+      "target_Tminus1_fuel": 51,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 874,
+      "turn": 104
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 50,
+      "T_actor_status": "T_ACTOR_AT_DISTINCT_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        2461,
+        2356
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2461,
+        2356
+      ],
+      "Tminus1_distance_ly": 910.17855,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 3,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 153,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ALL_TMINUS1_GATES_PASS",
+      "game_id": 347236,
+      "initiator_ship_id": 600,
+      "owner_id": 3,
+      "single_failing_gate": null,
+      "source": [
+        1554,
+        2280
+      ],
+      "target": [
+        2461,
+        2356
+      ],
+      "target_Tminus1_fuel": 5,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 1671,
+      "turn": 104
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 50,
+      "T_actor_status": "T_ACTOR_AT_DISTINCT_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        1375,
+        2779
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1375,
+        2779
+      ],
+      "Tminus1_distance_ly": 270.29243,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 6,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 111,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ALL_TMINUS1_GATES_PASS",
+      "game_id": 347236,
+      "initiator_ship_id": 1016,
+      "owner_id": 6,
+      "single_failing_gate": null,
+      "source": [
+        1142,
+        2916
+      ],
+      "target": [
+        1375,
+        2779
+      ],
+      "target_Tminus1_fuel": 232,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 658,
+      "turn": 104
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 50,
+      "T_actor_status": "T_ACTOR_AT_DISTINCT_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        2345,
+        2695
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2345,
+        2695
+      ],
+      "Tminus1_distance_ly": 713.64137,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 6,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 301,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ALL_TMINUS1_GATES_PASS",
+      "game_id": 347236,
+      "initiator_ship_id": 1150,
+      "owner_id": 6,
+      "single_failing_gate": null,
+      "source": [
+        1635,
+        2767
+      ],
+      "target": [
+        2345,
+        2695
+      ],
+      "target_Tminus1_fuel": 69,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 664,
+      "turn": 104
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 50,
+      "T_actor_status": "T_ACTOR_AT_DISTINCT_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        1572,
+        2935
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1572,
+        2935
+      ],
+      "Tminus1_distance_ly": 233.11156,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 6,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 102,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ALL_TMINUS1_GATES_PASS",
+      "game_id": 347236,
+      "initiator_ship_id": 1775,
+      "owner_id": 6,
+      "single_failing_gate": null,
+      "source": [
+        1747,
+        2781
+      ],
+      "target": [
+        1572,
+        2935
+      ],
+      "target_Tminus1_fuel": 30,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 1488,
+      "turn": 104
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 0,
+      "T_actor_status": "T_ACTOR_AT_SOURCE",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        1593,
+        2537
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2451,
+        2818
+      ],
+      "Tminus1_distance_ly": 873.0693,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 6,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "OTHER_ONE_FAILED_TMINUS1_GATE",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 440,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ONE_TMINUS1_GATE_FAILS",
+      "game_id": 347236,
+      "initiator_ship_id": 1853,
+      "owner_id": 6,
+      "single_failing_gate": "TARGET_WARP_NONZERO_AT_TMINUS1",
+      "source": [
+        1593,
+        2537
+      ],
+      "target": [
+        2428,
+        2792
+      ],
+      "target_Tminus1_fuel": 26,
+      "target_Tminus1_warp": 8,
+      "target_ship_id": 1833,
+      "turn": 104
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 288,
+      "T_actor_status": "T_ACTOR_AT_DISTINCT_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        1375,
+        2779
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1375,
+        2779
+      ],
+      "Tminus1_distance_ly": 325.12305,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 6,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 440,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ALL_TMINUS1_GATES_PASS",
+      "game_id": 347236,
+      "initiator_ship_id": 1863,
+      "owner_id": 6,
+      "single_failing_gate": null,
+      "source": [
+        1591,
+        2536
+      ],
+      "target": [
+        1375,
+        2779
+      ],
+      "target_Tminus1_fuel": 232,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 658,
+      "turn": 104
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 50,
+      "T_actor_status": "T_ACTOR_AT_DISTINCT_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        1573,
+        2701
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1573,
+        2701
+      ],
+      "Tminus1_distance_ly": 570.68818,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 7,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 213,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ALL_TMINUS1_GATES_PASS",
+      "game_id": 425973,
+      "initiator_ship_id": 751,
+      "owner_id": 10,
+      "single_failing_gate": null,
+      "source": [
+        1971,
+        2292
+      ],
+      "target": [
+        1573,
+        2701
+      ],
+      "target_Tminus1_fuel": 84,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 455,
+      "turn": 105
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 0,
+      "T_actor_status": "T_ACTOR_AT_SOURCE",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        1509,
+        2274
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1189,
+        2774
+      ],
+      "Tminus1_distance_ly": 593.63288,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 7,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "OTHER_ONE_FAILED_TMINUS1_GATE",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 251,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ONE_TMINUS1_GATE_FAILS",
+      "game_id": 425973,
+      "initiator_ship_id": 455,
+      "owner_id": 10,
+      "single_failing_gate": "TARGET_WARP_NONZERO_AT_TMINUS1",
+      "source": [
+        1509,
+        2274
+      ],
+      "target": [
+        1189,
+        2774
+      ],
+      "target_Tminus1_fuel": 145,
+      "target_Tminus1_warp": 9,
+      "target_ship_id": 751,
+      "turn": 157
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 50,
+      "T_actor_status": "T_ACTOR_AT_DISTINCT_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        2740,
+        2069
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2740,
+        2069
+      ],
+      "Tminus1_distance_ly": 465.44602,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 7,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 50,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ALL_TMINUS1_GATES_PASS",
+      "game_id": 467183,
+      "initiator_ship_id": 271,
+      "owner_id": 7,
+      "single_failing_gate": null,
+      "source": [
+        2516,
+        2477
+      ],
+      "target": [
+        2740,
+        2069
+      ],
+      "target_Tminus1_fuel": 233,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 63,
+      "turn": 40
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 50,
+      "T_actor_status": "T_ACTOR_AT_DISTINCT_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        2343,
+        1217
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2343,
+        1217
+      ],
+      "Tminus1_distance_ly": 1108.1083,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 3,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 324,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ALL_TMINUS1_GATES_PASS",
+      "game_id": 467183,
+      "initiator_ship_id": 314,
+      "owner_id": 3,
+      "single_failing_gate": null,
+      "source": [
+        2591,
+        2297
+      ],
+      "target": [
+        2343,
+        1217
+      ],
+      "target_Tminus1_fuel": 371,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 231,
+      "turn": 116
+    },
+    {
+      "T_actor_net_fuel_loss_KT": -68,
+      "T_actor_status": "T_ACTOR_AT_DISTINCT_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        2376,
+        2427
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2376,
+        2427
+      ],
+      "Tminus1_distance_ly": 674.38342,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 7,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 136,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ALL_TMINUS1_GATES_PASS",
+      "game_id": 467183,
+      "initiator_ship_id": 372,
+      "owner_id": 7,
+      "single_failing_gate": null,
+      "source": [
+        2699,
+        1835
+      ],
+      "target": [
+        2376,
+        2427
+      ],
+      "target_Tminus1_fuel": 197,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 460,
+      "turn": 116
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 50,
+      "T_actor_status": "T_ACTOR_AT_DISTINCT_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        1726,
+        2952
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1726,
+        2952
+      ],
+      "Tminus1_distance_ly": 820.32433,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 9,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 440,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ALL_TMINUS1_GATES_PASS",
+      "game_id": 467183,
+      "initiator_ship_id": 637,
+      "owner_id": 9,
+      "single_failing_gate": null,
+      "source": [
+        2502,
+        2686
+      ],
+      "target": [
+        1726,
+        2952
+      ],
+      "target_Tminus1_fuel": 380,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 95,
+      "turn": 116
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 50,
+      "T_actor_status": "T_ACTOR_AT_DISTINCT_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        1364,
+        2638
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1364,
+        2638
+      ],
+      "Tminus1_distance_ly": 104.73777,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 6,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 200,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ALL_TMINUS1_GATES_PASS",
+      "game_id": 494635,
+      "initiator_ship_id": 302,
+      "owner_id": 6,
+      "single_failing_gate": null,
+      "source": [
+        1293,
+        2561
+      ],
+      "target": [
+        1364,
+        2638
+      ],
+      "target_Tminus1_fuel": 86,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 336,
+      "turn": 31
+    },
+    {
+      "T_actor_net_fuel_loss_KT": -50,
+      "T_actor_status": "T_ACTOR_AT_DISTINCT_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        2037,
+        1858
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2037,
+        1858
+      ],
+      "Tminus1_distance_ly": 958.80134,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 6,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": true,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [
+        {
+          "active_at_Host_phase_proven": false,
+          "radius_ly": 550,
+          "same_owner": true,
+          "source_distance_ly": 483.91012,
+          "stargate_id": 329,
+          "stargate_owner_id": 6,
+          "target_also_inside_Tminus1_field": true,
+          "target_distance_ly": 478.05962
+        }
+      ],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 50,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ALL_TMINUS1_GATES_PASS",
+      "game_id": 494635,
+      "initiator_ship_id": 268,
+      "owner_id": 6,
+      "single_failing_gate": null,
+      "source": [
+        2611,
+        2626
+      ],
+      "target": [
+        2037,
+        1858
+      ],
+      "target_Tminus1_fuel": 104,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 412,
+      "turn": 91
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 89,
+      "T_actor_status": "T_ACTOR_ELSEWHERE",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        1599,
+        2326
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1437,
+        2238
+      ],
+      "Tminus1_distance_ly": 180.70971,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 6,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "OTHER_ONE_FAILED_TMINUS1_GATE",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 90,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ONE_TMINUS1_GATE_FAILS",
+      "game_id": 497195,
+      "initiator_ship_id": 137,
+      "owner_id": 5,
+      "single_failing_gate": "TOW_REQUEST_ON_ENDPOINT_AT_TMINUS1",
+      "source": [
+        1597,
+        2322
+      ],
+      "target": [
+        1437,
+        2238
+      ],
+      "target_Tminus1_fuel": 110,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 30,
+      "turn": 40
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 0,
+      "T_actor_status": "T_ACTOR_AT_SOURCE",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        2169,
+        2218
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2508,
+        2880
+      ],
+      "Tminus1_distance_ly": 746.01139,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 10,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "OTHER_ONE_FAILED_TMINUS1_GATE",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 132,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ONE_TMINUS1_GATE_FAILS",
+      "game_id": 550972,
+      "initiator_ship_id": 234,
+      "owner_id": 1,
+      "single_failing_gate": "TARGET_WARP_NONZERO_AT_TMINUS1",
+      "source": [
+        2169,
+        2218
+      ],
+      "target": [
+        2511,
+        2881
+      ],
+      "target_Tminus1_fuel": 100,
+      "target_Tminus1_warp": 9,
+      "target_ship_id": 751,
+      "turn": 78
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 0,
+      "T_actor_status": "NON_DISCRIMINATIVE_SOURCE_EQUALS_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        2693,
+        1941
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2693,
+        1941
+      ],
+      "Tminus1_distance_ly": 0.0,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 10,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "NON_DISCRIMINATIVE_COLOCATED",
+      "Tminus1_source_target_distinct": false,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 380,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ONE_TMINUS1_GATE_FAILS",
+      "game_id": 550972,
+      "initiator_ship_id": 565,
+      "owner_id": 1,
+      "single_failing_gate": "DISTANCE_BELOW_100_AT_TMINUS1",
+      "source": [
+        2693,
+        1941
+      ],
+      "target": [
+        2693,
+        1941
+      ],
+      "target_Tminus1_fuel": 170,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 722,
+      "turn": 78
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 50,
+      "T_actor_status": "T_ACTOR_AT_DISTINCT_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        2168,
+        2218
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2168,
+        2218
+      ],
+      "Tminus1_distance_ly": 744.7315,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 10,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 102,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ALL_TMINUS1_GATES_PASS",
+      "game_id": 550972,
+      "initiator_ship_id": 760,
+      "owner_id": 1,
+      "single_failing_gate": null,
+      "source": [
+        2513,
+        2878
+      ],
+      "target": [
+        2168,
+        2218
+      ],
+      "target_Tminus1_fuel": 1,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 438,
+      "turn": 78
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 50,
+      "T_actor_status": "T_ACTOR_AT_DISTINCT_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        1959,
+        1631
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1959,
+        1631
+      ],
+      "Tminus1_distance_ly": 508.32765,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 6,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 219,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ALL_TMINUS1_GATES_PASS",
+      "game_id": 550972,
+      "initiator_ship_id": 131,
+      "owner_id": 3,
+      "single_failing_gate": null,
+      "source": [
+        2108,
+        1145
+      ],
+      "target": [
+        1959,
+        1631
+      ],
+      "target_Tminus1_fuel": 335,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 98,
+      "turn": 116
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 50,
+      "T_actor_status": "T_ACTOR_AT_DISTINCT_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        2142,
+        2872
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2142,
+        2872
+      ],
+      "Tminus1_distance_ly": 366.13659,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 10,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 100,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ALL_TMINUS1_GATES_PASS",
+      "game_id": 550972,
+      "initiator_ship_id": 183,
+      "owner_id": 1,
+      "single_failing_gate": null,
+      "source": [
+        2508,
+        2882
+      ],
+      "target": [
+        2142,
+        2872
+      ],
+      "target_Tminus1_fuel": 177,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 565,
+      "turn": 116
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 50,
+      "T_actor_status": "T_ACTOR_AT_DISTINCT_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        1813,
+        2753
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1813,
+        2753
+      ],
+      "Tminus1_distance_ly": 712.4114,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 10,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 73,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ALL_TMINUS1_GATES_PASS",
+      "game_id": 550972,
+      "initiator_ship_id": 666,
+      "owner_id": 1,
+      "single_failing_gate": null,
+      "source": [
+        2514,
+        2880
+      ],
+      "target": [
+        1813,
+        2753
+      ],
+      "target_Tminus1_fuel": 260,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 581,
+      "turn": 116
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 50,
+      "T_actor_status": "T_ACTOR_AT_DISTINCT_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        2910,
+        2353
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2910,
+        2353
+      ],
+      "Tminus1_distance_ly": 307.93831,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 10,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 440,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ALL_TMINUS1_GATES_PASS",
+      "game_id": 550972,
+      "initiator_ship_id": 712,
+      "owner_id": 1,
+      "single_failing_gate": null,
+      "source": [
+        3109,
+        2588
+      ],
+      "target": [
+        2910,
+        2353
+      ],
+      "target_Tminus1_fuel": 356,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 349,
+      "turn": 116
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 50,
+      "T_actor_status": "T_ACTOR_AT_DISTINCT_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        2464,
+        2287
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2464,
+        2287
+      ],
+      "Tminus1_distance_ly": 554.63321,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 10,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 440,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ALL_TMINUS1_GATES_PASS",
+      "game_id": 550972,
+      "initiator_ship_id": 760,
+      "owner_id": 1,
+      "single_failing_gate": null,
+      "source": [
+        1921,
+        2174
+      ],
+      "target": [
+        2464,
+        2287
+      ],
+      "target_Tminus1_fuel": 440,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 632,
+      "turn": 116
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 50,
+      "T_actor_status": "T_ACTOR_AT_DISTINCT_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        2867,
+        2473
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2867,
+        2473
+      ],
+      "Tminus1_distance_ly": 478.35761,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 6,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 263,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ALL_TMINUS1_GATES_PASS",
+      "game_id": 617883,
+      "initiator_ship_id": 281,
+      "owner_id": 6,
+      "single_failing_gate": null,
+      "source": [
+        2702,
+        2922
+      ],
+      "target": [
+        2867,
+        2473
+      ],
+      "target_Tminus1_fuel": 84,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 616,
+      "turn": 111
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 50,
+      "T_actor_status": "T_ACTOR_AT_DISTINCT_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        2105,
+        2078
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2105,
+        2078
+      ],
+      "Tminus1_distance_ly": 970.00464,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 6,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 101,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ALL_TMINUS1_GATES_PASS",
+      "game_id": 617883,
+      "initiator_ship_id": 427,
+      "owner_id": 6,
+      "single_failing_gate": null,
+      "source": [
+        2620,
+        2900
+      ],
+      "target": [
+        2105,
+        2078
+      ],
+      "target_Tminus1_fuel": 115,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 566,
+      "turn": 111
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 50,
+      "T_actor_status": "T_ACTOR_AT_DISTINCT_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        2375,
+        2726
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2375,
+        2726
+      ],
+      "Tminus1_distance_ly": 782.3682,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 5,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 294,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ALL_TMINUS1_GATES_PASS",
+      "game_id": 617883,
+      "initiator_ship_id": 47,
+      "owner_id": 5,
+      "single_failing_gate": null,
+      "source": [
+        1925,
+        2086
+      ],
+      "target": [
+        2375,
+        2726
+      ],
+      "target_Tminus1_fuel": 394,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 460,
+      "turn": 166
+    },
+    {
+      "T_actor_net_fuel_loss_KT": -100,
+      "T_actor_status": "T_ACTOR_AT_DISTINCT_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        2818,
+        1675
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2818,
+        1675
+      ],
+      "Tminus1_distance_ly": 153.75955,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 1,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 340,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ALL_TMINUS1_GATES_PASS",
+      "game_id": 617883,
+      "initiator_ship_id": 85,
+      "owner_id": 1,
+      "single_failing_gate": null,
+      "source": [
+        2847,
+        1524
+      ],
+      "target": [
+        2818,
+        1675
+      ],
+      "target_Tminus1_fuel": 440,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 164,
+      "turn": 166
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 50,
+      "T_actor_status": "T_ACTOR_AT_DISTINCT_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        2619,
+        2901
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2619,
+        2901
+      ],
+      "Tminus1_distance_ly": 413.76926,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 6,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_source_target_distinct": true,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 397,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ALL_TMINUS1_GATES_PASS",
+      "game_id": 617883,
+      "initiator_ship_id": 88,
+      "owner_id": 6,
+      "single_failing_gate": null,
+      "source": [
+        2237,
+        2742
+      ],
+      "target": [
+        2619,
+        2901
+      ],
+      "target_Tminus1_fuel": 176,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 457,
+      "turn": 166
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 0,
+      "T_actor_status": "NON_DISCRIMINATIVE_SOURCE_EQUALS_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        2089,
+        606
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2089,
+        606
+      ],
+      "Tminus1_distance_ly": 0.0,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 6,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "NON_DISCRIMINATIVE_COLOCATED",
+      "Tminus1_source_target_distinct": false,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 180,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ONE_TMINUS1_GATE_FAILS",
+      "game_id": 645077,
+      "initiator_ship_id": 226,
+      "owner_id": 6,
+      "single_failing_gate": "DISTANCE_BELOW_100_AT_TMINUS1",
+      "source": [
+        2089,
+        606
+      ],
+      "target": [
+        2089,
+        606
+      ],
+      "target_Tminus1_fuel": 390,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 227,
+      "turn": 63
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 0,
+      "T_actor_status": "NON_DISCRIMINATIVE_SOURCE_EQUALS_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        2055,
+        1181
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2055,
+        1181
+      ],
+      "Tminus1_distance_ly": 0.0,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 6,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "NON_DISCRIMINATIVE_COLOCATED",
+      "Tminus1_source_target_distinct": false,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 290,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ONE_TMINUS1_GATE_FAILS",
+      "game_id": 645077,
+      "initiator_ship_id": 227,
+      "owner_id": 6,
+      "single_failing_gate": "DISTANCE_BELOW_100_AT_TMINUS1",
+      "source": [
+        2055,
+        1181
+      ],
+      "target": [
+        2055,
+        1181
+      ],
+      "target_Tminus1_fuel": 39,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 257,
+      "turn": 94
+    },
+    {
+      "T_actor_net_fuel_loss_KT": 0,
+      "T_actor_status": "NON_DISCRIMINATIVE_SOURCE_EQUALS_TARGET",
+      "T_owner_current_is_not_prechunnel_phase": true,
+      "T_owner_current_position": [
+        2055,
+        1181
+      ],
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_at_frozen_target": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2055,
+        1181
+      ],
+      "Tminus1_distance_ly": 0.0,
+      "Tminus1_explicit_short_format_flag": null,
+      "Tminus1_owner_race_id": 6,
+      "Tminus1_phase_state_unproven": true,
+      "Tminus1_ruleaware_cohort": "NON_DISCRIMINATIVE_COLOCATED",
+      "Tminus1_source_target_distinct": false,
+      "Tminus1_stabilization_field_witness": false,
+      "Tminus1_stargate_missing_field_data": [],
+      "Tminus1_stargate_source_coverage_candidates": [],
+      "Tminus1_target_not_selected_using_outcome": true,
+      "actor_Tminus1_fuel": 390,
+      "actor_Tminus1_warp": 0,
+      "actual_Chunnel_activation_proven": false,
+      "actual_Chunnel_execution_proven": false,
+      "cohort": "ONE_TMINUS1_GATE_FAILS",
+      "game_id": 645077,
+      "initiator_ship_id": 774,
+      "owner_id": 6,
+      "single_failing_gate": "DISTANCE_BELOW_100_AT_TMINUS1",
+      "source": [
+        2055,
+        1181
+      ],
+      "target": [
+        2055,
+        1181
+      ],
+      "target_Tminus1_fuel": 1,
+      "target_Tminus1_warp": 0,
+      "target_ship_id": 206,
+      "turn": 94
+    }
+  ],
+  "actual_Chunnel_activation_proven": false,
+  "all_windows_Tminus1_frozen_before_any_T": true,
+  "frozen_previous_research_games": [
+    2466,
+    217591,
+    218619,
+    220698,
+    221008,
+    226056,
+    227887,
+    228199,
+    233558,
+    243165,
+    245123,
+    245693,
+    247785,
+    253449,
+    257776,
+    257908,
+    266087,
+    267580,
+    283648,
+    290067,
+    296210,
+    306971,
+    310054,
+    325434,
+    338264,
+    338810,
+    341336,
+    343550,
+    347358,
+    347923,
+    350094,
+    364412,
+    371631,
+    373830,
+    385906,
+    399914,
+    407599,
+    411645,
+    416233,
+    421276,
+    421949,
+    423531,
+    441148,
+    454504,
+    467047,
+    467386,
+    470320,
+    473010,
+    476380,
+    476819,
+    476826,
+    477364,
+    477725,
+    486109,
+    490865,
+    499284,
+    521834,
+    530635,
+    563278,
+    597079,
+    597910,
+    600044,
+    627339,
+    629488,
+    632527,
+    633837,
+    633855,
+    653272,
+    655827,
+    658427,
+    660249,
+    663317,
+    674696
+  ],
+  "metadata_selected_game_turns": [
+    {
+      "game_id": 224849,
+      "turn": 51
+    },
+    {
+      "game_id": 224849,
+      "turn": 100
+    },
+    {
+      "game_id": 224849,
+      "turn": 149
+    },
+    {
+      "game_id": 230354,
+      "turn": 46
+    },
+    {
+      "game_id": 230354,
+      "turn": 90
+    },
+    {
+      "game_id": 230354,
+      "turn": 134
+    },
+    {
+      "game_id": 256858,
+      "turn": 85
+    },
+    {
+      "game_id": 256858,
+      "turn": 169
+    },
+    {
+      "game_id": 256858,
+      "turn": 253
+    },
+    {
+      "game_id": 277134,
+      "turn": 32
+    },
+    {
+      "game_id": 277134,
+      "turn": 63
+    },
+    {
+      "game_id": 277134,
+      "turn": 93
+    },
+    {
+      "game_id": 281994,
+      "turn": 33
+    },
+    {
+      "game_id": 281994,
+      "turn": 64
+    },
+    {
+      "game_id": 281994,
+      "turn": 95
+    },
+    {
+      "game_id": 326221,
+      "turn": 44
+    },
+    {
+      "game_id": 326221,
+      "turn": 87
+    },
+    {
+      "game_id": 326221,
+      "turn": 129
+    },
+    {
+      "game_id": 347236,
+      "turn": 36
+    },
+    {
+      "game_id": 347236,
+      "turn": 70
+    },
+    {
+      "game_id": 347236,
+      "turn": 104
+    },
+    {
+      "game_id": 396107,
+      "turn": 55
+    },
+    {
+      "game_id": 396107,
+      "turn": 108
+    },
+    {
+      "game_id": 396107,
+      "turn": 161
+    },
+    {
+      "game_id": 400330,
+      "turn": 44
+    },
+    {
+      "game_id": 400330,
+      "turn": 87
+    },
+    {
+      "game_id": 400330,
+      "turn": 130
+    },
+    {
+      "game_id": 425973,
+      "turn": 53
+    },
+    {
+      "game_id": 425973,
+      "turn": 105
+    },
+    {
+      "game_id": 425973,
+      "turn": 157
+    },
+    {
+      "game_id": 467183,
+      "turn": 40
+    },
+    {
+      "game_id": 467183,
+      "turn": 78
+    },
+    {
+      "game_id": 467183,
+      "turn": 116
+    },
+    {
+      "game_id": 494635,
+      "turn": 31
+    },
+    {
+      "game_id": 494635,
+      "turn": 61
+    },
+    {
+      "game_id": 494635,
+      "turn": 91
+    },
+    {
+      "game_id": 497195,
+      "turn": 40
+    },
+    {
+      "game_id": 497195,
+      "turn": 79
+    },
+    {
+      "game_id": 497195,
+      "turn": 117
+    },
+    {
+      "game_id": 550972,
+      "turn": 40
+    },
+    {
+      "game_id": 550972,
+      "turn": 78
+    },
+    {
+      "game_id": 550972,
+      "turn": 116
+    },
+    {
+      "game_id": 617883,
+      "turn": 56
+    },
+    {
+      "game_id": 617883,
+      "turn": 111
+    },
+    {
+      "game_id": 617883,
+      "turn": 166
+    },
+    {
+      "game_id": 645077,
+      "turn": 32
+    },
+    {
+      "game_id": 645077,
+      "turn": 63
+    },
+    {
+      "game_id": 645077,
+      "turn": 94
+    }
+  ],
+  "new_canonical_Host_movement_or_combat_predictions": 0,
+  "phase": "actors",
+  "same_preexisting_public100_not_newly_collected_corpus": true,
+  "schema": "planets-lab.combat-c5-ruleaware-disjoint-batch.v22",
+  "source_db_generation": "generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "source_db_sha256": "3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c",
+  "source_v17_git_blob_sha1": "a6256b70dc63b9b7126a211245bc65ce20ece863",
+  "source_v20_git_blob_sha1": "3d5e1d5aeb6b0138c01bab3ec81185d0685233c0",
+  "status": "GAME_DISJOINT_TMINUS1_RULEAWARE_OBSERVATIONAL_NOT_ACTIVATION",
+  "summary": {
+    "Host_chunnel_activation_proven": false,
+    "Nplus1_VCR_used": false,
+    "T_cohort_endpoint_counts": {
+      "LONG_CONVENTIONAL_PASS": {
+        "T_ACTOR_AT_DISTINCT_TARGET": 36
+      },
+      "NON_DISCRIMINATIVE_COLOCATED": {
+        "NON_DISCRIMINATIVE_SOURCE_EQUALS_TARGET": 8
+      },
+      "OTHER_ONE_FAILED_TMINUS1_GATE": {
+        "T_ACTOR_AT_SOURCE": 11,
+        "T_ACTOR_ELSEWHERE": 2
+      }
+    },
+    "Tminus1_candidate_actor_edges": 57,
+    "Tminus1_cohorts": {
+      "LONG_CONVENTIONAL_PASS": 36,
+      "NON_DISCRIMINATIVE_COLOCATED": 8,
+      "OTHER_ONE_FAILED_TMINUS1_GATE": 13
+    },
+    "Tminus1_short_field_witness_candidates": 0,
+    "distinct_game_turn_clusters_by_cohort": {
+      "LONG_CONVENTIONAL_PASS": 19,
+      "NON_DISCRIMINATIVE_COLOCATED": 7,
+      "OTHER_ONE_FAILED_TMINUS1_GATE": 11
+    },
+    "new_canonical_Host_movement_or_combat_predictions": 0,
+    "posthost_compared_windows": 48,
+    "previous_research_game_overlap": 0,
+    "selected_games": 16,
+    "selected_windows": 48,
+    "short_field_witness_distinct_games": 0,
+    "short_field_witness_distinct_windows": 0,
+    "window_context_abstentions": 0
+  },
+  "window_errors": []
+}

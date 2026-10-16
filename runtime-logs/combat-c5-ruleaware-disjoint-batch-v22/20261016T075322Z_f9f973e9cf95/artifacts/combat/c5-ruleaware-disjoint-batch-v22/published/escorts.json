@@ -1,0 +1,6483 @@
+{
+  "Nplus1_VCR_used": false,
+  "actual_Chunnel_activation_proven": false,
+  "all_windows_Tminus1_frozen_before_any_T": true,
+  "episode_preselected_source_stacks": [
+    {
+      "T_members": [
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 10,
+          "T_owner_current_position": [
+            2725,
+            1301
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 160,
+          "Tminus1_hull_id": 39,
+          "Tminus1_warp": 9,
+          "owner_id": 4,
+          "same_owner": true,
+          "ship_id": 29,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2835,
+            1336
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 230,
+          "Tminus1_hull_id": 37,
+          "Tminus1_warp": 0,
+          "owner_id": 4,
+          "same_owner": true,
+          "ship_id": 167,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 26,
+          "T_owner_current_position": [
+            2725,
+            1301
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 276,
+          "Tminus1_hull_id": 37,
+          "Tminus1_warp": 9,
+          "owner_id": 4,
+          "same_owner": true,
+          "ship_id": 264,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2835,
+            1336
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 290,
+          "Tminus1_hull_id": 35,
+          "Tminus1_warp": 0,
+          "owner_id": 4,
+          "same_owner": true,
+          "ship_id": 288,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 50,
+          "T_owner_current_position": [
+            2835,
+            1336
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 100,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 0,
+          "owner_id": 4,
+          "same_owner": true,
+          "ship_id": 294,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2835,
+            1336
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 174,
+          "Tminus1_hull_id": 35,
+          "Tminus1_warp": 0,
+          "owner_id": 4,
+          "same_owner": true,
+          "ship_id": 302,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": -353,
+          "T_owner_current_position": [
+            2725,
+            1301
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 77,
+          "Tminus1_hull_id": 36,
+          "Tminus1_warp": 9,
+          "owner_id": 4,
+          "same_owner": true,
+          "ship_id": 441,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": -242,
+          "T_owner_current_position": [
+            2725,
+            1301
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 56,
+          "Tminus1_hull_id": 36,
+          "Tminus1_warp": 9,
+          "owner_id": 4,
+          "same_owner": true,
+          "ship_id": 547,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2835,
+            1336
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 290,
+          "Tminus1_hull_id": 35,
+          "Tminus1_warp": 0,
+          "owner_id": 4,
+          "same_owner": true,
+          "ship_id": 603,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2835,
+            1336
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 290,
+          "Tminus1_hull_id": 35,
+          "Tminus1_warp": 0,
+          "owner_id": 4,
+          "same_owner": true,
+          "ship_id": 617,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2835,
+            1336
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 290,
+          "Tminus1_hull_id": 35,
+          "Tminus1_warp": 0,
+          "owner_id": 4,
+          "same_owner": true,
+          "ship_id": 629,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2835,
+            1336
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 290,
+          "Tminus1_hull_id": 35,
+          "Tminus1_warp": 0,
+          "owner_id": 4,
+          "same_owner": true,
+          "ship_id": 636,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": null,
+          "T_net_fuel_loss_KT": null,
+          "T_owner_current_position": null,
+          "T_owner_current_status": "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE",
+          "Tminus1_fuel": 282,
+          "Tminus1_hull_id": 35,
+          "Tminus1_warp": 9,
+          "owner_id": 4,
+          "same_owner": true,
+          "ship_id": 665,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2835,
+            1336
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 290,
+          "Tminus1_hull_id": 35,
+          "Tminus1_warp": 0,
+          "owner_id": 4,
+          "same_owner": true,
+          "ship_id": 668,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": null,
+          "T_net_fuel_loss_KT": null,
+          "T_owner_current_position": null,
+          "T_owner_current_status": "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE",
+          "Tminus1_fuel": 290,
+          "Tminus1_hull_id": 35,
+          "Tminus1_warp": 9,
+          "owner_id": 4,
+          "same_owner": true,
+          "ship_id": 737,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": -108,
+          "T_owner_current_position": [
+            2725,
+            1301
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 182,
+          "Tminus1_hull_id": 35,
+          "Tminus1_warp": 9,
+          "owner_id": 4,
+          "same_owner": true,
+          "ship_id": 748,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 8,
+          "T_owner_current_position": [
+            2716,
+            1298
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 115,
+          "Tminus1_hull_id": 46,
+          "Tminus1_warp": 9,
+          "owner_id": 5,
+          "same_owner": false,
+          "ship_id": 751,
+          "true_Chunnel_passenger_proven": false
+        }
+      ],
+      "T_observed_colocated_not_independent_activation_proof": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_stack_size": 17,
+      "game_id": 224849,
+      "initiator_ship_id": 294,
+      "owner_id": 4,
+      "target": [
+        2835,
+        1336
+      ],
+      "target_ship_id": 352,
+      "turn": 149
+    },
+    {
+      "T_members": [
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 50,
+          "T_owner_current_position": [
+            2012,
+            2639
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 440,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 0,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 432,
+          "true_Chunnel_passenger_proven": false
+        }
+      ],
+      "T_observed_colocated_not_independent_activation_proof": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_stack_size": 1,
+      "game_id": 230354,
+      "initiator_ship_id": 432,
+      "owner_id": 6,
+      "target": [
+        2012,
+        2639
+      ],
+      "target_ship_id": 212,
+      "turn": 46
+    },
+    {
+      "T_members": [
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2012,
+            2639
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 10,
+          "Tminus1_hull_id": 16,
+          "Tminus1_warp": 0,
+          "owner_id": 10,
+          "same_owner": false,
+          "ship_id": 6,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 6,
+          "T_owner_current_position": [
+            1611,
+            2176
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 20,
+          "Tminus1_hull_id": 16,
+          "Tminus1_warp": 9,
+          "owner_id": 10,
+          "same_owner": false,
+          "ship_id": 17,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2012,
+            2639
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 10,
+          "Tminus1_hull_id": 8,
+          "Tminus1_warp": 0,
+          "owner_id": 2,
+          "same_owner": false,
+          "ship_id": 33,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1589,
+            2098
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 13,
+          "Tminus1_hull_id": 87,
+          "Tminus1_warp": 9,
+          "owner_id": 10,
+          "same_owner": false,
+          "ship_id": 99,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2012,
+            2639
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 27,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 0,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 139,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": -48,
+          "T_owner_current_position": [
+            1537,
+            2136
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 50,
+          "Tminus1_hull_id": 17,
+          "Tminus1_warp": 9,
+          "owner_id": 10,
+          "same_owner": false,
+          "ship_id": 149,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 50,
+          "T_owner_current_position": [
+            2012,
+            2639
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 50,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 0,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 212,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1589,
+            2098
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 61,
+          "Tminus1_hull_id": 92,
+          "Tminus1_warp": 9,
+          "owner_id": 10,
+          "same_owner": false,
+          "ship_id": 227,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1589,
+            2098
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 11,
+          "Tminus1_hull_id": 86,
+          "Tminus1_warp": 9,
+          "owner_id": 10,
+          "same_owner": false,
+          "ship_id": 321,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2012,
+            2639
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 3,
+          "Tminus1_hull_id": 103,
+          "Tminus1_warp": 0,
+          "owner_id": 10,
+          "same_owner": false,
+          "ship_id": 472,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2012,
+            2639
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 34,
+          "Tminus1_hull_id": 92,
+          "Tminus1_warp": 0,
+          "owner_id": 10,
+          "same_owner": false,
+          "ship_id": 483,
+          "true_Chunnel_passenger_proven": false
+        }
+      ],
+      "T_observed_colocated_not_independent_activation_proof": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_stack_size": 11,
+      "game_id": 230354,
+      "initiator_ship_id": 212,
+      "owner_id": 6,
+      "target": [
+        2012,
+        2639
+      ],
+      "target_ship_id": 157,
+      "turn": 90
+    },
+    {
+      "T_members": [
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 50,
+          "T_owner_current_position": [
+            2050,
+            2288
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 332,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 0,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 139,
+          "true_Chunnel_passenger_proven": false
+        }
+      ],
+      "T_observed_colocated_not_independent_activation_proof": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_stack_size": 1,
+      "game_id": 230354,
+      "initiator_ship_id": 139,
+      "owner_id": 6,
+      "target": [
+        2050,
+        2288
+      ],
+      "target_ship_id": 336,
+      "turn": 134
+    },
+    {
+      "T_members": [
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 9,
+          "T_owner_current_position": [
+            2431,
+            2182
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 145,
+          "Tminus1_hull_id": 16,
+          "Tminus1_warp": 9,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 2,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            3025,
+            2071
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 89,
+          "Tminus1_hull_id": 17,
+          "Tminus1_warp": 9,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 27,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2477,
+            2215
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 29,
+          "Tminus1_hull_id": 51,
+          "Tminus1_warp": 7,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 153,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            3025,
+            2071
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 0,
+          "Tminus1_hull_id": 105,
+          "Tminus1_warp": 0,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 170,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            3025,
+            2071
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 83,
+          "Tminus1_hull_id": 7,
+          "Tminus1_warp": 9,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 175,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 3,
+          "T_owner_current_position": [
+            2477,
+            2215
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 400,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 7,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 400,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            3025,
+            2071
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 0,
+          "Tminus1_hull_id": 18,
+          "Tminus1_warp": 0,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 434,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 50,
+          "T_owner_current_position": [
+            3025,
+            2071
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 291,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 0,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 462,
+          "true_Chunnel_passenger_proven": false
+        }
+      ],
+      "T_observed_colocated_not_independent_activation_proof": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_stack_size": 8,
+      "game_id": 256858,
+      "initiator_ship_id": 462,
+      "owner_id": 6,
+      "target": [
+        3025,
+        2071
+      ],
+      "target_ship_id": 75,
+      "turn": 85
+    },
+    {
+      "T_members": [
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 50,
+          "T_owner_current_position": [
+            2468,
+            2214
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 175,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 0,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 21,
+          "true_Chunnel_passenger_proven": false
+        }
+      ],
+      "T_observed_colocated_not_independent_activation_proof": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_stack_size": 1,
+      "game_id": 256858,
+      "initiator_ship_id": 21,
+      "owner_id": 6,
+      "target": [
+        2468,
+        2214
+      ],
+      "target_ship_id": 260,
+      "turn": 169
+    },
+    {
+      "T_members": [
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": -20,
+          "T_owner_current_position": [
+            2427,
+            2551
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 45,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 9,
+          "owner_id": 1,
+          "same_owner": true,
+          "ship_id": 97,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 50,
+          "T_owner_current_position": [
+            1592,
+            2844
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 55,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 0,
+          "owner_id": 1,
+          "same_owner": true,
+          "ship_id": 98,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1592,
+            2844
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 143,
+          "Tminus1_hull_id": 12,
+          "Tminus1_warp": 9,
+          "owner_id": 1,
+          "same_owner": true,
+          "ship_id": 151,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1592,
+            2844
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1260,
+          "Tminus1_hull_id": 53,
+          "Tminus1_warp": 0,
+          "owner_id": 6,
+          "same_owner": false,
+          "ship_id": 216,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1592,
+            2844
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1260,
+          "Tminus1_hull_id": 53,
+          "Tminus1_warp": 0,
+          "owner_id": 6,
+          "same_owner": false,
+          "ship_id": 299,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1592,
+            2844
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1260,
+          "Tminus1_hull_id": 53,
+          "Tminus1_warp": 0,
+          "owner_id": 6,
+          "same_owner": false,
+          "ship_id": 339,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1592,
+            2844
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 86,
+          "Tminus1_hull_id": 19,
+          "Tminus1_warp": 9,
+          "owner_id": 1,
+          "same_owner": true,
+          "ship_id": 398,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1592,
+            2844
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 239,
+          "Tminus1_hull_id": 19,
+          "Tminus1_warp": 9,
+          "owner_id": 1,
+          "same_owner": true,
+          "ship_id": 436,
+          "true_Chunnel_passenger_proven": false
+        }
+      ],
+      "T_observed_colocated_not_independent_activation_proof": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_stack_size": 8,
+      "game_id": 256858,
+      "initiator_ship_id": 98,
+      "owner_id": 1,
+      "target": [
+        1592,
+        2844
+      ],
+      "target_ship_id": 230,
+      "turn": 169
+    },
+    {
+      "T_members": [
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 21,
+          "T_owner_current_position": [
+            2758,
+            1907
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 21,
+          "Tminus1_hull_id": 16,
+          "Tminus1_warp": 9,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 2,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 189,
+          "T_owner_current_position": [
+            2758,
+            1907
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 189,
+          "Tminus1_hull_id": 17,
+          "Tminus1_warp": 9,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 27,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 9,
+          "T_owner_current_position": [
+            2468,
+            2214
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 38,
+          "Tminus1_hull_id": 51,
+          "Tminus1_warp": 7,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 120,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 1,
+          "T_owner_current_position": [
+            2468,
+            2214
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 44,
+          "Tminus1_hull_id": 51,
+          "Tminus1_warp": 7,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 127,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 2,
+          "T_owner_current_position": [
+            2468,
+            2214
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 75,
+          "Tminus1_hull_id": 51,
+          "Tminus1_warp": 7,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 153,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2758,
+            1907
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 0,
+          "Tminus1_hull_id": 105,
+          "Tminus1_warp": 0,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 170,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2758,
+            1907
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 0,
+          "Tminus1_hull_id": 17,
+          "Tminus1_warp": 7,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 188,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 17,
+          "T_owner_current_position": [
+            3016,
+            2039
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 346,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 9,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 244,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2758,
+            1907
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 0,
+          "Tminus1_hull_id": 18,
+          "Tminus1_warp": 0,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 266,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 256,
+          "T_owner_current_position": [
+            2758,
+            1907
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 306,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 0,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 359,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2758,
+            1907
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 0,
+          "Tminus1_hull_id": 18,
+          "Tminus1_warp": 0,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 434,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2758,
+            1907
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 0,
+          "Tminus1_hull_id": 17,
+          "Tminus1_warp": 0,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 435,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 6,
+          "T_owner_current_position": [
+            2758,
+            1907
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 6,
+          "Tminus1_hull_id": 16,
+          "Tminus1_warp": 1,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 493,
+          "true_Chunnel_passenger_proven": false
+        }
+      ],
+      "T_observed_colocated_not_independent_activation_proof": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_stack_size": 13,
+      "game_id": 256858,
+      "initiator_ship_id": 359,
+      "owner_id": 6,
+      "target": [
+        2758,
+        1907
+      ],
+      "target_ship_id": 224,
+      "turn": 169
+    },
+    {
+      "T_members": [
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 50,
+          "T_owner_current_position": [
+            2468,
+            2214
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 425,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 0,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 385,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2468,
+            2214
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 330,
+          "Tminus1_hull_id": 22,
+          "Tminus1_warp": 9,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 406,
+          "true_Chunnel_passenger_proven": false
+        }
+      ],
+      "T_observed_colocated_not_independent_activation_proof": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_stack_size": 2,
+      "game_id": 256858,
+      "initiator_ship_id": 385,
+      "owner_id": 6,
+      "target": [
+        2468,
+        2214
+      ],
+      "target_ship_id": 260,
+      "turn": 169
+    },
+    {
+      "T_members": [
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 272,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 400,
+          "Tminus1_hull_id": 63,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 25,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 290,
+          "Tminus1_hull_id": 67,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 34,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 600,
+          "Tminus1_hull_id": 17,
+          "Tminus1_warp": 0,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 41,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 250,
+          "Tminus1_hull_id": 16,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 51,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 290,
+          "Tminus1_hull_id": 67,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 53,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 600,
+          "Tminus1_hull_id": 17,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 54,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 290,
+          "Tminus1_hull_id": 67,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 56,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 200,
+          "Tminus1_hull_id": 15,
+          "Tminus1_warp": 5,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 61,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 250,
+          "Tminus1_hull_id": 16,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 62,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 250,
+          "Tminus1_hull_id": 16,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 67,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 400,
+          "Tminus1_hull_id": 63,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 69,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 80,
+          "Tminus1_hull_id": 51,
+          "Tminus1_warp": 5,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 84,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": -10,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 0,
+          "Tminus1_hull_id": 16,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 86,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 55,
+          "Tminus1_hull_id": 66,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 87,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 250,
+          "Tminus1_hull_id": 16,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 88,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 55,
+          "T_owner_current_position": [
+            2499,
+            1712
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 285,
+          "Tminus1_hull_id": 46,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 96,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 400,
+          "Tminus1_hull_id": 63,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 102,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 200,
+          "Tminus1_hull_id": 15,
+          "Tminus1_warp": 5,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 103,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 250,
+          "Tminus1_hull_id": 16,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 106,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 290,
+          "Tminus1_hull_id": 67,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 111,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 46,
+          "T_owner_current_position": [
+            2617,
+            1780
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 390,
+          "Tminus1_hull_id": 60,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 113,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 390,
+          "Tminus1_hull_id": 60,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 125,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 250,
+          "Tminus1_hull_id": 16,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 132,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 250,
+          "Tminus1_hull_id": 16,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 141,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 390,
+          "Tminus1_hull_id": 60,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 143,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 135,
+          "T_owner_current_position": [
+            2657,
+            1764
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 400,
+          "Tminus1_hull_id": 63,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 152,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 84,
+          "T_owner_current_position": [
+            2634,
+            1762
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 400,
+          "Tminus1_hull_id": 63,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 163,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 250,
+          "Tminus1_hull_id": 16,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 167,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 250,
+          "Tminus1_hull_id": 16,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 191,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": -44,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 206,
+          "Tminus1_hull_id": 16,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 196,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 55,
+          "Tminus1_hull_id": 66,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 209,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 250,
+          "Tminus1_hull_id": 16,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 211,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 150,
+          "Tminus1_hull_id": 64,
+          "Tminus1_warp": 0,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 217,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 250,
+          "Tminus1_hull_id": 16,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 222,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": -399,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1,
+          "Tminus1_hull_id": 63,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 226,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 400,
+          "Tminus1_hull_id": 63,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 233,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 250,
+          "Tminus1_hull_id": 16,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 236,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 250,
+          "Tminus1_hull_id": 16,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 242,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2654,
+            1776
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 400,
+          "Tminus1_hull_id": 63,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 249,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 164,
+          "T_owner_current_position": [
+            2654,
+            1776
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 400,
+          "Tminus1_hull_id": 63,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 258,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 250,
+          "Tminus1_hull_id": 16,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 259,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 40,
+          "Tminus1_hull_id": 16,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 262,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 5,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 285,
+          "Tminus1_hull_id": 46,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 265,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 440,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 0,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 289,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 150,
+          "Tminus1_hull_id": 64,
+          "Tminus1_warp": 0,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 297,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 280,
+          "Tminus1_hull_id": 19,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 306,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 250,
+          "Tminus1_hull_id": 16,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 311,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2657,
+            1764
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 480,
+          "Tminus1_hull_id": 31,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 314,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 250,
+          "Tminus1_hull_id": 16,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 322,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1110,
+          "Tminus1_hull_id": 94,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 327,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 10,
+          "T_owner_current_position": [
+            2601,
+            1747
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 180,
+          "Tminus1_hull_id": 69,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 354,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": -262,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 28,
+          "Tminus1_hull_id": 67,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 389,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 250,
+          "Tminus1_hull_id": 16,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 403,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 290,
+          "Tminus1_hull_id": 67,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 418,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": -143,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 0,
+          "Tminus1_hull_id": 16,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 422,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 450,
+          "Tminus1_hull_id": 105,
+          "Tminus1_warp": 0,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 426,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1200,
+          "Tminus1_hull_id": 18,
+          "Tminus1_warp": 5,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 430,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1200,
+          "Tminus1_hull_id": 18,
+          "Tminus1_warp": 0,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 450,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1,
+          "Tminus1_hull_id": 104,
+          "Tminus1_warp": 0,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 457,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 450,
+          "Tminus1_hull_id": 105,
+          "Tminus1_warp": 0,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 482,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2934,
+            2188
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1200,
+          "Tminus1_hull_id": 18,
+          "Tminus1_warp": 0,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 489,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2499,
+            1712
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 390,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 0,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 504,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 247,
+          "T_owner_current_position": [
+            2654,
+            1776
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1760,
+          "Tminus1_hull_id": 70,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 535,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2634,
+            1762
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 227,
+          "Tminus1_hull_id": 46,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 553,
+          "true_Chunnel_passenger_proven": false
+        }
+      ],
+      "T_observed_colocated_not_independent_activation_proof": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_stack_size": 64,
+      "game_id": 256858,
+      "initiator_ship_id": 289,
+      "owner_id": 7,
+      "target": [
+        2934,
+        2188
+      ],
+      "target_ship_id": 287,
+      "turn": 253
+    },
+    {
+      "T_members": [
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2185,
+            2199
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 1,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 286,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 50,
+          "T_owner_current_position": [
+            2293,
+            2819
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 100,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 0,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 301,
+          "true_Chunnel_passenger_proven": false
+        }
+      ],
+      "T_observed_colocated_not_independent_activation_proof": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_stack_size": 2,
+      "game_id": 281994,
+      "initiator_ship_id": 301,
+      "owner_id": 6,
+      "target": [
+        2293,
+        2819
+      ],
+      "target_ship_id": 67,
+      "turn": 33
+    },
+    {
+      "T_members": [
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": -72,
+          "T_owner_current_position": [
+            1905,
+            2403
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 6,
+          "Tminus1_hull_id": 17,
+          "Tminus1_warp": 0,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 153,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 3,
+          "T_owner_current_position": [
+            2192,
+            2120
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 6,
+          "Tminus1_hull_id": 51,
+          "Tminus1_warp": 9,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 277,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1905,
+            2403
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 8,
+          "Tminus1_hull_id": 105,
+          "Tminus1_warp": 0,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 295,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": -90,
+          "T_owner_current_position": [
+            1905,
+            2403
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 8,
+          "Tminus1_hull_id": 46,
+          "Tminus1_warp": 0,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 375,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 303,
+          "T_owner_current_position": [
+            1905,
+            2403
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 304,
+          "Tminus1_hull_id": 14,
+          "Tminus1_warp": 0,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 387,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1905,
+            2403
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1,
+          "Tminus1_hull_id": 42,
+          "Tminus1_warp": 0,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 396,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": -30,
+          "T_owner_current_position": [
+            1905,
+            2403
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1,
+          "Tminus1_hull_id": 46,
+          "Tminus1_warp": 0,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 441,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": -50,
+          "T_owner_current_position": [
+            1905,
+            2403
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 286,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 0,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 572,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1905,
+            2403
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 249,
+          "Tminus1_hull_id": 16,
+          "Tminus1_warp": 0,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 601,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1905,
+            2403
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 10,
+          "Tminus1_hull_id": 16,
+          "Tminus1_warp": 0,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 607,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": -90,
+          "T_owner_current_position": [
+            1905,
+            2403
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 10,
+          "Tminus1_hull_id": 46,
+          "Tminus1_warp": 0,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 637,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1905,
+            2403
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1,
+          "Tminus1_hull_id": 42,
+          "Tminus1_warp": 0,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 726,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1905,
+            2403
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1,
+          "Tminus1_hull_id": 42,
+          "Tminus1_warp": 0,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 749,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": -100,
+          "T_owner_current_position": [
+            1905,
+            2403
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 10,
+          "Tminus1_hull_id": 46,
+          "Tminus1_warp": 0,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 768,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": -30,
+          "T_owner_current_position": [
+            1905,
+            2403
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 72,
+          "Tminus1_hull_id": 46,
+          "Tminus1_warp": 0,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 774,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1905,
+            2403
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 85,
+          "Tminus1_hull_id": 47,
+          "Tminus1_warp": 0,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 782,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": -100,
+          "T_owner_current_position": [
+            1905,
+            2403
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 13,
+          "Tminus1_hull_id": 46,
+          "Tminus1_warp": 0,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 783,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1905,
+            2403
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1,
+          "Tminus1_hull_id": 42,
+          "Tminus1_warp": 0,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 785,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": -100,
+          "T_owner_current_position": [
+            1905,
+            2403
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 38,
+          "Tminus1_hull_id": 46,
+          "Tminus1_warp": 0,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 811,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1905,
+            2403
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1,
+          "Tminus1_hull_id": 42,
+          "Tminus1_warp": 0,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 816,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1905,
+            2403
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1,
+          "Tminus1_hull_id": 42,
+          "Tminus1_warp": 0,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 838,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1905,
+            2403
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1,
+          "Tminus1_hull_id": 42,
+          "Tminus1_warp": 0,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 856,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1905,
+            2403
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 229,
+          "Tminus1_hull_id": 46,
+          "Tminus1_warp": 0,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 916,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 7,
+          "T_owner_current_position": [
+            2192,
+            2120
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 34,
+          "Tminus1_hull_id": 46,
+          "Tminus1_warp": 9,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 923,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1905,
+            2403
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1,
+          "Tminus1_hull_id": 42,
+          "Tminus1_warp": 0,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 955,
+          "true_Chunnel_passenger_proven": false
+        }
+      ],
+      "T_observed_colocated_not_independent_activation_proof": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_stack_size": 25,
+      "game_id": 281994,
+      "initiator_ship_id": 572,
+      "owner_id": 5,
+      "target": [
+        1905,
+        2403
+      ],
+      "target_ship_id": 696,
+      "turn": 95
+    },
+    {
+      "T_members": [
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": -89,
+          "T_owner_current_position": [
+            2660,
+            2305
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 11,
+          "Tminus1_hull_id": 17,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 17,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1840,
+            1892
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1,
+          "Tminus1_hull_id": 17,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 28,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1840,
+            1892
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1,
+          "Tminus1_hull_id": 17,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 39,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1840,
+            1892
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1,
+          "Tminus1_hull_id": 106,
+          "Tminus1_warp": 0,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 197,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 13,
+          "T_owner_current_position": [
+            2673,
+            2431
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 102,
+          "Tminus1_hull_id": 17,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 251,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1840,
+            1892
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 55,
+          "Tminus1_hull_id": 27,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 283,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1840,
+            1892
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 58,
+          "Tminus1_hull_id": 106,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 384,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1840,
+            1892
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 50,
+          "Tminus1_hull_id": 106,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 448,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1840,
+            1892
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1,
+          "Tminus1_hull_id": 105,
+          "Tminus1_warp": 0,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 520,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1840,
+            1892
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 12,
+          "Tminus1_hull_id": 8,
+          "Tminus1_warp": 0,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 535,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 50,
+          "T_owner_current_position": [
+            1840,
+            1892
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 55,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 0,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 586,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1840,
+            1892
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1,
+          "Tminus1_hull_id": 59,
+          "Tminus1_warp": 0,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 587,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1840,
+            1892
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 0,
+          "Tminus1_hull_id": 97,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 591,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1840,
+            1892
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 60,
+          "Tminus1_hull_id": 27,
+          "Tminus1_warp": 0,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 662,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": -15,
+          "T_owner_current_position": [
+            1840,
+            1892
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 2,
+          "Tminus1_hull_id": 17,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 679,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": -15,
+          "T_owner_current_position": [
+            2660,
+            2305
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 10,
+          "Tminus1_hull_id": 97,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 701,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 28,
+          "T_owner_current_position": [
+            2769,
+            2302
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 187,
+          "Tminus1_hull_id": 46,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 754,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1840,
+            1892
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 112,
+          "Tminus1_hull_id": 31,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 759,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 101,
+          "T_owner_current_position": [
+            1840,
+            1892
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 119,
+          "Tminus1_hull_id": 31,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 817,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1840,
+            1892
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1,
+          "Tminus1_hull_id": 59,
+          "Tminus1_warp": 0,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 839,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 14,
+          "T_owner_current_position": [
+            2597,
+            2320
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 110,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 893,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 11,
+          "T_owner_current_position": [
+            2632,
+            2324
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 12,
+          "Tminus1_hull_id": 2038,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 904,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1840,
+            1892
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 0,
+          "Tminus1_hull_id": 97,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 938,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1840,
+            1892
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 99,
+          "Tminus1_hull_id": 7,
+          "Tminus1_warp": 0,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 1057,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1840,
+            1892
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 26,
+          "Tminus1_hull_id": 7,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 1117,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1840,
+            1892
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 44,
+          "Tminus1_hull_id": 1047,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 1152,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1840,
+            1892
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 216,
+          "Tminus1_hull_id": 29,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 1209,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1840,
+            1892
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 53,
+          "Tminus1_hull_id": 7,
+          "Tminus1_warp": 0,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 1350,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1840,
+            1892
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 124,
+          "Tminus1_hull_id": 31,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 1414,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1840,
+            1892
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 40,
+          "Tminus1_hull_id": 1047,
+          "Tminus1_warp": 0,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 1490,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1840,
+            1892
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 56,
+          "Tminus1_hull_id": 27,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 1505,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1840,
+            1892
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1,
+          "Tminus1_hull_id": 15,
+          "Tminus1_warp": 0,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 1689,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1840,
+            1892
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 50,
+          "Tminus1_hull_id": 1047,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 1838,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1840,
+            1892
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 205,
+          "Tminus1_hull_id": 29,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 1848,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1840,
+            1892
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 44,
+          "Tminus1_hull_id": 18,
+          "Tminus1_warp": 0,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 1851,
+          "true_Chunnel_passenger_proven": false
+        }
+      ],
+      "T_observed_colocated_not_independent_activation_proof": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_stack_size": 35,
+      "game_id": 347236,
+      "initiator_ship_id": 586,
+      "owner_id": 3,
+      "target": [
+        1840,
+        1892
+      ],
+      "target_ship_id": 874,
+      "turn": 104
+    },
+    {
+      "T_members": [
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 8,
+          "T_owner_current_position": [
+            1515,
+            2250
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 23,
+          "Tminus1_hull_id": 27,
+          "Tminus1_warp": 7,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 107,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 46,
+          "T_owner_current_position": [
+            1509,
+            2240
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 202,
+          "Tminus1_hull_id": 29,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 215,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 6,
+          "T_owner_current_position": [
+            1509,
+            2240
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 25,
+          "Tminus1_hull_id": 1047,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 281,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 30,
+          "T_owner_current_position": [
+            1509,
+            2240
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 276,
+          "Tminus1_hull_id": 31,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 349,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 6,
+          "T_owner_current_position": [
+            1509,
+            2240
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 26,
+          "Tminus1_hull_id": 1047,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 393,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 6,
+          "T_owner_current_position": [
+            1509,
+            2240
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 29,
+          "Tminus1_hull_id": 1047,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 491,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 50,
+          "T_owner_current_position": [
+            1290,
+            2523
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 154,
+          "Tminus1_hull_id": 77,
+          "Tminus1_warp": 7,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 500,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": -163,
+          "T_owner_current_position": [
+            1524,
+            2233
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 7,
+          "Tminus1_hull_id": 27,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 566,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 50,
+          "T_owner_current_position": [
+            2461,
+            2356
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 153,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 0,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 600,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 54,
+          "T_owner_current_position": [
+            1509,
+            2240
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 235,
+          "Tminus1_hull_id": 29,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 649,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 24,
+          "T_owner_current_position": [
+            1618,
+            2326
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 39,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 850,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": -289,
+          "T_owner_current_position": [
+            2461,
+            2356
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1,
+          "Tminus1_hull_id": 29,
+          "Tminus1_warp": 0,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 1010,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 16,
+          "T_owner_current_position": [
+            1509,
+            2240
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 52,
+          "Tminus1_hull_id": 31,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 1153,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 4,
+          "T_owner_current_position": [
+            1509,
+            2240
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 10,
+          "Tminus1_hull_id": 1047,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 1389,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": -1759,
+          "T_owner_current_position": [
+            2461,
+            2356
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1,
+          "Tminus1_hull_id": 70,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 1456,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 1,
+          "T_owner_current_position": [
+            1487,
+            2265
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 10,
+          "Tminus1_hull_id": 27,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 1494,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 43,
+          "T_owner_current_position": [
+            1509,
+            2240
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 100,
+          "Tminus1_hull_id": 29,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 1695,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 7,
+          "T_owner_current_position": [
+            1515,
+            2250
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 27,
+          "Tminus1_hull_id": 27,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 1735,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 42,
+          "T_owner_current_position": [
+            1509,
+            2240
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 106,
+          "Tminus1_hull_id": 29,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 1773,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 15,
+          "T_owner_current_position": [
+            1509,
+            2240
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 51,
+          "Tminus1_hull_id": 3033,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 1776,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 5,
+          "T_owner_current_position": [
+            1509,
+            2240
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 13,
+          "Tminus1_hull_id": 1047,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 1813,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 43,
+          "T_owner_current_position": [
+            1509,
+            2240
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 100,
+          "Tminus1_hull_id": 29,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 1818,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 8,
+          "T_owner_current_position": [
+            1509,
+            2240
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 18,
+          "Tminus1_hull_id": 27,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 1832,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 4,
+          "T_owner_current_position": [
+            1509,
+            2240
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 11,
+          "Tminus1_hull_id": 1047,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 1834,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": -160,
+          "T_owner_current_position": [
+            1524,
+            2233
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 10,
+          "Tminus1_hull_id": 27,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 1846,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": -31,
+          "T_owner_current_position": [
+            1524,
+            2233
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 10,
+          "Tminus1_hull_id": 27,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 1877,
+          "true_Chunnel_passenger_proven": false
+        }
+      ],
+      "T_observed_colocated_not_independent_activation_proof": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_stack_size": 26,
+      "game_id": 347236,
+      "initiator_ship_id": 600,
+      "owner_id": 3,
+      "target": [
+        2461,
+        2356
+      ],
+      "target_ship_id": 1671,
+      "turn": 104
+    },
+    {
+      "T_members": [
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 50,
+          "T_owner_current_position": [
+            1375,
+            2779
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 111,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 0,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 1016,
+          "true_Chunnel_passenger_proven": false
+        }
+      ],
+      "T_observed_colocated_not_independent_activation_proof": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_stack_size": 1,
+      "game_id": 347236,
+      "initiator_ship_id": 1016,
+      "owner_id": 6,
+      "target": [
+        1375,
+        2779
+      ],
+      "target_ship_id": 658,
+      "turn": 104
+    },
+    {
+      "T_members": [
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 50,
+          "T_owner_current_position": [
+            2345,
+            2695
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 301,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 0,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 1150,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2345,
+            2695
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 11,
+          "Tminus1_hull_id": 18,
+          "Tminus1_warp": 1,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 1419,
+          "true_Chunnel_passenger_proven": false
+        }
+      ],
+      "T_observed_colocated_not_independent_activation_proof": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_stack_size": 2,
+      "game_id": 347236,
+      "initiator_ship_id": 1150,
+      "owner_id": 6,
+      "target": [
+        2345,
+        2695
+      ],
+      "target_ship_id": 664,
+      "turn": 104
+    },
+    {
+      "T_members": [
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1572,
+            2935
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1,
+          "Tminus1_hull_id": 18,
+          "Tminus1_warp": 9,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 307,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1572,
+            2935
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1,
+          "Tminus1_hull_id": 18,
+          "Tminus1_warp": 0,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 374,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1572,
+            2935
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 2,
+          "Tminus1_hull_id": 18,
+          "Tminus1_warp": 9,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 436,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1572,
+            2935
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1,
+          "Tminus1_hull_id": 18,
+          "Tminus1_warp": 9,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 560,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1747,
+            2780
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 80,
+          "Tminus1_hull_id": 51,
+          "Tminus1_warp": 1,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 610,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1572,
+            2935
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1,
+          "Tminus1_hull_id": 18,
+          "Tminus1_warp": 0,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 1564,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1572,
+            2935
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1,
+          "Tminus1_hull_id": 18,
+          "Tminus1_warp": 0,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 1610,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 50,
+          "T_owner_current_position": [
+            1572,
+            2935
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 102,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 0,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 1775,
+          "true_Chunnel_passenger_proven": false
+        }
+      ],
+      "T_observed_colocated_not_independent_activation_proof": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_stack_size": 8,
+      "game_id": 347236,
+      "initiator_ship_id": 1775,
+      "owner_id": 6,
+      "target": [
+        1572,
+        2935
+      ],
+      "target_ship_id": 1488,
+      "turn": 104
+    },
+    {
+      "T_members": [
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 447,
+          "T_owner_current_position": [
+            1375,
+            2779
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 449,
+          "Tminus1_hull_id": 105,
+          "Tminus1_warp": 1,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 1206,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 1164,
+          "T_owner_current_position": [
+            1375,
+            2779
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1258,
+          "Tminus1_hull_id": 52,
+          "Tminus1_warp": 1,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 1306,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 288,
+          "T_owner_current_position": [
+            1375,
+            2779
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 440,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 0,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 1863,
+          "true_Chunnel_passenger_proven": false
+        }
+      ],
+      "T_observed_colocated_not_independent_activation_proof": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_stack_size": 3,
+      "game_id": 347236,
+      "initiator_ship_id": 1863,
+      "owner_id": 6,
+      "target": [
+        1375,
+        2779
+      ],
+      "target_ship_id": 658,
+      "turn": 104
+    },
+    {
+      "T_members": [
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 50,
+          "T_owner_current_position": [
+            1573,
+            2701
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 213,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 0,
+          "owner_id": 10,
+          "same_owner": true,
+          "ship_id": 751,
+          "true_Chunnel_passenger_proven": false
+        }
+      ],
+      "T_observed_colocated_not_independent_activation_proof": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_stack_size": 1,
+      "game_id": 425973,
+      "initiator_ship_id": 751,
+      "owner_id": 10,
+      "target": [
+        1573,
+        2701
+      ],
+      "target_ship_id": 455,
+      "turn": 105
+    },
+    {
+      "T_members": [
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 20,
+          "T_owner_current_position": [
+            2511,
+            2503
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 100,
+          "Tminus1_hull_id": 63,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 91,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2511,
+            2503
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1,
+          "Tminus1_hull_id": 55,
+          "Tminus1_warp": 0,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 207,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 10,
+          "T_owner_current_position": [
+            2486,
+            2448
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 74,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 208,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 50,
+          "T_owner_current_position": [
+            2740,
+            2069
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 50,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 0,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 271,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2486,
+            2448
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 4,
+          "Tminus1_hull_id": 54,
+          "Tminus1_warp": 0,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 294,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2515,
+            2478
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 17,
+          "Tminus1_hull_id": 63,
+          "Tminus1_warp": 1,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 418,
+          "true_Chunnel_passenger_proven": false
+        }
+      ],
+      "T_observed_colocated_not_independent_activation_proof": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_stack_size": 6,
+      "game_id": 467183,
+      "initiator_ship_id": 271,
+      "owner_id": 7,
+      "target": [
+        2740,
+        2069
+      ],
+      "target_ship_id": 63,
+      "turn": 40
+    },
+    {
+      "T_members": [
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 50,
+          "T_owner_current_position": [
+            2343,
+            1217
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 324,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 0,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 314,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2343,
+            1217
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 82,
+          "Tminus1_hull_id": 52,
+          "Tminus1_warp": 0,
+          "owner_id": 6,
+          "same_owner": false,
+          "ship_id": 462,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2343,
+            1217
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 87,
+          "Tminus1_hull_id": 31,
+          "Tminus1_warp": 9,
+          "owner_id": 6,
+          "same_owner": false,
+          "ship_id": 524,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2343,
+            1217
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 53,
+          "Tminus1_hull_id": 53,
+          "Tminus1_warp": 0,
+          "owner_id": 6,
+          "same_owner": false,
+          "ship_id": 729,
+          "true_Chunnel_passenger_proven": false
+        }
+      ],
+      "T_observed_colocated_not_independent_activation_proof": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_stack_size": 4,
+      "game_id": 467183,
+      "initiator_ship_id": 314,
+      "owner_id": 3,
+      "target": [
+        2343,
+        1217
+      ],
+      "target_ship_id": 231,
+      "turn": 116
+    },
+    {
+      "T_members": [
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 4,
+          "T_owner_current_position": [
+            2677,
+            1817
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 67,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 9,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 208,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": -68,
+          "T_owner_current_position": [
+            2376,
+            2427
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 136,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 0,
+          "owner_id": 7,
+          "same_owner": true,
+          "ship_id": 372,
+          "true_Chunnel_passenger_proven": false
+        }
+      ],
+      "T_observed_colocated_not_independent_activation_proof": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_stack_size": 2,
+      "game_id": 467183,
+      "initiator_ship_id": 372,
+      "owner_id": 7,
+      "target": [
+        2376,
+        2427
+      ],
+      "target_ship_id": 460,
+      "turn": 116
+    },
+    {
+      "T_members": [
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 50,
+          "T_owner_current_position": [
+            1726,
+            2952
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 440,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 0,
+          "owner_id": 9,
+          "same_owner": true,
+          "ship_id": 637,
+          "true_Chunnel_passenger_proven": false
+        }
+      ],
+      "T_observed_colocated_not_independent_activation_proof": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_stack_size": 1,
+      "game_id": 467183,
+      "initiator_ship_id": 637,
+      "owner_id": 9,
+      "target": [
+        1726,
+        2952
+      ],
+      "target_ship_id": 95,
+      "turn": 116
+    },
+    {
+      "T_members": [
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 50,
+          "T_owner_current_position": [
+            1364,
+            2638
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 200,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 0,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 302,
+          "true_Chunnel_passenger_proven": false
+        }
+      ],
+      "T_observed_colocated_not_independent_activation_proof": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_stack_size": 1,
+      "game_id": 494635,
+      "initiator_ship_id": 302,
+      "owner_id": 6,
+      "target": [
+        1364,
+        2638
+      ],
+      "target_ship_id": 336,
+      "turn": 31
+    },
+    {
+      "T_members": [
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 2,
+          "T_owner_current_position": [
+            2612,
+            2612
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 58,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 7,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 145,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": -56,
+          "T_owner_current_position": [
+            2610,
+            2638
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1204,
+          "Tminus1_hull_id": 52,
+          "Tminus1_warp": 9,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 177,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": -50,
+          "T_owner_current_position": [
+            2037,
+            1858
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 50,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 0,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 268,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": null,
+          "T_net_fuel_loss_KT": null,
+          "T_owner_current_position": null,
+          "T_owner_current_status": "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE",
+          "Tminus1_fuel": 110,
+          "Tminus1_hull_id": 1055,
+          "Tminus1_warp": 5,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 444,
+          "true_Chunnel_passenger_proven": false
+        }
+      ],
+      "T_observed_colocated_not_independent_activation_proof": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_stack_size": 4,
+      "game_id": 494635,
+      "initiator_ship_id": 268,
+      "owner_id": 6,
+      "target": [
+        2037,
+        1858
+      ],
+      "target_ship_id": 412,
+      "turn": 91
+    },
+    {
+      "T_members": [
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2168,
+            2218
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 90,
+          "Tminus1_hull_id": 1089,
+          "Tminus1_warp": 0,
+          "owner_id": 2,
+          "same_owner": false,
+          "ship_id": 157,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 50,
+          "T_owner_current_position": [
+            2168,
+            2218
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 102,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 0,
+          "owner_id": 1,
+          "same_owner": true,
+          "ship_id": 760,
+          "true_Chunnel_passenger_proven": false
+        }
+      ],
+      "T_observed_colocated_not_independent_activation_proof": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_stack_size": 2,
+      "game_id": 550972,
+      "initiator_ship_id": 760,
+      "owner_id": 1,
+      "target": [
+        2168,
+        2218
+      ],
+      "target_ship_id": 438,
+      "turn": 78
+    },
+    {
+      "T_members": [
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1959,
+            1631
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 377,
+          "Tminus1_hull_id": 17,
+          "Tminus1_warp": 0,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 19,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1959,
+            1631
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 19,
+          "Tminus1_hull_id": 17,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 50,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1959,
+            1631
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 911,
+          "Tminus1_hull_id": 18,
+          "Tminus1_warp": 0,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 90,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 50,
+          "T_owner_current_position": [
+            1959,
+            1631
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 219,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 0,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 131,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1959,
+            1631
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 36,
+          "Tminus1_hull_id": 18,
+          "Tminus1_warp": 7,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 179,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1959,
+            1631
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1,
+          "Tminus1_hull_id": 18,
+          "Tminus1_warp": 0,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 241,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1959,
+            1631
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 40,
+          "Tminus1_hull_id": 18,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 261,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1959,
+            1631
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 380,
+          "Tminus1_hull_id": 18,
+          "Tminus1_warp": 0,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 283,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1959,
+            1631
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 41,
+          "Tminus1_hull_id": 18,
+          "Tminus1_warp": 6,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 318,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 26,
+          "T_owner_current_position": [
+            2131,
+            1084
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 251,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 507,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1959,
+            1631
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 29,
+          "Tminus1_hull_id": 18,
+          "Tminus1_warp": 6,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 546,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1959,
+            1631
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 53,
+          "Tminus1_hull_id": 18,
+          "Tminus1_warp": 9,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 547,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1959,
+            1631
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 141,
+          "Tminus1_hull_id": 18,
+          "Tminus1_warp": 0,
+          "owner_id": 3,
+          "same_owner": true,
+          "ship_id": 582,
+          "true_Chunnel_passenger_proven": false
+        }
+      ],
+      "T_observed_colocated_not_independent_activation_proof": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_stack_size": 13,
+      "game_id": 550972,
+      "initiator_ship_id": 131,
+      "owner_id": 3,
+      "target": [
+        1959,
+        1631
+      ],
+      "target_ship_id": 98,
+      "turn": 116
+    },
+    {
+      "T_members": [
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2142,
+            2872
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 10,
+          "Tminus1_hull_id": 17,
+          "Tminus1_warp": 2,
+          "owner_id": 1,
+          "same_owner": true,
+          "ship_id": 75,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 50,
+          "T_owner_current_position": [
+            2142,
+            2872
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 100,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 0,
+          "owner_id": 1,
+          "same_owner": true,
+          "ship_id": 183,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2142,
+            2872
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 10,
+          "Tminus1_hull_id": 17,
+          "Tminus1_warp": 2,
+          "owner_id": 1,
+          "same_owner": true,
+          "ship_id": 220,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2142,
+            2872
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 10,
+          "Tminus1_hull_id": 17,
+          "Tminus1_warp": 2,
+          "owner_id": 1,
+          "same_owner": true,
+          "ship_id": 240,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2142,
+            2872
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 50,
+          "Tminus1_hull_id": 17,
+          "Tminus1_warp": 2,
+          "owner_id": 1,
+          "same_owner": true,
+          "ship_id": 337,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": -5,
+          "T_owner_current_position": [
+            2142,
+            2872
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 9,
+          "Tminus1_hull_id": 18,
+          "Tminus1_warp": 2,
+          "owner_id": 1,
+          "same_owner": true,
+          "ship_id": 351,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2142,
+            2872
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 40,
+          "Tminus1_hull_id": 17,
+          "Tminus1_warp": 2,
+          "owner_id": 1,
+          "same_owner": true,
+          "ship_id": 391,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2142,
+            2872
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 97,
+          "Tminus1_hull_id": 18,
+          "Tminus1_warp": 2,
+          "owner_id": 1,
+          "same_owner": true,
+          "ship_id": 408,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2142,
+            2872
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 47,
+          "Tminus1_hull_id": 17,
+          "Tminus1_warp": 9,
+          "owner_id": 1,
+          "same_owner": true,
+          "ship_id": 467,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2142,
+            2872
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 57,
+          "Tminus1_hull_id": 17,
+          "Tminus1_warp": 9,
+          "owner_id": 1,
+          "same_owner": true,
+          "ship_id": 513,
+          "true_Chunnel_passenger_proven": false
+        }
+      ],
+      "T_observed_colocated_not_independent_activation_proof": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_stack_size": 10,
+      "game_id": 550972,
+      "initiator_ship_id": 183,
+      "owner_id": 1,
+      "target": [
+        2142,
+        2872
+      ],
+      "target_ship_id": 565,
+      "turn": 116
+    },
+    {
+      "T_members": [
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1813,
+            2753
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1543,
+          "Tminus1_hull_id": 94,
+          "Tminus1_warp": 9,
+          "owner_id": 1,
+          "same_owner": true,
+          "ship_id": 205,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1813,
+            2753
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1543,
+          "Tminus1_hull_id": 94,
+          "Tminus1_warp": 9,
+          "owner_id": 1,
+          "same_owner": true,
+          "ship_id": 304,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1813,
+            2753
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1543,
+          "Tminus1_hull_id": 94,
+          "Tminus1_warp": 9,
+          "owner_id": 1,
+          "same_owner": true,
+          "ship_id": 369,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 50,
+          "T_owner_current_position": [
+            1813,
+            2753
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 73,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 0,
+          "owner_id": 1,
+          "same_owner": true,
+          "ship_id": 666,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1813,
+            2753
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 85,
+          "Tminus1_hull_id": 1047,
+          "Tminus1_warp": 9,
+          "owner_id": 1,
+          "same_owner": true,
+          "ship_id": 753,
+          "true_Chunnel_passenger_proven": false
+        }
+      ],
+      "T_observed_colocated_not_independent_activation_proof": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_stack_size": 5,
+      "game_id": 550972,
+      "initiator_ship_id": 666,
+      "owner_id": 1,
+      "target": [
+        1813,
+        2753
+      ],
+      "target_ship_id": 581,
+      "turn": 116
+    },
+    {
+      "T_members": [
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 50,
+          "T_owner_current_position": [
+            2910,
+            2353
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 440,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 0,
+          "owner_id": 1,
+          "same_owner": true,
+          "ship_id": 712,
+          "true_Chunnel_passenger_proven": false
+        }
+      ],
+      "T_observed_colocated_not_independent_activation_proof": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_stack_size": 1,
+      "game_id": 550972,
+      "initiator_ship_id": 712,
+      "owner_id": 1,
+      "target": [
+        2910,
+        2353
+      ],
+      "target_ship_id": 349,
+      "turn": 116
+    },
+    {
+      "T_members": [
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1921,
+            2176
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 285,
+          "Tminus1_hull_id": 46,
+          "Tminus1_warp": 1,
+          "owner_id": 2,
+          "same_owner": false,
+          "ship_id": 130,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1921,
+            2176
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 269,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 0,
+          "owner_id": 1,
+          "same_owner": true,
+          "ship_id": 501,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": -256,
+          "T_owner_current_position": [
+            2464,
+            2287
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 29,
+          "Tminus1_hull_id": 46,
+          "Tminus1_warp": 9,
+          "owner_id": 2,
+          "same_owner": false,
+          "ship_id": 606,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": -272,
+          "T_owner_current_position": [
+            2464,
+            2287
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 13,
+          "Tminus1_hull_id": 46,
+          "Tminus1_warp": 9,
+          "owner_id": 2,
+          "same_owner": false,
+          "ship_id": 686,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 50,
+          "T_owner_current_position": [
+            2464,
+            2287
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 440,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 0,
+          "owner_id": 1,
+          "same_owner": true,
+          "ship_id": 760,
+          "true_Chunnel_passenger_proven": false
+        }
+      ],
+      "T_observed_colocated_not_independent_activation_proof": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_stack_size": 5,
+      "game_id": 550972,
+      "initiator_ship_id": 760,
+      "owner_id": 1,
+      "target": [
+        2464,
+        2287
+      ],
+      "target_ship_id": 632,
+      "turn": 116
+    },
+    {
+      "T_members": [
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2867,
+            2473
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 36,
+          "Tminus1_hull_id": 1059,
+          "Tminus1_warp": 9,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 276,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 50,
+          "T_owner_current_position": [
+            2867,
+            2473
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 263,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 0,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 281,
+          "true_Chunnel_passenger_proven": false
+        }
+      ],
+      "T_observed_colocated_not_independent_activation_proof": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_stack_size": 2,
+      "game_id": 617883,
+      "initiator_ship_id": 281,
+      "owner_id": 6,
+      "target": [
+        2867,
+        2473
+      ],
+      "target_ship_id": 616,
+      "turn": 111
+    },
+    {
+      "T_members": [
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2105,
+            2078
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 371,
+          "Tminus1_hull_id": 79,
+          "Tminus1_warp": 1,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 301,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2105,
+            2078
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 210,
+          "Tminus1_hull_id": 1089,
+          "Tminus1_warp": 0,
+          "owner_id": 1,
+          "same_owner": false,
+          "ship_id": 396,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 50,
+          "T_owner_current_position": [
+            2105,
+            2078
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 101,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 0,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 427,
+          "true_Chunnel_passenger_proven": false
+        }
+      ],
+      "T_observed_colocated_not_independent_activation_proof": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_stack_size": 3,
+      "game_id": 617883,
+      "initiator_ship_id": 427,
+      "owner_id": 6,
+      "target": [
+        2105,
+        2078
+      ],
+      "target_ship_id": 566,
+      "turn": 111
+    },
+    {
+      "T_members": [
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": -250,
+          "T_owner_current_position": [
+            2375,
+            2726
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 0,
+          "Tminus1_hull_id": 16,
+          "Tminus1_warp": 9,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 1,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 15,
+          "T_owner_current_position": [
+            1861,
+            2029
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 246,
+          "Tminus1_hull_id": 46,
+          "Tminus1_warp": 9,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 15,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2375,
+            2726
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 600,
+          "Tminus1_hull_id": 17,
+          "Tminus1_warp": 1,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 17,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2375,
+            2726
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 27,
+          "Tminus1_hull_id": 17,
+          "Tminus1_warp": 1,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 29,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2375,
+            2726
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 250,
+          "Tminus1_hull_id": 16,
+          "Tminus1_warp": 9,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 32,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2375,
+            2726
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 52,
+          "Tminus1_hull_id": 17,
+          "Tminus1_warp": 1,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 33,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2375,
+            2726
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 150,
+          "Tminus1_hull_id": 87,
+          "Tminus1_warp": 1,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 43,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 50,
+          "T_owner_current_position": [
+            2375,
+            2726
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 294,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 0,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 47,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2375,
+            2726
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 600,
+          "Tminus1_hull_id": 17,
+          "Tminus1_warp": 1,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 50,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2375,
+            2726
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 80,
+          "Tminus1_hull_id": 51,
+          "Tminus1_warp": 1,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 59,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2375,
+            2726
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1,
+          "Tminus1_hull_id": 42,
+          "Tminus1_warp": 2,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 60,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2375,
+            2726
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 232,
+          "Tminus1_hull_id": 16,
+          "Tminus1_warp": 9,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 63,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2375,
+            2726
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 0,
+          "Tminus1_hull_id": 105,
+          "Tminus1_warp": 0,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 67,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2375,
+            2726
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 140,
+          "Tminus1_hull_id": 92,
+          "Tminus1_warp": 1,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 74,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2375,
+            2726
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 600,
+          "Tminus1_hull_id": 17,
+          "Tminus1_warp": 0,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 82,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2375,
+            2726
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1,
+          "Tminus1_hull_id": 42,
+          "Tminus1_warp": 2,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 106,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2375,
+            2726
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 600,
+          "Tminus1_hull_id": 17,
+          "Tminus1_warp": 0,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 112,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 11,
+          "T_owner_current_position": [
+            1887,
+            2147
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 211,
+          "Tminus1_hull_id": 46,
+          "Tminus1_warp": 9,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 140,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 39,
+          "T_owner_current_position": [
+            1887,
+            2147
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 147,
+          "Tminus1_hull_id": 46,
+          "Tminus1_warp": 9,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 155,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 11,
+          "T_owner_current_position": [
+            1868,
+            2027
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 40,
+          "Tminus1_hull_id": 46,
+          "Tminus1_warp": 9,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 163,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2375,
+            2726
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 450,
+          "Tminus1_hull_id": 105,
+          "Tminus1_warp": 1,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 166,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2375,
+            2726
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 450,
+          "Tminus1_hull_id": 105,
+          "Tminus1_warp": 1,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 173,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2375,
+            2726
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1,
+          "Tminus1_hull_id": 105,
+          "Tminus1_warp": 3,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 180,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2375,
+            2726
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 250,
+          "Tminus1_hull_id": 16,
+          "Tminus1_warp": 9,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 188,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2375,
+            2726
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 0,
+          "Tminus1_hull_id": 7,
+          "Tminus1_warp": 1,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 192,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2375,
+            2726
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 600,
+          "Tminus1_hull_id": 17,
+          "Tminus1_warp": 1,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 197,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2375,
+            2726
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1,
+          "Tminus1_hull_id": 105,
+          "Tminus1_warp": 0,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 225,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2375,
+            2726
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1,
+          "Tminus1_hull_id": 105,
+          "Tminus1_warp": 0,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 226,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1930,
+            2061
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 270,
+          "Tminus1_hull_id": 1054,
+          "Tminus1_warp": 0,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 233,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2375,
+            2726
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 0,
+          "Tminus1_hull_id": 7,
+          "Tminus1_warp": 1,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 245,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2375,
+            2726
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1,
+          "Tminus1_hull_id": 105,
+          "Tminus1_warp": 3,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 248,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2375,
+            2726
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 0,
+          "Tminus1_hull_id": 87,
+          "Tminus1_warp": 0,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 255,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2375,
+            2726
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1,
+          "Tminus1_hull_id": 105,
+          "Tminus1_warp": 0,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 267,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2375,
+            2726
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1,
+          "Tminus1_hull_id": 105,
+          "Tminus1_warp": 3,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 268,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2375,
+            2726
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1,
+          "Tminus1_hull_id": 105,
+          "Tminus1_warp": 5,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 309,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2375,
+            2726
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 15,
+          "Tminus1_hull_id": 42,
+          "Tminus1_warp": 3,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 334,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2375,
+            2726
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 600,
+          "Tminus1_hull_id": 17,
+          "Tminus1_warp": 1,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 338,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 10,
+          "T_owner_current_position": [
+            1930,
+            2061
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 285,
+          "Tminus1_hull_id": 46,
+          "Tminus1_warp": 9,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 343,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2375,
+            2726
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 2000,
+          "Tminus1_hull_id": 79,
+          "Tminus1_warp": 1,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 361,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2375,
+            2726
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 150,
+          "Tminus1_hull_id": 87,
+          "Tminus1_warp": 1,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 372,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2375,
+            2726
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 150,
+          "Tminus1_hull_id": 87,
+          "Tminus1_warp": 1,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 391,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2375,
+            2726
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1944,
+          "Tminus1_hull_id": 79,
+          "Tminus1_warp": 1,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 417,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2375,
+            2726
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 288,
+          "Tminus1_hull_id": 105,
+          "Tminus1_warp": 1,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 492,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1930,
+            2061
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 772,
+          "Tminus1_hull_id": 79,
+          "Tminus1_warp": 0,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 497,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2375,
+            2726
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 353,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 0,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 544,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1930,
+            2061
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 204,
+          "Tminus1_hull_id": 1089,
+          "Tminus1_warp": 0,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 546,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2375,
+            2726
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 52,
+          "Tminus1_hull_id": 1047,
+          "Tminus1_warp": 9,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 584,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            1887,
+            2147
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 300,
+          "Tminus1_hull_id": 81,
+          "Tminus1_warp": 1,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 606,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 27,
+          "T_owner_current_position": [
+            1930,
+            2061
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 268,
+          "Tminus1_hull_id": 46,
+          "Tminus1_warp": 9,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 607,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": false,
+          "T_net_fuel_loss_KT": 6,
+          "T_owner_current_position": [
+            1930,
+            2061
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 101,
+          "Tminus1_hull_id": 46,
+          "Tminus1_warp": 9,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 617,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2375,
+            2726
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 1,
+          "Tminus1_hull_id": 18,
+          "Tminus1_warp": 1,
+          "owner_id": 5,
+          "same_owner": true,
+          "ship_id": 623,
+          "true_Chunnel_passenger_proven": false
+        }
+      ],
+      "T_observed_colocated_not_independent_activation_proof": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_stack_size": 51,
+      "game_id": 617883,
+      "initiator_ship_id": 47,
+      "owner_id": 5,
+      "target": [
+        2375,
+        2726
+      ],
+      "target_ship_id": 460,
+      "turn": 166
+    },
+    {
+      "T_members": [
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": -540,
+          "T_owner_current_position": [
+            2818,
+            1675
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 60,
+          "Tminus1_hull_id": 17,
+          "Tminus1_warp": 0,
+          "owner_id": 1,
+          "same_owner": true,
+          "ship_id": 25,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": -303,
+          "T_owner_current_position": [
+            2818,
+            1675
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 297,
+          "Tminus1_hull_id": 17,
+          "Tminus1_warp": 0,
+          "owner_id": 1,
+          "same_owner": true,
+          "ship_id": 44,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": -100,
+          "T_owner_current_position": [
+            2818,
+            1675
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 340,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 0,
+          "owner_id": 1,
+          "same_owner": true,
+          "ship_id": 85,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2818,
+            1675
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 600,
+          "Tminus1_hull_id": 17,
+          "Tminus1_warp": 0,
+          "owner_id": 1,
+          "same_owner": true,
+          "ship_id": 149,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2818,
+            1675
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 210,
+          "Tminus1_hull_id": 1089,
+          "Tminus1_warp": 0,
+          "owner_id": 1,
+          "same_owner": true,
+          "ship_id": 170,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": -381,
+          "T_owner_current_position": [
+            2818,
+            1675
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 219,
+          "Tminus1_hull_id": 17,
+          "Tminus1_warp": 0,
+          "owner_id": 1,
+          "same_owner": true,
+          "ship_id": 186,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": -335,
+          "T_owner_current_position": [
+            2818,
+            1675
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 225,
+          "Tminus1_hull_id": 20,
+          "Tminus1_warp": 9,
+          "owner_id": 1,
+          "same_owner": true,
+          "ship_id": 246,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": -94,
+          "T_owner_current_position": [
+            2818,
+            1675
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 66,
+          "Tminus1_hull_id": 11,
+          "Tminus1_warp": 0,
+          "owner_id": 1,
+          "same_owner": true,
+          "ship_id": 269,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": -82,
+          "T_owner_current_position": [
+            2818,
+            1675
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 128,
+          "Tminus1_hull_id": 1089,
+          "Tminus1_warp": 0,
+          "owner_id": 1,
+          "same_owner": true,
+          "ship_id": 308,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": -364,
+          "T_owner_current_position": [
+            2818,
+            1675
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 236,
+          "Tminus1_hull_id": 82,
+          "Tminus1_warp": 0,
+          "owner_id": 1,
+          "same_owner": true,
+          "ship_id": 579,
+          "true_Chunnel_passenger_proven": false
+        }
+      ],
+      "T_observed_colocated_not_independent_activation_proof": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_stack_size": 10,
+      "game_id": 617883,
+      "initiator_ship_id": 85,
+      "owner_id": 1,
+      "target": [
+        2818,
+        1675
+      ],
+      "target_ship_id": 164,
+      "turn": 166
+    },
+    {
+      "T_members": [
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 0,
+          "T_owner_current_position": [
+            2619,
+            2901
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 250,
+          "Tminus1_hull_id": 16,
+          "Tminus1_warp": 1,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 6,
+          "true_Chunnel_passenger_proven": false
+        },
+        {
+          "T_at_source_edge_target": true,
+          "T_net_fuel_loss_KT": 50,
+          "T_owner_current_position": [
+            2619,
+            2901
+          ],
+          "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+          "Tminus1_fuel": 397,
+          "Tminus1_hull_id": 56,
+          "Tminus1_warp": 0,
+          "owner_id": 6,
+          "same_owner": true,
+          "ship_id": 88,
+          "true_Chunnel_passenger_proven": false
+        }
+      ],
+      "T_observed_colocated_not_independent_activation_proof": true,
+      "Tminus1_ruleaware_cohort": "LONG_CONVENTIONAL_PASS",
+      "Tminus1_stack_size": 2,
+      "game_id": 617883,
+      "initiator_ship_id": 88,
+      "owner_id": 6,
+      "target": [
+        2619,
+        2901
+      ],
+      "target_ship_id": 457,
+      "turn": 166
+    }
+  ],
+  "frozen_previous_research_games": [
+    2466,
+    217591,
+    218619,
+    220698,
+    221008,
+    226056,
+    227887,
+    228199,
+    233558,
+    243165,
+    245123,
+    245693,
+    247785,
+    253449,
+    257776,
+    257908,
+    266087,
+    267580,
+    283648,
+    290067,
+    296210,
+    306971,
+    310054,
+    325434,
+    338264,
+    338810,
+    341336,
+    343550,
+    347358,
+    347923,
+    350094,
+    364412,
+    371631,
+    373830,
+    385906,
+    399914,
+    407599,
+    411645,
+    416233,
+    421276,
+    421949,
+    423531,
+    441148,
+    454504,
+    467047,
+    467386,
+    470320,
+    473010,
+    476380,
+    476819,
+    476826,
+    477364,
+    477725,
+    486109,
+    490865,
+    499284,
+    521834,
+    530635,
+    563278,
+    597079,
+    597910,
+    600044,
+    627339,
+    629488,
+    632527,
+    633837,
+    633855,
+    653272,
+    655827,
+    658427,
+    660249,
+    663317,
+    674696
+  ],
+  "metadata_selected_game_turns": [
+    {
+      "game_id": 224849,
+      "turn": 51
+    },
+    {
+      "game_id": 224849,
+      "turn": 100
+    },
+    {
+      "game_id": 224849,
+      "turn": 149
+    },
+    {
+      "game_id": 230354,
+      "turn": 46
+    },
+    {
+      "game_id": 230354,
+      "turn": 90
+    },
+    {
+      "game_id": 230354,
+      "turn": 134
+    },
+    {
+      "game_id": 256858,
+      "turn": 85
+    },
+    {
+      "game_id": 256858,
+      "turn": 169
+    },
+    {
+      "game_id": 256858,
+      "turn": 253
+    },
+    {
+      "game_id": 277134,
+      "turn": 32
+    },
+    {
+      "game_id": 277134,
+      "turn": 63
+    },
+    {
+      "game_id": 277134,
+      "turn": 93
+    },
+    {
+      "game_id": 281994,
+      "turn": 33
+    },
+    {
+      "game_id": 281994,
+      "turn": 64
+    },
+    {
+      "game_id": 281994,
+      "turn": 95
+    },
+    {
+      "game_id": 326221,
+      "turn": 44
+    },
+    {
+      "game_id": 326221,
+      "turn": 87
+    },
+    {
+      "game_id": 326221,
+      "turn": 129
+    },
+    {
+      "game_id": 347236,
+      "turn": 36
+    },
+    {
+      "game_id": 347236,
+      "turn": 70
+    },
+    {
+      "game_id": 347236,
+      "turn": 104
+    },
+    {
+      "game_id": 396107,
+      "turn": 55
+    },
+    {
+      "game_id": 396107,
+      "turn": 108
+    },
+    {
+      "game_id": 396107,
+      "turn": 161
+    },
+    {
+      "game_id": 400330,
+      "turn": 44
+    },
+    {
+      "game_id": 400330,
+      "turn": 87
+    },
+    {
+      "game_id": 400330,
+      "turn": 130
+    },
+    {
+      "game_id": 425973,
+      "turn": 53
+    },
+    {
+      "game_id": 425973,
+      "turn": 105
+    },
+    {
+      "game_id": 425973,
+      "turn": 157
+    },
+    {
+      "game_id": 467183,
+      "turn": 40
+    },
+    {
+      "game_id": 467183,
+      "turn": 78
+    },
+    {
+      "game_id": 467183,
+      "turn": 116
+    },
+    {
+      "game_id": 494635,
+      "turn": 31
+    },
+    {
+      "game_id": 494635,
+      "turn": 61
+    },
+    {
+      "game_id": 494635,
+      "turn": 91
+    },
+    {
+      "game_id": 497195,
+      "turn": 40
+    },
+    {
+      "game_id": 497195,
+      "turn": 79
+    },
+    {
+      "game_id": 497195,
+      "turn": 117
+    },
+    {
+      "game_id": 550972,
+      "turn": 40
+    },
+    {
+      "game_id": 550972,
+      "turn": 78
+    },
+    {
+      "game_id": 550972,
+      "turn": 116
+    },
+    {
+      "game_id": 617883,
+      "turn": 56
+    },
+    {
+      "game_id": 617883,
+      "turn": 111
+    },
+    {
+      "game_id": 617883,
+      "turn": 166
+    },
+    {
+      "game_id": 645077,
+      "turn": 32
+    },
+    {
+      "game_id": 645077,
+      "turn": 63
+    },
+    {
+      "game_id": 645077,
+      "turn": 94
+    }
+  ],
+  "new_canonical_Host_movement_or_combat_predictions": 0,
+  "phase": "escorts",
+  "same_preexisting_public100_not_newly_collected_corpus": true,
+  "schema": "planets-lab.combat-c5-ruleaware-disjoint-batch.v22",
+  "source_db_generation": "generations/corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+  "source_db_sha256": "3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c",
+  "source_v17_git_blob_sha1": "a6256b70dc63b9b7126a211245bc65ce20ece863",
+  "source_v20_git_blob_sha1": "3d5e1d5aeb6b0138c01bab3ec81185d0685233c0",
+  "status": "GAME_DISJOINT_TMINUS1_RULEAWARE_OBSERVATIONAL_NOT_ACTIVATION",
+  "summary": {
+    "Nplus1_VCR_used": false,
+    "T_owner_current_ship_at_preselected_target": 263,
+    "Tminus1_preselected_actor_episodes": 36,
+    "Tminus1_preselected_distinct_windows": 19,
+    "Tminus1_source_ship_appearances": 351,
+    "new_canonical_Host_movement_or_combat_predictions": 0,
+    "posthost_compared_windows": 48,
+    "previous_research_game_overlap": 0,
+    "selected_games": 16,
+    "selected_windows": 48,
+    "true_Chunnel_passenger_mechanism_proven": false,
+    "window_context_abstentions": 0
+  },
+  "window_errors": []
+}
