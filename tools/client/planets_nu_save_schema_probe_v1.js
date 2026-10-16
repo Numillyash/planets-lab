@@ -8,6 +8,9 @@
  * payloads or responses retained, no localStorage, no cookies, no exfiltration.
  * Only a fixed allowlist of known mechanic field NAMES and their TYPES.
  * v1.1 reports category-only traffic counts when observed_save_calls is 0.
+ * v1.2 profiles (up to two) unknown field VALUE TYPES and allowed nested
+ * field names. Unknown field names and ALL actual values remain redacted.
+ * A JSON-looking field does NOT establish that the server applied any order.
  * No raw URL paths, query strings, request bodies or other-site traffic are
  * emitted in its diagnostics; the exact save path is still the ONLY endpoint
  * whose schema is inspected.
@@ -93,6 +96,49 @@
     return t === "object" ? "object" :
       (t === "string" || t === "number" || t === "boolean" ? t : "other");
   }
+  // Unlisted field names are NEVER emitted, even when they contain arbitrary
+  // account data. The only permitted signal is a bounded type/shape profile.
+  function opaqueValueProfile(value, depth) {
+    const t = primitiveType(value);
+    if (depth > MAX_DEPTH) return {outer_type: t, content: "depth_limit"};
+    if (t === "object" || t === "array")
+      return {outer_type: t, sanitized_inner_shape: structure(value, depth + 1)};
+    if (t !== "string") return {outer_type: t};
+    if (value.length > MAX_PARSE_CHARS)
+      return {outer_type: "string", content: "too_large"};
+    const trimmed = value.trim();
+    if (trimmed.startsWith("{") || trimmed.startsWith("[")) {
+      try {
+        const parsed = JSON.parse(trimmed);
+        if (parsed && typeof parsed === "object")
+          return {
+            outer_type: "string",
+            content: Array.isArray(parsed) ? "json_array" : "json_object",
+            sanitized_inner_shape: structure(parsed, depth + 1)
+          };
+      } catch (_) {
+        return {outer_type: "string", content: "invalid_json"};
+      }
+    }
+    return {outer_type: "string", content: "not_json"};
+  }
+  function formValueProfiles(text) {
+    // URLSearchParams values can themselves be JSON documents. Inspect ONLY
+    // value types and allowed nested field NAMES, never raw value or field name.
+    const profiles = [];
+    let unknown = 0;
+    let redacted = 0;
+    try {
+      for (const [key, value] of new URLSearchParams(text)) {
+        if (SECRET_KEYS.test(key)) { redacted++; continue; }
+        if (SAFE_KEYS.has(key.toLowerCase())) continue;
+        unknown++;
+        if (profiles.length < 2) profiles.push(opaqueValueProfile(value, 1));
+      }
+    } catch (_) { return null; }
+    return {unknown_field_count: unknown, secret_field_count: redacted,
+      opaque_field_value_profiles: profiles};
+  }
   function structure(value, depth) {
     if (++used > MAX_NODES || depth > MAX_DEPTH) return {type: "truncated"};
     const t = primitiveType(value);
@@ -103,12 +149,19 @@
     if (t !== "object") return {type: t};
     const fields = {};
     let redacted = 0, unknown = 0;
+    const opaque = [];
     for (const [key, item] of Object.entries(value)) {
       if (SECRET_KEYS.test(key)) { redacted++; continue; }
-      if (!SAFE_KEYS.has(key.toLowerCase())) { unknown++; continue; }
+      if (!SAFE_KEYS.has(key.toLowerCase())) {
+        unknown++;
+        if (depth <= 1 && opaque.length < 2)
+          opaque.push(opaqueValueProfile(item, depth + 1));
+        continue;
+      }
       fields[key.toLowerCase()] = structure(item, depth + 1);
     }
-    return {type: "object", fields, redacted_key_count: redacted, unknown_key_count: unknown};
+    return {type: "object", fields, redacted_key_count: redacted,
+      unknown_key_count: unknown, opaque_field_value_profiles: opaque};
   }
   function decodeString(text) {
     if (typeof text !== "string") return null;
@@ -140,19 +193,37 @@
   function bodyShape(body) {
     used = 0;
     try {
-      if (typeof body === "string") return structure(decodeString(body), 0);
-      if (root.URLSearchParams && body instanceof root.URLSearchParams)
-        return structure(decodeString(body.toString()), 0);
+      if (typeof body === "string" ||
+          (root.URLSearchParams && body instanceof root.URLSearchParams)) {
+        const text = typeof body === "string" ? body : body.toString();
+        const shape = structure(decodeString(text), 0);
+        const trimmed = text.trim();
+        if (!(trimmed.startsWith("{") || trimmed.startsWith("[")) &&
+            trimmed.includes("=")) {
+          // Up to two anonymized unknown-form-field profiles; no key names.
+          const summary = formValueProfiles(text);
+          if (summary) shape.opaque_form_fields = summary;
+        }
+        return shape;
+      }
       if (root.FormData && body instanceof root.FormData) {
         const fields = {};
         let unknown = 0, redacted = 0;
+        const opaque = [];
         for (const [key, value] of body.entries()) {
           if (SECRET_KEYS.test(key)) { redacted++; continue; }
-          if (!SAFE_KEYS.has(key.toLowerCase())) { unknown++; continue; }
+          if (!SAFE_KEYS.has(key.toLowerCase())) {
+            unknown++;
+            if (opaque.length < 2) opaque.push(
+              typeof value === "string" ? opaqueValueProfile(value, 1) : {outer_type: "file_or_binary"}
+            );
+            continue;
+          }
           if (typeof value !== "string") { fields[key.toLowerCase()] = {type: "file_or_binary"}; continue; }
           fields[key.toLowerCase()] = structure(decodeString(value) ?? value, 0);
         }
-        return {type: "form", fields, unknown_key_count: unknown, redacted_key_count: redacted};
+        return {type: "form", fields, unknown_key_count: unknown,
+          redacted_key_count: redacted, opaque_field_value_profiles: opaque};
       }
       return {type: "body_unavailable_or_stream"};
     } catch (_) { return {type: "unparsed"}; }
