@@ -173,6 +173,65 @@ assert.equal(probe.report().events[0].response.reported_success_flag_not_server_
   copy.diagnostics.route_categories.game_save_exact = 9999;
   assert.equal(probe.report().diagnostics.route_categories.game_save_exact, 2);
 
+  // Reproduce the shape anomaly observed during real tax-rate changes:
+  // five then four anonymous fields, with a JSON object AFTER two scalars.
+  const makeSaveForm = (includeFifth) => new URLSearchParams({
+    gameid: "private-game-id", playerid: "private-player-id",
+    turn: "private-turn", apikey: syntheticSecrets[0],
+    savekey: syntheticSecrets[1],
+    xOpaque1: "sensitive text token", xOpaque2: "98342244",
+    xOpaque3: "", xOpaque4: "<secret>DO_NOT_LEAK</secret>",
+    ...(includeFifth ? {xOpaque5: JSON.stringify({
+      planets: [{factories: 49, clans: 821, tax_rate: 27,
+        notes: "MY_SECRET_GAME_NOTES_93"}],
+      ships: [{neutronium: 300}]
+    })} : {})
+  }).toString();
+  const saveWithFive = new FakeXHR();
+  saveWithFive.open("POST", "https://api.planets.nu/game/save");
+  saveWithFive.send(makeSaveForm(true));
+  const saveWithFour = new FakeXHR();
+  saveWithFour.open("POST", "https://api.planets.nu/game/save");
+  saveWithFour.send(makeSaveForm(false));
+  const observed = probe.report();
+  assert.equal(observed.observed_save_calls, 4);
+  assert.equal(observed.events[2].request_schema.unknown_key_count, 5);
+  assert.equal(observed.events[2].request_schema.redacted_key_count, 2);
+  assert.deepEqual(
+    Array.from(observed.events[2].request_schema.opaque_field_value_profiles),
+    [],
+    "no phantom '(unlisted)' field/null profile"
+  );
+  const formFive = observed.events[2].request_schema.opaque_form_fields;
+  assert.equal(formFive.unknown_field_count, 5);
+  assert.equal(formFive.secret_field_count, 2);
+  assert.equal(formFive.unknown_field_encoding_counts.json_object, 1);
+  assert.equal(formFive.unknown_field_encoding_counts.numeric_text, 1);
+  assert.equal(formFive.unknown_field_encoding_counts.empty_text, 1);
+  assert.equal(formFive.unknown_field_encoding_counts.markup_like, 1);
+  assert.equal(formFive.unknown_field_encoding_counts.opaque_text, 1);
+  assert.equal(formFive.structured_candidate_profiles.length, 1);
+  const sanitized = formFive.structured_candidate_profiles[0].sanitized_inner_shape;
+  assert.equal(sanitized.fields.planets.type, "array");
+  assert.equal(sanitized.fields.planets.item.fields.factories.type, "number");
+  assert.equal(sanitized.fields.ships.item.fields.neutronium.type, "number");
+  assert.equal(observed.events[3].request_schema.unknown_key_count, 4);
+  assert.equal(observed.events[3].request_schema.opaque_form_fields.structured_candidate_profiles.length, 0);
+  assert.equal(observed.diagnostics.route_sequence.length, 8);
+  assert.deepEqual(
+    Array.from(observed.diagnostics.route_sequence, x => x.category),
+    ["game_other", "game_save_candidate", "game_turnready", "account_other",
+     "game_save_exact", "game_save_exact", "game_save_exact", "game_save_exact"]
+  );
+  // The detached report contains no request raw body, game information,
+  // arbitrary unknown key names, or the test's private value literals.
+  const safeText = JSON.stringify(observed);
+  for (const forbidden of [
+    "xOpaque1", "xOpaque5", "98342244", "private-game-id",
+    "private-player-id", "private-turn", "tax_rate",
+    "MY_SECRET_GAME_NOTES_93", "821", "<secret>", "DO_NOT_LEAK"
+  ]) assert.ok(!safeText.includes(forbidden), "leaked " + forbidden);
+  // Note: no actual save was sent by this test (FakeXHR only).
   probe.stop();
   assert.equal(browser.fetch, originalFetch);
   assert.equal(FakeXHR.prototype.open, initialXHROpen);
