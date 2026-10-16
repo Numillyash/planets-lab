@@ -342,8 +342,10 @@ def missing_report(conn,pre,post):
             "missing_distinct_game_turns":len({(x["game_id"],x["turn"]) for x in items}),
             "Tplus1_snapshot_provenance_statuses":dict(sorted(Counter(
                 x["Tplus1_provenance_status"] for x in items).items())),
-            "Tplus1_actor_identity_statuses":dict(sorted(Counter(
-                x["Tplus1_actor_status"] for x in items).items(),key=lambda x:str(x[0]))),
+            "Tplus1_actor_identity_statuses":{
+                str(k):v for k,v in sorted(Counter(
+                    x["Tplus1_actor_status"] for x in items).items(),
+                    key=lambda x:str(x[0]))},
             "retrospective_Tplus1_not_validated_Host_activations":True,
             "no_VCR_used":True,
         },
