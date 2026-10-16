@@ -112,3 +112,55 @@ No new causal NuHost differential until those are separable.
 Avoid additional internal synthetic HMAC stages without independent
 external input. Keep C5 frozen, draft PR #28 draft, corpus `CURRENT`,
 canonical combat, external-engine and production IntelBoard untouched.
+
+## October 17 owner observation: no matching save requests yet
+
+An authorized user installed v1 successfully in the browser and returned:
+
+```json
+{"schema":"planets-lab.save-schema-observation.v1",
+ "status":"SCHEMA_ONLY_NOT_SERVER_ORDER_ACK_OR_NUHOST_VERIFIED",
+ "observed_save_calls":0,"events":[],
+ "values_logged":false,"credentials_logged":false,
+ "submitted_order_mapping_verified":false,
+ "server_order_acknowledgement_verified":false,"host_phase_verified":false}
+```
+
+This is **zero qualifying calls observed**, not proof the game didn't
+save, not evidence for any NuHost rule or transport format. It remains
+unknown whether the regular Save action was performed between installation
+and report collection; whether the live site uses another route, a
+different transport/realm, or no new HTTP request is also unknown.
+
+The initial v1 probe discarded all requests except the exact
+`/game/save` path, so it could not distinguish these outcomes.
+The v1.1 diagnostics fix adds **counts only**, under `diagnostics`:
+
+- `planets_requests_total`, `planets_post_requests`,
+  `xhr_requests`, `fetch_requests`;
+- `route_categories` with fixed enumerated labels
+  `game_save_exact`, `game_save_candidate`, `game_turnready`,
+  `game_other`, `account_other`, `planets_other`.
+
+The origin remains limited to `planets.nu` and its subdomains.
+No actual URL, URL path, query string, credentials, request/response
+body, resource values or other origin identifiers are added to reports.
+For nonexact paths we count categories only, **without even parsing
+their bodies or responses**. Full request/response *schema-only*
+extraction remains restricted to the existing exact `/game/save`.
+Existing output fields and stop/report interface are backwards-compatible.
+
+Suggested next user-authorized observation: open the game, run current
+script, perform **one ordinary UI save** (if available, or wait for its
+normal autosave), inspect `report()` BEFORE calling `stop()`.
+If `planets_requests_total=0`, the instrumented JavaScript realm has
+not observed any Planets.nu fetch/XHR network calls while active. If
+some requests but `game_save_exact=0`, use coarse categories to
+narrow the route. Do not run artificial POSTs to trigger the instrument.
+A page reload loses the injected observer. If ambiguity persists,
+inspect only the HTTP **method and pathname** in DevTools Network
+after removing queries; never export a raw HAR.
+
+No authenticated private orders or server-acceptance proof have been
+obtained from the first zero-observation report. Keep the full NuHost
+historical causal comparison `ABSTAIN`.
