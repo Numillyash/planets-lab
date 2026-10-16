@@ -1,0 +1,4 @@
+===== M2 ORDER-AWARE RESEARCH INTEGRATION =====
+HEAD: 1fadeedbf0a27bd7156addf88a1a4045fe0dcd26
+scope: 3-turn internal simulation; NOT NuHost historical validation
+/root/.cache/planets-lab/site-state-v1/bin/python: No module named pytest
