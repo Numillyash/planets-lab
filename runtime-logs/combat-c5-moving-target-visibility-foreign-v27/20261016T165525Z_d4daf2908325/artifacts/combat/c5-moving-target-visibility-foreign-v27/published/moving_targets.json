@@ -1,0 +1,1718 @@
+{
+  "Host_activation_or_combat_prediction_proven": false,
+  "Nplus1_VCR_used": false,
+  "all_33_Tminus1_windows_frozen_before_any_T_or_Tplus1": true,
+  "by_game_original_V25_status": {
+    "233802": {
+      "AT_DISTINCT_FROZEN_TARGET": 1
+    },
+    "403181": {
+      "AT_DISTINCT_FROZEN_TARGET": 5,
+      "ELSEWHERE": 1
+    },
+    "521268": {
+      "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE": 2,
+      "AT_DISTINCT_FROZEN_TARGET": 49
+    }
+  },
+  "generation_sha256": "af4c1579b97736c158cf50a7f709e39b749860661ed65c028fb8085e756c573a",
+  "new_production_Host_movement_or_combat_predictions": 0,
+  "observed_long_actor_and_target_T_endpoints": [
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        1985,
+        2268
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1985,
+        2268
+      ],
+      "Tminus1_actor_source": [
+        1765,
+        2341
+      ],
+      "Tminus1_frozen_target": [
+        1985,
+        2268
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 117,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 233802,
+      "owner_id": 6,
+      "target_ship_id": 317,
+      "turn": 57
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        2344,
+        2745
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2344,
+        2745
+      ],
+      "Tminus1_actor_source": [
+        2170,
+        2785
+      ],
+      "Tminus1_frozen_target": [
+        2344,
+        2745
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 130,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 403181,
+      "owner_id": 1,
+      "target_ship_id": 170,
+      "turn": 36
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        1144,
+        2858
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1144,
+        2858
+      ],
+      "Tminus1_actor_source": [
+        2204,
+        1817
+      ],
+      "Tminus1_frozen_target": [
+        1144,
+        2858
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 123,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 403181,
+      "owner_id": 4,
+      "target_ship_id": 130,
+      "turn": 60
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        2198,
+        1799
+      ],
+      "T_target_moved_from_frozen_position": true,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2198,
+        1799
+      ],
+      "Tminus1_actor_source": [
+        1509,
+        2683
+      ],
+      "Tminus1_frozen_target": [
+        2326,
+        2181
+      ],
+      "V25_endpoint_status": "ELSEWHERE",
+      "actor_id": 143,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 403181,
+      "owner_id": 1,
+      "target_ship_id": 202,
+      "turn": 60
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        2590,
+        1116
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2590,
+        1116
+      ],
+      "Tminus1_actor_source": [
+        2760,
+        1383
+      ],
+      "Tminus1_frozen_target": [
+        2590,
+        1116
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 204,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 403181,
+      "owner_id": 2,
+      "target_ship_id": 277,
+      "turn": 60
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        2761,
+        1383
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2761,
+        1383
+      ],
+      "Tminus1_actor_source": [
+        2507,
+        1261
+      ],
+      "Tminus1_frozen_target": [
+        2761,
+        1383
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 245,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 403181,
+      "owner_id": 2,
+      "target_ship_id": 98,
+      "turn": 60
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        1509,
+        2683
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1509,
+        2683
+      ],
+      "Tminus1_actor_source": [
+        1144,
+        2858
+      ],
+      "Tminus1_frozen_target": [
+        1509,
+        2683
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 123,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 403181,
+      "owner_id": 4,
+      "target_ship_id": 164,
+      "turn": 65
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        1335,
+        1902
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1335,
+        1902
+      ],
+      "Tminus1_actor_source": [
+        1654,
+        1681
+      ],
+      "Tminus1_frozen_target": [
+        1335,
+        1902
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 270,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 5,
+      "target_ship_id": 255,
+      "turn": 31
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        1335,
+        1902
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1335,
+        1902
+      ],
+      "Tminus1_actor_source": [
+        1513,
+        1436
+      ],
+      "Tminus1_frozen_target": [
+        1335,
+        1902
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 393,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 5,
+      "target_ship_id": 255,
+      "turn": 31
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        1385,
+        2665
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1385,
+        2665
+      ],
+      "Tminus1_actor_source": [
+        1126,
+        2139
+      ],
+      "Tminus1_frozen_target": [
+        1385,
+        2665
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 240,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 4,
+      "target_ship_id": 279,
+      "turn": 36
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        1434,
+        2750
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1434,
+        2750
+      ],
+      "Tminus1_actor_source": [
+        1472,
+        2505
+      ],
+      "Tminus1_frozen_target": [
+        1434,
+        2750
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 400,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 10,
+      "target_ship_id": 462,
+      "turn": 36
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        1420,
+        1801
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1420,
+        1801
+      ],
+      "Tminus1_actor_source": [
+        1403,
+        1064
+      ],
+      "Tminus1_frozen_target": [
+        1420,
+        1801
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 393,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 5,
+      "target_ship_id": 270,
+      "turn": 41
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        1434,
+        2750
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1434,
+        2750
+      ],
+      "Tminus1_actor_source": [
+        1472,
+        2505
+      ],
+      "Tminus1_frozen_target": [
+        1434,
+        2750
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 396,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 10,
+      "target_ship_id": 462,
+      "turn": 46
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        1335,
+        1902
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1335,
+        1902
+      ],
+      "Tminus1_actor_source": [
+        887,
+        1842
+      ],
+      "Tminus1_frozen_target": [
+        1335,
+        1902
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 518,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 5,
+      "target_ship_id": 317,
+      "turn": 51
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        2055,
+        2388
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2055,
+        2388
+      ],
+      "Tminus1_actor_source": [
+        1105,
+        2651
+      ],
+      "Tminus1_frozen_target": [
+        2055,
+        2388
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 534,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 10,
+      "target_ship_id": 411,
+      "turn": 51
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        1337,
+        2003
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1337,
+        2003
+      ],
+      "Tminus1_actor_source": [
+        1283,
+        1121
+      ],
+      "Tminus1_frozen_target": [
+        1337,
+        2003
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 393,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 5,
+      "target_ship_id": 230,
+      "turn": 56
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        938,
+        1883
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        938,
+        1883
+      ],
+      "Tminus1_actor_source": [
+        1348,
+        1859
+      ],
+      "Tminus1_frozen_target": [
+        938,
+        1883
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 542,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 5,
+      "target_ship_id": 526,
+      "turn": 56
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        1372,
+        1287
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1372,
+        1287
+      ],
+      "Tminus1_actor_source": [
+        1407,
+        1438
+      ],
+      "Tminus1_frozen_target": [
+        1372,
+        1287
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 203,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 5,
+      "target_ship_id": 542,
+      "turn": 61
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        1754,
+        2471
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1754,
+        2471
+      ],
+      "Tminus1_actor_source": [
+        1112,
+        2654
+      ],
+      "Tminus1_frozen_target": [
+        1754,
+        2471
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 488,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 10,
+      "target_ship_id": 411,
+      "turn": 61
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        2829,
+        1867
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2829,
+        1867
+      ],
+      "Tminus1_actor_source": [
+        998,
+        1917
+      ],
+      "Tminus1_frozen_target": [
+        2829,
+        1867
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 528,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 5,
+      "target_ship_id": 255,
+      "turn": 61
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        1293,
+        1850
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1293,
+        1850
+      ],
+      "Tminus1_actor_source": [
+        938,
+        1883
+      ],
+      "Tminus1_frozen_target": [
+        1293,
+        1850
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 317,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 5,
+      "target_ship_id": 128,
+      "turn": 66
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        1293,
+        1850
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1293,
+        1850
+      ],
+      "Tminus1_actor_source": [
+        1600,
+        1788
+      ],
+      "Tminus1_frozen_target": [
+        1293,
+        1850
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 45,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 5,
+      "target_ship_id": 365,
+      "turn": 71
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        1577,
+        2633
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1577,
+        2633
+      ],
+      "Tminus1_actor_source": [
+        1112,
+        2654
+      ],
+      "Tminus1_frozen_target": [
+        1577,
+        2633
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 60,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 10,
+      "target_ship_id": 59,
+      "turn": 71
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        1739,
+        2276
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1739,
+        2276
+      ],
+      "Tminus1_actor_source": [
+        1113,
+        2651
+      ],
+      "Tminus1_frozen_target": [
+        1739,
+        2276
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 95,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 10,
+      "target_ship_id": 51,
+      "turn": 71
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        2529,
+        2606
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2529,
+        2606
+      ],
+      "Tminus1_actor_source": [
+        1823,
+        2840
+      ],
+      "Tminus1_frozen_target": [
+        2529,
+        2606
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 219,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 10,
+      "target_ship_id": 462,
+      "turn": 71
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        2760,
+        2237
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2760,
+        2237
+      ],
+      "Tminus1_actor_source": [
+        1109,
+        2647
+      ],
+      "Tminus1_frozen_target": [
+        2760,
+        2237
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 577,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 10,
+      "target_ship_id": 142,
+      "turn": 71
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        2767,
+        2237
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2767,
+        2237
+      ],
+      "Tminus1_actor_source": [
+        1112,
+        2648
+      ],
+      "Tminus1_frozen_target": [
+        2767,
+        2237
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 467,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 10,
+      "target_ship_id": 302,
+      "turn": 76
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        1293,
+        1850
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1293,
+        1850
+      ],
+      "Tminus1_actor_source": [
+        1464,
+        1540
+      ],
+      "Tminus1_frozen_target": [
+        1293,
+        1850
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 518,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 5,
+      "target_ship_id": 270,
+      "turn": 76
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        1948,
+        1643
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1948,
+        1643
+      ],
+      "Tminus1_actor_source": [
+        1437,
+        1065
+      ],
+      "Tminus1_frozen_target": [
+        1948,
+        1643
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 393,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 5,
+      "target_ship_id": 230,
+      "turn": 81
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        2619,
+        2484
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2619,
+        2484
+      ],
+      "Tminus1_actor_source": [
+        1824,
+        2839
+      ],
+      "Tminus1_frozen_target": [
+        2619,
+        2484
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 488,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 10,
+      "target_ship_id": 462,
+      "turn": 81
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        1293,
+        1850
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1293,
+        1850
+      ],
+      "Tminus1_actor_source": [
+        1590,
+        1682
+      ],
+      "Tminus1_frozen_target": [
+        1293,
+        1850
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 317,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 5,
+      "target_ship_id": 25,
+      "turn": 86
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        1293,
+        1850
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1293,
+        1850
+      ],
+      "Tminus1_actor_source": [
+        1093,
+        1519
+      ],
+      "Tminus1_frozen_target": [
+        1293,
+        1850
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 518,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 5,
+      "target_ship_id": 25,
+      "turn": 86
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        1820,
+        2839
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1820,
+        2839
+      ],
+      "Tminus1_actor_source": [
+        1138,
+        2708
+      ],
+      "Tminus1_frozen_target": [
+        1820,
+        2839
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 192,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 7,
+      "target_ship_id": 488,
+      "turn": 91
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        1293,
+        1850
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1293,
+        1850
+      ],
+      "Tminus1_actor_source": [
+        2070,
+        854
+      ],
+      "Tminus1_frozen_target": [
+        1293,
+        1850
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 230,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 5,
+      "target_ship_id": 317,
+      "turn": 91
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        2301,
+        2839
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2301,
+        2839
+      ],
+      "Tminus1_actor_source": [
+        1823,
+        2840
+      ],
+      "Tminus1_frozen_target": [
+        2301,
+        2839
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 388,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 7,
+      "target_ship_id": 383,
+      "turn": 91
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        1951,
+        2915
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1951,
+        2915
+      ],
+      "Tminus1_actor_source": [
+        2447,
+        2536
+      ],
+      "Tminus1_frozen_target": [
+        1951,
+        2915
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 192,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 7,
+      "target_ship_id": 388,
+      "turn": 96
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        2960,
+        2171
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2960,
+        2171
+      ],
+      "Tminus1_actor_source": [
+        2861,
+        2317
+      ],
+      "Tminus1_frozen_target": [
+        2960,
+        2171
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 274,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 4,
+      "target_ship_id": 279,
+      "turn": 96
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        1171,
+        1771
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1171,
+        1771
+      ],
+      "Tminus1_actor_source": [
+        1290,
+        1849
+      ],
+      "Tminus1_frozen_target": [
+        1171,
+        1771
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 317,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 5,
+      "target_ship_id": 25,
+      "turn": 96
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        1600,
+        1788
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1600,
+        1788
+      ],
+      "Tminus1_actor_source": [
+        1294,
+        1847
+      ],
+      "Tminus1_frozen_target": [
+        1600,
+        1788
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 526,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 5,
+      "target_ship_id": 16,
+      "turn": 96
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        1743,
+        2277
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1743,
+        2277
+      ],
+      "Tminus1_actor_source": [
+        1106,
+        2654
+      ],
+      "Tminus1_frozen_target": [
+        1743,
+        2277
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 551,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 10,
+      "target_ship_id": 121,
+      "turn": 96
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        2154,
+        1224
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2154,
+        1224
+      ],
+      "Tminus1_actor_source": [
+        1296,
+        1849
+      ],
+      "Tminus1_frozen_target": [
+        2154,
+        1224
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 16,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 5,
+      "target_ship_id": 229,
+      "turn": 101
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        1820,
+        2839
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1820,
+        2839
+      ],
+      "Tminus1_actor_source": [
+        1105,
+        2651
+      ],
+      "Tminus1_frozen_target": [
+        1820,
+        2839
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 51,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 10,
+      "target_ship_id": 396,
+      "turn": 101
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        2829,
+        1867
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2829,
+        1867
+      ],
+      "Tminus1_actor_source": [
+        1290,
+        1851
+      ],
+      "Tminus1_frozen_target": [
+        2829,
+        1867
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 128,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 5,
+      "target_ship_id": 403,
+      "turn": 101
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        1471,
+        2290
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1471,
+        2290
+      ],
+      "Tminus1_actor_source": [
+        1112,
+        2648
+      ],
+      "Tminus1_frozen_target": [
+        1471,
+        2290
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 302,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 10,
+      "target_ship_id": 60,
+      "turn": 101
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        1568,
+        1692
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1568,
+        1692
+      ],
+      "Tminus1_actor_source": [
+        1851,
+        2023
+      ],
+      "Tminus1_frozen_target": [
+        1568,
+        1692
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 365,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 5,
+      "target_ship_id": 526,
+      "turn": 101
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        1820,
+        2839
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1820,
+        2839
+      ],
+      "Tminus1_actor_source": [
+        2719,
+        2897
+      ],
+      "Tminus1_frozen_target": [
+        1820,
+        2839
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 388,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 7,
+      "target_ship_id": 488,
+      "turn": 101
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        1755,
+        1700
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1755,
+        1700
+      ],
+      "Tminus1_actor_source": [
+        2138,
+        1888
+      ],
+      "Tminus1_frozen_target": [
+        1755,
+        1700
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 519,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 5,
+      "target_ship_id": 559,
+      "turn": 101
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        2269,
+        2848
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2269,
+        2848
+      ],
+      "Tminus1_actor_source": [
+        1382,
+        2388
+      ],
+      "Tminus1_frozen_target": [
+        2269,
+        2848
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 240,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 4,
+      "target_ship_id": 279,
+      "turn": 106
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        1870,
+        1226
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1870,
+        1226
+      ],
+      "Tminus1_actor_source": [
+        1228,
+        1835
+      ],
+      "Tminus1_frozen_target": [
+        1870,
+        1226
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 256,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 5,
+      "target_ship_id": 542,
+      "turn": 106
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        2523,
+        1538
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2523,
+        1538
+      ],
+      "Tminus1_actor_source": [
+        1654,
+        1681
+      ],
+      "Tminus1_frozen_target": [
+        2523,
+        1538
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 365,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 5,
+      "target_ship_id": 528,
+      "turn": 106
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        1820,
+        2839
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1820,
+        2839
+      ],
+      "Tminus1_actor_source": [
+        2671,
+        2792
+      ],
+      "Tminus1_frozen_target": [
+        1820,
+        2839
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 467,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 7,
+      "target_ship_id": 488,
+      "turn": 106
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        938,
+        1883
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        938,
+        1883
+      ],
+      "Tminus1_actor_source": [
+        1296,
+        1849
+      ],
+      "Tminus1_frozen_target": [
+        938,
+        1883
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 317,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 5,
+      "target_ship_id": 128,
+      "turn": 111
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        2560,
+        2605
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        2560,
+        2605
+      ],
+      "Tminus1_actor_source": [
+        1826,
+        2871
+      ],
+      "Tminus1_frozen_target": [
+        2560,
+        2605
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 383,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 7,
+      "target_ship_id": 462,
+      "turn": 111
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        1820,
+        2839
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1820,
+        2839
+      ],
+      "Tminus1_actor_source": [
+        1913,
+        2894
+      ],
+      "Tminus1_frozen_target": [
+        1820,
+        2839
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 388,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 7,
+      "target_ship_id": 488,
+      "turn": 111
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        1496,
+        1467
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1496,
+        1467
+      ],
+      "Tminus1_actor_source": [
+        1296,
+        1851
+      ],
+      "Tminus1_frozen_target": [
+        1496,
+        1467
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 518,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 5,
+      "target_ship_id": 221,
+      "turn": 111
+    },
+    {
+      "T_actor_and_current_target_colocated": true,
+      "T_actor_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_actor_position": [
+        1713,
+        1780
+      ],
+      "T_target_moved_from_frozen_position": false,
+      "T_target_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_target_position": [
+        1713,
+        1780
+      ],
+      "Tminus1_actor_source": [
+        1292,
+        1853
+      ],
+      "Tminus1_frozen_target": [
+        1713,
+        1780
+      ],
+      "V25_endpoint_status": "AT_DISTINCT_FROZEN_TARGET",
+      "actor_id": 559,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 5,
+      "target_ship_id": 519,
+      "turn": 111
+    },
+    {
+      "T_actor_and_current_target_colocated": null,
+      "T_actor_owner_current_status": "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE",
+      "T_actor_position": null,
+      "T_target_moved_from_frozen_position": null,
+      "T_target_owner_current_status": "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE",
+      "T_target_position": null,
+      "Tminus1_actor_source": [
+        1820,
+        2839
+      ],
+      "Tminus1_frozen_target": [
+        1152,
+        2243
+      ],
+      "V25_endpoint_status": "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE",
+      "actor_id": 388,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 7,
+      "target_ship_id": 192,
+      "turn": 116
+    },
+    {
+      "T_actor_and_current_target_colocated": null,
+      "T_actor_owner_current_status": "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE",
+      "T_actor_position": null,
+      "T_target_moved_from_frozen_position": null,
+      "T_target_owner_current_status": "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE",
+      "T_target_position": null,
+      "Tminus1_actor_source": [
+        1095,
+        2694
+      ],
+      "Tminus1_frozen_target": [
+        1152,
+        2243
+      ],
+      "V25_endpoint_status": "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE",
+      "actor_id": 577,
+      "actual_Host_Chunnel_activation_proven": false,
+      "game_id": 521268,
+      "owner_id": 4,
+      "target_ship_id": 240,
+      "turn": 116
+    }
+  ],
+  "phase": "moving_targets",
+  "same_V25_8_game_corpus_not_new_validation": true,
+  "schema": "planets-lab.combat-c5-moving-target-and-identity-audit.v27",
+  "source_V25_manifest_git_blob_sha1": "2c89d5320b31b2f12d9235192a8ac31240549052",
+  "source_V26_manifest_git_blob_sha1": "1b44aa0d1f885a3adbf58bdf7fffd065d18e42f8",
+  "status": "RETROSPECTIVE_V25_MOVING_TARGET_MISSING_SHIPS_FOREIGN_ROUTES_NOT_HOST_PROOF",
+  "summary": {
+    "G403181_T60_143_and_202_colocated_after_T": true,
+    "G403181_T60_target_202_moved": true,
+    "T_actor_target_colocation_by_original_V25_result": {
+      "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE": {
+        "ABSTAIN_TARGET_OR_ACTOR_T": 2
+      },
+      "AT_DISTINCT_FROZEN_TARGET": {
+        "T_ACTOR_WITH_CURRENT_TARGET": 55
+      },
+      "ELSEWHERE": {
+        "T_ACTOR_WITH_CURRENT_TARGET": 1
+      }
+    },
+    "actual_chunnel_execution_or_target_movement_phase_proven": false,
+    "conventional_55_1_2_scoring_not_retroactively_changed": true,
+    "frozen_V25_long_candidate_actor_rows": 58,
+    "frozen_V25_long_distinct_games": 3,
+    "frozen_V25_long_game_turn_windows": 22
+  }
+}

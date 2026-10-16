@@ -1,0 +1,64 @@
+{
+  "Host_activation_or_combat_prediction_proven": false,
+  "Nplus1_VCR_used": false,
+  "T_owner_current_missing_and_Tplus1_followups": [
+    {
+      "Nplus1_VCR_used": false,
+      "T_owner_current_actor_status": "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE",
+      "T_owner_current_target_status": "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE",
+      "T_owner_perspective_present": true,
+      "Tplus1_actor_position": null,
+      "Tplus1_actor_status": null,
+      "Tplus1_not_used_to_relabel_V25_or_infer_death": true,
+      "Tplus1_owner_perspective_present": false,
+      "Tplus1_provenance_status": "ABSTAIN_TPLUS1_ARCHIVE_NOT_AVAILABLE",
+      "Tplus1_target_position": null,
+      "Tplus1_target_status": null,
+      "actor_id": 388,
+      "game_id": 521268,
+      "owner_id": 7,
+      "target_id": 192,
+      "turn": 116
+    },
+    {
+      "Nplus1_VCR_used": false,
+      "T_owner_current_actor_status": "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE",
+      "T_owner_current_target_status": "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE",
+      "T_owner_perspective_present": true,
+      "Tplus1_actor_position": null,
+      "Tplus1_actor_status": null,
+      "Tplus1_not_used_to_relabel_V25_or_infer_death": true,
+      "Tplus1_owner_perspective_present": false,
+      "Tplus1_provenance_status": "ABSTAIN_TPLUS1_ARCHIVE_NOT_AVAILABLE",
+      "Tplus1_target_position": null,
+      "Tplus1_target_status": null,
+      "actor_id": 577,
+      "game_id": 521268,
+      "owner_id": 4,
+      "target_id": 240,
+      "turn": 116
+    }
+  ],
+  "all_33_Tminus1_windows_frozen_before_any_T_or_Tplus1": true,
+  "generation_sha256": "af4c1579b97736c158cf50a7f709e39b749860661ed65c028fb8085e756c573a",
+  "new_production_Host_movement_or_combat_predictions": 0,
+  "phase": "identity_provenance",
+  "same_V25_8_game_corpus_not_new_validation": true,
+  "schema": "planets-lab.combat-c5-moving-target-and-identity-audit.v27",
+  "source_V25_manifest_git_blob_sha1": "2c89d5320b31b2f12d9235192a8ac31240549052",
+  "source_V26_manifest_git_blob_sha1": "1b44aa0d1f885a3adbf58bdf7fffd065d18e42f8",
+  "status": "RETROSPECTIVE_V25_MOVING_TARGET_MISSING_SHIPS_FOREIGN_ROUTES_NOT_HOST_PROOF",
+  "summary": {
+    "T_owner_perspectives_present_both_original_missing_actors": 2,
+    "Tplus1_actor_identity_statuses": {
+      "None": 2
+    },
+    "Tplus1_snapshot_provenance_statuses": {
+      "ABSTAIN_TPLUS1_ARCHIVE_NOT_AVAILABLE": 2
+    },
+    "missing_actor_and_target_owner_current_pairs": 2,
+    "missing_distinct_game_turns": 1,
+    "no_VCR_used": true,
+    "retrospective_Tplus1_not_validated_Host_activations": true
+  }
+}

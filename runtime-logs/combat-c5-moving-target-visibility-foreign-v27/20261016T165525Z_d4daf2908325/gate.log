@@ -1,0 +1,89 @@
+===== C5 V27: TARGET COLOCATION / FUTURE IDENTITY / FOREIGN ROUTES =====
+HEAD: d4daf290832579b7da538c44799c4881e585f0b1
+new corpus SHA256: af4c1579b97736c158cf50a7f709e39b749860661ed65c028fb8085e756c573a
+V26 manifest blob: 1b44aa0d1f885a3adbf58bdf7fffd065d18e42f8
+V25 manifest blob: 2c89d5320b31b2f12d9235192a8ac31240549052
+[c5-v27] checking new public8 SHA256 ONCE, read-only
+[c5-v27] verified in 0.9s
+[c5-v27] PRE [1/33] G233802 T48
+[c5-v27] PRE [2/33] G233802 T57
+[c5-v27] PRE [3/33] G233802 T66
+[c5-v27] PRE [4/33] G403181 T36
+[c5-v27] PRE [5/33] G403181 T60
+[c5-v27] PRE [6/33] G403181 T65
+[c5-v27] PRE [7/33] G403181 T70
+[c5-v27] PRE [8/33] G403181 T75
+[c5-v27] PRE [9/33] G403181 T79
+[c5-v27] PRE [10/33] G403181 T84
+[c5-v27] PRE [11/33] G403181 T89
+[c5-v27] PRE [12/33] G403181 T94
+[c5-v27] PRE [13/33] G403181 T99
+[c5-v27] PRE [14/33] G403181 T109
+[c5-v27] PRE [15/33] G403181 T114
+[c5-v27] PRE [16/33] G521268 T31
+[c5-v27] PRE [17/33] G521268 T36
+[c5-v27] PRE [18/33] G521268 T41
+[c5-v27] PRE [19/33] G521268 T46
+[c5-v27] PRE [20/33] G521268 T51
+[c5-v27] PRE [21/33] G521268 T56
+[c5-v27] PRE [22/33] G521268 T61
+[c5-v27] PRE [23/33] G521268 T66
+[c5-v27] PRE [24/33] G521268 T71
+[c5-v27] PRE [25/33] G521268 T76
+[c5-v27] PRE [26/33] G521268 T81
+[c5-v27] PRE [27/33] G521268 T86
+[c5-v27] PRE [28/33] G521268 T91
+[c5-v27] PRE [29/33] G521268 T96
+[c5-v27] PRE [30/33] G521268 T101
+[c5-v27] PRE [31/33] G521268 T106
+[c5-v27] PRE [32/33] G521268 T111
+[c5-v27] PRE [33/33] G521268 T116
+[c5-v27] POST [1/33] G233802 T48
+[c5-v27] POST [2/33] G233802 T57
+[c5-v27] POST [3/33] G233802 T66
+[c5-v27] POST [4/33] G403181 T36
+[c5-v27] POST [5/33] G403181 T60
+[c5-v27] POST [6/33] G403181 T65
+[c5-v27] POST [7/33] G403181 T70
+[c5-v27] POST [8/33] G403181 T75
+[c5-v27] POST [9/33] G403181 T79
+[c5-v27] POST [10/33] G403181 T84
+[c5-v27] POST [11/33] G403181 T89
+[c5-v27] POST [12/33] G403181 T94
+[c5-v27] POST [13/33] G403181 T99
+[c5-v27] POST [14/33] G403181 T109
+[c5-v27] POST [15/33] G403181 T114
+[c5-v27] POST [16/33] G521268 T31
+[c5-v27] POST [17/33] G521268 T36
+[c5-v27] POST [18/33] G521268 T41
+[c5-v27] POST [19/33] G521268 T46
+[c5-v27] POST [20/33] G521268 T51
+[c5-v27] POST [21/33] G521268 T56
+[c5-v27] POST [22/33] G521268 T61
+[c5-v27] POST [23/33] G521268 T66
+[c5-v27] POST [24/33] G521268 T71
+[c5-v27] POST [25/33] G521268 T76
+[c5-v27] POST [26/33] G521268 T81
+[c5-v27] POST [27/33] G521268 T86
+[c5-v27] POST [28/33] G521268 T91
+[c5-v27] POST [29/33] G521268 T96
+[c5-v27] POST [30/33] G521268 T101
+[c5-v27] POST [31/33] G521268 T106
+[c5-v27] POST [32/33] G521268 T111
+[c5-v27] POST [33/33] G521268 T116
+===== C5 V27 moving_targets =====
+status: RETROSPECTIVE_V25_MOVING_TARGET_MISSING_SHIPS_FOREIGN_ROUTES_NOT_HOST_PROOF
+summary: {'frozen_V25_long_candidate_actor_rows': 58, 'frozen_V25_long_game_turn_windows': 22, 'frozen_V25_long_distinct_games': 3, 'T_actor_target_colocation_by_original_V25_result': {'ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE': {'ABSTAIN_TARGET_OR_ACTOR_T': 2}, 'AT_DISTINCT_FROZEN_TARGET': {'T_ACTOR_WITH_CURRENT_TARGET': 55}, 'ELSEWHERE': {'T_ACTOR_WITH_CURRENT_TARGET': 1}}, 'G403181_T60_143_and_202_colocated_after_T': True, 'G403181_T60_target_202_moved': True, 'conventional_55_1_2_scoring_not_retroactively_changed': True, 'actual_chunnel_execution_or_target_movement_phase_proven': False}
+output: artifacts/combat/c5-moving-target-visibility-foreign-v27/published/moving_targets.json
+===== C5 V27 identity_provenance =====
+status: RETROSPECTIVE_V25_MOVING_TARGET_MISSING_SHIPS_FOREIGN_ROUTES_NOT_HOST_PROOF
+summary: {'T_owner_perspectives_present_both_original_missing_actors': 2, 'missing_actor_and_target_owner_current_pairs': 2, 'missing_distinct_game_turns': 1, 'Tplus1_snapshot_provenance_statuses': {'ABSTAIN_TPLUS1_ARCHIVE_NOT_AVAILABLE': 2}, 'Tplus1_actor_identity_statuses': {'None': 2}, 'retrospective_Tplus1_not_validated_Host_activations': True, 'no_VCR_used': True}
+output: artifacts/combat/c5-moving-target-visibility-foreign-v27/published/identity_provenance.json
+===== C5 V27 foreign_routes =====
+status: RETROSPECTIVE_V25_MOVING_TARGET_MISSING_SHIPS_FOREIGN_ROUTES_NOT_HOST_PROOF
+summary: {'frozen_V25_foreign_owner_ship_appearances': 8, 'frozen_foreign_owner_source_episodes': 5, 'frozen_foreign_owner_distinct_games': 1, 'T_foreign_at_frozen_destination': 7, 'T_foreign_not_at_frozen_destination': 1, 'foreign_Tminus1_direct_waypoint_warp_possible': 0, 'foreign_Tminus1_inbound_tow_requests': 0, 'same_site_ephemeral_correlations_not_independent_mechanic_proof': True}
+output: artifacts/combat/c5-moving-target-visibility-foreign-v27/published/foreign_routes.json
+===== C5 V27 ALL THREE REPORTS / MANIFEST COMPLETE =====
+status: V27_MOVING_TARGET_IDENTITY_AND_FOREIGN_ROUTE_BATCH_COMPLETE
+output: artifacts/combat/c5-moving-target-visibility-foreign-v27/published/manifest.json
+===== C5 V27 THREE REPORTS COMPLETE =====

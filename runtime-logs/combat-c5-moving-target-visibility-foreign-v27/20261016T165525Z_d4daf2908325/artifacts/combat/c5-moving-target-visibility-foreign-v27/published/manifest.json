@@ -1,0 +1,68 @@
+{
+  "Nplus1_VCR_used": false,
+  "V26_manifest_git_blob_sha1": "1b44aa0d1f885a3adbf58bdf7fffd065d18e42f8",
+  "all_three_reports_complete": true,
+  "new_Host_chunnel_activation_predictions": 0,
+  "new_db_sha256": "af4c1579b97736c158cf50a7f709e39b749860661ed65c028fb8085e756c573a",
+  "phase": "manifest",
+  "relabel_V25_old_endpoint_scores": false,
+  "report_sha256": {
+    "foreign_routes": {
+      "file": "foreign_routes.json",
+      "sha256": "991cb55dd39d432870c07205afc8c9dc7df928aec9e9d5d97a6c59e7e087c62c",
+      "summary": {
+        "T_foreign_at_frozen_destination": 7,
+        "T_foreign_not_at_frozen_destination": 1,
+        "foreign_Tminus1_direct_waypoint_warp_possible": 0,
+        "foreign_Tminus1_inbound_tow_requests": 0,
+        "frozen_V25_foreign_owner_ship_appearances": 8,
+        "frozen_foreign_owner_distinct_games": 1,
+        "frozen_foreign_owner_source_episodes": 5,
+        "same_site_ephemeral_correlations_not_independent_mechanic_proof": true
+      }
+    },
+    "identity_provenance": {
+      "file": "identity_provenance.json",
+      "sha256": "b701b41d71e96590bb13067d2f07f6fcf6e57f6580ddcfc68abf3a540b0c3711",
+      "summary": {
+        "T_owner_perspectives_present_both_original_missing_actors": 2,
+        "Tplus1_actor_identity_statuses": {
+          "None": 2
+        },
+        "Tplus1_snapshot_provenance_statuses": {
+          "ABSTAIN_TPLUS1_ARCHIVE_NOT_AVAILABLE": 2
+        },
+        "missing_actor_and_target_owner_current_pairs": 2,
+        "missing_distinct_game_turns": 1,
+        "no_VCR_used": true,
+        "retrospective_Tplus1_not_validated_Host_activations": true
+      }
+    },
+    "moving_targets": {
+      "file": "moving_targets.json",
+      "sha256": "e1baacc3012fc4b07493d7dc24d8a53c44903fc567a00aee0c5c71f76fdec6ad",
+      "summary": {
+        "G403181_T60_143_and_202_colocated_after_T": true,
+        "G403181_T60_target_202_moved": true,
+        "T_actor_target_colocation_by_original_V25_result": {
+          "ABSTAIN_OWNER_CURRENT_T_UNAVAILABLE": {
+            "ABSTAIN_TARGET_OR_ACTOR_T": 2
+          },
+          "AT_DISTINCT_FROZEN_TARGET": {
+            "T_ACTOR_WITH_CURRENT_TARGET": 55
+          },
+          "ELSEWHERE": {
+            "T_ACTOR_WITH_CURRENT_TARGET": 1
+          }
+        },
+        "actual_chunnel_execution_or_target_movement_phase_proven": false,
+        "conventional_55_1_2_scoring_not_retroactively_changed": true,
+        "frozen_V25_long_candidate_actor_rows": 58,
+        "frozen_V25_long_distinct_games": 3,
+        "frozen_V25_long_game_turn_windows": 22
+      }
+    }
+  },
+  "schema": "planets-lab.combat-c5-moving-target-and-identity-audit.v27",
+  "status": "V27_MOVING_TARGET_IDENTITY_AND_FOREIGN_ROUTE_BATCH_COMPLETE"
+}

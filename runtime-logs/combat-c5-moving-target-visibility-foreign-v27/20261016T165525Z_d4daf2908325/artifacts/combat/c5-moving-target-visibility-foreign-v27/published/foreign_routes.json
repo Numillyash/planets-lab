@@ -1,0 +1,345 @@
+{
+  "Host_activation_or_combat_prediction_proven": false,
+  "Nplus1_VCR_used": false,
+  "all_33_Tminus1_windows_frozen_before_any_T_or_Tplus1": true,
+  "frozen_foreign_owner_orders_T_endpoint_comparisons": [
+    {
+      "T_at_frozen_target": true,
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_reobserved_position": [
+        1335,
+        1902
+      ],
+      "Tminus1_direct_waypoint_warp_geometry_possible": false,
+      "Tminus1_fuel": 3,
+      "Tminus1_inbound_tow_request_ids": [],
+      "Tminus1_mission": 0,
+      "Tminus1_source": [
+        1654,
+        1681
+      ],
+      "Tminus1_target": [
+        1335,
+        1902
+      ],
+      "Tminus1_warp": 0,
+      "Tminus1_waypoint": [
+        1654,
+        1681
+      ],
+      "V25_frozen_T_at_target": true,
+      "V25_frozen_T_position": [
+        1335,
+        1902
+      ],
+      "actor_id": 270,
+      "actor_owner_id": 5,
+      "chunnel_target_id": 255,
+      "co-location_is_not_automatic_passenger_eligibility": true,
+      "game_id": 521268,
+      "hull_id": 105,
+      "owner_id": 6,
+      "posthost_not_used_to_select": true,
+      "ship_id": 239,
+      "turn": 31
+    },
+    {
+      "T_at_frozen_target": true,
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_reobserved_position": [
+        1335,
+        1902
+      ],
+      "Tminus1_direct_waypoint_warp_geometry_possible": false,
+      "Tminus1_fuel": 141,
+      "Tminus1_inbound_tow_request_ids": [],
+      "Tminus1_mission": 0,
+      "Tminus1_source": [
+        1654,
+        1681
+      ],
+      "Tminus1_target": [
+        1335,
+        1902
+      ],
+      "Tminus1_warp": 0,
+      "Tminus1_waypoint": [
+        1654,
+        1681
+      ],
+      "V25_frozen_T_at_target": true,
+      "V25_frozen_T_position": [
+        1335,
+        1902
+      ],
+      "actor_id": 270,
+      "actor_owner_id": 5,
+      "chunnel_target_id": 255,
+      "co-location_is_not_automatic_passenger_eligibility": true,
+      "game_id": 521268,
+      "hull_id": 104,
+      "owner_id": 6,
+      "posthost_not_used_to_select": true,
+      "ship_id": 312,
+      "turn": 31
+    },
+    {
+      "T_at_frozen_target": false,
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_reobserved_position": [
+        1437,
+        1065
+      ],
+      "Tminus1_direct_waypoint_warp_geometry_possible": false,
+      "Tminus1_fuel": 100,
+      "Tminus1_inbound_tow_request_ids": [],
+      "Tminus1_mission": 1,
+      "Tminus1_source": [
+        1403,
+        1064
+      ],
+      "Tminus1_target": [
+        1420,
+        1801
+      ],
+      "Tminus1_warp": 9,
+      "Tminus1_waypoint": [
+        1434,
+        1065
+      ],
+      "V25_frozen_T_at_target": false,
+      "V25_frozen_T_position": [
+        1437,
+        1065
+      ],
+      "actor_id": 393,
+      "actor_owner_id": 5,
+      "chunnel_target_id": 270,
+      "co-location_is_not_automatic_passenger_eligibility": true,
+      "game_id": 521268,
+      "hull_id": 17,
+      "owner_id": 6,
+      "posthost_not_used_to_select": true,
+      "ship_id": 117,
+      "turn": 41
+    },
+    {
+      "T_at_frozen_target": true,
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_reobserved_position": [
+        1372,
+        1287
+      ],
+      "Tminus1_direct_waypoint_warp_geometry_possible": false,
+      "Tminus1_fuel": 1200,
+      "Tminus1_inbound_tow_request_ids": [],
+      "Tminus1_mission": 0,
+      "Tminus1_source": [
+        1407,
+        1438
+      ],
+      "Tminus1_target": [
+        1372,
+        1287
+      ],
+      "Tminus1_warp": 0,
+      "Tminus1_waypoint": [
+        1407,
+        1438
+      ],
+      "V25_frozen_T_at_target": true,
+      "V25_frozen_T_position": [
+        1372,
+        1287
+      ],
+      "actor_id": 203,
+      "actor_owner_id": 5,
+      "chunnel_target_id": 542,
+      "co-location_is_not_automatic_passenger_eligibility": true,
+      "game_id": 521268,
+      "hull_id": 18,
+      "owner_id": 6,
+      "posthost_not_used_to_select": true,
+      "ship_id": 113,
+      "turn": 61
+    },
+    {
+      "T_at_frozen_target": true,
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_reobserved_position": [
+        1293,
+        1850
+      ],
+      "Tminus1_direct_waypoint_warp_geometry_possible": false,
+      "Tminus1_fuel": 10,
+      "Tminus1_inbound_tow_request_ids": [],
+      "Tminus1_mission": 0,
+      "Tminus1_source": [
+        938,
+        1883
+      ],
+      "Tminus1_target": [
+        1293,
+        1850
+      ],
+      "Tminus1_warp": 0,
+      "Tminus1_waypoint": [
+        938,
+        1883
+      ],
+      "V25_frozen_T_at_target": true,
+      "V25_frozen_T_position": [
+        1293,
+        1850
+      ],
+      "actor_id": 317,
+      "actor_owner_id": 5,
+      "chunnel_target_id": 128,
+      "co-location_is_not_automatic_passenger_eligibility": true,
+      "game_id": 521268,
+      "hull_id": 52,
+      "owner_id": 6,
+      "posthost_not_used_to_select": true,
+      "ship_id": 27,
+      "turn": 66
+    },
+    {
+      "T_at_frozen_target": true,
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_reobserved_position": [
+        1293,
+        1850
+      ],
+      "Tminus1_direct_waypoint_warp_geometry_possible": false,
+      "Tminus1_fuel": 100,
+      "Tminus1_inbound_tow_request_ids": [],
+      "Tminus1_mission": 0,
+      "Tminus1_source": [
+        938,
+        1883
+      ],
+      "Tminus1_target": [
+        1293,
+        1850
+      ],
+      "Tminus1_warp": 0,
+      "Tminus1_waypoint": [
+        938,
+        1883
+      ],
+      "V25_frozen_T_at_target": true,
+      "V25_frozen_T_position": [
+        1293,
+        1850
+      ],
+      "actor_id": 317,
+      "actor_owner_id": 5,
+      "chunnel_target_id": 128,
+      "co-location_is_not_automatic_passenger_eligibility": true,
+      "game_id": 521268,
+      "hull_id": 52,
+      "owner_id": 6,
+      "posthost_not_used_to_select": true,
+      "ship_id": 369,
+      "turn": 66
+    },
+    {
+      "T_at_frozen_target": true,
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_reobserved_position": [
+        1293,
+        1850
+      ],
+      "Tminus1_direct_waypoint_warp_geometry_possible": false,
+      "Tminus1_fuel": 6,
+      "Tminus1_inbound_tow_request_ids": [],
+      "Tminus1_mission": 1,
+      "Tminus1_source": [
+        1600,
+        1788
+      ],
+      "Tminus1_target": [
+        1293,
+        1850
+      ],
+      "Tminus1_warp": 0,
+      "Tminus1_waypoint": [
+        1600,
+        1788
+      ],
+      "V25_frozen_T_at_target": true,
+      "V25_frozen_T_position": [
+        1293,
+        1850
+      ],
+      "actor_id": 45,
+      "actor_owner_id": 5,
+      "chunnel_target_id": 365,
+      "co-location_is_not_automatic_passenger_eligibility": true,
+      "game_id": 521268,
+      "hull_id": 17,
+      "owner_id": 6,
+      "posthost_not_used_to_select": true,
+      "ship_id": 14,
+      "turn": 71
+    },
+    {
+      "T_at_frozen_target": true,
+      "T_owner_current_status": "OWNER_CURRENT_T_OBSERVED",
+      "T_reobserved_position": [
+        1293,
+        1850
+      ],
+      "Tminus1_direct_waypoint_warp_geometry_possible": false,
+      "Tminus1_fuel": 1,
+      "Tminus1_inbound_tow_request_ids": [],
+      "Tminus1_mission": 4,
+      "Tminus1_source": [
+        1600,
+        1788
+      ],
+      "Tminus1_target": [
+        1293,
+        1850
+      ],
+      "Tminus1_warp": 0,
+      "Tminus1_waypoint": [
+        1600,
+        1788
+      ],
+      "V25_frozen_T_at_target": true,
+      "V25_frozen_T_position": [
+        1293,
+        1850
+      ],
+      "actor_id": 45,
+      "actor_owner_id": 5,
+      "chunnel_target_id": 365,
+      "co-location_is_not_automatic_passenger_eligibility": true,
+      "game_id": 521268,
+      "hull_id": 18,
+      "owner_id": 6,
+      "posthost_not_used_to_select": true,
+      "ship_id": 113,
+      "turn": 71
+    }
+  ],
+  "generation_sha256": "af4c1579b97736c158cf50a7f709e39b749860661ed65c028fb8085e756c573a",
+  "new_production_Host_movement_or_combat_predictions": 0,
+  "phase": "foreign_routes",
+  "same_V25_8_game_corpus_not_new_validation": true,
+  "schema": "planets-lab.combat-c5-moving-target-and-identity-audit.v27",
+  "source_V25_manifest_git_blob_sha1": "2c89d5320b31b2f12d9235192a8ac31240549052",
+  "source_V26_manifest_git_blob_sha1": "1b44aa0d1f885a3adbf58bdf7fffd065d18e42f8",
+  "status": "RETROSPECTIVE_V25_MOVING_TARGET_MISSING_SHIPS_FOREIGN_ROUTES_NOT_HOST_PROOF",
+  "summary": {
+    "T_foreign_at_frozen_destination": 7,
+    "T_foreign_not_at_frozen_destination": 1,
+    "foreign_Tminus1_direct_waypoint_warp_possible": 0,
+    "foreign_Tminus1_inbound_tow_requests": 0,
+    "frozen_V25_foreign_owner_ship_appearances": 8,
+    "frozen_foreign_owner_distinct_games": 1,
+    "frozen_foreign_owner_source_episodes": 5,
+    "same_site_ephemeral_correlations_not_independent_mechanic_proof": true
+  }
+}
