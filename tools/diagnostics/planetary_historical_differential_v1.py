@@ -237,12 +237,34 @@ def pre_window(conn,game:int,turn:int):
             "all_source_predictions_frozen_before_ANY_T":True}
 
 
+# These failures identify an unusable T archive, not a Host-model mismatch.
+# Keep this exact allowlist narrow: unexpected decoding/implementation failures
+# must still abort instead of disappearing into the comparison denominator.
+T_ARCHIVE_ABSTAIN_REASONS={
+    "untrusted Tminus1 archive identity":"ABSTAIN_T_ARCHIVE_IDENTITY_UNTRUSTED",
+    "Tminus1 perspective player mismatch":"ABSTAIN_T_ARCHIVE_PLAYER_IDENTITY_UNTRUSTED",
+    "missing exact Tminus1 owner perspectives":"ABSTAIN_T_ARCHIVE_MISSING",
+}
+
+
 def post_window(conn,game,turn):
-    snaps,_=v9.pre_snapshots(conn,game=game,before=turn)
-    return raw_owner_current_planets(snaps,turn)[0]
+    """Reject the ENTIRE T window when any strict member check fails.
+
+    Never partially accept a perspective set containing a mismatched embedded
+    game/turn or mismatched perspective ID. The original Tminus1 predictions
+    remain frozen; a rejected T window contributes no accuracy denominator.
+    """
+    try:
+        snaps,_=v9.pre_snapshots(conn,game=game,before=turn)
+    except ValueError as error:
+        reason=T_ARCHIVE_ABSTAIN_REASONS.get(str(error))
+        if reason is None:
+            raise
+        return {},reason
+    return raw_owner_current_planets(snaps,turn)[0],None
 
 
-def compare(frozen,after):
+def compare(frozen,after,*,post_archive_issue=None):
     rows={name:[] for name in FAMILIES}
     for item in frozen["Tminus1_planets"]:
         pid=item["planet_id"]
@@ -256,6 +278,8 @@ def compare(frozen,after):
             }
             if item["Tminus1_status"]!="MODEL_CONDITIONAL":
                 result["status"]=item["Tminus1_status"]
+            elif post_archive_issue is not None:
+                result["status"]=post_archive_issue
             elif post is None:
                 result["status"]="ABSTAIN_T_OWNER_CURRENT_MISSING"
             elif post[0]!=item["owner_id"]:
@@ -314,6 +338,12 @@ def reports(selected,windows,frozen,comparison):
                 "mismatch_compared_window_clusters":len({
                     (x["game_id"],x["turn"]) for x in rows
                     if x["status"]=="CONDITIONAL_MISMATCH_UNATTRIBUTED"}),
+                "T_archive_context_rejected_windows":len({
+                    (x["game_id"],x["turn"]) for x in rows
+                    if x["status"] in T_ARCHIVE_ABSTAIN_REASONS.values()}),
+                "T_archive_context_rejection_rows":sum(
+                    x["status"] in T_ARCHIVE_ABSTAIN_REASONS.values()
+                    for x in rows),
                 "NuHost_component_formulas_verified_causally":False,
                 "C5_Chunnel_research_experiments_run":0,
             },
@@ -368,8 +398,10 @@ def run_windows(conn,windows):
     grouped={name:[] for name in FAMILIES}
     for i,(game,turn) in enumerate(windows,1):
         print(f"[m2-archive-v1] POST [{i}/{len(windows)}] G{game} T{turn}",flush=True)
-        after=post_window(conn,game,turn)
-        result=compare(pre[game,turn],after)
+        after,archive_issue=post_window(conn,game,turn)
+        if archive_issue is not None:
+            print(f"[m2-archive-v1] ARCHIVE ABSTAIN G{game} T{turn}: {archive_issue}",flush=True)
+        result=compare(pre[game,turn],after,post_archive_issue=archive_issue)
         for family in FAMILIES:grouped[family].extend(result[family])
     return pre,grouped
 
