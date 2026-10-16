@@ -172,7 +172,8 @@ def test_bad_T_window_is_not_scored_as_economy_mismatch(monkeypatch):
     windows=((608293,2),(608293,20))
     seen=[]
     def post(_conn,g,t):
-        assert seen==[("PRE",608293,2),("PRE",608293,20)]
+        assert seen[:2]==[("PRE",608293,2),("PRE",608293,20)]
+        assert not any(label=="PRE" for label,_,_ in seen[2:])
         seen.append(("POST",g,t))
         if t==2:
             return {},"ABSTAIN_T_ARCHIVE_IDENTITY_UNTRUSTED"
