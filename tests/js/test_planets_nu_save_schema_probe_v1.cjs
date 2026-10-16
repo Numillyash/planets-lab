@@ -100,7 +100,12 @@ const payload = JSON.stringify({
 assert.equal(xhr.send(
   "apikey=" + encodeURIComponent(syntheticSecrets[0]) +
   "&data=" + encodeURIComponent(payload) +
-  "&gameid=203343"
+  "&gameid=203343" +
+  "&opaquePrivateField=" + encodeURIComponent(JSON.stringify({
+    ships: [{id: 88, supplies: 123987456, neutronium: 182, 
+      privateNote: "SENSITIVE_NESTED_NOTE_123"}],
+    planets: [{id: 54, megacredits: 677889}]
+  }))
 ), "ORIGINAL_SEND_RESULT");
 assert.equal(probe.report().observed_save_calls, 1);
 assert.equal(probe.report().events[0].transport, "xhr");
@@ -133,6 +138,16 @@ assert.equal(probe.report().events[0].response.reported_success_flag_not_server_
   assert.equal(report.server_order_acknowledgement_verified, false);
   assert.equal(report.events[1].response.reported_success_flag_not_server_acceptance_proof, false);
   assert.equal(report.events[0].request_schema.type, "object");
+  const unknown = report.events[0].request_schema.opaque_form_fields;
+  assert.equal(unknown.unknown_field_count, 1);
+  assert.equal(unknown.opaque_field_value_profiles.length, 1);
+  assert.equal(unknown.opaque_field_value_profiles[0].outer_type, "string");
+  assert.equal(unknown.opaque_field_value_profiles[0].content, "json_object");
+  const nested = unknown.opaque_field_value_profiles[0].sanitized_inner_shape;
+  assert.equal(nested.fields.ships.type, "array");
+  assert.equal(nested.fields.planets.type, "array");
+  assert.equal(nested.fields.ships.item.fields.supplies.type, "number");
+  assert.equal(report.events[0].response.shape.opaque_field_value_profiles[0].content, "not_json");
   const text = JSON.stringify(report);
   for (const value of syntheticSecrets) {
     assert.ok(!text.includes(value), "secret value must not be included");
@@ -146,6 +161,10 @@ assert.equal(probe.report().events[0].response.reported_success_flag_not_server_
   assert.ok(!text.includes("savekey"), "credential field name should not be emitted");
   assert.ok(!text.includes("apikey"), "credential field name should not be emitted");
   assert.ok(!text.includes("password"), "credential field name should not be emitted");
+  assert.ok(!text.includes("opaquePrivateField"), "unknown field name must not be emitted");
+  assert.ok(!text.includes("privateNote"), "unknown nested field name must not be emitted");
+  assert.ok(!text.includes("SENSITIVE_NESTED_NOTE_123"), "nested value must not be emitted");
+  assert.ok(!text.includes("123987456") && !text.includes("677889"), "nested numeric values must not be emitted");
   assert.ok(!text.includes("/game/savegame"), "URL paths must not be emitted");
   assert.ok(!text.includes("gameid=12345678"), "URL query strings must not be emitted");
 

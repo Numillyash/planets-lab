@@ -33,6 +33,21 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**M2 first positive ordinary `/game/save` observation (October 17, 2026):**
+The owner-supplied privacy-redacted browser report contains exactly one
+XHR `POST /game/save` with HTTP 200 and response `success:true`.
+Observed request field types: `gameid`, `playerid`, `turn` are
+strings, with 2 secret-masked keys and **1 additional unknown key**.
+Also observed one `/game/turnready` and two account API calls by
+category only. This is a real positive save API response,
+**NOT** a field-level authenticated cargo order nor Host parity.
+The v1.2 observer can now inspect type/allowlisted nested structure of
+the unknown value without retaining its name, actual values or secrets.
+**Next:** one ordinary, authorized UI save with v1.2 and evaluate only
+its sanitized opaque value profile. See
+[API capture handoff](handoff/2026-10-17-m2-save-schema-reconnaissance-v1.md).
+Keep C5 frozen and historical causal comparisons fail-closed.
+
 **M2 live save transport checkpoint (zero qualifying observations):**
 The first owner-authorized passive DevTools probe returned
 `observed_save_calls=0`. This is **not** proof that nothing was saved,

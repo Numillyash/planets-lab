@@ -164,3 +164,74 @@ after removing queries; never export a raw HAR.
 No authenticated private orders or server-acceptance proof have been
 obtained from the first zero-observation report. Keep the full NuHost
 historical causal comparison `ABSTAIN`.
+
+## 2026-10-17 first positive own-client save observation
+
+After PR #214 extended the browser diagnostic categories, one ordinary
+user-authorized Planets.nu UI save produced a **positive** redacted
+schema observation (the user shared no credentials or resource values):
+
+- `observed_save_calls=1`; `transport=xhr`, `method=POST`,
+  exact `/game/save` match, HTTP `200`.
+- Allowlisted request names `gameid`, `playerid`, `turn`,
+  each with type `string`. **No values/IDs were exposed.**
+- `redacted_key_count=2`, `unknown_key_count=1`.
+  Neither the names nor values of these three fields are known.
+- Response: allowlisted `success` boolean observed `true`, plus
+  one unknown response field (not exposed).
+- During the probe: four Planets.nu XHR POSTs in total:
+  one `game_save_exact`, one `game_turnready`, two `account_other`.
+  `game_save_candidate=0`, `game_other=0`.
+- `submitted_order_mapping_verified=false`,
+  `server_order_acknowledgement_verified=false`,
+  `host_phase_verified=false`.
+
+This establishes a **real client request and positive application-level
+save response**. It does **NOT** yet attest specific order fields or
+that NuHost executed a cargo instruction. The `turnready` call only
+proves traffic in that category, not its status or outcome.
+Do not reverse-infer private cargo amounts or source orders from post
+turn stocks. The remaining unknown request field is the crucial
+schema gap.
+
+### Unknown form-field profiling (probe v1.2)
+
+`tools/client/planets_nu_save_schema_probe_v1.js` now emits a bounded
+`opaque_field_value_profiles` / `opaque_form_fields` **for exact
+`/game/save` only**:
+
+- At most two profiles for unknown field *values*, which contain only
+  safe type labels (`string`, `number`, `json_object`,
+  `json_array`, etc), and optionally the same strict allowlist of
+  nested mechanic field NAMES and their TYPES. This could distinguish
+  a serialized ship/planet object from a scalar flag without retaining
+  data.
+- Arbitrary unknown field names are NEVER output (names themselves
+  could contain secrets). String and numerical values, identifiers,
+  array lengths, credentials, full URL, HTTP body and nested unlisted
+  names remain excluded.
+- Input is parsed only in memory and only after a naturally occurring
+  save request. No new requests, no interception/replacement of the
+  user command, no automatic Ready toggling, no packet captures.
+- JSON recognition inside an unknown field does **not** prove a
+  submitted command mapping, an independently acknowledged save, or
+  temporal NuHost causality.
+
+To obtain an informative next observation, install current JS source
+in the same game via DevTools **before** an ordinary save, then call:
+
+```javascript
+console.log(JSON.stringify(__planetsM2SaveSchemaProbeV1.report(), null, 2))
+```
+
+Review the sanitized report locally before sharing. Call
+`__planetsM2SaveSchemaProbeV1.stop()` afterwards. A browser reload
+destroys the observer. Do not paste a HAR, raw request, API/savekey,
+cookies, or token into any public report.
+
+The next engineering step is to evaluate this new profile and decide
+whether the unknown save field contains a serialized state update,
+an explicit cargo instruction or something else. A verified field-level
+`PlanetCargoTransferOrder` mapping is still out of reach without
+separating the client-observed state mutation from server-accepted
+instructions. Historical order-aware `DIFF_VERIFIED` stays blocked.
