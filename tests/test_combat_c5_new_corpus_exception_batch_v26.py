@@ -209,8 +209,8 @@ def test_missing_owner_current_visibility_is_archival_abstention(monkeypatch):
         }
     }
     post={(521268,116):{}}
-    def refs(_conn,*,game,turns,include_embedded_turn):
-        assert game==521268 and include_embedded_turn is False
+    def refs(_conn,*,game_id,turns,include_embedded_turn):
+        assert game_id==521268 and include_embedded_turn is False
         return [SimpleNamespace(perspective_player_id=i)
                 for i in ([4,7,10] if turns=={115} else [10,11])]
     monkeypatch.setattr(M.v9,"member_refs_for_turns",refs)
