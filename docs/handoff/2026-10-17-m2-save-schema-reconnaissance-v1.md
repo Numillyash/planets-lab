@@ -235,3 +235,71 @@ an explicit cargo instruction or something else. A verified field-level
 `PlanetCargoTransferOrder` mapping is still out of reach without
 separating the client-observed state mutation from server-accepted
 instructions. Historical order-aware `DIFF_VERIFIED` stays blocked.
+
+## 2026-10-17 controlled tax-rate edits: four live saves, no separate Save button
+
+The player reported the actual client workflow: on several of their
+planets they changed colony tax rates; there is **no independent game
+Save button** in that interface. The `Turn Ready` control returns
+to the dashboard. We should stop instructing the player to click a
+nonexistent Save control.
+
+The same opt-in probe (v1.2) observed:
+
+- `POST /game/save` via XHR **four times**, each HTTP 200 and
+  `success:true` in the parsed response.
+- One `game_turnready` and two `account_other` XHR POSTs:
+  seven Planets.nu POSTs in total, no fetch and no other game routes.
+- Four request shapes include string-typed `gameid`, `playerid`,
+  `turn` plus two secret-masked form fields and additional unknown
+  fields. The actual values were never collected.
+- `opaque_form_fields.unknown_field_count` was **5, 5, 4, 4**
+  (two sets of otherwise identical safe structures).
+- Every unknown value in the *first two sampled positions* was a
+  scalar string classified as `not_json`.
+- Response `success=true` was observed, and one additional response
+  field was anonymous numeric. No per-command acceptance witness was
+  independently recorded.
+- No per-request timing relative to the UI edits was observed; this
+  does **not** prove one save per tax edit or whether readiness also
+  forces another autosave. The observations support further testing
+  of **automatic/client-triggered persistence**, not a fully proven
+  client scheduling rule.
+
+### Diagnostic interpretation bug in v1.2, corrected in v1.3
+
+For URL-encoded form requests, `decodeString()` used a single synthetic
+`(unlisted)` property for *all* unknown parameter names. This
+artificially produced `request_schema.unknown_key_count=1` and a
+phantom `opaque_field_value_profiles=[{"outer_type":"null"}]`.
+These two diagnostics should **not** be interpreted as a real null
+field or only one unknown parameter. The independent form parser
+correctly counted 5 and 4 unknown fields.
+
+V1.3 removes that placeholder for form parsing and presents
+`request_schema.unknown_key_count` from the true sanitized
+form parameter count. It preserves the first two (redacted) profiles,
+but now also reports coarse **encoding histograms for up to 24 unknown
+field values** and up to two sanitized structured JSON candidates
+located anywhere within those fields, even if they occur after
+several scalar fields. An event's `diagnostics.route_sequence` stores
+only the order of up to 24 coarse route categories and POST/OTHER
+methods, without timestamps, URLs, raw paths or data.
+
+The v1.3 code remains passive: it neither presses `Turn Ready` nor
+changes a tax rate, game data, save request or account configuration.
+Tests reproduce the historical 5→4 unknown-form-count pattern using
+synthetic inputs only and ensure that values, credentials and unknown
+field names never appear in reports.
+
+**Scientific status remains observational.** User consent to run a
+passive probe on an owned game, four successful-looking save API
+responses, and local owner-key signatures do not establish an
+authenticated per-field `PlanetCargoTransferOrder` mapping,
+the exact position of persistence relative to Host, or causally
+verified NuHost economy formulas. Treat those as open and
+`ABSTAIN` for historical order-aware differential.
+
+There is no need to reverse readiness or artificially alter
+additional game orders now. Wait until the player naturally edits
+the next ordinary game turn if further field-shape evidence is needed.
