@@ -1,0 +1,716 @@
+{
+  "internal_trace_sha256": "81dc417d215bf64e044b19b8e4fd00c00422b21992b94904b8275c19a1700497",
+  "phase_names": [
+    "structure_decay",
+    "colonist_happiness",
+    "native_happiness",
+    "factory_supplies",
+    "tax_collection",
+    "cyborg_assimilation",
+    "colonist_growth",
+    "native_growth",
+    "colonist_overpopulation",
+    "amorphous_consumption",
+    "riots",
+    "civil_war",
+    "mineral_mining",
+    "trans_uranium_mutation"
+  ],
+  "rng_seed": 23,
+  "schema": "planets-lab.planetary-multiturn-baseline.v1",
+  "status": "M2_INTERNAL_MULTITURN_BASELINE_TESTED_NOT_NUHOST_DIFFERENTIAL",
+  "summary": {
+    "NuHost_phase_differential_verified": false,
+    "canonical_combat_C5_changes": 0,
+    "complete_planetary_host_implemented": false,
+    "event_counts": {
+      "colonist_happiness_changed": 6,
+      "colonists_grew": 6,
+      "minerals_mined": 6,
+      "minerals_mutated": 9,
+      "native_happiness_changed": 3,
+      "natives_grew": 3,
+      "structures_decayed": 3,
+      "supplies_produced": 6
+    },
+    "factual_NuHost_archives_compared": 0,
+    "initial_turn": 7,
+    "last_turn": 10,
+    "multi_turn_deterministic": true,
+    "original_state_unchanged": true,
+    "planet_count": 3,
+    "unowned_factory_tax_did_not_activate": true
+  },
+  "trace": {
+    "final": {
+      "planets": [
+        {
+          "colonist_clans": 115,
+          "happiness": 100,
+          "id": 1,
+          "megacredits": 25,
+          "minerals": {
+            "duranium": {
+              "ground": 805,
+              "surface": 210
+            },
+            "molybdenum": {
+              "ground": 0,
+              "surface": 0
+            },
+            "neutronium": {
+              "ground": 461,
+              "surface": 42
+            },
+            "tritanium": {
+              "ground": 0,
+              "surface": 0
+            }
+          },
+          "native_clans": 1125,
+          "owner_id": 1,
+          "supplies": 341
+        },
+        {
+          "colonist_clans": 348,
+          "happiness": 100,
+          "id": 2,
+          "megacredits": 10,
+          "minerals": {
+            "duranium": {
+              "ground": 0,
+              "surface": 0
+            },
+            "molybdenum": {
+              "ground": 0,
+              "surface": 0
+            },
+            "neutronium": {
+              "ground": 0,
+              "surface": 0
+            },
+            "tritanium": {
+              "ground": 928,
+              "surface": 81
+            }
+          },
+          "native_clans": null,
+          "owner_id": 2,
+          "supplies": 54
+        },
+        {
+          "colonist_clans": 0,
+          "happiness": 100,
+          "id": 3,
+          "megacredits": 1,
+          "minerals": {
+            "duranium": {
+              "ground": 0,
+              "surface": 0
+            },
+            "molybdenum": {
+              "ground": 612,
+              "surface": 0
+            },
+            "neutronium": {
+              "ground": 0,
+              "surface": 0
+            },
+            "tritanium": {
+              "ground": 0,
+              "surface": 0
+            }
+          },
+          "native_clans": null,
+          "owner_id": null,
+          "supplies": 2
+        }
+      ],
+      "turn": 10
+    },
+    "initial": {
+      "planets": [
+        {
+          "colonist_clans": 100,
+          "happiness": 90,
+          "id": 1,
+          "megacredits": 25,
+          "minerals": {
+            "duranium": {
+              "ground": 1000,
+              "surface": 0
+            },
+            "molybdenum": {
+              "ground": 0,
+              "surface": 0
+            },
+            "neutronium": {
+              "ground": 500,
+              "surface": 0
+            },
+            "tritanium": {
+              "ground": 0,
+              "surface": 0
+            }
+          },
+          "native_clans": 1000,
+          "owner_id": 1,
+          "supplies": 11
+        },
+        {
+          "colonist_clans": 300,
+          "happiness": 100,
+          "id": 2,
+          "megacredits": 10,
+          "minerals": {
+            "duranium": {
+              "ground": 0,
+              "surface": 0
+            },
+            "molybdenum": {
+              "ground": 0,
+              "surface": 0
+            },
+            "neutronium": {
+              "ground": 0,
+              "surface": 0
+            },
+            "tritanium": {
+              "ground": 1000,
+              "surface": 0
+            }
+          },
+          "native_clans": null,
+          "owner_id": 2,
+          "supplies": 9
+        },
+        {
+          "colonist_clans": 0,
+          "happiness": 100,
+          "id": 3,
+          "megacredits": 1,
+          "minerals": {
+            "duranium": {
+              "ground": 0,
+              "surface": 0
+            },
+            "molybdenum": {
+              "ground": 600,
+              "surface": 0
+            },
+            "neutronium": {
+              "ground": 0,
+              "surface": 0
+            },
+            "tritanium": {
+              "ground": 0,
+              "surface": 0
+            }
+          },
+          "native_clans": null,
+          "owner_id": null,
+          "supplies": 2
+        }
+      ],
+      "turn": 7
+    },
+    "steps": [
+      {
+        "after": {
+          "planets": [
+            {
+              "colonist_clans": 105,
+              "happiness": 99,
+              "id": 1,
+              "megacredits": 25,
+              "minerals": {
+                "duranium": {
+                  "ground": 935,
+                  "surface": 70
+                },
+                "molybdenum": {
+                  "ground": 0,
+                  "surface": 0
+                },
+                "neutronium": {
+                  "ground": 487,
+                  "surface": 14
+                },
+                "tritanium": {
+                  "ground": 0,
+                  "surface": 0
+                }
+              },
+              "native_clans": 1040,
+              "owner_id": 1,
+              "supplies": 121
+            },
+            {
+              "colonist_clans": 315,
+              "happiness": 100,
+              "id": 2,
+              "megacredits": 10,
+              "minerals": {
+                "duranium": {
+                  "ground": 0,
+                  "surface": 0
+                },
+                "molybdenum": {
+                  "ground": 0,
+                  "surface": 0
+                },
+                "neutronium": {
+                  "ground": 0,
+                  "surface": 0
+                },
+                "tritanium": {
+                  "ground": 976,
+                  "surface": 27
+                }
+              },
+              "native_clans": null,
+              "owner_id": 2,
+              "supplies": 24
+            },
+            {
+              "colonist_clans": 0,
+              "happiness": 100,
+              "id": 3,
+              "megacredits": 1,
+              "minerals": {
+                "duranium": {
+                  "ground": 0,
+                  "surface": 0
+                },
+                "molybdenum": {
+                  "ground": 604,
+                  "surface": 0
+                },
+                "neutronium": {
+                  "ground": 0,
+                  "surface": 0
+                },
+                "tritanium": {
+                  "ground": 0,
+                  "surface": 0
+                }
+              },
+              "native_clans": null,
+              "owner_id": null,
+              "supplies": 2
+            }
+          ],
+          "turn": 8
+        },
+        "events": [
+          {
+            "entity_id": 3,
+            "kind": "structures_decayed",
+            "phase": "structure_decay"
+          },
+          {
+            "entity_id": 1,
+            "kind": "colonist_happiness_changed",
+            "phase": "colonist_happiness"
+          },
+          {
+            "entity_id": 2,
+            "kind": "colonist_happiness_changed",
+            "phase": "colonist_happiness"
+          },
+          {
+            "entity_id": 1,
+            "kind": "native_happiness_changed",
+            "phase": "native_happiness"
+          },
+          {
+            "entity_id": 1,
+            "kind": "supplies_produced",
+            "phase": "factory_supplies"
+          },
+          {
+            "entity_id": 2,
+            "kind": "supplies_produced",
+            "phase": "factory_supplies"
+          },
+          {
+            "entity_id": 1,
+            "kind": "colonists_grew",
+            "phase": "colonist_growth"
+          },
+          {
+            "entity_id": 2,
+            "kind": "colonists_grew",
+            "phase": "colonist_growth"
+          },
+          {
+            "entity_id": 1,
+            "kind": "natives_grew",
+            "phase": "native_growth"
+          },
+          {
+            "entity_id": 1,
+            "kind": "minerals_mined",
+            "phase": "mineral_mining"
+          },
+          {
+            "entity_id": 2,
+            "kind": "minerals_mined",
+            "phase": "mineral_mining"
+          },
+          {
+            "entity_id": 1,
+            "kind": "minerals_mutated",
+            "phase": "trans_uranium_mutation"
+          },
+          {
+            "entity_id": 2,
+            "kind": "minerals_mutated",
+            "phase": "trans_uranium_mutation"
+          },
+          {
+            "entity_id": 3,
+            "kind": "minerals_mutated",
+            "phase": "trans_uranium_mutation"
+          }
+        ],
+        "from_turn": 7,
+        "to_turn": 8
+      },
+      {
+        "after": {
+          "planets": [
+            {
+              "colonist_clans": 110,
+              "happiness": 100,
+              "id": 1,
+              "megacredits": 25,
+              "minerals": {
+                "duranium": {
+                  "ground": 870,
+                  "surface": 140
+                },
+                "molybdenum": {
+                  "ground": 0,
+                  "surface": 0
+                },
+                "neutronium": {
+                  "ground": 474,
+                  "surface": 28
+                },
+                "tritanium": {
+                  "ground": 0,
+                  "surface": 0
+                }
+              },
+              "native_clans": 1082,
+              "owner_id": 1,
+              "supplies": 231
+            },
+            {
+              "colonist_clans": 331,
+              "happiness": 100,
+              "id": 2,
+              "megacredits": 10,
+              "minerals": {
+                "duranium": {
+                  "ground": 0,
+                  "surface": 0
+                },
+                "molybdenum": {
+                  "ground": 0,
+                  "surface": 0
+                },
+                "neutronium": {
+                  "ground": 0,
+                  "surface": 0
+                },
+                "tritanium": {
+                  "ground": 952,
+                  "surface": 54
+                }
+              },
+              "native_clans": null,
+              "owner_id": 2,
+              "supplies": 39
+            },
+            {
+              "colonist_clans": 0,
+              "happiness": 100,
+              "id": 3,
+              "megacredits": 1,
+              "minerals": {
+                "duranium": {
+                  "ground": 0,
+                  "surface": 0
+                },
+                "molybdenum": {
+                  "ground": 608,
+                  "surface": 0
+                },
+                "neutronium": {
+                  "ground": 0,
+                  "surface": 0
+                },
+                "tritanium": {
+                  "ground": 0,
+                  "surface": 0
+                }
+              },
+              "native_clans": null,
+              "owner_id": null,
+              "supplies": 2
+            }
+          ],
+          "turn": 9
+        },
+        "events": [
+          {
+            "entity_id": 3,
+            "kind": "structures_decayed",
+            "phase": "structure_decay"
+          },
+          {
+            "entity_id": 1,
+            "kind": "colonist_happiness_changed",
+            "phase": "colonist_happiness"
+          },
+          {
+            "entity_id": 2,
+            "kind": "colonist_happiness_changed",
+            "phase": "colonist_happiness"
+          },
+          {
+            "entity_id": 1,
+            "kind": "native_happiness_changed",
+            "phase": "native_happiness"
+          },
+          {
+            "entity_id": 1,
+            "kind": "supplies_produced",
+            "phase": "factory_supplies"
+          },
+          {
+            "entity_id": 2,
+            "kind": "supplies_produced",
+            "phase": "factory_supplies"
+          },
+          {
+            "entity_id": 1,
+            "kind": "colonists_grew",
+            "phase": "colonist_growth"
+          },
+          {
+            "entity_id": 2,
+            "kind": "colonists_grew",
+            "phase": "colonist_growth"
+          },
+          {
+            "entity_id": 1,
+            "kind": "natives_grew",
+            "phase": "native_growth"
+          },
+          {
+            "entity_id": 1,
+            "kind": "minerals_mined",
+            "phase": "mineral_mining"
+          },
+          {
+            "entity_id": 2,
+            "kind": "minerals_mined",
+            "phase": "mineral_mining"
+          },
+          {
+            "entity_id": 1,
+            "kind": "minerals_mutated",
+            "phase": "trans_uranium_mutation"
+          },
+          {
+            "entity_id": 2,
+            "kind": "minerals_mutated",
+            "phase": "trans_uranium_mutation"
+          },
+          {
+            "entity_id": 3,
+            "kind": "minerals_mutated",
+            "phase": "trans_uranium_mutation"
+          }
+        ],
+        "from_turn": 8,
+        "to_turn": 9
+      },
+      {
+        "after": {
+          "planets": [
+            {
+              "colonist_clans": 115,
+              "happiness": 100,
+              "id": 1,
+              "megacredits": 25,
+              "minerals": {
+                "duranium": {
+                  "ground": 805,
+                  "surface": 210
+                },
+                "molybdenum": {
+                  "ground": 0,
+                  "surface": 0
+                },
+                "neutronium": {
+                  "ground": 461,
+                  "surface": 42
+                },
+                "tritanium": {
+                  "ground": 0,
+                  "surface": 0
+                }
+              },
+              "native_clans": 1125,
+              "owner_id": 1,
+              "supplies": 341
+            },
+            {
+              "colonist_clans": 348,
+              "happiness": 100,
+              "id": 2,
+              "megacredits": 10,
+              "minerals": {
+                "duranium": {
+                  "ground": 0,
+                  "surface": 0
+                },
+                "molybdenum": {
+                  "ground": 0,
+                  "surface": 0
+                },
+                "neutronium": {
+                  "ground": 0,
+                  "surface": 0
+                },
+                "tritanium": {
+                  "ground": 928,
+                  "surface": 81
+                }
+              },
+              "native_clans": null,
+              "owner_id": 2,
+              "supplies": 54
+            },
+            {
+              "colonist_clans": 0,
+              "happiness": 100,
+              "id": 3,
+              "megacredits": 1,
+              "minerals": {
+                "duranium": {
+                  "ground": 0,
+                  "surface": 0
+                },
+                "molybdenum": {
+                  "ground": 612,
+                  "surface": 0
+                },
+                "neutronium": {
+                  "ground": 0,
+                  "surface": 0
+                },
+                "tritanium": {
+                  "ground": 0,
+                  "surface": 0
+                }
+              },
+              "native_clans": null,
+              "owner_id": null,
+              "supplies": 2
+            }
+          ],
+          "turn": 10
+        },
+        "events": [
+          {
+            "entity_id": 3,
+            "kind": "structures_decayed",
+            "phase": "structure_decay"
+          },
+          {
+            "entity_id": 1,
+            "kind": "colonist_happiness_changed",
+            "phase": "colonist_happiness"
+          },
+          {
+            "entity_id": 2,
+            "kind": "colonist_happiness_changed",
+            "phase": "colonist_happiness"
+          },
+          {
+            "entity_id": 1,
+            "kind": "native_happiness_changed",
+            "phase": "native_happiness"
+          },
+          {
+            "entity_id": 1,
+            "kind": "supplies_produced",
+            "phase": "factory_supplies"
+          },
+          {
+            "entity_id": 2,
+            "kind": "supplies_produced",
+            "phase": "factory_supplies"
+          },
+          {
+            "entity_id": 1,
+            "kind": "colonists_grew",
+            "phase": "colonist_growth"
+          },
+          {
+            "entity_id": 2,
+            "kind": "colonists_grew",
+            "phase": "colonist_growth"
+          },
+          {
+            "entity_id": 1,
+            "kind": "natives_grew",
+            "phase": "native_growth"
+          },
+          {
+            "entity_id": 1,
+            "kind": "minerals_mined",
+            "phase": "mineral_mining"
+          },
+          {
+            "entity_id": 2,
+            "kind": "minerals_mined",
+            "phase": "mineral_mining"
+          },
+          {
+            "entity_id": 1,
+            "kind": "minerals_mutated",
+            "phase": "trans_uranium_mutation"
+          },
+          {
+            "entity_id": 2,
+            "kind": "minerals_mutated",
+            "phase": "trans_uranium_mutation"
+          },
+          {
+            "entity_id": 3,
+            "kind": "minerals_mutated",
+            "phase": "trans_uranium_mutation"
+          }
+        ],
+        "from_turn": 9,
+        "to_turn": 10
+      }
+    ]
+  },
+  "turns_compared": 3,
+  "unimplemented_surfaces": [
+    "terraforming",
+    "pillage_plunder",
+    "rebel_ground_attack",
+    "campaign_enlighten",
+    "campaign_ore_condensing",
+    "starbase_ship_construction",
+    "real_game_multi_turn_differential"
+  ]
+}

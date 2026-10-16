@@ -1,0 +1,22 @@
+{
+  "evidence_branch": "runtime-logs",
+  "exit_code": 0,
+  "finished_at_utc": "2026-10-16T17:21:50Z",
+  "hostname": "GEORGUL-GAMER",
+  "interrupted_signal": null,
+  "log_file": "gate.log",
+  "missing_artifact_paths": [],
+  "remote": "origin",
+  "requested_artifact_paths": [
+    "artifacts/planetary/multiturn-baseline-v1/published"
+  ],
+  "run_id": "20261016T172150Z_1129ca77691c",
+  "run_name": "planetary-multiturn-baseline-v1",
+  "runner": "bash",
+  "schema": "planets-lab.runtime-evidence.v1",
+  "skipped_oversized_artifact_paths": [],
+  "source_branch": "main",
+  "source_commit": "1129ca77691cd8ae9d0ac5ba1ba4385824378632",
+  "source_dirty": false,
+  "started_at_utc": "2026-10-16T17:21:50Z"
+}

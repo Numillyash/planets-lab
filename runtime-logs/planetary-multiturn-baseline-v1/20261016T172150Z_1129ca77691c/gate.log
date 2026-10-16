@@ -1,0 +1,8 @@
+===== M2 START: PLANETARY MULTITURN BASELINE =====
+HEAD: 1129ca77691cd8ae9d0ac5ba1ba4385824378632
+scope: internal 3-turn deterministic phase composition, NOT NuHost parity
+===== M2 PLANETARY MULTITURN BASELINE V1 =====
+status: M2_INTERNAL_MULTITURN_BASELINE_TESTED_NOT_NUHOST_DIFFERENTIAL
+summary: {'initial_turn': 7, 'last_turn': 10, 'planet_count': 3, 'multi_turn_deterministic': True, 'original_state_unchanged': True, 'unowned_factory_tax_did_not_activate': True, 'event_counts': {'colonist_happiness_changed': 6, 'colonists_grew': 6, 'minerals_mined': 6, 'minerals_mutated': 9, 'native_happiness_changed': 3, 'natives_grew': 3, 'structures_decayed': 3, 'supplies_produced': 6}, 'factual_NuHost_archives_compared': 0, 'NuHost_phase_differential_verified': False, 'complete_planetary_host_implemented': False, 'canonical_combat_C5_changes': 0}
+output: artifacts/planetary/multiturn-baseline-v1/published/report.json
+===== M2 BASELINE V1 PUBLISHED =====
