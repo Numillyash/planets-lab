@@ -33,6 +33,23 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**M2 October 17, 2026 — order-aware vertical slice runtime VERIFIED.**
+PRs #208 and #209 have merged and main CI #1268 passed (1175 tests).
+The server evidence `runtime-logs/planetary-order-aware-slice-v1/20261016T211423Z_894240fad1c4`
+is clean with `exit_code=0`, all requested artifacts, both three-turn
+hypothetical phase placements, 15 phase balances/turn and eight
+fail-closed controls. Trace SHA256:
+`327af515dc6b3f4bf4ea87764469640f4d60c1db47553d38fa494dbf42b40ef1`.
+Source commit `894240fad1c42db2cba868de3ec228a72a19fc83`.
+The integration is **TESTED on synthetic orders, NOT NuHost DIFF_VERIFIED**.
+The historical corpus's mechanics projection provides snapshots but no
+independently authenticated `PlanetCargoTransferOrder` submission record:
+`TurnOrders.empty()` does not establish the absence of actual player orders.
+**Next:** acquire independent pre-Host order captures and implement a
+provenance/coverage gate before any order-aware archival comparison; otherwise
+ABSTAIN. No return to per-residual historical fitting or C5.
+Handoff: [server-verified order-aware M2](handoff/2026-10-17-m2-order-aware-runtime-verified.md).
+
 **M2 update — October 16, 2026: historical triangulation complete; implementation next.**
 The complete three-report `planetary-evidence-triangulation-v1` runtime
 was independently verified on `runtime-logs`, with source
