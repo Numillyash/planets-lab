@@ -313,9 +313,11 @@ def analyze_residuals(observed,original,pre_by_window,post_by_window):
             "T_colocated_owner_current_ship_ids":T_colocated,
             "T_position_is_postHost_not_intermediate_phase":True,
         })
-    if {(
-        e["game_id"],e["turn"],e["ship_id"],e["target_ship_id"]) for e in exceptions}!=
-        {FIXED_ELSEWHERE,*FIXED_UNAVAILABLE}:
+    actual_keys={
+        (e["game_id"],e["turn"],e["ship_id"],e["target_ship_id"])
+        for e in exceptions
+    }
+    if actual_keys!={FIXED_ELSEWHERE,*FIXED_UNAVAILABLE}:
         raise ValueError("missing one of the three V25 residual/visibility cases")
     exception=next(e for e in exceptions if (
         e["game_id"],e["turn"],e["ship_id"],e["target_ship_id"])==FIXED_ELSEWHERE)
