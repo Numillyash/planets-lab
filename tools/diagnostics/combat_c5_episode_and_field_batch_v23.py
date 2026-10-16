@@ -310,13 +310,15 @@ def pre_scan(conn,game,turn):
             # Every eligible long pair is a control; selected without T.
             long.append(e)
         elif e["single_failing_gate"]=="DISTANCE_BELOW_100_AT_TMINUS1" and e["Tminus1_distance_ly"]>=1:
+            witness=source_field_witness(e,roster,gates,rules,races)
+            qualifies=bool(witness["Tminus1_documented_field_witnesses"]) or witness[
+                "Tminus1_short_format_cyborg_rule_explicit"]
             short.append({
-                **e,**source_field_witness(e,roster,gates,rules,races),
+                **e,**witness,
                 "game_id":game,"turn":turn,
-                "Tminus1_field_witness_status":"TMINUS1_DOCUMENTED_FIELD_WITNESS"
-                  if any(source_field_witness(e,roster,gates,rules,races)["Tminus1_documented_field_witnesses"])
-                  or source_field_witness(e,roster,gates,rules,races)["Tminus1_short_format_cyborg_rule_explicit"]
-                  else "ABSTAIN_NO_DOCUMENTED_FIELD_WITNESS",
+                "Tminus1_field_witness_status":(
+                    "TMINUS1_DOCUMENTED_FIELD_WITNESS" if qualifies else
+                    "ABSTAIN_NO_DOCUMENTED_FIELD_WITNESS"),
             })
     return {
         "game_id":game,"turn":turn,
