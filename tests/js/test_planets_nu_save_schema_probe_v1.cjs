@@ -66,6 +66,26 @@ const ignored = new FakeXHR();
 ignored.open("POST", "https://api.planets.nu/game/save-not-really");
 ignored.send("apikey=MY_SECRET_API_KEY_XYZ");
 assert.equal(probe.report().observed_save_calls, 0);
+assert.equal(probe.report().diagnostics.planets_requests_total, 1);
+assert.equal(probe.report().diagnostics.planets_post_requests, 1);
+assert.equal(probe.report().diagnostics.route_categories.game_other, 1);
+
+// Near-save routes and turnready should be counted in broad diagnostics,
+// but must NEVER have body/response contents copied into public events.
+const candidate = new FakeXHR();
+candidate.open("POST", "https://api.planets.nu/game/savegame?savekey=" + syntheticSecrets[1]);
+candidate.send("apikey=" + syntheticSecrets[0] + "&privatevalue=" + syntheticSecrets[2]);
+const turnready = new FakeXHR();
+turnready.open("POST", "https://api.planets.nu/game/turnready?apikey=" + syntheticSecrets[0]);
+turnready.send("gameid=12345678&private=" + syntheticSecrets[3]);
+const account = new FakeXHR();
+account.open("POST", "https://api.planets.nu/account/login?token=" + syntheticSecrets[5]);
+account.send("password=" + syntheticSecrets[0]);
+assert.equal(probe.report().observed_save_calls, 0);
+assert.equal(probe.report().diagnostics.route_categories.game_save_candidate, 1);
+assert.equal(probe.report().diagnostics.route_categories.game_turnready, 1);
+assert.equal(probe.report().diagnostics.route_categories.account_other, 1);
+assert.equal(probe.report().diagnostics.planets_post_requests, 4);
 
 const xhr = new FakeXHR();
 xhr.open("POST", "https://api.planets.nu/game/save?apikey=MY_SECRET_API_KEY_XYZ");
@@ -96,6 +116,16 @@ assert.equal(probe.report().events[0].response.reported_success_flag_not_server_
   const report = probe.report();
   assert.equal(requests, 1, "no additional API calls");
   assert.equal(report.observed_save_calls, 2);
+  assert.equal(report.diagnostics.planets_requests_total, 6);
+  assert.equal(report.diagnostics.planets_post_requests, 6);
+  assert.equal(report.diagnostics.xhr_requests, 5);
+  assert.equal(report.diagnostics.fetch_requests, 1);
+  assert.equal(report.diagnostics.route_categories.game_save_exact, 2);
+  assert.equal(report.diagnostics.route_categories.game_save_candidate, 1);
+  assert.equal(report.diagnostics.route_categories.game_turnready, 1);
+  assert.equal(report.diagnostics.route_categories.game_other, 1);
+  assert.equal(report.diagnostics.route_categories.account_other, 1);
+  assert.equal(report.diagnostics.route_discovery_only_not_server_ack, true);
   assert.equal(report.status, "SCHEMA_ONLY_NOT_SERVER_ORDER_ACK_OR_NUHOST_VERIFIED");
   assert.equal(report.values_logged, false);
   assert.equal(report.credentials_logged, false);
@@ -116,6 +146,13 @@ assert.equal(probe.report().events[0].response.reported_success_flag_not_server_
   assert.ok(!text.includes("savekey"), "credential field name should not be emitted");
   assert.ok(!text.includes("apikey"), "credential field name should not be emitted");
   assert.ok(!text.includes("password"), "credential field name should not be emitted");
+  assert.ok(!text.includes("/game/savegame"), "URL paths must not be emitted");
+  assert.ok(!text.includes("gameid=12345678"), "URL query strings must not be emitted");
+
+  // Reports must be detached: client mutation does not rewrite internal counters.
+  const copy = probe.report();
+  copy.diagnostics.route_categories.game_save_exact = 9999;
+  assert.equal(probe.report().diagnostics.route_categories.game_save_exact, 2);
 
   probe.stop();
   assert.equal(browser.fetch, originalFetch);
