@@ -12,7 +12,8 @@ import pytest
 
 from planets_lab.data.nu_build_cost_calibration import (
     BuildCostObservation, calibrate_client_build_costs,
-    predict_additive_static_build, read_client_build_costs_csv,
+    match_published_static_hull_candidates, predict_additive_static_build,
+    published_standard_tech_upgrade_cost_mc, read_client_build_costs_csv,
 )
 from planets_lab.data.nu_static import import_static_all
 from planets_lab.data.nu_specs import NuStaticSpecs
@@ -254,3 +255,145 @@ def test_rejects_incomplete_or_malformed_cost_row(tmp_path):
     p.write_text(text.replace("1190,104,75,235", "-1,104,75,235"), encoding="utf-8")
     with pytest.raises(ValueError, match="unsigned"):
         read_client_build_costs_csv(p)
+
+
+
+def published_reference_catalog_subset() -> dict:
+    """Official help/wiki component prices plus user-cited Race 1 hull values.
+
+    Synthetic catalog IDs do NOT claim a global Planets.nu ID mapping.
+    Source: help.planets.nu/starship-engines and
+    help.planets.nu/weapon-destruction-power and race/1/hulls.
+    """
+    return {
+        "hulls": [
+            {"id": 101, "name": "Vendetta Class Frigate", "engines": 2,
+             "beams": 4, "launchers": 4, "cost": 170,
+             "duranium": 12, "tritanium": 23, "molybdenum": 57},
+            {"id": 102, "name": "Medium Deep Space Freighter", "engines": 1,
+             "beams": 0, "launchers": 0, "cost": 65,
+             "duranium": 4, "tritanium": 4, "molybdenum": 6},
+            {"id": 103, "name": "Large Deep Space Freighter", "engines": 2,
+             "beams": 0, "launchers": 0, "cost": 160,
+             "duranium": 85, "tritanium": 7, "molybdenum": 8},
+            {"id": 104, "name": "Nebula Class Cruiser", "engines": 2,
+             "beams": 4, "launchers": 4, "cost": 390,
+             "duranium": 42, "tritanium": 61, "molybdenum": 73},
+        ],
+        "engines": [
+            {"id": 7, "name": "Quantum Drive 7", "cost": 170,
+             "duranium": 3, "tritanium": 3, "molybdenum": 15,
+             **{f"warp{i}": 1 for i in range(1, 10)}},
+            {"id": 9, "name": "Transwarp Drive", "cost": 300,
+             "duranium": 16, "tritanium": 3, "molybdenum": 35,
+             **{f"warp{i}": 1 for i in range(1, 10)}},
+        ],
+        "beams": [
+            {"id": 2, "name": "X-Ray Laser", "cost": 2,
+             "duranium": 0, "tritanium": 1, "molybdenum": 0},
+            {"id": 6, "name": "Disruptor", "cost": 13,
+             "duranium": 12, "tritanium": 1, "molybdenum": 1},
+            {"id": 8, "name": "Phaser", "cost": 35,
+             "duranium": 12, "tritanium": 1, "molybdenum": 30},
+        ],
+        "torpedos": [
+            {"id": 4, "name": "Gamma Bomb Launcher", "launchercost": 6,
+             "duranium": 3, "tritanium": 1, "molybdenum": 1},
+            {"id": 6, "name": "Mark 4 Photon Launcher", "launchercost": 20,
+             "duranium": 4, "tritanium": 1, "molybdenum": 1},
+            {"id": 8, "name": "Mark 6 Photon Launcher", "launchercost": 100,
+             "duranium": 2, "tritanium": 1, "molybdenum": 7},
+        ],
+    }
+
+
+def test_public_wiki_costs_explain_three_real_recipe_vectors_exactly():
+    specs = NuStaticSpecs.from_catalog(
+        import_static_all(published_reference_catalog_subset())
+    )
+    sample = make_rows()
+    cases = [
+        (4, 9, 2, 4, 4, 4, "Vendetta Class Frigate", 101),
+        (16, 9, 0, 0, 0, 0, "Medium Deep Space Freighter", 102),
+        (17, 7, 0, 0, 0, 0, "Large Deep Space Freighter", 103),
+    ]
+    for h, e, beam, nbeam, tube, ntube, name, catalog_id in cases:
+        row = next(
+            r for r in sample
+            if r.recipe == (h, e, beam, nbeam, tube, ntube)
+        )
+        matched = match_published_static_hull_candidates(row, specs)
+        assert matched["status"] == "ONE_HULL_PRICE_CANDIDATE_NOT_ID_VERIFIED"
+        assert matched["candidate_count"] == 1
+        assert matched["candidates"][0]["catalog_hull_name"] == name
+        assert matched["candidates"][0]["catalog_hull_id"] == catalog_id
+        assert matched["NuHost_hull_identity_verified"] is False
+        assert predict_additive_static_build(
+            row, specs, global_hull_id=catalog_id
+        )["status"] == "HYPOTHESIS_STATIC_SUM_EXACT_ON_CLIENT_COST"
+
+    # VERY IMPORTANT: do not guess that client Hull5 is the
+    # official global Nebula id 5 merely because numbers coincide.
+    questionable = next(r for r in sample if r.recipe == (5, 7, 8, 4, 8, 4))
+    match = match_published_static_hull_candidates(questionable, specs)
+    assert match["candidate_count"] == 0
+    assert match["status"] == "NO_PUBLISHED_STATIC_HULL_SIGNATURE_MATCH"
+    wrong_mapping = predict_additive_static_build(
+        questionable, specs, global_hull_id=104
+    )
+    assert wrong_mapping["status"] == "HYPOTHESIS_STATIC_SUM_MISMATCH_UNATTRIBUTED"
+    assert wrong_mapping["candidate_additive_total"] == {
+        "MegaCredits": 1270, "Duranium": 104,
+        "Tritanium": 75, "Molybdenum": 251,
+    }
+    assert wrong_mapping["observed_client_total"] == {
+        "MegaCredits": 1190, "Duranium": 104,
+        "Tritanium": 75, "Molybdenum": 235,
+    }
+
+
+def test_published_tech_table_independently_explains_compound_mc_delta():
+    assert published_standard_tech_upgrade_cost_mc(7, 10) == 2400
+    assert published_standard_tech_upgrade_cost_mc(1, 10) == 4500
+    assert published_standard_tech_upgrade_cost_mc(7, 7) == 0
+    assert published_standard_tech_upgrade_cost_mc(9, 10) == 900
+    with pytest.raises(ValueError):
+        published_standard_tech_upgrade_cost_mc(10, 7)
+    with pytest.raises(ValueError):
+        published_standard_tech_upgrade_cost_mc(True, 10)
+
+
+def test_public_catalog_candidate_discovery_without_identity_map(tmp_path):
+    source = tmp_path / "synthetic_client_builds.csv"
+    catalog = tmp_path / "official_pricing_subset.json"
+    output = tmp_path / "private_candidate_report.json"
+    csv_file(source, [
+        next(r for r in make_rows() if r.recipe == (4, 9, 2, 4, 4, 4)),
+        next(r for r in make_rows() if r.recipe == (16, 9, 0, 0, 0, 0)),
+        next(r for r in make_rows() if r.recipe == (17, 7, 0, 0, 0, 0)),
+        next(r for r in make_rows() if r.recipe == (5, 7, 8, 4, 8, 4)),
+    ])
+    encoded = json.dumps(published_reference_catalog_subset()).encode()
+    catalog.write_bytes(encoded)
+    args = [
+        sys.executable,
+        str(ROOT / "tools/diagnostics/nu_build_cost_calibration_v1.py"),
+        "--input", str(source), "--catalog", str(catalog),
+        "--catalog-sha256", hashlib.sha256(encoded).hexdigest(),
+        "--output", str(output),
+    ]
+    run = subprocess.run(args, cwd=ROOT, capture_output=True, text=True, timeout=30)
+    assert run.returncode == 0, run.stderr
+    result = json.loads(output.read_text(encoding="utf-8"))
+    assert result["summary"]["published_signature_status_counts"] == {
+        "NO_PUBLISHED_STATIC_HULL_SIGNATURE_MATCH": 1,
+        "ONE_HULL_PRICE_CANDIDATE_NOT_ID_VERIFIED": 3,
+    }
+    assert result["summary"]["static_hypothesis_status_counts"] == {
+        "NOT_CHECKED_NO_EXPLICIT_HULL_ID_MAP": 4,
+    }
+    assert "101001" not in run.stdout and "202002" not in run.stdout
+    assert all(
+        not r["published_cost_signature_candidates"]["NuHost_hull_identity_verified"]
+        for r in result["static_component_sum_comparison"]
+    )
