@@ -344,23 +344,29 @@ def analyze_har_save_bundle(payload: Mapping[str, Any]) -> dict[str, Any]:
                     for f in item["fields"]
                 ):
                     continue
-                planet_name = "Planet" + item["entity"][len("Starbase"):]
-                paired = next((
-                    x for x in changes if x["entity"] == planet_name
-                ), None)
-                if paired is None:
-                    continue
-                discounted = {
-                    f["field"] for f in paired["fields"]
-                    if f["field"] in
-                    ("MegaCredits", "Duranium", "Tritanium", "Molybdenum")
-                    and f["before"] is not None and f["after"] is not None
-                    and f["before"].isdigit() and f["after"].isdigit()
-                    and int(f["after"]) < int(f["before"])
-                }
-                if discounted == {
-                    "MegaCredits", "Duranium", "Tritanium", "Molybdenum"
-                }:
+                # Starbase wire Id is independent of Planet Id: real
+                # Starbase1 belongs to Planet8 in one observed sector.
+                # Never infer the parent planet by matching ID suffixes.
+                # A co-submitted four-resource decrease is countable
+                # only when exactly ONE candidate Planet changes.
+                candidates = []
+                for candidate in changes:
+                    if not candidate["entity"].startswith("Planet"):
+                        continue
+                    discounted = {
+                        f["field"] for f in candidate["fields"]
+                        if f["field"] in
+                        ("MegaCredits", "Duranium", "Tritanium", "Molybdenum")
+                        and isinstance(f["before"], str)
+                        and isinstance(f["after"], str)
+                        and f["before"].isdigit() and f["after"].isdigit()
+                        and int(f["after"]) < int(f["before"])
+                    }
+                    if discounted == {
+                        "MegaCredits", "Duranium", "Tritanium", "Molybdenum"
+                    }:
+                        candidates.append(candidate["entity"])
+                if len(candidates) == 1:
                     build_starts_with_planet_costs += 1
 
         reports.append({

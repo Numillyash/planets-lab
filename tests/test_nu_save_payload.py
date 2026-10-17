@@ -324,3 +324,73 @@ def test_har_bundle_client_order_evidence_aggregates_without_host_claims():
     assert summary["native_or_colonist_tax_rate_field_changes"] == 1
     assert summary["client_witness_not_host_execution"] is True
     assert summary["NuHost_order_mapping_verified"] is False
+
+
+def test_starbase_id_not_planet_id_when_matching_same_post_spending():
+    """Real wire shape: Starbase1 can be supplied with Planet8."""
+    from planets_lab.data.nu_save_payload import analyze_har_save_bundle
+
+    before = event(
+        Planet1=entity("Planet", 1, MegaCredits=1000, Duranium=200,
+                       Tritanium=200, Molybdenum=200, Clans=15),
+        Planet8=entity("Planet", 8, MegaCredits=5000, Duranium=250,
+                       Tritanium=180, Molybdenum=300),
+        Starbase1=entity("Starbase", 1, IsBuilding="false", BuildHullId=0),
+    )
+    after = event(
+        Planet1=entity("Planet", 1, MegaCredits=1000, Duranium=200,
+                       Tritanium=200, Molybdenum=200, Clans=16),
+        Planet8=entity("Planet", 8, MegaCredits=4098, Duranium=142,
+                       Tritanium=143, Molybdenum=165),
+        Starbase1=entity("Starbase", 1, IsBuilding="true", BuildHullId=4),
+    )
+    bundle = {
+        "schema": "planets-lab.har-save-capture-bundle.v1",
+        "sessions": [capture(before, after)],
+    }
+    out = analyze_har_save_bundle(bundle)
+    assert out["summary"]["starbase_build_starts_with_simultaneous_planet_costs"] == 1
+    assert out["summary"]["NuHost_order_mapping_verified"] is False
+
+
+def test_ambiguous_two_planet_spends_does_not_claim_starbase_cost():
+    from planets_lab.data.nu_save_payload import analyze_har_save_bundle
+
+    before = event(
+        Planet1=entity("Planet", 1, MegaCredits=1000, Duranium=200,
+                       Tritanium=200, Molybdenum=200),
+        Planet8=entity("Planet", 8, MegaCredits=5000, Duranium=250,
+                       Tritanium=180, Molybdenum=300),
+        Starbase1=entity("Starbase", 1, IsBuilding="false", BuildHullId=0),
+    )
+    after = event(
+        Planet1=entity("Planet", 1, MegaCredits=900, Duranium=190,
+                       Tritanium=195, Molybdenum=195),
+        Planet8=entity("Planet", 8, MegaCredits=4098, Duranium=142,
+                       Tritanium=143, Molybdenum=165),
+        Starbase1=entity("Starbase", 1, IsBuilding="true", BuildHullId=4),
+    )
+    bundle = {
+        "schema": "planets-lab.har-save-capture-bundle.v1",
+        "sessions": [capture(before, after)],
+    }
+    out = analyze_har_save_bundle(bundle)
+    assert out["summary"]["starbase_build_starts_with_simultaneous_planet_costs"] == 0
+
+
+def test_missing_prior_planet_snapshot_abstains_on_cost_inference():
+    from planets_lab.data.nu_save_payload import analyze_har_save_bundle
+
+    before = event(
+        Starbase1=entity("Starbase", 1, IsBuilding="false", BuildHullId=0),
+    )
+    after = event(
+        Planet8=entity("Planet", 8, MegaCredits=4098, Duranium=142,
+                       Tritanium=143, Molybdenum=165),
+        Starbase1=entity("Starbase", 1, IsBuilding="true", BuildHullId=4),
+    )
+    out = analyze_har_save_bundle({
+        "schema": "planets-lab.har-save-capture-bundle.v1",
+        "sessions": [capture(before, after)],
+    })
+    assert out["summary"]["starbase_build_starts_with_simultaneous_planet_costs"] == 0
