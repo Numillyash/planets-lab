@@ -33,6 +33,23 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**M2 ship-build marginal cost calibration (2026-10-17):**
+From 20 same-request Starbase-build/Planet-spending witnesses,
+19 lack recorded tech changes, 1 includes EngineTechLevel 7→10
+and +2400 MC compared with identical no-tech-change recipe.
+There are 6 stable game-scoped recipes and only 2 independent
+single-component price contrasts: Beam2→6 (+11 MC,+12 D,0 T,+1 M)
+and Launcher4→6 (+14 MC,+1 D,0 T,0 M) per component.
+The exact rational design matrix has 4 *unidentified* degrees
+of freedom even when hull+engine is treated as a composite bundle.
+Add a fail-closed offline calibration module and CLI, with optional
+SHA256-pinned /static/all and verified per-game BuildHullId→catalog
+hull ID mapping. No assumed hull namespace identity, no tech-price
+subtraction into components, no claim of Host execution or
+`DIFF_VERIFIED`.
+[Calibration handoff](handoff/2026-10-17-m2-client-ship-build-cost-calibration-v1.md).
+No real game CSV, HAR, note or player ID committed.
+
 **M2 client economic witness layer (October 17, 2026):**
 A read-only offline event extractor now consumes existing sanitized
 HAR bundles and separates client pending `Transfer*` state/balanced
