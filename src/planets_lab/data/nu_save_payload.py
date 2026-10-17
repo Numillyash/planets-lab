@@ -293,10 +293,76 @@ def analyze_har_save_bundle(payload: Mapping[str, Any]) -> dict[str, Any]:
     if not isinstance(sessions, list) or len(sessions) > MAX_EVENTS:
         raise NuSavePayloadError("HAR sessions missing or too many")
     reports = []
+    observed_by_kind: dict[str, int] = {}
+    changed_by_kind: dict[str, int] = {}
+    nonzero_transfer_saves = 0
+    distinct_transfer_signatures: set[tuple[Any, ...]] = set()
+    build_starts_with_planet_costs = 0
+    native_tax_changes = 0
     for idx, session in enumerate(sessions):
         # Each session is one game/player/turn. The capture is an observation,
         # never independent proof of server-executed commands.
         report = analyze_save_capture(session)
+        for kind, count in report["summary"]["record_observations_by_kind"].items():
+            observed_by_kind[kind] = observed_by_kind.get(kind, 0) + count
+        for kind, count in report["summary"]["changed_fields_by_kind"].items():
+            changed_by_kind[kind] = changed_by_kind.get(kind, 0) + count
+
+        parsed = parse_capture(session)
+        for request_index, request in enumerate(parsed):
+            for entity in request.entities.values():
+                if entity.kind != "Ship":
+                    continue
+                transfer = tuple(
+                    (name, value) for name, value in sorted(entity.fields.items())
+                    if name.startswith("Transfer") and name not in
+                    ("TransferTargetType", "TransferTargetId")
+                    and value not in ("", "0")
+                )
+                if not transfer:
+                    continue
+                nonzero_transfer_saves += 1
+                distinct_transfer_signatures.add((
+                    request.game_id, request.player_id, request.turn,
+                    entity.identity, entity.fields.get("TransferTargetType"),
+                    entity.fields.get("TransferTargetId"), transfer,
+                ))
+
+            event = report["events"][request_index]
+            changes = event["field_changes_since_previous_entity_observation"]
+            for item in changes:
+                if item["entity"].startswith("Planet"):
+                    native_tax_changes += sum(
+                        1 for f in item["fields"]
+                        if f["field"] in ("NativeTaxRate", "ColonistTaxRate")
+                    )
+                if not item["entity"].startswith("Starbase"):
+                    continue
+                if not any(
+                    f["field"] == "IsBuilding" and
+                    f["before"] == "false" and f["after"] == "true"
+                    for f in item["fields"]
+                ):
+                    continue
+                planet_name = "Planet" + item["entity"][len("Starbase"):]
+                paired = next((
+                    x for x in changes if x["entity"] == planet_name
+                ), None)
+                if paired is None:
+                    continue
+                discounted = {
+                    f["field"] for f in paired["fields"]
+                    if f["field"] in
+                    ("MegaCredits", "Duranium", "Tritanium", "Molybdenum")
+                    and f["before"] is not None and f["after"] is not None
+                    and f["before"].isdigit() and f["after"].isdigit()
+                    and int(f["after"]) < int(f["before"])
+                }
+                if discounted == {
+                    "MegaCredits", "Duranium", "Tritanium", "Molybdenum"
+                }:
+                    build_starts_with_planet_costs += 1
+
         reports.append({
             "session_index": idx,
             "analysis": report,
@@ -311,7 +377,15 @@ def analyze_har_save_bundle(payload: Mapping[str, Any]) -> dict[str, Any]:
                 r["analysis"]["summary"]["field_changes_between_reobserved_entities"]
                 for r in reports
             ),
+            "record_observations_by_kind": dict(sorted(observed_by_kind.items())),
+            "changed_fields_by_kind": dict(sorted(changed_by_kind.items())),
+            "nonzero_transfer_ship_snapshots": nonzero_transfer_saves,
+            "distinct_nonzero_transfer_signatures": len(distinct_transfer_signatures),
+            "starbase_build_starts_with_simultaneous_planet_costs":
+                build_starts_with_planet_costs,
+            "native_or_colonist_tax_rate_field_changes": native_tax_changes,
             "NuHost_order_mapping_verified": False,
+            "client_witness_not_host_execution": True,
         },
         "sessions": reports,
     }
