@@ -19,6 +19,8 @@ from hashlib import sha256
 import json
 from typing import Any
 
+from planets_lab.corpus.m2_mineral_balance import profile_archive_mineral_mass_balance
+
 SCHEMA = "planets-lab.m2-public-corpus-economy-coverage.v1"
 FIELDS = {
     "credits_and_supplies": ("megacredits", "supplies"),
@@ -334,6 +336,9 @@ def profile_pair(
         "numeric_directional_coverage": _numeric_field_directions(
             owned_before, owned_after,
         ),
+        "conditional_mineral_mass_balance": profile_archive_mineral_mass_balance(
+            before, after, owned_before, owned_after,
+        ),
     }
 
 
@@ -376,6 +381,9 @@ def analyze_corpus_coverage(
     per_field: dict[str, Counter[str]] = defaultdict(Counter)
     mineral_joint: dict[str, Counter[str]] = defaultdict(Counter)
     controls: Counter[str] = Counter()
+    mineral_model: dict[str, Counter[str]] = defaultdict(Counter)
+    mineral_surface_increase: dict[str, Counter[str]] = defaultdict(Counter)
+    mineral_abs_residual: dict[str, Counter[str]] = defaultdict(Counter)
     for pair in selected:
         before_member, after_member = by_id[pair.before_id], by_id[pair.after_id]
         b, a = reconstruct(pair.before_id), reconstruct(pair.after_id)
@@ -401,6 +409,17 @@ def analyze_corpus_coverage(
         ].items():
             mineral_joint[name].update(indicators)
         controls.update(directional["observable_structure_and_tax_controls"])
+        model = item["conditional_mineral_mass_balance"]
+        for name, indicators in model["per_mineral"].items():
+            mineral_model[name].update(indicators)
+        for name, indicators in model[
+            "surface_up_ground_equal_surface_increase_buckets"
+        ].items():
+            mineral_surface_increase[name].update(indicators)
+        for name, indicators in model[
+            "net_total_minus_default_mutation_abs_residual_buckets"
+        ].items():
+            mineral_abs_residual[name].update(indicators)
         for name, obj in item["section_counts"].items():
             for point, value in obj.items():
                 if value is not None:
@@ -427,6 +446,21 @@ def analyze_corpus_coverage(
             },
             "observable_structure_and_tax_controls":
                 dict(sorted(controls.items())),
+            "conditional_mineral_mass_balance_not_host_verified": {
+                "model": "INFERRED_DEFAULT_MINING_PLUS_PUBLISHED_TRANSURANIUM_NOT_HOST_CAUSAL",
+                "per_mineral": {
+                    name: dict(sorted(values.items()))
+                    for name, values in sorted(mineral_model.items())
+                },
+                "surface_up_ground_equal_surface_increase_buckets": {
+                    name: dict(sorted(values.items()))
+                    for name, values in sorted(mineral_surface_increase.items())
+                },
+                "net_total_minus_default_mutation_abs_residual_buckets": {
+                    name: dict(sorted(values.items()))
+                    for name, values in sorted(mineral_abs_residual.items())
+                },
+            },
             "section_rows_across_sampled_perspectives":
                 dict(sorted(section_counts.items())),
         },
@@ -440,5 +474,7 @@ def analyze_corpus_coverage(
             "per_field_change_is_host_phase_evidence": False,
             "ground_down_surface_up_proves_mining": False,
             "structure_tax_stability_excludes_hidden_orders": False,
+            "default_mining_and_mutation_forecast_is_host_causal": False,
+            "both_mineral_deltas_matching_default_model_proves_no_other_actions": False,
         },
     }
