@@ -33,6 +33,22 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**M2 client economic witness layer (October 17, 2026):**
+A read-only offline event extractor now consumes existing sanitized
+HAR bundles and separates client pending `Transfer*` state/balanced
+reservations from co-saved ship/planet available-stock changes,
+Starbase build selection with unique simultaneous Planet
+MC/D/T/M spending, and tax/happiness client preview changes.
+Missing pre-action entity baselines and ambiguous cost matches
+abstain; overlapping game/player/turn groups from different HAR
+files sort by actual timestamps only when independently ordered.
+Every event is explicitly `CLIENT_SAVE_COHANGE_ONLY_NOT_HOST_VERIFIED`.
+Includes a single offline diagnostic CLI, synthetic negative tests
+and a [dedicated evidence handoff](handoff/2026-10-17-m2-client-economic-witness-layer-v1.md).
+Do not promote to a Host `TurnOrders` command, `DIFF_VERIFIED` parity
+or NuHost phase causality without independent verified boundaries.
+Real game captures and notes stay local, C5/production/PR #28 frozen.
+
 **M2 follow-up HAR (2026-10-17): two sanitized captures, 555 saves:**
 151 new HTTP 200, success:true client saves add 29 readiness calls
 and extend existing games to 26 and 47 observed turns;
