@@ -5,6 +5,9 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
 DB_ROOT="${PLANETS_CORPUS_DB_ROOT:-/root/projects/planets-corpus-db}"
+# Docker Compose interpolates this host-side variable in compose.corpus-db.yaml.
+# A non-exported bash fallback is invisible to Compose even if the DB exists.
+export PLANETS_CORPUS_DB_ROOT="$DB_ROOT"
 BASELINE="${M2_CORPUS_BASELINE_MANIFEST:-validation/corpus/manifests/public-short-expansion-with-public36.jsonl}"
 OUT="${M2_CORPUS_COVERAGE_OUTPUT:-artifacts/planetary/m2-public100-economy-coverage-v1/report.json}"
 MAX_GAMES="${M2_CORPUS_MAX_GAMES:-100}"
