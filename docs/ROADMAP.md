@@ -33,6 +33,21 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**M2 low-touch real game session capture (HAR, October 17, 2026):**
+The owner reports that repeatedly installing browser probes and manually
+coordinating individual UI actions is disruptive to normal play.
+Adopt one ordinary Chrome/Edge DevTools Network session with Preserve log:
+play naturally, export one LOCAL HAR at the end, convert offline using
+a standalone stdlib-only script. Only exact Planets.nu POST /game/save
+bodies are retained, partitioned per game/player/turn, with known
+auth/cookie/key/token fields removed; /game/turnready is counted,
+other HTTP traffic is discarded, and no extra network requests occur.
+The redacted bundle is compatible with our existing read-only
+last-seen ShipN/PlanetN/StarbaseN field analyzer. No 10-snapshot limit.
+Raw HAR always remains local and must never enter GitHub or chat.
+[Windows single-session HAR workflow](handoff/2026-10-17-m2-devtools-har-session-capture-v1.md).
+No independent NuHost causal order proof yet.
+
 **M2 real `/game/save` wire grammar decoded (October 17, 2026; parser CI pending):**
 An owner-provided full game-data capture contains **10 retained** XHR
 POST saves (12 counted in browser, earliest 2 evicted) with
