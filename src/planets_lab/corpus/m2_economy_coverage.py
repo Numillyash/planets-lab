@@ -33,6 +33,13 @@ MAX_META_ROWS = 1_000_000
 MAX_GAMES = 1000
 MAX_PAIRS_PER_GAME = 16
 MAX_SELECTED_PAIRS = 1600
+NUMERIC_FIELDS = tuple(dict.fromkeys(
+    field for family in FIELDS.values() for field in family
+))
+MINERAL_NAMES = ("neutronium", "duranium", "tritanium", "molybdenum")
+STABILITY_CONTROL_FIELDS = (
+    "mines", "factories", "defense", "colonisttaxrate", "nativetaxrate",
+)
 
 
 @dataclass(frozen=True, slots=True)
@@ -208,6 +215,82 @@ def _valid_payload_identity(payload: Any, member: Member) -> bool:
     )
 
 
+def _numeric_field_directions(
+    owned_before: Mapping[int, Mapping[str, Any]],
+    owned_after: Mapping[int, Mapping[str, Any]],
+) -> dict[str, Any]:
+    """Descriptive stock-flow directions, never attributed Host mechanics.
+
+    Count each numeric source field on an independently qualified
+    same-owner owner-current planet pair. A family's availability does
+    not imply that any particular single field changed. Net mining
+    patterns may reflect shipments and spending as well as extraction.
+    """
+    per_field: dict[str, Counter[str]] = defaultdict(Counter)
+    mineral_patterns: dict[str, Counter[str]] = defaultdict(Counter)
+    controls: Counter[str] = Counter()
+    for planet_id in sorted(set(owned_before) & set(owned_after)):
+        b, a = owned_before[planet_id], owned_after[planet_id]
+        for name in NUMERIC_FIELDS:
+            before, after = b.get(name), a.get(name)
+            if not (type(before) is int and before >= 0 and
+                    type(after) is int and after >= 0):
+                continue
+            per_field[name]["qualified"] += 1
+            if after > before:
+                per_field[name]["increased"] += 1
+            elif after < before:
+                per_field[name]["decreased"] += 1
+            else:
+                per_field[name]["unchanged"] += 1
+
+        control_pairs = [(b.get(field), a.get(field))
+                         for field in STABILITY_CONTROL_FIELDS]
+        if all(type(x) is int and x >= 0
+               for pair in control_pairs for x in pair):
+            controls["qualified"] += 1
+            if all(x == y for x, y in control_pairs):
+                controls["all_unchanged"] += 1
+            else:
+                controls["some_changed"] += 1
+
+        for mineral in MINERAL_NAMES:
+            surface_b, surface_a = b.get(mineral), a.get(mineral)
+            ground_b, ground_a = b.get("ground" + mineral), a.get("ground" + mineral)
+            if not all(type(x) is int and x >= 0
+                       for x in (surface_b, surface_a, ground_b, ground_a)):
+                continue
+            bucket = mineral_patterns[mineral]
+            bucket["qualified"] += 1
+            ground_sign = (
+                "ground_decreased" if ground_a < ground_b else
+                "ground_increased" if ground_a > ground_b else "ground_unchanged"
+            )
+            surface_sign = (
+                "surface_increased" if surface_a > surface_b else
+                "surface_decreased" if surface_a < surface_b else "surface_unchanged"
+            )
+            bucket[f"{ground_sign}__{surface_sign}"] += 1
+            # This subset can help shortlist mining hypotheses but
+            # it is NOT evidence that mining caused the surface gain.
+            if (ground_a < ground_b and surface_a > surface_b
+                    and b.get("mines") == a.get("mines")
+                    and type(b.get("mines")) is int and b["mines"] >= 0):
+                bucket["ground_down_surface_up_mines_unchanged"] += 1
+
+    return {
+        "per_field": {
+            name: dict(sorted(items.items()))
+            for name, items in sorted(per_field.items())
+        },
+        "surface_ground_joint_signs_not_mining_attribution": {
+            name: dict(sorted(items.items()))
+            for name, items in sorted(mineral_patterns.items())
+        },
+        "observable_structure_and_tax_controls": dict(sorted(controls.items())),
+    }
+
+
 def profile_pair(
     before: Mapping[str, Any], after: Mapping[str, Any], pair: Pair,
 ) -> dict[str, Any]:
@@ -248,6 +331,9 @@ def profile_pair(
         "changed_net_stock_family_rows_not_phase_attribution": differences,
         "source_statuses": b_status + a_status,
         "section_counts": section_rows,
+        "numeric_directional_coverage": _numeric_field_directions(
+            owned_before, owned_after,
+        ),
     }
 
 
@@ -287,6 +373,9 @@ def analyze_corpus_coverage(
     fields: Counter[str] = Counter()
     changed: Counter[str] = Counter()
     section_counts: Counter[str] = Counter()
+    per_field: dict[str, Counter[str]] = defaultdict(Counter)
+    mineral_joint: dict[str, Counter[str]] = defaultdict(Counter)
+    controls: Counter[str] = Counter()
     for pair in selected:
         before_member, after_member = by_id[pair.before_id], by_id[pair.after_id]
         b, a = reconstruct(pair.before_id), reconstruct(pair.after_id)
@@ -304,6 +393,14 @@ def analyze_corpus_coverage(
         status.update(item["source_statuses"])
         fields.update(item["qualified_field_families"])
         changed.update(item["changed_net_stock_family_rows_not_phase_attribution"])
+        directional = item["numeric_directional_coverage"]
+        for name, indicators in directional["per_field"].items():
+            per_field[name].update(indicators)
+        for name, indicators in directional[
+            "surface_ground_joint_signs_not_mining_attribution"
+        ].items():
+            mineral_joint[name].update(indicators)
+        controls.update(directional["observable_structure_and_tax_controls"])
         for name, obj in item["section_counts"].items():
             for point, value in obj.items():
                 if value is not None:
@@ -320,6 +417,16 @@ def analyze_corpus_coverage(
             "owner_current_counts": dict(sorted(counters.items())),
             "qualified_planet_field_family_pairs": dict(sorted(fields.items())),
             "net_state_differences_not_mechanics": dict(sorted(changed.items())),
+            "individual_numeric_field_directions": {
+                name: dict(sorted(values.items()))
+                for name, values in sorted(per_field.items())
+            },
+            "surface_ground_joint_signs_not_mining_attribution": {
+                name: dict(sorted(values.items()))
+                for name, values in sorted(mineral_joint.items())
+            },
+            "observable_structure_and_tax_controls":
+                dict(sorted(controls.items())),
             "section_rows_across_sampled_perspectives":
                 dict(sorted(section_counts.items())),
         },
@@ -330,5 +437,8 @@ def analyze_corpus_coverage(
             "NuHost_ship_build_cost_verified": False,
             "is_independent_game_disjoint_host_validation": False,
             "may_be_used_to_plan_fresh_independent_subcohorts": True,
+            "per_field_change_is_host_phase_evidence": False,
+            "ground_down_surface_up_proves_mining": False,
+            "structure_tax_stability_excludes_hidden_orders": False,
         },
     }
