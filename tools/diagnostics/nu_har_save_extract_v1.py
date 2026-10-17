@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Local, standard-library HAR -> credential-redacted Nu /game/save captures.
+r"""Local, standard-library HAR -> credential-redacted Nu /game/save captures.
 
 No proxy, MITM, browser extension, API key, network access, or account login
 is required. It reads an existing Chrome/Edge DevTools Network HAR file,
@@ -35,7 +35,7 @@ MAX_FIELD_COUNT = 10000
 MAX_BODY_CHARS = 4_000_000
 ENTITY_NAME = re.compile(r"^(?:Ship|Planet|Starbase)[1-9][0-9]*$")
 CREDENTIAL_NAME = re.compile(
-    r"(?:api.?key|save.?key|access.?token|refresh.?token|"
+    r"(?:api.?key|save.?key|access.?token|refresh.?token|token|"
     r"^key$|^auth$|auth(?:entication|orization)?|bearer|"
     r"password|passwd|cookie|session|jwt|credential|csrf|"
     r"secret|private.?key|email|username|signature)",
