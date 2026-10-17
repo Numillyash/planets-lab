@@ -67,6 +67,12 @@ def test_full_metadata_census_selects_only_unambiguous_adjacent_perspectives():
     assert {(x.game, x.after_turn) for x in selected} == {
         (42, 11), (42, 12), (44, 11),
     }
+    baseline, frozen = census_members(
+        rows, max_games=3, pairs_per_game=2, allowed_games={44},
+    )
+    assert baseline["all_games_in_source_metadata"] == 3
+    assert baseline["games_allowed_for_entity_sampling"] == 1
+    assert {(x.game, x.after_turn) for x in frozen} == {(44, 11)}
     assert stats["metadata_frozen_selection_sha256"] == census_members(
         list(reversed(rows)), max_games=3, pairs_per_game=2,
     )[0]["metadata_frozen_selection_sha256"]
@@ -190,6 +196,8 @@ def test_full_read_only_diagnostic_uses_explicit_pinned_generation(tmp_path):
     )
     digest = hashlib.sha256(database.read_bytes()).hexdigest()
     out = tmp_path / "aggregates.json"
+    baseline_manifest = tmp_path / "baseline-public68-test.jsonl"
+    baseline_manifest.write_text(json.dumps({"game_id": 42}) + "\n", encoding="utf-8")
     script = ROOT / "tools/diagnostics/m2_public_corpus_economy_coverage_v1.py"
     args = [
         sys.executable, str(script),
@@ -197,6 +205,8 @@ def test_full_read_only_diagnostic_uses_explicit_pinned_generation(tmp_path):
         "--generation", "generations/test-compact.duckdb",
         "--expected-sha256", digest,
         "--max-games", "1", "--pairs-per-game", "1",
+        "--baseline-manifest", str(baseline_manifest),
+        "--expected-baseline-games", "1",
         "--output", str(out),
     ]
     proc = subprocess.run(
@@ -212,6 +222,8 @@ def test_full_read_only_diagnostic_uses_explicit_pinned_generation(tmp_path):
     ] == 1
     assert report["generation"]["verified_sha256"] == digest
     assert report["generation"]["CURRENT_modified"] is False
+    assert report["baseline_sample_allowlist"]["allowed_game_count"] == 1
+    assert report["baseline_sample_allowlist"]["heldout_entity_sampling"] is False
     assert (root / "CURRENT").read_text() == (
         "generations/CURRENT-alternative.duckdb\n"
     )
