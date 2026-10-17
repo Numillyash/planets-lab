@@ -229,7 +229,7 @@ def _analyze_window(
             ):
                 continue
             candidates: list[tuple[str, int, dict[str, int]]] = []
-            for planet_name, (planet_prior, pold, pnew) in planets:
+            for planet_name, planet_prior, pold, pnew in planets:
                 amounts = {
                     field: _delta(pold, pnew, field)
                     for field in BUILD_RESOURCE_NAMES
