@@ -33,6 +33,23 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**M2 reuse of published giant corpus (October 18, 2026):**
+Instead of relying only on 555 local HAR saves, add read-only
+coverage census of immutable public100: **100 games, 224014
+perspective-turn members, 541348959 typed entity rows** (~26.65 GiB).
+Verify exact database SHA256 before opening, scan ALL source-member
+metadata for adjacent same-perspective T-1/T potential pairs, and
+freeze bounded sample of owner-current planet/ship/starbase coverage.
+**Sealed 32-game prospective holdout remains metadata-only**:
+actual game entities are sampled only from the existing baseline
+public68 manifest after exact 68-game validation. Untrusted or stale
+perspectives abstain; cross-turn stock changes are NOT independent
+player orders or Host-phase proof. One-command Docker runner uses
+published DuckDB read-only with CURRENT unchanged, no corpus
+rebuild. [Full workflow](handoff/2026-10-18-m2-public100-economy-coverage-v1.md).
+Follow-on requires real runtime report and owner-current qualified
+denominators, not simulated corpus-level success.
+
 **M2 official wiki price crosscheck (2026-10-17):**
 The user pointed out the already published Race 1 hull cost table.
 Official Planets.nu Help separately publishes the default engine,
