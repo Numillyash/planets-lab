@@ -22,7 +22,7 @@ def entity(kind: str, number: int, **fields: object) -> str:
 
 def event(**entries: str) -> dict:
     body = {
-        "gameid": "688480",
+        "gameid": "424242",
         "playerid": "1",
         "turn": "33",
         "version": "4",
@@ -93,7 +93,7 @@ def test_parse_observed_form_entity_fields_and_keycount():
     assert parsed[1].source_form_field_count == 11
     assert parsed[0].response_success is None
     assert parsed[0].response_save_index == 2
-    assert parsed[0].game_id == 688480
+    assert parsed[0].game_id == 424242
     assert parsed[0].turn == 33
 
 
@@ -206,6 +206,6 @@ def test_cli_offline_without_raw_game_data_in_stdout(tmp_path):
     assert "retained_saves: 6" in result.stdout
     assert "field_changes_between_reobserved_entities: 3" in result.stdout
     assert "http_200_success_unknown_or_null: 6" in result.stdout
-    assert "688480" not in result.stdout
+    assert "424242" not in result.stdout
     private_report = json.loads(output.read_text(encoding="utf-8"))
     assert private_report["events"][5]["field_changes_since_previous_entity_observation"][0]["fields"][0]["after"] == "2004"
