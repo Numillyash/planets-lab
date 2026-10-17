@@ -106,7 +106,7 @@ def test_partial_save_absence_not_deletion_and_last_seen_diff():
     assert summary["unique_entities_observed"] == 6
     assert summary["field_changes_between_reobserved_entities"] == 3
     assert summary["http_200_explicit_success_true"] == 0
-    assert summary["http_200_success_not_true_or_missing"] == 6
+    assert summary["http_200_success_unknown_or_null"] == 6
     assert summary["NuHost_orders_accepted_verified"] is False
     assert summary["snapshot_absence_means_deletion"] is False
     assert outcome["events"][1]["first_observed_in_window_not_creation"] == ["Ship6"]
@@ -177,3 +177,35 @@ def test_non_form_and_host_inference_never_promoted():
     payload["observations"][0]["request"]["encoding"] = "json"
     with pytest.raises(NuSavePayloadError, match="decoded form"):
         parse_capture(payload)
+
+def test_success_false_rejected_as_not_verified():
+    request = event(Ship6=entity("Ship", 6, Warp=7))
+    request["response"]["body"]["success"] = False
+    outcome = analyze_save_capture(capture(request))
+    assert outcome["summary"]["http_200_explicit_success_true"] == 0
+    assert outcome["summary"]["http_200_explicit_success_false"] == 1
+    assert outcome["summary"]["http_200_success_unknown_or_null"] == 0
+
+
+def test_cli_offline_without_raw_game_data_in_stdout(tmp_path):
+    import json
+    from pathlib import Path
+    import subprocess
+    import sys
+
+    root = Path(__file__).resolve().parents[1]
+    source = tmp_path / "PRIVATE-observation.json"
+    output = tmp_path / "PRIVATE-analysis.json"
+    source.write_text(json.dumps(sample_capture()), encoding="utf-8")
+    cmd = [
+        sys.executable, str(root / "tools/diagnostics/nu_save_payload_diff_v1.py"),
+        "--input", str(source), "--output", str(output),
+    ]
+    result = subprocess.run(cmd, cwd=root, capture_output=True, text=True)
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "retained_saves: 6" in result.stdout
+    assert "field_changes_between_reobserved_entities: 3" in result.stdout
+    assert "http_200_success_unknown_or_null: 6" in result.stdout
+    assert "688480" not in result.stdout
+    private_report = json.loads(output.read_text(encoding="utf-8"))
+    assert private_report["events"][5]["field_changes_since_previous_entity_observation"][0]["fields"][0]["after"] == "2004"
