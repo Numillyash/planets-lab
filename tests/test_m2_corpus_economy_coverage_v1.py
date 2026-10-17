@@ -220,6 +220,12 @@ def test_full_read_only_diagnostic_uses_explicit_pinned_generation(tmp_path):
     assert report["sample"]["qualified_planet_field_family_pairs"][
         "credits_and_supplies"
     ] == 1
+    assert report["sample"]["individual_numeric_field_directions"]["supplies"] == {
+        "qualified": 1, "increased": 1,
+    }
+    assert report["sample"]["observable_structure_and_tax_controls"] == {
+        "qualified": 1, "all_unchanged": 1,
+    }
     assert report["generation"]["verified_sha256"] == digest
     assert report["generation"]["CURRENT_modified"] is False
     assert report["baseline_sample_allowlist"]["allowed_game_count"] == 1
@@ -277,3 +283,107 @@ def test_corpus_wrapper_exports_implicit_default_path_for_compose():
         capture_output=True, text=True, timeout=10,
     )
     assert syntax.returncode == 0, syntax.stderr
+
+
+
+def test_m2_directional_field_counts_are_not_family_change_counts():
+    pair = Pair(42, 1, 11, 1, 2)
+    before = fixture_payload(turn=10, supplies=10)
+    after = fixture_payload(turn=11, supplies=18)
+    out = profile_pair(before, after, pair)["numeric_directional_coverage"]
+    assert out["per_field"]["supplies"] == {"qualified": 1, "increased": 1}
+    assert out["per_field"]["megacredits"] == {"qualified": 1, "unchanged": 1}
+    assert out["per_field"]["nativehappypoints"] == {
+        "qualified": 1, "unchanged": 1,
+    }
+    assert out["observable_structure_and_tax_controls"] == {
+        "qualified": 1, "all_unchanged": 1,
+    }
+    for mineral in ("neutronium", "duranium", "tritanium", "molybdenum"):
+        assert out["surface_ground_joint_signs_not_mining_attribution"][mineral] == {
+            "qualified": 1,
+            "ground_unchanged__surface_unchanged": 1,
+        }
+
+
+def test_m2_mineral_joint_signs_mines_stability_cannot_prove_mining():
+    pair = Pair(42, 1, 11, 1, 2)
+    before = fixture_payload(turn=10)
+    after = fixture_payload(turn=11)
+    before["planets"][0]["groundduranium"] = 60
+    after["planets"][0]["groundduranium"] = 55
+    before["planets"][0]["duranium"] = 20
+    after["planets"][0]["duranium"] = 25
+    profile = profile_pair(before, after, pair)
+    mineral = profile["numeric_directional_coverage"][
+        "surface_ground_joint_signs_not_mining_attribution"
+    ]["duranium"]
+    assert mineral == {
+        "qualified": 1,
+        "ground_decreased__surface_increased": 1,
+        "ground_down_surface_up_mines_unchanged": 1,
+    }
+    assert profile["numeric_directional_coverage"][
+        "observable_structure_and_tax_controls"
+    ] == {"qualified": 1, "all_unchanged": 1}
+    # Another visible intervention changes a control; the mining
+    # shortlist must no longer be treated as "unchanged mines".
+    after["planets"][0]["mines"] = 6
+    profile = profile_pair(before, after, pair)
+    mineral = profile["numeric_directional_coverage"][
+        "surface_ground_joint_signs_not_mining_attribution"
+    ]["duranium"]
+    assert mineral["ground_decreased__surface_increased"] == 1
+    assert "ground_down_surface_up_mines_unchanged" not in mineral
+    assert profile["numeric_directional_coverage"][
+        "observable_structure_and_tax_controls"
+    ] == {"qualified": 1, "some_changed": 1}
+
+
+def test_m2_directional_missing_field_or_stale_owner_fails_closed():
+    pair = Pair(42, 1, 11, 1, 2)
+    before = fixture_payload(turn=10)
+    after = fixture_payload(turn=11)
+    del after["planets"][0]["supplies"]
+    prof = profile_pair(before, after, pair)
+    all_fields = prof["numeric_directional_coverage"]["per_field"]
+    assert "supplies" not in all_fields
+    assert all_fields["megacredits"]["qualified"] == 1
+
+    not_current = fixture_payload(turn=10, infoturn=9)
+    prof = profile_pair(not_current, after, pair)
+    assert prof["numeric_directional_coverage"]["per_field"] == {}
+    assert prof["numeric_directional_coverage"][
+        "surface_ground_joint_signs_not_mining_attribution"
+    ] == {}
+
+
+def test_m2_aggregate_field_directions_keep_same_owner_pair_denominators():
+    class Conn:
+        def __init__(self):
+            self.done = False
+        def execute(self, q):
+            return self
+        def fetchmany(self, limit):
+            if self.done:
+                return []
+            self.done = True
+            return [(1, 42, 1, 10, 10), (2, 42, 1, 11, 11)]
+    states = {1: fixture_payload(turn=10, supplies=10),
+              2: fixture_payload(turn=11, supplies=18)}
+    out = analyze_corpus_coverage(
+        Conn(), max_games=1, pairs_per_game=1,
+        reconstruct=lambda idx: states[idx], allowed_games={42},
+    )
+    sample = out["sample"]
+    assert sample["individual_numeric_field_directions"]["supplies"] == {
+        "qualified": 1, "increased": 1,
+    }
+    assert sample["individual_numeric_field_directions"]["megacredits"] == {
+        "qualified": 1, "unchanged": 1,
+    }
+    assert sample["observable_structure_and_tax_controls"] == {
+        "qualified": 1, "all_unchanged": 1,
+    }
+    assert out["evidence_limits"]["ground_down_surface_up_proves_mining"] is False
+    assert out["evidence_limits"]["per_field_change_is_host_phase_evidence"] is False

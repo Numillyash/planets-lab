@@ -33,6 +33,26 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**M2 published public100 corpus actual server result (2026-10-18):**
+The real read-only corpus census succeeded against immutable public100
+at verified SHA256. All 100 games: 224014 source perspectives,
+222536 valid identities, 1478 invalid/embedded-turn mismatch,
+221091 adjacent same-perspective pairs, no duplicate identities.
+Entity reconstruction stayed in baseline68 (sealed holdout32
+unread); exactly 136 metadata-frozen T-1/T pairs all had valid
+payload identities. These provided **3769 same-owner, owner-current
+planet-ID pairs**. Broad net-change family counts:
+MC/supplies 3670, surface minerals 3631, underground minerals
+1467, populations 2605, structures 1795, and tax/happiness
+716 of 3767 qualified. These are NET state differences, not
+causally identified orders or Host mechanics.
+Extending the same frozen selection with field-specific
+increase/decrease/unchanged counts, ground-vs-surface mineral sign
+patterns, and observable structure+tax rate stability is the
+next conservative evidence gate. Keep the original V1 result
+unaltered, write a distinct follow-up report.
+[Observed evidence and run instructions](handoff/2026-10-18-m2-public100-real-coverage-directional-v1.md).
+
 **M2 reuse of published giant corpus (October 18, 2026):**
 Instead of relying only on 555 local HAR saves, add read-only
 coverage census of immutable public100: **100 games, 224014
