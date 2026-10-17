@@ -209,3 +209,78 @@ def test_cli_offline_without_raw_game_data_in_stdout(tmp_path):
     assert "424242" not in result.stdout
     private_report = json.loads(output.read_text(encoding="utf-8"))
     assert private_report["events"][5]["field_changes_since_previous_entity_observation"][0]["fields"][0]["after"] == "2004"
+
+
+def test_real_stock_and_note_wire_conventions_not_conflated():
+    # Exact *structural* patterns seen in real HAR captures, using only
+    # synthetic IDs and text (NEVER commit actual private captures).
+    stock = parse_legacy_entity(
+        "Id:::14|||Amount:::2|||BuiltAmount:::2",
+        kind="Stock", entity_id=14,
+    )
+    assert stock.fields["BuiltAmount"] == "2"
+    note = parse_legacy_entity(
+        "Id:::0|||OwnerId:::1|||Body:::test-note|||TargetId:::17"
+        "|||TargetType:::0|||Color:::40",
+        kind="Note", entity_id=170,
+    )
+    assert note.identity == "Note170"
+    assert note.fields["Id"] == "0"
+    # A Note key encodes a selector rather than necessarily the note Id:
+    assert parse_legacy_entity(
+        "Id:::7|||OwnerId:::1|||Body:::|||TargetId:::12"
+        "|||TargetType:::0|||Color:::34",
+        kind="Note", entity_id=120,
+    ).fields["Id"] == "7"
+    with pytest.raises(NuSavePayloadError, match="disagree"):
+        parse_legacy_entity(
+            "Id:::13|||Amount:::3|||BuiltAmount:::3",
+            kind="Stock", entity_id=14,
+        )
+
+
+def test_har_observed_auxiliary_records_and_partial_note_body_edits():
+    first = event(
+        Stock14="Id:::14|||Amount:::1|||BuiltAmount:::1",
+        Note170="Id:::0|||OwnerId:::1|||Body:::|||TargetId:::17"
+        "|||TargetType:::0|||Color:::40",
+    )
+    second = event(
+        Note170="Id:::0|||OwnerId:::1|||Body:::synthetic-note"
+        "|||TargetId:::17|||TargetType:::0|||Color:::40",
+    )
+    third = event(
+        Stock14="Id:::14|||Amount:::2|||BuiltAmount:::2",
+    )
+    report = analyze_save_capture(capture(first, second, third))
+    summary = report["summary"]
+    assert summary["record_observations_by_kind"] == {
+        "Note": 2, "Stock": 2,
+    }
+    assert summary["changed_fields_by_kind"] == {
+        "Note": 1, "Stock": 2,
+    }
+    assert summary["field_changes_between_reobserved_entities"] == 3
+    assert report["events"][1]["field_changes_since_previous_entity_observation"] == [{
+        "entity": "Note170",
+        "previous_observed_request_index": 0,
+        "fields": [{"field": "Body", "before": "", "after": "synthetic-note"}],
+    }]
+    assert report["events"][2]["field_changes_since_previous_entity_observation"] == [{
+        "entity": "Stock14",
+        "previous_observed_request_index": 0,
+        "fields": [
+            {"field": "Amount", "before": "1", "after": "2"},
+            {"field": "BuiltAmount", "before": "1", "after": "2"},
+        ],
+    }]
+    # Absence of Stock14 from the intervening save is NOT deletion.
+    assert summary["snapshot_absence_means_deletion"] is False
+
+
+def test_malformed_auxiliary_wire_key_rejected():
+    body = deepcopy(sample_capture()["observations"][0]["request"]["body"])
+    body["StockXYZ"] = "Id:::14|||Amount:::2|||BuiltAmount:::2"
+    body["keycount"] = str(len(body))
+    with pytest.raises(NuSavePayloadError, match="unrecognized"):
+        parse_save_body(body)
