@@ -33,6 +33,23 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**M2 real `/game/save` wire grammar decoded (October 17, 2026; parser CI pending):**
+An owner-provided full game-data capture contains **10 retained** XHR
+POST saves (12 counted in browser, earliest 2 evicted) with
+`ShipN`/`PlanetN`/`StarbaseN` form entries. Each is a legacy
+`Field:::value|||Field:::value` string, **not** nested JSON
+within `turn` (which is the actual turn number). Last-seen
+object comparisons expose `Planet1.Clans 914→814` and
+`Ship4.TargetX/Y 1965,1956→2004,2035`; `Ship3` first
+appears with 100 clans, but no before baseline for that ship exists.
+`keycount` matches form-key count. All retained responses are
+HTTP 200, `saveIndex=2`, **`success:null`**, not confirmed
+`success:true` acknowledgements. Implement a fail-closed offline
+legacy wire parser with partial-save semantics, no invented
+`TurnOrders`, and local-only analysis output.
+[Detailed evidence & next controlled cargo-transfer gate](handoff/2026-10-17-m2-real-save-wire-decoder-v1.md).
+Never commit private live captures.
+
 **M2 real game-data save capture and client differential (implementation / CI pending):**
 Six user-observed real `/game/save` XHR saves returned HTTP 200 with
 `success:true`; all arrived before a `/game/turnready` request.
