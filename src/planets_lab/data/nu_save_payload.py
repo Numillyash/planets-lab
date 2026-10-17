@@ -165,8 +165,8 @@ def parse_capture(payload: Mapping[str, Any]) -> tuple[SavedRequest, ...]:
     for n, event in enumerate(rows):
         if not isinstance(event, Mapping):
             raise NuSavePayloadError(f"observation {n} is not an object")
-        if event.get("method") != "POST" or event.get("transport") not in ("xhr", "fetch"):
-            raise NuSavePayloadError("only POST XHR/fetch save requests supported")
+        if event.get("method") != "POST" or event.get("transport") not in ("xhr", "fetch", "har"):
+            raise NuSavePayloadError("only POST XHR/fetch/HAR save observations supported")
         request = event.get("request")
         if not isinstance(request, Mapping) or request.get("encoding") not in ("form", "multipart-form"):
             raise NuSavePayloadError("request is not a decoded form")
@@ -269,4 +269,36 @@ def analyze_save_capture(payload: Mapping[str, Any]) -> dict[str, Any]:
             "snapshot_absence_means_deletion": False,
         },
         "events": events,
+    }
+
+
+def analyze_har_save_bundle(payload: Mapping[str, Any]) -> dict[str, Any]:
+    """Analyze independently grouped local HAR sessions without cross-turn deltas."""
+    if not isinstance(payload, Mapping) or payload.get("schema") != "planets-lab.har-save-capture-bundle.v1":
+        raise NuSavePayloadError("not an offline HAR save bundle")
+    sessions = payload.get("sessions")
+    if not isinstance(sessions, list) or len(sessions) > MAX_EVENTS:
+        raise NuSavePayloadError("HAR sessions missing or too many")
+    reports = []
+    for idx, session in enumerate(sessions):
+        # Each session is one game/player/turn. The capture is an observation,
+        # never independent proof of server-executed commands.
+        report = analyze_save_capture(session)
+        reports.append({
+            "session_index": idx,
+            "analysis": report,
+        })
+    return {
+        "schema": "planets-lab.har-save-bundle-analysis.v1",
+        "status": "OFFLINE_CLIENT_SAVE_DIFF_NOT_NUHOST_HOST_VERIFIED",
+        "summary": {
+            "sessions": len(reports),
+            "save_requests": sum(r["analysis"]["summary"]["retained_saves"] for r in reports),
+            "changed_fields": sum(
+                r["analysis"]["summary"]["field_changes_between_reobserved_entities"]
+                for r in reports
+            ),
+            "NuHost_order_mapping_verified": False,
+        },
+        "sessions": reports,
     }
