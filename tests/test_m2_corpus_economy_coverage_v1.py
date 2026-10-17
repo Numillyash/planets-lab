@@ -238,3 +238,42 @@ def test_full_read_only_diagnostic_uses_explicit_pinned_generation(tmp_path):
     fail = subprocess.run(wrong, cwd=ROOT, capture_output=True, text=True, timeout=45)
     assert fail.returncode != 0
     assert not out.exists()
+
+
+
+def test_corpus_wrapper_exports_implicit_default_path_for_compose():
+    """Regression: Compose needs the host root as an EXPORTED variable.
+
+    The failure on the corpus server was that bash resolved DB_ROOT,
+    but compose.corpus-db.yaml could not interpolate
+    PLANETS_CORPUS_DB_ROOT because the fallback was not exported.
+    Exercise the ACTUAL assignment and export lines with env unset.
+    """
+    import os
+    script = ROOT / "tools/run-m2-public100-economy-coverage-v1.sh"
+    source = script.read_text(encoding="utf-8")
+    dbroot_line = next(
+        line for line in source.splitlines() if line.startswith('DB_ROOT="')
+    )
+    export_line = next(
+        line for line in source.splitlines()
+        if line.startswith("export PLANETS_CORPUS_DB_ROOT=")
+    )
+    env = dict(os.environ)
+    env.pop("PLANETS_CORPUS_DB_ROOT", None)
+    command = "\n".join([
+        dbroot_line,
+        export_line,
+        'test "$PLANETS_CORPUS_DB_ROOT" = /root/projects/planets-corpus-db',
+        'bash -c \'test "$PLANETS_CORPUS_DB_ROOT" = /root/projects/planets-corpus-db\'',
+    ])
+    process = subprocess.run(
+        ["bash", "-c", command], cwd=ROOT,
+        env=env, capture_output=True, text=True, timeout=10,
+    )
+    assert process.returncode == 0, process.stderr
+    syntax = subprocess.run(
+        ["bash", "-n", str(script)], cwd=ROOT,
+        capture_output=True, text=True, timeout=10,
+    )
+    assert syntax.returncode == 0, syntax.stderr
