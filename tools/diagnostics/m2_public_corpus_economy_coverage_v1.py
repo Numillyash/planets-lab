@@ -6,9 +6,10 @@ From planets-lab checkout ON THE EXISTING CORPUS SERVER:
     --output artifacts/planetary/m2-public100-coverage-v1/report.json
 
 First SHA256-verifies the immutable explicit public100 generation.
-Then scans metadata across ALL games (224014 source members in published
-generation) and reconstructs only metadata-frozen bounded T-1/T
-perspective samples (100 games x up to 2 time windows by default).
+Censuses metadata across ALL 100 games (224014 source members). Samples
+entities ONLY from the user-supplied pre-existing 68-game BASELINE
+manifest, never the sealed 32-game prospective holdout. It freezes
+bounded adjacent T-1/T pairs before reconstructing any entity record.
 No public web traffic, no game API calls, no data ingestion, no writes
 to corpus DuckDB, no change to CURRENT, no player-order inference.
 """
@@ -55,6 +56,11 @@ def main(argv: list[str] | None = None) -> int:
                         help="Explicit immutable generations/*.duckdb, never CURRENT")
     parser.add_argument("--expected-sha256", default=SHA256,
                         help="Published generation digest, required to match")
+    parser.add_argument(
+        "--baseline-manifest", required=True, type=Path,
+        help="Baseline public68 JSONL IDs, never the sealed 32-game heldout set",
+    )
+    parser.add_argument("--expected-baseline-games", type=int, default=68)
     parser.add_argument("--max-games", type=int, default=100,
                         help="Spread selected samples across up to this many games")
     parser.add_argument("--pairs-per-game", type=int, default=2,
@@ -86,6 +92,21 @@ def main(argv: list[str] | None = None) -> int:
     digest = _sha256(path)
     if digest != expected:
         raise ValueError("CORPUS_GENERATION_SHA256_MISMATCH: refusing to open")
+
+    manifest_raw = args.baseline_manifest.read_bytes()
+    baseline_ids: set[int] = set()
+    for line in manifest_raw.decode("utf-8-sig").splitlines():
+        if not line.strip():
+            continue
+        game_id = json.loads(line).get("game_id")
+        if type(game_id) is not int or game_id <= 0 or game_id in baseline_ids:
+            raise ValueError("invalid or duplicated baseline manifest game ID")
+        baseline_ids.add(game_id)
+    if (args.expected_baseline_games < 1 or
+            len(baseline_ids) != args.expected_baseline_games):
+        raise ValueError("baseline manifest game count mismatch; stop before sampling")
+    if not baseline_ids:
+        raise ValueError("refusing unscoped heldout entity sampling")
     connection, actual = connect_compact_generation_read_only(
         relative, root=root,
     )
@@ -99,10 +120,16 @@ def main(argv: list[str] | None = None) -> int:
             connection,
             max_games=args.max_games, pairs_per_game=args.pairs_per_game,
             reconstruct=restore,
+            allowed_games=baseline_ids,
         )
     finally:
         connection.close()
 
+    report["baseline_sample_allowlist"] = {
+        "manifest_sha256": sha256(manifest_raw).hexdigest(),
+        "allowed_game_count": len(baseline_ids),
+        "heldout_entity_sampling": False,
+    }
     report["generation"] = {
         "name": actual.name,
         "verified_sha256": digest,
@@ -111,6 +138,8 @@ def main(argv: list[str] | None = None) -> int:
     }
     print(f"status: {report['status']}")
     print(f"generation_sha256: {digest}")
+    print(f"baseline_manifest_sha256: {sha256(manifest_raw).hexdigest()}")
+    print(f"baseline_allowed_games: {len(baseline_ids)}")
     for key, value in report["metadata"].items():
         print(f"{key}: {value}")
     for key, value in report["sample"].items():
