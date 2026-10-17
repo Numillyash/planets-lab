@@ -169,7 +169,7 @@ def test_success_true_is_distinct_from_null():
     request["response"]["body"]["success"] = True
     outcome = analyze_save_capture(capture(request))
     assert outcome["summary"]["http_200_explicit_success_true"] == 1
-    assert outcome["summary"]["http_200_success_not_true_or_missing"] == 0
+    assert outcome["summary"]["http_200_success_unknown_or_null"] == 0
 
 
 def test_non_form_and_host_inference_never_promoted():
