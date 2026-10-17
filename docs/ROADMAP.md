@@ -33,6 +33,19 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**M2 runtime evidence publication restored (2026-10-18):**
+Prior corpus coverage runners were missing the existing
+*-with-evidence.sh workflow, causing unnecessary large server
+output pasted to chat. Add wrapper to publish future complete
+logs and aggregate JSON to independent runtime-logs branch.
+For the existing already completed mineral report, the
+--publish-existing mode validates and publishes only aggregate
+report.json WITHOUT repeating the 26.65 GiB SHA256 scan.
+Strictly gate known schema, immutable corpus SHA, CURRENT unchanged,
+baseline68-only entity sample/heldout32 excluded and noncausal
+Host flags; reject all raw state/note/auth data.
+[Workflow and command](handoff/2026-10-18-m2-corpus-runtime-evidence-publishing-v1.md).
+
 **M2 baseline68 mineral mass-balance hypothesis check (2026-10-18):**
 Second REAL public100 baseline68 owner-current census (same 136
 metadata-frozen pairs; 3769 comparable planets) reveals that
