@@ -15,7 +15,7 @@ import argparse
 import json
 from pathlib import Path
 
-from planets_lab.data.nu_save_payload import analyze_save_capture
+from planets_lab.data.nu_save_payload import analyze_save_capture, analyze_har_save_bundle
 
 
 def main() -> int:
@@ -26,20 +26,26 @@ def main() -> int:
     args = parser.parse_args()
 
     payload = json.loads(args.input.read_text(encoding="utf-8"))
-    report = analyze_save_capture(payload)
+    is_bundle = payload.get("schema") == "planets-lab.har-save-capture-bundle.v1"
+    report = analyze_har_save_bundle(payload) if is_bundle else analyze_save_capture(payload)
     summary = report["summary"]
     print(f"status: {report['status']}")
-    print(f"retained_saves: {summary['retained_saves']}")
-    print(f"earlier_saves_not_retained: {summary['earlier_saves_not_retained']}")
-    print(f"unique_entities_observed: {summary['unique_entities_observed']}")
-    print(f"field_changes_between_reobserved_entities: "
-          f"{summary['field_changes_between_reobserved_entities']}")
-    print(f"http_200_explicit_success_true: "
-          f"{summary['http_200_explicit_success_true']}")
-    print(f"http_200_explicit_success_false: "
-          f"{summary['http_200_explicit_success_false']}")
-    print(f"http_200_success_unknown_or_null: "
-          f"{summary['http_200_success_unknown_or_null']}")
+    if is_bundle:
+        print(f"sessions: {summary['sessions']}")
+        print(f"save_requests: {summary['save_requests']}")
+        print(f"field_changes_between_reobserved_entities: {summary['changed_fields']}")
+    else:
+        print(f"retained_saves: {summary['retained_saves']}")
+        print(f"earlier_saves_not_retained: {summary['earlier_saves_not_retained']}")
+        print(f"unique_entities_observed: {summary['unique_entities_observed']}")
+        print(f"field_changes_between_reobserved_entities: "
+              f"{summary['field_changes_between_reobserved_entities']}")
+        print(f"http_200_explicit_success_true: "
+              f"{summary['http_200_explicit_success_true']}")
+        print(f"http_200_explicit_success_false: "
+              f"{summary['http_200_explicit_success_false']}")
+        print(f"http_200_success_unknown_or_null: "
+              f"{summary['http_200_success_unknown_or_null']}")
     print("NuHost_order_mapping_verified: False")
     if args.output:
         if args.output.resolve() == args.input.resolve():
