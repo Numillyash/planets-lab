@@ -227,7 +227,11 @@ def test_full_read_only_diagnostic_uses_explicit_pinned_generation(tmp_path):
     assert (root / "CURRENT").read_text() == (
         "generations/CURRENT-alternative.duckdb\n"
     )
-    assert "42" not in proc.stdout
+    # A SHA256 digest may naturally contain the digits "42"; forbid
+    # actual labelled game/player identities, not arbitrary hex pairs.
+    assert "game_id: 42" not in proc.stdout
+    assert '"game_id": 42' not in proc.stdout
+    assert "player_id: 1" not in proc.stdout
     out.unlink()
     wrong = list(args)
     wrong[wrong.index("--expected-sha256") + 1] = "0" * 64
