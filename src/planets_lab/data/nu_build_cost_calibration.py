@@ -334,3 +334,87 @@ def predict_additive_static_build(
         "NuHost_formula_verified": False,
         "hull_identity_source": "EXPLICIT_EXTERNAL_MAPPING_NOT_ASSUMED",
     }
+
+
+
+def published_standard_tech_upgrade_cost_mc(
+    initial_level: int, final_level: int,
+) -> int:
+    """Published STANDARD base-tech schedule, not a game-rule Host witness.
+
+    Official help.planets.nu/tech-levels lists 100 MC to raise level
+    1->2, 200 MC for 2->3, ... 900 MC for 9->10. This function
+    describes that table; it does not override campaign/custom rules.
+    """
+    if (type(initial_level) is not int or type(final_level) is not int):
+        raise ValueError("technology levels must be integers")
+    if not (1 <= initial_level <= final_level <= 10):
+        raise ValueError("technology levels must satisfy 1<=initial<=final<=10")
+    return 100 * sum(range(initial_level, final_level))
+
+
+def match_published_static_hull_candidates(
+    row: BuildCostObservation,
+    specs: NuStaticSpecs,
+    *,
+    allowed_catalog_hull_ids: set[int] | None = None,
+) -> dict[str, Any]:
+    """Find matching public hull price signatures; NEVER claim ID identity.
+
+    Only valid for a clearly excluded concurrent tech change, with
+    a complete, independently verified component catalog and no
+    other purchase/spending in the same client save. The caller
+    validates raw catalog completeness and provenance. Any match
+    is a *price candidate within supplied catalog scope*, not proof
+    that BuildHullId equals a given global hull ID or that the game
+    used standard prices.
+    """
+    if not row.isolated_from_recorded_tech_change:
+        return {
+            "status": "ABSTAIN_COMPOUND_TECH_UPGRADE_COST",
+            "candidate_count": 0, "candidates": [],
+            "NuHost_hull_identity_verified": False,
+        }
+    engine = specs.engines.get(row.engine)
+    beam = specs.beams.get(row.beam) if row.beam_count else None
+    tube = specs.torpedoes.get(row.launcher) if row.launcher_count else None
+    if (engine is None or
+            (row.beam_count and beam is None) or
+            (row.launcher_count and tube is None)):
+        return {
+            "status": "ABSTAIN_STATIC_COMPONENT_NOT_FOUND",
+            "candidate_count": 0, "candidates": [],
+            "NuHost_hull_identity_verified": False,
+        }
+    candidates = []
+    for hull_id, hull in sorted(specs.hulls.items()):
+        if (allowed_catalog_hull_ids is not None and
+                hull_id not in allowed_catalog_hull_ids):
+            continue
+        if not (hull.engine_count > 0 and
+                hull.beam_count >= row.beam_count and
+                hull.torpedo_launcher_count >= row.launcher_count):
+            continue
+        result = predict_additive_static_build(
+            row, specs, global_hull_id=hull_id,
+        )
+        if result["status"] == "HYPOTHESIS_STATIC_SUM_EXACT_ON_CLIENT_COST":
+            candidates.append({
+                "catalog_hull_id": hull_id,
+                "catalog_hull_name": hull.name,
+                "predicted_cost": result["candidate_additive_total"],
+            })
+    status = (
+        "NO_PUBLISHED_STATIC_HULL_SIGNATURE_MATCH"
+        if not candidates else
+        "ONE_HULL_PRICE_CANDIDATE_NOT_ID_VERIFIED"
+        if len(candidates) == 1 else
+        "MULTIPLE_HULL_PRICE_CANDIDATES_AMBIGUOUS"
+    )
+    return {
+        "status": status, "candidate_count": len(candidates),
+        "candidates": candidates,
+        "scope": "SUPPLIED_CATALOG_HULLS_ONLY",
+        "NuHost_hull_identity_verified": False,
+        "NuHost_cost_formula_verified": False,
+    }

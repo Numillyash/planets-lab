@@ -6,11 +6,17 @@ Basic (no static catalog needed):
       --input /private/starbase_build_costs.csv \
       --output /private/client_build_calibration.json
 
-Optional independently pinned *public* /static/all snapshot:
-  ... --catalog /private/static_all.json --catalog-sha256 <64-hex-digest> \
+Optional independently pinned public /static/all snapshot discovers possible
+matching hulls by component prices and slots WITHOUT assuming any ID mapping:
+  ... --catalog /private/static_all.json --catalog-sha256 <64-hex-digest>
+
+For a stronger independently confirmed identity assertion only:
+  ... --catalog ... --catalog-sha256 ... \
       --hull-map /private/explicit_game_hull_mapping.json
 
 Mapping JSON: {"<game-id>":{"<client-BuildHullId>":<catalog-global-hull-id>}}
+Automatic price-signature matches are candidates, NOT an accepted identity
+or proof that the game uses default static construction prices.
 Do not infer the mapping from equal numerical IDs. Full results include
 private game IDs and MUST NOT be committed. No network API calls occur.
 """
@@ -23,8 +29,8 @@ import json
 from pathlib import Path
 
 from planets_lab.data.nu_build_cost_calibration import (
-    calibrate_client_build_costs, predict_additive_static_build,
-    read_client_build_costs_csv,
+    calibrate_client_build_costs, match_published_static_hull_candidates,
+    predict_additive_static_build, read_client_build_costs_csv,
 )
 from planets_lab.data.nu_specs import NuStaticSpecs
 from planets_lab.data.nu_static import import_static_all
@@ -70,30 +76,49 @@ def main() -> int:
     parser.add_argument("--catalog-sha256", type=str)
     parser.add_argument("--hull-map", type=Path)
     args = parser.parse_args()
-    if any(x is not None for x in (args.catalog, args.catalog_sha256, args.hull_map)):
-        if not all(x is not None for x in (args.catalog, args.catalog_sha256, args.hull_map)):
-            parser.error("--catalog, --catalog-sha256 and --hull-map must all be supplied")
+    if (args.catalog is None) != (args.catalog_sha256 is None):
+        parser.error("--catalog and --catalog-sha256 must be supplied together")
+    if args.hull_map is not None and args.catalog is None:
+        parser.error("--hull-map requires --catalog and --catalog-sha256")
 
     rows = read_client_build_costs_csv(args.input)
     report = calibrate_client_build_costs(rows)
 
     if args.catalog:
         specs, raw = _load_static(args.catalog, args.catalog_sha256)
-        mapping = json.loads(args.hull_map.read_text(encoding="utf-8"))
-        if not isinstance(mapping, dict):
+        mapping = (
+            json.loads(args.hull_map.read_text(encoding="utf-8"))
+            if args.hull_map is not None else None
+        )
+        if mapping is not None and not isinstance(mapping, dict):
             raise ValueError("hull-map must be an object")
         comparison = []
         for row in rows:
-            idmap = mapping.get(row.game)
-            candidate = idmap.get(str(row.hull)) if isinstance(idmap, dict) else None
-            if type(candidate) is not int or candidate <= 0:
-                result = {"status": "ABSTAIN_UNVERIFIED_BUILD_HULL_ID_MAPPING"}
-            elif not all([
-                _complete_static_price(raw, "hulls", candidate),
+            components_complete = all([
                 _complete_static_price(raw, "engines", row.engine),
                 not row.beam_count or _complete_static_price(raw, "beams", row.beam),
                 not row.launcher_count or _complete_static_price(raw, "torpedos", row.launcher),
-            ]):
+            ])
+            eligible_hulls = {
+                hull_id for hull_id in specs.hulls
+                if _complete_static_price(raw, "hulls", hull_id)
+            }
+            discovery = (
+                match_published_static_hull_candidates(
+                    row, specs, allowed_catalog_hull_ids=eligible_hulls
+                )
+                if components_complete else
+                {"status": "ABSTAIN_INCOMPLETE_STATIC_CATALOG",
+                 "candidate_count": 0, "candidates": [],
+                 "NuHost_hull_identity_verified": False}
+            )
+            idmap = mapping.get(row.game) if mapping is not None else None
+            candidate = idmap.get(str(row.hull)) if isinstance(idmap, dict) else None
+            if mapping is None:
+                result = {"status": "NOT_CHECKED_NO_EXPLICIT_HULL_ID_MAP"}
+            elif type(candidate) is not int or candidate <= 0:
+                result = {"status": "ABSTAIN_UNVERIFIED_BUILD_HULL_ID_MAPPING"}
+            elif not components_complete or candidate not in eligible_hulls:
                 result = {"status": "ABSTAIN_INCOMPLETE_STATIC_CATALOG"}
             else:
                 result = predict_additive_static_build(
@@ -106,12 +131,17 @@ def main() -> int:
                      "BuildBeamCount", "BuildTorpedoId", "BuildTorpCount"),
                     row.recipe,
                 )),
+                "published_cost_signature_candidates": discovery,
                 "result": result,
             })
         report["pinned_catalog_sha256"] = args.catalog_sha256.lower()
         report["static_component_sum_comparison"] = comparison
         report["summary"]["static_hypothesis_status_counts"] = dict(sorted(
             Counter(x["result"]["status"] for x in comparison).items()
+        ))
+        report["summary"]["published_signature_status_counts"] = dict(sorted(
+            Counter(x["published_cost_signature_candidates"]["status"]
+                    for x in comparison).items()
         ))
     else:
         report["summary"]["static_hypothesis_status"] = "NOT_CHECKED_NO_PINNED_STATIC_CATALOG"
@@ -131,6 +161,8 @@ def main() -> int:
     if args.catalog:
         for status, count in summary["static_hypothesis_status_counts"].items():
             print(f"static_{status}: {count}")
+        for status, count in summary["published_signature_status_counts"].items():
+            print(f"published_signature_{status}: {count}")
     else:
         print("static_hypothesis_status: NOT_CHECKED_NO_PINNED_STATIC_CATALOG")
     print("NuHost_build_cost_verified: False")
