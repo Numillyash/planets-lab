@@ -61,6 +61,20 @@ directly updated client stock with a pending ship-target
 
 ### Starbase ship-build costs
 
+**2026-10-17 correction after follow-up HAR:** Starbase numeric IDs are
+NOT planet IDs. The game containing Starbase1 and Planet8 has seven
+client same-request build/planet-cost pairs that our initial
+suffix-based parser incorrectly missed (the first cost CSV had blank
+cells). The actual 404-save capture contains **11** comparable
+build cost pairs as originally reported, when the planet is matched
+by unique simultaneous MC/D/T/M decrease rather than ID suffix.
+The subsequent 151-save capture adds **9** more, bringing the
+total to **20**. See [follow-up corrections and regression
+coverage](2026-10-17-m2-har-continuation-151-v1.md). This is only a
+client same-request co-change, NOT proven base/planet ownership
+or NuHost execution.
+
+
 **11** in-turn transitions to `IsBuilding:true` have a same-request
 planet resource deduction in MC, D, T, M (not a Host outcome).
 Replicated cost vectors for identical recipes:
