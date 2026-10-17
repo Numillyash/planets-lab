@@ -59,6 +59,7 @@ def _positive_integer(value: Any) -> int | None:
 
 def census_members(
     members: list[Member], *, max_games: int, pairs_per_game: int,
+    allowed_games: set[int] | None = None,
 ) -> tuple[dict[str, Any], list[Pair]]:
     """Make the complete metadata census BEFORE reading any entity contents."""
     if not 1 <= max_games <= MAX_GAMES:
@@ -99,7 +100,10 @@ def census_members(
 
     # Select game coverage first; avoid "first 20 games" bias by
     # spreading deterministically across ALL corpus game identifiers.
-    ordered_games = sorted(pairs_by_game)
+    ordered_games = sorted(
+        game for game in pairs_by_game
+        if allowed_games is None or game in allowed_games
+    )
     game_n = min(len(ordered_games), max_games)
     game_positions = _spread(len(ordered_games), game_n)
     selected: list[Pair] = []
@@ -134,6 +138,10 @@ def census_members(
             map(len, pairs_by_game.values())
         ),
         "games_with_adjacent_perspective_pairs": len(pairs_by_game),
+        "games_allowed_for_entity_sampling": len(ordered_games),
+        "games_excluded_from_entity_sampling": (
+            len(pairs_by_game) - len(ordered_games)
+        ),
         "metadata_selected_game_count": len(set(p.game for p in selected)),
         "metadata_frozen_sample_pairs": len(selected),
         "metadata_frozen_selection_sha256": fingerprint,
@@ -266,10 +274,12 @@ def analyze_corpus_coverage(
     max_games: int = 100,
     pairs_per_game: int = 2,
     reconstruct: Callable[[int], Mapping[str, Any]],
+    allowed_games: set[int] | None = None,
 ) -> dict[str, Any]:
     members = read_metadata(connection)
     metadata, selected = census_members(
         members, max_games=max_games, pairs_per_game=pairs_per_game,
+        allowed_games=allowed_games,
     )
     by_id = {m.member_id: m for m in members}
     counters: Counter[str] = Counter()
