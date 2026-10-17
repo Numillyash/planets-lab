@@ -33,6 +33,22 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**M2 follow-up HAR (2026-10-17): two sanitized captures, 555 saves:**
+151 new HTTP 200, success:true client saves add 29 readiness calls
+and extend existing games to 26 and 47 observed turns;
+90 unique game/player/turn windows across 5 games.
+All 555 preserve 1,689 serialized records, 340 within-turn field
+changes, 10 nonempty Waypoints observations, and 12 nonzero
+TransferClans snapshots unchanged from the first capture.
+**Critical correction:** StarbaseN numeric ID != PlanetN numeric ID:
+real Starbase1 co-saves with Planet8 in one sector. The same-request,
+unique four-resource client deduction rule recovers 11 build cost
+pairs in the original data and 9 more in the new data (20 total),
+with exact multi-turn recipe replication; ambiguous pairs abstain.
+This is *client-saved cochange*, not an accepted Host order or
+NuHost causal proof. [Follow-up handoff](handoff/2026-10-17-m2-har-continuation-151-v1.md).
+No private captures, user note bodies, or live game IDs in git.
+
 **M2 HAR empirical evidence: 404 saves, 5 games, 62 windows (October 17, 2026):**
 The player's opt-in locally redacted HAR bundle contains
 404/404 successfully extracted save requests (HTTP 200,
