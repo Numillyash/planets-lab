@@ -36,8 +36,10 @@ def main() -> int:
           f"{summary['field_changes_between_reobserved_entities']}")
     print(f"http_200_explicit_success_true: "
           f"{summary['http_200_explicit_success_true']}")
-    print(f"http_200_success_not_true_or_missing: "
-          f"{summary['http_200_success_not_true_or_missing']}")
+    print(f"http_200_explicit_success_false: "
+          f"{summary['http_200_explicit_success_false']}")
+    print(f"http_200_success_unknown_or_null: "
+          f"{summary['http_200_success_unknown_or_null']}")
     print("NuHost_order_mapping_verified: False")
     if args.output:
         if args.output.resolve() == args.input.resolve():
