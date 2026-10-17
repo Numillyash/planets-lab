@@ -33,6 +33,26 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**M2 HAR empirical evidence: 404 saves, 5 games, 62 windows (October 17, 2026):**
+The player's opt-in locally redacted HAR bundle contains
+404/404 successfully extracted save requests (HTTP 200,
+`success:true`), 60 category-only Turn Ready calls, and 1,161
+legacy records across Note, Planet, Ship, Starbase and Stock.
+There are 221 *within-turn* repeated-field changes, of which
+39 are private Note.Body edits. Critically, 12 saved Ship snapshots
+have nonzero `TransferClans` (11 distinct signatures), and a
+same-turn cancellation restores ship Clans and MC by exactly the
+formerly queued quantities. Eleven Ship-building client events
+include paired same-request planet resource deductions, with
+repeated exact costs and an extra 2,400 MC alongside EngineTechUp=3
+in one build. Two tax changes update NativeHappyChange preview.
+The offline parser now recognizes StockNN and NoteNN without
+mistaking the note key suffix for its embedded Id, and emits
+cross-window aggregate evidence counts. **Still client evidence,
+not NuHost phase causality or authenticated per-order execution.**
+[Detailed results](handoff/2026-10-17-m2-har-empirical-404-v1.md).
+Never commit real game captures.
+
 **M2 low-touch real game session capture (HAR, October 17, 2026):**
 The owner reports that repeatedly installing browser probes and manually
 coordinating individual UI actions is disruptive to normal play.

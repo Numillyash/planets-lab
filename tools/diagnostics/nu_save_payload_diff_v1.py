@@ -34,6 +34,14 @@ def main() -> int:
         print(f"sessions: {summary['sessions']}")
         print(f"save_requests: {summary['save_requests']}")
         print(f"field_changes_between_reobserved_entities: {summary['changed_fields']}")
+        print(f"record_observations_by_kind: {summary['record_observations_by_kind']}")
+        print(f"changed_fields_by_kind: {summary['changed_fields_by_kind']}")
+        print(f"nonzero_transfer_ship_snapshots: {summary['nonzero_transfer_ship_snapshots']}")
+        print(f"distinct_nonzero_transfer_signatures: {summary['distinct_nonzero_transfer_signatures']}")
+        print("starbase_build_starts_with_simultaneous_planet_costs: "
+              f"{summary['starbase_build_starts_with_simultaneous_planet_costs']}")
+        print("native_or_colonist_tax_rate_field_changes: "
+              f"{summary['native_or_colonist_tax_rate_field_changes']}")
     else:
         print(f"retained_saves: {summary['retained_saves']}")
         print(f"earlier_saves_not_retained: {summary['earlier_saves_not_retained']}")
