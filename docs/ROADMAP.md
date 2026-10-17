@@ -33,6 +33,24 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**M2 official wiki price crosscheck (2026-10-17):**
+The user pointed out the already published Race 1 hull cost table.
+Official Planets.nu Help separately publishes the default engine,
+beam, torpedo launcher and starbase tech prices and /static/all.
+Using only these documented prices, client observed resource
+spending independently matches exactly for three built designs:
+Vendetta + 2 Transwarp + 4 X-Ray + 4 Gamma: 802/56/37/131;
+Medium Deep Space Freighter + Transwarp: 365/20/7/41;
+Large Deep Space Freighter + 2 Quantum: 500/91/13/38.
+The documented 7→10 technology upgrade costs exactly **2400 MC**.
+A candidate Nebula build for client Hull5 predicts 1270/104/75/251
+against observed 1190/104/75/235, so do not equate IDs blindly.
+Add cost/slot-based **candidate** hull discovery from independently
+SHA256-pinned public /static/all without requiring a manual mapping;
+still label identity and Host execution unverified.
+[Public-price crosscheck](handoff/2026-10-17-m2-official-component-price-crosscheck-v1.md).
+No raw capture in git; production/C5/corpus frozen.
+
 **M2 ship-build marginal cost calibration (2026-10-17):**
 From 20 same-request Starbase-build/Planet-spending witnesses,
 19 lack recorded tech changes, 1 includes EngineTechLevel 7→10
