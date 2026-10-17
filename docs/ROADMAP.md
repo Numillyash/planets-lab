@@ -33,6 +33,23 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**M2 baseline68 mineral mass-balance hypothesis check (2026-10-18):**
+Second REAL public100 baseline68 owner-current census (same 136
+metadata-frozen pairs; 3769 comparable planets) reveals that
+surface minerals increased while corresponding underground
+deposits stayed unchanged in 2793 N, 2801 D, 2739 T and
+2835 M comparisons. This is not by itself evidence of
+mining or material creation. Add conditional default
+mining + published trans-uranium replenishment arithmetic,
+gated on stable mineral densities, unchanged mine counts
+and authenticated race identity, with separate surface/ground
+delta checks and mass-balance residual histograms.
+Unseen ship actions, transfers and campaign powers remain
+unattributed; exact model matches do NOT prove Host phases.
+Keep sealed 32-game heldout unread, original
+M2 coverage reports untouched, no simulator model changes.
+[Mass-balance handoff](handoff/2026-10-18-m2-baseline68-mineral-mass-balance-v1.md).
+
 **M2 published public100 corpus actual server result (2026-10-18):**
 The real read-only corpus census succeeded against immutable public100
 at verified SHA256. All 100 games: 224014 source perspectives,
