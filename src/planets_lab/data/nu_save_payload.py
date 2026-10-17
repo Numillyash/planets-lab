@@ -44,6 +44,7 @@ class SavedRequest:
     turn: int
     save_index: int | None
     source_form_field_count: int
+    keycount_present: bool
     entities: dict[str, SavedEntity]
     http_status: int | None
     response_success: bool | None
@@ -136,6 +137,7 @@ def parse_save_body(
     return SavedRequest(
         game_id=game_id, player_id=player_id, turn=turn,
         save_index=save_index, source_form_field_count=len(body),
+        keycount_present="keycount" in body,
         entities=entities, http_status=http_status,
         response_success=success,
         response_save_index=_response_optional_int(resp.get("saveIndex")),
@@ -195,6 +197,7 @@ def analyze_save_capture(payload: Mapping[str, Any]) -> dict[str, Any]:
     reobserved_unchanged = 0
     first_seen = 0
     http_ok_with_explicit_success = 0
+    http_ok_with_explicit_failure = 0
     http_ok_with_success_unknown = 0
     for index, request in enumerate(requests):
         first: list[str] = []
@@ -203,7 +206,9 @@ def analyze_save_capture(payload: Mapping[str, Any]) -> dict[str, Any]:
         if request.http_status == 200:
             if request.response_success is True:
                 http_ok_with_explicit_success += 1
-            elif request.response_success is None:
+            elif request.response_success is False:
+                http_ok_with_explicit_failure += 1
+            else:
                 http_ok_with_success_unknown += 1
         for entity_name, entity in sorted(request.entities.items()):
             previous = latest.get(entity_name)
@@ -238,7 +243,9 @@ def analyze_save_capture(payload: Mapping[str, Any]) -> dict[str, Any]:
             "http_status": request.http_status,
             "response_success": request.response_success,
             "response_save_index": request.response_save_index,
-            "keycount_matches_form_fields": True,  # checked only if keycount exists
+            "keycount_matches_form_fields": (
+                True if request.keycount_present else None
+            ),
         })
     totals = payload.get("route_counters")
     total = totals.get("save") if isinstance(totals, Mapping) else None
@@ -255,7 +262,8 @@ def analyze_save_capture(payload: Mapping[str, Any]) -> dict[str, Any]:
             "field_changes_between_reobserved_entities": changes_total,
             "reobserved_unchanged_entities": reobserved_unchanged,
             "http_200_explicit_success_true": http_ok_with_explicit_success,
-            "http_200_success_not_true_or_missing": http_ok_with_success_unknown,
+            "http_200_explicit_success_false": http_ok_with_explicit_failure,
+            "http_200_success_unknown_or_null": http_ok_with_success_unknown,
             "NuHost_orders_accepted_verified": False,
             "NuHost_phase_order_verified": False,
             "snapshot_absence_means_deletion": False,
