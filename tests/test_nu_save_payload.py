@@ -284,3 +284,43 @@ def test_malformed_auxiliary_wire_key_rejected():
     body["keycount"] = str(len(body))
     with pytest.raises(NuSavePayloadError, match="unrecognized"):
         parse_save_body(body)
+
+
+def test_har_bundle_client_order_evidence_aggregates_without_host_claims():
+    base = event(
+        Ship6=entity("Ship", 6, Clans=200, TransferClans=0,
+                     TransferTargetId=0, TransferTargetType=0),
+        Planet1=entity("Planet", 1, MegaCredits=900, Duranium=100,
+                       Tritanium=60, Molybdenum=70, NativeTaxRate=0),
+        Starbase1=entity("Starbase", 1, IsBuilding="false", BuildHullId=0),
+        Note170="Id:::0|||OwnerId:::1|||Body:::|||TargetId:::17|||TargetType:::0|||Color:::",
+        Stock14="Id:::14|||Amount:::1|||BuiltAmount:::1",
+    )
+    updated = event(
+        Ship6=entity("Ship", 6, Clans=180, TransferClans=20,
+                     TransferTargetId=12, TransferTargetType=1),
+        Planet1=entity("Planet", 1, MegaCredits=800, Duranium=90,
+                       Tritanium=55, Molybdenum=60, NativeTaxRate=5),
+        Starbase1=entity("Starbase", 1, IsBuilding="true", BuildHullId=4),
+        Note170="Id:::0|||OwnerId:::1|||Body:::synthetic|||TargetId:::17|||TargetType:::0|||Color:::",
+        Stock14="Id:::14|||Amount:::1|||BuiltAmount:::1",
+    )
+    repeated = event(
+        Ship6=entity("Ship", 6, Clans=180, TransferClans=20,
+                     TransferTargetId=12, TransferTargetType=1),
+    )
+    bundle = {
+        "schema": "planets-lab.har-save-capture-bundle.v1",
+        "sessions": [capture(base, updated, repeated)],
+    }
+    from planets_lab.data.nu_save_payload import analyze_har_save_bundle
+    summary = analyze_har_save_bundle(bundle)["summary"]
+    assert summary["record_observations_by_kind"] == {
+        "Note": 2, "Planet": 2, "Ship": 3, "Starbase": 2, "Stock": 2,
+    }
+    assert summary["nonzero_transfer_ship_snapshots"] == 2
+    assert summary["distinct_nonzero_transfer_signatures"] == 1
+    assert summary["starbase_build_starts_with_simultaneous_planet_costs"] == 1
+    assert summary["native_or_colonist_tax_rate_field_changes"] == 1
+    assert summary["client_witness_not_host_execution"] is True
+    assert summary["NuHost_order_mapping_verified"] is False
