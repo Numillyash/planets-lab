@@ -226,6 +226,8 @@ def test_full_read_only_diagnostic_uses_explicit_pinned_generation(tmp_path):
     assert report["sample"]["observable_structure_and_tax_controls"] == {
         "qualified": 1, "all_unchanged": 1,
     }
+    assert "conditional_mineral_mass_balance_not_host_verified" in report["sample"]
+    assert report["evidence_limits"]["default_mining_and_mutation_forecast_is_host_causal"] is False
     assert report["generation"]["verified_sha256"] == digest
     assert report["generation"]["CURRENT_modified"] is False
     assert report["baseline_sample_allowlist"]["allowed_game_count"] == 1
@@ -387,3 +389,135 @@ def test_m2_aggregate_field_directions_keep_same_owner_pair_denominators():
     }
     assert out["evidence_limits"]["ground_down_surface_up_proves_mining"] is False
     assert out["evidence_limits"]["per_field_change_is_host_phase_evidence"] is False
+
+
+
+def test_mineral_default_candidate_can_balance_mining_and_mutation_without_claiming_causality():
+    """With 5 mines, 40% density, standard 100% rate: mined=2, mutation=2.
+
+    This is a synthetic candidate that demonstrates why an unchanged
+    deposit alongside a rising surface stock is not *necessarily* a
+    violation of mass balance. It is not Host proof.
+    """
+    pair = Pair(42, 1, 11, 1, 2)
+    before = fixture_payload(turn=10, supplies=10)
+    after = fixture_payload(turn=11, supplies=10)
+    before["player"]["raceid"] = 3
+    after["player"]["raceid"] = 3
+    before["planets"][0]["densityduranium"] = 40
+    after["planets"][0]["densityduranium"] = 40
+    before["planets"][0]["groundduranium"] = 60
+    after["planets"][0]["groundduranium"] = 60
+    before["planets"][0]["duranium"] = 20
+    after["planets"][0]["duranium"] = 22
+    result = profile_pair(before, after, pair)[
+        "conditional_mineral_mass_balance"
+    ]
+    d = result["per_mineral"]["duranium"]
+    assert d["joint_stock_qualified"] == 1
+    assert d["surface_up_ground_unchanged"] == 1
+    assert d["density_stable_and_valid"] == 1
+    assert d["candidate_default_mining_qualified"] == 1
+    assert d["net_stock_change_equals_default_mutation"] == 1
+    assert d["both_stock_deltas_match_default_model"] == 1
+    assert d["surface_up_ground_equal_explained_by_default_candidate"] == 1
+    assert result["surface_up_ground_equal_surface_increase_buckets"][
+        "duranium"
+    ] == {"2_to_5": 1}
+    assert result["net_total_minus_default_mutation_abs_residual_buckets"][
+        "duranium"
+    ] == {"0": 1}
+    assert result["NuHost_mining_formula_verified"] is False
+
+
+def test_mineral_candidate_rejects_observed_surplus_not_predicted_by_default():
+    pair = Pair(42, 1, 11, 1, 2)
+    before = fixture_payload(turn=10)
+    after = fixture_payload(turn=11)
+    before["player"]["raceid"] = after["player"]["raceid"] = 3
+    before["planets"][0]["densityduranium"] = 40
+    after["planets"][0]["densityduranium"] = 40
+    before["planets"][0]["duranium"] = 20
+    after["planets"][0]["duranium"] = 120
+    d = profile_pair(before, after, pair)[
+        "conditional_mineral_mass_balance"
+    ]["per_mineral"]["duranium"]
+    assert d["net_stock_change_differs_from_default_mutation"] == 1
+    assert d["surface_delta_differs_from_default_mining"] == 1
+    assert d["ground_delta_matches_default_model"] == 1
+    assert d["surface_up_ground_equal_unexplained_by_default_candidate"] == 1
+    assert "both_stock_deltas_match_default_model" not in d
+
+
+def test_mineral_model_abstains_on_density_missing_or_changed_mines():
+    pair = Pair(42, 1, 11, 1, 2)
+    before = fixture_payload(turn=10)
+    after = fixture_payload(turn=11)
+    before["player"]["raceid"] = after["player"]["raceid"] = 3
+    d = profile_pair(before, after, pair)[
+        "conditional_mineral_mass_balance"
+    ]["per_mineral"]["duranium"]
+    assert d["ABSTAIN_DENSITY_MISSING"] == 1
+    assert "candidate_default_mining_qualified" not in d
+    before["planets"][0]["densityduranium"] = 40
+    after["planets"][0]["densityduranium"] = 40
+    after["planets"][0]["mines"] = 6
+    d = profile_pair(before, after, pair)[
+        "conditional_mineral_mass_balance"
+    ]["per_mineral"]["duranium"]
+    assert d["ABSTAIN_MINES_CHANGED"] == 1
+    assert d["ABSTAIN_DEFAULT_MINING_MINES_CHANGED_OR_MISSING"] == 1
+    assert d["default_mutation_mass_balance_qualified"] == 1
+    assert "candidate_default_mining_qualified" not in d
+
+
+def test_mineral_model_abstains_on_unknown_race_and_stale_owner():
+    pair = Pair(42, 1, 11, 1, 2)
+    before = fixture_payload(turn=10)
+    after = fixture_payload(turn=11)
+    before["planets"][0]["densityduranium"] = 40
+    after["planets"][0]["densityduranium"] = 40
+    before["player"]["raceid"] = 0
+    after["player"]["raceid"] = 0
+    d = profile_pair(before, after, pair)[
+        "conditional_mineral_mass_balance"
+    ]["per_mineral"]["duranium"]
+    assert d["ABSTAIN_DEFAULT_MINING_RACE_MISSING_OR_CHANGED"] == 1
+    assert "candidate_default_mining_qualified" not in d
+    stale = fixture_payload(turn=10, infoturn=9)
+    stale["planets"][0]["densityduranium"] = 40
+    model = profile_pair(stale, after, pair)["conditional_mineral_mass_balance"]
+    assert model["per_mineral"] == {}
+
+
+def test_mineral_candidate_aggregates_without_private_entity_values():
+    class Conn:
+        def __init__(self):
+            self.done = False
+        def execute(self, q):
+            return self
+        def fetchmany(self, limit):
+            if self.done:
+                return []
+            self.done = True
+            return [(1, 42, 1, 10, 10), (2, 42, 1, 11, 11)]
+    before = fixture_payload(turn=10)
+    after = fixture_payload(turn=11)
+    for p in (before, after):
+        p["player"]["raceid"] = 3
+        p["planets"][0]["densityduranium"] = 40
+    after["planets"][0]["duranium"] = 22
+    report = analyze_corpus_coverage(
+        Conn(), max_games=1, pairs_per_game=1,
+        reconstruct=lambda mid: {1: before, 2: after}[mid],
+        allowed_games={42},
+    )
+    x = report["sample"]["conditional_mineral_mass_balance_not_host_verified"]
+    assert x["per_mineral"]["duranium"]["both_stock_deltas_match_default_model"] == 1
+    assert x["surface_up_ground_equal_surface_increase_buckets"]["duranium"] == {
+        "2_to_5": 1
+    }
+    assert report["evidence_limits"][
+        "default_mining_and_mutation_forecast_is_host_causal"
+    ] is False
+    assert "planet_id" not in x and "game_id" not in x
