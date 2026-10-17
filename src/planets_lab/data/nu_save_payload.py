@@ -5,7 +5,7 @@ This parses exact source strings and preserves unverified host semantics.
 It does not submit orders or convert stock snapshots into causal orders.
 
 IMPORTANT: one /game/save call may contain only selected ShipN/PlanetN/
-StarbaseN objects. The absence of a key is NOT a deletion or an empty
+StarbaseN/StockN/NoteN objects. The absence of a key is NOT a deletion or an empty
 order, and first appearance in a capture is NOT entity construction.
 """
 from __future__ import annotations
@@ -15,7 +15,7 @@ import re
 from typing import Any, Mapping, Sequence
 
 SCHEMA = "planets-lab.nu-save-observation-analysis.v1"
-ENTITY_PATTERN = re.compile(r"^(Ship|Planet|Starbase)([1-9][0-9]*)$")
+ENTITY_PATTERN = re.compile(r"^(Ship|Planet|Starbase|Stock|Note)([1-9][0-9]*)$")
 DIGITS = re.compile(r"^[0-9]+$")
 MAX_FIELDS = 256
 MAX_SERIALIZED_CHARS = 2_000_000
@@ -66,10 +66,12 @@ def _response_optional_int(value: Any) -> int | None:
 def parse_legacy_entity(raw: str, *, kind: str, entity_id: int) -> SavedEntity:
     """Parse observed 'Id:::6|||Name:::...|||Waypoints:::' exactly.
 
+    The suffix for NoteNN is NOT the serialized Id: it is a separate
+    client note-location key. StockNN and the game objects DO match.
     Numeric fields intentionally remain strings: coercion would erase
     distinctions and falsely imply validated NuHost order semantics.
     """
-    if kind not in ("Ship", "Planet", "Starbase"):
+    if kind not in ("Ship", "Planet", "Starbase", "Stock", "Note"):
         raise NuSavePayloadError("unsupported entity kind")
     if type(entity_id) is not int or entity_id <= 0:
         raise NuSavePayloadError("invalid entity identifier")
@@ -87,7 +89,10 @@ def parse_legacy_entity(raw: str, *, kind: str, entity_id: int) -> SavedEntity:
             raise NuSavePayloadError("empty or duplicated legacy entity field")
         fields[key] = value
     identity = _nonnegative_int(fields.get("Id"), "serialized Id")
-    if identity != entity_id:
+    # NoteNN encodes the note's location/target selector, NOT its Id.
+    # Real Note120 can carry Id=7 and a new Note170 can carry Id=0.
+    # All other observed entity kinds use the literal embedded identity.
+    if kind != "Note" and identity != entity_id:
         raise NuSavePayloadError("form key and serialized Id disagree")
     return SavedEntity(kind, entity_id, fields)
 
@@ -119,7 +124,7 @@ def parse_save_body(
             entities[key] = parse_legacy_entity(
                 raw, kind=kind, entity_id=int(id_text)
             )
-        elif key.startswith(("Ship", "Planet", "Starbase")):
+        elif key.startswith(("Ship", "Planet", "Starbase", "Stock", "Note")):
             # Do not quietly skip a renamed/unsupported entity wire key.
             raise NuSavePayloadError("unrecognized entity form key")
     if "keycount" in body:
@@ -199,6 +204,8 @@ def analyze_save_capture(payload: Mapping[str, Any]) -> dict[str, Any]:
     http_ok_with_explicit_success = 0
     http_ok_with_explicit_failure = 0
     http_ok_with_success_unknown = 0
+    kinds_observed: dict[str, int] = {}
+    kinds_changed: dict[str, int] = {}
     for index, request in enumerate(requests):
         first: list[str] = []
         changes: list[dict[str, Any]] = []
@@ -211,6 +218,7 @@ def analyze_save_capture(payload: Mapping[str, Any]) -> dict[str, Any]:
             else:
                 http_ok_with_success_unknown += 1
         for entity_name, entity in sorted(request.entities.items()):
+            kinds_observed[entity.kind] = kinds_observed.get(entity.kind, 0) + 1
             previous = latest.get(entity_name)
             if previous is None:
                 first.append(entity_name)
@@ -233,6 +241,9 @@ def analyze_save_capture(payload: Mapping[str, Any]) -> dict[str, Any]:
                         "fields": changed_fields,
                     })
                     changes_total += len(changed_fields)
+                    kinds_changed[entity.kind] = (
+                        kinds_changed.get(entity.kind, 0) + len(changed_fields)
+                    )
             latest[entity_name] = (index, entity)
         events.append({
             "request_index_in_retained_window": index,
@@ -261,6 +272,8 @@ def analyze_save_capture(payload: Mapping[str, Any]) -> dict[str, Any]:
             "newly_seen_baselines_not_entity_creations": first_seen,
             "field_changes_between_reobserved_entities": changes_total,
             "reobserved_unchanged_entities": reobserved_unchanged,
+            "record_observations_by_kind": dict(sorted(kinds_observed.items())),
+            "changed_fields_by_kind": dict(sorted(kinds_changed.items())),
             "http_200_explicit_success_true": http_ok_with_explicit_success,
             "http_200_explicit_success_false": http_ok_with_explicit_failure,
             "http_200_success_unknown_or_null": http_ok_with_success_unknown,
