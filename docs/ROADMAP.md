@@ -33,6 +33,21 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**M2 cargo hypothesis overlap and planet-window dedup V3 (2026-10-18):**
+Published V2 baseline68 from runtime-logs has 915 surface-only
+residual mineral comparisons, 101 single-ship and 43 multi-ship
+opposite cargo DELTA candidates, 802 weak base planet links and
+52 weak-base tech changes. **101+43 may DOUBLE COUNT**. V3
+adds a true disjoint four-way partition (single-only, multiship-
+only, both, neither), qualified signed residual × tech-change
+joint counts, and mineral-multiplicity-aware unique planet-window
+event counters. Preserve 68-game zero-inclusive distributions,
+match exactly the frozen 136-pair selection and existing 915
+mineral residuals. Default Host mining/transactions NOT promoted;
+all ship/base associations are observational. All artifacts
+aggregate-only via runtime-logs.
+[Full V3 evidence and next one-pass runner](handoff/2026-10-18-m2-disjoint-ship-cargo-and-planet-window-v3.md).
+
 **M2 baseline68 V2 contextual mineral residual follow-up (2026-10-18):**
 Recovered prior aggregate/runtime-logs triage established 915
 ground-exact/surface-only residual mineral observations, 652 with
