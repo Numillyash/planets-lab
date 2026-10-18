@@ -205,7 +205,7 @@ def test_end_to_end_same_sample_context_and_mineral_totals_align():
     }
     assert out["game_cluster_residual_count_buckets"][
         "ground_exact_surface_residual"
-    ] == {"1": 1}
+    ] == {"2_to_5": 1}  # This game also has 3 residuals in other minerals.
     assert result["sample"]["conditional_mineral_mass_balance_not_host_verified"][
         "per_mineral"
     ]["duranium"]["candidate_default_mining_qualified"] == 1
