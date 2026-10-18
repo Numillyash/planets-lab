@@ -286,9 +286,16 @@ def profile_surface_residual_context(
     categories: dict[str, Counter[str]] = defaultdict(Counter)
     covariates: dict[str, dict[str, Counter[str]]] = defaultdict(lambda: defaultdict(Counter))
     bins: dict[str, dict[str, Counter[str]]] = defaultdict(lambda: defaultdict(Counter))
+    joint_surface_residual: dict[str, Counter[str]] = defaultdict(Counter)
+    planet_transition_events: Counter[str] = Counter()
     for pid in sorted(owned_before.keys() & owned_after.keys()):
         planet_b, planet_a = owned_before[pid], owned_after[pid]
         pbxy, paxy = _valid_xy(planet_b), _valid_xy(planet_a)
+        residual_minerals_at_planet = 0
+        any_single = False
+        any_multi = False
+        any_base_tech_change = False
+        any_base_planet_link = False
         for mineral in MINERALS:
             c = _candidate_for_mineral(planet_b, planet_a, mineral, race)
             if c is None:
@@ -347,6 +354,72 @@ def profile_surface_residual_context(
             dst.update(_observed_ship_context(
                 before, after, pbxy, paxy, ships_b, ships_a, mineral, residual,
             ))
+            if status == "ground_exact_surface_residual":
+                # Joint classes are disjoint within each planet×mineral
+                # observation. Previously single/multiship marginals
+                # could OVERLAP, and must not simply be added.
+                j = joint_surface_residual[mineral]
+                j["qualified_surface_residual"] += 1
+                residual_minerals_at_planet += 1
+                single = bool(dst["one_ship_opposite_cargo_delta_candidate"])
+                multi = bool(dst["multiple_ship_cargo_sum_opposite_candidate_not_order"])
+                base_tech = bool(dst["ownerless_planetlinked_tech_changed_observed"])
+                base_link = bool(dst["planetlinked_base_both_any_owner_provenance"])
+                co_site = bool(dst["owner_ship_observed_at_site_both"])
+                key = (
+                    "both_single_and_multiship_candidate" if single and multi else
+                    "single_only_cargo_candidate" if single else
+                    "multiship_only_cargo_candidate" if multi else
+                    "no_exact_cargo_candidate"
+                )
+                j[key] += 1
+                if single or multi:
+                    j["any_exact_opposite_cargo_candidate"] += 1
+                if co_site:
+                    j["owner_ship_at_site_both"] += 1
+                if base_link:
+                    j["planetlinked_base_both_not_ownership_proof"] += 1
+                if base_tech:
+                    j["ownerless_planetlinked_tech_changed"] += 1
+                if base_tech and (single or multi):
+                    j["base_tech_change_and_cargo_candidate"] += 1
+                if base_tech and not (single or multi):
+                    j["base_tech_change_no_cargo_candidate"] += 1
+                if (single or multi) and residual > 0:
+                    j["cargo_candidate_positive_surface_residual"] += 1
+                if (single or multi) and residual < 0:
+                    j["cargo_candidate_negative_surface_residual"] += 1
+                any_single |= single
+                any_multi |= multi
+                any_base_tech_change |= base_tech
+                any_base_planet_link |= base_link
+
+        if residual_minerals_at_planet:
+            # A planet-window with four residual minerals contributes ONE
+            # event, not four independent Host actions.
+            planet_transition_events["planet_windows_any_surface_residual"] += 1
+            label = (
+                "1" if residual_minerals_at_planet == 1 else
+                "2" if residual_minerals_at_planet == 2 else
+                "3" if residual_minerals_at_planet == 3 else "4"
+            )
+            planet_transition_events[
+                "residual_mineral_multiplicity_" + label
+            ] += 1
+            if any_single:
+                planet_transition_events["planet_windows_any_single_cargo"] += 1
+            if any_multi:
+                planet_transition_events["planet_windows_any_multiship_cargo"] += 1
+            if any_single or any_multi:
+                planet_transition_events["planet_windows_any_cargo_candidate"] += 1
+            if any_base_planet_link:
+                planet_transition_events["planet_windows_any_planetlinked_base"] += 1
+            if any_base_tech_change:
+                planet_transition_events["planet_windows_any_base_tech_change"] += 1
+                if any_single or any_multi:
+                    planet_transition_events[
+                        "planet_windows_base_tech_and_cargo_candidate"
+                    ] += 1
     return {
         "per_mineral_categories": {
             name: dict(sorted(counts.items())) for name, counts in sorted(categories.items())
@@ -365,6 +438,12 @@ def profile_surface_residual_context(
             }
             for name, classified in sorted(bins.items())
         },
+        "per_mineral_surface_residual_joint_cargo_base": {
+            mineral: dict(sorted(values.items()))
+            for mineral, values in sorted(joint_surface_residual.items())
+        },
+        "planet_transition_residual_events_not_independent_actions":
+            dict(sorted(planet_transition_events.items())),
         "source_quality": dict(sorted((
             Counter(ship_status_b) + Counter(ship_status_a) +
             Counter(base_status_b) + Counter(base_status_a)
