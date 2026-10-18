@@ -197,3 +197,56 @@ def test_wrapper_rejects_insecure_output_without_spawning_docker():
                        capture_output=True, text=True, timeout=10, env=env)
     assert p.returncode == 64
     assert "aggregate" in p.stderr
+
+
+
+def test_offline_cli_standalone_no_site_packages_no_duckdb(tmp_path):
+    """Reproduces server failure: Python has no installed DuckDB.
+
+    Python -I -S forbids site-packages entirely and ignores PYTHONPATH,
+    so the CLI must not import planets_lab.corpus/__init__.py.
+    """
+    infile, outfile = tmp_path / "source.json", tmp_path / "recovery.json"
+    infile.write_text(json.dumps(synthetic_aggregate()), encoding="utf-8")
+    p = subprocess.run([
+        sys.executable, "-I", "-S", str(CLI),
+        "--input", str(infile), "--output", str(outfile),
+    ], cwd=ROOT, capture_output=True, text=True, timeout=20)
+    assert p.returncode == 0, p.stdout + "\n" + p.stderr
+    assert json.loads(outfile.read_text())["by_outcome"][
+        "ground_exact_surface_residual"
+    ]["observations"] == 915
+
+
+def test_recovery_mode_never_reruns_corpus_and_refuses_missing_report(tmp_path):
+    inner = ROOT / "tools/run-m2-public100-surface-context-v1.sh"
+    outer = ROOT / "tools/run-m2-public100-surface-context-v1-with-evidence.sh"
+    inner_text, outer_text = inner.read_text(), outer.read_text()
+    assert "MODE=" in inner_text and "--complete-existing" in inner_text
+    assert "MODE=" in outer_text and "--complete-existing" in outer_text
+    assert 'INNER_ARGS=(--complete-existing)' in outer_text
+    assert 'm2-public100-surface-context-recovered-v1' in outer_text
+    assert 'bash tools/run-m2-public100-economy-coverage-v1.sh' in inner_text
+    assert inner_text.index('bash tools/run-m2-public100-economy-coverage-v1.sh') > (
+        inner_text.index('elif [[ $# -eq 0 ]]')
+    )
+    assert outer_text.index(
+        'm2_validate_corpus_aggregate_evidence_v1.py'
+    ) < outer_text.index('exec bash tools/run-with-runtime-evidence.sh')
+    assert outer_text.count('--include "$OUT"') == 1
+    assert outer_text.count('--include "$SUMMARY"') == 1
+
+    env = dict(os.environ)
+    # Under approved shape, but no file exists. Must abort before
+    # trying to publish evidence, import DuckDB, or launch Docker.
+    env["M2_CORPUS_COVERAGE_OUTPUT"] = (
+        "artifacts/planetary/m2-public100-no-existing-report-"
+        + tmp_path.name + "/report.json"
+    )
+    process = subprocess.run(
+        ["bash", str(outer), "--complete-existing"],
+        cwd=ROOT, env=env, capture_output=True, text=True, timeout=10,
+    )
+    assert process.returncode == 73
+    assert "existing report required" in process.stderr
+    assert "runtime_evidence: published" not in process.stdout
