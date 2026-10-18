@@ -20,6 +20,9 @@ import json
 from typing import Any
 
 from planets_lab.corpus.m2_mineral_balance import profile_archive_mineral_mass_balance
+from planets_lab.corpus.m2_surface_residual_context import (
+    CATEGORIES as RESIDUAL_CLASSES, profile_surface_residual_context,
+)
 
 SCHEMA = "planets-lab.m2-public-corpus-economy-coverage.v1"
 FIELDS = {
@@ -339,6 +342,9 @@ def profile_pair(
         "conditional_mineral_mass_balance": profile_archive_mineral_mass_balance(
             before, after, owned_before, owned_after,
         ),
+        "surface_residual_context": profile_surface_residual_context(
+            before, after, owned_before, owned_after, player=pair.player,
+        ),
     }
 
 
@@ -384,6 +390,15 @@ def analyze_corpus_coverage(
     mineral_model: dict[str, Counter[str]] = defaultdict(Counter)
     mineral_surface_increase: dict[str, Counter[str]] = defaultdict(Counter)
     mineral_abs_residual: dict[str, Counter[str]] = defaultdict(Counter)
+    residual_categories: dict[str, Counter[str]] = defaultdict(Counter)
+    residual_covariates: dict[str, dict[str, Counter[str]]] = defaultdict(
+        lambda: defaultdict(Counter)
+    )
+    residual_bins: dict[str, dict[str, Counter[str]]] = defaultdict(
+        lambda: defaultdict(Counter)
+    )
+    residual_quality: Counter[str] = Counter()
+    per_game_residual: dict[int, Counter[str]] = defaultdict(Counter)
     for pair in selected:
         before_member, after_member = by_id[pair.before_id], by_id[pair.after_id]
         b, a = reconstruct(pair.before_id), reconstruct(pair.after_id)
@@ -420,12 +435,57 @@ def analyze_corpus_coverage(
             "net_total_minus_default_mutation_abs_residual_buckets"
         ].items():
             mineral_abs_residual[name].update(indicators)
+        context = item["surface_residual_context"]
+        residual_quality.update(context["source_quality"])
+        for mineral, class_counts in context["per_mineral_categories"].items():
+            residual_categories[mineral].update(class_counts)
+            for status, count in class_counts.items():
+                per_game_residual[pair.game][status] += count
+        for mineral, groups in context["per_mineral_category_covariates"].items():
+            for status, values in groups.items():
+                residual_covariates[mineral][status].update(values)
+        for mineral, groups in context[
+            "per_mineral_category_surface_residual_magnitude_buckets"
+        ].items():
+            for status, values in groups.items():
+                residual_bins[mineral][status].update(values)
         for name, obj in item["section_counts"].items():
             for point, value in obj.items():
                 if value is not None:
                     section_counts[f"{name}_{point}_rows"] += value
                 else:
                     status[f"ABSTAIN_SECTION_MISSING_{name}_{point}"] += 1
+
+    # Independently calculated cross-tab must agree with the existing
+    # conditional mining profiler, including all cohort denominators.
+    for mineral, model_counts in mineral_model.items():
+        classes = residual_categories[mineral]
+        qualified = model_counts.get("candidate_default_mining_qualified", 0)
+        both = model_counts.get("both_stock_deltas_match_default_model", 0)
+        g = model_counts.get("ground_delta_matches_default_model", 0)
+        surface = model_counts.get("surface_delta_matches_default_mining", 0)
+        expected = {
+            "both_exact": both,
+            "ground_exact_surface_residual": g - both,
+            "surface_exact_ground_residual": surface - both,
+            "neither_exact": qualified - g - surface + both,
+        }
+        if any(value < 0 for value in expected.values()) or any(
+            classes.get(k, 0) != v for k, v in expected.items()
+        ) or sum(classes.values()) != qualified:
+            raise ValueError("M2_SURFACE_RESIDUAL_CONTEXT_MODEL_COUNT_DIVERGENCE")
+    clustering: dict[str, Counter[str]] = defaultdict(Counter)
+    for game_counts in per_game_residual.values():
+        for status in RESIDUAL_CLASSES:
+            count = game_counts[status]
+            bucket = (
+                "0" if count == 0 else
+                "1" if count == 1 else
+                "2_to_5" if count <= 5 else
+                "6_to_20" if count <= 20 else
+                "21_to_100" if count <= 100 else "over_100"
+            )
+            clustering[status][bucket] += 1
 
     return {
         "schema": SCHEMA,
@@ -461,6 +521,32 @@ def analyze_corpus_coverage(
                     for name, values in sorted(mineral_abs_residual.items())
                 },
             },
+            "surface_residual_context_not_host_verified": {
+                "per_mineral_residual_classes": {
+                    mineral: dict(sorted(groups.items()))
+                    for mineral, groups in sorted(residual_categories.items())
+                },
+                "per_mineral_class_covariates": {
+                    mineral: {
+                        label: dict(sorted(counts.items()))
+                        for label, counts in sorted(groups.items())
+                    }
+                    for mineral, groups in sorted(residual_covariates.items())
+                },
+                "per_mineral_class_residual_magnitude_buckets": {
+                    mineral: {
+                        label: dict(sorted(counts.items()))
+                        for label, counts in sorted(groups.items())
+                    }
+                    for mineral, groups in sorted(residual_bins.items())
+                },
+                "source_quality_abstentions_and_limitations":
+                    dict(sorted(residual_quality.items())),
+                "game_cluster_residual_count_buckets": {
+                    status: dict(sorted(bins.items()))
+                    for status, bins in sorted(clustering.items())
+                },
+            },
             "section_rows_across_sampled_perspectives":
                 dict(sorted(section_counts.items())),
         },
@@ -476,5 +562,8 @@ def analyze_corpus_coverage(
             "structure_tax_stability_excludes_hidden_orders": False,
             "default_mining_and_mutation_forecast_is_host_causal": False,
             "both_mineral_deltas_matching_default_model_proves_no_other_actions": False,
+            "same_site_owner_ship_observation_proves_cargo_transfer": False,
+            "no_owner_ship_observed_excludes_ship_actions": False,
+            "starbase_at_planet_means_ship_construction_executed": False,
         },
     }
