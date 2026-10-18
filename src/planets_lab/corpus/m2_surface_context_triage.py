@@ -40,6 +40,16 @@ SELECTED_COVARIATES = (
     "structure_or_tax_controls_changed",
     "ABSTAIN_PLANET_COORDS_MISSING",
     "ABSTAIN_SHIP_SECTION_MISSING_ONE_OR_BOTH",
+    "ownerless_base_planetlinked_before_not_owner_proof",
+    "ownerless_base_planetlinked_after_not_owner_proof",
+    "ownerless_base_planetlinked_both_not_owner_proof",
+    "planetlinked_base_both_any_owner_provenance",
+    "planetlinked_base_owner_provenance_changed",
+    "ownerless_planetlinked_tech_changed_observed",
+    "ownerless_planetlinked_tech_unchanged_observed",
+    "same_site_identical_ship_set_all_cargo_qualified",
+    "multiple_co_site_ship_ids_all_cargo_qualified",
+    "multiple_ship_cargo_sum_opposite_candidate_not_order",
 )
 
 
@@ -149,6 +159,31 @@ def analyze_surface_context_aggregate(report: Mapping[str, Any]) -> dict[str, An
             _require(row["structure_or_tax_controls_changed"] <=
                      row["structure_and_tax_controls_qualified"],
                      "structure changed without observed controls")
+            _require(
+                row["multiple_ship_cargo_sum_opposite_candidate_not_order"] <=
+                row["multiple_co_site_ship_ids_all_cargo_qualified"] <=
+                row["same_site_identical_ship_set_all_cargo_qualified"] <=
+                row["owner_ship_observed_at_site_both"],
+                "multiship cargo candidates exceed observed co-site fleet"
+            )
+            _require(row["one_ship_opposite_cargo_delta_candidate"] <=
+                     row["owner_ship_observed_at_site_both"],
+                     "single-ship cargo candidate lacks co-site ship"
+            )
+            _require(
+                row["ownerless_planetlinked_tech_changed_observed"] +
+                row["ownerless_planetlinked_tech_unchanged_observed"] <=
+                row["ownerless_base_planetlinked_both_not_owner_proof"] <=
+                row["planetlinked_base_both_any_owner_provenance"],
+                "ownerless starbase link counters conflict"
+            )
+            _require(row["owner_starbase_explicit_at_planet_both"] <=
+                     row["planetlinked_base_both_any_owner_provenance"],
+                     "owner-provenance base cannot exceed all planet links"
+            )
+            _require(row["planetlinked_base_owner_provenance_changed"] <=
+                     row["planetlinked_base_both_any_owner_provenance"],
+                     "base provenance changed without both planet links")
             _require(row["ABSTAIN_PLANET_COORDS_MISSING"] +
                      row["planet_coordinates_qualified"] == count,
                      "planet coordinates are not partitioned")
@@ -218,6 +253,16 @@ def analyze_surface_context_aggregate(report: Mapping[str, Any]) -> dict[str, An
                 cov["opposite_cargo_ship_both_freshness_explicit"],
             "opposite_ship_freshness_unverified":
                 cov["opposite_cargo_ship_freshness_unverified"],
+            "ownerless_base_planetlinked_at_both_not_owner_proof":
+                cov["ownerless_base_planetlinked_both_not_owner_proof"],
+            "planetlinked_base_at_both_any_owner_provenance":
+                cov["planetlinked_base_both_any_owner_provenance"],
+            "ownerless_planetlinked_base_tech_changed_observed":
+                cov["ownerless_planetlinked_tech_changed_observed"],
+            "multi_ship_cargo_sum_opposite_candidate_not_order":
+                cov["multiple_ship_cargo_sum_opposite_candidate_not_order"],
+            "multi_ship_co_site_cargo_qualified":
+                cov["multiple_co_site_ship_ids_all_cargo_qualified"],
             "planet_coords_missing": cov["ABSTAIN_PLANET_COORDS_MISSING"],
             "ship_section_missing_after_coordinates_known":
                 cov["ABSTAIN_SHIP_SECTION_MISSING_ONE_OR_BOTH"],
