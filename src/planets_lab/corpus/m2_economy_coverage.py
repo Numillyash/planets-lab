@@ -407,6 +407,11 @@ def analyze_corpus_coverage(
             status["ABSTAIN_PAYLOAD_IDENTITY_INVALID"] += 1
             continue
         status["SAMPLED_PAIR_PAYLOAD_IDENTITY_VALID"] += 1
+        # Retain a game even if none of its qualified owner-current
+        # planets supports the conditional mineral model.
+        # It must contribute a ZERO to every game-cluster histogram,
+        # not disappear and bias the residual clustering upward.
+        per_game_residual[pair.game]
         item = profile_pair(b, a, pair)
         for key in (
             "owner_current_planets_before", "owner_current_planets_after",
