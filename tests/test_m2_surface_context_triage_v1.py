@@ -37,6 +37,7 @@ def synthetic_aggregate():
                 "opposite_cargo_ship_both_freshness_explicit": opposite,
                 "opposite_cargo_ship_freshness_unverified": 0,
                 "owner_starbase_explicit_at_planet_both": n // 3,
+                "planetlinked_base_both_any_owner_provenance": n // 3,
                 "observed_starbase_tech_changed": n // 6,
                 "structure_and_tax_controls_qualified": n,
                 "structure_or_tax_controls_changed": n // 5,
@@ -84,6 +85,13 @@ def synthetic_aggregate():
                     "neither_exact": {"2_to_5": 68},
                 },
                 "source_quality_abstentions_and_limitations": {},
+                "game_cluster_surface_context_count_buckets": {
+                    "owner_ship_observed_at_site_both": {"2_to_5": 68},
+                    "one_ship_opposite_cargo_delta_candidate": {"1": 4, "0": 64},
+                    "multiple_ship_cargo_sum_opposite_candidate_not_order": {"0": 68},
+                    "ownerless_base_planetlinked_both_not_owner_proof": {"0": 68},
+                    "owner_starbase_explicit_at_planet_both": {"21_to_100": 68},
+                },
             },
         },
     }
@@ -101,6 +109,12 @@ def test_published_denominators_and_ship_exposure_rates_are_descriptive():
     assert residual["observations"] == 915
     assert residual["ship_arrays_and_planet_coords_qualified"] == 915
     assert residual["single_opposite_ship_cargo_delta_candidate"] == 4
+    assert residual["multi_ship_cargo_sum_opposite_candidate_not_order"] == 0
+    assert residual["ownerless_base_planetlinked_at_both_not_owner_proof"] == 0
+    assert residual["planetlinked_base_at_both_any_owner_provenance"] > 0
+    assert report["game_cluster_surface_context_count_buckets"][
+        "one_ship_opposite_cargo_delta_candidate"
+    ] == {"0": 64, "1": 4}
     assert residual["opposite_ship_freshness_both_explicit"] == 4
     assert residual["site_ship_at_both_percent_of_qualified"] is not None
     assert report["surface_only_residual_magnitude_buckets"] == {
@@ -115,6 +129,7 @@ def test_published_denominators_and_ship_exposure_rates_are_descriptive():
 @pytest.mark.parametrize("corruption", [
     "heldout", "sha", "sample", "host_causal", "denominator",
     "ship_exposure", "ship_freshness", "magnitude", "clusters",
+    "ownerless_base_link", "multiship_candidate", "game_context_hist",
 ])
 def test_invalid_evidence_fails_closed(corruption):
     v = synthetic_aggregate()
@@ -140,6 +155,14 @@ def test_invalid_evidence_fails_closed(corruption):
         ] = {"21_to_100": 1}
     elif corruption == "clusters":
         ctx["game_cluster_residual_count_buckets"]["both_exact"] = {"0": 67}
+    elif corruption == "ownerless_base_link":
+        c["ownerless_base_planetlinked_both_not_owner_proof"] = 9999
+    elif corruption == "multiship_candidate":
+        c["multiple_ship_cargo_sum_opposite_candidate_not_order"] = 99
+    elif corruption == "game_context_hist":
+        ctx["game_cluster_surface_context_count_buckets"][
+            "one_ship_opposite_cargo_delta_candidate"
+        ] = {"0": 67}
     with pytest.raises(ValueError):
         analyze_surface_context_aggregate(v)
 

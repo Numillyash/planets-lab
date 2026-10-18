@@ -206,6 +206,10 @@ def test_end_to_end_same_sample_context_and_mineral_totals_align():
     assert out["game_cluster_residual_count_buckets"][
         "ground_exact_surface_residual"
     ] == {"2_to_5": 1}  # This game also has 3 residuals in other minerals.
+    cluster = out["game_cluster_surface_context_count_buckets"]
+    assert cluster["owner_ship_observed_at_site_both"] == {"2_to_5": 1}
+    assert cluster["one_ship_opposite_cargo_delta_candidate"] == {"1": 1}
+    assert cluster["ownerless_base_planetlinked_both_not_owner_proof"] == {"0": 1}
     assert result["sample"]["conditional_mineral_mass_balance_not_host_verified"][
         "per_mineral"
     ]["duranium"]["candidate_default_mining_qualified"] == 1
@@ -238,3 +242,115 @@ def test_missing_ship_array_abstains_instead_of_claiming_no_ship():
     assert "owner_ship_section_pair_qualified" not in c
     assert "NO_OWNER_SHIP_OBSERVED_AT_SITE_NOT_ABSENCE_PROOF" not in c
     assert o["source_quality"]["ABSTAIN_SHIP_ARRAY_MISSING"] == 1
+
+
+
+def test_ownerless_starbase_is_planet_linked_not_owner_verified():
+    a, b = snapshots()
+    for payload in (a, b):
+        del payload["starbases"][0]["ownerid"]
+    observed = profile(a, b)
+    ctx = observed["per_mineral_category_covariates"]["duranium"][
+        "ground_exact_surface_residual"
+    ]
+    assert "owner_starbase_explicit_at_planet_both" not in ctx
+    assert ctx["ownerless_base_planetlinked_before_not_owner_proof"] == 1
+    assert ctx["ownerless_base_planetlinked_after_not_owner_proof"] == 1
+    assert ctx["ownerless_base_planetlinked_both_not_owner_proof"] == 1
+    assert ctx["planetlinked_base_both_any_owner_provenance"] == 1
+    assert ctx["ownerless_planetlinked_tech_unchanged_observed"] == 1
+    assert observed["source_quality"]["ABSTAIN_STARBASE_OWNER_MISSING"] == 2
+    assert observed["source_quality"][
+        "OWNERLESS_BASE_PLANETLINK_CANDIDATE_NOT_OWNER_VERIFIED"
+    ] == 2
+    b["starbases"][0]["enginetechlevel"] = 5
+    observed = profile(a, b)
+    ctx = observed["per_mineral_category_covariates"]["duranium"][
+        "ground_exact_surface_residual"
+    ]
+    assert ctx["ownerless_planetlinked_tech_changed_observed"] == 1
+
+
+def test_ownerless_base_unowned_planet_or_conflicting_explicit_owner_abstains():
+    a, b = snapshots()
+    for payload in (a, b):
+        payload["starbases"][0]["planetid"] = 14
+        del payload["starbases"][0]["ownerid"]
+    observed = profile(a, b)
+    ctx = observed["per_mineral_category_covariates"]["duranium"][
+        "ground_exact_surface_residual"
+    ]
+    assert "ownerless_base_planetlinked_both_not_owner_proof" not in ctx
+    assert observed["source_quality"][
+        "ABSTAIN_OWNERLESS_BASE_PLANET_NOT_OWNER_CURRENT"
+    ] == 2
+
+    a, b = snapshots()
+    for payload in (a, b):
+        payload["starbases"][0]["ownerid"] = 2
+    observed = profile(a, b)
+    ctx = observed["per_mineral_category_covariates"]["duranium"][
+        "ground_exact_surface_residual"
+    ]
+    assert "owner_starbase_explicit_at_planet_both" not in ctx
+    assert "planetlinked_base_both_any_owner_provenance" not in ctx
+    assert observed["source_quality"][
+        "ABSTAIN_CONFLICTING_EXPLICIT_BASE_OWNER"
+    ] == 2
+
+
+def test_mixed_starbase_owner_provenance_and_duplicate_planet_id():
+    a, b = snapshots()
+    del a["starbases"][0]["ownerid"]
+    observed = profile(a, b)
+    ctx = observed["per_mineral_category_covariates"]["duranium"][
+        "ground_exact_surface_residual"
+    ]
+    assert ctx["planetlinked_base_both_any_owner_provenance"] == 1
+    assert ctx["planetlinked_base_owner_provenance_changed"] == 1
+    assert "ownerless_base_planetlinked_both_not_owner_proof" not in ctx
+    assert "owner_starbase_explicit_at_planet_both" not in ctx
+    # Ambiguous duplicate with conflicting ownership excludes BOTH.
+    b["starbases"].append({
+        "planetid": 13, "ownerid": 2, "infoturn": 11,
+    })
+    observed = profile(a, b)
+    ctx = observed["per_mineral_category_covariates"]["duranium"][
+        "ground_exact_surface_residual"
+    ]
+    assert "planetlinked_base_both_any_owner_provenance" not in ctx
+    assert observed["source_quality"][
+        "ABSTAIN_DUPLICATE_STARBASE_PLANETID"
+    ] == 1
+
+
+def test_multi_ship_exact_opposite_sum_not_a_single_transfer_order():
+    a, b = snapshots()
+    a["ships"] = [
+        {**a["ships"][0], "id": 31, "duranium": 9},
+        {**a["ships"][0], "id": 32, "duranium": 8},
+    ]
+    b["ships"] = [
+        {**b["ships"][0], "id": 31, "duranium": 6},
+        {**b["ships"][0], "id": 32, "duranium": 4},
+    ]
+    ctx = profile(a, b)["per_mineral_category_covariates"]["duranium"][
+        "ground_exact_surface_residual"
+    ]
+    assert "one_ship_opposite_cargo_delta_candidate" not in ctx
+    assert ctx["multiple_co_site_ship_ids_all_cargo_qualified"] == 1
+    assert ctx["multiple_ship_cargo_sum_opposite_candidate_not_order"] == 1
+    assert ctx["same_site_identical_ship_set_all_cargo_qualified"] == 1
+    del b["ships"][1]["duranium"]
+    ctx = profile(a, b)["per_mineral_category_covariates"]["duranium"][
+        "ground_exact_surface_residual"
+    ]
+    assert "multiple_ship_cargo_sum_opposite_candidate_not_order" not in ctx
+    assert ctx["ABSTAIN_WHOLE_SITE_CARGO_MISSING"] == 1
+    # A ship arrival prevents "closed observed fleet" aggregation.
+    b["ships"][1]["duranium"] = 4
+    b["ships"].append({**b["ships"][0], "id": 33})
+    ctx = profile(a, b)["per_mineral_category_covariates"]["duranium"][
+        "ground_exact_surface_residual"
+    ]
+    assert "same_site_identical_ship_set_all_cargo_qualified" not in ctx

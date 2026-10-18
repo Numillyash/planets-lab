@@ -77,40 +77,71 @@ def _index_owner_ships(payload: Mapping[str, Any], *, player: int, turn: int):
     return ships, dict(statuses)
 
 
-def _index_owner_bases(payload: Mapping[str, Any], *, player: int, turn: int):
+def _index_owner_bases(
+    payload: Mapping[str, Any], *,
+    player: int, turn: int, owned_current_planet_ids: set[int],
+):
+    """Return (explicit owner bases, ownerless planet-linked bases, quality).
+
+    A base with a known DIFFERENT owner never qualifies, even when its
+    planetid happens to be a currently owned planet ID. A base without
+    ownerid may be associated only to an authenticated owner-current
+    PLANET in the SAME perspective and turn; this is a weak *planet
+    link*, NOT verification that this was an owned or active base.
+    """
     raw = payload.get("starbases")
     if not isinstance(raw, list):
-        return {}, {"ABSTAIN_STARBASE_ARRAY_MISSING": 1}
-    bases: dict[int, Mapping[str, Any]] = {}
-    duplicate = set()
-    statuses = Counter()
+        return {}, {}, {"ABSTAIN_STARBASE_ARRAY_MISSING": 1}
+    explicit: dict[int, Mapping[str, Any]] = {}
+    linked: dict[int, Mapping[str, Any]] = {}
+    seen: set[int] = set()
+    duplicate: set[int] = set()
+    statuses: Counter[str] = Counter()
     for base in raw:
         if not isinstance(base, Mapping):
             statuses["ABSTAIN_STARBASE_ROW_NONOBJECT"] += 1
-            continue
-        owner = base.get("ownerid")
-        if owner != player:
-            if owner is None:
-                statuses["ABSTAIN_STARBASE_OWNER_MISSING"] += 1
             continue
         pid = base.get("planetid")
         if type(pid) is not int or pid <= 0:
             statuses["ABSTAIN_STARBASE_PLANETID_MISSING"] += 1
             continue
+        # Any duplicate planetid makes the entire link ambiguous,
+        # including explicit-vs-ownerless copies.
+        if pid in seen:
+            duplicate.add(pid)
+            continue
+        seen.add(pid)
+        owner = base.get("ownerid")
+        if owner != player:
+            if owner is None:
+                # Keep legacy ownership-abstention counter for
+                # comparisons with the published V1 source-quality report.
+                statuses["ABSTAIN_STARBASE_OWNER_MISSING"] += 1
+                statuses["STARBASE_OWNERID_UNAVAILABLE"] += 1
+                if pid not in owned_current_planet_ids:
+                    statuses["ABSTAIN_OWNERLESS_BASE_PLANET_NOT_OWNER_CURRENT"] += 1
+                    continue
+            else:
+                if pid in owned_current_planet_ids:
+                    statuses["ABSTAIN_CONFLICTING_EXPLICIT_BASE_OWNER"] += 1
+                continue
         infoturn = base.get("infoturn")
         if infoturn is not None and (type(infoturn) is not int or infoturn != turn):
             statuses["ABSTAIN_STARBASE_STALE"] += 1
             continue
         if infoturn is None:
             statuses["STARBASE_INFOTURN_UNAVAILABLE"] += 1
-        if pid in bases:
-            duplicate.add(pid)
+        if owner == player:
+            explicit[pid] = base
         else:
-            bases[pid] = base
+            linked[pid] = base
+            statuses["OWNERLESS_BASE_PLANETLINK_CANDIDATE_NOT_OWNER_VERIFIED"] += 1
     for pid in duplicate:
-        del bases[pid]
+        explicit.pop(pid, None)
+        linked.pop(pid, None)
     statuses["ABSTAIN_DUPLICATE_STARBASE_PLANETID"] += len(duplicate)
-    return bases, dict(statuses)
+    return explicit, linked, dict(statuses)
+
 
 
 def _candidate_for_mineral(
@@ -209,6 +240,22 @@ def _observed_ship_context(
             out["opposite_cargo_ship_freshness_unverified"] += 1
     elif len(opposite) > 1:
         out["ABSTAIN_MULTIPLE_OPPOSITE_CARGO_SHIPS"] += 1
+    # Only an unchanged set of co-site ship IDs with every cargo
+    # value observed makes a whole-visible-fleet balance meaningful.
+    # This still does not prove absent ships or executed transfers.
+    if a and set(a) == set(b):
+        cargo_pairs = [
+            (_unsigned(a[sid], mineral), _unsigned(b[sid], mineral))
+            for sid in sorted(a)
+        ]
+        if all(p is not None and q is not None for p, q in cargo_pairs):
+            out["same_site_identical_ship_set_all_cargo_qualified"] += 1
+            if len(a) > 1:
+                out["multiple_co_site_ship_ids_all_cargo_qualified"] += 1
+                if sum(q - p for p, q in cargo_pairs) == -residual and residual != 0:
+                    out["multiple_ship_cargo_sum_opposite_candidate_not_order"] += 1
+        else:
+            out["ABSTAIN_WHOLE_SITE_CARGO_MISSING"] += 1
     if not a and not b:
         out["NO_OWNER_SHIP_OBSERVED_AT_SITE_NOT_ABSENCE_PROOF"] += 1
     return out
@@ -228,8 +275,14 @@ def profile_surface_residual_context(
     turn_after = after.get("game", {}).get("turn") if isinstance(after.get("game"), Mapping) else None
     ships_b, ship_status_b = _index_owner_ships(before, player=player, turn=turn_before)
     ships_a, ship_status_a = _index_owner_ships(after, player=player, turn=turn_after)
-    bases_b, base_status_b = _index_owner_bases(before, player=player, turn=turn_before)
-    bases_a, base_status_a = _index_owner_bases(after, player=player, turn=turn_after)
+    bases_b, linked_b, base_status_b = _index_owner_bases(
+        before, player=player, turn=turn_before,
+        owned_current_planet_ids=set(owned_before),
+    )
+    bases_a, linked_a, base_status_a = _index_owner_bases(
+        after, player=player, turn=turn_after,
+        owned_current_planet_ids=set(owned_after),
+    )
     categories: dict[str, Counter[str]] = defaultdict(Counter)
     covariates: dict[str, dict[str, Counter[str]]] = defaultdict(lambda: defaultdict(Counter))
     bins: dict[str, dict[str, Counter[str]]] = defaultdict(lambda: defaultdict(Counter))
@@ -272,6 +325,25 @@ def profile_surface_residual_context(
                     dst["observed_starbase_tech_unchanged"] += 1
                 else:
                     dst["ABSTAIN_STARBASE_TECH_FIELDS_MISSING"] += 1
+            if pid in linked_b:
+                dst["ownerless_base_planetlinked_before_not_owner_proof"] += 1
+            if pid in linked_a:
+                dst["ownerless_base_planetlinked_after_not_owner_proof"] += 1
+            if pid in linked_b and pid in linked_a:
+                dst["ownerless_base_planetlinked_both_not_owner_proof"] += 1
+                changed = _starbase_tech_changed(linked_b[pid], linked_a[pid])
+                if changed is True:
+                    dst["ownerless_planetlinked_tech_changed_observed"] += 1
+                elif changed is False:
+                    dst["ownerless_planetlinked_tech_unchanged_observed"] += 1
+                else:
+                    dst["ABSTAIN_OWNERLESS_PLANETLINK_TECH_FIELDS_MISSING"] += 1
+            if (pid in bases_b or pid in linked_b) and (
+                pid in bases_a or pid in linked_a
+            ):
+                dst["planetlinked_base_both_any_owner_provenance"] += 1
+                if (pid in bases_b) != (pid in bases_a):
+                    dst["planetlinked_base_owner_provenance_changed"] += 1
             dst.update(_observed_ship_context(
                 before, after, pbxy, paxy, ships_b, ships_a, mineral, residual,
             ))

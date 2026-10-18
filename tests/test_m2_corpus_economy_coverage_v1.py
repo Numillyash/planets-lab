@@ -216,7 +216,7 @@ def test_full_read_only_diagnostic_uses_explicit_pinned_generation(tmp_path):
     report = json.loads(out.read_text())
     assert report["metadata"]["all_source_perspective_members"] == 2
     assert report["metadata"]["metadata_frozen_sample_pairs"] == 1
-    assert report["sample"]["owner_current_counts"]["same_owner_planet_id_pairs"] == 1
+    assert report["sample"]["owner_current_counts"].get("same_owner_planet_id_pairs") == 1, json.dumps(report["sample"], sort_keys=True)
     assert report["sample"]["qualified_planet_field_family_pairs"][
         "credits_and_supplies"
     ] == 1
