@@ -9,15 +9,18 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
-import sys
+import runpy
 
 ROOT = Path(__file__).resolve().parents[2]
-if str(ROOT / "src") not in sys.path:
-    sys.path.insert(0, str(ROOT / "src"))
 
-from planets_lab.corpus.m2_surface_context_triage import (  # noqa: E402
-    analyze_surface_context_aggregate,
-)
+# Deliberately do NOT import planets_lab.corpus as a package here.
+# Its __init__ loads feature_index -> duckdb, which is unavailable in
+# the host system Python after the Docker-only corpus stage finishes.
+# This pure aggregate module imports ONLY the Python standard library.
+# Run its exact repository source in an isolated namespace.
+analyze_surface_context_aggregate = runpy.run_path(
+    str(ROOT / "src/planets_lab/corpus/m2_surface_context_triage.py")
+)["analyze_surface_context_aggregate"]
 
 
 def main() -> int:
