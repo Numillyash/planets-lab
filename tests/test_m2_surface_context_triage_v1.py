@@ -384,3 +384,95 @@ def test_surface_evidence_wrapper_auto_recovers_existing_report_without_flag(
         assert (folder / "triage.json").read_text() == "protected"
     finally:
         shutil.rmtree(folder)
+
+
+
+def add_v3_joint_data(report):
+    ctx = report["sample"]["surface_residual_context_not_host_verified"]
+    ctx["per_mineral_surface_residual_joint_cargo_base"] = {}
+    for mineral, source in PUBLISHED_BY_MINERAL.items():
+        n = source[1]
+        ctx["per_mineral_surface_residual_joint_cargo_base"][mineral] = {
+            "qualified_surface_residual": n,
+            "single_only_cargo_candidate": 1,
+            "no_exact_cargo_candidate": n - 1,
+            "any_exact_opposite_cargo_candidate": 1,
+            "cargo_candidate_positive_surface_residual": 1,
+            "ownerless_planetlinked_tech_changed": 0,
+            "base_tech_change_and_cargo_candidate": 0,
+            "base_tech_change_no_cargo_candidate": 0,
+        }
+    ctx["planet_transition_residual_events_not_independent_actions"] = {
+        "planet_windows_any_surface_residual": 315,
+        "residual_mineral_multiplicity_1": 115,
+        "residual_mineral_multiplicity_4": 200,
+        "planet_windows_any_single_cargo": 4,
+        "planet_windows_any_cargo_candidate": 4,
+    }
+    ctx["game_cluster_planet_residual_events_count_buckets"] = {
+        "planet_windows_any_surface_residual": {"2_to_5": 68},
+        "planet_windows_any_single_cargo": {"0": 64, "1": 4},
+        "planet_windows_any_multiship_cargo": {"0": 68},
+        "planet_windows_any_cargo_candidate": {"0": 64, "1": 4},
+        "planet_windows_any_planetlinked_base": {"0": 68},
+        "planet_windows_any_base_tech_change": {"0": 68},
+        "planet_windows_base_tech_and_cargo_candidate": {"0": 68},
+    }
+    return report
+
+
+def test_v3_disjoint_cargo_and_planet_window_multiplicity_summary():
+    report = analyze_surface_context_aggregate(
+        add_v3_joint_data(synthetic_aggregate())
+    )
+    j = report["disjoint_surface_residual_cargo_and_base_v3_not_host_orders"]
+    assert j == {
+        "observations": 915,
+        "single_ship_only": 4,
+        "multiship_only": 0,
+        "both_ship_methods_overlap": 0,
+        "no_exact_cargo_candidate": 911,
+        "union_distinct_mineral_observations": 4,
+        "ownerless_base_tech_change": 0,
+        "base_tech_and_cargo_candidate": 0,
+        "base_tech_without_cargo_candidate": 0,
+    }
+    windows = report["deduplicated_planet_transition_events_not_host_actions"]
+    assert windows["planet_windows_any_surface_residual"] == 315
+    assert windows["residual_mineral_multiplicity_4"] == 200
+    assert report["game_cluster_planet_transition_event_buckets"][
+        "planet_windows_any_cargo_candidate"
+    ] == {"0": 64, "1": 4}
+    assert report["evidence_limits"]["NuHost_order_execution_verified"] is False
+
+
+@pytest.mark.parametrize("invalid", [
+    "overlap", "missing_mineral", "tech", "incomplete", "planet_weighted",
+    "game_zero_count", "candidate_sign", "marginal",
+])
+def test_v3_joint_fail_closed_on_inconsistent_archive_aggregates(invalid):
+    value = add_v3_joint_data(synthetic_aggregate())
+    ctx = value["sample"]["surface_residual_context_not_host_verified"]
+    j = ctx["per_mineral_surface_residual_joint_cargo_base"]["duranium"]
+    if invalid == "overlap":
+        j["both_single_and_multiship_candidate"] = 1
+    elif invalid == "missing_mineral":
+        del ctx["per_mineral_surface_residual_joint_cargo_base"]["duranium"]
+    elif invalid == "tech":
+        j["ownerless_planetlinked_tech_changed"] = 4
+    elif invalid == "incomplete":
+        del ctx["game_cluster_planet_residual_events_count_buckets"]
+    elif invalid == "planet_weighted":
+        ctx["planet_transition_residual_events_not_independent_actions"][
+            "residual_mineral_multiplicity_4"
+        ] = 199
+    elif invalid == "game_zero_count":
+        ctx["game_cluster_planet_residual_events_count_buckets"][
+            "planet_windows_any_cargo_candidate"
+        ] = {"0": 67}
+    elif invalid == "candidate_sign":
+        j["cargo_candidate_positive_surface_residual"] = 0
+    elif invalid == "marginal":
+        j["single_only_cargo_candidate"] = 0
+    with pytest.raises(ValueError):
+        analyze_surface_context_aggregate(value)

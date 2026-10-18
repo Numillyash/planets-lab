@@ -111,6 +111,13 @@ def analyze_surface_context_aggregate(report: Mapping[str, Any]) -> dict[str, An
     histogram = context.get("per_mineral_class_residual_magnitude_buckets")
     clusters = context.get("game_cluster_residual_count_buckets")
     surface_clusters = context.get("game_cluster_surface_context_count_buckets")
+    joint_cargo = context.get("per_mineral_surface_residual_joint_cargo_base")
+    planet_events = context.get(
+        "planet_transition_residual_events_not_independent_actions"
+    )
+    planet_event_clusters = context.get(
+        "game_cluster_planet_residual_events_count_buckets"
+    )
     _require(all(isinstance(k, Mapping) for k in
                  (classes, covariates, histogram, clusters)),
              "missing class/stratum/cluster counters")
@@ -253,6 +260,120 @@ def analyze_surface_context_aggregate(report: Mapping[str, Any]) -> dict[str, An
                 "surface-context per-game bins must cover all baseline68 games"
             )
 
+    # V3 is a strictly additive set of fields; allow older V1/V2
+    # synthetic reports, but never accept a PARTIAL V3 report.
+    have_v3 = [x is not None for x in (
+        joint_cargo, planet_events, planet_event_clusters
+    )]
+    _require(all(have_v3) or not any(have_v3),
+             "partial V3 joint cargo / planet-window provenance")
+    joint_cargo_summary = None
+    if all(have_v3):
+        _require(isinstance(joint_cargo, Mapping) and
+                 set(joint_cargo) == set(PUBLISHED_BY_MINERAL),
+                 "missing V3 joint cargo mineral")
+        _require(isinstance(planet_events, Mapping) and
+                 isinstance(planet_event_clusters, Mapping),
+                 "missing V3 deduplicated planet-window counts")
+        total = Counter()
+        categories = (
+            "single_only_cargo_candidate",
+            "multiship_only_cargo_candidate",
+            "both_single_and_multiship_candidate",
+            "no_exact_cargo_candidate",
+        )
+        for mineral in sorted(PUBLISHED_BY_MINERAL):
+            j = joint_cargo[mineral]
+            _require(isinstance(j, Mapping), "invalid joint mineral counters")
+            n = PUBLISHED_BY_MINERAL[mineral][1]
+            _require(_count(j, "qualified_surface_residual") == n and
+                     sum(_count(j, key) for key in categories) == n,
+                     "not a disjoint cargo hypothesis partition")
+            old = covariates[mineral].get("ground_exact_surface_residual", {})
+            single = _count(j, categories[0]) + _count(j, categories[2])
+            multi = _count(j, categories[1]) + _count(j, categories[2])
+            distinct = single + multi - _count(j, categories[2])
+            _require(
+                single == _count(old, "one_ship_opposite_cargo_delta_candidate")
+                and multi == _count(
+                    old, "multiple_ship_cargo_sum_opposite_candidate_not_order"
+                ) and distinct == _count(
+                    j, "any_exact_opposite_cargo_candidate"
+                ), "cargo joint marginals disagree with published covariates"
+            )
+            _require(
+                _count(j, "ownerless_planetlinked_tech_changed") ==
+                _count(old, "ownerless_planetlinked_tech_changed_observed")
+                and _count(j, "base_tech_change_and_cargo_candidate") +
+                _count(j, "base_tech_change_no_cargo_candidate") ==
+                _count(j, "ownerless_planetlinked_tech_changed"),
+                "base tech change cross-tab mismatch"
+            )
+            _require(
+                _count(j, "cargo_candidate_positive_surface_residual") +
+                _count(j, "cargo_candidate_negative_surface_residual") ==
+                distinct, "cargo sign partition mismatch"
+            )
+            for key in (*categories, "qualified_surface_residual",
+                        "any_exact_opposite_cargo_candidate",
+                        "ownerless_planetlinked_tech_changed",
+                        "base_tech_change_and_cargo_candidate",
+                        "base_tech_change_no_cargo_candidate"):
+                total[key] += _count(j, key)
+        _require(total["qualified_surface_residual"] == 915,
+                 "unexpected V3 cohort size")
+        windows = _count(planet_events, "planet_windows_any_surface_residual")
+        multiplicity = sum(
+            _count(planet_events, "residual_mineral_multiplicity_" + str(n))
+            for n in (1, 2, 3, 4)
+        )
+        weighted = sum(
+            n * _count(planet_events, "residual_mineral_multiplicity_" + str(n))
+            for n in (1, 2, 3, 4)
+        )
+        _require(windows == multiplicity and weighted == 915 and
+                 1 <= windows <= 915,
+                 "planet-window deduplication or mineral multiplicity incorrect")
+        _require(_count(planet_events, "planet_windows_any_cargo_candidate") <=
+                 windows, "planet-window cargo candidate overcount")
+        _require(_count(planet_events, "planet_windows_base_tech_and_cargo_candidate") <=
+                 min(_count(planet_events, "planet_windows_any_base_tech_change"),
+                     _count(planet_events, "planet_windows_any_cargo_candidate")),
+                 "planet-window cargo/base overlap invalid")
+        expected_events = {
+            "planet_windows_any_surface_residual",
+            "planet_windows_any_single_cargo",
+            "planet_windows_any_multiship_cargo",
+            "planet_windows_any_cargo_candidate",
+            "planet_windows_any_planetlinked_base",
+            "planet_windows_any_base_tech_change",
+            "planet_windows_base_tech_and_cargo_candidate",
+        }
+        _require(set(planet_event_clusters) == expected_events,
+                 "missing per-game planet-window covariate histograms")
+        for key, hist in planet_event_clusters.items():
+            _require(isinstance(hist, Mapping) and
+                     sum(hist.values()) == 68 and all(
+                         k in ("0", "1", "2_to_5", "6_to_20",
+                               "21_to_100", "over_100") and
+                         type(v) is int and v >= 0
+                         for k, v in hist.items()
+                     ), "planet-window game histograms not baseline68-complete")
+        joint_cargo_summary = {
+            "observations": 915,
+            "single_ship_only": total["single_only_cargo_candidate"],
+            "multiship_only": total["multiship_only_cargo_candidate"],
+            "both_ship_methods_overlap": total["both_single_and_multiship_candidate"],
+            "no_exact_cargo_candidate": total["no_exact_cargo_candidate"],
+            "union_distinct_mineral_observations":
+                total["any_exact_opposite_cargo_candidate"],
+            "ownerless_base_tech_change": total["ownerless_planetlinked_tech_changed"],
+            "base_tech_and_cargo_candidate":
+                total["base_tech_change_and_cargo_candidate"],
+            "base_tech_without_cargo_candidate":
+                total["base_tech_change_no_cargo_candidate"],
+        }
+
     def summary_for(cls: str) -> dict[str, Any]:
         n = aggregated_counts[cls]
         cov = aggregate_strata[cls]
@@ -315,6 +436,12 @@ def analyze_surface_context_aggregate(report: Mapping[str, Any]) -> dict[str, An
             dict(sorted(residual_magnitudes.items())),
         "game_cluster_residual_count_buckets": clusters,
         "game_cluster_surface_context_count_buckets": surface_clusters,
+        "disjoint_surface_residual_cargo_and_base_v3_not_host_orders":
+            joint_cargo_summary,
+        "deduplicated_planet_transition_events_not_host_actions":
+            dict(sorted(planet_events.items())) if all(have_v3) else None,
+        "game_cluster_planet_transition_event_buckets":
+            planet_event_clusters if all(have_v3) else None,
         "evidence_limits": {
             "single_opposite_cargo_candidate_is_executed_transfer": False,
             "same_site_ship_observation_is_independent_causality": False,
