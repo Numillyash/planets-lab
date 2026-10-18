@@ -1,0 +1,15 @@
+existing_M2_aggregate_report: validated
+source_generation_sha256: 3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c
+frozen_selection_sha256: b6a09b95e2a8a6d261cb5d4180be45eb601711df9865cf0b44457ad17b84068f
+baseline_allowed_games: 68
+heldout_entity_sampling: false
+note: existing report is being published, NOT rerun
+status: DESCRIPTIVE_M2_SURFACE_RESIDUAL_CONTEXT_NOT_HOST_CAUSAL
+frozen_selection_sha256: b6a09b95e2a8a6d261cb5d4180be45eb601711df9865cf0b44457ad17b84068f
+outcome_both_exact: {"explicit_starbase_at_planet_both": 0, "observations": 11813, "opposite_ship_freshness_both_explicit": 0, "opposite_ship_freshness_unverified": 0, "planet_coordinate_pairs": 11813, "planet_coords_missing": 0, "same_site_owner_ship_at_both": 3316, "ship_arrays_and_planet_coords_qualified": 11813, "ship_section_missing_after_coordinates_known": 0, "single_opposite_ship_cargo_delta_candidate": 0, "site_ship_at_both_percent_of_qualified": 28.07, "structure_and_tax_controls_qualified": 11813, "structure_or_tax_controls_changed": 4893}
+outcome_ground_exact_surface_residual: {"explicit_starbase_at_planet_both": 0, "observations": 915, "opposite_ship_freshness_both_explicit": 101, "opposite_ship_freshness_unverified": 0, "planet_coordinate_pairs": 915, "planet_coords_missing": 0, "same_site_owner_ship_at_both": 652, "ship_arrays_and_planet_coords_qualified": 915, "ship_section_missing_after_coordinates_known": 0, "single_opposite_ship_cargo_delta_candidate": 101, "site_ship_at_both_percent_of_qualified": 71.26, "structure_and_tax_controls_qualified": 915, "structure_or_tax_controls_changed": 545}
+outcome_surface_exact_ground_residual: {"explicit_starbase_at_planet_both": 0, "observations": 33, "opposite_ship_freshness_both_explicit": 0, "opposite_ship_freshness_unverified": 0, "planet_coordinate_pairs": 33, "planet_coords_missing": 0, "same_site_owner_ship_at_both": 5, "ship_arrays_and_planet_coords_qualified": 33, "ship_section_missing_after_coordinates_known": 0, "single_opposite_ship_cargo_delta_candidate": 0, "site_ship_at_both_percent_of_qualified": 15.15, "structure_and_tax_controls_qualified": 33, "structure_or_tax_controls_changed": 10}
+outcome_neither_exact: {"explicit_starbase_at_planet_both": 0, "observations": 262, "opposite_ship_freshness_both_explicit": 0, "opposite_ship_freshness_unverified": 0, "planet_coordinate_pairs": 262, "planet_coords_missing": 0, "same_site_owner_ship_at_both": 86, "ship_arrays_and_planet_coords_qualified": 262, "ship_section_missing_after_coordinates_known": 0, "single_opposite_ship_cargo_delta_candidate": 0, "site_ship_at_both_percent_of_qualified": 32.82, "structure_and_tax_controls_qualified": 262, "structure_or_tax_controls_changed": 88}
+surface_only_residual_magnitude_buckets: {"1": 19, "101_to_1000": 422, "21_to_100": 285, "2_to_5": 53, "6_to_20": 131, "over_1000": 5}
+NuHost_order_execution_verified: false
+aggregate_summary_written: true
