@@ -33,6 +33,24 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**M2 actual surface-context runtime and no-recompute recovery
+(2026-10-18):** User ran PR #231/#232 context analysis on existing
+26.65-GiB immutable public100 DB; aggregate report succeeded and
+was published on runtime-logs, but host-side offline `triage.json`
+failed because importing `planets_lab.corpus` transitively
+requires DuckDB (only installed in Docker). From the published
+aggregate, **652/915 = 71.26%** of ground-exact/surface-residual
+observations had own ship at site at both turns versus **3316/11813
+=28.07%** of fully-exact observations; **101** residuals had a
+single opposite same-ID co-site ship cargo change candidate.
+These are correlations, NOT executed cargo orders, and
+`ABSTAIN_STARBASE_OWNER_MISSING=12224` means base attribution
+is currently unavailable. Fix offline CLI to run stdlib only
+and add --complete-existing to produce/publish derived triage
+WITHOUT rerunning the 26.65-GiB corpus scan. Original failed
+runtime evidence preserved. 
+[Actual evidence and recovery](handoff/2026-10-18-m2-surface-context-recovery-without-duckdb-v1.md).
+
 **M2 one-pass context measurement + automatic 915-residual triage
 (2026-10-18):** Extend the baseline68 surface residual covariate
 profiler with fail-closed **68-game zero-inclusive cluster counts**,

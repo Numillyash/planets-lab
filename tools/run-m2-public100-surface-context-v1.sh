@@ -11,18 +11,28 @@ esac
   echo "ERROR: unsafe report path" >&2; exit 64;
 }
 SUMMARY="${OUT%/report.json}/triage.json"
-[[ ! -e "$OUT" && ! -e "$SUMMARY" ]] || {
-  echo "ERROR: report or derived triage already exists; refusing overwrite" >&2; exit 73;
-}
-export M2_CORPUS_COVERAGE_OUTPUT="$OUT"
+MODE="${1:-}"
+if [[ "$MODE" == "--complete-existing" && $# -eq 1 ]]; then
+  # The expensive corpus stage already succeeded. Reuse its existing
+  # immutable aggregate without touching DuckDB or rehashing 26.65 GiB.
+  [[ -s "$OUT" && ! -e "$SUMMARY" ]] || {
+    echo "ERROR: expected existing report and missing triage; no overwrite" >&2; exit 73;
+  }
+elif [[ $# -eq 0 ]]; then
+  [[ ! -e "$OUT" && ! -e "$SUMMARY" ]] || {
+    echo "ERROR: report or derived triage already exists; refusing overwrite" >&2; exit 73;
+  }
+  export M2_CORPUS_COVERAGE_OUTPUT="$OUT"
+  # Immutable corpus hashed/read only by existing runner, same sample.
+  bash tools/run-m2-public100-economy-coverage-v1.sh
+else
+  echo "Usage: $0 [--complete-existing]" >&2
+  exit 64
+fi
 
-# Immutable corpus hashed/read only by the EXISTING runner, same
-# frozen baseline68 pair sample. One pass, not two separate DB runs.
-bash tools/run-m2-public100-economy-coverage-v1.sh
-
-# The source report is finished. Validate known aggregate-only schema
-# and provenance BEFORE generating any derivative/publication.
+# Validate aggregate-only provenance before deriving any further output.
 python3 tools/diagnostics/m2_validate_corpus_aggregate_evidence_v1.py \
   --input "$OUT"
+# This command is stdlib-only, including its imports; no DuckDB needed.
 python3 tools/diagnostics/m2_surface_context_triage_v1.py \
   --input "$OUT" --output "$SUMMARY"

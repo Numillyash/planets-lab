@@ -11,14 +11,36 @@ esac
   echo "ERROR: unsafe aggregate output path" >&2; exit 64;
 }
 SUMMARY="${OUT%/report.json}/triage.json"
-[[ ! -e "$OUT" && ! -e "$SUMMARY" ]] || {
-  echo "ERROR: existing artifact detected; refusing overwrite" >&2; exit 73;
-}
+MODE="${1:-}"
+if [[ "$MODE" == "--complete-existing" && $# -eq 1 ]]; then
+  [[ -s "$OUT" && ! -e "$SUMMARY" ]] || {
+    echo "ERROR: existing report required, triage must not exist" >&2; exit 73;
+  }
+  # CRITICAL: runtime-evidence publishes even FAILED gate artifacts.
+  # Validate BEFORE passing the report as --include, so secrets/raw
+  # state can never be included if report provenance is invalid.
+  python3 tools/diagnostics/m2_validate_corpus_aggregate_evidence_v1.py \
+    --input "$OUT" >/dev/null || {
+      echo "ERROR: aggregate provenance invalid; nothing published" >&2
+      exit 65
+    }
+  RUN_NAME="m2-public100-surface-context-recovered-v1"
+  INNER_ARGS=(--complete-existing)
+elif [[ $# -eq 0 ]]; then
+  [[ ! -e "$OUT" && ! -e "$SUMMARY" ]] || {
+    echo "ERROR: existing artifact detected; refusing overwrite" >&2; exit 73;
+  }
+  RUN_NAME="m2-public100-surface-context-v1"
+  INNER_ARGS=()
+else
+  echo "Usage: $0 [--complete-existing]" >&2
+  exit 64
+fi
 export M2_CORPUS_COVERAGE_OUTPUT="$OUT"
-# Existing evidence wrapper automatically publishes complete gate.log,
-# source commit and TWO safe aggregate-only JSON artifacts, not raw TRNs.
+# Publish gate log, source commit and TWO aggregate-only artifacts.
+# Recovery reuses the existing report and runs ONLY pure stdlib triage.
 exec bash tools/run-with-runtime-evidence.sh \
-  m2-public100-surface-context-v1 \
+  "$RUN_NAME" \
   --include "$OUT" \
   --include "$SUMMARY" \
-  -- bash tools/run-m2-public100-surface-context-v1.sh
+  -- bash tools/run-m2-public100-surface-context-v1.sh "${INNER_ARGS[@]}"
