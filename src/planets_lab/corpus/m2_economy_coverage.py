@@ -399,6 +399,7 @@ def analyze_corpus_coverage(
     )
     residual_quality: Counter[str] = Counter()
     per_game_residual: dict[int, Counter[str]] = defaultdict(Counter)
+    per_game_surface_context: dict[int, Counter[str]] = defaultdict(Counter)
     for pair in selected:
         before_member, after_member = by_id[pair.before_id], by_id[pair.after_id]
         b, a = reconstruct(pair.before_id), reconstruct(pair.after_id)
@@ -412,6 +413,7 @@ def analyze_corpus_coverage(
         # It must contribute a ZERO to every game-cluster histogram,
         # not disappear and bias the residual clustering upward.
         per_game_residual[pair.game]
+        per_game_surface_context[pair.game]
         item = profile_pair(b, a, pair)
         for key in (
             "owner_current_planets_before", "owner_current_planets_after",
@@ -449,6 +451,17 @@ def analyze_corpus_coverage(
         for mineral, groups in context["per_mineral_category_covariates"].items():
             for residual_class, values in groups.items():
                 residual_covariates[mineral][residual_class].update(values)
+                if residual_class == "ground_exact_surface_residual":
+                    for metric in (
+                        "owner_ship_observed_at_site_both",
+                        "one_ship_opposite_cargo_delta_candidate",
+                        "multiple_ship_cargo_sum_opposite_candidate_not_order",
+                        "ownerless_base_planetlinked_both_not_owner_proof",
+                        "owner_starbase_explicit_at_planet_both",
+                    ):
+                        per_game_surface_context[pair.game][metric] += values.get(
+                            metric, 0
+                        )
         for mineral, groups in context[
             "per_mineral_category_surface_residual_magnitude_buckets"
         ].items():
@@ -491,6 +504,25 @@ def analyze_corpus_coverage(
                 "21_to_100" if count <= 100 else "over_100"
             )
             clustering[residual_class][bucket] += 1
+
+    context_game_histograms: dict[str, Counter[str]] = defaultdict(Counter)
+    for counters in per_game_surface_context.values():
+        for metric in (
+            "owner_ship_observed_at_site_both",
+            "one_ship_opposite_cargo_delta_candidate",
+            "multiple_ship_cargo_sum_opposite_candidate_not_order",
+            "ownerless_base_planetlinked_both_not_owner_proof",
+            "owner_starbase_explicit_at_planet_both",
+        ):
+            n = counters[metric]
+            key = (
+                "0" if n == 0 else
+                "1" if n == 1 else
+                "2_to_5" if n <= 5 else
+                "6_to_20" if n <= 20 else
+                "21_to_100" if n <= 100 else "over_100"
+            )
+            context_game_histograms[metric][key] += 1
 
     return {
         "schema": SCHEMA,
@@ -550,6 +582,10 @@ def analyze_corpus_coverage(
                 "game_cluster_residual_count_buckets": {
                     status: dict(sorted(bins.items()))
                     for status, bins in sorted(clustering.items())
+                },
+                "game_cluster_surface_context_count_buckets": {
+                    metric: dict(sorted(bins.items()))
+                    for metric, bins in sorted(context_game_histograms.items())
                 },
             },
             "section_rows_across_sampled_perspectives":
