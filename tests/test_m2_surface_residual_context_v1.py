@@ -223,3 +223,18 @@ def test_nonowner_or_stale_planet_does_not_generate_context():
     o = profile(a, b)
     assert o["per_mineral_categories"] == {}
     assert o["per_mineral_category_covariates"] == {}
+
+
+
+def test_missing_ship_array_abstains_instead_of_claiming_no_ship():
+    a, b = snapshots()
+    del a["ships"]
+    o = profile(a, b)
+    c = o["per_mineral_category_covariates"]["duranium"][
+        "ground_exact_surface_residual"
+    ]
+    assert c["planet_coordinates_qualified"] == 1
+    assert c["ABSTAIN_SHIP_SECTION_MISSING_ONE_OR_BOTH"] == 1
+    assert "owner_ship_section_pair_qualified" not in c
+    assert "NO_OWNER_SHIP_OBSERVED_AT_SITE_NOT_ABSENCE_PROOF" not in c
+    assert o["source_quality"]["ABSTAIN_SHIP_ARRAY_MISSING"] == 1
