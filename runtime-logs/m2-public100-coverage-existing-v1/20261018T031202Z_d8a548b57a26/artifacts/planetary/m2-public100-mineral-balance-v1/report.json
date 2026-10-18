@@ -1,0 +1,409 @@
+{
+  "baseline_sample_allowlist": {
+    "allowed_game_count": 68,
+    "heldout_entity_sampling": false,
+    "manifest_sha256": "942eb61741664835cc600bb1e2148daaa1c009462827b238f13227c5937899d9"
+  },
+  "evidence_limits": {
+    "NuHost_economic_formula_verified": false,
+    "NuHost_ship_build_cost_verified": false,
+    "T_minus_1_to_T_stock_change_identifies_action": false,
+    "both_mineral_deltas_matching_default_model_proves_no_other_actions": false,
+    "default_mining_and_mutation_forecast_is_host_causal": false,
+    "ground_down_surface_up_proves_mining": false,
+    "is_independent_game_disjoint_host_validation": false,
+    "may_be_used_to_plan_fresh_independent_subcohorts": true,
+    "per_field_change_is_host_phase_evidence": false,
+    "raw_trn_is_submitted_turn_orders": false,
+    "structure_tax_stability_excludes_hidden_orders": false
+  },
+  "generation": {
+    "CURRENT_modified": false,
+    "name": "corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+    "read_only": true,
+    "verified_sha256": "3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c"
+  },
+  "metadata": {
+    "all_games_in_source_metadata": 100,
+    "all_source_perspective_members": 224014,
+    "ambiguous_duplicate_perspective_turn_keys": 0,
+    "games_allowed_for_entity_sampling": 68,
+    "games_excluded_from_entity_sampling": 32,
+    "games_with_adjacent_perspective_pairs": 100,
+    "identity_valid_members": 222536,
+    "metadata_frozen_sample_pairs": 136,
+    "metadata_frozen_selection_sha256": "b6a09b95e2a8a6d261cb5d4180be45eb601711df9865cf0b44457ad17b84068f",
+    "metadata_invalid_or_embedded_turn_mismatch": 1478,
+    "metadata_selected_game_count": 68,
+    "potential_adjacent_same_perspective_pairs": 221091,
+    "selection_frozen_before_entity_reconstruction": true
+  },
+  "sample": {
+    "conditional_mineral_mass_balance_not_host_verified": {
+      "model": "INFERRED_DEFAULT_MINING_PLUS_PUBLISHED_TRANSURANIUM_NOT_HOST_CAUSAL",
+      "net_total_minus_default_mutation_abs_residual_buckets": {
+        "duranium": {
+          "0": 3446,
+          "1": 3,
+          "101_to_1000": 165,
+          "21_to_100": 88,
+          "2_to_5": 16,
+          "6_to_20": 48,
+          "over_1000": 2
+        },
+        "molybdenum": {
+          "0": 3421,
+          "1": 2,
+          "101_to_1000": 147,
+          "21_to_100": 121,
+          "2_to_5": 22,
+          "6_to_20": 54,
+          "over_1000": 2
+        },
+        "neutronium": {
+          "0": 3476,
+          "1": 22,
+          "101_to_1000": 149,
+          "21_to_100": 84,
+          "2_to_5": 17,
+          "6_to_20": 20,
+          "over_1000": 1
+        },
+        "tritanium": {
+          "0": 3423,
+          "1": 2,
+          "101_to_1000": 144,
+          "21_to_100": 108,
+          "2_to_5": 23,
+          "6_to_20": 69
+        }
+      },
+      "per_mineral": {
+        "duranium": {
+          "ABSTAIN_DEFAULT_MINING_MINES_CHANGED_OR_MISSING": 513,
+          "ABSTAIN_DENSITY_CHANGED": 1,
+          "ABSTAIN_MINES_CHANGED": 513,
+          "both_stock_deltas_match_default_model": 2955,
+          "candidate_default_mining_qualified": 3255,
+          "default_mutation_mass_balance_qualified": 3768,
+          "density_stable_and_valid": 3768,
+          "ground_delta_differs_from_default_model": 74,
+          "ground_delta_matches_default_model": 3181,
+          "ground_increased": 380,
+          "joint_stock_qualified": 3769,
+          "mines_stable": 3256,
+          "net_stock_change_differs_from_default_mutation": 322,
+          "net_stock_change_equals_default_mutation": 3446,
+          "surface_delta_differs_from_default_mining": 289,
+          "surface_delta_matches_default_mining": 2966,
+          "surface_up_ground_down": 405,
+          "surface_up_ground_equal_explained_by_default_candidate": 2348,
+          "surface_up_ground_equal_model_qualified": 2416,
+          "surface_up_ground_equal_unexplained_by_default_candidate": 68,
+          "surface_up_ground_unchanged": 2801
+        },
+        "molybdenum": {
+          "ABSTAIN_DEFAULT_MINING_MINES_CHANGED_OR_MISSING": 513,
+          "ABSTAIN_MINES_CHANGED": 513,
+          "both_stock_deltas_match_default_model": 2939,
+          "candidate_default_mining_qualified": 3256,
+          "default_mutation_mass_balance_qualified": 3769,
+          "density_stable_and_valid": 3769,
+          "ground_delta_differs_from_default_model": 72,
+          "ground_delta_matches_default_model": 3184,
+          "ground_increased": 371,
+          "joint_stock_qualified": 3769,
+          "mines_stable": 3256,
+          "net_stock_change_differs_from_default_mutation": 348,
+          "net_stock_change_equals_default_mutation": 3421,
+          "surface_delta_differs_from_default_mining": 309,
+          "surface_delta_matches_default_mining": 2947,
+          "surface_up_ground_down": 393,
+          "surface_up_ground_equal_explained_by_default_candidate": 2367,
+          "surface_up_ground_equal_model_qualified": 2442,
+          "surface_up_ground_equal_unexplained_by_default_candidate": 75,
+          "surface_up_ground_unchanged": 2835
+        },
+        "neutronium": {
+          "ABSTAIN_DEFAULT_MINING_MINES_CHANGED_OR_MISSING": 513,
+          "ABSTAIN_MINES_CHANGED": 513,
+          "both_stock_deltas_match_default_model": 2976,
+          "candidate_default_mining_qualified": 3256,
+          "default_mutation_mass_balance_qualified": 3769,
+          "density_stable_and_valid": 3769,
+          "ground_delta_differs_from_default_model": 78,
+          "ground_delta_matches_default_model": 3178,
+          "ground_increased": 371,
+          "joint_stock_qualified": 3769,
+          "mines_stable": 3256,
+          "net_stock_change_differs_from_default_mutation": 293,
+          "net_stock_change_equals_default_mutation": 3476,
+          "surface_delta_differs_from_default_mining": 273,
+          "surface_delta_matches_default_mining": 2983,
+          "surface_up_ground_down": 464,
+          "surface_up_ground_equal_explained_by_default_candidate": 2347,
+          "surface_up_ground_equal_model_qualified": 2421,
+          "surface_up_ground_equal_unexplained_by_default_candidate": 74,
+          "surface_up_ground_unchanged": 2793
+        },
+        "tritanium": {
+          "ABSTAIN_DEFAULT_MINING_MINES_CHANGED_OR_MISSING": 513,
+          "ABSTAIN_MINES_CHANGED": 513,
+          "both_stock_deltas_match_default_model": 2943,
+          "candidate_default_mining_qualified": 3256,
+          "default_mutation_mass_balance_qualified": 3769,
+          "density_stable_and_valid": 3769,
+          "ground_delta_differs_from_default_model": 71,
+          "ground_delta_matches_default_model": 3185,
+          "ground_increased": 387,
+          "joint_stock_qualified": 3769,
+          "mines_stable": 3256,
+          "net_stock_change_differs_from_default_mutation": 346,
+          "net_stock_change_equals_default_mutation": 3423,
+          "surface_delta_differs_from_default_mining": 306,
+          "surface_delta_matches_default_mining": 2950,
+          "surface_up_ground_down": 460,
+          "surface_up_ground_equal_explained_by_default_candidate": 2295,
+          "surface_up_ground_equal_model_qualified": 2359,
+          "surface_up_ground_equal_unexplained_by_default_candidate": 64,
+          "surface_up_ground_unchanged": 2739
+        }
+      },
+      "surface_up_ground_equal_surface_increase_buckets": {
+        "duranium": {
+          "1": 315,
+          "101_to_1000": 41,
+          "21_to_100": 25,
+          "2_to_5": 2411,
+          "6_to_20": 7,
+          "over_1000": 2
+        },
+        "molybdenum": {
+          "1": 260,
+          "101_to_1000": 46,
+          "21_to_100": 27,
+          "2_to_5": 2495,
+          "6_to_20": 7
+        },
+        "neutronium": {
+          "1": 247,
+          "101_to_1000": 45,
+          "21_to_100": 24,
+          "2_to_5": 2474,
+          "6_to_20": 2,
+          "over_1000": 1
+        },
+        "tritanium": {
+          "1": 313,
+          "101_to_1000": 38,
+          "21_to_100": 26,
+          "2_to_5": 2358,
+          "6_to_20": 4
+        }
+      }
+    },
+    "individual_numeric_field_directions": {
+      "clans": {
+        "decreased": 115,
+        "increased": 2170,
+        "qualified": 3769,
+        "unchanged": 1484
+      },
+      "colonisttaxrate": {
+        "decreased": 88,
+        "increased": 65,
+        "qualified": 3769,
+        "unchanged": 3616
+      },
+      "defense": {
+        "decreased": 68,
+        "increased": 769,
+        "qualified": 3769,
+        "unchanged": 2932
+      },
+      "duranium": {
+        "decreased": 182,
+        "increased": 3411,
+        "qualified": 3769,
+        "unchanged": 176
+      },
+      "factories": {
+        "decreased": 537,
+        "increased": 948,
+        "qualified": 3769,
+        "unchanged": 2284
+      },
+      "groundduranium": {
+        "decreased": 461,
+        "increased": 380,
+        "qualified": 3769,
+        "unchanged": 2928
+      },
+      "groundmolybdenum": {
+        "decreased": 414,
+        "increased": 371,
+        "qualified": 3769,
+        "unchanged": 2984
+      },
+      "groundneutronium": {
+        "decreased": 510,
+        "increased": 371,
+        "qualified": 3769,
+        "unchanged": 2888
+      },
+      "groundtritanium": {
+        "decreased": 491,
+        "increased": 387,
+        "qualified": 3769,
+        "unchanged": 2891
+      },
+      "megacredits": {
+        "decreased": 455,
+        "increased": 1313,
+        "qualified": 3769,
+        "unchanged": 2001
+      },
+      "mines": {
+        "decreased": 409,
+        "increased": 104,
+        "qualified": 3769,
+        "unchanged": 3256
+      },
+      "molybdenum": {
+        "decreased": 164,
+        "increased": 3432,
+        "qualified": 3769,
+        "unchanged": 173
+      },
+      "nativeclans": {
+        "decreased": 5,
+        "increased": 1054,
+        "qualified": 3769,
+        "unchanged": 2710
+      },
+      "nativehappypoints": {
+        "decreased": 157,
+        "increased": 421,
+        "qualified": 3767,
+        "unchanged": 3189
+      },
+      "nativetaxrate": {
+        "decreased": 78,
+        "increased": 99,
+        "qualified": 3769,
+        "unchanged": 3592
+      },
+      "neutronium": {
+        "decreased": 137,
+        "increased": 3448,
+        "qualified": 3769,
+        "unchanged": 184
+      },
+      "supplies": {
+        "decreased": 138,
+        "increased": 3510,
+        "qualified": 3769,
+        "unchanged": 121
+      },
+      "tritanium": {
+        "decreased": 180,
+        "increased": 3408,
+        "qualified": 3769,
+        "unchanged": 181
+      }
+    },
+    "net_state_differences_not_mechanics": {
+      "colonists_and_natives": 2605,
+      "credits_and_supplies": 3670,
+      "minerals_ground": 1467,
+      "minerals_surface": 3631,
+      "structures": 1795,
+      "tax_inputs": 716
+    },
+    "observable_structure_and_tax_controls": {
+      "all_unchanged": 1872,
+      "qualified": 3769,
+      "some_changed": 1897
+    },
+    "owner_current_counts": {
+      "owner_current_planets_after": 3867,
+      "owner_current_planets_before": 3819,
+      "same_owner_planet_id_pairs": 3769
+    },
+    "qualified_planet_field_family_pairs": {
+      "colonists_and_natives": 3769,
+      "credits_and_supplies": 3769,
+      "minerals_ground": 3769,
+      "minerals_surface": 3769,
+      "structures": 3769,
+      "tax_inputs": 3767
+    },
+    "sample_status_counts": {
+      "ABSTAIN_OWNER_PLANET_STALE_OR_NO_INFOTURN": 5,
+      "OWNER_CURRENT_PLANET_RECORDS": 7686,
+      "SAMPLED_PAIR_PAYLOAD_IDENTITY_VALID": 136
+    },
+    "section_rows_across_sampled_perspectives": {
+      "planets_after_rows": 64191,
+      "planets_before_rows": 63023,
+      "ships_after_rows": 11238,
+      "ships_before_rows": 11317,
+      "starbases_after_rows": 6116,
+      "starbases_before_rows": 6108
+    },
+    "surface_ground_joint_signs_not_mining_attribution": {
+      "duranium": {
+        "ground_decreased__surface_decreased": 55,
+        "ground_decreased__surface_increased": 405,
+        "ground_decreased__surface_unchanged": 1,
+        "ground_down_surface_up_mines_unchanged": 342,
+        "ground_increased__surface_decreased": 4,
+        "ground_increased__surface_increased": 205,
+        "ground_increased__surface_unchanged": 171,
+        "ground_unchanged__surface_decreased": 123,
+        "ground_unchanged__surface_increased": 2801,
+        "ground_unchanged__surface_unchanged": 4,
+        "qualified": 3769
+      },
+      "molybdenum": {
+        "ground_decreased__surface_decreased": 21,
+        "ground_decreased__surface_increased": 393,
+        "ground_down_surface_up_mines_unchanged": 329,
+        "ground_increased__surface_decreased": 3,
+        "ground_increased__surface_increased": 204,
+        "ground_increased__surface_unchanged": 164,
+        "ground_unchanged__surface_decreased": 140,
+        "ground_unchanged__surface_increased": 2835,
+        "ground_unchanged__surface_unchanged": 9,
+        "qualified": 3769
+      },
+      "neutronium": {
+        "ground_decreased__surface_decreased": 45,
+        "ground_decreased__surface_increased": 464,
+        "ground_decreased__surface_unchanged": 1,
+        "ground_down_surface_up_mines_unchanged": 379,
+        "ground_increased__surface_decreased": 8,
+        "ground_increased__surface_increased": 191,
+        "ground_increased__surface_unchanged": 172,
+        "ground_unchanged__surface_decreased": 84,
+        "ground_unchanged__surface_increased": 2793,
+        "ground_unchanged__surface_unchanged": 11,
+        "qualified": 3769
+      },
+      "tritanium": {
+        "ground_decreased__surface_decreased": 31,
+        "ground_decreased__surface_increased": 460,
+        "ground_down_surface_up_mines_unchanged": 389,
+        "ground_increased__surface_decreased": 4,
+        "ground_increased__surface_increased": 209,
+        "ground_increased__surface_unchanged": 174,
+        "ground_unchanged__surface_decreased": 145,
+        "ground_unchanged__surface_increased": 2739,
+        "ground_unchanged__surface_unchanged": 7,
+        "qualified": 3769
+      }
+    }
+  },
+  "schema": "planets-lab.m2-public-corpus-economy-coverage.v1",
+  "status": "CORPUS_METADATA_CENSUS_AND_BOUNDED_OWNER_CURRENT_SAMPLE_NOT_HOST_CAUSAL"
+}

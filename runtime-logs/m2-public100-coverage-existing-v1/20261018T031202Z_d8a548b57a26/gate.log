@@ -1,0 +1,6 @@
+existing_M2_aggregate_report: validated
+source_generation_sha256: 3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c
+frozen_selection_sha256: b6a09b95e2a8a6d261cb5d4180be45eb601711df9865cf0b44457ad17b84068f
+baseline_allowed_games: 68
+heldout_entity_sampling: false
+note: existing report is being published, NOT rerun
