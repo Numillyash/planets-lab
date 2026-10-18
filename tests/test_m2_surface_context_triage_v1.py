@@ -184,7 +184,8 @@ def test_wrapper_integrates_one_read_only_corpus_run_and_both_evidence_outputs()
         inner_text.index("m2_surface_context_triage_v1.py")
     )
     outer_text = outer.read_text()
-    assert outer_text.count("--include") == 2
+    assert outer_text.count('--include "$OUT"') == 1
+    assert outer_text.count('--include "$SUMMARY"') == 1
     assert "run-with-runtime-evidence.sh" in outer_text
     assert "m2-public100-surface-context-v1" in outer_text
 
