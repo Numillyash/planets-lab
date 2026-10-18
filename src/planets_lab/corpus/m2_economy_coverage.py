@@ -400,6 +400,9 @@ def analyze_corpus_coverage(
     residual_quality: Counter[str] = Counter()
     per_game_residual: dict[int, Counter[str]] = defaultdict(Counter)
     per_game_surface_context: dict[int, Counter[str]] = defaultdict(Counter)
+    joint_surface_cargo_base: dict[str, Counter[str]] = defaultdict(Counter)
+    planet_residual_events: Counter[str] = Counter()
+    per_game_planet_events: dict[int, Counter[str]] = defaultdict(Counter)
     for pair in selected:
         before_member, after_member = by_id[pair.before_id], by_id[pair.after_id]
         b, a = reconstruct(pair.before_id), reconstruct(pair.after_id)
@@ -414,6 +417,7 @@ def analyze_corpus_coverage(
         # not disappear and bias the residual clustering upward.
         per_game_residual[pair.game]
         per_game_surface_context[pair.game]
+        per_game_planet_events[pair.game]
         item = profile_pair(b, a, pair)
         for key in (
             "owner_current_planets_before", "owner_current_planets_after",
@@ -444,6 +448,16 @@ def analyze_corpus_coverage(
             mineral_abs_residual[name].update(indicators)
         context = item["surface_residual_context"]
         residual_quality.update(context["source_quality"])
+        for mineral, counts in context[
+            "per_mineral_surface_residual_joint_cargo_base"
+        ].items():
+            joint_surface_cargo_base[mineral].update(counts)
+        planet_residual_events.update(
+            context["planet_transition_residual_events_not_independent_actions"]
+        )
+        per_game_planet_events[pair.game].update(
+            context["planet_transition_residual_events_not_independent_actions"]
+        )
         for mineral, class_counts in context["per_mineral_categories"].items():
             residual_categories[mineral].update(class_counts)
             for residual_class, count in class_counts.items():
@@ -504,6 +518,53 @@ def analyze_corpus_coverage(
                 "21_to_100" if count <= 100 else "over_100"
             )
             clustering[residual_class][bucket] += 1
+
+    context_game_histograms: dict[str, Counter[str]] = defaultdict(Counter)
+    planet_event_game_histograms: dict[str, Counter[str]] = defaultdict(Counter)
+    event_keys = (
+        "planet_windows_any_surface_residual",
+        "planet_windows_any_single_cargo",
+        "planet_windows_any_multiship_cargo",
+        "planet_windows_any_cargo_candidate",
+        "planet_windows_any_planetlinked_base",
+        "planet_windows_any_base_tech_change",
+        "planet_windows_base_tech_and_cargo_candidate",
+    )
+    for game_event_counts in per_game_planet_events.values():
+        for metric in event_keys:
+            n = game_event_counts[metric]
+            label = (
+                "0" if n == 0 else "1" if n == 1 else
+                "2_to_5" if n <= 5 else "6_to_20" if n <= 20 else
+                "21_to_100" if n <= 100 else "over_100"
+            )
+            planet_event_game_histograms[metric][label] += 1
+
+    for mineral, j in joint_surface_cargo_base.items():
+        cov = residual_covariates[mineral].get("ground_exact_surface_residual", {})
+        size = residual_categories[mineral].get("ground_exact_surface_residual", 0)
+        if (j["qualified_surface_residual"] != size or sum(
+            j.get(k, 0) for k in (
+                "both_single_and_multiship_candidate",
+                "single_only_cargo_candidate",
+                "multiship_only_cargo_candidate",
+                "no_exact_cargo_candidate",
+            )
+        ) != size or
+            j["single_only_cargo_candidate"] +
+            j["both_single_and_multiship_candidate"] !=
+            cov.get("one_ship_opposite_cargo_delta_candidate", 0) or
+            j["multiship_only_cargo_candidate"] +
+            j["both_single_and_multiship_candidate"] !=
+            cov.get("multiple_ship_cargo_sum_opposite_candidate_not_order", 0) or
+            j["any_exact_opposite_cargo_candidate"] != (
+                j["single_only_cargo_candidate"] +
+                j["multiship_only_cargo_candidate"] +
+                j["both_single_and_multiship_candidate"]
+            ) or
+            j["ownerless_planetlinked_tech_changed"] !=
+            cov.get("ownerless_planetlinked_tech_changed_observed", 0)):
+            raise ValueError("M2_SURFACE_JOINT_CARGO_BASE_INVARIANT_FAILURE")
 
     context_game_histograms: dict[str, Counter[str]] = defaultdict(Counter)
     for game_context_counts in per_game_surface_context.values():
@@ -586,6 +647,16 @@ def analyze_corpus_coverage(
                 "game_cluster_surface_context_count_buckets": {
                     metric: dict(sorted(bins.items()))
                     for metric, bins in sorted(context_game_histograms.items())
+                },
+                "per_mineral_surface_residual_joint_cargo_base": {
+                    mineral: dict(sorted(counts.items()))
+                    for mineral, counts in sorted(joint_surface_cargo_base.items())
+                },
+                "planet_transition_residual_events_not_independent_actions":
+                    dict(sorted(planet_residual_events.items())),
+                "game_cluster_planet_residual_events_count_buckets": {
+                    metric: dict(sorted(counts.items()))
+                    for metric, counts in sorted(planet_event_game_histograms.items())
                 },
             },
             "section_rows_across_sampled_perspectives":
