@@ -439,16 +439,16 @@ def analyze_corpus_coverage(
         residual_quality.update(context["source_quality"])
         for mineral, class_counts in context["per_mineral_categories"].items():
             residual_categories[mineral].update(class_counts)
-            for status, count in class_counts.items():
-                per_game_residual[pair.game][status] += count
+            for residual_class, count in class_counts.items():
+                per_game_residual[pair.game][residual_class] += count
         for mineral, groups in context["per_mineral_category_covariates"].items():
-            for status, values in groups.items():
-                residual_covariates[mineral][status].update(values)
+            for residual_class, values in groups.items():
+                residual_covariates[mineral][residual_class].update(values)
         for mineral, groups in context[
             "per_mineral_category_surface_residual_magnitude_buckets"
         ].items():
-            for status, values in groups.items():
-                residual_bins[mineral][status].update(values)
+            for residual_class, values in groups.items():
+                residual_bins[mineral][residual_class].update(values)
         for name, obj in item["section_counts"].items():
             for point, value in obj.items():
                 if value is not None:
@@ -476,8 +476,8 @@ def analyze_corpus_coverage(
             raise ValueError("M2_SURFACE_RESIDUAL_CONTEXT_MODEL_COUNT_DIVERGENCE")
     clustering: dict[str, Counter[str]] = defaultdict(Counter)
     for game_counts in per_game_residual.values():
-        for status in RESIDUAL_CLASSES:
-            count = game_counts[status]
+        for residual_class in RESIDUAL_CLASSES:
+            count = game_counts[residual_class]
             bucket = (
                 "0" if count == 0 else
                 "1" if count == 1 else
@@ -485,7 +485,7 @@ def analyze_corpus_coverage(
                 "6_to_20" if count <= 20 else
                 "21_to_100" if count <= 100 else "over_100"
             )
-            clustering[status][bucket] += 1
+            clustering[residual_class][bucket] += 1
 
     return {
         "schema": SCHEMA,
