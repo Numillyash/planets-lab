@@ -95,3 +95,45 @@ standalone bootstrap regressions are protected by CI.
 
 No changes to C5, public100/heldout32, canonical combat, corpus
 CURRENT, production IntelBoard or draft PR #28.
+
+
+## Follow-up: auto-detect recovery when the option was omitted
+
+A second server attempt, after PR #233 had been pulled, printed
+\`ERROR: existing artifact detected; refusing overwrite\`.
+Inspection of the exact shell text found that this message can
+only come from the normal no-argument branch; it cannot come from
+the explicit \`--complete-existing\` branch. The caller therefore
+entered the script without the recovery flag (or invoked a
+different command). This is a usability issue, not another
+corpus/data error.
+
+Both shell entrypoints now auto-detect **existing nonempty
+report.json and absent triage.json** when no arguments are passed.
+They automatically select the *same* safely validated
+\`--complete-existing\` recovery path. This guarantees that the
+accidental bare command is safe and does not initiate a second
+26.65-GiB corpus run. If both files exist, or the report is
+empty, the fail-closed overwrite guard remains in force.
+
+A regression test runs the actual outer shell entrypoint without
+arguments, with a valid existing aggregate report, and intercepts
+the evidence shell before any push or heavy work. It also tests
+a fresh path and refusal to overwrite an already-present triage.
+
+After merge, **either** of the following works for this precise
+incomplete-run situation:
+
+~~~bash
+bash tools/run-m2-public100-surface-context-v1-with-evidence.sh
+~~~
+
+or
+
+~~~bash
+bash tools/run-m2-public100-surface-context-v1-with-evidence.sh --complete-existing
+~~~
+
+The explicit second form is clearer, but both automatically
+preserve the original report and publish only the recovered
+derived triage. No manual JSON output or deletion required.
