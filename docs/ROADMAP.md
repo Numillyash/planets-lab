@@ -33,6 +33,21 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**M2 one-pass context measurement + automatic 915-residual triage
+(2026-10-18):** Extend the baseline68 surface residual covariate
+profiler with fail-closed **68-game zero-inclusive cluster counts**,
+an offline aggregate triage validating EXACT published per-mineral
+11,813/915/33/262 class totals and known frozen selection,
+ship-site observation completeness, cargo opposition freshness,
+starbase co-presence and qualified denominators. One specialized
+run-with-evidence wrapper automatically publishes original
+aggregate report, derived compact triage, full log and source
+provenance to runtime-logs with one 26.65-GiB corpus checksum/read.
+No historical ship orders or NuHost causality inferred, sealed
+heldout32 remains unexamined. Source/CI only until actual server
+report; do not fabricate ship association rates.
+[Full automatic runner and interpretation](handoff/2026-10-18-m2-context-triage-dual-evidence-v1.md).
+
 **M2 surface-residual contextual stratification (2026-10-18):**
 Existing published mineral residual 2×2 includes 915 observations
 where default model matches ground stock but misses surface stock
