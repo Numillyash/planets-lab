@@ -289,9 +289,9 @@ def profile_surface_residual_context(
             }
             for name, classified in sorted(bins.items())
         },
-        "source_quality": dict(sorted(
+        "source_quality": dict(sorted((
             Counter(ship_status_b) + Counter(ship_status_a) +
             Counter(base_status_b) + Counter(base_status_a)
-        .items())),
+        ).items())),
         "evidence_status": "ARCHIVAL_COVARIATES_NOT_ORDERS_OR_HOST_CAUSES",
     }
