@@ -206,6 +206,10 @@ def test_end_to_end_same_sample_context_and_mineral_totals_align():
     assert out["game_cluster_residual_count_buckets"][
         "ground_exact_surface_residual"
     ] == {"2_to_5": 1}  # This game also has 3 residuals in other minerals.
+    cluster = out["game_cluster_surface_context_count_buckets"]
+    assert cluster["owner_ship_observed_at_site_both"] == {"2_to_5": 1}
+    assert cluster["one_ship_opposite_cargo_delta_candidate"] == {"1": 1}
+    assert cluster["ownerless_base_planetlinked_both_not_owner_proof"] == {"0": 1}
     assert result["sample"]["conditional_mineral_mass_balance_not_host_verified"][
         "per_mineral"
     ]["duranium"]["candidate_default_mining_qualified"] == 1
