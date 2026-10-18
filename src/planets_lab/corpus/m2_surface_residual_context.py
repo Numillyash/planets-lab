@@ -171,6 +171,10 @@ def _observed_ship_context(
         out["ABSTAIN_PLANET_COORDS_MISSING"] += 1
         return out
     out["planet_coordinates_qualified"] += 1
+    if not isinstance(before.get("ships"), list) or not isinstance(after.get("ships"), list):
+        out["ABSTAIN_SHIP_SECTION_MISSING_ONE_OR_BOTH"] += 1
+        return out
+    out["owner_ship_section_pair_qualified"] += 1
     a = {sid: item for sid, item in ships_before.items() if _valid_xy(item) == xy_before}
     b = {sid: item for sid, item in ships_after.items() if _valid_xy(item) == xy_after}
     if a:
