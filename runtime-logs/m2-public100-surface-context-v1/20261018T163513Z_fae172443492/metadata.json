@@ -1,0 +1,25 @@
+{
+  "evidence_branch": "runtime-logs",
+  "exit_code": 1,
+  "finished_at_utc": "2026-10-18T16:36:12Z",
+  "hostname": "GEORGUL-GAMER",
+  "interrupted_signal": null,
+  "log_file": "gate.log",
+  "missing_artifact_paths": [
+    "artifacts/planetary/m2-public100-surface-residual-context-v1/triage.json"
+  ],
+  "remote": "origin",
+  "requested_artifact_paths": [
+    "artifacts/planetary/m2-public100-surface-residual-context-v1/report.json",
+    "artifacts/planetary/m2-public100-surface-residual-context-v1/triage.json"
+  ],
+  "run_id": "20261018T163513Z_fae172443492",
+  "run_name": "m2-public100-surface-context-v1",
+  "runner": "bash",
+  "schema": "planets-lab.runtime-evidence.v1",
+  "skipped_oversized_artifact_paths": [],
+  "source_branch": "main",
+  "source_commit": "fae172443492fc186c93b6a683c4a712d364da1f",
+  "source_dirty": false,
+  "started_at_utc": "2026-10-18T16:35:13Z"
+}
