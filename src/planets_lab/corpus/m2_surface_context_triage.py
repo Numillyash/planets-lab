@@ -110,6 +110,7 @@ def analyze_surface_context_aggregate(report: Mapping[str, Any]) -> dict[str, An
     covariates = context.get("per_mineral_class_covariates")
     histogram = context.get("per_mineral_class_residual_magnitude_buckets")
     clusters = context.get("game_cluster_residual_count_buckets")
+    surface_clusters = context.get("game_cluster_surface_context_count_buckets")
     _require(all(isinstance(k, Mapping) for k in
                  (classes, covariates, histogram, clusters)),
              "missing class/stratum/cluster counters")
@@ -230,6 +231,28 @@ def analyze_surface_context_aggregate(report: Mapping[str, Any]) -> dict[str, An
             total_games += count
         _require(total_games == 68, "game clustering must cover all 68 selected games")
 
+    expected_metrics = {
+        "owner_ship_observed_at_site_both",
+        "one_ship_opposite_cargo_delta_candidate",
+        "multiple_ship_cargo_sum_opposite_candidate_not_order",
+        "ownerless_base_planetlinked_both_not_owner_proof",
+        "owner_starbase_explicit_at_planet_both",
+    }
+    if surface_clusters is not None:
+        _require(isinstance(surface_clusters, Mapping) and
+                 set(surface_clusters) == expected_metrics,
+                 "unexpected per-game surface-context metric coverage")
+        for metric, hist in surface_clusters.items():
+            _require(isinstance(hist, Mapping), "invalid per-game context bins")
+            _require(
+                all(bucket in (
+                    "0", "1", "2_to_5", "6_to_20", "21_to_100", "over_100"
+                ) and type(amount) is int and amount >= 0
+                    for bucket, amount in hist.items()) and
+                sum(hist.values()) == 68,
+                "surface-context per-game bins must cover all baseline68 games"
+            )
+
     def summary_for(cls: str) -> dict[str, Any]:
         n = aggregated_counts[cls]
         cov = aggregate_strata[cls]
@@ -291,6 +314,7 @@ def analyze_surface_context_aggregate(report: Mapping[str, Any]) -> dict[str, An
         "surface_only_residual_magnitude_buckets":
             dict(sorted(residual_magnitudes.items())),
         "game_cluster_residual_count_buckets": clusters,
+        "game_cluster_surface_context_count_buckets": surface_clusters,
         "evidence_limits": {
             "single_opposite_cargo_candidate_is_executed_transfer": False,
             "same_site_ship_observation_is_independent_causality": False,
