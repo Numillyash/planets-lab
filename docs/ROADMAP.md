@@ -33,6 +33,22 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**M2 pinned runtime mineral residual reconciliation (2026-10-18):**
+Retrieved the user's successfully published aggregate report directly
+from runtime-logs, no 26.65 GiB corpus rerun or copy-pasted logs.
+On the same metadata-frozen baseline68/136-pair sample, 13,023
+conditional mineral×planet-pair comparisons decompose into
+**11,813 both surface+ground exact, 915 ground-only exact,
+33 surface-only exact, 262 neither**. Of 1,210 mismatches,
+75.62% match underground but have a surface-stock residual.
+Prioritize testing co-observed surface cargo/ship/base context,
+not prematurely changing the inferred mining formula.
+A standalone offline aggregate reconciler validates SHA256,
+selection identity and disjoint 2×2 counter identities.
+Correlation across 136 selected transitions and unobserved
+TurnOrders prevents Host causality promotion.
+[Evidence and residual taxonomy](handoff/2026-10-18-m2-published-mineral-residual-tetrad-v1.md).
+
 **M2 runtime evidence publication restored (2026-10-18):**
 Prior corpus coverage runners were missing the existing
 *-with-evidence.sh workflow, causing unnecessary large server
