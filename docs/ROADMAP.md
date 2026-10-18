@@ -33,6 +33,21 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**M2 baseline68 V2 contextual mineral residual follow-up (2026-10-18):**
+Recovered prior aggregate/runtime-logs triage established 915
+ground-exact/surface-only residual mineral observations, 652 with
+same-site own ship both snapshots, 101 single same-ID cargo
+opposition candidates, and 12224 starbase rows with missing
+ownerid. V2 preserves strict explicit-base-owner abstentions but
+adds a distinct WEAK co-observed base.planetid -> authenticated
+owner-current planet link, never treating missing owner as proven.
+Also adds 2+ co-site ship **summed** opposite cargo candidates,
+only with same observed ship ID set and complete numeric cargo,
+and zero-inclusive 68-game context-clustering histograms. Offline
+triage validates qualified denominators. All source evidence
+remains observational, heldout32 SEALED and CURRENT unmodified.
+[Full new V2 experimental gates and one evidence command](handoff/2026-10-18-m2-ownerless-starbase-and-multiship-residual-v2.md).
+
 **M2 actual surface-context runtime and no-recompute recovery
 (2026-10-18):** User ran PR #231/#232 context analysis on existing
 26.65-GiB immutable public100 DB; aggregate report succeeded and
