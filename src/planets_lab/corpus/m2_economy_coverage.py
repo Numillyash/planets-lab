@@ -506,7 +506,7 @@ def analyze_corpus_coverage(
             clustering[residual_class][bucket] += 1
 
     context_game_histograms: dict[str, Counter[str]] = defaultdict(Counter)
-    for counters in per_game_surface_context.values():
+    for game_context_counts in per_game_surface_context.values():
         for metric in (
             "owner_ship_observed_at_site_both",
             "one_ship_opposite_cargo_delta_candidate",
@@ -514,7 +514,7 @@ def analyze_corpus_coverage(
             "ownerless_base_planetlinked_both_not_owner_proof",
             "owner_starbase_explicit_at_planet_both",
         ):
-            n = counters[metric]
+            n = game_context_counts[metric]
             key = (
                 "0" if n == 0 else
                 "1" if n == 1 else
