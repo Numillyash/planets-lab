@@ -12,7 +12,15 @@ esac
 }
 SUMMARY="${OUT%/report.json}/triage.json"
 MODE="${1:-}"
-if [[ "$MODE" == "--complete-existing" && $# -eq 1 ]]; then
+# A prior run may have completed the expensive corpus phase but failed
+# before writing triage.json. An omitted --complete-existing must NEVER
+# lead to a redundant 26.65 GiB run or a confusing overwrite error.
+# Auto-recover only when the source report exists and triage does not.
+if [[ ( "$MODE" == "--complete-existing" && $# -eq 1 ) || \
+      ( $# -eq 0 && -s "$OUT" && ! -e "$SUMMARY" ) ]]; then
+  if [[ $# -eq 0 ]]; then
+    echo "M2 recovery auto-detected: existing report present, triage absent"
+  fi
   [[ -s "$OUT" && ! -e "$SUMMARY" ]] || {
     echo "ERROR: existing report required, triage must not exist" >&2; exit 73;
   }

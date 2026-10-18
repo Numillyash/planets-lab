@@ -251,3 +251,113 @@ def test_recovery_mode_never_reruns_corpus_and_refuses_missing_report(tmp_path):
     assert process.returncode == 73
     assert "existing report required" in process.stderr
     assert "runtime_evidence: published" not in process.stdout
+
+
+
+def test_surface_evidence_wrapper_auto_recovers_existing_report_without_flag(
+    tmp_path,
+):
+    """The exact user incident: copied bare runner command after corpus success.
+
+    Intercept bash AFTER actual outer wrapper validation, so no Git push,
+    Docker, database read or corpus SHA256 can occur in this test.
+    """
+    import shutil
+    import uuid
+
+    outer = ROOT / "tools/run-m2-public100-surface-context-v1-with-evidence.sh"
+    relative_dir = (
+        "artifacts/planetary/"
+        f"m2-public100-auto-recovery-test-{uuid.uuid4().hex}"
+    )
+    folder = ROOT / relative_dir
+    folder.mkdir(parents=True)
+    report_file = folder / "report.json"
+
+    # Construct a complete, known aggregate-only public100 V1 shape, so
+    # the REAL privacy/provenance validator runs before the mocked publisher.
+    value = synthetic_aggregate()
+    value["status"] = (
+        "CORPUS_METADATA_CENSUS_AND_BOUNDED_OWNER_CURRENT_SAMPLE_NOT_HOST_CAUSAL"
+    )
+    value["generation"]["name"] = (
+        "corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb"
+    )
+    value["baseline_sample_allowlist"]["manifest_sha256"] = "9" * 64
+    value["metadata"] = {
+        "all_games_in_source_metadata": 100,
+        "all_source_perspective_members": 224014,
+        "identity_valid_members": 222536,
+        "metadata_invalid_or_embedded_turn_mismatch": 1478,
+        "ambiguous_duplicate_perspective_turn_keys": 0,
+        "potential_adjacent_same_perspective_pairs": 221091,
+        "games_with_adjacent_perspective_pairs": 100,
+        "games_allowed_for_entity_sampling": 68,
+        "games_excluded_from_entity_sampling": 32,
+        "metadata_selected_game_count": 68,
+        "metadata_frozen_sample_pairs": 136,
+        "metadata_frozen_selection_sha256":
+            "b6a09b95e2a8a6d261cb5d4180be45eb601711df9865cf0b44457ad17b84068f",
+        "selection_frozen_before_entity_reconstruction": True,
+    }
+    value["evidence_limits"].update({
+        "T_minus_1_to_T_stock_change_identifies_action": False,
+        "NuHost_ship_build_cost_verified": False,
+    })
+    value["sample"]["conditional_mineral_mass_balance_not_host_verified"].update({
+        "per_mineral": {},
+        "surface_up_ground_equal_surface_increase_buckets": {},
+        "net_total_minus_default_mutation_abs_residual_buckets": {},
+    })
+
+    fake_bin = tmp_path / "bin"
+    fake_bin.mkdir()
+    bash_call = tmp_path / "bash_invocation.txt"
+    fake_bash = fake_bin / "bash"
+    fake_bash.write_text(
+        '#!/bin/sh\nprintf "%s\\n" "$@" > "$M2_TEST_FAKE_BASH_LOG"\n',
+        encoding="utf-8",
+    )
+    fake_bash.chmod(0o755)
+    env = dict(os.environ)
+    env["M2_CORPUS_COVERAGE_OUTPUT"] = str(report_file.relative_to(ROOT))
+    env["M2_TEST_FAKE_BASH_LOG"] = str(bash_call)
+    env["PATH"] = str(fake_bin) + os.pathsep + env.get("PATH", "")
+    try:
+        # A fresh report path with no existing report means normal mode.
+        fresh = subprocess.run(
+            ["/bin/bash", str(outer)],
+            cwd=ROOT, env=env, capture_output=True, text=True, timeout=15,
+        )
+        assert fresh.returncode == 0, fresh.stdout + fresh.stderr
+        assert "m2-public100-surface-context-v1" in bash_call.read_text()
+        assert "m2-public100-surface-context-recovered-v1" not in bash_call.read_text()
+
+        report_file.write_text(json.dumps(value), encoding="utf-8")
+        bash_call.unlink()
+        # Crucial: user forgot --complete-existing; never rerun the DB.
+        recovered = subprocess.run(
+            ["/bin/bash", str(outer)],
+            cwd=ROOT, env=env, capture_output=True, text=True, timeout=15,
+        )
+        assert recovered.returncode == 0, recovered.stdout + recovered.stderr
+        assert "M2 recovery auto-detected" in recovered.stdout
+        invocation = bash_call.read_text()
+        assert "m2-public100-surface-context-recovered-v1" in invocation
+        assert "--complete-existing" in invocation
+        assert not (folder / "triage.json").exists()
+        assert json.loads(report_file.read_text()) == value
+
+        # A completed triage is never overwritten, even without a flag.
+        (folder / "triage.json").write_text("protected", encoding="utf-8")
+        bash_call.unlink()
+        refused = subprocess.run(
+            ["/bin/bash", str(outer)],
+            cwd=ROOT, env=env, capture_output=True, text=True, timeout=15,
+        )
+        assert refused.returncode == 73
+        assert "refusing overwrite" in refused.stderr
+        assert not bash_call.exists()
+        assert (folder / "triage.json").read_text() == "protected"
+    finally:
+        shutil.rmtree(folder)
