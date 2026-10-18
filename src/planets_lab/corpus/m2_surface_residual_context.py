@@ -114,6 +114,9 @@ def _index_owner_bases(
         owner = base.get("ownerid")
         if owner != player:
             if owner is None:
+                # Keep legacy ownership-abstention counter for
+                # comparisons with the published V1 source-quality report.
+                statuses["ABSTAIN_STARBASE_OWNER_MISSING"] += 1
                 statuses["STARBASE_OWNERID_UNAVAILABLE"] += 1
                 if pid not in owned_current_planet_ids:
                     statuses["ABSTAIN_OWNERLESS_BASE_PLANET_NOT_OWNER_CURRENT"] += 1
