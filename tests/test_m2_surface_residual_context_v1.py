@@ -354,3 +354,95 @@ def test_multi_ship_exact_opposite_sum_not_a_single_transfer_order():
         "ground_exact_surface_residual"
     ]
     assert "same_site_identical_ship_set_all_cargo_qualified" not in ctx
+
+
+
+def test_v3_joint_partition_detects_single_and_multiship_overlap():
+    a, b = snapshots()
+    # Planet surface residual +7. One ship loses 7 and the second 0:
+    # the SINGLE ship and the whole observed multi-ship SUM both match.
+    a["ships"] = [
+        {**a["ships"][0], "id": 31, "duranium": 9},
+        {**a["ships"][0], "id": 32, "duranium": 8},
+    ]
+    b["ships"] = [
+        {**b["ships"][0], "id": 31, "duranium": 2},
+        {**b["ships"][0], "id": 32, "duranium": 8},
+    ]
+    o = profile(a, b)
+    j = o["per_mineral_surface_residual_joint_cargo_base"]["duranium"]
+    assert j["qualified_surface_residual"] == 1
+    assert j["both_single_and_multiship_candidate"] == 1
+    assert j["any_exact_opposite_cargo_candidate"] == 1
+    assert "single_only_cargo_candidate" not in j
+    assert "multiship_only_cargo_candidate" not in j
+    assert j["cargo_candidate_positive_surface_residual"] == 1
+    planet = o["planet_transition_residual_events_not_independent_actions"]
+    assert planet["planet_windows_any_surface_residual"] == 1
+    assert planet["residual_mineral_multiplicity_4"] == 1
+    assert planet["planet_windows_any_single_cargo"] == 1
+    assert planet["planet_windows_any_multiship_cargo"] == 1
+    assert planet["planet_windows_any_cargo_candidate"] == 1
+
+
+def test_v3_joint_separates_multiship_only_and_base_tech_change():
+    a, b = snapshots()
+    a["ships"] = [
+        {**a["ships"][0], "id": 31, "duranium": 9},
+        {**a["ships"][0], "id": 32, "duranium": 8},
+    ]
+    b["ships"] = [
+        {**b["ships"][0], "id": 31, "duranium": 6},
+        {**b["ships"][0], "id": 32, "duranium": 4},
+    ]
+    del a["starbases"][0]["ownerid"]
+    del b["starbases"][0]["ownerid"]
+    b["starbases"][0]["enginetechlevel"] = 4
+    o = profile(a, b)
+    j = o["per_mineral_surface_residual_joint_cargo_base"]["duranium"]
+    assert j["multiship_only_cargo_candidate"] == 1
+    assert j["ownerless_planetlinked_tech_changed"] == 1
+    assert j["base_tech_change_and_cargo_candidate"] == 1
+    events = o["planet_transition_residual_events_not_independent_actions"]
+    assert events["planet_windows_any_surface_residual"] == 1
+    assert events["planet_windows_any_multiship_cargo"] == 1
+    assert events["planet_windows_any_base_tech_change"] == 1
+    assert events["planet_windows_base_tech_and_cargo_candidate"] == 1
+    # T-1/T observations, no authenticated ship or base orders in output.
+    exported = json.dumps(o)
+    assert '"planetid"' not in exported and '"ownerid"' not in exported
+
+
+def test_v3_aggregate_same_frozen_pair_counts_overlap_once():
+    class Connection:
+        done = False
+        def execute(self, query):
+            return self
+        def fetchmany(self, amount):
+            if self.done:
+                return []
+            self.done = True
+            return [(1, 777001, 1, 10, 10), (2, 777001, 1, 11, 11)]
+    a, b = snapshots()
+    a["ships"] = [
+        {**a["ships"][0], "id": 31, "duranium": 9},
+        {**a["ships"][0], "id": 32, "duranium": 8},
+    ]
+    b["ships"] = [
+        {**b["ships"][0], "id": 31, "duranium": 2},
+        {**b["ships"][0], "id": 32, "duranium": 8},
+    ]
+    out = analyze_corpus_coverage(
+        Connection(), max_games=1, pairs_per_game=1,
+        allowed_games={777001}, reconstruct=lambda n: {1: a, 2: b}[n],
+    )
+    ctx = out["sample"]["surface_residual_context_not_host_verified"]
+    j = ctx["per_mineral_surface_residual_joint_cargo_base"]["duranium"]
+    assert j["both_single_and_multiship_candidate"] == 1
+    assert ctx["planet_transition_residual_events_not_independent_actions"][
+        "planet_windows_any_surface_residual"
+    ] == 1
+    hist = ctx["game_cluster_planet_residual_events_count_buckets"]
+    assert hist["planet_windows_any_surface_residual"] == {"1": 1}
+    assert hist["planet_windows_any_cargo_candidate"] == {"1": 1}
+    assert out["sample"]["owner_current_counts"]["same_owner_planet_id_pairs"] == 1
