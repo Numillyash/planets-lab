@@ -33,6 +33,23 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**M2 surface-residual contextual stratification (2026-10-18):**
+Existing published mineral residual 2×2 includes 915 observations
+where default model matches ground stock but misses surface stock
+(against 33 reverse-only and 262 joint mismatches). Add a
+one-pass, baseline68-only classifier joining SAME frozen planet-pair
+sample to observed owner-ship co-site positions, same-ID numeric
+cargo opposition candidates, explicit planetid-linked own starbases,
+starbase tech changes, stable structures/taxes and per-game
+residual count *buckets* (no game IDs disclosed). Missing coordinates,
+stale/ambiguous ship IDs, missing infoturn and absent starbase
+planet link abstain; no unseen actions are ruled out. Fail-closed
+per-mineral class totals against existing mining model and permit only
+aggregate-count output via runtime-logs validator. Source CI
+synthetic; require explicit server runtime before reporting actual
+ship/base correlation results.
+[Scientific handoff and automatic evidence run](handoff/2026-10-18-m2-public68-surface-residual-context-v1.md).
+
 **M2 pinned runtime mineral residual reconciliation (2026-10-18):**
 Retrieved the user's successfully published aggregate report directly
 from runtime-logs, no 26.65 GiB corpus rerun or copy-pasted logs.

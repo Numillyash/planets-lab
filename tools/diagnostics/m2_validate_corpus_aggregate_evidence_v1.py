@@ -38,6 +38,7 @@ SAMPLE_FIELDS = {
     "surface_ground_joint_signs_not_mining_attribution",
     "observable_structure_and_tax_controls",
     "conditional_mineral_mass_balance_not_host_verified",
+    "surface_residual_context_not_host_verified",
 }
 HEX64 = re.compile(r"[a-f0-9]{64}\Z")
 

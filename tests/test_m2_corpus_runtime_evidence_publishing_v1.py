@@ -166,3 +166,39 @@ def test_publication_wrapper_is_shell_valid_and_fail_closed_on_bad_paths():
     )
     assert denied.returncode == 64
     assert "unsafe" in denied.stderr or "only artifacts" in denied.stderr
+
+
+
+def test_extended_surface_context_is_aggregate_only_for_runtime_logs(tmp_path):
+    value = valid_aggregate()
+    value["sample"]["surface_residual_context_not_host_verified"] = {
+        "per_mineral_residual_classes": {
+            "duranium": {"ground_exact_surface_residual": 2},
+        },
+        "per_mineral_class_covariates": {
+            "duranium": {
+                "ground_exact_surface_residual": {
+                    "one_ship_opposite_cargo_delta_candidate": 1,
+                },
+            },
+        },
+        "per_mineral_class_residual_magnitude_buckets": {
+            "duranium": {
+                "ground_exact_surface_residual": {"6_to_20": 2},
+            },
+        },
+        "source_quality_abstentions_and_limitations": {
+            "OWNER_SHIP_INFOTURN_UNAVAILABLE": 1,
+        },
+        "game_cluster_residual_count_buckets": {
+            "ground_exact_surface_residual": {"2_to_5": 1},
+        },
+    }
+    ok = check(tmp_path, value)
+    assert ok.returncode == 0, ok.stderr
+    value["sample"]["surface_residual_context_not_host_verified"][
+        "raw_secret_ship_list"
+    ] = [{"id": 9, "apikey": "DO_NOT_SHARE"}]
+    bad = check(tmp_path, value)
+    assert bad.returncode != 0
+    assert "DO_NOT_SHARE" not in bad.stderr + bad.stdout
