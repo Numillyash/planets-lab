@@ -227,3 +227,20 @@ def test_malformed_upgrade_record_abstains_without_attribute_errors():
     assert outcome.status == "ABSTAIN_UNSUPPORTED_OR_INVALID"
     assert outcome.state is None and not outcome.events and not outcome.balances
     assert state == copy
+
+
+def test_incomplete_base_tech_level_abstains_in_model_and_observed_pair():
+    state = source()
+    state.starbases[10].tech_beam = 0
+    assert not slice_().attempt_step(state, tech_order()).supported
+    state.starbases[10].tech_beam = 1
+    observed = slice_().step(state, tech_order()).state
+    assert observed is not None
+    observed.starbases[10].tech_beam = 11
+    compared = reconcile_explicit_orders(
+        state, observed, tech_order(), specs(),
+        complete_orders=True, complete_snapshots=True,
+        tech_placement="tech_before_planetary",
+        standard_tech_level_caps={1: 10},
+    )
+    assert compared.status == "ABSTAIN_UNSUPPORTED_PAIR"
