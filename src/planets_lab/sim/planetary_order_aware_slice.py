@@ -7,6 +7,7 @@ ships and explicit TurnOrders are mandatory for attributable transfer results.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from collections.abc import Mapping
 from typing import Literal
 
 from planets_lab.core import GameState
@@ -21,6 +22,9 @@ from planets_lab.sim.planet_cargo_transfer_phase import (
 )
 from planets_lab.sim.planetary_host_pipeline import PlanetaryHostPipeline
 from planets_lab.sim.population_phases import UnsupportedPopulationRule
+from planets_lab.sim.starbase_tech_upgrade_phase import (
+    StarbaseTechUpgradePhase, UnsupportedStarbaseTechUpgrade,
+)
 
 Placement = Literal["transfer_before_planetary", "transfer_after_planetary"]
 MINERALS = ("neutronium", "duranium", "tritanium", "molybdenum")
@@ -98,6 +102,7 @@ class PhaseResourceBalance:
         ground = _differences(b["ground"], a["ground"])
         net = _sum_deltas(planets, ships, ground)
         transfer = phase == "planet_cargo_transfer"
+        technology = phase == "starbase_tech_upgrade"
         if transfer and (net or ground):
             raise UnsupportedPlanetaryOrderSlice(
                 "cargo transfer failed total inventory conservation"
@@ -106,9 +111,33 @@ class PhaseResourceBalance:
             raise UnsupportedPlanetaryOrderSlice(
                 f"planetary phase {phase} unexpectedly changed ship cargo"
             )
+        if technology:
+            costs = []
+            for event in events:
+                details = dict(event.details)
+                try:
+                    cost = int(details["cost_mc"])
+                except (KeyError, ValueError) as exc:
+                    raise UnsupportedPlanetaryOrderSlice(
+                        "starbase phase event lacks purchased MC cost"
+                    ) from exc
+                if (event.kind != "starbase_tech_upgraded_standard_conditional"
+                        or cost <= 0):
+                    raise UnsupportedPlanetaryOrderSlice("invalid tech purchase event")
+                costs.append(cost)
+            if (ground or net != ({"megacredits": -sum(costs)} if costs else {})
+                    or any(set(deltas) != {"megacredits"}
+                           for deltas in planets.values())):
+                raise UnsupportedPlanetaryOrderSlice(
+                    "starbase tech purchase did not debit exactly its documented MC cost"
+                )
         return cls(
             phase=phase,
-            category="explicit_transfer" if transfer else "planetary_economy",
+            category=(
+                "explicit_transfer" if transfer else
+                "explicit_standard_starbase_technology" if technology else
+                "planetary_economy"
+            ),
             planet_cargo_delta=planets,
             ship_cargo_delta=ships,
             ground_mineral_delta=ground,
@@ -155,26 +184,49 @@ class PlanetaryOrderAwareSlice:
     specs: NuStaticSpecs
     placement: Placement
     planetary: PlanetaryHostPipeline = field(default_factory=PlanetaryHostPipeline)
+    tech_placement: Literal["tech_before_planetary", "tech_after_planetary"] | None = None
+    standard_tech_level_caps: Mapping[int, int] | None = None
 
     def __post_init__(self) -> None:
         if self.placement not in ("transfer_before_planetary", "transfer_after_planetary"):
             raise ValueError("explicit transfer placement is required")
+        if self.tech_placement not in (None, "tech_before_planetary", "tech_after_planetary"):
+            raise ValueError("explicit supported starbase tech placement is required")
+        if self.tech_placement is not None and self.standard_tech_level_caps is None:
+            raise ValueError("explicit standard starbase tech eligibility caps required")
+        if self.tech_placement is None and self.standard_tech_level_caps is not None:
+            raise ValueError("tech eligibility caps require an explicit tech phase")
 
     @property
     def phases(self) -> tuple[HostPhase, ...]:
         cargo = PlanetCargoTransferPhase(specs=self.specs)
         if self.placement == "transfer_before_planetary":
-            return (cargo, *self.planetary.phases)
-        return (*self.planetary.phases, cargo)
+            phases: tuple[HostPhase, ...] = (cargo, *self.planetary.phases)
+        else:
+            phases = (*self.planetary.phases, cargo)
+        if self.tech_placement is not None:
+            tech = StarbaseTechUpgradePhase(
+                max_level_by_player=self.standard_tech_level_caps or {},
+            )
+            if self.tech_placement == "tech_before_planetary":
+                return (tech, *phases)
+            return (*phases, tech)
+        return phases
 
     def engine(self) -> HostEngine:
         """Composable uninstrumented HostEngine with the same stated assumption."""
         return HostEngine(self.phases)
 
     def _require_supported_context(self, state: GameState, orders: TurnOrders) -> None:
-        if state.starbases or state.ion_storms:
+        if state.ion_storms or (state.starbases and self.tech_placement is None):
             raise UnsupportedPlanetaryOrderSlice(
-                "starbase/ion-storm interactions are outside this research slice"
+                "starbase/ion-storm interactions require an explicit supported phase"
+            )
+        if self.tech_placement is None and any(
+            owner.starbase_tech_orders for owner in orders.by_player.values()
+        ):
+            raise UnsupportedPlanetaryOrderSlice(
+                "starbase tech orders require an explicitly enabled technology phase"
             )
         for ship in state.ships.values():
             if (
@@ -244,7 +296,7 @@ class PlanetaryOrderAwareSlice:
         try:
             return self.step(state, orders, seed=seed)
         except (UnsupportedPlanetaryOrderSlice, UnsupportedPlanetCargoTransfer,
-                UnsupportedPopulationRule, ValueError) as exc:
+                UnsupportedStarbaseTechUpgrade, UnsupportedPopulationRule, ValueError) as exc:
             return PlanetarySliceOutcome(
                 status="ABSTAIN_UNSUPPORTED_OR_INVALID",
                 abstain_reason=f"{type(exc).__name__}: {exc}",
