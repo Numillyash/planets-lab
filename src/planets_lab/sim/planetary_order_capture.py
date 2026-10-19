@@ -99,6 +99,11 @@ def _serialize_orders(state: GameState, orders: TurnOrders) -> list[dict[str, An
         _integer(player_id, "player id", positive=True)
         if type(owner_orders) is not PlayerOrders or owner_orders.player_id != player_id:
             raise OrderCaptureInvalid("player id mismatch")
+        # V1 capture schema only authenticates ship cargo orders. Do not
+        # silently discard newly supported starbase technology orders or
+        # misrepresent them as absent in an owner-signed envelope.
+        if owner_orders.starbase_tech_orders:
+            raise OrderCaptureInvalid("starbase tech orders not supported by V1 capture")
         ships: list[dict[str, Any]] = []
         for entry in owner_orders.ship_orders:
             if type(entry) is not ShipOrder or entry.planet_transfer is None:

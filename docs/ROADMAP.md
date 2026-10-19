@@ -33,6 +33,22 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**M2 validated V3 + explicit standard-price starbase-tech simulation (2026-10-19):**
+The actual V3 runtime `20261019T143058Z_1f0721ca1186` has exit 0,
+unchanged CURRENT, frozen baseline68, no heldout32 entity reads:
+915 surface residual mineral comparisons split into 65 single-only,
+36 overlapping single+multiship, 7 multiship-only, 807 neither.
+These are only 108 unique cargo mineral comparisons and 65 cargo-candidate
+planet windows among 315 residual planet windows. Only 15 such windows
+show weak-linked base-tech changes; just 1 combines a tech change and
+cargo candidate. No Host execution is confirmed. Next implementation
+adds opt-in, explicitly ordered *standard* starbase technology purchases,
+documented MC pricing, owner and eligibility gates, phase resource balances,
+and conditional full-state Tminus1->T reconciliation. It does not invent
+base owners for archival ownerless rows or accept signed V1 order capture of
+tech orders. [Validated V3 and research simulator scope](handoff/2026-10-19-m2-v3-validated-starbase-tech-integration.md).
+
+
 **M2 cargo hypothesis overlap and planet-window dedup V3 (2026-10-18):**
 Published V2 baseline68 from runtime-logs has 915 surface-only
 residual mineral comparisons, 101 single-ship and 43 multi-ship

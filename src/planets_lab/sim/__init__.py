@@ -25,7 +25,13 @@ from .normal_movement import (
     plan_full_normal_move,
 )
 from .normal_movement_phase import NormalMovementPhase, UnsupportedNormalMovement
-from .orders import PlanetCargoTransferOrder, PlayerOrders, ShipOrder, TurnOrders
+from .orders import (
+    PlanetCargoTransferOrder, PlayerOrders, ShipOrder,
+    StarbaseTechUpgradeOrder, TurnOrders,
+)
+from .starbase_tech_upgrade_phase import (
+    StarbaseTechUpgradePhase, UnsupportedStarbaseTechUpgrade,
+)
 from .planet_cargo_transfer_phase import (
     PlanetCargoTransferPhase,
     UnsupportedPlanetCargoTransfer,
@@ -62,6 +68,8 @@ __all__ = [
     "PlanetaryHostPipeline",
     "PlayerOrders",
     "ShipOrder",
+    "StarbaseTechUpgradeOrder",
+    "StarbaseTechUpgradePhase",
     "TowAttemptResult",
     "TowMovementPhase",
     "TowResolution",
@@ -70,6 +78,7 @@ __all__ = [
     "UnsupportedInterceptMovement",
     "UnsupportedNormalMovement",
     "UnsupportedPlanetCargoTransfer",
+    "UnsupportedStarbaseTechUpgrade",
     "UnsupportedTowMovement",
     "UnsupportedTowTopology",
     "classify_movement_intents",
