@@ -1,0 +1,10 @@
+===== M2 SYNTHETIC STARBASE TECH GATE =====
+status: M2_STANDARD_STARBASE_TECH_LOCAL_TESTED_NOT_NUHOST_VERIFIED
+checks: 6
+standard_engine_7_to_10_cost_mc: 2400
+phase_placements_tested: 2
+orders_independently_server_authenticated: false
+historical_differential_verified: false
+nu_host_phase_order_verified: false
+corpus_read: false
+heldout_entity_records_read: false
