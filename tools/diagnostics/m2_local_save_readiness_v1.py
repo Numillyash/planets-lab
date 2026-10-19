@@ -74,7 +74,7 @@ def read_private(path: Path) -> dict:
     """Open user-owned restricted local file without following symlinks."""
     # No file paths, IDs, exceptions or input values are ever echoed.
     try:
-        file_path = path.absolute()
+        file_path = path.resolve(strict=True)
         if file_path.is_relative_to(ROOT.resolve()):
             raise SaveEvidenceInvalid("invalid_or_unsafe_capture")
         if path.is_symlink():
