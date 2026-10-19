@@ -30,3 +30,27 @@ The V1 operator order-capture and owner-observation serializers cannot encode `S
 The standard table is `DOCUMENTED` at https://help.planets.nu/tech-levels. The implementation's behavior is locally `TESTED` by synthetic scenarios, not `DIFF_VERIFIED` against a known NuHost execution. Operator assertions of cap 7 or 10 are not verified Premium/homeworld conditions; special custom-host prices, free native-tech upgrades, receipts and the Host execution time remain unknown. Signed owner captures cannot yet authenticate this order family. Explicit technology orders with full state are never inferred from 15 archival base-tech changes.
 
 No C5, canonical combat, production IntelBoard, corpus `CURRENT`, raw generations or heldout entity records changed. The existing V3 report is sufficient to motivate this phase; **no new 26.65-GiB corpus pass is needed** for these deterministic model changes.
+
+
+## Optional no-corpus server smoke if GitHub Actions is queued
+
+The new `tools/diagnostics/m2_starbase_tech_synthetic_gate_v1.py` runs
+six deterministic, dependency-light assertions (documented cost;
+two purchase placements; cross-phase explicit money transfer;
+eligibility rejection; conditional state comparison). It prints
+aggregate-only status without game/ship/starbase IDs or any private
+material. No DuckDB, no public corpus, and no heldout data.
+
+From an updated clean checkout:
+
+```bash
+cd /root/projects/planets-lab
+git pull --ff-only origin main
+bash tools/run-m2-starbase-tech-synthetic-v1-with-evidence.sh
+```
+
+The existing evidence wrapper stores an immutable `gate.log` and source
+metadata in a new `runtime-logs/m2-starbase-tech-synthetic-v1/<run-id>/`.
+If the smoke fails, it still publishes exit!=0 and must not count as a
+successful evidence gate. Passing it demonstrates **local modeled behavior**
+only, never independently observed NuHost acceptance or execution.
