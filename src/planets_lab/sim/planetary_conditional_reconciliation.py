@@ -163,6 +163,11 @@ def _check_bounded_pair(
             raise ValueError("starbase identities changed outside bounded slice")
         for pid, original in before.starbases.items():
             updated = after.starbases[pid]
+            if any(type(getattr(base, name)) is not int
+                   or not 1 <= getattr(base, name) <= 10
+                   for base in (original, updated)
+                   for name in ("tech_hull", "tech_engine", "tech_beam", "tech_torpedo")):
+                raise ValueError("starbase source tech levels are incomplete or invalid")
             # Do not let defense, fighter, ownership or construction changes
             # masquerade as a simple technology purchase.
             identity = dict(tech_hull=1, tech_engine=1, tech_beam=1, tech_torpedo=1)
