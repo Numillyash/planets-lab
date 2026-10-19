@@ -1,0 +1,19 @@
+===== M2 CORPUS METADATA CENSUS / BASELINE-ONLY ECONOMY COVERAGE =====
+HEAD: 0a0fd5686aaacea4571c49398e7fd103d6d46856
+explicit_generation: corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb
+game_metadata_scope: ALL public100 games
+entity_reconstruction_scope: public68 baseline only
+max_games: 100
+pairs_per_game: 2
+CURRENT_before: generations/corpus-v2compact-public68-20261004T095236Z-09f71721b77c.duckdb
+Traceback (most recent call last):
+  File "/workspace/tools/diagnostics/m2_public_corpus_economy_coverage_v1.py", line 161, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/workspace/tools/diagnostics/m2_public_corpus_economy_coverage_v1.py", line 119, in main
+    report = analyze_corpus_coverage(
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/src/planets_lab/corpus/m2_economy_coverage.py", line 567, in analyze_corpus_coverage
+    raise ValueError("M2_SURFACE_JOINT_CARGO_BASE_INVARIANT_FAILURE")
+ValueError: M2_SURFACE_JOINT_CARGO_BASE_INVARIANT_FAILURE
+exit status 1
