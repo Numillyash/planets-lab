@@ -1,0 +1,266 @@
+{
+  "by_outcome": {
+    "both_exact": {
+      "explicit_starbase_at_planet_both": 0,
+      "multi_ship_cargo_sum_opposite_candidate_not_order": 0,
+      "multi_ship_co_site_cargo_qualified": 1290,
+      "observations": 11813,
+      "opposite_ship_freshness_both_explicit": 0,
+      "opposite_ship_freshness_unverified": 0,
+      "ownerless_base_planetlinked_at_both_not_owner_proof": 8125,
+      "ownerless_planetlinked_base_tech_changed_observed": 16,
+      "planet_coordinate_pairs": 11813,
+      "planet_coords_missing": 0,
+      "planetlinked_base_at_both_any_owner_provenance": 8125,
+      "same_site_owner_ship_at_both": 3316,
+      "ship_arrays_and_planet_coords_qualified": 11813,
+      "ship_section_missing_after_coordinates_known": 0,
+      "single_opposite_ship_cargo_delta_candidate": 0,
+      "site_ship_at_both_percent_of_qualified": 28.07,
+      "structure_and_tax_controls_qualified": 11813,
+      "structure_or_tax_controls_changed": 4893
+    },
+    "ground_exact_surface_residual": {
+      "explicit_starbase_at_planet_both": 0,
+      "multi_ship_cargo_sum_opposite_candidate_not_order": 43,
+      "multi_ship_co_site_cargo_qualified": 108,
+      "observations": 915,
+      "opposite_ship_freshness_both_explicit": 101,
+      "opposite_ship_freshness_unverified": 0,
+      "ownerless_base_planetlinked_at_both_not_owner_proof": 802,
+      "ownerless_planetlinked_base_tech_changed_observed": 52,
+      "planet_coordinate_pairs": 915,
+      "planet_coords_missing": 0,
+      "planetlinked_base_at_both_any_owner_provenance": 802,
+      "same_site_owner_ship_at_both": 652,
+      "ship_arrays_and_planet_coords_qualified": 915,
+      "ship_section_missing_after_coordinates_known": 0,
+      "single_opposite_ship_cargo_delta_candidate": 101,
+      "site_ship_at_both_percent_of_qualified": 71.26,
+      "structure_and_tax_controls_qualified": 915,
+      "structure_or_tax_controls_changed": 545
+    },
+    "neither_exact": {
+      "explicit_starbase_at_planet_both": 0,
+      "multi_ship_cargo_sum_opposite_candidate_not_order": 0,
+      "multi_ship_co_site_cargo_qualified": 19,
+      "observations": 262,
+      "opposite_ship_freshness_both_explicit": 0,
+      "opposite_ship_freshness_unverified": 0,
+      "ownerless_base_planetlinked_at_both_not_owner_proof": 180,
+      "ownerless_planetlinked_base_tech_changed_observed": 4,
+      "planet_coordinate_pairs": 262,
+      "planet_coords_missing": 0,
+      "planetlinked_base_at_both_any_owner_provenance": 180,
+      "same_site_owner_ship_at_both": 86,
+      "ship_arrays_and_planet_coords_qualified": 262,
+      "ship_section_missing_after_coordinates_known": 0,
+      "single_opposite_ship_cargo_delta_candidate": 0,
+      "site_ship_at_both_percent_of_qualified": 32.82,
+      "structure_and_tax_controls_qualified": 262,
+      "structure_or_tax_controls_changed": 88
+    },
+    "surface_exact_ground_residual": {
+      "explicit_starbase_at_planet_both": 0,
+      "multi_ship_cargo_sum_opposite_candidate_not_order": 0,
+      "multi_ship_co_site_cargo_qualified": 2,
+      "observations": 33,
+      "opposite_ship_freshness_both_explicit": 0,
+      "opposite_ship_freshness_unverified": 0,
+      "ownerless_base_planetlinked_at_both_not_owner_proof": 17,
+      "ownerless_planetlinked_base_tech_changed_observed": 0,
+      "planet_coordinate_pairs": 33,
+      "planet_coords_missing": 0,
+      "planetlinked_base_at_both_any_owner_provenance": 17,
+      "same_site_owner_ship_at_both": 5,
+      "ship_arrays_and_planet_coords_qualified": 33,
+      "ship_section_missing_after_coordinates_known": 0,
+      "single_opposite_ship_cargo_delta_candidate": 0,
+      "site_ship_at_both_percent_of_qualified": 15.15,
+      "structure_and_tax_controls_qualified": 33,
+      "structure_or_tax_controls_changed": 10
+    }
+  },
+  "deduplicated_planet_transition_events_not_host_actions": {
+    "planet_windows_any_base_tech_change": 15,
+    "planet_windows_any_cargo_candidate": 65,
+    "planet_windows_any_multiship_cargo": 23,
+    "planet_windows_any_planetlinked_base": 267,
+    "planet_windows_any_single_cargo": 60,
+    "planet_windows_any_surface_residual": 315,
+    "planet_windows_base_tech_and_cargo_candidate": 1,
+    "residual_mineral_multiplicity_1": 60,
+    "residual_mineral_multiplicity_2": 29,
+    "residual_mineral_multiplicity_3": 107,
+    "residual_mineral_multiplicity_4": 119
+  },
+  "disjoint_surface_residual_cargo_and_base_v3_not_host_orders": {
+    "base_tech_and_cargo_candidate": 1,
+    "base_tech_without_cargo_candidate": 51,
+    "both_ship_methods_overlap": 36,
+    "multiship_only": 7,
+    "no_exact_cargo_candidate": 807,
+    "observations": 915,
+    "ownerless_base_tech_change": 52,
+    "single_ship_only": 65,
+    "union_distinct_mineral_observations": 108
+  },
+  "evidence_limits": {
+    "NuHost_order_execution_verified": false,
+    "absent_owner_ships_exclude_unseen_actions": false,
+    "rate_differences_are_independent_statistical_inference": false,
+    "same_site_ship_observation_is_independent_causality": false,
+    "single_opposite_cargo_candidate_is_executed_transfer": false
+  },
+  "game_cluster_planet_transition_event_buckets": {
+    "planet_windows_any_base_tech_change": {
+      "0": 56,
+      "1": 10,
+      "2_to_5": 2
+    },
+    "planet_windows_any_cargo_candidate": {
+      "0": 53,
+      "1": 2,
+      "2_to_5": 8,
+      "6_to_20": 5
+    },
+    "planet_windows_any_multiship_cargo": {
+      "0": 56,
+      "1": 8,
+      "2_to_5": 4
+    },
+    "planet_windows_any_planetlinked_base": {
+      "0": 22,
+      "1": 20,
+      "21_to_100": 3,
+      "2_to_5": 14,
+      "6_to_20": 9
+    },
+    "planet_windows_any_single_cargo": {
+      "0": 53,
+      "1": 3,
+      "2_to_5": 9,
+      "6_to_20": 3
+    },
+    "planet_windows_any_surface_residual": {
+      "0": 21,
+      "1": 17,
+      "21_to_100": 3,
+      "2_to_5": 16,
+      "6_to_20": 11
+    },
+    "planet_windows_base_tech_and_cargo_candidate": {
+      "0": 67,
+      "1": 1
+    }
+  },
+  "game_cluster_residual_count_buckets": {
+    "both_exact": {
+      "0": 19,
+      "21_to_100": 6,
+      "2_to_5": 6,
+      "6_to_20": 7,
+      "over_100": 30
+    },
+    "ground_exact_surface_residual": {
+      "0": 21,
+      "21_to_100": 11,
+      "2_to_5": 17,
+      "6_to_20": 18,
+      "over_100": 1
+    },
+    "neither_exact": {
+      "0": 32,
+      "1": 8,
+      "21_to_100": 4,
+      "2_to_5": 14,
+      "6_to_20": 10
+    },
+    "surface_exact_ground_residual": {
+      "0": 59,
+      "1": 2,
+      "2_to_5": 5,
+      "6_to_20": 2
+    }
+  },
+  "game_cluster_surface_context_count_buckets": {
+    "multiple_ship_cargo_sum_opposite_candidate_not_order": {
+      "0": 56,
+      "1": 5,
+      "2_to_5": 4,
+      "6_to_20": 3
+    },
+    "one_ship_opposite_cargo_delta_candidate": {
+      "0": 53,
+      "1": 3,
+      "2_to_5": 6,
+      "6_to_20": 6
+    },
+    "owner_ship_observed_at_site_both": {
+      "0": 23,
+      "21_to_100": 7,
+      "2_to_5": 24,
+      "6_to_20": 13,
+      "over_100": 1
+    },
+    "owner_starbase_explicit_at_planet_both": {
+      "0": 68
+    },
+    "ownerless_base_planetlinked_both_not_owner_proof": {
+      "0": 22,
+      "1": 1,
+      "21_to_100": 8,
+      "2_to_5": 20,
+      "6_to_20": 16,
+      "over_100": 1
+    }
+  },
+  "per_mineral": {
+    "duranium": {
+      "both_exact": 2955,
+      "same_site_owner_ship_both_when_surface_only_residual": 167,
+      "single_opposite_ship_cargo_candidate_not_proof": 19,
+      "surface_only_residual": 226
+    },
+    "molybdenum": {
+      "both_exact": 2939,
+      "same_site_owner_ship_both_when_surface_only_residual": 174,
+      "single_opposite_ship_cargo_candidate_not_proof": 17,
+      "surface_only_residual": 245
+    },
+    "neutronium": {
+      "both_exact": 2976,
+      "same_site_owner_ship_both_when_surface_only_residual": 138,
+      "single_opposite_ship_cargo_candidate_not_proof": 46,
+      "surface_only_residual": 202
+    },
+    "tritanium": {
+      "both_exact": 2943,
+      "same_site_owner_ship_both_when_surface_only_residual": 173,
+      "single_opposite_ship_cargo_candidate_not_proof": 19,
+      "surface_only_residual": 242
+    }
+  },
+  "residual_classes_all_minerals": {
+    "both_exact": 11813,
+    "ground_exact_surface_residual": 915,
+    "neither_exact": 262,
+    "surface_exact_ground_residual": 33
+  },
+  "schema": "planets-lab.m2-surface-context-aggregate-triage.v1",
+  "source": {
+    "baseline_games": 68,
+    "corpus_sha256": "3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c",
+    "frozen_selection_sha256": "b6a09b95e2a8a6d261cb5d4180be45eb601711df9865cf0b44457ad17b84068f",
+    "heldout_entity_games": 0
+  },
+  "status": "DESCRIPTIVE_M2_SURFACE_RESIDUAL_CONTEXT_NOT_HOST_CAUSAL",
+  "surface_only_residual_magnitude_buckets": {
+    "1": 19,
+    "101_to_1000": 422,
+    "21_to_100": 285,
+    "2_to_5": 53,
+    "6_to_20": 131,
+    "over_1000": 5
+  }
+}
