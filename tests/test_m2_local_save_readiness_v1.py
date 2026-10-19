@@ -148,3 +148,15 @@ def test_cli_synthetic_only_safe_output():
     assert "SYNTHETIC_ONLY" not in result.stdout
     assert "PRIVATE_STRATEGY" not in result.stdout
     assert "nuhost_execution_verified: false" in result.stdout
+
+
+def test_cli_refuses_private_input_under_git_checkout():
+    script = str(ROOT / "tools" / "diagnostics" / "m2_local_save_readiness_v1.py")
+    file = ROOT / "docs" / "ROADMAP.md"
+    result = subprocess.run(
+        [sys.executable, script, "--private-input", str(file)],
+        capture_output=True, text=True, cwd=ROOT, timeout=30,
+    )
+    assert result.returncode == 2
+    assert "ABSTAIN_PRIVATE_CAPTURE_INVALID_OR_UNSAFE" in result.stdout
+    assert str(file) not in result.stdout
