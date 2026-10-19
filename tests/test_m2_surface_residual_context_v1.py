@@ -446,3 +446,76 @@ def test_v3_aggregate_same_frozen_pair_counts_overlap_once():
     assert hist["planet_windows_any_surface_residual"] == {"1": 1}
     assert hist["planet_windows_any_cargo_candidate"] == {"1": 1}
     assert out["sample"]["owner_current_counts"]["same_owner_planet_id_pairs"] == 1
+
+
+def test_v3_joint_cargo_and_tech_do_not_leak_between_planets_same_mineral():
+    """Regression: a positive match on planet 13 must not mark planets 14/15."""
+    a, b = snapshots()
+    # At planet 13, one ship accounts for the residual and the unchanged
+    # second ship makes the whole-site 2-ship sum match as well.
+    a["ships"] = [
+        {**a["ships"][0], "id": 31, "duranium": 9},
+        {**a["ships"][0], "id": 32, "duranium": 8},
+    ]
+    b["ships"] = [
+        {**b["ships"][0], "id": 31, "duranium": 2},
+        {**b["ships"][0], "id": 32, "duranium": 8},
+    ]
+    for payload in (a, b):
+        del payload["starbases"][0]["ownerid"]
+    b["starbases"][0]["enginetechlevel"] = 4
+
+    # Planet 14: identical mineral residual, but no ship and no base link.
+    # Planet 15: no ship; weak planet-linked base with tech changes, but
+    # necessarily NO cargo match. Both follow planet 13 in ID order.
+    for pid in (14, 15):
+        for payload in (a, b):
+            planet = deepcopy(payload["planets"][0])
+            planet["id"], planet["x"], planet["y"] = pid, 100 + pid, 200 + pid
+            payload["planets"].append(planet)
+    for payload in (a, b):
+        base = deepcopy(payload["starbases"][0])
+        base["planetid"], base["id"] = 15, 90
+        payload["starbases"].append(base)
+
+    o = profile(a, b)
+    j = o["per_mineral_surface_residual_joint_cargo_base"]["duranium"]
+    cov = o["per_mineral_category_covariates"]["duranium"]["ground_exact_surface_residual"]
+    events = o["planet_transition_residual_events_not_independent_actions"]
+
+    assert j["qualified_surface_residual"] == 3
+    assert j["both_single_and_multiship_candidate"] == 1
+    assert j["no_exact_cargo_candidate"] == 2
+    assert j["any_exact_opposite_cargo_candidate"] == 1
+    assert j["owner_ship_at_site_both"] == 1
+    assert j["planetlinked_base_both_not_ownership_proof"] == 2
+    assert j["ownerless_planetlinked_tech_changed"] == 2
+    assert j["base_tech_change_and_cargo_candidate"] == 1
+    assert j["base_tech_change_no_cargo_candidate"] == 1
+    assert cov["one_ship_opposite_cargo_delta_candidate"] == 1
+    assert cov["multiple_ship_cargo_sum_opposite_candidate_not_order"] == 1
+    assert cov["ownerless_planetlinked_tech_changed_observed"] == 2
+    assert events["planet_windows_any_surface_residual"] == 3
+    assert events["planet_windows_any_cargo_candidate"] == 1
+    assert events["planet_windows_any_planetlinked_base"] == 2
+    assert events["planet_windows_any_base_tech_change"] == 2
+    assert events["planet_windows_base_tech_and_cargo_candidate"] == 1
+
+    # The same frozen pair must survive the independent aggregate invariant.
+    class Connection:
+        done = False
+        def execute(self, query):
+            assert "source_members" in query
+            return self
+        def fetchmany(self, amount):
+            if self.done:
+                return []
+            self.done = True
+            return [(1, 777001, 1, 10, 10), (2, 777001, 1, 11, 11)]
+    report = analyze_corpus_coverage(
+        Connection(), max_games=1, pairs_per_game=1,
+        allowed_games={777001}, reconstruct=lambda n: {1: a, 2: b}[n],
+    )
+    out = report["sample"]["surface_residual_context_not_host_verified"]
+    assert out["per_mineral_surface_residual_joint_cargo_base"]["duranium"] == j
+    assert out["planet_transition_residual_events_not_independent_actions"] == events

@@ -351,9 +351,14 @@ def profile_surface_residual_context(
                 dst["planetlinked_base_both_any_owner_provenance"] += 1
                 if (pid in bases_b) != (pid in bases_a):
                     dst["planetlinked_base_owner_provenance_changed"] += 1
-            dst.update(_observed_ship_context(
+            # Keep the per-planet observation independent of the cumulative
+            # mineral/class Counter. Reading booleans from dst after update
+            # makes a previous planet's ship/base hit leak into all later
+            # planets of the same residual class (V3 joint invariant failure).
+            ship_here = _observed_ship_context(
                 before, after, pbxy, paxy, ships_b, ships_a, mineral, residual,
-            ))
+            )
+            dst.update(ship_here)
             if status == "ground_exact_surface_residual":
                 # Joint classes are disjoint within each planet×mineral
                 # observation. Previously single/multiship marginals
@@ -361,11 +366,17 @@ def profile_surface_residual_context(
                 j = joint_surface_residual[mineral]
                 j["qualified_surface_residual"] += 1
                 residual_minerals_at_planet += 1
-                single = bool(dst["one_ship_opposite_cargo_delta_candidate"])
-                multi = bool(dst["multiple_ship_cargo_sum_opposite_candidate_not_order"])
-                base_tech = bool(dst["ownerless_planetlinked_tech_changed_observed"])
-                base_link = bool(dst["planetlinked_base_both_any_owner_provenance"])
-                co_site = bool(dst["owner_ship_observed_at_site_both"])
+                single = bool(ship_here["one_ship_opposite_cargo_delta_candidate"])
+                multi = bool(ship_here["multiple_ship_cargo_sum_opposite_candidate_not_order"])
+                base_tech = (
+                    pid in linked_b and pid in linked_a and
+                    _starbase_tech_changed(linked_b[pid], linked_a[pid]) is True
+                )
+                base_link = (
+                    (pid in bases_b or pid in linked_b) and
+                    (pid in bases_a or pid in linked_a)
+                )
+                co_site = bool(ship_here["owner_ship_observed_at_site_both"])
                 key = (
                     "both_single_and_multiship_candidate" if single and multi else
                     "single_only_cargo_candidate" if single else
