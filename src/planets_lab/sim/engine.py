@@ -53,6 +53,10 @@ class HostEngine:
     ) -> tuple[GameState, tuple[HostEvent, ...]]:
         state.validate()
         self._validate_orders(state, orders)
+        if any(
+            owner.starbase_tech_orders for owner in orders.by_player.values()
+        ) and not any(p.name == "starbase_tech_upgrade" for p in self._phases):
+            raise ValueError("starbase tech orders require an explicit technology phase")
 
         next_state = state.clone()
         rng = Random(seed)
@@ -75,6 +79,21 @@ class HostEngine:
                     f"orders key {player_id} does not match player_orders.player_id "
                     f"{player_orders.player_id}"
                 )
+
+            seen_base_ids: set[int] = set()
+            for upgrade in player_orders.starbase_tech_orders:
+                planet_id = upgrade.planet_id
+                if type(planet_id) is not int or planet_id <= 0:
+                    raise ValueError("starbase order requires positive planet id")
+                if planet_id in seen_base_ids:
+                    raise ValueError(f"duplicate starbase tech order for planet {planet_id}")
+                seen_base_ids.add(planet_id)
+                base = state.starbases.get(planet_id)
+                planet = state.planets.get(planet_id)
+                if base is None or planet is None:
+                    raise ValueError("starbase upgrade references missing planet/base")
+                if base.owner_id != player_id or planet.owner_id != player_id:
+                    raise ValueError("starbase technology order owner mismatch")
 
             seen_ship_ids: set[int] = set()
             for ship_order in player_orders.ship_orders:
