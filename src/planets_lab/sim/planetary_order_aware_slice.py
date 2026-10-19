@@ -184,13 +184,21 @@ class PlanetaryOrderAwareSlice:
     specs: NuStaticSpecs
     placement: Placement
     planetary: PlanetaryHostPipeline = field(default_factory=PlanetaryHostPipeline)
-    tech_placement: Literal["tech_before_planetary", "tech_after_planetary"] | None = None
+    # BEFORE/AFTER are outside the two-phase cargo+economy block;
+    # BETWEEN places technology exactly between those two phases.
+    tech_placement: Literal[
+        "tech_before_planetary", "tech_between_cargo_and_planetary",
+        "tech_after_planetary",
+    ] | None = None
     standard_tech_level_caps: Mapping[int, int] | None = None
 
     def __post_init__(self) -> None:
         if self.placement not in ("transfer_before_planetary", "transfer_after_planetary"):
             raise ValueError("explicit transfer placement is required")
-        if self.tech_placement not in (None, "tech_before_planetary", "tech_after_planetary"):
+        if self.tech_placement not in (
+            None, "tech_before_planetary", "tech_between_cargo_and_planetary",
+            "tech_after_planetary",
+        ):
             raise ValueError("explicit supported starbase tech placement is required")
         if self.tech_placement is not None and self.standard_tech_level_caps is None:
             raise ValueError("explicit standard starbase tech eligibility caps required")
@@ -210,7 +218,14 @@ class PlanetaryOrderAwareSlice:
             )
             if self.tech_placement == "tech_before_planetary":
                 return (tech, *phases)
-            return (*phases, tech)
+            if self.tech_placement == "tech_after_planetary":
+                return (*phases, tech)
+            # Exhaustive third slot between the cargo operation and the
+            # entire planetary economy block. Do not split the fixed
+            # internal economic phases or infer the real NuHost order.
+            if self.placement == "transfer_before_planetary":
+                return (cargo, tech, *self.planetary.phases)
+            return (*self.planetary.phases, tech, cargo)
         return phases
 
     def engine(self) -> HostEngine:

@@ -28,6 +28,13 @@ from planets_lab.sim.planetary_owner_capture_v2 import (
 )
 
 PLACEMENTS = ("transfer_before_planetary", "transfer_after_planetary")
+# Exhausts the 3! permutations of cargo transfer, intact planetary
+# economy block, and standard-price technology purchase.
+TECH_SLOTS = (
+    "tech_before_planetary",
+    "tech_between_cargo_and_planetary",
+    "tech_after_planetary",
+)
 RESOURCE_SECTIONS = ("planets", "ships", "ground")
 ORDER_SOURCE_ASSERTED = "CALLER_ASSERTED_COMPLETE_ORDERS_NOT_SERVER_VERIFIED"
 
@@ -222,7 +229,7 @@ def reconcile_explicit_orders(
             abstain_reason="complete independent orders and full snapshots required",
         )
     if tech_placement is not None and (
-        tech_placement not in ("tech_before_planetary", "tech_after_planetary")
+        tech_placement not in TECH_SLOTS
         or standard_tech_level_caps is None
     ):
         return ConditionalTransitionReconciliation(
@@ -292,6 +299,88 @@ def reconcile_explicit_orders(
     )
     return ConditionalTransitionReconciliation(
         status=status, placements=tuple(comparisons),
+        full_match_placements=full, resource_match_placements=resources,
+        order_source=ORDER_SOURCE_ASSERTED,
+    )
+
+
+def reconcile_all_standard_tech_phase_orders(
+    before: GameState,
+    observed_after: GameState,
+    orders: TurnOrders,
+    specs: NuStaticSpecs,
+    *,
+    complete_orders: bool = False,
+    complete_snapshots: bool = False,
+    standard_tech_level_caps: Mapping[int, int] | None = None,
+    seed: int = 0,
+) -> ConditionalTransitionReconciliation:
+    """Compare the full 3! phase ordering, not an inferred real NuHost order.
+
+    The intact planetary economy pipeline is a single block: no claim is
+    made about hidden interactions *within* its phases. All six candidates
+    require the SAME explicitly supplied orders, full before/after state,
+    and known standard-level cap. ABSTAIN never becomes a full match.
+    """
+    if complete_orders is not True or complete_snapshots is not True:
+        return ConditionalTransitionReconciliation(
+            "ABSTAIN_INCOMPLETE_ORDER_OR_SNAPSHOT_COVERAGE",
+            abstain_reason="complete independent orders and full snapshots required",
+        )
+    if standard_tech_level_caps is None:
+        return ConditionalTransitionReconciliation(
+            "ABSTAIN_UNSUPPORTED_TECH_PRICING_SCOPE",
+            abstain_reason="explicit standard tech eligibility caps required",
+        )
+    if type(orders) is not TurnOrders or not any(
+        owner.starbase_tech_orders for owner in orders.by_player.values()
+    ):
+        return ConditionalTransitionReconciliation(
+            "ABSTAIN_NO_EXPLICIT_TECH_ORDERS",
+            abstain_reason="six-way technology phase comparison requires an explicit tech order",
+        )
+    compared: list[PlacementComparison] = []
+    for slot in TECH_SLOTS:
+        partial = reconcile_explicit_orders(
+            before, observed_after, orders, specs,
+            complete_orders=True, complete_snapshots=True,
+            standard_tech_level_caps=standard_tech_level_caps,
+            tech_placement=slot, seed=seed,
+        )
+        # Reject common-invalid evidence *before* accepting a match from
+        # another slot; unsupported individual placements are expected.
+        if partial.status in (
+            "ABSTAIN_UNSUPPORTED_PAIR", "ABSTAIN_INCOMPLETE_ORDER_OR_SNAPSHOT_COVERAGE",
+            "ABSTAIN_UNSUPPORTED_TECH_PRICING_SCOPE",
+            "ABSTAIN_INTERNAL_RESOURCE_LEDGER",
+        ):
+            return partial
+        compared.extend(partial.placements)
+    if len(compared) != 6 or len({x.placement for x in compared}) != 6:
+        return ConditionalTransitionReconciliation(
+            "ABSTAIN_INTERNAL_PHASE_ENUMERATION",
+            abstain_reason="six distinct candidate orders were not evaluated",
+        )
+    supported = [x for x in compared if x.status == "CONDITIONAL_MODELED"]
+    if not supported:
+        return ConditionalTransitionReconciliation(
+            "ABSTAIN_NO_SUPPORTED_PLACEMENT", placements=tuple(compared),
+            order_source=ORDER_SOURCE_ASSERTED,
+            abstain_reason="all six conditional orderings rejected the supplied orders",
+        )
+    full = tuple(x.placement for x in compared if x.full_model_state_exact)
+    resources = tuple(x.placement for x in compared if x.resource_exact)
+    status = (
+        "CONDITIONAL_FULL_MATCH_MULTIPLE_PHASE_ORDERS_NOT_CAUSAL"
+        if len(full) > 1 else
+        "CONDITIONAL_FULL_MATCH_ONE_PHASE_ORDER_NOT_CAUSAL"
+        if full else
+        "CONDITIONAL_RESOURCE_ONLY_MATCH_NOT_CAUSAL"
+        if resources else
+        "CONDITIONAL_UNATTRIBUTED_MISMATCH"
+    )
+    return ConditionalTransitionReconciliation(
+        status=status, placements=tuple(compared),
         full_match_placements=full, resource_match_placements=resources,
         order_source=ORDER_SOURCE_ASSERTED,
     )
@@ -371,3 +460,37 @@ def reconcile_owner_observations_v2(
         seed=seed,
     )
     return replace(result, order_source=admitted.status)
+
+
+def reconcile_owner_observations_v2_all_tech_phase_orders(
+    before: GameState,
+    observed_after: GameState,
+    envelopes: Sequence[object],
+    specs: NuStaticSpecs,
+    *,
+    owner_keyrings: Mapping[int, Mapping[str, bytes]],
+    observed_host_start_utc: str | None,
+    complete_snapshots: bool = False,
+    standard_tech_level_caps: Mapping[int, int] | None = None,
+    seed: int = 0,
+) -> ConditionalTransitionReconciliation:
+    """Enumerate six hypotheses AFTER admission of every owner-signed V2 row.
+
+    A local HMAC attests the record, not NuHost receipt, external time truth
+    or accepted standard rules. Never synthesize silent owners or missing
+    technology orders from archive differences.
+    """
+    admitted = aggregate_owner_observations_v2(
+        envelopes, before, owner_keyrings=owner_keyrings,
+        observed_host_start_utc=observed_host_start_utc,
+    )
+    if not admitted.admitted or admitted.orders is None:
+        return ConditionalTransitionReconciliation(
+            admitted.status, abstain_reason=admitted.reason,
+        )
+    compared = reconcile_all_standard_tech_phase_orders(
+        before, observed_after, admitted.orders, specs,
+        complete_orders=True, complete_snapshots=complete_snapshots,
+        standard_tech_level_caps=standard_tech_level_caps, seed=seed,
+    )
+    return replace(compared, order_source=admitted.status)
