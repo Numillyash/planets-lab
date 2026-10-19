@@ -33,6 +33,19 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**M2 complete six-way phase ordering (2026-10-19):** After PR #239
+standard starbase-tech spending and PR #240 signed V2 owner orders,
+the research slice still omitted the two valid relative placements
+where technology lies between planet cargo transfer and the fixed
+14-phase economy block. Add the third explicitly named tech slot,
+enumerate all six permutations without inventing a real Host ordering,
+and compare them against the SAME bounded full states and genuinely
+present tech orders. Retain exact phase-resource conservation,
+ABSTAIN on incomplete provenance and every negative control, and
+keep source HMAC distinct from server acceptance.
+[Six-way simulation evidence and limitations](handoff/2026-10-19-m2-six-phase-order-exhaustive-v1.md).
+
+
 **M2 validated V3 + explicit standard-price starbase-tech simulation (2026-10-19):**
 The actual V3 runtime `20261019T143058Z_1f0721ca1186` has exit 0,
 unchanged CURRENT, frozen baseline68, no heldout32 entity reads:
