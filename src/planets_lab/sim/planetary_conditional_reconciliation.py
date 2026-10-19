@@ -140,7 +140,9 @@ def _ledger_reconciles(
     )
 
 
-def _check_bounded_pair(before: GameState, after: GameState) -> None:
+def _check_bounded_pair(
+    before: GameState, after: GameState, *, allow_starbase_tech: bool = False,
+) -> None:
     if type(before) is not GameState or type(after) is not GameState:
         raise ValueError("both observations must be complete GameState values")
     before.validate()
@@ -152,8 +154,20 @@ def _check_bounded_pair(before: GameState, after: GameState) -> None:
             or before.planets.keys() != after.planets.keys()
             or before.ships.keys() != after.ships.keys()):
         raise ValueError("player/planet/ship roster changed outside bounded slice")
-    if before.starbases or after.starbases or before.ion_storms or after.ion_storms:
-        raise ValueError("starbases and ion storms are outside bounded slice")
+    if before.ion_storms or after.ion_storms:
+        raise ValueError("ion storms are outside bounded slice")
+    if not allow_starbase_tech and (before.starbases or after.starbases):
+        raise ValueError("starbases require explicit tech purchase placement")
+    if allow_starbase_tech:
+        if before.starbases.keys() != after.starbases.keys():
+            raise ValueError("starbase identities changed outside bounded slice")
+        for pid, original in before.starbases.items():
+            updated = after.starbases[pid]
+            # Do not let defense, fighter, ownership or construction changes
+            # masquerade as a simple technology purchase.
+            identity = dict(tech_hull=1, tech_engine=1, tech_beam=1, tech_torpedo=1)
+            if replace(original, **identity) != replace(updated, **identity):
+                raise ValueError("starbase nontechnology state changed")
     for planet_id, original in before.planets.items():
         new = after.planets[planet_id]
         if (original.x, original.y) != (new.x, new.y):
@@ -185,6 +199,8 @@ def reconcile_explicit_orders(
     complete_orders: bool = False,
     complete_snapshots: bool = False,
     seed: int = 0,
+    tech_placement: str | None = None,
+    standard_tech_level_caps: Mapping[int, int] | None = None,
 ) -> ConditionalTransitionReconciliation:
     """Compare two conditional phase placements against one complete observed T.
 
@@ -197,8 +213,23 @@ def reconcile_explicit_orders(
             "ABSTAIN_INCOMPLETE_ORDER_OR_SNAPSHOT_COVERAGE",
             abstain_reason="complete independent orders and full snapshots required",
         )
+    if tech_placement is not None and (
+        tech_placement not in ("tech_before_planetary", "tech_after_planetary")
+        or standard_tech_level_caps is None
+    ):
+        return ConditionalTransitionReconciliation(
+            "ABSTAIN_UNSUPPORTED_TECH_PRICING_SCOPE",
+            abstain_reason="tech placement and standard-rule player caps required",
+        )
+    if tech_placement is None and standard_tech_level_caps is not None:
+        return ConditionalTransitionReconciliation(
+            "ABSTAIN_UNSUPPORTED_TECH_PRICING_SCOPE",
+            abstain_reason="tech caps supplied without enabled tech phase",
+        )
     try:
-        _check_bounded_pair(before, observed_after)
+        _check_bounded_pair(
+            before, observed_after, allow_starbase_tech=tech_placement is not None,
+        )
         pre_inventory = _inventory(before)
         observed_inventory = _inventory(observed_after)
     except (ValueError, AttributeError, TypeError) as exc:
@@ -208,12 +239,14 @@ def reconcile_explicit_orders(
 
     comparisons: list[PlacementComparison] = []
     for placement in PLACEMENTS:
-        outcome = PlanetaryOrderAwareSlice(specs, placement).attempt_step(
-            before, orders, seed=seed
-        )
+        label = placement if tech_placement is None else placement + "|" + tech_placement
+        outcome = PlanetaryOrderAwareSlice(
+            specs, placement, tech_placement=tech_placement,
+            standard_tech_level_caps=standard_tech_level_caps,
+        ).attempt_step(before, orders, seed=seed)
         if not outcome.supported or outcome.state is None:
             comparisons.append(PlacementComparison(
-                placement, "ABSTAIN_PLACEMENT_UNSUPPORTED",
+                label, "ABSTAIN_PLACEMENT_UNSUPPORTED",
                 reason=outcome.abstain_reason or "no supported model outcome",
             ))
             continue
@@ -225,7 +258,7 @@ def reconcile_explicit_orders(
             )
         residuals = _resource_difference(modeled_inventory, observed_inventory)
         comparisons.append(PlacementComparison(
-            placement=placement,
+            placement=label,
             status="CONDITIONAL_MODELED",
             resource_exact=not residuals,
             full_model_state_exact=(
