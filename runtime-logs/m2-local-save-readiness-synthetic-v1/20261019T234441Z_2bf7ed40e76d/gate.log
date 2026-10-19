@@ -1,0 +1,6 @@
+===== M2 LOCAL SAVE EVIDENCE READINESS =====
+mode: SYNTHETIC_NO_PRIVATE_DATA
+{"ambiguous_or_missing_response_events":1,"any_known_field_redaction_marker_events":1,"application_failure_events":1,"complete_pre_and_post_host_states_verified":false,"explicit_http_and_app_success_events":1,"http_failure_events":1,"independent_host_start_witness_verified":false,"independent_server_order_acceptance_verified":false,"nuhost_execution_verified":false,"parseable_nontruncated_request_events":2,"private_payload_content_returned":false,"retained_save_events":4,"save_calls_not_retained":2,"schema":"planets-lab.m2-save-evidence-readiness.v1","signed_all_owner_orders_verified":false,"status":"CLIENT_TRANSPORT_ONLY_NOT_NUHOST_VERIFIED","total_save_route_calls":6,"total_turnready_route_calls_unlinked":1,"transport_error_events":0,"unavailable_or_truncated_request_events":2,"verified_order_payload_mapping":false}
+raw_payload_emitted: false
+server_order_receipt_verified: false
+nuhost_execution_verified: false

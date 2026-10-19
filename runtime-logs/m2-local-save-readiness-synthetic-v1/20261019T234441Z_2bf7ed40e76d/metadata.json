@@ -1,0 +1,20 @@
+{
+  "evidence_branch": "runtime-logs",
+  "exit_code": 0,
+  "finished_at_utc": "2026-10-19T23:44:41Z",
+  "hostname": "GEORGUL-GAMER",
+  "interrupted_signal": null,
+  "log_file": "gate.log",
+  "missing_artifact_paths": [],
+  "remote": "origin",
+  "requested_artifact_paths": [],
+  "run_id": "20261019T234441Z_2bf7ed40e76d",
+  "run_name": "m2-local-save-readiness-synthetic-v1",
+  "runner": "python3",
+  "schema": "planets-lab.runtime-evidence.v1",
+  "skipped_oversized_artifact_paths": [],
+  "source_branch": "main",
+  "source_commit": "2bf7ed40e76d198429ba5771c0bd4b238f50dec5",
+  "source_dirty": false,
+  "started_at_utc": "2026-10-19T23:44:41Z"
+}
