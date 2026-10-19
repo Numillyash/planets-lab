@@ -215,3 +215,15 @@ def test_bounded_full_state_reconciliation_with_tech_snapshot():
         c.resource_residuals.get("planets", {}).get(10, {}).get("megacredits") == 17
         for c in mismatch.placements if c.status == "CONDITIONAL_MODELED"
     )
+
+
+def test_malformed_upgrade_record_abstains_without_attribute_errors():
+    state = source()
+    malformed = TurnOrders(by_player={
+        1: PlayerOrders(player_id=1, starbase_tech_orders=("not-a-tech-order",)),
+    })
+    copy = deepcopy(state)
+    outcome = slice_().attempt_step(state, malformed)
+    assert outcome.status == "ABSTAIN_UNSUPPORTED_OR_INVALID"
+    assert outcome.state is None and not outcome.events and not outcome.balances
+    assert state == copy
