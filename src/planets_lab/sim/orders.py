@@ -29,9 +29,19 @@ class ShipOrder:
 
 
 @dataclass(slots=True, frozen=True)
+class StarbaseTechUpgradeOrder:
+    planet_id: int
+    hull: int | None = None
+    engine: int | None = None
+    beam: int | None = None
+    torpedo: int | None = None
+
+
+@dataclass(slots=True, frozen=True)
 class PlayerOrders:
     player_id: int
     ship_orders: tuple[ShipOrder, ...] = ()
+    starbase_tech_orders: tuple[StarbaseTechUpgradeOrder, ...] = ()
 
 
 @dataclass(slots=True, frozen=True)
