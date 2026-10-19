@@ -23,6 +23,9 @@ from planets_lab.sim.planetary_order_aware_slice import (
 from planets_lab.sim.planetary_owner_capture import (
     aggregate_owner_observations,
 )
+from planets_lab.sim.planetary_owner_capture_v2 import (
+    aggregate_owner_observations_v2,
+)
 
 PLACEMENTS = ("transfer_before_planetary", "transfer_after_planetary")
 RESOURCE_SECTIONS = ("planets", "ships", "ground")
@@ -324,3 +327,47 @@ def reconcile_owner_observations(
         complete_orders=True, complete_snapshots=complete_snapshots, seed=seed,
     )
     return replace(result, order_source=admission.status)
+
+
+def reconcile_owner_observations_v2(
+    before: GameState,
+    observed_after: GameState,
+    envelopes: Sequence[object],
+    specs: NuStaticSpecs,
+    *,
+    owner_keyrings: Mapping[int, Mapping[str, bytes]],
+    observed_host_start_utc: str | None,
+    complete_snapshots: bool = False,
+    tech_placement: str | None = None,
+    standard_tech_level_caps: Mapping[int, int] | None = None,
+    seed: int = 0,
+) -> ConditionalTransitionReconciliation:
+    """Conditionally replay strictly signed V2 cargo+starbase owner records.
+
+    V2 HMAC authenticates a local operator assertion, NOT receipt or
+    execution by NuHost, and caller-supplied Host clock/caps are not witnessed.
+    No V1-to-V2 conversion, order inference, or fabricated empty owner rows.
+    """
+    admitted = aggregate_owner_observations_v2(
+        envelopes, before, owner_keyrings=owner_keyrings,
+        observed_host_start_utc=observed_host_start_utc,
+    )
+    if not admitted.admitted or admitted.orders is None:
+        return ConditionalTransitionReconciliation(
+            admitted.status, abstain_reason=admitted.reason,
+        )
+    if any(owner.starbase_tech_orders for owner in admitted.orders.by_player.values()):
+        if tech_placement is None or standard_tech_level_caps is None:
+            return ConditionalTransitionReconciliation(
+                "ABSTAIN_UNSUPPORTED_TECH_PRICING_SCOPE",
+                order_source=admitted.status,
+                abstain_reason="signed V2 tech orders need explicit phase placement and eligible caps",
+            )
+    result = reconcile_explicit_orders(
+        before, observed_after, admitted.orders, specs,
+        complete_orders=True, complete_snapshots=complete_snapshots,
+        tech_placement=tech_placement,
+        standard_tech_level_caps=standard_tech_level_caps,
+        seed=seed,
+    )
+    return replace(result, order_source=admitted.status)
