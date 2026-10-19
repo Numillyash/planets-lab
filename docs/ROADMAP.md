@@ -33,6 +33,18 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**M2 six-way phase identifiability preflight (2026-10-19):**
+PR #241 completed the six conditional placements but did not ask
+whether they produce six distinguishable post-Host states.
+Add an offline, fake-input-only phase-equivalence audit comparing
+the entire modeled T state across all six, with 96 bounded
+deterministic fixture variants and aggregate-only runtime evidence.
+Prefer experiments where every hypothesis is supported; do not
+interpret an unsupported conditional model as a NuHost rejection,
+and do not claim phase order from model-internal traces.
+[Implementation and evidence limits](handoff/2026-10-19-m2-synthetic-phase-identifiability-v1.md).
+
+
 **M2 complete six-way phase ordering (2026-10-19):** After PR #239
 standard starbase-tech spending and PR #240 signed V2 owner orders,
 the research slice still omitted the two valid relative placements
