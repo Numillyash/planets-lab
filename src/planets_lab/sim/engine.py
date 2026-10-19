@@ -5,7 +5,7 @@ from random import Random
 from typing import Protocol
 
 from planets_lab.core import GameState
-from planets_lab.sim.orders import TurnOrders
+from planets_lab.sim.orders import StarbaseTechUpgradeOrder, TurnOrders
 
 
 @dataclass(slots=True, frozen=True)
@@ -82,6 +82,8 @@ class HostEngine:
 
             seen_base_ids: set[int] = set()
             for upgrade in player_orders.starbase_tech_orders:
+                if type(upgrade) is not StarbaseTechUpgradeOrder:
+                    raise ValueError("unsupported starbase technology order type")
                 planet_id = upgrade.planet_id
                 if type(planet_id) is not int or planet_id <= 0:
                     raise ValueError("starbase order requires positive planet id")
