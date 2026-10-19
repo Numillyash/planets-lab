@@ -44,6 +44,8 @@ class StarbaseTechUpgradePhase:
         for player_id in sorted(orders.by_player):
             owner = orders.by_player[player_id]
             for upgrade in owner.starbase_tech_orders:
+                if type(upgrade) is not StarbaseTechUpgradeOrder:
+                    raise UnsupportedStarbaseTechUpgrade("unsupported tech order type")
                 upgrades.append((player_id, upgrade))
 
         # Sort globally; never silently permit multiple competing orders for
