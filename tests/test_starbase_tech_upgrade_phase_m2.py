@@ -81,7 +81,7 @@ def test_standard_upgrade_cost_and_phase_ledger(tech_placement):
     assert b.ship_cargo_delta == {}
     assert b.ground_mineral_delta == {}
     assert "starbase_tech_upgraded_standard_conditional" in b.event_kinds
-    assert result.events[0].phase == ("starbase_tech_upgrade" if tech_placement == "tech_before_planetary" else "structure_decay")
+    assert result.balances[0 if tech_placement == "tech_before_planetary" else -1].phase == "starbase_tech_upgrade"
 
 
 def test_tech_placement_affects_funding_by_explicit_ship_transfer():
