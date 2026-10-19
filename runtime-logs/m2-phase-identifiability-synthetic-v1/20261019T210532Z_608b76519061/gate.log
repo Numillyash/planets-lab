@@ -1,0 +1,23 @@
+===== M2 SYNTHETIC PHASE IDENTIFIABILITY =====
+status: SYNTHETIC_PHASE_DISCRIMINABILITY_NOT_NUHOST_VERIFIED
+candidates_evaluated: 96
+all_six_supported_candidates: 24
+all_six_supported_multiple_distinct_endstates: 0
+candidates_with_unsupported_models: 72
+best_all_supported_available: true
+best_all_supported_supported_placements: 6
+best_all_supported_distinct_supported_endstates: 1
+best_all_supported_unsupported_placements_not_server_rejections: 0
+best_all_supported_equivalence_class_sizes: [6]
+best_all_supported_fictional_recipe: SyntheticCandidate(planet_mc=4000, ship_mc=800, transfer_mc=0, transfer_direction='ship_to_planet', planet_supplies_load=0, factory_count=0)
+best_partial_available: true
+best_partial_supported_placements: 3
+best_partial_distinct_supported_endstates: 1
+best_partial_unsupported_placements_not_server_rejections: 3
+best_partial_equivalence_class_sizes: [3, 3]
+best_partial_fictional_recipe: SyntheticCandidate(planet_mc=4000, ship_mc=800, transfer_mc=0, transfer_direction='planet_to_ship', planet_supplies_load=45, factory_count=10)
+nuhost_order_execution_verified: false
+host_phase_order_verified: false
+partial_model_abstention_is_server_rejection: false
+corpus_read: false
+heldout_entity_records_read: false
