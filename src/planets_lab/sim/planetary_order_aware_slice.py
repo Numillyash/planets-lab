@@ -228,6 +228,19 @@ class PlanetaryOrderAwareSlice:
             raise UnsupportedPlanetaryOrderSlice(
                 "starbase tech orders require an explicitly enabled technology phase"
             )
+        if self.tech_placement is not None:
+            for pid, base in state.starbases.items():
+                planet = state.planets.get(pid)
+                if planet is None or base.owner_id != planet.owner_id:
+                    raise UnsupportedPlanetaryOrderSlice(
+                        "starbase identity or owner is not fully authenticated"
+                    )
+                if any(type(getattr(base, name)) is not int
+                       or not 1 <= getattr(base, name) <= 10
+                       for name in ("tech_hull", "tech_engine", "tech_beam", "tech_torpedo")):
+                    raise UnsupportedPlanetaryOrderSlice(
+                        "starbase has an unsupported or incomplete tech level"
+                    )
         for ship in state.ships.values():
             if (
                 ship.warp != 0 or ship.waypoint_x is not None
