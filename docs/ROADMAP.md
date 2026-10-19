@@ -33,6 +33,22 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**M2 local-only /game/save evidence readiness (2026-10-20):**
+Synthetic phase-identifiability runtime 20261019T210532Z_608b76519061
+completed successfully: 96 candidates, 24 complete six-way cases with
+one identical end state each; 72 have unsupported model paths. The
+current grid cannot identify phase ordering. Next, evaluate the
+EXISTING passive owner-approved /game/save capture as **client
+transport** only: classify syntactically complete captures, app-level
+and HTTP responses and bounded buffer omissions without emitting
+private orders, IDs, notes, URL strings or secrets. A local-only
+Unix chmod600 CLI refuses inputs inside the repository, while the
+public runtime-evidence wrapper runs fixed SYNTHETIC input only.
+No HTTP success or turnready counter is promoted to NuHost order
+acknowledgement, independently witnessed Host time or causal parity.
+[Research and privacy boundary](handoff/2026-10-20-m2-local-save-evidence-readiness-v1.md).
+
+
 **M2 six-way phase identifiability preflight (2026-10-19):**
 PR #241 completed the six conditional placements but did not ask
 whether they produce six distinguishable post-Host states.
