@@ -33,6 +33,20 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**M2 passive client save/ready chronology metadata (2026-10-20):**
+After clean local-save-readiness runtime at
+`20261019T234441Z_2bf7ed40e76d`, add a separate **metadata-only**
+observer for original /game/save and /game/turnready calls.
+Retain only bounded in-memory route/method, client-clock timing,
+HTTP status and response success flag, with explicit overflow and
+in-flight/overlap ABSTAIN. Only an ordered client-visible response
+sequence can be claimed; server acceptance of *specific* orders,
+external Host-start clock, independently accepted order submission
+and actual NuHost execution remain unverified. Publish only a
+fake-browser Node.js test result, never real turn/order payloads.
+[Scope, privacy and limitations](handoff/2026-10-20-m2-client-save-ready-metadata-v1.md).
+
+
 **M2 local-only /game/save evidence readiness (2026-10-20):**
 Synthetic phase-identifiability runtime 20261019T210532Z_608b76519061
 completed successfully: 96 candidates, 24 complete six-way cases with
