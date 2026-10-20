@@ -33,6 +33,24 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**Executable ordinary-movement + standard economy turn (2026-10-20):**
+After #251's multi-planet/multi-turn planetary ledger, add the
+first cross-subsystem HostEngine composition: ordinary reachable
+normal movement + explicitly scoped building + unchanged 14
+planet economy phases. Require a separate explicit order per
+ship, every owner represented, full hull/engine/fuel inputs,
+two transparent (not NuHost-verified) movement placements,
+and no unmodeled special/combat/foreign-planet interactions.
+Independently reconcile each ship's fuel/position and each
+planet's supplies, taxes, construction spending, surface/ground
+minerals and structures, ABSTAIN with **zero partial output**
+on any unsupported interaction or ledger mismatch.
+[Coverage inventory and scoped integration](handoff/2026-10-20-core-standard-host-composition-v1.md).
+Continue toward explicitly ordered orbital cargo transfer next;
+keep signed orders, phase causality and live game requirements
+parked in [#247](https://github.com/Numillyash/planets-lab/issues/247).
+
+
 **Core multi-turn economy contract (2026-10-20):**
 Extend PR #250's synthetic structure/economy one-turn slice
 to a bounded 1–8-turn explicit plan across multiple owned planets.
