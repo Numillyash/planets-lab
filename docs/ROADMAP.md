@@ -33,6 +33,20 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**Core standard structure construction V2 (2026-10-20):**
+Continue PR #248's strict fully funded construction with a
+SEPARATE, opt-in normal-rule priority simulator. Official
+structure targets execute defense, factories, then mines;
+one supply per unit, 10/3/4 MC, and an explicit option to sell
+surplus supplies for MC at 1:1. Partial funding and target clipping
+are reported as conditional partial outcomes with exact ledgers;
+unsupported rules and malformed inputs ABSTAIN.
+Preserve the V1 API and do not yet add new unsigned fields to
+PlayerOrders or place construction silently inside canonical
+Host phases. No raw private inputs, no corpus scan.
+[Implementation and scope](handoff/2026-10-20-core-standard-structure-priority-v2.md).
+
+
 **ACTIVE CORE MAINLINE — human-dependent mechanics deferred (2026-10-20).**
 GitHub [issue #247](https://github.com/Numillyash/planets-lab/issues/247)
 parks independent NuHost accepted-order receipts, verified all-owner
