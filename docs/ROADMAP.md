@@ -33,6 +33,20 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**Standard construction + 14-phase economy conditional integration (2026-10-20):**
+After #249, test both fully explicit structure placements relative
+to the existing intact planetary economy using a separate,
+owner-complete **research target map**, not a new unsigned field in
+V1/V2 signed PlayerOrders. Enforce rule-mode and context gates,
+ABSTAIN on missing owners, ships/bases/storms, preserve original
+state and canonical HostEngine/phase definitions. A constructed
+factory may contribute to same-turn supplies ONLY in the chosen
+before-economy hypothesis; this is a distinguishable local model,
+NOT observed NuHost phase ordering. External evidence remains
+parked in #247.
+[Conditional whole-turn integration handoff](handoff/2026-10-20-core-structure-economy-conditional-turn-v1.md).
+
+
 **Core standard structure construction V2 (2026-10-20):**
 Continue PR #248's strict fully funded construction with a
 SEPARATE, opt-in normal-rule priority simulator. Official
