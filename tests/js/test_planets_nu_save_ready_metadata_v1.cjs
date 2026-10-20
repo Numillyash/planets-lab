@@ -11,8 +11,8 @@ const source = fs.readFileSync(path.resolve(
 const SECRET = "FAKE_BEARER_TOKEN_DO_NOT_EMIT";
 const STRATEGY = "FICTIONAL_GAME_STRATEGY_SHOULD_NOT_BE_CAPTURED";
 let fetchCalls = 0, xhrSends = 0, tick = 0;
-let deferredSaveResolve;
-let slowSaveNext = false;
+let deferredSaveResolve, deferredReadyResolve;
+let slowSaveNext = false, slowReadyNext = false;
 function response(status, success) {
   return {
     status,
@@ -28,6 +28,10 @@ function fetch(url) {
   if (slowSaveNext && /\/game\/save/.test(String(url))) {
     slowSaveNext = false;
     return new Promise(resolve => {deferredSaveResolve = () => resolve(response(200, true));});
+  }
+  if (slowReadyNext && /\/game\/turnready/.test(String(url))) {
+    slowReadyNext = false;
+    return new Promise(resolve => {deferredReadyResolve = () => resolve(response(200, true));});
   }
   return Promise.resolve(response(200, true));
 }
@@ -95,13 +99,45 @@ assert.equal(result.independently_witnessed_host_start, false);
 assert.equal(result.verified_server_order_acceptance, false);
 assert.equal(result.nuhost_execution_verified, false);
 assertPrivateAbsent();
+const atomic = observer.bundle();
+assert.equal(atomic.schema, "planets-lab.client-save-ready-bundle.v1");
+assert.deepEqual(JSON.parse(JSON.stringify(atomic.report)),
+  JSON.parse(JSON.stringify(observer.report())));
+assert.equal(atomic.trace.events.length, observer.trace().events.length);
+assert.ok(!JSON.stringify(atomic).includes(SECRET));
+assert.ok(!JSON.stringify(atomic).includes(STRATEGY));
+atomic.trace.events[0].route = "mutated";
+assert.equal(observer.trace().events[0].route, "turnready");
+
+// Emit only synthetic metadata to a standalone Python audit test.
+// No raw transport data or external game records are involved.
+if (process.argv.includes("--emit-synthetic-bundle")) {
+  console.log(JSON.stringify(observer.bundle()));
+  process.exit(0);
+}
+
+// A previously successful save cannot be reused for another ready.
+sendXHR("/game/turnready");
+result = observer.report();
+assert.equal(result.candidate_ordered_client_sequences_not_host_verified, 1);
+assert.equal(result.repeated_ready_without_fresh_save_events, 2);
+assert.equal(result.ambiguous_or_unconfirmed_ready_events, 2);
+
+// A failed save cannot be made harmless by a later successful save.
+sendXHR("/game/save", {status: 500});
+sendXHR("/game/save");
+sendXHR("/game/turnready");
+result = observer.report();
+assert.equal(result.candidate_ordered_client_sequences_not_host_verified, 1);
+assert.ok(result.failed_or_overlapping_save_window_events >= 1);
+assertPrivateAbsent();
 
 // Request failure and app failure must never turn into inferred success.
 sendXHR("/game/save", {status: 500});
 sendXHR("/game/turnready", {status: 200});
 result = observer.report();
 assert.equal(result.candidate_ordered_client_sequences_not_host_verified, 1);
-assert.equal(result.ambiguous_or_unconfirmed_ready_events, 2);
+assert.equal(result.ambiguous_or_unconfirmed_ready_events, 4);
 sendXHR("/game/save", {success: false});
 sendXHR("/game/turnready");
 assert.equal(observer.report().candidate_ordered_client_sequences_not_host_verified, 1);
@@ -121,6 +157,24 @@ assert.equal(observer.report().candidate_ordered_client_sequences_not_host_verif
   assert.equal(result.candidate_ordered_client_sequences_not_host_verified, 1);
   assert.ok(result.ambiguous_or_unconfirmed_ready_events >= 4);
   assert.equal(result.pending_events, 0);
+
+  // A successful save initiated while turnready is awaiting its
+  // response does not retroactively satisfy a completed-save window.
+  sendXHR("/game/save");
+  slowReadyNext = true;
+  const pendingReady = root.fetch("https://api.planets.nu/game/turnready",
+    {method: "POST"});
+  const lateSave = root.fetch("https://api.planets.nu/game/save",
+    {method: "POST"});
+  await lateSave;
+  await new Promise(resolve => setImmediate(resolve));
+  deferredReadyResolve();
+  await pendingReady;
+  await new Promise(resolve => setImmediate(resolve));
+  result = observer.report();
+  assert.equal(result.candidate_ordered_client_sequences_not_host_verified, 1);
+  assert.ok(result.failed_or_overlapping_save_window_events >= 2);
+  assertPrivateAbsent();
 
   // Ignore foreign origin even if path matches, no forwarding changes.
   const oldSaveCount = observer.report().total_save_calls;
@@ -143,7 +197,7 @@ assert.equal(observer.report().candidate_ordered_client_sequences_not_host_verif
   assert.ok(result.dropped_metadata_events > 0);
   assert.equal(result.candidate_ordered_client_sequences_not_host_verified, 0);
   assert.equal(result.no_extra_network_requests, true);
-  assert.equal(xhrSends, 89); // seven initial, one ignored, 80 saves, one final ready
+  assert.equal(xhrSends, 94); // includes duplicate-ready and mixed-result controls
   assertPrivateAbsent();
 
   observer.stop();
