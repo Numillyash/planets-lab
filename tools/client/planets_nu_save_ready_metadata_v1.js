@@ -214,6 +214,18 @@
   function detached(value) {return JSON.parse(JSON.stringify(value));}
   const API = Object.freeze({
     report() {return detached(snapshot());},
+    // Atomically pair counts with the exact same retained metadata trace.
+    // Separate report() and trace() calls can race with in-flight requests.
+    bundle() {
+      return detached({
+        schema: "planets-lab.client-save-ready-bundle.v1",
+        report: snapshot(),
+        trace: {
+          schema: SCHEMA, status: "LOCAL_CLIENT_TIMELINE_NOT_HOST_PROOF",
+          events: events.map(e => ({...e}))
+        }
+      });
+    },
     trace() {
       // Only fixed metadata keys; no input URL or request/response data.
       return detached({schema: SCHEMA, status: "LOCAL_CLIENT_TIMELINE_NOT_HOST_PROOF",
