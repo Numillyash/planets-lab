@@ -33,6 +33,21 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**Core multi-turn economy contract (2026-10-20):**
+Extend PR #250's synthetic structure/economy one-turn slice
+to a bounded 1–8-turn explicit plan across multiple owned planets.
+For each turn, independently reconcile per-planet factory supplies,
+tax receipts, MC/supply structure spending and sale, mineral
+extraction, ground mutation and structure counts (including decay).
+Any unexplained balance or later failed turn ABSTAINS the
+**whole sequence** with no partial checkpoints. Preserve unchanged
+14-phase economy, exact explicit owner coverage and optional
+before/after build placement. This checks internal standard-model
+consistency, not observed NuHost causality; the external evidence
+dependency stays parked in #247.
+[Multiturn research contract](handoff/2026-10-20-core-multiturn-planetary-economy-ledger-v1.md).
+
+
 **Standard construction + 14-phase economy conditional integration (2026-10-20):**
 After #249, test both fully explicit structure placements relative
 to the existing intact planetary economy using a separate,

@@ -70,6 +70,11 @@ class _ExplicitStructurePhase:
                         ("supplies_for_building", str(forecast.supplies_used_for_building)),
                         ("supplies_sold", str(forecast.supplies_sold_for_mc)),
                         ("mc_spent", str(forecast.megacredits_spent_on_building)),
+                        # Per-family figures enable an independent multi-turn
+                        # structure ledger (including population-driven decay).
+                        ("built_defense_posts", str(dict(forecast.built).get("defense_posts", 0))),
+                        ("built_factories", str(dict(forecast.built).get("factories", 0))),
+                        ("built_mines", str(dict(forecast.built).get("mines", 0))),
                         ("capped_types", str(len(forecast.capped_by_population))),
                     ),
                     message="locally asserted standard structure targets, not authenticated Host orders",
