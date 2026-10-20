@@ -139,10 +139,26 @@ def _validate_explicit_scope(
             planet = state.planets.get(target.planet_id)
             if planet is None or planet.owner_id != owner_id:
                 raise UnsupportedCompositeTurn("structure target has missing/foreign owner")
+    if not state.ships:
+        raise UnsupportedCompositeTurn("at least one explicit ordinary ship required")
     if all_ships != set(state.ships):
         raise UnsupportedCompositeTurn("one explicit ordinary move/noop order per ship required")
     if not all_planets:
         raise UnsupportedCompositeTurn("at least one explicit construction target required")
+
+
+def _require_no_unmodeled_encounters(state: GameState) -> None:
+    """Never model a possible foreign-planet encounter or co-located combat."""
+    owners_at_site: dict[tuple[int, int], set[int]] = {}
+    for ship in state.ships.values():
+        owners_at_site.setdefault((ship.x, ship.y), set()).add(ship.owner_id)
+        for planet in state.planets.values():
+            if (ship.x, ship.y) == (planet.x, planet.y) and (
+                planet.owner_id is not None and planet.owner_id != ship.owner_id
+            ):
+                raise UnsupportedCompositeTurn("foreign planet arrival is unsupported")
+    if any(len(owners) > 1 for owners in owners_at_site.values()):
+        raise UnsupportedCompositeTurn("multi-owner co-location needs combat resolution")
 
 
 def _exact_ship_fuel_ledgers(
@@ -241,6 +257,7 @@ def simulate_standard_movement_economy_turn(
     try:
         before.validate()
         _validate_explicit_scope(before, ship_orders, structure_targets, specs)
+        _require_no_unmodeled_encounters(before)
         movement = NormalMovementPhase(
             specs=specs, eligible_ship_ids=frozenset(before.ships),
             allow_deferred=False, enable_expanded_movement=False,
@@ -262,6 +279,7 @@ def simulate_standard_movement_economy_turn(
             else (*economy_block, movement)
         )
         modeled, events = HostEngine(phases).step(before, ship_orders, seed=seed)
+        _require_no_unmodeled_encounters(modeled)
         planet_balances = _planet_ledgers(before, modeled, events)
         ship_balances = _exact_ship_fuel_ledgers(before, modeled, events)
     except (
