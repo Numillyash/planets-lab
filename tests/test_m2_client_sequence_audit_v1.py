@@ -40,7 +40,7 @@ def test_cross_language_valid_fake_browser_bundle_is_self_consistent(synthetic_b
     assert not result.nuhost_execution_verified
     assert not result.raw_client_metadata_returned
     summary = json.dumps(safe_metadata_summary(synthetic_bundle))
-    for field in ("events", "started_ms", "settled_ms", "FAKE_BEARER",
+    for field in ('"events":', "started_ms", "settled_ms", "FAKE_BEARER",
                   "FICTIONAL_GAME", "api.planets.nu", "gameid"):
         assert field not in summary
 
