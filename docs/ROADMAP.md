@@ -33,6 +33,27 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**ACTIVE CORE MAINLINE — human-dependent mechanics deferred (2026-10-20).**
+GitHub [issue #247](https://github.com/Numillyash/planets-lab/issues/247)
+parks independent NuHost accepted-order receipts, verified all-owner
+T−1/T submissions, Host boundary, prospective C5 capture O/C, and
+special Chunnel/Horwasp experiments **until the end**. No new
+player-led experiments, HAR, synthetic-only rerun loops or fabricated
+DIFF_VERIFIED claims while autonomous core work remains.
+
+Do not conflate **public100 storage completion** (224014 / 224014
+semantic-parity snapshot members; 100 games) with verified
+end-to-end Host mechanics. M2 uses frozen baseline68/136 pairs;
+fresh32 were opened for separate prospective capture-side research
+but remain excluded from M2 entity sampling. CURRENT stays public68.
+Continue documented and testable standard mechanics, starting with
+bounded **planet mines/factories/defense construction** (1795/3769
+structure-family net changes) without inferring orders from T−1/T
+stock differences. Keep unsupported funding, campaign modifiers
+and unknown phase placement ABSTAIN.
+[Full scope and staged autonomous priorities](handoff/2026-10-20-core-corpus-mainline-and-deferred-evidence.md).
+
+
 **M2 Host differential admission boundary (2026-10-20):**
 Published local client-sequence audit runtime
 `20261020T135946Z_98d857cc3b62` completed at exit=0 with
