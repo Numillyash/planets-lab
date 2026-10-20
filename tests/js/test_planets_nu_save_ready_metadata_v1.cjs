@@ -99,6 +99,22 @@ assert.equal(result.independently_witnessed_host_start, false);
 assert.equal(result.verified_server_order_acceptance, false);
 assert.equal(result.nuhost_execution_verified, false);
 assertPrivateAbsent();
+const atomic = observer.bundle();
+assert.equal(atomic.schema, "planets-lab.client-save-ready-bundle.v1");
+assert.deepEqual(JSON.parse(JSON.stringify(atomic.report)),
+  JSON.parse(JSON.stringify(observer.report())));
+assert.equal(atomic.trace.events.length, observer.trace().events.length);
+assert.ok(!JSON.stringify(atomic).includes(SECRET));
+assert.ok(!JSON.stringify(atomic).includes(STRATEGY));
+atomic.trace.events[0].route = "mutated";
+assert.equal(observer.trace().events[0].route, "turnready");
+
+// Emit only synthetic metadata to a standalone Python audit test.
+// No raw transport data or external game records are involved.
+if (process.argv.includes("--emit-synthetic-bundle")) {
+  console.log(JSON.stringify(observer.bundle()));
+  process.exit(0);
+}
 
 // A previously successful save cannot be reused for another ready.
 sendXHR("/game/turnready");
