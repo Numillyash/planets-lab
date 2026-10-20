@@ -125,7 +125,8 @@ def audit_atomic_metadata_bundle(bundle: Any) -> ClientSequenceAudit:
     dropped = report["dropped_metadata_events"]
     if total != len(raw) + dropped or report["retained_metadata_events"] != len(raw):
         _fail()
-    if raw and (raw[0].get("id") != dropped + 1
+    if raw and (type(raw[0]) is not dict or type(raw[-1]) is not dict
+                or raw[0].get("id") != dropped + 1
                 or raw[-1].get("id") != total):
         _fail()
 
