@@ -140,26 +140,49 @@
       item.app_success === true;
   }
   function readiness() {
-    let candidates = 0, ambiguous = 0;
+    let candidates = 0, ambiguous = 0, noFreshSave = 0, overlapOrFailure = 0;
+    let previousReady = null;
     const readyEvents = events.filter(e => e.route === "turnready");
     for (const ready of readyEvents) {
-      // Missing earlier entries mean we cannot establish a continuous
-      // client-side sequence. Never treat this as host-order evidence.
-      if (dropped !== 0 || !clientSuccess(ready)) {ambiguous++; continue;}
-      const earlierSaves = events.filter(e =>
-        e.route === "save" && e.id < ready.id);
-      if (!earlierSaves.length) {ambiguous++; continue;}
-      const latest = earlierSaves[earlierSaves.length - 1];
-      if (!clientSuccess(latest) || latest.settled_ms === null ||
-          latest.settled_ms > ready.started_ms ||
-          earlierSaves.some(e => e.settled_ms === null ||
-            e.settled_ms > ready.started_ms)) {
+      // Each successful save can contribute to at most ONE client-side
+      // ready window. Reusing an earlier save for multiple ready events
+      // would overstate the evidence of a new submission sequence.
+      const windowSaves = events.filter(e =>
+        e.route === "save" && e.id < ready.id &&
+        (previousReady === null || e.id > previousReady.id));
+      const priorReady = previousReady;
+      previousReady = ready;
+      if (!windowSaves.length) noFreshSave++;
+      const readyClockValid = Number.isFinite(ready.started_ms) &&
+        Number.isFinite(ready.settled_ms) &&
+        ready.settled_ms >= ready.started_ms;
+      const overlappingReady = priorReady !== null &&
+        (!Number.isFinite(priorReady.settled_ms) ||
+          priorReady.settled_ms > ready.started_ms);
+      const successfulSaves = windowSaves.length > 0 &&
+        windowSaves.every(save =>
+          clientSuccess(save) && Number.isFinite(save.started_ms) &&
+          Number.isFinite(save.settled_ms) &&
+          save.settled_ms >= save.started_ms &&
+          save.settled_ms <= ready.started_ms);
+      const crossingSave = readyClockValid && events.some(save =>
+        save.route === "save" && save.id > ready.id &&
+        Number.isFinite(save.started_ms) &&
+        save.started_ms <= ready.settled_ms);
+      // The observer can establish a *client-visible* order only.
+      // Truncated logs, failed saves, overlapping requests, unsupported
+      // clock data and repeated ready calls must conservatively abstain.
+      if (dropped !== 0 || !clientSuccess(ready) || !readyClockValid ||
+          overlappingReady || !successfulSaves || crossingSave) {
         ambiguous++;
+        if (windowSaves.length && (overlappingReady || !successfulSaves ||
+            crossingSave || !readyClockValid)) overlapOrFailure++;
         continue;
       }
       candidates++;
     }
-    return {candidates, ambiguous, total: readyEvents.length};
+    return {candidates, ambiguous, total: readyEvents.length,
+      noFreshSave, overlapOrFailure};
   }
   function snapshot() {
     const sequence = readiness();
@@ -179,6 +202,8 @@
         e.route === "turnready" && clientSuccess(e)).length,
       candidate_ordered_client_sequences_not_host_verified: sequence.candidates,
       ambiguous_or_unconfirmed_ready_events: sequence.ambiguous,
+      repeated_ready_without_fresh_save_events: sequence.noFreshSave,
+      failed_or_overlapping_save_window_events: sequence.overlapOrFailure,
       verified_server_order_acceptance: false,
       independently_witnessed_host_start: false,
       nuhost_execution_verified: false,
