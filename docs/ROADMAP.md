@@ -33,6 +33,20 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**M2 client chronology one-save-window and independent audit (2026-10-20):**
+The previous metadata-only runtime `20261020T134314Z_1d0f3cfafa32`
+passed its synthetic tests but did not test repeated-ready reuse
+of a single earlier successful save. Require a fresh, complete,
+non-overlapping save batch between **successive** turnready requests,
+ABSTAIN for mixed success/failure, in-flight saves or invalid clock
+ordering. Add atomic metadata-only `bundle()` and a strict Python
+cross-language consistency audit, with optional local chmod600
+private-bundle mode. Public runtime evidence uses fake browser
+data **only**. This does not authenticate server order acceptance
+or actual NuHost execution.
+[Correctness and privacy boundary](handoff/2026-10-20-m2-save-ready-one-window-and-independent-audit.md).
+
+
 **M2 passive client save/ready chronology metadata (2026-10-20):**
 After clean local-save-readiness runtime at
 `20261019T234441Z_2bf7ed40e76d`, add a separate **metadata-only**
