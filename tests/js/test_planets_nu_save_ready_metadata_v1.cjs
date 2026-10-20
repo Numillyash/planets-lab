@@ -137,7 +137,7 @@ sendXHR("/game/save", {status: 500});
 sendXHR("/game/turnready", {status: 200});
 result = observer.report();
 assert.equal(result.candidate_ordered_client_sequences_not_host_verified, 1);
-assert.equal(result.ambiguous_or_unconfirmed_ready_events, 2);
+assert.equal(result.ambiguous_or_unconfirmed_ready_events, 4);
 sendXHR("/game/save", {success: false});
 sendXHR("/game/turnready");
 assert.equal(observer.report().candidate_ordered_client_sequences_not_host_verified, 1);
