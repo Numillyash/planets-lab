@@ -124,7 +124,7 @@ assert.equal(observer.report().candidate_ordered_client_sequences_not_host_verif
 
   // Ignore foreign origin even if path matches, no forwarding changes.
   const oldSaveCount = observer.report().total_save_calls;
-  sendXHR("IGNORED"); // non-target API path
+  sendXHR("/irrelevant"); // non-target API path
   await root.fetch("https://evil.example.com/game/save", {method: "POST"});
   await new Promise(resolve => setImmediate(resolve));
   assert.equal(observer.report().total_save_calls, oldSaveCount);
@@ -143,7 +143,7 @@ assert.equal(observer.report().candidate_ordered_client_sequences_not_host_verif
   assert.ok(result.dropped_metadata_events > 0);
   assert.equal(result.candidate_ordered_client_sequences_not_host_verified, 0);
   assert.equal(result.no_extra_network_requests, true);
-  assert.equal(xhrSends, 88); // 7 initial? verified below separately
+  assert.equal(xhrSends, 89); // seven initial, one ignored, 80 saves, one final ready
   assertPrivateAbsent();
 
   observer.stop();
