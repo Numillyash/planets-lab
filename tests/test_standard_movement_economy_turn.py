@@ -211,7 +211,21 @@ def test_excluded_contexts_abstain_without_partial_state(scenario):
         row = cmd.by_player[1]
         cmd.by_player[1] = replace(row, ship_orders=(
             replace(row.ship_orders[0], waypoint_x=5000),))
-    elif scenario == "insufficient_fuel": pre.ships[1].cargo.neutronium = 0
+    elif scenario == "insufficient_fuel":
+        # A short flight can genuinely round to zero fuel under the
+        # published integer fuel rule. Use the full warp-9 range so
+        # the mass-based required fuel is independently > 0.
+        from planets_lab.sim.normal_movement import plan_full_normal_move
+        pre.ships[1].cargo.neutronium = 0
+        row = cmd.by_player[1]
+        cmd.by_player[1] = replace(row, ship_orders=(
+            replace(row.ship_orders[0], waypoint_x=181),))
+        plan = plan_full_normal_move(
+            pre.ships[1], static(),
+            target_x=181, target_y=100, warp=9,
+        )
+        assert plan.fuel_required > 0
+        assert not plan.executable and plan.reason == "insufficient_fuel"
     elif scenario == "unsupported_structure":
         builds[2] = (StructureBuildTargets(20, factories=1),)
     elif scenario == "storm":
