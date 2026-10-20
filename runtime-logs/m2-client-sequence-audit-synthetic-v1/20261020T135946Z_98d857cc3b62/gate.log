@@ -1,0 +1,6 @@
+===== M2 CLIENT SEQUENCE METADATA RECONCILIATION =====
+mode: SYNTHETIC_NO_PRIVATE_DATA
+{"ambiguous_or_unconfirmed_ready_events":1,"candidate_ordered_client_sequences_not_host_verified":1,"dropped_metadata_events":0,"failed_or_overlapping_save_window_events":0,"independent_server_order_acceptance_verified":false,"independently_witnessed_host_start":false,"nuhost_execution_verified":false,"raw_client_metadata_returned":false,"repeated_ready_without_fresh_save_events":1,"retained_metadata_events":3,"schema":"planets-lab.client-sequence-audit.v1","status":"SELF_CONSISTENT_CLIENT_METADATA_NOT_NUHOST_VERIFIED","total_save_calls":1,"total_turnready_calls":2}
+independent_host_start_witness: false
+independent_server_order_acceptance: false
+nuhost_execution_verified: false
