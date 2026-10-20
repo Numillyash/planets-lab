@@ -33,6 +33,23 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**M2 Host differential admission boundary (2026-10-20):**
+Published local client-sequence audit runtime
+`20261020T135946Z_98d857cc3b62` completed at exit=0 with
+one synthetic save→ready candidate and one repeated-ready
+ABSTAIN. No actual accepted Host orders were observed.
+Add an aggregate-only local readiness check linking existing
+bounded T-1→T state validation, full-owner V2 HMAC envelopes
+and conditional six-way technology phase comparison. Optional
+atomic client metadata proves only same-source consistency.
+Never promote local signatures, caller-supplied Host time or
+matching synthetic states to DIFF_VERIFIED. Three external
+blockers remain: independently authenticated server acceptance
+of the specific orders, independently witnessed Host boundary
+and independently sourced complete pre/post owner-current state.
+[Exact evidence admission and missing-data contract](handoff/2026-10-20-m2-host-differential-evidence-readiness-gate.md).
+
+
 **M2 client chronology one-save-window and independent audit (2026-10-20):**
 The previous metadata-only runtime `20261020T134314Z_1d0f3cfafa32`
 passed its synthetic tests but did not test repeated-ready reuse
