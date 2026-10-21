@@ -106,8 +106,7 @@ def test_pointer_chains_across_explicit_subphases_without_guessing_next_host():
     "missing_priority_assert", "missing_base_assert", "missing_pbp_assert",
     "missing_no_clone_assert", "ship_limit_over_999", "ship_limit_zero",
     "ship_count_over_limit", "ship_count_bool", "unknown_pointer",
-    "negative_pointer", "pointer_bool", "base_list_missing",
-    "duplicate_base", "bool_base_id", "missing_owner_points",
+    "negative_pointer", "pointer_bool", "duplicate_base", "bool_base_id", "missing_owner_points",
     "duplicate_owner_points", "negative_pbp", "threshold_21_pbp",
     "bool_pbp", "priority_fcode", "clone", "invalid_order_flag",
     "missing_player_scope", "unsupported_base_501",
@@ -135,8 +134,6 @@ def test_unattributable_input_abstains_without_partial_selection(invalid):
         s = replace(s, last_standard_build_planet_id=-1)
     elif invalid == "pointer_bool":
         s = replace(s, last_standard_build_planet_id=True)
-    elif invalid == "base_list_missing":
-        s = replace(s, bases=s.bases[:3])
     elif invalid == "duplicate_base":
         s = replace(s, bases=s.bases+(s.bases[0],))
     elif invalid == "bool_base_id":
@@ -163,17 +160,18 @@ def test_unattributable_input_abstains_without_partial_selection(invalid):
         s = replace(s, bases=(base(501, 1, True),)+s.bases[1:])
     elif invalid == "no_bases": s = replace(s, bases=())
     elif invalid == "no_pp_rows": s = replace(s, player_pbps=())
-    elif invalid == "base_list_missing":
-        raise AssertionError
-    # A subset of bases can be a valid complete assertion. A missing
-    # base is unprovable without a trusted external roster, so the
-    # selector must not pretend to deduce missing entries merely from
-    # population. Ensure this test only asserts structural failures.
-    if invalid == "base_list_missing":
-        assert len(s.bases) == 3
-        return
     result = select_classic_standard_subphase(s)
     assert result.status == "ABSTAIN_CLASSIC_STANDARD_SUBPHASE"
     assert result.selected_planet_ids == ()
     assert result.last_standard_build_planet_id_after is None
     assert not result.supported
+
+
+def test_omitted_real_base_cannot_be_inferred_without_external_roster():
+    """Complete-starbase-roster is a *caller assertion*, not independent proof."""
+    full = scenario()
+    omission = replace(full, bases=full.bases[:3])
+    assert select_classic_standard_subphase(omission).supported
+    assert not select_classic_standard_subphase(replace(
+        omission, complete_starbase_roster_asserted=False,
+    )).supported
