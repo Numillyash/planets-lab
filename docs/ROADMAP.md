@@ -33,6 +33,24 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**Classic PBP standard subphase / persistent pointer (2026-10-21):**
+In the first near-limit/late Classic queue unit, separate the
+STANDARD regular subphase from priority builds and cloning.
+Require an exact caller-asserted last standard build planet
+pointer, complete base/owner/PBP roster (all PBP <21),
+prior priority subphase resolved and no clone or pbN codes.
+Walk circular ascending planet IDs, skip idle bases, return
+up to explicit available hard-limit slots, preserve pointer
+on zero builds, and update only to last selected standard
+base. This SELECTS bases, not ship IDs, Host timing, or
+authentic priorities. ABSTAIN for missing pointer, unknown
+PBP/owner, pbN, cloning and exhausted causal context.
+[Pointer unit and explicit provenance](handoff/2026-10-21-classic-standard-pointer-subphase-v1.md).
+Next combine independently guarded selected standard subset with
+per-base ship assembly and planet economy without claiming
+real PBP priority/scheduler Host parity.
+
+
 **Common unthrottled early multiple-starbase queue (2026-10-21):**
 After #257 selected single-base ship/economy turn,
 compose 2–64 ordinary *fully queued* bases from ALL owners.
