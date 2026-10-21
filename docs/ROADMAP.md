@@ -33,6 +33,22 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**Classic standard pointer–ordered shipbuilding × economy (2026-10-21):**
+Compose #259's exact standard-only Classic pointer selection
+with complete caller-asserted per-base warehouse ship designs,
+conditional **lowest-free ship ID** allocation in saved-pointer
+order, and #257/#258 independently checked component and planet
+economy ledgers. A selected second base failing must ABSTAIN the
+whole turn; idle and unselected bases remain untouched. This is
+the Classic nonpriority standard subphase ONLY: <21 PBP on all
+owners, no pbN/cloning, no unknown queue state or Host timing.
+Before-/after-14-economic-phase placement remains conditional.
+[Full bounded interface and provenance](handoff/2026-10-21-classic-pointer-standard-ship-economy-v1.md).
+Next core: staged priority PBP selection and post-combat build
+windows **separately**, then PQ/PPQ late allocation and larger
+movement/combat Host composition. No real queue proof until #247.
+
+
 **Classic PBP standard subphase / persistent pointer (2026-10-21):**
 In the first near-limit/late Classic queue unit, separate the
 STANDARD regular subphase from priority builds and cloning.
