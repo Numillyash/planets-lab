@@ -86,10 +86,10 @@ def run(state, specs, selection, queue, **changes):
 
 @pytest.mark.parametrize("placement", PLACEMENTS)
 def test_pointer_order_controls_lowest_ship_ids_and_two_base_materials(placement):
-    pre, specs, context, queue = context()
-    frozen = deepcopy((pre, specs, context, queue))
-    r = run(pre, specs, context, queue, placement=placement)
-    again = run(pre, specs, context, queue, placement=placement)
+    pre, specs, selection, queue = context()
+    frozen = deepcopy((pre, specs, selection, queue))
+    r = run(pre, specs, selection, queue, placement=placement)
+    again = run(pre, specs, selection, queue, placement=placement)
     assert r == again
     assert r.supported and r.status == STATUS
     assert r.state.turn == pre.turn + 1
@@ -114,7 +114,7 @@ def test_pointer_order_controls_lowest_ship_ids_and_two_base_materials(placement
     assert not r.nuhost_execution_verified
     assert not r.independent_host_parity_verified
     assert not r.nuhost_phase_placement_verified
-    assert (pre, specs, context, queue) == frozen
+    assert (pre, specs, selection, queue) == frozen
 
 
 def test_one_slot_skips_other_queued_base_without_charging_it():
