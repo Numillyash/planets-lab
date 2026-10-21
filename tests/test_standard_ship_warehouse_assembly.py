@@ -155,7 +155,7 @@ def test_inadequate_surface_minerals_abstain_but_existing_stock_can_rescue():
     "above_ship_limit", "ship_collision", "id_zero", "id_1000", "bool_ship_id",
     "foreign_base", "absent_base", "missing_hull_license", "bad_hull",
     "bad_stock_type", "duplicate_stock", "negative_stock", "bool_stock",
-    "unknown_stock_id", "stock_tuple_missing", "missing_credits",
+    "unknown_stock_id", "phantom_catalog_stock", "stock_tuple_missing", "missing_credits",
     "unknown_game_variant", "ship_roster_inconsistent", "tech_too_low",
 ])
 def test_unsupported_queue_stock_design_or_resource_fails_closed(case):
@@ -191,6 +191,8 @@ def test_unsupported_queue_stock_design_or_resource_fails_closed(case):
     elif case == "negative_stock": warehouse = StandardComponentWarehouse(hulls=((7, -1),))
     elif case == "bool_stock": warehouse = StandardComponentWarehouse(engines=((9, True),))
     elif case == "unknown_stock_id": warehouse = StandardComponentWarehouse(hulls=((0, 2),))
+    elif case == "phantom_catalog_stock":
+        warehouse = StandardComponentWarehouse(engines=((999, 2),))
     elif case == "stock_tuple_missing": warehouse = StandardComponentWarehouse(hulls=((7,),))
     elif case == "missing_credits": state.planets[10].cargo.megacredits = 0
     elif case == "unknown_game_variant": state.metadata["campaign_special"] = True
