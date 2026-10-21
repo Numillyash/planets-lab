@@ -97,6 +97,10 @@ def test_complete_turn_creates_exact_ship_and_preserves_economic_ledgers(placeme
 def test_mined_duranium_can_make_after_economy_assembly_eligible():
     state, specs, blueprint = context()
     state.planets[10].cargo.duranium = 0
+    # Fixture player 1 is Federation, whose standard mineral mining
+    # modifier is 70%. Ten mines extract only 7 KT Duranium, below
+    # this ship's 9 KT requirement. Fourteen mines extract 10 KT.
+    state.planets[10].mines = 14
     frozen = deepcopy(state)
     early = run(state, specs, blueprint, placement=PLACEMENTS[0])
     late = run(state, specs, blueprint, placement=PLACEMENTS[1])
