@@ -187,6 +187,12 @@ def assemble_selected_standard_ship(
             name: _decode_rows(getattr(warehouse, name))
             for name in WAREHOUSE_FIELDS
         }
+        for name, library in (
+            ("hulls", specs.hulls), ("engines", specs.engines),
+            ("beams", specs.beams), ("launchers", specs.torpedoes),
+        ):
+            if any(component_id not in library for component_id in stock[name]):
+                raise UnsupportedWarehouseBuild("warehouse contains catalog-unknown components")
         demand = (
             ("hulls", blueprint.hull_id, 1, hull.cost),
             ("engines", blueprint.engine_id, hull.engine_count,
