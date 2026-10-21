@@ -33,6 +33,24 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**Common unthrottled early multiple-starbase queue (2026-10-21):**
+After #257 selected single-base ship/economy turn,
+compose 2–64 ordinary *fully queued* bases from ALL owners.
+Support only common PBP/PQ/PPQ early/all-slots-open interval
+with **post-build fleet count strictly below 90%** of asserted
+global limit; full base/warehouse/ID scope and explicit no
+priority/cloning/other actions. Build each independent base,
+audit component draw/cost/new ship from previous state and
+reconcile ALL planets against unchanged 14-phase economy,
+before/after models. Missing base, duplicate ID, one failed
+purchaser, cap contention or invented priority ABSTAIN
+entire batch with no partial ships or receipts.
+[Scope, source rules and queue exclusions](handoff/2026-10-21-core-unthrottled-multibase-queue-v1.md).
+Next: separate Classic middle/late PBP state and PQ/PPQ
+late allocation with externally specified priority/queue
+state; no Host causal claims until issue #247 witnesses.
+
+
 **Selected ship assembly × standard planet economy (2026-10-21):**
 Following #256's conditional one-ship intermediate stage,
 execute one real **modeled turn** containing precisely one
