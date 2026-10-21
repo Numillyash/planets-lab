@@ -33,6 +33,24 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**Standard starbase facilities core (2026-10-21):**
+After #253's orbital cargo + movement + economy composition,
+implement documented ordinary **starbase creation**, starbase
+defense posts and base fighters (resource-conserving, bounded).
+Prices: base 900 MC/120 Dur/402 Tri/340 Mol; each base defense
+10 MC/1 Dur, each base fighter 100 MC/3 Tri/2 Mol; normal caps
+200 defense and 60 fighters. Add complete owner-scoped facility
+targets and conditional before-/after-planetary economy placement;
+check every receipt, base state and planetary resource ledger.
+Existing 14-phase economy, PlayerOrders V1/V2 HMAC, corpus and
+heldout remain unchanged. Unsupported special stations, simultaneous
+creation+equipment on one planet, queues and shipbuilding ABSTAIN.
+[Scoped starbase implementation and shipbuilding prerequisites](handoff/2026-10-21-core-standard-starbase-facilities-v1.md).
+Continue with complete shipbuilding bill-of-materials and inventory/
+queue eligibility once represented explicitly; do NOT create ships
+from a hull price alone. Real Host experiments remain parked in #247.
+
+
 **Core orbital transfer × normal movement × standard economy (2026-10-21):**
 Extend PR #252's fuel-checked ship movement and economy with
 the existing PlanetCargoTransferPhase, under an explicit local
