@@ -95,12 +95,17 @@ def test_two_owner_base_creation_and_garrison_economy_ledger(placement):
     assert len(first.planet_balances) == 2
     assert all(x.resource_balance_exact for x in first.planet_balances)
     assert all(x.exact for x in first.base_balances)
-    assert first.state.planets[10].cargo.duranium == initial.planets[10].cargo.duranium - 120
-    assert first.state.planets[10].cargo.tritanium == initial.planets[10].cargo.tritanium - 402
-    assert first.state.planets[10].cargo.molybdenum == initial.planets[10].cargo.molybdenum - 340
-    assert first.state.planets[20].cargo.duranium == initial.planets[20].cargo.duranium - 2
-    assert first.state.planets[20].cargo.tritanium == initial.planets[20].cargo.tritanium - 6
-    assert first.state.planets[20].cargo.molybdenum == initial.planets[20].cargo.molybdenum - 4
+    # Duranium is simultaneously mined by the unchanged economy phases.
+    # Compare base consumption PLUS the independently reconciled mining
+    # receipt, rather than pretending an economically active planet is inert.
+    for pid, purchased in ((10, dict(creation.spent)), (20, dict(arming.spent))):
+        source = initial.planets[pid].cargo
+        final = first.state.planets[pid].cargo
+        mined = next(x for x in first.planet_balances if x.planet_id == pid)
+        for index, mineral in enumerate(("neutronium", "duranium", "tritanium", "molybdenum")):
+            assert getattr(final, mineral) - getattr(source, mineral) == (
+                mined.mined_minerals[index] - purchased.get(mineral, 0)
+            )
     assert not first.nuhost_order_execution_verified
     assert not first.nuhost_phase_placement_verified
     assert not first.independent_host_parity_verified
@@ -140,7 +145,7 @@ def test_full_resource_exact_creation_cost_and_no_neutronium_or_supplies_cost():
 
 
 @pytest.mark.parametrize("invalid", (
-    "missing_owner", "missing_own_orders", "empty", "duplicate", "foreign",
+    "missing_owner", "invalid_owner_record", "empty", "duplicate", "foreign",
     "not_planet", "existing", "no_base", "wrong_base_owner",
     "insufficient_base_mc", "insufficient_base_duranium",
     "insufficient_base_tritanium", "insufficient_base_molybdenum",
@@ -157,8 +162,8 @@ def test_unsupported_cases_abstain_without_partial_state(invalid):
     opts = {}
     if invalid == "missing_owner":
         orders.pop(2)
-    elif invalid == "missing_own_orders":
-        orders = {1: (), 2: orders[2]}
+    elif invalid == "invalid_owner_record":
+        orders = {1: None, 2: orders[2]}
     elif invalid == "empty":
         orders = {1: (), 2: ()}
     elif invalid == "duplicate":
