@@ -33,6 +33,21 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**Core standard ship NEW-component cost quote (2026-10-21):**
+After ordinary starbase facility construction #254,
+add an explicit one-ship bill-of-materials quote using the
+existing NuStaticSpecs hull + all engines + fitted
+beam/torpedo launchers, enforcing known starbase tech,
+component slots, a caller-declared eligible hull set
+and complete immutable surface resources. Return exact costs,
+deficits and affordability as a **quote only**, NOT an
+accepted order, new ship, reserved component warehouse or
+a build slot. Ship-limit, queue/priority points, race
+licensing provenance, component stock and ship-ID allocation
+still ABSTAIN for real execution.
+[Quote implementation, strict gates and next storage/queue model](handoff/2026-10-21-core-standard-ship-bom-v1.md).
+
+
 **Standard starbase facilities core (2026-10-21):**
 After #253's orbital cargo + movement + economy composition,
 implement documented ordinary **starbase creation**, starbase
