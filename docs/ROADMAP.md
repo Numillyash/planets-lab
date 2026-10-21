@@ -33,6 +33,22 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**Core orbital transfer × normal movement × standard economy (2026-10-21):**
+Extend PR #252's fuel-checked ship movement and economy with
+the existing PlanetCargoTransferPhase, under an explicit local
+transfer-before-/after-move placement plus move/economy and
+construction/economy choices. Only same-owner nonzero transfers
+at the currently valid orbital site; capacity and fuel tank
+remain enforced. Audit transfer event/typed-order equality and
+independent ship + planetary inventory ledgers; forged/missing
+receipts or source/owner ambiguity ABSTAIN for the whole turn.
+All orders remain caller-asserted, no V1/V2 HMAC changes,
+no NuHost execution or phase-order promotion.
+[Cross-system cargo handoff](handoff/2026-10-21-core-orbital-cargo-composition-v1.md).
+Do not rerun public100 or consume heldout32 M2 entity states;
+manual/independent Host evidence remains parked in #247.
+
+
 **Executable ordinary-movement + standard economy turn (2026-10-20):**
 After #251's multi-planet/multi-turn planetary ledger, add the
 first cross-subsystem HostEngine composition: ordinary reachable
