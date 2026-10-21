@@ -33,6 +33,22 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**Classic uncontested PBP priority purchase (2026-10-21):**
+After #259 regular pointer and #260 selected standard builds,
+implement the **separate** restricted Classic priority subphase:
+exact hull mass, 1 PBP per ceil(50 KT) capped at 20,
+21-PBP eligibility, known entire owner balance and base
+queue roster. Only one PBP-eligible owner and exactly one
+queued starbase permitted; any competing points, pbN code,
+clone, missing queue state, exhausted hard cap ABSTAINS.
+Reuse warehouse/cost/new-ship audit and conditional lowest
+unused ID; report updated points in an isolated phase state
+without claiming authentic PBP receipt or Host timing.
+[Separate uncontested priority phase](handoff/2026-10-21-classic-uncontested-pbp-priority-v1.md).
+Next: typed priority-then-standard Classic phase composition,
+strict pointer/PBP separation and independent HMAC/Host gates.
+
+
 **Classic standard pointer–ordered shipbuilding × economy (2026-10-21):**
 Compose #259's exact standard-only Classic pointer selection
 with complete caller-asserted per-base warehouse ship designs,
