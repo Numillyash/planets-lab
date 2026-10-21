@@ -33,6 +33,23 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**Core one-starship warehouse/queue-selected assembly (2026-10-21):**
+Following #255's exact new-component BOM quote, model per-base
+stored hulls/engines/beams/launchers in a typed sidecar; require
+an explicitly asserted selected PRELIMIT standard build slot,
+complete ship roster and one caller-provided free ship ID. Draw
+in-stock components, purchase only missing units, debit MC/minerals
+atomically, and create one model-only intermediate assembled ship.
+No fabricated Host queue arbitration, ship-ID allocator, actual
+receipt or independent phase placement. Missing source stock,
+priority or nonstandard queue context ABSTAIN.
+[Inventory, one-build scope and hard queue limitations](handoff/2026-10-21-core-selected-ship-warehouse-assembly-v1.md).
+Next: integrate conditional assembly with planet-side resource phases
+and other base purchases while retaining a strict global accounting
+and explicit provisional Host timing.
+Manual server-evidence experiments remain parked in #247.
+
+
 **Core standard ship NEW-component cost quote (2026-10-21):**
 After ordinary starbase facility construction #254,
 add an explicit one-ship bill-of-materials quote using the
