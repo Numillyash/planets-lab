@@ -216,7 +216,7 @@ def test_unsupported_scope_and_late_build_failure_no_partial_result(bad):
         queue[10] = replace(queue[10], warehouse=StandardComponentWarehouse(
             hulls=((999, 1),),
         ))
-    elif bad == "invalid_ordinary_order": queue[20] = object()
+    elif bad == "invalid_ordinary_order": queue[20] = {"not_a_build": True}
     snapshot = deepcopy((pre, specs, selected, queue))
     result = run(pre, specs, selected, queue, **opts)
     assert result.status == "ABSTAIN_CLASSIC_POINTER_ECONOMIC_TURN"
