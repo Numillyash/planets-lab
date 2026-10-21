@@ -16,7 +16,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Mapping, Literal
 
-from planets_lab.core import GameState
+from planets_lab.core import GameState, Ship
 from planets_lab.data.nu_specs import NuStaticSpecs
 from planets_lab.sim.engine import HostEngine, HostEvent
 from planets_lab.sim.orders import PlayerOrders, TurnOrders
@@ -211,6 +211,28 @@ def simulate_classic_standard_pointer_economy_turn(
                 intermediate, specs, ordinary_orders,
                 eligible.selected_planet_ids, context.ship_limit,
             )
+        # Reconstruct the expected assembled ships from the *original*
+        # typed blueprint and static catalog, rather than trusting a phase
+        # executor's already-audited but later mutable ship object.
+        for receipt in receipts:
+            intended = ordinary_orders[receipt.starbase_planet_id].blueprint
+            hull = specs.hulls[intended.hull_id]
+            origin = before.planets[receipt.starbase_planet_id]
+            expected_ship = Ship(
+                id=receipt.ship_id,
+                owner_id=before.starbases[receipt.starbase_planet_id].owner_id,
+                hull_id=intended.hull_id,
+                x=origin.x, y=origin.y, engine_id=intended.engine_id,
+                beam_id=intended.beam_id if intended.beam_count else None,
+                torpedo_id=(intended.torpedo_id
+                            if intended.torpedo_launcher_count else None),
+                beam_count=intended.beam_count,
+                torpedo_launcher_count=intended.torpedo_launcher_count,
+                fighter_bay_count=hull.fighter_bay_count,
+                crew=hull.crew,
+            )
+            if modeled.ships.get(receipt.ship_id) != expected_ship:
+                raise UnsupportedClassicStandardTurn("assembled ship mutated after its material receipt")
         # Undo only exact new-component expenses and precisely the ships
         # authorized by the standard pointer. Audit the separate
         # 14-phase planet economy on this cloned projection.
