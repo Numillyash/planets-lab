@@ -33,6 +33,24 @@ worth testing, but they do not create evidence labels by themselves. See the
 
 ## Current focus
 
+**Selected ship assembly × standard planet economy (2026-10-21):**
+Following #256's conditional one-ship intermediate stage,
+execute one real **modeled turn** containing precisely one
+caller-selected uncontested PRELIMIT warehouse ship assembly
+and the unchanged 14-phase planetary economy, with an
+explicit before-/after-economy hypothesis. Independently
+reconcile entire assembled ship identity, surface MC/mineral
+debits, stock component unit balances, any existing ship/base
+changes and every planet's taxes/factory/mineral economy delta.
+A missing source/queue/ID/receipt or unexplained inventory
+causes all-or-nothing ABSTAIN. This does not run PBP/PQ/PPQ/PLS
+arbitration or authenticate NuHost phase order.
+[Integration/evidence boundaries](handoff/2026-10-21-core-selected-ship-economy-integration-v1.md).
+Next mainline: explicit standard queue selection and
+multiple-base resource/priority contention before larger
+movement/combat integration; keep live external proof #247 deferred.
+
+
 **Core one-starship warehouse/queue-selected assembly (2026-10-21):**
 Following #255's exact new-component BOM quote, model per-base
 stored hulls/engines/beams/launchers in a typed sidecar; require
