@@ -138,7 +138,12 @@ def test_mixed_all_new_and_stocked_bases_have_separate_exact_bills():
     out = simulate(game, specs, queue, placement=PLACEMENTS[1])
     assert out.supported
     assert out.receipts[0].purchased.megacredits == 0
-    assert out.receipts[1].purchased.megacredits == 90
+    # Only hull + one engine are stocked. The second base buys one
+    # engine (60 MC), two beams (20 MC) and one launcher (20 MC).
+    assert out.receipts[1].purchased.megacredits == 100
+    assert (out.receipts[1].purchased.duranium,
+            out.receipts[1].purchased.tritanium,
+            out.receipts[1].purchased.molybdenum) == (3, 4, 2)
     assert out.receipts[0].warehouse_after == StandardComponentWarehouse(
         hulls=((7, 0),), engines=((9, 0),),
         beams=((3, 0),), launchers=((2, 0),),
