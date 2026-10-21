@@ -151,8 +151,21 @@ def _audit_selected_assembly(
         key: _decode_rows(getattr(assembly.warehouse_after, key))
         for key in stock_before
     }
-    if any(set(stock_before[k]) != set(stock_after[k]) for k in stock_before):
-        raise UnsupportedShipEconomicTurn("unexplained warehouse component identities")
+    # The existing assembler materializes a zero-count entry for any
+    # demanded component even if that ID was absent from the input stock.
+    # Treat absent == zero, but never permit injected positive inventory
+    # or unrelated unknown entries.
+    for kind in stock_before:
+        requested_ids = {
+            ident for item_kind, ident, _, _ in demand if item_kind == kind
+        }
+        if set(stock_before[kind]) - set(stock_after[kind]):
+            raise UnsupportedShipEconomicTurn("warehouse component was dropped")
+        for ident, count in stock_after[kind].items():
+            if ident not in stock_before[kind] and (
+                ident not in requested_ids or count != 0
+            ):
+                raise UnsupportedShipEconomicTurn("unknown/new warehouse component stock")
     if len(assembly.component_ledger) != len(demand):
         raise UnsupportedShipEconomicTurn("missing or extra component purchase receipts")
     priced = {key: 0 for key in COST_FIELDS}
