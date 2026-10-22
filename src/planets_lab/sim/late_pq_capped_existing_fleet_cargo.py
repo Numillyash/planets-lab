@@ -145,11 +145,8 @@ def _checked_orders(
                     or original.engine_id not in specs.engines
                     or original.mission is not None or original.damage != 0
                     or original.friendly_code
-                    or original.beam_count or original.torpedo_launcher_count
-                    or original.fighter_bay_count or original.fighters
-                    or original.torpedoes or original.unresolved_ammo
                 ):
-                    raise UnsupportedCappedFleet("special or armed moving ship unsupported")
+                    raise UnsupportedCappedFleet("special, damaged or missioning ship unsupported")
                 mover = intent
                 if intent.planet_transfer is not None:
                     t = intent.planet_transfer
