@@ -1,8 +1,8 @@
 # PlanetDashboard / planets-lab — READY-TO-PASTE NEXT CHAT PROMPT
 
-> Permanent path: \`docs/CONTINUE_HERE.md\` in GitHub **main**.
+> Permanent path: `docs/CONTINUE_HERE.md` in GitHub **main**.
 > **This is the current continuation prompt**, not an old chat summary.
-> Last refreshed 2026-10-22 as part of PR **[CURRENT_PR]**.
+> Last refreshed 2026-10-22 as part of PR **#262**.
 > Verify live GitHub HEAD, merged PR state and CI before relying on a pinned SHA.
 
 ## Context
@@ -17,29 +17,29 @@ Planets.nu / NuHost simulation and research). Общайся по-русски.
 проверить самостоятельно через подключённый GitHub.
 
 **Главное НОВОЕ обязательное правило:** после КАЖДОГО PR обновляй
-в **том же PR** полный текст ЭТОГО файла \`docs/CONTINUE_HERE.md\`,
+в **том же PR** полный текст ЭТОГО файла `docs/CONTINUE_HERE.md`,
 добавляй запись с его РЕАЛЬНЫМ номером в
-\`docs/PR_CHANGELOG.md\`, и обновляй ещё минимум один смысловой
-документ репозитория (\`docs/ROADMAP.md\`, \`README.md\`,
-\`docs/handoff/*.md\` или другое релевантное руководство). Это
-реализовано в \`AGENTS.md\`, \`docs/WORKFLOW.md\`,
-\`.github/PULL_REQUEST_TEMPLATE.md\` и проверяется CI через
-\`tools/check_pr_handoff.py\`. Создай PR, узнай настоящий номер,
+`docs/PR_CHANGELOG.md`, и обновляй ещё минимум один смысловой
+документ репозитория (`docs/ROADMAP.md`, `README.md`,
+`docs/handoff/*.md` или другое релевантное руководство). Это
+реализовано в `AGENTS.md`, `docs/WORKFLOW.md`,
+`.github/PULL_REQUEST_TEMPLATE.md` и проверяется CI через
+`tools/check_pr_handoff.py`. Создай PR, узнай настоящий номер,
 обнови документацию в той же ветке, проверь CI точного HEAD и лишь
-затем merge. Новый чат должен начинать с \`docs/CONTINUE_HERE.md\`,
+затем merge. Новый чат должен начинать с `docs/CONTINUE_HERE.md`,
 а не просить пользователя копировать сообщения из других чатов.
 
 ## Verified state
 
 - На момент создания этого handoff последний независимо проверенный
-  \`main\`: \`72a94bafd0c545a32e6c45aafae2f3e344fee7fe\`,
+  `main`: `72a94bafd0c545a32e6c45aafae2f3e344fee7fe`,
   PR **#261** merged, итоговый main CI **#1402 success**.
   **НЕ считай это актуальным HEAD** без новой проверки GitHub.
-- PR **[CURRENT_PR]** вводит per-PR правила документации/continuation,
+- PR **#262** вводит per-PR правила документации/continuation,
   PR changelog, root agent instructions, PR checklist, CI-gate и
   unit-тесты. Сначала ПРОВЕРЬ, merged ли он, и его точный PR/main CI.
-  Если ещё не merged — закончи, прежде чем начинать механику.
-- Реализованы как условные и локально \`TESTED\`: обычное перемещение,
+  Если ещё не merged — закончи его CI/merge и проверь main CI, прежде чем начинать механику.
+- Реализованы как условные и локально `TESTED`: обычное перемещение,
   ограниченный орбитальный грузоперенос, отдельные планетарные
   экономические фазы (14), строительство планетарных сооружений
   и стандартных звёздных баз/обороны, спецификация и смета корабля,
@@ -54,15 +54,15 @@ Planets.nu / NuHost simulation and research). Общайся по-русски.
   Classic priority-постройка при пороге 21 PBP и цене до 20 PBP;
   это всё ещё промежуточная локальная модель.
   Между priority и standard подфазами **пока нет полной композиции**.
-- \`docs/ROADMAP.md\` большой и содержит исторические этапы; самый
-  свежий релевантный пункт обычно ближе к \`## Current focus\`.
-  Дополнительная история: \`docs/handoff/2026-10-21-*\` про queue,
-  \`docs/handoff/2026-10-20-*\` про M2 economy.
+- `docs/ROADMAP.md` большой и содержит исторические этапы; самый
+  свежий релевантный пункт обычно ближе к `## Current focus`.
+  Дополнительная история: `docs/handoff/2026-10-21-*` про queue,
+  `docs/handoff/2026-10-20-*` про M2 economy.
 - Корпус public100 собран и зафиксирован; большой бинарный корпус
   лежит на сервере и НЕ требует повторного скачивания/перестроения.
-  \`CURRENT\` остаётся public68. Frozen heldout32 M2 entities не
+  `CURRENT` остаётся public68. Frozen heldout32 M2 entities не
   открывать и не использовать в следующих локальных тестах.
-  \`runtime-logs\` — отдельная ветка только для безопасных
+  `runtime-logs` — отдельная ветка только для безопасных
   публикаций runtime-доказательств, не для исходников.
 - Внешнее подтверждение реального Host, содержимого принятых
   приказов, времени старта Host, pre/post-снимков **не получено**.
@@ -71,21 +71,21 @@ Planets.nu / NuHost simulation and research). Общайся по-русски.
 
 ## Next actions
 
-1. Прочитай **этот файл**, \`AGENTS.md\`, \`docs/WORKFLOW.md\`,
-   \`docs/ROADMAP.md\`, \`docs/PR_CHANGELOG.md\`, затем
-   проверь действительные GitHub \`main\` HEAD, открытые PR и
+1. Прочитай **этот файл**, `AGENTS.md`, `docs/WORKFLOW.md`,
+   `docs/ROADMAP.md`, `docs/PR_CHANGELOG.md`, затем
+   проверь действительные GitHub `main` HEAD, открытые PR и
    workflows. Не опирайся только на эту дату и указанный SHA.
-2. Убедись, что PR **[CURRENT_PR]** добавил и **CI реально
+2. Убедись, что PR **#262** добавил и **CI реально
    проверяет** обязательный handoff на каждом PR. Не отключай
    проверку для удобства будущих веток. Новую ветку строй от
-   проверенного \`main\`.
+   проверенного `main`.
 3. Ближайший инженерный блок: объединить строго ограниченную
    Classic PBP priority-подфазу **#261** со standard pointer +
    assembly/economy **#259–260**, с ОБЩИМ ship cap/ID и
    РАЗДЕЛЬНЫМИ PBP и last-standard-pointer. Допускать только
    явно заданные непротиворечивые приказы; конкуренция,
    pbN/clone, неизвестное начало Host или порядок операций
-   остаются \`ABSTAIN\`, а не додумываются.
+   остаются `ABSTAIN`, а не додумываются.
 4. Далее — отдельные, fail-closed ограниченные модели поздних
    PQ/PPQ (и PLS лишь при известной полной входной
    модели), затем композиция кораблестроения с орбитальным
@@ -98,14 +98,14 @@ Planets.nu / NuHost simulation and research). Общайся по-русски.
 
 ## Boundaries
 
-- Уровни \`DOCUMENTED\`, \`CORPUS_OBSERVED\`, \`INFERRED\`,
-  \`TESTED\` и \`DIFF_VERIFIED\` НЕ взаимозаменяемы. HMAC
+- Уровни `DOCUMENTED`, `CORPUS_OBSERVED`, `INFERRED`,
+  `TESTED` и `DIFF_VERIFIED` НЕ взаимозаменяемы. HMAC
   подтверждает локальную подпись/самосогласованность, но не
   принятие реальных приказов NuHost; HTTP success не доказывает
   выполнение Host; внутренние тесты и совпавшие гипотетические
   фазы не доказывают причинность/точный порядок. Не повышай
-  статус до \`DIFF_VERIFIED\` без независимого Host-источника.
-- Не изменять \`CURRENT\`, frozen heldout32, corpus поколения
+  статус до `DIFF_VERIFIED` без независимого Host-источника.
+- Не изменять `CURRENT`, frozen heldout32, corpus поколения
   public100, чужие C5/combat-исследования или продакшен
   IntelBoard без отдельной необходимости и проверки scope.
   Никаких приватных API ключей/сырого HAR/чужих заказов в Git.
