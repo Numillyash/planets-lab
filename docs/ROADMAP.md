@@ -56,6 +56,24 @@ parked in [issue #247](https://github.com/Numillyash/planets-lab/issues/247).
 
 ## Current focus
 
+**Late PQ / PPQ single priority admission / PP quote (#266, 2026-10-22):**
+Separate soft cap (500 default, custom configurable), hard
+programmatic ID cap (999) and Classic PBP hard limit.
+Compute default PQ/PPQ 1 + ceil(min(hull KT,1000)/50) PP
+cost (21 PP maximum). Require a complete owner PP/base/fleet
+roster, exactly one pb1 priority request, no other normal
+or priority builds in this bounded stage, no clone/custom
+price; assert soft cap reached and ID remains below 999.
+Return ONLY a conditional quote and lowest free ID, NO
+server acceptance and NO ship execution. Unknown PPQ RB
+allocation/planet shares, PQ random selection, pb2..pb9,
+ties/custom game settings ABSTAIN. Details:
+[late priority admission](handoff/2026-10-22-late-pq-ppq-priority-admission-v1.md).
+Next mainline: compose this with strict BOM/warehouse ship
+assembly and full 14-phase economy, both placement hypotheses,
+and add per-owner PP/resource controls.
+
+
 **Classic PBP unique-highest contender for LAST hard-cap ship slot (2026-10-22):**
 Add a *distinct bounded conditional ranking-policy hypothesis*
 for a genuine two-player PBP contest with ONLY ONE legal
