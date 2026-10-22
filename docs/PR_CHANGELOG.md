@@ -11,6 +11,14 @@ additional meaningful repository document. GitHub CI enforces this through
 Do **not** guess merged commit SHAs or claim a workflow is green until
 GitHub confirms it. Check live `main`, PR state and workflows separately.
 
+## #263 — Classic shared priority + standard economic turn (2026-10-22)
+
+- Added `classic_joint_priority_standard_turn.py` to join single uncontested Classic PBP priority (#261) to standard pointer (#259–260), reusing component/ship ledgers, a single shared finite hard-cap fleet and explicitly before/after 14-phase economy.
+- Priority spends PBP but never advances standard pointer. After priority, a remaining 21+ PBP (another priority possible), multiple owner/candidate competition, mismatched base orders or missing independent inventory yield whole-turn ABSTAIN. Standard builds draw distinct free ship IDs in pointer order and preserve unselected warehouse stocks.
+- Added synthetic two-owner/two-build and one-slot boundary, stocked priority source, tax-funded late builds, adversarial fabricated ship/planet receipts, and incomplete/contradictory queue tests. Evidence only `TESTED` conditional; no verified NuHost ordering or actual PBP receipts.
+- Updated [roadmap](ROADMAP.md), detailed [technical handoff](handoff/2026-10-22-classic-joint-priority-standard-v1.md) and full [continuation prompt](CONTINUE_HERE.md). At PR preparation: CI/merge status pending live verification.
+- Next: multi-turn carry/replay of pointer/PBP/warehouse sidecars and separate bounded contested/late queue models. Real accepted-Host evidence issue #247 remains deferred.
+
 ## #262 — Mandatory per-PR continuation and documentation (2026-10-22)
 
 - **Scope:** introduce root `AGENTS.md`, PR checklist, canonical

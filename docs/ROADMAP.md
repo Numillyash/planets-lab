@@ -56,6 +56,26 @@ parked in [issue #247](https://github.com/Numillyash/planets-lab/issues/247).
 
 ## Current focus
 
+**Classic priority + standard in one fully audited conditional turn (2026-10-22):**
+Compose one uncontested Classic PBP priority build from #261
+with the #259 standard pointer/queue and #260 stock-checked
+ship assembly, with a SHARED full fleet/hard cap and lowest
+unused IDs. Subtract mass-dependent PBP cost only for the
+priority ship; clear its ordinary slot without changing the
+standard pointer; run the standard circular selector on the
+remaining fleet and eligible bases, recording its pointer
+separately. If the priority owner still has >=21 PBP or
+multiple priority candidates exist, ABSTAIN rather than
+skip unexecuted priority builds. Hypothetical before/after
+14-phase economy, independently reconciled material,
+warehouse, full ship and planetary event ledgers; no
+partial state on failure. [Detailed bounded joint Classic
+handoff](handoff/2026-10-22-classic-joint-priority-standard-v1.md).
+Next: a genuine scoped multi-turn carry test and a separate
+typed queue-state contract for contested Classic or PQ/PPQ.
+User-dependent Host causal evidence remains parked in #247.
+
+
 **Classic uncontested PBP priority purchase (2026-10-21):**
 After #259 regular pointer and #260 selected standard builds,
 implement the **separate** restricted Classic priority subphase:
