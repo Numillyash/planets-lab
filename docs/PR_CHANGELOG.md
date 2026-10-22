@@ -11,6 +11,15 @@ additional meaningful repository document. GitHub CI enforces this through
 Do **not** guess merged commit SHAs or claim a workflow is green until
 GitHub confirms it. Check live `main`, PR state and workflows separately.
 
+## #264 — Classic consecutive PBP/pointer/warehouse carry (2026-10-22)
+
+- Added `classic_bounded_multiturn_carry.py` with a typed complete inventory/owner/PBP/standard-pointer sidecar and complete explicit per-base orders for every modeled consecutive turn (up to eight).
+- Each step dispatches either #263 priority+standard (one PBP-eligible owner) or #260 standard-only (none eligible) using the *carried* complete fleet, planet economy and warehouse stocks, with no external replenishment or PBP rewards; any failure in a later turn invalidates the **entire** sequence.
+- Synthetic coverage: 8/12 ships, 21 PBP → priority ship ID9, standard ID10; next turn standard IDs11+12 with PBP20; third turn no ships under the cap. Also taxes after economy, stock depletion, missing idle warehouse, phantom catalog entry and broken second-turn blueprint.
+- Updated [roadmap](ROADMAP.md), [technical handoff](handoff/2026-10-22-classic-multiturn-queue-carry-v1.md), and [next-chat prompt](CONTINUE_HERE.md). PR CI/merge success is not claimed until GitHub reports it.
+- Still `TESTED` conditional, not independently authenticated queue/Host timing or `DIFF_VERIFIED`; work needing real participants remains [#247](https://github.com/Numillyash/planets-lab/issues/247).
+- Next: implement a genuinely distinct bounded Classic contender or PQ/PPQ queue subcase (not more synthetic UI), then connect ordinary shipyard to wider Host.
+
 ## #263 — Classic shared priority + standard economic turn (2026-10-22)
 
 - Added `classic_joint_priority_standard_turn.py` to join single uncontested Classic PBP priority (#261) to standard pointer (#259–260), reusing component/ship ledgers, a single shared finite hard-cap fleet and explicitly before/after 14-phase economy.
