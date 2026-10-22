@@ -89,7 +89,7 @@ def _owner_stats(parsed: Mapping[str, Any], perspective: int, turn: int) -> dict
 
 def _load_selected_members(
     path: Path, *, game_id: int, player_id: int, t_before: int,
-) -> tuple[dict[str, Any], dict[str, Any]]:
+) -> tuple[dict[str, Any], dict[str, Any], int, int]:
     if not path.is_file():
         raise ValueError("approved public archive missing")
     names = (
@@ -109,18 +109,28 @@ def _load_selected_members(
                 raise ValueError("unbounded archive member")
             decoded.append(_decode(archive.read(info)))
     before, after = decoded
-    for t, item in ((t_before, before), (t_before+1, after)):
+    embedded_turns: list[int] = []
+    for item in (before, after):
         game = item.get("game")
         player = item.get("player")
         if (
             type(game) is not dict or type(player) is not dict
             or type(game.get("id")) is not int or game["id"] != game_id
-            or type(game.get("turn")) is not int or game["turn"] != t
-            or type(player.get("id")) is not int or player["id"] != player_id
         ):
-            raise ValueError("embedded game/turn/player identity mismatch")
-    return before, after
+            raise ValueError("embedded game identity mismatch")
+        if type(player.get("id")) is not int or player["id"] != player_id:
+            raise ValueError("embedded player identity mismatch")
+        embedded_turn = game.get("turn")
+        if type(embedded_turn) is not int or embedded_turn < 0:
+            raise ValueError("embedded turn is not a nonnegative typed integer")
+        embedded_turns.append(embedded_turn)
 
+    # Corpus normalizer already distinguishes filename/archive turn from
+    # embedded game.turn. Require a consistent offset AND a consecutive
+    # embedded turn transition; neither turn naming convention is guessed.
+    if embedded_turns[1] != embedded_turns[0] + 1:
+        raise ValueError("embedded turns are not consecutive")
+    return before, after, embedded_turns[0], embedded_turns[1]
 
 def scan_single_pq_window(
     *, feature_index: Path, frozen_cohort: Path, archive_dir: Path,
@@ -138,11 +148,13 @@ def scan_single_pq_window(
     if case is None or not case["observational_candidate"]:
         raise ValueError("game not an approved archival PQ/PPQ observational candidate")
     file = archive_dir / f"game-{game_id}.zip"
-    before, after = _load_selected_members(
+    before, after, embedded_before, embedded_after = _load_selected_members(
         file, game_id=game_id, player_id=player_id, t_before=t_before,
     )
-    a = _owner_stats(before, player_id, t_before)
-    b = _owner_stats(after, player_id, t_before+1)
+    # infoturn belongs to the embedded Game turn, not the archive
+    # ordinal. A filename off-by-one is not evidence of a stale record.
+    a = _owner_stats(before, player_id, embedded_before)
+    b = _owner_stats(after, player_id, embedded_after)
     missing = sorted(set((*a["missing"], *b["missing"])))
     # Public perspective fields can show structure/ship changes, but no
     # independent server-accepted orders, causal phase placement, or
@@ -153,6 +165,12 @@ def scan_single_pq_window(
         "player_slot": player_id,
         "before_archive_turn": t_before,
         "after_archive_turn": t_before + 1,
+        "before_embedded_turn": embedded_before,
+        "after_embedded_turn": embedded_after,
+        "archive_to_embedded_turn_offset": embedded_before - t_before,
+        "turn_identity_relation": (
+            "EXACT" if embedded_before == t_before else "CONSISTENT_OFFSET"
+        ),
         "queue_mode": case["mode"],
         "cohort_sha256": selection["cohort_sha256"],
         "index_sha256": selection["index_sha256"],
