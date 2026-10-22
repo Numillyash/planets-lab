@@ -1,0 +1,353 @@
+{
+  "actually_checked_pairs": 7,
+  "admissible_consecutive_embedded_pairs": 5,
+  "admissible_window_reports": [
+    {
+      "after": {
+        "planets": {
+          "explicit_owner_fresh_rows": 3,
+          "explicit_owner_without_infoturn_rows": 0,
+          "unknown_or_stale_owner_rows": 76,
+          "visible_rows": 80
+        },
+        "ships": {
+          "explicit_owner_fresh_rows": 2,
+          "explicit_owner_without_infoturn_rows": 0,
+          "unknown_or_stale_owner_rows": 0,
+          "visible_rows": 4
+        },
+        "starbases": {
+          "explicit_owner_fresh_rows": 0,
+          "explicit_owner_without_infoturn_rows": 0,
+          "unknown_or_stale_owner_rows": 1,
+          "visible_rows": 1
+        }
+      },
+      "after_archive_turn": 4,
+      "after_embedded_turn": 4,
+      "archive_members_read": 2,
+      "archive_to_embedded_turn_offset": 0,
+      "before": {
+        "planets": {
+          "explicit_owner_fresh_rows": 2,
+          "explicit_owner_without_infoturn_rows": 0,
+          "unknown_or_stale_owner_rows": 76,
+          "visible_rows": 80
+        },
+        "ships": {
+          "explicit_owner_fresh_rows": 2,
+          "explicit_owner_without_infoturn_rows": 0,
+          "unknown_or_stale_owner_rows": 0,
+          "visible_rows": 2
+        },
+        "starbases": {
+          "explicit_owner_fresh_rows": 0,
+          "explicit_owner_without_infoturn_rows": 0,
+          "unknown_or_stale_owner_rows": 1,
+          "visible_rows": 1
+        }
+      },
+      "before_archive_turn": 3,
+      "before_embedded_turn": 3,
+      "causal_queue_replay_admitted": false,
+      "cohort_sha256": "915f25a36146499fcb7147d4aedea6f05ea7a2b072f0c72f07ab39c7e12c1947",
+      "complete_global_fleet_and_base_roster_verified": false,
+      "evidence": "PUBLIC_ARCHIVE_TWO_MEMBER_SHAPE_ONLY_NOT_DIFF_VERIFIED",
+      "game_id": 620917,
+      "host_accepted_orders_verified": false,
+      "host_phase_boundary_independent": false,
+      "index_sha256": "cb72f539775d22726d8d7f225fc7b3deeb8f936312873df12db59340e1dd7735",
+      "missing_or_invalid_arrays": [],
+      "observational_shape_available": true,
+      "owner_pp_ledger_independently_complete": false,
+      "player_slot": 1,
+      "private_fields_emitted": false,
+      "queue_mode": "PPQ",
+      "schema": "planets-lab.pq-two-member-field-sufficiency.v1",
+      "starbase_component_warehouses_independently_complete": false,
+      "turn_identity_relation": "EXACT"
+    },
+    {
+      "after": {
+        "planets": {
+          "explicit_owner_fresh_rows": 4,
+          "explicit_owner_without_infoturn_rows": 0,
+          "unknown_or_stale_owner_rows": 74,
+          "visible_rows": 80
+        },
+        "ships": {
+          "explicit_owner_fresh_rows": 2,
+          "explicit_owner_without_infoturn_rows": 0,
+          "unknown_or_stale_owner_rows": 0,
+          "visible_rows": 3
+        },
+        "starbases": {
+          "explicit_owner_fresh_rows": 0,
+          "explicit_owner_without_infoturn_rows": 0,
+          "unknown_or_stale_owner_rows": 1,
+          "visible_rows": 1
+        }
+      },
+      "after_archive_turn": 5,
+      "after_embedded_turn": 5,
+      "archive_members_read": 2,
+      "archive_to_embedded_turn_offset": 0,
+      "before": {
+        "planets": {
+          "explicit_owner_fresh_rows": 3,
+          "explicit_owner_without_infoturn_rows": 0,
+          "unknown_or_stale_owner_rows": 76,
+          "visible_rows": 80
+        },
+        "ships": {
+          "explicit_owner_fresh_rows": 2,
+          "explicit_owner_without_infoturn_rows": 0,
+          "unknown_or_stale_owner_rows": 0,
+          "visible_rows": 4
+        },
+        "starbases": {
+          "explicit_owner_fresh_rows": 0,
+          "explicit_owner_without_infoturn_rows": 0,
+          "unknown_or_stale_owner_rows": 1,
+          "visible_rows": 1
+        }
+      },
+      "before_archive_turn": 4,
+      "before_embedded_turn": 4,
+      "causal_queue_replay_admitted": false,
+      "cohort_sha256": "915f25a36146499fcb7147d4aedea6f05ea7a2b072f0c72f07ab39c7e12c1947",
+      "complete_global_fleet_and_base_roster_verified": false,
+      "evidence": "PUBLIC_ARCHIVE_TWO_MEMBER_SHAPE_ONLY_NOT_DIFF_VERIFIED",
+      "game_id": 620917,
+      "host_accepted_orders_verified": false,
+      "host_phase_boundary_independent": false,
+      "index_sha256": "cb72f539775d22726d8d7f225fc7b3deeb8f936312873df12db59340e1dd7735",
+      "missing_or_invalid_arrays": [],
+      "observational_shape_available": true,
+      "owner_pp_ledger_independently_complete": false,
+      "player_slot": 1,
+      "private_fields_emitted": false,
+      "queue_mode": "PPQ",
+      "schema": "planets-lab.pq-two-member-field-sufficiency.v1",
+      "starbase_component_warehouses_independently_complete": false,
+      "turn_identity_relation": "EXACT"
+    },
+    {
+      "after": {
+        "planets": {
+          "explicit_owner_fresh_rows": 6,
+          "explicit_owner_without_infoturn_rows": 0,
+          "unknown_or_stale_owner_rows": 74,
+          "visible_rows": 80
+        },
+        "ships": {
+          "explicit_owner_fresh_rows": 2,
+          "explicit_owner_without_infoturn_rows": 0,
+          "unknown_or_stale_owner_rows": 0,
+          "visible_rows": 6
+        },
+        "starbases": {
+          "explicit_owner_fresh_rows": 0,
+          "explicit_owner_without_infoturn_rows": 0,
+          "unknown_or_stale_owner_rows": 1,
+          "visible_rows": 1
+        }
+      },
+      "after_archive_turn": 6,
+      "after_embedded_turn": 6,
+      "archive_members_read": 2,
+      "archive_to_embedded_turn_offset": 0,
+      "before": {
+        "planets": {
+          "explicit_owner_fresh_rows": 4,
+          "explicit_owner_without_infoturn_rows": 0,
+          "unknown_or_stale_owner_rows": 74,
+          "visible_rows": 80
+        },
+        "ships": {
+          "explicit_owner_fresh_rows": 2,
+          "explicit_owner_without_infoturn_rows": 0,
+          "unknown_or_stale_owner_rows": 0,
+          "visible_rows": 3
+        },
+        "starbases": {
+          "explicit_owner_fresh_rows": 0,
+          "explicit_owner_without_infoturn_rows": 0,
+          "unknown_or_stale_owner_rows": 1,
+          "visible_rows": 1
+        }
+      },
+      "before_archive_turn": 5,
+      "before_embedded_turn": 5,
+      "causal_queue_replay_admitted": false,
+      "cohort_sha256": "915f25a36146499fcb7147d4aedea6f05ea7a2b072f0c72f07ab39c7e12c1947",
+      "complete_global_fleet_and_base_roster_verified": false,
+      "evidence": "PUBLIC_ARCHIVE_TWO_MEMBER_SHAPE_ONLY_NOT_DIFF_VERIFIED",
+      "game_id": 620917,
+      "host_accepted_orders_verified": false,
+      "host_phase_boundary_independent": false,
+      "index_sha256": "cb72f539775d22726d8d7f225fc7b3deeb8f936312873df12db59340e1dd7735",
+      "missing_or_invalid_arrays": [],
+      "observational_shape_available": true,
+      "owner_pp_ledger_independently_complete": false,
+      "player_slot": 1,
+      "private_fields_emitted": false,
+      "queue_mode": "PPQ",
+      "schema": "planets-lab.pq-two-member-field-sufficiency.v1",
+      "starbase_component_warehouses_independently_complete": false,
+      "turn_identity_relation": "EXACT"
+    },
+    {
+      "after": {
+        "planets": {
+          "explicit_owner_fresh_rows": 6,
+          "explicit_owner_without_infoturn_rows": 0,
+          "unknown_or_stale_owner_rows": 74,
+          "visible_rows": 80
+        },
+        "ships": {
+          "explicit_owner_fresh_rows": 2,
+          "explicit_owner_without_infoturn_rows": 0,
+          "unknown_or_stale_owner_rows": 0,
+          "visible_rows": 7
+        },
+        "starbases": {
+          "explicit_owner_fresh_rows": 0,
+          "explicit_owner_without_infoturn_rows": 0,
+          "unknown_or_stale_owner_rows": 1,
+          "visible_rows": 1
+        }
+      },
+      "after_archive_turn": 7,
+      "after_embedded_turn": 7,
+      "archive_members_read": 2,
+      "archive_to_embedded_turn_offset": 0,
+      "before": {
+        "planets": {
+          "explicit_owner_fresh_rows": 6,
+          "explicit_owner_without_infoturn_rows": 0,
+          "unknown_or_stale_owner_rows": 74,
+          "visible_rows": 80
+        },
+        "ships": {
+          "explicit_owner_fresh_rows": 2,
+          "explicit_owner_without_infoturn_rows": 0,
+          "unknown_or_stale_owner_rows": 0,
+          "visible_rows": 6
+        },
+        "starbases": {
+          "explicit_owner_fresh_rows": 0,
+          "explicit_owner_without_infoturn_rows": 0,
+          "unknown_or_stale_owner_rows": 1,
+          "visible_rows": 1
+        }
+      },
+      "before_archive_turn": 6,
+      "before_embedded_turn": 6,
+      "causal_queue_replay_admitted": false,
+      "cohort_sha256": "915f25a36146499fcb7147d4aedea6f05ea7a2b072f0c72f07ab39c7e12c1947",
+      "complete_global_fleet_and_base_roster_verified": false,
+      "evidence": "PUBLIC_ARCHIVE_TWO_MEMBER_SHAPE_ONLY_NOT_DIFF_VERIFIED",
+      "game_id": 620917,
+      "host_accepted_orders_verified": false,
+      "host_phase_boundary_independent": false,
+      "index_sha256": "cb72f539775d22726d8d7f225fc7b3deeb8f936312873df12db59340e1dd7735",
+      "missing_or_invalid_arrays": [],
+      "observational_shape_available": true,
+      "owner_pp_ledger_independently_complete": false,
+      "player_slot": 1,
+      "private_fields_emitted": false,
+      "queue_mode": "PPQ",
+      "schema": "planets-lab.pq-two-member-field-sufficiency.v1",
+      "starbase_component_warehouses_independently_complete": false,
+      "turn_identity_relation": "EXACT"
+    },
+    {
+      "after": {
+        "planets": {
+          "explicit_owner_fresh_rows": 6,
+          "explicit_owner_without_infoturn_rows": 0,
+          "unknown_or_stale_owner_rows": 73,
+          "visible_rows": 80
+        },
+        "ships": {
+          "explicit_owner_fresh_rows": 2,
+          "explicit_owner_without_infoturn_rows": 0,
+          "unknown_or_stale_owner_rows": 0,
+          "visible_rows": 4
+        },
+        "starbases": {
+          "explicit_owner_fresh_rows": 0,
+          "explicit_owner_without_infoturn_rows": 0,
+          "unknown_or_stale_owner_rows": 1,
+          "visible_rows": 1
+        }
+      },
+      "after_archive_turn": 8,
+      "after_embedded_turn": 8,
+      "archive_members_read": 2,
+      "archive_to_embedded_turn_offset": 0,
+      "before": {
+        "planets": {
+          "explicit_owner_fresh_rows": 6,
+          "explicit_owner_without_infoturn_rows": 0,
+          "unknown_or_stale_owner_rows": 74,
+          "visible_rows": 80
+        },
+        "ships": {
+          "explicit_owner_fresh_rows": 2,
+          "explicit_owner_without_infoturn_rows": 0,
+          "unknown_or_stale_owner_rows": 0,
+          "visible_rows": 7
+        },
+        "starbases": {
+          "explicit_owner_fresh_rows": 0,
+          "explicit_owner_without_infoturn_rows": 0,
+          "unknown_or_stale_owner_rows": 1,
+          "visible_rows": 1
+        }
+      },
+      "before_archive_turn": 7,
+      "before_embedded_turn": 7,
+      "causal_queue_replay_admitted": false,
+      "cohort_sha256": "915f25a36146499fcb7147d4aedea6f05ea7a2b072f0c72f07ab39c7e12c1947",
+      "complete_global_fleet_and_base_roster_verified": false,
+      "evidence": "PUBLIC_ARCHIVE_TWO_MEMBER_SHAPE_ONLY_NOT_DIFF_VERIFIED",
+      "game_id": 620917,
+      "host_accepted_orders_verified": false,
+      "host_phase_boundary_independent": false,
+      "index_sha256": "cb72f539775d22726d8d7f225fc7b3deeb8f936312873df12db59340e1dd7735",
+      "missing_or_invalid_arrays": [],
+      "observational_shape_available": true,
+      "owner_pp_ledger_independently_complete": false,
+      "player_slot": 1,
+      "private_fields_emitted": false,
+      "queue_mode": "PPQ",
+      "schema": "planets-lab.pq-two-member-field-sufficiency.v1",
+      "starbase_component_warehouses_independently_complete": false,
+      "turn_identity_relation": "EXACT"
+    }
+  ],
+  "archive_name_adjacent_pairs_in_bounded_range": 41,
+  "cohort_sha256": "915f25a36146499fcb7147d4aedea6f05ea7a2b072f0c72f07ab39c7e12c1947",
+  "coverage_is_bounded_not_exhaustive": true,
+  "evidence": "BOUNDED_PUBLIC_ARCHIVAL_IDENTITY_AND_SHAPE_NOT_DIFF_VERIFIED",
+  "first_approved_archive_turn": 3,
+  "first_archive_turn": 1,
+  "game_id": 620917,
+  "host_accepted_orders_verified": false,
+  "index_sha256": "cb72f539775d22726d8d7f225fc7b3deeb8f936312873df12db59340e1dd7735",
+  "max_accepted": 5,
+  "max_pairs": 48,
+  "no_eligible_pair_in_checked_scope": false,
+  "nuhost_execution_verified": false,
+  "player_slot": 1,
+  "pp_warehouse_queue_parity_verified": false,
+  "queue_mode": "PPQ",
+  "raw_turn_payloads_emitted": false,
+  "refusal_counts": {
+    "EMBEDDED_TURN_REPEATED": 1,
+    "EMBEDDED_TURN_SKIPPED_FORWARD": 1
+  },
+  "schema": "planets-lab.pq-bounded-window-selection.v1"
+}
