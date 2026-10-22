@@ -17,12 +17,18 @@ from test_standard_ship_component_quote import pre
 
 def fixture():
     game, quota = scenario()
+    game.players = {owner: replace(player, race_id=1)
+                    for owner, player in game.players.items()}
     prototype, base, specs, blueprint = pre()
     for pid, planet in game.planets.items():
         planet.cargo = deepcopy(prototype.cargo)
         game.starbases[pid] = replace(
             base, planet_id=pid, owner_id=planet.owner_id,
         )
+    # Force a real mineral mining event for receipt tampering coverage.
+    game.planets[19].mines = 10
+    game.planets[19].ground_duranium.amount = 1000
+    game.planets[19].ground_duranium.density = 80
     queue_rows = []
     for row in quota.all_bases:
         if row.queued:
