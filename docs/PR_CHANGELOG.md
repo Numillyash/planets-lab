@@ -11,6 +11,14 @@ additional meaningful repository document. GitHub CI enforces this through
 Do **not** guess merged commit SHAs or claim a workflow is green until
 GitHub confirms it. Check live `main`, PR state and workflows separately.
 
+## #267 — Late PP-funded PQ/PPQ priority ship and 14-phase economy (2026-10-22)
+
+- Extended #266 beyond a default PP quote: `late_pq_ppq_priority_ship_economy.py` constructs the single, fully asserted `pb1` priority ship **after configured soft cap** but before the programmatic 999 ship-ID ceiling. It reuses the #257 independently checked BOM, warehouse and full typed new-ship auditor.
+- Owner PP is separately charged by the documented default quote; only missing purchased components debit planetary MC/minerals. Unmodified 14-phase planetary economy runs before or after priority ship construction under two explicit conditional hypotheses. Strict final-ship identity, old-ship/base immutability, and full independent event/resource ledgers; unsupported conditions ABSTAIN without partial state/PP.
+- Synthetic tests cover both PQ and PPQ × two placements, 8->9 beyond softcap, full warehouse zero-resource build with still-charged PP, tax-funded after-economy costs, 1100KT 21PP, adversarial forged ship/ground/tax and invalid owner/queue/stock cases.
+- Updated [topic handoff](handoff/2026-10-22-late-pq-ppq-priority-economy-v1.md), [roadmap](ROADMAP.md) and complete [new-chat prompt](CONTINUE_HERE.md). PR CI and main merge success must be checked live before claims.
+- Does not implement randomized PQ or planet-proportional PPQ regular late queue, RB# selection, PP awards or real NuHost Host order. Evidence `TESTED conditional`; #247 still parked.
+
 ## #266 — Late PQ/PPQ single priority admission and PP quote (2026-10-22)
 
 - Added `late_pq_ppq_priority_admission.py` with the **default** PQ/PPQ PP formula `1 + ceil(min(hull_mass_KT,1000)/50)` (2 PP for 50KT, max21). Only one explicitly `pb1`-coded late request against a complete base/fleet and owner PP roster is admitted; every other base idle, soft cap already reached, global programmatic IDs below 999.
