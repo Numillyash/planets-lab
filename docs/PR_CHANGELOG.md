@@ -11,6 +11,14 @@ additional meaningful repository document. GitHub CI enforces this through
 Do **not** guess merged commit SHAs or claim a workflow is green until
 GitHub confirms it. Check live `main`, PR state and workflows separately.
 
+## #270 — Late PPQ integer-share Stage-1 ships, warehouses and 14-phase economy (2026-10-22)
+
+- Added `late_ppq_integral_stage1_economy.py` on top of #269's exact integral quotas: one complete warehouse and queued-ship blueprint/hull rights for each of the fully enumerated starbases (including unselected), and explicit selected-base-to-ID caller permutation of exactly N lowest available 1..999 ship IDs.
+- Complete **ten** ordinary ships can cross PPQ's soft ship limit; source component assembler's separate programmatic `999` ID ceiling is used instead of treating soft cap as hard. Per-ship independent material+BOM ledger, all-planet 14-phase economic events/resources, complete unchanged per-owner PP, unchanged old fleet and unselected warehouses, and strict final ship identity verification.
+- New synthetic positive tests cover 19→29 fleet at softcap20 (6+4 exact owner builds), two economic placement hypotheses, swapped explicit IDs, full stored components; negatives reject forged economic events and complete-roster/inventory/scope violations atomically.
+- Updated standalone [full continuation prompt](CONTINUE_HERE.md), [topic handoff](handoff/2026-10-22-ppq-integral-stage1-ship-economy-v1.md), roadmap; PR CI/merge outcome is NOT claimed before checking live GitHub.
+- `TESTED conditional` only; no server-selected base identity, true NuHost ship ID ordering, Host accepted orders, phase order or DIFF_VERIFIED. Next separate late PQ external-selected regular build/economy.
+
 ## #269 — Exact owned-planet integral PPQ Stage-1 regular selection (2026-10-22)
 
 - Added `late_ppq_integer_stage1_allocation.py`: complete late PPQ normal-slot selector, N=max(10, soft-cap gap), exact per-owner integer share of **owned** planets. Only when all guaranteed quotas are integers do they exhaust N without Stage 2/3 lottery; require queued candidate capacity per owner.
