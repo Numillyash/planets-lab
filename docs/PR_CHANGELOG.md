@@ -11,6 +11,14 @@ additional meaningful repository document. GitHub CI enforces this through
 Do **not** guess merged commit SHAs or claim a workflow is green until
 GitHub confirms it. Check live `main`, PR state and workflows separately.
 
+## #281 — Strict bounded automatic PQ archive-window selection after real nonconsecutive embedded turns (2026-10-22)
+
+- Read actual published runtime evidence `pq-public-window-g620917-p1-t1/20261022T183106Z_0a3c034f1fac`: source main `0a3c034f...`, genuine failed gate `embedded turns are not consecutive` and successful automatic evidence push. Filename T1→T2 is **not** a proven game.turn T→T+1 pair. Never weaken the existing strict window reader.
+- New `pq_bounded_window_selection.py` + CLI checks up to 48 filename-adjacent windows of one **frozen permitted** game/player perspective (no other ZIP/member scan), verifies embedded game/player identities and game.turn delta exactly +1, aggregates repeat/backward/forward-skip and other safely classified failures, and returns up to five sanitized valid field-shape reports. The single-window original remains fail-closed; diagnostic-only nonconsecutive inspection never returns a Host-comparable window.
+- New `bash tools/run-pq-window-selection-with-evidence.sh` invokes Docker `lab` without build and existing `run-with-runtime-evidence.sh`, publishes sanitized report plus success/failure log to separate immutable `runtime-logs`; no manual chat logs/keys/raw .trn. Tests include synthetic nonconsecutive patterns, skipping to a verified window, immutable allowlist, scope limits, no source leaks and bash syntax.
+- **Evidence:** prior real archived ABSTAIN observed, new selection logic `TESTED` synthetic until a new on-host published run. No accepted orders, PP warehouse completeness, host scheduling or `DIFF_VERIFIED`. Updated [full continuation](CONTINUE_HERE.md), [handoff](handoff/2026-10-22-pq-bounded-embedded-turn-window-selection-v1.md), roadmap; live exact-head PR CI, merge and main CI must be rechecked.
+- Next: inspect real scanner publication and then build an observational field-sufficiency gate over predeclared windows; #247 for causal Host verification.
+
 ## #280 — Correct PQ archive/embedded turn identity and one-command sanitized runtime publication (2026-10-22)
 
 - On actual approved game 620917/p1/archive T1→T2 PR #279 probe returned `embedded game/turn/player identity mismatch` (real server result; exact root cause within live payload pending rerun). Mature `corpus/normalizer.py` distinguishes filename archive turn and `game.turn`. #280 now verifies exact typed game/player identity plus **two consecutive embedded turns**, reports both embedded turns and constant offset and evaluates owner-current `infoturn` against embedded turn. No blanket acceptance of mismatched identities and no causal Host claims.
