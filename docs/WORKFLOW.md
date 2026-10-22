@@ -144,3 +144,28 @@ bash tools/run-combat-capture-reintegration-with-evidence.sh
 
 It publishes the FeatureScope, predictive queue, and capture-reintegration
 artifact directories together with the outer full log and metadata.
+
+## One-command corpus validation publication (PR #280)
+
+For every future long host/corpus validation command, commit a dedicated short
+`tools/run-<gate>-with-evidence.sh` launcher that invokes the existing
+`tools/run-with-runtime-evidence.sh` wrapper. Do not ask the operator to
+copy terminal output into chat or manually commit a JSON report: sanitized
+runtime evidence goes to the separate `runtime-logs` branch.
+
+The current PQ public archive two-turn check is:
+
+```bash
+bash tools/run-pq-public-window-with-evidence.sh
+# Optional already-approved game, player slot, archive turn:
+bash tools/run-pq-public-window-with-evidence.sh 620917 1 1
+```
+
+It uses the prebuilt Docker `lab` image, only two selected approved public
+archive members, and immutable `runtime-logs/pq-public-window-*/` evidence
+directories containing the safe report and captured success/failure log.
+The launcher does **not** auto-pull the source branch; run
+`git pull --ff-only origin main` once after merge before using new scripts.
+A missing remote push permission causes a clear failure without publishing
+to `main`; never add keys to scripts or raw `.trn` to evidence.
+See [PQ turn-identity/evidence handoff](handoff/2026-10-22-pq-runtime-evidence-turn-offset-v1.md).
