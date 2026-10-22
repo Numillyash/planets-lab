@@ -151,8 +151,13 @@ def test_after_economy_placement_can_fund_first_turn_from_tax():
     game, specs, carry, plans = prepared()
     game.planets[10].cargo.megacredits = 259
     game.planets[20].cargo.megacredits = 259
-    newplans = tuple(replace(p, placement="builds_after_planetary") for p in plans)
-    before = run(game, specs, carry, plans)
+    # Isolate the first turn's tax timing. With 259 MC at BOTH bases
+    # the income funds this turn's 260-MC BOM but does not necessarily
+    # fund a second identical ship in the following turn; that would
+    # require another complete independent affordability hypothesis.
+    one_turn = plans[:1]
+    newplans = tuple(replace(p, placement="builds_after_planetary") for p in one_turn)
+    before = run(game, specs, carry, one_turn)
     after = run(game, specs, carry, newplans)
     assert not before.supported
     assert after.supported
