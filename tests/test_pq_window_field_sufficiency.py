@@ -58,11 +58,11 @@ def make_fixture(tmp_path, *, has_ships=True, gzip_after=False, embedded_offset=
                     {"id": 40, "ownerid": 3, "infoturn": turn},
                 ],
                 "starbases": [
-                    {"planetid": 20, "ownerid": 2, "infoturn": turn,
+                    {"planetid": 20, "ownerid": 2, "infoturn": turn + embedded_offset,
                      "buildhullid": 7},
                 ],
                 "ships": [
-                    {"id": 9, "ownerid": 2, "infoturn": turn,
+                    {"id": 9, "ownerid": 2, "infoturn": turn + embedded_offset,
                      "hullid": 7},
                     {"id": 8, "ownerid": 2},
                 ],
