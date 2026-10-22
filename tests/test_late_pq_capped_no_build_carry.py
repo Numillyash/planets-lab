@@ -213,8 +213,8 @@ def test_forged_engine_must_abstain_without_any_partial_capped_economy(monkeypat
             events = tuple(e for e in events if e.phase != "mineral_mining")
         return result, events
 
-    monkeypatch.setattr(module.HostEngine, "step", forged)
     state, specs, carry, plans = fixture_capped()
+    monkeypatch.setattr(module.HostEngine, "step", forged)
     original_state = deepcopy(state)
     result = run(state, specs, carry, plans)
     assert not result.supported
