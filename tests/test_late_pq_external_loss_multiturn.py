@@ -220,8 +220,7 @@ def test_invalid_second_turn_or_loss_boundary_abstains_entire_history(case, monk
                 return replace(result, player_pp_after=((1,4),(2,7)))
             return result
         monkeypatch.setattr(mod, "simulate_late_pq_external_selected_economic_turn", malicious)
-    steps[1] = second
-    frozen = deepcopy((state, specs, carry, tuple(steps)))
+    if len(steps) > 1:\n        steps[1] = second\n    frozen = deepcopy((state, specs, carry, tuple(steps)))
     output = run(state, specs, carry, tuple(steps), **options)
     assert not output.supported
     assert output.state is None and output.carry_after is None
