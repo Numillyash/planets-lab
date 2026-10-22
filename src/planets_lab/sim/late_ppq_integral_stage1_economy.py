@@ -21,7 +21,10 @@ from planets_lab.sim.late_ppq_integer_stage1_allocation import (
 )
 from planets_lab.sim.orders import PlayerOrders, TurnOrders
 from planets_lab.sim.planetary_host_pipeline import PlanetaryHostPipeline
-from planets_lab.sim.planetary_structure_multiturn import PlanetEconomicBalance, _planet_ledgers
+from planets_lab.sim.planetary_structure_multiturn import (
+    PlanetEconomicBalance, UnsupportedEconomicLedger, _planet_ledgers,
+)
+from planets_lab.sim.population_phases import UnsupportedPopulationRule
 from planets_lab.sim.standard_ship_component_quote import (
     COST_FIELDS, StandardShipBlueprint,
 )
@@ -293,5 +296,8 @@ def simulate_integral_ppq_stage1_economic_turn(
             base_warehouses_after=tuple(sorted(warehouses.items())),
             planet_balances=balances, economic_events=events,
         )
-    except (ValueError, TypeError, KeyError, AttributeError, OverflowError):
+    except (
+        ValueError, TypeError, KeyError, AttributeError, OverflowError,
+        UnsupportedPopulationRule, UnsupportedEconomicLedger,
+    ):
         return abstain("incomplete or inconsistent PPQ, BOM, fleet, PP or economy")
