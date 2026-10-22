@@ -11,6 +11,14 @@ additional meaningful repository document. GitHub CI enforces this through
 Do **not** guess merged commit SHAs or claim a workflow is green until
 GitHub confirms it. Check live `main`, PR state and workflows separately.
 
+## #278 — Explicit frozen-cohort public PQ/PPQ historical readiness triage (2026-10-22)
+
+- Begins **corpus-based validation preparation** after #277's local PQ/PPQ queue/economy integration: new read-only `pq_historical_readiness.py` checks typed actual PQ/PPQ game settings and archive/adjacent-turn coverage of an **explicit, immutable, predeclared allowlist** in the EXISTING feature-index Parquet. Outputs classified PQ, PPQ, excluded/unknown/not-indexed, observational metadata candidates, provenance hashes and unmet Host causal prerequisites. CLI `tools/diagnostics/pq_historical_readiness.py`; invalid/missing inputs fail closed without overwriting reports.
+- No archive member/turn read or live API, no public100 rebuild, heldout32 access, CURRENT mutation or claimed observed game parity. Synthetic + deterministic Parquet tests cover settings contradictions, unknown typed fields, incomplete archives, sealed-cohort exclusion, invalid duplicate IDs and atomic output.
+- This alone is NOT a historical shipyard mechanics comparison; **only observational eligibility metadata** and `host_causal_verified_games=0`. Field sufficiency of owner-current before/after ship/base/PP/warehouse and authenticated orders remains open; issue #247 for human dependent true Host validation.
+- Full refreshed [continuation](CONTINUE_HERE.md), [topic handoff](handoff/2026-10-22-pq-corpus-readiness-v1.md) and roadmap, plus durable command/runbook for scoped existing index and frozen cohort. PR exact CI/merge/main status must be re-queried before claiming.
+- Next: allowed public cohort PQ/PPQ per-turn field-sufficiency gate and bounded observational contradictions (no unnecessary 26+GiB scan).
+
 ## #277 — Atomically composed capped PQ wait, externally supplied loss, one rebuild and existing-fleet logistics (2026-10-22)
 
 - New `late_pq_mixed_calendar.py` composes existing #273 waiting economic-only at SOFT cap (2–8 turns), #272 **strict full preturn snapshot** externally asserted equal to previous modeled state MINUS exactly one inert cargo/ammo-empty ship, #271 one externally selected ordinary regular build using lowest free ship ID and exact BOM/warehouse/PP/14 economic phases, then #276 2–6 capped existing-ship cargo/full normal move and intact planetary economy turns.
