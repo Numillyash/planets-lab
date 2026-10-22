@@ -144,3 +144,12 @@ def test_realistic_base_without_infoturn_is_linked_but_not_current(tmp_path):
         for side in ("before", "after")
     )
     assert "raw secret" not in json.dumps(data)
+
+
+def test_duplicate_base_on_one_planet_is_ambiguous_not_two_proven_build_sites():
+    data = snapshot()
+    data["starbases"].append(deepcopy(data["starbases"][0]))
+    result = check(data)
+    assert result["fresh_owned_planet_linked_bases"] == 0
+    assert result["unresolved_or_ambiguous_base_rows"] == 2
+    assert result["owned_planet_linked_base_rows"] == 0
