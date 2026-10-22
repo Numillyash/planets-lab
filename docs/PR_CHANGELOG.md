@@ -11,6 +11,14 @@ additional meaningful repository document. GitHub CI enforces this through
 Do **not** guess merged commit SHAs or claim a workflow is green until
 GitHub confirms it. Check live `main`, PR state and workflows separately.
 
+## #266 — Late PQ/PPQ single priority admission and PP quote (2026-10-22)
+
+- Added `late_pq_ppq_priority_admission.py` with the **default** PQ/PPQ PP formula `1 + ceil(min(hull_mass_KT,1000)/50)` (2 PP for 50KT, max21). Only one explicitly `pb1`-coded late request against a complete base/fleet and owner PP roster is admitted; every other base idle, soft cap already reached, global programmatic IDs below 999.
+- Reports model-only lowest available ship ID and owner-specific PP after a conditional build; DOES NOT build a ship, alter economy or assert NuHost selection. Custom cost, competing pb2/ordinary priority/regular builds, ownership discrepancies and missing roster ABSTAIN.
+- Added deterministic PP arithmetic and negative source/queue tests, [technical handoff](handoff/2026-10-22-late-pq-ppq-priority-admission-v1.md), [roadmap](ROADMAP.md) and [full new-chat prompt](CONTINUE_HERE.md). CI/merge awaits live checking.
+- Next: compose this selector with actual audited warehouse ship assembly and the 14-phase economic turn, preserving separate PP and surface-material debits. Late PQ random and PPQ planet-share regular queues still missing.
+- Evidence: `TESTED` conditional, not real accepted Host orders or `DIFF_VERIFIED` (#247 deferred).
+
 ## #265 — Classic terminal last-slot competing PBP owners (2026-10-22)
 
 - Added `classic_terminal_pbp_last_slot.py`: one remaining Classic hard-cap ship ID, at least two eligible PBP owners (>=21), a UNIQUE top scorer and one queued base per eligible owner. Selection only under explicit `CALLER_ASSERTED_UNIQUE_HIGHEST_PBP_NO_CODES` hypothesis; modern NuHost PB-code/player-slot ranking is not independently settled.
