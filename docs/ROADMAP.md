@@ -56,6 +56,25 @@ parked in [issue #247](https://github.com/Numillyash/planets-lab/issues/247).
 
 ## Current focus
 
+**Late PQ/PPQ single priority ship construction and full economy (#267, 2026-10-22):**
+Extend #266 model admission/PP quote into real
+model-only one-ship warehouse assembly + 14-phase
+economic turn. Soft ship count can be at/above the PQ/PPQ
+configured threshold; 999 is the distinct programmatic
+ship-ID ceiling for the assembler. A complete single
+pb1 priority request can spend documented default PP and
+only newly purchased hull/engine/weapon BOM costs, keeping
+PP in a sidecar. Reverify full final ship specs, unchanged
+old ships and bases and per-planet tax/mining/economy ledgers,
+for explicit before/after economic placements. Fail closed
+on unknown PP competition, regular queue, custom rules,
+other ship activity and forged receipts. [Full handoff](handoff/2026-10-22-late-pq-ppq-priority-economy-v1.md).
+Next genuine new mechanism: separate bounded PPQ **regular**
+late slots (allocation depends on planet shares/RB#) versus
+PQ randomized regular slots; do not conflate the two or
+claim independently Host-verified priority timings.
+
+
 **Late PQ / PPQ single priority admission / PP quote (#266, 2026-10-22):**
 Separate soft cap (500 default, custom configurable), hard
 programmatic ID cap (999) and Classic PBP hard limit.
