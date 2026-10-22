@@ -112,8 +112,9 @@ def test_actual_two_archive_members_only_privacy_minimal_shape(tmp_path, gzip_af
     assert not result["host_phase_boundary_independent"]
     encoded = json.dumps(result, sort_keys=True)
     for forbidden in ("private@example.com", "SUPER_SECRET", "Secret planet",
-                      "PRIVATE raw order", "buildhullid", "megacredits"):
+                      "PRIVATE raw order", "megacredits"):
         assert forbidden not in encoded
+    assert result["starbase_provenance"]["before"]["source_key_presence_counts"]["buildhullid"] == 1
     out = tmp_path / "reports" / "two-member.json"
     assert main(["--feature-index", str(paths[0]), "--frozen-cohort", str(paths[1]),
                  "--archive-dir", str(paths[2]), "--game-id", "510234",
