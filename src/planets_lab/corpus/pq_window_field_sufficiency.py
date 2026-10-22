@@ -97,6 +97,8 @@ def _load_selected_members(
         seen = set(archive.namelist())
         if any(n not in seen for n in names):
             raise ValueError("requested consecutive members not available")
+        if any(archive.namelist().count(n) != 1 for n in names):
+            raise ValueError("duplicate target member names are not attributable")
         decoded = []
         for name in names:
             info = archive.getinfo(name)
@@ -109,9 +111,9 @@ def _load_selected_members(
         player = item.get("player")
         if (
             type(game) is not dict or type(player) is not dict
-            or game.get("id") != game_id
-            or game.get("turn") != t
-            or player.get("id") != player_id
+            or type(game.get("id")) is not int or game["id"] != game_id
+            or type(game.get("turn")) is not int or game["turn"] != t
+            or type(player.get("id")) is not int or player["id"] != player_id
         ):
             raise ValueError("embedded game/turn/player identity mismatch")
     return before, after
