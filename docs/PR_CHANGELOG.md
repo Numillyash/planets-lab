@@ -11,6 +11,14 @@ additional meaningful repository document. GitHub CI enforces this through
 Do **not** guess merged commit SHAs or claim a workflow is green until
 GitHub confirms it. Check live `main`, PR state and workflows separately.
 
+## #271 — Externally selected late PQ regular ship and full economic ledger (2026-10-22)
+
+- Added `late_pq_external_regular_economy.py` to handle exactly one late PQ vacant soft-cap ship slot with two or more competing queued ordinary bases; **winning base is explicitly externally caller-asserted**. The NuHost PQ random selector or RNG is NOT modeled or claimed causal.
+- Enforces complete 2–64 ordinary base roster, warehouses even idle and unselected, full owner PP, valid hull rights, lowest available ship ID, no priority/clone/mining/movement/combat; builds exactly one selected ship with independently audited BOM, warehouse and source material spend. Full 14-phase planetary economic/resource/event ledgers and final ship identity for two conditional economy placements; normal PP unchanged.
+- Synthetic positive cases: both placements, alternate externally selected winners, stocked components avoid planetary material spending; negative and forensic cases require atomic ABSTAIN. Evidence level strictly `TESTED conditional`; no real host accepted order, random selection or phase order.
+- Full PR #271 [continuation prompt](CONTINUE_HERE.md), [topic handoff](handoff/2026-10-22-late-pq-external-regular-ship-economy-v1.md) and roadmap updated. CI/merge must be verified live on final head.
+- Next: optional multi-turn PQ with externally supplied selections and full sidecar carry, or scoped shipyard+movement integration. No heldout/corpus changes.
+
 ## #270 — Late PPQ integer-share Stage-1 ships, warehouses and 14-phase economy (2026-10-22)
 
 - Added `late_ppq_integral_stage1_economy.py` on top of #269's exact integral quotas: one complete warehouse and queued-ship blueprint/hull rights for each of the fully enumerated starbases (including unselected), and explicit selected-base-to-ID caller permutation of exactly N lowest available 1..999 ship IDs.
