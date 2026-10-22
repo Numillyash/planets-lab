@@ -23,7 +23,7 @@ from planets_lab.sim.late_pq_capped_no_build_carry import (
 )
 from planets_lab.sim.normal_movement import plan_full_normal_move
 from planets_lab.sim.normal_movement_phase import NormalMovementPhase, UnsupportedNormalMovement
-from planets_lab.sim.orders import PlayerOrders, ShipOrder, TurnOrders
+from planets_lab.sim.orders import (PlanetCargoTransferOrder, PlayerOrders, ShipOrder, TurnOrders)
 from planets_lab.sim.planet_cargo_transfer_phase import (
     PlanetCargoTransferPhase, UnsupportedPlanetCargoTransfer, TRANSFER_FIELDS,
 )
@@ -154,11 +154,9 @@ def _checked_orders(
                 if intent.planet_transfer is not None:
                     t = intent.planet_transfer
                     if (
-                        type(t.planet_id) is not int
+                        type(t) is not PlanetCargoTransferOrder
+                        or type(t.planet_id) is not int
                         or t.direction not in ("planet_to_ship", "ship_to_planet")
-                        or type(t) is not type(__import__(
-                            "planets_lab.sim.orders", fromlist=["PlanetCargoTransferOrder"]
-                        ).PlanetCargoTransferOrder)
                     ):
                         raise UnsupportedCappedFleet("unknown transfer order shape")
                     if (
