@@ -12,6 +12,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # Every PR must carry a fresh, copy-ready next-chat prompt,
+      # a current-PR changelog entry, and real repository documentation.
+      # Fetch only the exact base/head commits; avoid a full history clone.
+      - name: Enforce PR documentation and next-chat handoff
+        if: github.event_name == 'pull_request'
+        env:
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          git fetch --no-tags --depth=1 origin "$PR_BASE_SHA" "$PR_HEAD_SHA"
+          python tools/check_pr_handoff.py \
+            --base "$PR_BASE_SHA" \
+            --head "$PR_HEAD_SHA" \
+            --pr-number "$PR_NUMBER"
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:

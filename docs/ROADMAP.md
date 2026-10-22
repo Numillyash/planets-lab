@@ -31,6 +31,29 @@ similar projects may identify formulas, edge cases, API fields or public games
 worth testing, but they do not create evidence labels by themselves. See the
 2026-09-27 external reference catalog for the source-by-source boundary.
 
+## PR-to-PR continuation and documentation rule (2026-10-22)
+
+**MANDATORY IN EVERY PR:** update the canonical
+[copy-ready new-chat prompt](CONTINUE_HERE.md), add the same actual
+PR number to [PR_CHANGELOG.md](PR_CHANGELOG.md), and update at least
+one more meaningful project document (this roadmap, README,
+WORKFLOW, or a relevant handoff). CI checks the *exact* PR base/head
+diff and requires all three; see [AGENTS.md](../AGENTS.md),
+[WORKFLOW.md](WORKFLOW.md) and `tools/check_pr_handoff.py`.
+The updated prompt must carry enough context for a successor to
+continue without pasted conversation history. After merge, verify
+live `main` and post-merge CI. Multiple related PRs may be completed
+per user-requested work session with one consolidated final report.
+
+Current coding focus after the #259–261 Classic queue subphase chain:
+conditionally compose a genuinely noncontested PBP priority purchase
+with selected saved-pointer standard builds under one explicit cap,
+preserving separate PBP and standard-pointer ledgers; then bounded
+late PQ/PPQ and further movement/shipyard/combat compositions.
+**Do not** treat these local tests as NuHost phase-order validation:
+real Host acceptance and independent before/after evidence remain
+parked in [issue #247](https://github.com/Numillyash/planets-lab/issues/247).
+
 ## Current focus
 
 **Classic uncontested PBP priority purchase (2026-10-21):**

@@ -5,6 +5,27 @@ Deterministic Planets.nu simulation, reverse-engineering and AI research environ
 GitHub `main` is the source of truth. Always query actual HEAD before continuing.
 Raw historical archives, prepared caches and compiled datasets remain local/gitignored.
 
+## Resuming work in a new chat — mandatory per-PR handoff
+
+**Start here:** [Copy-ready next-chat prompt](docs/CONTINUE_HERE.md).
+The current prompt lives in Git and is revised in **every pull request**
+alongside [PR change history](docs/PR_CHANGELOG.md) and relevant project
+documentation. You do **not** need to forward prior chats or invent a
+new handoff each time; paste the canonical prompt or ask the new
+ChatGPT session to read it directly from GitHub.
+
+For agents and contributors, [AGENTS.md](AGENTS.md),
+[docs/WORKFLOW.md](docs/WORKFLOW.md) and the
+[PR checklist](.github/PULL_REQUEST_TEMPLATE.md) define the mandatory
+contract. CI rejects PRs without a fresh continuation file, a numbered
+PR changelog entry and a separate meaningful documentation change.
+
+The current standard Host research includes conditional multi-starbase
+Classic queue, saved ordinary build pointer and single uncontested
+priority PBP assembly (#259–261). These are local TESTED models,
+**not** independently validated NuHost execution/phase order.
+Review the roadmap and continuation prompt for current scope.
+
 ## Current checkpoints
 
 - Movement: ordinary geometry, warp wells, route-equivalent Tow/Chunnel, scoped
