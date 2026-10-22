@@ -99,7 +99,8 @@ def quote_integral_ppq_regular_stage1(
             or len(before.starbases) != len(context.all_bases)
             or len(before.starbases) > 128
             or any(type(sid) is not int or not 1 <= sid <= 999
-                   for sid in before.ships)
+                   or type(ship.id) is not int or ship.id != sid
+                   for sid, ship in before.ships.items())
             or len(before.ships) >= context.soft_ship_limit
         ):
             return abstain("incomplete roster, custom state, or no late regular opening")
