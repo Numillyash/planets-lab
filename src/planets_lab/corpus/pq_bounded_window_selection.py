@@ -14,7 +14,9 @@ from pathlib import Path
 from typing import Any
 
 from planets_lab.corpus.pq_historical_readiness import report_from_paths
-from planets_lab.corpus.pq_window_field_sufficiency import scan_single_pq_window
+from planets_lab.corpus.pq_window_field_sufficiency import (
+    _load_selected_members, scan_single_pq_window,
+)
 
 REPORT_SCHEMA = "planets-lab.pq-bounded-window-selection.v1"
 TURN_NAME = re.compile(r"^player([0-9]+)-turn([0-9]+)\.trn$")
@@ -102,7 +104,24 @@ def select_bounded_pq_windows(
             ValueError, TypeError, KeyError, OSError, EOFError, UnicodeError,
             OverflowError, zipfile.BadZipFile,
         ) as exc:
-            failures[_category(exc)] += 1
+            category = _category(exc)
+            if category == "EMBEDDED_TURNS_NOT_CONSECUTIVE":
+                # Diagnostic only: game/player IDs must match, and this
+                # never admits an invalid transition as mechanically usable.
+                try:
+                    _, _, before_embedded, after_embedded = _load_selected_members(
+                        archive_path, game_id=game_id, player_id=player_slot,
+                        t_before=ordinal, strict_consecutive=False,
+                    )
+                    delta = after_embedded - before_embedded
+                    category = (
+                        "EMBEDDED_TURN_REPEATED" if delta == 0 else
+                        "EMBEDDED_TURN_BACKWARDS" if delta < 0 else
+                        "EMBEDDED_TURN_SKIPPED_FORWARD"
+                    )
+                except (ValueError, OSError, KeyError, TypeError):
+                    category = "UNREADABLE_OR_UNSUPPORTED_MEMBER"
+            failures[category] += 1
             continue
         # The strict reader has already verified embedded delta == 1.
         if (
