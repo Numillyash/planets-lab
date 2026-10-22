@@ -11,6 +11,14 @@ additional meaningful repository document. GitHub CI enforces this through
 Do **not** guess merged commit SHAs or claim a workflow is green until
 GitHub confirms it. Check live `main`, PR state and workflows separately.
 
+## #275 — PQ new ship load/move on separately audited following economy turn (2026-10-22)
+
+- Added `late_pq_new_ship_next_turn_move.py`: unlike #274's hypothetical same-turn postbuild movement, #275 models **T build+full 14 economic phases**, then a distinct **T+1** normal cargo/fuel loading and full ordinary move with a SECOND complete 14-phase economic block, under two explicit next-turn placement hypotheses.
+- Uses #271 exact selected single ship BOM/warehouse/PP and existing normal movement/planet cargo transfer phases plus strict receipt/delta `_audit_transfers_and_undo`, `_exact_ship_fuel_ledgers`, `_planet_ledgers`, and independent full-move fuel quote. No other ships/movement/normal builds, external interturn state mutation, priority/cloning/mining station or unsupported encounters. Atomic two-turn ABSTAIN on any missing or inconsistent input/receipt.
+- Synthetic tests cover 2×2 placement variants, complete 2-turn inventory and PP carry, loaded fuel and supplies, missing context/invalid candidate moves and adversarial forged movements or planetary events.
+- Only `TESTED conditional`, no server accepted orders, authenticated interturn boundary, NuHost phase positions or causal Host parity.
+- Updated [full continuation](CONTINUE_HERE.md), [topic handoff](handoff/2026-10-22-pq-new-ship-next-turn-movement-v1.md) and roadmap; exact final CI + merge + post-merge status must be verified from live GitHub. Next: integrate at-cap waiting turns with ship movement/cargo without invented regular builds.
+
 ## #274 — New late PQ ship orbital load and conditional short normal move (2026-10-22)
 
 - Introduced `late_pq_built_ship_cargo_move.py`: compose audited #271 selected ordinary ship build + complete warehouse/BOM/14-phase economy with caller-asserted postbuild **planet-to-new-ship orbital fuel/cargo loading and one short full normal movement** using existing transfer and movement phases. No second model turn or second economy calculation.
