@@ -124,6 +124,7 @@ def test_unsupported_selection_never_returns_partial_allocation(case):
             p.owner_id = None
     elif case == "insufficient_queue":
         rows[0] = PPQRegularBase(1, False)
+        rows[1] = PPQRegularBase(2, False)
     elif case == "rb_boundary_tie":
         rows[5] = replace(rows[5], rb_code="rb5")
         rows[6] = replace(rows[6], rb_code="RB5")
