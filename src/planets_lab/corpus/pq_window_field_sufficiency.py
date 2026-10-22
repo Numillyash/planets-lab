@@ -47,7 +47,7 @@ def _owner_stats(parsed: Mapping[str, Any], perspective: int, turn: int) -> dict
             missing.append(f"ABSTAIN_{kind.upper()}_ARRAY_MISSING")
             groups[kind] = {
                 "visible_rows": None,
-                "explicit_owner_current_rows": 0,
+                "explicit_owner_fresh_rows": 0,\n                "explicit_owner_without_infoturn_rows": 0,
                 "unknown_or_stale_owner_rows": 0,
             }
             continue
@@ -61,12 +61,12 @@ def _owner_stats(parsed: Mapping[str, Any], perspective: int, turn: int) -> dict
             if owner is None:
                 owner = row.get("owner_id")
             info_turn = row.get("infoturn")
-            if type(owner) is int and owner == perspective and (
-                info_turn is None or (type(info_turn) is int and info_turn == turn)
-            ):
-                # Absence of infoturn is *not* independent freshness proof.
-                explicit += 1
+            if type(owner) is int and owner == perspective:
                 if info_turn is None:
+                    unverified_freshness += 1
+                elif type(info_turn) is int and info_turn == turn:
+                    explicit += 1
+                else:
                     unknown += 1
             elif type(owner) is not int or (
                 info_turn is not None and (
@@ -76,7 +76,7 @@ def _owner_stats(parsed: Mapping[str, Any], perspective: int, turn: int) -> dict
                 unknown += 1
         groups[kind] = {
             "visible_rows": len(rows),
-            "explicit_owner_current_rows": explicit,
+            "explicit_owner_fresh_rows": explicit,\n            "explicit_owner_without_infoturn_rows": unverified_freshness,
             "unknown_or_stale_owner_rows": unknown,
         }
     if not isinstance(parsed.get("player"), dict):
