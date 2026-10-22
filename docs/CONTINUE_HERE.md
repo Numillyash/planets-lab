@@ -3,7 +3,7 @@
 **Source of truth:** https://github.com/Numillyash/planets-lab → `docs/CONTINUE_HERE.md` в живом `main`.
 **Подготовлен 2026-10-22 для PR #280**. Подтверждённый main **до** PR — `69d6d42d6e1d9b4ba2bb005878ae069041b96648`, PR #279 merged, PR CI #1508 и postmerge main CI #1509 success. Это только историческая опора, перепроверить live GitHub main/PR/CI заново.
 
-## User intent and communication
+## Context
 
 Самостоятельно продолжай Python исследовательский проект `Numillyash/planets-lab` (Planets.nu/NuHost, PlanetDashboard), по возможности несколькими значимыми PR за один сеанс, одним консолидированным русским отчётом; не проси копировать прошлые чаты. **Новое обязательное пожелание пользователя: после каждого host/corpus run пользователь вводит ОДНУ короткую `bash tools/run-...-with-evidence.sh` команду, все обезличенные отчёты и логи автоматически публикуются в ветку `runtime-logs` GitHub, а НЕ пересылаются вручную в чат.** Для этого в репо уже существовал надёжный `tools/run-with-runtime-evidence.sh`. Не создавай альтернативную систему push/credentials. При разработке каждого нового host run добавляй отдельный отслеживаемый launcher, использующий этот wrapper.
 
@@ -19,13 +19,13 @@
 - Остальная симуляция PR #251–277: 14-фазная экономика, Classic/PBP, PQ/PPQ bounded rules, warehouse/BOM, priority PP, late PPQ integer Stage1, late PQ external selected, capped waits, multi-turn loss/calendar, cargo+movement — `TESTED conditional`, не Host-verified. Значимая следующая исследовательская часть: run реальных approved PQ public snapshots, дальше per-field sufficiency and bounded observational comparisons, а не бесконечные synthetic models. User-dependent authentic independently accepted Host orders/owner before+after snapshots остаются issue #247.
 - `CURRENT` public68 неизменен. Public100 26+ GiB prepared; не пересобирать. M2 heldout32 entity selection sealed; не читать. `runtime-logs` — отдельная evidence branch, а docs/source в `main`. Отдельные C5/combat, IntelBoard production, signed V1/V2 PlayerOrders не трогать.
 
-## Next
+## Next actions
 
 1. Проверить настоящий PR #280 final CI, исправить failures; merge только green и подтвердить postmerge main CI.
 2. После серверного одного `bash tools/run-pq-public-window-with-evidence.sh` найти самое новое evidence `runtime-logs/pq-public-window-g620917-p1-t1/...` через GitHub. Проверить именно реальный архивный offset / cause and shape counts, не путать сам факт опубликованного лога с механической Host верификацией.
 3. Следующий PR: безопасный bounded aggregate predeclared нескольких архивных окон / field-sufficiency selection с собственным ONE-COMMAND evidence launcher. If material missing → `ABSTAIN`, не fake zero. Не читать sealed M2 heldout32.
 4. После каждого нового PR снова полный CONTINUE_HERE, PR_CHANGELOG и topic docs, exact-head CI и main CI. Для каждого будущего host run — отдельный bash launcher c automatic sanitized git evidence.
 
-## Evidence boundary
+## Boundaries
 
 `DOCUMENTED` / `CORPUS_OBSERVED` / `INFERRED` / `TESTED` / `DIFF_VERIFIED` различны. Индексная metadata и zip shape не доказывают NuHost accepted orders, phase, PP/warehouses или build outcome. Mandatory fields missing/unknown → atomic ABSTAIN. Ни private API keys, ни приватные orders, raw archive members, HAR, credentials или env в Git.
