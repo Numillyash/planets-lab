@@ -64,8 +64,7 @@ def setup():
         complete_fleet_planets_all_buildable_bases_and_warehouses_asserted=True,
         caller_explicit_random_selected_base_asserted=True,
         no_priority_cloning_mining_stations_or_other_actions_asserted=True,
-        default_regular_zero_pp_regular_build_and_no_pp_income_asserted=True
-        if False else False,
+        default_regular_zero_pp_no_idle_pp_income_asserted=True,
     )
     built = simulate_late_pq_external_selected_economic_turn(
         after_loss, specs, context,
@@ -126,11 +125,8 @@ def test_complete_wait_loss_rebuild_then_two_capped_cargo_flights(placement):
     assert len(out.waiting_turns) == 2
     assert len(out.fleet_turns) == 2
     assert out.build.ship_receipt.ship_id == 1
-    assert all(x.planet_balance_exact for x in out.waiting_turns
-               if hasattr(x, "planet_balance_exact")) or all(
-        all(b.resource_balance_exact for b in x.planet_balances)
-        for x in out.waiting_turns
-    )
+    assert all(all(b.resource_balance_exact for b in x.planet_balances)
+               for x in out.waiting_turns)
     assert all(all(b.resource_balance_exact for b in t.planet_balances)
                for t in out.fleet_turns)
     assert all(t.built_ship_ids == () for t in out.fleet_turns)
