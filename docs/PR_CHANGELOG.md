@@ -11,6 +11,14 @@ additional meaningful repository document. GitHub CI enforces this through
 Do **not** guess merged commit SHAs or claim a workflow is green until
 GitHub confirms it. Check live `main`, PR state and workflows separately.
 
+## #277 — Atomically composed capped PQ wait, externally supplied loss, one rebuild and existing-fleet logistics (2026-10-22)
+
+- New `late_pq_mixed_calendar.py` composes existing #273 waiting economic-only at SOFT cap (2–8 turns), #272 **strict full preturn snapshot** externally asserted equal to previous modeled state MINUS exactly one inert cargo/ammo-empty ship, #271 one externally selected ordinary regular build using lowest free ship ID and exact BOM/warehouse/PP/14 economic phases, then #276 2–6 capped existing-ship cargo/full normal move and intact planetary economy turns.
+- Enforces that at ship-only loss boundary the entire previous ordinary base queue/idle, blueprint and hull-rights roster remains unchanged. All base inventories and owner PP are carried from prior exact ledgers, never silently replenished; normal queued ships cannot build while capped. Any later stage uncertainty → **whole-calendar ABSTAIN** with no interim world, receipts or balances.
+- Synthetic full-history tests cover 2 wait → 1 externally asserted inert loss → 1 rebuild → 2 full-cap cargo/movement, explicit alternative build-economy ordering, strict ship identities, owner PP, all warehouse and resource/event ledgers, extensive negative/forgery boundary cases.
+- Evidence only `TESTED conditional`; no independent NuHost combat/recycling, accepted orders, phase timing, PQ random selection or `DIFF_VERIFIED`. Update full [continuation](CONTINUE_HERE.md), [technical handoff](handoff/2026-10-22-pq-mixed-wait-loss-build-fleet-v1.md) and roadmap. CI/merge/post-main outcomes must be checked live before being claimed.
+- Next: multiple independently sourced loss/build windows or real accepted Host boundary verification (issue #247); no current public100/heldout32/CURRENT changes.
+
 ## #276 — Soft-capped ordinary PQ: existing-fleet cargo/movement across fully audited economic turns (2026-10-22)
 
 - Added `late_pq_capped_existing_fleet_cargo.py` composing #273 exact no-ordinary-build at soft cap with 2–6 consecutive existing-ship load/unload/move and complete planet 14-phase economy turns. Every ordinary queued base/idle and hull rights declared each turn; full PP and component warehouses persist unchanged. Requires one explicit `ShipOrder` for **every** existing ship/owner each turn: one ordinary non-special supported mover with unchanged armament/ammunition and all other ships fully inert.
