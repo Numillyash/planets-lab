@@ -78,7 +78,8 @@ def _owner_stats(parsed: Mapping[str, Any], perspective: int, turn: int) -> dict
                 unknown += 1
         groups[kind] = {
             "visible_rows": len(rows),
-            "explicit_owner_fresh_rows": explicit,\n            "explicit_owner_without_infoturn_rows": unverified_freshness,
+            "explicit_owner_fresh_rows": explicit,
+            "explicit_owner_without_infoturn_rows": unverified_freshness,
             "unknown_or_stale_owner_rows": unknown,
         }
     if not isinstance(parsed.get("player"), dict):
