@@ -56,6 +56,28 @@ parked in [issue #247](https://github.com/Numillyash/planets-lab/issues/247).
 
 ## Current focus
 
+**Early unthrottled PQ/PPQ: ordinary ships AND idle-starbase PP (#268, 2026-10-22):**
+Extend #258's only-all-queued early model with an exhaustive
+all-ordinary-starbase roster that admits at least one queued
+and one idle base. In fully unthrottled intervals below 90%
+of the soft cap, every ordinary eligible base is caller
+asserted selected: queued base builds at ZERO PP cost,
+unoccupied build slot awards default +2 PP to its owner.
+Run audited multi-base warehouse ship construction and
+full 14-phase economy, verify final blueprint identities,
+old fleet/base preservation, per-planet resource/event
+ledgers and idle owner PP receipts. The set of new ship
+IDs must exactly equal N **lowest available** legal IDs;
+assignment of IDs to bases remains caller asserted rather
+than falsely recovering PQ/PPQ randomized order.
+Unknown custom PP awards, Mining Stations, priority codes,
+missing idle stock or softcap contention ABSTAIN. Detailed
+[early idle-PP handoff](handoff/2026-10-22-early-pq-ppq-idle-pp-v1.md).
+Next: separately bounded PPQ throttled regular slots
+(owned-planet proportions/RB#) and PQ random regular slots;
+then compose core shipyards with safe movement/cargo phases.
+
+
 **Late PQ/PPQ single priority ship construction and full economy (#267, 2026-10-22):**
 Extend #266 model admission/PP quote into real
 model-only one-ship warehouse assembly + 14-phase

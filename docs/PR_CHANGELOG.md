@@ -11,6 +11,14 @@ additional meaningful repository document. GitHub CI enforces this through
 Do **not** guess merged commit SHAs or claim a workflow is green until
 GitHub confirms it. Check live `main`, PR state and workflows separately.
 
+## #268 — Early unthrottled PQ/PPQ ordinary builds and idle starbase PP (2026-10-22)
+
+- Added `early_pq_ppq_idle_pp_turn.py`: complete 2–64 ordinary starbase roster including at least one regular queued build and at least one idle selected base, far below 90% of configured soft ship cap. Standard shipbuilding spends 0 PP; each selected eligible idle base earns exactly +2 default Priority Points assigned to its owner. Does not model Mining Stations, custom idle PP earning rules, pbN, cloning, unknown combat or regular late queue contention.
+- Unlike the previous all-queued #258 slice, this model validates warehouses for idle bases as well as active bases; assembled ships use the exact lowest-N unoccupied ship-ID **set**, while base-to-ID assignment remains only caller-asserted since real PQ/PPQ can randomize ordering. Reuses component/warehouse audit, independent final ship identity, full 14-phase economy and per-planet resource/event ledgers, with whole-turn ABSTAIN on unsupported inputs.
+- New tests: PQ and PPQ × 2 economy placements; 2 queued/1 idle with +2PP, 1 queued/2 idle with points for both owners, zero-MC stocked ship, tax-funded late building, permuted ID assignments, low-ID set rejection, phantom idle stock, false/duplicate owners and forged final states.
+- Updated [roadmap](ROADMAP.md), [topic handoff](handoff/2026-10-22-early-pq-ppq-idle-pp-v1.md) and [full continuation prompt](CONTINUE_HERE.md). PR CI/merge outcome is not claimed until GitHub verifies it.
+- Remains `TESTED` conditional only, with external real NuHost causality parked in #247. Next: late PQ randomized normal allocations vs separately PPQ owned-planet share and RB# slots.
+
 ## #267 — Late PP-funded PQ/PPQ priority ship and 14-phase economy (2026-10-22)
 
 - Extended #266 beyond a default PP quote: `late_pq_ppq_priority_ship_economy.py` constructs the single, fully asserted `pb1` priority ship **after configured soft cap** but before the programmatic 999 ship-ID ceiling. It reuses the #257 independently checked BOM, warehouse and full typed new-ship auditor.
