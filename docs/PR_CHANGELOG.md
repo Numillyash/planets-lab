@@ -11,6 +11,14 @@ additional meaningful repository document. GitHub CI enforces this through
 Do **not** guess merged commit SHAs or claim a workflow is green until
 GitHub confirms it. Check live `main`, PR state and workflows separately.
 
+## #276 — Soft-capped ordinary PQ: existing-fleet cargo/movement across fully audited economic turns (2026-10-22)
+
+- Added `late_pq_capped_existing_fleet_cargo.py` composing #273 exact no-ordinary-build at soft cap with 2–6 consecutive existing-ship load/unload/move and complete planet 14-phase economy turns. Every ordinary queued base/idle and hull rights declared each turn; full PP and component warehouses persist unchanged. Requires one explicit `ShipOrder` for **every** existing ship/owner each turn: one ordinary non-special supported mover with unchanged armament/ammunition and all other ships fully inert.
+- Independent checks reuse `_audit_transfers_and_undo`, `_planet_ledgers`, `_exact_ship_fuel_ledgers`, exact `plan_full_normal_move` and typed final ship identity; verified cargo/planet conservation, fuel burn, unchanged all other ships, IDs, owner starbases, zero normal builds, two economic phase-placement hypotheses. Any failure including on later turn abstains whole sequence.
+- Synthetic positives exercise fuel/supply loading then carried-fuel follow-on move, queue changes at full cap, PP and all warehouse preservation. Negative and forged-event/resource/ship tests enforce atomic ABSTAIN. Evidence `TESTED conditional` only; no independently accepted NuHost orders, timing or parity.
+- Full continuation prompt, [topic handoff](handoff/2026-10-22-pq-capped-existing-fleet-cargo-v1.md) and roadmap updated; exact-head PR CI/merge and post-merge main CI must be queried live before being claimed.
+- Next mixed wait/loss/build calendar or independently bounded multi-ship logistics, not speculative NuHost RNG.
+
 ## #275 — PQ new ship load/move on separately audited following economy turn (2026-10-22)
 
 - Added `late_pq_new_ship_next_turn_move.py`: unlike #274's hypothetical same-turn postbuild movement, #275 models **T build+full 14 economic phases**, then a distinct **T+1** normal cargo/fuel loading and full ordinary move with a SECOND complete 14-phase economic block, under two explicit next-turn placement hypotheses.
