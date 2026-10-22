@@ -56,6 +56,25 @@ parked in [issue #247](https://github.com/Numillyash/planets-lab/issues/247).
 
 ## Current focus
 
+**Bounded consecutive Classic queue/pointer/PBP/warehouse carry (2026-10-22):**
+Continue the joint full priority+standard #263 turn into a
+*multi-turn* model sequence. On each next turn use exactly
+one explicitly operator-asserted queue row for every base;
+carry modeled current fleet, complete warehouse inventory
+including idle bases, per-owner PBP balances and saved
+standard-pointer as distinct sidecars. Dispatch the #263
+joint path iff one player remains PBP eligible; otherwise
+use #260 standard-only branch. Abort whole sequence with NO
+partial game/receipt if a later turn is unsupported,
+materials/priority/warehouses are ambiguous or any external
+PBP/stock/combat effect is needed. No Host queue causality,
+PBx tie ranking or canonical signed order schema change.
+[Consecutive queue-state handoff](handoff/2026-10-22-classic-multiturn-queue-carry-v1.md).
+Next: bounded documented competitive queue arbitration or
+late PQ/PPQ admission and cross-system integrated Host turns;
+external Host evidence still parked #247.
+
+
 **Classic priority + standard in one fully audited conditional turn (2026-10-22):**
 Compose one uncontested Classic PBP priority build from #261
 with the #259 standard pointer/queue and #260 stock-checked
