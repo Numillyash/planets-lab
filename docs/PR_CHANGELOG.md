@@ -11,6 +11,14 @@ additional meaningful repository document. GitHub CI enforces this through
 Do **not** guess merged commit SHAs or claim a workflow is green until
 GitHub confirms it. Check live `main`, PR state and workflows separately.
 
+## #279 — Bounded public PQ/PPQ T−1→T window source-field sufficiency (2026-10-22)
+
+- Added `pq_window_field_sufficiency.py` and CLI: given EXISTING feature-index Parquet, fully explicit frozen allowed cohort (new tracked public-control12 selection: 12 existing finished games, 8 PPQ + 4 Classic controls, no M2 holdout), game ID/owner perspective and adjacent turns, recalculate #278 observational admission BEFORE touching a ZIP. Then read **exactly two** selected .trn members from ONE cached public game archive, not all members or a 26+GiB rescan. Validate embedded identity, duplicate member names, bounded plain/gzip JSON and explicit malformed/absent source.
+- Emit only typed per-perspective `planets`/`starbases`/`ships` array presence/counts, explicitly owner-owned **and fresh** infoturn rows, separate owner records with absent infoturn (unverified freshness), unknown/malformed rows and missing-array reasons. Do NOT output emails, savekeys, messages, names, coordinates, source records, accepted orders or resources. Test with synthetic ZIP, gzip and adversarial private fields; malformed windows fail closed without overwriting prior report.
+- Evidence strictly `PUBLIC_ARCHIVE_TWO_MEMBER_SHAPE_ONLY_NOT_DIFF_VERIFIED`; PP/component stock completeness/global roster/Host phase/order acceptance all remain explicitly false. This tests **source observability**, NOT queue mechanics parity or actual archive runtime execution. On current PR there is no claim that approved public68 ZIP members were read at CI.
+- Updated complete [continuation](CONTINUE_HERE.md), [technical handoff](handoff/2026-10-22-pq-two-member-archival-window-v1.md) and roadmap. Verify final PR CI/merge and post-merge main CI live before claims.
+- Next: run on **predeclared allowed** 12-game/public68 archive windows if runtime available; then provenance-qualified aggregate field-sufficiency and bounded observational queue transition audits. No heldout32 or public100 rebuild.
+
 ## #278 — Explicit frozen-cohort public PQ/PPQ historical readiness triage (2026-10-22)
 
 - Begins **corpus-based validation preparation** after #277's local PQ/PPQ queue/economy integration: new read-only `pq_historical_readiness.py` checks typed actual PQ/PPQ game settings and archive/adjacent-turn coverage of an **explicit, immutable, predeclared allowlist** in the EXISTING feature-index Parquet. Outputs classified PQ, PPQ, excluded/unknown/not-indexed, observational metadata candidates, provenance hashes and unmet Host causal prerequisites. CLI `tools/diagnostics/pq_historical_readiness.py`; invalid/missing inputs fail closed without overwriting reports.
