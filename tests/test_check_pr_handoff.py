@@ -108,3 +108,24 @@ def test_non_commit_sha_rejected_before_invoking_git():
 
 def test_empty_hand_off_is_not_passable():
     assert validate([CONTINUATION, CHANGELOG, "docs/ROADMAP.md"], "")
+
+
+def test_current_pr_number_required_in_both_current_handoff_files():
+    changes = [CONTINUATION, CHANGELOG, "docs/ROADMAP.md"]
+    current = VALID_HANDOFF + "\nCurrent PR #262 and its continuation state.\n"
+    assert validate_pr_files(
+        set(changes), current, "PR #262 — new workflow", pr_number=262,
+    ) == []
+    assert any("CURRENT PR #262" in x for x in validate_pr_files(
+        set(changes), VALID_HANDOFF, "PR #262 — new workflow", pr_number=262,
+    ))
+    assert any("CURRENT PR #262" in x for x in validate_pr_files(
+        set(changes), current, "PR #261 — older state", pr_number=262,
+    ))
+
+
+def test_previous_pr_reference_cannot_mask_missing_current_pr_reference():
+    changes = [CONTINUATION, CHANGELOG, "README.md"]
+    text = VALID_HANDOFF + "Previously completed #261"
+    failures = validate_pr_files(set(changes), text, "Completed PR #261", pr_number=262)
+    assert len(failures) == 2
