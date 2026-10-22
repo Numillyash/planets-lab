@@ -89,6 +89,7 @@ def _owner_stats(parsed: Mapping[str, Any], perspective: int, turn: int) -> dict
 
 def _load_selected_members(
     path: Path, *, game_id: int, player_id: int, t_before: int,
+    strict_consecutive: bool = True,
 ) -> tuple[dict[str, Any], dict[str, Any], int, int]:
     if not path.is_file():
         raise ValueError("approved public archive missing")
@@ -128,7 +129,7 @@ def _load_selected_members(
     # Corpus normalizer already distinguishes filename/archive turn from
     # embedded game.turn. Require a consistent offset AND a consecutive
     # embedded turn transition; neither turn naming convention is guessed.
-    if embedded_turns[1] != embedded_turns[0] + 1:
+    if strict_consecutive and embedded_turns[1] != embedded_turns[0] + 1:
         raise ValueError("embedded turns are not consecutive")
     return before, after, embedded_turns[0], embedded_turns[1]
 
@@ -138,7 +139,9 @@ def scan_single_pq_window(
 ) -> dict[str, Any]:
     game_id = _int(game_id, positive=True)
     player_id = _int(player_id, positive=True)
-    t_before = _int(t_before, positive=True)
+    t_before = _int(t_before)
+    if t_before < 0:
+        raise ValueError("archive turn must be nonnegative")
     if player_id > 50:
         raise ValueError("invalid bounded player slot")
     # Validate cohort AND index BEFORE attempting to touch a ZIP.
