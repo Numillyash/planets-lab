@@ -47,7 +47,8 @@ def _owner_stats(parsed: Mapping[str, Any], perspective: int, turn: int) -> dict
             missing.append(f"ABSTAIN_{kind.upper()}_ARRAY_MISSING")
             groups[kind] = {
                 "visible_rows": None,
-                "explicit_owner_fresh_rows": 0,\n                "explicit_owner_without_infoturn_rows": 0,
+                "explicit_owner_fresh_rows": 0,
+                "explicit_owner_without_infoturn_rows": 0,
                 "unknown_or_stale_owner_rows": 0,
             }
             continue
