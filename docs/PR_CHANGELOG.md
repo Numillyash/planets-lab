@@ -11,6 +11,14 @@ additional meaningful repository document. GitHub CI enforces this through
 Do **not** guess merged commit SHAs or claim a workflow is green until
 GitHub confirms it. Check live `main`, PR state and workflows separately.
 
+## #282 — Owner provenance of archived PPQ starbases through unique fresh planet links (2026-10-22)
+
+- **Real source evidence:** predeclared game 620917/p1 in `runtime-logs/pq-window-selection-g620917-p1-from1/20261022T185133Z_412db3d34b32`: 7 inspected archive-adjacent pairs, 5 embedded game.turn-consecutive, one repeated and one skipped forward. The five accepted pairs have arrays of 80 planets, one visible starbase, direct base owner-current count **zero**. Changing visible ship count is **not** independent proof of builds. `nu_loadturn._starbase` can resolve missing base owner from linked planet; previously this link was not measured by PQ diagnostic.
+- New `pq_starbase_observability.py` joins each observed starbase's unique typed `planetid` to exactly one visible **owner-current planet** `id`, enforces no conflicting explicit base owner and separately requires **base infoturn=current embedded turn** to count a current linked base. Counts linked-owned-but-unknown base freshness, stale base infoturn, owner mismatch, duplicate IDs and unknown fields without fabricating positive queue states. Only static allowlisted source-key **presence counts**; no entity values/private fields.
+- Wired into `pq_window_field_sufficiency.py` so the **existing** `bash tools/run-pq-window-selection-with-evidence.sh` automatically publishes expanded before/after source shapes to separate `runtime-logs`; no new host manual JSON transfer. Adversarial synthetic tests check uniqueness, stale/unknown, conflicting ownership, direct/missing base owner, PII omission and integrated two-member reader.
+- **Evidence:** five real archived *structural* windows `CORPUS_OBSERVED`; new link interpretation **TESTED conditional** until source corpus rerun. No complete PP warehouses, build orders or NuHost parity. Updated [full continuation](CONTINUE_HERE.md), [handoff](handoff/2026-10-22-pq-starbase-owner-planet-link-v1.md) and roadmap. Verify exact CI/merge/main CI live.
+- Next: inspect actual new `runtime-logs` rerun; build bounded field-level sufficiency by trusted, uniquely linked base and owned ship, not synthetic Host causality.
+
 ## #281 — Strict bounded automatic PQ archive-window selection after real nonconsecutive embedded turns (2026-10-22)
 
 - Read actual published runtime evidence `pq-public-window-g620917-p1-t1/20261022T183106Z_0a3c034f1fac`: source main `0a3c034f...`, genuine failed gate `embedded turns are not consecutive` and successful automatic evidence push. Filename T1→T2 is **not** a proven game.turn T→T+1 pair. Never weaken the existing strict window reader.
