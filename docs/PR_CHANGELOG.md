@@ -11,6 +11,14 @@ additional meaningful repository document. GitHub CI enforces this through
 Do **not** guess merged commit SHAs or claim a workflow is green until
 GitHub confirms it. Check live `main`, PR state and workflows separately.
 
+## #273 — Full soft-cap PQ no-build multi-turn economy and unchanged warehouses/PP (2026-10-22)
+
+- Added `late_pq_capped_no_build_carry.py` for the **distinct** case from #272 with fleet ALREADY AT ordinary PQ soft cap and **NO** external ship loss. Runs 2–8 consecutive *economy-only* turns with a complete all-base queued+idle roster, two+ queued candidates and explicit absence of all priority pbN/clone/Mining Stations/other actions. Not a general automatic Host no-build oracle.
+- Never consumes any queued ship, builds a ship or allocates an ID; owner PP and ALL base warehouses remain exact and unchanged. Runs intact 14-phase planetary economy each modeled turn, independently auditing every per-planet resource/event ledger and exact fleet/owners/stars/metadata retention. Any mismatch ABSTAINS the whole sequence atomically without partial results.
+- Synthetic coverage: two different queued roster configurations at full cap, eight-turn economy/PP/stocks carry, malformed owner/rights/warehouse/cap/queue cases and adversarial forged ship/planet/event output.
+- Updated complete [PR #273 continuation](CONTINUE_HERE.md), [technical handoff](handoff/2026-10-22-late-pq-capped-no-build-carry-v1.md) and roadmap. Exact PR CI and merge/post-merge main outcomes must be verified live.
+- Evidence: `TESTED conditional`, NOT independent no-build NuHost selection/timing or `DIFF_VERIFIED`. Next combine explicit-loss and capped no-build temporal cases or bounded shipyard+movement/cargo integration; actual Host proof issue #247.
+
 ## #272 — Conditional multi-turn late PQ with exact externally supplied ship-loss snapshots (2026-10-22)
 
 - Added `late_pq_external_loss_multiturn.py` to compose **2–6** successive #271 late PQ single-slot ordinary builds, carrying full owner PP and every base's warehouses, queued rights, source economy and sorted per-turn selected lowest free Ship ID. Host PQ winning base remains caller asserted, never reproduced by RNG.
