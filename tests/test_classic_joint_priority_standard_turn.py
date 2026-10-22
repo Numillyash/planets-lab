@@ -129,7 +129,7 @@ def test_after_economy_tax_can_finance_priority_and_standard_full_turn():
     "no_rules", "no_stock_scope", "other_actions",
     "bad_phase", "bool_seed", "priority_no_money", "standard_no_money",
     "priority_phantom_component", "unknown_priority_hull",
-    "priority_competing_regular", "duplicate_ship",
+    "priority_competing_regular", "hard_limit_full",
 ))
 def test_ambiguous_or_invalid_context_abstains_atomically(problem):
     game, specs, ctx = fixture()
@@ -212,8 +212,12 @@ def test_ambiguous_or_invalid_context_abstains_atomically(problem):
         ordinary[30] = ordinary[10]
         rows = tuple(replace(r, ordinary_ship_queued=True) if r.planet_id == 30 else r for r in ctx.standard.bases)
         ctx = replace(ctx, priority=replace(ctx.priority, queued_base_orders=q), standard=replace(ctx.standard, bases=rows), ordinary_queued=ordinary)
-    elif problem == "duplicate_ship":
-        ctx = replace(ctx, standard=replace(ctx.standard, ship_limit=9), priority=replace(ctx.priority, ship_limit=9))
+    elif problem == "hard_limit_full":
+        # Priority cannot begin at the hard limit, even with 21 PBP.
+        from planets_lab.core import Ship
+        game.ships[9] = Ship(id=9, owner_id=1, hull_id=7, x=100, y=100)
+        game.ships[10] = Ship(id=10, owner_id=1, hull_id=7, x=100, y=100)
+        ctx = replace(ctx, standard=replace(ctx.standard, current_ship_count=10))
     frozen = deepcopy((game, specs, ctx))
     result = execute(game, specs, ctx, **kwargs)
     assert result.status == "ABSTAIN_CLASSIC_JOINT_TURN"
