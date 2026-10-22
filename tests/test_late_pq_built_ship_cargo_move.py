@@ -16,6 +16,14 @@ from test_late_pq_external_regular_economy import fixture
 
 def context():
     state, specs, pqctx = fixture()
+    # #271's fictional engine uses tiny factors (0..9), truncating
+    # every short-leg cost to zero. Supply a nonzero fictional engine
+    # factor to exercise fuel accounting rather than weakening guards.
+    specs.engines[9] = replace(
+        specs.engines[9],
+        warp_fuel_factors=(0, 2000, 4000, 10000, 20000,
+                           50000, 80000, 130000, 160000, 180000),
+    )
     order = BuiltShipCargoMove(
         planet_to_ship=PlanetCargoTransferOrder(
             planet_id=20, direction="planet_to_ship",
