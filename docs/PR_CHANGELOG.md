@@ -11,6 +11,15 @@ additional meaningful repository document. GitHub CI enforces this through
 Do **not** guess merged commit SHAs or claim a workflow is green until
 GitHub confirms it. Check live `main`, PR state and workflows separately.
 
+## #272 — Conditional multi-turn late PQ with exact externally supplied ship-loss snapshots (2026-10-22)
+
+- Added `late_pq_external_loss_multiturn.py` to compose **2–6** successive #271 late PQ single-slot ordinary builds, carrying full owner PP and every base's warehouses, queued rights, source economy and sorted per-turn selected lowest free Ship ID. Host PQ winning base remains caller asserted, never reproduced by RNG.
+- At the soft cap after EACH build, a next build must NOT be fabricated: accepts only a supplied complete external preturn snapshot **identical to prior model result EXCEPT removal of exactly ONE identified inert cargo/ordnance-empty ship** with explicit external-event assertion. No combat/recycling attribution; snapshots are caller assertions, not independently authenticated evidence.
+- Each turn reuses #271 independent typed BOM/warehouse/ship, full 14-phase planetary economic resource and event audit. Any later malformed warehouse, PP change, extra ship/planet mutation, missing loss or selection causes the **whole sequence** to ABSTAIN without intermediate states, receipts or sidecars.
+- New synthetic tests include consecutive turns 9→10 then external 10→9 then 9→10, ship ID reuse, warehouse stock depletion, two economic placements, loss and inventory forgery. Evidence only `TESTED conditional`, NOT real NuHost acceptance, loss, RNG, timing or `DIFF_VERIFIED`.
+- Changed standalone [continuation prompt](CONTINUE_HERE.md), [technical handoff](handoff/2026-10-22-late-pq-external-loss-multiturn-v1.md) and roadmap. PR CI/merge/post-merge CI must be independently checked live.
+- Next: bounded shipyard+movement/cargo integration or explicitly no-build-at-cap multi-turn branch. User-dependent Host evidence stays issue #247.
+
 ## #271 — Externally selected late PQ regular ship and full economic ledger (2026-10-22)
 
 - Added `late_pq_external_regular_economy.py` to handle exactly one late PQ vacant soft-cap ship slot with two or more competing queued ordinary bases; **winning base is explicitly externally caller-asserted**. The NuHost PQ random selector or RNG is NOT modeled or claimed causal.
