@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # One-command corpus run + immutable sanitized push to runtime-logs.
-# Requires existing git push permissions; never commits evidence to main.
+# Requires existing GitHub write permissions; never commits evidence to main.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
