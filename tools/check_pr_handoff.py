@@ -42,7 +42,10 @@ def is_project_document(path: str) -> bool:
     )
 
 
-def validate_pr_files(changed: set[str], continuation_text: str) -> list[str]:
+def validate_pr_files(
+    changed: set[str], continuation_text: str,
+    changelog_text: str = "", pr_number: int | None = None,
+) -> list[str]:
     errors: list[str] = []
     for path in (CONTINUATION, CHANGELOG):
         if path not in changed:
@@ -62,6 +65,19 @@ def validate_pr_files(changed: set[str], continuation_text: str) -> list[str]:
         errors.append(f"{CONTINUATION} must identify the canonical repository")
     if "docs/ROADMAP.md" not in continuation_text:
         errors.append(f"{CONTINUATION} must tell the successor to read the roadmap")
+    if pr_number is not None:
+        if type(pr_number) is not int or pr_number <= 0:
+            errors.append("PR number must be a positive integer")
+        else:
+            marker = f"#{pr_number}"
+            if marker not in continuation_text:
+                errors.append(
+                    f"{CONTINUATION} must identify the CURRENT PR {marker}"
+                )
+            if marker not in changelog_text:
+                errors.append(
+                    f"{CHANGELOG} must contain the CURRENT PR {marker}"
+                )
     return errors
 
 
@@ -93,12 +109,23 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--base", required=True, help="PR base commit SHA")
     parser.add_argument("--head", required=True, help="PR head commit SHA")
+    parser.add_argument(
+        "--pr-number", type=int, required=True,
+        help="Current PR number; must occur in both changed handoff files",
+    )
     args = parser.parse_args(argv)
     try:
         changed = changed_pr_files(args.base, args.head)
         path = Path(CONTINUATION)
         continuation = path.read_text(encoding="utf-8") if path.is_file() else ""
-        failures = validate_pr_files(changed, continuation)
+        changelog_path = Path(CHANGELOG)
+        changelog = (
+            changelog_path.read_text(encoding="utf-8")
+            if changelog_path.is_file() else ""
+        )
+        failures = validate_pr_files(
+            changed, continuation, changelog, args.pr_number,
+        )
     except (ValueError, OSError, subprocess.CalledProcessError) as exc:
         print(f"PR handoff gate could not run: {exc}", file=sys.stderr)
         return 2
