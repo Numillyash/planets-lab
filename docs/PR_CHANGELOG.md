@@ -11,6 +11,14 @@ additional meaningful repository document. GitHub CI enforces this through
 Do **not** guess merged commit SHAs or claim a workflow is green until
 GitHub confirms it. Check live `main`, PR state and workflows separately.
 
+## #269 — Exact owned-planet integral PPQ Stage-1 regular selection (2026-10-22)
+
+- Added `late_ppq_integer_stage1_allocation.py`: complete late PPQ normal-slot selector, N=max(10, soft-cap gap), exact per-owner integer share of **owned** planets. Only when all guaranteed quotas are integers do they exhaust N without Stage 2/3 lottery; require queued candidate capacity per owner.
+- Deterministic base SET chosen from RB1..RB9 then heaviest hull. Tie crossing quota boundary or unknown hull/RB/incomplete fleet/planet/base roster results in whole-quote ABSTAIN. Return N lowest unused ship-ID pool but **do not assign IDs to selected bases**, construct ships, spend resources or invent NuHost order.
+- Synthetic tests include 12:8 owned worlds → six/four of ten slots, RB ordering, hull-mass fallback, permutation invariance, 24 malformed/ambiguous cases.
+- Evidence is `TESTED conditional` only; external server orders, lottery, Host phase timing, stage 2/3, generic rounding and causal acceptance are **not** verified. No heldout corpus touched. Next: connect unique PPQ selected SET to audited complete warehouse/14-phase economy under caller-asserted ID permutation; separate external selected late PQ branch.
+- Updated [PPQ handoff](handoff/2026-10-22-late-ppq-integral-stage1-allocation-v1.md), roadmap and full continuation prompt. PR CI/merge not claimed before independent GitHub check.
+
 ## #268 — Early unthrottled PQ/PPQ ordinary builds and idle starbase PP (2026-10-22)
 
 - Added `early_pq_ppq_idle_pp_turn.py`: complete 2–64 ordinary starbase roster including at least one regular queued build and at least one idle selected base, far below 90% of configured soft ship cap. Standard shipbuilding spends 0 PP; each selected eligible idle base earns exactly +2 default Priority Points assigned to its owner. Does not model Mining Stations, custom idle PP earning rules, pbN, cloning, unknown combat or regular late queue contention.

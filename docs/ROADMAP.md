@@ -1,4 +1,4 @@
-# Roadmap
+> **Update 2026-10-22, PR #269:** bounded **late PPQ exact-integer Stage-1** regular quota selector: complete owned-planets counts + full base/queue roster, only all-integer shares and unique RB/hull-mass cutoff. Emits selected base sets and unassigned lowest ship-ID pool, **not ships or Host proof**. Fractional shares (Stage 2/3 lotteries), ties, incomplete roster → atomic ABSTAIN. Next: audited warehouse+14-phase economy composition with externally asserted ID assignment, then separate late PQ externally selected regular phase. See [handoff](handoff/2026-10-22-late-ppq-integral-stage1-allocation-v1.md).\n\n# Roadmap
 
 This file is the operational roadmap for `planets-lab`. Architecture boundaries remain defined in [`ARCHITECTURE.md`](ARCHITECTURE.md).
 
