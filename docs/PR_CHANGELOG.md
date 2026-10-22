@@ -11,6 +11,15 @@ additional meaningful repository document. GitHub CI enforces this through
 Do **not** guess merged commit SHAs or claim a workflow is green until
 GitHub confirms it. Check live `main`, PR state and workflows separately.
 
+## #265 — Classic terminal last-slot competing PBP owners (2026-10-22)
+
+- Added `classic_terminal_pbp_last_slot.py`: one remaining Classic hard-cap ship ID, at least two eligible PBP owners (>=21), a UNIQUE top scorer and one queued base per eligible owner. Selection only under explicit `CALLER_ASSERTED_UNIQUE_HIGHEST_PBP_NO_CODES` hypothesis; modern NuHost PB-code/player-slot ranking is not independently settled.
+- Executes winner's one ship with the existing strict BOM/warehouse auditor, debits only winner's mass-based PBP, preserves other owners' PBPs, unselected base warehouses and the saved standard pointer, while reconciling full 14-phase planetary economy before/after the hypothetical build.
+- Added synthetic competitor reversal, cap20 hull PBP, after-economy tax financing, 30+ unsupported cases (ties, pb codes, cloning, extra slots, malformed rights, missing owner roster) and forged final-state/receipt tests.
+- Updated [roadmap](ROADMAP.md), [detailed handoff](handoff/2026-10-22-classic-contested-final-pbp-slot-v1.md) and full [continuation prompt](CONTINUE_HERE.md). PR CI/merge not presumed until actual GitHub checks finish.
+- Evidence: `TESTED conditional` ONLY; no real NuHost ranking, timing, accepted order, or `DIFF_VERIFIED` promotion. User-driven evidence remains parked in issue #247.
+- Next: bounded late PQ/PPQ priority/regular allocation or bigger core Host composition with independently auditable resources.
+
 ## #264 — Classic consecutive PBP/pointer/warehouse carry (2026-10-22)
 
 - Added `classic_bounded_multiturn_carry.py` with a typed complete inventory/owner/PBP/standard-pointer sidecar and complete explicit per-base orders for every modeled consecutive turn (up to eight).
