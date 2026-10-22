@@ -11,6 +11,14 @@ additional meaningful repository document. GitHub CI enforces this through
 Do **not** guess merged commit SHAs or claim a workflow is green until
 GitHub confirms it. Check live `main`, PR state and workflows separately.
 
+## #274 — New late PQ ship orbital load and conditional short normal move (2026-10-22)
+
+- Introduced `late_pq_built_ship_cargo_move.py`: compose audited #271 selected ordinary ship build + complete warehouse/BOM/14-phase economy with caller-asserted postbuild **planet-to-new-ship orbital fuel/cargo loading and one short full normal movement** using existing transfer and movement phases. No second model turn or second economy calculation.
+- Independent exact one-transfer order↔event, all planetary cargo debits and ship cargo credits, prediction-based fuel/position and movement receipt, immutable old ships/base/PP/warehouses, complete final game delta; unsupported route/foreign planet/combat/special/partial fuel/unknown ordering → atomic ABSTAIN.
+- Synthetic tests include both conditional build/economy placements, fuel and cargo, missing rights/resources/selection, invalid phase assumptions and adversarial forged event/inventory checks.
+- **Only TESTED conditional**. True NuHost Host ordering/acceptance, whether the newly built ship can move this same turn, and external parity are **not established**. No heldout or CURRENT changes.
+- Updated full [continuation](CONTINUE_HERE.md), [topic handoff](handoff/2026-10-22-pq-built-ship-cargo-move-v1.md) and roadmap. CI and merge outcomes need confirmation from GitHub on the exact final HEAD. Next: safer next-turn newly built ship movement or mixed late-PQ calendar.
+
 ## #273 — Full soft-cap PQ no-build multi-turn economy and unchanged warehouses/PP (2026-10-22)
 
 - Added `late_pq_capped_no_build_carry.py` for the **distinct** case from #272 with fleet ALREADY AT ordinary PQ soft cap and **NO** external ship loss. Runs 2–8 consecutive *economy-only* turns with a complete all-base queued+idle roster, two+ queued candidates and explicit absence of all priority pbN/clone/Mining Stations/other actions. Not a general automatic Host no-build oracle.
