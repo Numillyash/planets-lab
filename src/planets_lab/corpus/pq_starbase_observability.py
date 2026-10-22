@@ -82,6 +82,15 @@ def starbase_owner_provenance(
         if o is not None:
             fresh_owners[pid] = o
 
+    # A planet can have only one starbase in the documented model.
+    # Two visible base records for one planet are ambiguous, not two
+    # independently verified production sites.
+    base_id_counts = Counter(
+        raw.get("planetid", raw.get("planet_id"))
+        for raw in bases
+        if type(raw) is dict and
+        type(raw.get("planetid", raw.get("planet_id"))) is int
+    )
     source_counts: Counter[str] = Counter()
     current = without_freshness = stale = unresolved = conflicts = 0
     link_ownership = 0
@@ -93,7 +102,7 @@ def starbase_owner_provenance(
             if key in base:
                 source_counts[key] += 1
         pid = base.get("planetid", base.get("planet_id"))
-        if type(pid) is not int or pid not in fresh_owners:
+        if type(pid) is not int or base_id_counts[pid] != 1 or pid not in fresh_owners:
             unresolved += 1
             continue
         planet_owner = fresh_owners[pid]
