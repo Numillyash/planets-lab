@@ -56,6 +56,26 @@ parked in [issue #247](https://github.com/Numillyash/planets-lab/issues/247).
 
 ## Current focus
 
+**Classic PBP unique-highest contender for LAST hard-cap ship slot (2026-10-22):**
+Add a *distinct bounded conditional ranking-policy hypothesis*
+for a genuine two-player PBP contest with ONLY ONE legal
+ship slot left. Complete base/PBP/ship roster, two or more
+eligible players with >=21 PBP, a unique highest score,
+exactly one queued base per eligible player and NO PB codes,
+clones or other Host windows. Only the winner spends capped
+hull-mass PBP and purchases components; last standard-pointer,
+other PBP totals and unselected warehouses remain unchanged.
+Before-/after-economy hypotheses and full final ship plus
+planet ledger checks; reject ties, multi-slot, unknown policy,
+modern ranking uncertainty and missing inputs with ABSTAIN.
+Official Host Order warns ranking precedence may vary, so
+this is **NOT** contemporary NuHost ordering verification.
+[Detailed terminal-slot restrictions](handoff/2026-10-22-classic-contested-final-pbp-slot-v1.md).
+Next: handle real multi-owner priority scheduling only under a
+verified explicit policy snapshot, or advance to separately
+bounded late PQ/PPQ and cross-system Host composition.
+
+
 **Bounded consecutive Classic queue/pointer/PBP/warehouse carry (2026-10-22):**
 Continue the joint full priority+standard #263 turn into a
 *multi-turn* model sequence. On each next turn use exactly
