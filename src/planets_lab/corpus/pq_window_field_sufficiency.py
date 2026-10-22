@@ -52,6 +52,7 @@ def _owner_stats(parsed: Mapping[str, Any], perspective: int, turn: int) -> dict
             }
             continue
         explicit = 0
+        unverified_freshness = 0
         unknown = 0
         for row in rows:
             if type(row) is not dict:
