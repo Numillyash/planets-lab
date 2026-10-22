@@ -269,10 +269,6 @@ def simulate_pq_new_ship_next_turn_load_move(
         if (
             after.ships[sid].owner_id != fresh.owner_id
             or after.ships[sid].hull_id != fresh.hull_id
-            or constructed.warehouses_after != tuple(sorted(
-                (row.planet_id, row.warehouse_after if False else row.warehouse)
-                for row in context.all_bases
-            )) and not constructed.ship_receipt
         ):
             raise UnsupportedNextTurnPQ("unexpected new ship or sidecar state")
 
