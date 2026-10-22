@@ -1,17 +1,48 @@
 # Development workflow
 
-This repository is maintained as a personal project. Routine changes use short-lived `agent/**` branches, branch CI, and direct integration into `main`; pull requests are reserved for unusually risky or review-heavy changes.
+This repository is maintained as a personal project. All material changes use short-lived branches and pull requests targeting `main`. PR CI and post-merge `main` CI are checked; the dedicated `runtime-logs` evidence branch is not a source-code PR workflow. Every PR must carry both a self-contained continuation prompt and a corresponding documentation update.
 
 ## Source of truth
 
 GitHub `main` is the source of truth for project state. Do not reconstruct current implementation status or priorities from old chat history when the repository documentation is available.
 
-Before continuing substantial work, read:
+Before continuing substantial work (especially in a **new chat**), read:
 
-1. `README.md`;
-2. `docs/ROADMAP.md`;
-3. the newest relevant file in `docs/handoff/`;
+1. `docs/CONTINUE_HERE.md` — canonical standalone next-chat prompt;
+2. `README.md` and `docs/ROADMAP.md`;
+3. `docs/PR_CHANGELOG.md` and the newest relevant file in `docs/handoff/`;
 4. `docs/COMPILED_CORPUS.md` when working on historical-corpus or movement validation.
+
+Verify current `main` HEAD and recent PR/CI **after** reading the handoff; pinned commits in a prepared PR prompt are historical context, not a live-state guarantee.
+
+## Mandatory PR → new-chat continuity contract
+
+**User requirement, effective 2026-10-22:** After **every pull request**, Git must contain both an updated, copy-ready prompt for a new ChatGPT conversation and synchronized repository documentation. The information is committed **as part of that same PR before merge**; otherwise it would not survive loss of chat context and would require an extra follow-up PR.
+
+Every PR, even a tiny fix, refactor, docs-only change or CI change, must:
+
+1. Rewrite `docs/CONTINUE_HERE.md` so it can be pasted directly into a new chat without copying old assistant replies. Include the **actual current PR number**, latest concrete completed/ongoing work, authoritative files, supported and unsupported mechanics, evidence status, blockers, and actionable next steps. Recheck and correct outdated claims when the PR changes during review.
+2. Append/prepend an entry for that PR in `docs/PR_CHANGELOG.md` explaining changes, tests, evidence limits, and next action. Include the same actual PR number.
+3. Update **at least one additional, relevant** project document (`docs/ROADMAP.md`, `README.md`, `docs/WORKFLOW.md`, or a relevant `docs/handoff/*.md`). The prompt and changelog are not substitutes for substantive documentation of the change.
+4. Verify tests and required CI for the exact PR HEAD, merge only after success, then verify actual `main` HEAD and post-merge CI. The continuation prompt must instruct a new chat to re-query HEAD because a squash SHA cannot be known before merging.
+5. Keep the documentation/evidence boundary explicit: local `TESTED` models, client success responses and HMAC assertions do **not** independently establish NuHost execution, phase order or `DIFF_VERIFIED`.
+
+The PR CI enforces (1)–(3) using `tools/check_pr_handoff.py`, comparing the actual PR base/head files and checking the current PR number in both continuation and changelog. This gate is run from `.github/workflows/tests.yml` before the main tests; do not bypass it. The PR template at `.github/PULL_REQUEST_TEMPLATE.md` provides a reviewer checklist, and `AGENTS.md` tells future assistants to follow the same process.
+
+**Workflow sequence:**
+
+```text
+inspect main / CONTINUE_HERE / roadmap
+    → implement and test on branch
+    → create PR (obtain real PR number)
+    → update CONTINUE_HERE + PR_CHANGELOG + relevant docs IN SAME PR
+    → CI on exact head
+    → merge
+    → check main CI
+    → ONE consolidated result to user
+```
+
+This is a **per-PR** gate, not a separate commit requirement after each low-level coding commit. Multiple related PRs may be completed before a consolidated user response, but every one of those PRs must ship its own fresh handoff and documentation. The separate runtime-evidence branch is not a PR and should not carry source handoff documents.
 
 ## Material-commit state rule
 
