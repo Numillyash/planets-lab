@@ -17,7 +17,7 @@ from planets_lab.corpus.pq_historical_readiness import report_from_paths
 from planets_lab.corpus.pq_window_field_sufficiency import scan_single_pq_window
 
 REPORT_SCHEMA = "planets-lab.pq-bounded-window-selection.v1"
-TURN_NAME = re.compile(r"^player([0-9]+)-turn([0-9]+)\\.trn$")
+TURN_NAME = re.compile(r"^player([0-9]+)-turn([0-9]+)\.trn$")
 MAX_PAIRS = 64
 MAX_ACCEPTED = 8
 
