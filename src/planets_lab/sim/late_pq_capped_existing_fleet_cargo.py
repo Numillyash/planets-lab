@@ -346,5 +346,5 @@ def simulate_capped_pq_existing_ship_cargo_carry(
         UnsupportedNormalMovement, UnsupportedPlanetCargoTransfer,
         UnsupportedCompositeTurn, UnsupportedEconomicLedger,
         UnsupportedPopulationRule,
-    ):
-        return abstain("unsupported or unreconciled capped PQ, cargo, fuel or economy")
+    ) as exc:
+        return abstain(f"{type(exc).__name__}: {exc}")
