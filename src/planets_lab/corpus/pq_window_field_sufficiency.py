@@ -139,7 +139,9 @@ def scan_single_pq_window(
 ) -> dict[str, Any]:
     game_id = _int(game_id, positive=True)
     player_id = _int(player_id, positive=True)
-    t_before = _int(t_before, positive=True)
+    t_before = _int(t_before)
+    if t_before < 0:
+        raise ValueError("archive turn must be nonnegative")
     if player_id > 50:
         raise ValueError("invalid bounded player slot")
     # Validate cohort AND index BEFORE attempting to touch a ZIP.
