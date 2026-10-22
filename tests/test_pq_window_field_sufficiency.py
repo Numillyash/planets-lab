@@ -177,3 +177,23 @@ def test_cli_invalid_input_preserves_previous_report_bytes(tmp_path):
             "--output", str(target)]
     assert main(args) == 2
     assert target.read_text(encoding="utf-8") == '{"old":true}\n'
+
+
+def test_tracked_public_control12_cohort_is_frozen_to_existing_manifest():
+    from planets_lab.corpus.indexer import load_manifest_jsonl
+    from planets_lab.corpus.pq_historical_readiness import parse_frozen_cohort
+    base = Path("validation/corpus/manifests")
+    rows = load_manifest_jsonl(
+        (base / "accounts-recent-finished.jsonl").read_text(encoding="utf-8")
+    )
+    frozen = parse_frozen_cohort(
+        (base / "pq-public-control12-frozen-cohort.v1.json").read_bytes()
+    )
+    assert len(frozen) == len(rows) == 12
+    assert frozen == tuple(sorted(x["game_id"] for x in rows))
+    assert all(x["game"]["status"] == 3 for x in rows)
+    assert sum(
+        x["settings"]["productionqueue"] is True
+        and x["settings"]["planetaryproductionqueue"] is True
+        for x in rows
+    ) == 8
