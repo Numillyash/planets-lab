@@ -17,6 +17,7 @@ from collections.abc import Mapping
 from planets_lab.corpus.pq_historical_readiness import report_from_paths
 from planets_lab.corpus.pq_starbase_observability import starbase_owner_provenance
 from planets_lab.corpus.pq_observed_transition import observed_owned_transition_signature
+from planets_lab.corpus.pq_ship_appearance_fields import source_fields_for_ship_appearance
 
 SCHEMA = "planets-lab.pq-two-member-field-sufficiency.v1"
 MAX_MEMBER_BYTES = 24 * 1024 * 1024
@@ -181,6 +182,10 @@ def scan_single_pq_window(
         "index_sha256": selection["index_sha256"],
         "before": a["groups"],
         "after": b["groups"],
+        "ship_appearance_source_field_audit": source_fields_for_ship_appearance(
+            before, after, perspective=player_id,
+            embedded_before=embedded_before, embedded_after=embedded_after,
+        ),
         "observed_owner_transition": observed_owned_transition_signature(
             before, after, perspective=player_id,
             before_turn=embedded_before, after_turn=embedded_after,
