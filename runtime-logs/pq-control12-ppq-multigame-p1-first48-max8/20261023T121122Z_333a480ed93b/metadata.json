@@ -1,0 +1,22 @@
+{
+  "evidence_branch": "runtime-logs",
+  "exit_code": 0,
+  "finished_at_utc": "2026-10-23T12:11:24Z",
+  "hostname": "GEORGUL-GAMER",
+  "interrupted_signal": null,
+  "log_file": "gate.log",
+  "missing_artifact_paths": [],
+  "remote": "origin",
+  "requested_artifact_paths": [
+    "artifacts/pq/surveys/control12-ppq-p1-first48-max8.json"
+  ],
+  "run_id": "20261023T121122Z_333a480ed93b",
+  "run_name": "pq-control12-ppq-multigame-p1-first48-max8",
+  "runner": "bash",
+  "schema": "planets-lab.runtime-evidence.v1",
+  "skipped_oversized_artifact_paths": [],
+  "source_branch": "main",
+  "source_commit": "333a480ed93bd9f9ebcb95fa9bb5f9f1b2c173e3",
+  "source_dirty": false,
+  "started_at_utc": "2026-10-23T12:11:22Z"
+}
