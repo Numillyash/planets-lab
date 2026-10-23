@@ -37,6 +37,7 @@ def _summarize_selection(game_id: int, selected: dict[str, Any]) -> dict[str, An
     accepted = 0
     rejected_source = 0
     base_provenance = Counter()
+    discovery_windows: list[dict[str, Any]] = []
     for window in selected["admissible_window_reports"]:
         observed = window["observed_owner_transition"]
         if observed.get("status") != "OBSERVED_OWNER_CURRENT_IDENTITY_INTERSECTION_ONLY":
@@ -65,6 +66,23 @@ def _summarize_selection(game_id: int, selected: dict[str, Any]) -> dict[str, An
                     if type(n) is not int or n < 0:
                         raise ValueError("invalid observed source shape")
                     totals[key][prefix + field] += n
+        fields = window.get("ship_appearance_source_field_audit")
+        if type(fields) is not dict or fields.get("source_fields_match_causal_build_event") is not False:
+            raise ValueError("ship appearance field-audit contract missing")
+        candidates = observed["entity_signatures"]["ships"]["newly_visible_owned_fresh_ids"]
+        if fields.get("newly_visible_owned_current_ship_ids_count") != candidates:
+            raise ValueError("inconsistent ship candidate count")
+        if candidates > 0:
+            discovery_windows.append({
+                "archive_before_turn": window["before_archive_turn"],
+                "archive_after_turn": window["after_archive_turn"],
+                "embedded_before_turn": window["before_embedded_turn"],
+                "embedded_after_turn": window["after_embedded_turn"],
+                "newly_visible_owned_fresh_ship_count": candidates,
+                "owned_source_field_audit": fields,
+                "selection_type": "EXPLORATORY_POSTHOC_OBSERVED_IDENTITY",
+                "verified_ship_build": False,
+            })
         for side in ("before", "after"):
             provenance = window["starbase_provenance"][side]
             for name in (
@@ -88,6 +106,8 @@ def _summarize_selection(game_id: int, selected: dict[str, Any]) -> dict[str, An
         "owner_current_source_abstain_pairs": rejected_source,
         "refusal_counts": selected["refusal_counts"],
         "entity_identity_counts": totals,
+        "exploratory_ship_appearance_windows": discovery_windows,
+        "exploratory_ship_appearance_window_count": len(discovery_windows),
         "starbase_provenance_observations": dict(sorted(base_provenance.items())),
         "has_newly_visible_owned_fresh_ship_identity": (
             totals["ships"]["newly_visible_owned_fresh_ids"] > 0
@@ -125,6 +145,7 @@ def survey_frozen_public_ppq(
     refusal: Counter[str] = Counter()
     total_checked = total_embedded = total_observed = total_abstained = 0
     games_with_ship_appearance = 0
+    discovery_count = 0
     failures = Counter()
     for game_id in targets:
         if not (archive_dir / f"game-{game_id}.zip").is_file():
@@ -169,6 +190,7 @@ def survey_frozen_public_ppq(
         total_abstained += item["owner_current_source_abstain_pairs"]
         if item["has_newly_visible_owned_fresh_ship_identity"]:
             games_with_ship_appearance += 1
+        discovery_count += item["exploratory_ship_appearance_window_count"]
         for kind in KINDS:
             for key, value in item["entity_identity_counts"][kind].items():
                 aggregate[kind][key] += value
@@ -188,6 +210,8 @@ def survey_frozen_public_ppq(
             for x in results
         ),
         "games_with_newly_visible_owned_fresh_ship_identity": games_with_ship_appearance,
+        "exploratory_ship_appearance_window_count": discovery_count,
+        "posthoc_window_selection_not_independent_validation": True,
         "game_level_failures": dict(sorted(failures.items())),
         "archive_adjacent_pairs_checked": total_checked,
         "embedded_consecutive_pairs_admitted": total_embedded,
