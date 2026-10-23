@@ -14,6 +14,7 @@ from typing import Any
 
 from planets_lab.corpus.pq_historical_readiness import report_from_paths
 from planets_lab.corpus.pq_bounded_window_selection import select_bounded_pq_windows
+from planets_lab.corpus.pq_paired_template_specificity import paired_template_specificity
 
 SCHEMA = "planets-lab.pq-frozen-control-multigame-observation.v1"
 KINDS = ("planets", "ships", "starbases")
@@ -40,6 +41,7 @@ def _summarize_selection(game_id: int, selected: dict[str, Any]) -> dict[str, An
     discovery_windows: list[dict[str, Any]] = []
     templates = Counter()
     prioritypoint_directions = Counter()
+    paired_categories = Counter()
     reference_by_stratum: dict[str, dict[str, Any]] = {}
     for window in selected["admissible_window_reports"]:
         observed = window["observed_owner_transition"]
@@ -127,6 +129,10 @@ def _summarize_selection(game_id: int, selected: dict[str, Any]) -> dict[str, An
         metric["windows"] += 1
         metric["status_counts"][status] = metric["status_counts"].get(status, 0) + 1
         if candidates > 0:
+            paired = paired_template_specificity(correlation, baseline)
+            if paired["host_causal_verified"] is not False:
+                raise ValueError("unexpected paired specificity causal promotion")
+            paired_categories[paired["paired_observational_category"]] += 1
             compatibility = correlation["before_current_base_vs_new_ship"]
             pp_direction = correlation["observed_prioritypoints_trend"]
             if type(compatibility) is not str or type(pp_direction) is not str:
@@ -135,6 +141,7 @@ def _summarize_selection(game_id: int, selected: dict[str, Any]) -> dict[str, An
             prioritypoint_directions[pp_direction] += 1
             discovery_windows.append({
                 "observed_before_base_template_and_pp": correlation,
+                "paired_new_and_existing_ship_template_specificity": paired,
                 "archive_before_turn": window["before_archive_turn"],
                 "archive_after_turn": window["after_archive_turn"],
                 "embedded_before_turn": window["before_embedded_turn"],
@@ -171,6 +178,7 @@ def _summarize_selection(game_id: int, selected: dict[str, Any]) -> dict[str, An
         "exploratory_ship_appearance_window_count": len(discovery_windows),
         "exploratory_before_base_template_status_counts": dict(sorted(templates.items())),
         "exploratory_prioritypoints_direction_counts": dict(sorted(prioritypoint_directions.items())),
+        "exploratory_paired_template_specificity_categories": dict(sorted(paired_categories.items())),
         "existing_ship_template_reference_by_stratum": reference_by_stratum,
         "starbase_provenance_observations": dict(sorted(base_provenance.items())),
         "has_newly_visible_owned_fresh_ship_identity": (
@@ -212,6 +220,7 @@ def survey_frozen_public_ppq(
     discovery_count = 0
     all_templates = Counter()
     all_pp_directions = Counter()
+    all_paired_categories = Counter()
     all_reference: dict[str, dict[str, Any]] = {}
     failures = Counter()
     for game_id in targets:
@@ -260,6 +269,7 @@ def survey_frozen_public_ppq(
         discovery_count += item["exploratory_ship_appearance_window_count"]
         all_templates.update(item["exploratory_before_base_template_status_counts"])
         all_pp_directions.update(item["exploratory_prioritypoints_direction_counts"])
+        all_paired_categories.update(item["exploratory_paired_template_specificity_categories"])
         for stratum, row in item["existing_ship_template_reference_by_stratum"].items():
             combined = all_reference.setdefault(stratum, {
                 "windows": 0, "reference_comparisons": 0,
@@ -301,6 +311,8 @@ def survey_frozen_public_ppq(
         "exploratory_ship_appearance_window_count": discovery_count,
         "exploratory_before_base_template_status_counts": dict(sorted(all_templates.items())),
         "exploratory_prioritypoints_direction_counts": dict(sorted(all_pp_directions.items())),
+        "exploratory_paired_template_specificity_categories": dict(sorted(all_paired_categories.items())),
+        "paired_categories_are_iid_independent_or_host_causal": False,
         "existing_ship_template_reference_by_stratum": all_reference,
         "existing_ship_reference_is_independent_negative_control": False,
         "posthoc_window_selection_not_independent_validation": True,
