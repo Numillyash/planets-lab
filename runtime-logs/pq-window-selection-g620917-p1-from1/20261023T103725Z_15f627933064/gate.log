@@ -1,0 +1,1 @@
+{"admitted": 5, "causal_verified": false, "checked": 7, "output": "artifacts/pq/selection/game-620917-p1-from1.json", "refusal_counts": {"EMBEDDED_TURN_REPEATED": 1, "EMBEDDED_TURN_SKIPPED_FORWARD": 1}, "status": "ADMISSIBLE_WINDOWS_FOUND"}
