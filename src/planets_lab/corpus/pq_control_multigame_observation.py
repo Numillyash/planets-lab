@@ -38,6 +38,8 @@ def _summarize_selection(game_id: int, selected: dict[str, Any]) -> dict[str, An
     rejected_source = 0
     base_provenance = Counter()
     discovery_windows: list[dict[str, Any]] = []
+    templates = Counter()
+    prioritypoint_directions = Counter()
     for window in selected["admissible_window_reports"]:
         observed = window["observed_owner_transition"]
         if observed.get("status") != "OBSERVED_OWNER_CURRENT_IDENTITY_INTERSECTION_ONLY":
@@ -72,8 +74,20 @@ def _summarize_selection(game_id: int, selected: dict[str, Any]) -> dict[str, An
         candidates = observed["entity_signatures"]["ships"]["newly_visible_owned_fresh_ids"]
         if fields.get("newly_visible_owned_current_ship_ids_count") != candidates:
             raise ValueError("inconsistent ship candidate count")
+        correlation = window.get("ship_appearance_noncausal_correlates")
+        if type(correlation) is not dict or correlation.get("host_causal_verified") is not False:
+            raise ValueError("noncausal appearance correlate contract missing")
+        if correlation.get("newly_visible_owned_current_ship_count") != candidates:
+            raise ValueError("inconsistent appearance correlate candidate count")
         if candidates > 0:
+            compatibility = correlation["before_current_base_vs_new_ship"]
+            pp_direction = correlation["observed_prioritypoints_trend"]
+            if type(compatibility) is not str or type(pp_direction) is not str:
+                raise ValueError("malformed appearance correlate categories")
+            templates[compatibility] += 1
+            prioritypoint_directions[pp_direction] += 1
             discovery_windows.append({
+                "observed_before_base_template_and_pp": correlation,
                 "archive_before_turn": window["before_archive_turn"],
                 "archive_after_turn": window["after_archive_turn"],
                 "embedded_before_turn": window["before_embedded_turn"],
@@ -108,6 +122,8 @@ def _summarize_selection(game_id: int, selected: dict[str, Any]) -> dict[str, An
         "entity_identity_counts": totals,
         "exploratory_ship_appearance_windows": discovery_windows,
         "exploratory_ship_appearance_window_count": len(discovery_windows),
+        "exploratory_before_base_template_status_counts": dict(sorted(templates.items())),
+        "exploratory_prioritypoints_direction_counts": dict(sorted(prioritypoint_directions.items())),
         "starbase_provenance_observations": dict(sorted(base_provenance.items())),
         "has_newly_visible_owned_fresh_ship_identity": (
             totals["ships"]["newly_visible_owned_fresh_ids"] > 0
@@ -146,6 +162,8 @@ def survey_frozen_public_ppq(
     total_checked = total_embedded = total_observed = total_abstained = 0
     games_with_ship_appearance = 0
     discovery_count = 0
+    all_templates = Counter()
+    all_pp_directions = Counter()
     failures = Counter()
     for game_id in targets:
         if not (archive_dir / f"game-{game_id}.zip").is_file():
@@ -191,6 +209,8 @@ def survey_frozen_public_ppq(
         if item["has_newly_visible_owned_fresh_ship_identity"]:
             games_with_ship_appearance += 1
         discovery_count += item["exploratory_ship_appearance_window_count"]
+        all_templates.update(item["exploratory_before_base_template_status_counts"])
+        all_pp_directions.update(item["exploratory_prioritypoints_direction_counts"])
         for kind in KINDS:
             for key, value in item["entity_identity_counts"][kind].items():
                 aggregate[kind][key] += value
@@ -211,6 +231,8 @@ def survey_frozen_public_ppq(
         ),
         "games_with_newly_visible_owned_fresh_ship_identity": games_with_ship_appearance,
         "exploratory_ship_appearance_window_count": discovery_count,
+        "exploratory_before_base_template_status_counts": dict(sorted(all_templates.items())),
+        "exploratory_prioritypoints_direction_counts": dict(sorted(all_pp_directions.items())),
         "posthoc_window_selection_not_independent_validation": True,
         "game_level_failures": dict(sorted(failures.items())),
         "archive_adjacent_pairs_checked": total_checked,
