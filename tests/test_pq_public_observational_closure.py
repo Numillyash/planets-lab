@@ -49,8 +49,8 @@ def test_frozen_public_ppq_observational_closure_is_internally_consistent():
         == appearances["newly_visible_owned_fresh_ship_identity_window_events"]
     )
     assert appearances["prior_base_hull_engine_matches"] == (
-        appearances["eligible_single_unique_prior_base"] == 17
-    )
+        appearances["eligible_single_unique_prior_base"]
+    ) == 17
 
     paired = data["paired_same_window"]
     assert (
