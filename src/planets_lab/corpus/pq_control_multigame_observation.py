@@ -40,6 +40,7 @@ def _summarize_selection(game_id: int, selected: dict[str, Any]) -> dict[str, An
     discovery_windows: list[dict[str, Any]] = []
     templates = Counter()
     prioritypoint_directions = Counter()
+    reference_by_stratum: dict[str, dict[str, Any]] = {}
     for window in selected["admissible_window_reports"]:
         observed = window["observed_owner_transition"]
         if observed.get("status") != "OBSERVED_OWNER_CURRENT_IDENTITY_INTERSECTION_ONLY":
@@ -79,6 +80,52 @@ def _summarize_selection(game_id: int, selected: dict[str, Any]) -> dict[str, An
             raise ValueError("noncausal appearance correlate contract missing")
         if correlation.get("newly_visible_owned_current_ship_count") != candidates:
             raise ValueError("inconsistent appearance correlate candidate count")
+        baseline = window.get("existing_owned_ship_template_reference")
+        if type(baseline) is not dict or baseline.get("host_causal_verified") is not False:
+            raise ValueError("existing ship template reference guard missing")
+        if baseline.get("newly_visible_owned_ship_identity_count") != candidates:
+            raise ValueError("existing ship template reference candidate mismatch")
+        stratum = baseline.get("stratum")
+        if stratum not in (
+            "WINDOW_WITH_NEWLY_VISIBLE_OWN_SHIP",
+            "WINDOW_WITHOUT_NEWLY_VISIBLE_OWN_SHIP",
+        ) or (stratum == "WINDOW_WITH_NEWLY_VISIBLE_OWN_SHIP") != (candidates > 0):
+            raise ValueError("existing ship reference stratum mismatch")
+        metric = reference_by_stratum.setdefault(stratum, {
+            "windows": 0, "reference_comparisons": 0,
+            "matching_preexisting_ship_templates": 0,
+            "nonmatching_preexisting_ship_templates": 0,
+            "untyped_preexisting_ship_specs": 0,
+            "status_counts": {},
+        })
+        status = baseline.get("status")
+        allowable = (
+            "REFERENCE_TYPED_PERSISTENT_OWNED_SHIPS",
+            "ABSTAIN_SOURCE_ARRAY_OR_SHIP_ID_AMBIGUOUS",
+            "ABSTAIN_NO_UNIQUE_CURRENT_BASE",
+            "ABSTAIN_NO_PERSISTENT_OWNED_SHIP_REFERENCE",
+            "ABSTAIN_BASE_TEMPLATE_UNTYPED",
+            "ABSTAIN_NO_TYPED_PERSISTENT_SHIP_SPECS",
+        )
+        if status not in allowable:
+            raise ValueError("unknown existing ship reference status")
+        metrics = {
+            "reference_comparisons": "typed_stable_ship_base_template_comparisons",
+            "matching_preexisting_ship_templates": "matches_before_base_hull_and_engine",
+            "nonmatching_preexisting_ship_templates": "does_not_match_before_base_hull_and_engine",
+            "untyped_preexisting_ship_specs": "stable_ships_with_untyped_hull_or_engine",
+        }
+        for key, field in metrics.items():
+            number = baseline.get(field)
+            if type(number) is not int or number < 0:
+                raise ValueError("malformed existing ship reference count")
+            metric[key] += number
+        if (metric["matching_preexisting_ship_templates"] +
+                metric["nonmatching_preexisting_ship_templates"] >
+                metric["reference_comparisons"]):
+            raise ValueError("reference comparison counters inconsistent")
+        metric["windows"] += 1
+        metric["status_counts"][status] = metric["status_counts"].get(status, 0) + 1
         if candidates > 0:
             compatibility = correlation["before_current_base_vs_new_ship"]
             pp_direction = correlation["observed_prioritypoints_trend"]
@@ -124,6 +171,7 @@ def _summarize_selection(game_id: int, selected: dict[str, Any]) -> dict[str, An
         "exploratory_ship_appearance_window_count": len(discovery_windows),
         "exploratory_before_base_template_status_counts": dict(sorted(templates.items())),
         "exploratory_prioritypoints_direction_counts": dict(sorted(prioritypoint_directions.items())),
+        "existing_ship_template_reference_by_stratum": reference_by_stratum,
         "starbase_provenance_observations": dict(sorted(base_provenance.items())),
         "has_newly_visible_owned_fresh_ship_identity": (
             totals["ships"]["newly_visible_owned_fresh_ids"] > 0
@@ -164,6 +212,7 @@ def survey_frozen_public_ppq(
     discovery_count = 0
     all_templates = Counter()
     all_pp_directions = Counter()
+    all_reference: dict[str, dict[str, Any]] = {}
     failures = Counter()
     for game_id in targets:
         if not (archive_dir / f"game-{game_id}.zip").is_file():
@@ -211,6 +260,25 @@ def survey_frozen_public_ppq(
         discovery_count += item["exploratory_ship_appearance_window_count"]
         all_templates.update(item["exploratory_before_base_template_status_counts"])
         all_pp_directions.update(item["exploratory_prioritypoints_direction_counts"])
+        for stratum, row in item["existing_ship_template_reference_by_stratum"].items():
+            combined = all_reference.setdefault(stratum, {
+                "windows": 0, "reference_comparisons": 0,
+                "matching_preexisting_ship_templates": 0,
+                "nonmatching_preexisting_ship_templates": 0,
+                "untyped_preexisting_ship_specs": 0,
+                "status_counts": {},
+            })
+            for name in (
+                "windows", "reference_comparisons",
+                "matching_preexisting_ship_templates",
+                "nonmatching_preexisting_ship_templates",
+                "untyped_preexisting_ship_specs",
+            ):
+                combined[name] += row[name]
+            for status, count in row["status_counts"].items():
+                combined["status_counts"][status] = (
+                    combined["status_counts"].get(status, 0) + count
+                )
         for kind in KINDS:
             for key, value in item["entity_identity_counts"][kind].items():
                 aggregate[kind][key] += value
@@ -233,6 +301,8 @@ def survey_frozen_public_ppq(
         "exploratory_ship_appearance_window_count": discovery_count,
         "exploratory_before_base_template_status_counts": dict(sorted(all_templates.items())),
         "exploratory_prioritypoints_direction_counts": dict(sorted(all_pp_directions.items())),
+        "existing_ship_template_reference_by_stratum": all_reference,
+        "existing_ship_reference_is_independent_negative_control": False,
         "posthoc_window_selection_not_independent_validation": True,
         "game_level_failures": dict(sorted(failures.items())),
         "archive_adjacent_pairs_checked": total_checked,
