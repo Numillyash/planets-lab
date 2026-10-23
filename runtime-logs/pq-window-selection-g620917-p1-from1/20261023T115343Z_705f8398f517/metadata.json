@@ -1,0 +1,22 @@
+{
+  "evidence_branch": "runtime-logs",
+  "exit_code": 0,
+  "finished_at_utc": "2026-10-23T11:53:45Z",
+  "hostname": "GEORGUL-GAMER",
+  "interrupted_signal": null,
+  "log_file": "gate.log",
+  "missing_artifact_paths": [],
+  "remote": "origin",
+  "requested_artifact_paths": [
+    "artifacts/pq/selection/game-620917-p1-from1.json"
+  ],
+  "run_id": "20261023T115343Z_705f8398f517",
+  "run_name": "pq-window-selection-g620917-p1-from1",
+  "runner": "bash",
+  "schema": "planets-lab.runtime-evidence.v1",
+  "skipped_oversized_artifact_paths": [],
+  "source_branch": "main",
+  "source_commit": "705f8398f517bd85c6284a33d31810f2d9dc0f5b",
+  "source_dirty": false,
+  "started_at_utc": "2026-10-23T11:53:43Z"
+}
