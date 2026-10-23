@@ -1,0 +1,22 @@
+{
+  "evidence_branch": "runtime-logs",
+  "exit_code": 0,
+  "finished_at_utc": "2026-10-23T14:53:02Z",
+  "hostname": "GEORGUL-GAMER",
+  "interrupted_signal": null,
+  "log_file": "gate.log",
+  "missing_artifact_paths": [],
+  "remote": "origin",
+  "requested_artifact_paths": [
+    "artifacts/pq/surveys/control12-ppq-p1-first48-max8.json"
+  ],
+  "run_id": "20261023T145257Z_a0f7ca22ec07",
+  "run_name": "pq-paired-template-specificity-control12-p1-first48-max8",
+  "runner": "bash",
+  "schema": "planets-lab.runtime-evidence.v1",
+  "skipped_oversized_artifact_paths": [],
+  "source_branch": "main",
+  "source_commit": "a0f7ca22ec0710a2c7fef030bf467ad2e1865ce5",
+  "source_dirty": false,
+  "started_at_utc": "2026-10-23T14:52:57Z"
+}
