@@ -39,8 +39,8 @@ def test_frozen_public_ppq_observational_closure_is_internally_consistent():
 
     appearances = data["appearance"]
     assert sum(appearances["by_game"].values()) == (
-        appearances["newly_visible_owned_fresh_ship_identity_window_events"] == 22
-    )
+        appearances["newly_visible_owned_fresh_ship_identity_window_events"]
+    ) == 22
     assert len(appearances["by_game"]) == scope["games"]
     assert set(map(int, appearances["by_game"])) == set(data["eligible_public_ppq_games"])
     assert (
