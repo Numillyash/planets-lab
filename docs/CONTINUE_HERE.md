@@ -1,6 +1,6 @@
 # planets-lab — актуальный автономный промпт для продолжения
 
-**Source of truth:** `Numillyash/planets-lab` GitHub `main` and current `docs/CONTINUE_HERE.md`. This text prepared **2026-10-23 in PR #283**; pre-PR verified main `15f6279330645f4883453d9e34f8d2fa854236a3` (PR #282 merged, PR CI #1528 and main push CI #1529 success). Re-read live main and CI before claiming any subsequent statuses.
+**Source of truth:** https://github.com/Numillyash/planets-lab GitHub `main` and current `docs/CONTINUE_HERE.md`. This text prepared **2026-10-23 in PR #283**; pre-PR verified main `15f6279330645f4883453d9e34f8d2fa854236a3` (PR #282 merged, PR CI #1528 and main push CI #1529 success). Re-read live main and CI before claiming any subsequent statuses.
 
 ## Context
 
