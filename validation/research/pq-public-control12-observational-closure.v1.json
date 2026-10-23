@@ -1,0 +1,112 @@
+{
+  "schema": "planets-lab.pq-public-control12-observational-closure.v1",
+  "checkpoint_date": "2026-10-23",
+  "status": "DESCRIPTIVE_PUBLIC_PPQ_OBSERVATION_CLOSED_NOT_HOST_CAUSAL",
+  "evidence_level": "CORPUS_OBSERVED",
+  "scoped_cohort": "validation/corpus/manifests/pq-public-control12-frozen-cohort.v1.json",
+  "eligible_public_ppq_games": [
+    591478,
+    620917,
+    621253,
+    621896,
+    680435,
+    680910
+  ],
+  "scope": {
+    "games": 6,
+    "player_slot": 1,
+    "max_archive_pairs_per_game": 48,
+    "max_admitted_windows_per_game": 8,
+    "archive_adjacent_pairs_checked": 58,
+    "embedded_consecutive_qualified_windows": 48,
+    "refused_repeated_embedded_turn": 5,
+    "refused_skipped_forward_embedded_turn": 5
+  },
+  "appearance": {
+    "newly_visible_owned_fresh_ship_identity_window_events": 22,
+    "by_game": {
+      "591478": 8,
+      "620917": 0,
+      "621253": 3,
+      "621896": 2,
+      "680435": 4,
+      "680910": 5
+    },
+    "eligible_single_unique_prior_base": 17,
+    "prior_base_hull_engine_matches": 17,
+    "ambiguous_prior_base_abstentions": 5
+  },
+  "paired_same_window": {
+    "new_ship_full_base_match_no_persistent_ship_matches": 8,
+    "new_ship_full_base_match_some_persistent_ships_match": 9,
+    "new_ship_or_prior_base_not_comparable": 5,
+    "new_ship_full_base_template_mismatches_in_qualified_windows": 0
+  },
+  "persistent_ship_reference": {
+    "appearance_windows": {
+      "windows": 22,
+      "qualifying_windows": 17,
+      "ship_window_template_matches": 10,
+      "ship_window_template_mismatches": 54,
+      "typed_ship_window_comparisons": 64
+    },
+    "nonappearance_windows": {
+      "windows": 26,
+      "qualifying_windows": 9,
+      "ship_window_template_matches": 2,
+      "ship_window_template_mismatches": 31,
+      "typed_ship_window_comparisons": 33
+    },
+    "all_typed_ship_window_matches": 12,
+    "all_typed_ship_window_comparisons": 97,
+    "distinct_ships_not_counted": true,
+    "observations_not_independent": true
+  },
+  "prioritypoints_trend_in_appearance_windows": {
+    "increased": 6,
+    "unchanged": 16,
+    "decreased": 0,
+    "pp_spending_not_attributable": true
+  },
+  "evidence_provenance": {
+    "source_commit": "a0f7ca22ec0710a2c7fef030bf467ad2e1865ce5",
+    "evidence_branch": "runtime-logs",
+    "run_path": "runtime-logs/pq-paired-template-specificity-control12-p1-first48-max8/20261023T145257Z_a0f7ca22ec07",
+    "report_relative_path": "artifacts/pq/surveys/control12-ppq-p1-first48-max8.json",
+    "metadata_exit_code": 0,
+    "metadata_interrupted_signal": null,
+    "metadata_missing_artifacts": []
+  },
+  "not_verified": {
+    "ship_appearance_is_construction": false,
+    "base_configuration_is_accepted_host_build_order": false,
+    "prioritypoint_delta_is_build_spend": false,
+    "components_warehouse_complete": false,
+    "all_own_ships_complete": false,
+    "actual_build_site_or_phase": false,
+    "nuhost_causal_parity": false,
+    "independent_negative_control": false,
+    "iid_statistical_testing": false
+  },
+  "next_phase": {
+    "state": "PARKED_EXTERNAL_EVIDENCE_REQUIRED",
+    "issue_url": "https://github.com/Numillyash/planets-lab/issues/247",
+    "reopen_requires": [
+      "predeclared_discriminating_host_question",
+      "authorized_provenance_qualified_full_owner_before_after_states",
+      "independently_observed_server_accepted_orders",
+      "complete_component_warehouse_and_prioritypoint_ledger",
+      "authenticated_host_execution_boundary_and_phase",
+      "privacy_local_evidence_handling_no_raw_public_git"
+    ],
+    "no_additional_archival_replay_required": true
+  },
+  "privacy": {
+    "raw_turn_members_published": false,
+    "owner_ship_or_planet_entity_ids_published": false,
+    "private_orders_keys_or_values_published": false,
+    "sealed_m2_heldout32_opened": false,
+    "public100_rebuilt": false,
+    "current_corpus_selection_changed": false
+  }
+}
