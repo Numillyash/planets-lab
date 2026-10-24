@@ -1,0 +1,135 @@
+#!/usr/bin/env bash
+# Explicit public100 metadata, baseline68-only deep M2 reconstruction, all pytest.
+set -uo pipefail
+cd "$(dirname "$0")/.."
+OUT="artifacts/corpus/public100-baseline68-deep-v2"
+mkdir -p "$OUT/private-local"
+REPORT="$OUT/m2-deep-coverage.json"
+COUNTS="$OUT/pytest-counts.json"
+STATUS="$OUT/stage-status.json"
+LOCAL="$OUT/private-local"
+BASELINE="validation/corpus/manifests/public-short-expansion-with-public36.jsonl"
+export PLANETS_CORPUS_DB_ROOT="${PLANETS_CORPUS_DB_ROOT:-/root/projects/planets-corpus-db}"
+GEN="corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb"
+BASE_SHA="942eb61741664835cc600bb1e2148daaa1c009462827b238f13227c5937899d"
+CURRENT="generations/corpus-v2compact-public68-20261004T095236Z-09f71721b77c.duckdb"
+rm -f "$REPORT" "$COUNTS" "$STATUS" "$LOCAL/pytest.xml"
+preflight="ABSTAIN_PRECONDITIONS"
+build="NOT_RUN"
+pytest_status="NOT_RUN"
+economy="NOT_RUN"
+pytest_rc=125
+economy_rc=125
+finish() {
+  local original=$?
+  PREFLIGHT="$preflight" BUILD="$build" PYTEST_STATUS="$pytest_status" ECONOMY="$economy" \
+  PYTEST_RC="$pytest_rc" ECONOMY_RC="$economy_rc" \
+  python3 - "$STATUS" <<'PY'
+import json,os,sys,pathlib
+data={
+ "schema":"planets-lab.public100-baseline68-deep-status.v2",
+ "preflight":os.environ["PREFLIGHT"],"build_status":os.environ["BUILD"],
+ "pytest_status":os.environ["PYTEST_STATUS"],"pytest_exit":int(os.environ["PYTEST_RC"]),
+ "economy_status":os.environ["ECONOMY"],"economy_exit":int(os.environ["ECONOMY_RC"]),
+ "full_metadata_games_expected":100,"full_metadata_members_expected":224014,
+ "baseline_entity_game_cap":68,"heldout32_entities_read":False,
+ "current_changed_by_runner":False,"host_orders_verified":False,"host_diff_verified":False
+}
+pathlib.Path(sys.argv[1]).write_text(json.dumps(data,sort_keys=True,indent=2)+"\n")
+PY
+  echo "batch_stage_status=$preflight/$build/$pytest_status/$economy"
+  echo "aggregate_status_path=$STATUS"
+  return "$original"
+}
+trap finish EXIT
+abstain() { preflight="$1"; echo "batch_status=$preflight"; exit 125; }
+[[ "$(git symbolic-ref --quiet --short HEAD 2>/dev/null || true)" == main ]] || abstain "ABSTAIN_NOT_MAIN"
+[[ -z "$(git status --porcelain --untracked-files=no)" ]] || abstain "ABSTAIN_DIRTY_CHECKOUT"
+git fetch --quiet origin main 2>/dev/null || abstain "ABSTAIN_REMOTE_FETCH"
+[[ "$(git rev-parse HEAD)" == "$(git rev-parse FETCH_HEAD)" ]] || abstain "ABSTAIN_STALE_HEAD"
+[[ -f "$PLANETS_CORPUS_DB_ROOT/CURRENT" ]] || abstain "ABSTAIN_CURRENT_MISSING"
+[[ "$(cat "$PLANETS_CORPUS_DB_ROOT/CURRENT")" == "$CURRENT" ]] || abstain "ABSTAIN_UNEXPECTED_CURRENT"
+[[ -f "$PLANETS_CORPUS_DB_ROOT/generations/$GEN" ]] || abstain "ABSTAIN_PUBLIC100_MISSING"
+[[ -f "$BASELINE" ]] || abstain "ABSTAIN_BASELINE_MANIFEST_MISSING"
+[[ "$(sha256sum "$BASELINE" | cut -d' ' -f1)" == "$BASE_SHA" ]] || abstain "ABSTAIN_BASELINE_MANIFEST_SHA"
+command -v docker >/dev/null 2>&1 || abstain "ABSTAIN_DOCKER_MISSING"
+docker compose version >/dev/null 2>&1 || abstain "ABSTAIN_COMPOSE_MISSING"
+preflight="PASS_PINNED_PUBLIC100_BASELINE68"
+echo "===== FULL PUBLIC100 METADATA + BASELINE68 DEEP READ-ONLY SURVEY ====="
+echo "source_commit=$(git rev-parse HEAD)"
+echo "metadata_games=100"
+echo "source_members_expected=224014"
+echo "selected_baseline_games_max=68"
+echo "selected_adjacent_pairs_per_game_max=16"
+echo "sealed_heldout32_entity_access=false"
+echo "generation=EXPLICIT_PUBLIC100"
+echo "database_mount=READ_ONLY"
+echo "current_changed=false"
+echo "new_real_host_diff_verified=false"
+
+docker compose -f compose.yaml -f compose.corpus-db.yaml build lab > "$LOCAL/build.log" 2>&1
+build_rc=$?
+if (( build_rc != 0 )); then
+  build="FAILED_LOCAL_ONLY"
+  abstain "ABSTAIN_BUILD_FAILED"
+fi
+build="PASS"
+echo "stage=full_pytest started"
+docker compose -f compose.yaml -f compose.corpus-db.yaml run --rm -T lab \
+  python -m pytest -q --tb=short --junitxml="$LOCAL/pytest.xml" \
+  > "$LOCAL/pytest.log" 2>&1
+pytest_rc=$?
+if python3 tools/diagnostics/public100_pytest_safe_counts_v2.py \
+    --xml "$LOCAL/pytest.xml" --exit-code "$pytest_rc" \
+    --output "$COUNTS" > "$LOCAL/sanitize.log" 2>&1; then
+  pytest_status="$(python3 - "$COUNTS" <<'PY'
+import json,sys
+print(json.load(open(sys.argv[1]))["status"])
+PY
+)"
+else
+  pytest_status="SANITIZER_FAILED"
+  rm -f "$COUNTS"
+fi
+echo "stage=full_pytest result=$pytest_status"
+if [[ -s "$COUNTS" ]]; then
+  python3 - "$COUNTS" <<'PY'
+import json,sys
+r=json.load(open(sys.argv[1]))
+print("test_cases="+str(r["tests"]))
+print("test_failures="+str(r["failures"]))
+print("test_errors="+str(r["errors"]))
+PY
+fi
+
+echo "stage=deep_m2_100_metadata_68_baseline begin"
+docker compose -f compose.yaml -f compose.corpus-db.yaml run --rm -T lab \
+  python tools/diagnostics/m2_public_corpus_economy_coverage_v1.py \
+  --db-root /corpus-db --baseline-manifest "$BASELINE" \
+  --expected-baseline-games 68 --max-games 68 --pairs-per-game 16 \
+  --output "$REPORT" > "$LOCAL/deep-m2.log" 2>&1
+economy_rc=$?
+if (( economy_rc == 0 )) && [[ -s "$REPORT" ]] && \
+  python3 tools/diagnostics/m2_validate_corpus_aggregate_evidence_v1.py \
+  --input "$REPORT" > "$LOCAL/report-validator.log" 2>&1; then
+  economy="PASS_VALIDATED_AGGREGATE"
+  python3 - "$REPORT" <<'PY'
+import json,sys
+p=json.load(open(sys.argv[1]));m=p["metadata"]
+print("observed_metadata_games="+str(m["all_games_in_source_metadata"]))
+print("observed_metadata_members="+str(m["all_source_perspective_members"]))
+print("sampled_baseline_games="+str(m["metadata_selected_game_count"]))
+print("sampled_adjacent_pairs="+str(m["metadata_frozen_sample_pairs"]))
+print("heldout_entities_read=false")
+PY
+else
+  economy="FAILED_OR_UNVALIDATED"
+  rm -f "$REPORT"
+fi
+[[ "$(cat "$PLANETS_CORPUS_DB_ROOT/CURRENT" 2>/dev/null)" == "$CURRENT" ]] || abstain "ABSTAIN_CURRENT_CHANGED_DURING_RUN"
+echo "stage=deep_m2 result=$economy"
+echo "aggregate_report=$REPORT"
+if (( pytest_rc != 0 )); then exit "$pytest_rc"; fi
+if [[ "$pytest_status" != PASS || "$economy" != PASS_VALIDATED_AGGREGATE ]]; then exit 2; fi
+echo "batch_status=PASS_NONCAUSAL_READONLY"
+exit 0
