@@ -1,0 +1,26 @@
+{
+  "evidence_branch": "runtime-logs",
+  "exit_code": 1,
+  "finished_at_utc": "2026-10-24T19:26:33Z",
+  "hostname": "GEORGUL-GAMER",
+  "interrupted_signal": null,
+  "log_file": "gate.log",
+  "missing_artifact_paths": [],
+  "remote": "origin",
+  "requested_artifact_paths": [
+    "artifacts/corpus/public100-baseline68-expanded128-v4/stage-status.json",
+    "artifacts/corpus/public100-baseline68-expanded128-v4/baseline-cohort-attestation.json",
+    "artifacts/corpus/public100-baseline68-expanded128-v4/pytest-counts.json",
+    "artifacts/corpus/public100-baseline68-expanded128-v4/pytest-failed-modules.json",
+    "artifacts/corpus/public100-baseline68-expanded128-v4/m2-deep-coverage.json"
+  ],
+  "run_id": "20261024T185839Z_3f539501db2a",
+  "run_name": "public100-baseline68-expanded128-v4",
+  "runner": "bash",
+  "schema": "planets-lab.runtime-evidence.v1",
+  "skipped_oversized_artifact_paths": [],
+  "source_branch": "main",
+  "source_commit": "3f539501db2af038b751c94b228c4609c5d565f5",
+  "source_dirty": false,
+  "started_at_utc": "2026-10-24T18:58:39Z"
+}

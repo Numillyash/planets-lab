@@ -1,0 +1,18 @@
+{
+  "allowlisted_failed_modules": [
+    {
+      "errors": 0,
+      "failures": 4,
+      "module": "tests/test_runtime_evidence_wrapper.py"
+    },
+    {
+      "errors": 0,
+      "failures": 1,
+      "module": "tests/test_site_combat_state_runtime_fallback.py"
+    }
+  ],
+  "raw_test_names_or_traces_exported": false,
+  "schema": "planets-lab.pytest-allowlisted-failed-module-counts.v4",
+  "status": "PASS_SAFE_FAILURE_COUNTS_ONLY",
+  "unmapped_failures_or_errors": 0
+}
