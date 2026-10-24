@@ -65,6 +65,10 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--expected-baseline-games", type=int, default=68)
     parser.add_argument("--max-games", type=int, default=100,
                         help="Spread selected samples across up to this many games")
+    parser.add_argument(
+        "--expected-selection-sha256", default=None,
+        help="Optional frozen archived-pair population digest; verified before entity reconstruction",
+    )
     parser.add_argument("--pairs-per-game", type=int, default=2,
                         help="Up to this many adjacent T-1/T pairs per selected game")
     parser.add_argument("--output", type=Path,
@@ -129,6 +133,7 @@ def main(argv: list[str] | None = None) -> int:
             max_games=args.max_games, pairs_per_game=args.pairs_per_game,
             reconstruct=restore,
             allowed_games=baseline_ids,
+            expected_frozen_selection_sha256=args.expected_selection_sha256,
         )
     finally:
         connection.close()
