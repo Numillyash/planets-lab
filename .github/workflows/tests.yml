@@ -148,3 +148,12 @@ jobs:
 
       - name: Run tests
         run: pytest
+
+      # Prior on-host public100 corpus runs exposed 5 failures absent from
+      # GitHub's native runner: python:3.12-slim lacked /usr/bin/git.
+      # Exercise the ACTUAL image, not just the host Python environment.
+      - name: Docker lab Git and runtime regression parity
+        run: |
+          docker build -t planets-lab-ci-git .
+          docker run --rm -v "$PWD:/workspace" -w /workspace \
+            planets-lab-ci-git sh -ec 'git --version; python -m pytest -q tests/test_runtime_evidence_wrapper.py tests/test_site_combat_state_runtime_fallback.py'
