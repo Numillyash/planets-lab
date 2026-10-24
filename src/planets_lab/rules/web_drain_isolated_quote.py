@@ -13,10 +13,13 @@ clipping, field/ship mutation or original minefield sourcing is claimed.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from math import isqrt
 from typing import Mapping, Sequence
 
 from .minefield_placement_candidate import LocatedMinefield, Point
+from .web_circle_phase_envelope import (
+    classify_web_circle_envelope, PRE_DECAY, POST_DECAY,
+    INSIDE_CONFIRMED, EDGE_ABSTAIN,
+)
 
 EVIDENCE = "DOCUMENTED_POST_DECAY_CRYSTAL_WEB_DRAIN_TESTED_CONDITIONAL_NOT_HOST_VERIFIED"
 DRAIN_PER_QUALIFYING_WEB_FIELD_KT = 25
@@ -143,14 +146,18 @@ def quote_isolated_crystal_web_drain(
             raise WebDrainQuoteAbstain("own web field cannot also be confirmed enemy")
         if not enemy[f.field_id] or not crystal[f.owner_id]:
             continue
-        radius = isqrt(f.mine_units)
-        distance2 = ((ship_position.x - f.center.x) ** 2
-                     + (ship_position.y - f.center.y) ** 2)
-        if distance2 <= radius * radius:
+        # Web DRAIN uses POST_DECAY, unlike PRE_DECAY web sweeping.
+        envelope = classify_web_circle_envelope(
+            ship_position=ship_position,
+            field_center=f.center,
+            field_mine_units=f.mine_units,
+            phase=POST_DECAY,
+            exact_integer_positions_and_phase_confirmed=True,
+            standard_field_no_custom_geometry_confirmed=True,
+        )
+        if envelope.classification == INSIDE_CONFIRMED:
             qualifying.append(f.field_id)
-        elif distance2 < (radius + 2) ** 2:
-            # Squares vs continuous circle within 1 LY have unresolved
-            # raster behavior. Do not incorrectly declare "out of range".
+        elif envelope.classification == EDGE_ABSTAIN:
             raise WebDrainQuoteAbstain("near-edge post-decay web drain geometry ambiguous")
     drain = len(qualifying) * DRAIN_PER_QUALIFYING_WEB_FIELD_KT
     if drain > neutronium_before_kt:
