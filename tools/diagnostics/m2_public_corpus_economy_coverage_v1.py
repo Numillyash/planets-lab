@@ -60,6 +60,8 @@ def main(argv: list[str] | None = None) -> int:
         "--baseline-manifest", required=True, type=Path,
         help="Baseline public68 JSONL IDs, never the sealed 32-game heldout set",
     )
+    parser.add_argument("--expected-baseline-manifest-sha256", default=None,
+                        help="Optional live attested cohort manifest SHA; checked before entity sampling")
     parser.add_argument("--expected-baseline-games", type=int, default=68)
     parser.add_argument("--max-games", type=int, default=100,
                         help="Spread selected samples across up to this many games")
@@ -94,6 +96,12 @@ def main(argv: list[str] | None = None) -> int:
         raise ValueError("CORPUS_GENERATION_SHA256_MISMATCH: refusing to open")
 
     manifest_raw = args.baseline_manifest.read_bytes()
+    if args.expected_baseline_manifest_sha256 is not None:
+        expected_manifest_sha = args.expected_baseline_manifest_sha256.lower()
+        if (len(expected_manifest_sha) != 64
+                or any(c not in "0123456789abcdef" for c in expected_manifest_sha)
+                or sha256(manifest_raw).hexdigest() != expected_manifest_sha):
+            raise ValueError("ATTESTED_BASELINE_MANIFEST_CHANGED: refusing entity sampling")
     baseline_ids: set[int] = set()
     for line in manifest_raw.decode("utf-8-sig").splitlines():
         if not line.strip():
