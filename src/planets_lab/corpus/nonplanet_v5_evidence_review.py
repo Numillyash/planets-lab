@@ -112,7 +112,8 @@ def review_published_v5(report: Mapping[str, Any]) -> dict[str, Any]:
     allow = _mapping(doc.get("baseline_sample_allowlist"), "ABSTAIN_BASELINE_COHORT")
     if (allow.get("allowed_game_count") != 68
             or type(allow.get("allowed_game_count")) is not int
-            or allow.get("heldout_entity_sampling") is not False):
+            or allow.get("heldout_entity_sampling") is not False
+            or allow.get("manifest_sha256") != "942eb61741664835cc600bb1e2148daaa1c009462827b238f13227c5937899d9"):
         raise EvidenceReviewAbstain("ABSTAIN_BASELINE_COHORT")
     meta = _mapping(doc.get("metadata"), "ABSTAIN_METADATA")
     selected = _count(meta, "metadata_frozen_sample_pairs")
