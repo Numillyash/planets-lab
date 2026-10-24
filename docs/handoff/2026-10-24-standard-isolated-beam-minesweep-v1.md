@@ -1,0 +1,31 @@
+# PR #293 — изолированное стандартное Mine Sweep: beam-only последовательный ledger
+
+Дата: 2026-10-24. Не является Host-phase integration. Сначала перепроверяй GitHub `main` и реальный CI/merge; при подготовке документа PR #293 ещё открыт.
+
+## Первоисточники и применимость
+
+- [Официальные Minefields → Mine Sweeping](https://help.planets.nu/minefields): лучевое очищение вражеских полей; нормальные поля на расстоянии строго меньше 5 LY за краем, web строго меньше 1 LY; центр поля в Ion Storm блокирует лучевое очищение; в одном ходе каждый подходящий из нескольких полей очищается; корабли обрабатываются по возрастанию ID, радиус пересчитывается после каждого воздействия.
+- [Weapon Technical Details → Beam Weapon Blast and Kill Power](https://help.planets.nu/weapon-destruction-power): десять стандартных типов лучей, units destroyed per beam, normal/web соответственно: Laser 4/3, X-Ray Laser 16/12, Plasma Bolt 36/27, Blaster 64/48, Positron 100/75, Disruptor 144/108, Heavy Blaster 196/147, Phaser 256/192, Heavy Disruptor 324/243, Heavy Phaser 400/300. Имена семейства в модуле — внутренние, НЕ dynamic weapon IDs клиента.
+- [Minefields examples](https://help.planets.nu/minefields-examples): web-sweeping на pre-decay поле учитывает даже частичное касание клеткой корабля окружности; поэтому вне-поля в узкой границе web module **ABSTAIN**, а не утверждает false/true.
+- [Host Order](https://help.planets.nu/host-order): mine lay, web lay, ion storms, sweep/scoop, decay, conflict документированы как последовательные действия, но без независимо засвидетельствованных server-accepted inputs интегрировать целый ход нельзя.
+- [Minefields → Laying As Another Player](https://help.planets.nu/minefields): web поля не-Crystal owners могут очищаться иначе — стандартный rate не применяется без явного источникового подтверждения.
+
+## Реализованный автономный контракт
+
+`src/planets_lab/rules/mine_beam_sweeping.py` экспортирует `simulate_isolated_standard_beam_sweeps`, `SweepingShip`, `BeamSweepEvent`, `BeamSweepStep`, `BeamSweepSequence`, `BeamMineSweepAbstain`, `STANDARD_BEAM_SWEEP_YIELDS`. Использует неизменяемые `LocatedMinefield` и `Point` из самостоятельной модели-кандидата PR #292, но **не вызывает** placement quote #292 или #291 и не вызывает natural decay #290.
+
+- Требуется полный явно переданный **pre-sweep** список полей, ships, exact current beam family/count/coords and MINE_SWEEP mission without `MSC`; ship IDs и field IDs положительные уникальные strict int, radius cap100/150, позиции strict bounded integers. Конечные локальные лимиты max100 ships, 5000 fields, 20 beams — **scope guards**, не Host capacities.
+- Полная явная Boolean матрица `confirmed_enemy_by_ship_field[(ship_id, field_id)]` с ключами точного типа для каждого ship/field, включая союзные/свои; собственное поле не может считаться enemy. Это caller source ASSERTION, не выведенная модель дипломатии. Полные Boolean карты Ion-Storm-at-field-center и standard-web-beam-yield для ВСЕХ web fields, последние строго True; неверифицированные non-Crystal web/custom-rate — ABSTAIN.
+- Корабли сортируются по ship ID, поля по field ID. Для каждого корабля получается отдельный BEFORE/AFTER roster и полный per-field event. Дистанция в квадратах целых координат; normal range строго `distance² < (floor(sqrt(units)) + 5)²`. Web без спорной растеризации гарантированно очищается при нахождении на/внутри окружности; вне её, но ближе чем 2 LY к целочисленному радиусу — **atomic ABSTAIN**; гарантированно далеко вне края — no sweep. Это *консервативное подмножество*, не реализация точной web-семантики NuHost.
+- Источниковые поля, центр, владелец, тип, порядок миссий не модифицируются; units destroyed `min(remaining, beams*documented rate)`, после каждого корабля пересчитывается `isqrt(remaining)`, исчерпанные поля удаляются только из условного следующего roster. Исходная и промежуточная полнота строго сохраняют `initial_units == final_units + sum(swept)`.
+- Все предпосылки `*_confirmed` — **только внешний контракт для условного счёта**, не самостоятельное доказательство исходных данных, подтверждения миссии или исходного phase. Выходы `host_orders_accepted_verified=False`, `host_phase_order_verified=False`, `whole_host_mine_lifecycle_verified=False`, `host_diff_verified=False`. Ни одна фаза реального Host не выполнена.
+
+## Отложенные сложные взаимодействия
+
+MSC scoop, friendly code/recapture, Colonies fighter sweeping, starbase sweeping, non-Crystal redirected web, Campaign custom beam rates, координаты вне целой решётки, точная web 1LY-square geometry, external mines destroyed by mines, Host phase-order interactions и принятые сервером приказы — **вне области модели/ABSTAIN**. Нельзя автоматически соединять #290 естественный распад, #291 UNALLOCATED torpedoes, #292 spatial placement и #293 beam sweeping, поскольку промежуточные поля после Host phases и типы владельцев не доказаны.
+
+`tests/test_mine_beam_sweeping.py` проверяет все десять нормальных/web ставок, несколько полей, сортировку судов, пересчёт range, строгую normal 5-LY границу, web near-edge отказ, ion block, friend-vs-enemy, no-op, depletion, total conservation, immutability, invalid/ambiguous inputs и плотность/cap. **Только синтетические тесты**; уровень `DOCUMENTED + TESTED conditional` после успешного exact-head PR CI, не Host `CORPUS_OBSERVED` или `DIFF_VERIFIED`. Отдельный on-host runner не нужен, corpus не читается.
+
+## Состояние и следующий этап
+
+Предыдущий PR #292 merged `70705cb2354759b912b4f3936ce55622e07fc2cc`, PR CI #1589 и main CI #1590 success. PR #289 заморозил наблюдательное PPQ 6 игр; не перезапускать slice. Issue #247 user-dependent Host accepted-orders evidence **PARKED**. `CURRENT` public68, immutable prepared public100 и sealed M2 heldout32 не изменять. После завершения #293 — закрыть лишь conditional beam sweep, исследовать bounded scoop/Colonial fighter sweep или отказаться от догадок о Host interactions. Только новый независимо ограниченный реальный experiment потребует `bash tools/run-*-with-evidence.sh` на основе `tools/run-with-runtime-evidence.sh`, auto-publish sanitized evidence `runtime-logs`. Каждый PR меняет полный свой `CONTINUE_HERE.md`, номерной changelog, отдельную содержательную документацию и проходит exact PR CI → merge → postmerge main CI. Вести чат **на русском**.
