@@ -156,6 +156,18 @@ print("test_errors="+str(r["errors"]))
 PY
 fi
 
+# Host-side validator must work without site-packages or editable installs.
+# A deterministic, count-only fixture check runs *before* expensive corpus work.
+echo "stage=host_joint_validator_self_test begin"
+if python3 -I -S tools/diagnostics/validate_minefield_joint_v6.py --self-test \
+    > "$LOCAL/joint-validator-self-test.log" 2>&1; then
+  echo "stage=host_joint_validator_self_test result=PASS"
+else
+  echo "stage=host_joint_validator_self_test result=ABSTAIN"
+  economy="ABSTAIN_HOST_JOINT_VALIDATOR_SELF_TEST"
+  exit 2
+fi
+
 echo "stage=deep_m2_100_metadata_68_baseline begin"
 docker compose -f compose.yaml -f compose.corpus-db.yaml run --rm -T lab \
   python tools/diagnostics/m2_public_corpus_economy_coverage_v1.py \
@@ -165,12 +177,17 @@ docker compose -f compose.yaml -f compose.corpus-db.yaml run --rm -T lab \
   --expected-selection-sha256 4432542b37c51f1bd94f27f9c061a8e27a850ecb08714ff55662928cb54ea659 \
   --output "$REPORT" > "$LOCAL/deep-m2.log" 2>&1
 economy_rc=$?
-if (( economy_rc == 0 )) && [[ -s "$REPORT" ]] && \
-  python3 tools/diagnostics/m2_validate_corpus_aggregate_evidence_v1.py \
-  --input "$REPORT" > "$LOCAL/report-validator.log" 2>&1 && \
-  python3 tools/diagnostics/validate_minefield_joint_v6.py \
-  --input "$REPORT" > "$LOCAL/joint-validator.log" 2>&1 && \
-  python3 - "$REPORT" "$attested_sha" > "$LOCAL/manifest-match.log" 2>&1 <<'PY'
+# Stop on exact failed stage; the private report must NEVER be published
+# on missing/invalid evidence. Status strings reveal no corpus identities.
+if (( economy_rc != 0 )) || [[ ! -s "$REPORT" ]]; then
+  economy="ABSTAIN_ECONOMY_GENERATION"
+elif ! python3 tools/diagnostics/m2_validate_corpus_aggregate_evidence_v1.py \
+    --input "$REPORT" > "$LOCAL/report-validator.log" 2>&1; then
+  economy="ABSTAIN_GENERIC_AGGREGATE_VALIDATION"
+elif ! python3 -I -S tools/diagnostics/validate_minefield_joint_v6.py \
+    --input "$REPORT" > "$LOCAL/joint-validator.log" 2>&1; then
+  economy="ABSTAIN_JOINT_AGGREGATE_VALIDATION"
+elif ! python3 - "$REPORT" "$attested_sha" > "$LOCAL/manifest-match.log" 2>&1 <<'PY'
 import json,sys
 payload=json.load(open(sys.argv[1],encoding="utf-8"))
 assert payload["baseline_sample_allowlist"]["manifest_sha256"]==sys.argv[2]
@@ -178,6 +195,8 @@ assert payload["baseline_sample_allowlist"]["allowed_game_count"]==68
 assert payload["baseline_sample_allowlist"]["heldout_entity_sampling"] is False
 PY
 then
+  economy="ABSTAIN_ATTESTED_MANIFEST_MISMATCH"
+else
   economy="PASS_VALIDATED_AGGREGATE"
   python3 - "$REPORT" <<'PY'
 import json,sys
@@ -189,8 +208,8 @@ print("sampled_adjacent_pairs="+str(m["metadata_frozen_sample_pairs"]))
 print("sampled_nonplanet_sections=minefields_ships_starbases_vcrs_ionstorms")
 print("heldout_entities_read=false")
 PY
-else
-  economy="FAILED_OR_UNVALIDATED"
+fi
+if [[ "$economy" != PASS_VALIDATED_AGGREGATE ]]; then
   rm -f "$REPORT"
 fi
 [[ "$(cat "$PLANETS_CORPUS_DB_ROOT/CURRENT" 2>/dev/null)" == "$CURRENT" ]] || abstain "ABSTAIN_CURRENT_CHANGED_DURING_RUN"
