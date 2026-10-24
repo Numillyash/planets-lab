@@ -26,6 +26,8 @@ priority PBP assembly (#259–261). These are local TESTED models,
 **not** independently validated NuHost execution/phase order.
 Review the roadmap and continuation prompt for current scope.
 
+**Project-wide visual status:** [Progress map and evidence-qualified roadmap](docs/PROJECT_PROGRESS_MAP.md) — M0–M6, movement, combat, economy, queues, minefields, corpus, Host blockers and external PlanetDashboard (not audited here).
+
 ## Current checkpoints
 
 - Movement: ordinary geometry, warp wells, route-equivalent Tow/Chunnel, scoped
