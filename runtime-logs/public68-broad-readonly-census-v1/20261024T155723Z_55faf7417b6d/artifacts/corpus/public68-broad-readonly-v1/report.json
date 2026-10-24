@@ -1,0 +1,208 @@
+{
+  "corpus_scope": "CURRENT_PINNED_PUBLIC68_ONLY",
+  "elapsed_seconds": 24.56,
+  "evidence_level": "CORPUS_OBSERVED_DESCRIPTIVE_SOURCE_COVERAGE_ONLY",
+  "family_readiness": {
+    "combat": {
+      "available_sections": 4,
+      "conditional_new_mechanics_host_audit": "ABSTAIN_NO_AUTHENTICATED_HOST_PHASE_OR_ACCEPTED_ORDERS",
+      "host_diff_verified_by_this_run": false,
+      "independently_authenticated_host_orders": false,
+      "independently_authenticated_phase_boundary": false,
+      "missing_sections": [],
+      "observational_source_sections_present": true,
+      "required_observational_sections": [
+        "ships",
+        "planets",
+        "starbases",
+        "vcrs"
+      ]
+    },
+    "economy": {
+      "available_sections": 3,
+      "conditional_new_mechanics_host_audit": "ABSTAIN_NO_AUTHENTICATED_HOST_PHASE_OR_ACCEPTED_ORDERS",
+      "host_diff_verified_by_this_run": false,
+      "independently_authenticated_host_orders": false,
+      "independently_authenticated_phase_boundary": false,
+      "missing_sections": [],
+      "observational_source_sections_present": true,
+      "required_observational_sections": [
+        "planets",
+        "starbases",
+        "ships"
+      ]
+    },
+    "mine_placement_decay": {
+      "available_sections": 3,
+      "conditional_new_mechanics_host_audit": "ABSTAIN_NO_AUTHENTICATED_HOST_PHASE_OR_ACCEPTED_ORDERS",
+      "host_diff_verified_by_this_run": false,
+      "independently_authenticated_host_orders": false,
+      "independently_authenticated_phase_boundary": false,
+      "missing_sections": [],
+      "observational_source_sections_present": true,
+      "required_observational_sections": [
+        "minefields",
+        "ships",
+        "nebulas"
+      ]
+    },
+    "movement": {
+      "available_sections": 4,
+      "conditional_new_mechanics_host_audit": "ABSTAIN_NO_AUTHENTICATED_HOST_PHASE_OR_ACCEPTED_ORDERS",
+      "host_diff_verified_by_this_run": false,
+      "independently_authenticated_host_orders": false,
+      "independently_authenticated_phase_boundary": false,
+      "missing_sections": [],
+      "observational_source_sections_present": true,
+      "required_observational_sections": [
+        "ships",
+        "planets",
+        "ionstorms",
+        "minefields"
+      ]
+    },
+    "ship_sweeping": {
+      "available_sections": 3,
+      "conditional_new_mechanics_host_audit": "ABSTAIN_NO_AUTHENTICATED_HOST_PHASE_OR_ACCEPTED_ORDERS",
+      "host_diff_verified_by_this_run": false,
+      "independently_authenticated_host_orders": false,
+      "independently_authenticated_phase_boundary": false,
+      "missing_sections": [],
+      "observational_source_sections_present": true,
+      "required_observational_sections": [
+        "minefields",
+        "ships",
+        "ionstorms"
+      ]
+    },
+    "shipyard_pq_ppq": {
+      "available_sections": 3,
+      "conditional_new_mechanics_host_audit": "ABSTAIN_NO_AUTHENTICATED_HOST_PHASE_OR_ACCEPTED_ORDERS",
+      "host_diff_verified_by_this_run": false,
+      "independently_authenticated_host_orders": false,
+      "independently_authenticated_phase_boundary": false,
+      "missing_sections": [],
+      "observational_source_sections_present": true,
+      "required_observational_sections": [
+        "ships",
+        "starbases",
+        "planets"
+      ]
+    },
+    "starbase_sweeping": {
+      "available_sections": 3,
+      "conditional_new_mechanics_host_audit": "ABSTAIN_NO_AUTHENTICATED_HOST_PHASE_OR_ACCEPTED_ORDERS",
+      "host_diff_verified_by_this_run": false,
+      "independently_authenticated_host_orders": false,
+      "independently_authenticated_phase_boundary": false,
+      "missing_sections": [],
+      "observational_source_sections_present": true,
+      "required_observational_sections": [
+        "minefields",
+        "starbases",
+        "planets"
+      ]
+    },
+    "web_drain": {
+      "available_sections": 2,
+      "conditional_new_mechanics_host_audit": "ABSTAIN_NO_AUTHENTICATED_HOST_PHASE_OR_ACCEPTED_ORDERS",
+      "host_diff_verified_by_this_run": false,
+      "independently_authenticated_host_orders": false,
+      "independently_authenticated_phase_boundary": false,
+      "missing_sections": [],
+      "observational_source_sections_present": true,
+      "required_observational_sections": [
+        "minefields",
+        "ships"
+      ]
+    }
+  },
+  "metadata_census": {
+    "archive_turn_differs_from_embedded": 140,
+    "archive_turn_equals_embedded": 169429,
+    "decoded_semantic_json_bytes": 179227392513,
+    "distinct_games": 68,
+    "member_fields": 5282769,
+    "source_archive_bytes": 12655376984,
+    "source_archives": 68,
+    "source_members": 169569,
+    "zip_members": 169569
+  },
+  "no_db_write_or_current_activation": true,
+  "no_m2_sealed_holdout_entity_sampling": true,
+  "no_public100_access": true,
+  "no_reconstruction_of_raw_members": true,
+  "no_server_order_or_host_phase_accepted_evidence": true,
+  "schema": "planets-lab.public68-readonly-broad-census.v1",
+  "source_generation": "corpus-v2compact-public68-20261004T095236Z-09f71721b77c.duckdb",
+  "source_generation_bytes": 17847300096,
+  "source_generation_sha256_checked": true,
+  "source_generation_sha256_expected": "5ae0d6fe1190d5f7cd4a90895f3c5ebf995280ad0b716e0960273a8a55e8f43a",
+  "source_sections_checked": 16,
+  "status": "PASS_DESCRIPTIVE_CENSUS_NO_HOST_PHASE_PROMOTION",
+  "temporal_census": {
+    "consecutive_archival_observation_pairs": 168397,
+    "duplicate_embedded_turn_observations": 140,
+    "nonconsecutive_archival_gaps": 140,
+    "out_of_order_turn_pairs": 0,
+    "perspective_timelines": 892,
+    "snapshots_scanned": 169569
+  },
+  "typed_section_census": {
+    "advantages": {
+      "typed_entity_rows": 13495643
+    },
+    "hulls": {
+      "typed_entity_rows": 33750725
+    },
+    "ionstorms": {
+      "members_with_nonempty_section": 156677,
+      "typed_entity_rows": 2268200
+    },
+    "messages": {
+      "typed_entity_rows": 40861479
+    },
+    "minefields": {
+      "members_with_nonempty_section": 130172,
+      "typed_entity_rows": 18361905
+    },
+    "nebulas": {
+      "members_with_nonempty_section": 129807,
+      "typed_entity_rows": 4224549
+    },
+    "notes": {
+      "typed_entity_rows": 5537714
+    },
+    "planets": {
+      "members_with_nonempty_section": 153602,
+      "typed_entity_rows": 77609693
+    },
+    "players": {
+      "typed_entity_rows": 2746595
+    },
+    "races": {
+      "typed_entity_rows": 2204397
+    },
+    "relations": {
+      "typed_entity_rows": 2746595
+    },
+    "ships": {
+      "members_with_nonempty_section": 115383,
+      "typed_entity_rows": 18425011
+    },
+    "starbases": {
+      "members_with_nonempty_section": 137326,
+      "typed_entity_rows": 7261471
+    },
+    "stars": {
+      "typed_entity_rows": 901279
+    },
+    "stock": {
+      "typed_entity_rows": 165351902
+    },
+    "vcrs": {
+      "members_with_nonempty_section": 73231,
+      "typed_entity_rows": 402401
+    }
+  }
+}

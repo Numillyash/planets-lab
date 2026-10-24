@@ -1,0 +1,25 @@
+===== PINNED PUBLIC68 MAXIMAL READ-ONLY SUITE =====
+source_commit=55faf7417b6d0255b7f6dfe60ca2695a7b3db459
+source_branch=main
+database_scope=PINNED_PUBLIC68_CURRENT_ONLY
+expected_games=68
+expected_source_members=169569
+database_mount=READ_ONLY
+public100_read=false
+M2_sealed_holdout_entities_read=false
+real_host_phase_executed=false
+private_raw_orders_or_member_data_logged=false
+stage=synthetic_regression_tests status=RUNNING
+stage=synthetic_regression_tests exit_code=1 count=COUNT_NOT_AVAILABLE
+stage=full_public68_readonly_census status=RUNNING
+stage=full_public68_readonly_census status=PASS_DESCRIPTIVE_CENSUS_NO_HOST_PHASE_PROMOTION
+metadata_games=68
+metadata_source_members=169569
+consecutive_archival_observation_pairs=168397
+typed_sections_checked=16
+host_diff_verified=false
+synthetic_test_exit=1
+corpus_census_exit=0
+report=artifacts/corpus/public68-broad-readonly-v1/report.json
+suite_status=artifacts/corpus/public68-broad-readonly-v1/suite-status.json
+status=ALL_COMPLETE_ONLY_IF_BOTH_ZERO
