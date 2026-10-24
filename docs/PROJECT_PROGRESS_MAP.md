@@ -1,6 +1,6 @@
 # Карта прогресса planets-lab
 
-> Первоначальная карта создана PR **#301**, последний раздел обновлён для **PR #308** (24 октября 2026). Источники: живой `main`, [ROADMAP](ROADMAP.md), [COMPILED_CORPUS](COMPILED_CORPUS.md), [handoff](CONTINUE_HERE.md). Для актуального HEAD и CI всегда обращайся к GitHub; пин SHA из старого PR не является текущим состоянием.
+> Первоначальная карта создана PR **#301**, последний раздел обновлён для **PR #309** (24 октября 2026). Источники: живой `main`, [ROADMAP](ROADMAP.md), [COMPILED_CORPUS](COMPILED_CORPUS.md), [handoff](CONTINUE_HERE.md). Для актуального HEAD и CI всегда обращайся к GitHub; пин SHA из старого PR не является текущим состоянием.
 >
 > **Здесь нет одного общего процента.** Процент «знаем формулу» не равен проценту «Host воспроизведён». Эта страница отдельно показывает наличие кода, силу свидетельств и интеграционные пробелы. Старые оценки 2026-09-11 в ROADMAP — исторический снимок, не актуальные KPI.
 
@@ -17,6 +17,8 @@
 > **Обновление PR #307 (2026-10-24):** [ID-ordered canonical ship sweeping](handoff/2026-10-24-ordered-canonical-ship-sweep-ledger-v1.md) даёт единую условную ведомость для beam-only, Colonial fighter-only и Colonial mixed кораблей, отсортированных по **общему Ship ID**, с перерасчётом радиусов и сохранением mine units по шагам. Это **расширение синтетической композиции**, не новый `CORPUS_OBSERVED`/ `DIFF_VERIFIED`. MSC, Campaign starbase, multiple Host phases и реальные accepted orders НЕ подключены. Mine lifecycle #290–307.
 
 > **Обновление PR #308 (2026-10-24):** [единая условная очередь](handoff/2026-10-24-canonical-ships-one-campaign-starbase-ledger-v1.md) теперь связывает три **взаимоисключающих** ship sweeper режима по возрастанию ID с **одной** Campaign starbase после всех кораблей. Учитывается общий исходный roster, полные исходные карты владельцев/ion/web/Colonial, изменение радиусов и строгий сквозной баланс, плюс parity со старым #305 beam-only ledger. **Инженерная композиция** повышена, **доказательный уровень не повышен**: DOCUMENTED+TESTED synthetic conditional, НЕ реальная Host-фаза / DIFF_VERIFIED. MSC и несколько баз остаются открытыми.
+
+> **Обновление PR #309 (2026-10-24):** подготовлен [одноразовый массовый read-only проход по публичной базе CURRENT/public68](handoff/2026-10-24-public68-maximal-readonly-batch-v1.md): все 68 игр и 169569 опубликованных source members, integrity SHA256, temporal/member/typed census, восьмикатегорийная source-readiness, полный локальный pytest и automatic **sanitized** `runtime-logs`. Это пока **подготовленный инструмент** (не уже проведённое исследование), после запуска уровень результатов будет лишь **CORPUS_OBSERVED / descriptive source coverage**, а **не** Host-phase `DIFF_VERIFIED`. public100, sealed M2, private orders and immutable CURRENT не меняются.
 
 ## 1. Общая схема работ
 
