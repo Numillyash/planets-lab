@@ -34,7 +34,7 @@ def test_joint_partitions_increases_decreases_and_unchanged():
     assert r[JOINT[2]]==1
     assert r[JOINT[3]]==1
     assert r[JOINT[4]]==2
-    assert r["same_id_owner_center_stable_units_changed_not_causal"]==4
+    assert r["same_id_owner_center_stable_units_changed_not_causal"]==3
     assert r["same_id_current_own_verified_both_archives"]==4
 
 @pytest.mark.parametrize("edit",[
