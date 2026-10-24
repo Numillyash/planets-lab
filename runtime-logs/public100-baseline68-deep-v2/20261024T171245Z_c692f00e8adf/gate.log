@@ -1,0 +1,28 @@
+===== FULL PUBLIC100 METADATA + BASELINE68 DEEP READ-ONLY SURVEY =====
+source_commit=c692f00e8adf2406ab6ef4f5f9b14fd9ba0f02be
+metadata_games=100
+source_members_expected=224014
+selected_baseline_games_max=68
+selected_adjacent_pairs_per_game_max=16
+sealed_heldout32_entity_access=false
+generation=EXPLICIT_PUBLIC100
+database_mount=READ_ONLY
+current_changed=false
+new_real_host_diff_verified=false
+stage=baseline68_cohort_metadata_identity begin
+stage=baseline68_cohort_metadata_identity result=PASS_EXACT_SET_MATCH
+stage=full_pytest started
+stage=full_pytest result=FAILED_TESTS
+test_cases=3692
+test_failures=5
+test_errors=0
+stage=deep_m2_100_metadata_68_baseline begin
+observed_metadata_games=100
+observed_metadata_members=224014
+sampled_baseline_games=68
+sampled_adjacent_pairs=1088
+heldout_entities_read=false
+stage=deep_m2 result=PASS_VALIDATED_AGGREGATE
+aggregate_report=artifacts/corpus/public100-baseline68-deep-v2/m2-deep-coverage.json
+batch_stage_status=PASS_PINNED_PUBLIC100_BASELINE68/PASS/PASS_EXACT_68_IDS_SHA_PINNED_PUBLIC68/FAILED_TESTS/PASS_VALIDATED_AGGREGATE
+aggregate_status_path=artifacts/corpus/public100-baseline68-deep-v2/stage-status.json
