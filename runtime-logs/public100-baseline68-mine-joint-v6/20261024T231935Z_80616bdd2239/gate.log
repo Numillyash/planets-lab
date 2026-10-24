@@ -1,0 +1,29 @@
+===== FULL PUBLIC100 METADATA + BASELINE68 DEEP READ-ONLY SURVEY =====
+source_commit=80616bdd2239445572c23ce31b2312677b850909
+metadata_games=100
+source_members_expected=224014
+selected_baseline_games_max=68
+selected_adjacent_pairs_per_game_max=128
+selected_adjacent_pairs_budget_max=8704
+observational_selection_frozen_from=20261024T185839Z_3f539501db2a
+minefield_joint_source_readiness=PREDECLARED_OBSERVATIONAL_JOINT_NOT_HOST_CAUSAL
+nonplanet_observability=minefields_ships_starbases_vcrs_ionstorms
+sealed_heldout32_entity_access=false
+generation=EXPLICIT_PUBLIC100
+database_mount=READ_ONLY
+current_changed=false
+new_real_host_diff_verified=false
+stage=container_tool_preflight status=PASS_GIT_AND_BASH
+stage=baseline68_cohort_metadata_identity begin
+stage=baseline68_cohort_metadata_identity result=PASS_EXACT_SET_MATCH
+stage=full_pytest started
+stage=full_pytest result=PASS
+stage=pytest_module_failure_classifier result=PASS_SAFE_COUNTS
+test_cases=3738
+test_failures=0
+test_errors=0
+stage=deep_m2_100_metadata_68_baseline begin
+stage=deep_m2 result=FAILED_OR_UNVALIDATED
+aggregate_report=artifacts/corpus/public100-baseline68-mine-joint-v6/m2-deep-coverage.json
+batch_stage_status=PASS_PINNED_PUBLIC100_BASELINE68/PASS/PASS_EXACT_68_IDS_SHA_PINNED_PUBLIC68/PASS/FAILED_OR_UNVALIDATED
+aggregate_status_path=artifacts/corpus/public100-baseline68-mine-joint-v6/stage-status.json
