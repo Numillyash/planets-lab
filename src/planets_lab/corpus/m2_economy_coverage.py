@@ -375,12 +375,20 @@ def analyze_corpus_coverage(
     pairs_per_game: int = 2,
     reconstruct: Callable[[int], Mapping[str, Any]],
     allowed_games: set[int] | None = None,
+    expected_frozen_selection_sha256: str | None = None,
 ) -> dict[str, Any]:
     members = read_metadata(connection)
     metadata, selected = census_members(
         members, max_games=max_games, pairs_per_game=pairs_per_game,
         allowed_games=allowed_games,
     )
+    # Independent previous source run's exact selection SHA is an
+    # observational population identity pin, never a Host-event receipt.
+    # IMPORTANT: this check happens BEFORE the FIRST reconstruction call.
+    if (expected_frozen_selection_sha256 is not None
+            and metadata["metadata_frozen_selection_sha256"]
+                != expected_frozen_selection_sha256):
+        raise ValueError("FROZEN_OBSERVATIONAL_SOURCE_SELECTION_CHANGED")
     by_id = {m.member_id: m for m in members}
     counters: Counter[str] = Counter()
     status: Counter[str] = Counter()
