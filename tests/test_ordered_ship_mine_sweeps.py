@@ -73,7 +73,7 @@ def test_all_three_ship_classes_share_one_mutable_in_quote_only_roster():
     assert [s.units_after for s in r.steps]==[996,956,932]
     assert r.initial_units==1000
     assert r.total_hypothetical_units_swept==68
-    assert r.final_hypothetical_units==942
+    assert r.final_hypothetical_units==932
     assert r.initial_units==r.final_hypothetical_units+r.total_hypothetical_units_swept
     assert r.steps[0].fields_after==r.steps[1].fields_before
     assert r.steps[1].fields_after==r.steps[2].fields_before
@@ -104,7 +104,7 @@ def test_web_fighters_immune_beams_still_operate_and_ordered():
     ships=(beam(10),mixed(4),fighter(1))
     r=calc(fields=(field(web=True,units=100),),ships=ships)
     assert [s.units_swept for s in r.steps]==[0,3,3]
-    assert r.final_hypothetical_units==93
+    assert r.final_hypothetical_units==94
     assert r.steps[0].underlying_conditional_report.steps[0].events[0].status == "WEB_IMMUNE_TO_FIGHTERS"
     mixed_report=r.steps[1].underlying_conditional_report
     assert mixed_report.field_quotes[0].fighter_potential_mine_units==0
