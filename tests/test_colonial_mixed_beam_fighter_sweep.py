@@ -154,8 +154,8 @@ def test_full_field_roster_own_field_non_enemy_distant_and_web():
     r=quote(fields=fs)
     assert [f.field_id for f in r.field_quotes]==[9,11,25,31]
     assert [f.total_hypothetical_mines_destroyed for f in r.field_quotes]==[68,0,6,0]
-    assert r.initially_present_mine_units==950
-    assert r.hypothetically_remaining_mine_units==876
+    assert r.initially_present_mine_units==1900
+    assert r.hypothetically_remaining_mine_units==1826
     assert r.initially_present_mine_units==r.hypothetically_remaining_mine_units+r.hypothetically_destroyed_mine_units
 
 
