@@ -211,7 +211,8 @@ def classify_conditional_mine_overlaps(
                 status == "HOSTILE_NORMAL_OVERLAP_CANDIDATE",
             ))
     components = _components(hostile)
-    assert len(hostile) == sum(len(c.candidate_edges) for c in components)
+    if len(hostile) != sum(len(c.candidate_edges) for c in components):
+        raise MineOverlapAbstain("internal candidate-edge partition invariant failure")
     return MineOverlapGraph(
         assessments=tuple(assessments),
         components=components,
