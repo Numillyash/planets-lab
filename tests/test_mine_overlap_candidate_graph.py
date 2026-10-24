@@ -16,7 +16,12 @@ def f(fid=1, owner=1, *, x=0, y=0, units=100, web=False):
 def go(*, fields=None, safe=None, max_radius=150, **overrides):
     fields = (f(), f(2, 2, x=15)) if fields is None else fields
     if safe is None:
-        owners = sorted({item.owner_id for item in fields if not item.is_web})
+        # Invalid roster types must reach the production ABSTAIN gate rather
+        # than raising in test fixture setup before calling the rule.
+        typed = isinstance(fields, (list, tuple)) and all(
+            type(item) is LocatedMinefield for item in fields
+        )
+        owners = sorted({item.owner_id for item in fields if not item.is_web}) if typed else []
         safe = {
             (owner, other): False
             for i, owner in enumerate(owners)
