@@ -7,28 +7,30 @@ mkdir -p "$OUT/private-local"
 REPORT="$OUT/m2-deep-coverage.json"
 COUNTS="$OUT/pytest-counts.json"
 STATUS="$OUT/stage-status.json"
+COHORT="$OUT/baseline-cohort-attestation.json"
 LOCAL="$OUT/private-local"
 BASELINE="validation/corpus/manifests/public-short-expansion-with-public36.jsonl"
 export PLANETS_CORPUS_DB_ROOT="${PLANETS_CORPUS_DB_ROOT:-/root/projects/planets-corpus-db}"
 GEN="corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb"
-BASE_SHA="942eb61741664835cc600bb1e2148daaa1c009462827b238f13227c5937899d"
 CURRENT="generations/corpus-v2compact-public68-20261004T095236Z-09f71721b77c.duckdb"
-rm -f "$REPORT" "$COUNTS" "$STATUS" "$LOCAL/pytest.xml"
+rm -f "$REPORT" "$COUNTS" "$STATUS" "$COHORT" "$LOCAL/pytest.xml"
 preflight="ABSTAIN_PRECONDITIONS"
 build="NOT_RUN"
 pytest_status="NOT_RUN"
 economy="NOT_RUN"
+cohort="NOT_RUN"
 pytest_rc=125
 economy_rc=125
 finish() {
   local original=$?
   PREFLIGHT="$preflight" BUILD="$build" PYTEST_STATUS="$pytest_status" ECONOMY="$economy" \
-  PYTEST_RC="$pytest_rc" ECONOMY_RC="$economy_rc" \
+  COHORT="$cohort" PYTEST_RC="$pytest_rc" ECONOMY_RC="$economy_rc" \
   python3 - "$STATUS" <<'PY'
 import json,os,sys,pathlib
 data={
  "schema":"planets-lab.public100-baseline68-deep-status.v2",
  "preflight":os.environ["PREFLIGHT"],"build_status":os.environ["BUILD"],
+ "cohort_status":os.environ["COHORT"],
  "pytest_status":os.environ["PYTEST_STATUS"],"pytest_exit":int(os.environ["PYTEST_RC"]),
  "economy_status":os.environ["ECONOMY"],"economy_exit":int(os.environ["ECONOMY_RC"]),
  "full_metadata_games_expected":100,"full_metadata_members_expected":224014,
@@ -37,7 +39,7 @@ data={
 }
 pathlib.Path(sys.argv[1]).write_text(json.dumps(data,sort_keys=True,indent=2)+"\n")
 PY
-  echo "batch_stage_status=$preflight/$build/$pytest_status/$economy"
+  echo "batch_stage_status=$preflight/$build/$cohort/$pytest_status/$economy"
   echo "aggregate_status_path=$STATUS"
   return "$original"
 }
@@ -51,7 +53,6 @@ git fetch --quiet origin main 2>/dev/null || abstain "ABSTAIN_REMOTE_FETCH"
 [[ "$(cat "$PLANETS_CORPUS_DB_ROOT/CURRENT")" == "$CURRENT" ]] || abstain "ABSTAIN_UNEXPECTED_CURRENT"
 [[ -f "$PLANETS_CORPUS_DB_ROOT/generations/$GEN" ]] || abstain "ABSTAIN_PUBLIC100_MISSING"
 [[ -f "$BASELINE" ]] || abstain "ABSTAIN_BASELINE_MANIFEST_MISSING"
-[[ "$(sha256sum "$BASELINE" | cut -d' ' -f1)" == "$BASE_SHA" ]] || abstain "ABSTAIN_BASELINE_MANIFEST_SHA"
 command -v docker >/dev/null 2>&1 || abstain "ABSTAIN_DOCKER_MISSING"
 docker compose version >/dev/null 2>&1 || abstain "ABSTAIN_COMPOSE_MISSING"
 preflight="PASS_PINNED_PUBLIC100_BASELINE68"
@@ -74,6 +75,35 @@ if (( build_rc != 0 )); then
   abstain "ABSTAIN_BUILD_FAILED"
 fi
 build="PASS"
+echo "stage=baseline68_cohort_metadata_identity begin"
+# Server-local manifest was never committed to Git; verify exact GAME-ID SET
+# against SHA-pinned public68 and public100 metadata before any entity read.
+docker compose -f compose.yaml -f compose.corpus-db.yaml run --rm -T lab \
+  python tools/diagnostics/public100_baseline68_cohort_guard_v3.py \
+  --db-root /corpus-db --manifest "$BASELINE" --output "$COHORT" \
+  > "$LOCAL/cohort-guard.log" 2>&1
+cohort_rc=$?
+if (( cohort_rc != 0 )) || [[ ! -s "$COHORT" ]]; then
+  cohort="ABSTAIN_UNVERIFIED_BASELINE_GAME_SET"
+  rm -f "$COHORT"
+  abstain "ABSTAIN_BASELINE_COHORT_GUARD"
+fi
+cohort="PASS_EXACT_68_IDS_SHA_PINNED_PUBLIC68"
+attested_sha="$(python3 - "$COHORT" <<'PY'
+import json,sys
+data=json.load(open(sys.argv[1],encoding="utf-8"))
+assert data["status"]=="PASS_EXACT_MANIFEST_GAME_IDS_MATCH_SHA_PINNED_PUBLIC68"
+assert data["baseline_game_count"]==68 and data["all_metadata_game_count"]==100
+assert data["heldout_entity_sampling"] is False
+print(data["manifest_sha256"])
+PY
+)"
+if [[ ! "$attested_sha" =~ ^[0-9a-f]{64}$ ]]; then
+  cohort="ABSTAIN_ATTESTED_HASH_INVALID"
+  rm -f "$COHORT"
+  abstain "ABSTAIN_COHORT_REPORT_INVALID"
+fi
+echo "stage=baseline68_cohort_metadata_identity result=PASS_EXACT_SET_MATCH"
 echo "stage=full_pytest started"
 docker compose -f compose.yaml -f compose.corpus-db.yaml run --rm -T lab \
   python -m pytest -q --tb=short --junitxml="$LOCAL/pytest.xml" \
@@ -107,11 +137,20 @@ docker compose -f compose.yaml -f compose.corpus-db.yaml run --rm -T lab \
   python tools/diagnostics/m2_public_corpus_economy_coverage_v1.py \
   --db-root /corpus-db --baseline-manifest "$BASELINE" \
   --expected-baseline-games 68 --max-games 68 --pairs-per-game 16 \
+  --expected-baseline-manifest-sha256 "$attested_sha" \
   --output "$REPORT" > "$LOCAL/deep-m2.log" 2>&1
 economy_rc=$?
 if (( economy_rc == 0 )) && [[ -s "$REPORT" ]] && \
   python3 tools/diagnostics/m2_validate_corpus_aggregate_evidence_v1.py \
-  --input "$REPORT" > "$LOCAL/report-validator.log" 2>&1; then
+  --input "$REPORT" > "$LOCAL/report-validator.log" 2>&1 && \
+  python3 - "$REPORT" "$attested_sha" > "$LOCAL/manifest-match.log" 2>&1 <<'PY'
+import json,sys
+payload=json.load(open(sys.argv[1],encoding="utf-8"))
+assert payload["baseline_sample_allowlist"]["manifest_sha256"]==sys.argv[2]
+assert payload["baseline_sample_allowlist"]["allowed_game_count"]==68
+assert payload["baseline_sample_allowlist"]["heldout_entity_sampling"] is False
+PY
+then
   economy="PASS_VALIDATED_AGGREGATE"
   python3 - "$REPORT" <<'PY'
 import json,sys
