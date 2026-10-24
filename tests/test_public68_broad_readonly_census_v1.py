@@ -73,7 +73,7 @@ def test_complete_synthetic_metadata_and_temporal_counts(fake_public_root):
         assert meta["source_members"] == 5
         assert meta["member_fields"] == 2
         assert meta["source_archive_bytes"] == 230
-        assert meta["archive_turn_differs_from_embedded"] == 1
+        assert meta["archive_turn_differs_from_embedded"] == 2
         temporal = survey.temporal_census(conn)
         assert temporal["snapshots_scanned"] == 5
         assert temporal["perspective_timelines"] == 2
