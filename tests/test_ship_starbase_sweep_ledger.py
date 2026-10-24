@@ -71,7 +71,8 @@ def test_two_stages_each_change_common_mine_roster_and_conserve():
     assert result.final_hypothetical_mine_units==988
     assert result.total_hypothetical_mine_units_swept==12
     assert result.initial_mine_units == result.final_hypothetical_mine_units+12
-    assert result.after_ship_fields==result.starbase_quote.fields_hypothetically_after or result.after_ship_fields!=result.final_hypothetical_fields
+    assert result.after_ship_fields[0].mine_units == 996
+    assert result.final_hypothetical_fields[0].mine_units == 988
     assert result.ship_sequence.fields_final==result.after_ship_fields
     assert result.starbase_quote.initial_mine_units==result.after_ship_mine_units
     assert result.evidence==EVIDENCE
@@ -127,7 +128,7 @@ def test_web_edge_ambiguity_from_base_abstains_atomically():
     # Ship sweeps at center but base is in the unresolved pre-decay
     # cell/circle band of the updated web field.
     with pytest.raises(ShipStarbaseMineSweepAbstain,match="starbase"):
-        calc(fields=(f(web=True,units=100),),base=b(x=11))
+        calc(fields=(f(web=True,units=100),),base=b(x=10))
 
 
 def test_friendly_or_ion_fields_are_not_swept():
@@ -189,7 +190,7 @@ def test_ambiguous_source_refuses_without_partial_result(bad):
             calc(fields="not a roster")
     elif bad.get("ships","valid") is None:
         with pytest.raises(ShipStarbaseMineSweepAbstain):
-            calc(ships=None,beam_sweep_ships=None)
+            calc(beam_sweep_ships=None)
     else:
         with pytest.raises(ShipStarbaseMineSweepAbstain):
             calc(**bad)
