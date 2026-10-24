@@ -52,7 +52,8 @@ def run(*, fields=None, ships=None, starbase=None, ship_enemy=None,
             and all(hasattr(s, "owner_id") for s in ships) else {}
     if base_enemy is None:
         base_enemy = {fld.field_id: fld.owner_id != starbase.owner_id
-                      for fld in fields} if isinstance(fields, (tuple, list)) else {}
+                      for fld in fields} if isinstance(fields, (tuple, list)) \
+            and type(starbase) is SweepingStarbase else {}
     if ion is None:
         ion = {fld.field_id: False for fld in fields} if isinstance(fields, (tuple, list)) else {}
     if web is None:
@@ -152,7 +153,7 @@ def test_base_can_sweep_web_from_post_ship_radius_if_not_at_edge():
 
 
 def test_starbase_web_near_edge_refuses_atomically_after_ship_phase():
-    # After ship laser sweeps 6 of 100 from web -> 94, integer radius 9.
+    # After ship laser sweeps 3 of 100 from web -> 97, integer radius 9.
     # starbase at x10 lies in [r,r+2) uncertain web raster.
     with pytest.raises(CanonicalShipStarbaseSweepAbstain, match="starbase stage"):
         run(fields=(f(web=True, units=100),),
