@@ -2,6 +2,10 @@
 
 This repository is maintained as a personal project. All material changes use short-lived branches and pull requests targeting `main`. PR CI and post-merge `main` CI are checked; the dedicated `runtime-logs` evidence branch is not a source-code PR workflow. Every PR must carry both a self-contained continuation prompt and a corresponding documentation update.
 
+## Conversation language
+
+**Conduct all user-facing chat in Russian**, including progress and the final report; preserve code identifiers and exact technical terms when appropriate. Put this requirement into every new-chat continuation, without changing executable commands or source identifiers.
+
 ## Source of truth
 
 GitHub `main` is the source of truth for project state. Do not reconstruct current implementation status or priorities from old chat history when the repository documentation is available.
