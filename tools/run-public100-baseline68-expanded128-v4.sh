@@ -78,6 +78,15 @@ if (( build_rc != 0 )); then
   abstain "ABSTAIN_BUILD_FAILED"
 fi
 build="PASS"
+# Fail promptly if the container lacks tools required by test harnesses.
+# This guards the exact on-host issue evidenced in v2 and v4.
+if docker compose -f compose.yaml -f compose.corpus-db.yaml run --rm -T lab \
+    sh -ec 'command -v git >/dev/null && git --version >/dev/null && command -v bash >/dev/null' \
+    > "$LOCAL/lab-tool-preflight.log" 2>&1; then
+  echo "stage=container_tool_preflight status=PASS_GIT_AND_BASH"
+else
+  abstain "ABSTAIN_LAB_GIT_OR_BASH_MISSING"
+fi
 echo "stage=baseline68_cohort_metadata_identity begin"
 # Server-local manifest was never committed to Git; verify exact GAME-ID SET
 # against SHA-pinned public68 and public100 metadata before any entity read.
