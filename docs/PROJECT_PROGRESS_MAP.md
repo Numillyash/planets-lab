@@ -1,6 +1,6 @@
 # Карта прогресса planets-lab
 
-> Первоначальная карта создана PR **#301**, последний раздел обновлён для **PR #310** (24 октября 2026). Источники: живой `main`, [ROADMAP](ROADMAP.md), [COMPILED_CORPUS](COMPILED_CORPUS.md), [handoff](CONTINUE_HERE.md). Для актуального HEAD и CI всегда обращайся к GitHub; пин SHA из старого PR не является текущим состоянием.
+> Первоначальная карта создана PR **#301**, последний раздел обновлён для **PR #311** (24 октября 2026). Источники: живой `main`, [ROADMAP](ROADMAP.md), [COMPILED_CORPUS](COMPILED_CORPUS.md), [handoff](CONTINUE_HERE.md). Для актуального HEAD и CI всегда обращайся к GitHub; пин SHA из старого PR не является текущим состоянием.
 >
 > **Здесь нет одного общего процента.** Процент «знаем формулу» не равен проценту «Host воспроизведён». Эта страница отдельно показывает наличие кода, силу свидетельств и интеграционные пробелы. Старые оценки 2026-09-11 в ROADMAP — исторический снимок, не актуальные KPI.
 
@@ -21,6 +21,8 @@
 > **Обновление PR #309 (2026-10-24):** подготовлен [одноразовый массовый read-only проход по публичной базе CURRENT/public68](handoff/2026-10-24-public68-maximal-readonly-batch-v1.md): все 68 игр и 169569 опубликованных source members, integrity SHA256, temporal/member/typed census, восьмикатегорийная source-readiness, полный локальный pytest и automatic **sanitized** `runtime-logs`. Это пока **подготовленный инструмент** (не уже проведённое исследование), после запуска уровень результатов будет лишь **CORPUS_OBSERVED / descriptive source coverage**, а **не** Host-phase `DIFF_VERIFIED`. public100, sealed M2, private orders and immutable CURRENT не меняются.
 
 > **Обновление PR #310 (24.10.2026):** подготовлен [полноценный единый read-only batch для public100](handoff/2026-10-24-public100-baseline68-deep-batch-v2.md): metadata всех 100 игр, содержательные owner-current M2 проверки только по базовым 68 играм (до 1088 соседних пар), полный pytest с публикацией только агрегированных кодов ошибок. Закрытые 32 игры не используются для реконструкции игровых состояний, CURRENT не переключается. Этот код ещё НЕ означает состоявшийся проход на сервере и НЕ даёт Host DIFF_VERIFIED.
+
+> **Обновление PR #311 (24 октября 2026):** [безопасный допуск к подробной public100/baseline68 выборке](handoff/2026-10-24-public100-baseline-cohort-identity-v3.md) усилен после runtime ABSTAIN из-за устаревшего SHA manifest. Теперь exact game-ID-set из локального manifest обязан совпасть с independently SHA-pinned public68 metadata и быть подмножеством public100; actual manifest bytes закрепляются до M2 decode. Никакая игра из sealed32 не может попасть в содержательный анализ из-за простого совпадения счётчика 68. Этот PR исправляет инструмент, **нового измерения CORPUS_OBSERVED или Host DIFF_VERIFIED пока нет**.
 
 ## 1. Общая схема работ
 
