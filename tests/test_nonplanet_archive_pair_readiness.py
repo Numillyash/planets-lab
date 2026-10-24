@@ -198,5 +198,5 @@ def test_script_and_publisher_scope():
     assert "--expected-selection-sha256 4432542b37c51f1bd94f27f9c061a8e27a850ecb08714ff55662928cb54ea659" in runner
     assert "--pairs-per-game 128" in runner
     assert "public100_baseline68_cohort_guard_v3.py" in runner
-    assert "nonplanet-identity" in launch
+    assert "public100-baseline68-identity-v5" in launch
     assert "m2_validate_corpus_aggregate_evidence_v1.py" in runner
