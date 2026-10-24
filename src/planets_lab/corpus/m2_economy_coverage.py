@@ -19,6 +19,9 @@ from hashlib import sha256
 import json
 from typing import Any
 
+from planets_lab.corpus.nonplanet_archive_pair_readiness import (
+    profile_source_identity_pairs,
+)
 from planets_lab.corpus.m2_mineral_balance import profile_archive_mineral_mass_balance
 from planets_lab.corpus.m2_surface_residual_context import (
     CATEGORIES as RESIDUAL_CLASSES, profile_surface_residual_context,
@@ -398,6 +401,7 @@ def analyze_corpus_coverage(
         lambda: defaultdict(Counter)
     )
     supporting: dict[str, Counter[str]] = defaultdict(Counter)
+    identity_gate: dict[str, Counter[str]] = defaultdict(Counter)
     residual_quality: Counter[str] = Counter()
     per_game_residual: dict[int, Counter[str]] = defaultdict(Counter)
     per_game_surface_context: dict[int, Counter[str]] = defaultdict(Counter)
@@ -429,6 +433,14 @@ def analyze_corpus_coverage(
             if len(before_rows) != len(after_rows):
                 bucket["pair_row_count_differs_not_host_attribution"] += 1
 
+        # Per-section ID/owner/infoturn shape; an archive observation is
+        # never an authenticated Host order or a particular phase effect.
+        source_profiles = profile_source_identity_pairs(
+            b, a, observer=pair.player,
+            before_turn=pair.after_turn - 1, after_turn=pair.after_turn,
+        )
+        for section, indicators in source_profiles.items():
+            identity_gate[section].update(indicators)
         # Retain a game even if none of its qualified owner-current
         # planets supports the conditional mineral model.
         # It must contribute a ZERO to every game-cluster histogram,
@@ -505,6 +517,17 @@ def analyze_corpus_coverage(
                     section_counts[f"{name}_{point}_rows"] += value
                 else:
                     status[f"ABSTAIN_SECTION_MISSING_{name}_{point}"] += 1
+
+    # Structural consistency between the old row-count census and the
+    # stricter identity qualification; malformed lists must not be matched.
+    for section in ("minefields", "ships", "starbases", "vcrs", "ionstorms"):
+        total = supporting[section]["pair_has_both_lists"]
+        known = identity_gate[section]
+        if (known["qualified_identity_list_pair"]
+                + known["ABSTAIN_MALFORMED_OR_DUPLICATE_ENTITY_ID"] != total
+                or known["ABSTAIN_MISSING_SECTION_LIST"]
+                != supporting[section]["ABSTAIN_SECTION_MISSING_OR_UNTYPED"]):
+            raise ValueError("NONPLANET_SOURCE_QUALIFICATION_CENSUS_DIVERGENCE")
 
     # Independently calculated cross-tab must agree with the existing
     # conditional mining profiler, including all cohort denominators.
@@ -609,6 +632,10 @@ def analyze_corpus_coverage(
         "metadata": metadata,
         "sample": {
             "sample_status_counts": dict(sorted(status.items())),
+            "nonplanet_archive_identity_readiness_not_host_phase": {
+                name: dict(sorted(values.items()))
+                for name, values in sorted(identity_gate.items())
+            },
             "nonplanet_section_observability_not_host_phase": {
                 name: dict(sorted(values.items()))
                 for name, values in sorted(supporting.items())
@@ -693,6 +720,7 @@ def analyze_corpus_coverage(
             "may_be_used_to_plan_fresh_independent_subcohorts": True,
             "per_field_change_is_host_phase_evidence": False,
             "nonplanet_section_counts_prove_sweeping_or_combat": False,
+            "archive_identity_or_mine_unit_changes_prove_host_phase": False,
             "ground_down_surface_up_proves_mining": False,
             "structure_tax_stability_excludes_hidden_orders": False,
             "default_mining_and_mutation_forecast_is_host_causal": False,
