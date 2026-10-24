@@ -125,7 +125,7 @@ def test_exact_cluster_core_plus_ten_exclusion_abstains_including_contact():
 def test_expansion_uses_original_center_to_check_cluster_and_max_capacity():
     fields = (field(8, 1, 0, 0, 100),)
     with pytest.raises(MinefieldPlacementAbstain, match="cluster"):
-        select(fields=fields, cores=(StarClusterCore(Point(30, 0), 0),))
+        select(fields=fields, cores=(StarClusterCore(Point(24, 0), 0),))
     assert select(fields=fields, cores=(StarClusterCore(Point(31, 0), 0),)).decision == "EXPAND_CANDIDATE"
     with pytest.raises(MinefieldPlacementAbstain, match="overcapacity"):
         select(fields=(field(8, 1, 0, 0, 22500),))
