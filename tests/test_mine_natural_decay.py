@@ -208,7 +208,7 @@ def test_empty_complete_roster_is_noop_but_unknown_context_does_not_promote():
 
 def test_unknown_roster_type_is_rejected_not_assumed_empty():
     with pytest.raises(MineDecayAbstain):
-        advance(()) if False else simulate_isolated_natural_mine_decay(
+        simulate_isolated_natural_mine_decay(
             fields=None,
             nebula_intersects_by_field_id={},
             isolated_decay_only_confirmed=True,
