@@ -1,0 +1,10 @@
+{
+  "errors": 0,
+  "exit_code": 0,
+  "failures": 0,
+  "schema": "planets-lab.public100-deep-pytest-counts.v1",
+  "skipped": 26,
+  "status": "PASS",
+  "test_names_or_failure_traces_exported": false,
+  "tests": 3707
+}
