@@ -5,7 +5,18 @@ Only reads a sanitized numeric aggregate. Never prints source identities.
 """
 from __future__ import annotations
 import argparse
+import json
 from pathlib import Path
+import sys
+
+# This validator runs with HOST python3 (not the pip-installed Docker lab).
+# Keep script-style invocation independent of the host site-packages and
+# caller's PYTHONPATH, as in m2_public_corpus_economy_coverage_v1.py.
+ROOT = Path(__file__).resolve().parents[2]
+for path in (ROOT / "src", ROOT):
+    if str(path) not in sys.path:
+        sys.path.insert(0, str(path))
+
 from planets_lab.corpus.nonplanet_v5_evidence_review import (
     GENERATION_SHA256, FROZEN_SELECTION_SHA256, EvidenceReviewAbstain,
     review_published_v5,
@@ -57,12 +68,33 @@ def validate_joint(data: dict) -> dict[str, int]:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--input", required=True, type=Path)
+    parser.add_argument("--input", type=Path)
+    parser.add_argument("--self-test", action="store_true",
+                        help="Run host-isolated synthetic validator regression; no DB access")
     args = parser.parse_args()
+    if args.self_test:
+        if args.input is not None:
+            print("ABSTAIN_SELF_TEST_INPUT_NOT_ALLOWED")
+            return 2
+        try:
+            safe_fixture = ROOT / "tests/fixtures/public100_nonplanet_v5_allowlisted_aggregates.json"
+            payload = json.loads(safe_fixture.read_text(encoding="utf-8"))
+            mine = payload["sample"]["nonplanet_archive_identity_readiness_not_host_phase"]["minefields"]
+            mine.update(dict(zip(JOINT, (100, 30, 40, 30, 70))))
+            if validate_joint(payload) != dict(zip(JOINT, (100, 30, 40, 30, 70))):
+                raise EvidenceReviewAbstain("ABSTAIN_SELF_TEST_RESULT_MISMATCH")
+        except (ValueError, KeyError, TypeError, OSError):
+            print("ABSTAIN_V6_HOST_VALIDATOR_SELF_TEST")
+            return 2
+        print("PASS_V6_HOST_VALIDATOR_SELF_TEST_SYNTHETIC_ONLY")
+        return 0
+    if args.input is None:
+        print("ABSTAIN_V6_INPUT_REQUIRED")
+        return 2
     try:
         report = validate(args.input)
         counts = validate_joint(report)
-    except (ValueError, KeyError, TypeError) as exc:
+    except (ValueError, KeyError, TypeError, OSError):
         print("ABSTAIN_V6_VALIDATION")
         return 2
     print("PASS_SOURCE_JOINT_NONCAUSAL")
