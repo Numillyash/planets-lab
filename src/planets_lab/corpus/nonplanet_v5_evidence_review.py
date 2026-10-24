@@ -36,6 +36,7 @@ MINE_KEYS = (
     "same_id_integer_units_changed_not_host_attribution",
     "same_id_owner_center_stable_units_changed_not_causal",
 )
+ALLOWED_COUNT_KEYS = frozenset(REQUIRED + MINE_KEYS + ("empty_lists_both", "ABSTAIN_MISSING_SECTION_LIST", "ABSTAIN_MALFORMED_OR_DUPLICATE_ENTITY_ID"))
 
 
 class EvidenceReviewAbstain(ValueError):
@@ -62,6 +63,8 @@ def _require(data: Mapping[str, Any], keys: tuple[str, ...]) -> None:
 
 def _validate_section(name: str, source: Mapping[str, Any], selected: int) -> dict[str, int]:
     _require(source, REQUIRED + (MINE_KEYS if name == "minefields" else ()))
+    if any(k not in ALLOWED_COUNT_KEYS or (name != "minefields" and k in MINE_KEYS) for k in source):
+        raise EvidenceReviewAbstain("ABSTAIN_UNEXPECTED_SOURCE_COUNTER")
     counters = {k: _count(source, k) for k in source}
     if any(not k.isascii() or not k.replace("_", "").isalnum()
            for k in counters):
