@@ -8,5 +8,6 @@ exec bash tools/run-with-runtime-evidence.sh \
   --include artifacts/corpus/public100-baseline68-expanded128-v4/stage-status.json \
   --include artifacts/corpus/public100-baseline68-expanded128-v4/baseline-cohort-attestation.json \
   --include artifacts/corpus/public100-baseline68-expanded128-v4/pytest-counts.json \
+  --include artifacts/corpus/public100-baseline68-expanded128-v4/pytest-failed-modules.json \
   --include artifacts/corpus/public100-baseline68-expanded128-v4/m2-deep-coverage.json \
   -- bash tools/run-public100-baseline68-expanded128-v4.sh
