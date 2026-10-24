@@ -78,16 +78,16 @@ def test_all_ten_documented_normal_and_web_beam_yields(family, normal, web):
 
 
 def test_multiple_beams_all_in_range_fields_are_swept_in_one_step():
-    fields = (field(33, units=500), field(1, x=40, units=800),
+    fields = (field(33, units=500), field(1, x=20, units=800),
               field(22, x=300, units=900))
     result = calc(fields=fields, ships=(ship(family="phaser", beams=2),))
     assert tuple(e.field_id for e in result.steps[0].events) == (1, 22, 33)
     assert tuple(e.status for e in result.steps[0].events) == (
         "SWEEPED", "OUT_OF_RANGE", "SWEEPED",
     )
-    assert result.total_units_swept == 500 + 500
+    assert result.total_units_swept == 500 + 512
     assert tuple((f.field_id, f.mine_units) for f in result.fields_final) == (
-        (1, 300), (22, 900),
+        (1, 288), (22, 900),
     )
 
 
