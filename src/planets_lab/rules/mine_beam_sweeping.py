@@ -156,14 +156,26 @@ def _validate_ships(ships: object) -> tuple[SweepingShip, ...]:
     return tuple(sorted(result, key=lambda ship: ship.ship_id))
 
 
-def _map_for_keys(values: object, keys: set, *, label: str) -> dict:
+def _map_for_keys(values: object, keys: set, *, label: str, pair_keys: bool = False) -> dict:
     if not isinstance(values, Mapping):
         raise BeamMineSweepAbstain(f"missing {label} context")
     try:
         material = dict(values)
     except (TypeError, ValueError) as exc:
         raise BeamMineSweepAbstain(f"invalid {label} context") from exc
-    if set(material) != keys or any(type(v) is not bool for v in material.values()):
+    def typed_key(key: object) -> bool:
+        if pair_keys:
+            return (
+                type(key) is tuple and len(key) == 2
+                and all(_int(part, 1, MAX_ID) for part in key)
+            )
+        return _int(key, 1, MAX_ID)
+
+    if (
+        any(not typed_key(key) for key in material)
+        or set(material) != keys
+        or any(type(v) is not bool for v in material.values())
+    ):
         raise BeamMineSweepAbstain(f"incomplete or untyped {label} context")
     return material
 
@@ -224,7 +236,7 @@ def simulate_isolated_standard_beam_sweeps(
     enemy = _map_for_keys(
         confirmed_enemy_by_ship_field,
         {(s, f) for s in ship_ids for f in field_ids},
-        label="enemy-by-ship-field",
+        label="enemy-by-ship-field", pair_keys=True,
     )
     for s in sweepers:
         for f in roster:
