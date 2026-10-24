@@ -11,6 +11,12 @@ additional meaningful repository document. GitHub CI enforces this through
 Do **not** guess merged commit SHAs or claim a workflow is green until
 GitHub confirms it. Check live `main`, PR state and workflows separately.
 
+## #292 — Spatial minefield placement CANDIDATE, immutable source-bounded geometry (2026-10-24)
+
+- After verified merged #291 (PR CI #1583 and main #1584 green, main `684967df26a220dd3928b469c8a27b747ea11a2b`), added `minefield_placement_candidate.py`: exact squared nearest-center selection among confirmed same-owner same-type fields, lower field ID distance tie break, inclusive `floor(sqrt(units))` coverage, hypothetical NEW or EXPAND choice. Typed full pre-lay roster, quote/cap consistency, current position, exact cluster core+10 LY guard and >500 new-field refusal; ABSTAIN for unsupported/over-cap geometry and phase.
+- Added synthetic adversarial `test_minefield_placement_candidate.py` and [technical handoff](handoff/2026-10-24-minefield-spatial-placement-candidate-v1.md). Never creates/allocates field IDs, mutates a field/torpedoes, runs a Host phase, resolves excess/conflict, or independently verifies server-accepted orders. `DOCUMENTED + TESTED conditional` **only once exact CI green**; not DIFF_VERIFIED.
+- Durable Russian language policy for user-facing agent conversation added to `AGENTS.md` and `docs/WORKFLOW.md`; fresh entire [continuation](CONTINUE_HERE.md), roadmap. No on-host/corpus operation or separate runner in this synthetic-only PR. #247 remains PARKED; sealed M2/public100/CURRENT untouched. Next study actual lifecycle excess, field IDs, ordering or independent sweeping. Verify exact PR head and postmerge main CI before completion claim.
+
 ## #291 — Standard torpedo → UNALLOCATED mine units with documented MD limits, Robot bonus and strict Host boundaries (2026-10-24)
 
 - After PR #290 isolated mine/web natural decay passed PR/main CI #1577/#1578, implement the other independent documented standard minefield component `src/planets_lab/rules/minelaying_conversion.py`: 11 named [official torpedo family yields](https://help.planets.nu/minefields) 1,4,9,16,25,36,49,64,81,100,121 units; 0..10000 bounded typed ammo inventory, default/ALL/MDA all, MD0=up to100, MD1..MD9 up to10*N, Robot×4 only with confirmed same-owner normal mine, Crystal web entitlement explicit and no custom settings. Source `tests/test_minelaying_conversion.py` tests all yields, FC limits, immutable conservation, bonus, single-field 100/150 LY capacity and strict source refusal.
