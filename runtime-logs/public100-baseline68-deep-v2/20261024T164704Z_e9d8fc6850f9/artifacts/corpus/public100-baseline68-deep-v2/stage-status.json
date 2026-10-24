@@ -1,0 +1,16 @@
+{
+  "baseline_entity_game_cap": 68,
+  "build_status": "NOT_RUN",
+  "current_changed_by_runner": false,
+  "economy_exit": 125,
+  "economy_status": "NOT_RUN",
+  "full_metadata_games_expected": 100,
+  "full_metadata_members_expected": 224014,
+  "heldout32_entities_read": false,
+  "host_diff_verified": false,
+  "host_orders_verified": false,
+  "preflight": "ABSTAIN_BASELINE_MANIFEST_SHA",
+  "pytest_exit": 125,
+  "pytest_status": "NOT_RUN",
+  "schema": "planets-lab.public100-baseline68-deep-status.v2"
+}

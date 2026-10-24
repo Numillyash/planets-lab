@@ -1,0 +1,3 @@
+batch_status=ABSTAIN_BASELINE_MANIFEST_SHA
+batch_stage_status=ABSTAIN_BASELINE_MANIFEST_SHA/NOT_RUN/NOT_RUN/NOT_RUN
+aggregate_status_path=artifacts/corpus/public100-baseline68-deep-v2/stage-status.json
