@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 from pathlib import Path
 
 import duckdb
@@ -147,3 +148,14 @@ def test_m2_diagnostic_declares_expected_manifest_hash_guard():
          "tools/diagnostics/m2_public_corpus_economy_coverage_v1.py").read_text()
     assert "--expected-baseline-manifest-sha256" in src
     assert "ATTESTED_BASELINE_MANIFEST_CHANGED" in src
+
+
+def test_operational_shell_scripts_pass_bash_syntax_check():
+    root = Path(__file__).resolve().parents[1]
+    for relative in (
+        "tools/run-public100-baseline68-deep-v2.sh",
+        "tools/run-public100-baseline68-deep-v2-with-evidence.sh",
+    ):
+        result = subprocess.run(["bash", "-n", str(root / relative)],
+                                capture_output=True, text=True, check=False)
+        assert result.returncode == 0, relative
