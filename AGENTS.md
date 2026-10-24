@@ -4,6 +4,10 @@ These rules apply to **every new branch, material change and pull request** in
 `Numillyash/planets-lab`. GitHub `main` is the source of truth. Do not treat
 a previous chat summary as a replacement for current repo state.
 
+## Language of interaction
+
+**Always communicate with the user in Russian throughout the conversation**, including progress updates, explanations, questions and the final consolidated report. Keep code identifiers, API names, source quotes and conventional technical names in their original language when appropriate. Repository docs and the continuation prompt should remain readily readable in Russian; do not translate executable commands or file paths.
+
 ## Before starting work
 
 1. Read `docs/CONTINUE_HERE.md` **first**. It is the standalone, copy-ready
