@@ -1,0 +1,66 @@
+{
+  "schema": "planets-lab.nonplanet-v5-source-readiness-review.v1",
+  "status": "PASS_SOURCE_READINESS_CLASSIFICATION_NOT_HOST_CAUSAL",
+  "provenance": {
+    "generation_sha256": "3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c",
+    "frozen_selection_sha256": "4432542b37c51f1bd94f27f9c061a8e27a850ecb08714ff55662928cb54ea659",
+    "baseline_games_entity_scope": 68,
+    "sealed_games_entity_scope": 0,
+    "observational_archive_pairs": 8550
+  },
+  "sections": {
+    "minefields": {
+      "source_state": "OBSERVED_ID_AND_FRESH_OWN_SOURCE_ONLY",
+      "qualified_pair_count": 8550,
+      "matching_observer_archive_id_occurrences": 887224,
+      "current_own_observer_archive_matches": 138864,
+      "typed_owner_unavailable_id_occurrences": 0,
+      "interturn_absent_id_matches_not_host_events": 50482,
+      "independent_host_mechanism_verified": false,
+      "stable_owner_center_and_changed_units_archive_occurrences": 536703,
+      "joint_fresh_and_stable_changed_lower_bound": 0,
+      "joint_fresh_and_stable_changed_upper_bound": 138864,
+      "exact_fresh_and_stable_changed_joint_observations_known": false
+    },
+    "ships": {
+      "source_state": "OBSERVED_ID_AND_FRESH_OWN_SOURCE_ONLY",
+      "qualified_pair_count": 8550,
+      "matching_observer_archive_id_occurrences": 916904,
+      "current_own_observer_archive_matches": 347831,
+      "typed_owner_unavailable_id_occurrences": 609,
+      "interturn_absent_id_matches_not_host_events": 208482,
+      "independent_host_mechanism_verified": false
+    },
+    "starbases": {
+      "source_state": "ABSTAIN_OWNER_PROVENANCE_UNTYPED",
+      "qualified_pair_count": 8550,
+      "matching_observer_archive_id_occurrences": 346222,
+      "current_own_observer_archive_matches": 0,
+      "typed_owner_unavailable_id_occurrences": 346222,
+      "interturn_absent_id_matches_not_host_events": 7156,
+      "independent_host_mechanism_verified": false
+    },
+    "vcrs": {
+      "source_state": "ABSTAIN_NO_CROSS_TURN_ID_CONTINUITY",
+      "qualified_pair_count": 8550,
+      "matching_observer_archive_id_occurrences": 0,
+      "current_own_observer_archive_matches": 0,
+      "typed_owner_unavailable_id_occurrences": 0,
+      "interturn_absent_id_matches_not_host_events": 44332,
+      "independent_host_mechanism_verified": false
+    },
+    "ionstorms": {
+      "source_state": "ID_ONLY_STORM_NO_OWNER_CAUSALITY",
+      "qualified_pair_count": 8550,
+      "matching_observer_archive_id_occurrences": 95130,
+      "current_own_observer_archive_matches": 0,
+      "typed_owner_unavailable_id_occurrences": 95130,
+      "interturn_absent_id_matches_not_host_events": 11691,
+      "independent_host_mechanism_verified": false
+    }
+  },
+  "evidence_level": "CORPUS_OBSERVED_DESCRIPTIVE_SOURCE_ONLY",
+  "accepted_host_orders_authenticated": false,
+  "actual_host_phase_receipts_authenticated": false,
+  "host_diff_verified": false
+}
