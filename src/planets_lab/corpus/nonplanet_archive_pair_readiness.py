@@ -84,6 +84,12 @@ def profile_source_identity_pairs(
         numeric_mine_units_comparable = 0
         numeric_mine_units_changed = 0
         same_owner_and_center_stable_units_changed = 0
+        # V6: count the *same row* satisfying all source predicates.
+        # None of these counters authenticates an accepted Host action.
+        fresh_stable_numeric = 0
+        fresh_stable_unchanged = 0
+        fresh_stable_increased = 0
+        fresh_stable_decreased = 0
         for identity in shared:
             one, two = b[identity], a[identity]
             owner_b, owner_a = one.get("ownerid"), two.get("ownerid")
@@ -95,9 +101,10 @@ def profile_source_identity_pairs(
             else:
                 owner_abstain += 1
 
+            fresh_both = (_fresh_own(one, observer=observer, turn=before_turn)
+                          and _fresh_own(two, observer=observer, turn=after_turn))
             if type(owner_b) is int and owner_b == observer and type(owner_a) is int and owner_a == observer:
-                if (_fresh_own(one, observer=observer, turn=before_turn)
-                        and _fresh_own(two, observer=observer, turn=after_turn)):
+                if fresh_both:
                     current_own += 1
                 else:
                     current_own_missing_freshness += 1
@@ -116,6 +123,19 @@ def profile_source_identity_pairs(
                                 and all(type(one.get(k)) is int and type(two.get(k)) is int
                                         and one[k] == two[k] for k in ("x", "y"))):
                             same_owner_and_center_stable_units_changed += 1
+                # Join current-own provenance, unchanged owner and exact
+                # integer center to *this very same* comparable ID row.
+                if (fresh_both and type(units_b) is int and units_b >= 0
+                        and type(units_a) is int and units_a >= 0
+                        and all(type(one.get(k)) is int and type(two.get(k)) is int
+                                and one[k] == two[k] for k in ("x", "y"))):
+                    fresh_stable_numeric += 1
+                    if units_a > units_b:
+                        fresh_stable_increased += 1
+                    elif units_a < units_b:
+                        fresh_stable_decreased += 1
+                    else:
+                        fresh_stable_unchanged += 1
         count["same_id_owner_unchanged"] = same_owner
         count["same_id_owner_changed_not_host_capture"] = changed_owner
         count["same_id_owner_untyped_abstain"] = owner_abstain
@@ -127,13 +147,24 @@ def profile_source_identity_pairs(
             count["same_id_owner_center_stable_units_changed_not_causal"] = (
                 same_owner_and_center_stable_units_changed
             )
+            count["same_id_fresh_own_center_stable_numeric_units_joint"] = fresh_stable_numeric
+            count["same_id_fresh_own_center_stable_units_increased_joint_not_causal"] = fresh_stable_increased
+            count["same_id_fresh_own_center_stable_units_decreased_joint_not_causal"] = fresh_stable_decreased
+            count["same_id_fresh_own_center_stable_units_unchanged_joint_not_causal"] = fresh_stable_unchanged
+            count["same_id_fresh_own_center_stable_units_changed_joint_not_causal"] = (
+                fresh_stable_increased + fresh_stable_decreased
+            )
 
         if (count["same_id_seen_in_both_archives"]
                 + count["id_only_before_archive_not_host_destruction"] != count["before_id_rows"]
                 or count["same_id_seen_in_both_archives"]
                 + count["id_only_after_archive_not_host_construction"] != count["after_id_rows"]
                 or same_owner + changed_owner + owner_abstain != len(shared)
-                or numeric_mine_units_changed > numeric_mine_units_comparable):
+                or numeric_mine_units_changed > numeric_mine_units_comparable
+                or fresh_stable_numeric > current_own
+                or fresh_stable_numeric > numeric_mine_units_comparable
+                or fresh_stable_numeric != fresh_stable_increased + fresh_stable_decreased + fresh_stable_unchanged
+                or fresh_stable_increased + fresh_stable_decreased > same_owner_and_center_stable_units_changed):
             raise ValueError("NONPLANET_SOURCE_IDENTITY_INVARIANT_FAILURE")
         results[section] = count
     return results
