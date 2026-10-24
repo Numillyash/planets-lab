@@ -36,8 +36,8 @@ FIELDS = {
 }
 MAX_META_ROWS = 1_000_000
 MAX_GAMES = 1000
-MAX_PAIRS_PER_GAME = 16
-MAX_SELECTED_PAIRS = 1600
+MAX_PAIRS_PER_GAME = 128
+MAX_SELECTED_PAIRS = 16384
 NUMERIC_FIELDS = tuple(dict.fromkeys(
     field for family in FIELDS.values() for field in family
 ))
@@ -397,6 +397,7 @@ def analyze_corpus_coverage(
     residual_bins: dict[str, dict[str, Counter[str]]] = defaultdict(
         lambda: defaultdict(Counter)
     )
+    supporting: dict[str, Counter[str]] = defaultdict(Counter)
     residual_quality: Counter[str] = Counter()
     per_game_residual: dict[int, Counter[str]] = defaultdict(Counter)
     per_game_surface_context: dict[int, Counter[str]] = defaultdict(Counter)
@@ -411,6 +412,23 @@ def analyze_corpus_coverage(
             status["ABSTAIN_PAYLOAD_IDENTITY_INVALID"] += 1
             continue
         status["SAMPLED_PAIR_PAYLOAD_IDENTITY_VALID"] += 1
+        # Archive-time section availability only. Content may be stale,
+        # incomplete or perspective-dependent; never a Host phase proof.
+        for section in ("minefields", "ships", "starbases", "vcrs", "ionstorms"):
+            before_rows = b.get(section)
+            after_rows = a.get(section)
+            bucket = supporting[section]
+            if type(before_rows) is not list or type(after_rows) is not list:
+                bucket["ABSTAIN_SECTION_MISSING_OR_UNTYPED"] += 1
+                continue
+            bucket["pair_has_both_lists"] += 1
+            bucket["before_rows_observed"] += len(before_rows)
+            bucket["after_rows_observed"] += len(after_rows)
+            if before_rows and after_rows:
+                bucket["pair_has_nonempty_both"] += 1
+            if len(before_rows) != len(after_rows):
+                bucket["pair_row_count_differs_not_host_attribution"] += 1
+
         # Retain a game even if none of its qualified owner-current
         # planets supports the conditional mineral model.
         # It must contribute a ZERO to every game-cluster histogram,
@@ -591,6 +609,10 @@ def analyze_corpus_coverage(
         "metadata": metadata,
         "sample": {
             "sample_status_counts": dict(sorted(status.items())),
+            "nonplanet_section_observability_not_host_phase": {
+                name: dict(sorted(values.items()))
+                for name, values in sorted(supporting.items())
+            },
             "owner_current_counts": dict(sorted(counters.items())),
             "qualified_planet_field_family_pairs": dict(sorted(fields.items())),
             "net_state_differences_not_mechanics": dict(sorted(changed.items())),
@@ -670,6 +692,7 @@ def analyze_corpus_coverage(
             "is_independent_game_disjoint_host_validation": False,
             "may_be_used_to_plan_fresh_independent_subcohorts": True,
             "per_field_change_is_host_phase_evidence": False,
+            "nonplanet_section_counts_prove_sweeping_or_combat": False,
             "ground_down_surface_up_proves_mining": False,
             "structure_tax_stability_excludes_hidden_orders": False,
             "default_mining_and_mutation_forecast_is_host_causal": False,
