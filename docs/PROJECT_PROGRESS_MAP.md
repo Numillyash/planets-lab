@@ -1,6 +1,6 @@
 # Карта прогресса planets-lab
 
-> Первоначальная карта создана PR **#301**, последний раздел обновлён для **PR #312** (24 октября 2026). Источники: живой `main`, [ROADMAP](ROADMAP.md), [COMPILED_CORPUS](COMPILED_CORPUS.md), [handoff](CONTINUE_HERE.md). Для актуального HEAD и CI всегда обращайся к GitHub; пин SHA из старого PR не является текущим состоянием.
+> Первоначальная карта создана PR **#301**, последний раздел обновлён для **PR #313** (24 октября 2026). Источники: живой `main`, [ROADMAP](ROADMAP.md), [COMPILED_CORPUS](COMPILED_CORPUS.md), [handoff](CONTINUE_HERE.md). Для актуального HEAD и CI всегда обращайся к GitHub; пин SHA из старого PR не является текущим состоянием.
 >
 > **Здесь нет одного общего процента.** Процент «знаем формулу» не равен проценту «Host воспроизведён». Эта страница отдельно показывает наличие кода, силу свидетельств и интеграционные пробелы. Старые оценки 2026-09-11 в ROADMAP — исторический снимок, не актуальные KPI.
 
@@ -25,6 +25,8 @@
 > **Обновление PR #311 (24 октября 2026):** [безопасный допуск к подробной public100/baseline68 выборке](handoff/2026-10-24-public100-baseline-cohort-identity-v3.md) усилен после runtime ABSTAIN из-за устаревшего SHA manifest. Теперь exact game-ID-set из локального manifest обязан совпасть с independently SHA-pinned public68 metadata и быть подмножеством public100; actual manifest bytes закрепляются до M2 decode. Никакая игра из sealed32 не может попасть в содержательный анализ из-за простого совпадения счётчика 68. Этот PR исправляет инструмент, **нового измерения CORPUS_OBSERVED или Host DIFF_VERIFIED пока нет**.
 
 > **PR #312 (24.10.2026), implementation axis:** подготовлен новый [долгий источник-ограниченный M2 + архивные не-планетные секции](handoff/2026-10-24-public100-baseline68-expanded128-multifamily-v4.md) для **до 8704** детерминированно выбранных baseline68 T−1/T пар (128/игру вместо16), плюс анонимная диагностика пяти реально обнаруженных серверных падений pytest. **Evidence axis пока не повышается:** после host-run возможен только CORPUS_OBSERVED descriptive, но НЕ независимое Host DIFF_VERIFIED. Точные параметры source-census: 100 игр metadata, content 68 игр, sealed32 untouched.
+
+> **PR #313 (24.10.2026), новый подтверждённый on-host слой:** реальный [v4 анализ 8550 пар](handoff/2026-10-24-public100-v4-runtime-and-docker-git-root-cause-v1.md) завершён за 27м54с, 317255 свежих same-owner planetary comparisons и ненормализованные по перспективам записи ships/mines/starbases/VCR/ion. Расширилась **ось CORPUS_OBSERVED (покрытие источника)**, не **DIFF_VERIFIED (изолированное выполнение Host)**. Ошибки **5 из 3697** pytest тестов локализованы по двум тестовым модулям; PR добавляет отсутствующий в Docker образе Git и реальное Docker smoke в CI. Никакого новейшего Host order causality, публичные source snapshots не фазовые receipts.
 
 ## 1. Общая схема работ
 
