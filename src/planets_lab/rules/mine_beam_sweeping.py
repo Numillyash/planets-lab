@@ -16,6 +16,10 @@ from math import isqrt
 from typing import Mapping, Sequence
 
 from .minefield_placement_candidate import LocatedMinefield, Point
+from .web_circle_phase_envelope import (
+    classify_web_circle_envelope, PRE_DECAY, POST_DECAY,
+    INSIDE_CONFIRMED, EDGE_ABSTAIN,
+)
 
 EVIDENCE = "DOCUMENTED_BEAM_SWEEP_TESTED_CONDITIONAL_NOT_HOST_DIFF_VERIFIED"
 MAX_SHIPS = 100
@@ -188,14 +192,19 @@ def _beam_in_range(*, ship_center: Point, field_center: Point,
         # Normal mines: inside the field OR strictly LESS than 5 LY
         # from its documented integer-radius edge.
         return distance_squared < (radius + 5) ** 2
-    if distance_squared <= radius * radius:
-        return True
-    # Pre-decay field circle vs single coordinate square intersection can
-    # still trigger web sweeping. Exact raster rules are unproven. A whole
-    # integer LY extra guard prevents claiming "out of range" on a corner.
-    if distance_squared < (radius + 2) ** 2:
+    # Web sweeping deliberately uses the PRE_DECAY envelope. Exact cell
+    # raster geometry is unresolved, so the guarded ring still abstains.
+    envelope = classify_web_circle_envelope(
+        ship_position=ship_center,
+        field_center=field_center,
+        field_mine_units=mine_units,
+        phase=PRE_DECAY,
+        exact_integer_positions_and_phase_confirmed=True,
+        standard_field_no_custom_geometry_confirmed=True,
+    )
+    if envelope.classification == EDGE_ABSTAIN:
         raise BeamMineSweepAbstain("web mine sweep near-edge square/circle geometry unresolved")
-    return False
+    return envelope.classification == INSIDE_CONFIRMED
 
 
 def simulate_isolated_standard_beam_sweeps(
