@@ -37,7 +37,7 @@ class IsolatedMineConflictTransitionAudit:
     observed_net_unit_change_by_field: tuple[int, int]
     outcome: str
     # COMPATIBLE_ONE_ELIMINATED, CONTRADICTED_BOTH_SURVIVE,
-    # CONTRADICTED_SURVIVOR_GROWTH, CONTRADICTED_TARGET_REAPPEARED
+    # CONTRADICTED_SURVIVOR_GROWTH
     eliminated_field_id: int | None
     surviving_field_id: int | None
     unrelated_field_count: int
