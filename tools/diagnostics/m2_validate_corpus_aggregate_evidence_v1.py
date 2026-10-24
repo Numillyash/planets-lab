@@ -39,6 +39,7 @@ SAMPLE_FIELDS = {
     "observable_structure_and_tax_controls",
     "conditional_mineral_mass_balance_not_host_verified",
     "surface_residual_context_not_host_verified",
+    "nonplanet_section_observability_not_host_phase",
 }
 HEX64 = re.compile(r"[a-f0-9]{64}\Z")
 
