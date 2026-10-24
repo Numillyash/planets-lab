@@ -74,7 +74,9 @@ def test_runner_pins_100_metadata_and_68_sample_and_never_prints_raw_pytest():
     text = (root / "tools/run-public100-baseline68-deep-v2.sh").read_text()
     assert "corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb" in text
     assert "public-short-expansion-with-public36.jsonl" in text
-    assert "942eb61741664835cc600bb1e2148daaa1c009462827b238f13227c5937899d" in text
+    assert "BASE_SHA=" not in text
+    assert "public100_baseline68_cohort_guard_v3.py" in text
+    assert "--expected-baseline-manifest-sha256" in text
     assert "--pairs-per-game 16" in text
     assert "--expected-baseline-games 68" in text
     assert "--max-games 68" in text
