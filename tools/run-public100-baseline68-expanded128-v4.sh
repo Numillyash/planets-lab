@@ -6,6 +6,7 @@ OUT="artifacts/corpus/public100-baseline68-expanded128-v4"
 mkdir -p "$OUT/private-local"
 REPORT="$OUT/m2-deep-coverage.json"
 COUNTS="$OUT/pytest-counts.json"
+MODULES="$OUT/pytest-failed-modules.json"
 STATUS="$OUT/stage-status.json"
 COHORT="$OUT/baseline-cohort-attestation.json"
 LOCAL="$OUT/private-local"
@@ -13,7 +14,7 @@ BASELINE="validation/corpus/manifests/public-short-expansion-with-public36.jsonl
 export PLANETS_CORPUS_DB_ROOT="${PLANETS_CORPUS_DB_ROOT:-/root/projects/planets-corpus-db}"
 GEN="corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb"
 CURRENT="generations/corpus-v2compact-public68-20261004T095236Z-09f71721b77c.duckdb"
-rm -f "$REPORT" "$COUNTS" "$STATUS" "$COHORT" "$LOCAL/pytest.xml"
+rm -f "$REPORT" "$COUNTS" "$MODULES" "$STATUS" "$COHORT" "$LOCAL/pytest.xml"
 preflight="ABSTAIN_PRECONDITIONS"
 build="NOT_RUN"
 pytest_status="NOT_RUN"
@@ -124,6 +125,16 @@ else
   rm -f "$COUNTS"
 fi
 echo "stage=full_pytest result=$pytest_status"
+# Classify only exact Git-tracked TEST FILE names (not parametrized test
+# names, failure messages, raw JUnit or private paths).
+if python3 tools/diagnostics/public100_pytest_failed_modules_v4.py \
+    --xml "$LOCAL/pytest.xml" --repository . --output "$MODULES" \
+    > "$LOCAL/failure-module-sanitizer.log" 2>&1; then
+  echo "stage=pytest_module_failure_classifier result=PASS_SAFE_COUNTS"
+else
+  rm -f "$MODULES"
+  echo "stage=pytest_module_failure_classifier result=ABSTAIN"
+fi
 if [[ -s "$COUNTS" ]]; then
   python3 - "$COUNTS" <<'PY'
 import json,sys
