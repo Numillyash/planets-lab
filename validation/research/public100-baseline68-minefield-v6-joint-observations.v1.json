@@ -1,0 +1,41 @@
+{
+  "schema": "planets-lab.minefield-v6-joint-observation-readout.v1",
+  "status": "PASS_FROZEN_COHORT_JOINT_OBSERVATION_NOT_CAUSAL",
+  "evidence_level": "CORPUS_OBSERVED_DESCRIPTIVE_ONLY",
+  "provenance": {
+    "runtime_run_id": "20261025T002616Z_cd6140b03aa5",
+    "source_commit": "cd6140b03aa5be714f9245a9a4966f97a9fbbf5a",
+    "frozen_selection_sha256": "4432542b37c51f1bd94f27f9c061a8e27a850ecb08714ff55662928cb54ea659",
+    "metadata_games": 100,
+    "baseline_entity_games": 68,
+    "sealed_entity_games_read": 0,
+    "observational_pairs": 8550,
+    "v5_marginals_replayed_identically": true,
+    "source_report_validated": true
+  },
+  "minefield_observation_occurrences_not_unique_events": {
+    "same_id_across_archives": 887224,
+    "fresh_owned_both_archives": 138864,
+    "fresh_owned_stable_center_numeric_units_joint": 138833,
+    "fresh_owned_excluded_from_stable_numeric_joint": 31,
+    "joint_units_increased": 3746,
+    "joint_units_decreased": 134693,
+    "joint_units_unchanged": 394,
+    "joint_units_changed": 138439,
+    "joint_units_change_consistency_verified": true,
+    "previously_unknown_fresh_and_stable_changed_intersection_exact": 138439,
+    "v5_marginal_intersection_lower_bound": 0,
+    "v5_marginal_intersection_upper_bound": 138864
+  },
+  "inference_gates": {
+    "same_row_fresh_owned_and_units_joint_observed": true,
+    "unique_minefield_entities_counted": false,
+    "independent_host_turn_events_counted": false,
+    "minefield_decay_phase_authenticated": false,
+    "ship_beam_or_fighter_sweep_phase_authenticated": false,
+    "mine_hit_overlap_placement_phase_authenticated": false,
+    "accepted_host_orders_authenticated": false,
+    "independent_host_phase_receipts_authenticated": false,
+    "host_diff_verified_by_this_readout": false
+  }
+}
