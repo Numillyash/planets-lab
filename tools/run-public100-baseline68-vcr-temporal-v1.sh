@@ -29,7 +29,7 @@ finish() {
   python3 - "$STATUS" <<'PY'
 import json,os,sys,pathlib
 data={
- "schema":"planets-lab.public100-baseline68-starbase-link-status.v1",
+ "schema":"planets-lab.public100-baseline68-vcr-temporal-status.v1",
  "preflight":os.environ["PREFLIGHT"],"build_status":os.environ["BUILD"],
  "cohort_status":os.environ["COHORT"],
  "pytest_status":os.environ["PYTEST_STATUS"],"pytest_exit":int(os.environ["PYTEST_RC"]),
