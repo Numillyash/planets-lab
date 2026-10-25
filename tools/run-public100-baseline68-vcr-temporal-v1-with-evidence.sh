@@ -6,6 +6,7 @@ cd "$(dirname "$0")/.."
 exec bash tools/run-with-runtime-evidence.sh \
   public100-baseline68-vcr-temporal-v1 \
   --include artifacts/corpus/public100-baseline68-vcr-temporal-v1/stage-status.json \
+  --include artifacts/corpus/public100-baseline68-vcr-temporal-v1/build-failure-diagnostic.json \
   --include artifacts/corpus/public100-baseline68-vcr-temporal-v1/baseline-cohort-attestation.json \
   --include artifacts/corpus/public100-baseline68-vcr-temporal-v1/pytest-counts.json \
   --include artifacts/corpus/public100-baseline68-vcr-temporal-v1/pytest-failed-modules.json \

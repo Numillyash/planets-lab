@@ -8,13 +8,14 @@ REPORT="$OUT/m2-deep-coverage.json"
 COUNTS="$OUT/pytest-counts.json"
 MODULES="$OUT/pytest-failed-modules.json"
 STATUS="$OUT/stage-status.json"
+BUILD_DIAG="$OUT/build-failure-diagnostic.json"
 COHORT="$OUT/baseline-cohort-attestation.json"
 LOCAL="$OUT/private-local"
 BASELINE="validation/corpus/manifests/public-short-expansion-with-public36.jsonl"
 export PLANETS_CORPUS_DB_ROOT="${PLANETS_CORPUS_DB_ROOT:-/root/projects/planets-corpus-db}"
 GEN="corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb"
 CURRENT="generations/corpus-v2compact-public68-20261004T095236Z-09f71721b77c.duckdb"
-rm -f "$REPORT" "$COUNTS" "$MODULES" "$STATUS" "$COHORT" "$LOCAL/pytest.xml"
+rm -f "$REPORT" "$COUNTS" "$MODULES" "$STATUS" "$COHORT" "$BUILD_DIAG" "$LOCAL/pytest.xml"
 preflight="ABSTAIN_PRECONDITIONS"
 build="NOT_RUN"
 pytest_status="NOT_RUN"
@@ -77,6 +78,14 @@ docker compose -f compose.yaml -f compose.corpus-db.yaml build lab > "$LOCAL/bui
 build_rc=$?
 if (( build_rc != 0 )); then
   build="FAILED_LOCAL_ONLY"
+  # No raw Docker stdout/stderr leave the machine, even if the build fails.
+  if python3 -I -S tools/diagnostics/sanitize_docker_build_failure_v1.py \
+      --input "$LOCAL/build.log" --exit-code "$build_rc" --output "$BUILD_DIAG"; then
+    echo "stage=build_safe_diagnostic result=PASS_FIXED_ENUM_ONLY"
+  else
+    echo "stage=build_safe_diagnostic result=ABSTAIN_UNAVAILABLE"
+    rm -f "$BUILD_DIAG"
+  fi
   abstain "ABSTAIN_BUILD_FAILED"
 fi
 build="PASS"
