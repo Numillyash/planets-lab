@@ -1,0 +1,18 @@
+===== FULL PUBLIC100 METADATA + BASELINE68 DEEP READ-ONLY SURVEY =====
+source_commit=bd0c9c3131bd521aa4d284557019a9ba26ace0cd
+metadata_games=100
+source_members_expected=224014
+selected_baseline_games_max=68
+selected_adjacent_pairs_per_game_max=128
+selected_adjacent_pairs_budget_max=8704
+observational_selection_frozen_from=20261024T185839Z_3f539501db2a
+vcr_archive_temporal_source_readiness=PREDECLARED_OBSERVATIONAL_NOT_HOST_CAUSAL
+nonplanet_observability=minefields_ships_starbases_vcrs_ionstorms
+sealed_heldout32_entity_access=false
+generation=EXPLICIT_PUBLIC100
+database_mount=READ_ONLY
+current_changed=false
+new_real_host_diff_verified=false
+batch_status=ABSTAIN_BUILD_FAILED
+batch_stage_status=ABSTAIN_BUILD_FAILED/FAILED_LOCAL_ONLY/NOT_RUN/NOT_RUN/NOT_RUN
+aggregate_status_path=artifacts/corpus/public100-baseline68-vcr-temporal-v1/stage-status.json
