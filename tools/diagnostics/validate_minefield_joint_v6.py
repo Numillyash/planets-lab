@@ -10,17 +10,26 @@ from pathlib import Path
 import sys
 
 # This validator runs with HOST python3 (not the pip-installed Docker lab).
-# Keep script-style invocation independent of the host site-packages and
-# caller's PYTHONPATH, as in m2_public_corpus_economy_coverage_v1.py.
+# Keep script-style invocation independent of site-packages and PYTHONPATH.
 ROOT = Path(__file__).resolve().parents[2]
 for path in (ROOT / "src", ROOT):
     if str(path) not in sys.path:
         sys.path.insert(0, str(path))
 
-from planets_lab.corpus.nonplanet_v5_evidence_review import (
-    GENERATION_SHA256, FROZEN_SELECTION_SHA256, EvidenceReviewAbstain,
-    review_published_v5,
-)
+# Load the *pure stdlib* source-review module by fixed repository path.
+# Importing planets_lab.corpus invokes package __init__ -> feature_index ->
+# duckdb even though this validator needs no DuckDB and may run on a host
+# with only system python3. Avoid those incidental package dependencies.
+from importlib.util import module_from_spec, spec_from_file_location
+_REVIEW_PATH = ROOT / "src/planets_lab/corpus/nonplanet_v5_evidence_review.py"
+_spec = spec_from_file_location("_planets_lab_pure_v5_review", _REVIEW_PATH)
+if _spec is None or _spec.loader is None:
+    raise RuntimeError("ABSTAIN_SOURCE_REVIEW_MODULE_UNAVAILABLE")
+_review = module_from_spec(_spec)
+_spec.loader.exec_module(_review)
+EvidenceReviewAbstain = _review.EvidenceReviewAbstain
+review_published_v5 = _review.review_published_v5
+
 from tools.diagnostics.m2_validate_corpus_aggregate_evidence_v1 import validate
 
 JOINT = (
