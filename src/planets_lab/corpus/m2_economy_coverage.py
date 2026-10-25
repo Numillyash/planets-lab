@@ -22,6 +22,9 @@ from typing import Any
 from planets_lab.corpus.nonplanet_archive_pair_readiness import (
     profile_source_identity_pairs,
 )
+from planets_lab.corpus.starbase_archive_link_readiness import (
+    profile_starbase_archive_link_pair,
+)
 from planets_lab.corpus.m2_mineral_balance import profile_archive_mineral_mass_balance
 from planets_lab.corpus.m2_surface_residual_context import (
     CATEGORIES as RESIDUAL_CLASSES, profile_surface_residual_context,
@@ -376,6 +379,7 @@ def analyze_corpus_coverage(
     reconstruct: Callable[[int], Mapping[str, Any]],
     allowed_games: set[int] | None = None,
     expected_frozen_selection_sha256: str | None = None,
+    starbase_planet_link_readiness: bool = False,
 ) -> dict[str, Any]:
     members = read_metadata(connection)
     metadata, selected = census_members(
@@ -410,6 +414,7 @@ def analyze_corpus_coverage(
     )
     supporting: dict[str, Counter[str]] = defaultdict(Counter)
     identity_gate: dict[str, Counter[str]] = defaultdict(Counter)
+    starbase_link_gate: Counter[str] = Counter()
     residual_quality: Counter[str] = Counter()
     per_game_residual: dict[int, Counter[str]] = defaultdict(Counter)
     per_game_surface_context: dict[int, Counter[str]] = defaultdict(Counter)
@@ -449,6 +454,12 @@ def analyze_corpus_coverage(
         )
         for section, indicators in source_profiles.items():
             identity_gate[section].update(indicators)
+        if starbase_planet_link_readiness:
+            starbase_link_gate.update(profile_starbase_archive_link_pair(
+                b, a, observer=pair.player,
+                before_turn=pair.after_turn - 1,
+                after_turn=pair.after_turn,
+            ))
         # Retain a game even if none of its qualified owner-current
         # planets supports the conditional mineral model.
         # It must contribute a ZERO to every game-cluster histogram,
@@ -634,7 +645,7 @@ def analyze_corpus_coverage(
             )
             context_game_histograms[metric][key] += 1
 
-    return {
+    report = {
         "schema": SCHEMA,
         "status": "CORPUS_METADATA_CENSUS_AND_BOUNDED_OWNER_CURRENT_SAMPLE_NOT_HOST_CAUSAL",
         "metadata": metadata,
@@ -738,3 +749,8 @@ def analyze_corpus_coverage(
             "starbase_at_planet_means_ship_construction_executed": False,
         },
     }
+    if starbase_planet_link_readiness:
+        report["sample"]["starbase_planet_archive_link_not_host_phase"] = dict(
+            sorted(starbase_link_gate.items())
+        )
+    return report
