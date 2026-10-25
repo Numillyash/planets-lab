@@ -1,0 +1,26 @@
+{
+  "evidence_branch": "runtime-logs",
+  "exit_code": 0,
+  "finished_at_utc": "2026-10-25T01:01:24Z",
+  "hostname": "GEORGUL-GAMER",
+  "interrupted_signal": null,
+  "log_file": "gate.log",
+  "missing_artifact_paths": [],
+  "remote": "origin",
+  "requested_artifact_paths": [
+    "artifacts/corpus/public100-baseline68-mine-joint-v6/stage-status.json",
+    "artifacts/corpus/public100-baseline68-mine-joint-v6/baseline-cohort-attestation.json",
+    "artifacts/corpus/public100-baseline68-mine-joint-v6/pytest-counts.json",
+    "artifacts/corpus/public100-baseline68-mine-joint-v6/pytest-failed-modules.json",
+    "artifacts/corpus/public100-baseline68-mine-joint-v6/m2-deep-coverage.json"
+  ],
+  "run_id": "20261025T002616Z_cd6140b03aa5",
+  "run_name": "public100-baseline68-mine-joint-v6",
+  "runner": "bash",
+  "schema": "planets-lab.runtime-evidence.v1",
+  "skipped_oversized_artifact_paths": [],
+  "source_branch": "main",
+  "source_commit": "cd6140b03aa5be714f9245a9a4966f97a9fbbf5a",
+  "source_dirty": false,
+  "started_at_utc": "2026-10-25T00:26:16Z"
+}

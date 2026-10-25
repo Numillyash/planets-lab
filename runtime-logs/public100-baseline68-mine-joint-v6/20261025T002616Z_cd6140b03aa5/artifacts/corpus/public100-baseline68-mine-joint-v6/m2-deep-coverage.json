@@ -1,0 +1,1220 @@
+{
+  "baseline_sample_allowlist": {
+    "allowed_game_count": 68,
+    "heldout_entity_sampling": false,
+    "manifest_sha256": "942eb61741664835cc600bb1e2148daaa1c009462827b238f13227c5937899d9"
+  },
+  "evidence_limits": {
+    "NuHost_economic_formula_verified": false,
+    "NuHost_ship_build_cost_verified": false,
+    "T_minus_1_to_T_stock_change_identifies_action": false,
+    "archive_identity_or_mine_unit_changes_prove_host_phase": false,
+    "both_mineral_deltas_matching_default_model_proves_no_other_actions": false,
+    "default_mining_and_mutation_forecast_is_host_causal": false,
+    "ground_down_surface_up_proves_mining": false,
+    "is_independent_game_disjoint_host_validation": false,
+    "may_be_used_to_plan_fresh_independent_subcohorts": true,
+    "no_owner_ship_observed_excludes_ship_actions": false,
+    "nonplanet_section_counts_prove_sweeping_or_combat": false,
+    "per_field_change_is_host_phase_evidence": false,
+    "raw_trn_is_submitted_turn_orders": false,
+    "same_site_owner_ship_observation_proves_cargo_transfer": false,
+    "starbase_at_planet_means_ship_construction_executed": false,
+    "structure_tax_stability_excludes_hidden_orders": false
+  },
+  "generation": {
+    "CURRENT_modified": false,
+    "name": "corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+    "read_only": true,
+    "verified_sha256": "3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c"
+  },
+  "metadata": {
+    "all_games_in_source_metadata": 100,
+    "all_source_perspective_members": 224014,
+    "ambiguous_duplicate_perspective_turn_keys": 0,
+    "games_allowed_for_entity_sampling": 68,
+    "games_excluded_from_entity_sampling": 32,
+    "games_with_adjacent_perspective_pairs": 100,
+    "identity_valid_members": 222536,
+    "metadata_frozen_sample_pairs": 8550,
+    "metadata_frozen_selection_sha256": "4432542b37c51f1bd94f27f9c061a8e27a850ecb08714ff55662928cb54ea659",
+    "metadata_invalid_or_embedded_turn_mismatch": 1478,
+    "metadata_selected_game_count": 68,
+    "potential_adjacent_same_perspective_pairs": 221091,
+    "selection_frozen_before_entity_reconstruction": true
+  },
+  "sample": {
+    "conditional_mineral_mass_balance_not_host_verified": {
+      "model": "INFERRED_DEFAULT_MINING_PLUS_PUBLISHED_TRANSURANIUM_NOT_HOST_CAUSAL",
+      "net_total_minus_default_mutation_abs_residual_buckets": {
+        "duranium": {
+          "0": 269048,
+          "1": 611,
+          "101_to_1000": 19181,
+          "21_to_100": 14988,
+          "2_to_5": 3919,
+          "6_to_20": 8883,
+          "over_1000": 505
+        },
+        "molybdenum": {
+          "0": 258176,
+          "1": 377,
+          "101_to_1000": 21045,
+          "21_to_100": 16991,
+          "2_to_5": 6318,
+          "6_to_20": 13410,
+          "over_1000": 850
+        },
+        "neutronium": {
+          "0": 261854,
+          "1": 1037,
+          "101_to_1000": 23182,
+          "21_to_100": 18601,
+          "2_to_5": 3554,
+          "6_to_20": 8155,
+          "over_1000": 768
+        },
+        "tritanium": {
+          "0": 260165,
+          "1": 395,
+          "101_to_1000": 19577,
+          "21_to_100": 18366,
+          "2_to_5": 5516,
+          "6_to_20": 12539,
+          "over_1000": 590
+        }
+      },
+      "per_mineral": {
+        "duranium": {
+          "ABSTAIN_DEFAULT_MINING_MINES_CHANGED_OR_MISSING": 47867,
+          "ABSTAIN_DEFAULT_MINING_RACE_MISSING_OR_CHANGED": 7844,
+          "ABSTAIN_DENSITY_CHANGED": 120,
+          "ABSTAIN_MINES_CHANGED": 47901,
+          "both_stock_deltas_match_default_model": 218573,
+          "candidate_default_mining_qualified": 261424,
+          "default_mutation_mass_balance_qualified": 317135,
+          "density_stable_and_valid": 317135,
+          "ground_delta_differs_from_default_model": 9030,
+          "ground_delta_matches_default_model": 252394,
+          "ground_increased": 50242,
+          "joint_stock_qualified": 317255,
+          "mines_stable": 269354,
+          "net_stock_change_differs_from_default_mutation": 48087,
+          "net_stock_change_equals_default_mutation": 269048,
+          "surface_delta_differs_from_default_mining": 40967,
+          "surface_delta_matches_default_mining": 220457,
+          "surface_up_ground_down": 70484,
+          "surface_up_ground_equal_explained_by_default_candidate": 135216,
+          "surface_up_ground_equal_model_qualified": 142815,
+          "surface_up_ground_equal_unexplained_by_default_candidate": 7599,
+          "surface_up_ground_unchanged": 168950
+        },
+        "molybdenum": {
+          "ABSTAIN_DEFAULT_MINING_MINES_CHANGED_OR_MISSING": 47878,
+          "ABSTAIN_DEFAULT_MINING_RACE_MISSING_OR_CHANGED": 7844,
+          "ABSTAIN_DENSITY_CHANGED": 88,
+          "ABSTAIN_MINES_CHANGED": 47901,
+          "both_stock_deltas_match_default_model": 210028,
+          "candidate_default_mining_qualified": 261445,
+          "default_mutation_mass_balance_qualified": 317167,
+          "density_stable_and_valid": 317167,
+          "ground_delta_differs_from_default_model": 8331,
+          "ground_delta_matches_default_model": 253114,
+          "ground_increased": 50136,
+          "joint_stock_qualified": 317255,
+          "mines_stable": 269354,
+          "net_stock_change_differs_from_default_mutation": 58991,
+          "net_stock_change_equals_default_mutation": 258176,
+          "surface_delta_differs_from_default_mining": 49706,
+          "surface_delta_matches_default_mining": 211739,
+          "surface_up_ground_down": 59376,
+          "surface_up_ground_equal_explained_by_default_candidate": 135529,
+          "surface_up_ground_equal_model_qualified": 145998,
+          "surface_up_ground_equal_unexplained_by_default_candidate": 10469,
+          "surface_up_ground_unchanged": 172908
+        },
+        "neutronium": {
+          "ABSTAIN_DEFAULT_MINING_MINES_CHANGED_OR_MISSING": 47867,
+          "ABSTAIN_DEFAULT_MINING_RACE_MISSING_OR_CHANGED": 7845,
+          "ABSTAIN_DENSITY_CHANGED": 104,
+          "ABSTAIN_MINES_CHANGED": 47901,
+          "both_stock_deltas_match_default_model": 215167,
+          "candidate_default_mining_qualified": 261439,
+          "default_mutation_mass_balance_qualified": 317151,
+          "density_stable_and_valid": 317151,
+          "ground_delta_differs_from_default_model": 9845,
+          "ground_delta_matches_default_model": 251594,
+          "ground_increased": 50165,
+          "joint_stock_qualified": 317255,
+          "mines_stable": 269354,
+          "net_stock_change_differs_from_default_mutation": 55297,
+          "net_stock_change_equals_default_mutation": 261854,
+          "surface_delta_differs_from_default_mining": 44371,
+          "surface_delta_matches_default_mining": 217068,
+          "surface_up_ground_down": 78283,
+          "surface_up_ground_equal_explained_by_default_candidate": 126435,
+          "surface_up_ground_equal_model_qualified": 132911,
+          "surface_up_ground_equal_unexplained_by_default_candidate": 6476,
+          "surface_up_ground_unchanged": 155615
+        },
+        "tritanium": {
+          "ABSTAIN_DEFAULT_MINING_MINES_CHANGED_OR_MISSING": 47876,
+          "ABSTAIN_DEFAULT_MINING_RACE_MISSING_OR_CHANGED": 7845,
+          "ABSTAIN_DENSITY_CHANGED": 107,
+          "ABSTAIN_MINES_CHANGED": 47901,
+          "both_stock_deltas_match_default_model": 210855,
+          "candidate_default_mining_qualified": 261427,
+          "default_mutation_mass_balance_qualified": 317148,
+          "density_stable_and_valid": 317148,
+          "ground_delta_differs_from_default_model": 9490,
+          "ground_delta_matches_default_model": 251937,
+          "ground_increased": 50232,
+          "joint_stock_qualified": 317255,
+          "mines_stable": 269354,
+          "net_stock_change_differs_from_default_mutation": 56983,
+          "net_stock_change_equals_default_mutation": 260165,
+          "surface_delta_differs_from_default_mining": 48686,
+          "surface_delta_matches_default_mining": 212741,
+          "surface_up_ground_down": 75273,
+          "surface_up_ground_equal_explained_by_default_candidate": 126076,
+          "surface_up_ground_equal_model_qualified": 134194,
+          "surface_up_ground_equal_unexplained_by_default_candidate": 8118,
+          "surface_up_ground_unchanged": 158566
+        }
+      },
+      "surface_up_ground_equal_surface_increase_buckets": {
+        "duranium": {
+          "1": 16641,
+          "101_to_1000": 4288,
+          "21_to_100": 2551,
+          "2_to_5": 144415,
+          "6_to_20": 900,
+          "over_1000": 155
+        },
+        "molybdenum": {
+          "1": 15493,
+          "101_to_1000": 5678,
+          "21_to_100": 3215,
+          "2_to_5": 147272,
+          "6_to_20": 948,
+          "over_1000": 302
+        },
+        "neutronium": {
+          "1": 11869,
+          "101_to_1000": 4837,
+          "21_to_100": 2531,
+          "2_to_5": 135697,
+          "6_to_20": 577,
+          "over_1000": 104
+        },
+        "tritanium": {
+          "1": 15969,
+          "101_to_1000": 4503,
+          "21_to_100": 2545,
+          "2_to_5": 134556,
+          "6_to_20": 782,
+          "over_1000": 211
+        }
+      }
+    },
+    "individual_numeric_field_directions": {
+      "clans": {
+        "decreased": 17161,
+        "increased": 185686,
+        "qualified": 317255,
+        "unchanged": 114408
+      },
+      "colonisttaxrate": {
+        "decreased": 4626,
+        "increased": 4752,
+        "qualified": 317255,
+        "unchanged": 307877
+      },
+      "defense": {
+        "decreased": 4940,
+        "increased": 52560,
+        "qualified": 317255,
+        "unchanged": 259755
+      },
+      "duranium": {
+        "decreased": 27123,
+        "increased": 251549,
+        "qualified": 317255,
+        "unchanged": 38583
+      },
+      "factories": {
+        "decreased": 29459,
+        "increased": 81813,
+        "qualified": 317255,
+        "unchanged": 205983
+      },
+      "groundduranium": {
+        "decreased": 78251,
+        "increased": 50242,
+        "qualified": 317255,
+        "unchanged": 188762
+      },
+      "groundmolybdenum": {
+        "decreased": 66610,
+        "increased": 50136,
+        "qualified": 317255,
+        "unchanged": 200509
+      },
+      "groundneutronium": {
+        "decreased": 90952,
+        "increased": 50165,
+        "qualified": 317255,
+        "unchanged": 176138
+      },
+      "groundtritanium": {
+        "decreased": 83881,
+        "increased": 50232,
+        "qualified": 317255,
+        "unchanged": 183142
+      },
+      "megacredits": {
+        "decreased": 42505,
+        "increased": 107764,
+        "qualified": 317255,
+        "unchanged": 166986
+      },
+      "mines": {
+        "decreased": 23019,
+        "increased": 24882,
+        "qualified": 317255,
+        "unchanged": 269354
+      },
+      "molybdenum": {
+        "decreased": 33912,
+        "increased": 244458,
+        "qualified": 317255,
+        "unchanged": 38885
+      },
+      "nativeclans": {
+        "decreased": 4353,
+        "increased": 100710,
+        "qualified": 317255,
+        "unchanged": 212192
+      },
+      "nativehappypoints": {
+        "decreased": 18148,
+        "increased": 28464,
+        "qualified": 317121,
+        "unchanged": 270509
+      },
+      "nativetaxrate": {
+        "decreased": 7305,
+        "increased": 9183,
+        "qualified": 317255,
+        "unchanged": 300767
+      },
+      "neutronium": {
+        "decreased": 31668,
+        "increased": 245989,
+        "qualified": 317255,
+        "unchanged": 39598
+      },
+      "supplies": {
+        "decreased": 33055,
+        "increased": 247687,
+        "qualified": 317255,
+        "unchanged": 36513
+      },
+      "tritanium": {
+        "decreased": 32835,
+        "increased": 245961,
+        "qualified": 317255,
+        "unchanged": 38459
+      }
+    },
+    "net_state_differences_not_mechanics": {
+      "colonists_and_natives": 228152,
+      "credits_and_supplies": 289650,
+      "minerals_ground": 209939,
+      "minerals_surface": 285072,
+      "structures": 137825,
+      "tax_inputs": 57114
+    },
+    "nonplanet_archive_identity_readiness_not_host_phase": {
+      "ionstorms": {
+        "after_id_rows": 101318,
+        "before_id_rows": 100633,
+        "empty_lists_both": 810,
+        "id_only_after_archive_not_host_construction": 6188,
+        "id_only_before_archive_not_host_destruction": 5503,
+        "qualified_identity_list_pair": 8550,
+        "same_id_current_own_verified_both_archives": 0,
+        "same_id_owner_changed_not_host_capture": 0,
+        "same_id_owner_own_but_infoturn_missing_or_stale": 0,
+        "same_id_owner_unchanged": 0,
+        "same_id_owner_untyped_abstain": 95130,
+        "same_id_seen_in_both_archives": 95130
+      },
+      "minefields": {
+        "after_id_rows": 916892,
+        "before_id_rows": 908038,
+        "empty_lists_both": 1634,
+        "id_only_after_archive_not_host_construction": 29668,
+        "id_only_before_archive_not_host_destruction": 20814,
+        "qualified_identity_list_pair": 8550,
+        "same_id_current_own_verified_both_archives": 138864,
+        "same_id_fresh_own_center_stable_numeric_units_joint": 138833,
+        "same_id_fresh_own_center_stable_units_changed_joint_not_causal": 138439,
+        "same_id_fresh_own_center_stable_units_decreased_joint_not_causal": 134693,
+        "same_id_fresh_own_center_stable_units_increased_joint_not_causal": 3746,
+        "same_id_fresh_own_center_stable_units_unchanged_joint_not_causal": 394,
+        "same_id_integer_units_changed_not_host_attribution": 536849,
+        "same_id_nonnegative_integer_units_both": 887224,
+        "same_id_owner_center_stable_units_changed_not_causal": 536703,
+        "same_id_owner_changed_not_host_capture": 0,
+        "same_id_owner_own_but_infoturn_missing_or_stale": 0,
+        "same_id_owner_unchanged": 887224,
+        "same_id_owner_untyped_abstain": 0,
+        "same_id_seen_in_both_archives": 887224
+      },
+      "ships": {
+        "after_id_rows": 1025238,
+        "before_id_rows": 1017052,
+        "empty_lists_both": 1959,
+        "id_only_after_archive_not_host_construction": 108334,
+        "id_only_before_archive_not_host_destruction": 100148,
+        "qualified_identity_list_pair": 8550,
+        "same_id_current_own_verified_both_archives": 347831,
+        "same_id_owner_changed_not_host_capture": 6891,
+        "same_id_owner_own_but_infoturn_missing_or_stale": 0,
+        "same_id_owner_unchanged": 909404,
+        "same_id_owner_untyped_abstain": 609,
+        "same_id_seen_in_both_archives": 916904
+      },
+      "starbases": {
+        "after_id_rows": 351652,
+        "before_id_rows": 347948,
+        "empty_lists_both": 1057,
+        "id_only_after_archive_not_host_construction": 5430,
+        "id_only_before_archive_not_host_destruction": 1726,
+        "qualified_identity_list_pair": 8550,
+        "same_id_current_own_verified_both_archives": 0,
+        "same_id_owner_changed_not_host_capture": 0,
+        "same_id_owner_own_but_infoturn_missing_or_stale": 0,
+        "same_id_owner_unchanged": 0,
+        "same_id_owner_untyped_abstain": 346222,
+        "same_id_seen_in_both_archives": 346222
+      },
+      "vcrs": {
+        "after_id_rows": 22414,
+        "before_id_rows": 21918,
+        "empty_lists_both": 3748,
+        "id_only_after_archive_not_host_construction": 22414,
+        "id_only_before_archive_not_host_destruction": 21918,
+        "qualified_identity_list_pair": 8550,
+        "same_id_current_own_verified_both_archives": 0,
+        "same_id_owner_changed_not_host_capture": 0,
+        "same_id_owner_own_but_infoturn_missing_or_stale": 0,
+        "same_id_owner_unchanged": 0,
+        "same_id_owner_untyped_abstain": 0,
+        "same_id_seen_in_both_archives": 0
+      }
+    },
+    "nonplanet_section_observability_not_host_phase": {
+      "ionstorms": {
+        "after_rows_observed": 101318,
+        "before_rows_observed": 100633,
+        "pair_has_both_lists": 8550,
+        "pair_has_nonempty_both": 7662,
+        "pair_row_count_differs_not_host_attribution": 2314
+      },
+      "minefields": {
+        "after_rows_observed": 916892,
+        "before_rows_observed": 908038,
+        "pair_has_both_lists": 8550,
+        "pair_has_nonempty_both": 6861,
+        "pair_row_count_differs_not_host_attribution": 4459
+      },
+      "ships": {
+        "after_rows_observed": 1025238,
+        "before_rows_observed": 1017052,
+        "pair_has_both_lists": 8550,
+        "pair_has_nonempty_both": 6521,
+        "pair_row_count_differs_not_host_attribution": 6126
+      },
+      "starbases": {
+        "after_rows_observed": 351652,
+        "before_rows_observed": 347948,
+        "pair_has_both_lists": 8550,
+        "pair_has_nonempty_both": 7471,
+        "pair_row_count_differs_not_host_attribution": 2774
+      },
+      "vcrs": {
+        "after_rows_observed": 22414,
+        "before_rows_observed": 21918,
+        "pair_has_both_lists": 8550,
+        "pair_has_nonempty_both": 3461,
+        "pair_row_count_differs_not_host_attribution": 4267
+      }
+    },
+    "observable_structure_and_tax_controls": {
+      "all_unchanged": 169820,
+      "qualified": 317255,
+      "some_changed": 147435
+    },
+    "owner_current_counts": {
+      "owner_current_planets_after": 322857,
+      "owner_current_planets_before": 320638,
+      "same_owner_planet_id_pairs": 317255
+    },
+    "qualified_planet_field_family_pairs": {
+      "colonists_and_natives": 317255,
+      "credits_and_supplies": 317255,
+      "minerals_ground": 317255,
+      "minerals_surface": 317255,
+      "structures": 317255,
+      "tax_inputs": 317121
+    },
+    "sample_status_counts": {
+      "ABSTAIN_OWNER_PLANET_STALE_OR_NO_INFOTURN": 5,
+      "OWNER_CURRENT_PLANET_RECORDS": 643495,
+      "SAMPLED_PAIR_PAYLOAD_IDENTITY_VALID": 8550
+    },
+    "section_rows_across_sampled_perspectives": {
+      "planets_after_rows": 4085448,
+      "planets_before_rows": 4076313,
+      "ships_after_rows": 1025238,
+      "ships_before_rows": 1017052,
+      "starbases_after_rows": 351652,
+      "starbases_before_rows": 347948
+    },
+    "surface_ground_joint_signs_not_mining_attribution": {
+      "duranium": {
+        "ground_decreased__surface_decreased": 7317,
+        "ground_decreased__surface_increased": 70484,
+        "ground_decreased__surface_unchanged": 450,
+        "ground_down_surface_up_mines_unchanged": 55165,
+        "ground_increased__surface_decreased": 1520,
+        "ground_increased__surface_increased": 12115,
+        "ground_increased__surface_unchanged": 36607,
+        "ground_unchanged__surface_decreased": 18286,
+        "ground_unchanged__surface_increased": 168950,
+        "ground_unchanged__surface_unchanged": 1526,
+        "qualified": 317255
+      },
+      "molybdenum": {
+        "ground_decreased__surface_decreased": 6739,
+        "ground_decreased__surface_increased": 59376,
+        "ground_decreased__surface_unchanged": 495,
+        "ground_down_surface_up_mines_unchanged": 45740,
+        "ground_increased__surface_decreased": 1608,
+        "ground_increased__surface_increased": 12174,
+        "ground_increased__surface_unchanged": 36354,
+        "ground_unchanged__surface_decreased": 25565,
+        "ground_unchanged__surface_increased": 172908,
+        "ground_unchanged__surface_unchanged": 2036,
+        "qualified": 317255
+      },
+      "neutronium": {
+        "ground_decreased__surface_decreased": 11200,
+        "ground_decreased__surface_increased": 78283,
+        "ground_decreased__surface_unchanged": 1469,
+        "ground_down_surface_up_mines_unchanged": 61569,
+        "ground_increased__surface_decreased": 2011,
+        "ground_increased__surface_increased": 12091,
+        "ground_increased__surface_unchanged": 36063,
+        "ground_unchanged__surface_decreased": 18457,
+        "ground_unchanged__surface_increased": 155615,
+        "ground_unchanged__surface_unchanged": 2066,
+        "qualified": 317255
+      },
+      "tritanium": {
+        "ground_decreased__surface_decreased": 8114,
+        "ground_decreased__surface_increased": 75273,
+        "ground_decreased__surface_unchanged": 494,
+        "ground_down_surface_up_mines_unchanged": 59007,
+        "ground_increased__surface_decreased": 1627,
+        "ground_increased__surface_increased": 12122,
+        "ground_increased__surface_unchanged": 36483,
+        "ground_unchanged__surface_decreased": 23094,
+        "ground_unchanged__surface_increased": 158566,
+        "ground_unchanged__surface_unchanged": 1482,
+        "qualified": 317255
+      }
+    },
+    "surface_residual_context_not_host_verified": {
+      "game_cluster_planet_residual_events_count_buckets": {
+        "planet_windows_any_base_tech_change": {
+          "21_to_100": 52,
+          "2_to_5": 3,
+          "6_to_20": 13
+        },
+        "planet_windows_any_cargo_candidate": {
+          "21_to_100": 39,
+          "6_to_20": 1,
+          "over_100": 28
+        },
+        "planet_windows_any_multiship_cargo": {
+          "21_to_100": 43,
+          "6_to_20": 24,
+          "over_100": 1
+        },
+        "planet_windows_any_planetlinked_base": {
+          "21_to_100": 1,
+          "over_100": 67
+        },
+        "planet_windows_any_single_cargo": {
+          "21_to_100": 43,
+          "6_to_20": 1,
+          "over_100": 24
+        },
+        "planet_windows_any_surface_residual": {
+          "over_100": 68
+        },
+        "planet_windows_base_tech_and_cargo_candidate": {
+          "0": 14,
+          "1": 23,
+          "2_to_5": 29,
+          "6_to_20": 2
+        }
+      },
+      "game_cluster_residual_count_buckets": {
+        "both_exact": {
+          "over_100": 68
+        },
+        "ground_exact_surface_residual": {
+          "over_100": 68
+        },
+        "neither_exact": {
+          "21_to_100": 4,
+          "over_100": 64
+        },
+        "surface_exact_ground_residual": {
+          "21_to_100": 36,
+          "6_to_20": 2,
+          "over_100": 30
+        }
+      },
+      "game_cluster_surface_context_count_buckets": {
+        "multiple_ship_cargo_sum_opposite_candidate_not_order": {
+          "21_to_100": 53,
+          "6_to_20": 12,
+          "over_100": 3
+        },
+        "one_ship_opposite_cargo_delta_candidate": {
+          "21_to_100": 12,
+          "over_100": 56
+        },
+        "owner_ship_observed_at_site_both": {
+          "over_100": 68
+        },
+        "owner_starbase_explicit_at_planet_both": {
+          "0": 68
+        },
+        "ownerless_base_planetlinked_both_not_owner_proof": {
+          "over_100": 68
+        }
+      },
+      "per_mineral_class_covariates": {
+        "duranium": {
+          "both_exact": {
+            "NO_OWNER_SHIP_OBSERVED_AT_SITE_NOT_ABSENCE_PROOF": 150811,
+            "multiple_co_site_ship_ids_all_cargo_qualified": 7622,
+            "owner_ship_observed_at_site_after": 46231,
+            "owner_ship_observed_at_site_before": 56274,
+            "owner_ship_observed_at_site_both": 34743,
+            "owner_ship_section_pair_qualified": 218573,
+            "ownerless_base_planetlinked_after_not_owner_proof": 100295,
+            "ownerless_base_planetlinked_before_not_owner_proof": 99813,
+            "ownerless_base_planetlinked_both_not_owner_proof": 99571,
+            "ownerless_planetlinked_tech_changed_observed": 518,
+            "ownerless_planetlinked_tech_unchanged_observed": 99053,
+            "planet_coordinates_qualified": 218573,
+            "planetlinked_base_both_any_owner_provenance": 99571,
+            "same_owner_ship_id_observed_at_site_both": 31241,
+            "same_ship_cargo_pair_qualified": 66292,
+            "same_site_identical_ship_set_all_cargo_qualified": 20507,
+            "structure_and_tax_controls_qualified": 218573,
+            "structure_and_tax_controls_unchanged": 139300,
+            "structure_or_tax_controls_changed": 79273,
+            "surface_residual_zero": 218573
+          },
+          "ground_exact_surface_residual": {
+            "ABSTAIN_MULTIPLE_OPPOSITE_CARGO_SHIPS": 1,
+            "NO_OWNER_SHIP_OBSERVED_AT_SITE_NOT_ABSENCE_PROOF": 3354,
+            "multiple_co_site_ship_ids_all_cargo_qualified": 1945,
+            "multiple_ship_cargo_sum_opposite_candidate_not_order": 576,
+            "one_ship_opposite_cargo_delta_candidate": 2029,
+            "opposite_cargo_ship_both_freshness_explicit": 2029,
+            "owner_ship_observed_at_site_after": 29584,
+            "owner_ship_observed_at_site_before": 20161,
+            "owner_ship_observed_at_site_both": 19278,
+            "owner_ship_section_pair_qualified": 33821,
+            "ownerless_base_planetlinked_after_not_owner_proof": 23039,
+            "ownerless_base_planetlinked_before_not_owner_proof": 22490,
+            "ownerless_base_planetlinked_both_not_owner_proof": 22482,
+            "ownerless_planetlinked_tech_changed_observed": 2081,
+            "ownerless_planetlinked_tech_unchanged_observed": 20401,
+            "planet_coordinates_qualified": 33821,
+            "planetlinked_base_both_any_owner_provenance": 22482,
+            "same_owner_ship_id_observed_at_site_both": 15423,
+            "same_ship_cargo_pair_qualified": 46170,
+            "same_site_identical_ship_set_all_cargo_qualified": 4243,
+            "structure_and_tax_controls_qualified": 33821,
+            "structure_and_tax_controls_unchanged": 16807,
+            "structure_or_tax_controls_changed": 17014,
+            "surface_residual_negative": 24839,
+            "surface_residual_positive": 8982
+          },
+          "neither_exact": {
+            "NO_OWNER_SHIP_OBSERVED_AT_SITE_NOT_ABSENCE_PROOF": 4367,
+            "multiple_co_site_ship_ids_all_cargo_qualified": 193,
+            "multiple_ship_cargo_sum_opposite_candidate_not_order": 3,
+            "one_ship_opposite_cargo_delta_candidate": 10,
+            "opposite_cargo_ship_both_freshness_explicit": 10,
+            "owner_ship_observed_at_site_after": 2019,
+            "owner_ship_observed_at_site_before": 2020,
+            "owner_ship_observed_at_site_both": 1260,
+            "owner_ship_section_pair_qualified": 7146,
+            "ownerless_base_planetlinked_after_not_owner_proof": 4351,
+            "ownerless_base_planetlinked_before_not_owner_proof": 4251,
+            "ownerless_base_planetlinked_both_not_owner_proof": 4243,
+            "ownerless_planetlinked_tech_changed_observed": 61,
+            "ownerless_planetlinked_tech_unchanged_observed": 4182,
+            "planet_coordinates_qualified": 7146,
+            "planetlinked_base_both_any_owner_provenance": 4243,
+            "same_owner_ship_id_observed_at_site_both": 993,
+            "same_ship_cargo_pair_qualified": 2175,
+            "same_site_identical_ship_set_all_cargo_qualified": 544,
+            "structure_and_tax_controls_qualified": 7146,
+            "structure_and_tax_controls_unchanged": 4881,
+            "structure_or_tax_controls_changed": 2265,
+            "surface_residual_negative": 872,
+            "surface_residual_positive": 6274
+          },
+          "surface_exact_ground_residual": {
+            "NO_OWNER_SHIP_OBSERVED_AT_SITE_NOT_ABSENCE_PROOF": 1422,
+            "multiple_co_site_ship_ids_all_cargo_qualified": 39,
+            "owner_ship_observed_at_site_after": 293,
+            "owner_ship_observed_at_site_before": 359,
+            "owner_ship_observed_at_site_both": 190,
+            "owner_ship_section_pair_qualified": 1884,
+            "ownerless_base_planetlinked_after_not_owner_proof": 355,
+            "ownerless_base_planetlinked_before_not_owner_proof": 352,
+            "ownerless_base_planetlinked_both_not_owner_proof": 351,
+            "ownerless_planetlinked_tech_changed_observed": 3,
+            "ownerless_planetlinked_tech_unchanged_observed": 348,
+            "planet_coordinates_qualified": 1884,
+            "planetlinked_base_both_any_owner_provenance": 351,
+            "same_owner_ship_id_observed_at_site_both": 164,
+            "same_ship_cargo_pair_qualified": 314,
+            "same_site_identical_ship_set_all_cargo_qualified": 102,
+            "structure_and_tax_controls_qualified": 1884,
+            "structure_and_tax_controls_unchanged": 1401,
+            "structure_or_tax_controls_changed": 483,
+            "surface_residual_zero": 1884
+          }
+        },
+        "molybdenum": {
+          "both_exact": {
+            "NO_OWNER_SHIP_OBSERVED_AT_SITE_NOT_ABSENCE_PROOF": 149367,
+            "multiple_co_site_ship_ids_all_cargo_qualified": 6551,
+            "owner_ship_observed_at_site_after": 39712,
+            "owner_ship_observed_at_site_before": 50692,
+            "owner_ship_observed_at_site_both": 29743,
+            "owner_ship_section_pair_qualified": 210028,
+            "ownerless_base_planetlinked_after_not_owner_proof": 93180,
+            "ownerless_base_planetlinked_before_not_owner_proof": 92765,
+            "ownerless_base_planetlinked_both_not_owner_proof": 92530,
+            "ownerless_planetlinked_tech_changed_observed": 466,
+            "ownerless_planetlinked_tech_unchanged_observed": 92064,
+            "planet_coordinates_qualified": 210028,
+            "planetlinked_base_both_any_owner_provenance": 92530,
+            "same_owner_ship_id_observed_at_site_both": 26747,
+            "same_ship_cargo_pair_qualified": 55352,
+            "same_site_identical_ship_set_all_cargo_qualified": 18274,
+            "structure_and_tax_controls_qualified": 210028,
+            "structure_and_tax_controls_unchanged": 134432,
+            "structure_or_tax_controls_changed": 75596,
+            "surface_residual_zero": 210028
+          },
+          "ground_exact_surface_residual": {
+            "NO_OWNER_SHIP_OBSERVED_AT_SITE_NOT_ABSENCE_PROOF": 5202,
+            "multiple_co_site_ship_ids_all_cargo_qualified": 3031,
+            "multiple_ship_cargo_sum_opposite_candidate_not_order": 565,
+            "one_ship_opposite_cargo_delta_candidate": 2108,
+            "opposite_cargo_ship_both_freshness_explicit": 2108,
+            "owner_ship_observed_at_site_after": 36347,
+            "owner_ship_observed_at_site_before": 25944,
+            "owner_ship_observed_at_site_both": 24407,
+            "owner_ship_section_pair_qualified": 43086,
+            "ownerless_base_planetlinked_after_not_owner_proof": 30458,
+            "ownerless_base_planetlinked_before_not_owner_proof": 29825,
+            "ownerless_base_planetlinked_both_not_owner_proof": 29811,
+            "ownerless_planetlinked_tech_changed_observed": 2129,
+            "ownerless_planetlinked_tech_unchanged_observed": 27682,
+            "planet_coordinates_qualified": 43086,
+            "planetlinked_base_both_any_owner_provenance": 29811,
+            "same_owner_ship_id_observed_at_site_both": 20035,
+            "same_ship_cargo_pair_qualified": 57401,
+            "same_site_identical_ship_set_all_cargo_qualified": 6533,
+            "structure_and_tax_controls_qualified": 43086,
+            "structure_and_tax_controls_unchanged": 22102,
+            "structure_or_tax_controls_changed": 20984,
+            "surface_residual_negative": 32617,
+            "surface_residual_positive": 10469
+          },
+          "neither_exact": {
+            "NO_OWNER_SHIP_OBSERVED_AT_SITE_NOT_ABSENCE_PROOF": 4025,
+            "multiple_co_site_ship_ids_all_cargo_qualified": 193,
+            "multiple_ship_cargo_sum_opposite_candidate_not_order": 2,
+            "one_ship_opposite_cargo_delta_candidate": 9,
+            "opposite_cargo_ship_both_freshness_explicit": 9,
+            "owner_ship_observed_at_site_after": 1886,
+            "owner_ship_observed_at_site_before": 1909,
+            "owner_ship_observed_at_site_both": 1200,
+            "owner_ship_section_pair_qualified": 6620,
+            "ownerless_base_planetlinked_after_not_owner_proof": 4130,
+            "ownerless_base_planetlinked_before_not_owner_proof": 4050,
+            "ownerless_base_planetlinked_both_not_owner_proof": 4041,
+            "ownerless_planetlinked_tech_changed_observed": 65,
+            "ownerless_planetlinked_tech_unchanged_observed": 3976,
+            "planet_coordinates_qualified": 6620,
+            "planetlinked_base_both_any_owner_provenance": 4041,
+            "same_owner_ship_id_observed_at_site_both": 945,
+            "same_ship_cargo_pair_qualified": 2114,
+            "same_site_identical_ship_set_all_cargo_qualified": 516,
+            "structure_and_tax_controls_qualified": 6620,
+            "structure_and_tax_controls_unchanged": 4562,
+            "structure_or_tax_controls_changed": 2058,
+            "surface_residual_negative": 998,
+            "surface_residual_positive": 5622
+          },
+          "surface_exact_ground_residual": {
+            "NO_OWNER_SHIP_OBSERVED_AT_SITE_NOT_ABSENCE_PROOF": 1363,
+            "multiple_co_site_ship_ids_all_cargo_qualified": 23,
+            "owner_ship_observed_at_site_after": 201,
+            "owner_ship_observed_at_site_before": 284,
+            "owner_ship_observed_at_site_both": 137,
+            "owner_ship_section_pair_qualified": 1711,
+            "ownerless_base_planetlinked_after_not_owner_proof": 284,
+            "ownerless_base_planetlinked_before_not_owner_proof": 277,
+            "ownerless_base_planetlinked_both_not_owner_proof": 277,
+            "ownerless_planetlinked_tech_changed_observed": 1,
+            "ownerless_planetlinked_tech_unchanged_observed": 276,
+            "planet_coordinates_qualified": 1711,
+            "planetlinked_base_both_any_owner_provenance": 277,
+            "same_owner_ship_id_observed_at_site_both": 109,
+            "same_ship_cargo_pair_qualified": 172,
+            "same_site_identical_ship_set_all_cargo_qualified": 76,
+            "structure_and_tax_controls_qualified": 1711,
+            "structure_and_tax_controls_unchanged": 1301,
+            "structure_or_tax_controls_changed": 410,
+            "surface_residual_zero": 1711
+          }
+        },
+        "neutronium": {
+          "both_exact": {
+            "NO_OWNER_SHIP_OBSERVED_AT_SITE_NOT_ABSENCE_PROOF": 152555,
+            "multiple_co_site_ship_ids_all_cargo_qualified": 7572,
+            "owner_ship_observed_at_site_after": 40636,
+            "owner_ship_observed_at_site_before": 54435,
+            "owner_ship_observed_at_site_both": 32459,
+            "owner_ship_section_pair_qualified": 215167,
+            "ownerless_base_planetlinked_after_not_owner_proof": 100021,
+            "ownerless_base_planetlinked_before_not_owner_proof": 99235,
+            "ownerless_base_planetlinked_both_not_owner_proof": 99002,
+            "ownerless_planetlinked_tech_changed_observed": 1371,
+            "ownerless_planetlinked_tech_unchanged_observed": 97631,
+            "planet_coordinates_qualified": 215167,
+            "planetlinked_base_both_any_owner_provenance": 99002,
+            "same_owner_ship_id_observed_at_site_both": 30006,
+            "same_ship_cargo_pair_qualified": 62909,
+            "same_site_identical_ship_set_all_cargo_qualified": 20327,
+            "structure_and_tax_controls_qualified": 215167,
+            "structure_and_tax_controls_unchanged": 136862,
+            "structure_or_tax_controls_changed": 78305,
+            "surface_residual_zero": 215167
+          },
+          "ground_exact_surface_residual": {
+            "ABSTAIN_MULTIPLE_OPPOSITE_CARGO_SHIPS": 6,
+            "NO_OWNER_SHIP_OBSERVED_AT_SITE_NOT_ABSENCE_PROOF": 1204,
+            "multiple_co_site_ship_ids_all_cargo_qualified": 2004,
+            "multiple_ship_cargo_sum_opposite_candidate_not_order": 1510,
+            "one_ship_opposite_cargo_delta_candidate": 4610,
+            "opposite_cargo_ship_both_freshness_explicit": 4610,
+            "owner_ship_observed_at_site_after": 34874,
+            "owner_ship_observed_at_site_before": 21755,
+            "owner_ship_observed_at_site_both": 21406,
+            "owner_ship_section_pair_qualified": 36427,
+            "ownerless_base_planetlinked_after_not_owner_proof": 22841,
+            "ownerless_base_planetlinked_before_not_owner_proof": 22575,
+            "ownerless_base_planetlinked_both_not_owner_proof": 22560,
+            "ownerless_planetlinked_tech_changed_observed": 1211,
+            "ownerless_planetlinked_tech_unchanged_observed": 21349,
+            "planet_coordinates_qualified": 36427,
+            "planetlinked_base_both_any_owner_provenance": 22560,
+            "same_owner_ship_id_observed_at_site_both": 16577,
+            "same_ship_cargo_pair_qualified": 49220,
+            "same_site_identical_ship_set_all_cargo_qualified": 4395,
+            "structure_and_tax_controls_qualified": 36427,
+            "structure_and_tax_controls_unchanged": 18643,
+            "structure_or_tax_controls_changed": 17784,
+            "surface_residual_negative": 28878,
+            "surface_residual_positive": 7549
+          },
+          "neither_exact": {
+            "NO_OWNER_SHIP_OBSERVED_AT_SITE_NOT_ABSENCE_PROOF": 4704,
+            "multiple_co_site_ship_ids_all_cargo_qualified": 191,
+            "multiple_ship_cargo_sum_opposite_candidate_not_order": 9,
+            "one_ship_opposite_cargo_delta_candidate": 35,
+            "opposite_cargo_ship_both_freshness_explicit": 35,
+            "owner_ship_observed_at_site_after": 2404,
+            "owner_ship_observed_at_site_before": 2285,
+            "owner_ship_observed_at_site_both": 1449,
+            "owner_ship_section_pair_qualified": 7944,
+            "ownerless_base_planetlinked_after_not_owner_proof": 4795,
+            "ownerless_base_planetlinked_before_not_owner_proof": 4721,
+            "ownerless_base_planetlinked_both_not_owner_proof": 4711,
+            "ownerless_planetlinked_tech_changed_observed": 75,
+            "ownerless_planetlinked_tech_unchanged_observed": 4636,
+            "planet_coordinates_qualified": 7944,
+            "planetlinked_base_both_any_owner_provenance": 4711,
+            "same_owner_ship_id_observed_at_site_both": 1109,
+            "same_ship_cargo_pair_qualified": 2589,
+            "same_site_identical_ship_set_all_cargo_qualified": 579,
+            "structure_and_tax_controls_qualified": 7944,
+            "structure_and_tax_controls_unchanged": 5480,
+            "structure_or_tax_controls_changed": 2464,
+            "surface_residual_negative": 1402,
+            "surface_residual_positive": 6542
+          },
+          "surface_exact_ground_residual": {
+            "NO_OWNER_SHIP_OBSERVED_AT_SITE_NOT_ABSENCE_PROOF": 1493,
+            "multiple_co_site_ship_ids_all_cargo_qualified": 32,
+            "owner_ship_observed_at_site_after": 226,
+            "owner_ship_observed_at_site_before": 350,
+            "owner_ship_observed_at_site_both": 168,
+            "owner_ship_section_pair_qualified": 1901,
+            "ownerless_base_planetlinked_after_not_owner_proof": 396,
+            "ownerless_base_planetlinked_before_not_owner_proof": 387,
+            "ownerless_base_planetlinked_both_not_owner_proof": 387,
+            "ownerless_planetlinked_tech_changed_observed": 6,
+            "ownerless_planetlinked_tech_unchanged_observed": 381,
+            "planet_coordinates_qualified": 1901,
+            "planetlinked_base_both_any_owner_provenance": 387,
+            "same_owner_ship_id_observed_at_site_both": 143,
+            "same_ship_cargo_pair_qualified": 287,
+            "same_site_identical_ship_set_all_cargo_qualified": 96,
+            "structure_and_tax_controls_qualified": 1901,
+            "structure_and_tax_controls_unchanged": 1410,
+            "structure_or_tax_controls_changed": 491,
+            "surface_residual_zero": 1901
+          }
+        },
+        "tritanium": {
+          "both_exact": {
+            "NO_OWNER_SHIP_OBSERVED_AT_SITE_NOT_ABSENCE_PROOF": 148852,
+            "multiple_co_site_ship_ids_all_cargo_qualified": 6645,
+            "owner_ship_observed_at_site_after": 41187,
+            "owner_ship_observed_at_site_before": 51420,
+            "owner_ship_observed_at_site_both": 30604,
+            "owner_ship_section_pair_qualified": 210855,
+            "ownerless_base_planetlinked_after_not_owner_proof": 93862,
+            "ownerless_base_planetlinked_before_not_owner_proof": 93441,
+            "ownerless_base_planetlinked_both_not_owner_proof": 93207,
+            "ownerless_planetlinked_tech_changed_observed": 476,
+            "ownerless_planetlinked_tech_unchanged_observed": 92731,
+            "planet_coordinates_qualified": 210855,
+            "planetlinked_base_both_any_owner_provenance": 93207,
+            "same_owner_ship_id_observed_at_site_both": 27416,
+            "same_ship_cargo_pair_qualified": 56867,
+            "same_site_identical_ship_set_all_cargo_qualified": 18426,
+            "structure_and_tax_controls_qualified": 210855,
+            "structure_and_tax_controls_unchanged": 134936,
+            "structure_or_tax_controls_changed": 75919,
+            "surface_residual_zero": 210855
+          },
+          "ground_exact_surface_residual": {
+            "NO_OWNER_SHIP_OBSERVED_AT_SITE_NOT_ABSENCE_PROOF": 5103,
+            "multiple_co_site_ship_ids_all_cargo_qualified": 2915,
+            "multiple_ship_cargo_sum_opposite_candidate_not_order": 548,
+            "one_ship_opposite_cargo_delta_candidate": 2016,
+            "opposite_cargo_ship_both_freshness_explicit": 2016,
+            "owner_ship_observed_at_site_after": 34471,
+            "owner_ship_observed_at_site_before": 24835,
+            "owner_ship_observed_at_site_both": 23327,
+            "owner_ship_section_pair_qualified": 41082,
+            "ownerless_base_planetlinked_after_not_owner_proof": 29148,
+            "ownerless_base_planetlinked_before_not_owner_proof": 28532,
+            "ownerless_base_planetlinked_both_not_owner_proof": 28519,
+            "ownerless_planetlinked_tech_changed_observed": 2108,
+            "ownerless_planetlinked_tech_unchanged_observed": 26411,
+            "planet_coordinates_qualified": 41082,
+            "planetlinked_base_both_any_owner_provenance": 28519,
+            "same_owner_ship_id_observed_at_site_both": 19186,
+            "same_ship_cargo_pair_qualified": 55385,
+            "same_site_identical_ship_set_all_cargo_qualified": 6298,
+            "structure_and_tax_controls_qualified": 41082,
+            "structure_and_tax_controls_unchanged": 20960,
+            "structure_or_tax_controls_changed": 20122,
+            "surface_residual_negative": 31958,
+            "surface_residual_positive": 9124
+          },
+          "neither_exact": {
+            "NO_OWNER_SHIP_OBSERVED_AT_SITE_NOT_ABSENCE_PROOF": 4551,
+            "multiple_co_site_ship_ids_all_cargo_qualified": 206,
+            "multiple_ship_cargo_sum_opposite_candidate_not_order": 3,
+            "one_ship_opposite_cargo_delta_candidate": 17,
+            "opposite_cargo_ship_both_freshness_explicit": 17,
+            "owner_ship_observed_at_site_after": 2203,
+            "owner_ship_observed_at_site_before": 2215,
+            "owner_ship_observed_at_site_both": 1365,
+            "owner_ship_section_pair_qualified": 7604,
+            "ownerless_base_planetlinked_after_not_owner_proof": 4656,
+            "ownerless_base_planetlinked_before_not_owner_proof": 4568,
+            "ownerless_base_planetlinked_both_not_owner_proof": 4556,
+            "ownerless_planetlinked_tech_changed_observed": 74,
+            "ownerless_planetlinked_tech_unchanged_observed": 4482,
+            "planet_coordinates_qualified": 7604,
+            "planetlinked_base_both_any_owner_provenance": 4556,
+            "same_owner_ship_id_observed_at_site_both": 1074,
+            "same_ship_cargo_pair_qualified": 2426,
+            "same_site_identical_ship_set_all_cargo_qualified": 575,
+            "structure_and_tax_controls_qualified": 7604,
+            "structure_and_tax_controls_unchanged": 5103,
+            "structure_or_tax_controls_changed": 2501,
+            "surface_residual_negative": 1128,
+            "surface_residual_positive": 6476
+          },
+          "surface_exact_ground_residual": {
+            "NO_OWNER_SHIP_OBSERVED_AT_SITE_NOT_ABSENCE_PROOF": 1448,
+            "multiple_co_site_ship_ids_all_cargo_qualified": 34,
+            "owner_ship_observed_at_site_after": 269,
+            "owner_ship_observed_at_site_before": 349,
+            "owner_ship_observed_at_site_both": 180,
+            "owner_ship_section_pair_qualified": 1886,
+            "ownerless_base_planetlinked_after_not_owner_proof": 374,
+            "ownerless_base_planetlinked_before_not_owner_proof": 365,
+            "ownerless_base_planetlinked_both_not_owner_proof": 365,
+            "ownerless_planetlinked_tech_changed_observed": 4,
+            "ownerless_planetlinked_tech_unchanged_observed": 361,
+            "planet_coordinates_qualified": 1886,
+            "planetlinked_base_both_any_owner_provenance": 365,
+            "same_owner_ship_id_observed_at_site_both": 150,
+            "same_ship_cargo_pair_qualified": 286,
+            "same_site_identical_ship_set_all_cargo_qualified": 97,
+            "structure_and_tax_controls_qualified": 1886,
+            "structure_and_tax_controls_unchanged": 1393,
+            "structure_or_tax_controls_changed": 493,
+            "surface_residual_zero": 1886
+          }
+        }
+      },
+      "per_mineral_class_residual_magnitude_buckets": {
+        "duranium": {
+          "both_exact": {
+            "0": 218573
+          },
+          "ground_exact_surface_residual": {
+            "1": 477,
+            "101_to_1000": 13271,
+            "21_to_100": 10466,
+            "2_to_5": 2941,
+            "6_to_20": 6279,
+            "over_1000": 387
+          },
+          "neither_exact": {
+            "1": 547,
+            "101_to_1000": 849,
+            "21_to_100": 3512,
+            "2_to_5": 611,
+            "6_to_20": 1614,
+            "over_1000": 13
+          },
+          "surface_exact_ground_residual": {
+            "0": 1884
+          }
+        },
+        "molybdenum": {
+          "both_exact": {
+            "0": 210028
+          },
+          "ground_exact_surface_residual": {
+            "1": 294,
+            "101_to_1000": 14834,
+            "21_to_100": 12142,
+            "2_to_5": 5012,
+            "6_to_20": 10115,
+            "over_1000": 689
+          },
+          "neither_exact": {
+            "1": 610,
+            "101_to_1000": 862,
+            "21_to_100": 3191,
+            "2_to_5": 577,
+            "6_to_20": 1363,
+            "over_1000": 17
+          },
+          "surface_exact_ground_residual": {
+            "0": 1711
+          }
+        },
+        "neutronium": {
+          "both_exact": {
+            "0": 215167
+          },
+          "ground_exact_surface_residual": {
+            "1": 801,
+            "101_to_1000": 14649,
+            "21_to_100": 12170,
+            "2_to_5": 2505,
+            "6_to_20": 5841,
+            "over_1000": 461
+          },
+          "neither_exact": {
+            "1": 587,
+            "101_to_1000": 1299,
+            "21_to_100": 3829,
+            "2_to_5": 607,
+            "6_to_20": 1605,
+            "over_1000": 17
+          },
+          "surface_exact_ground_residual": {
+            "0": 1901
+          }
+        },
+        "tritanium": {
+          "both_exact": {
+            "0": 210855
+          },
+          "ground_exact_surface_residual": {
+            "1": 293,
+            "101_to_1000": 13379,
+            "21_to_100": 12965,
+            "2_to_5": 3859,
+            "6_to_20": 10137,
+            "over_1000": 449
+          },
+          "neither_exact": {
+            "1": 651,
+            "101_to_1000": 907,
+            "21_to_100": 3807,
+            "2_to_5": 637,
+            "6_to_20": 1587,
+            "over_1000": 15
+          },
+          "surface_exact_ground_residual": {
+            "0": 1886
+          }
+        }
+      },
+      "per_mineral_residual_classes": {
+        "duranium": {
+          "both_exact": 218573,
+          "ground_exact_surface_residual": 33821,
+          "neither_exact": 7146,
+          "surface_exact_ground_residual": 1884
+        },
+        "molybdenum": {
+          "both_exact": 210028,
+          "ground_exact_surface_residual": 43086,
+          "neither_exact": 6620,
+          "surface_exact_ground_residual": 1711
+        },
+        "neutronium": {
+          "both_exact": 215167,
+          "ground_exact_surface_residual": 36427,
+          "neither_exact": 7944,
+          "surface_exact_ground_residual": 1901
+        },
+        "tritanium": {
+          "both_exact": 210855,
+          "ground_exact_surface_residual": 41082,
+          "neither_exact": 7604,
+          "surface_exact_ground_residual": 1886
+        }
+      },
+      "per_mineral_surface_residual_joint_cargo_base": {
+        "duranium": {
+          "any_exact_opposite_cargo_candidate": 2124,
+          "base_tech_change_and_cargo_candidate": 13,
+          "base_tech_change_no_cargo_candidate": 2068,
+          "both_single_and_multiship_candidate": 481,
+          "cargo_candidate_negative_surface_residual": 1825,
+          "cargo_candidate_positive_surface_residual": 299,
+          "multiship_only_cargo_candidate": 95,
+          "no_exact_cargo_candidate": 31697,
+          "owner_ship_at_site_both": 19278,
+          "ownerless_planetlinked_tech_changed": 2081,
+          "planetlinked_base_both_not_ownership_proof": 22482,
+          "qualified_surface_residual": 33821,
+          "single_only_cargo_candidate": 1548
+        },
+        "molybdenum": {
+          "any_exact_opposite_cargo_candidate": 2224,
+          "base_tech_change_and_cargo_candidate": 14,
+          "base_tech_change_no_cargo_candidate": 2115,
+          "both_single_and_multiship_candidate": 449,
+          "cargo_candidate_negative_surface_residual": 1922,
+          "cargo_candidate_positive_surface_residual": 302,
+          "multiship_only_cargo_candidate": 116,
+          "no_exact_cargo_candidate": 40862,
+          "owner_ship_at_site_both": 24407,
+          "ownerless_planetlinked_tech_changed": 2129,
+          "planetlinked_base_both_not_ownership_proof": 29811,
+          "qualified_surface_residual": 43086,
+          "single_only_cargo_candidate": 1659
+        },
+        "neutronium": {
+          "any_exact_opposite_cargo_candidate": 5083,
+          "base_tech_change_and_cargo_candidate": 115,
+          "base_tech_change_no_cargo_candidate": 1096,
+          "both_single_and_multiship_candidate": 1037,
+          "cargo_candidate_negative_surface_residual": 4493,
+          "cargo_candidate_positive_surface_residual": 590,
+          "multiship_only_cargo_candidate": 473,
+          "no_exact_cargo_candidate": 31344,
+          "owner_ship_at_site_both": 21406,
+          "ownerless_planetlinked_tech_changed": 1211,
+          "planetlinked_base_both_not_ownership_proof": 22560,
+          "qualified_surface_residual": 36427,
+          "single_only_cargo_candidate": 3573
+        },
+        "tritanium": {
+          "any_exact_opposite_cargo_candidate": 2113,
+          "base_tech_change_and_cargo_candidate": 11,
+          "base_tech_change_no_cargo_candidate": 2097,
+          "both_single_and_multiship_candidate": 451,
+          "cargo_candidate_negative_surface_residual": 1846,
+          "cargo_candidate_positive_surface_residual": 267,
+          "multiship_only_cargo_candidate": 97,
+          "no_exact_cargo_candidate": 38969,
+          "owner_ship_at_site_both": 23327,
+          "ownerless_planetlinked_tech_changed": 2108,
+          "planetlinked_base_both_not_ownership_proof": 28519,
+          "qualified_surface_residual": 41082,
+          "single_only_cargo_candidate": 1565
+        }
+      },
+      "planet_transition_residual_events_not_independent_actions": {
+        "planet_windows_any_base_tech_change": 2282,
+        "planet_windows_any_cargo_candidate": 6870,
+        "planet_windows_any_multiship_cargo": 1881,
+        "planet_windows_any_planetlinked_base": 39387,
+        "planet_windows_any_single_cargo": 6486,
+        "planet_windows_any_surface_residual": 58938,
+        "planet_windows_base_tech_and_cargo_candidate": 127,
+        "residual_mineral_multiplicity_1": 14273,
+        "residual_mineral_multiplicity_2": 11961,
+        "residual_mineral_multiplicity_3": 14595,
+        "residual_mineral_multiplicity_4": 18109
+      },
+      "source_quality_abstentions_and_limitations": {
+        "ABSTAIN_OWNERLESS_BASE_PLANET_NOT_OWNER_CURRENT": 419182,
+        "ABSTAIN_OWNER_SHIP_COORDS_UNAVAILABLE": 10,
+        "ABSTAIN_STARBASE_OWNER_MISSING": 699600,
+        "ABSTAIN_STARBASE_STALE": 3,
+        "OWNERLESS_BASE_PLANETLINK_CANDIDATE_NOT_OWNER_VERIFIED": 280415,
+        "STARBASE_OWNERID_UNAVAILABLE": 699600
+      }
+    }
+  },
+  "schema": "planets-lab.m2-public-corpus-economy-coverage.v1",
+  "status": "CORPUS_METADATA_CENSUS_AND_BOUNDED_OWNER_CURRENT_SAMPLE_NOT_HOST_CAUSAL"
+}

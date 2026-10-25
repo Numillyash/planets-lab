@@ -1,0 +1,7 @@
+{
+  "allowlisted_failed_modules": [],
+  "raw_test_names_or_traces_exported": false,
+  "schema": "planets-lab.pytest-allowlisted-failed-module-counts.v4",
+  "status": "PASS_SAFE_FAILURE_COUNTS_ONLY",
+  "unmapped_failures_or_errors": 0
+}

@@ -1,0 +1,38 @@
+===== FULL PUBLIC100 METADATA + BASELINE68 DEEP READ-ONLY SURVEY =====
+source_commit=cd6140b03aa5be714f9245a9a4966f97a9fbbf5a
+metadata_games=100
+source_members_expected=224014
+selected_baseline_games_max=68
+selected_adjacent_pairs_per_game_max=128
+selected_adjacent_pairs_budget_max=8704
+observational_selection_frozen_from=20261024T185839Z_3f539501db2a
+minefield_joint_source_readiness=PREDECLARED_OBSERVATIONAL_JOINT_NOT_HOST_CAUSAL
+nonplanet_observability=minefields_ships_starbases_vcrs_ionstorms
+sealed_heldout32_entity_access=false
+generation=EXPLICIT_PUBLIC100
+database_mount=READ_ONLY
+current_changed=false
+new_real_host_diff_verified=false
+stage=container_tool_preflight status=PASS_GIT_AND_BASH
+stage=baseline68_cohort_metadata_identity begin
+stage=baseline68_cohort_metadata_identity result=PASS_EXACT_SET_MATCH
+stage=full_pytest started
+stage=full_pytest result=PASS
+stage=pytest_module_failure_classifier result=PASS_SAFE_COUNTS
+test_cases=3746
+test_failures=0
+test_errors=0
+stage=host_joint_validator_self_test begin
+stage=host_joint_validator_self_test result=PASS
+stage=deep_m2_100_metadata_68_baseline begin
+observed_metadata_games=100
+observed_metadata_members=224014
+sampled_baseline_games=68
+sampled_adjacent_pairs=8550
+sampled_nonplanet_sections=minefields_ships_starbases_vcrs_ionstorms
+heldout_entities_read=false
+stage=deep_m2 result=PASS_VALIDATED_AGGREGATE
+aggregate_report=artifacts/corpus/public100-baseline68-mine-joint-v6/m2-deep-coverage.json
+batch_status=PASS_NONCAUSAL_READONLY
+batch_stage_status=PASS_PINNED_PUBLIC100_BASELINE68/PASS/PASS_EXACT_68_IDS_SHA_PINNED_PUBLIC68/PASS/PASS_VALIDATED_AGGREGATE
+aggregate_status_path=artifacts/corpus/public100-baseline68-mine-joint-v6/stage-status.json

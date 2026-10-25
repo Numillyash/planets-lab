@@ -1,0 +1,17 @@
+{
+  "baseline_entity_game_cap": 68,
+  "build_status": "PASS",
+  "cohort_status": "PASS_EXACT_68_IDS_SHA_PINNED_PUBLIC68",
+  "current_changed_by_runner": false,
+  "economy_exit": 0,
+  "economy_status": "PASS_VALIDATED_AGGREGATE",
+  "full_metadata_games_expected": 100,
+  "full_metadata_members_expected": 224014,
+  "heldout32_entities_read": false,
+  "host_diff_verified": false,
+  "host_orders_verified": false,
+  "preflight": "PASS_PINNED_PUBLIC100_BASELINE68",
+  "pytest_exit": 0,
+  "pytest_status": "PASS",
+  "schema": "planets-lab.public100-baseline68-mine-joint-status.v6"
+}
