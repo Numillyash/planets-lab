@@ -71,6 +71,8 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument("--pairs-per-game", type=int, default=2,
                         help="Up to this many adjacent T-1/T pairs per selected game")
+    parser.add_argument("--starbase-linked-provenance", action="store_true",
+                        help="Add strict starbase→planet own-current archive link count-only audit")
     parser.add_argument("--output", type=Path,
                         help="Optional private aggregate JSON; must not overwrite")
     args = parser.parse_args(argv)
@@ -134,6 +136,7 @@ def main(argv: list[str] | None = None) -> int:
             reconstruct=restore,
             allowed_games=baseline_ids,
             expected_frozen_selection_sha256=args.expected_selection_sha256,
+            starbase_planet_link_readiness=args.starbase_linked_provenance,
         )
     finally:
         connection.close()
