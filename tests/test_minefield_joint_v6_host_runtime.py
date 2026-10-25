@@ -27,6 +27,13 @@ def run_cli(*args: str, cwd: Path):
 
 def source_projection():
     payload = json.loads(BASE.read_text(encoding="utf-8"))
+    # Published fixture is deliberately an allowlisted projection, not the
+    # full generic M2 envelope. Restore only the generic false causal flags.
+    payload["evidence_limits"].update({
+        "raw_trn_is_submitted_turn_orders": False,
+        "NuHost_ship_build_cost_verified": False,
+        "NuHost_economic_formula_verified": False,
+    })
     mine = payload["sample"]["nonplanet_archive_identity_readiness_not_host_phase"]["minefields"]
     # Explicitly SYNTHETIC compatible extension to old published margins.
     mine.update(dict(zip(JOINT, (100, 30, 40, 30, 70))))
