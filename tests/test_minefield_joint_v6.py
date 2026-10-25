@@ -7,8 +7,7 @@ import sys
 import pytest
 
 from planets_lab.corpus.nonplanet_archive_pair_readiness import profile_source_identity_pairs
-from tools.diagnostics.validate_minefield_joint_v6 import JOINT, validate_joint
-from planets_lab.corpus.nonplanet_v5_evidence_review import EvidenceReviewAbstain
+from tools.diagnostics.validate_minefield_joint_v6 import JOINT, validate_joint, EvidenceReviewAbstain
 
 ROOT=Path(__file__).resolve().parents[1]
 V5=ROOT/"tests/fixtures/public100_nonplanet_v5_allowlisted_aggregates.json"
