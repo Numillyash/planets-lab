@@ -31,6 +31,10 @@ then
   echo "status=ABSTAIN_PRIOR_FAILED_BUILD_STATUS_UNAVAILABLE"
   exit 125
 fi
+if [[ ! -f "$OLD/private-local/build.log" ]]; then
+  echo "status=ABSTAIN_PRIOR_PRIVATE_BUILD_LOG_MISSING"
+  exit 125
+fi
 if python3 -I -S tools/diagnostics/sanitize_docker_build_failure_v1.py \
      --input "$OLD/private-local/build.log" \
      --output "$OUT/build-failure-diagnostic.json"; then
