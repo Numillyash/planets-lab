@@ -41,6 +41,7 @@ SAMPLE_FIELDS = {
     "surface_residual_context_not_host_verified",
     "nonplanet_section_observability_not_host_phase",
     "nonplanet_archive_identity_readiness_not_host_phase",
+    "starbase_planet_archive_link_not_host_phase",
 }
 HEX64 = re.compile(r"[a-f0-9]{64}\Z")
 
