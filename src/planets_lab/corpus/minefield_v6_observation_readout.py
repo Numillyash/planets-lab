@@ -8,11 +8,21 @@ from __future__ import annotations
 
 from collections.abc import Mapping
 from copy import deepcopy
+from importlib.util import module_from_spec, spec_from_file_location
+from pathlib import Path
 from typing import Any
 
-from planets_lab.corpus.nonplanet_v5_evidence_review import (
-    EvidenceReviewAbstain, review_published_v5,
-)
+# Offline reporting must also run using ONLY host stdlib Python.
+# Avoid planets_lab.corpus.__init__ (which imports DuckDB via feature_index)
+# when the module is invoked by its independent CLI.
+_V5_PATH = Path(__file__).resolve().with_name("nonplanet_v5_evidence_review.py")
+_v5_spec = spec_from_file_location("_pure_source_v5_for_v6_readout", _V5_PATH)
+if _v5_spec is None or _v5_spec.loader is None:
+    raise RuntimeError("ABSTAIN_V5_REVIEW_MODULE_MISSING")
+_v5_module = module_from_spec(_v5_spec)
+_v5_spec.loader.exec_module(_v5_module)
+EvidenceReviewAbstain = _v5_module.EvidenceReviewAbstain
+review_published_v5 = _v5_module.review_published_v5
 
 SCHEMA = "planets-lab.minefield-v6-joint-observation-readout.v1"
 V6_FIXTURE_SCHEMA = "planets-lab.minefield-v6-safe-aggregate-projection.v1"
