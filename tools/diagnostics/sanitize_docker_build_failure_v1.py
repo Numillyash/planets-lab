@@ -47,8 +47,8 @@ def classify_build_log(text: str) -> str:
     return "UNCLASSIFIED"
 
 
-def build_safe_diagnostic(log_path: Path, exit_code: int) -> dict:
-    if type(exit_code) is not int or not 1 <= exit_code <= 255:
+def build_safe_diagnostic(log_path: Path, exit_code: int | None = None) -> dict:
+    if exit_code is not None and (type(exit_code) is not int or not 1 <= exit_code <= 255):
         raise ValueError("ABSTAIN_BUILD_EXIT_CODE_NOT_FAILED")
     try:
         with log_path.open("rb") as stream:
@@ -67,6 +67,7 @@ def build_safe_diagnostic(log_path: Path, exit_code: int) -> dict:
         "schema": SCHEMA,
         "build_status": "FAILED",
         "build_exit_code": exit_code,
+        "build_exit_code_verified": exit_code is not None,
         "diagnostic_category": category,
         "local_log_available": log_available,
         "diagnostic_is_definitive_root_cause": False,
@@ -80,7 +81,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--input", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
-    parser.add_argument("--exit-code", type=int, required=True)
+    parser.add_argument("--exit-code", type=int, help="Only the actual Docker build process exit code, not the outer wrapper exit")
     args = parser.parse_args()
     if args.output.exists() or args.output.resolve() == args.input.resolve():
         print("ABSTAIN_BUILD_SAFE_OUTPUT_EXISTS_OR_OVERWRITE")
