@@ -57,14 +57,14 @@ def test_isolated_host_command_can_validate_synthetic_full_aggregate(tmp_path):
 ])
 def test_isolated_host_command_fails_closed_without_source_leak(tmp_path,mutate):
     payload=source_projection()
-    payload["unpublished_sensitive_identifier"]="SHOULD_NEVER_PRINT_8898"
+    payload["sample"]["sample_status_counts"]["unpublished_sensitive_identifier"]=8898
     mutate(payload)
     inp=tmp_path / "bad.json"
     inp.write_text(json.dumps(payload), encoding="utf-8")
     result=run_cli("--input", str(inp),cwd=tmp_path)
     assert result.returncode==2
     assert result.stdout.strip()=="ABSTAIN_V6_VALIDATION"
-    assert "SHOULD_NEVER_PRINT" not in result.stdout+result.stderr
+    assert "unpublished_sensitive_identifier" not in result.stdout+result.stderr
 
 def test_selftest_refuses_input_and_missing_normal_input(tmp_path):
     for args in (("--self-test","--input","some.json"),tuple()):
