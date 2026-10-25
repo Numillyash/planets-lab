@@ -1,0 +1,25 @@
+# PR #317 — repair v6 host validator bootstrap and stage-specific ABSTAIN
+
+## Runtime evidence actually read
+
+Read from orphan GitHub `runtime-logs/public100-baseline68-mine-joint-v6/20261024T231935Z_80616bdd2239`: `metadata.json`, `gate.log`, `stage-status.json`, `baseline-cohort-attestation.json`, `pytest-counts.json`, `README.txt` (no private local diagnostic logs). Started **2026-10-24 23:19:35Z**, finished **23:51:14Z** = **31m39s**; outer exit=2, main source SHA `80616bdd2239445572c23ce31b2312677b850909`. Docker Git/Bash PASS; exact independent public68 subset game ID attestation PASS, actual manifest SHA `942eb61741664835cc600bb1e2148daaa1c009462827b238f13227c5937899d9`. Full Docker pytest PASS **3738 total / 26 skipped / 0 failures / 0 errors**. `economy_exit=0`, but `economy_status=FAILED_OR_UNVALIDATED` and `m2-deep-coverage.json` intentionally absent from runtime publisher. No validated v6 joint number exists. Source metadata announced explicit public100, read only, 100 metadata games/224014 member snapshots, baseline68 content only, sealed32 false, CURRENT untouched; frozen observational selection from v4, 8550 SHA pinned by code.
+
+## Source of failure, epistemic status
+
+`tools/run-public100-baseline68-mine-joint-v6.sh` executes M2 reconstruction in Docker, but three subsequent report validations with **host** `python3`. In v6 `tools/diagnostics/validate_minefield_joint_v6.py` imported `planets_lab.corpus.nonplanet_v5_evidence_review` and `tools.diagnostics...` without adding project root/`src` to `sys.path`. Host Python need not have editable package installed; the CI/Docker pytest import success therefore was **insufficient** host runtime parity. This is a demonstrable code integration defect and a strong cause candidate, but the actual host `private-local/joint-validator.log` is intentionally not published, so do not claim an independently verified exception text or which of the original three validators failed. Generic `FAILED_OR_UNVALIDATED` hid stage attribution.
+
+## PR #317 implementation
+
+- Bootstrap `sys.path` to exact repository root and `src` from resolved script path **before** importing source validator; works with isolated host Python `-I -S` and arbitrary cwd, without pip install, packages or import-path environment assumptions.
+- Deterministic **synthetic-only** `--self-test` extends committed allowlisted, formerly validated v5 source counts with a clearly labeled fake joint partition (`100 = 30+40+30`, changed=70). Runs same `validate_joint` invariants, valid frozen metadata and baseline attestation, no DuckDB. Isolated host CLI subprocess tests use `python -I -S` with different working directory. Self-test has no claim to empirical v6 joint.
+- The existing dedicated run script executes this fast host-side preflight before launching expensive corpus reconstruction and fails closed if import or synthetic validation unavailable. Real output validator itself now also uses `-I -S`.
+- Break the old anonymous validator `&&` chain into explicit fail-closed status codes: `ABSTAIN_ECONOMY_GENERATION`, `ABSTAIN_GENERIC_AGGREGATE_VALIDATION`, `ABSTAIN_JOINT_AGGREGATE_VALIDATION`, `ABSTAIN_ATTESTED_MANIFEST_MISMATCH`; only emit `PASS_VALIDATED_AGGREGATE` after all checks, else remove candidate report. Generic evidence wrapper remains unchanged and still publishes only approved count-only artifacts/status/outer log on ABSTAIN. No private paths or exception details leave server.
+- Add regression tests for standalone host CLI imports and actual full aggregate command, tampered source, joint conservation, prevention of unvalidated evidence publication, Bash syntax; no tests relax earlier privacy/source gates.
+
+## After merge
+
+Verify exact final PR #317 HEAD CI SUCCESS before squash merge and actual merged main SHA + completed successful postmerge push CI. Then on existing corpus server `git pull --ff-only origin main` and re-use **the same dedicated v6 runner** `bash tools/run-public100-baseline68-mine-joint-v6-with-evidence.sh` for the same previously frozen hypothesis. It automatically publishes evidence to `runtime-logs` EVEN ABSTAIN, new timestamp/source commit. Do not request user to copy local logs, no main corpus remote reconstruction possible in ChatGPT. The original v6 attempt remains immutable observational/rejected evidence; do not reclassify until actual validated rerun.
+
+## Noncausal boundaries
+
+Existing v5 minefield marginals fresh=138864, owner/centre stable changed units=536703, sameID=887224, real intersection only bounded `[0,138864]` pending valid v6. T−1/T row differences are descriptive `CORPUS_OBSERVED`, not accepted NuHost orders or sweep/decay phase receipts; #247 PARKED. Freeze baseline68 set, 8550 selection digest `4432542b37c51f1bd94f27f9c061a8e27a850ecb08714ff55662928cb54ea659`, explicit immutable public100 generation sha `3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c`, `CURRENT=public68`, sealed heldout32, #289 PPQ, C5/Horwasp, IntelBoard production untouched. Distinguish `DOCUMENTED`, `TESTED`, `CORPUS_OBSERVED`, `DIFF_VERIFIED`.
