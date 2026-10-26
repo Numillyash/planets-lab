@@ -75,6 +75,8 @@ def main(argv: list[str] | None = None) -> int:
                         help="Add strict starbase→planet own-current archive link count-only audit")
     parser.add_argument("--vcr-temporal-input-provenance", action="store_true",
                         help="Add VCR turn/participant temporal source-readiness counts only")
+    parser.add_argument("--vcr-same-turn-consensus", action="store_true",
+                        help="Add frozen member-deduplicated same-turn VCR input signature count census")
     parser.add_argument("--output", type=Path,
                         help="Optional private aggregate JSON; must not overwrite")
     args = parser.parse_args(argv)
@@ -140,6 +142,7 @@ def main(argv: list[str] | None = None) -> int:
             expected_frozen_selection_sha256=args.expected_selection_sha256,
             starbase_planet_link_readiness=args.starbase_linked_provenance,
             vcr_temporal_readiness=args.vcr_temporal_input_provenance,
+            vcr_same_turn_consensus_readiness=args.vcr_same_turn_consensus,
         )
     finally:
         connection.close()
