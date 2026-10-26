@@ -26,6 +26,7 @@ from planets_lab.corpus.starbase_archive_link_readiness import (
     profile_starbase_archive_link_pair,
 )
 from planets_lab.corpus.vcr_archive_temporal_readiness import profile_vcr_archive_pair
+from planets_lab.corpus.vcr_same_turn_consensus_readiness import FrozenSameTurnVcrConsensus
 from planets_lab.corpus.m2_mineral_balance import profile_archive_mineral_mass_balance
 from planets_lab.corpus.m2_surface_residual_context import (
     CATEGORIES as RESIDUAL_CLASSES, profile_surface_residual_context,
@@ -382,6 +383,7 @@ def analyze_corpus_coverage(
     expected_frozen_selection_sha256: str | None = None,
     starbase_planet_link_readiness: bool = False,
     vcr_temporal_readiness: bool = False,
+    vcr_same_turn_consensus_readiness: bool = False,
 ) -> dict[str, Any]:
     members = read_metadata(connection)
     metadata, selected = census_members(
@@ -418,6 +420,7 @@ def analyze_corpus_coverage(
     identity_gate: dict[str, Counter[str]] = defaultdict(Counter)
     starbase_link_gate: Counter[str] = Counter()
     vcr_temporal_gate: Counter[str] = Counter()
+    vcr_same_turn_gate = FrozenSameTurnVcrConsensus() if vcr_same_turn_consensus_readiness else None
     residual_quality: Counter[str] = Counter()
     per_game_residual: dict[int, Counter[str]] = defaultdict(Counter)
     per_game_surface_context: dict[int, Counter[str]] = defaultdict(Counter)
@@ -432,6 +435,11 @@ def analyze_corpus_coverage(
             status["ABSTAIN_PAYLOAD_IDENTITY_INVALID"] += 1
             continue
         status["SAMPLED_PAIR_PAYLOAD_IDENTITY_VALID"] += 1
+        if vcr_same_turn_gate is not None:
+            vcr_same_turn_gate.observe(member_id=pair.before_id, game=pair.game,
+                turn=pair.after_turn - 1, observer=pair.player, payload=b)
+            vcr_same_turn_gate.observe(member_id=pair.after_id, game=pair.game,
+                turn=pair.after_turn, observer=pair.player, payload=a)
         # Archive-time section availability only. Content may be stale,
         # incomplete or perspective-dependent; never a Host phase proof.
         for section in ("minefields", "ships", "starbases", "vcrs", "ionstorms"):
@@ -764,5 +772,10 @@ def analyze_corpus_coverage(
     if vcr_temporal_readiness:
         report["sample"]["vcr_archive_temporal_input_readiness_not_host_phase"] = dict(
             sorted(vcr_temporal_gate.items())
+        )
+    if vcr_same_turn_gate is not None:
+        report["sample"]["vcr_same_turn_perspective_consensus_not_host_phase"] = (
+            vcr_same_turn_gate.result(qualified_archive_pairs=
+                status["SAMPLED_PAIR_PAYLOAD_IDENTITY_VALID"])
         )
     return report
