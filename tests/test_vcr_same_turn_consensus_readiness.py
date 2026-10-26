@@ -139,12 +139,21 @@ class Conn:
 
 
 def test_opt_in_frozen_two_player_adjacent_pair_integration_preserves_old_report():
+    # census_members selects ONE perspective per distinct selected after-turn.
+    # Pair (player 1: T10→11) and (player 2: T11→12) expose TWO
+    # observers at T11 via after/before, without changing frozen logic.
     members=[Member(1,42,1,10,10),Member(2,42,1,11,11),
-             Member(3,42,2,10,10),Member(4,42,2,11,11)]
+             Member(3,42,1,12,12),Member(4,42,2,10,10),
+             Member(5,42,2,11,11),Member(6,42,2,12,12)]
     meta,pairs=census_members(members,max_games=1,pairs_per_game=2,allowed_games={42})
     assert len(pairs)==2
-    data={1:source(turn=10,player=1),2:source(turn=11,player=1,vid=8),
-          3:source(turn=10,player=2),4:source(turn=11,player=2,vid=8)}
+    assert [(p.player,p.after_turn) for p in pairs]==[(1,11),(2,12)]
+    data={1:source(turn=10,player=1,vid=6),
+          2:source(turn=11,player=1,vid=7),
+          3:source(turn=12,player=1,vid=8),
+          4:source(turn=10,player=2,vid=6),
+          5:source(turn=11,player=2,vid=7),
+          6:source(turn=12,player=2,vid=8)}
     opts=dict(max_games=1,pairs_per_game=2,allowed_games={42},
               expected_frozen_selection_sha256=meta["metadata_frozen_selection_sha256"],
               reconstruct=lambda mid:copy.deepcopy(data[mid]))
@@ -155,9 +164,10 @@ def test_opt_in_frozen_two_player_adjacent_pair_integration_preserves_old_report
     q=new["sample"][label]
     assert q["qualified_original_frozen_adjacent_pairs"]==2
     assert q["unique_frozen_archive_members_examined"]==4
-    assert q["same_turn_observation_groups"]==2
-    assert q["multi_perspective_groups"]==2
-    assert q["multi_perspective_strict_complete_inputs_equal"]==2
+    assert q["same_turn_observation_groups"]==3
+    assert q["single_perspective_groups"]==2
+    assert q["multi_perspective_groups"]==1
+    assert q["multi_perspective_strict_complete_inputs_equal"]==1
     del new["sample"][label]
     assert new==old
 
