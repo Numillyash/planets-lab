@@ -43,7 +43,7 @@ FIELDS = (
     "multi_missing_owner_rows",
     "single_missing_catalog_rows",
     "multi_missing_catalog_rows",
-    "multi_complete_signature_equal_not_multi_comparison",
+    "multi_complete_signature_equal",
     "multi_complete_signature_different",
     "multi_incomplete_signature_equal",
     "multi_incomplete_signature_different",
@@ -91,7 +91,7 @@ class FrozenSameTurnMissingnessJoint(FrozenSameTurnVcrConsensus):
                 elif not equal:
                     c["multi_complete_signature_different"] += 1
                 else:
-                    c["multi_complete_signature_equal_not_multi_comparison"] += 1
+                    c["multi_complete_signature_equal"] += 1
 
         if not (
             set(c).issubset(FIELDS)
@@ -112,14 +112,14 @@ class FrozenSameTurnMissingnessJoint(FrozenSameTurnVcrConsensus):
                 == prior["vcr_rows_missing_typed_owner_pair"]
             and c["single_missing_catalog_rows"] + c["multi_missing_catalog_rows"]
                 == prior["vcr_rows_missing_typed_weapon_catalog"]
-            and c["multi_complete_signature_equal_not_multi_comparison"]
+            and c["multi_complete_signature_equal"]
                 == prior["multi_perspective_strict_complete_inputs_equal"]
             and c["multi_complete_signature_different"]
                 == prior["multi_perspective_strict_complete_inputs_different"]
             and (c["multi_incomplete_signature_equal"] +
                  c["multi_incomplete_signature_different"])
                 == prior["multi_perspective_strict_inputs_incomplete"]
-            and (c["multi_complete_signature_equal_not_multi_comparison"] +
+            and (c["multi_complete_signature_equal"] +
                  c["multi_incomplete_signature_equal"])
                 == prior["multi_perspective_complete_adapter_signature_equal"]
             and (c["multi_complete_signature_different"] +
