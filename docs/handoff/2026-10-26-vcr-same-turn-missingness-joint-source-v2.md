@@ -1,0 +1,38 @@
+# PR #326 — VCR same-turn строгая совместная причина неполных replay-входов
+
+## Context
+
+Live GitHub `main` единственный источник истины. Исторический PRE-PR SHA `d7d577a39c2ea1a390f42dbbef322f91c0c5a17f`; #325 merged after exact final PR CI **#1876 SUCCESS** and main postmerge CI **#1877 completed/success**. Текущий [PR #326](https://github.com/Numillyash/planets-lab/pull/326) branch `research/vcr-same-turn-missingness-joint-v2`. Его финальный CI/merge пока НЕ утверждать без live проверки. Language: Russian-only chat.
+
+## Verified state
+
+Самый новый реальный успешный ранее выполненный `runtime-logs/public100-baseline68-vcr-same-turn-v1/20261026T202552Z_96f6f595a25c`: 2026-10-26 20:25:52–21:00:19 UTC = **34m27s**, source main `96f6f595a25c3ef3e47fa01a2ef2b3386e5f7b7e`, exit0, `PASS_NONCAUSAL_READONLY` / `PASS_VALIDATED_AGGREGATE`, full **3884** tests, 0 fail/errors, 26 skipped, all Docker/cohort/host-validator gates PASS. Full 100 games/224014 source metadata, ONLY 68 exact baseline-game content and frozen 8550 T−1/T adjacent same-observer pairs SHA `4432542b37c51f1bd94f27f9c061a8e27a850ecb08714ff55662928cb54ea659`, manifest `942eb61741664835cc600bb1e2148daaa1c009462827b238f13227c5937899d9`. Immutable DB read-only, CURRENT unchanged, sealed32 excluded.
+
+V1 same-turn VCR `CORPUS_OBSERVED`: unique frozen source members **17100**, qualified VCR source rows **44332** grouped by ephemeral `(game,turn,vcr_id)` **only within same turn** into **38226** source-key groups: **32120 singleton**, **6106 two-observer**, 0 three-plus. All 6106 paired groups raw VCR payload, catalog, combatrng settings and full adapter signatures matched, zero differences, but **6047** STRICT complete inputs and **59** incomplete (even with equal signatures). Across ALL 44332 source rows **323** lacked explicit `combatrng`, **1** lacked a typed owner pair, **0** had untyped weapon catalog list; those are *separate margins*, not per-group attribution. Prior VCR temporal 44332 rows had exact `vcr.turn`, participant typed, 44331 typed both owners, 0 across-turn generic id. No Host combat output or accepted Host order/phase witnessed. #325 offline scorecard checked into `validation/research/public100-baseline68-vcr-same-turn-v1-source-scorecard.json`, exact v5/v6 full source parity, no additional corpus scan, PR+postmerge CI green.
+
+## Implementation
+
+- New `src/planets_lab/corpus/vcr_same_turn_missingness_joint.py`, subclass of original frozen V1 `FrozenSameTurnVcrConsensus`, NEVER changes original V1 method, sample, hashing or default report. Maintains ephemeral same-turn/private `(game, turn, vcr ID)` keys, observer identities and input signatures only in memory. NEW `joint_result` partitions **EVERY selected single-perspective and multi-perspective group** into **8 mutually exclusive cases** by union across its observers: complete, missing RNG only, owner only, typed weapon catalog only, RNG+owner, RNG+catalog, owner+catalog, all three. Group status uses *ANY perspective missing*, so a paired group missing RNG in both observers is ONE missing-RNG group but TWO source row occurrences. Independently count RNG/owner/catalog missing source-row occurrences in singleton and multi groups. Additional counts: complete vs incomplete group equal/different adapter signatures. No per-group keys/hashes/IDs/seeds/raw member values exposed. All 32 fixed integer counters, exact conservation with original V1 31 counters including per-source missing marginals, matched complete 6047 and incomplete59.
+- New opt-in `m2_economy_coverage(..., vcr_same_turn_missingness_joint=True)` plus `tools/diagnostics/m2_public_corpus_economy_coverage_v1.py --vcr-same-turn-missingness-joint` alongside original `--vcr-same-turn-consensus`, only adds `sample.vcr_same_turn_missingness_joint_not_host_phase`; always includes original `sample.vcr_same_turn_perspective_consensus_not_host_phase` exactly unchanged, legacy M2 CLI default unchanged.
+- `tools/diagnostics/m2_validate_corpus_aggregate_evidence_v1.py`: new section can only contain count-only keys, no raw/untrusted text. New separate `tools/diagnostics/validate_vcr_same_turn_missingness_joint_v2.py` isolated host stdlib `python3 -I -S`: reuses earlier published pinned source validator for exact SHA/68/8550/224014 and original V1, strict allowlist no bool/raw IDs, exact partition group totals `32120/6106`, original 44332 observations, 323 RNG, 1 owner, 0 typed catalog missing, 6047 complete equal, 59 incomplete, zero signature disagreement. `--self-test` prior to expensive DB scan.
+- NEW independently tracked read-only `bash tools/run-public100-baseline68-vcr-missingness-joint-v2-with-evidence.sh` wraps `tools/run-public100-baseline68-vcr-missingness-joint-v2.sh` via EXACT untouched `tools/run-with-runtime-evidence.sh`; includes per-run status, sanitized count-only aggregate, sanitized tests, cohort attestation, source SHA, exit and outer log to orphan GitHub `runtime-logs` **EVEN ABSTAIN**. Docker/DB checks full public100 SHA, cohort/68-game ID-set, **exact OLD frozen 8550 selection** BEFORE entity reconstruction, full pytest/host gate, sealed32=false, CURRENT immutable; private Docker logs local, sanitized enum only if build fails.
+- `tests/test_vcr_same_turn_missingness_joint_v2.py`: unit/group/source row conservation, reasons split across two observers, both observers missing same input, singleton-only reason, source input signature disagreement, unchanged V1/default M2 report, host isolated preflight and runner contract/tamper.
+
+**No empirical new 8-way counts yet** until successful genuine new on-host run. Code is `DOCUMENTED+TESTED` only after passing CI; old 59/323/1 remain `CORPUS_OBSERVED`; Host combat `DIFF_VERIFIED` unchanged.
+
+## Next actions
+
+1. Finish own PR #326 `docs/CONTINUE_HERE.md` fully self-contained with number #326, numbered `docs/PR_CHANGELOG.md`, topic handoff, ROADMAP and progress map before merge; exact FINAL PR-head Actions `completed/success`, squash with `expected_head_sha`, independently verify merged live main SHA and completed/success postmerge push-main CI. Do not weaken `tools/check_pr_handoff.py`.
+2. ONLY after merge, operator on existing corpus server executes:
+```bash
+cd ~/projects/planets-lab
+git pull --ff-only origin main
+bash tools/run-public100-baseline68-vcr-missingness-joint-v2-with-evidence.sh
+```
+This is NEW repeat bounded read-only source study, not current Host proof. Read its sanitized JSON automatically from `runtime-logs`; no private logs/questions. If ABSTAIN inspect safe published gate/status and fix source-only before reporting data.
+3. Interpret exact 59 missing paired-group 8-way joint buckets and split of 323 missing explicit RNG source rows between singleton/pair; do NOT confuse observed source rows with unique Host battles. If source sufficiency allows, further isolated same-turn replay-input inspection, NOT Host combat outcome verification. Independent accepted Host orders and phase-specific Host result receipts remain issue #247 OPEN/PARKED.
+4. After each subsequent PR update complete handoff/docs/CI. Do not touch frozen PPQ #289, C5/Horwasp, IntelBoard production or sealed32.
+
+## Boundaries
+
+Immutable `CURRENT=public68` SHA `5ae0d6fe1190d5f7cd4a90895f3c5ebf995280ad0b716e0960273a8a55e8f43a`, immutable explicit `public100` SHA `3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c`, 100 games/224014 metadata only, baseline68 entity content only, heldout32 sealed. 8550 frozen member selection, no resampling, DB rebuild/writes/CURRENT switch, no raw HAR/trn/orders/player/game/VCR keys/hash emission. `DOCUMENTED`/`TESTED`/`CORPUS_OBSERVED`/`DIFF_VERIFIED` distinct. No independent Host phase conclusions or invented global completion percent.

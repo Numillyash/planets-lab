@@ -77,6 +77,8 @@ def main(argv: list[str] | None = None) -> int:
                         help="Add VCR turn/participant temporal source-readiness counts only")
     parser.add_argument("--vcr-same-turn-consensus", action="store_true",
                         help="Add frozen member-deduplicated same-turn VCR input signature count census")
+    parser.add_argument("--vcr-same-turn-missingness-joint", action="store_true",
+                        help="Add exact group/row joint of RNG/owner/catalog incompleteness")
     parser.add_argument("--output", type=Path,
                         help="Optional private aggregate JSON; must not overwrite")
     args = parser.parse_args(argv)
@@ -143,6 +145,7 @@ def main(argv: list[str] | None = None) -> int:
             starbase_planet_link_readiness=args.starbase_linked_provenance,
             vcr_temporal_readiness=args.vcr_temporal_input_provenance,
             vcr_same_turn_consensus_readiness=args.vcr_same_turn_consensus,
+            vcr_same_turn_missingness_joint=args.vcr_same_turn_missingness_joint,
         )
     finally:
         connection.close()
