@@ -1,0 +1,12 @@
+{
+  "all_members_metadata_only": 224014,
+  "all_metadata_game_count": 100,
+  "baseline_db_sha256": "5ae0d6fe1190d5f7cd4a90895f3c5ebf995280ad0b716e0960273a8a55e8f43a",
+  "baseline_game_count": 68,
+  "current_modified": false,
+  "heldout_entity_sampling": false,
+  "host_diff_verified": false,
+  "manifest_sha256": "942eb61741664835cc600bb1e2148daaa1c009462827b238f13227c5937899d9",
+  "schema": "planets-lab.public100-baseline68-cohort-identity-guard.v3",
+  "status": "PASS_EXACT_MANIFEST_GAME_IDS_MATCH_SHA_PINNED_PUBLIC68"
+}
