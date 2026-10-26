@@ -134,8 +134,8 @@ class Conn:
         return self
     def fetchmany(self,n):
         self.calls+=1
-        return [(1,42,1,10,10),(2,42,1,11,11),
-                (3,42,2,10,10),(4,42,2,11,11)] if self.calls==1 else []
+        return [(1,42,1,10,10),(2,42,1,11,11),(3,42,1,12,12),
+                (4,42,2,10,10),(5,42,2,11,11),(6,42,2,12,12)] if self.calls==1 else []
 
 
 def test_opt_in_frozen_two_player_adjacent_pair_integration_preserves_old_report():
