@@ -11,14 +11,14 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[3]
-PREVIOUS_MODULE = ROOT / "src/planets_lab/corpus/starbase_link_v1_observation_readout.py"
-_spec = spec_from_file_location("_pure_starbase_replay_for_vcr_v1", PREVIOUS_MODULE)
+PREVIOUS_MODULE = ROOT / "src/planets_lab/corpus/minefield_v6_observation_readout.py"
+_spec = spec_from_file_location("_pure_v6_replay_for_vcr_v1", PREVIOUS_MODULE)
 if _spec is None or _spec.loader is None:
-    raise RuntimeError("ABSTAIN_STARBASE_REVIEW_MODULE_UNAVAILABLE")
+    raise RuntimeError("ABSTAIN_V6_REVIEW_MODULE_UNAVAILABLE")
 _previous = module_from_spec(_spec)
 _spec.loader.exec_module(_previous)
 EvidenceReviewAbstain = _previous.EvidenceReviewAbstain
-readout_starbase_link = _previous.readout_starbase_link
+readout_v6_joint = _previous.readout_v6_joint
 
 SCHEMA = "planets-lab.vcr-temporal-v1-source-scorecard.v1"
 PROJECTION_SCHEMA = "planets-lab.vcr-temporal-v1-safe-projection.v1"
@@ -64,20 +64,19 @@ def _abstain(reason: str) -> None:
 def readout_vcr_temporal(
     v5: dict[str, Any],
     v6: dict[str, Any],
-    starbase: dict[str, Any],
     vcr: dict[str, Any],
 ) -> dict[str, Any]:
     """Accept precisely one VCR count-only extension of the earlier frozen source."""
-    if any(type(arg) is not dict for arg in (v5, v6, starbase, vcr)):
+    if any(type(arg) is not dict for arg in (v5, v6, vcr)):
         _abstain("ABSTAIN_INPUT_TYPE")
-    prior = readout_starbase_link(v5, v6, starbase)
+    prior = readout_v6_joint(v5, v6)
     if (set(vcr) != {"schema", "runtime", "source"}
         or vcr.get("schema") != PROJECTION_SCHEMA
         or vcr.get("runtime") != RUNTIME):
         _abstain("ABSTAIN_VCR_REAL_RUNTIME_ATTESTATION")
     if type(vcr.get("source")) is not dict:
         _abstain("ABSTAIN_VCR_SOURCE_NOT_DICT")
-    old_source = starbase.get("source")
+    old_source = v6.get("source")
     if type(old_source) is not dict:
         _abstain("ABSTAIN_PRIOR_SOURCE_NOT_DICT")
     copied = deepcopy(vcr["source"])
@@ -146,7 +145,7 @@ def readout_vcr_temporal(
             "baseline_entity_games": 68,
             "sealed_entity_games_read": 0,
             "observational_pairs": q,
-            "previous_starbase_complete_projection_matched": True,
+            "previous_v6_complete_projection_matched": True,
             "new_source_aggregate_validated": True,
         },
         "vcr_observer_archive_rows_not_unique_battles": {
