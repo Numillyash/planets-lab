@@ -1,0 +1,12 @@
+{
+  "build_exit_code": null,
+  "build_exit_code_verified": false,
+  "build_status": "FAILED",
+  "corpus_entity_accessed": false,
+  "diagnostic_category": "DOCKER_DAEMON_UNAVAILABLE",
+  "diagnostic_is_definitive_root_cause": false,
+  "host_order_or_phase_verified": false,
+  "local_log_available": true,
+  "raw_build_log_exported": false,
+  "schema": "planets-lab.docker-build-failure-safe-diagnostic.v1"
+}
