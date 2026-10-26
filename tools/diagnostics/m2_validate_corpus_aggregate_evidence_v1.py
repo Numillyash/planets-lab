@@ -43,6 +43,7 @@ SAMPLE_FIELDS = {
     "nonplanet_archive_identity_readiness_not_host_phase",
     "starbase_planet_archive_link_not_host_phase",
     "vcr_archive_temporal_input_readiness_not_host_phase",
+    "vcr_same_turn_perspective_consensus_not_host_phase",
 }
 HEX64 = re.compile(r"[a-f0-9]{64}\Z")
 
