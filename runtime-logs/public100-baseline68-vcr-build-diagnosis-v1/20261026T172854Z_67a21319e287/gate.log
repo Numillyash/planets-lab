@@ -1,0 +1,7 @@
+PASS_SANITIZED_BUILD_FAILURE_CATEGORY_ONLY
+build_failure_category=DOCKER_DAEMON_UNAVAILABLE
+root_cause_confirmed=false
+status=PASS_SAFE_PRIOR_LOCAL_BUILD_LOG_CLASSIFICATION
+historical_attempt_log_binding_verified=false
+no_docker_build_run=true
+no_corpus_entity_read=true
