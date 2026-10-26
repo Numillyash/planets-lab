@@ -1,0 +1,43 @@
+{
+  "schema": "planets-lab.vcr-temporal-v1-source-scorecard.v1",
+  "status": "PASS_VCR_FROZEN_TEMPORAL_INPUT_SOURCE_NOT_HOST_CAUSAL",
+  "evidence_level": "CORPUS_OBSERVED_DESCRIPTIVE_ONLY",
+  "provenance": {
+    "runtime_run_id": "20261026T173212Z_67a21319e287",
+    "source_commit": "67a21319e2876280480dcb6d9fb149127b033cfb",
+    "frozen_selection_sha256": "4432542b37c51f1bd94f27f9c061a8e27a850ecb08714ff55662928cb54ea659",
+    "metadata_games": 100,
+    "baseline_entity_games": 68,
+    "sealed_entity_games_read": 0,
+    "observational_pairs": 8550,
+    "previous_v6_complete_projection_matched": true,
+    "new_source_aggregate_validated": true
+  },
+  "vcr_observer_archive_rows_not_unique_battles": {
+    "rows_before": 21918,
+    "rows_after": 22414,
+    "rows_total": 44332,
+    "raw_turn_equals_archive_turn": 44332,
+    "raw_turn_earlier": 0,
+    "raw_turn_future": 0,
+    "raw_turn_missing_or_invalid": 0,
+    "both_participant_objectids_typed": 44332,
+    "both_ownerids_typed": 44331,
+    "exact_turn_and_both_participants": 44332,
+    "exact_turn_and_participants_and_owners": 44331,
+    "qualified_exact_turn_participants_but_owners_incomplete": 1,
+    "same_generic_id_across_adjacent_archives_not_battle_link": 0,
+    "archive_pair_lists_both_empty": 3748,
+    "partition_conservation_verified": true
+  },
+  "inference_gates": {
+    "typed_same_turn_vcr_inputs_observed": true,
+    "unique_battles_counted": false,
+    "duplicate_observer_perspectives_deduplicated": false,
+    "cross_turn_vcr_id_is_stable_battle_key": false,
+    "combat_input_payloads_replay_validated_by_this_readout": false,
+    "combat_results_host_diff_verified_by_this_readout": false,
+    "independent_host_phase_receipts_authenticated": false,
+    "accepted_host_orders_authenticated": false
+  }
+}
