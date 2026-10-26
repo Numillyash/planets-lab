@@ -27,6 +27,7 @@ from planets_lab.corpus.starbase_archive_link_readiness import (
 )
 from planets_lab.corpus.vcr_archive_temporal_readiness import profile_vcr_archive_pair
 from planets_lab.corpus.vcr_same_turn_consensus_readiness import FrozenSameTurnVcrConsensus
+from planets_lab.corpus.vcr_same_turn_missingness_joint import FrozenSameTurnMissingnessJoint
 from planets_lab.corpus.m2_mineral_balance import profile_archive_mineral_mass_balance
 from planets_lab.corpus.m2_surface_residual_context import (
     CATEGORIES as RESIDUAL_CLASSES, profile_surface_residual_context,
@@ -384,6 +385,7 @@ def analyze_corpus_coverage(
     starbase_planet_link_readiness: bool = False,
     vcr_temporal_readiness: bool = False,
     vcr_same_turn_consensus_readiness: bool = False,
+    vcr_same_turn_missingness_joint: bool = False,
 ) -> dict[str, Any]:
     members = read_metadata(connection)
     metadata, selected = census_members(
@@ -420,7 +422,10 @@ def analyze_corpus_coverage(
     identity_gate: dict[str, Counter[str]] = defaultdict(Counter)
     starbase_link_gate: Counter[str] = Counter()
     vcr_temporal_gate: Counter[str] = Counter()
-    vcr_same_turn_gate = FrozenSameTurnVcrConsensus() if vcr_same_turn_consensus_readiness else None
+    vcr_same_turn_gate = (FrozenSameTurnMissingnessJoint()
+                          if vcr_same_turn_missingness_joint else
+                          FrozenSameTurnVcrConsensus()
+                          if vcr_same_turn_consensus_readiness else None)
     residual_quality: Counter[str] = Counter()
     per_game_residual: dict[int, Counter[str]] = defaultdict(Counter)
     per_game_surface_context: dict[int, Counter[str]] = defaultdict(Counter)
@@ -778,4 +783,9 @@ def analyze_corpus_coverage(
             vcr_same_turn_gate.result(qualified_archive_pairs=
                 status["SAMPLED_PAIR_PAYLOAD_IDENTITY_VALID"])
         )
+        if vcr_same_turn_missingness_joint:
+            report["sample"]["vcr_same_turn_missingness_joint_not_host_phase"] = (
+                vcr_same_turn_gate.joint_result(qualified_archive_pairs=
+                    status["SAMPLED_PAIR_PAYLOAD_IDENTITY_VALID"])
+            )
     return report
