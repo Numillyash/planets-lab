@@ -1,0 +1,165 @@
+{
+  "schema": "planets-lab.vcr-temporal-v1-safe-projection.v1",
+  "runtime": {
+    "source_commit": "67a21319e2876280480dcb6d9fb149127b033cfb",
+    "source_branch": "main",
+    "run_id": "20261026T173212Z_67a21319e287",
+    "exit_code": 0,
+    "economy_status": "PASS_VALIDATED_AGGREGATE",
+    "cohort_status": "PASS_EXACT_68_IDS_SHA_PINNED_PUBLIC68",
+    "pytest_status": "PASS",
+    "pytest_cases": 3845,
+    "pytest_failures": 0,
+    "pytest_errors": 0,
+    "pytest_skipped": 26,
+    "generation_read_only": true,
+    "heldout32_entities_read": false,
+    "current_modified": false,
+    "host_orders_verified": false,
+    "host_diff_verified": false
+  },
+  "source": {
+    "schema": "planets-lab.m2-public-corpus-economy-coverage.v1",
+    "status": "CORPUS_METADATA_CENSUS_AND_BOUNDED_OWNER_CURRENT_SAMPLE_NOT_HOST_CAUSAL",
+    "generation": {
+      "CURRENT_modified": false,
+      "name": "corpus-v2compact-public100-20261005T181128Z-7578e4b559b4.duckdb",
+      "read_only": true,
+      "verified_sha256": "3c9604f0691e3fa0d13c1c7d789a855f390f4c9e1df0d8ff97900cedbd064f0c"
+    },
+    "baseline_sample_allowlist": {
+      "allowed_game_count": 68,
+      "heldout_entity_sampling": false,
+      "manifest_sha256": "942eb61741664835cc600bb1e2148daaa1c009462827b238f13227c5937899d9"
+    },
+    "metadata": {
+      "all_games_in_source_metadata": 100,
+      "all_source_perspective_members": 224014,
+      "ambiguous_duplicate_perspective_turn_keys": 0,
+      "games_allowed_for_entity_sampling": 68,
+      "games_excluded_from_entity_sampling": 32,
+      "games_with_adjacent_perspective_pairs": 100,
+      "identity_valid_members": 222536,
+      "metadata_frozen_sample_pairs": 8550,
+      "metadata_frozen_selection_sha256": "4432542b37c51f1bd94f27f9c061a8e27a850ecb08714ff55662928cb54ea659",
+      "metadata_invalid_or_embedded_turn_mismatch": 1478,
+      "metadata_selected_game_count": 68,
+      "potential_adjacent_same_perspective_pairs": 221091,
+      "selection_frozen_before_entity_reconstruction": true
+    },
+    "sample": {
+      "sample_status_counts": {
+        "ABSTAIN_OWNER_PLANET_STALE_OR_NO_INFOTURN": 5,
+        "OWNER_CURRENT_PLANET_RECORDS": 643495,
+        "SAMPLED_PAIR_PAYLOAD_IDENTITY_VALID": 8550
+      },
+      "nonplanet_archive_identity_readiness_not_host_phase": {
+        "ionstorms": {
+          "after_id_rows": 101318,
+          "before_id_rows": 100633,
+          "empty_lists_both": 810,
+          "id_only_after_archive_not_host_construction": 6188,
+          "id_only_before_archive_not_host_destruction": 5503,
+          "qualified_identity_list_pair": 8550,
+          "same_id_current_own_verified_both_archives": 0,
+          "same_id_owner_changed_not_host_capture": 0,
+          "same_id_owner_own_but_infoturn_missing_or_stale": 0,
+          "same_id_owner_unchanged": 0,
+          "same_id_owner_untyped_abstain": 95130,
+          "same_id_seen_in_both_archives": 95130
+        },
+        "minefields": {
+          "after_id_rows": 916892,
+          "before_id_rows": 908038,
+          "empty_lists_both": 1634,
+          "id_only_after_archive_not_host_construction": 29668,
+          "id_only_before_archive_not_host_destruction": 20814,
+          "qualified_identity_list_pair": 8550,
+          "same_id_current_own_verified_both_archives": 138864,
+          "same_id_integer_units_changed_not_host_attribution": 536849,
+          "same_id_nonnegative_integer_units_both": 887224,
+          "same_id_owner_center_stable_units_changed_not_causal": 536703,
+          "same_id_owner_changed_not_host_capture": 0,
+          "same_id_owner_own_but_infoturn_missing_or_stale": 0,
+          "same_id_owner_unchanged": 887224,
+          "same_id_owner_untyped_abstain": 0,
+          "same_id_seen_in_both_archives": 887224,
+          "same_id_fresh_own_center_stable_numeric_units_joint": 138833,
+          "same_id_fresh_own_center_stable_units_changed_joint_not_causal": 138439,
+          "same_id_fresh_own_center_stable_units_decreased_joint_not_causal": 134693,
+          "same_id_fresh_own_center_stable_units_increased_joint_not_causal": 3746,
+          "same_id_fresh_own_center_stable_units_unchanged_joint_not_causal": 394
+        },
+        "ships": {
+          "after_id_rows": 1025238,
+          "before_id_rows": 1017052,
+          "empty_lists_both": 1959,
+          "id_only_after_archive_not_host_construction": 108334,
+          "id_only_before_archive_not_host_destruction": 100148,
+          "qualified_identity_list_pair": 8550,
+          "same_id_current_own_verified_both_archives": 347831,
+          "same_id_owner_changed_not_host_capture": 6891,
+          "same_id_owner_own_but_infoturn_missing_or_stale": 0,
+          "same_id_owner_unchanged": 909404,
+          "same_id_owner_untyped_abstain": 609,
+          "same_id_seen_in_both_archives": 916904
+        },
+        "starbases": {
+          "after_id_rows": 351652,
+          "before_id_rows": 347948,
+          "empty_lists_both": 1057,
+          "id_only_after_archive_not_host_construction": 5430,
+          "id_only_before_archive_not_host_destruction": 1726,
+          "qualified_identity_list_pair": 8550,
+          "same_id_current_own_verified_both_archives": 0,
+          "same_id_owner_changed_not_host_capture": 0,
+          "same_id_owner_own_but_infoturn_missing_or_stale": 0,
+          "same_id_owner_unchanged": 0,
+          "same_id_owner_untyped_abstain": 346222,
+          "same_id_seen_in_both_archives": 346222
+        },
+        "vcrs": {
+          "after_id_rows": 22414,
+          "before_id_rows": 21918,
+          "empty_lists_both": 3748,
+          "id_only_after_archive_not_host_construction": 22414,
+          "id_only_before_archive_not_host_destruction": 21918,
+          "qualified_identity_list_pair": 8550,
+          "same_id_current_own_verified_both_archives": 0,
+          "same_id_owner_changed_not_host_capture": 0,
+          "same_id_owner_own_but_infoturn_missing_or_stale": 0,
+          "same_id_owner_unchanged": 0,
+          "same_id_owner_untyped_abstain": 0,
+          "same_id_seen_in_both_archives": 0
+        }
+      },
+      "vcr_archive_temporal_input_readiness_not_host_phase": {
+        "after_exact_turn_and_full_typed_participants_owners": 22413,
+        "after_exact_turn_and_typed_participants": 22414,
+        "after_turn_earlier": 0,
+        "after_turn_exact": 22414,
+        "after_turn_future": 0,
+        "after_turn_missing_or_invalid": 0,
+        "after_two_ownerids_typed": 22413,
+        "after_two_participant_objectids_typed": 22414,
+        "after_vcr_rows": 22414,
+        "before_exact_turn_and_full_typed_participants_owners": 21918,
+        "before_exact_turn_and_typed_participants": 21918,
+        "before_turn_earlier": 0,
+        "before_turn_exact": 21918,
+        "before_turn_future": 0,
+        "before_turn_missing_or_invalid": 0,
+        "before_two_ownerids_typed": 21918,
+        "before_two_participant_objectids_typed": 21918,
+        "before_vcr_rows": 21918,
+        "qualified_archive_pairs": 8550,
+        "same_id_across_adjacent_archives_not_battle_link": 0
+      }
+    },
+    "evidence_limits": {
+      "archive_identity_or_mine_unit_changes_prove_host_phase": false,
+      "nonplanet_section_counts_prove_sweeping_or_combat": false,
+      "T_minus_1_to_T_stock_change_identifies_action": false
+    }
+  }
+}
